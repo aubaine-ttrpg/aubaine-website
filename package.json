@@ -18,6 +18,7 @@
     "format": "biome check --write .",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:e2e": "playwright test",
     "data:check": "vitest run tests/data",
     "fonts:build": "node tools/fonts/build.ts",
     "verify": "pnpm lint && pnpm data:check && pnpm check && pnpm test && pnpm build",
