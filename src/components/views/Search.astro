@@ -1,0 +1,215 @@
+---
+import type { Corpus } from '../../lib/game/corpus'
+import {
+  collator,
+  EM_DASH,
+  formatNumber,
+  formatPrice,
+  frame,
+  showsXp,
+  slugify,
+  typeLabelFor,
+  xpOf,
+} from '../../lib/game/derive'
+import type { EquipmentItem, Skill } from '../../lib/game/schema'
+import { type BadgedStatus, badgedStatus } from '../../lib/game/status'
+import type { Locale } from '../../lib/i18n/locales'
+import { pathFor } from '../../lib/i18n/routes'
+import { strings } from '../../lib/i18n/strings'
+import StatusBadge from '../primitives/StatusBadge.astro'
+
+type Props = { locale: Locale; corpus: Corpus }
+
+type Row = {
+  id: string
+  title: string
+  href: string
+  sub: string
+  mark: string
+  value: string
+  status?: BadgedStatus | undefined
+}
+type Group = { title: string; rows: Row[] }
+
+const { locale, corpus } = Astro.props
+const t = strings(locale)
+
+const DOMAIN_FALLBACK = '#2a2a2e'
+const RARITY_FALLBACK = '#6b6459'
+const BUFF = '#4f7a2e'
+const DEBUFF = '#a84d16'
+
+const compare = collator(locale)
+const typeLabels = { active: t.active, passive: t.passive, special: t.special }
+
+const domainColor = (key: string): string => corpus.domains.get(key)?.color ?? DOMAIN_FALLBACK
+const tint = (domains: string[]): string => domainColor(domains[0] ?? 'neutral')
+const xpLabel = (skill: Skill): string =>
+  showsXp(skill) ? `${formatNumber(xpOf(skill), locale)}\u00a0${t.xp}` : ''
+
+const treeRows: Row[] = corpus.trees
+  .map((tree) => ({
+    id: tree.id,
+    title: tree.name,
+    href: pathFor('tree', locale, { tree: tree.id }),
+    sub: tree.treeType === 'domain' ? t.domains : t.archetypes,
+    mark: frame(tree.domains.map(domainColor)),
+    value: `${formatNumber(tree.placements.length, locale)} ${t.nodes}`,
+    status: badgedStatus(tree.status),
+  }))
+  .sort((a, b) => compare.compare(a.title, b.title))
+
+const skillRows: Row[] = []
+const placed = new Map<string, { row: Row; trees: string[]; type: string }>()
+
+for (const tree of corpus.trees) {
+  for (const placement of tree.placements) {
+    const skill = placement.skill
+    const known = placed.get(skill.id)
+    if (known) {
+      known.trees.push(tree.name)
+      known.row.sub = `${known.trees.join(' + ')} · ${known.type}`
+      continue
+    }
+    const typeText = typeLabelFor(skill.type, typeLabels)
+    const row: Row = {
+      id: skill.id,
+      title: skill.title,
+      href: pathFor('tree', locale, { tree: tree.id, node: skill.id }),
+      sub: `${tree.name} · ${typeText}`,
+      mark: tint(skill.domains),
+      value: xpLabel(skill),
+      status: badgedStatus(corpus.skillStatus.get(skill.id)),
+    }
+    placed.set(skill.id, { row, trees: [tree.name], type: typeText })
+    skillRows.push(row)
+  }
+}
+
+for (const skill of corpus.bank.resolved) {
+  if (placed.has(skill.id)) continue
+  const typeText = typeLabelFor(skill.type, typeLabels)
+  const row: Row = {
+    id: skill.id,
+    title: skill.title,
+    href: `${pathFor('skills', locale)}#e-${skill.id}`,
+    sub: `${corpus.bank.name} · ${typeText}`,
+    mark: tint(skill.domains),
+    value: xpLabel(skill),
+    status: badgedStatus(corpus.skillStatus.get(skill.id)),
+  }
+  placed.set(skill.id, { row, trees: [], type: typeText })
+  skillRows.push(row)
+}
+
+skillRows.sort((a, b) => compare.compare(a.title, b.title))
+
+const slugs = new Map<EquipmentItem, string>()
+for (const [slug, item] of corpus.itemsBySlug) slugs.set(item, slug)
+const sectionTitles = new Map(corpus.sections.map((section) => [section.key, section.title]))
+
+const itemRows: Row[] = corpus.items
+  .map((item) => {
+    const slug = slugs.get(item) ?? slugify(item.name)
+    const price = formatPrice(item.price, corpus.coins.values(), locale)
+    return {
+      id: slug,
+      title: item.name,
+      href: `${pathFor('equipment', locale)}#e-${slug}`,
+      sub: sectionTitles.get(item.section) ?? item.section,
+      mark: corpus.rarities.get(item.rarity)?.color ?? RARITY_FALLBACK,
+      value: price ?? EM_DASH,
+      status: badgedStatus(item.status),
+    }
+  })
+  .sort((a, b) => compare.compare(a.title, b.title))
+
+const stateRows: Row[] = corpus.states
+  .map((state) => ({
+    id: state.key,
+    title: state.name,
+    href: pathFor('states', locale),
+    sub: state.kind === 'buff' ? t.buff : state.kind === 'debuff' ? t.debuff : t.neutral,
+    mark: state.kind === 'buff' ? BUFF : DEBUFF,
+    value: state.stacks ? `×${formatNumber(state.stacks, locale)}` : '',
+  }))
+  .sort((a, b) => compare.compare(a.title, b.title))
+
+const groups: Group[] = [
+  { title: t.trees, rows: treeRows },
+  { title: t.skills, rows: skillRows },
+  { title: t.items, rows: itemRows },
+  { title: t.states_, rows: stateRows },
+].filter((group) => group.rows.length > 0)
+
+const total = groups.reduce((sum, group) => sum + group.rows.length, 0)
+---
+
+<div data-search-results style="max-width:1560px; margin:0 auto; padding:44px 26px 80px; width:100%">
+  <h1
+    data-search-title
+    style="margin:0; font-family:var(--font-display); font-weight:700; font-size:var(--prose-h2); color:var(--ink)"
+  >
+    {t.searchTitleFor} <span data-search-query></span>
+  </h1>
+  <p
+    data-search-count
+    aria-live="polite"
+    style="margin:12px 0 26px; font-family:var(--font-mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink3)"
+  >
+    {formatNumber(total, locale)} {t.results}
+  </p>
+
+  {
+    groups.map((group) => (
+      <section data-search-group style="padding-bottom:30px">
+        <h2 style="margin:0; padding-bottom:8px; border-bottom:1px solid var(--accent-line); font-family:var(--font-display); font-size:16px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold)">
+          {group.title}
+        </h2>
+        <ul style="list-style:none; margin:0; padding:0">
+          {group.rows.map((row) => (
+            <li
+              data-search-row
+              data-name={row.title.toLowerCase()}
+              style="border-bottom:1px solid var(--line)"
+            >
+              <a
+                href={row.href}
+                data-search-link
+                style="display:grid; grid-template-columns:3px minmax(0,1.4fr) minmax(0,1fr) auto; align-items:center; gap:14px; padding:12px 8px 12px 0; transition:background-color .2s var(--ease), padding-left .2s var(--ease)"
+              >
+                <span aria-hidden="true" style={`width:3px; height:20px; background:${row.mark}`} />
+                <span style="min-width:0; font-family:var(--font-display); font-size:17px; font-weight:600; color:var(--ink); overflow:hidden; text-overflow:ellipsis; white-space:nowrap">
+                  {row.title}
+                </span>
+                <span style="display:flex; align-items:center; gap:8px; min-width:0">
+                  {row.status && <StatusBadge status={row.status} locale={locale} size="sm" />}
+                  <span style="min-width:0; font-family:var(--font-ui); font-size:13.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ink3); overflow:hidden; text-overflow:ellipsis; white-space:nowrap">
+                    {row.sub}
+                  </span>
+                </span>
+                <span style="font-family:var(--font-ui); font-weight:700; font-size:14px; color:var(--gold); font-variant-numeric:tabular-nums">
+                  {row.value}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+
+  <div data-search-empty hidden style="padding:40px 0; max-width:var(--measure)">
+    <p style="margin:0 0 10px; font-family:var(--font-display); font-size:20px; color:var(--ink)">
+      {t.emptyTitle}
+    </p>
+    <p style="margin:0; font-size:var(--prose-body); line-height:1.7; color:var(--ink2)">{t.searchEmpty}</p>
+  </div>
+</div>
+
+<style>
+  [data-search-link]:hover {
+    background: var(--hover);
+    padding-left: 7px;
+  }
+</style>

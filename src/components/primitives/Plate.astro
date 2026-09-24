@@ -1,0 +1,189 @@
+---
+import { type Corpus, label, type ResolvedTree } from '../../lib/game/corpus'
+import {
+  formatNumber,
+  frame,
+  NEUTRAL_DOMAIN,
+  showsXp,
+  treeTypeLabel,
+  xpOf,
+} from '../../lib/game/derive'
+import type { Locale } from '../../lib/i18n/locales'
+import { pathFor } from '../../lib/i18n/routes'
+import { strings } from '../../lib/i18n/strings'
+import NodeShape from './NodeShape.astro'
+
+type Props = {
+  locale: Locale
+  corpus: Corpus
+  tree: ResolvedTree
+  selected?: string | undefined
+  linked?: boolean
+  folio?: boolean | undefined
+}
+
+const { locale, corpus, tree, selected, linked = false, folio } = Astro.props
+const t = strings(locale)
+
+const VIEW_W = 960
+const VIEW_H = 1358
+const CORE_DEFAULT = { x: 50, y: 50.81 }
+const ORBITS = [175, 335, 500]
+
+const colorOf = (key: string): string => corpus.domains.get(key)?.color ?? '#2a2a2e'
+const corePos = tree.core?.pos ?? CORE_DEFAULT
+
+const positions = new Map<string, { x: number; y: number }>()
+for (const placement of tree.placements) {
+  if (placement.pos) positions.set(placement.skill.id, placement.pos)
+}
+
+const edges: { x1: string; y1: string; x2: string; y2: string }[] = []
+for (const placement of tree.placements) {
+  const from = positions.get(placement.skill.id)
+  for (const target of placement.linked ?? []) {
+    const to = target === 'CORE' ? corePos : positions.get(target)
+    if (!from || !to) continue
+    edges.push({
+      x1: (from.x * (VIEW_W / 100)).toFixed(1),
+      y1: (from.y * (VIEW_H / 100)).toFixed(1),
+      x2: (to.x * (VIEW_W / 100)).toFixed(1),
+      y2: (to.y * (VIEW_H / 100)).toFixed(1),
+    })
+  }
+}
+
+const treeTypeLabels = { archetypes: t.archetype, domains: t.domain, species: t.species }
+const plateSub = `${treeTypeLabel(tree.treeType, treeTypeLabels)} · ${t.plate}`
+
+const nodes = tree.placements
+  .filter((placement) => placement.pos !== undefined)
+  .map((placement) => ({
+    skill: placement.skill,
+    left: `${placement.pos?.x ?? 50}%`,
+    top: `${placement.pos?.y ?? 50}%`,
+    selected: selected === placement.skill.id,
+    href: linked ? pathFor('tree', locale, { tree: tree.id, node: placement.skill.id }) : undefined,
+  }))
+
+const placedSkills = tree.placements.map((placement) => placement.skill)
+
+const shapeLegend = (['active', 'passive', 'special'] as const)
+  .filter((key) => placedSkills.some((skill) => skill.type === key))
+  .map((key) => ({
+    label: label(corpus.nodeTypes.get(key), locale, key),
+    shape: corpus.nodeTypes.get(key)?.shapeKey ?? 'circle',
+  }))
+
+const domainsPresent = new Set<string>()
+for (const skill of placedSkills) {
+  if (skill.domains.length === 0) domainsPresent.add(NEUTRAL_DOMAIN)
+  for (const key of skill.domains) domainsPresent.add(key)
+}
+
+const domainLegend = [...corpus.domains.keys()]
+  .filter((key) => domainsPresent.has(key))
+  .map((key) => ({ label: label(corpus.domains.get(key), locale, key), color: colorOf(key) }))
+---
+
+<div class="au-sheet" aria-label={t.plateLabel}>
+  <div class="au-plate">
+    <svg
+      class="au-plate__links"
+      viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      {ORBITS.map((r) => <circle class="au-plate__orbit" cx="480" cy="690" r={r} />)}
+      {
+        edges.map((edge) => (
+          <line class="au-plate__edge" x1={edge.x1} y1={edge.y1} x2={edge.x2} y2={edge.y2} />
+        ))
+      }
+    </svg>
+
+    <header class="au-plate__head">
+      <span class="au-plate__title">{tree.name}</span>
+      <span class="au-plate__sub">{plateSub}</span>
+    </header>
+
+    {
+      tree.core && (
+        <div
+          class="au-core"
+          style={`left:${corePos.x}%; top:${corePos.y}%; --domain:${frame((tree.core.domains ?? []).map(colorOf))}`}
+        >
+          <span class="au-core__ring" />
+          <span class="au-core__glyph" />
+          <span class="au-core__plate">
+            <span class="au-core__label">{tree.core.label}</span>
+            <span class="au-core__sub">
+              {tree.core.sublabel ?? treeTypeLabel(tree.treeType, treeTypeLabels)}
+            </span>
+          </span>
+        </div>
+      )
+    }
+
+    {
+      nodes.map((node) =>
+        node.href ? (
+          <a
+            class="au-node"
+            href={node.href}
+            data-plate-node
+            aria-current={node.selected ? 'true' : undefined}
+            style={`left:${node.left}; top:${node.top}`}
+          >
+            <NodeShape skill={node.skill} corpus={corpus} variant="tree" />
+            <span class="au-nameplate">
+              {showsXp(node.skill) && (
+                <span class="au-nameplate__xp">{formatNumber(xpOf(node.skill), locale)}</span>
+              )}
+              <span class="au-nameplate__title">{node.skill.title}</span>
+            </span>
+          </a>
+        ) : (
+          <div class="au-node" style={`left:${node.left}; top:${node.top}`}>
+            <NodeShape skill={node.skill} corpus={corpus} variant="tree" />
+            <span class="au-nameplate">
+              {showsXp(node.skill) && (
+                <span class="au-nameplate__xp">{formatNumber(xpOf(node.skill), locale)}</span>
+              )}
+              <span class="au-nameplate__title">{node.skill.title}</span>
+            </span>
+          </div>
+        ),
+      )
+    }
+
+    <div class="au-legend">
+      <div class="au-legend__group">
+        {
+          shapeLegend.map((entry) => (
+            <span class="au-legend__item">
+              <span class={`au-legend__shape au-node__shape--${entry.shape}`} aria-hidden="true" />
+              <span>{entry.label}</span>
+            </span>
+          ))
+        }
+      </div>
+      <div class="au-legend__group">
+        {
+          domainLegend.map((entry) => (
+            <span class="au-legend__item">
+              <span class="au-legend__dot" style={`background:${entry.color}`} aria-hidden="true" />
+              <span>{entry.label}</span>
+            </span>
+          ))
+        }
+      </div>
+    </div>
+
+    <footer class="au-plate__foot">
+      <span>{`Aubaine · ${tree.name}`}</span>
+      <span>aubaine.io</span>
+      {folio && <span data-page-number />}
+    </footer>
+  </div>
+</div>

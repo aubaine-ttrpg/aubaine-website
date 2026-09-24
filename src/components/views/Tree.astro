@@ -1,0 +1,203 @@
+---
+import { hasBooklet } from '../../lib/booklet/manifest'
+import type { Corpus, ResolvedTree } from '../../lib/game/corpus'
+import {
+  characteristicKey,
+  formatNumber,
+  treeSkillOrder,
+  treeTypeLabel,
+} from '../../lib/game/derive'
+import { loreFor } from '../../lib/game/prose'
+import { badgedStatus } from '../../lib/game/status'
+import type { Locale } from '../../lib/i18n/locales'
+import { pathFor } from '../../lib/i18n/routes'
+import { strings } from '../../lib/i18n/strings'
+import { bookletHref, PLACEHOLDER_BANNER } from '../../lib/media'
+import Hero from '../primitives/Hero.astro'
+import Plate from '../primitives/Plate.astro'
+import SectionHead from '../primitives/SectionHead.astro'
+import SectionTrail from '../primitives/SectionTrail.astro'
+import SkillEntry from '../primitives/SkillEntry.astro'
+import StatusBadge from '../primitives/StatusBadge.astro'
+import TraitPlates from '../primitives/TraitPlates.astro'
+import '../../styles/prose.css'
+import '../../styles/reading.css'
+
+type Props = { locale: Locale; corpus: Corpus; tree: ResolvedTree; selected?: string | undefined }
+
+const { locale, corpus, tree, selected } = Astro.props
+const t = strings(locale)
+
+const characteristic = (key: string) => {
+  const entry = corpus.characteristics.get(characteristicKey(key))
+  return {
+    color: entry?.color ?? '#8a7c5c',
+    iconName: entry?.iconName,
+    label: entry ? (locale === 'en' ? entry.labelEn : entry.labelFr) : key,
+  }
+}
+
+const primes = tree.primeCharacteristics.map((key) => ({ key, ...characteristic(key) }))
+const booklet = bookletHref('tree', tree.id, locale)
+const treeStatus = badgedStatus(tree.status)
+const scrollCue = treeTypeLabel(tree.treeType, {
+  archetypes: t.scrollCueArchetype,
+  domains: t.scrollCueDomain,
+  species: t.scrollCueSpecies,
+})
+
+const skills = treeSkillOrder(tree.placements, locale)
+
+const lore = await loreFor('skill-trees', tree.id, locale)
+const LoreContent = lore?.Content
+const trail = lore
+  ? [
+      ...lore.headings
+        .filter((heading) => heading.depth === 2)
+        .map((heading) => ({ text: heading.text, href: `#${heading.slug}` })),
+      { text: t.skills, href: '#skills' },
+    ].map((section, position) => ({ ...section, num: String(position + 1).padStart(2, '0') }))
+  : []
+---
+
+<div>
+  <Hero
+    art={tree.banner ?? PLACEHOLDER_BANNER}
+    objectPosition="52% 28%"
+    motion="zoom-drift"
+    seconds={24}
+    settle={1}
+    large
+    priority
+    minHeight="min(92vh,900px)"
+    bottomStops={[26, 58]}
+    sideStops={[30, 62]}
+    padding="0 26px 48px"
+    scrollCue={scrollCue}
+  >
+    <div slot="overlay" style="position:absolute; top:26px; left:0; right:0; z-index:3; pointer-events:none">
+      <div style="max-width:1560px; margin:0 auto; padding:0 26px; display:flex; justify-content:flex-end">
+        <TraitPlates
+          traits={primes.map((prime) => ({
+            iconName: prime.iconName,
+            color: prime.color,
+            label: prime.label,
+          }))}
+          groupLabel={primes.length > 1 ? t.primeChars : t.primeChar}
+        />
+      </div>
+    </div>
+
+    <div style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:26px">
+      <div style="min-width:0">
+        {
+          treeStatus && (
+            <div style="padding:0 0 16px">
+              <StatusBadge status={treeStatus} locale={locale} />
+            </div>
+          )
+        }
+        <h1
+          style="margin:0; font-family:var(--font-display); font-weight:700; font-size:clamp(46px,7.4vw,118px); line-height:.93; color:var(--art-ink); animation:au-rise .6s var(--ease) both"
+        >
+          {tree.name}
+        </h1>
+        {
+          tree.subtitle && (
+            <p
+              style="margin:14px 0 0; font-family:var(--font-garamond); font-style:italic; font-size:clamp(19px,2.2vw,30px); line-height:1.3; color:var(--art-ink2); animation:au-rise .6s var(--ease) .06s both"
+            >
+              {tree.subtitle}
+            </p>
+          )
+        }
+      </div>
+      <div style="display:flex; flex-wrap:wrap; align-items:flex-end; gap:22px">
+        {
+          booklet && (
+            <a
+              href={booklet}
+              download
+              data-booklet
+              style="display:inline-flex; align-items:center; gap:10px; padding:11px 18px; font-family:var(--font-ui); font-size:15px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--on-gold); background:var(--gold); transition:filter .2s var(--ease), transform .2s var(--ease)"
+            >
+              <span
+                aria-hidden="true"
+                style="flex:none; display:block; width:17px; height:17px; background:currentColor; -webkit-mask:url('/icons/mdi/download.svg') center/contain no-repeat; mask:url('/icons/mdi/download.svg') center/contain no-repeat"
+              />
+              <span>{t.downloadBooklet}</span>
+            </a>
+          )
+        }
+        {
+          hasBooklet(tree.id) && (
+            <a
+              href={pathFor('archive', locale, { slug: tree.id })}
+              data-versions
+              style="display:inline-flex; align-items:center; padding:11px 16px; border:1px solid var(--accent-line); font-family:var(--font-ui); font-size:13.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--art-ink2)"
+            >
+              {t.versionHistory}
+            </a>
+          )
+        }
+      </div>
+    </div>
+  </Hero>
+
+  <section class="au-plate-frame">
+    <Plate locale={locale} corpus={corpus} tree={tree} selected={selected} linked />
+  </section>
+
+  {
+    LoreContent && (
+      <div class="au-reading">
+        {trail.length > 1 && (
+          <nav class="au-aside" aria-label={t.onThisPage}>
+            <p class="au-eyebrow">{t.onThisPage}</p>
+            <SectionTrail sections={trail} />
+          </nav>
+        )}
+        <div class="au-reading__body">
+          <div class="au-prose">
+            <LoreContent />
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  <section style="max-width:1560px; margin:0 auto; padding:34px 26px 80px">
+    <SectionHead
+      title={t.skills}
+      count={`${formatNumber(tree.placements.length, locale)} ${t.nodes}`}
+      id="skills"
+    />
+
+    <div class="au-skill-list">
+      {
+        skills.map((skill) => (
+          <article
+            id={`skill-${skill.id}`}
+            class="au-skill-card"
+            data-selected={selected === skill.id ? 'true' : undefined}
+          >
+            <SkillEntry skill={skill} corpus={corpus} locale={locale} marks={false} />
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</div>
+
+<style>
+  .au-reading {
+    padding-block: 40px 0;
+  }
+
+  [data-booklet]:hover {
+    filter: brightness(1.08);
+  }
+  [data-booklet]:active {
+    transform: translateY(1px);
+  }
+</style>

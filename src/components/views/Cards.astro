@@ -1,0 +1,188 @@
+---
+import type { Corpus } from '../../lib/game/corpus'
+import { collator, slugify } from '../../lib/game/derive'
+import { bookDot, bookLink, indexDescriptors } from '../../lib/game/indexes'
+import type { GameState } from '../../lib/game/schema'
+import type { Locale } from '../../lib/i18n/locales'
+import { pathFor } from '../../lib/i18n/routes'
+import { strings } from '../../lib/i18n/strings'
+import { PLACEHOLDER_BANNER } from '../../lib/media'
+import Card from '../primitives/Card.astro'
+import EntryCard from '../primitives/EntryCard.astro'
+import FilterBar from '../primitives/FilterBar.astro'
+import Hero from '../primitives/Hero.astro'
+import SkillEntry from '../primitives/SkillEntry.astro'
+import StateEntry from '../primitives/StateEntry.astro'
+import { enterDelay, STAGGER_STEP } from '../primitives/stagger'
+
+type Variant = 'books' | 'almanach' | 'baseActions' | 'states'
+
+type Props = { locale: Locale; corpus: Corpus; variant: Variant }
+
+type CardModel = {
+  title: string
+  kicker: string
+  mark: string
+  href?: string | undefined
+  download?: boolean | undefined
+  art?: string | undefined
+  desc?: string | undefined
+  cta?: string | undefined
+  delay: number
+}
+
+const { locale, corpus, variant } = Astro.props
+const t = strings(locale)
+
+const EM_DASH = String.fromCodePoint(0x2014)
+
+const HERO_ART: Record<Variant, string> = {
+  books: 'bibliotheque-des-oracles-16_9-og.png',
+  almanach: 'bureau-de-archibald-16_9-upscaled_4.jpg',
+  baseActions: 'castagneur-16_9-og.png',
+  states: 'priest-16_9-og.png',
+}
+
+const HERO_TEXT: Record<Variant, { title: string; lead: string }> = {
+  books: { title: t.resources, lead: t.hubLead },
+  almanach: { title: t.almanach, lead: t.almanachLead },
+  baseActions: { title: t.rules, lead: t.rulesLead },
+  states: { title: t.states_, lead: t.statesLead },
+}
+
+const STATE_KIND: Record<GameState['kind'], string> = {
+  buff: t.buff,
+  debuff: t.debuff,
+  neutral: t.neutral,
+}
+
+const bookCards = (): CardModel[] =>
+  corpus.books
+    .flatMap((book) => {
+      const link = bookLink(book, locale)
+      return link ? [{ book, link }] : []
+    })
+    .map(({ book, link }, index) => ({
+      title: book.title,
+      kicker: t.resEyebrowShort,
+      mark: bookDot(book.order),
+      art: book.cover ?? book.banner ?? PLACEHOLDER_BANNER,
+      desc: book.description,
+      cta: link.download ? t.download : t.read,
+      href: link.href,
+      download: link.download ? true : undefined,
+      delay: enterDelay(index, STAGGER_STEP.card),
+    }))
+
+const indexCards = (): CardModel[] =>
+  indexDescriptors(locale).map((entry, index) => ({
+    title: entry.title,
+    kicker: t.almanach,
+    mark: entry.mark,
+    art: entry.art,
+    desc: entry.description,
+    cta: t.browse_,
+    href: pathFor(entry.kind, locale),
+    delay: enterDelay(index, STAGGER_STEP.card),
+  }))
+
+const baseActions = [...corpus.basic.resolved].sort((a, b) =>
+  collator(locale).compare(a.title, b.title),
+)
+
+const cards: CardModel[] =
+  variant === 'books' ? bookCards() : variant === 'almanach' ? indexCards() : []
+
+const total =
+  variant === 'baseActions' ? baseActions.length : variant === 'states' ? corpus.states.length : 0
+
+const hero = HERO_TEXT[variant]
+---
+
+<div>
+  <Hero
+    art={HERO_ART[variant]}
+    objectPosition="50% 26%"
+    motion="drift"
+    seconds={22}
+    priority
+    minHeight="min(60vh,520px)"
+    bottomStops={[28, 60]}
+    sideStops={[32, 64]}
+    padding="0 26px 44px"
+  >
+    <h1
+      style="margin:0; font-family:var(--font-display); font-weight:700; font-size:clamp(42px,6.4vw,96px); line-height:.95; color:var(--art-ink)"
+    >
+      {hero.title}
+    </h1>
+    <p
+      style="margin:16px 0 0; max-width:58ch; font-size:19px; line-height:1.6; color:var(--art-ink2)"
+    >
+      {hero.lead}
+    </p>
+  </Hero>
+  {
+    (variant === 'baseActions' || variant === 'states') && (
+      <FilterBar locale={locale} variant={variant} total={total} />
+    )
+  }
+  <section style="max-width:1560px; margin:0 auto; padding:40px 26px 80px">
+    {
+      variant === 'baseActions' && (
+        <ul class="au-entry-list">
+          {baseActions.map((skill, index) => (
+            <EntryCard
+              entryId={skill.id}
+              name={skill.title}
+              facetGroup="act"
+              facetValue={slugify(skill.activation ?? '') || 'none'}
+              facetLabel={skill.activation ?? EM_DASH}
+              delay={enterDelay(index, STAGGER_STEP.entry)}
+            >
+              <SkillEntry skill={skill} corpus={corpus} locale={locale} marks={false} />
+            </EntryCard>
+          ))}
+        </ul>
+      )
+    }
+    {
+      variant === 'states' && (
+        <ul class="au-entry-list">
+          {corpus.states.map((state, index) => (
+            <EntryCard
+              entryId={state.key}
+              name={state.name}
+              facetGroup="eff"
+              facetValue={state.kind}
+              facetLabel={STATE_KIND[state.kind]}
+              delay={enterDelay(index, STAGGER_STEP.entry)}
+            >
+              <StateEntry state={state} corpus={corpus} locale={locale} />
+            </EntryCard>
+          ))}
+        </ul>
+      )
+    }
+    {
+      cards.length > 0 && (
+        <ul style="list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,318px),1fr)); gap:22px">
+          {cards.map((item) => (
+            <Card
+              locale={locale}
+              title={item.title}
+              kicker={item.kicker}
+              mark={item.mark}
+              href={item.href}
+              download={item.download}
+              art={item.art}
+              desc={item.desc}
+              cta={item.cta}
+              delay={item.delay}
+            />
+          ))}
+        </ul>
+      )
+    }
+  </section>
+</div>

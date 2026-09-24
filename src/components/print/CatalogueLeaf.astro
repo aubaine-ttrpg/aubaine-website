@@ -1,0 +1,71 @@
+---
+import type { Corpus } from '../../lib/game/corpus'
+import type { CatalogueGroup, CataloguePanoply } from '../../lib/game/derive'
+import type { Locale } from '../../lib/i18n/locales'
+import Icon from '../primitives/Icon.astro'
+import ItemEntry from '../primitives/ItemEntry.astro'
+import SetEntry from '../primitives/SetEntry.astro'
+import Leaf from './Leaf.astro'
+
+type Props = {
+  corpus: Corpus
+  locale: Locale
+  anchor?: string | undefined
+  rarity: string
+  family: string
+  title: string
+  group?: CatalogueGroup | undefined
+  panoply?: CataloguePanoply | undefined
+}
+
+const { corpus, locale, anchor, rarity, family, title, group, panoply } = Astro.props
+
+const slot = group?.section.slot ? corpus.slots.get(group.section.slot) : undefined
+const heading = group ? group.section.title : (panoply?.set.name ?? family)
+const rest = group ? group.rest : (panoply?.pieces ?? [])
+---
+
+<Leaf flow numbered wrappers="[data-equipment-group]">
+  <div class="au-sheet">
+    <div class="au-plate">
+      <header class="au-catalogue__head">
+        <span class="au-catalogue__title">{rarity}</span>
+        <span class="au-catalogue__sub">{family}</span>
+      </header>
+
+      <div class="au-catalogue__columns" data-columns>
+        <div data-equipment-group>
+          <div class="au-section" id={anchor}>
+            {slot && <Icon name={slot.iconName} class="au-section__slot" />}
+            <span class="au-section__title">{heading}</span>
+            <span class="au-section__rule" />
+          </div>
+          {group && <ItemEntry item={group.lead} corpus={corpus} locale={locale} />}
+          {
+            panoply && (
+              <SetEntry
+                set={panoply.set}
+                pieces={panoply.pieces.length}
+                corpus={corpus}
+                locale={locale}
+              />
+            )
+          }
+        </div>
+        {rest.map((item) => <ItemEntry item={item} corpus={corpus} locale={locale} />)}
+      </div>
+
+      <footer class="au-catalogue__foot">
+        <span class="au-catalogue__foot-rule">
+          <span class="au-catalogue__foot-line"></span>
+          <span class="au-catalogue__foot-mark"></span>
+          <span class="au-catalogue__foot-line"></span>
+        </span>
+        <span class="au-catalogue__foot-meta">
+          <span>{`Aubaine · ${title}`}</span>
+          <span data-page-number></span>
+        </span>
+      </footer>
+    </div>
+  </div>
+</Leaf>

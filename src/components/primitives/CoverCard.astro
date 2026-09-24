@@ -1,0 +1,116 @@
+---
+import type { BadgedStatus } from '../../lib/game/status'
+import type { Locale } from '../../lib/i18n/locales'
+import Banner from './Banner.astro'
+import CharacteristicHex from './CharacteristicHex.astro'
+import StatusBadge from './StatusBadge.astro'
+import { enterDelay, STAGGER_STEP } from './stagger'
+
+export type CoverCardCharacteristic = {
+  key: string
+  color: string
+  iconName: string | undefined
+  label: string
+}
+
+export type CoverCardEntry = {
+  id: string
+  name: string
+  status: string
+  statusLabel: string
+  kind?: string | undefined
+  kindLabel?: string | undefined
+  domains?: string | undefined
+  domainLabels?: string | undefined
+  characteristics?: string | undefined
+  characteristicLabels?: string | undefined
+}
+
+type Props = {
+  href: string
+  name: string
+  kicker: string
+  art?: string | undefined
+  mark: string
+  characteristics?: CoverCardCharacteristic[] | undefined
+  entry: CoverCardEntry
+  index: number
+  locale: Locale
+  status?: BadgedStatus | undefined
+}
+
+const {
+  href,
+  name,
+  kicker,
+  art,
+  mark,
+  characteristics = [],
+  entry,
+  index,
+  locale,
+  status,
+} = Astro.props
+---
+
+<div
+  data-entry={entry.id}
+  data-name={entry.name.toLowerCase()}
+  data-facet-kind={entry.kind}
+  data-facet-kind-labels={entry.kindLabel}
+  data-facet-tdom={entry.domains}
+  data-facet-tdom-labels={entry.domainLabels}
+  data-facet-tchar={entry.characteristics}
+  data-facet-tchar-labels={entry.characteristicLabels}
+  data-facet-sta={entry.status}
+  data-facet-sta-labels={entry.statusLabel}
+  data-enters
+  style={`--enter-delay:${enterDelay(index, STAGGER_STEP.tree)}ms`}
+>
+  <a
+    data-cover-card="true"
+    href={href}
+    style="position:relative; display:block; aspect-ratio:3/4.3; overflow:hidden; border:1px solid var(--line2)"
+  >
+    <span data-cover-art="true" style="position:absolute; inset:0; display:block">
+      <Banner art={art} objectPosition="50% 32%" motion="none" />
+    </span>
+    <span
+      aria-hidden="true"
+      style="position:absolute; inset:0; background:linear-gradient(0deg, var(--scrim1) 0%, var(--scrim-mid) 30%, var(--scrim2) 64%)"
+    ></span>
+    <span
+      data-cover-spine="true"
+      aria-hidden="true"
+      style={`position:absolute; left:0; top:0; bottom:0; width:3px; background:${mark}; z-index:2`}
+    ></span>
+    {
+      status && (
+        <span style="position:absolute; top:12px; left:14px; z-index:3">
+          <StatusBadge status={status} locale={locale} size="sm" />
+        </span>
+      )
+    }
+    {
+      characteristics.length > 0 && (
+        <span style="position:absolute; top:12px; right:12px; z-index:3; display:flex; align-items:center; gap:6px">
+          {characteristics.map((item) => (
+            <CharacteristicHex iconName={item.iconName} color={item.color} label={item.label} />
+          ))}
+        </span>
+      )
+    }
+    <span
+      style="position:absolute; left:17px; right:17px; bottom:16px; display:flex; flex-direction:column; gap:8px"
+    >
+      <span
+        style="font-family:var(--font-mono); font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--art-eyebrow)"
+        >{kicker}</span
+      >
+      <span
+        style="font-family:var(--font-display); font-size:27px; font-weight:600; line-height:1.06; color:var(--art-ink)"
+        >{name}</span
+      >
+    </span>
+  </a>
+</div>

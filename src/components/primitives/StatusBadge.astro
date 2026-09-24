@@ -1,0 +1,41 @@
+---
+import type { BadgedStatus } from '../../lib/game/status'
+import type { Locale } from '../../lib/i18n/locales'
+import { strings } from '../../lib/i18n/strings'
+
+type Size = 'md' | 'sm'
+
+type Props = { status: BadgedStatus; locale: Locale; size?: Size | undefined }
+
+const { status, locale, size = 'md' } = Astro.props
+const t = strings(locale)
+
+const SIZES: Record<Size, { pad: string; font: string; band: string }> = {
+  md: { pad: '8px 10px', font: '13px', band: '5px' },
+  sm: { pad: '6px 8px', font: '11px', band: '4px' },
+}
+
+const metrics = SIZES[size]
+
+const stripe = (band: string) =>
+  `repeating-linear-gradient(45deg, var(--on-playtest) 0 ${band}, transparent ${band} calc(${band} * 2))`
+
+const SKINS: Record<BadgedStatus, string> = {
+  draft:
+    'color:var(--status-draft-ink); border:1px dashed var(--status-draft); background:var(--bg2)',
+  playtest: `color:var(--on-playtest); border:1px solid var(--status-playtest); background:${stripe(metrics.band)} top/100% ${metrics.band} repeat-x, ${stripe(metrics.band)} bottom/100% ${metrics.band} repeat-x, var(--status-playtest)`,
+  beta: 'color:var(--status-beta-ink); border:1px solid var(--status-beta); background:var(--bg2)',
+}
+
+const LABELS: Record<BadgedStatus, string> = {
+  draft: t.draft,
+  playtest: t.playtest,
+  beta: t.beta,
+}
+---
+
+<span
+  style={`display:inline-block; padding:${metrics.pad}; font-family:var(--font-ui); font-size:${metrics.font}; font-weight:700; line-height:1; letter-spacing:.08em; text-transform:uppercase; white-space:nowrap; ${SKINS[status]}`}
+>
+  {LABELS[status]}
+</span>

@@ -1,0 +1,27 @@
+---
+import type { Corpus } from '../../lib/game/corpus'
+import type { EquipmentSet } from '../../lib/game/schema'
+import type { Locale } from '../../lib/i18n/locales'
+import { strings } from '../../lib/i18n/strings'
+import RuleText from './RuleText.astro'
+
+type Props = { set: EquipmentSet; pieces: number; corpus: Corpus; locale: Locale }
+
+const { set, pieces, corpus, locale } = Astro.props
+const t = strings(locale)
+---
+
+<div class="au-set">
+  <div class="au-set__hd">
+    <span class="au-set__name">{set.name}</span>
+    <span class="au-set__count">{`${pieces} ${t.setPieces}`}</span>
+  </div>
+  {
+    set.bonuses.map((bonus) => (
+      <div class="au-set__rung">
+        <span class="au-set__pieces">{`${bonus.pieces} ${t.setPieces}`}</span>
+        <RuleText source={bonus.text} corpus={corpus} locale={locale} class="au-set__text" />
+      </div>
+    ))
+  }
+</div>

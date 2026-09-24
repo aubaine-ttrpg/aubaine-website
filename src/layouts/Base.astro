@@ -1,0 +1,164 @@
+---
+import Footer from '../components/shell/Footer.astro'
+import Header from '../components/shell/Header.astro'
+import LoadingCrest from '../components/shell/LoadingCrest.astro'
+import type { Corpus } from '../lib/game/corpus'
+import { HTML_LANG, LOCALES, type Locale, OG_LOCALE } from '../lib/i18n/locales'
+import {
+  alternatesFor,
+  pathFor,
+  type RouteParams,
+  sectionFor,
+  type ViewKind,
+} from '../lib/i18n/routes'
+import { strings } from '../lib/i18n/strings'
+import '../styles/fonts.css'
+import '../styles/tokens.css'
+import '../styles/base.css'
+import '../styles/plate.css'
+import '../styles/entries.css'
+
+type Props = {
+  locale: Locale
+  kind: ViewKind
+  params?: RouteParams
+  title: string
+  description: string
+  corpus: Corpus
+  ogImage?: string | undefined
+  noIndex?: boolean | undefined
+}
+
+const {
+  locale,
+  kind,
+  params = {},
+  title,
+  description,
+  corpus,
+  ogImage,
+  noIndex = false,
+} = Astro.props
+
+const t = strings(locale)
+const site = Astro.site ?? new URL('https://aubaine.io')
+const canonical = new URL(pathFor(kind, locale, params), site).href
+const alternates = alternatesFor(kind, site, params)
+const image = ogImage ? new URL(ogImage, site).href : undefined
+const fullTitle = kind === 'home' ? `Aubaine · ${title}` : `${title} · Aubaine`
+
+const PRELOAD = [
+  'cinzel-700-normal-latin.woff2',
+  'spectral-400-normal-latin.woff2',
+  'barlow-semi-condensed-600-normal-latin.woff2',
+  'jetbrains-mono-400-normal-latin.woff2',
+]
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Aubaine',
+  url: site.href,
+  inLanguage: HTML_LANG[locale],
+  description,
+}
+---
+
+<!doctype html>
+<html lang={HTML_LANG[locale]} data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#06050d" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noIndex && <meta name="robots" content="noindex, follow" />}
+
+    {
+      alternates.map((alternate) => (
+        <link rel="alternate" hreflang={HTML_LANG[alternate.locale]} href={alternate.href} />
+      ))
+    }
+    <link rel="alternate" hreflang="x-default" href={site.href} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Aubaine" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    {image && <meta property="og:image" content={image} />}
+    <meta property="og:locale" content={OG_LOCALE[locale]} />
+    {
+      LOCALES.filter((other) => other !== locale).map((other) => (
+        <meta property="og:locale:alternate" content={OG_LOCALE[other]} />
+      ))
+    }
+    <meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
+
+    <link rel="icon" href="/aubaine-logo.svg" type="image/svg+xml" />
+    {
+      PRELOAD.map((file) => (
+        <link rel="preload" href={`/fonts/${file}`} as="font" type="font/woff2" crossorigin />
+      ))
+    }
+
+    <script is:inline>
+      try {
+        var stored = window.localStorage.getItem('aubaine.theme')
+        var theme =
+          stored ||
+          (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+        document.documentElement.setAttribute('data-theme', theme)
+      } catch (error) {
+        document.documentElement.setAttribute('data-theme', 'dark')
+      }
+    </script>
+
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </head>
+
+  <body>
+    <div
+      data-tip-root="true"
+      style="min-height:100dvh; display:flex; flex-direction:column; background:var(--bg); color:var(--ink)"
+    >
+      <a
+        href="#main"
+        data-skip-link
+        style="position:absolute; left:-9999px; top:0; z-index:70; padding:11px 16px; background:var(--bg2); color:var(--ink); border:1px solid var(--line)"
+        >{t.skip}</a
+      >
+
+      <Header locale={locale} kind={kind} params={params} corpus={corpus} />
+
+      <main id="main" style="flex:1; min-width:0; min-height:0; display:flex; flex-direction:column">
+        <div
+          id="swup"
+          class="au-swup-page"
+          data-section={sectionFor(kind)}
+          style="flex:1; min-width:0; min-height:0; display:flex; flex-direction:column"
+        >
+          <slot />
+        </div>
+      </main>
+
+      <Footer locale={locale} />
+
+      <LoadingCrest />
+    </div>
+
+    <script>
+      import '../scripts/shell'
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  [data-skip-link]:focus {
+    left: 10px;
+    top: 10px;
+  }
+</style>

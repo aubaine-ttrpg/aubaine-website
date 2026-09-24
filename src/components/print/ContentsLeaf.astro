@@ -1,0 +1,37 @@
+---
+import Leaf from './Leaf.astro'
+
+export type ContentsRow = { anchor: string; label: string; depth: 0 | 1 }
+
+type Props = { title: string; sub: string; footLeft: string; rows: ContentsRow[] }
+
+const { title, sub, footLeft, rows } = Astro.props
+---
+
+<Leaf numbered>
+  <div class="au-sheet">
+    <div class="au-plate">
+      <header class="au-plate__head au-plate__head--rule">
+        <span class="au-plate__title">{title}</span>
+        <span class="au-plate__sub">{sub}</span>
+      </header>
+
+      <ol class="au-contents">
+        {
+          rows.map((row) => (
+            <li class={`au-contents__row au-contents__row--${row.depth}`}>
+              <span class="au-contents__label">{row.label}</span>
+              <span class="au-contents__leader" />
+              <span class="au-contents__page" data-contents-for={row.anchor} />
+            </li>
+          ))
+        }
+      </ol>
+
+      <footer class="au-plate__foot">
+        <span>{footLeft}</span>
+        <span data-page-number></span>
+      </footer>
+    </div>
+  </div>
+</Leaf>

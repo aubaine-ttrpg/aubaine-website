@@ -1,0 +1,254 @@
+html {
+  color-scheme: dark light;
+  scrollbar-color: var(--scroll-thumb) transparent;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #06050d;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  touch-action: manipulation;
+}
+
+* {
+  box-sizing: border-box;
+  scrollbar-width: thin;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+}
+
+input {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: rgba(239, 190, 4, 0.3);
+}
+
+@keyframes au-burns {
+  from {
+    transform: scale3d(1.06, 1.06, 1) translateZ(0);
+  }
+  to {
+    transform: scale3d(1, 1, 1) translateZ(0);
+  }
+}
+
+@keyframes au-settle {
+  from {
+    transform: scale3d(1.12, 1.12, 1) translate3d(-2.2%, -1.2%, 0);
+  }
+  to {
+    transform: scale3d(1.06, 1.06, 1) translate3d(-2.2%, -1.2%, 0);
+  }
+}
+
+@keyframes au-idle {
+  0%,
+  100% {
+    transform: scale3d(1.06, 1.06, 1) translate3d(-2.2%, -1.2%, 0);
+  }
+  50% {
+    transform: scale3d(1.06, 1.06, 1) translate3d(2.2%, 1.2%, 0);
+  }
+}
+
+@keyframes au-settle-lg {
+  from {
+    transform: scale3d(1.17, 1.17, 1) translate3d(-3.4%, -1.9%, 0);
+  }
+  to {
+    transform: scale3d(1.1, 1.1, 1) translate3d(-3.4%, -1.9%, 0);
+  }
+}
+
+@keyframes au-idle-lg {
+  0%,
+  100% {
+    transform: scale3d(1.1, 1.1, 1) translate3d(-3.4%, -1.9%, 0);
+  }
+  50% {
+    transform: scale3d(1.1, 1.1, 1) translate3d(3.4%, 1.9%, 0);
+  }
+}
+
+@keyframes au-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes au-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes au-pop {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes au-nudge {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+@keyframes au-sheen {
+  from {
+    opacity: 0.3;
+  }
+  to {
+    opacity: 0.85;
+  }
+}
+
+[data-enters] {
+  animation: au-rise 0.5s var(--ease) var(--enter-delay, 0ms) both;
+}
+
+:root[data-filtering] [data-enters] {
+  animation: au-fade 0.18s var(--ease) both;
+}
+
+.au-swup-page {
+  transition: opacity 0.2s var(--ease);
+}
+
+html.is-animating .au-swup-page {
+  opacity: 0;
+}
+
+[data-card],
+[data-cover-card] {
+  transition:
+    transform 0.34s var(--ease),
+    box-shadow 0.34s var(--ease);
+}
+
+[data-card]:hover,
+[data-cover-card]:hover {
+  transform: translateY(-9px);
+  box-shadow: var(--card-shadow);
+}
+
+[data-tip] {
+  display: none;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease,
+    display 0.18s allow-discrete;
+}
+
+[data-tip-root] {
+  overflow-x: clip;
+}
+
+[data-term]:hover > [data-tip],
+[data-term]:focus-visible > [data-tip] {
+  display: flex;
+  opacity: 1;
+  transform: none;
+}
+
+@starting-style {
+  [data-term]:hover > [data-tip],
+  [data-term]:focus-visible > [data-tip] {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+[data-card]:has([data-term]:hover),
+[data-cover-card]:has([data-term]:hover) {
+  transform: none;
+}
+
+[data-tip-root] li:has([data-term]:hover) {
+  position: relative;
+  z-index: 80;
+}
+
+[data-card-art] > img,
+[data-cover-art] > img {
+  transition: transform 0.8s var(--ease);
+  transform-origin: 50% 50%;
+}
+
+[data-card]:hover [data-card-art] > img,
+[data-cover-card]:hover [data-cover-art] > img {
+  transform: scale(1.08);
+}
+
+[data-card-arrow] {
+  display: inline-block;
+  transition: transform 0.32s var(--ease);
+}
+
+[data-card]:hover [data-card-arrow] {
+  transform: translateX(7px);
+}
+
+[data-cover-spine] {
+  transition: width 0.34s var(--ease);
+}
+
+[data-cover-card]:hover [data-cover-spine] {
+  width: 11px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0s !important;
+  }
+}

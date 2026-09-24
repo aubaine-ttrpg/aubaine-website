@@ -1,0 +1,35 @@
+---
+import type { Corpus } from '../../lib/game/corpus'
+import type { GameState } from '../../lib/game/schema'
+import type { Locale } from '../../lib/i18n/locales'
+import { strings } from '../../lib/i18n/strings'
+import Icon from './Icon.astro'
+import RuleText from './RuleText.astro'
+
+type Props = { state: GameState; corpus: Corpus; locale: Locale }
+
+const { state, corpus, locale } = Astro.props
+const t = strings(locale)
+---
+
+<div class="au-state-entry" id={`etat-${state.key}`}>
+  <div class="au-state-entry__hd">
+    <span
+      class={`au-state au-state--${state.kind}`}
+      style={state.color ? `color:${state.color}` : undefined}
+    >
+      <Icon name={state.icon} class="au-state__icon" />{state.name}
+    </span>
+    {
+      state.stacks !== undefined && (
+        <span class="au-state-entry__stacks">{`${state.stacks} ${t.stacks_}`}</span>
+      )
+    }
+  </div>
+  <RuleText
+    source={state.description}
+    corpus={corpus}
+    locale={locale}
+    class="au-state-entry__desc"
+  />
+</div>

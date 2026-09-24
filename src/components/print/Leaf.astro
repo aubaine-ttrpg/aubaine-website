@@ -1,0 +1,21 @@
+---
+type Props = {
+  class?: string | undefined
+  anchor?: boolean | undefined
+  flow?: boolean | undefined
+  numbered?: boolean | undefined
+  wrappers?: string | undefined
+}
+
+const { class: className, anchor, flow, numbered, wrappers } = Astro.props
+---
+
+<div
+  class={className ? `au-page ${className}` : 'au-page'}
+  data-print-anchor={anchor ? '' : undefined}
+  data-numbered={numbered ? '' : undefined}
+  data-columns-page={flow ? '' : undefined}
+  data-unit-wrappers={wrappers}
+>
+  <slot />
+</div>

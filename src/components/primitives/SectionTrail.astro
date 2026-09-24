@@ -1,0 +1,53 @@
+---
+import '../../styles/reading.css'
+
+export type Section = {
+  text: string
+  href: string
+  num?: string | undefined
+  current?: boolean | undefined
+  download?: boolean | undefined
+  sections?: Section[] | undefined
+}
+
+type Props = {
+  sections: Section[]
+  label?: string | undefined
+  nestedLabel?: string | undefined
+  inset?: boolean
+}
+
+const { sections, label, nestedLabel, inset = false } = Astro.props
+---
+
+<ul class="au-trail" data-inset={inset ? '' : undefined} aria-label={label}>
+  {
+    sections.map((section) => (
+      <li>
+        <a
+          href={section.href}
+          download={section.download ? '' : undefined}
+          aria-current={section.current ? 'page' : undefined}
+        >
+          {section.num && (
+            <span class="au-trail__num" aria-hidden="true">
+              {section.num}
+            </span>
+          )}
+          <span class="au-trail__text">{section.text}</span>
+        </a>
+        {section.sections && section.sections.length > 0 && (
+          <ul class="au-trail" data-inset="" aria-label={nestedLabel}>
+            {section.sections.map((nested) => (
+              <li>
+                <a href={nested.href}>
+                  <span class="au-trail__text">{nested.text}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+      </li>
+    ))
+  }
+</ul>

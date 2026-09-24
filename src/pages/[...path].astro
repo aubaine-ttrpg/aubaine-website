@@ -1,0 +1,37 @@
+---
+import { getImage } from 'astro:assets'
+import { IMPLEMENTED_VIEWS } from '../components/views/registry'
+import View from '../components/views/View.astro'
+import Base from '../layouts/Base.astro'
+import { corpus } from '../lib/game/corpus'
+import { pageRoutes } from '../lib/game/pages'
+import { artImage } from '../lib/media'
+
+export async function getStaticPaths() {
+  const routes = await pageRoutes()
+  return routes
+    .filter(({ page }) => IMPLEMENTED_VIEWS.has(page.kind))
+    .map(({ path, page }) => ({ params: { path }, props: { page } }))
+}
+
+const { page } = Astro.props
+const data = await corpus(page.locale)
+
+const source = artImage(page.ogArt) ?? artImage('le-bastion-16_9-og.png')
+const social = source
+  ? await getImage({ src: source, width: 1200, height: 630, format: 'jpeg', fit: 'cover' })
+  : undefined
+---
+
+<Base
+  locale={page.locale}
+  kind={page.kind}
+  params={page.params}
+  title={page.title}
+  description={page.description}
+  corpus={data}
+  ogImage={social?.src}
+  noIndex={page.noIndex}
+>
+  <View page={page} corpus={data} />
+</Base>

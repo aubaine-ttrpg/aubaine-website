@@ -1,0 +1,24 @@
+---
+type Props = {
+  entryId: string
+  name: string
+  facetGroup?: string | undefined
+  facetValue?: string | undefined
+  facetLabel?: string | undefined
+  delay?: number
+}
+
+const { entryId, name, facetGroup, facetValue, facetLabel, delay = 0 } = Astro.props
+---
+
+<li
+  class="au-entry-card"
+  data-entry={entryId}
+  data-name={name.toLowerCase()}
+  {...facetGroup && facetValue ? { [`data-facet-${facetGroup}`]: facetValue } : {}}
+  {...facetGroup && facetLabel ? { [`data-facet-${facetGroup}-labels`]: facetLabel } : {}}
+  data-enters
+  style={`--enter-delay:${delay}ms`}
+>
+  <slot />
+</li>

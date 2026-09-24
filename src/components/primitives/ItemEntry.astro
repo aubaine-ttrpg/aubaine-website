@@ -1,0 +1,194 @@
+---
+import { Image } from 'astro:assets'
+
+import { type Corpus, label } from '../../lib/game/corpus'
+import { cataloguePieceCount, formatNumber, priceInCoins } from '../../lib/game/derive'
+import type { EquipmentItem } from '../../lib/game/schema'
+import type { Locale } from '../../lib/i18n/locales'
+import { strings } from '../../lib/i18n/strings'
+import { itemImage, PLACEHOLDER_SQUARE } from '../../lib/media'
+import Icon from './Icon.astro'
+import NodeShape from './NodeShape.astro'
+import RuleText from './RuleText.astro'
+import StatValue from './StatValue.astro'
+
+type Props = { item: EquipmentItem; corpus: Corpus; locale: Locale }
+
+const { item, corpus, locale } = Astro.props
+const t = strings(locale)
+
+const art = itemImage(item.art) ?? itemImage(PLACEHOLDER_SQUARE)
+const rarity = corpus.rarities.get(item.rarity)
+const rarityColor = rarity?.color ?? '#6b6459'
+const discipline = item.craft ? corpus.disciplines.get(item.craft.discipline) : undefined
+const craftColor = discipline?.color ?? 'var(--edge)'
+
+const coins = [...corpus.coins.values()]
+const price = priceInCoins(item.price, coins).map((part) => {
+  const coin = corpus.coins.get(part.key)
+  return {
+    amount: formatNumber(part.amount, locale),
+    name: label(coin, locale, part.key),
+    color: coin?.color ?? 'var(--paper-body)',
+    iconName: coin?.iconName,
+  }
+})
+
+const grants = (item.grants ?? []).flatMap((id) => {
+  const skill = corpus.skills.get(id)
+  return skill ? [skill] : []
+})
+const set = item.set ? corpus.sets.get(item.set) : undefined
+const setPieces = set ? cataloguePieceCount(corpus.items, set.id) : 0
+---
+
+<div class="au-item">
+  <div class="au-item__id">
+    {
+      art && (
+        <span class="au-item__art" style={`--rarity:${rarityColor}`}>
+          <span class="au-item__art-plate">
+            <Image
+              class="au-item__art-img"
+              src={art}
+              alt=""
+              width={160}
+              height={160}
+              layout="none"
+            />
+            <span class="au-item__art-vignette" />
+          </span>
+        </span>
+      )
+    }
+    <span class="au-item__names">
+      <span class="au-item__name">{item.name}</span>
+      <span class="au-item__sub">
+        <span>{item.kind}</span>
+        <span class="au-item__sub-sep"> · </span>
+        <span class="au-item__rarity" style={`--rarity:${rarityColor}`}>
+          {label(rarity, locale, item.rarity)}
+        </span>
+        {
+          price.length > 0 && (
+            <Fragment>
+              <span class="au-item__sub-sep"> · </span>
+              <span class="au-item__price">
+                {price.map((part) => (
+                  <span class="au-coin" style={`--coin:${part.color}`}>
+                    <Icon name={part.iconName} class="au-coin__icon" />
+                    <span class="au-coin__amount">{part.amount}</span>
+                    <span>{part.name}</span>
+                  </span>
+                ))}
+              </span>
+            </Fragment>
+          )
+        }
+      </span>
+    </span>
+  </div>
+
+  <div class="au-item__headline">
+    <div class={`au-item__headline-row${item.headlines.length > 1 ? ' au-item__headline-row--split' : ''}`}>
+      {
+        item.headlines.map((headline) => (
+          <span class="au-item__headline-pair">
+            <span class="au-item__headline-label">{headline.label}</span>
+            <span class="au-item__headline-value">
+              <StatValue value={headline.value} corpus={corpus} locale={locale} />
+            </span>
+          </span>
+        ))
+      }
+    </div>
+    {
+      item.stats && item.stats.length > 0 && (
+        <div class="au-item__cells">
+          {item.stats.map((stat) => (
+            <span class="au-item__cell">
+              <span class="au-item__cell-label">{stat.label}</span>
+              <span class="au-item__cell-value">
+                <StatValue value={stat.value} corpus={corpus} locale={locale} />
+              </span>
+            </span>
+          ))}
+        </div>
+      )
+    }
+  </div>
+
+  {
+    item.craft && (
+      <div class="au-item__craft" style={`--craft:${craftColor}; --craft-line:${craftColor}`}>
+        <div class="au-item__craft-hd">
+          <span class="au-item__craft-mark" />
+          <span class="au-item__craft-title">
+            {label(discipline, locale, item.craft.discipline)}
+          </span>
+          <svg
+            class="au-item__craft-icon"
+            width="11"
+            height="11"
+            viewBox="0 0 24 24"
+            role="img"
+            aria-label={t.craftCost}
+          >
+            <g transform="rotate(45 12 12)">
+              <rect x="4" y="3" width="16" height="6" rx="1.2" />
+              <rect x="10.4" y="9" width="3.2" height="12" rx="1.2" />
+            </g>
+          </svg>
+          <span class="au-item__craft-cost">{formatNumber(item.craft.cost, locale)}</span>
+        </div>
+        <div class="au-item__craft-cols">
+          <span class="au-item__craft-col">
+            <span class="au-item__craft-label">{t.craftMaterials}</span>
+            <span class="au-item__craft-value">{item.craft.materials.join(', ')}</span>
+          </span>
+          <span class="au-item__craft-col">
+            <span class="au-item__craft-label">{t.craftSequence}</span>
+            <span class="au-item__craft-value">{item.craft.sequence.join(', ')}</span>
+          </span>
+        </div>
+      </div>
+    )
+  }
+
+  {item.text && <RuleText source={item.text} corpus={corpus} locale={locale} class="au-item__text" />}
+
+  {
+    (item.properties ?? []).map((property) => (
+      <div class="au-item__property">
+        <span class="au-item__property-name">{property.name}</span>{' '}
+        <RuleText source={property.text} corpus={corpus} locale={locale} class="au-item__property-text" />
+      </div>
+    ))
+  }
+
+  {
+    grants.length > 0 && (
+      <div class="au-item__grant">
+        <span class="au-item__grant-label">{t.grants}</span>
+        {grants.map((skill) => (
+          <span class="au-item__grant-skill">
+            <NodeShape skill={skill} corpus={corpus} variant="inline" />
+            <span class="au-item__grant-name">{skill.title}</span>
+          </span>
+        ))}
+      </div>
+    )
+  }
+
+  {
+    set && (
+      <div class="au-item__set">
+        <span class="au-item__set-label">{t.set_}</span>
+        <span class="au-item__set-name">{set.name}</span>
+        <span class="au-item__set-count">{`${setPieces} ${t.setPieces}`}</span>
+      </div>
+    )
+  }
+
+  <div class="au-item__desc">{item.description}</div>
+</div>

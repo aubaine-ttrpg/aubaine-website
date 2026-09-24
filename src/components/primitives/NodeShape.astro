@@ -1,0 +1,27 @@
+---
+import { getImage } from 'astro:assets'
+
+import type { Corpus } from '../../lib/game/corpus'
+import { frame } from '../../lib/game/derive'
+import type { Skill } from '../../lib/game/schema'
+import { skillImage } from '../../lib/media'
+
+type Props = { skill: Skill; corpus: Corpus; variant: 'tree' | 'card' | 'inline' }
+
+const { skill, corpus, variant } = Astro.props
+
+const shape = corpus.nodeTypes.get(skill.type)?.shapeKey ?? 'circle'
+const border = frame(skill.domains.map((key) => corpus.domains.get(key)?.color ?? '#2a2a2e'))
+
+const source = skillImage(skill.art)
+const texture = source
+  ? await getImage({ src: source, width: 192, height: 192, format: 'jpeg', quality: 82 })
+  : undefined
+---
+
+<span
+  class={`au-node__shape au-node__shape--${shape} au-node__shape--${variant}`}
+  style={`--domain:${border}${texture ? `; --icon:url('${texture.src}')` : ''}`}
+>
+  <span class="au-node__fill"></span>
+</span>

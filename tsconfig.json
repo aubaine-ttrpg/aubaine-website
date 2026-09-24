@@ -1,0 +1,25 @@
+{
+  "extends": "astro/tsconfigs/strictest",
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist", "tmp", "node_modules", "tools/migration"],
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@game/*": ["src/lib/game/*"],
+      "@i18n/*": ["src/lib/i18n/*"],
+      "@components/*": ["src/components/*"],
+      "@islands/*": ["src/islands/*"],
+      "@layouts/*": ["src/layouts/*"]
+    },
+    "allowJs": true,
+    "checkJs": false,
+    "allowImportingTsExtensions": true,
+    "rewriteRelativeImportExtensions": true,
+    "erasableSyntaxOnly": true,
+    "verbatimModuleSyntax": true,
+    "noEmit": true
+  }
+}

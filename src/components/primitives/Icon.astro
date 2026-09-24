@@ -1,0 +1,10 @@
+---
+import { inlineIcon } from '../../lib/media'
+
+type Props = { name: string | undefined; class: string }
+
+const { name, class: className } = Astro.props
+const svg = inlineIcon(name, className)
+---
+
+{svg && <Fragment set:html={svg} />}

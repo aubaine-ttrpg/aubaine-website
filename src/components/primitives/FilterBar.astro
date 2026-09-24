@@ -1,0 +1,95 @@
+---
+import Island, { type FilterGroup, type FilterKind } from '../../islands/FilterBar'
+import type { Locale } from '../../lib/i18n/locales'
+import { strings } from '../../lib/i18n/strings'
+
+type Props = {
+  locale: Locale
+  variant: 'trees' | 'species' | 'skills' | 'speciesSkills' | 'equipment' | 'baseActions' | 'states'
+  total: number
+}
+
+const { locale, variant, total } = Astro.props
+const t = strings(locale)
+
+const GROUPS: Record<Props['variant'], FilterGroup[]> = {
+  trees: [
+    { key: 'tdom', label: t.domains },
+    { key: 'tchar', label: t.primeChar },
+    { key: 'sta', label: t.status_ },
+  ],
+  species: [{ key: 'sta', label: t.status_ }],
+  skills: [
+    { key: 'acq', label: t.provenance },
+    { key: 'dom', label: t.domain_ },
+    { key: 'typ', label: t.type_ },
+    { key: 'cost', label: t.cost_ },
+    { key: 'act', label: t.activation },
+    { key: 'chr', label: t.characteristic_ },
+    { key: 'tier', label: t.tier_ },
+    { key: 'pra', label: t.tagPractice },
+    { key: 'sch', label: t.tagSchool },
+    { key: 'spe', label: t.tagSpecial },
+    { key: 'sta', label: t.status_ },
+  ],
+  speciesSkills: [
+    { key: 'sub', label: t.subspecies_ },
+    { key: 'dom', label: t.domain_ },
+    { key: 'typ', label: t.type_ },
+    { key: 'cost', label: t.cost_ },
+    { key: 'act', label: t.activation },
+    { key: 'chr', label: t.characteristic_ },
+    { key: 'tier', label: t.tier_ },
+    { key: 'pra', label: t.tagPractice },
+    { key: 'sch', label: t.tagSchool },
+    { key: 'spe', label: t.tagSpecial },
+    { key: 'sta', label: t.status_ },
+  ],
+  equipment: [
+    { key: 'cat', label: t.category },
+    { key: 'rar', label: t.rarity_ },
+    { key: 'craft', label: t.craft },
+    { key: 'stat', label: t.stat_ },
+    { key: 'prop', label: t.property_ },
+    { key: 'set', label: t.set_ },
+    { key: 'sta', label: t.status_ },
+  ],
+  baseActions: [{ key: 'act', label: t.activation }],
+  states: [{ key: 'eff', label: t.effect_ }],
+}
+
+const kinds: FilterKind[] | undefined =
+  variant === 'trees'
+    ? [
+        { key: 'all', label: t.allTrees, dot: 'var(--gold)' },
+        { key: 'archetype', label: t.archetypes, dot: 'var(--ink3)' },
+        { key: 'domain', label: t.domains, dot: 'var(--ink3)' },
+      ]
+    : undefined
+
+const islandStrings = {
+  filterHere: t.filterHere,
+  filters: t.filters,
+  byName: t.byName,
+  clear: t.clear,
+  close: t.close,
+  apply: t.apply,
+  resetFilters: t.resetFilters,
+  result: t.result,
+  results: t.results,
+  emptyTitle: t.emptyTitle,
+  emptyBody: t.emptyBody,
+  treeKind: t.treeKind,
+  allTrees: t.allTrees,
+}
+---
+
+<Island
+  client:idle
+  strings={islandStrings}
+  groups={GROUPS[variant]}
+  kinds={kinds}
+  total={total}
+  locale={locale}
+  inputMaxWidth={variant === 'trees' ? '300px' : '340px'}
+/>

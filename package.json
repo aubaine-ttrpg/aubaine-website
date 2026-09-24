@@ -1,0 +1,48 @@
+{
+  "name": "aubaine-website",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "packageManager": "pnpm@9.15.9",
+  "scripts": {
+    "dev": "pnpm media:sync && astro dev",
+    "build": "pnpm media:sync && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "check": "astro check && tsc --noEmit",
+    "lint": "biome check .",
+    "format": "biome check --write .",
+    "media:sync": "node tools/media/sync.ts"
+  },
+  "dependencies": {
+    "@astrojs/markdown-remark": "^7.3.1",
+    "@astrojs/react": "^6.0.6",
+    "@astrojs/sitemap": "^3.7.4",
+    "@swup/astro": "^1.8.0",
+    "astro": "^7.3.3",
+    "motion": "^13.4.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@biomejs/biome": "^2.5.14",
+    "@playwright/test": "^1.63.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "playwright-core": "1.63.0",
+    "remark-definition-list": "^2.0.0",
+    "sharp": "^0.35.4",
+    "typescript": "^5.9.0",
+    "vitest": "^5.0.1"
+  },
+  "allowScripts": {
+    "esbuild": true,
+    "@biomejs/biome": true,
+    "sharp": true
+  }
+}

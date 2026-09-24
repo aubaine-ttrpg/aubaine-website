@@ -1,0 +1,55 @@
+---
+import type { Corpus } from '../../lib/game/corpus'
+import type { PageDescriptor } from '../../lib/game/pages'
+import { isPolicyKind } from '../../lib/i18n/routes'
+import Archive from './Archive.astro'
+import Archives from './Archives.astro'
+import Book from './Book.astro'
+import Browse from './Browse.astro'
+import Cards from './Cards.astro'
+import Home from './Home.astro'
+import NotFound from './NotFound.astro'
+import Policy from './Policy.astro'
+import Search from './Search.astro'
+import Species from './Species.astro'
+import SpeciesIndex from './SpeciesIndex.astro'
+import Tree from './Tree.astro'
+import Trees from './Trees.astro'
+
+type Props = { page: PageDescriptor; corpus: Corpus }
+
+const { page, corpus } = Astro.props
+const { locale, kind, params } = page
+
+const tree = params.tree ? corpus.treesById.get(params.tree) : undefined
+if (kind === 'tree' && !tree) throw new Error(`unknown skill tree: ${params.tree}`)
+
+const species = params.species ? corpus.speciesById.get(params.species) : undefined
+if (kind === 'speciesEntry' && !species) throw new Error(`unknown species: ${params.species}`)
+---
+
+{kind === 'home' && <Home locale={locale} corpus={corpus} />}
+{kind === 'books' && <Cards locale={locale} corpus={corpus} variant="books" />}
+{kind === 'almanach' && <Cards locale={locale} corpus={corpus} variant="almanach" />}
+{kind === 'baseActions' && <Cards locale={locale} corpus={corpus} variant="baseActions" />}
+{kind === 'states' && <Cards locale={locale} corpus={corpus} variant="states" />}
+{kind === 'skills' && <Browse locale={locale} corpus={corpus} variant="skills" />}
+{kind === 'equipment' && <Browse locale={locale} corpus={corpus} variant="equipment" />}
+{kind === 'search' && <Search locale={locale} corpus={corpus} />}
+{kind === 'trees' && <Trees locale={locale} corpus={corpus} />}
+{kind === 'species' && <SpeciesIndex locale={locale} corpus={corpus} />}
+{
+  kind === 'speciesEntry' && species && (
+    <Species locale={locale} corpus={corpus} species={species} />
+  )
+}
+{kind === 'tree' && tree && <Tree locale={locale} corpus={corpus} tree={tree} selected={params.node} />}
+{
+  kind === 'book' && params.book && params.chapter && (
+    <Book locale={locale} corpus={corpus} bookId={params.book} chapter={params.chapter} />
+  )
+}
+{kind === 'archives' && <Archives locale={locale} corpus={corpus} />}
+{kind === 'archive' && params.slug && <Archive locale={locale} corpus={corpus} slug={params.slug} />}
+{isPolicyKind(kind) && <Policy locale={locale} kind={kind} />}
+{kind === 'notFound' && <NotFound locale={locale} />}

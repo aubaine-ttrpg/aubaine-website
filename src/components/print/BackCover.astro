@@ -1,0 +1,53 @@
+---
+import { getImage } from 'astro:assets'
+
+import qrSource from '../../../data/media/qr-aubaine.png'
+import type { Locale } from '../../lib/i18n/locales'
+import { strings } from '../../lib/i18n/strings'
+import { artImage, PLACEHOLDER_BANNER } from '../../lib/media'
+import HexLine from './HexLine.astro'
+import Leaf from './Leaf.astro'
+
+type Props = {
+  art: string | undefined
+  title: string
+  stamp: string
+  eyebrow: string
+  locale: Locale
+}
+
+const { art, title, stamp, eyebrow, locale } = Astro.props
+const t = strings(locale)
+
+const source = artImage(art) ?? artImage(PLACEHOLDER_BANNER)
+const plate = source
+  ? await getImage({
+      src: source,
+      width: 1086,
+      height: 1448,
+      fit: 'cover',
+      format: 'jpeg',
+      quality: 82,
+    })
+  : undefined
+const qr = await getImage({ src: qrSource, width: 192, height: 192, format: 'png' })
+---
+
+<Leaf class="au-cover au-cover--verso" anchor>
+  <div class="au-cover__inner">
+    {plate && <img class="au-cover__art" src={plate.src} alt="" style="object-position:50% 24%" />}
+    <div class="au-cover__wash au-cover__wash--verso-soft"></div>
+    <div class="au-grain"></div>
+    <div class="au-cover__eyebrow">{eyebrow}</div>
+    <div class="au-cover__back au-cover__back--epure">
+      <div class="au-cover__pitch">
+        <HexLine segments={[t.bookletTagline, t.bookletCta]} />
+      </div>
+      <div class="au-cover__url">aubaine.io</div>
+    </div>
+    <div class="au-cover__copyright">
+      <HexLine segments={[t.copyright, title, stamp]} />
+    </div>
+    <img class="au-cover__qr" src={qr.src} alt="" />
+  </div>
+</Leaf>

@@ -1,0 +1,44 @@
+---
+type Props = { title: string; count?: string | undefined; id?: string | undefined }
+
+const { title, count, id } = Astro.props
+---
+
+<div class="au-section-head">
+  <h2 id={id}>{title}</h2>
+  {count && <span>{count}</span>}
+  <span class="au-section-head__rule" aria-hidden="true"></span>
+</div>
+
+<style>
+  .au-section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding-bottom: 18px;
+  }
+
+  .au-section-head h2 {
+    margin: 0;
+    scroll-margin-top: var(--sticky-top);
+    font-family: var(--font-display);
+    font-size: var(--prose-h2);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+  }
+
+  .au-section-head span {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink3);
+  }
+
+  .au-section-head__rule {
+    flex: 1;
+    height: 1px;
+    background: var(--accent-line);
+  }
+</style>

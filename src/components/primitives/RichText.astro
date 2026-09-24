@@ -1,0 +1,103 @@
+---
+import type { Paragraph } from '../../lib/game/richtext'
+import type { Locale } from '../../lib/i18n/locales'
+import { strings } from '../../lib/i18n/strings'
+import { hasIcon, iconMask } from '../../lib/media'
+
+type Props = {
+  paragraphs: Paragraph[]
+  locale: Locale
+  size?: string
+  lineHeight?: string
+  color?: string
+  gap?: string
+  margin?: string
+}
+
+const {
+  paragraphs,
+  locale,
+  size = '15.5px',
+  lineHeight = '1.68',
+  color = 'var(--ink2)',
+  gap,
+  margin = '0',
+} = Astro.props
+
+const t = strings(locale)
+const paragraphStyle = `margin:${margin}; font-size:${size}; line-height:${lineHeight}; color:${color}; text-wrap:pretty`
+const TIP =
+  'position:absolute; left:0; bottom:calc(100% + 9px); z-index:70; width:max-content; max-width:330px; padding:12px 14px; white-space:normal; text-align:left; font-weight:400; color:var(--ink2); background:var(--bg2); border:1px solid var(--accent-line); box-shadow:0 18px 44px var(--tip-shadow)'
+---
+
+<div style={gap ? `display:flex; flex-direction:column; gap:${gap}` : 'display:contents'}>
+  {
+    paragraphs.map((paragraph) => (
+      <p style={paragraphStyle}>
+        {paragraph.runs.map((run) => {
+          if (run.kind === 'bold') {
+            return <strong style="color:var(--ink); font-weight:600">{run.text}</strong>
+          }
+          if (run.kind === 'ref') {
+            return (
+              <a
+                href={run.href}
+                data-inline-ref
+                style="color:var(--accent-ink); border-bottom:1px solid var(--accent-line)"
+              >
+                {run.text}
+              </a>
+            )
+          }
+          if (run.kind === 'term') {
+            const icon = hasIcon(run.term.icon) ? run.term.icon : null
+            return (
+              <span
+                data-term="true"
+                tabindex="0"
+                style={`position:relative; display:inline-block; cursor:help; color:${run.term.color}; font-weight:600; white-space:nowrap; border-bottom:1px dotted currentColor`}
+              >
+                {icon && (
+                  <span
+                    aria-hidden="true"
+                    style={`display:inline-block; width:.85em; height:.85em; margin-right:.18em; vertical-align:-.04em; background:currentColor; -webkit-mask:${iconMask(icon)}; mask:${iconMask(icon)}`}
+                  />
+                )}
+                <span>{run.text}</span>
+                <span data-tip="true" role="tooltip" style={TIP}>
+                  <span style="display:block; font-family:var(--font-mono); font-size:9.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold)">
+                    {run.term.kind}
+                  </span>
+                  <span style="display:block; margin-top:5px; font-family:var(--font-display); font-size:16px; font-weight:600; color:var(--ink)">
+                    {run.term.title}
+                  </span>
+                  {run.term.meta && (
+                    <span style="display:block; margin-top:4px; font-family:var(--font-ui); font-size:12.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink3)">
+                      {run.term.meta}
+                    </span>
+                  )}
+                  <span style="display:block; margin-top:8px; font-family:var(--font-body); font-size:14px; line-height:1.6">
+                    {run.term.text}
+                  </span>
+                  {run.term.href && (
+                    <span style="display:block; margin-top:9px; font-family:var(--font-ui); font-size:12.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gold)">
+                      {t.openRef}
+                    </span>
+                  )}
+                </span>
+              </span>
+            )
+          }
+          return <span>{run.text}</span>
+        })}
+      </p>
+    ))
+  }
+</div>
+
+<style is:global>
+  [data-inline-ref]:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+</style>

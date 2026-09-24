@@ -1,0 +1,19 @@
+---
+import Icon from '../primitives/Icon.astro'
+
+type Props = { segments: (string | undefined)[] }
+
+const { segments } = Astro.props
+const parts = segments.filter((segment): segment is string => Boolean(segment))
+---
+
+<span class="au-hexline">
+  {
+    parts.map((segment, index) => (
+      <Fragment>
+        {index > 0 && <Icon name="mdi:hexagon" class="au-hexline__sep" />}
+        <span>{segment}</span>
+      </Fragment>
+    ))
+  }
+</span>

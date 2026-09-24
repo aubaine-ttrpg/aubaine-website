@@ -1,0 +1,42 @@
+---
+import type { Locale } from '../../lib/i18n/locales'
+import { strings } from '../../lib/i18n/strings'
+import { LICENCE } from '../../lib/rights/claim'
+import HexLine from './HexLine.astro'
+import Leaf from './Leaf.astro'
+
+type Props = {
+  title: string
+  subtitle: string | undefined
+  eyebrow: string
+  kindLabel: string
+  version: string
+  stamp: string
+  locale: Locale
+}
+
+const { title, subtitle, eyebrow, kindLabel, version, stamp, locale } = Astro.props
+const t = strings(locale)
+---
+
+<Leaf class="au-title">
+  <div class="au-title__inner">
+    <div class="au-title__eyebrow">{eyebrow}</div>
+    <h1 class="au-title__title">{title}</h1>
+    <div class="au-title__rule"></div>
+    {subtitle && <div class="au-title__subtitle">{subtitle}</div>}
+    <div class="au-title__meta"><HexLine segments={[kindLabel, version]} /></div>
+  </div>
+</Leaf>
+
+<Leaf class="au-credits">
+  <div class="au-credits__inner">
+    <div class="au-credits__title">{title}</div>
+    {subtitle && <div class="au-credits__subtitle">{subtitle}</div>}
+    <div class="au-credits__body">
+      <p>{t.creditsAuthorship}</p>
+      <p>{t.creditsLicence(LICENCE.id)}</p>
+    </div>
+    <div class="au-credits__legal"><HexLine segments={[t.copyright, stamp]} /></div>
+  </div>
+</Leaf>

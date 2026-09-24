@@ -1,0 +1,272 @@
+---
+import { getEntry } from 'astro:content'
+
+import { hasBooklet } from '../../lib/booklet/manifest'
+import type { Corpus } from '../../lib/game/corpus'
+import { type BookLink, bookLink } from '../../lib/game/indexes'
+import { bookChapterHeads } from '../../lib/game/pages'
+import { renderProse } from '../../lib/game/prose'
+import { DEFAULT_LOCALE, type Locale } from '../../lib/i18n/locales'
+import { pathFor } from '../../lib/i18n/routes'
+import { strings } from '../../lib/i18n/strings'
+import { bookletHref, PLACEHOLDER_BANNER } from '../../lib/media'
+import Hero from '../primitives/Hero.astro'
+import SectionTrail from '../primitives/SectionTrail.astro'
+import '../../styles/prose.css'
+import '../../styles/reading.css'
+
+type Props = { locale: Locale; corpus: Corpus; bookId: string; chapter: string }
+
+const { locale, corpus, bookId, chapter } = Astro.props
+const t = strings(locale)
+
+const book = corpus.books.find((entry) => entry.id === bookId)
+if (!book) throw new Error(`Unknown book: ${bookId}`)
+
+const index = book.chapters.findIndex((entry) => entry.slug === chapter)
+const current = book.chapters[index]
+if (!current) throw new Error(`Unknown chapter in ${book.id}: ${chapter}`)
+
+const entryId = `${book.id}/${current.file}`
+const canonical = await getEntry('bookPages', entryId)
+if (!canonical) throw new Error(`Missing markdown for ${entryId}`)
+const translated =
+  locale === DEFAULT_LOCALE ? undefined : await getEntry('bookPages', `${entryId}.${locale}`)
+const { Content, headings } = await renderProse(translated ?? canonical)
+
+const heads = await bookChapterHeads(locale)
+const pages = book.chapters.map((entry, position) => ({
+  num: String(position + 1).padStart(2, '0'),
+  title: heads.get(`${book.id}/${entry.file}`)?.title ?? book.title,
+  href: pathFor('book', locale, { book: book.id, chapter: entry.slug }),
+  current: position === index,
+}))
+
+const pageTitle = pages[index]?.title ?? book.title
+const outline = headings
+  .filter((heading) => heading.depth === 2)
+  .map((heading) => ({ text: heading.text, href: `#${heading.slug}` }))
+const chapters = pages.map((entry) => ({
+  text: entry.title,
+  href: entry.href,
+  num: entry.num,
+  current: entry.current,
+  sections: entry.current && outline.length > 1 ? outline : undefined,
+}))
+const previous = index > 0 ? pages[index - 1] : undefined
+const next = index < pages.length - 1 ? pages[index + 1] : undefined
+const others = corpus.books
+  .filter((entry) => entry.id !== book.id)
+  .map((entry) => ({ text: entry.title, link: bookLink(entry, locale) }))
+  .filter((entry): entry is { text: string; link: BookLink } => entry.link !== undefined)
+  .map((entry) => ({ text: entry.text, href: entry.link.href, download: entry.link.download }))
+const pdf = bookletHref('book', book.id, locale)
+const versioned = hasBooklet(book.id)
+---
+
+<div>
+  <Hero
+    art={book.banner ?? PLACEHOLDER_BANNER}
+    objectPosition="50% 26%"
+    motion="drift"
+    seconds={20}
+    minHeight="min(52vh,440px)"
+    bottomStops={[28, 60]}
+    sideStops={[32, 64]}
+    padding="0 26px 40px"
+  >
+    <nav
+      aria-label={t.breadcrumb}
+      style="font-family:var(--font-mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--art-ink2)"
+    >
+      <a href={pathFor('home', locale)} data-book-crumb>{t.home}</a>
+      <span aria-hidden="true" style="padding:0 9px; opacity:.5">/</span>
+      <a href={pathFor('books', locale)} data-book-crumb>{t.resources}</a>
+    </nav>
+    <h1
+      style="margin:14px 0 0; font-family:var(--font-display); font-weight:700; font-size:clamp(38px,5.6vw,82px); line-height:.96; color:var(--art-ink)"
+    >
+      {book.title}
+    </h1>
+    <p
+      style="margin:16px 0 0; max-width:58ch; font-size:18px; line-height:1.6; color:var(--art-ink2)"
+    >
+      {book.description}
+    </p>
+  </Hero>
+
+  <div class="au-reading">
+    <nav id="book-nav" aria-label={t.pages} class="au-aside">
+      <div class="au-aside__head">
+        <p class="au-eyebrow">{t.pages}</p>
+        {
+          pdf && (
+            <a
+              href={pdf}
+              download
+              title={t.ctaPdf}
+              aria-label={t.ctaPdf}
+              data-book-pdf
+              style="flex:none; display:inline-flex; align-items:center; gap:6px; padding:4px 9px; color:var(--gold); transition:border-color .2s var(--ease), background-color .2s var(--ease)"
+            >
+              <span
+                aria-hidden="true"
+                style="flex:none; display:block; width:12px; height:12px; background:currentColor; -webkit-mask:url('/icons/mdi/download.svg') center/contain no-repeat; mask:url('/icons/mdi/download.svg') center/contain no-repeat"
+              />
+              <span style="font-family:var(--font-mono); font-size:9.5px; letter-spacing:.12em">
+                PDF
+              </span>
+            </a>
+          )
+        }
+      </div>
+
+      <SectionTrail sections={chapters} nestedLabel={t.onThisPage} />
+    </nav>
+
+    <article id="book-body" class="au-reading__body">
+      <h2
+        data-book-title
+        style="margin:0 0 1.5rem; font-family:var(--font-display); font-size:clamp(28px,3.4vw,42px); font-weight:700; line-height:1.06; color:var(--ink); text-wrap:balance"
+      >
+        {pageTitle}
+      </h2>
+      <div class="au-prose">
+        <Content />
+      </div>
+      <nav
+        aria-label={t.pager}
+        style="display:grid; grid-template-columns:44px minmax(0,1fr) 44px; align-items:center; gap:14px; margin-top:44px; padding-top:18px; border-top:1px solid var(--accent-line)"
+      >
+        {
+          previous ? (
+            <a
+              href={previous.href}
+              title={previous.title}
+              aria-label={previous.title}
+              rel="prev"
+              data-book-prev
+              style="width:44px; height:44px; display:grid; place-items:center; color:var(--ink); font-family:var(--font-ui); font-size:19px; transition:border-color .2s var(--ease), background-color .2s var(--ease)"
+            >
+              &#8592;
+            </a>
+          ) : (
+            <span
+              aria-hidden="true"
+              style="display:block; width:44px; height:44px; border:1px solid var(--line); opacity:.35"
+            />
+          )
+        }
+        <span style="min-width:0; text-align:center">
+          <span
+            style="display:block; font-family:var(--font-display); font-size:17px; font-weight:600; color:var(--ink); overflow:hidden; text-overflow:ellipsis; white-space:nowrap"
+          >
+            {pageTitle}
+          </span>
+        </span>
+        {
+          next ? (
+            <a
+              href={next.href}
+              title={next.title}
+              aria-label={next.title}
+              rel="next"
+              data-book-next
+              style="width:44px; height:44px; display:grid; place-items:center; border:1px solid var(--gold); background:var(--gold); color:var(--on-gold); font-family:var(--font-ui); font-size:19px; transition:filter .2s var(--ease)"
+            >
+              &#8594;
+            </a>
+          ) : (
+            <span
+              aria-hidden="true"
+              style="display:block; width:44px; height:44px; border:1px solid var(--line); opacity:.35"
+            />
+          )
+        }
+      </nav>
+      {
+        (others.length > 0 || versioned) && (
+          <footer class="au-book-foot" data-book-footer>
+            {others.length > 0 && (
+              <div class="au-book-foot__group">
+                <p class="au-eyebrow">{t.otherDocs}</p>
+                <SectionTrail sections={others} />
+              </div>
+            )}
+            {versioned && (
+              <a
+                href={pathFor('archive', locale, { slug: book.id })}
+                data-versions
+                class="au-book-foot__link"
+              >
+                {t.versionHistory}
+              </a>
+            )}
+          </footer>
+        )
+      }
+    </article>
+  </div>
+</div>
+
+<style>
+  .au-reading__body {
+    animation: au-fade 0.35s ease both;
+  }
+
+  [data-book-title] {
+    padding-block-end: 1.25rem;
+    border-block-end: 1px solid var(--accent-line);
+  }
+
+  .au-book-foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 22px 40px;
+    margin-block-start: 40px;
+    padding-block-start: 22px;
+    border-block-start: 1px solid var(--line);
+  }
+
+  .au-book-foot__group {
+    flex: 1 1 16rem;
+    min-width: 0;
+  }
+
+  .au-book-foot__link {
+    flex: none;
+    font-family: var(--font-ui);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--ink2);
+    transition: color 0.2s var(--ease);
+  }
+
+  .au-book-foot__link:hover,
+  .au-book-foot__link:focus-visible {
+    color: var(--ink);
+  }
+
+  [data-book-crumb]:hover {
+    color: var(--gold);
+  }
+  [data-book-pdf] {
+    border: 1px solid var(--line2);
+  }
+  [data-book-pdf]:hover {
+    border-color: var(--gold);
+    background: var(--accent-soft);
+  }
+  [data-book-prev] {
+    border: 1px solid var(--line2);
+  }
+  [data-book-prev]:hover {
+    border-color: var(--gold);
+    background: var(--accent-soft);
+  }
+  [data-book-next]:hover {
+    filter: brightness(1.08);
+  }
+</style>

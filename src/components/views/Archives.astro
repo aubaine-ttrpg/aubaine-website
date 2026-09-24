@@ -1,0 +1,138 @@
+---
+import { formatBytes, formatReleaseDate } from '../../lib/booklet/format'
+import { currentVersion, generations } from '../../lib/booklet/manifest'
+import type { Corpus } from '../../lib/game/build'
+import { collator, formatNumber } from '../../lib/game/derive'
+import { ARCHIVES_ART, bookletHead } from '../../lib/game/pages'
+import type { Locale } from '../../lib/i18n/locales'
+import { pathFor } from '../../lib/i18n/routes'
+import { strings } from '../../lib/i18n/strings'
+import { releaseHref } from '../../lib/media'
+import Hero from '../primitives/Hero.astro'
+import ReleaseRow from '../primitives/ReleaseRow.astro'
+import { enterDelay, STAGGER_STEP } from '../primitives/stagger'
+
+type Props = { locale: Locale; corpus: Corpus }
+
+const { locale, corpus } = Astro.props
+const t = strings(locale)
+const compare = collator(locale)
+const current = currentVersion()
+
+const spreads = generations(locale).map((generation) => ({
+  ...generation,
+  rows: generation.files
+    .map((release) => ({
+      slug: release.slug,
+      title: bookletHead(corpus, release.kind, release.slug).title,
+      href: releaseHref(release),
+      bytes: release.bytes,
+      pages: release.pages,
+      archived: release.archive !== undefined,
+    }))
+    .sort((a, b) => compare.compare(a.title, b.title)),
+}))
+
+const booklets = [
+  ...new Map(
+    generations(locale)
+      .flatMap((generation) => generation.files)
+      .map((release) => [
+        release.slug,
+        {
+          slug: release.slug,
+          title: bookletHead(corpus, release.kind, release.slug).title,
+        },
+      ]),
+  ).values(),
+].sort((a, b) => compare.compare(a.title, b.title))
+---
+
+<div>
+  <Hero
+    art={ARCHIVES_ART}
+    objectPosition="50% 34%"
+    motion="drift"
+    seconds={22}
+    priority
+    minHeight="min(60vh,520px)"
+    bottomStops={[28, 60]}
+    sideStops={[32, 64]}
+    padding="0 26px 44px"
+  >
+    <h1
+      style="margin:0; font-family:var(--font-display); font-weight:700; font-size:clamp(42px,6.4vw,96px); line-height:.95; color:var(--art-ink)"
+    >
+      {t.archives}
+    </h1>
+    <p
+      style="margin:16px 0 0; max-width:58ch; font-size:19px; line-height:1.6; color:var(--art-ink2)"
+    >
+      {t.archivesLead}
+    </p>
+  </Hero>
+
+  <section style="max-width:1560px; margin:0 auto; padding:40px 26px 80px">
+    <nav aria-labelledby="archive-booklets" style="padding-bottom:34px">
+      <h2
+        id="archive-booklets"
+        style="margin:0; padding-bottom:8px; border-bottom:1px solid var(--accent-line); font-family:var(--font-display); font-size:16px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold)"
+      >
+        {t.releaseBooklets}
+      </h2>
+      <ul
+        style="list-style:none; margin:16px 0 0; padding:0; display:flex; flex-wrap:wrap; gap:10px"
+      >
+        {
+          booklets.map((booklet) => (
+            <li>
+              <a
+                href={pathFor('archive', locale, { slug: booklet.slug })}
+                data-booklet-history
+                style="display:inline-block; padding:7px 12px; border:1px solid var(--line2); font-family:var(--font-ui); font-size:13.5px; font-weight:600; color:var(--ink2)"
+              >
+                {booklet.title}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    {
+      spreads.map((generation, index) => (
+        <section
+          data-generation={generation.version}
+          data-enters
+          style={`padding-bottom:34px; --enter-delay:${enterDelay(index, STAGGER_STEP.card)}ms`}
+        >
+          <h2 style="margin:0; padding-bottom:8px; border-bottom:1px solid var(--accent-line); font-family:var(--font-display); font-size:16px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold)">
+            v{generation.version}
+          </h2>
+          <p style="margin:10px 0 0; font-family:var(--font-mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink3)">
+            {formatReleaseDate(generation.date, locale)} &#183;{' '}
+            {formatNumber(generation.rows.length, locale)} {t.releaseBooklets} &#183;{' '}
+            {formatBytes(generation.bytes, locale)}
+          </p>
+          {generation.note && (
+            <p style="margin:12px 0 0; max-width:var(--measure); font-size:var(--prose-body); line-height:1.7; color:var(--ink2)">
+              {generation.note[locale]}
+            </p>
+          )}
+          <ul style="list-style:none; margin:18px 0 0; padding:0">
+            {generation.rows.map((row) => (
+              <ReleaseRow
+                locale={locale}
+                title={row.title}
+                sub={`${formatNumber(row.pages, locale)} ${t.releasePages}`}
+                bytes={row.bytes}
+                href={row.href}
+                current={generation.version === current}
+                archived={row.archived}
+              />
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+  </section>
+</div>

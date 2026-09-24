@@ -1,0 +1,25 @@
+---
+import { type Corpus, label } from '../../lib/game/corpus'
+import { characteristicKey } from '../../lib/game/derive'
+import type { Locale } from '../../lib/i18n/locales'
+import Icon from './Icon.astro'
+
+type Props = { characteristic: string; corpus: Corpus; locale: Locale; inline?: boolean }
+
+const { characteristic, corpus, locale, inline = false } = Astro.props
+
+const key = characteristicKey(characteristic)
+const entry = corpus.characteristics.get(key)
+const name = label(entry, locale, key)
+---
+
+<span
+  class={inline ? 'au-char au-char--inline' : 'au-char'}
+  style={`color:${entry?.color ?? '#8a7c5c'}`}
+  role="img"
+  aria-label={name}
+  title={name}
+>
+  <Icon name="mdi:hexagon" class="au-char__hex" />
+  <Icon name={entry?.iconName ?? 'mdi:asterisk'} class={`au-char__icon au-char__icon--${key}`} />
+</span>

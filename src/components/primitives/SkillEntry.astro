@@ -1,0 +1,326 @@
+---
+import { type Corpus, definition, label } from '../../lib/game/corpus'
+import {
+  formatNumber,
+  hasCost,
+  showsXp,
+  skillTags,
+  typeLabelFor,
+  xpOf,
+} from '../../lib/game/derive'
+import { calloutNames } from '../../lib/game/richtext'
+import type { Skill } from '../../lib/game/schema'
+import { badgedStatus } from '../../lib/game/status'
+import type { Locale } from '../../lib/i18n/locales'
+import { strings } from '../../lib/i18n/strings'
+import CharBadge from './CharBadge.astro'
+import Icon from './Icon.astro'
+import NodeShape from './NodeShape.astro'
+import RuleText from './RuleText.astro'
+
+type Props = { skill: Skill; corpus: Corpus; locale: Locale; marks?: boolean; priced?: boolean }
+
+const { skill, corpus, locale, marks = true, priced = true } = Astro.props
+const t = strings(locale)
+
+const callouts = calloutNames(skill.description)
+  .map((name) => corpus.statesByName.get(name.toLowerCase()))
+  .filter((state): state is NonNullable<typeof state> => state !== undefined)
+
+const status = badgedStatus(corpus.skillStatus.get(skill.id))
+const STATUS_LABELS = { draft: t.draft, playtest: t.playtest, beta: t.beta }
+
+const typeLabel = typeLabelFor(skill.type, {
+  active: t.active,
+  passive: t.passive,
+  special: t.special,
+})
+const domainNames = skill.domains.map((key) => label(corpus.domains.get(key), locale, key))
+const durationLine = skill.duration
+  ? (skill.concentration ? `${t.concentration} · ` : '') + skill.duration
+  : undefined
+const RECHARGE_LABELS = { 'short-rest': t.rechargeShortRest, 'long-rest': t.rechargeLongRest }
+const rechargeLine = skill.recharge ? RECHARGE_LABELS[skill.recharge] : undefined
+const parent = skill.evolvesFrom
+  ? (corpus.skills.get(skill.evolvesFrom)?.title ?? skill.evolvesFrom)
+  : undefined
+const TAG_KIND_LABELS = { practice: t.tagPractice, school: t.tagSchool, special: t.tagSpecial }
+const tags = skillTags(skill.tags).map(({ key, kind }) => {
+  const tag = corpus.tags.get(key)
+  if (!tag)
+    throw new Error(`${skill.id} names the tag ${key}, which data/meta/tags.json does not declare`)
+  return {
+    kind: TAG_KIND_LABELS[kind],
+    title: label(tag, locale, key),
+    text: definition(tag, locale),
+  }
+})
+---
+
+<div class="au-skill">
+  <div class="au-skill__hd">
+    <span class="au-skill__hd-title">
+      {
+        skill.characteristics && skill.characteristics.length > 0 && (
+          <span class="au-skill__chars">
+            {skill.characteristics.map((characteristic) => (
+              <CharBadge characteristic={characteristic} corpus={corpus} locale={locale} />
+            ))}
+          </span>
+        )
+      }
+      <span class="au-skill__name">{skill.title}</span>
+    </span>
+    <span class="au-skill__hd-meta">
+      {status && <span class={`au-status au-status--${status}`}>{STATUS_LABELS[status]}</span>}
+      {
+        priced && showsXp(skill) && (
+          <span class="au-skill__xp">
+            {formatNumber(xpOf(skill), locale)}
+            <span class="au-skill__xp-unit">{t.xp}</span>
+          </span>
+        )
+      }
+      {
+        marks && (
+          <span class="au-marks">
+            <span class="au-mark" role="img" aria-label={t.learned} title={t.learned}>
+              <Icon name="mdi:school" class="au-mark__icon" />
+            </span>
+            <span class="au-mark" role="img" aria-label={t.memorized} title={t.memorized}>
+              <Icon name="mdi:brain" class="au-mark__icon" />
+            </span>
+          </span>
+        )
+      }
+    </span>
+  </div>
+
+  <div class="au-skill__body">
+    <div class="au-skill__node"><NodeShape skill={skill} corpus={corpus} variant="card" /></div>
+    <div class="au-skill__col">
+      <div class="au-skill__meta-row">
+        {
+          hasCost(skill.energy) && (
+            <span class="au-cost">
+              <svg width="9" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+              </svg>
+              {`${formatNumber(skill.energy, locale)} ${t.energy}`}
+            </span>
+          )
+        }
+        {
+          hasCost(skill.karma) && (
+            <span class="au-cost au-cost--karma">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z" />
+              </svg>
+              {`${formatNumber(skill.karma, locale)} ${t.karma}`}
+            </span>
+          )
+        }
+        {
+          skill.life && (
+            <span class="au-cost au-cost--life">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2c3 5 6 7.6 6 11a6 6 0 0 1-12 0c0-3.4 3-6 6-11z" />
+              </svg>
+              {`${skill.life} ${t.life}`}
+            </span>
+          )
+        }
+        <span class="au-skill__meta">
+          {domainNames.length > 0 ? `${typeLabel} · ${domainNames.join(' / ')}` : typeLabel}
+        </span>
+      </div>
+
+      <div class="au-skill__stats">
+        {
+          skill.prerequisite && (
+            <span class="au-stat au-stat--prerequisite">
+              <svg
+                class="au-stat__icon"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M5 11V8a7 7 0 0 1 14 0v3" />
+                <rect x="4" y="11" width="16" height="10" rx="2" />
+              </svg>
+              <span class="au-stat__label">{t.prerequisite}</span>
+              {skill.prerequisite}
+            </span>
+          )
+        }
+        {
+          skill.activation && (
+            <span class="au-stat">
+              <svg
+                class="au-stat__icon"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 7.5V12l3 2" />
+              </svg>
+              {skill.activation}
+            </span>
+          )
+        }
+        {
+          skill.range && (
+            <span class="au-stat">
+              <svg
+                class="au-stat__icon"
+                width="15"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M3 12h18" />
+                <path d="M7 8l-4 4 4 4" />
+                <path d="M17 8l4 4-4 4" />
+              </svg>
+              {skill.range}
+            </span>
+          )
+        }
+        {
+          durationLine && (
+            <span class="au-stat">
+              <svg
+                class="au-stat__icon"
+                width="13"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M5 2h14v2l-7 8 7 8v2H5v-2l7-8L5 4z" />
+              </svg>
+              {durationLine}
+            </span>
+          )
+        }
+        {
+          rechargeLine && (
+            <span class="au-stat">
+              <svg
+                class="au-stat__icon"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M20 12a8 8 0 1 1-2.34-5.66" />
+                <path d="M20 4v5h-5" />
+              </svg>
+              {rechargeLine}
+            </span>
+          )
+        }
+      </div>
+
+      {
+        tags.length > 0 && (
+          <div class="au-skill__tags">
+            {tags.map((tag, index) => (
+              <Fragment>
+                {index > 0 && ' · '}
+                <span class="au-rule au-skill__tag" data-term="true" tabindex="0">
+                  <span>{tag.title}</span>
+                  <span class="au-rule__tip" data-tip="true" role="tooltip">
+                    <span class="au-rule__tip-kind">{tag.kind}</span>
+                    <span class="au-rule__tip-title">{tag.title}</span>
+                    <span class="au-rule__tip-body">{tag.text}</span>
+                  </span>
+                </span>
+              </Fragment>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </div>
+
+  <RuleText source={skill.description} corpus={corpus} locale={locale} class="au-skill__desc" />
+
+  {
+    callouts.map((state) => (
+      <div class={`au-state-callout au-state-callout--${state.kind}`}>
+        <span class="au-rule au-rule--state" style={state.color ? `color:${state.color}` : undefined}>
+          <Icon name={state.icon} class="au-rule__icon" />
+          <span>{state.name}</span>
+        </span>
+        {state.stacks !== undefined && (
+          <span class="au-state-callout__stacks">{`${state.stacks} ${t.stacks_}`}</span>
+        )}
+        <RuleText
+          source={state.description}
+          corpus={corpus}
+          locale={locale}
+          class="au-state-callout__desc"
+        />
+      </div>
+    ))
+  }
+
+  {
+    (skill.upgrades ?? []).map((upgrade) => (
+      <div class="au-upgrade">
+        <div class="au-upgrade__hd">
+          <span class="au-upgrade__level">{`${t.level} ${upgrade.level}`}</span>
+          <span class="au-upgrade__title">{upgrade.title}</span>
+          <span class="au-upgrade__xp">
+            {formatNumber(xpOf(upgrade), locale)}
+            <span class="au-skill__xp-unit">{t.xp}</span>
+          </span>
+          {marks && (
+            <span class="au-mark" role="img" aria-label={t.upgraded} title={t.upgraded}>
+              <Icon name="mdi:arrow-up-bold" class="au-mark__icon" />
+            </span>
+          )}
+        </div>
+        <RuleText
+          source={upgrade.description}
+          corpus={corpus}
+          locale={locale}
+          class="au-upgrade__desc"
+        />
+      </div>
+    ))
+  }
+
+  {
+    skill.type === 'special' && (
+      <div class="au-skill__note">
+        <span class="au-hexmark" />
+        {parent ? `${t.evolvesFrom} ${parent}` : t.specialNode}
+      </div>
+    )
+  }
+</div>

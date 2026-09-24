@@ -1,0 +1,26 @@
+---
+import type { Locale } from '../../lib/i18n/locales'
+import { pathFor } from '../../lib/i18n/routes'
+import { strings } from '../../lib/i18n/strings'
+
+type Props = { locale: Locale }
+
+const { locale } = Astro.props
+const t = strings(locale)
+
+const LINK =
+  'padding:9px 15px; font-family:var(--font-ui); font-size:14px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ink); border:1px solid var(--line2)'
+---
+
+<div role="alert" style="max-width:var(--measure); margin:0 auto; padding:80px 26px">
+  <h1
+    style="margin:0 0 14px; font-family:var(--font-display); font-size:var(--prose-h2); font-weight:600; color:var(--ink)"
+  >
+    {t.errorTitle}
+  </h1>
+  <p style="margin:0 0 16px; color:var(--ink2); line-height:1.7">{t.emptyBody}</p>
+  <div style="display:flex; flex-wrap:wrap; gap:10px">
+    <a href={pathFor('trees', locale)} style={LINK}>{t.trees}</a>
+    <a href={pathFor('almanach', locale)} style={LINK}>{t.almanach}</a>
+  </div>
+</div>

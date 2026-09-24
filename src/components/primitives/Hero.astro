@@ -1,0 +1,106 @@
+---
+import Banner from './Banner.astro'
+
+type Props = {
+  art?: string | undefined
+  objectPosition?: string
+  motion?: 'none' | 'drift' | 'zoom-drift' | 'burns'
+  seconds?: number
+  settle?: number
+  large?: boolean
+  priority?: boolean
+  minHeight: string
+  bottomStops: [number, number]
+  sideStops: [number, number]
+  padding: string
+  scrollCue?: string | undefined
+}
+
+const {
+  art,
+  objectPosition = '50% 26%',
+  motion = 'drift',
+  seconds = 22,
+  settle = 2.2,
+  large = false,
+  priority = false,
+  minHeight,
+  bottomStops,
+  sideStops,
+  padding,
+  scrollCue,
+} = Astro.props
+---
+
+<section
+  style={`position:relative; min-height:${minHeight}; display:flex; flex-direction:column; justify-content:flex-end; overflow:clip; border-bottom:1px solid var(--line2)`}
+>
+  <Banner
+    art={art}
+    objectPosition={objectPosition}
+    motion={motion}
+    seconds={seconds}
+    settle={settle}
+    large={large}
+    priority={priority}
+  />
+  <slot name="overlay" />
+  <span
+    aria-hidden="true"
+    style={`position:absolute; inset:0; background:linear-gradient(0deg, var(--scrim1) 0%, var(--scrim-mid) ${bottomStops[0]}%, var(--scrim2) ${bottomStops[1]}%)`}
+  ></span>
+  <span
+    aria-hidden="true"
+    style={`position:absolute; inset:0; background:linear-gradient(90deg, var(--scrim-side) 0%, var(--scrim-mid) ${sideStops[0]}%, var(--scrim2) ${sideStops[1]}%)`}
+  ></span>
+  <div style={`position:relative; width:100%; max-width:1560px; margin:0 auto; padding:${padding}`}>
+    <slot />
+  </div>
+  {
+    scrollCue && (
+      <span aria-hidden="true" data-scroll-cue>
+        {scrollCue}
+        <svg
+          width="16"
+          height="9"
+          viewBox="0 0 16 9"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          style="display:block; animation:au-nudge 2.4s cubic-bezier(.37,0,.63,1) infinite"
+        >
+          <polyline points="1,1 8,7.6 15,1" />
+        </svg>
+      </span>
+    )
+  }
+</section>
+
+<style>
+  [data-scroll-cue] {
+    position: sticky;
+    bottom: 20px;
+    align-self: center;
+    max-width: 100%;
+    margin-bottom: 20px;
+    padding: 0 26px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.3em;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--art-ink2);
+  }
+
+  @media (max-width: 639px) {
+    [data-scroll-cue] {
+      display: none;
+    }
+  }
+</style>

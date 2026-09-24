@@ -1,0 +1,75 @@
+---
+import CharacteristicHex from './CharacteristicHex.astro'
+
+export type Trait = {
+  iconName: string | undefined
+  color: string
+  label: string
+  text?: string | undefined
+}
+
+type Props = { traits: Trait[]; groupLabel: string; glyphColor?: string | undefined }
+
+const { traits, groupLabel, glyphColor } = Astro.props
+---
+
+<div class="au-traits" aria-label={groupLabel}>
+  {
+    traits.map((trait) => (
+      <span class="au-trait" style={`--trait:${trait.color}`}>
+        <CharacteristicHex
+          iconName={trait.iconName}
+          color={trait.color}
+          label={trait.label}
+          glyphColor={glyphColor}
+          transform="skewX(10deg)"
+          filter="none"
+        />
+        {trait.text !== undefined && <span class="au-trait__label">{trait.label}</span>}
+        <span class="au-trait__text">{trait.text ?? trait.label}</span>
+      </span>
+    ))
+  }
+</div>
+
+<style>
+  .au-traits {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: fit-content;
+    gap: 13px;
+    animation: au-rise 0.6s var(--ease) 0.1s both;
+  }
+
+  .au-trait {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 9px 22px 9px 14px;
+    transform: skewX(-10deg) rotate(-1.6deg);
+    background: #08070d;
+    border: 1px solid var(--trait);
+    box-shadow: 6px 6px 0 var(--trait);
+  }
+
+  .au-trait__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .au-trait__text {
+    transform: skewX(10deg);
+    font-family: var(--font-ui);
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #fbf8ef;
+  }
+</style>

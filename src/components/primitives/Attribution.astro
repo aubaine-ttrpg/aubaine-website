@@ -1,0 +1,91 @@
+---
+import type { Locale } from '../../lib/i18n/locales'
+import { strings } from '../../lib/i18n/strings'
+import { ATTRIBUTION_SECTIONS, FONT_FAMILIES, ICON_SETS } from '../../lib/rights/attribution'
+
+type Props = { locale: Locale }
+
+const { locale } = Astro.props
+const t = strings(locale)
+
+const headingStyle =
+  'margin:44px 0 0; scroll-margin-top:var(--sticky-top); font-family:var(--font-display); font-size:var(--prose-h2); font-weight:700; color:var(--ink)'
+const tableStyle =
+  'width:100%; margin-top:16px; border-collapse:collapse; font-family:var(--font-ui); font-size:15px'
+const headStyle =
+  'padding:8px 12px 8px 0; border-bottom:1px solid var(--line2); text-align:left; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); font-weight:600'
+const cellStyle = 'padding:11px 12px 11px 0; border-bottom:1px solid var(--line); color:var(--ink2)'
+---
+
+<section data-attribution>
+  <h2 id={ATTRIBUTION_SECTIONS.icons} style={headingStyle}>{t.creditsIcons}</h2>
+  <table style={tableStyle}>
+    <thead>
+      <tr>
+        <th scope="col" style={headStyle}>{t.creditsSet}</th>
+        <th scope="col" style={headStyle}>{t.creditsAuthor}</th>
+        <th scope="col" style={headStyle}>{t.creditsTerms}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        ICON_SETS.map((set) => (
+          <tr>
+            <td style={cellStyle}>
+              <a href={set.home} rel="noopener noreferrer external">
+                {set.name}
+              </a>
+            </td>
+            <td style={cellStyle}>{set.author}</td>
+            <td style={cellStyle}>
+              <a href={set.licence.url} rel="noopener noreferrer external license">
+                {set.licence.id}
+              </a>
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+
+  <h2 id={ATTRIBUTION_SECTIONS.fonts} style={headingStyle}>{t.creditsFonts}</h2>
+  <table style={tableStyle}>
+    <thead>
+      <tr>
+        <th scope="col" style={headStyle}>{t.creditsFamily}</th>
+        <th scope="col" style={headStyle}>{t.creditsTerms}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        FONT_FAMILIES.map((family) => (
+          <tr>
+            <td style={cellStyle} translate="no">
+              {family.name}
+            </td>
+            <td style={cellStyle}>
+              <a href={family.licence.url} rel="noopener noreferrer external license">
+                {family.licence.id}
+              </a>
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</section>
+
+<style>
+  [data-attribution] a {
+    color: var(--accent-ink);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: text-decoration-thickness 0.2s var(--ease);
+  }
+
+  [data-attribution] a:hover,
+  [data-attribution] a:focus-visible {
+    text-decoration-thickness: 2px;
+  }
+</style>

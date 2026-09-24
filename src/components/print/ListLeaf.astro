@@ -1,0 +1,36 @@
+---
+import Leaf from './Leaf.astro'
+
+type Props = {
+  title: string
+  sub: string
+  footLeft: string
+  footRight?: string | undefined
+  wrappers: string
+  anchor?: string | undefined
+}
+
+const { title, sub, footLeft, footRight, wrappers, anchor } = Astro.props
+---
+
+<Leaf flow numbered wrappers={wrappers}>
+  <div class="au-sheet">
+    <div class="au-plate">
+      <header class="au-plate__head au-plate__head--rule" id={anchor}>
+        <span class="au-plate__title">{title}</span>
+        <span class="au-plate__sub">{sub}</span>
+      </header>
+
+      <div class="au-columns" data-columns>
+        <slot />
+      </div>
+
+      <footer class="au-plate__foot">
+        <span>{footLeft}</span>
+        {footRight && <span>{footRight}</span>}
+        <slot name="foot-mid" />
+        <span data-page-number></span>
+      </footer>
+    </div>
+  </div>
+</Leaf>

@@ -1,0 +1,57 @@
+---
+import { getImage } from 'astro:assets'
+
+import { artImage, PLACEHOLDER_COVER } from '../../lib/media'
+import HexLine from './HexLine.astro'
+import Leaf from './Leaf.astro'
+
+type Props = {
+  art: string | undefined
+  title: string
+  subtitle: string | undefined
+  eyebrow: string
+  kindLabel: string
+  version: string
+}
+
+const { art, title, subtitle, eyebrow, kindLabel, version } = Astro.props
+
+const source = artImage(art) ?? artImage(PLACEHOLDER_COVER)
+const plate = source
+  ? await getImage({
+      src: source,
+      width: 1086,
+      height: 1448,
+      fit: 'cover',
+      format: 'jpeg',
+      quality: 82,
+    })
+  : undefined
+
+const TITLE_TIERS = [
+  { from: 46, className: ' au-cover__title--saga' },
+  { from: 30, className: ' au-cover__title--epic' },
+  { from: 15, className: ' au-cover__title--xlong' },
+  { from: 12, className: ' au-cover__title--long' },
+] as const
+
+const titleSize = TITLE_TIERS.find((tier) => title.length >= tier.from)?.className ?? ''
+---
+
+<Leaf class="au-cover au-cover--recto">
+  <div class="au-cover__inner">
+    {plate && <img class="au-cover__art" src={plate.src} alt="" />}
+    <div class="au-cover__wash au-cover__wash--recto-radial"></div>
+    <div class="au-cover__wash au-cover__wash--recto-linear"></div>
+    <div class="au-grain"></div>
+    <div class="au-cover__frame"></div>
+    <div class="au-cover__frame au-cover__frame--inner"></div>
+    <div class="au-cover__eyebrow">{eyebrow}</div>
+    <div class="au-cover__headline">
+      <h1 class={`au-cover__title${titleSize}`}>{title}</h1>
+      <div class="au-cover__rule"></div>
+      {subtitle && <div class="au-cover__subtitle">{subtitle}</div>}
+    </div>
+    <div class="au-cover__version"><HexLine segments={[kindLabel, version]} /></div>
+  </div>
+</Leaf>

@@ -1,0 +1,15 @@
+---
+import Leaf from './Leaf.astro'
+
+type Props = { title: string; anchor?: string | undefined }
+
+const { title, anchor } = Astro.props
+---
+
+<Leaf class="au-leaf" flow numbered>
+  <div class="au-leaf__body" data-columns>
+    <h1 id={anchor}>{title}</h1>
+    <slot />
+  </div>
+  <span class="au-leaf__folio" data-page-number></span>
+</Leaf>

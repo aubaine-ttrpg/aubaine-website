@@ -1,0 +1,466 @@
+---
+const SPARK_TONES = ['var(--gold)', 'var(--accent-ink)', 'var(--accent)']
+
+const sparks = Array.from({ length: 14 }, (_, index) => {
+  const angle = (index / 14) * Math.PI * 2
+  const distance = 90 + ((index * 37) % 50)
+  const size = 3 + ((index * 13) % 4)
+  return {
+    size,
+    tx: Math.round(Math.cos(angle) * distance * 10) / 10,
+    ty: Math.round(Math.sin(angle) * distance * 10) / 10,
+    tone: SPARK_TONES[index % 3],
+    delay: (index % 4) * 14,
+  }
+})
+---
+
+<div data-load-crest aria-hidden="true">
+  <div data-crest-scene>
+    <div data-crest-halo></div>
+    <div data-crest-burst>
+      <div data-crest-shock></div>
+      {
+        sparks.map((spark) => (
+          <span
+            data-crest-spark
+            style={`--tx:${spark.tx}px; --ty:${spark.ty}px; width:${spark.size}px; height:${spark.size}px; margin:${-spark.size / 2}px 0 0 ${-spark.size / 2}px; background:${spark.tone}; animation-delay:${spark.delay}ms`}
+          />
+        ))
+      }
+    </div>
+    <svg data-crest-mark viewBox="0 0 100 100" aria-hidden="true">
+      <g data-crest-hex>
+        <polygon data-crest-frame points="50,4 90,27 90,73 50,96 10,73 10,27"></polygon>
+        <polygon data-crest-inner points="50,13 82,31 82,69 50,87 18,69 18,31"></polygon>
+      </g>
+      <path
+        data-crest-star
+        d="M50,24 L54.5,45.5 L76,50 L54.5,54.5 L50,76 L45.5,54.5 L24,50 L45.5,45.5 Z"></path>
+      <circle data-crest-flash cx="50" cy="50" r="9"></circle>
+      <g data-crest-orbits>
+        <ellipse cx="50" cy="50" rx="28" ry="9" transform="rotate(-24 50 50)"></ellipse>
+        <ellipse cx="50" cy="50" rx="21" ry="6.5" transform="rotate(-24 50 50)"></ellipse>
+        <ellipse data-crest-glint="1" cx="50" cy="50" rx="28" ry="9" transform="rotate(-24 50 50)"
+        ></ellipse>
+        <ellipse data-crest-glint="2" cx="50" cy="50" rx="21" ry="6.5" transform="rotate(-24 50 50)"
+        ></ellipse>
+      </g>
+    </svg>
+    <div data-crest-horizon>
+      <div data-crest-horizon-in>
+        <div data-crest-bloom></div>
+        <div data-crest-sheen></div>
+        <div data-crest-photon></div>
+        <div data-crest-core></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @keyframes au-crest-pulse {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.04);
+      opacity: 0.85;
+    }
+  }
+
+  @keyframes au-crest-collapse {
+    0% {
+      transform: scale(1) rotate(0deg);
+      opacity: 1;
+    }
+    38% {
+      transform: scale(1.12) rotate(8deg);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0) rotate(70deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes au-crest-singularity {
+    0% {
+      transform: scale(0.05);
+      opacity: 0;
+    }
+    46% {
+      opacity: 0;
+    }
+    62% {
+      transform: scale(0.22);
+      opacity: 0.9;
+    }
+    100% {
+      transform: scale(2.3);
+      opacity: 0;
+    }
+  }
+
+  @keyframes au-crest-holein {
+    0% {
+      transform: scale(0.18);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes au-crest-glint1 {
+    to {
+      stroke-dashoffset: -124;
+    }
+  }
+
+  @keyframes au-crest-glint2 {
+    to {
+      stroke-dashoffset: -92.5;
+    }
+  }
+
+  @keyframes au-crest-corehalo {
+    0%,
+    100% {
+      box-shadow:
+        0 0 14px 2px color-mix(in srgb, var(--accent) 40%, transparent),
+        0 0 30px 6px color-mix(in srgb, var(--accent) 18%, transparent);
+    }
+    50% {
+      box-shadow:
+        0 0 22px 5px color-mix(in srgb, var(--accent-ink) 62%, transparent),
+        0 0 46px 12px color-mix(in srgb, var(--accent) 30%, transparent);
+    }
+  }
+
+  @keyframes au-crest-corespin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes au-crest-dissipate {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+      filter: blur(0);
+    }
+    100% {
+      transform: scale(1.9);
+      opacity: 0;
+      filter: blur(9px);
+    }
+  }
+
+  @keyframes au-crest-veilout {
+    0%,
+    25% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes au-crest-spark {
+    0% {
+      transform: translate(0, 0) scale(1);
+      opacity: 0;
+    }
+    18% {
+      opacity: 1;
+    }
+    100% {
+      transform: translate(var(--tx), var(--ty)) scale(0.2);
+      opacity: 0;
+    }
+  }
+
+  @keyframes au-crest-shock {
+    0% {
+      transform: translate(-50%, -50%) scale(0.2);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(3.2);
+      opacity: 0;
+    }
+  }
+
+  [data-load-crest] {
+    --crest-collapse: 220ms;
+    --crest-void: 220ms;
+    --crest-holein: 80ms;
+    --crest-burst: 150ms;
+    --crest-spark: 240ms;
+    position: fixed;
+    top: var(--header-h);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+    display: none;
+    place-items: center;
+    overflow: hidden;
+    pointer-events: none;
+    background: radial-gradient(90% 90% at 50% 45%, var(--bg2), var(--bg) 70%);
+  }
+
+  [data-load-crest][data-phase] {
+    display: grid;
+  }
+
+  [data-load-crest][data-phase="burst"] {
+    animation: au-crest-veilout var(--crest-burst) ease forwards;
+  }
+
+  [data-load-crest][data-phase="burst"] [data-crest-scene] {
+    animation: au-crest-dissipate var(--crest-burst) cubic-bezier(0.5, 0, 0.75, 0) forwards;
+  }
+
+  [data-crest-scene] {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  [data-crest-halo] {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background: radial-gradient(circle, color-mix(in srgb, var(--gold) 18%, transparent), transparent 62%);
+    transition:
+      background 0.4s ease,
+      opacity 0.4s ease;
+  }
+
+  [data-load-crest][data-phase="void"] [data-crest-halo] {
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--accent) 40%, transparent),
+      transparent 62%
+    );
+  }
+
+  [data-crest-mark] {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    max-width: 100%;
+  }
+
+  [data-crest-hex] {
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+
+  [data-crest-frame] {
+    fill: var(--bg);
+    stroke: var(--gold);
+    stroke-width: 2.6;
+    transition: stroke var(--crest-collapse) ease;
+  }
+
+  [data-crest-inner] {
+    fill: none;
+    stroke: var(--edge);
+    stroke-width: 1.2;
+    transition: stroke var(--crest-collapse) ease;
+  }
+
+  [data-load-crest]:not([data-phase="loading"]) [data-crest-frame] {
+    stroke: var(--accent);
+  }
+
+  [data-load-crest]:not([data-phase="loading"]) [data-crest-inner] {
+    stroke: var(--accent-line);
+  }
+
+  [data-crest-star] {
+    fill: var(--gold);
+    transform-origin: center;
+    transform-box: fill-box;
+    display: none;
+  }
+
+  [data-load-crest][data-phase="loading"] [data-crest-star] {
+    display: block;
+    animation: au-crest-pulse 2.4s ease-in-out infinite;
+  }
+
+  [data-load-crest][data-phase="collapse"] [data-crest-star] {
+    display: block;
+    animation: au-crest-collapse var(--crest-collapse) cubic-bezier(0.55, 0, 0.9, 0.35) both;
+  }
+
+  [data-crest-flash] {
+    fill: none;
+    stroke: var(--accent-ink);
+    stroke-width: 1.6;
+    transform-origin: center;
+    transform-box: fill-box;
+    display: none;
+  }
+
+  [data-load-crest][data-phase="collapse"] [data-crest-flash],
+  [data-load-crest][data-phase="void"] [data-crest-flash] {
+    display: block;
+    animation: au-crest-singularity var(--crest-collapse) cubic-bezier(0.3, 0.1, 0.2, 1) both;
+  }
+
+  [data-crest-orbits] {
+    display: none;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+
+  [data-crest-orbits] ellipse {
+    fill: none;
+  }
+
+  [data-crest-orbits] ellipse:nth-child(1) {
+    stroke: var(--accent-ink);
+    stroke-width: 2.2;
+  }
+
+  [data-crest-orbits] ellipse:nth-child(2) {
+    stroke: var(--accent);
+    stroke-width: 1.4;
+  }
+
+  [data-load-crest][data-phase="void"] [data-crest-orbits],
+  [data-load-crest][data-phase="burst"] [data-crest-orbits] {
+    display: block;
+    animation: au-crest-holein var(--crest-holein) cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  [data-crest-glint="1"] {
+    stroke: var(--ink);
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-dasharray: 9 115;
+    animation: au-crest-glint1 3.6s linear infinite;
+  }
+
+  [data-crest-glint="2"] {
+    stroke: var(--accent-ink);
+    stroke-width: 1.4;
+    stroke-linecap: round;
+    stroke-dasharray: 7 85.5;
+    animation: au-crest-glint2 2.7s linear infinite;
+  }
+
+  [data-crest-horizon] {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 82px;
+    height: 82px;
+    transform: translate(-50%, -50%);
+    display: none;
+  }
+
+  [data-load-crest][data-phase="void"] [data-crest-horizon],
+  [data-load-crest][data-phase="burst"] [data-crest-horizon] {
+    display: block;
+  }
+
+  [data-crest-horizon-in] {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    animation: au-crest-holein var(--crest-holein) cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  [data-crest-bloom] {
+    position: absolute;
+    inset: 16%;
+    border-radius: 50%;
+    animation: au-crest-corehalo 5s ease-in-out infinite;
+  }
+
+  [data-crest-sheen] {
+    position: absolute;
+    inset: 20%;
+    border-radius: 50%;
+    background: conic-gradient(
+      from 0deg,
+      rgba(255, 255, 255, 0) 0deg,
+      rgba(230, 214, 255, 0.35) 60deg,
+      rgba(255, 255, 255, 0.95) 96deg,
+      rgba(230, 214, 255, 0.35) 132deg,
+      rgba(255, 255, 255, 0) 200deg,
+      rgba(255, 255, 255, 0) 360deg
+    );
+    mask: radial-gradient(circle, transparent 62%, #000 70%, #000 84%, transparent 92%);
+    filter: blur(2px);
+    animation: au-crest-corespin 6s linear infinite;
+  }
+
+  [data-crest-photon] {
+    position: absolute;
+    inset: 24%;
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 1.3px color-mix(in srgb, var(--ink) 90%, transparent),
+      0 0 9px 1px color-mix(in srgb, var(--accent-ink) 50%, transparent),
+      0 0 20px 4px color-mix(in srgb, var(--accent) 28%, transparent);
+  }
+
+  [data-crest-core] {
+    position: absolute;
+    inset: 25%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 44%, #040207 60%, #000 100%);
+    box-shadow: inset 0 1px 7px rgba(0, 0, 0, 1);
+  }
+
+  [data-crest-burst] {
+    display: none;
+  }
+
+  [data-load-crest][data-phase="burst"] [data-crest-burst] {
+    display: block;
+  }
+
+  [data-crest-shock] {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-ink);
+    animation: au-crest-shock var(--crest-spark) ease-out both;
+  }
+
+  [data-crest-spark] {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 50%;
+    animation: au-crest-spark var(--crest-spark) cubic-bezier(0.2, 0.6, 0.3, 1) both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-load-crest] {
+      display: none !important;
+    }
+  }
+</style>

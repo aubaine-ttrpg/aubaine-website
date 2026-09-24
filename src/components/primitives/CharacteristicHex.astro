@@ -1,0 +1,44 @@
+---
+import { iconMask } from '../../lib/media'
+
+type Props = {
+  iconName: string | undefined
+  color: string
+  label: string
+  glyphColor?: string | undefined
+  width?: string
+  height?: string
+  iconSize?: string
+  filter?: string
+  transform?: string
+}
+
+const {
+  iconName,
+  color,
+  label,
+  glyphColor = '#fff',
+  width = '38px',
+  height = '42px',
+  iconSize = '20px',
+  filter = 'drop-shadow(0 2px 5px rgba(0,0,0,.45))',
+  transform = 'none',
+} = Astro.props
+
+const hexagon = iconMask('mdi/hexagon')
+const mask = iconMask(iconName)
+---
+
+<span
+  title={label}
+  style={`position:relative; display:grid; place-items:center; width:${width}; height:${height}; filter:${filter}; transform:${transform}`}
+>
+  <span
+    aria-hidden="true"
+    style={`position:absolute; inset:0; background:${color}; -webkit-mask:${hexagon}; mask:${hexagon}`}
+  ></span>
+  <span
+    aria-hidden="true"
+    style={`position:relative; width:${iconSize}; height:${iconSize}; background:${glyphColor}; -webkit-mask:${mask}; mask:${mask}`}
+  ></span>
+</span>

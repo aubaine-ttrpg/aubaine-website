@@ -1,0 +1,73 @@
+---
+import type { Corpus } from '../../lib/game/corpus'
+import { parseParagraphs, type TermRecord } from '../../lib/game/richtext'
+import type { Locale } from '../../lib/i18n/locales'
+import { pathFor } from '../../lib/i18n/routes'
+import { strings } from '../../lib/i18n/strings'
+import Icon from './Icon.astro'
+import NodeShape from './NodeShape.astro'
+
+type Props = {
+  source: string | undefined
+  corpus: Corpus
+  locale: Locale
+  class?: string | undefined
+}
+
+const { source, corpus, locale, class: className } = Astro.props
+const t = strings(locale)
+
+const paragraphs = parseParagraphs(source, corpus.terms, {
+  statesHref: pathFor('states', locale),
+  resolveReference: (): null => null,
+})
+
+const skillOf = (term: TermRecord) =>
+  term.family === 'skill' && term.skillId ? corpus.skills.get(term.skillId) : undefined
+---
+
+<div class:list={['au-rule-text', className]}>
+  {
+    paragraphs.map((paragraph) => (
+      <p>
+        {paragraph.runs.map((run) => {
+          if (run.kind === 'bold') return <strong>{run.text}</strong>
+          if (run.kind === 'ref') {
+            return (
+              <a href={run.href} class="au-rule au-rule--rule">
+                {run.text}
+              </a>
+            )
+          }
+          if (run.kind !== 'term') return <Fragment>{run.text}</Fragment>
+
+          const skill = skillOf(run.term)
+          const Tag = run.term.href ? 'a' : 'span'
+          return (
+            <Tag
+              class={`au-rule au-rule--${run.term.family}`}
+              style={`color:${run.term.color}`}
+              data-term="true"
+              href={run.term.href}
+              tabindex={run.term.href ? undefined : '0'}
+            >
+              {skill ? (
+                <NodeShape skill={skill} corpus={corpus} variant="inline" />
+              ) : (
+                <Icon name={run.term.icon ?? undefined} class="au-rule__icon" />
+              )}
+              <span>{run.text}</span>
+              <span class="au-rule__tip" data-tip="true" role="tooltip">
+                <span class="au-rule__tip-kind">{run.term.kind}</span>
+                <span class="au-rule__tip-title">{run.term.title}</span>
+                {run.term.meta && <span class="au-rule__tip-meta">{run.term.meta}</span>}
+                <span class="au-rule__tip-body">{run.term.text}</span>
+                {run.term.href && <span class="au-rule__tip-more">{t.openRef}</span>}
+              </span>
+            </Tag>
+          )
+        })}
+      </p>
+    ))
+  }
+</div>

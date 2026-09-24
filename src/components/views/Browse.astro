@@ -1,0 +1,239 @@
+---
+import { getEntry } from 'astro:content'
+
+import { hasBooklet } from '../../lib/booklet/manifest'
+import {
+  equipmentBrowseEntries,
+  originSkills,
+  skillBrowseEntries,
+} from '../../lib/game/browse-entries'
+import type { Corpus } from '../../lib/game/corpus'
+import { renderProse } from '../../lib/game/prose'
+import { DEFAULT_LOCALE, type Locale } from '../../lib/i18n/locales'
+import { pathFor } from '../../lib/i18n/routes'
+import { strings } from '../../lib/i18n/strings'
+import { bookletHref, PLACEHOLDER_BANNER } from '../../lib/media'
+import BrowseList from '../primitives/BrowseList.astro'
+import Hero from '../primitives/Hero.astro'
+
+import '../../styles/prose.css'
+
+type Variant = 'skills' | 'equipment'
+
+type Props = { locale: Locale; corpus: Corpus; variant: Variant }
+
+const { locale, corpus, variant } = Astro.props
+const t = strings(locale)
+
+const entries =
+  variant === 'skills'
+    ? skillBrowseEntries(originSkills(corpus), corpus, locale)
+    : equipmentBrowseEntries(corpus, locale)
+const heroArt =
+  variant === 'skills'
+    ? 'bacchi-qui-travaille-16_9-og.png'
+    : (corpus.catalogue.banner ?? PLACEHOLDER_BANNER)
+const heroTitle = variant === 'skills' ? t.spells : t.items
+
+const booklet =
+  variant === 'equipment' ? bookletHref('equipment', corpus.catalogue.id, locale) : undefined
+
+const guide =
+  variant === 'equipment'
+    ? await (async () => {
+        const canonical = await getEntry('equipmentGuide', 'guide')
+        if (!canonical) throw new Error('Missing data/equipment/guide.md')
+        const translated =
+          locale === DEFAULT_LOCALE
+            ? undefined
+            : await getEntry('equipmentGuide', `guide.${locale}`)
+        const entry = translated ?? canonical
+        const rendered = await renderProse(entry)
+        return { title: entry.data.title, Content: rendered.Content }
+      })()
+    : undefined
+---
+
+<div>
+  <Hero
+    art={heroArt}
+    objectPosition="50% 30%"
+    motion="drift"
+    seconds={28}
+    priority
+    minHeight="min(74vh,660px)"
+    bottomStops={[28, 60]}
+    sideStops={[32, 64]}
+    padding="0 26px 40px"
+  >
+    <div style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:26px">
+      <div style="min-width:0">
+        <h1
+          style="margin:0; font-family:var(--font-display); font-weight:700; font-size:clamp(42px,6.4vw,96px); line-height:.95; color:var(--art-ink)"
+        >
+          {heroTitle}
+        </h1>
+      </div>
+      {
+        (booklet || guide) && (
+          <div style="display:flex; flex-wrap:wrap; align-items:flex-end; gap:14px">
+            {guide && (
+              <a href="#aide" data-no-swup data-help-open aria-label={t.equipmentHelp}>
+                <span aria-hidden="true">?</span>
+              </a>
+            )}
+            {booklet && (
+              <a
+                href={booklet}
+                download
+                data-booklet
+                style="display:inline-flex; align-items:center; gap:10px; padding:11px 18px; font-family:var(--font-ui); font-size:15px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--on-gold); background:var(--gold); transition:filter .2s var(--ease), transform .2s var(--ease)"
+              >
+                <span
+                  aria-hidden="true"
+                  style="flex:none; display:block; width:17px; height:17px; background:currentColor; -webkit-mask:url('/icons/mdi/download.svg') center/contain no-repeat; mask:url('/icons/mdi/download.svg') center/contain no-repeat"
+                />
+                <span>{t.downloadBooklet}</span>
+              </a>
+            )}
+            {variant === 'equipment' && hasBooklet(corpus.catalogue.id) && (
+              <a
+                href={pathFor('archive', locale, { slug: corpus.catalogue.id })}
+                data-versions
+                style="display:inline-flex; align-items:center; padding:11px 16px; border:1px solid var(--accent-line); font-family:var(--font-ui); font-size:13.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--art-ink2)"
+              >
+                {t.versionHistory}
+              </a>
+            )}
+          </div>
+        )
+      }
+    </div>
+  </Hero>
+
+  {
+    guide && (
+      <div id="aide" class="au-help" role="group" aria-label={t.equipmentHelp}>
+        <a href="#" class="au-help__veil" data-no-swup tabindex="-1" aria-hidden="true" />
+        <div class="au-help__panel">
+          <div class="au-help__bar">
+            <h2 class="au-help__title">{guide.title}</h2>
+            <a href="#" class="au-help__close" data-no-swup>
+              {t.equipmentHelpClose}
+            </a>
+          </div>
+          <div class="au-help__body au-prose">
+            <guide.Content />
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  <BrowseList
+    locale={locale}
+    corpus={corpus}
+    entries={entries}
+    label={heroTitle}
+    variant={variant}
+  />
+</div>
+
+<style>
+  [data-booklet]:hover {
+    filter: brightness(1.08);
+  }
+  [data-booklet]:active {
+    transform: translateY(1px);
+  }
+  [data-help-open] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    font-family: var(--font-ui);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--art-ink);
+    border: 1px solid var(--art-ink);
+    transition:
+      background-color 0.2s var(--ease),
+      color 0.2s var(--ease);
+  }
+  [data-help-open]:hover {
+    background: var(--art-ink);
+    color: var(--bg);
+  }
+  .au-help {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+  }
+  .au-help:target {
+    display: block;
+  }
+  .au-help__veil {
+    position: absolute;
+    inset: 0;
+    background: rgb(0 0 0 / 62%);
+  }
+  .au-help__panel {
+    position: absolute;
+    inset: auto 0 0;
+    max-height: 86vh;
+    overflow-x: clip;
+    overflow-y: auto;
+    padding: 0 26px 48px;
+    background: var(--bg);
+    border-top: 2px solid var(--gold);
+  }
+  .au-help__bar {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 22px;
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: 24px 0 14px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--accent-line);
+  }
+  .au-help__title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .au-help__close {
+    flex: none;
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink3);
+  }
+  .au-help__close:hover {
+    color: var(--gold);
+  }
+  .au-help__body {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding-top: 22px;
+  }
+  @media (min-width: 900px) {
+    .au-help__panel {
+      inset: 50% auto auto 50%;
+      translate: -50% -50%;
+      width: min(860px, calc(100vw - 52px));
+      max-height: 82vh;
+      border: 2px solid var(--gold);
+    }
+  }
+</style>

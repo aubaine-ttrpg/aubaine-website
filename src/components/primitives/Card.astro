@@ -1,0 +1,152 @@
+---
+import type { Paragraph } from '../../lib/game/richtext'
+import type { BadgedStatus } from '../../lib/game/status'
+import type { Locale } from '../../lib/i18n/locales'
+import Banner from './Banner.astro'
+import RichText from './RichText.astro'
+import StatusBadge from './StatusBadge.astro'
+
+type Props = {
+  locale: Locale
+  title: string
+  kicker: string
+  mark: string
+  href?: string | undefined
+  download?: boolean | undefined
+  art?: string | undefined
+  wash?: string | undefined
+  desc?: string | undefined
+  paragraphs?: Paragraph[] | undefined
+  meta?: string | undefined
+  cta?: string | undefined
+  delay?: number
+  entryId?: string | undefined
+  facetGroup?: string | undefined
+  facetValue?: string | undefined
+  facetLabel?: string | undefined
+  status?: BadgedStatus | undefined
+}
+
+const {
+  locale,
+  title,
+  kicker,
+  mark,
+  href,
+  download,
+  art,
+  wash = 'transparent',
+  desc,
+  paragraphs = [],
+  meta,
+  cta,
+  delay = 0,
+  entryId,
+  facetGroup,
+  facetValue,
+  facetLabel,
+  status,
+} = Astro.props
+
+const hasArt = Boolean(art)
+const hasMeta = Boolean(meta)
+const hasCta = Boolean(cta)
+const hasFooter = hasMeta || hasCta
+---
+
+<li
+  data-entry={entryId}
+  data-name={entryId ? title.toLowerCase() : undefined}
+  {...facetGroup && facetValue ? { [`data-facet-${facetGroup}`]: facetValue } : {}}
+  {...facetGroup && facetLabel ? { [`data-facet-${facetGroup}-labels`]: facetLabel } : {}}
+  data-enters
+  style={`--enter-delay:${delay}ms`}
+>
+  <div
+    data-card="true"
+    style="position:relative; display:flex; flex-direction:column; height:100%; border:1px solid var(--line); background:var(--bg2)"
+  >
+    <span
+      aria-hidden="true"
+      style={`position:absolute; left:0; top:0; bottom:0; width:3px; background:${mark}; z-index:2`}
+    ></span>
+    {
+      href && (
+        <a
+          href={href}
+          download={download}
+          aria-label={title}
+          style="position:absolute; inset:0; z-index:4"
+        />
+      )
+    }
+    {
+      hasArt ? (
+        <span
+          data-card-art="true"
+          style="position:relative; display:block; aspect-ratio:16/9; overflow:hidden"
+        >
+          <Banner art={art} objectPosition="50% 30%" motion="none" />
+          <span
+            aria-hidden="true"
+            style="position:absolute; inset:0; background:linear-gradient(0deg, var(--scrim1) 0%, var(--scrim-mid) 42%, var(--scrim2) 78%)"
+          />
+          <span style="position:absolute; left:18px; right:18px; bottom:14px; display:flex; flex-direction:column; gap:7px">
+            <span style="display:flex; align-items:center; gap:8px">
+              {status && <StatusBadge status={status} locale={locale} size="sm" />}
+              <span style="font-family:var(--font-mono); font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--art-eyebrow)">
+                {kicker}
+              </span>
+            </span>
+            <span style="font-family:var(--font-display); font-size:25px; font-weight:600; line-height:1.08; color:var(--art-ink)">
+              {title}
+            </span>
+          </span>
+        </span>
+      ) : (
+        <span style="position:relative; display:flex; flex-direction:column; justify-content:flex-end; gap:8px; min-height:104px; padding:18px 19px 15px; overflow:hidden; background:var(--bg3); border-bottom:1px solid var(--line)">
+          <span
+            aria-hidden="true"
+            style={`position:absolute; inset:0; background:radial-gradient(130% 120% at 6% 0%, ${wash} 0%, transparent 64%)`}
+          />
+          <span style="position:relative; display:flex; align-items:center; gap:8px">
+            {status && <StatusBadge status={status} locale={locale} size="sm" />}
+            <span
+              style={`font-family:var(--font-mono); font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color:${mark}`}
+            >
+              {kicker}
+            </span>
+          </span>
+          <span style="position:relative; font-family:var(--font-display); font-size:24px; font-weight:600; line-height:1.1; color:var(--ink)">
+            {title}
+          </span>
+        </span>
+      )
+    }
+    <div style="flex:1; display:flex; flex-direction:column; gap:14px; padding:17px 19px 18px">
+      {desc && <span style="font-size:15.5px; line-height:1.62; color:var(--ink2)">{desc}</span>}
+      {
+        paragraphs.length > 0 && (
+          <RichText paragraphs={paragraphs} locale={locale} lineHeight="1.66" />
+        )
+      }
+      {
+        hasFooter && (
+          <span style="margin-top:auto; display:flex; align-items:center; justify-content:space-between; gap:12px; padding-top:12px; border-top:1px solid var(--line)">
+            {hasMeta && (
+              <span style="font-family:var(--font-mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink3)">
+                {meta}
+              </span>
+            )}
+            {hasCta && (
+              <span style="display:inline-flex; align-items:center; gap:7px; font-family:var(--font-ui); font-size:13.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gold)">
+                <span>{cta}</span>
+                <span data-card-arrow="true" aria-hidden="true">&#8594;</span>
+              </span>
+            )}
+          </span>
+        )
+      }
+    </div>
+  </div>
+</li>

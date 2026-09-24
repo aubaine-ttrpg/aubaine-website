@@ -1,0 +1,21 @@
+---
+import type { Corpus } from '../../lib/game/corpus'
+import { characteristicSpellings, statRuns } from '../../lib/game/derive'
+import type { Locale } from '../../lib/i18n/locales'
+import CharBadge from './CharBadge.astro'
+
+type Props = { value: string; corpus: Corpus; locale: Locale }
+
+const { value, corpus, locale } = Astro.props
+const runs = statRuns(value, characteristicSpellings(corpus.characteristics.values()))
+---
+
+{
+  runs.map((run) =>
+    run.characteristic ? (
+      <CharBadge characteristic={run.characteristic} corpus={corpus} locale={locale} inline />
+    ) : (
+      <Fragment>{run.text}</Fragment>
+    ),
+  )
+}

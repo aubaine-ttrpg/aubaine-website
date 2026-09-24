@@ -1,0 +1,22 @@
+---
+import NotFound from '../components/views/NotFound.astro'
+import Base from '../layouts/Base.astro'
+import { corpus } from '../lib/game/corpus'
+import { DEFAULT_LOCALE } from '../lib/i18n/locales'
+import { strings } from '../lib/i18n/strings'
+
+const locale = DEFAULT_LOCALE
+const data = await corpus(locale)
+const t = strings(locale)
+---
+
+<Base
+  locale={locale}
+  kind="notFound"
+  title={t.errorTitle}
+  description={t.emptyBody}
+  corpus={data}
+  noIndex
+>
+  <NotFound locale={locale} />
+</Base>

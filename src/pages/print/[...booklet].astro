@@ -1,0 +1,370 @@
+---
+import { getEntry } from 'astro:content'
+
+import codex from '../../../data/aubaine.json'
+import Plate from '../../components/primitives/Plate.astro'
+import SkillEntry from '../../components/primitives/SkillEntry.astro'
+import StateEntry from '../../components/primitives/StateEntry.astro'
+import BackCover from '../../components/print/BackCover.astro'
+import CatalogueLeaf from '../../components/print/CatalogueLeaf.astro'
+import Colophon from '../../components/print/Colophon.astro'
+import ContentsLeaf, { type ContentsRow } from '../../components/print/ContentsLeaf.astro'
+import Cover from '../../components/print/Cover.astro'
+import GuideLeaf from '../../components/print/GuideLeaf.astro'
+import Leaf from '../../components/print/Leaf.astro'
+import ListLeaf from '../../components/print/ListLeaf.astro'
+import {
+  type BookletTarget,
+  catalogueSkills,
+  catalogueStates,
+  releaseFor,
+  styleHash,
+  treeStates,
+} from '../../lib/booklet/fingerprint'
+import { type BookletKind, releaseShort, releaseStamp } from '../../lib/booklet/release'
+import { corpus } from '../../lib/game/corpus'
+import type { CatalogueGroup, CataloguePanoply } from '../../lib/game/derive'
+import { catalogueByRarity, treeSkillOrder, treeTypeLabel } from '../../lib/game/derive'
+import { renderProse } from '../../lib/game/prose'
+import { DEFAULT_LOCALE, HTML_LANG, LOCALES, type Locale } from '../../lib/i18n/locales'
+import { strings } from '../../lib/i18n/strings'
+
+import '../../styles/fonts.css'
+import '../../styles/tokens.css'
+import '../../styles/plate.css'
+import '../../styles/entries.css'
+import '../../styles/print.css'
+
+type BookletProps = { kind: BookletKind; slug: string; locale: Locale }
+
+export async function getStaticPaths() {
+  if (process.env['AUBAINE_PRINT'] !== '1') return []
+  const paths: { params: { booklet: string }; props: BookletProps }[] = []
+  for (const locale of LOCALES) {
+    const data = await corpus(locale)
+    for (const tree of data.trees) {
+      paths.push({
+        params: { booklet: `tree/${tree.id}/${locale}` },
+        props: { kind: 'tree', slug: tree.id, locale },
+      })
+    }
+    for (const book of data.books) {
+      if (!book.hasChapters) continue
+      paths.push({
+        params: { booklet: `book/${book.id}/${locale}` },
+        props: { kind: 'book', slug: book.id, locale },
+      })
+    }
+    paths.push({
+      params: { booklet: `equipment/${data.catalogue.id}/${locale}` },
+      props: { kind: 'equipment', slug: data.catalogue.id, locale },
+    })
+  }
+  return paths
+}
+
+const root = process.cwd()
+const { kind, slug, locale } = Astro.props as BookletProps
+const data = await corpus(locale)
+const t = strings(locale)
+const style = await styleHash(root)
+
+const treeTypeLabels = { archetypes: t.archetype, domains: t.domain, species: t.species }
+
+function targetFor(): BookletTarget {
+  if (kind === 'tree') {
+    const entry = data.treesById.get(slug)
+    if (!entry) throw new Error(`Unknown tree ${slug}`)
+    return { kind, entry }
+  }
+  if (kind === 'book') {
+    const entry = data.books.find((candidate) => candidate.id === slug)
+    if (!entry) throw new Error(`Unknown book ${slug}`)
+    return { kind, entry }
+  }
+  if (data.catalogue.id !== slug) throw new Error(`Unknown catalogue ${slug}`)
+  return { kind, entry: data.catalogue }
+}
+
+const target = targetFor()
+const tree = target.kind === 'tree' ? target.entry : undefined
+const book = target.kind === 'book' ? target.entry : undefined
+const catalogue = target.kind === 'equipment' ? target.entry : undefined
+
+const release = await releaseFor(root, target, data, locale, codex.version, style)
+
+const shortTitle =
+  target.kind === 'book'
+    ? target.entry.title
+    : target.kind === 'equipment'
+      ? (target.entry.shortName ?? target.entry.name)
+      : target.entry.name
+
+const stamp = releaseStamp(release)
+const short = releaseShort(release)
+const title = target.kind === 'book' ? target.entry.title : target.entry.name
+const kindLabel = tree
+  ? treeTypeLabel(tree.treeType, treeTypeLabels)
+  : catalogue
+    ? t.items
+    : t.resEyebrowShort
+const eyebrow = 'Aubaine'
+
+const skills = tree ? treeSkillOrder(tree.placements, locale) : []
+const states = tree ? treeStates(tree, data) : []
+
+const grantedSkills = catalogue ? catalogueSkills(data) : []
+const catalogueStateList = catalogue ? catalogueStates(data) : []
+
+const rarityBlocks = catalogue
+  ? catalogueByRarity(
+      data.rarities.values(),
+      catalogue.families,
+      data.sections,
+      data.sets.values(),
+      data.items,
+      locale,
+      t.sets_,
+    )
+  : []
+
+const familyAnchor = (rarity: string, family: string): string => `bloc-${rarity}-${family}`
+
+type CatalogueLeafPlan = {
+  anchor: string | undefined
+  rarity: string
+  family: string
+  group: CatalogueGroup | undefined
+  panoply: CataloguePanoply | undefined
+}
+
+const catalogueLeaves: CatalogueLeafPlan[] = rarityBlocks.flatMap((block) =>
+  block.families.flatMap((family): CatalogueLeafPlan[] => {
+    const familyHead = familyAnchor(block.key, family.key)
+    if (family.groups.length === 0) {
+      return family.panoplies.map((panoply, index) => ({
+        anchor: index === 0 ? familyHead : undefined,
+        rarity: block.label,
+        family: family.title,
+        group: undefined,
+        panoply,
+      }))
+    }
+    return family.groups.map((group, index) => ({
+      anchor: index === 0 ? familyHead : undefined,
+      rarity: block.label,
+      family: family.title,
+      group,
+      panoply: undefined,
+    }))
+  }),
+)
+
+const guideAnchor = 'guide'
+const skillsAnchor = 'competences-accordees'
+const statesAnchor = 'etats-du-catalogue'
+
+const guide = catalogue
+  ? await (async () => {
+      const canonical = await getEntry('equipmentGuide', 'guide')
+      if (!canonical) throw new Error('Missing data/equipment/guide.md')
+      const translated =
+        locale === DEFAULT_LOCALE ? undefined : await getEntry('equipmentGuide', `guide.${locale}`)
+      const entry = translated ?? canonical
+      const rendered = await renderProse(entry)
+      return { title: entry.data.title, Content: rendered.Content }
+    })()
+  : undefined
+
+const contentsRows: ContentsRow[] = catalogue
+  ? [
+      ...(guide ? [{ anchor: guideAnchor, label: guide.title, depth: 0 as const }] : []),
+      ...rarityBlocks.flatMap((block) => [
+        {
+          anchor: familyAnchor(block.key, block.families[0]?.key ?? ''),
+          label: block.label,
+          depth: 0 as const,
+        },
+        ...block.families.map((family) => ({
+          anchor: familyAnchor(block.key, family.key),
+          label: family.title,
+          depth: 1 as const,
+        })),
+      ]),
+      ...(grantedSkills.length > 0
+        ? [{ anchor: skillsAnchor, label: t.grantedSkills, depth: 0 as const }]
+        : []),
+      ...(catalogueStateList.length > 0
+        ? [{ anchor: statesAnchor, label: t.states_, depth: 0 as const }]
+        : []),
+    ]
+  : []
+
+const chapters = book
+  ? await Promise.all(
+      book.chapters.map(async (chapter) => {
+        const id = `${book.id}/${chapter.file}`
+        const canonical = await getEntry('bookPages', id)
+        if (!canonical) throw new Error(`Missing markdown for ${id}`)
+        const translated =
+          locale === DEFAULT_LOCALE ? undefined : await getEntry('bookPages', `${id}.${locale}`)
+        const entry = translated ?? canonical
+        const rendered = await renderProse(entry)
+        return { title: entry.data.title, Content: rendered.Content }
+      }),
+    )
+  : []
+---
+
+<html lang={HTML_LANG[locale]} class="au-print">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{`${title} ${stamp}`}</title>
+  </head>
+  <body data-page-multiple="1">
+    <Cover
+      art={tree ? tree.cover : (book?.cover ?? catalogue?.cover)}
+      title={title}
+      subtitle={tree?.subtitle ?? catalogue?.subtitle}
+      eyebrow={eyebrow}
+      kindLabel={kindLabel}
+      version={short}
+    />
+
+    <Colophon
+      title={title}
+      subtitle={tree?.subtitle ?? catalogue?.subtitle}
+      eyebrow={eyebrow}
+      kindLabel={kindLabel}
+      version={short}
+      stamp={stamp}
+      locale={locale}
+    />
+
+    {
+      tree && (
+        <Fragment>
+          <Leaf numbered>
+            <Plate locale={locale} corpus={data} tree={tree} folio />
+          </Leaf>
+
+          <ListLeaf
+            title={t.skills}
+            sub={`${kindLabel} · ${tree.name}`}
+            footLeft={`Aubaine · ${tree.name}`}
+            wrappers=".au-skill"
+          >
+            {skills.map((skill) => (
+              <SkillEntry skill={skill} corpus={data} locale={locale} />
+            ))}
+          </ListLeaf>
+
+          {states.length > 0 && (
+            <ListLeaf
+              title={t.states_}
+              sub={`${kindLabel} · ${tree.name}`}
+              footLeft={`Aubaine · ${tree.name}`}
+              footRight={t.statesApplied}
+              wrappers=".au-state-entry"
+            >
+              {states.map((state) => (
+                <StateEntry state={state} corpus={data} locale={locale} />
+              ))}
+            </ListLeaf>
+          )}
+        </Fragment>
+      )
+    }
+
+    {
+      chapters.map((chapter) => (
+        <Leaf class="au-leaf" numbered>
+          <div class="au-leaf__body">
+            <h1>{chapter.title}</h1>
+            <chapter.Content />
+          </div>
+          <span class="au-leaf__folio" data-page-number />
+        </Leaf>
+      ))
+    }
+
+    {
+      catalogue && (
+        <Fragment>
+          <ContentsLeaf
+            title={t.contents}
+            sub={shortTitle}
+            footLeft={`Aubaine · ${shortTitle}`}
+            rows={contentsRows}
+          />
+
+          {guide && (
+            <GuideLeaf title={guide.title} anchor={guideAnchor}>
+              <guide.Content />
+            </GuideLeaf>
+          )}
+
+          {catalogueLeaves.map((leaf) => (
+            <CatalogueLeaf
+              corpus={data}
+              locale={locale}
+              anchor={leaf.anchor}
+              rarity={leaf.rarity}
+              family={leaf.family}
+              title={shortTitle}
+              group={leaf.group}
+              panoply={leaf.panoply}
+            />
+          ))}
+
+          {grantedSkills.length > 0 && (
+            <ListLeaf
+              title={t.grantedSkills}
+              sub={shortTitle}
+              footLeft={`Aubaine · ${shortTitle}`}
+              wrappers=".au-skill"
+              anchor={skillsAnchor}
+            >
+              {grantedSkills.map((skill) => (
+                <SkillEntry skill={skill} corpus={data} locale={locale} marks={false} />
+              ))}
+            </ListLeaf>
+          )}
+
+          {catalogueStateList.length > 0 && (
+            <ListLeaf
+              title={t.states_}
+              sub={shortTitle}
+              footLeft={`Aubaine · ${shortTitle}`}
+              footRight={t.statesFromEquipment}
+              wrappers=".au-state-entry"
+              anchor={statesAnchor}
+            >
+              {catalogueStateList.map((state) => (
+                <StateEntry state={state} corpus={data} locale={locale} />
+              ))}
+            </ListLeaf>
+          )}
+        </Fragment>
+      )
+    }
+
+    <BackCover
+      art={
+        tree
+          ? (tree.backCover ?? tree.banner)
+          : (book?.backCover ?? book?.banner ?? catalogue?.backCover)
+      }
+      title={title}
+      stamp={stamp.toUpperCase()}
+      eyebrow={eyebrow}
+      locale={locale}
+    />
+
+    <script>
+      import '../../scripts/print.ts'
+    </script>
+  </body>
+</html>

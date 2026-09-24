@@ -1,0 +1,80 @@
+---
+import { policyPages } from '../../lib/game/policies'
+import { renderProse } from '../../lib/game/prose'
+import type { Locale } from '../../lib/i18n/locales'
+import type { PolicyKind } from '../../lib/i18n/routes'
+import { strings } from '../../lib/i18n/strings'
+import { ATTRIBUTION_SECTIONS } from '../../lib/rights/attribution'
+import Attribution from '../primitives/Attribution.astro'
+import SectionTrail from '../primitives/SectionTrail.astro'
+import '../../styles/prose.css'
+import '../../styles/reading.css'
+
+type Props = { locale: Locale; kind: PolicyKind }
+
+const { locale, kind } = Astro.props
+const t = strings(locale)
+
+const page = (await policyPages(locale)).find((entry) => entry.kind === kind)
+if (!page) throw new Error(`Unknown policy kind: ${kind}`)
+
+const { Content, headings } = await renderProse(page.entry)
+
+const outline = [
+  ...headings.filter((heading) => heading.depth === 2).map(({ slug, text }) => ({ slug, text })),
+  ...(kind === 'credits'
+    ? [
+        { slug: ATTRIBUTION_SECTIONS.icons, text: t.creditsIcons },
+        { slug: ATTRIBUTION_SECTIONS.fonts, text: t.creditsFonts },
+      ]
+    : []),
+].map((section, position) => ({
+  text: section.text,
+  href: `#${section.slug}`,
+  num: String(position + 1).padStart(2, '0'),
+}))
+---
+
+<div class="au-reading">
+  <header class="au-reading__head au-policy__head">
+    <h1>{page.title}</h1>
+    <p>{page.description}</p>
+  </header>
+
+  {
+    outline.length > 1 && (
+      <nav class="au-aside" aria-label={t.onThisPage}>
+        <p class="au-eyebrow">{t.onThisPage}</p>
+        <SectionTrail sections={outline} />
+      </nav>
+    )
+  }
+
+  <article class="au-reading__body">
+    <div class="au-prose">
+      <Content />
+    </div>
+    {kind === 'credits' && <Attribution locale={locale} />}
+  </article>
+</div>
+
+<style>
+  .au-policy__head h1 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.875rem, 1.44rem + 2.1vw, 3.25rem);
+    font-weight: 700;
+    line-height: 1.05;
+    color: var(--ink);
+    text-wrap: balance;
+    overflow-wrap: break-word;
+  }
+
+  .au-policy__head p {
+    margin: 0.75rem 0 0;
+    font-size: clamp(1.125rem, 1.07rem + 0.28vw, 1.3125rem);
+    line-height: 1.55;
+    color: var(--ink2);
+    text-wrap: pretty;
+  }
+</style>
