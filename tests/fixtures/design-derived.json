@@ -1,0 +1,92 @@
+{
+  "artisan": {
+    "domains": [],
+    "prime": ["intelligence"],
+    "upgrades": 2,
+    "xpTotal": 220
+  },
+  "berserker": {
+    "domains": ["physical"],
+    "prime": ["charisma"],
+    "upgrades": 3,
+    "xpTotal": 260
+  },
+  "courtisan": {
+    "domains": ["psychic"],
+    "prime": ["charisma"],
+    "upgrades": 0,
+    "xpTotal": 210
+  },
+  "draugar": {
+    "domains": ["blood"],
+    "prime": ["intelligence", "charisma"],
+    "upgrades": 11,
+    "xpTotal": 205
+  },
+  "druide": {
+    "domains": ["earth"],
+    "prime": ["any"],
+    "upgrades": 4,
+    "xpTotal": 190
+  },
+  "eau": {
+    "domains": ["water"],
+    "prime": ["any"],
+    "upgrades": 5,
+    "xpTotal": 190
+  },
+  "feu": {
+    "domains": ["fire"],
+    "prime": ["any"],
+    "upgrades": 6,
+    "xpTotal": 180
+  },
+  "foudre": {
+    "domains": ["thunder"],
+    "prime": ["any"],
+    "upgrades": 5,
+    "xpTotal": 190
+  },
+  "mage": {
+    "domains": ["psychic"],
+    "prime": ["any"],
+    "upgrades": 0,
+    "xpTotal": 70
+  },
+  "marchand": {
+    "domains": [],
+    "prime": ["charisma"],
+    "upgrades": 2,
+    "xpTotal": 240
+  },
+  "physique": {
+    "domains": ["physical"],
+    "prime": ["any"],
+    "upgrades": 7,
+    "xpTotal": 300
+  },
+  "prestidigitateur": {
+    "domains": ["psychic"],
+    "prime": ["intelligence"],
+    "upgrades": 6,
+    "xpTotal": 235
+  },
+  "runiste": {
+    "domains": ["psychic", "blood"],
+    "prime": ["intelligence"],
+    "upgrades": 3,
+    "xpTotal": 205
+  },
+  "technomancien": {
+    "domains": ["psychic"],
+    "prime": ["intelligence"],
+    "upgrades": 2,
+    "xpTotal": 170
+  },
+  "terre": {
+    "domains": ["earth"],
+    "prime": ["any"],
+    "upgrades": 5,
+    "xpTotal": 250
+  }
+}
