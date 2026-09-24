@@ -16,6 +16,7 @@
     "check": "astro check && tsc --noEmit",
     "lint": "biome check .",
     "format": "biome check --write .",
+    "fonts:build": "node tools/fonts/build.ts",
     "media:sync": "node tools/media/sync.ts",
     "media:stamp": "node tools/media/stamp.ts",
     "media:stamp:check": "node tools/media/stamp.ts --check",
