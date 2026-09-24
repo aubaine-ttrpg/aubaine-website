@@ -1,0 +1,8 @@
+{
+  "title": "Will to Survive",
+  "prerequisite": "Human",
+  "activation": "1 Bonus Action",
+  "range": "Self",
+  "duration": "Instantaneous",
+  "description": "You end one harmful state affecting you."
+}

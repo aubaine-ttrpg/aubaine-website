@@ -1,0 +1,6 @@
+{
+  "title": "Technical Training",
+  "prerequisite": "Human from Landenheit",
+  "activation": "Passive",
+  "description": "The first time you memorise this Skill, choose Craft, Arcana, Technology or Science. While it is Memorised, you have Expertise in the chosen Aptitude and its modifier increases by 1, to a maximum of +6."
+}

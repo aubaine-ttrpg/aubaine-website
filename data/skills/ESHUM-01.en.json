@@ -1,0 +1,6 @@
+{
+  "title": "The Human Spirit",
+  "prerequisite": "Human",
+  "activation": "Passive",
+  "description": "The first time you memorise this Skill, choose two Aptitudes. While it is Memorised, you have Expertise in those two Aptitudes."
+}

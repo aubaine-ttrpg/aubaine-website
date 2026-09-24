@@ -1,0 +1,4 @@
+{
+  "name": "Frightened",
+  "description": "A Frightened creature cannot willingly move closer to what frightens it. While it can see what frightens it, it suffers 1 Disadvantage on its Rolls and Attacks.\n\nAt the end of each of its turns, it makes a Spirit + Will Roll against the DC of the Skill that frightened it. On a success, the state ends."
+}
