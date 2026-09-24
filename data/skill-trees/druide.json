@@ -1,0 +1,129 @@
+{
+  "id": "druide",
+  "status": "draft",
+  "name": "Druide",
+  "subtitle": "Le maître des Métamorphoses",
+  "treeType": "archetype",
+  "size": 16,
+  "cover": "druide-3_4-og.png",
+  "backCover": "druide-dos-3_4-og.png",
+  "placements": [
+    {
+      "skill": "MORPH-01",
+      "pos": {
+        "x": 50,
+        "y": 50.81
+      }
+    },
+    {
+      "skill": "COURR-01",
+      "pos": {
+        "x": 50,
+        "y": 37.92
+      },
+      "linked": [
+        "MORPH-01"
+      ]
+    },
+    {
+      "skill": "COURR-02",
+      "pos": {
+        "x": 50,
+        "y": 26.14
+      },
+      "linked": [
+        "COURR-01"
+      ]
+    },
+    {
+      "skill": "COURR-03",
+      "pos": {
+        "x": 72.44,
+        "y": 31.91
+      },
+      "linked": [
+        "COURR-01"
+      ]
+    },
+    {
+      "skill": "COURR-04",
+      "pos": {
+        "x": 27.56,
+        "y": 31.91
+      },
+      "linked": [
+        "COURR-01"
+      ]
+    },
+    {
+      "skill": "THORN-01",
+      "pos": {
+        "x": 65.79,
+        "y": 44.37
+      },
+      "linked": [
+        "MORPH-01"
+      ]
+    },
+    {
+      "skill": "BARKS-01",
+      "pos": {
+        "x": 65.79,
+        "y": 57.25
+      },
+      "linked": [
+        "MORPH-01"
+      ]
+    },
+    {
+      "skill": "APPEL-01",
+      "pos": {
+        "x": 83.71,
+        "y": 57.2
+      },
+      "linked": [
+        "BARKS-01"
+      ]
+    },
+    {
+      "skill": "DRUID-01",
+      "pos": {
+        "x": 34.21,
+        "y": 44.37
+      },
+      "linked": [
+        "MORPH-01"
+      ]
+    },
+    {
+      "skill": "DRUID-02",
+      "pos": {
+        "x": 17.21,
+        "y": 42.37
+      },
+      "linked": [
+        "DRUID-01"
+      ]
+    },
+    {
+      "skill": "DRUID-03",
+      "pos": {
+        "x": 19.78,
+        "y": 63.15
+      },
+      "linked": [
+        "DRUID-01"
+      ]
+    },
+    {
+      "skill": "PISTE-01",
+      "pos": {
+        "x": 34.21,
+        "y": 57.25
+      },
+      "linked": [
+        "MORPH-01"
+      ]
+    }
+  ]
+}

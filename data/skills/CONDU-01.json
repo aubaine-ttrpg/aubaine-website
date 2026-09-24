@@ -1,0 +1,17 @@
+{
+  "id": "CONDU-01",
+  "title": "Conducteur",
+  "type": "passive",
+  "tier": 3,
+  "domains": [
+    "thunder"
+  ],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "tags": {
+    "practice": "spell",
+    "school": "control"
+  },
+  "description": "La première fois à chaque tour où vous infligez des dégâts de Foudre à une créature, ses muscles se verrouillent : elle ne peut pas jouer de Réaction jusqu'à la fin de son prochain tour."
+}

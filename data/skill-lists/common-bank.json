@@ -1,0 +1,29 @@
+{
+  "name": "Banque Commune",
+  "subtitle": "Compétences libres · aucun arbre requis",
+  "note": "Les Compétences de la Banque Commune sont indépendantes les unes des autres. N'importe quel personnage peut en acheter une à tout moment, quels que soient ses arbres : elles ne demandent que leur coût en PX et le Prérequis que certaines portent. Rien n'empêche un marchand de se glisser dans l'ombre, ni un artisan de reprendre son souffle au milieu d'une mêlée.",
+  "skills": [
+    "CBREP-01",
+    "CBOMB-01",
+    "CBELA-01",
+    "CBMAI-01",
+    "CBGAR-01",
+    "CBEST-01",
+    "CBGUE-01",
+    "CBPIE-01",
+    "CBBAR-01",
+    "CBFOR-01",
+    "CBPOL-01",
+    "ESHUM-01",
+    "ESHUM-02",
+    "ESHUM-03",
+    "ESHUM-04",
+    "ESHUM-05",
+    "ESHUM-06",
+    "ESHUM-07",
+    "ESHUM-08",
+    "ESHUM-09",
+    "ESHUM-10",
+    "ESHUM-11"
+  ]
+}

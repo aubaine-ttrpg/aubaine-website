@@ -1,0 +1,18 @@
+{
+  "id": "FRENE-01",
+  "title": "Frénésie",
+  "type": "active",
+  "tier": 5,
+  "domains": [
+    "physical"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "Personnel",
+  "duration": "Jusqu'à la fin de votre tour",
+  "energy": 3,
+  "tags": {
+    "practice": "manoeuvre",
+    "school": "enhancement"
+  },
+  "description": "Vous partez au-devant, sans réserve et sans garde.\n\nJusqu'à la fin de votre tour, vous portez une Attaque de plus lorsque vous effectuez l'action Attaquer, et toutes vos Attaques de ce tour gagnent 1 Avantage."
+}

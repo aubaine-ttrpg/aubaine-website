@@ -1,0 +1,45 @@
+{
+  "id": "MORPH-01",
+  "title": "Métamorphose",
+  "type": "active",
+  "tier": 1,
+  "domains": [],
+  "activation": "1 Action Bonus",
+  "range": "Personnel",
+  "duration": "jusqu'à 1 heure",
+  "energy": 3,
+  "tags": {
+    "practice": "spell",
+    "school": "enhancement",
+    "specials": [
+      "unleashed"
+    ]
+  },
+  "description": "Vous prenez la forme d'une Bête que vous avez observée d'assez près pour la connaître.\n\nTant que la forme tient, vous vivez dedans : ce qu'une Bête fait mieux qu'un corps humain, vous le faites mieux ; ce qu'elle ne peut pas faire, vous ne le pouvez pas. Un loup court, mord et sent ; il n'ouvre pas une porte et il ne parle pas. Le MJ accorde 1 Avantage à vos Jets que la forme sert, et 1 Désavantage à ceux qu'elle dessert. Vos PdV, vos Compétences et votre tête restent les vôtres.\n\nVous ne prenez pas la forme d'une Bête dont le niveau de menace dépasse le vôtre. Vous ne connaissez qu'une forme à la fois et vous en changez en observant une autre Bête pendant 10 minutes.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 7,
+      "title": "Double pelage",
+      "description": "Vous connaissez jusqu'à 2 formes à la fois, au lieu d'une."
+    },
+    {
+      "level": 3,
+      "tier": 8,
+      "title": "Attirail changeant",
+      "description": "Vous choisissez, en vous métamorphosant, d'emporter votre équipement avec vous : il se fond dans la forme et reste porté, utilisable dès qu'elle a de quoi s'en servir."
+    },
+    {
+      "level": 3,
+      "tier": 10,
+      "title": "Meute intérieure",
+      "description": "Vous connaissez jusqu'à 3 formes à la fois, au lieu de 2."
+    },
+    {
+      "level": 4,
+      "tier": 10,
+      "title": "Forme de voyage",
+      "description": "Vous connaissez un nombre illimité de formes de plus, tant que vous les traitez comme des formes de voyage : elles portent, elles fouillent, elles franchissent, elles ne se battent pas."
+    }
+  ]
+}

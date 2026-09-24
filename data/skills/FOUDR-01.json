@@ -1,0 +1,54 @@
+{
+  "id": "FOUDR-01",
+  "title": "Canaliser les charges",
+  "type": "active",
+  "tier": 1,
+  "domains": [
+    "thunder"
+  ],
+  "characteristics": [
+    "intelligence",
+    "spirit",
+    "charisma"
+  ],
+  "activation": "1 Action",
+  "range": "9 m",
+  "duration": "Instantanée ou jusqu'à 10 minutes",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "school": "destruction",
+    "specials": [
+      "unleashed"
+    ]
+  },
+  "description": "Vous créez, remodelez ou déplacez une charge de la taille d'une caisse. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\nUtilisée de façon offensive, cette charge inflige 1d10 dégâts de Foudre ou de Tonnerre, selon que vous la lâchez en arc ou en détonation. Toute zone plus grande, durée plus longue ou portée accrue que vous lui demandez rend la charge moins puissante, jusqu'à la rendre inoffensive.\n\nLorsqu'une créature effectue un Jet pour résister contre cette charge, elle effectue son Jet contre votre DD (10 + la Caractéristique choisie + Arcanes).\n\nCette charge peut prendre n'importe quelle forme comme un trait décoché sur une cible, une détonation sèche, un champ qui attire ou repousse le métal, de quoi réveiller un mécanisme éteint, ou même une zone d'effet au choix. Lorsqu'elle est répartie en zone elle peut former, au maximum, un cube de 1,5 m d'arête, une sphère de 1,5 m de rayon, un cône de 3 m ou une ligne de 4,5 m sur 1,5 m.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 5,
+      "title": "Arc",
+      "description": "Lorsque vous lancez {{Canaliser les charges}}, vous pouvez dépenser 1 Énergie de plus pour lancer Arc. La foudre atteint la taille d'un tonneau, elle inflige 2d10 dégâts et chaque dimension de sa zone augmente de 1,5 m."
+    },
+    {
+      "level": 3,
+      "tier": 10,
+      "title": "Fulgurance",
+      "description": "Lorsque vous lancez {{Canaliser les charges}}, vous pouvez dépenser 2 Énergies de plus pour lancer Fulgurance. La foudre atteint la taille d'une chambre, elle inflige 3d10 dégâts et chaque dimension de sa zone augmente de 3 m."
+    },
+    {
+      "level": 4,
+      "tier": 10,
+      "xpOverride": 75,
+      "title": "Orage",
+      "description": "Lorsque vous lancez {{Canaliser les charges}}, vous pouvez dépenser 3 Énergies de plus pour lancer Orage. La foudre atteint la taille d'une cabane, elle inflige 4d10 dégâts et chaque dimension de sa zone augmente de 4,5 m."
+    },
+    {
+      "level": 5,
+      "tier": 10,
+      "xpOverride": 100,
+      "title": "Tempête",
+      "description": "Lorsque vous lancez {{Canaliser les charges}}, vous pouvez dépenser 4 Énergies de plus pour lancer Tempête. La foudre atteint la taille d'une maison, elle inflige 5d10 dégâts et chaque dimension de sa zone augmente de 6 m."
+    }
+  ]
+}

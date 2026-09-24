@@ -1,0 +1,28 @@
+{
+  "id": "CBOMB-01",
+  "status": "draft",
+  "title": "Pas discret",
+  "type": "active",
+  "tier": 2,
+  "domains": [],
+  "characteristics": [
+    "dexterity"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "Personnelle",
+  "duration": "Instantanée",
+  "energy": 0,
+  "tags": {
+    "practice": "technique",
+    "school": "illusion"
+  },
+  "description": "Un pas de côté, une colonne, un pan de mur : vous savez choisir le moment où personne ne vous regarde.\n\nVous effectuez l'Action de base {{Se cacher}} avec une Action Bonus au lieu d'une Action.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 4,
+      "title": "Effacement",
+      "description": "Lorsque vous devenez [[Caché]] de cette manière, vous pouvez d'abord vous déplacer de 3 mètres."
+    }
+  ]
+}

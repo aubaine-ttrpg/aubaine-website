@@ -1,0 +1,18 @@
+{
+  "id": "MEMOI-01",
+  "title": "Mémoire de l'eau",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "water"
+  ],
+  "activation": "10 minutes",
+  "range": "Contact",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "school": "divination"
+  },
+  "description": "Vous vous concentrez sur une eau que vous touchez, d'un lac entier à la bave d'une créature. Au bout de 10 minutes, vous apprenez trois informations de votre choix sur cette eau ou sur sa provenance.\n\nVous choisissez chaque information séparément : d'où vient cette eau, ce qu'elle a traversé, ce qu'elle transporte encore, qui l'a touchée et quand, ou ce qu'une créature y a laissé."
+}

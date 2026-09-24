@@ -1,0 +1,17 @@
+{
+  "id": "drow",
+  "status": "draft",
+  "name": "Drow",
+  "types": [
+    "humanoid"
+  ],
+  "size": [
+    "medium"
+  ],
+  "offered": [
+    "ESDRO-01",
+    "ESDRO-02",
+    "ESDRO-03",
+    "ESDRO-04"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "key": "redevable",
+  "name": "Redevable",
+  "forms": [
+    "Redevables"
+  ],
+  "kind": "neutral",
+  "icon": "mdi:handshake",
+  "stacks": 3,
+  "description": "Une créature Redevable vous doit quelque chose, et elle le sait. Redevable s'accumule sur elle jusqu'à 3.\n\nDépensez 1 Redevable pour lui demander un service qu'elle peut rendre sans se mettre en danger ni se trahir : elle le rend, de mauvaise grâce s'il le faut. Un service qui lui coûte davantage en demande plusieurs, et le MJ dit combien avant que vous ne décidiez.\n\nElle perd tout ce qu'elle vous devait le jour où vous lui nuisez ouvertement."
+}

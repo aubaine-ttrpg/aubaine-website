@@ -1,0 +1,16 @@
+{
+  "id": "SENTI-01",
+  "title": "Rune sentinelle",
+  "type": "passive",
+  "tier": 4,
+  "domains": [
+    "psychic"
+  ],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "tags": {
+    "school": "divination"
+  },
+  "description": "Vos runes vous parlent. Vous savez à tout instant si l'une des vôtres a été franchie, touchée ou observée, et à quelle distance elle se trouve de vous.\n\nVous ne savez pas par qui. Une rune ne retient pas les visages."
+}

@@ -1,0 +1,8 @@
+{
+  "key": "poisse-explosive",
+  "name": "Poisse explosive",
+  "kind": "debuff",
+  "icon": "game-icons:goo-explosion",
+  "color": "#a52a1e",
+  "description": "La gangue est passée au rouge et siffle. Elle détone à la fin du prochain tour de la créature, ou aussitôt si une Compétence lui applique de la Poisse avant. Aucune Action ne la décolle.\n\nLa créature qui la porte subit 1d6 dégâts d'Acide, sans Jet : la gangue est collée à elle. Chaque autre créature à 3 m ou moins d'elle effectue un Jet de Dextérité + Réflexes contre le DD de la Compétence qui a rendu la Poisse explosive. En cas d'échec, elle subit 1d6 dégâts d'Acide. En cas de réussite, elle se jette de côté et ne subit rien.\n\nL'état prend fin lorsque la gangue détone."
+}

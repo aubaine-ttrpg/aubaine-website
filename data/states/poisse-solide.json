@@ -1,0 +1,8 @@
+{
+  "key": "poisse-solide",
+  "name": "Poisse solide",
+  "kind": "debuff",
+  "icon": "game-icons:slime",
+  "color": "#755d0f",
+  "description": "Le mucus a durci en une gangue jaune qui craque à chaque geste. Il ne ronge plus, mais les Jets de Force et de Dextérité que la créature effectue pour résister à un effet subissent 1 Désavantage.\n\nLorsqu'une Compétence lui applique de la Poisse à nouveau, la gangue s'échauffe et devient [[Poisse explosive]].\n\nElle perd l'état lorsqu'elle consacre 1 Action à briser la gangue."
+}

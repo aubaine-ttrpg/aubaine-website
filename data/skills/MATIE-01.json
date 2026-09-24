@@ -1,0 +1,19 @@
+{
+  "id": "MATIE-01",
+  "title": "Œil du matériau",
+  "type": "active",
+  "tier": 2,
+  "domains": [],
+  "characteristics": [
+    "intelligence"
+  ],
+  "activation": "1 Action",
+  "range": "Contact",
+  "duration": "Instantanée",
+  "energy": 0,
+  "tags": {
+    "practice": "technique",
+    "school": "divination"
+  },
+  "description": "Vous prenez une matière en main et vous savez ce qu'elle vaut. Vous apprenez ses Types, sa Valeur de matière, d'où elle vient, et ce qu'elle refusera de devenir.\n\nSur une créature morte, vous apprenez en plus ce qu'il serait possible d'en tirer, et par quel bout commencer."
+}

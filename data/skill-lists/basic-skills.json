@@ -1,0 +1,19 @@
+{
+  "name": "Compétences de base",
+  "subtitle": "Ce que toute créature sait faire",
+  "skills": [
+    "IMPRO-01",
+    "ATTAQ-01",
+    "OPPOR-01",
+    "COURI-01",
+    "DESEN-01",
+    "ESQUI-01",
+    "AIDER-01",
+    "CACHE-01",
+    "CHERC-01",
+    "BOUSC-01",
+    "AGRIP-01",
+    "PREPA-01",
+    "FUITE-01"
+  ]
+}

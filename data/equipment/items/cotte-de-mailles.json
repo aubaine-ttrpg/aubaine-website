@@ -1,0 +1,38 @@
+{
+  "name": "Cotte de mailles",
+  "status": "draft",
+  "section": "torse",
+  "position": 2,
+  "kind": "Armure",
+  "rarity": "common",
+  "art": "cotte-de-mailles-1_1-og.png",
+  "price": 1200,
+  "headlines": [
+    {
+      "label": "CA",
+      "value": "18"
+    }
+  ],
+  "properties": [
+    {
+      "name": "Lourd (Niv. 1).",
+      "text": "Vous devez posséder un modificateur de Force égal ou supérieur à +3 pour équiper cette pièce."
+    },
+    {
+      "name": "Encombrante.",
+      "text": "Vous gagnez 1 Désavantage à tous vos Jets de Dextérité."
+    }
+  ],
+  "craft": {
+    "discipline": "artisanat",
+    "cost": 12,
+    "materials": [
+      "Métal"
+    ],
+    "sequence": [
+      "18 (Str)",
+      "15 (Dex)"
+    ]
+  },
+  "description": "Anneaux rivetés du col aux cuisses. Elle arrête presque tout, et se fait sentir dès la première heure de marche."
+}

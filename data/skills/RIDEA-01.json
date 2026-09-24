@@ -1,0 +1,18 @@
+{
+  "id": "RIDEA-01",
+  "title": "Rideau d'eau",
+  "type": "active",
+  "tier": 2,
+  "domains": [
+    "water"
+  ],
+  "activation": "1 Réaction",
+  "range": "9 m",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "school": "protection"
+  },
+  "description": "Vous jouez cette Réaction lorsqu'une créature que vous voyez à portée effectue un Jet de Visée pour lancer un projectile.\n\nUn rideau d'eau se dresse en travers de la trajectoire. Elle relance ce Jet et garde le nouveau résultat."
+}

@@ -1,0 +1,18 @@
+{
+  "id": "TEMER-01",
+  "title": "Attaque téméraire",
+  "type": "active",
+  "tier": 2,
+  "domains": [
+    "physical"
+  ],
+  "activation": "1 Réaction",
+  "range": "Personnelle",
+  "duration": "Instantanée",
+  "energy": 0,
+  "tags": {
+    "practice": "manoeuvre",
+    "school": "enhancement"
+  },
+  "description": "Vous jouez cette Réaction lorsque vous effectuez un Jet d'Attaque, avant que son résultat ne soit résolu.\n\nVous vous jetez en avant sans vous garder : ce Jet gagne 1 Avantage, et les Attaques faites contre vous gagnent 1 Avantage jusqu'au début de votre prochain tour."
+}

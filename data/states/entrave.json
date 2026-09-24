@@ -1,0 +1,12 @@
+{
+  "key": "entrave",
+  "name": "Entravé",
+  "forms": [
+    "Entravée",
+    "Entravés",
+    "Entravées"
+  ],
+  "kind": "debuff",
+  "icon": "mdi:anchor",
+  "description": "Une créature Entravée est retenue sur place. Sa Vitesse tombe à 0. Ses Attaques et ses Jets de Dextérité subissent 1 Désavantage, et les Attaques faites contre elle gagnent 1 Avantage.\n\nÀ la fin de chacun de ses tours, elle effectue un Jet de Force + Athlétisme contre le DD de la Compétence qui l'a entravée. En cas de réussite, elle se dégage et l'état prend fin."
+}

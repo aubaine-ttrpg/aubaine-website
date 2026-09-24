@@ -1,0 +1,55 @@
+{
+  "name": "Rapière de duel",
+  "status": "draft",
+  "section": "armes-melee",
+  "position": 4,
+  "kind": "Arme de mêlée",
+  "rarity": "uncommon",
+  "art": "epee-courte-1_1-og.png",
+  "price": 12000,
+  "headlines": [
+    {
+      "label": "Dégâts",
+      "value": "1d8 + Caractéristique utilisée"
+    }
+  ],
+  "stats": [
+    {
+      "label": "Jet",
+      "value": "Force + Mêlée"
+    },
+    {
+      "label": "Portée",
+      "value": "Contact (1,5m)"
+    },
+    {
+      "label": "Type de dégâts",
+      "value": "Perforants"
+    },
+    {
+      "label": "Mains",
+      "value": "1 main"
+    }
+  ],
+  "properties": [
+    {
+      "name": "Finesse.",
+      "text": "Cette arme peut utiliser Dextérité + Finesse à la place de Force + Mêlée. Lorsque vous le faites, utilisez également votre Dextérité à la place de votre Force pour ses dégâts."
+    }
+  ],
+  "craft": {
+    "discipline": "artisanat",
+    "cost": 30,
+    "materials": [
+      "Métal"
+    ],
+    "sequence": [
+      "15 (Str)",
+      "14 (Dex)"
+    ]
+  },
+  "grants": [
+    "PARAD-01"
+  ],
+  "description": "Lame de ville, longue et étroite, montée sur une garde ajourée. Elle punit le geste manqué plus qu'elle n'ouvre le premier."
+}

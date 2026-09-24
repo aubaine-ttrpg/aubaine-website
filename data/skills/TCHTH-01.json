@@ -1,0 +1,20 @@
+{
+  "id": "TCHTH-01",
+  "title": "Techno-chapardeur",
+  "type": "special",
+  "tier": 5,
+  "domains": [],
+  "activation": "À l'achat",
+  "range": "—",
+  "duration": "—",
+  "description": "À l'achat, cédez une de vos Compétences à votre Automate, définitivement. Il s'en sert comme d'une fonction de son châssis, de son noyau ou de sa forme magique, et vous ne la possédez plus.\n\nCe qu'une Compétence devient une fois montée dans une carcasse qui n'est pas un corps se décide à la table.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 10,
+      "xpOverride": 40,
+      "title": "Double chapardage",
+      "description": "Cédez-lui une deuxième Compétence. Ses fonctions volées commencent à se mêler à sa structure, et personne ne sait plus très bien laquelle des deux la porte."
+    }
+  ]
+}

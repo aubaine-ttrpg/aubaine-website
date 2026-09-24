@@ -1,0 +1,16 @@
+{
+  "id": "psychique",
+  "status": "draft",
+  "name": "Psychique",
+  "treeType": "domain",
+  "size": 16,
+  "placements": [
+    {
+      "skill": "PSYCH-01",
+      "pos": {
+        "x": 50,
+        "y": 50.81
+      }
+    }
+  ]
+}

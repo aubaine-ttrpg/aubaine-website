@@ -1,0 +1,69 @@
+{
+  "entries": [
+    {
+      "key": "acid",
+      "labelFr": "Acide",
+      "labelEn": "Acid"
+    },
+    {
+      "key": "bludgeoning",
+      "labelFr": "Contondant",
+      "labelEn": "Bludgeoning"
+    },
+    {
+      "key": "fire",
+      "labelFr": "Feu",
+      "labelEn": "Fire"
+    },
+    {
+      "key": "force",
+      "labelFr": "Force",
+      "labelEn": "Force"
+    },
+    {
+      "key": "lightning",
+      "labelFr": "Foudre",
+      "labelEn": "Lightning"
+    },
+    {
+      "key": "cold",
+      "labelFr": "Froid",
+      "labelEn": "Cold"
+    },
+    {
+      "key": "necrotic",
+      "labelFr": "Nécrotique",
+      "labelEn": "Necrotic"
+    },
+    {
+      "key": "piercing",
+      "labelFr": "Perforant",
+      "labelEn": "Piercing"
+    },
+    {
+      "key": "poison",
+      "labelFr": "Poison",
+      "labelEn": "Poison"
+    },
+    {
+      "key": "psychic",
+      "labelFr": "Psychique",
+      "labelEn": "Psychic"
+    },
+    {
+      "key": "radiant",
+      "labelFr": "Radiant",
+      "labelEn": "Radiant"
+    },
+    {
+      "key": "thunder",
+      "labelFr": "Tonnerre",
+      "labelEn": "Thunder"
+    },
+    {
+      "key": "slashing",
+      "labelFr": "Tranchant",
+      "labelEn": "Slashing"
+    }
+  ]
+}

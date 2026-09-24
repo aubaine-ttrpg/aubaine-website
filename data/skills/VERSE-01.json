@@ -1,0 +1,19 @@
+{
+  "id": "VERSE-01",
+  "title": "Sang versé",
+  "type": "passive",
+  "tier": 5,
+  "domains": [
+    "blood"
+  ],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "tags": {
+    "school": "healing",
+    "specials": [
+      "lifesteal"
+    ]
+  },
+  "description": "Le sang répandu autour de vous vous cherche. Tant que vous êtes [[Enragé]], la première fois à chaque tour qu'une créature tombe à 0 PdV à 9 m ou moins de vous, vous récupérez 1d6 PdV."
+}

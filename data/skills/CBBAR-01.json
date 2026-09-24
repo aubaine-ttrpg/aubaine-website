@@ -1,0 +1,20 @@
+{
+  "id": "CBBAR-01",
+  "status": "draft",
+  "title": "Baratin",
+  "type": "active",
+  "tier": 2,
+  "domains": [],
+  "characteristics": [
+    "charisma"
+  ],
+  "activation": "1 Action",
+  "range": "9 m",
+  "duration": "Instantanée",
+  "energy": 0,
+  "tags": {
+    "practice": "technique",
+    "school": "illusion"
+  },
+  "description": "Une question mal placée, un compliment trop long, un nom lâché au hasard : le temps qu'on vous réponde, la main a bougé ailleurs.\n\nChoisissez une créature qui vous entend et vous comprend. Faites un Jet de Charisme + Tromperie opposé à son Esprit + Perspicacité. En cas de réussite, son attention est sur vous jusqu'à la fin de votre prochain tour : les Jets de Dextérité + Discrétion faits hors de son regard gagnent 1 Avantage."
+}

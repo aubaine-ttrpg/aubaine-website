@@ -1,0 +1,41 @@
+{
+  "name": "Hydro-catalyseur",
+  "status": "draft",
+  "section": "bijoux",
+  "position": 1,
+  "kind": "Bijou",
+  "rarity": "common",
+  "art": "hydro-catalyseur-1_1-og.png",
+  "price": 1600,
+  "headlines": [
+    {
+      "label": "Domaine",
+      "value": "Eau"
+    }
+  ],
+  "properties": [
+    {
+      "name": "Catalyseur.",
+      "text": "Tant que cette pièce est équipée, vous pouvez activer vos Sorts, passifs comme actifs."
+    },
+    {
+      "name": "Matériel.",
+      "text": "Ce catalyseur peut être consommé comme matériau (Type : Catalyseur ; Valeur : 4)."
+    }
+  ],
+  "craft": {
+    "discipline": "arcanes",
+    "cost": 16,
+    "materials": [
+      "Gemme"
+    ],
+    "sequence": [
+      "12 (Dex)",
+      "15 (Int)"
+    ]
+  },
+  "grants": [
+    "LAMEA-01"
+  ],
+  "description": "Cristal bleu traversé de courants lents. Il reste froid, même en plein soleil."
+}

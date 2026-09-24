@@ -1,0 +1,17 @@
+{
+  "id": "PUISS-01",
+  "title": "Attaque en puissance",
+  "type": "passive",
+  "tier": 3,
+  "domains": [
+    "physical"
+  ],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "tags": {
+    "practice": "manoeuvre",
+    "school": "destruction"
+  },
+  "description": "Avant d'effectuer une Attaque, vous pouvez décider de frapper à outrance. Cette Attaque subit 1 Désavantage ; en cas de réussite, elle inflige 1d10 dégâts supplémentaires du type de votre arme.\n\nVous décidez avant de lancer les dés, jamais après."
+}

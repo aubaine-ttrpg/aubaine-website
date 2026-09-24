@@ -1,0 +1,24 @@
+{
+  "id": "BRISE-01",
+  "title": "Terrain brisé",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "earth"
+  ],
+  "characteristics": [
+    "intelligence",
+    "spirit",
+    "charisma"
+  ],
+  "activation": "1 Action",
+  "range": "18 m",
+  "duration": "jusqu'à 1 minute",
+  "concentration": true,
+  "energy": 2,
+  "tags": {
+    "practice": "spell",
+    "school": "control"
+  },
+  "description": "Le sol se fissure et se hérisse d'échardes de pierre dans un rayon de 6 m autour d'un point que vous voyez à portée. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\nLa zone devient un terrain difficile : s'y déplacer coûte le double. Une créature qui commence son tour dans la zone effectue un Jet de Dextérité + Réflexes contre votre DD (10 + la Caractéristique choisie + Arcanes). En cas d'échec, elle subit 1d10 dégâts Perforants et tombe [[À terre]]."
+}

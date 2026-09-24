@@ -1,0 +1,28 @@
+{
+  "id": "FIRME-01",
+  "title": "Étendue martiale",
+  "type": "active",
+  "tier": 2,
+  "domains": [
+    "fire",
+    "physical"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "Contact",
+  "duration": "jusqu'à 1 minute",
+  "concentration": true,
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "school": "enhancement"
+  },
+  "description": "Vous touchez une arme et l'enflammez d'un feu qui ne la consume pas. L'arme répand une lumière vive. Une fois par tour, lorsque vous réussissez une Attaque avec elle, vous infligez 1d4 dégâts de Feu supplémentaires.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 7,
+      "title": "Étendue perfectionnée",
+      "description": "Pour chaque amélioration d'{{Aviver les flammes}} que vous possédez, {{Étendue martiale}} inflige 1 dé de dégâts de Feu supplémentaire."
+    }
+  ]
+}

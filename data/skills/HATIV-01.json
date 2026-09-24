@@ -1,0 +1,14 @@
+{
+  "id": "HATIV-01",
+  "title": "Gravure hâtive",
+  "type": "passive",
+  "tier": 5,
+  "domains": [],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "tags": {
+    "school": "enhancement"
+  },
+  "description": "Vous gravez juste assez vite pour que cela compte. Vous pouvez graver une rune en 1 Action au lieu de 10 minutes.\n\nUne rune gravée ainsi tient une heure, puis s'efface d'elle-même : le trait n'a pas eu le temps de mordre."
+}

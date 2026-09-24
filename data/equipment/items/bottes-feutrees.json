@@ -1,0 +1,28 @@
+{
+  "name": "Bottes feutrées",
+  "status": "draft",
+  "section": "bottes",
+  "position": 0,
+  "kind": "Bottes",
+  "rarity": "uncommon",
+  "art": "armure-de-cuir-1_1-og.png",
+  "price": 10400,
+  "set": "TRAQU",
+  "headlines": [
+    {
+      "label": "Vitesse",
+      "value": "+3 m"
+    }
+  ],
+  "craft": {
+    "discipline": "artisanat",
+    "cost": 26,
+    "materials": [
+      "Cuir"
+    ],
+    "sequence": [
+      "14 (Dex)"
+    ]
+  },
+  "description": "Semelles de feutre cousues sous le cuir. Elles avalent le gravier et rendent la pente facile."
+}

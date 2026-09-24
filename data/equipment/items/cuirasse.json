@@ -1,0 +1,29 @@
+{
+  "name": "Cuirasse",
+  "status": "draft",
+  "section": "torse",
+  "position": 1,
+  "kind": "Armure",
+  "rarity": "common",
+  "art": "cuirasse-1_1-og.png",
+  "price": 800,
+  "headlines": [
+    {
+      "label": "CA",
+      "value": "15 + la plus faible entre Dextérité et Force"
+    }
+  ],
+  "craft": {
+    "discipline": "artisanat",
+    "cost": 8,
+    "materials": [
+      "Cuir",
+      "Métal"
+    ],
+    "sequence": [
+      "15 (Str)",
+      "12 (Dex)"
+    ]
+  },
+  "description": "Plastron d'acier porté sur un gambison : le torse est couvert, les bras restent libres."
+}

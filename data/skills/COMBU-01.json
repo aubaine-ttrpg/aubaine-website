@@ -1,0 +1,17 @@
+{
+  "id": "COMBU-01",
+  "title": "Combustion",
+  "type": "passive",
+  "tier": 3,
+  "domains": [
+    "fire"
+  ],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "tags": {
+    "practice": "spell",
+    "school": "enhancement"
+  },
+  "description": "Chaque fois que vous terminez d'utiliser une Compétence du Domaine Feu, vous gagnez 1 [[Combustion]].\n\n[[[Combustion]]]"
+}

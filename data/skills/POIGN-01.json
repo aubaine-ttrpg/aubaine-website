@@ -1,0 +1,23 @@
+{
+  "id": "POIGN-01",
+  "title": "Poigne de la terre",
+  "type": "active",
+  "tier": 2,
+  "domains": [
+    "earth"
+  ],
+  "characteristics": [
+    "intelligence",
+    "spirit",
+    "charisma"
+  ],
+  "activation": "1 Action",
+  "range": "9 m",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "school": "control"
+  },
+  "description": "Le sol se soulève en racines et en mains de pierre sous une créature que vous voyez à portée. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\nElle effectue un Jet de Dextérité + Réflexes contre votre DD (10 + la Caractéristique choisie + Arcanes). En cas d'échec, elle est [[Entravé]]. En cas de réussite, elle s'écarte d'un pas et la poigne se referme sur rien."
+}

@@ -1,0 +1,19 @@
+{
+  "id": "REPAR-02",
+  "title": "Remise en état",
+  "type": "active",
+  "tier": 2,
+  "domains": [],
+  "characteristics": [
+    "dexterity"
+  ],
+  "activation": "1 heure",
+  "range": "Contact",
+  "duration": "Instantanée",
+  "energy": 0,
+  "tags": {
+    "practice": "technique",
+    "school": "creation"
+  },
+  "description": "Vous reprenez un objet abîmé, cassé ou rouillé et vous le rendez utilisable.\n\nEffectuez un Jet de Dextérité + la discipline de l'objet contre un DD de 12. En cas de réussite, il refonctionne. En cas d'échec, il refonctionne aussi, mais quelque chose dedans ne va pas, et le MJ sait quoi."
+}

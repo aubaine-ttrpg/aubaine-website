@@ -1,0 +1,18 @@
+{
+  "id": "MASQU-01",
+  "title": "Masque de cour",
+  "type": "passive",
+  "tier": 3,
+  "domains": [],
+  "characteristics": [
+    "charisma"
+  ],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "tags": {
+    "practice": "technique",
+    "school": "illusion"
+  },
+  "description": "Votre visage ne dit que ce que vous lui faites dire. Une créature qui veut savoir ce que vous pensez vraiment effectue un Jet d'Esprit + Perspicacité contre votre DD (10 + Charisme + Tromperie), et échoue sans savoir qu'elle a échoué.\n\nVous ne trahissez ni surprise, ni douleur, ni reconnaissance, à moins de le décider."
+}

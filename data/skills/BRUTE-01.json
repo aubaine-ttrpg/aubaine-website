@@ -1,0 +1,17 @@
+{
+  "id": "BRUTE-01",
+  "title": "Peau de brute",
+  "type": "passive",
+  "tier": 3,
+  "domains": [
+    "physical"
+  ],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "tags": {
+    "practice": "manoeuvre",
+    "school": "protection"
+  },
+  "description": "Vous n'avez jamais aimé porter du fer. Tant que vous ne portez aucune armure, votre CA est de 13 + Dextérité + Constitution.\n\nUn bouclier ne vous en prive pas."
+}

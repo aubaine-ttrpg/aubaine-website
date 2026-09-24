@@ -1,0 +1,23 @@
+{
+  "id": "CHEFO-01",
+  "title": "Chef-d'œuvre",
+  "type": "active",
+  "tier": 10,
+  "domains": [],
+  "characteristics": [
+    "intelligence",
+    "dexterity"
+  ],
+  "activation": "1 semaine",
+  "range": "Contact",
+  "duration": "Instantanée",
+  "energy": 5,
+  "tags": {
+    "practice": "technique",
+    "school": "creation",
+    "specials": [
+      "unleashed"
+    ]
+  },
+  "description": "Une fois, vous faites la pièce que vous avez en tête depuis toujours.\n\nEntreprenez une fabrication en y consacrant une semaine et le double de sa Valeur de matière. Chaque Jet de la recette gagne 2 Avantages. En cas de réussite complète, l'objet obtenu dépasse sa recette : le MJ et vous décidez ensemble de la propriété qu'il porte en plus, et il n'en existe pas d'autre.\n\nVous ne pouvez avoir qu'un chef-d'œuvre vivant à la fois. En commencer un autre, c'est admettre que le premier n'en était pas un."
+}

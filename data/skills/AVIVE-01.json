@@ -1,0 +1,54 @@
+{
+  "id": "AVIVE-01",
+  "title": "Aviver les flammes",
+  "type": "active",
+  "tier": 1,
+  "domains": [
+    "fire"
+  ],
+  "characteristics": [
+    "intelligence",
+    "spirit",
+    "charisma"
+  ],
+  "activation": "1 Action",
+  "range": "9 m",
+  "duration": "Instantanée ou jusqu'à 10 minutes",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "school": "destruction",
+    "specials": [
+      "unleashed"
+    ]
+  },
+  "description": "Vous créez, remodelez ou déplacez des flammes de la taille d'une caisse. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\nUtilisé de façon offensive, ce feu inflige 1d12 dégâts de Feu. Toute zone plus grande, durée plus longue ou portée accrue que vous lui demandez rends le feu moins puissant, jusqu'à rendre ce feu inoffensif.\n\nLorsqu'une créature effectue un Jet pour résister contre ce feu, elle effectue son Jet contre votre DD (10 + la Caractéristique choisie + Arcanes).\n\nCe feu peut prendre n'importe quelle forme comme un projectile lancé sur une cible, une lumière vive pour éclairer un couloir sombre, ou même une zone d'effet au choix. Lorsqu'il est réparti en zone il peut former, au maximum, un cube de 1,5 m d'arête, une sphère de 1,5 m de rayon, un cône de 3 m ou une ligne de 4,5 m sur 1,5 m.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 5,
+      "title": "Flambée",
+      "description": "Lorsque vous lancez Aviver les flammes, vous pouvez dépenser 1 Énergie de plus pour lancer Flambée. Les flammes atteignent la taille d'un tonneau, elles infligent 2d12 dégâts de Feu et chaque dimension de leur zone augmente de 1,5 m."
+    },
+    {
+      "level": 3,
+      "tier": 10,
+      "title": "Brasier",
+      "description": "Lorsque vous lancez Aviver les flammes, vous pouvez dépenser 2 Énergies de plus pour lancer Brasier. Les flammes atteignent la taille d'une chambre, elles infligent 3d12 dégâts de Feu et chaque dimension de leur zone augmente de 3 m."
+    },
+    {
+      "level": 4,
+      "tier": 10,
+      "xpOverride": 75,
+      "title": "Fournaise",
+      "description": "Lorsque vous lancez Aviver les flammes, vous pouvez dépenser 3 Énergies de plus pour lancer Fournaise. Les flammes atteignent la taille d'une cabane, elles infligent 4d12 dégâts de Feu et chaque dimension de leur zone augmente de 4,5 m."
+    },
+    {
+      "level": 5,
+      "tier": 10,
+      "xpOverride": 100,
+      "title": "Conflagration",
+      "description": "Lorsque vous lancez Aviver les flammes, vous pouvez dépenser 4 Énergies de plus pour lancer Conflagration. Les flammes atteignent la taille d'une maison, elles infligent 5d12 dégâts de Feu et chaque dimension de leur zone augmente de 6 m."
+    }
+  ]
+}

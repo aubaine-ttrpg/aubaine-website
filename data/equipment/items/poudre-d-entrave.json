@@ -1,0 +1,43 @@
+{
+  "name": "Poudre d'entrave",
+  "status": "draft",
+  "section": "consommables",
+  "position": 6,
+  "kind": "Consommable",
+  "rarity": "rare",
+  "art": "aero-catalyseur-1_1-og.png",
+  "headlines": [
+    {
+      "label": "Zone",
+      "value": "Rayon 3m"
+    }
+  ],
+  "stats": [
+    {
+      "label": "Activation",
+      "value": "1 Action"
+    },
+    {
+      "label": "Portée",
+      "value": "9m"
+    },
+    {
+      "label": "DD",
+      "value": "18"
+    }
+  ],
+  "craft": {
+    "discipline": "technologie",
+    "cost": 80,
+    "materials": [
+      "Métal",
+      "Gemme"
+    ],
+    "sequence": [
+      "14 (Dex)",
+      "18 (Int)"
+    ]
+  },
+  "text": "Vous pouvez effectuer une Action pour jeter cette poudre sur un point que vous voyez à portée. Chaque créature dans un rayon de ***3 mètres*** effectue un Jet de Dextérité + Réflexes contre un DD de ***18***. En cas d'échec, elle est [[Entravé]], et son Jet de dégagement se fait contre ce même DD.",
+  "description": "Éclats de gemme broyés dans de la limaille. Ils cherchent le sol et s'y prennent, en emportant ce qui touche encore terre."
+}

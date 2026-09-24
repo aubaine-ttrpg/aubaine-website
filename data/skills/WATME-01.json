@@ -1,0 +1,28 @@
+{
+  "id": "WATME-01",
+  "title": "Étendue martiale",
+  "type": "active",
+  "tier": 2,
+  "domains": [
+    "water",
+    "physical"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "Contact",
+  "duration": "jusqu'à 1 minute",
+  "concentration": true,
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "school": "enhancement"
+  },
+  "description": "Vous touchez une arme et l'enveloppez d'une eau vivifiante. Une fois par tour, lorsque vous réussissez une Attaque avec elle, vous récupérez 1d4 PdV.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 7,
+      "title": "Étendue perfectionnée",
+      "description": "Pour chaque amélioration de {{Commander les flots}} que vous possédez, {{Étendue martiale}} rend 1d4 PdV supplémentaires."
+    }
+  ]
+}

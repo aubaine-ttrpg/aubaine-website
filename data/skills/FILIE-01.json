@@ -1,0 +1,19 @@
+{
+  "id": "FILIE-01",
+  "title": "Filière",
+  "type": "active",
+  "tier": 3,
+  "domains": [],
+  "characteristics": [
+    "charisma"
+  ],
+  "activation": "1 heure",
+  "range": "Personnel",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "technique",
+    "school": "divination"
+  },
+  "description": "Vous connaissez quelqu'un qui connaît quelqu'un. Nommez une marchandise : un métal, une bête vivante, un poison, une recette, un passage.\n\nEffectuez un Jet de Charisme + Culture contre un DD que le MJ fixe sur la rareté et la légalité de la chose. En cas de réussite, vous savez qui en tient, où, et à quelles conditions. Ce que ces conditions valent ne vous regarde pas encore."
+}

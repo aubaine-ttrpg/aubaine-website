@@ -1,0 +1,17 @@
+{
+  "id": "ORAGE-01",
+  "title": "Réflexes d'orage",
+  "type": "passive",
+  "tier": 2,
+  "domains": [
+    "thunder"
+  ],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "tags": {
+    "practice": "spell",
+    "school": "mobility"
+  },
+  "description": "Vous partez avant le tonnerre. Lorsque vous lancez votre Initiative, lancez un second 1d4 et gardez le meilleur des deux. Votre Vitesse augmente de 3 m."
+}

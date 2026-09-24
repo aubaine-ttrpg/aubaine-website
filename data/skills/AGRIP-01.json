@@ -1,0 +1,15 @@
+{
+  "id": "AGRIP-01",
+  "title": "Agripper",
+  "type": "active",
+  "tier": 1,
+  "showXp": false,
+  "domains": [],
+  "characteristics": [
+    "strength"
+  ],
+  "activation": "1 Attaque",
+  "range": "1,5 m",
+  "duration": "Tant que la prise tient",
+  "description": "Cette manœuvre remplace l'une des Attaques de l'action {{Attaquer}}, et elle demande une main libre.\n\nEffectuez un Jet opposé de Force + Athlétisme contre le Jet de Force + Athlétisme ou de Dextérité + Acrobaties de la cible, à son choix. En cas de réussite, elle gagne [[Entravé]] tant que vous la tenez, et son Jet de dégagement se fait contre votre DD (10 + Force + Athlétisme).\n\nVous la relâchez quand vous le voulez, sans rien dépenser. La prise cède aussi dès que plus de 1,5 m vous sépare.\n\n[[[Entravé]]]"
+}

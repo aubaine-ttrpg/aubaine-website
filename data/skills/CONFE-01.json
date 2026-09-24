@@ -1,0 +1,32 @@
+{
+  "id": "CONFE-01",
+  "title": "Endurance",
+  "type": "passive",
+  "tier": 3,
+  "domains": [
+    "physical"
+  ],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "tags": {
+    "practice": "technique",
+    "school": "protection"
+  },
+  "description": "Votre carcasse encaisse ce qui couche les autres. Chaque Niveau de Vitalité vous donne 6 PdV maximum au lieu de 5.\n\nLe compte est refait sur-le-champ : les Niveaux de Vitalité que vous possédez déjà valent eux aussi 6.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 6,
+      "title": "Endurance de fer",
+      "description": "Chaque Niveau de Vitalité vous donne 7 PdV maximum au lieu de 6, ceux que vous possédez déjà compris."
+    },
+    {
+      "level": 3,
+      "tier": 10,
+      "xpOverride": 75,
+      "title": "Endurance de titan",
+      "description": "Chaque Niveau de Vitalité vous donne 8 PdV maximum au lieu de 7, ceux que vous possédez déjà compris."
+    }
+  ]
+}

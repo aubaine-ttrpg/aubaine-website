@@ -1,0 +1,15 @@
+{
+  "id": "REVEN-01",
+  "title": "Revendeur d'armes",
+  "type": "passive",
+  "tier": 4,
+  "domains": [],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "tags": {
+    "practice": "technique",
+    "school": "divination"
+  },
+  "description": "Vous ne vendez pas que des cordes. Vous savez ce qu'une arme, une armure ou un catalyseur vaut vraiment, et ce qu'il faudrait lui faire pour qu'elle vaille davantage.\n\nUne pièce d'équipement que vous avez tenue une minute vous livre sa recette de fabrication, s'il en existe une."
+}

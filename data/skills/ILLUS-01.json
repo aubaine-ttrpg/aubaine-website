@@ -1,0 +1,33 @@
+{
+  "id": "ILLUS-01",
+  "title": "Illusions mineures",
+  "type": "active",
+  "tier": 1,
+  "domains": [],
+  "characteristics": [
+    "intelligence"
+  ],
+  "activation": "1 Action",
+  "range": "9 m",
+  "duration": "jusqu'à 1 minute",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "school": "illusion"
+  },
+  "description": "Vous créez à portée une illusion visuelle d'au plus 1 m³. Elle n'inflige aucun dégât et ne produit ni matière, ni chaleur, ni aucun effet physique.\n\nUne créature qui veut la déjouer y consacre son Action et effectue un Jet d'Esprit + Perception contre votre DD (10 + Intelligence + Tromperie). En cas de réussite, elle voit au travers, et elle seule.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 3,
+      "title": "Illusions sonores",
+      "description": "Vos illusions portent un son en plus de leur image : une voix, un fracas, un pas dans un couloir vide."
+    },
+    {
+      "level": 3,
+      "tier": 5,
+      "title": "Grandes illusions",
+      "description": "Vos illusions atteignent 3 m³ au lieu de 1 m³."
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "id": "mage",
+  "status": "draft",
+  "name": "Mage",
+  "treeType": "archetype",
+  "size": 16,
+  "core": {
+    "label": "Mage",
+    "sublabel": "Archétype",
+    "domains": [
+      "psychic"
+    ],
+    "pos": {
+      "x": 50,
+      "y": 50.81
+    }
+  },
+  "placements": [
+    {
+      "skill": "PASSE-01",
+      "pos": {
+        "x": 50,
+        "y": 37.7
+      },
+      "linked": [
+        "CORE"
+      ]
+    },
+    {
+      "skill": "PASSE-02",
+      "pos": {
+        "x": 50,
+        "y": 24
+      },
+      "linked": [
+        "PASSE-01"
+      ]
+    }
+  ]
+}

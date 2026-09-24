@@ -1,0 +1,12 @@
+{
+  "key": "gele",
+  "name": "Gelé",
+  "forms": [
+    "Gelée",
+    "Gelés",
+    "Gelées"
+  ],
+  "kind": "debuff",
+  "icon": "mdi:snowflake",
+  "description": "Une créature Gelée est prise dans la glace. Sa Vitesse tombe à 0, elle rate tout Jet de Dextérité, et les Jets qui la prennent pour cible gagnent 1 Avantage.\n\nÀ la fin de chacun de ses tours, elle effectue un Jet de Force + Athlétisme contre le DD de la Compétence qui l'a gelée. En cas de réussite, la glace cède et l'état prend fin."
+}

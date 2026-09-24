@@ -1,0 +1,189 @@
+{
+  "practices": [
+    {
+      "key": "spell",
+      "labelFr": "Sort",
+      "labelEn": "Spell",
+      "definitionFr": "Une Compétence magique. Vous avez besoin d'un Catalyseur équipé pour activer un Sort, qu'il soit passif ou actif.",
+      "definitionEn": "A magical Skill. You need a Catalyseur equipped to activate a Spell, whether it is passive or active."
+    },
+    {
+      "key": "manoeuvre",
+      "labelFr": "Manœuvre",
+      "labelEn": "Manoeuvre",
+      "definitionFr": "Une Compétence martiale, qui tire le meilleur de votre corps ou de votre arme.",
+      "definitionEn": "A martial Skill, one that gets the best out of your body or your weapon."
+    },
+    {
+      "key": "technique",
+      "labelFr": "Technique",
+      "labelEn": "Technique",
+      "definitionFr": "Une Compétence courante, que tout le monde peut apprendre, sans rien de magique ni de martial.",
+      "definitionEn": "A common Skill that anyone can learn, with nothing magical or martial about it."
+    },
+    {
+      "key": "shout",
+      "labelFr": "Cri",
+      "labelEn": "Shout",
+      "definitionFr": "Un cri poussé à pleine voix. Il n'affecte que les créatures qui l'entendent.",
+      "definitionEn": "A shout at the top of your voice. It only affects creatures that can hear it."
+    }
+  ],
+  "schools": [
+    {
+      "key": "destruction",
+      "practices": [
+        "spell",
+        "manoeuvre",
+        "technique"
+      ],
+      "labelFr": "Destruction",
+      "labelEn": "Destruction",
+      "definitionFr": "L'art de la force offensive. Ses Compétences frappent, brûlent, brisent ou font éclater, avec pour premier but d'abattre ce qui leur fait face.",
+      "definitionEn": "The art of offensive force. Its Skills strike, burn, shatter or burst, and their first aim is to bring down whatever faces them."
+    },
+    {
+      "key": "control",
+      "practices": [
+        "spell",
+        "manoeuvre",
+        "technique",
+        "shout"
+      ],
+      "labelFr": "Contrôle",
+      "labelEn": "Control",
+      "definitionFr": "L'art de dicter le terrain. Ses Compétences retiennent, renversent, repoussent ou figent, et privent l'adversaire de ses choix.",
+      "definitionEn": "The art of dictating the ground. Its Skills hold, topple, push back or freeze, and take choices away from the enemy."
+    },
+    {
+      "key": "protection",
+      "practices": [
+        "spell",
+        "manoeuvre",
+        "technique",
+        "shout"
+      ],
+      "labelFr": "Protection",
+      "labelEn": "Protection",
+      "definitionFr": "L'art de garder et de préserver. Ses Compétences dressent une défense, détournent un coup ou endurcissent un corps avant que le mal ne frappe.",
+      "definitionEn": "The art of guarding and preserving. Its Skills raise a defence, turn a blow aside or harden a body before harm strikes."
+    },
+    {
+      "key": "healing",
+      "practices": [
+        "spell",
+        "manoeuvre",
+        "technique",
+        "shout"
+      ],
+      "labelFr": "Soin",
+      "labelEn": "Healing",
+      "definitionFr": "L'art de réparer ce que le combat et le monde abîment. Ses Compétences referment les plaies, rendent des forces et chassent les maux qui s'accrochent.",
+      "definitionEn": "The art of mending what battle and the world break. Its Skills close wounds, restore strength and drive out the ills that cling on."
+    },
+    {
+      "key": "enhancement",
+      "practices": [
+        "spell",
+        "manoeuvre",
+        "technique",
+        "shout"
+      ],
+      "labelFr": "Renforcement",
+      "labelEn": "Enhancement",
+      "definitionFr": "L'art de pousser au-delà des limites. Ses Compétences améliorent une arme, décuplent un corps ou prolongent une Compétence, pour soi comme pour ses alliés.",
+      "definitionEn": "The art of pushing past limits. Its Skills improve a weapon, empower a body or extend a Skill, for oneself as for one's allies."
+    },
+    {
+      "key": "mobility",
+      "practices": [
+        "spell",
+        "manoeuvre",
+        "technique"
+      ],
+      "labelFr": "Mobilité",
+      "labelEn": "Mobility",
+      "definitionFr": "L'art du mouvement. Ses Compétences font courir plus vite, franchir ce qui arrête les autres, disparaître pour reparaître ailleurs, ou rester inébranlable.",
+      "definitionEn": "The art of movement. Its Skills make you run faster, cross what stops others, vanish to reappear elsewhere, or stand immovable."
+    },
+    {
+      "key": "divination",
+      "practices": [
+        "spell",
+        "technique"
+      ],
+      "labelFr": "Divination",
+      "labelEn": "Divination",
+      "definitionFr": "L'art de percevoir ce qui échappe aux autres. Ses Compétences lisent les traces, les objets, les êtres et les lieux, et révèlent ce qu'ils cachent.",
+      "definitionEn": "The art of perceiving what escapes others. Its Skills read traces, objects, beings and places, and reveal what they hide."
+    },
+    {
+      "key": "illusion",
+      "practices": [
+        "spell",
+        "technique"
+      ],
+      "labelFr": "Illusion",
+      "labelEn": "Illusion",
+      "definitionFr": "L'art du faux-semblant. Ses Compétences trompent les sens et le jugement, font voir ce qui n'est pas et cachent ce qui est.",
+      "definitionEn": "The art of false appearances. Its Skills deceive the senses and judgement, show what is not and hide what is."
+    },
+    {
+      "key": "influence",
+      "practices": [
+        "spell",
+        "technique",
+        "shout"
+      ],
+      "labelFr": "Influence",
+      "labelEn": "Influence",
+      "definitionFr": "L'art de faire plier les volontés. Ses Compétences convainquent, charment, lient ou obligent, par la parole, la présence, la dette ou l'échange.",
+      "definitionEn": "The art of bending wills. Its Skills convince, charm, bind or oblige, through speech, presence, debt or trade."
+    },
+    {
+      "key": "summoning",
+      "practices": [
+        "spell",
+        "technique"
+      ],
+      "labelFr": "Invocation",
+      "labelEn": "Summoning",
+      "definitionFr": "L'art de faire venir et d'animer. Ses Compétences appellent, éveillent ou assemblent une créature ou une chose, qui agit ensuite pour vous.",
+      "definitionEn": "The art of calling forth and animating. Its Skills call, awaken or assemble a creature or a thing, which then acts for you."
+    },
+    {
+      "key": "creation",
+      "practices": [
+        "spell",
+        "technique"
+      ],
+      "labelFr": "Création",
+      "labelEn": "Creation",
+      "definitionFr": "L'art de donner forme. Ses Compétences font naître, façonnent, réparent ou défont la matière et les objets.",
+      "definitionEn": "The art of giving shape. Its Skills bring into being, shape, repair or undo matter and objects."
+    }
+  ],
+  "specials": [
+    {
+      "key": "unleashed",
+      "labelFr": "Déchaîné",
+      "labelEn": "Unleashed",
+      "definitionFr": "Une Compétence sans forme arrêtée. Le joueur compose son effet au moment de la jouer, dans les limites de son texte.",
+      "definitionEn": "A Skill with no fixed form. The player composes its effect when playing it, within the limits of its text."
+    },
+    {
+      "key": "graft",
+      "labelFr": "Greffe",
+      "labelEn": "Graft",
+      "definitionFr": "Une Compétence de chair et de coutures, qui greffe, remanie ou marque un corps.",
+      "definitionEn": "A Skill of flesh and stitches, which grafts, reworks or marks a body."
+    },
+    {
+      "key": "lifesteal",
+      "labelFr": "Vol de vie",
+      "labelEn": "Lifesteal",
+      "definitionFr": "Une Compétence qui se nourrit d'autrui, et rend à son utilisateur la force vitale qu'elle arrache.",
+      "definitionEn": "A Skill that feeds on others, and gives its user back the life force it tears away."
+    }
+  ]
+}

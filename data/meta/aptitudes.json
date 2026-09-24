@@ -1,0 +1,214 @@
+{
+  "entries": [
+    {
+      "key": "acrobatics",
+      "labelFr": "Acrobaties",
+      "labelEn": "Acrobatics",
+      "definitionFr": "Garder l'équilibre sur un appui précaire, se dégager d'une prise ou réussir une figure acrobatique.",
+      "definitionEn": "Keeping your balance on uncertain footing, slipping out of a hold or pulling off an acrobatic feat."
+    },
+    {
+      "key": "arcana",
+      "labelFr": "Arcanes",
+      "labelEn": "Arcana",
+      "definitionFr": "Connaître la magie, ses Sorts, ses runes et ses objets. Peut aussi servir à mener les fabrications arcaniques.",
+      "definitionEn": "Knowing magic, its Spells, its runes and its objects. Can also be used to carry out arcane crafting."
+    },
+    {
+      "key": "craft",
+      "labelFr": "Artisanat",
+      "labelEn": "Craft",
+      "definitionFr": "Connaître le métal, le cuir, le bois et la façon de les travailler. Peut aussi servir à fabriquer des armes, des armures et de l'équipement.",
+      "definitionEn": "Knowing metal, leather and wood and how to work them. Can also be used to make weapons, armour and equipment."
+    },
+    {
+      "key": "athletics",
+      "labelFr": "Athlétisme",
+      "labelEn": "Athletics",
+      "definitionFr": "Grimper, sauter, nager, saisir ou bousculer, et tenir bon contre ce qui vous tire ou vous retient.",
+      "definitionEn": "Climbing, jumping, swimming, grabbing or shoving, and standing firm against whatever pulls or holds you."
+    },
+    {
+      "key": "driving",
+      "labelFr": "Conduite",
+      "labelEn": "Driving",
+      "definitionFr": "Mener un véhicule, un attelage, une embarcation ou une monture.",
+      "definitionEn": "Handling a vehicle, a team, a boat or a mount."
+    },
+    {
+      "key": "culture",
+      "labelFr": "Culture",
+      "labelEn": "Culture",
+      "definitionFr": "Connaître les usages d'un lieu et savoir à qui s'adresser pour obtenir ce qu'on cherche.",
+      "definitionEn": "Knowing the customs of a place and whom to ask to get what you are after."
+    },
+    {
+      "key": "stealth",
+      "labelFr": "Discrétion",
+      "labelEn": "Stealth",
+      "definitionFr": "Se déplacer sans bruit, se cacher et agir sans être remarqué.",
+      "definitionEn": "Moving silently, hiding and acting unnoticed."
+    },
+    {
+      "key": "animal-handling",
+      "labelFr": "Dressage",
+      "labelEn": "Animal Handling",
+      "definitionFr": "Calmer un animal, le dresser ou l'amener à faire ce que vous voulez.",
+      "definitionEn": "Calming an animal, training it or getting it to do what you want."
+    },
+    {
+      "key": "sleight-of-hand",
+      "labelFr": "Escamotage",
+      "labelEn": "Sleight of Hand",
+      "definitionFr": "Faire les poches, subtiliser ou dissimuler un petit objet sans être vu.",
+      "definitionEn": "Picking pockets, lifting or concealing a small object unseen."
+    },
+    {
+      "key": "history",
+      "labelFr": "Histoire",
+      "labelEn": "History",
+      "definitionFr": "Se souvenir des événements passés, des peuples et des nations qui les ont faits.",
+      "definitionEn": "Remembering past events, and the peoples and nations that shaped them."
+    },
+    {
+      "key": "intimidation",
+      "labelFr": "Intimidation",
+      "labelEn": "Intimidation",
+      "definitionFr": "Impressionner ou menacer quelqu'un pour le faire céder, et tenir tête à qui cherche à vous terrifier.",
+      "definitionEn": "Impressing or threatening someone into giving way, and standing up to whoever tries to terrify you."
+    },
+    {
+      "key": "investigation",
+      "labelFr": "Investigation",
+      "labelEn": "Investigation",
+      "definitionFr": "Déduire à partir d'indices, fouiller un document ou comprendre comment une chose fonctionne.",
+      "definitionEn": "Deducing from clues, searching a document or working out how something works."
+    },
+    {
+      "key": "law",
+      "labelFr": "Loi",
+      "labelEn": "Law",
+      "definitionFr": "Connaître les lois et les coutumes d'un lieu, et la manière de les faire valoir.",
+      "definitionEn": "Knowing the laws and customs of a place, and how to assert them."
+    },
+    {
+      "key": "medicine",
+      "labelFr": "Médecine",
+      "labelEn": "Medicine",
+      "definitionFr": "Soigner une blessure, opérer, diagnostiquer un mal ou comprendre de quoi une créature est morte.",
+      "definitionEn": "Treating a wound, operating, diagnosing an ailment or working out what a creature died of."
+    },
+    {
+      "key": "nature",
+      "labelFr": "Nature",
+      "labelEn": "Nature",
+      "definitionFr": "Connaître les bêtes, les plantes, le terrain et le climat.",
+      "definitionEn": "Knowing beasts, plants, terrain and climate."
+    },
+    {
+      "key": "perception",
+      "labelFr": "Perception",
+      "labelEn": "Perception",
+      "definitionFr": "Remarquer par les sens ce qui échappe aux autres, comme une créature cachée ou une embuscade.",
+      "definitionEn": "Noticing through your senses what escapes others, such as a hidden creature or an ambush."
+    },
+    {
+      "key": "insight",
+      "labelFr": "Perspicacité",
+      "labelEn": "Insight",
+      "definitionFr": "Lire l'humeur et les intentions d'une créature, et sentir quand elle ment.",
+      "definitionEn": "Reading a creature's mood and intentions, and sensing when it lies."
+    },
+    {
+      "key": "persuasion",
+      "labelFr": "Persuasion",
+      "labelEn": "Persuasion",
+      "definitionFr": "Convaincre ou négocier de bonne foi, par la discussion.",
+      "definitionEn": "Convincing or negotiating in good faith, through discussion."
+    },
+    {
+      "key": "religion",
+      "labelFr": "Religion",
+      "labelEn": "Religion",
+      "definitionFr": "Connaître les croyances, les rites et les symboles sacrés.",
+      "definitionEn": "Knowing beliefs, rites and sacred symbols."
+    },
+    {
+      "key": "performance",
+      "labelFr": "Représentation",
+      "labelEn": "Performance",
+      "definitionFr": "Jouer la comédie ou de la musique, chanter, danser ou raconter une histoire devant un public.",
+      "definitionEn": "Acting or playing music, singing, dancing or telling a story before an audience."
+    },
+    {
+      "key": "science",
+      "labelFr": "Science",
+      "labelEn": "Science",
+      "definitionFr": "Connaître les substances et leurs réactions. Peut aussi servir à préparer des potions, des philtres et des mélanges.",
+      "definitionEn": "Knowing substances and how they react. Can also be used to prepare potions, philtres and mixtures."
+    },
+    {
+      "key": "survival",
+      "labelFr": "Survie",
+      "labelEn": "Survival",
+      "definitionFr": "Suivre une piste, trouver de quoi manger, s'orienter et éviter les dangers en pleine nature.",
+      "definitionEn": "Following a trail, finding food, finding your way and avoiding dangers in the wild."
+    },
+    {
+      "key": "technology",
+      "labelFr": "Technologie",
+      "labelEn": "Technology",
+      "definitionFr": "Connaître les mécanismes, les serrures et les pièges. Peut aussi servir à fabriquer des bombes, des grenades et d'autres engins.",
+      "definitionEn": "Knowing mechanisms, locks and traps. Can also be used to make bombs, grenades and other devices."
+    },
+    {
+      "key": "deception",
+      "labelFr": "Tromperie",
+      "labelEn": "Deception",
+      "definitionFr": "Mentir de façon convaincante, cacher ce que vous pensez ou vous faire passer pour un autre.",
+      "definitionEn": "Lying convincingly, hiding what you think or passing yourself off as someone else."
+    },
+    {
+      "key": "melee",
+      "labelFr": "Mêlée",
+      "labelEn": "Melee",
+      "definitionFr": "Porter un coup au corps à corps, avec une arme, à mains nues ou avec une arme naturelle.",
+      "definitionEn": "Landing a blow in close combat, with a weapon, unarmed or with a natural weapon."
+    },
+    {
+      "key": "finesse",
+      "labelFr": "Finesse",
+      "labelEn": "Finesse",
+      "definitionFr": "Porter un coup précis avec une arme qui s'y prête, comme une dague ou une rapière.",
+      "definitionEn": "Landing a precise blow with a weapon suited to it, such as a dagger or a rapier."
+    },
+    {
+      "key": "aim",
+      "labelFr": "Visée",
+      "labelEn": "Aim",
+      "definitionFr": "Toucher à distance, en tirant, en lançant une arme ou un objet, ou en projetant un Sort.",
+      "definitionEn": "Hitting at range, by shooting, throwing a weapon or an object, or hurling a Spell."
+    },
+    {
+      "key": "reflexes",
+      "labelFr": "Réflexes",
+      "labelEn": "Reflexes",
+      "definitionFr": "Réagir d'instinct pour esquiver une explosion ou un effet de zone.",
+      "definitionEn": "Reacting on instinct to dodge an explosion or an area effect."
+    },
+    {
+      "key": "resistance",
+      "labelFr": "Résistance",
+      "labelEn": "Resistance",
+      "definitionFr": "Tenir le coup face au poison, à la maladie, au froid ou à l'étourdissement.",
+      "definitionEn": "Holding out against poison, disease, cold or being stunned."
+    },
+    {
+      "key": "will",
+      "labelFr": "Volonté",
+      "labelEn": "Will",
+      "definitionFr": "Garder la tête froide face à la peur, à l'intimidation ou à la manipulation.",
+      "definitionEn": "Keeping a cool head in the face of fear, intimidation or manipulation."
+    }
+  ]
+}

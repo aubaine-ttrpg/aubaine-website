@@ -1,0 +1,15 @@
+{
+  "id": "DRUID-03",
+  "title": "Communication avec les plantes",
+  "type": "passive",
+  "tier": 4,
+  "domains": [],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "evolvesFrom": "DRUID-01",
+  "tags": {
+    "school": "divination"
+  },
+  "description": "Vous parlez aux Plantes et vous les comprenez. Une plante ne raconte que ce qui l'a touchée et ce qui a poussé près d'elle, mais elle ne ment jamais et elle ne part pas."
+}

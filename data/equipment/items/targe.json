@@ -1,0 +1,51 @@
+{
+  "name": "Targe",
+  "status": "draft",
+  "section": "boucliers",
+  "position": 0,
+  "kind": "Bouclier",
+  "rarity": "common",
+  "art": "targe-1_1-og.png",
+  "price": 400,
+  "headlines": [
+    {
+      "label": "CA",
+      "value": "+1"
+    },
+    {
+      "label": "Dégâts",
+      "value": "1d4 + Force"
+    }
+  ],
+  "stats": [
+    {
+      "label": "Jet",
+      "value": "Force + Mêlée"
+    },
+    {
+      "label": "Portée",
+      "value": "Contact (1,5m)"
+    },
+    {
+      "label": "Type de dégâts",
+      "value": "Contondants"
+    },
+    {
+      "label": "Mains",
+      "value": "1 main"
+    }
+  ],
+  "craft": {
+    "discipline": "artisanat",
+    "cost": 4,
+    "materials": [
+      "Bois",
+      "Métal"
+    ],
+    "sequence": [
+      "10 (Dex)",
+      "12 (Str)"
+    ]
+  },
+  "description": "Petit disque de bois cerclé de métal, tenu près du corps. Il dévie plus qu'il ne couvre."
+}

@@ -1,0 +1,159 @@
+{
+  "id": "terre",
+  "status": "draft",
+  "name": "Terre",
+  "subtitle": "La nature immuable",
+  "treeType": "domain",
+  "size": 16,
+  "cover": "terre-3_4-og.png",
+  "backCover": "terre-dos-3_4-og.png",
+  "placements": [
+    {
+      "skill": "FACON-01",
+      "pos": {
+        "x": 50,
+        "y": 50.81
+      }
+    },
+    {
+      "skill": "ECLAT-01",
+      "pos": {
+        "x": 50,
+        "y": 37.92
+      },
+      "linked": [
+        "FACON-01"
+      ]
+    },
+    {
+      "skill": "MURPI-01",
+      "pos": {
+        "x": 50,
+        "y": 26.14
+      },
+      "linked": [
+        "ECLAT-01"
+      ]
+    },
+    {
+      "skill": "SEISM-01",
+      "pos": {
+        "x": 83.71,
+        "y": 80.5
+      },
+      "linked": [
+        "BRISE-01"
+      ]
+    },
+    {
+      "skill": "EARME-01",
+      "pos": {
+        "x": 34.21,
+        "y": 44.37
+      },
+      "linked": [
+        "FACON-01"
+      ]
+    },
+    {
+      "skill": "PHTST-01",
+      "pos": {
+        "x": 65.79,
+        "y": 44.37
+      },
+      "linked": [
+        "FACON-01"
+      ]
+    },
+    {
+      "skill": "VOIXT-01",
+      "pos": {
+        "x": 83.71,
+        "y": 44.42
+      },
+      "linked": [
+        "PHTST-01"
+      ]
+    },
+    {
+      "skill": "RONCE-01",
+      "pos": {
+        "x": 72.44,
+        "y": 31.91
+      },
+      "linked": [
+        "PHTST-01"
+      ]
+    },
+    {
+      "skill": "SOLPO-01",
+      "pos": {
+        "x": 17.21,
+        "y": 42.37
+      },
+      "linked": [
+        "PEAUP-01"
+      ]
+    },
+    {
+      "skill": "POIGN-01",
+      "pos": {
+        "x": 65.79,
+        "y": 57.25
+      },
+      "linked": [
+        "FACON-01"
+      ]
+    },
+    {
+      "skill": "BRISE-01",
+      "pos": {
+        "x": 83.71,
+        "y": 57.2
+      },
+      "linked": [
+        "POIGN-01"
+      ]
+    },
+    {
+      "skill": "MONTA-01",
+      "pos": {
+        "x": 74.68,
+        "y": 68.25
+      },
+      "linked": [
+        "POIGN-01"
+      ]
+    },
+    {
+      "skill": "PEAUP-01",
+      "pos": {
+        "x": 34.21,
+        "y": 57.25
+      },
+      "linked": [
+        "FACON-01"
+      ]
+    },
+    {
+      "skill": "REMPA-01",
+      "pos": {
+        "x": 19.78,
+        "y": 63.15
+      },
+      "linked": [
+        "PEAUP-01"
+      ]
+    },
+    {
+      "skill": "EARPD-01",
+      "pos": {
+        "x": 30.5,
+        "y": 70.5
+      },
+      "linked": [
+        "PEAUP-01"
+      ]
+    }
+  ]
+}

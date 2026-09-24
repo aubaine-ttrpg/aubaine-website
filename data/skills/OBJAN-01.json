@@ -1,0 +1,37 @@
+{
+  "id": "OBJAN-01",
+  "title": "Objet animé",
+  "type": "active",
+  "tier": 1,
+  "domains": [],
+  "activation": "1 Action",
+  "range": "Contact",
+  "duration": "jusqu'à 10 minutes",
+  "concentration": true,
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "school": "summoning"
+  },
+  "description": "Vous touchez un objet et vous l'animez. Tant que vous vous concentrez, vous le faites se déplacer et bouger dans un rayon de 9 m autour de vous.\n\nIl reste ce qu'il est : une forme, un poids, des articulations ou pas. Il n'a aucune intelligence propre et effectue ses Jets avec vos Caractéristiques.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 5,
+      "title": "Animation précise",
+      "description": "L'objet accomplit des gestes fins : écrire, ouvrir une porte, actionner un mécanisme. Il ne fait toujours que ce que sa forme lui permet."
+    },
+    {
+      "level": 2,
+      "tier": 5,
+      "title": "Aptitudes partagées",
+      "description": "L'objet bénéficie de la moitié de chacune de vos Aptitudes au modificateur positif, arrondie à l'inférieur."
+    },
+    {
+      "level": 3,
+      "tier": 7,
+      "title": "Projection astrale",
+      "description": "Vous projetez vos sens dans l'objet : vous voyez et entendez à sa place, et vous le menez comme votre propre corps. Le vôtre reste où vous l'avez laissé."
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "DEFER-01",
+  "title": "Déferlement",
+  "type": "passive",
+  "tier": 4,
+  "domains": [
+    "physical"
+  ],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "tags": {
+    "practice": "manoeuvre",
+    "school": "enhancement"
+  },
+  "description": "Un corps qui tombe vous en désigne un autre. Lorsqu'une de vos Attaques réduit une créature à 0 PdV et que vous êtes [[Enragé]], vous portez aussitôt une Attaque de plus.\n\nCela ne se produit qu'une fois par tour."
+}

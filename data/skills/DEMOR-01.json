@@ -1,0 +1,19 @@
+{
+  "id": "DEMOR-01",
+  "title": "Cri démoralisant",
+  "type": "active",
+  "tier": 3,
+  "domains": [],
+  "characteristics": [
+    "charisma"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "9 m",
+  "duration": "Instantanée",
+  "energy": 2,
+  "tags": {
+    "practice": "shout",
+    "school": "control"
+  },
+  "description": "Vous hurlez sur vos enemis... et sur leur... mères ? Enfin bon, une partie d'eux vous croit.\n\nChaque créature hostile à 9 m ou moins qui vous entend effectue un Jet de Charisme + Volonté contre votre DD (10 + Charisme + Intimidation). En cas d'échec, ses Attaques subissent 1 Désavantage jusqu'à la fin de son prochain tour."
+}

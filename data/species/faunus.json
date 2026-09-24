@@ -1,0 +1,17 @@
+{
+  "id": "faunus",
+  "status": "draft",
+  "name": "Faunus",
+  "types": [
+    "humanoid"
+  ],
+  "size": [
+    "medium"
+  ],
+  "offered": [
+    "ESFAU-01",
+    "ESFAU-02",
+    "ESFAU-03",
+    "ESFAU-04"
+  ]
+}

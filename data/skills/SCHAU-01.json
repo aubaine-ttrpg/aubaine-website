@@ -1,0 +1,18 @@
+{
+  "id": "SCHAU-01",
+  "title": "Surchauffe",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "fire"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "Personnel",
+  "duration": "jusqu'à 1 minute",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "school": "protection"
+  },
+  "description": "Vous portez votre chaleur au-delà de ce que votre corps supporte au repos. Tant que Surchauffe dure, vous gagnez une résistance aux dégâts infligés par les Sorts d'Eau et par toute autre source magique d'Eau, et votre Vitesse augmente de 3 m."
+}

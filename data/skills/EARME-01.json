@@ -1,0 +1,28 @@
+{
+  "id": "EARME-01",
+  "title": "Étendue martiale",
+  "type": "active",
+  "tier": 2,
+  "domains": [
+    "earth",
+    "physical"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "Contact",
+  "duration": "jusqu'à 1 minute",
+  "concentration": true,
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "school": "enhancement"
+  },
+  "description": "Vous touchez une arme et la gainez de pierre et de ronces. Une fois par tour, lorsque vous réussissez une Attaque avec elle, vous gagnez 1d4 PdV temporaires.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 7,
+      "title": "Étendue perfectionnée",
+      "description": "Pour chaque amélioration de {{Façonner la terre}} que vous possédez, {{Étendue martiale}} rend 1d4 PdV temporaires supplémentaires."
+    }
+  ]
+}

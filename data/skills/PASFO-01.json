@@ -1,0 +1,18 @@
+{
+  "id": "PASFO-01",
+  "title": "Pas de foudre",
+  "type": "active",
+  "tier": 2,
+  "domains": [
+    "thunder"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "9 m",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "school": "mobility"
+  },
+  "description": "Vous vous défaites en un arc et vous reformez ailleurs. Vous vous téléportez jusqu'à un emplacement libre que vous voyez à 9 m ou moins."
+}

@@ -1,0 +1,18 @@
+{
+  "id": "CONTR-01",
+  "title": "Contrat",
+  "type": "active",
+  "tier": 5,
+  "domains": [],
+  "characteristics": [
+    "charisma"
+  ],
+  "activation": "1 heure",
+  "range": "Contact",
+  "duration": "Jusqu'à exécution ou rupture",
+  "energy": 2,
+  "tags": {
+    "school": "influence"
+  },
+  "description": "Vous écrivez ce qui a été dit, et vous le faites signer.\n\nLes deux parties consentent et signent. Tant que le contrat tient, chacune sait si l'autre l'a rompu, où qu'elle se trouve. Celle qui le rompt gagne 1 Désavantage à tous ses Jets jusqu'à ce qu'elle s'acquitte ou que l'autre la libère.\n\nUn contrat que personne ne pouvait tenir ne prend pas."
+}

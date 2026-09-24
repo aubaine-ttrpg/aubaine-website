@@ -1,0 +1,56 @@
+{
+  "name": "Arc long",
+  "status": "draft",
+  "section": "armes-distance",
+  "position": 2,
+  "kind": "Arme à distance",
+  "rarity": "uncommon",
+  "art": "arc-court-1_1-og.png",
+  "price": 11200,
+  "headlines": [
+    {
+      "label": "Dégâts",
+      "value": "1d8 + Dextérité"
+    }
+  ],
+  "stats": [
+    {
+      "label": "Jet",
+      "value": "Dextérité + Visée"
+    },
+    {
+      "label": "Portée",
+      "value": "18m"
+    },
+    {
+      "label": "Type de dégâts",
+      "value": "Perforants"
+    },
+    {
+      "label": "Mains",
+      "value": "2 mains"
+    }
+  ],
+  "properties": [
+    {
+      "name": "Munitions catalysées.",
+      "text": "Cette arme produit ses propres projectiles ; elle ne consomme aucune munition."
+    }
+  ],
+  "craft": {
+    "discipline": "artisanat",
+    "cost": 28,
+    "materials": [
+      "Bois",
+      "Cuir"
+    ],
+    "sequence": [
+      "14 (Dex)",
+      "12 (Int)"
+    ]
+  },
+  "grants": [
+    "RICOC-01"
+  ],
+  "description": "Hampe d'if haute comme un homme. Elle porte deux fois plus loin que l'arc court et se tire debout, à découvert."
+}

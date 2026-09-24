@@ -1,0 +1,30 @@
+{
+  "name": "Torque du bastion",
+  "status": "draft",
+  "section": "colliers",
+  "position": 1,
+  "kind": "Collier",
+  "rarity": "uncommon",
+  "art": "fulguro-catalyseur-1_1-og.png",
+  "price": 12800,
+  "set": "BASTI",
+  "headlines": [
+    {
+      "label": "PV max",
+      "value": "+5"
+    }
+  ],
+  "craft": {
+    "discipline": "arcanes",
+    "cost": 32,
+    "materials": [
+      "Métal",
+      "Gemme"
+    ],
+    "sequence": [
+      "12 (Dex)",
+      "15 (Int)"
+    ]
+  },
+  "description": "Collier de maillons plats fermé sur un galet d'ambre. Il pèse au cou comme une main posée là."
+}

@@ -1,0 +1,42 @@
+{
+  "name": "Philtre de vigueur",
+  "status": "draft",
+  "section": "consommables",
+  "position": 3,
+  "kind": "Consommable",
+  "rarity": "common",
+  "art": "fulguro-catalyseur-1_1-og.png",
+  "price": 2200,
+  "headlines": [
+    {
+      "label": "Énergie",
+      "value": "1d4"
+    }
+  ],
+  "stats": [
+    {
+      "label": "Activation",
+      "value": "1 Action bonus"
+    },
+    {
+      "label": "Portée",
+      "value": "Soi"
+    },
+    {
+      "label": "Durée",
+      "value": "Instantanée"
+    }
+  ],
+  "craft": {
+    "discipline": "science",
+    "cost": 22,
+    "materials": [
+      "Plante"
+    ],
+    "sequence": [
+      "12 (Int)"
+    ]
+  },
+  "text": "Vous pouvez effectuer une Action Bonus pour boire ce philtre et récupérer ***1d4*** points d'Énergie. Votre Énergie ne dépasse jamais son maximum.",
+  "description": "Amer, poivré, servi tiède. Il rend le souffle sans rendre le repos."
+}

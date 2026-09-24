@@ -1,0 +1,19 @@
+{
+  "id": "halfelin",
+  "status": "draft",
+  "name": "Halfelin",
+  "cover": "bravado-3_4-og.png",
+  "banner": "bravado-defi-16_9-og.png",
+  "types": [
+    "humanoid"
+  ],
+  "size": [
+    "small"
+  ],
+  "offered": [
+    "ESHAL-01",
+    "ESHAL-02",
+    "ESHAL-03",
+    "ESHAL-04"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "tieffelin",
+  "status": "draft",
+  "name": "Tieffelin",
+  "cover": "marigold-3_4-og.png",
+  "banner": "marigold-16_9-og.png",
+  "types": [
+    "humanoid"
+  ],
+  "size": [
+    "medium"
+  ],
+  "offered": [
+    "ESTIE-01",
+    "ESTIE-02",
+    "ESTIE-03",
+    "ESTIE-04"
+  ]
+}

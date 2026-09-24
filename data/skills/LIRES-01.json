@@ -1,0 +1,21 @@
+{
+  "id": "LIRES-01",
+  "title": "Lire la salle",
+  "type": "active",
+  "tier": 2,
+  "domains": [
+    "psychic"
+  ],
+  "characteristics": [
+    "spirit"
+  ],
+  "activation": "1 Action",
+  "range": "18 m",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "technique",
+    "school": "divination"
+  },
+  "description": "Vous regardez qui parle à qui, qui évite qui, et qui a payé sa place.\n\nEffectuez un Jet d'Esprit + Perspicacité contre un DD de 15. En cas de réussite, apprenez deux choses de votre choix sur les créatures présentes : qui commande vraiment, qui a peur, qui ment, qui veut quelque chose, ou ce que veut l'une d'elles en particulier."
+}

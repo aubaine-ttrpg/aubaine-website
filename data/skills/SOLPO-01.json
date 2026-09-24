@@ -1,0 +1,18 @@
+{
+  "id": "SOLPO-01",
+  "title": "Sol porteur",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "earth"
+  ],
+  "activation": "1 Réaction",
+  "range": "9 m",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "school": "healing"
+  },
+  "description": "Vous jouez cette Réaction lorsqu'une créature que vous voyez à portée tombe [[À terre]].\n\nLe sol se soulève sous elle et la remet sur ses pieds. Elle n'est plus [[À terre]], et cela ne lui coûte aucun déplacement."
+}

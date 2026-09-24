@@ -1,0 +1,16 @@
+{
+  "id": "poisse",
+  "status": "draft",
+  "name": "Poisse",
+  "treeType": "domain",
+  "size": 16,
+  "placements": [
+    {
+      "skill": "POISS-01",
+      "pos": {
+        "x": 50,
+        "y": 50.81
+      }
+    }
+  ]
+}

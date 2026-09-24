@@ -1,0 +1,42 @@
+{
+  "name": "Fiole fumigène",
+  "status": "draft",
+  "section": "consommables",
+  "position": 1,
+  "kind": "Consommable",
+  "rarity": "common",
+  "art": "aero-catalyseur-1_1-og.png",
+  "price": 1800,
+  "headlines": [
+    {
+      "label": "Zone",
+      "value": "Rayon 3m"
+    }
+  ],
+  "stats": [
+    {
+      "label": "Activation",
+      "value": "1 Action"
+    },
+    {
+      "label": "Portée",
+      "value": "9m"
+    },
+    {
+      "label": "Durée",
+      "value": "1 round"
+    }
+  ],
+  "craft": {
+    "discipline": "science",
+    "cost": 18,
+    "materials": [
+      "Plante"
+    ],
+    "sequence": [
+      "12 (Int)"
+    ]
+  },
+  "text": "Vous pouvez effectuer une Action pour briser cette fiole sur un point que vous voyez à portée. Une fumée épaisse emplit un rayon de ***3 mètres*** jusqu'au début de votre prochain tour. Toute créature qui s'y trouve gagne [[Caché]] vis-à-vis de celles qui sont à l'extérieur, sans avoir à effectuer de Jet.",
+  "description": "Verre mince rempli de poudre grise. Elle prend l'air d'un coup et sent la cendre mouillée."
+}

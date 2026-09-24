@@ -1,0 +1,12 @@
+{
+  "id": "AIDER-01",
+  "title": "Aider",
+  "type": "active",
+  "tier": 1,
+  "showXp": false,
+  "domains": [],
+  "activation": "1 Action",
+  "range": "1,5 m",
+  "duration": "1 round",
+  "description": "Vous prêtez la main à un allié que vous voyez à portée.\n\nJusqu'au début de votre prochain tour, son prochain Jet gagne 1 Avantage.\n\nVous devez pouvoir contribuer à ce qu'il entreprend. Une aide sur une tâche que vous ne sauriez pas mener vous-même n'apporte rien."
+}

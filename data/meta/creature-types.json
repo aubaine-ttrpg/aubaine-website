@@ -1,0 +1,74 @@
+{
+  "entries": [
+    {
+      "key": "aberration",
+      "labelFr": "Aberration",
+      "labelEn": "Aberration"
+    },
+    {
+      "key": "construct",
+      "labelFr": "Artificiel",
+      "labelEn": "Construct"
+    },
+    {
+      "key": "beast",
+      "labelFr": "Bête",
+      "labelEn": "Beast"
+    },
+    {
+      "key": "celestial",
+      "labelFr": "Céleste",
+      "labelEn": "Celestial"
+    },
+    {
+      "key": "dragon",
+      "labelFr": "Dragon",
+      "labelEn": "Dragon"
+    },
+    {
+      "key": "elemental",
+      "labelFr": "Élémentaire",
+      "labelEn": "Elemental"
+    },
+    {
+      "key": "fey",
+      "labelFr": "Fée",
+      "labelEn": "Fey"
+    },
+    {
+      "key": "fiend",
+      "labelFr": "Fiélon",
+      "labelEn": "Fiend"
+    },
+    {
+      "key": "giant",
+      "labelFr": "Géant",
+      "labelEn": "Giant"
+    },
+    {
+      "key": "humanoid",
+      "labelFr": "Humanoïde",
+      "labelEn": "Humanoid"
+    },
+    {
+      "key": "monstrosity",
+      "labelFr": "Monstruosité",
+      "labelEn": "Monstrosity"
+    },
+    {
+      "key": "undead",
+      "labelFr": "Mort-vivant",
+      "labelEn": "Undead"
+    },
+    {
+      "key": "plant",
+      "labelFr": "Plante",
+      "labelEn": "Plant"
+    },
+    {
+      "key": "ooze",
+      "labelFr": "Vase",
+      "labelEn": "Ooze"
+    }
+  ]
+}

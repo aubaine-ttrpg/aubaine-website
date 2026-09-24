@@ -1,0 +1,28 @@
+{
+  "id": "REMAN-01",
+  "title": "Remaniement",
+  "type": "active",
+  "tier": 5,
+  "domains": [
+    "blood"
+  ],
+  "activation": "10 minutes",
+  "range": "Personnelle",
+  "duration": "1 heure",
+  "life": "2d6",
+  "tags": {
+    "school": "enhancement",
+    "specials": [
+      "graft"
+    ]
+  },
+  "description": "Vous vous ouvrez et vous vous remontez autrement. Ce qui portait la force porte l'esprit, ce qui portait l'esprit porte autre chose.\n\nChoisissez deux de vos Caractéristiques et échangez leurs modificateurs. Un draugar à +5 en Intelligence et -1 en Force ressort à +5 en Force et -1 en Intelligence.\n\nTout ce qui découle de ces Caractéristiques suit l'échange tant qu'il dure : votre CA, vos PdV maximum, vos Jets. Si vos PdV maximum baissent au point de passer sous vos PdV actuels, ceux-ci descendent d'autant.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 8,
+      "title": "Remaniement complet",
+      "description": "Vous pouvez échanger les modificateurs de deux paires de Caractéristiques au lieu d'une, et {{Remaniement}} tient 8 heures."
+    }
+  ]
+}

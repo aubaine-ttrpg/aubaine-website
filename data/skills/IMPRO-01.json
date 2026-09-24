@@ -1,0 +1,15 @@
+{
+  "id": "IMPRO-01",
+  "title": "Improviser",
+  "type": "active",
+  "tier": 1,
+  "showXp": false,
+  "domains": [],
+  "characteristics": [
+    "any"
+  ],
+  "activation": "1 Action",
+  "range": "Spéciale",
+  "duration": "Spéciale",
+  "description": "Vous tentez quelque chose qu'aucune Compétence ne couvre. Dites ce que votre personnage cherche à obtenir et comment il s'y prend.\n\nLe MJ répond trois choses : si c'est possible, ce que la tentative coûte et risque, et quel Jet la tranche. Une tentative dont l'issue ne fait aucun doute aboutit sans Jet.\n\nCette page n'est pas une liste fermée. Les Compétences qui suivent sont celles qui reviennent à toutes les tables ; tout ce que la fiction autorise se joue de la même manière."
+}

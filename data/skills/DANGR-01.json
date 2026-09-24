@@ -1,0 +1,17 @@
+{
+  "id": "DANGR-01",
+  "title": "Instinct du danger",
+  "type": "passive",
+  "tier": 3,
+  "domains": [
+    "physical"
+  ],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "tags": {
+    "practice": "manoeuvre",
+    "school": "protection"
+  },
+  "description": "Vous sentez le coup avant de le voir. Vous gagnez 1 Avantage à vos Jets de Dextérité + Réflexes contre un effet que vous auriez pu voir venir, et vous ne pouvez pas être pris au dépourvu tant que vous êtes conscient."
+}

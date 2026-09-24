@@ -1,0 +1,17 @@
+{
+  "id": "fir-bolg",
+  "status": "draft",
+  "name": "Fir Bolg",
+  "types": [
+    "humanoid"
+  ],
+  "size": [
+    "large"
+  ],
+  "offered": [
+    "ESFIR-01",
+    "ESFIR-02",
+    "ESFIR-03",
+    "ESFIR-04"
+  ]
+}

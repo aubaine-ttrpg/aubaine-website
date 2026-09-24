@@ -1,0 +1,18 @@
+{
+  "id": "FRETO-01",
+  "title": "Frappe étourdissante",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "physical"
+  ],
+  "activation": "1 Attaque",
+  "range": "Contact",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "manoeuvre",
+    "school": "control"
+  },
+  "description": "Vous visez la mâchoire, la nuque, le casque. Portez cette Attaque normalement.\n\nEn cas de réussite, la cible subit les dégâts, puis effectue un Jet de Constitution + Résistance contre votre DD (10 + la Caractéristique de cette Attaque + Athlétisme). En cas d'échec, elle est [[Étourdi]] jusqu'à la fin de votre prochain tour."
+}

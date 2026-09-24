@@ -1,0 +1,13 @@
+{
+  "id": "ESHUM-01",
+  "title": "L'esprit humain",
+  "type": "passive",
+  "tier": 5,
+  "domains": [],
+  "prerequisite": "Être Humain",
+  "activation": "Passif",
+  "tags": {
+    "school": "enhancement"
+  },
+  "description": "La première fois que vous mémorisez cette Compétence, choisissez deux Aptitudes. Tant qu'elle est Mémorisée, vous avez l'Expertise dans ces deux Aptitudes."
+}

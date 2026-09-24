@@ -1,0 +1,23 @@
+{
+  "id": "AUTOM-01",
+  "title": "Automaticien",
+  "type": "active",
+  "tier": 1,
+  "domains": [],
+  "activation": "1 heure",
+  "range": "Contact",
+  "duration": "Jusqu'à destruction ou remplacement",
+  "energy": 3,
+  "tags": {
+    "school": "summoning"
+  },
+  "description": "Vous montez un Automate fait d'un Domaine magique dont vous connaissez l'Arbre, sous la forme que vous voulez lui donner. Il est Petit : 1 m³ au maximum. Ce qu'il est, ce à quoi il ressemble et ce qu'il sait faire de sa carcasse vous regardent.\n\nIl possède 1 dans chacune de ses Caractéristiques, plus 3 points que vous répartissez entre elles. Sa CA est de 12 + sa Constitution, et il gagne la moitié des PX, PM et PP que vous gagnez.\n\nIl inflige 1d4 + sa Force ou sa Dextérité. Le type de ses dégâts suit la forme que prend son attaque sur le moment : Contondants, Tranchants, Perforants, ou celui de son Domaine.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 6,
+      "title": "Apprentissage accéléré",
+      "description": "Votre Automate apprend presque aussi vite que vous. Il gagne la totalité des PX que vous gagnez, au lieu de la moitié : son développement devient une branche parallèle de la vôtre."
+    }
+  ]
+}

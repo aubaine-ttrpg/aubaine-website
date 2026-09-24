@@ -1,0 +1,15 @@
+{
+  "id": "CMDLN-01",
+  "title": "Ligne de commande",
+  "type": "active",
+  "tier": 2,
+  "domains": [],
+  "activation": "1 Action Bonus",
+  "range": "18 m",
+  "duration": "Instantanée",
+  "energy": 0,
+  "tags": {
+    "school": "summoning"
+  },
+  "description": "Vous transmettez un ordre direct à votre Automate. Il se déplace, il manipule ce qui est à sa portée, ou il attaque, selon ce que sa forme actuelle lui permet.\n\nL'ordre doit tenir en une phrase et rester exécutable par la carcasse qu'il porte ce jour-là."
+}

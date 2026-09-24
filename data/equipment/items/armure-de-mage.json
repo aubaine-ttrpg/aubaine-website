@@ -1,0 +1,39 @@
+{
+  "name": "Armure de mage",
+  "status": "draft",
+  "section": "torse",
+  "position": 3,
+  "kind": "Armure",
+  "rarity": "common",
+  "art": "armure-de-mage-1_1-og.png",
+  "price": 600,
+  "headlines": [
+    {
+      "label": "CA",
+      "value": "13 + Intelligence OU Esprit OU Charisme"
+    }
+  ],
+  "properties": [
+    {
+      "name": "Catalyseur.",
+      "text": "Tant que cette pièce est équipée, vous pouvez activer vos Sorts, passifs comme actifs."
+    },
+    {
+      "name": "Dynamisation arcanique.",
+      "text": "Lorsque vous utilisez un Sort qui ne coûte rien, vous pouvez ajouter votre modificateur d'Intelligence OU d'Esprit OU de Charisme à un dé du Jet de Dégâts du Sort."
+    }
+  ],
+  "craft": {
+    "discipline": "arcanes",
+    "cost": 6,
+    "materials": [
+      "Cuir",
+      "Gemme"
+    ],
+    "sequence": [
+      "12 (Dex)",
+      "14 (Int)"
+    ]
+  },
+  "description": "Robe renforcée dont les pièces de métal servent de foyer arcanique."
+}

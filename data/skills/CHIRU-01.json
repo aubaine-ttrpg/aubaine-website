@@ -1,0 +1,18 @@
+{
+  "id": "CHIRU-01",
+  "title": "Chirurgie de campagne",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "blood"
+  ],
+  "activation": "1 Action",
+  "range": "Contact",
+  "duration": "Instantanée",
+  "life": "2d6",
+  "tags": {
+    "practice": "technique",
+    "school": "healing"
+  },
+  "description": "Vous ouvrez, vous nettoyez, vous refermez, sans grande douceur, et le sang que vous perdez à le faire est le vôtre. Touchez une créature consentante ou incapable de résister.\n\nEffectuez un Jet d'Intelligence + Médecine contre un DD de 15. En cas de réussite, elle récupère 2d8 PdV et cesse de saigner. En cas d'échec, elle n'en récupère que 1d8 et garde une cicatrice dont elle se souviendra.\n\nUne créature ne peut bénéficier de Chirurgie de campagne qu'une fois par Repos court ou par Repos long."
+}

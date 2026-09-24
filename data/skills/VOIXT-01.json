@@ -1,0 +1,24 @@
+{
+  "id": "VOIXT-01",
+  "title": "Voix de la terre",
+  "type": "active",
+  "tier": 4,
+  "domains": [
+    "earth"
+  ],
+  "characteristics": [
+    "intelligence",
+    "spirit",
+    "charisma"
+  ],
+  "activation": "1 Action",
+  "range": "9 m",
+  "duration": "jusqu'à 1 minute",
+  "concentration": true,
+  "energy": 3,
+  "tags": {
+    "practice": "spell",
+    "school": "influence"
+  },
+  "description": "Vous parlez à ce qui est fait de bois ou de pierre, et il vous écoute. Choisissez une créature végétale ou minérale que vous voyez à portée. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\nElle effectue un Jet d'Esprit + Volonté contre votre DD (10 + la Caractéristique choisie + Persuasion). En cas d'échec, elle vous obéit tant que vous vous concentrez : elle agit à son tour selon les ordres que vous lui donnez. Un ordre qui l'expose à un danger direct lui accorde aussitôt un nouveau Jet pour se libérer.\n\nEn cas de réussite, elle repousse votre voix et sait que vous avez essayé."
+}

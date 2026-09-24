@@ -1,0 +1,41 @@
+{
+  "name": "Fulguro-catalyseur",
+  "status": "draft",
+  "section": "bijoux",
+  "position": 4,
+  "kind": "Bijou",
+  "rarity": "common",
+  "art": "fulguro-catalyseur-1_1-og.png",
+  "price": 1600,
+  "headlines": [
+    {
+      "label": "Domaine",
+      "value": "Foudre"
+    }
+  ],
+  "properties": [
+    {
+      "name": "Catalyseur.",
+      "text": "Tant que cette pièce est équipée, vous pouvez activer vos Sorts, passifs comme actifs."
+    },
+    {
+      "name": "Matériel.",
+      "text": "Ce catalyseur peut être consommé comme matériau (Type : Catalyseur ; Valeur : 4)."
+    }
+  ],
+  "craft": {
+    "discipline": "arcanes",
+    "cost": 16,
+    "materials": [
+      "Gemme"
+    ],
+    "sequence": [
+      "12 (Dex)",
+      "15 (Int)"
+    ]
+  },
+  "grants": [
+    "HARPO-01"
+  ],
+  "description": "Améthyste veinée d'or où l'éclair court en boucle. Elle hérisse les poils du bras."
+}

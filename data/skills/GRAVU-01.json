@@ -1,0 +1,43 @@
+{
+  "id": "GRAVU-01",
+  "title": "Gravure",
+  "type": "active",
+  "tier": 1,
+  "domains": [],
+  "characteristics": [
+    "intelligence"
+  ],
+  "activation": "10 minutes",
+  "range": "Contact",
+  "duration": "Jusqu'au déclenchement",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "school": "creation",
+    "specials": [
+      "unleashed"
+    ]
+  },
+  "description": "Vous gravez une rune sur une surface, un objet, ou une peau consentante. En la gravant, vous énoncez deux choses : ce qui la déclenche, et ce qu'elle fait. Le MJ dit si cela tient dans ce qu'une rune peut porter.\n\nUne rune ne fait qu'une chose, une seule fois. Elle attend sans se fatiguer, et se déclenche même si vous dormez à l'autre bout du monde.\n\nVous ne maintenez qu'une rune à la fois. En graver une autre efface la première, où qu'elle soit.\n\nLorsqu'une créature effectue un Jet pour résister à une rune, elle effectue son Jet contre votre DD (10 + Intelligence + Arcanes).",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 5,
+      "title": "Double gravure",
+      "description": "Vous maintenez jusqu'à 2 runes à la fois."
+    },
+    {
+      "level": 3,
+      "tier": 8,
+      "title": "Triple gravure",
+      "description": "Vous maintenez jusqu'à 3 runes à la fois."
+    },
+    {
+      "level": 4,
+      "tier": 10,
+      "xpOverride": 75,
+      "title": "Grimoire de pierre",
+      "description": "Vous maintenez jusqu'à 5 runes à la fois. Vous savez à tout instant laquelle a été déclenchée, et par quoi."
+    }
+  ]
+}

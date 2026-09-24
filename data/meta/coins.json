@@ -1,0 +1,28 @@
+{
+  "entries": [
+    {
+      "key": "or",
+      "color": "#8a6d10",
+      "iconName": "game-icons:crown-coin",
+      "bronzeValue": 10000,
+      "labelFr": "or",
+      "labelEn": "gold"
+    },
+    {
+      "key": "argent",
+      "color": "#63696f",
+      "iconName": "game-icons:two-coins",
+      "bronzeValue": 100,
+      "labelFr": "argent",
+      "labelEn": "silver"
+    },
+    {
+      "key": "bronze",
+      "color": "#8f4f28",
+      "iconName": "game-icons:coins-pile",
+      "bronzeValue": 1,
+      "labelFr": "bronze",
+      "labelEn": "bronze"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "name": "Robe du canaliseur",
+  "status": "draft",
+  "section": "torse",
+  "position": 5,
+  "kind": "Armure",
+  "rarity": "uncommon",
+  "art": "armure-de-mage-1_1-og.png",
+  "price": 14400,
+  "headlines": [
+    {
+      "label": "CA",
+      "value": "14 + Intelligence OU Esprit OU Charisme"
+    }
+  ],
+  "properties": [
+    {
+      "name": "Catalyseur.",
+      "text": "Tant que cette pièce est équipée, vous pouvez activer vos Sorts, passifs comme actifs."
+    },
+    {
+      "name": "Concentration tenue.",
+      "text": "Vos Jets de Constitution + Volonté pour maintenir votre concentration gagnent 1 Avantage."
+    }
+  ],
+  "craft": {
+    "discipline": "arcanes",
+    "cost": 36,
+    "materials": [
+      "Cuir",
+      "Gemme"
+    ],
+    "sequence": [
+      "14 (Dex)",
+      "16 (Int)"
+    ]
+  },
+  "description": "Bande de gemmes cousue de l'épaule à la hanche. Chacune se ternit quand la suivante s'allume."
+}

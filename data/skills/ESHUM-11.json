@@ -1,0 +1,16 @@
+{
+  "id": "ESHUM-11",
+  "title": "Enfant du désert",
+  "type": "passive",
+  "tier": 5,
+  "domains": [],
+  "characteristics": [
+    "constitution"
+  ],
+  "prerequisite": "Être Humain d'Al-Wahaa",
+  "activation": "Passif",
+  "tags": {
+    "school": "protection"
+  },
+  "description": "Vos Jets de Constitution pour résister aux températures extrêmes, froides comme chaudes, gagnent 1 Avantage."
+}

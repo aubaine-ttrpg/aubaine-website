@@ -1,0 +1,139 @@
+{
+  "id": "draugar",
+  "status": "draft",
+  "name": "Draugar",
+  "subtitle": "L'abomination sanguine",
+  "treeType": "archetype",
+  "size": 16,
+  "cover": "draugar-3_4-og.png",
+  "backCover": "draugar-dos-3_4-og.png",
+  "placements": [
+    {
+      "skill": "GREFF-01",
+      "pos": {
+        "x": 50,
+        "y": 50.81
+      }
+    },
+    {
+      "skill": "BLFNG-01",
+      "pos": {
+        "x": 50,
+        "y": 37.92
+      },
+      "linked": [
+        "GREFF-01"
+      ]
+    },
+    {
+      "skill": "PONCT-01",
+      "pos": {
+        "x": 50,
+        "y": 26.14
+      },
+      "linked": [
+        "BLFNG-01"
+      ]
+    },
+    {
+      "skill": "REGEN-01",
+      "pos": {
+        "x": 72.44,
+        "y": 31.91
+      },
+      "linked": [
+        "BLFNG-01"
+      ]
+    },
+    {
+      "skill": "SAIGN-01",
+      "pos": {
+        "x": 65.79,
+        "y": 44.37
+      },
+      "linked": [
+        "GREFF-01"
+      ]
+    },
+    {
+      "skill": "BTRAK-01",
+      "pos": {
+        "x": 83.71,
+        "y": 44.42
+      },
+      "linked": [
+        "SAIGN-01"
+      ]
+    },
+    {
+      "skill": "DISSE-01",
+      "pos": {
+        "x": 65.79,
+        "y": 57.25
+      },
+      "linked": [
+        "GREFF-01"
+      ]
+    },
+    {
+      "skill": "CHIRU-01",
+      "pos": {
+        "x": 83.71,
+        "y": 57.2
+      },
+      "linked": [
+        "DISSE-01"
+      ]
+    },
+    {
+      "skill": "DISSI-01",
+      "pos": {
+        "x": 34.21,
+        "y": 44.37
+      },
+      "linked": [
+        "GREFF-01"
+      ]
+    },
+    {
+      "skill": "VISAG-01",
+      "pos": {
+        "x": 17.21,
+        "y": 42.37
+      },
+      "linked": [
+        "DISSI-01"
+      ]
+    },
+    {
+      "skill": "SGFRO-01",
+      "pos": {
+        "x": 30.5,
+        "y": 70.5
+      },
+      "linked": [
+        "REMAN-01"
+      ]
+    },
+    {
+      "skill": "APPET-01",
+      "pos": {
+        "x": 19.78,
+        "y": 63.15
+      },
+      "linked": [
+        "SGFRO-01"
+      ]
+    },
+    {
+      "skill": "REMAN-01",
+      "pos": {
+        "x": 34.21,
+        "y": 57.25
+      },
+      "linked": [
+        "GREFF-01"
+      ]
+    }
+  ]
+}

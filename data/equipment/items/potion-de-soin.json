@@ -1,0 +1,42 @@
+{
+  "name": "Potion de soin",
+  "status": "draft",
+  "section": "consommables",
+  "position": 2,
+  "kind": "Consommable",
+  "rarity": "common",
+  "art": "hydro-catalyseur-1_1-og.png",
+  "price": 2000,
+  "headlines": [
+    {
+      "label": "Soins",
+      "value": "1d8"
+    }
+  ],
+  "stats": [
+    {
+      "label": "Activation",
+      "value": "1 Action bonus"
+    },
+    {
+      "label": "Portée",
+      "value": "Soi"
+    },
+    {
+      "label": "Durée",
+      "value": "Instantanée"
+    }
+  ],
+  "craft": {
+    "discipline": "science",
+    "cost": 20,
+    "materials": [
+      "Plante"
+    ],
+    "sequence": [
+      "12 (Int)"
+    ]
+  },
+  "text": "Vous pouvez effectuer une Action Bonus pour boire cette potion et récupérer ***1d8*** Points de vie.",
+  "description": "Fiole tiède au goût de fer. Elle referme ce qui saigne, pas ce qui est brisé."
+}

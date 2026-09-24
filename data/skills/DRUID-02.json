@@ -1,0 +1,15 @@
+{
+  "id": "DRUID-02",
+  "title": "Communication avec les animaux",
+  "type": "passive",
+  "tier": 4,
+  "domains": [],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "evolvesFrom": "DRUID-01",
+  "tags": {
+    "school": "divination"
+  },
+  "description": "Vous parlez aux Bêtes et vous les comprenez. Ce qu'elles ont à dire tient à ce qu'une Bête remarque : qui est passé, ce qui a peur, où est la nourriture, où est le danger."
+}

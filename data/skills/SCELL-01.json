@@ -1,0 +1,16 @@
+{
+  "id": "SCELL-01",
+  "title": "Rune de scellement",
+  "type": "active",
+  "tier": 3,
+  "domains": [],
+  "activation": "10 minutes",
+  "range": "Contact",
+  "duration": "Jusqu'au déclenchement",
+  "energy": 2,
+  "tags": {
+    "practice": "spell",
+    "school": "protection"
+  },
+  "description": "Vous scellez une porte, un coffre, une fenêtre, un cercueil. Tant que la rune tient, l'ouvrir demande de la briser.\n\nLa rune a une CA de 15 et 25 PdV, et une créature peut l'attaquer. Vous pouvez nommer un mot de passe en la gravant : qui le prononce passe sans rien casser."
+}

@@ -1,0 +1,12 @@
+{
+  "key": "aveugle",
+  "name": "Aveuglé",
+  "forms": [
+    "Aveuglée",
+    "Aveuglés",
+    "Aveuglées"
+  ],
+  "kind": "debuff",
+  "icon": "mdi:eye-off",
+  "description": "Une créature Aveuglée ne voit plus. Elle rate tout Jet qui demande de voir, ses autres Jets subissent 1 Désavantage, et les Jets qui la prennent pour cible gagnent 1 Avantage.\n\nLa Compétence qui l'applique indique combien de temps l'état dure."
+}

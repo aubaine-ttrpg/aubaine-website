@@ -1,0 +1,21 @@
+{
+  "id": "SOIFS-01",
+  "title": "Soif de sang",
+  "type": "active",
+  "tier": 4,
+  "domains": [
+    "blood"
+  ],
+  "activation": "1 Attaque",
+  "range": "Contact",
+  "duration": "Instantanée",
+  "energy": 2,
+  "tags": {
+    "practice": "manoeuvre",
+    "school": "destruction",
+    "specials": [
+      "lifesteal"
+    ]
+  },
+  "description": "Vous frappez pour ouvrir, pas pour tuer, et ce qui sort vous revient.\n\nPortez cette Attaque normalement. En cas de réussite, ajoutez 2d6 dégâts Perforants et vous récupérez la moitié de ces 2d6 en PdV. Une créature sans sang ne vous en rend aucun."
+}

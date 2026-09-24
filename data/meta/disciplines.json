@@ -1,0 +1,28 @@
+{
+  "entries": [
+    {
+      "key": "artisanat",
+      "color": "#7a5b1e",
+      "labelFr": "Artisanat",
+      "labelEn": "Craft"
+    },
+    {
+      "key": "arcanes",
+      "color": "#2b4f96",
+      "labelFr": "Arcanes",
+      "labelEn": "Arcana"
+    },
+    {
+      "key": "technologie",
+      "color": "#1f5f57",
+      "labelFr": "Technologie",
+      "labelEn": "Technology"
+    },
+    {
+      "key": "science",
+      "color": "#356021",
+      "labelFr": "Science",
+      "labelEn": "Science"
+    }
+  ]
+}

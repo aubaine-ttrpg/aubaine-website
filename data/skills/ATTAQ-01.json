@@ -1,0 +1,15 @@
+{
+  "id": "ATTAQ-01",
+  "title": "Attaquer",
+  "type": "active",
+  "tier": 1,
+  "showXp": false,
+  "domains": [],
+  "characteristics": [
+    "any"
+  ],
+  "activation": "1 Action",
+  "range": "Allonge de l'arme",
+  "duration": "Instantanée",
+  "description": "Vous portez une Attaque contre une créature à portée, avec une arme équipée ou à mains nues.\n\nEffectuez le Jet que l'arme indique contre la CA de la cible. En cas de réussite, elle subit les dégâts de l'arme, augmentés de la Caractéristique employée par ce Jet.\n\n***À mains nues.*** Le Jet est Force + Mêlée, la portée 1,5 m, et les dégâts 1d4 + Force."
+}

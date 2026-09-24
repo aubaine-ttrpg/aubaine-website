@@ -1,0 +1,15 @@
+{
+  "id": "ATELI-01",
+  "title": "Atelier portatif",
+  "type": "passive",
+  "tier": 3,
+  "domains": [],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "tags": {
+    "practice": "technique",
+    "school": "creation"
+  },
+  "description": "Vous portez sur le dos de quoi travailler n'importe où : une enclume pliante, un creuset, des fioles calées dans du feutre.\n\nVous fabriquez sans établi, sans forge et sans laboratoire. Vous y mettez le double de temps, et le MJ dit ce qu'un lieu franchement hostile vous impose en plus."
+}

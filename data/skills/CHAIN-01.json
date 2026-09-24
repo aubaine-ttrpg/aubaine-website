@@ -1,0 +1,23 @@
+{
+  "id": "CHAIN-01",
+  "title": "Chaîne d'éclairs",
+  "type": "active",
+  "tier": 10,
+  "domains": [
+    "thunder"
+  ],
+  "characteristics": [
+    "intelligence",
+    "spirit",
+    "charisma"
+  ],
+  "activation": "1 Action",
+  "range": "18 m",
+  "duration": "Instantanée",
+  "energy": 5,
+  "tags": {
+    "practice": "spell",
+    "school": "destruction"
+  },
+  "description": "Un arc part de votre main vers une créature que vous voyez à portée, puis saute vers trois autres créatures de votre choix, chacune à 9 m ou moins de la précédente. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\nChaque créature touchée effectue un Jet de Dextérité + Réflexes contre votre DD (10 + la Caractéristique choisie + Arcanes). En cas d'échec, elle subit 6d6 dégâts de Foudre. En cas de réussite, elle n'en subit que la moitié.\n\nL'arc ne frappe jamais deux fois la même créature."
+}

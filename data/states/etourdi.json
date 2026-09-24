@@ -1,0 +1,12 @@
+{
+  "key": "etourdi",
+  "name": "Étourdi",
+  "forms": [
+    "Étourdie",
+    "Étourdis",
+    "Étourdies"
+  ],
+  "kind": "debuff",
+  "icon": "mdi:star-circle",
+  "description": "Une créature Étourdie a la tête qui sonne. Elle ne peut pas jouer de Réaction et ses Attaques subissent 1 Désavantage.\n\nLa Compétence qui l'applique indique combien de temps l'état dure."
+}

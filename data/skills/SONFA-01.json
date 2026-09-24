@@ -1,0 +1,19 @@
+{
+  "id": "SONFA-01",
+  "title": "Son fantôme",
+  "type": "active",
+  "tier": 3,
+  "domains": [],
+  "characteristics": [
+    "intelligence"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "18 m",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "school": "illusion"
+  },
+  "description": "Vous posez un son là où vous n'êtes pas : une voix qui appelle, une porte qui claque, une lame qu'on tire, un rire dans le dos.\n\nUne créature qui veut savoir d'où il vient vraiment effectue un Jet d'Esprit + Perception contre votre DD (10 + Intelligence + Tromperie). Ce que le son lui fait faire vous regarde ; ce qu'elle fait ensuite la regarde."
+}

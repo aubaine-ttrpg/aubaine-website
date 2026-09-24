@@ -1,0 +1,26 @@
+{
+  "id": "CAUTE-01",
+  "title": "Cautérisation",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "fire"
+  ],
+  "activation": "1 Action",
+  "range": "Contact",
+  "duration": "Instantanée",
+  "energy": 2,
+  "tags": {
+    "practice": "spell",
+    "school": "healing"
+  },
+  "description": "Vous touchez une créature et refermez ses plaies par le feu. Elle récupère 2d6 PdV.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 4,
+      "title": "Cautérisation profonde",
+      "description": "La créature que vous touchez récupère désormais 3d6 PdV."
+    }
+  ]
+}

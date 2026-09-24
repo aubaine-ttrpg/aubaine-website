@@ -1,0 +1,76 @@
+{
+  "entries": [
+    {
+      "key": "fire",
+      "color": "#c0392b",
+      "labelFr": "Feu",
+      "labelEn": "Fire"
+    },
+    {
+      "key": "water",
+      "color": "#1f7fc0",
+      "labelFr": "Eau",
+      "labelEn": "Water"
+    },
+    {
+      "key": "wind",
+      "color": "#2e9d8f",
+      "labelFr": "Vent",
+      "labelEn": "Wind"
+    },
+    {
+      "key": "earth",
+      "color": "#8a6d3b",
+      "labelFr": "Terre",
+      "labelEn": "Earth"
+    },
+    {
+      "key": "thunder",
+      "color": "#6d4db0",
+      "labelFr": "Foudre",
+      "labelEn": "Thunder"
+    },
+    {
+      "key": "slime",
+      "color": "#6f9b1e",
+      "labelFr": "Poisse",
+      "labelEn": "Slime"
+    },
+    {
+      "key": "physical",
+      "color": "#e67e22",
+      "labelFr": "Physique",
+      "labelEn": "Physical"
+    },
+    {
+      "key": "psychic",
+      "color": "#c0397f",
+      "labelFr": "Psychique",
+      "labelEn": "Psychic"
+    },
+    {
+      "key": "light",
+      "color": "#f4c84e",
+      "labelFr": "Lumière",
+      "labelEn": "Light"
+    },
+    {
+      "key": "void",
+      "color": "#201460",
+      "labelFr": "Vide",
+      "labelEn": "Void"
+    },
+    {
+      "key": "blood",
+      "color": "#9c1527",
+      "labelFr": "Sang",
+      "labelEn": "Blood"
+    },
+    {
+      "key": "neutral",
+      "color": "#2a2a2e",
+      "labelFr": "Neutre",
+      "labelEn": "Neutral"
+    }
+  ]
+}

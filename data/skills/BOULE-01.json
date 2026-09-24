@@ -1,0 +1,23 @@
+{
+  "id": "BOULE-01",
+  "title": "Boule de Feu",
+  "type": "active",
+  "tier": 10,
+  "domains": [
+    "fire"
+  ],
+  "characteristics": [
+    "intelligence",
+    "spirit",
+    "charisma"
+  ],
+  "activation": "1 Action",
+  "range": "18 m",
+  "duration": "Instantanée",
+  "energy": 5,
+  "tags": {
+    "practice": "spell",
+    "school": "destruction"
+  },
+  "description": "Vous lancez une bille incandescente vers un point que vous voyez à portée, où elle éclate en une sphère de flammes de 4,5 m de rayon. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\nChaque créature prise dans la sphère effectue un Jet de Dextérité + Réflexes contre votre DD (10 + la Caractéristique choisie + Arcanes). En cas d'échec, elle subit 6d6 dégâts de Feu. En cas de réussite, elle n'en subit que la moitié.\n\nLes flammes contournent les angles. Elles enflamment ce qui n'est ni porté ni transporté."
+}

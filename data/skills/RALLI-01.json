@@ -1,0 +1,18 @@
+{
+  "id": "RALLI-01",
+  "title": "Cri de ralliement",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "physical"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "9 m",
+  "duration": "Instantanée",
+  "energy": 2,
+  "tags": {
+    "practice": "shout",
+    "school": "healing"
+  },
+  "description": "Vous lancez un ordre qui porte au-dessus du bruit. Choisissez jusqu'à 3 créatures alliées qui vous voient et vous entendent à 9 m ou moins.\n\nChacune gagne 1d8 PdV temporaires et se remet debout si elle est [[À terre]]."
+}

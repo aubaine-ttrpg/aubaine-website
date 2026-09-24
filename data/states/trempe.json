@@ -1,0 +1,13 @@
+{
+  "key": "trempe",
+  "name": "Trempé",
+  "forms": [
+    "Trempée",
+    "Trempés",
+    "Trempées"
+  ],
+  "kind": "debuff",
+  "icon": "mdi:water",
+  "stacks": 3,
+  "description": "Trempé s'accumule sur une créature jusqu'à 3. Sa Vitesse diminue de 1,5 m par Trempé qu'elle porte.\n\nLorsqu'elle subit des dégâts de Foudre, elle en subit 1 de plus par Trempé.\n\nElle perd l'état lorsqu'elle termine un tour sans avoir été touchée par une Compétence du Domaine Eau."
+}

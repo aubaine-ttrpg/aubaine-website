@@ -1,0 +1,19 @@
+{
+  "id": "MOTJU-01",
+  "title": "Le mot juste",
+  "type": "active",
+  "tier": 4,
+  "domains": [],
+  "characteristics": [
+    "charisma"
+  ],
+  "activation": "1 Réaction",
+  "range": "9 m",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "technique",
+    "school": "influence"
+  },
+  "description": "Vous jouez cette Réaction lorsqu'une créature qui vous entend effectue un Jet social, avant que son résultat ne soit résolu.\n\nVous glissez la phrase qui change la pièce. Ce Jet gagne 1 Avantage s'il vous arrange, ou subit 1 Désavantage s'il vous dessert."
+}

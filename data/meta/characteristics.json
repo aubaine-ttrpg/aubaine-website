@@ -1,0 +1,65 @@
+{
+  "entries": [
+    {
+      "key": "strength",
+      "color": "#b5372e",
+      "iconName": "game-icons:biceps",
+      "labelFr": "Force",
+      "labelEn": "Strength",
+      "definitionFr": "La puissance physique du personnage, celle qui soulève, pousse et frappe.",
+      "definitionEn": "The character's physical power, the kind that lifts, pushes and strikes."
+    },
+    {
+      "key": "dexterity",
+      "color": "#4a8b46",
+      "iconName": "game-icons:walking-boot",
+      "labelFr": "Dextérité",
+      "labelEn": "Dexterity",
+      "definitionFr": "La coordination et la précision du personnage, dans le geste comme dans le mouvement.",
+      "definitionEn": "The character's coordination and precision, in gesture as in movement."
+    },
+    {
+      "key": "constitution",
+      "color": "#c8702a",
+      "iconName": "game-icons:heart-organ",
+      "labelFr": "Constitution",
+      "labelEn": "Constitution",
+      "definitionFr": "La santé et l'endurance du personnage, ce qui lui permet d'encaisser et de tenir.",
+      "definitionEn": "The character's health and endurance, what lets them take punishment and hold on."
+    },
+    {
+      "key": "intelligence",
+      "color": "#2f6cae",
+      "iconName": "game-icons:brain",
+      "labelFr": "Intelligence",
+      "labelEn": "Intelligence",
+      "definitionFr": "La capacité du personnage à analyser, retenir, apprendre et déduire.",
+      "definitionEn": "The character's ability to analyse, remember, learn and deduce."
+    },
+    {
+      "key": "spirit",
+      "color": "#c15b93",
+      "iconName": "game-icons:spiked-halo",
+      "labelFr": "Esprit",
+      "labelEn": "Spirit",
+      "definitionFr": "L'attention et l'empathie du personnage, l'acuité de ses sens et son lien avec le surnaturel.",
+      "definitionEn": "The character's attention and empathy, the sharpness of their senses and their bond with the supernatural."
+    },
+    {
+      "key": "charisma",
+      "color": "#b8901e",
+      "iconName": "game-icons:duality-mask",
+      "labelFr": "Charisme",
+      "labelEn": "Charisma",
+      "definitionFr": "La présence du personnage, sa manière de s'exprimer et l'autorité qu'il dégage.",
+      "definitionEn": "The character's presence, their way of expressing themselves and the authority they carry."
+    },
+    {
+      "key": "any",
+      "color": "#8a7c5c",
+      "iconName": "mdi:asterisk",
+      "labelFr": "Toute caractéristique",
+      "labelEn": "Any characteristic"
+    }
+  ]
+}

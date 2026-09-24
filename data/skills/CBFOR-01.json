@@ -1,0 +1,20 @@
+{
+  "id": "CBFOR-01",
+  "status": "draft",
+  "title": "Bricolage de fortune",
+  "type": "active",
+  "tier": 2,
+  "domains": [],
+  "characteristics": [
+    "intelligence"
+  ],
+  "activation": "10 minutes",
+  "range": "Contact (1,5 m)",
+  "duration": "1 heure",
+  "energy": 0,
+  "tags": {
+    "practice": "technique",
+    "school": "creation"
+  },
+  "description": "Avec ce qui traîne, vous faites tenir ce qui doit tenir : une corde, une attelle, une serrure forcée, une roue recollée.\n\nFaites un Jet d'Intelligence + Technologie. En cas de réussite, l'objet remplit son office pendant 1 heure, puis lâche. Une même pièce ne se bricole qu'une fois."
+}

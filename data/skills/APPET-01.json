@@ -1,0 +1,19 @@
+{
+  "id": "APPET-01",
+  "title": "Appétit",
+  "type": "passive",
+  "tier": 3,
+  "domains": [
+    "blood"
+  ],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "tags": {
+    "school": "healing",
+    "specials": [
+      "lifesteal"
+    ]
+  },
+  "description": "Plus vous êtes vide, plus vous buvez large. Lorsqu'une Compétence portant l'étiquette Vol de vie vous rend des PdV et que vous possédez la moitié ou moins de vos PdV maximum, elle vous en rend le double."
+}

@@ -1,0 +1,22 @@
+{
+  "id": "BRICO-01",
+  "title": "Bricolage de fortune [TEMP]",
+  "type": "active",
+  "tier": 3,
+  "domains": [],
+  "characteristics": [
+    "intelligence"
+  ],
+  "activation": "10 minutes",
+  "range": "Contact",
+  "duration": "Un seul usage",
+  "energy": 1,
+  "tags": {
+    "practice": "technique",
+    "school": "creation",
+    "specials": [
+      "unleashed"
+    ]
+  },
+  "description": "Vous fabriquez sur place ce dont vous avez besoin, avec ce que vous avez sous la main. Annoncez l'objet et ce qu'il doit faire.\n\nEffectuez un Jet d'Intelligence + Technologie contre un DD que le MJ fixe sur l'ambition de la chose. En cas de réussite, elle fonctionne une fois, puis se démantibule."
+}

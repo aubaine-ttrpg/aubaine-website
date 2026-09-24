@@ -1,0 +1,22 @@
+{
+  "entries": [
+    {
+      "key": "passive",
+      "shapeKey": "square",
+      "labelFr": "Passive",
+      "labelEn": "Passive"
+    },
+    {
+      "key": "active",
+      "shapeKey": "circle",
+      "labelFr": "Active",
+      "labelEn": "Active"
+    },
+    {
+      "key": "special",
+      "shapeKey": "concave",
+      "labelFr": "Spéciale",
+      "labelEn": "Special"
+    }
+  ]
+}

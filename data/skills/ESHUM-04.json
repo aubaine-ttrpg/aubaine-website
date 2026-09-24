@@ -1,0 +1,13 @@
+{
+  "id": "ESHUM-04",
+  "title": "Prestance héroïque",
+  "type": "passive",
+  "tier": 5,
+  "domains": [],
+  "prerequisite": "Être Humain de la Nouvelle-Aubaine",
+  "activation": "Passif",
+  "tags": {
+    "school": "enhancement"
+  },
+  "description": "Tant que cette Compétence est Mémorisée, vos modificateurs de Persuasion et d'Athlétisme augmentent de 1, jusqu'au maximum de +6."
+}

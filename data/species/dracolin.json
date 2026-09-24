@@ -1,0 +1,20 @@
+{
+  "id": "dracolin",
+  "status": "draft",
+  "name": "Dracolin",
+  "cover": "bacchi-qui-travaille-3_4-og.png",
+  "banner": "bacchi-qui-travaille-16_9-og.png",
+  "types": [
+    "humanoid"
+  ],
+  "size": [
+    "small",
+    "medium"
+  ],
+  "offered": [
+    "ESDRA-01",
+    "ESDRA-02",
+    "ESDRA-03",
+    "ESDRA-04"
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "id": "technomancien",
+  "status": "draft",
+  "name": "Technomancien",
+  "subtitle": "Le maître des automates",
+  "treeType": "archetype",
+  "size": 16,
+  "cover": "technomancien-3_4-og.png",
+  "backCover": "technomancien-dos-3_4-og.png",
+  "placements": [
+    {
+      "skill": "AUTOM-01",
+      "pos": {
+        "x": 50,
+        "y": 50.81
+      }
+    },
+    {
+      "skill": "CMDLN-01",
+      "pos": {
+        "x": 50,
+        "y": 37.92
+      },
+      "linked": [
+        "AUTOM-01"
+      ]
+    },
+    {
+      "skill": "GNFST-01",
+      "pos": {
+        "x": 65.79,
+        "y": 44.37
+      },
+      "linked": [
+        "AUTOM-01"
+      ]
+    },
+    {
+      "skill": "SURCH-01",
+      "pos": {
+        "x": 72.44,
+        "y": 31.91
+      },
+      "linked": [
+        "GNFST-01"
+      ]
+    },
+    {
+      "skill": "INTER-01",
+      "pos": {
+        "x": 83.71,
+        "y": 44.42
+      },
+      "linked": [
+        "GNFST-01"
+      ]
+    },
+    {
+      "skill": "REPAR-01",
+      "pos": {
+        "x": 65.79,
+        "y": 57.25
+      },
+      "linked": [
+        "AUTOM-01"
+      ]
+    },
+    {
+      "skill": "CHASS-01",
+      "pos": {
+        "x": 83.71,
+        "y": 57.2
+      },
+      "linked": [
+        "REPAR-01"
+      ]
+    },
+    {
+      "skill": "TELAB-01",
+      "pos": {
+        "x": 34.21,
+        "y": 44.37
+      },
+      "linked": [
+        "AUTOM-01"
+      ]
+    },
+    {
+      "skill": "TCHTH-01",
+      "pos": {
+        "x": 17.21,
+        "y": 42.37
+      },
+      "linked": [
+        "TELAB-01"
+      ]
+    },
+    {
+      "skill": "RETRO-01",
+      "pos": {
+        "x": 34.21,
+        "y": 57.25
+      },
+      "linked": [
+        "AUTOM-01"
+      ]
+    },
+    {
+      "skill": "BRICO-01",
+      "pos": {
+        "x": 19.78,
+        "y": 63.15
+      },
+      "linked": [
+        "RETRO-01"
+      ]
+    }
+  ]
+}

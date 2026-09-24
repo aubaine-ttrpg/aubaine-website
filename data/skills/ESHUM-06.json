@@ -1,0 +1,13 @@
+{
+  "id": "ESHUM-06",
+  "title": "Formation technique",
+  "type": "passive",
+  "tier": 5,
+  "domains": [],
+  "prerequisite": "Être Humain du Landenheit",
+  "activation": "Passif",
+  "tags": {
+    "school": "enhancement"
+  },
+  "description": "La première fois que vous mémorisez cette Compétence, choisissez l'Artisanat, les Arcanes, la Technologie ou la Science. Tant qu'elle est Mémorisée, vous avez l'Expertise dans l'Aptitude choisie et son modificateur augmente de 1, jusqu'au maximum de +6."
+}

@@ -1,0 +1,18 @@
+{
+  "id": "BASTI",
+  "status": "draft",
+  "name": "Panoplie du Bastion",
+  "bonuses": [
+    {
+      "pieces": 2,
+      "text": "Vous gagnez la Compétence {{Parade}}. Elle n'occupe aucune Mémoire et n'a pas à être apprise.",
+      "grants": [
+        "PARAD-01"
+      ]
+    },
+    {
+      "pieces": 3,
+      "text": "Vous gagnez la résistance aux dégâts de type Contondant, Perforant ou Tranchant."
+    }
+  ]
+}

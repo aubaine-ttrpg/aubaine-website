@@ -1,0 +1,16 @@
+{
+  "id": "PRETE-01",
+  "title": "Prêteur",
+  "type": "active",
+  "tier": 4,
+  "domains": [],
+  "activation": "10 minutes",
+  "range": "Contact",
+  "duration": "Instantanée",
+  "energy": 0,
+  "tags": {
+    "practice": "technique",
+    "school": "influence"
+  },
+  "description": "Vous avancez ce qui manque, et vous notez.\n\nAvancez à une créature de quoi régler ce qu'elle ne peut pas régler. Elle gagne 1 [[Redevable]] envers vous, et 2 si ce que vous avancez la sort d'un vrai mauvais pas.\n\n[[[Redevable]]]"
+}

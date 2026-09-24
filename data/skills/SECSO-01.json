@@ -1,0 +1,19 @@
+{
+  "id": "SECSO-01",
+  "title": "Second souffle",
+  "type": "active",
+  "tier": 1,
+  "domains": [
+    "physical"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "Personnel",
+  "duration": "Instantanée",
+  "recharge": "short-rest",
+  "energy": 0,
+  "tags": {
+    "practice": "manoeuvre",
+    "school": "healing"
+  },
+  "description": "Vous serrez les dents et vous repartez. Vous récupérez 1d10 PdV plus votre modificateur de Constitution."
+}

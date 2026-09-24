@@ -1,0 +1,17 @@
+{
+  "id": "gnome",
+  "status": "draft",
+  "name": "Gnome",
+  "types": [
+    "humanoid"
+  ],
+  "size": [
+    "small"
+  ],
+  "offered": [
+    "ESGNO-01",
+    "ESGNO-02",
+    "ESGNO-03",
+    "ESGNO-04"
+  ]
+}

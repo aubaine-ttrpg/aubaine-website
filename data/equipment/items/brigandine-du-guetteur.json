@@ -1,0 +1,36 @@
+{
+  "name": "Brigandine du guetteur",
+  "status": "draft",
+  "section": "torse",
+  "position": 4,
+  "kind": "Armure",
+  "rarity": "uncommon",
+  "art": "cuirasse-1_1-og.png",
+  "price": 13600,
+  "set": "TRAQU",
+  "headlines": [
+    {
+      "label": "CA",
+      "value": "14 + Dextérité"
+    }
+  ],
+  "properties": [
+    {
+      "name": "Pas de velours.",
+      "text": "Vous pouvez effectuer l'action Se cacher avec une Action Bonus."
+    }
+  ],
+  "craft": {
+    "discipline": "artisanat",
+    "cost": 34,
+    "materials": [
+      "Cuir",
+      "Métal"
+    ],
+    "sequence": [
+      "15 (Str)",
+      "14 (Dex)"
+    ]
+  },
+  "description": "Plaques rivetées entre deux cuirs, matées au noir. Elle ne renvoie pas la lumière et ne grince pas."
+}

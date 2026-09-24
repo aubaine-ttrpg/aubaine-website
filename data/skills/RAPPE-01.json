@@ -1,0 +1,16 @@
+{
+  "id": "RAPPE-01",
+  "title": "Rune de rappel",
+  "type": "active",
+  "tier": 5,
+  "domains": [],
+  "activation": "10 minutes",
+  "range": "Contact",
+  "duration": "Jusqu'au déclenchement",
+  "energy": 3,
+  "tags": {
+    "practice": "spell",
+    "school": "mobility"
+  },
+  "description": "Vous gravez une rune qui vous garde une place. Tant qu'elle tient, vous pouvez la déclencher à distance, où que vous soyez, et vous vous téléportez auprès d'elle.\n\nLa rune se consume en vous ramenant. Elle ne ramène que vous, et ce que vous portez."
+}

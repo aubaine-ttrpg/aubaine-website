@@ -1,0 +1,16 @@
+{
+  "id": "paladin",
+  "status": "draft",
+  "name": "Paladin",
+  "treeType": "archetype",
+  "size": 16,
+  "placements": [
+    {
+      "skill": "PALAD-01",
+      "pos": {
+        "x": 50,
+        "y": 50.81
+      }
+    }
+  ]
+}

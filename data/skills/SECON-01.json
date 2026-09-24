@@ -1,0 +1,16 @@
+{
+  "id": "SECON-01",
+  "title": "Seconde chance",
+  "type": "active",
+  "tier": 5,
+  "domains": [],
+  "activation": "1 Réaction",
+  "range": "Contact",
+  "duration": "Instantanée",
+  "energy": 2,
+  "tags": {
+    "practice": "technique",
+    "school": "creation"
+  },
+  "description": "Vous jouez cette Compétence lorsqu'un de vos Jets de fabrication échoue, avant que la fabrication ne s'arrête.\n\nVous relancez ce Jet et gardez le nouveau résultat. Vous ne pouvez le faire qu'une fois par fabrication : la pièce ne pardonne pas deux fois."
+}

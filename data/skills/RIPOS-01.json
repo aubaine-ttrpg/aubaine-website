@@ -1,0 +1,23 @@
+{
+  "id": "RIPOS-01",
+  "title": "Riposte fulgurante",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "thunder"
+  ],
+  "characteristics": [
+    "intelligence",
+    "spirit",
+    "charisma"
+  ],
+  "activation": "1 Réaction",
+  "range": "Personnel",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "school": "mobility"
+  },
+  "description": "Vous jouez cette Réaction lorsqu'une créature à 1,5 m ou moins vous touche avec une Attaque.\n\nVous vous défaites sur place et vous reformez à un emplacement libre que vous voyez à 9 m ou moins. La créature subit 1d10 dégâts de Foudre au passage de l'arc."
+}

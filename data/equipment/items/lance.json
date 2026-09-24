@@ -1,0 +1,57 @@
+{
+  "name": "Lance",
+  "status": "draft",
+  "section": "armes-melee",
+  "position": 2,
+  "kind": "Arme de mêlée",
+  "rarity": "common",
+  "art": "lance-1_1-og.png",
+  "price": 400,
+  "headlines": [
+    {
+      "label": "Dégâts",
+      "value": "1d6 + Force"
+    }
+  ],
+  "stats": [
+    {
+      "label": "Jet",
+      "value": "Force + Mêlée"
+    },
+    {
+      "label": "Portée",
+      "value": "Allonge (3m)"
+    },
+    {
+      "label": "Type de dégâts",
+      "value": "Perforants"
+    },
+    {
+      "label": "Mains",
+      "value": "1 main"
+    }
+  ],
+  "properties": [
+    {
+      "name": "Polyvalente.",
+      "text": "Vous pouvez manier cette arme à deux mains. Lorsque vous le faites, augmentez un de ses dés de dégâts d'un cran."
+    },
+    {
+      "name": "Lancé (9m).",
+      "text": "Cette arme peut être lancée sur une cible située jusqu'à 9 mètres. Lorsqu'elle est lancée, son Jet utilise Visée à la place de son Aptitude habituelle."
+    }
+  ],
+  "craft": {
+    "discipline": "artisanat",
+    "cost": 4,
+    "materials": [
+      "Bois",
+      "Métal"
+    ],
+    "sequence": [
+      "10 (Str)",
+      "12 (Dex)"
+    ]
+  },
+  "description": "Hampe de bois et fer emmanché. Une main pour garder le bouclier, deux pour peser sur le coup."
+}

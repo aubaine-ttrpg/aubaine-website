@@ -1,0 +1,57 @@
+{
+  "name": "Gant plombé",
+  "status": "draft",
+  "section": "armes-poing",
+  "position": 2,
+  "kind": "Arme de poing",
+  "rarity": "uncommon",
+  "art": "cotte-de-mailles-1_1-og.png",
+  "price": 12000,
+  "headlines": [
+    {
+      "label": "Dégâts",
+      "value": "1d4 + 2 × Force"
+    }
+  ],
+  "stats": [
+    {
+      "label": "Jet",
+      "value": "Force + Mêlée"
+    },
+    {
+      "label": "Portée",
+      "value": "Contact (1,5m)"
+    },
+    {
+      "label": "Type de dégâts",
+      "value": "Contondants"
+    },
+    {
+      "label": "Mains",
+      "value": "1 main"
+    }
+  ],
+  "properties": [
+    {
+      "name": "Castagneur.",
+      "text": "Lorsque votre attaque avec cette arme touche, ajoutez une seconde fois votre modificateur de Force à ses dégâts."
+    },
+    {
+      "name": "Légère.",
+      "text": "Lorsque vous tenez une arme Légère dans chacune de vos mains et que vous effectuez une attaque avec l'une d'elles, vous pouvez utiliser votre Action Bonus pour effectuer une attaque avec l'autre. Cette attaque n'ajoute pas sa Caractéristique à ses dégâts."
+    }
+  ],
+  "craft": {
+    "discipline": "artisanat",
+    "cost": 30,
+    "materials": [
+      "Cuir",
+      "Métal"
+    ],
+    "sequence": [
+      "15 (Str)",
+      "14 (Dex)"
+    ]
+  },
+  "description": "Bandes de plomb cousues dans la doublure, au dos des doigts. Le coup part lentement et arrive deux fois."
+}

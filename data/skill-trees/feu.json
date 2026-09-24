@@ -1,0 +1,120 @@
+{
+  "id": "feu",
+  "status": "draft",
+  "name": "Feu",
+  "subtitle": "La flamme insatiable",
+  "treeType": "domain",
+  "size": 16,
+  "cover": "feu-3_4-og.png",
+  "banner": "feu-16_9-og.png",
+  "backCover": "feu-dos-3_4-og.png",
+  "placements": [
+    {
+      "skill": "AVIVE-01",
+      "pos": {
+        "x": 50,
+        "y": 50.81
+      }
+    },
+    {
+      "skill": "TRFEU-01",
+      "pos": {
+        "x": 50,
+        "y": 37.92
+      },
+      "linked": [
+        "AVIVE-01"
+      ]
+    },
+    {
+      "skill": "CAUTE-01",
+      "pos": {
+        "x": 50,
+        "y": 26.14
+      },
+      "linked": [
+        "TRFEU-01"
+      ]
+    },
+    {
+      "skill": "BOULE-01",
+      "pos": {
+        "x": 72.44,
+        "y": 31.91
+      },
+      "linked": [
+        "TRFEU-01"
+      ]
+    },
+    {
+      "skill": "FIRME-01",
+      "pos": {
+        "x": 65.79,
+        "y": 57.25
+      },
+      "linked": [
+        "AVIVE-01"
+      ]
+    },
+    {
+      "skill": "RETFL-01",
+      "pos": {
+        "x": 34.21,
+        "y": 57.25
+      },
+      "linked": [
+        "AVIVE-01"
+      ]
+    },
+    {
+      "skill": "SCHAU-01",
+      "pos": {
+        "x": 74.68,
+        "y": 68.25
+      },
+      "linked": [
+        "FIRME-01"
+      ]
+    },
+    {
+      "skill": "FIRPD-01",
+      "pos": {
+        "x": 83.71,
+        "y": 57.2
+      },
+      "linked": [
+        "FIRME-01"
+      ]
+    },
+    {
+      "skill": "FLASH-01",
+      "pos": {
+        "x": 19.78,
+        "y": 63.15
+      },
+      "linked": [
+        "RETFL-01"
+      ]
+    },
+    {
+      "skill": "COMBU-01",
+      "pos": {
+        "x": 30.5,
+        "y": 70.5
+      },
+      "linked": [
+        "RETFL-01"
+      ]
+    },
+    {
+      "skill": "TOUBR-01",
+      "pos": {
+        "x": 17,
+        "y": 71.5
+      },
+      "linked": [
+        "COMBU-01"
+      ]
+    }
+  ]
+}

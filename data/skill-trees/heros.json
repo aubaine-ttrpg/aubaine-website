@@ -1,0 +1,18 @@
+{
+  "id": "heros",
+  "status": "draft",
+  "name": "Héros",
+  "treeType": "archetype",
+  "size": 16,
+  "cover": "marigold-3_4-og.png",
+  "banner": "marigold-16_9-og.png",
+  "placements": [
+    {
+      "skill": "HEROS-01",
+      "pos": {
+        "x": 50,
+        "y": 50.81
+      }
+    }
+  ]
+}

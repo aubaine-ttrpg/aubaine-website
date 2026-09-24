@@ -1,0 +1,55 @@
+{
+  "name": "Gant lacé",
+  "status": "draft",
+  "section": "armes-poing",
+  "position": 1,
+  "kind": "Arme de poing",
+  "rarity": "uncommon",
+  "art": "targe-1_1-og.png",
+  "price": 10400,
+  "headlines": [
+    {
+      "label": "Dégâts",
+      "value": "1d6 + Force"
+    }
+  ],
+  "stats": [
+    {
+      "label": "Jet",
+      "value": "Force + Mêlée"
+    },
+    {
+      "label": "Portée",
+      "value": "Contact (1,5m)"
+    },
+    {
+      "label": "Type de dégâts",
+      "value": "Contondants"
+    },
+    {
+      "label": "Mains",
+      "value": "1 main"
+    }
+  ],
+  "properties": [
+    {
+      "name": "Finesse.",
+      "text": "Cette arme peut utiliser Dextérité + Finesse à la place de Force + Mêlée. Lorsque vous le faites, utilisez également votre Dextérité à la place de votre Force pour ses dégâts."
+    },
+    {
+      "name": "Légère.",
+      "text": "Lorsque vous tenez une arme Légère dans chacune de vos mains et que vous effectuez une attaque avec l'une d'elles, vous pouvez utiliser votre Action Bonus pour effectuer une attaque avec l'autre. Cette attaque n'ajoute pas sa Caractéristique à ses dégâts."
+    }
+  ],
+  "craft": {
+    "discipline": "artisanat",
+    "cost": 26,
+    "materials": [
+      "Cuir"
+    ],
+    "sequence": [
+      "14 (Dex)"
+    ]
+  },
+  "description": "Cuir fin lacé du poignet aux phalanges, cousu de plaques de corne. Il serre la main sans l'alourdir."
+}

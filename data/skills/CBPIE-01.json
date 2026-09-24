@@ -1,0 +1,20 @@
+{
+  "id": "CBPIE-01",
+  "status": "draft",
+  "title": "Pied sûr",
+  "type": "passive",
+  "tier": 1,
+  "domains": [],
+  "characteristics": [
+    "dexterity"
+  ],
+  "activation": "Passif",
+  "range": "Personnelle",
+  "duration": "Permanente",
+  "energy": 0,
+  "tags": {
+    "practice": "technique",
+    "school": "mobility"
+  },
+  "description": "Toits mouillés, gravier, poutres : vous posez le pied là où les autres cherchent une prise.\n\nLe terrain difficile ne coûte pas de déplacement supplémentaire, et vos Jets de Dextérité + Acrobaties pour garder l'équilibre gagnent 1 Avantage."
+}

@@ -1,0 +1,116 @@
+{
+  "id": "runiste",
+  "status": "draft",
+  "name": "Runiste",
+  "treeType": "archetype",
+  "size": 16,
+  "placements": [
+    {
+      "skill": "GRAVU-01",
+      "pos": {
+        "x": 50,
+        "y": 50.81
+      }
+    },
+    {
+      "skill": "GARDE-01",
+      "pos": {
+        "x": 50,
+        "y": 37.92
+      },
+      "linked": [
+        "GRAVU-01"
+      ]
+    },
+    {
+      "skill": "ENTRA-02",
+      "pos": {
+        "x": 50,
+        "y": 26.14
+      },
+      "linked": [
+        "GARDE-01"
+      ]
+    },
+    {
+      "skill": "HATIV-01",
+      "pos": {
+        "x": 72.44,
+        "y": 31.91
+      },
+      "linked": [
+        "GARDE-01"
+      ]
+    },
+    {
+      "skill": "SCELL-01",
+      "pos": {
+        "x": 65.79,
+        "y": 44.37
+      },
+      "linked": [
+        "GRAVU-01"
+      ]
+    },
+    {
+      "skill": "RAPPE-01",
+      "pos": {
+        "x": 83.71,
+        "y": 44.42
+      },
+      "linked": [
+        "SCELL-01"
+      ]
+    },
+    {
+      "skill": "LECTU-01",
+      "pos": {
+        "x": 34.21,
+        "y": 44.37
+      },
+      "linked": [
+        "GRAVU-01"
+      ]
+    },
+    {
+      "skill": "EFFAC-01",
+      "pos": {
+        "x": 17.21,
+        "y": 42.37
+      },
+      "linked": [
+        "LECTU-01"
+      ]
+    },
+    {
+      "skill": "MARQU-01",
+      "pos": {
+        "x": 34.21,
+        "y": 57.25
+      },
+      "linked": [
+        "GRAVU-01"
+      ]
+    },
+    {
+      "skill": "SENTI-01",
+      "pos": {
+        "x": 19.78,
+        "y": 63.15
+      },
+      "linked": [
+        "MARQU-01"
+      ]
+    },
+    {
+      "skill": "CHAIN-02",
+      "pos": {
+        "x": 65.79,
+        "y": 57.25
+      },
+      "linked": [
+        "GRAVU-01"
+      ]
+    }
+  ]
+}

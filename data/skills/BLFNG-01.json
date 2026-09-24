@@ -1,0 +1,34 @@
+{
+  "id": "BLFNG-01",
+  "title": "Croc sanguinaire",
+  "type": "active",
+  "tier": 2,
+  "domains": [
+    "blood"
+  ],
+  "activation": "1 Attaque",
+  "range": "Contact",
+  "duration": "Instantanée",
+  "tags": {
+    "practice": "manoeuvre",
+    "school": "destruction",
+    "specials": [
+      "lifesteal"
+    ]
+  },
+  "description": "Vous mordez au lieu de frapper. Effectuez un Jet de Force + Mêlée ou de Dextérité + Finesse contre la CA d'une créature à 1,5 m ou moins.\n\nEn cas de réussite, elle subit 2d6 dégâts Perforants et vous récupérez 1d6 PdV. Une créature sans sang, ou déjà morte, ne vous en rend aucun.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 4,
+      "title": "Croc vorace",
+      "description": "{{Croc sanguinaire}} inflige 3d6 dégâts Perforants et vous rend 2d6 PdV."
+    },
+    {
+      "level": 3,
+      "tier": 7,
+      "title": "Croc dévoreur",
+      "description": "{{Croc sanguinaire}} inflige 4d6 dégâts Perforants et vous rend 3d6 PdV."
+    }
+  ]
+}

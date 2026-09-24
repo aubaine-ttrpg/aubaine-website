@@ -1,0 +1,12 @@
+{
+  "key": "charme",
+  "name": "Charmé",
+  "forms": [
+    "Charmée",
+    "Charmés",
+    "Charmées"
+  ],
+  "kind": "debuff",
+  "icon": "mdi:heart",
+  "description": "Tant qu'une créature est Charmée, la créature qui l'a charmée gagne 1 Avantage à ses Jets de Charisme qui la prennent pour cible et n'infligent pas de dégâts.\n\nLa Compétence qui l'applique indique combien de temps l'état dure."
+}

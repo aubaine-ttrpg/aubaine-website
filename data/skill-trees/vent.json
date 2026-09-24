@@ -1,0 +1,16 @@
+{
+  "id": "vent",
+  "status": "draft",
+  "name": "Vent",
+  "treeType": "domain",
+  "size": 16,
+  "placements": [
+    {
+      "skill": "VENTS-01",
+      "pos": {
+        "x": 50,
+        "y": 50.81
+      }
+    }
+  ]
+}

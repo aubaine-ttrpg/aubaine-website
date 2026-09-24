@@ -1,0 +1,18 @@
+{
+  "id": "EFFAC-01",
+  "title": "Effacement",
+  "type": "active",
+  "tier": 4,
+  "domains": [],
+  "characteristics": [
+    "intelligence"
+  ],
+  "activation": "1 Réaction",
+  "range": "9 m",
+  "duration": "Instantanée",
+  "energy": 2,
+  "tags": {
+    "school": "protection"
+  },
+  "description": "Vous jouez cette Réaction lorsqu'une rune se déclenche à portée, la vôtre ou celle d'un autre.\n\nEffectuez un Jet d'Intelligence + Arcanes contre le DD de cette rune. En cas de réussite, vous passez le pouce au bon endroit et la rune s'éteint sans rien faire."
+}

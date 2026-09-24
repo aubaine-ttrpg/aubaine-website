@@ -1,0 +1,22 @@
+{
+  "id": "APILL-01",
+  "title": "Apprenti illusionniste",
+  "type": "passive",
+  "tier": 2,
+  "domains": [],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "tags": {
+    "school": "enhancement"
+  },
+  "description": "Vous savez où poser le mensonge pour qu'il tienne. Lorsque vous calculez le DD d'un Sort portant l'étiquette Illusion, ajoutez la moitié de votre modificateur d'Arcanes, arrondie à l'inférieur.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 8,
+      "title": "Illusionniste accompli",
+      "description": "Ajoutez la totalité de votre modificateur d'Arcanes au DD de vos Sorts Illusion, au lieu de la moitié."
+    }
+  ]
+}

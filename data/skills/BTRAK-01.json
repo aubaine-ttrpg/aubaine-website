@@ -1,0 +1,18 @@
+{
+  "id": "BTRAK-01",
+  "title": "Hémotraqueur",
+  "type": "active",
+  "tier": 2,
+  "domains": [
+    "blood",
+    "psychic"
+  ],
+  "activation": "1 Action",
+  "range": "Contact",
+  "duration": "Instantanée",
+  "life": "1d6",
+  "tags": {
+    "school": "divination"
+  },
+  "description": "Vous touchez du sang, vous le reniflez, vous le goûtez. Vous apprenez une information de votre choix sur la créature dont il provient : ce qu'elle est, ce dont elle souffre, de quel côté elle est partie, ou depuis combien de temps elle saigne."
+}

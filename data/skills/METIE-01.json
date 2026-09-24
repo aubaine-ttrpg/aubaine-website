@@ -1,0 +1,26 @@
+{
+  "id": "METIE-01",
+  "title": "Métier",
+  "type": "special",
+  "tier": 1,
+  "domains": [],
+  "activation": "À l'achat",
+  "range": "—",
+  "duration": "—",
+  "description": "À l'achat, choisissez une discipline entre Artisanat, Arcanes, Technologie et Science. C'est la vôtre.\n\nVous gagnez 1 Avantage à tous vos Jets de fabrication faits sous cette discipline, et vous pouvez entreprendre une recette que vous n'avez jamais faite sans qu'on vous rie au nez.\n\nUn métier n'occupe aucune Mémoire : on ne range pas ce qu'on a dans les mains.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 6,
+      "title": "Second métier",
+      "description": "Choisissez une deuxième discipline. Vous y travaillez comme dans la première, et vous êtes désormais de ces gens qu'on va chercher loin."
+    },
+    {
+      "level": 3,
+      "tier": 10,
+      "xpOverride": 75,
+      "title": "Toutes les mains",
+      "description": "Les quatre disciplines sont les vôtres. Il n'existe plus d'établi où vous ne sachiez pas quoi faire."
+    }
+  ]
+}

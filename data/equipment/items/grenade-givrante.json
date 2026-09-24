@@ -1,0 +1,48 @@
+{
+  "name": "Grenade givrante",
+  "status": "draft",
+  "section": "consommables",
+  "position": 5,
+  "kind": "Consommable",
+  "rarity": "uncommon",
+  "art": "terra-catalyseur-1_1-og.png",
+  "price": 12800,
+  "headlines": [
+    {
+      "label": "Dégâts",
+      "value": "2d6"
+    }
+  ],
+  "stats": [
+    {
+      "label": "Activation",
+      "value": "1 Action"
+    },
+    {
+      "label": "Portée",
+      "value": "9m"
+    },
+    {
+      "label": "Zone",
+      "value": "Rayon 3m"
+    },
+    {
+      "label": "Type de dégâts",
+      "value": "Froid"
+    }
+  ],
+  "craft": {
+    "discipline": "technologie",
+    "cost": 32,
+    "materials": [
+      "Métal",
+      "Plante"
+    ],
+    "sequence": [
+      "12 (Dex)",
+      "15 (Int)"
+    ]
+  },
+  "text": "Vous pouvez effectuer une Action pour lancer cette grenade sur un point que vous voyez à portée. Chaque créature dans un rayon de ***3 mètres*** subit ***2d6*** dégâts de Froid, puis effectue un Jet de Constitution + Résistance contre un DD de ***15***. En cas d'échec, elle est [[Gelé]].",
+  "description": "Cylindre de laiton qui givre dès qu'on tire la goupille. Le sol autour d'elle craque encore une heure après."
+}

@@ -1,0 +1,24 @@
+{
+  "id": "MARQU-01",
+  "title": "Marque de chair",
+  "type": "active",
+  "tier": 4,
+  "domains": [
+    "blood"
+  ],
+  "characteristics": [
+    "intelligence"
+  ],
+  "activation": "10 minutes",
+  "range": "Contact",
+  "duration": "Jusqu'au déclenchement",
+  "energy": 2,
+  "tags": {
+    "practice": "spell",
+    "school": "creation",
+    "specials": [
+      "graft"
+    ]
+  },
+  "description": "Vous gravez la rune sur une créature plutôt que sur une chose. Elle doit être consentante, endormie, ou tenue.\n\nLa rune voyage avec elle et se déclenche où qu'elle aille. Une créature qui porte une rune contre son gré peut la faire retirer par quiconque réussit un Jet d'Intelligence + Médecine contre votre DD (10 + Intelligence + Arcanes) ; l'opération lui coûte 2d6 PdV."
+}

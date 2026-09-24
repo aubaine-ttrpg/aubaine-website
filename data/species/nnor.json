@@ -1,0 +1,19 @@
+{
+  "id": "nnor",
+  "status": "draft",
+  "name": "Nnor",
+  "cover": "roublard-3_4-og.png",
+  "banner": "roublard-16_9-upscaled_4.jpg",
+  "types": [
+    "humanoid"
+  ],
+  "size": [
+    "medium"
+  ],
+  "offered": [
+    "ESNNO-01",
+    "ESNNO-02",
+    "ESNNO-03",
+    "ESNNO-04"
+  ]
+}

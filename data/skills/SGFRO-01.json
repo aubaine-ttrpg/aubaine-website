@@ -1,0 +1,17 @@
+{
+  "id": "SGFRO-01",
+  "title": "Sang-froid",
+  "type": "passive",
+  "tier": 3,
+  "domains": [
+    "blood"
+  ],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "tags": {
+    "practice": "technique",
+    "school": "protection"
+  },
+  "description": "Vous avez trop saigné pour que cela vous impressionne encore. Vous ne subissez aucun Désavantage pour agir à bas PdV, et vous gagnez 1 Avantage à vos Jets de Constitution + Résistance contre le poison, la maladie et la perte de sang."
+}

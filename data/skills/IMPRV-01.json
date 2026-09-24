@@ -1,0 +1,15 @@
+{
+  "id": "IMPRV-01",
+  "title": "Improvisation",
+  "type": "passive",
+  "tier": 4,
+  "domains": [],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "tags": {
+    "practice": "technique",
+    "school": "creation"
+  },
+  "description": "Vous n'avez pas besoin d'une recette pour savoir ce que vous voulez obtenir.\n\nLorsque vous proposez une fabrication improvisée, le MJ vous dit les Besoins de matière, les Jets et la durée avant que vous n'engagiez quoi que ce soit. Une de vos créations validée devient une recette de la campagne, et elle porte votre nom."
+}

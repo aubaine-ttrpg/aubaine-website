@@ -1,0 +1,33 @@
+{
+  "name": "Armure de cuir",
+  "status": "draft",
+  "section": "torse",
+  "position": 0,
+  "kind": "Armure",
+  "rarity": "common",
+  "art": "armure-de-cuir-1_1-og.png",
+  "price": 500,
+  "headlines": [
+    {
+      "label": "CA",
+      "value": "13 + Dextérité"
+    }
+  ],
+  "properties": [
+    {
+      "name": "Pas de velours.",
+      "text": "Vous pouvez effectuer l'action Se cacher avec une Action Bonus."
+    }
+  ],
+  "craft": {
+    "discipline": "artisanat",
+    "cost": 5,
+    "materials": [
+      "Cuir"
+    ],
+    "sequence": [
+      "12 (Dex)"
+    ]
+  },
+  "description": "Cuir bouilli monté sur sangles, souple aux épaules et à la taille."
+}

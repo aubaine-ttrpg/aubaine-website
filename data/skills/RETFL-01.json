@@ -1,0 +1,18 @@
+{
+  "id": "RETFL-01",
+  "title": "Retour de flammes",
+  "type": "active",
+  "tier": 2,
+  "domains": [
+    "fire"
+  ],
+  "activation": "1 Réaction",
+  "range": "9 m",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "school": "protection"
+  },
+  "description": "Vous jouez cette Réaction lorsque vous subissez des dégâts de Feu.\n\nRéduisez ces dégâts de 1d8. La créature qui vous les inflige subit autant de dégâts de Feu que vous venez d'en éviter, si vous la voyez à portée."
+}

@@ -1,0 +1,18 @@
+{
+  "id": "PARAD-01",
+  "title": "Parade",
+  "type": "active",
+  "tier": 2,
+  "domains": [
+    "physical"
+  ],
+  "activation": "1 Réaction",
+  "range": "Personnel",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "manoeuvre",
+    "school": "protection"
+  },
+  "description": "Vous jouez cette Réaction lorsqu'une Attaque vous touche.\n\nVous détournez le coup du plat de la lame ou de la garde : réduisez ces dégâts de 1d10 plus votre modificateur de Dextérité."
+}

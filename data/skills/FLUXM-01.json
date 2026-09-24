@@ -1,0 +1,14 @@
+{
+  "id": "FLUXM-01",
+  "title": "Flux mystique",
+  "type": "passive",
+  "tier": 6,
+  "domains": [],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "tags": {
+    "school": "enhancement"
+  },
+  "description": "Le tour vous coûte moins qu'il ne coûterait à un autre. Vos Compétences portant l'étiquette Sort ou Illusion coûtent 1 Énergie de moins, jusqu'à un minimum de 0."
+}

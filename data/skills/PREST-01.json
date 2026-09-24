@@ -1,0 +1,22 @@
+{
+  "id": "PREST-01",
+  "title": "Prestidigitation",
+  "type": "active",
+  "tier": 1,
+  "domains": [],
+  "characteristics": [
+    "intelligence"
+  ],
+  "activation": "1 Action",
+  "range": "9 m",
+  "duration": "jusqu'à 1 minute",
+  "energy": 0,
+  "tags": {
+    "practice": "spell",
+    "school": "illusion",
+    "specials": [
+      "unleashed"
+    ]
+  },
+  "description": "Vous produisez un tour mineur à portée : une étincelle, une bouffée de vent, un frisson, un petit son, une odeur, salir ou nettoyer, faire apparaître une babiole illusoire. L'effet n'inflige aucun dégât et ne déplace rien de lourd.\n\nCe que vous pouvez en tirer tient à ce que vous inventez avec, pas à une liste. Une créature qui veut percer un tour ainsi produit y consacre son Action et effectue un Jet d'Esprit + Perception contre votre DD (10 + Intelligence + Tromperie)."
+}

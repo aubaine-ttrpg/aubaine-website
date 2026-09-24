@@ -1,0 +1,18 @@
+{
+  "id": "INTER-01",
+  "title": "Interface",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "psychic"
+  ],
+  "activation": "1 Action",
+  "range": "Illimitée",
+  "duration": "jusqu'à 10 minutes",
+  "concentration": true,
+  "energy": 1,
+  "tags": {
+    "school": "divination"
+  },
+  "description": "Vous fermez les yeux et vous ouvrez les siens. Tant que vous vous concentrez, vous voyez et entendez depuis votre Automate au lieu de votre propre corps, où qu'il se trouve.\n\nPendant ce temps, votre corps ne voit ni n'entend rien de ce qui l'entoure."
+}

@@ -1,0 +1,19 @@
+{
+  "id": "ENTRA-02",
+  "title": "Rune d'entrave",
+  "type": "active",
+  "tier": 4,
+  "domains": [],
+  "characteristics": [
+    "intelligence"
+  ],
+  "activation": "10 minutes",
+  "range": "Contact",
+  "duration": "Jusqu'au déclenchement",
+  "energy": 2,
+  "tags": {
+    "practice": "spell",
+    "school": "control"
+  },
+  "description": "La rune ne blesse pas, elle retient. La première créature qui la déclenche effectue un Jet de Force + Athlétisme contre votre DD (10 + Intelligence + Arcanes).\n\nEn cas d'échec, elle est [[Entravé]] par des liens de lumière gravée. En cas de réussite, elle s'arrache et la rune se consume."
+}

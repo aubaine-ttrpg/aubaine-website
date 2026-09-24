@@ -1,0 +1,18 @@
+{
+  "id": "roublard",
+  "status": "draft",
+  "name": "Roublard",
+  "treeType": "archetype",
+  "size": 16,
+  "cover": "roublard-3_4-og.png",
+  "banner": "roublard-16_9-upscaled_4.jpg",
+  "placements": [
+    {
+      "skill": "ROUBL-01",
+      "pos": {
+        "x": 50,
+        "y": 50.81
+      }
+    }
+  ]
+}

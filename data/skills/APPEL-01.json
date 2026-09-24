@@ -1,0 +1,18 @@
+{
+  "id": "APPEL-01",
+  "title": "Appel de la nature",
+  "type": "active",
+  "tier": 4,
+  "domains": [],
+  "activation": "1 Action",
+  "range": "18 m",
+  "duration": "Instantanée",
+  "energy": 2,
+  "tags": {
+    "school": "summoning",
+    "specials": [
+      "unleashed"
+    ]
+  },
+  "description": "Vous demandez un service à ce qui vit autour de vous : les bêtes du couvert, les racines sous la pierre, les insectes d'un mur.\n\nDécrivez ce que vous demandez. Le MJ dit ce qui répond et ce que cela coûte : la nature rend service, elle n'obéit pas. Ce qui vient fait une chose, à sa mesure, puis retourne à ses affaires."
+}

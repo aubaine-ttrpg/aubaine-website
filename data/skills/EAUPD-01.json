@@ -1,0 +1,18 @@
+{
+  "id": "EAUPD-01",
+  "title": "Détection primordiale",
+  "type": "passive",
+  "tier": 3,
+  "domains": [
+    "water",
+    "psychic"
+  ],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "tags": {
+    "practice": "spell",
+    "school": "divination"
+  },
+  "description": "Lorsque vous effectuez un Jet pour détecter, ressentir ou en apprendre plus sur un élément composé de magie d'Eau, vous gagnez 2 Avantages pour ce Jet."
+}

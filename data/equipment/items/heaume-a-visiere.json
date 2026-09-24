@@ -1,0 +1,35 @@
+{
+  "name": "Heaume à visière",
+  "status": "draft",
+  "section": "tetes",
+  "position": 1,
+  "kind": "Tête",
+  "rarity": "uncommon",
+  "art": "cotte-de-mailles-1_1-og.png",
+  "price": 11200,
+  "set": "BASTI",
+  "headlines": [
+    {
+      "label": "CA",
+      "value": "+1"
+    }
+  ],
+  "properties": [
+    {
+      "name": "Encombrante.",
+      "text": "Vous gagnez 1 Désavantage à tous vos Jets de Dextérité."
+    }
+  ],
+  "craft": {
+    "discipline": "artisanat",
+    "cost": 28,
+    "materials": [
+      "Métal"
+    ],
+    "sequence": [
+      "15 (Str)",
+      "12 (Dex)"
+    ]
+  },
+  "description": "Acier plein, fente d'un doigt à hauteur des yeux. On y voit ce qui est devant, et rien d'autre."
+}

@@ -1,0 +1,18 @@
+{
+  "id": "REMPA-01",
+  "title": "Rempart",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "earth"
+  ],
+  "activation": "1 Réaction",
+  "range": "9 m",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "school": "protection"
+  },
+  "description": "Vous jouez cette Réaction lorsqu'une créature que vous voyez à portée est prise pour cible par une Attaque.\n\nUne dalle de pierre jaillit du sol sur la trajectoire. L'Attaque subit 1 Désavantage, puis la dalle s'effrite."
+}

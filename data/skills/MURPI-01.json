@@ -1,0 +1,18 @@
+{
+  "id": "MURPI-01",
+  "title": "Mur de pierre",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "earth"
+  ],
+  "activation": "1 Action",
+  "range": "9 m",
+  "duration": "jusqu'à 1 heure",
+  "energy": 2,
+  "tags": {
+    "practice": "spell",
+    "school": "creation"
+  },
+  "description": "Un mur de pierre jaillit du sol à l'endroit que vous désignez : 9 m de long, 3 m de haut et 30 cm d'épaisseur, que vous pouvez répartir autrement tant que le volume reste le même.\n\nLe mur coupe le passage et la vue. Chaque section de 1,5 m possède une CA de 15 et 30 PdV, et s'effondre quand elle tombe à 0."
+}

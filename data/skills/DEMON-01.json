@@ -1,0 +1,19 @@
+{
+  "id": "DEMON-01",
+  "title": "Démontage",
+  "type": "active",
+  "tier": 3,
+  "domains": [],
+  "characteristics": [
+    "intelligence"
+  ],
+  "activation": "1 heure",
+  "range": "Contact",
+  "duration": "Instantanée",
+  "energy": 0,
+  "tags": {
+    "practice": "technique",
+    "school": "creation"
+  },
+  "description": "Vous défaites un objet dans l'ordre inverse de celui qui l'a fait.\n\nEffectuez un Jet d'Intelligence + la discipline sous laquelle l'objet a été fabriqué, contre un DD de 15. En cas de réussite, vous en retirez la moitié de sa Valeur de matière, arrondie à l'inférieur, dans ses Types d'origine. En cas d'échec, vous n'en tirez que des morceaux, et l'objet n'existe plus."
+}

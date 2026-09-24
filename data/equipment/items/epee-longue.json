@@ -1,0 +1,46 @@
+{
+  "name": "Épée longue",
+  "status": "draft",
+  "section": "armes-melee",
+  "position": 3,
+  "kind": "Arme de mêlée",
+  "rarity": "common",
+  "art": "epee-longue-1_1-og.png",
+  "price": 600,
+  "headlines": [
+    {
+      "label": "Dégâts",
+      "value": "2d6 + Force"
+    }
+  ],
+  "stats": [
+    {
+      "label": "Jet",
+      "value": "Force + Mêlée"
+    },
+    {
+      "label": "Portée",
+      "value": "Contact (1,5m)"
+    },
+    {
+      "label": "Type de dégâts",
+      "value": "Tranchants"
+    },
+    {
+      "label": "Mains",
+      "value": "2 mains"
+    }
+  ],
+  "craft": {
+    "discipline": "artisanat",
+    "cost": 6,
+    "materials": [
+      "Métal"
+    ],
+    "sequence": [
+      "15 (Str)",
+      "12 (Dex)"
+    ]
+  },
+  "description": "Lame droite menée à deux mains, lourde de la garde à la pointe. Elle demande de la place pour être menée."
+}

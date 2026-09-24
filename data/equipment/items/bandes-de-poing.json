@@ -1,0 +1,55 @@
+{
+  "name": "Bandes de poing",
+  "status": "draft",
+  "section": "armes-poing",
+  "position": 0,
+  "kind": "Arme de poing",
+  "rarity": "common",
+  "art": "armure-de-cuir-1_1-og.png",
+  "price": 300,
+  "headlines": [
+    {
+      "label": "Dégâts",
+      "value": "1d4 + Force"
+    }
+  ],
+  "stats": [
+    {
+      "label": "Jet",
+      "value": "Force + Mêlée"
+    },
+    {
+      "label": "Portée",
+      "value": "Contact (1,5m)"
+    },
+    {
+      "label": "Type de dégâts",
+      "value": "Contondants"
+    },
+    {
+      "label": "Mains",
+      "value": "1 main"
+    }
+  ],
+  "properties": [
+    {
+      "name": "Finesse.",
+      "text": "Cette arme peut utiliser Dextérité + Finesse à la place de Force + Mêlée. Lorsque vous le faites, utilisez également votre Dextérité à la place de votre Force pour ses dégâts."
+    },
+    {
+      "name": "Légère.",
+      "text": "Lorsque vous tenez une arme Légère dans chacune de vos mains et que vous effectuez une attaque avec l'une d'elles, vous pouvez utiliser votre Action Bonus pour effectuer une attaque avec l'autre. Cette attaque n'ajoute pas sa Caractéristique à ses dégâts."
+    }
+  ],
+  "craft": {
+    "discipline": "artisanat",
+    "cost": 3,
+    "materials": [
+      "Cuir"
+    ],
+    "sequence": [
+      "10 (Dex)"
+    ]
+  },
+  "description": "Lanières de cuir serrées autour du poing et du poignet. Elles ne font pas plus mal, elles laissent frapper plus longtemps."
+}

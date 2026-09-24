@@ -1,0 +1,150 @@
+{
+  "id": "berserker",
+  "status": "draft",
+  "name": "Berserker",
+  "subtitle": "Les forces de la nature",
+  "treeType": "archetype",
+  "size": 16,
+  "cover": "berserker-3_4-og.png",
+  "banner": "berserker-16_9-og.png",
+  "backCover": "berserker-dos-3_4-og.png",
+  "placements": [
+    {
+      "skill": "RAGER-01",
+      "pos": {
+        "x": 50,
+        "y": 50.81
+      }
+    },
+    {
+      "skill": "TEMER-01",
+      "pos": {
+        "x": 50,
+        "y": 37.92
+      },
+      "linked": [
+        "RAGER-01"
+      ]
+    },
+    {
+      "skill": "BRUTA-01",
+      "pos": {
+        "x": 50,
+        "y": 26.14
+      },
+      "linked": [
+        "TEMER-01"
+      ]
+    },
+    {
+      "skill": "TOURB-01",
+      "pos": {
+        "x": 72.44,
+        "y": 31.91
+      },
+      "linked": [
+        "TEMER-01"
+      ]
+    },
+    {
+      "skill": "TITAN-01",
+      "pos": {
+        "x": 65.79,
+        "y": 44.37
+      },
+      "linked": [
+        "RAGER-01"
+      ]
+    },
+    {
+      "skill": "DEFER-01",
+      "pos": {
+        "x": 83.71,
+        "y": 44.42
+      },
+      "linked": [
+        "TITAN-01"
+      ]
+    },
+    {
+      "skill": "PRMCR-01",
+      "pos": {
+        "x": 65.79,
+        "y": 57.25
+      },
+      "linked": [
+        "RAGER-01"
+      ]
+    },
+    {
+      "skill": "SALCR-01",
+      "pos": {
+        "x": 83.71,
+        "y": 57.2
+      },
+      "linked": [
+        "PRMCR-01"
+      ]
+    },
+    {
+      "skill": "DEMOR-01",
+      "pos": {
+        "x": 74.68,
+        "y": 68.25
+      },
+      "linked": [
+        "PRMCR-01"
+      ]
+    },
+    {
+      "skill": "SOIFS-01",
+      "pos": {
+        "x": 34.21,
+        "y": 44.37
+      },
+      "linked": [
+        "RAGER-01"
+      ]
+    },
+    {
+      "skill": "VERSE-01",
+      "pos": {
+        "x": 17.21,
+        "y": 42.37
+      },
+      "linked": [
+        "SOIFS-01"
+      ]
+    },
+    {
+      "skill": "DANGR-01",
+      "pos": {
+        "x": 34.21,
+        "y": 57.25
+      },
+      "linked": [
+        "RAGER-01"
+      ]
+    },
+    {
+      "skill": "BRUTE-01",
+      "pos": {
+        "x": 30.5,
+        "y": 70.5
+      },
+      "linked": [
+        "DANGR-01"
+      ]
+    },
+    {
+      "skill": "INTFC-01",
+      "pos": {
+        "x": 19.78,
+        "y": 63.15
+      },
+      "linked": [
+        "DANGR-01"
+      ]
+    }
+  ]
+}

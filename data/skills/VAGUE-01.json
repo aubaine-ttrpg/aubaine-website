@@ -1,0 +1,23 @@
+{
+  "id": "VAGUE-01",
+  "title": "Vague déferlante",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "water"
+  ],
+  "characteristics": [
+    "intelligence",
+    "spirit",
+    "charisma"
+  ],
+  "activation": "1 Action",
+  "range": "Personnel",
+  "duration": "Instantanée",
+  "energy": 2,
+  "tags": {
+    "practice": "spell",
+    "school": "destruction"
+  },
+  "description": "Une vague se lève et parcourt une ligne de 9 m sur 1,5 m devant vous. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\nChaque créature sur son passage effectue un Jet de Force + Athlétisme contre votre DD (10 + la Caractéristique choisie + Arcanes). En cas d'échec, elle subit 2d8 dégâts Contondants, est poussée jusqu'au bout de la vague et tombe [[À terre]]. En cas de réussite, elle tient bon et ne subit rien."
+}

@@ -1,0 +1,19 @@
+{
+  "id": "cindersohls",
+  "status": "draft",
+  "name": "Cindersöhls",
+  "types": [
+    "humanoid",
+    "construct"
+  ],
+  "size": [
+    "small",
+    "medium"
+  ],
+  "offered": [
+    "ESCDS-01",
+    "ESCDS-02",
+    "ESCDS-03",
+    "ESCDS-04"
+  ]
+}

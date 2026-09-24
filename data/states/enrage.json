@@ -1,0 +1,12 @@
+{
+  "key": "enrage",
+  "name": "Enragé",
+  "forms": [
+    "Enragée",
+    "Enragés",
+    "Enragées"
+  ],
+  "kind": "buff",
+  "icon": "mdi:emoticon-angry",
+  "description": "Une créature Enragée gagne une résistance aux dégâts Tranchants, Contondants et Perforants, et 1 Avantage à tous ses Jets de Force.\n\nElle ne peut pas se concentrer, et ses Jets d'Intelligence subissent 1 Désavantage : il ne reste plus grand-chose pour penser.\n\nLa Compétence qui l'applique indique combien de temps l'état dure. Il prend fin dans tous les cas lorsque la créature tombe à 0 PdV."
+}

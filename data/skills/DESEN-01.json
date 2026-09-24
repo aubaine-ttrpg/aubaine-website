@@ -1,0 +1,12 @@
+{
+  "id": "DESEN-01",
+  "title": "Se désengager",
+  "type": "active",
+  "tier": 1,
+  "showXp": false,
+  "domains": [],
+  "activation": "1 Action",
+  "range": "Personnel",
+  "duration": "1 round",
+  "description": "Vous rompez le contact et vous vous dégagez avec méthode.\n\nJusqu'à la fin de votre tour, votre déplacement ne déclenche aucune {{Attaque d'opportunité}}."
+}

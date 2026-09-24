@@ -1,0 +1,99 @@
+{
+  "entries": [
+    {
+      "key": "abyssal",
+      "labelFr": "Abyssal",
+      "labelEn": "Abyssal"
+    },
+    {
+      "key": "thieves-cant",
+      "labelFr": "Argot des voleurs",
+      "labelEn": "Thieves' Cant"
+    },
+    {
+      "key": "celestial",
+      "labelFr": "Céleste",
+      "labelEn": "Celestial"
+    },
+    {
+      "key": "common",
+      "labelFr": "Commun",
+      "labelEn": "Common"
+    },
+    {
+      "key": "undercommon",
+      "labelFr": "Commun des profondeurs",
+      "labelEn": "Undercommon"
+    },
+    {
+      "key": "draconic",
+      "labelFr": "Draconique",
+      "labelEn": "Draconic"
+    },
+    {
+      "key": "druidic",
+      "labelFr": "Druidique",
+      "labelEn": "Druidic"
+    },
+    {
+      "key": "elvish",
+      "labelFr": "Elfique",
+      "labelEn": "Elvish"
+    },
+    {
+      "key": "giant",
+      "labelFr": "Gigant",
+      "labelEn": "Giant"
+    },
+    {
+      "key": "gnomish",
+      "labelFr": "Gnome",
+      "labelEn": "Gnomish"
+    },
+    {
+      "key": "goblin",
+      "labelFr": "Gobelin",
+      "labelEn": "Goblin"
+    },
+    {
+      "key": "halfling",
+      "labelFr": "Halfelin",
+      "labelEn": "Halfling"
+    },
+    {
+      "key": "infernal",
+      "labelFr": "Infernal",
+      "labelEn": "Infernal"
+    },
+    {
+      "key": "common-sign-language",
+      "labelFr": "Langue multiverselle des signes",
+      "labelEn": "Common Sign Language"
+    },
+    {
+      "key": "dwarvish",
+      "labelFr": "Nain",
+      "labelEn": "Dwarvish"
+    },
+    {
+      "key": "orc",
+      "labelFr": "Orc",
+      "labelEn": "Orc"
+    },
+    {
+      "key": "primordial",
+      "labelFr": "Primordial",
+      "labelEn": "Primordial"
+    },
+    {
+      "key": "deep-speech",
+      "labelFr": "Profond",
+      "labelEn": "Deep Speech"
+    },
+    {
+      "key": "sylvan",
+      "labelFr": "Sylvestre",
+      "labelEn": "Sylvan"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "scothan",
+  "status": "draft",
+  "name": "Scothan",
+  "types": [
+    "humanoid"
+  ],
+  "derivedFrom": "parents",
+  "offered": [
+    "ESSCO-01",
+    "ESSCO-02"
+  ]
+}

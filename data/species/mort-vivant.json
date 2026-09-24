@@ -1,0 +1,15 @@
+{
+  "id": "mort-vivant",
+  "status": "draft",
+  "name": "Mort-vivant",
+  "types": [
+    "undead"
+  ],
+  "derivedFrom": "origin",
+  "offered": [
+    "ESMOR-01",
+    "ESMOR-02",
+    "ESMOR-03",
+    "ESMOR-04"
+  ]
+}

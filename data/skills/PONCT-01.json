@@ -1,0 +1,29 @@
+{
+  "id": "PONCT-01",
+  "title": "Ponction",
+  "type": "active",
+  "tier": 2,
+  "domains": [
+    "blood"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "Personnelle",
+  "duration": "Jusqu'à votre prochaine Attaque",
+  "life": "1d6",
+  "tags": {
+    "practice": "spell",
+    "school": "healing",
+    "specials": [
+      "lifesteal"
+    ]
+  },
+  "description": "Vous ouvrez vos paumes et laissez le sang appeler le sang.\n\nVotre prochaine Attaque de ce tour vous rend des PdV égaux à la moitié des dégâts qu'elle inflige.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 5,
+      "title": "Ponction totale",
+      "description": "{{Ponction}} vous rend des PdV égaux à la totalité des dégâts infligés, au lieu de la moitié."
+    }
+  ]
+}

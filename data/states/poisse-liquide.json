@@ -1,0 +1,8 @@
+{
+  "key": "poisse-liquide",
+  "name": "Poisse liquide",
+  "kind": "debuff",
+  "icon": "game-icons:dripping-goo",
+  "color": "#45691d",
+  "description": "Une créature couverte de Poisse liquide ruisselle d'un mucus vert qui ronge ce qu'il touche. À la fin de chacun de ses tours, elle subit 1 dégât d'Acide.\n\nLa Poisse monte d'un cran chaque fois qu'une Compétence en applique à une créature qui en porte déjà : le mucus prend et devient [[Poisse solide]]. Une Compétence qui applique un cran plus haut l'y porte directement.\n\nElle perd l'état lorsqu'elle consacre 1 Action à se décrasser."
+}

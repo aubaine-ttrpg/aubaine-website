@@ -1,0 +1,130 @@
+{
+  "id": "eau",
+  "status": "draft",
+  "name": "Eau",
+  "subtitle": "Le flot sans fin",
+  "treeType": "domain",
+  "size": 16,
+  "cover": "eau-3_4-og.png",
+  "banner": "eau-16_9-og.png",
+  "backCover": "eau-dos-3_4-og.png",
+  "placements": [
+    {
+      "skill": "ONDES-01",
+      "pos": {
+        "x": 50,
+        "y": 50.81
+      }
+    },
+    {
+      "skill": "LAMEA-01",
+      "pos": {
+        "x": 50,
+        "y": 37.92
+      },
+      "linked": [
+        "ONDES-01"
+      ]
+    },
+    {
+      "skill": "GELEM-01",
+      "pos": {
+        "x": 50,
+        "y": 26.14
+      },
+      "linked": [
+        "LAMEA-01"
+      ]
+    },
+    {
+      "skill": "MAELS-01",
+      "pos": {
+        "x": 72.44,
+        "y": 31.91
+      },
+      "linked": [
+        "LAMEA-01"
+      ]
+    },
+    {
+      "skill": "RESSA-01",
+      "pos": {
+        "x": 65.79,
+        "y": 57.25
+      },
+      "linked": [
+        "ONDES-01"
+      ]
+    },
+    {
+      "skill": "WATME-01",
+      "pos": {
+        "x": 34.21,
+        "y": 44.37
+      },
+      "linked": [
+        "ONDES-01"
+      ]
+    },
+    {
+      "skill": "MARCH-01",
+      "pos": {
+        "x": 83.71,
+        "y": 57.2
+      },
+      "linked": [
+        "RESSA-01"
+      ]
+    },
+    {
+      "skill": "VAGUE-01",
+      "pos": {
+        "x": 74.68,
+        "y": 68.25
+      },
+      "linked": [
+        "RESSA-01"
+      ]
+    },
+    {
+      "skill": "PROFO-01",
+      "pos": {
+        "x": 74.68,
+        "y": 80.5
+      },
+      "linked": [
+        "VAGUE-01"
+      ]
+    },
+    {
+      "skill": "RIDEA-01",
+      "pos": {
+        "x": 34.21,
+        "y": 57.25
+      },
+      "linked": [
+        "ONDES-01"
+      ]
+    },
+    {
+      "skill": "MEMOI-01",
+      "pos": {
+        "x": 19.78,
+        "y": 63.15
+      },
+      "linked": [
+        "RIDEA-01"
+      ]
+    },
+    {
+      "skill": "EAUPD-01",
+      "pos": {
+        "x": 30.5,
+        "y": 70.5
+      },
+      "linked": [
+        "RIDEA-01"
+      ]
+    }
+  ]
+}

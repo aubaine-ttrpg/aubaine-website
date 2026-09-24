@@ -1,0 +1,17 @@
+{
+  "id": "orc",
+  "status": "draft",
+  "name": "Orc",
+  "types": [
+    "humanoid"
+  ],
+  "size": [
+    "medium"
+  ],
+  "offered": [
+    "ESORC-01",
+    "ESORC-02",
+    "ESORC-03",
+    "ESORC-04"
+  ]
+}

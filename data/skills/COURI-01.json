@@ -1,0 +1,12 @@
+{
+  "id": "COURI-01",
+  "title": "Courir",
+  "type": "active",
+  "tier": 1,
+  "showXp": false,
+  "domains": [],
+  "activation": "1 Action",
+  "range": "Personnel",
+  "duration": "1 round",
+  "description": "Vous forcez l'allure et donnez tout votre tour au déplacement.\n\nJusqu'à la fin de votre tour, votre Vitesse est doublée."
+}

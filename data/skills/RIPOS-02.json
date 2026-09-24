@@ -1,0 +1,18 @@
+{
+  "id": "RIPOS-02",
+  "title": "Riposte",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "physical"
+  ],
+  "activation": "1 Réaction",
+  "range": "Contact",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "manoeuvre",
+    "school": "destruction"
+  },
+  "description": "Vous jouez cette Réaction lorsqu'une créature à 1,5 m ou moins vous manque avec une Attaque.\n\nVous portez aussitôt une Attaque contre elle. Cette Attaque ne se prend sur aucune de vos actions."
+}

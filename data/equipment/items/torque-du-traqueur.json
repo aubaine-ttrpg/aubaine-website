@@ -1,0 +1,30 @@
+{
+  "name": "Torque du traqueur",
+  "status": "draft",
+  "section": "colliers",
+  "position": 0,
+  "kind": "Collier",
+  "rarity": "uncommon",
+  "art": "terra-catalyseur-1_1-og.png",
+  "price": 12000,
+  "set": "TRAQU",
+  "headlines": [
+    {
+      "label": "Énergie max",
+      "value": "+2"
+    }
+  ],
+  "craft": {
+    "discipline": "arcanes",
+    "cost": 30,
+    "materials": [
+      "Cuir",
+      "Gemme"
+    ],
+    "sequence": [
+      "12 (Dex)",
+      "15 (Int)"
+    ]
+  },
+  "description": "Anneau de cuir tressé fermé sur une pierre grise. Elle tiédit quand la piste est fraîche."
+}

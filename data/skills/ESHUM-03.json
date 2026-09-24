@@ -1,0 +1,17 @@
+{
+  "id": "ESHUM-03",
+  "title": "Volonté de survivre",
+  "type": "active",
+  "tier": 5,
+  "domains": [],
+  "prerequisite": "Être Humain",
+  "activation": "1 Action Bonus",
+  "range": "Personnel",
+  "duration": "Instantanée",
+  "recharge": "short-rest",
+  "energy": 0,
+  "tags": {
+    "school": "healing"
+  },
+  "description": "Vous mettez fin à un état néfaste qui vous affecte."
+}

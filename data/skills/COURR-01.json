@@ -1,0 +1,19 @@
+{
+  "id": "COURR-01",
+  "title": "Courroux",
+  "type": "passive",
+  "tier": 3,
+  "domains": [],
+  "characteristics": [
+    "strength",
+    "constitution",
+    "dexterity"
+  ],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "tags": {
+    "school": "enhancement"
+  },
+  "description": "La Bête ne se contente pas de vous prêter sa forme, elle vous prête son tempérament.\n\nTant que vous êtes métamorphosé, vous disposez du Courroux qui correspond à ce que la forme fait le mieux, et il n'occupe aucune Mémoire : ***Brutalité*** pour une Bête qui frappe, ***Protection*** pour une Bête qui encaisse, ***Féral*** pour une Bête qui se glisse. Le MJ tranche quand la forme fait deux choses aussi bien."
+}

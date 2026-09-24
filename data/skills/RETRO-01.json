@@ -1,0 +1,19 @@
+{
+  "id": "RETRO-01",
+  "title": "Rétro-ingénierie",
+  "type": "active",
+  "tier": 3,
+  "domains": [],
+  "characteristics": [
+    "intelligence"
+  ],
+  "activation": "10 minutes",
+  "range": "Contact",
+  "duration": "Instantanée",
+  "energy": 0,
+  "tags": {
+    "practice": "technique",
+    "school": "divination"
+  },
+  "description": "Vous ouvrez un mécanisme, une serrure, un piège ou une créature artificielle, et vous regardez comment c'est fait.\n\nEffectuez un Jet d'Intelligence + Technologie contre un DD que le MJ fixe sur la complexité de l'objet. En cas de réussite, vous apprenez comment il fonctionne, ce qui le déclenche et ce qui l'arrête. Vous pouvez remonter le tout ensuite, ou ne pas le remonter."
+}

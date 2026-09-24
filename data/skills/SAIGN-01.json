@@ -1,0 +1,38 @@
+{
+  "id": "SAIGN-01",
+  "title": "Saignée",
+  "type": "active",
+  "tier": 2,
+  "domains": [
+    "blood"
+  ],
+  "characteristics": [
+    "intelligence"
+  ],
+  "activation": "1 Action",
+  "range": "9 m",
+  "duration": "Instantanée ou jusqu'à 10 minutes",
+  "life": "1d6",
+  "tags": {
+    "practice": "spell",
+    "school": "destruction",
+    "specials": [
+      "unleashed"
+    ]
+  },
+  "description": "Vous ouvrez une plaie, la vôtre ou celle d'un autre, et vous commandez ce qui en sort. Vous créez, remodelez ou déplacez du sang de la taille d'une caisse.\n\nUtilisé de façon offensive, ce sang inflige 1d10 dégâts du type qui convient à la forme que vous lui donnez : un fouet cingle, une aiguille perfore, une gerbe écrase. Toute zone plus grande, durée plus longue ou portée accrue que vous lui demandez rend le sang moins puissant, jusqu'à le rendre inoffensif.\n\nLorsqu'une créature effectue un Jet pour résister contre ce sang, elle effectue son Jet contre votre DD (10 + Intelligence + Arcanes).\n\nCe sang peut prendre n'importe quelle forme comme un fouet lancé sur une cible, une flaque qui gêne le pas, une marque tracée à même la pierre, ou même une zone d'effet au choix. Lorsqu'il est réparti en zone il peut former, au maximum, un cube de 1,5 m d'arête, une sphère de 1,5 m de rayon, un cône de 3 m ou une ligne de 4,5 m sur 1,5 m.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 5,
+      "title": "Hémorragie",
+      "description": "Lorsque vous lancez {{Saignée}}, vous pouvez payer 1d6 PdV de plus. Le sang atteint la taille d'un tonneau, il inflige 2d10 dégâts et sa zone gagne 1,5 m dans chaque dimension."
+    },
+    {
+      "level": 3,
+      "tier": 8,
+      "title": "Marée écarlate",
+      "description": "Lorsque vous lancez {{Saignée}}, vous pouvez payer 2d6 PdV de plus. Le sang atteint la taille d'une chambre, il inflige 3d10 dégâts et sa zone gagne 3 m dans chaque dimension."
+    }
+  ]
+}

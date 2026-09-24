@@ -1,0 +1,11 @@
+{
+  "id": "COMPT-01",
+  "title": "Comptoir",
+  "type": "special",
+  "tier": 5,
+  "domains": [],
+  "activation": "À l'achat",
+  "range": "—",
+  "duration": "—",
+  "description": "À l'achat, vous ouvrez boutique quelque part et vous nommez qui la tient en votre absence.\n\nCe lieu est à vous : on y laisse des messages, on y entrepose, on y revient. Tant que vous en êtes à moins d'une journée de route, {{Fonds de commerce}} ne demande aucun Jet pour un objet courant.\n\nUn comptoir se cambriole, se taxe et se brûle. Le MJ le sait aussi."
+}

@@ -1,0 +1,40 @@
+{
+  "entries": [
+    {
+      "key": "common",
+      "color": "#6b6459",
+      "labelFr": "Commun",
+      "labelEn": "Common"
+    },
+    {
+      "key": "uncommon",
+      "color": "#4f7a2e",
+      "labelFr": "Peu commun",
+      "labelEn": "Uncommon"
+    },
+    {
+      "key": "rare",
+      "color": "#2f6ea8",
+      "labelFr": "Rare",
+      "labelEn": "Rare"
+    },
+    {
+      "key": "very-rare",
+      "color": "#7a4bab",
+      "labelFr": "Très rare",
+      "labelEn": "Very Rare"
+    },
+    {
+      "key": "legendary",
+      "color": "#a84d16",
+      "labelFr": "Légendaire",
+      "labelEn": "Legendary"
+    },
+    {
+      "key": "artifact",
+      "color": "#94680e",
+      "labelFr": "Artéfact",
+      "labelEn": "Artifact"
+    }
+  ]
+}

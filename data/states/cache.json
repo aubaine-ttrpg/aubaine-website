@@ -1,0 +1,12 @@
+{
+  "key": "cache",
+  "name": "Caché",
+  "forms": [
+    "Cachée",
+    "Cachés",
+    "Cachées"
+  ],
+  "kind": "buff",
+  "icon": "mdi:incognito",
+  "description": "Une créature Cachée est hors de vue de celles qui la cherchent. Elles ne savent pas où elle se trouve et ne peuvent pas la prendre pour cible.\n\nSa première Attaque depuis sa cachette gagne 1 Avantage.\n\nElle perd l'état lorsqu'elle attaque, lorsqu'elle se montre, et lorsqu'une créature l'emporte sur elle à un Jet de Perception. L'état vaut créature par créature : rester cachée pour l'une n'est pas l'être pour toutes."
+}

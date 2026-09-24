@@ -1,0 +1,19 @@
+{
+  "id": "COURR-04",
+  "title": "Courroux: Féral",
+  "type": "active",
+  "tier": 3,
+  "domains": [],
+  "characteristics": [
+    "dexterity"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "Personnel",
+  "duration": "1 minute",
+  "energy": 2,
+  "evolvesFrom": "COURR-01",
+  "tags": {
+    "school": "enhancement"
+  },
+  "description": "Vous vous faites bas, silencieux et patient. Pendant 1 minute, vous gagnez 2 Avantages à vos Jets pour vous cacher, et vos Attaques produisent une réussite critique sur deux dés conservés de 11 ou plus."
+}

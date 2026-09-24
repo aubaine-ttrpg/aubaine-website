@@ -1,0 +1,24 @@
+{
+  "id": "FLASH-01",
+  "title": "Flash",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "fire",
+    "light"
+  ],
+  "characteristics": [
+    "intelligence",
+    "spirit",
+    "charisma"
+  ],
+  "activation": "1 Action",
+  "range": "9 m",
+  "duration": "1 tour",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "school": "control"
+  },
+  "description": "Vous lancez une bille de flamme qui éclate en lumière blanche au point que vous visez. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\nChaque créature dans un rayon de 3 m autour du point d'éclat effectue un Jet d'Esprit + Résistance contre votre DD (10 + la Caractéristique choisie + Arcanes). En cas de réussite, elle détourne le regard à temps et ne subit rien. En cas d'échec, elle est [[Aveuglé]] jusqu'à la fin de son prochain tour."
+}

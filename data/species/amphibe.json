@@ -1,0 +1,20 @@
+{
+  "id": "amphibe",
+  "status": "draft",
+  "name": "Amphibe",
+  "cover": "amphibe-3_4-og.png",
+  "banner": "amphibe-16_9-og.png",
+  "types": [
+    "humanoid"
+  ],
+  "size": [
+    "small",
+    "medium"
+  ],
+  "offered": [
+    "ESAMP-01",
+    "ESAMP-02",
+    "ESAMP-03",
+    "ESAMP-04"
+  ]
+}

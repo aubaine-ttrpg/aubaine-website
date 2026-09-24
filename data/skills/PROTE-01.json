@@ -1,0 +1,11 @@
+{
+  "id": "PROTE-01",
+  "title": "Protégé",
+  "type": "special",
+  "tier": 5,
+  "domains": [],
+  "activation": "À l'achat",
+  "range": "—",
+  "duration": "—",
+  "description": "À l'achat, choisissez une créature qui vous doit au moins 1 [[Redevable]] et qui accepte. Elle entre à votre service : elle vous suit, elle porte, elle guette, elle parle pour vous là où vous ne pouvez pas.\n\nElle n'est pas un soldat et ne se bat que pour sa vie. Elle a ses propres raisons de rester, et le MJ les connaît. Le jour où vous lui donnez un ordre qui les contredit, elle choisit."
+}

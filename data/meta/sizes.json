@@ -1,0 +1,34 @@
+{
+  "entries": [
+    {
+      "key": "tiny",
+      "labelFr": "Très petite",
+      "labelEn": "Tiny"
+    },
+    {
+      "key": "small",
+      "labelFr": "Petite",
+      "labelEn": "Small"
+    },
+    {
+      "key": "medium",
+      "labelFr": "Moyenne",
+      "labelEn": "Medium"
+    },
+    {
+      "key": "large",
+      "labelFr": "Grande",
+      "labelEn": "Large"
+    },
+    {
+      "key": "huge",
+      "labelFr": "Très grande",
+      "labelEn": "Huge"
+    },
+    {
+      "key": "gargantuan",
+      "labelFr": "Gigantesque",
+      "labelEn": "Gargantuan"
+    }
+  ]
+}

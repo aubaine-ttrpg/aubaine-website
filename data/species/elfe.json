@@ -1,0 +1,17 @@
+{
+  "id": "elfe",
+  "status": "draft",
+  "name": "Elfe",
+  "types": [
+    "humanoid"
+  ],
+  "size": [
+    "medium"
+  ],
+  "offered": [
+    "ESELF-01",
+    "ESELF-02",
+    "ESELF-03",
+    "ESELF-04"
+  ]
+}

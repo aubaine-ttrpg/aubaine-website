@@ -1,0 +1,19 @@
+{
+  "id": "MONOP-01",
+  "title": "Monopole",
+  "type": "active",
+  "tier": 10,
+  "domains": [],
+  "characteristics": [
+    "charisma"
+  ],
+  "activation": "1 semaine",
+  "range": "Personnel",
+  "duration": "Jusqu'à ce qu'on vous la reprenne",
+  "energy": 3,
+  "tags": {
+    "practice": "technique",
+    "school": "influence"
+  },
+  "description": "Vous achetez tout ce qu'il y a, pour que personne d'autre n'en ait.\n\nNommez une marchandise et une place : une ville, une vallée, une armée. Effectuez un Jet de Charisme + Persuasion contre un DD que le MJ fixe sur l'étendue de la place et la banalité de la marchandise.\n\nEn cas de réussite, plus personne ne s'en procure ici sans passer par vous, jusqu'à ce que quelqu'un de plus riche ou de plus armé vous en empêche. Il s'en trouvera un."
+}

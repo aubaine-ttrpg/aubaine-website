@@ -1,0 +1,28 @@
+{
+  "id": "THUME-01",
+  "title": "Étendue martiale",
+  "type": "active",
+  "tier": 2,
+  "domains": [
+    "thunder",
+    "physical"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "Contact",
+  "duration": "jusqu'à 1 minute",
+  "concentration": true,
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "school": "enhancement"
+  },
+  "description": "Vous touchez une arme et la chargez d'un arc bleu qui crépite le long du fer. Une fois par tour, lorsque vous réussissez une Attaque avec elle, l'arc saute de la cible vers une autre créature à 3 m ou moins d'elle et lui inflige 1d4 dégâts de Foudre.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 7,
+      "title": "Étendue perfectionnée",
+      "description": "Pour chaque amélioration de {{Canaliser les charges}} que vous possédez, l'arc saute une fois de plus, chaque saut partant de la dernière créature touchée et portant à 3 m ou moins. Il ne frappe jamais deux fois la même créature."
+    }
+  ]
+}

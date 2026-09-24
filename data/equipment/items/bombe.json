@@ -1,0 +1,47 @@
+{
+  "name": "Bombe",
+  "status": "draft",
+  "section": "consommables",
+  "position": 0,
+  "kind": "Consommable",
+  "rarity": "common",
+  "art": "pyro-catalyseur-1_1-og.png",
+  "price": 1600,
+  "headlines": [
+    {
+      "label": "Dégâts",
+      "value": "1d4 + 1d4"
+    }
+  ],
+  "stats": [
+    {
+      "label": "Activation",
+      "value": "1 Action"
+    },
+    {
+      "label": "Portée",
+      "value": "9m"
+    },
+    {
+      "label": "Zone",
+      "value": "Rayon 3m"
+    },
+    {
+      "label": "Type de dégâts",
+      "value": "Contondants et Feu"
+    }
+  ],
+  "craft": {
+    "discipline": "technologie",
+    "cost": 16,
+    "materials": [
+      "Métal"
+    ],
+    "sequence": [
+      "10 (Dex)",
+      "12 (Int)"
+    ]
+  },
+  "text": "Vous pouvez effectuer une Action pour lancer cette bombe sur un point que vous voyez à portée. Chaque créature dans un rayon de ***3 mètres*** subit ***1d4*** dégâts Contondants et ***1d4*** dégâts de Feu.",
+  "description": "Sphère de fonte cerclée, mèche courte. On la lance, on se met à couvert, et on ne la récupère pas."
+}

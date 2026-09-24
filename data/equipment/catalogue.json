@@ -1,0 +1,83 @@
+{
+  "id": "equipement",
+  "name": "D'or et d'acier",
+  "subtitle": "Catalogue de l'artisanat et de l'équipement d'Eden",
+  "cover": "forge-d-izequiel-3_4-og.png",
+  "banner": "forge-d-izequiel-16_9-og.png",
+  "backCover": "caverne-d-izequiel-3_4-og.png",
+  "families": [
+    {
+      "key": "armures",
+      "title": "Armures"
+    },
+    {
+      "key": "armes",
+      "title": "Armes"
+    },
+    {
+      "key": "consommables",
+      "title": "Consommables"
+    }
+  ],
+  "sections": [
+    {
+      "key": "tetes",
+      "title": "Têtes",
+      "family": "armures",
+      "slot": "head"
+    },
+    {
+      "key": "torse",
+      "title": "Torse",
+      "family": "armures",
+      "slot": "torse"
+    },
+    {
+      "key": "bottes",
+      "title": "Bottes",
+      "family": "armures",
+      "slot": "boots"
+    },
+    {
+      "key": "colliers",
+      "title": "Colliers",
+      "family": "armures",
+      "slot": "necklace"
+    },
+    {
+      "key": "bijoux",
+      "title": "Bijoux",
+      "family": "armures",
+      "slot": "jewel"
+    },
+    {
+      "key": "boucliers",
+      "title": "Boucliers",
+      "family": "armures",
+      "slot": "hand"
+    },
+    {
+      "key": "armes-poing",
+      "title": "Armes · Poing",
+      "family": "armes",
+      "slot": "hand"
+    },
+    {
+      "key": "armes-melee",
+      "title": "Armes · Mêlée",
+      "family": "armes",
+      "slot": "hand"
+    },
+    {
+      "key": "armes-distance",
+      "title": "Armes · Distance",
+      "family": "armes",
+      "slot": "hand"
+    },
+    {
+      "key": "consommables",
+      "title": "Consommables",
+      "family": "consommables"
+    }
+  ]
+}

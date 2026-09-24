@@ -1,0 +1,46 @@
+{
+  "entries": [
+    {
+      "key": "head",
+      "iconName": "game-icons:crested-helmet",
+      "places": 1,
+      "labelFr": "Tête",
+      "labelEn": "Head"
+    },
+    {
+      "key": "torse",
+      "iconName": "game-icons:breastplate",
+      "places": 1,
+      "labelFr": "Torse",
+      "labelEn": "Torso"
+    },
+    {
+      "key": "boots",
+      "iconName": "game-icons:walking-boot",
+      "places": 1,
+      "labelFr": "Bottes",
+      "labelEn": "Boots"
+    },
+    {
+      "key": "necklace",
+      "iconName": "game-icons:emerald-necklace",
+      "places": 1,
+      "labelFr": "Collier",
+      "labelEn": "Necklace"
+    },
+    {
+      "key": "hand",
+      "iconName": "game-icons:hand",
+      "places": 2,
+      "labelFr": "Une main",
+      "labelEn": "One hand"
+    },
+    {
+      "key": "jewel",
+      "iconName": "game-icons:emerald",
+      "places": 2,
+      "labelFr": "Bijou",
+      "labelEn": "Jewel"
+    }
+  ]
+}

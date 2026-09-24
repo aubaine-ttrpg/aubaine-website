@@ -1,0 +1,22 @@
+{
+  "id": "PARLE-01",
+  "title": "Beau parleur",
+  "type": "active",
+  "tier": 1,
+  "domains": [],
+  "characteristics": [
+    "charisma"
+  ],
+  "activation": "1 Action",
+  "range": "9 m",
+  "duration": "Instantanée",
+  "energy": 0,
+  "tags": {
+    "practice": "technique",
+    "school": "influence",
+    "specials": [
+      "unleashed"
+    ]
+  },
+  "description": "Vous trouvez toujours quelque chose à dire, et le plus souvent la bonne chose.\n\nChoisissez une créature qui vous entend et vous comprend, et dites-lui ce que vous voulez qu'elle croie, fasse ou laisse passer. Effectuez un Jet de Charisme + Persuasion, Tromperie ou Intimidation selon la manière dont vous vous y prenez, contre son DD (10 + Esprit + Volonté).\n\nEn cas de réussite, elle vous accorde ce que quelqu'un dans sa position accorderait sans y perdre : passer, attendre, écouter encore, répondre franchement. Ce qui lui coûterait sa place, sa bourse ou sa peau ne s'obtient pas ainsi ; cela s'achète en [[Redevable]]."
+}

@@ -1,0 +1,21 @@
+{
+  "id": "ENTRA-01",
+  "title": "Entraînement",
+  "type": "special",
+  "tier": 5,
+  "domains": [
+    "physical"
+  ],
+  "activation": "À l'achat",
+  "range": "—",
+  "duration": "—",
+  "description": "À l'achat, augmentez de 1 le modificateur d'une Aptitude de votre choix, jusqu'au maximum de +6.\n\nCette Compétence ne se mémorise pas et n'occupe aucune Mémoire : vous l'achetez une fois, vous corrigez votre feuille, et elle est acquise.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 10,
+      "title": "Second entraînement",
+      "description": "Augmentez de 1 le modificateur d'une autre Aptitude de votre choix, jusqu'au maximum de +6."
+    }
+  ]
+}

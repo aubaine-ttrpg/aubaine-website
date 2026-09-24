@@ -1,0 +1,25 @@
+{
+  "id": "DISSE-01",
+  "title": "Dissection",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "blood"
+  ],
+  "activation": "10 minutes",
+  "range": "Contact",
+  "duration": "Instantanée",
+  "tags": {
+    "practice": "technique",
+    "school": "creation"
+  },
+  "description": "Une carcasse est un magasin pour qui sait où couper. Après une rencontre significative remportée contre une créature qui n'est ni humanoïde ni construite, vous pouvez passer 10 minutes à l'ouvrir proprement.\n\nEffectuez un Jet d'Intelligence + Médecine contre un DD de 15. En cas de réussite, vous recevez une Occasion de butin de plus sur cette source. En cas d'échec, vous abîmez ce que vous cherchiez et n'en tirez rien de plus.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 6,
+      "title": "Prélèvement propre",
+      "description": "Un échec à {{Dissection}} n'abîme plus rien : vous pouvez retenter une fois de plus sur la même source."
+    }
+  ]
+}

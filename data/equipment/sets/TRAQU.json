@@ -1,0 +1,18 @@
+{
+  "id": "TRAQU",
+  "status": "draft",
+  "name": "Panoplie du Traqueur",
+  "bonuses": [
+    {
+      "pieces": 2,
+      "text": "Vous gagnez la Compétence {{Sillage}}. Elle n'occupe aucune Mémoire et n'a pas à être apprise.",
+      "grants": [
+        "SILLA-01"
+      ]
+    },
+    {
+      "pieces": 4,
+      "text": "La première fois que vous touchez une créature alors que vous êtes [[Caché]] au cours d'un combat, elle subit 1d6 dégâts supplémentaires."
+    }
+  ]
+}

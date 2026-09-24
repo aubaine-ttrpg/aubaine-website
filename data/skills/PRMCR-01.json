@@ -1,0 +1,19 @@
+{
+  "id": "PRMCR-01",
+  "title": "Cri primordial",
+  "type": "active",
+  "tier": 4,
+  "domains": [],
+  "activation": "1 Action Bonus",
+  "range": "3 m",
+  "duration": "Instantanée ou jusqu'à la fin du tour",
+  "energy": 2,
+  "tags": {
+    "practice": "shout",
+    "school": "control",
+    "specials": [
+      "unleashed"
+    ]
+  },
+  "description": "Vous poussez un cri brutal et l'infusez d'un Domaine choisi parmi Feu, Eau, Terre, Foudre ou aucun.\n\n***Feu.*** Jusqu'à 2 créatures à portée qui vous entendent gagnent 1 Action Bonus, 3 m de déplacement pour ce tour et émettent une lumière jusqu'à la fin de ce tour.\n***Eau.*** Choisissez 1 créature à portée qui vous entend ; si elle possède de l'eau dans son corps, vous en prenez le contrôle jusqu'à la fin de votre tour (la soigner de 1d6 PdV, faire bouger un membre…).\n***Terre.*** Jusqu'à 3 créatures à portée réduisent leurs prochains dégâts de 1d6 avant votre prochain tour et ne subissent aucun dégât de chute pendant cette durée.\n***Foudre.*** Vous ciblez jusqu'à 3 objets ou créatures de métal à portée et en prenez le contrôle jusqu'à la fin de votre tour.\n***Aucun.*** Jusqu'à 3 créatures de votre choix à portée gagnent 1d6 PdV temporaires."
+}

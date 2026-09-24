@@ -1,0 +1,16 @@
+{
+  "id": "SALCR-01",
+  "title": "Cri du salut",
+  "type": "active",
+  "tier": 5,
+  "domains": [],
+  "activation": "1 Action",
+  "range": "3 m",
+  "duration": "Instantanée",
+  "energy": 3,
+  "tags": {
+    "practice": "shout",
+    "school": "healing"
+  },
+  "description": "Vous couvrez le bruit de la bataille d'un seul mot. Choisissez jusqu'à 5 créatures de votre choix à portée qui peuvent vous entendre.\n\nChacune guérit d'un effet négatif qui l'affecte."
+}

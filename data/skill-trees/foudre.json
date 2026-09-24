@@ -1,0 +1,129 @@
+{
+  "id": "foudre",
+  "status": "draft",
+  "name": "Foudre",
+  "subtitle": "Le fracas du ciel",
+  "treeType": "domain",
+  "size": 16,
+  "cover": "foudre-3_4-og.png",
+  "backCover": "foudre-dos-3_4-og.png",
+  "placements": [
+    {
+      "skill": "FOUDR-01",
+      "pos": {
+        "x": 50,
+        "y": 50.81
+      }
+    },
+    {
+      "skill": "HARPO-01",
+      "pos": {
+        "x": 50,
+        "y": 37.92
+      },
+      "linked": [
+        "FOUDR-01"
+      ]
+    },
+    {
+      "skill": "CHAIN-01",
+      "pos": {
+        "x": 50,
+        "y": 26.14
+      },
+      "linked": [
+        "HARPO-01"
+      ]
+    },
+    {
+      "skill": "THUME-01",
+      "pos": {
+        "x": 34.21,
+        "y": 44.37
+      },
+      "linked": [
+        "FOUDR-01"
+      ]
+    },
+    {
+      "skill": "GENIE-01",
+      "pos": {
+        "x": 17.21,
+        "y": 42.37
+      },
+      "linked": [
+        "THUME-01"
+      ]
+    },
+    {
+      "skill": "PASFO-01",
+      "pos": {
+        "x": 65.79,
+        "y": 44.37
+      },
+      "linked": [
+        "FOUDR-01"
+      ]
+    },
+    {
+      "skill": "CELER-01",
+      "pos": {
+        "x": 72.44,
+        "y": 31.91
+      },
+      "linked": [
+        "PASFO-01"
+      ]
+    },
+    {
+      "skill": "RIPOS-01",
+      "pos": {
+        "x": 83.71,
+        "y": 44.42
+      },
+      "linked": [
+        "PASFO-01"
+      ]
+    },
+    {
+      "skill": "TONNE-01",
+      "pos": {
+        "x": 65.79,
+        "y": 57.25
+      },
+      "linked": [
+        "FOUDR-01"
+      ]
+    },
+    {
+      "skill": "CONDU-01",
+      "pos": {
+        "x": 83.71,
+        "y": 57.2
+      },
+      "linked": [
+        "TONNE-01"
+      ]
+    },
+    {
+      "skill": "ORAGE-01",
+      "pos": {
+        "x": 34.21,
+        "y": 57.25
+      },
+      "linked": [
+        "FOUDR-01"
+      ]
+    },
+    {
+      "skill": "THUPD-01",
+      "pos": {
+        "x": 19.78,
+        "y": 63.15
+      },
+      "linked": [
+        "ORAGE-01"
+      ]
+    }
+  ]
+}

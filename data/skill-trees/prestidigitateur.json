@@ -1,0 +1,129 @@
+{
+  "id": "prestidigitateur",
+  "status": "draft",
+  "name": "Prestidigitateur",
+  "subtitle": "Le maître des Illusions",
+  "treeType": "archetype",
+  "size": 16,
+  "cover": "prestidigitateur-3_4-og.png",
+  "backCover": "prestidigitateur-dos-3_4-og.png",
+  "placements": [
+    {
+      "skill": "PREST-01",
+      "pos": {
+        "x": 50,
+        "y": 50.81
+      }
+    },
+    {
+      "skill": "ILLUS-01",
+      "pos": {
+        "x": 50,
+        "y": 37.92
+      },
+      "linked": [
+        "PREST-01"
+      ]
+    },
+    {
+      "skill": "GRAND-01",
+      "pos": {
+        "x": 50,
+        "y": 26.14
+      },
+      "linked": [
+        "ILLUS-01"
+      ]
+    },
+    {
+      "skill": "DREAD-01",
+      "pos": {
+        "x": 72.44,
+        "y": 31.91
+      },
+      "linked": [
+        "ILLUS-01"
+      ]
+    },
+    {
+      "skill": "APILL-01",
+      "pos": {
+        "x": 65.79,
+        "y": 44.37
+      },
+      "linked": [
+        "PREST-01"
+      ]
+    },
+    {
+      "skill": "FLUXM-01",
+      "pos": {
+        "x": 83.71,
+        "y": 44.42
+      },
+      "linked": [
+        "APILL-01"
+      ]
+    },
+    {
+      "skill": "OBJAN-01",
+      "pos": {
+        "x": 65.79,
+        "y": 57.25
+      },
+      "linked": [
+        "PREST-01"
+      ]
+    },
+    {
+      "skill": "SONFA-01",
+      "pos": {
+        "x": 83.71,
+        "y": 57.2
+      },
+      "linked": [
+        "OBJAN-01"
+      ]
+    },
+    {
+      "skill": "DEGUI-01",
+      "pos": {
+        "x": 34.21,
+        "y": 44.37
+      },
+      "linked": [
+        "PREST-01"
+      ]
+    },
+    {
+      "skill": "EVANO-01",
+      "pos": {
+        "x": 17.21,
+        "y": 42.37
+      },
+      "linked": [
+        "DEGUI-01"
+      ]
+    },
+    {
+      "skill": "DOUBL-01",
+      "pos": {
+        "x": 34.21,
+        "y": 57.25
+      },
+      "linked": [
+        "PREST-01"
+      ]
+    },
+    {
+      "skill": "FAUSM-01",
+      "pos": {
+        "x": 19.78,
+        "y": 63.15
+      },
+      "linked": [
+        "DOUBL-01"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "REGEN-01",
+  "title": "Régénération",
+  "type": "passive",
+  "tier": 5,
+  "domains": [
+    "blood"
+  ],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "tags": {
+    "school": "healing",
+    "specials": [
+      "lifesteal"
+    ]
+  },
+  "description": "Ce que vous prenez se recoud tout seul. À la fin de chacun de vos tours où vous avez récupéré des PdV par une Compétence portant l'étiquette Vol de vie, vous en récupérez 1d4 de plus."
+}

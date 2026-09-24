@@ -1,0 +1,19 @@
+{
+  "id": "ECOUL-01",
+  "title": "Écouler",
+  "type": "active",
+  "tier": 4,
+  "domains": [],
+  "characteristics": [
+    "charisma"
+  ],
+  "activation": "1 heure",
+  "range": "Personnel",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "technique",
+    "school": "illusion"
+  },
+  "description": "Vous vendez ce qui ne devrait pas se vendre : marqué, volé, interdit, reconnaissable.\n\nEffectuez un Jet de Charisme + Tromperie contre un DD que le MJ fixe sur ce que la marchandise a de compromettant. En cas de réussite, elle part et personne ne remonte jusqu'à vous.\n\nEn cas d'échec, elle part quand même. Quelqu'un se souvient de votre visage, et le MJ décide quand cela revient."
+}

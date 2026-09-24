@@ -1,0 +1,35 @@
+{
+  "name": "Grèves lestées",
+  "status": "draft",
+  "section": "bottes",
+  "position": 1,
+  "kind": "Bottes",
+  "rarity": "uncommon",
+  "art": "cuirasse-1_1-og.png",
+  "price": 12000,
+  "set": "BASTI",
+  "headlines": [
+    {
+      "label": "CA",
+      "value": "+1"
+    }
+  ],
+  "properties": [
+    {
+      "name": "Lourd (Niv. 1).",
+      "text": "Vous devez posséder un modificateur de Force égal ou supérieur à +3 pour équiper cette pièce."
+    }
+  ],
+  "craft": {
+    "discipline": "artisanat",
+    "cost": 30,
+    "materials": [
+      "Métal"
+    ],
+    "sequence": [
+      "16 (Str)",
+      "12 (Dex)"
+    ]
+  },
+  "description": "Plaques de jambe doublées de gueuses de fonte. Qui les porte n'avance pas vite et ne recule pas du tout."
+}

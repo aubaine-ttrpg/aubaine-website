@@ -1,0 +1,18 @@
+{
+  "id": "EXECU-01",
+  "title": "Exécution",
+  "type": "active",
+  "tier": 4,
+  "domains": [
+    "physical"
+  ],
+  "activation": "1 Attaque",
+  "range": "Contact",
+  "duration": "Instantanée",
+  "energy": 2,
+  "tags": {
+    "practice": "manoeuvre",
+    "school": "destruction"
+  },
+  "description": "Vous portez cette Attaque contre une créature qui possède la moitié ou moins de ses PdV maximum, et vous frappez pour en finir.\n\nEn cas de réussite, ajoutez 3d8 dégâts du type de votre arme. Si la créature tombe à 0 PdV, vous récupérez aussitôt l'Attaque que celle-ci vous a coûtée."
+}

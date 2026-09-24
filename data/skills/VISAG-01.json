@@ -1,0 +1,23 @@
+{
+  "id": "VISAG-01",
+  "title": "Visage d'emprunt",
+  "type": "active",
+  "tier": 5,
+  "domains": [
+    "blood"
+  ],
+  "characteristics": [
+    "charisma"
+  ],
+  "activation": "1 Action",
+  "range": "Personnelle",
+  "duration": "jusqu'à 1 heure",
+  "life": "3d6",
+  "tags": {
+    "school": "illusion",
+    "specials": [
+      "graft"
+    ]
+  },
+  "description": "Vous avez goûté son sang, vous savez comment elle est faite. Choisissez une créature humanoïde dont vous avez goûté le sang ou dont vous porté une greffe.\n\nVotre chair se remet en place à sa ressemblance tant que la créature ne dépasse pas votre taille. Tant que cela dure, vous passez pour elle. Une créature peut effectuer un Jet d'Esprit + Perception contre votre DD (10 + Charisme + Tromperie) pour reveler la vérité."
+}

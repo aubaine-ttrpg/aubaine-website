@@ -1,0 +1,20 @@
+{
+  "id": "CBGUE-01",
+  "status": "draft",
+  "title": "Instinct du guet",
+  "type": "passive",
+  "tier": 2,
+  "domains": [],
+  "characteristics": [
+    "spirit"
+  ],
+  "activation": "Passif",
+  "range": "Personnelle",
+  "duration": "Permanente",
+  "energy": 0,
+  "tags": {
+    "practice": "technique",
+    "school": "divination"
+  },
+  "description": "Vous dormez d'une oreille et vous marchez l'œil ouvert.\n\nVos Jets d'Esprit + Perception pour repérer une embuscade, un guet ou une porte piégée gagnent 1 Avantage. Une embuscade ne vous surprend pas tant que vous êtes conscient."
+}

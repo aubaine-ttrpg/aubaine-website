@@ -1,0 +1,36 @@
+{
+  "id": "FONDS-01",
+  "title": "Fonds de commerce",
+  "type": "active",
+  "tier": 1,
+  "domains": [],
+  "characteristics": [
+    "charisma"
+  ],
+  "activation": "1 Action",
+  "range": "Personnel",
+  "duration": "Instantanée",
+  "energy": 0,
+  "tags": {
+    "practice": "technique",
+    "school": "creation",
+    "specials": [
+      "unleashed"
+    ]
+  },
+  "description": "Vous avez toujours eu ça sur vous, voyons.\n\nAnnoncez un objet courant, encombrant comme un sac peut l'être, et déclarez que vous l'aviez. Effectuez un Jet de Charisme + Culture contre un DD que le MJ fixe sur l'improbabilité de la chose : une corde ne se discute pas, une lime à barreaux se discute, une clé de cette porte-ci ne s'obtient pas.\n\nEn cas de réussite, l'objet sort du sac. En cas d'échec, vous en sortez autre chose, que le MJ choisit, et qui ne sert pas maintenant.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 5,
+      "title": "Arrière-boutique",
+      "description": "Vous pouvez sortir un objet du double de l'encombrement : ce qui tient dans une malle plutôt que dans un sac. Personne ne vous a vu le porter, et personne ne relève."
+    },
+    {
+      "level": 3,
+      "tier": 9,
+      "title": "Sur commande",
+      "description": "Un objet que le MJ juge introuvable sur vous ne l'est plus : vous l'aviez commandé. Il arrive dans la journée, par un moyen que vous n'expliquez pas."
+    }
+  ]
+}

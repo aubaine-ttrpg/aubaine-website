@@ -1,0 +1,12 @@
+{
+  "key": "effraye",
+  "name": "Effrayé",
+  "forms": [
+    "Effrayée",
+    "Effrayés",
+    "Effrayées"
+  ],
+  "kind": "debuff",
+  "icon": "game-icons:terror",
+  "description": "Une créature Effrayée ne peut pas, de son plein gré, s'approcher de ce qui l'effraie. Tant qu'elle le voit, elle subit 1 Désavantage à ses Jets et à ses Attaques.\n\nÀ la fin de chacun de ses tours, elle effectue un Jet d'Esprit + Volonté contre le DD de la Compétence qui l'a effrayée. En cas de réussite, l'état prend fin."
+}

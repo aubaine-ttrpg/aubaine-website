@@ -1,0 +1,19 @@
+{
+  "id": "PEAUP-01",
+  "title": "Peau de pierre",
+  "type": "active",
+  "tier": 2,
+  "domains": [
+    "earth"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "Personnel",
+  "duration": "jusqu'à 1 minute",
+  "concentration": true,
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "school": "protection"
+  },
+  "description": "Votre peau se couvre d'écailles de pierre. Tant que Peau de pierre dure, réduisez de 2 chaque dégât Contondant, Perforant ou Tranchant que vous subissez."
+}

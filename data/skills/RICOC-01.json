@@ -1,0 +1,17 @@
+{
+  "id": "RICOC-01",
+  "title": "Volée",
+  "type": "active",
+  "tier": 1,
+  "showXp": false,
+  "domains": [],
+  "activation": "1 Action",
+  "range": "Allonge de l'arme",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "manoeuvre",
+    "school": "destruction"
+  },
+  "description": "Vous décochez un projectile de biais, pour qu'il reparte de sa cible vers la suivante.\n\nEffectuez une Attaque avec une arme à distance équipée. En cas de réussite, choisissez une seconde créature située à 3 mètres ou moins de la première et effectuez une seconde Attaque contre elle avec la même arme. Cette seconde Attaque n'ajoute pas votre Caractéristique à ses dégâts.\n\nUne seule créature peut être touchée deux fois : le projectile ne revient pas sur sa première cible."
+}

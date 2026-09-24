@@ -1,0 +1,16 @@
+{
+  "id": "SERVI-01",
+  "title": "Service rendu",
+  "type": "active",
+  "tier": 2,
+  "domains": [],
+  "activation": "10 minutes",
+  "range": "Contact",
+  "duration": "Instantanée",
+  "energy": 0,
+  "tags": {
+    "practice": "technique",
+    "school": "influence"
+  },
+  "description": "Vous rendez à une créature un service qu'elle n'avait pas demandé, et vous vous arrangez pour qu'elle le sache.\n\nAprès lui avoir consacré 10 minutes et quelque chose qui vous coûte, elle gagne 1 [[Redevable]] envers vous. Le MJ dit ce qui compte comme un service pour cette créature-là : un mot glissé, une dette réglée, un nom tu.\n\n[[[Redevable]]]"
+}

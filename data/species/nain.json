@@ -1,0 +1,17 @@
+{
+  "id": "nain",
+  "status": "draft",
+  "name": "Nain",
+  "types": [
+    "humanoid"
+  ],
+  "size": [
+    "medium"
+  ],
+  "offered": [
+    "ESNAI-01",
+    "ESNAI-02",
+    "ESNAI-03",
+    "ESNAI-04"
+  ]
+}

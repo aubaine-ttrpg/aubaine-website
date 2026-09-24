@@ -1,0 +1,24 @@
+{
+  "id": "RONCE-01",
+  "title": "Sentinelle de ronces",
+  "type": "active",
+  "tier": 5,
+  "domains": [
+    "earth"
+  ],
+  "characteristics": [
+    "intelligence",
+    "spirit",
+    "charisma"
+  ],
+  "activation": "1 Action",
+  "range": "9 m",
+  "duration": "jusqu'à 1 minute",
+  "concentration": true,
+  "energy": 3,
+  "tags": {
+    "practice": "spell",
+    "school": "summoning"
+  },
+  "description": "Vous éveillez une ronce dans une parcelle de terre ou de végétation que vous voyez à portée. Tant que vous vous concentrez, elle agit juste après vous à chacun de vos tours. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\nLa ronce est une créature végétale. Elle a une CA de 13, 10 PdV et une Vitesse de 0, et elle ne peut pas être déplacée contre son gré.\n\n***Étreindre (1 Action).*** Effectuez un Jet de la Caractéristique choisie + Arcanes contre la CA d'une créature à 1,5 m de la ronce. En cas de réussite, la cible subit 1d4 dégâts Perforants et est [[Entravé]] tant que la ronce la tient et reste debout.\n\n***Ressurgir (1 Action Bonus).*** La ronce se retire du sol et repousse dans une autre parcelle de terre ou de végétation à 9 m ou moins de vous. Elle lâche ce qu'elle tenait."
+}

@@ -1,0 +1,20 @@
+{
+  "id": "CBPOL-01",
+  "status": "draft",
+  "title": "Langue de passage",
+  "type": "passive",
+  "tier": 1,
+  "domains": [],
+  "characteristics": [
+    "charisma"
+  ],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "Permanente",
+  "energy": 0,
+  "tags": {
+    "practice": "technique",
+    "school": "influence"
+  },
+  "description": "Vous avez appris à parler aux gens sur leur propre terrain.\n\nChoisissez une langue supplémentaire à l'achat. Dans une ville où elle se parle, vos Jets de Charisme + Persuasion pour obtenir un renseignement ordinaire gagnent 1 Avantage."
+}

@@ -1,0 +1,12 @@
+{
+  "key": "sonne",
+  "name": "Sonné",
+  "forms": [
+    "Sonnée",
+    "Sonnés",
+    "Sonnées"
+  ],
+  "kind": "debuff",
+  "icon": "mdi:flash-off",
+  "description": "Une créature Sonnée est hors du combat sans être inconsciente. Elle ne peut ni agir, ni jouer de Réaction, ni se déplacer, et elle ne parle qu'avec peine.\n\nElle rate tout Jet de Force et de Dextérité, et les Attaques faites contre elle gagnent 1 Avantage.\n\nLa Compétence qui l'applique indique combien de temps l'état dure."
+}

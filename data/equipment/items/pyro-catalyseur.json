@@ -1,0 +1,41 @@
+{
+  "name": "Pyro-catalyseur",
+  "status": "draft",
+  "section": "bijoux",
+  "position": 0,
+  "kind": "Bijou",
+  "rarity": "common",
+  "art": "pyro-catalyseur-1_1-og.png",
+  "price": 1600,
+  "headlines": [
+    {
+      "label": "Domaine",
+      "value": "Feu"
+    }
+  ],
+  "properties": [
+    {
+      "name": "Catalyseur.",
+      "text": "Tant que cette pièce est équipée, vous pouvez activer vos Sorts, passifs comme actifs."
+    },
+    {
+      "name": "Matériel.",
+      "text": "Ce catalyseur peut être consommé comme matériau (Type : Catalyseur ; Valeur : 4)."
+    }
+  ],
+  "craft": {
+    "discipline": "arcanes",
+    "cost": 16,
+    "materials": [
+      "Gemme"
+    ],
+    "sequence": [
+      "12 (Dex)",
+      "15 (Int)"
+    ]
+  },
+  "grants": [
+    "TRFEU-01"
+  ],
+  "description": "Gemme taillée où le feu tourne sans consumer sa monture. Elle chauffe la paume qui la tient."
+}

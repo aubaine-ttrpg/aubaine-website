@@ -1,0 +1,13 @@
+{
+  "id": "ESHUM-05",
+  "title": "J'achète, je vends, j'échange",
+  "type": "passive",
+  "tier": 5,
+  "domains": [],
+  "prerequisite": "Être Humain de la Nouvelle-Aubaine",
+  "activation": "Passif",
+  "tags": {
+    "school": "influence"
+  },
+  "description": "Tout ce que vous achetez à un autre Humain vous coûte 5 % de moins."
+}

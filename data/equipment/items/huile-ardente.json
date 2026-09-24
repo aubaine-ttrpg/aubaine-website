@@ -1,0 +1,42 @@
+{
+  "name": "Huile ardente",
+  "status": "draft",
+  "section": "consommables",
+  "position": 4,
+  "kind": "Consommable",
+  "rarity": "uncommon",
+  "art": "myxo-catalyseur-1_1-og.png",
+  "price": 11200,
+  "headlines": [
+    {
+      "label": "Dégâts",
+      "value": "2d6"
+    }
+  ],
+  "stats": [
+    {
+      "label": "Activation",
+      "value": "1 Action"
+    },
+    {
+      "label": "Portée",
+      "value": "9m"
+    },
+    {
+      "label": "Type de dégâts",
+      "value": "Feu"
+    }
+  ],
+  "craft": {
+    "discipline": "science",
+    "cost": 28,
+    "materials": [
+      "Plante"
+    ],
+    "sequence": [
+      "14 (Int)"
+    ]
+  },
+  "text": "Vous pouvez effectuer une Action pour lancer cette fiole sur une créature que vous voyez à portée. Effectuez un Jet de Dextérité + Visée contre sa CA. En cas de réussite, elle subit ***2d6*** dégâts de Feu et vous gagnez 2 [[Combustion]].",
+  "description": "Huile noire qui s'accroche à ce qu'elle touche. Elle brûle lentement, et sa chaleur revient dans la main qui l'a lancée."
+}
