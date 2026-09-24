@@ -1,0 +1,25 @@
+{
+  "id": "livre-du-mj",
+  "order": 1,
+  "title": "Livre du MJ",
+  "description": "Ce que le MJ décide, peser une rencontre, concevoir une Compétence et éprouver l'équilibrage.",
+  "banner": "fatal-valdeblanc-16_9-og.png",
+  "chapters": [
+    {
+      "slug": "diriger-une-partie",
+      "file": "01-diriger-une-partie"
+    },
+    {
+      "slug": "menace-et-rencontres",
+      "file": "02-menace-et-rencontres"
+    },
+    {
+      "slug": "concevoir-une-competence",
+      "file": "03-concevoir-une-competence"
+    },
+    {
+      "slug": "eprouver-l-equilibrage",
+      "file": "04-eprouver-l-equilibrage"
+    }
+  ]
+}

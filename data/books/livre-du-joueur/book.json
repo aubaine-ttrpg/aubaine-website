@@ -1,0 +1,49 @@
+{
+  "id": "livre-du-joueur",
+  "order": 0,
+  "title": "Livre du joueur",
+  "description": "Tout ce qu'il faut pour jouer : le Jet, créer un personnage, les Arbres, le combat, l'équipement et la progression.",
+  "banner": "tableau-de-quetes-16_9-og.png",
+  "chapters": [
+    {
+      "slug": "bienvenue",
+      "file": "01-bienvenue"
+    },
+    {
+      "slug": "comment-jouer",
+      "file": "02-comment-jouer"
+    },
+    {
+      "slug": "creer-un-personnage",
+      "file": "03-creer-un-personnage"
+    },
+    {
+      "slug": "les-arbres-et-les-competences",
+      "file": "04-les-arbres-et-les-competences"
+    },
+    {
+      "slug": "le-combat",
+      "file": "05-le-combat"
+    },
+    {
+      "slug": "repos-et-progression",
+      "file": "06-repos-et-progression"
+    },
+    {
+      "slug": "l-equipement",
+      "file": "07-l-equipement"
+    },
+    {
+      "slug": "les-competences-de-base",
+      "file": "08-les-competences-de-base"
+    },
+    {
+      "slug": "les-especes",
+      "file": "09-les-especes"
+    },
+    {
+      "slug": "explorer-et-interagir",
+      "file": "10-explorer-et-interagir"
+    }
+  ]
+}
