@@ -2,6 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "aubaine-website",
   "compatibility_date": "2026-09-01",
+  "routes": [{ "pattern": "aubaine.io", "custom_domain": true }],
   "assets": {
     "directory": "./dist",
     "html_handling": "drop-trailing-slash",
