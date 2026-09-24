@@ -18,7 +18,11 @@
     "format": "biome check --write .",
     "media:sync": "node tools/media/sync.ts",
     "media:stamp": "node tools/media/stamp.ts",
-    "media:stamp:check": "node tools/media/stamp.ts --check"
+    "media:stamp:check": "node tools/media/stamp.ts --check",
+    "pdf": "node tools/pdf/render.ts",
+    "pdf:check": "node tools/pdf/render.ts --check",
+    "pdf:archive": "node tools/pdf/archive.ts",
+    "pdf:archive:check": "node tools/pdf/archive.ts --check"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.3.1",
