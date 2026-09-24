@@ -1,0 +1,148 @@
+{
+  "$id": "https://aubaine.io/schema/tags.json",
+  "title": "Étiquettes des Compétences",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "practices": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "description": "Clé d'étiquette, telle qu'elle est déclarée dans data/meta/tags.json."
+          },
+          "labelFr": {
+            "type": "string",
+            "minLength": 1
+          },
+          "labelEn": {
+            "type": "string",
+            "minLength": 1
+          },
+          "definitionFr": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Texte de l'infobulle de l'étiquette, en clair et sans balisage."
+          },
+          "definitionEn": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Texte anglais de l'infobulle."
+          }
+        },
+        "required": [
+          "key",
+          "labelFr",
+          "labelEn",
+          "definitionFr",
+          "definitionEn"
+        ],
+        "additionalProperties": false
+      },
+      "description": "Pratiques : la manière dont une Compétence se pratique."
+    },
+    "schools": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "description": "Clé d'étiquette, telle qu'elle est déclarée dans data/meta/tags.json."
+          },
+          "practices": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]*$",
+              "description": "Clé d'étiquette, telle qu'elle est déclarée dans data/meta/tags.json."
+            },
+            "description": "Les Pratiques que cette École accepte : la matrice Pratique x École. Ouvrir une case est une décision d'équilibrage."
+          },
+          "labelFr": {
+            "type": "string",
+            "minLength": 1
+          },
+          "labelEn": {
+            "type": "string",
+            "minLength": 1
+          },
+          "definitionFr": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Texte de l'infobulle de l'étiquette, en clair et sans balisage."
+          },
+          "definitionEn": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Texte anglais de l'infobulle."
+          }
+        },
+        "required": [
+          "key",
+          "practices",
+          "labelFr",
+          "labelEn",
+          "definitionFr",
+          "definitionEn"
+        ],
+        "additionalProperties": false
+      },
+      "description": "Écoles : les familles d'effets."
+    },
+    "specials": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "description": "Clé d'étiquette, telle qu'elle est déclarée dans data/meta/tags.json."
+          },
+          "labelFr": {
+            "type": "string",
+            "minLength": 1
+          },
+          "labelEn": {
+            "type": "string",
+            "minLength": 1
+          },
+          "definitionFr": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Texte de l'infobulle de l'étiquette, en clair et sans balisage."
+          },
+          "definitionEn": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Texte anglais de l'infobulle."
+          }
+        },
+        "required": [
+          "key",
+          "labelFr",
+          "labelEn",
+          "definitionFr",
+          "definitionEn"
+        ],
+        "additionalProperties": false
+      },
+      "description": "Spéciales : les particularités qui portent ou porteront une règle."
+    }
+  },
+  "required": [
+    "practices",
+    "schools",
+    "specials"
+  ],
+  "additionalProperties": false
+}

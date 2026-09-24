@@ -1,0 +1,67 @@
+{
+  "$id": "https://aubaine.io/schema/equipment-set.json",
+  "title": "Panoplie",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identifiant, celui qu'une pièce nomme dans 'set'."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "playtest",
+        "beta",
+        "balanced"
+      ],
+      "description": "Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une pièce d'équipement ou une panoplie, dans cet ordre."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "bonuses": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pieces": {
+            "type": "integer",
+            "minimum": 2,
+            "maximum": 9007199254740991,
+            "description": "Combien de pièces doivent être portées ensemble. Deux au minimum : un palier à une pièce est une propriété de cette pièce."
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "grants": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Z0-9]{5}-[0-9]{2}$",
+              "description": "Identité immuable d'une Compétence : cinq caractères tirés du nom, puis un numéro. Deux Compétences ne peuvent pas la partager, même dans deux arbres différents."
+            }
+          }
+        },
+        "required": [
+          "pieces",
+          "text"
+        ],
+        "additionalProperties": false
+      },
+      "description": "Les paliers, par nombre de pièces croissant."
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "bonuses"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,92 @@
+{
+  "$id": "https://aubaine.io/schema/vocabulary.json",
+  "title": "Vocabulaire du jeu",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "entries": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "color": {
+            "type": "string",
+            "pattern": "^#[0-9a-f]{6}$"
+          },
+          "iconName": {
+            "type": "string",
+            "pattern": "^(mdi|material-symbols|game-icons):[a-z0-9-]+$"
+          },
+          "shapeKey": {
+            "type": "string",
+            "enum": [
+              "circle",
+              "square",
+              "concave"
+            ]
+          },
+          "bronzeValue": {
+            "description": "Ce que vaut une pièce en bronze, la plus petite. Propre à data/meta/coins.json : un prix est un entier de bronze, et les pièces le découpent de la plus grande à la plus petite.",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "places": {
+            "description": "Combien d'emplacements indépendants de ce genre une créature porte. Propre à data/meta/slots.json : tous valent 1 sauf le Bijou, qui vaut 2.",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "labelFr": {
+            "type": "string",
+            "minLength": 1
+          },
+          "labelEn": {
+            "type": "string",
+            "minLength": 1
+          },
+          "formsFr": {
+            "description": "Autres formes écrites de labelFr, accord et pluriel compris, reconnues dans un texte de règle.",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "formsEn": {
+            "description": "Autres formes écrites de labelEn, pluriel compris.",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "definitionFr": {
+            "description": "Texte de l'infobulle du mot, en clair et sans balisage. Propre aux vocabulaires dont les mots portent une infobulle : les Caractéristiques et les Aptitudes.",
+            "type": "string",
+            "minLength": 1
+          },
+          "definitionEn": {
+            "description": "Texte anglais de l'infobulle, écrit avec definitionFr.",
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "key",
+          "labelFr",
+          "labelEn"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "entries"
+  ]
+}

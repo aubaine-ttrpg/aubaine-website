@@ -1,0 +1,33 @@
+{
+  "$id": "https://aubaine.io/schema/skill-list.json",
+  "title": "Liste de compétences",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "note": {
+      "type": "string"
+    },
+    "skills": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z0-9]{5}-[0-9]{2}$",
+        "description": "Identité immuable d'une Compétence : cinq caractères tirés du nom, puis un numéro. Deux Compétences ne peuvent pas la partager, même dans deux arbres différents."
+      },
+      "description": "Identifiants, dans l'ordre d'impression."
+    }
+  },
+  "required": [
+    "name",
+    "skills"
+  ],
+  "additionalProperties": false
+}

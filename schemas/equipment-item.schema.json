@@ -1,0 +1,192 @@
+{
+  "$id": "https://aubaine.io/schema/equipment-item.json",
+  "title": "Pièce d'équipement",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "playtest",
+        "beta",
+        "balanced"
+      ],
+      "description": "Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une pièce d'équipement ou une panoplie, dans cet ordre."
+    },
+    "section": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "Clé de la section du catalogue où la pièce est imprimée."
+    },
+    "position": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991,
+      "description": "Rang dans sa section."
+    },
+    "kind": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Nature de l'objet, rendue avec la rareté : Armure, Arme de mêlée."
+    },
+    "rarity": {
+      "type": "string",
+      "description": "Clé de rareté, déclarée dans data/meta/rarities.json."
+    },
+    "art": {
+      "description": "Illustration au rapport 1:1, dans data/media/items/. Plusieurs pièces peuvent partager la même. Absente, la fiche retombe sur l'illustration 1:1 par défaut.",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-\\d{1,2}_\\d{1,2}-(?:og|cleaned|upscaled_[24])\\.(?:png|jpg)$"
+    },
+    "price": {
+      "description": "Prix en pièces de bronze, la plus petite pièce : 100 bronze font 1 argent, 100 argent font 1 or. Un seul nombre. Absent : l'objet ne s'achète pas.",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "set": {
+      "description": "Identifiant d'une Panoplie déclarée dans data/equipment/sets/.",
+      "type": "string"
+    },
+    "headlines": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "value": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "label",
+          "value"
+        ],
+        "additionalProperties": false
+      },
+      "description": "Les valeurs par lesquelles l'entrée est consultée : CA et sa formule pour une armure, Dégâts pour une arme. L'entrée nomme elle-même son intitulé, le gabarit ne connaît aucun type d'objet."
+    },
+    "stats": {
+      "description": "Cellules sous le bandeau.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "value": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "label",
+          "value"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "properties": {
+      "description": "Règles nommées portées par l'objet. Le nom porte sa ponctuation : « Finesse. »",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "name",
+          "text"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "craft": {
+      "description": "Absent : l'objet ne se fabrique pas.",
+      "type": "object",
+      "properties": {
+        "discipline": {
+          "type": "string",
+          "description": "Clé déclarée dans data/meta/disciplines.json."
+        },
+        "cost": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991,
+          "description": "Valeur de matière totale à atteindre."
+        },
+        "materials": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Types de matière acceptés. Chacun doit être représenté."
+        },
+        "sequence": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "La fabrication dans l'ordre. Le travail physique précède le savoir."
+        }
+      },
+      "required": [
+        "discipline",
+        "cost",
+        "materials",
+        "sequence"
+      ],
+      "additionalProperties": false
+    },
+    "grants": {
+      "description": "Compétences accordées par la pièce, définies dans data/skills/.",
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z0-9]{5}-[0-9]{2}$",
+        "description": "Identité immuable d'une Compétence : cinq caractères tirés du nom, puis un numéro. Deux Compétences ne peuvent pas la partager, même dans deux arbres différents."
+      }
+    },
+    "text": {
+      "description": "Corps de l'entrée : ce que fait l'objet.",
+      "type": "string"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Une à deux phrases, rendues en italique sous le filet de pied."
+    }
+  },
+  "required": [
+    "name",
+    "section",
+    "position",
+    "kind",
+    "rarity",
+    "headlines",
+    "description"
+  ],
+  "additionalProperties": false
+}

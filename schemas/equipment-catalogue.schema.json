@@ -1,0 +1,103 @@
+{
+  "$id": "https://aubaine.io/schema/equipment-catalogue.json",
+  "title": "Catalogue d'équipement",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "shortName": {
+      "description": "Titre court, pour les en-têtes courants et le pied de page où le titre complet ne tient pas. Absent, c'est 'name' qui sert.",
+      "type": "string",
+      "minLength": 1
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "cover": {
+      "description": "Couverture au rapport 3:4, dans data/media/art/ : la planche verticale au recto du livret imprimé. Absente, la couverture retombe sur la planche 3:4 par défaut.",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-\\d{1,2}_\\d{1,2}-(?:og|cleaned|upscaled_[24])\\.(?:png|jpg)$"
+    },
+    "banner": {
+      "description": "Bannière au rapport 16:9, dans data/media/art/ : le bandeau derrière le héros de l'index d'équipement. Absente, le héros retombe sur la planche 16:9 par défaut.",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-\\d{1,2}_\\d{1,2}-(?:og|cleaned|upscaled_[24])\\.(?:png|jpg)$"
+    },
+    "backCover": {
+      "description": "Quatrième de couverture au rapport 3:4, dans data/media/art/ : la planche verticale au dos du livret imprimé. Absente, le dos retombe sur la planche 16:9 par défaut.",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-\\d{1,2}_\\d{1,2}-(?:og|cleaned|upscaled_[24])\\.(?:png|jpg)$"
+    },
+    "families": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "key",
+          "title"
+        ],
+        "additionalProperties": false
+      },
+      "description": "Les grandes familles dans l'ordre de lecture. Le livret ouvre une feuille par famille, à l'intérieur de chaque rareté."
+    },
+    "sections": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "family": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "description": "Clé d'une famille déclarée au dessus."
+          },
+          "slot": {
+            "description": "Clé d'un emplacement déclaré dans data/meta/slots.json : où la pièce se porte. Son glyphe ouvre le titre de section et répond aux cases de la fiche. Absent pour ce qui ne se porte pas.",
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          }
+        },
+        "required": [
+          "key",
+          "title",
+          "family"
+        ],
+        "additionalProperties": false
+      },
+      "description": "Les regroupements dans l'ordre de lecture. Une pièce nomme sa section par sa clé."
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "families",
+    "sections"
+  ],
+  "additionalProperties": false
+}

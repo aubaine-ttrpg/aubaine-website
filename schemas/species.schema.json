@@ -1,0 +1,206 @@
+{
+  "$id": "https://aubaine.io/schema/species.json",
+  "title": "Espèce",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "Identifiant de l'Espèce, qui devient son URL."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "playtest",
+        "beta",
+        "balanced"
+      ],
+      "description": "Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une pièce d'équipement ou une panoplie, dans cet ordre."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Nom rendu en titre."
+    },
+    "subtitle": {
+      "description": "Devise de l'Espèce, rendue en italique sous le titre. Absente, le titre reste seul.",
+      "type": "string",
+      "minLength": 1
+    },
+    "cover": {
+      "description": "Couverture au rapport 3:4, dans data/media/art/ : la planche verticale que porte la carte de l'Espèce. Absente, la carte retombe sur la bannière, puis sur la planche 3:4 par défaut.",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-\\d{1,2}_\\d{1,2}-(?:og|cleaned|upscaled_[24])\\.(?:png|jpg)$"
+    },
+    "banner": {
+      "description": "Bannière au rapport 16:9, dans data/media/art/ : le bandeau derrière le héros et la vignette sociale. Absente, le héros retombe sur la planche 16:9 par défaut.",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-\\d{1,2}_\\d{1,2}-(?:og|cleaned|upscaled_[24])\\.(?:png|jpg)$"
+    },
+    "movement": {
+      "description": "Déplacement de l'Espèce, quand il s'écarte des 9 mètres par défaut. Absent : 9 mètres.",
+      "type": "string",
+      "minLength": 1
+    },
+    "types": {
+      "description": "Type(s) de créature de l'Espèce. La plupart sont Humanoïdes ; un peuple façonné en cumule deux, Humanoïde et Artificiel. Absent : l'Espèce n'en déclare pas encore.",
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Clé de type de créature, telle qu'elle est déclarée dans data/meta/creature-types.json."
+      }
+    },
+    "size": {
+      "description": "Catégorie(s) de taille. Plusieurs valent un choix laissé au joueur à la création, jamais un cumul. Absente : l'Espèce n'en déclare pas encore, ou elle la tient de son origine.",
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Clé de catégorie de taille, telle qu'elle est déclarée dans data/meta/sizes.json."
+      }
+    },
+    "derivedFrom": {
+      "description": "D'où l'Espèce tient sa taille et son Déplacement quand elle ne les fixe pas elle-même : 'origin' pour une Espèce qui en était une autre avant, 'parents' pour une Espèce née de deux autres. Exclut `size` et `movement`, qui ne sont alors pas fixés.",
+      "type": "string",
+      "enum": [
+        "origin",
+        "parents"
+      ]
+    },
+    "languages": {
+      "description": "Langue(s) que l'Espèce parle, lit et écrit. Absent : l'Espèce n'en déclare pas encore.",
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Clé de langue, telle qu'elle est déclarée dans data/meta/languages.json."
+      }
+    },
+    "offered": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z0-9]{5}-[0-9]{2}$",
+        "description": "Identité immuable d'une Compétence : cinq caractères tirés du nom, puis un numéro. Deux Compétences ne peuvent pas la partager, même dans deux arbres différents."
+      },
+      "description": "Compétences d'Espèce proposées au choix, définies dans data/skills/. Le personnage en retient deux à la création : elles sont Mémorisées sans occuper de Mémoire, ne coûtent pas de PX et ne se changent plus ensuite. Il peut acheter les autres plus tard, au prix imprimé. Une sous-espèce ajoute les siennes à celles-ci. [] : l'Espèce n'en propose encore aucune."
+    },
+    "subspecies": {
+      "description": "Les sous-espèces de l'Espèce, présentées sur sa page et jamais sur une page à elles. Le personnage en choisit une à la création. Absent : l'Espèce n'en compte aucune.",
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "description": "Identifiant de la sous-espèce, unique dans son Espèce, et l'ancre de sa présentation."
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Nom rendu en intertitre. Il ne se traduit pas."
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Présentation de la sous-espèce, même balisage qu'une Compétence."
+          },
+          "names": {
+            "description": "Les noms que porte la sous-espèce. Ils ne se traduisent pas. Absent : elle n'en déclare pas encore.",
+            "type": "object",
+            "properties": {
+              "masculine": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "description": "Prénoms masculins, dans leur ordre."
+              },
+              "feminine": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "description": "Prénoms féminins, dans leur ordre."
+              },
+              "family": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "description": "Noms de famille, dans leur ordre."
+              }
+            },
+            "required": [
+              "masculine",
+              "feminine",
+              "family"
+            ],
+            "additionalProperties": false
+          },
+          "offered": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Z0-9]{5}-[0-9]{2}$",
+              "description": "Identité immuable d'une Compétence : cinq caractères tirés du nom, puis un numéro. Deux Compétences ne peuvent pas la partager, même dans deux arbres différents."
+            },
+            "description": "Compétences que la sous-espèce ajoute à celles de son Espèce, définies dans data/skills/. Elles portent la sous-espèce en Prérequis. [] : elle n'en ajoute encore aucune."
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "text",
+          "offered"
+        ],
+        "additionalProperties": false,
+        "description": "Une sous-espèce : un nom, une présentation, ses noms et les Compétences qu'elle ajoute."
+      }
+    },
+    "roleplay": {
+      "description": "Ce qui sert à incarner l'Espèce plutôt qu'à la jouer mécaniquement. Absent : l'Espèce n'en déclare rien encore.",
+      "type": "object",
+      "properties": {
+        "adulthood": {
+          "description": "Âge auquel un membre de l'Espèce devient adulte.",
+          "type": "string",
+          "minLength": 1
+        },
+        "lifespan": {
+          "description": "Durée de vie d'un membre de l'Espèce.",
+          "type": "string",
+          "minLength": 1
+        },
+        "height": {
+          "description": "Stature, en mètres. Distincte de la catégorie de taille, qui est une règle.",
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "description": "Ce qu'un joueur lit avant d'incarner l'Espèce, même balisage qu'une Compétence.",
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "offered"
+  ],
+  "additionalProperties": false
+}

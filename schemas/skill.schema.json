@@ -1,0 +1,229 @@
+{
+  "$id": "https://aubaine.io/schema/skill.json",
+  "title": "Compétence",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Z0-9]{5}-[0-9]{2}$",
+      "description": "Identité immuable d'une Compétence : cinq caractères tirés du nom, puis un numéro. Deux Compétences ne peuvent pas la partager, même dans deux arbres différents."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "playtest",
+        "beta",
+        "balanced"
+      ],
+      "description": "Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une pièce d'équipement ou une panoplie, dans cet ordre."
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Nom imprimé. Un texte de règle appelle la Compétence par ce nom, entre doubles accolades."
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "passive",
+        "active",
+        "special"
+      ],
+      "description": "Forme du nœud sur la planche : rond pour active, carré arrondi pour passive, concave pour spéciale."
+    },
+    "tier": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10,
+      "description": "Palier de prix. Le PX rendu vaut 5 × tier, sauf si xpOverride le remplace."
+    },
+    "xpOverride": {
+      "description": "Prix saisi par le concepteur, qui remplace celui du tier. Nécessaire au-delà de 50 PX, que le tier ne peut pas atteindre.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "showXp": {
+      "description": "Absent vaut true. false pour une Compétence octroyée par un équipement ou par un autre nœud, et jamais achetée : le jeton doré disparaît.",
+      "type": "boolean"
+    },
+    "art": {
+      "description": "Illustration au rapport 1:1, dans data/media/skills/ : ce que porte l'intérieur du nœud sur la planche et sur la carte de l'entrée. Absente, le nœud porte la planche 1:1 par défaut.",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-\\d{1,2}_\\d{1,2}-(?:og|cleaned|upscaled_[24])\\.(?:png|jpg)$"
+    },
+    "domains": {
+      "maxItems": 2,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Clé de Domaine, telle qu'elle est déclarée dans data/meta/domains.json."
+      },
+      "description": "Domaine(s) réellement employé(s), choisis par Compétence et jamais repris de l'arbre. Donne la couleur de bordure. [] vaut Neutre ; deux Domaines donnent une bordure scindée à 135 degrés."
+    },
+    "characteristics": {
+      "description": "Caractéristique(s) employée(s) par les Jets : icône(s) devant le titre. [] ou absent signifie que la Compétence n'appelle aucun Jet. 'any' marque une Caractéristique variable selon le contexte.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "Clé de Caractéristique, déclarée dans data/meta/characteristics.json. La clé 'endurance' vient d'avant un renommage et reste acceptée : elle se résout vers 'constitution' au chargement."
+      }
+    },
+    "prerequisite": {
+      "description": "Condition à remplir avant d'acheter la Compétence, rendue sur la ligne de stats : une Caractéristique et son seuil, une Espèce, un nombre de Compétences d'un Domaine. Absente : la Compétence n'en demande aucune.",
+      "type": "string",
+      "minLength": 1
+    },
+    "activation": {
+      "description": "Ce que la Compétence coûte pour être jouée : 1 Action, 1 Action Bonus, 1 Réaction, 1 Attaque pour une manœuvre qui remplace une Attaque, Passif, ou une durée. Une Réaction énonce son déclencheur en tête de sa description, jamais ici.",
+      "type": "string"
+    },
+    "range": {
+      "description": "Portée, sur la ligne de stats.",
+      "type": "string"
+    },
+    "duration": {
+      "description": "Durée, sur la ligne de stats.",
+      "type": "string"
+    },
+    "concentration": {
+      "description": "Rendue dans la durée sous la forme « Concentration · <durée> ». Ce n'est pas une étiquette.",
+      "type": "boolean"
+    },
+    "recharge": {
+      "description": "Repos qui rend la Compétence une fois jouée, rendu sur la ligne de stats : « 1 fois par Repos court » pour 'short-rest', qu'un Repos long rend aussi, « 1 fois par Repos long » pour 'long-rest'. Absent : la Compétence se rejoue sans attendre de repos.",
+      "type": "string",
+      "enum": [
+        "short-rest",
+        "long-rest"
+      ]
+    },
+    "energy": {
+      "description": "Pastille ÉNERGIE. Zéro est une valeur réelle et se distingue d'une Compétence sans coût : elle affiche « 0 énergie ».",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "karma": {
+      "description": "Pastille KARMA. Une créature en garde 3 au plus et n'en récupère à aucun repos, alors une Compétence qui en coûte pèse lourd.",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 3
+    },
+    "life": {
+      "description": "Pastille PDV : un coût payé en Points de vie, en dés (1d6) ou en nombre fixe.",
+      "type": "string",
+      "pattern": "^[1-9][0-9]*(d[1-9][0-9]*)?$"
+    },
+    "evolvesFrom": {
+      "description": "Compétence dérivée : identifiant de la base, rendu « ▲ <titre> ». Réservé aux nœuds rattachés à une base, jamais aux améliorations imbriquées.",
+      "type": "string",
+      "pattern": "^[A-Z0-9]{5}-[0-9]{2}$"
+    },
+    "tags": {
+      "description": "Étiquettes rendues en pied d'entrée, dans l'ordre Pratique, École, Spéciales, chacune avec sa définition au survol. Aucune n'est obligatoire : une Compétence ne porte que celles qui servent l'équilibre, la saveur ou les combinaisons.",
+      "type": "object",
+      "properties": {
+        "practice": {
+          "description": "Pratique : la manière dont la Compétence se pratique, une clé de practices. Une au plus.",
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "school": {
+          "description": "École : la famille d'effets de la Compétence, une clé de schools. Une au plus, et elle doit accepter la Pratique quand les deux sont posées.",
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "specials": {
+          "description": "Spéciales : une ou plusieurs clés de specials, sans doublon.",
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "description": "Clé d'étiquette, telle qu'elle est déclarée dans data/meta/tags.json."
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Texte de règle. Les retours à la ligne sont respectés, une ligne vide sépare deux paragraphes. Balisage : ***gras***, [[Nom d'état]], {{Nom de compétence}}, et [[[Nom d'état]]] pour un marqueur retiré du rendu."
+    },
+    "upgrades": {
+      "description": "Améliorations imbriquées, rendues sous la carte par niveau croissant.",
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "integer",
+            "minimum": 2,
+            "maximum": 10,
+            "description": "Palier dans l'échelle de la Compétence. La base est implicitement au niveau 1."
+          },
+          "tier": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10,
+            "description": "Palier de prix : PX rendu = 5 × tier."
+          },
+          "xpOverride": {
+            "description": "Prix saisi par le concepteur, qui remplace celui du tier.",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "domains": {
+            "description": "Absent vaut hérité de la base, [] vaut explicitement aucun, rempli remplace. Ces trois états sont distincts et ne doivent jamais être confondus.",
+            "maxItems": 2,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Clé de Domaine, telle qu'elle est déclarée dans data/meta/domains.json."
+            }
+          },
+          "characteristics": {
+            "description": "Absent vaut hérité, [] vaut explicitement aucune, rempli remplace.",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Clé de Caractéristique, déclarée dans data/meta/characteristics.json. La clé 'endurance' vient d'avant un renommage et reste acceptée : elle se résout vers 'constitution' au chargement."
+            }
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Texte de règle de l'amélioration, même balisage que la Compétence de base."
+          }
+        },
+        "required": [
+          "level",
+          "tier",
+          "title",
+          "description"
+        ],
+        "additionalProperties": false,
+        "description": "Amélioration imbriquée : une extension de la Compétence de base, sans identifiant, sans position et sans ligne de stats propre. Deux améliorations peuvent partager un niveau."
+      }
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "type",
+    "tier",
+    "domains",
+    "description"
+  ],
+  "additionalProperties": false
+}

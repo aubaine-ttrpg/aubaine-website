@@ -1,0 +1,75 @@
+{
+  "$id": "https://aubaine.io/schema/book.json",
+  "title": "Livre",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "Identifiant du livre, qui devient son URL."
+    },
+    "order": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991,
+      "description": "Rang du livre dans le menu et sur la page des livres."
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "cover": {
+      "description": "Couverture au rapport 3:4, dans data/media/art/. Absente, la carte retombe sur la bannière, puis sur la planche 16:9 par défaut.",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-\\d{1,2}_\\d{1,2}-(?:og|cleaned|upscaled_[24])\\.(?:png|jpg)$"
+    },
+    "banner": {
+      "description": "Bannière au rapport 16:9, dans data/media/art/. Absente, le héros retombe sur la planche 16:9 par défaut.",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-\\d{1,2}_\\d{1,2}-(?:og|cleaned|upscaled_[24])\\.(?:png|jpg)$"
+    },
+    "backCover": {
+      "description": "Quatrième de couverture au rapport 3:4, dans data/media/art/ : la planche verticale au dos du livre imprimé. Absente, le dos retombe sur la bannière recadrée en portrait.",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-\\d{1,2}_\\d{1,2}-(?:og|cleaned|upscaled_[24])\\.(?:png|jpg)$"
+    },
+    "chapters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "description": "Segment d'URL du chapitre. Il ne change pas quand le livre est réordonné."
+          },
+          "file": {
+            "type": "string",
+            "pattern": "^[0-9]{2}-[a-z0-9-]+$",
+            "description": "Fichier markdown à côté de book.json, sans extension. Le préfixe chiffré tient le dossier en ordre de lecture."
+          }
+        },
+        "required": [
+          "slug",
+          "file"
+        ],
+        "additionalProperties": false,
+        "description": "Un chapitre est une page entière. Ses parties sont les titres markdown de son corps, pas des fichiers séparés."
+      },
+      "description": "Les chapitres du livre, dans l'ordre. Vide : le livre est un téléchargement seul."
+    }
+  },
+  "required": [
+    "id",
+    "order",
+    "title",
+    "description",
+    "chapters"
+  ],
+  "additionalProperties": false
+}

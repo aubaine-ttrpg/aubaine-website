@@ -1,0 +1,51 @@
+{
+  "$id": "https://aubaine.io/schema/media-captions.json",
+  "title": "Légendes des images",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "captions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "file": {
+            "type": "string",
+            "pattern": "^(?:art|items|skills|unassigned|video)\\/[a-z0-9]+(?:-[a-z0-9]+)*-\\d{1,2}_\\d{1,2}-(?:og|cleaned|upscaled_[24]|compressed)\\.(?:png|jpg|mp4)$",
+            "description": "Chemin du fichier sous data/media/, le dossier compris : 'items/dague-1_1-og.png'. Une entrée par fichier, jamais deux."
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Nom de l'image, sans le studio. La signature « · Aubaine » est ajoutée à la gravure, ne l'écrivez pas ici."
+          },
+          "description": {
+            "description": "Ce que l'image montre, en français, en une phrase : « Dague à lame courbe et garde dorée, sur fond bleu. » Elle décrit les pixels, jamais la règle, et elle ne se déduit pas d'un texte de jeu. Absente, le fichier est gravé sans description.",
+            "type": "string",
+            "minLength": 1
+          },
+          "keywords": {
+            "description": "Mots-clés propres à cette image, ajoutés après ceux que toute image porte : « arme », « objet ». Ils entrent dans dc:subject.",
+            "maxItems": 6,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "required": [
+          "file",
+          "title"
+        ],
+        "additionalProperties": false,
+        "description": "Ce qu'une image dit d'elle-même une fois gravée. Le bloc légal n'est pas ici : il est le même pour tout ce que le studio possède et vit dans src/lib/rights/claim.ts."
+      }
+    }
+  },
+  "required": [
+    "captions"
+  ],
+  "additionalProperties": false,
+  "description": "Les légendes gravées dans les masters de data/media/. Écrit à la main, relu par pnpm media:stamp à chaque gravure."
+}
