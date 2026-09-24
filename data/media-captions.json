@@ -1,0 +1,85 @@
+{
+  "captions": [
+    {
+      "file": "items/arc-court-1_1-og.png",
+      "title": "Arc court",
+      "description": "Arc court en bois gravé aux volutes bleues, corde tendue.",
+      "keywords": [
+        "arme",
+        "objet"
+      ]
+    },
+    {
+      "file": "items/armure-de-cuir-1_1-og.png",
+      "title": "Armure de cuir",
+      "description": "Plastron de cuir bouilli à sangles et boucles, sur fond vert.",
+      "keywords": [
+        "armure",
+        "objet"
+      ]
+    },
+    {
+      "file": "items/armure-de-mage-1_1-og.png",
+      "title": "Armure de mage",
+      "description": "Robe de mage violette à ferrures dorées et gemme au col.",
+      "keywords": [
+        "armure",
+        "objet"
+      ]
+    },
+    {
+      "file": "items/cotte-de-mailles-1_1-og.png",
+      "title": "Cotte de mailles",
+      "description": "Armure lourde d'acier sombre à épaulières dorées, sur fond d'or.",
+      "keywords": [
+        "armure",
+        "objet"
+      ]
+    },
+    {
+      "file": "items/cuirasse-1_1-og.png",
+      "title": "Cuirasse",
+      "description": "Plastron d'acier à épaulières dorées porté sur un gambison bleu.",
+      "keywords": [
+        "armure",
+        "objet"
+      ]
+    },
+    {
+      "file": "items/dague-1_1-og.png",
+      "title": "Dague",
+      "description": "Dague à lame courbe et garde dorée, sur fond bleu.",
+      "keywords": [
+        "arme",
+        "objet"
+      ]
+    },
+    {
+      "file": "items/epee-courte-1_1-og.png",
+      "title": "Épée courte",
+      "description": "Épée courte à lame large et garde dorée, sur fond d'or.",
+      "keywords": [
+        "arme",
+        "objet"
+      ]
+    },
+    {
+      "file": "items/epee-longue-1_1-og.png",
+      "title": "Épée longue",
+      "description": "Épée longue à lame droite et poignée de cuir, sur fond bleu.",
+      "keywords": [
+        "arme",
+        "objet"
+      ]
+    },
+    {
+      "file": "items/revolver-1_1-og.png",
+      "title": "Revolver",
+      "description": "Revolver à barillet d'acier et ornements dorés, sur fond de flammes.",
+      "keywords": [
+        "arme",
+        "objet"
+      ]
+    }
+  ]
+}
