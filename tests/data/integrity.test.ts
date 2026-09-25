@@ -936,6 +936,17 @@ describe('definitions', () => {
     }
   })
 
+  it('defines the Banque Commune with the Common Bank note, in every locale', async () => {
+    for (const locale of LOCALES) {
+      const built = await readCorpus(root, locale)
+      for (const word of ['banque commune', 'common bank']) {
+        const record = built.terms.map.get(word)
+        expect(record?.family, `${locale} ${word}`).toBe('rule')
+        expect(record?.text, `${locale} ${word}`).toBe(built.bank.note)
+      }
+    }
+  })
+
   it('writes a definition only where a tooltip shows it', () => {
     for (const vocabulary of sources.vocabularies) {
       for (const entry of vocabulary.data.entries) {

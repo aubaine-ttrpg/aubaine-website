@@ -517,7 +517,7 @@ type RuleTerm = {
   en: readonly [string, ...string[]]
   color: string
   icon: string
-} & ({ definition: Record<Locale, string> } | { tag: string })
+} & ({ definition: Record<Locale, string> } | { tag: string } | { skillList: 'bank' })
 
 const RULE_TERMS: readonly RuleTerm[] = [
   {
@@ -668,6 +668,13 @@ const RULE_TERMS: readonly RuleTerm[] = [
     },
   },
   {
+    fr: ['Banque Commune'],
+    en: ['Common Bank'],
+    color: 'var(--accent-ink)',
+    icon: 'mdi/bank',
+    skillList: 'bank',
+  },
+  {
     fr: ['PdV'],
     en: ['HP'],
     color: 'var(--term-res)',
@@ -774,9 +781,18 @@ function requiredDefinition(entry: Glossed, locale: Locale, where: string): stri
 function ruleTermDefinition(
   rule: RuleTerm,
   tags: Map<string, ResolvedTag>,
+  bank: SkillList,
   locale: Locale,
 ): string {
   if ('definition' in rule) return rule.definition[locale]
+  if ('skillList' in rule) {
+    if (!bank.note?.trim()) {
+      throw new Error(
+        `rule term ${rule.fr[0]} reads the note of data/skill-lists/common-bank.json, which has none`,
+      )
+    }
+    return bank.note
+  }
   const tag = tags.get(rule.tag)
   if (!tag)
     throw new Error(
@@ -797,7 +813,7 @@ function buildTermIndex(input: TermInput): TermIndex {
   }
 
   for (const rule of RULE_TERMS) {
-    const text = ruleTermDefinition(rule, tags, locale)
+    const text = ruleTermDefinition(rule, tags, bank, locale)
     for (const word of [...rule.fr, ...rule.en]) {
       put(word, {
         family: 'rule',

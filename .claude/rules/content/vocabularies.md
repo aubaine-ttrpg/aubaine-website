@@ -22,6 +22,7 @@ paths:
 - Rule terms are a vocabulary of their own, declared in `RULE_TERMS` in `src/lib/game/build.ts` rather than in `data/meta/`. `Avantage` is one of them. Read the declaration for the current set and never work from a copy of it.
 - Each entry carries its own colour and icon, lists its inflected forms per locale, and carries its tooltip `definition` in both locales. It is matched wherever it appears in rule text.
 - `Sort` carries no text of its own: it reads the definition of the `spell` tag in `data/meta/tags.json`, so the word is defined once.
+- `Banque Commune` carries none either: it reads the `note` of `data/skill-lists/common-bank.json`, the same paragraph the skills index shows on the Common Bank's label.
 - Changing that list changes the rendering of every entry. Treat it as a vocabulary change, not a code change.
 - It lives in code only for historical reasons. Do not treat that as licence to hard code any other vocabulary.
 

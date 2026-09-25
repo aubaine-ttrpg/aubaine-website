@@ -36,7 +36,7 @@ The list file, `data/skill-lists/common-bank.json`:
 | --- | --- | --- | --- |
 | `name` | required | The printed name of the list. | any non empty string |
 | `subtitle` | optional | The line under the name. | any non empty string |
-| `note` | optional | A paragraph printed with the list. | any non empty string |
+| `note` | optional | A paragraph printed with the list. It is also the tooltip of the rule term `Banque Commune`. | any non empty string |
 | `skills` | required | Identifiants, dans l'ordre d'impression. | 1 or more skill ids that exist |
 
 ## A complete example
@@ -95,6 +95,7 @@ The list file, `data/skill-lists/common-bank.json`:
 - `/fr/competences` and `/en/skills`: a card in the skill index, with `Banque Commune` as its source, filterable by that source alongside the trees.
 - Anywhere rule text writes `{{Repli vif}}`, the name becomes a cross reference with a tooltip carrying the type, the list name and the first lines of the description.
 - `/fr/recherche` and `/en/search`: a row under the skills group.
+- Anywhere rule text or a chapter writes `Banque Commune` (`Common Bank` in English), the words carry the rule term's icon and a tooltip that reads the list's `note`.
 
 A bank skill never appears on a plate. It has no placement, no `pos` and no `linked`.
 
@@ -120,5 +121,7 @@ pnpm dev
 **Two steps, and the second one is easy to forget.** A skill file that no list and no tree names appears nowhere.
 
 **Never write `"key": null`.** Leave the key out.
+
+**The list's `note` is a definition.** It is the tooltip of the rule term `Banque Commune`, in both locales, so editing it rewrites that tooltip everywhere the words appear. Keep it a definition of the Banque Commune, and keep `common-bank.en.json` saying the same thing. The build fails if the note is removed.
 
 **`{{Se désengager}}` must name a skill title exactly.** Cross references resolve by title, not by id, and `pnpm data:check` fails on a name that matches nothing.
