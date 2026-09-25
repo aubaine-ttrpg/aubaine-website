@@ -79,6 +79,8 @@ test('the switch answers the keyboard', async ({ page }) => {
 test('a list of drafts leaves no stale detail on screen', async ({ page }) => {
   await page.goto('/en/equipment')
   await hydrated(page)
+  await expect(results(page)).toHaveText('1 result')
+  await page.getByPlaceholder('Filter by name').fill('Dague')
   await expect(results(page)).toHaveText('0 results')
   await expect(page.locator('[data-details]')).toBeHidden()
 })
@@ -92,7 +94,7 @@ test('a link to a draft still opens it while drafts are hidden', async ({ page }
     'aria-current',
     'true',
   )
-  await expect(results(page)).toHaveText('1 result')
+  await expect(results(page)).toHaveText('2 results')
 })
 
 test('drafts stay hidden before the filter island hydrates', async ({ page }) => {

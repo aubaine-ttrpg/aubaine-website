@@ -170,7 +170,7 @@ pnpm dev
 
 **The coins are a way of reading that number, and the site computes them.** `data/meta/coins.json` holds the three, each with its `bronzeValue`, and the price is split from the largest down with any coin that comes out at zero left out: `200` prints `2 argent`, `10400` prints `1 or 4 argent`, and `10001` prints `1 or 1 bronze` with no argent between them to read past.
 
-**`headlines` names its own labels.** The template knows nothing about weapons or armour. Write `Dégâts` for a weapon, `CA` for armour, `Domaine` for a catalyst. Whatever you write in `label` is what is printed.
+**`headlines` names its own labels.** The template knows nothing about weapons or armour. Write `Dégâts` for a weapon, `CA` for armour, `Domaine` for a catalyst. Whatever you write in `label` is what is printed. Leave `headlines` out when the text already says everything a reader looks up, as the Masque du Métamorphe does: the card then has no band, and its row in the list leaves that column empty.
 
 **`position` orders the item inside its section, and two items in the same section must not share one.** It is not a global rank.
 

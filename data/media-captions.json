@@ -73,6 +73,15 @@
       ]
     },
     {
+      "file": "items/masque-du-metamorphe-1_1-og.png",
+      "title": "Masque du Métamorphe",
+      "description": "Masque de pierre fendue et d'os, cerclé de ferrures rouillées et gravé de runes vertes lumineuses, sur fond de fumées violettes.",
+      "keywords": [
+        "masque",
+        "objet"
+      ]
+    },
+    {
       "file": "items/revolver-1_1-og.png",
       "title": "Revolver",
       "description": "Revolver à barillet d'acier et ornements dorés, sur fond de flammes.",
