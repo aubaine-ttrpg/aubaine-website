@@ -1,5 +1,5 @@
 ---
-import type { BrowseEntry } from '../../lib/game/browse-entries'
+import type { BrowseEntry, BrowseSource } from '../../lib/game/browse-entries'
 import type { Corpus } from '../../lib/game/corpus'
 import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
@@ -19,6 +19,18 @@ type Props = {
 
 const { locale, corpus, entries, label, variant } = Astro.props
 const t = strings(locale)
+
+const SOURCE_ICONS: Record<BrowseSource['kind'], string> = {
+  tree: 'mdi:family-tree',
+  species: 'mdi:dna',
+  item: 'mdi:shield-sword',
+  bank: 'mdi:bank',
+  other: 'mdi:information-outline',
+}
+const NOTES: Record<'bank' | 'other', string | undefined> = {
+  bank: corpus.bank.note,
+  other: t.otherNote,
+}
 ---
 
 <FilterBar
@@ -106,45 +118,55 @@ const t = strings(locale)
           }
 
           {entry.sources.length > 0 && (
-            <div style="margin-top:22px; border-top:1px solid var(--accent-line); padding-top:15px; display:flex; flex-direction:column; gap:15px">
-              <span style="font-family:var(--font-mono); font-size:9.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--gold)">
+            <div class="au-sources">
+              <p class="au-sources__label" id={`src-${entry.id}`}>
                 {t.provenance}
-              </span>
-              {entry.sources.map((group) =>
-                group.kind === 'note' ? (
-                  <span class="au-rule au-source-note" data-term="true" tabindex="0">
-                    <Icon name="mdi:information-outline" class="au-rule__icon" />
-                    <span>{group.label}</span>
-                    <span class="au-rule__tip" data-tip="true" role="tooltip">
-                      <span class="au-rule__tip-kind">{t.provenance}</span>
-                      <span class="au-rule__tip-title">{group.label}</span>
-                      <span class="au-rule__tip-body">{group.note}</span>
-                    </span>
-                  </span>
-                ) : (
-                  <div style="display:flex; flex-direction:column; gap:8px">
-                    <span style="font-family:var(--font-ui); font-size:13px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3)">
-                      {group.label}
-                    </span>
-                    <div style="display:flex; flex-wrap:wrap; gap:8px">
-                      {group.links.map((link) => (
-                        <a
-                          href={link.href}
-                          data-source
-                          style="display:flex; align-items:baseline; gap:9px; padding:7px 12px; border:1px solid var(--line2); color:var(--ink); transition:border-color .2s var(--ease)"
+              </p>
+              <ul class="au-sources__list" aria-labelledby={`src-${entry.id}`}>
+                {entry.sources.map((source) => (
+                  <li>
+                    {'href' in source ? (
+                      <a class="au-source" href={source.href}>
+                        <Icon name={SOURCE_ICONS[source.kind]} class="au-source__icon" />
+                        <span>{source.title}</span>
+                      </a>
+                    ) : (
+                      <>
+                        <button
+                          type="button"
+                          class="au-source"
+                          popovertarget={`note-${source.kind}-${entry.id}`}
+                          style={`anchor-name:--note-${source.kind}-${entry.id}`}
                         >
-                          <span style="font-family:var(--font-display); font-size:15px; font-weight:600">
-                            {link.title}
-                          </span>
-                          <span style="font-family:var(--font-mono); font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink3)">
-                            {link.sub}
-                          </span>
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                ),
-              )}
+                          <Icon name={SOURCE_ICONS[source.kind]} class="au-source__icon" />
+                          <span>{source.title}</span>
+                        </button>
+                        <div
+                          popover
+                          id={`note-${source.kind}-${entry.id}`}
+                          class="au-source-note"
+                          aria-labelledby={`note-${source.kind}-${entry.id}-title`}
+                          style={`position-anchor:--note-${source.kind}-${entry.id}`}
+                        >
+                          <p class="au-source-note__kind">{t.provenance}</p>
+                          <p class="au-source-note__title" id={`note-${source.kind}-${entry.id}-title`}>
+                            {source.title}
+                          </p>
+                          <p class="au-source-note__body">{NOTES[source.kind]}</p>
+                          <button
+                            type="button"
+                            class="au-source-note__close"
+                            popovertarget={`note-${source.kind}-${entry.id}`}
+                            popovertargetaction="hide"
+                          >
+                            {t.close}
+                          </button>
+                        </div>
+                      </>
+                    )}
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
         </article>
@@ -180,28 +202,108 @@ const t = strings(locale)
     align-self: stretch;
     height: auto;
   }
-  [data-source]:hover {
+  .au-sources {
+    margin-top: 22px;
+    padding-top: 15px;
+    border-top: 1px solid var(--accent-line);
+  }
+  .au-sources__label {
+    margin: 0 0 12px;
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .au-sources__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .au-source {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 13px;
+    border: 1px solid var(--line2);
+    background: var(--field);
+    color: var(--ink);
+    font-family: var(--font-ui);
+    font-size: 13.5px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition:
+      border-color 0.2s var(--ease),
+      background-color 0.2s var(--ease);
+  }
+  .au-source:hover,
+  .au-source:focus-visible {
     border-color: var(--gold);
+    background: var(--accent-soft);
+  }
+  .au-source :global(.au-source__icon) {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    color: var(--gold);
   }
   .au-source-note {
-    align-self: flex-start;
+    width: min(400px, calc(100vw - 32px));
+    padding: 18px 20px 16px;
+    border: 1px solid var(--accent-line);
+    background: var(--bg2);
+    color: var(--ink);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  }
+  @supports (anchor-name: --a) {
+    @media (min-width: 560px) {
+      .au-source-note {
+        inset: auto;
+        margin: 8px 0;
+        position-area: bottom span-right;
+        position-try-fallbacks: flip-block, flip-inline;
+      }
+    }
+  }
+  .au-source-note__kind {
+    margin: 0 0 6px;
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .au-source-note__title {
+    margin: 0 0 10px;
+    font-family: var(--font-display);
+    font-size: 19px;
+    font-weight: 600;
+  }
+  .au-source-note__body {
+    margin: 0 0 14px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink2);
+  }
+  .au-source-note__close {
+    padding: 7px 13px;
+    border: 1px solid var(--line2);
+    color: var(--ink);
     font-family: var(--font-ui);
     font-size: 13px;
-    letter-spacing: 0.12em;
+    font-weight: 600;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    text-decoration: underline dotted;
-    text-underline-offset: 0.3em;
-    color: var(--ink3);
-    cursor: help;
+    cursor: pointer;
   }
-  .au-source-note:hover,
-  .au-source-note:focus-visible {
-    color: var(--ink);
-  }
-  .au-source-note .au-rule__tip {
-    letter-spacing: normal;
-    text-transform: none;
-    text-decoration: none;
+  .au-source-note__close:hover,
+  .au-source-note__close:focus-visible {
+    border-color: var(--gold);
   }
   [data-detail] {
     --detail-art: 112px;

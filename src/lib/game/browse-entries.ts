@@ -26,10 +26,9 @@ import {
 } from './schema.ts'
 import { type BadgedStatus, badgedStatus } from './status.ts'
 
-type SourceLink = { title: string; sub: string; href: string }
-type SourceGroup =
-  | { kind: 'links'; label: string; links: SourceLink[] }
-  | { kind: 'note'; label: string; note: string }
+export type BrowseSource =
+  | { kind: 'tree' | 'species' | 'item'; title: string; href: string }
+  | { kind: 'bank' | 'other'; title: string }
 type FacetValue = { value: string; label: string }
 type Facet = { group: string; values: string[]; labels: string[] }
 
@@ -50,7 +49,7 @@ export type BrowseEntry = {
   coins: CoinPart[]
   attrs: Record<string, string>
   status: BadgedStatus | undefined
-  sources: SourceGroup[]
+  sources: BrowseSource[]
 }
 
 const DOMAIN_FALLBACK = '#2a2a2e'
@@ -183,46 +182,33 @@ export function skillBrowseEntries(
 
     const tier = skill.tier || 1
 
-    const sources: SourceGroup[] = []
-    if (source.trees.length > 0) {
-      sources.push({
-        kind: 'links',
-        label: t.fromTrees,
-        links: source.trees.map((tree) => ({
+    const sources: BrowseSource[] = [
+      ...source.trees.map(
+        (tree): BrowseSource => ({
+          kind: 'tree',
           title: tree.name,
-          sub: t.openTree,
-          href: pathFor('tree', locale, { tree: tree.id }),
-        })),
-      })
-    }
-    if (elsewhere.length > 0) {
-      sources.push({
-        kind: 'links',
-        label: t.fromSpecies,
-        links: elsewhere.map((entry) => ({
+          href: pathFor('tree', locale, { tree: tree.id, node: skill.id }),
+        }),
+      ),
+      ...elsewhere.map(
+        (entry): BrowseSource => ({
+          kind: 'species',
           title: entry.subspecies ? `${entry.name} · ${entry.subspecies.name}` : entry.name,
-          sub: t.openSpecies,
           href:
             pathFor('speciesEntry', locale, { species: entry.id }) +
             (entry.subspecies ? `#${subspeciesAnchor(entry.subspecies.id)}` : ''),
-        })),
-      })
-    }
-    if (source.items.length > 0) {
-      sources.push({
-        kind: 'links',
-        label: t.fromItems,
-        links: source.items.map((item) => ({
+        }),
+      ),
+      ...source.items.map(
+        (item): BrowseSource => ({
+          kind: 'item',
           title: item.name,
-          sub: t.openItem,
           href: `${pathFor('equipment', locale)}#e-${item.slug}`,
-        })),
-      })
-    }
-    if (source.bank) sources.push({ kind: 'note', label: bankName, note: t.bankNote })
-    if (sources.length === 0 && !species) {
-      sources.push({ kind: 'note', label: t.other_, note: t.otherNote })
-    }
+        }),
+      ),
+    ]
+    if (source.bank) sources.push({ kind: 'bank', title: bankName })
+    if (sources.length === 0 && !species) sources.push({ kind: 'other', title: t.other_ })
 
     return {
       id: skill.id,

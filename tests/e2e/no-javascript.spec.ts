@@ -209,6 +209,15 @@ test('a tree page reaches its own history without javascript', async ({ page }) 
 test.describe('without javascript', () => {
   test.use({ javaScriptEnabled: false })
 
+  test('the Common Bank source still opens its note without javascript', async ({ page }) => {
+    await page.goto('/en/skills#e-CBREP-01')
+    const note = page.locator('#note-bank-CBREP-01')
+    await expect(note).toBeHidden()
+    await page.locator('#e-CBREP-01').getByRole('button', { name: 'Common Bank' }).click()
+    await expect(note).toBeVisible()
+    await expect(note).toContainText('Common Bank skills are independent from one another.')
+  })
+
   test('every draft stays listed without javascript, and no switch pretends otherwise', async ({
     page,
   }) => {

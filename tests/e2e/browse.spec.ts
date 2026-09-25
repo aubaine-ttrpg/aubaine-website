@@ -173,16 +173,33 @@ test('a resting tooltip occupies no layout', async ({ page }) => {
   expect(await tip.evaluate((node) => node.getClientRects().length)).toBe(0)
 })
 
-test('the Common Bank note waits in a popup on its label', async ({ page }) => {
+test('the Common Bank source opens its note and closes it again', async ({ page }) => {
   await page.goto('/en/skills#e-CBREP-01')
   await enhanced(page)
 
-  const note = page.locator('#e-CBREP-01 .au-source-note')
-  const tip = note.locator('[data-tip]')
-  await expect(tip).toBeHidden()
-  await note.focus()
-  await expect(tip).toBeVisible()
-  await expect(tip).toContainText('Prerequisite')
+  const source = page.locator('#e-CBREP-01').getByRole('button', { name: 'Common Bank' })
+  const note = page.locator('#note-bank-CBREP-01')
+  await expect(note).toBeHidden()
+
+  await source.click()
+  await expect(note).toBeVisible()
+  await expect(note).toContainText('Common Bank skills are independent from one another.')
+  await page.keyboard.press('Escape')
+  await expect(note).toBeHidden()
+
+  await source.click()
+  await note.getByRole('button', { name: 'Close' }).click()
+  await expect(note).toBeHidden()
+})
+
+test('a tree source opens the skill on its plate', async ({ page }) => {
+  await page.goto('/en/skills#e-RAGER-01')
+  await enhanced(page)
+
+  const source = page.locator('#e-RAGER-01').getByRole('link', { name: 'Berserker' })
+  await expect(source).toHaveAttribute('href', '/en/tree/berserker/RAGER-01')
+  await source.click()
+  await expect(page).toHaveURL('/en/tree/berserker/RAGER-01')
 })
 
 for (const { path, kind, name } of [
