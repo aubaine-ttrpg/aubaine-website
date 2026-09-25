@@ -918,7 +918,6 @@ function buildTermIndex(input: TermInput): TermIndex {
 
   for (const tree of trees) {
     for (const skill of tree.skills) {
-      const first = skill.characteristics?.[0]
       put(skill.title, {
         family: 'skill',
         skillId: skill.id,
@@ -926,9 +925,7 @@ function buildTermIndex(input: TermInput): TermIndex {
         title: skill.title,
         meta: `${typeLabel(skill.type, t)} · ${tree.name}`,
         color: 'var(--accent-ink)',
-        icon: first
-          ? iconPath(characteristics.get(characteristicKey(first))?.iconName)
-          : 'mdi/hexagon',
+        icon: skillIcon(skill, characteristics),
         text: flattenText(skill.description, 240),
         href: pathFor('tree', locale, { tree: tree.id, node: skill.id }),
       })
@@ -950,7 +947,6 @@ function buildTermIndex(input: TermInput): TermIndex {
   }
 
   for (const skill of bank.resolved) {
-    const first = skill.characteristics?.[0]
     put(skill.title, {
       family: 'skill',
       skillId: skill.id,
@@ -958,13 +954,16 @@ function buildTermIndex(input: TermInput): TermIndex {
       title: skill.title,
       meta: `${typeLabel(skill.type, t)} · ${bank.name}`,
       color: 'var(--accent-ink)',
-      icon: first
-        ? iconPath(characteristics.get(characteristicKey(first))?.iconName)
-        : 'mdi/hexagon',
+      icon: skillIcon(skill, characteristics),
       text: flattenText(skill.description, 240),
       href: `${pathFor('skills', locale)}#e-${skill.id}`,
     })
   }
 
   return { map, pattern: buildTermPattern([...map.keys()]) }
+}
+
+function skillIcon(skill: Skill, characteristics: Map<string, VocabularyEntry>): string {
+  const first = skill.characteristics?.[0]
+  return first ? iconPath(characteristics.get(characteristicKey(first))?.iconName) : 'mdi/hexagon'
 }
