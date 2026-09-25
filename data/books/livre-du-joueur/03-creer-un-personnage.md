@@ -33,7 +33,7 @@ PP
 
 ## L'ordre des étapes
 
-1. **Espèce, Archétype, Domaine.** Choisissez-les parmi ceux que le MJ propose, avec votre origine régionale quand l'Espèce en compte. Ils fixent vos deux Arbres, vos deux Compétences d'Espèce et votre déplacement.
+1. **Espèce, Archétype, Domaine.** Choisissez-les parmi ceux que le MJ propose, avec votre origine régionale quand l'Espèce en compte. Ils fixent vos deux premiers Arbres, vos deux Compétences d'Espèce et votre déplacement.
 2. **L'Âme.** Écrivez la Phobie, la Manie, le Défaut, la Spécialité et le Don.
 3. **Caractéristiques.** Dépensez des PM.
 4. **Aptitudes et Spécialité.** Dépensez des PM.
@@ -163,7 +163,7 @@ L'Énergie paie les Compétences qui coûtent quelque chose. Une Compétence don
 
 ## Dépenser les 25 PX
 
-Les PX achètent les Compétences de vos deux Arbres et leurs Niveaux. Chaque achat coûte de 5 à 100 PX, par pas de 5, et le prix est imprimé sur la Compétence.
+Les PX achètent les Compétences de vos Arbres et leurs Niveaux, et débloquent de nouveaux Arbres. Chaque achat coûte de 5 à 100 PX, par pas de 5, et le prix est imprimé sur la Compétence.
 
 Vingt-cinq PX ne font pas un personnage complet. Ils font une ouverture : deux ou trois Compétences bon marché qui disent comment il agit au premier round. Le reste vient en jeu.
 

@@ -3,9 +3,11 @@ title: "Trees and Skills"
 description: "What a Tree sells, how a Skill gains Levels, and the Common Bank."
 ---
 
-Your XP goes almost entirely into your two Trees. A Tree is a plate: a grid of Skills joined by lines, with a core in the middle carrying its name.
+Your XP goes almost entirely into your Trees. A Tree is a plate: a grid of Skills joined by lines, with a core in the middle carrying its name.
 
-You have two, an Archetype's and a Domain's. The Archetype says how your character acts, the Domain says what with.
+You start with two, an Archetype's and a Domain's. The Archetype says how your character acts, the Domain says what with.
+
+You can unlock more during play, Archetypes and Domains alike. Unlocking a Tree costs 5 XP per Tree you already have: a third Tree costs 10 XP, a fourth 15 XP. Once unlocked, a Tree sells its Skills like the others.
 
 A Berserker and a Marchand are two Archetypes; Feu and Terre are two Domains. These are only examples: the list of published Trees lives and changes. The trees index carries the current one, and that is what counts, not this chapter.
 

@@ -3,9 +3,11 @@ title: "Les Arbres et les Compétences"
 description: "Ce qu'un Arbre vend, comment une Compétence monte en Niveau, et la Banque Commune."
 ---
 
-Vos PX passent presque entièrement dans vos deux Arbres. Un Arbre est une planche : une grille de Compétences reliées par des traits, avec un cœur au milieu qui porte son nom.
+Vos PX passent presque entièrement dans vos Arbres. Un Arbre est une planche : une grille de Compétences reliées par des traits, avec un cœur au milieu qui porte son nom.
 
-Vous en avez deux, un d'Archétype et un de Domaine. L'Archétype dit comment votre personnage agit, le Domaine dit avec quoi.
+Vous commencez avec deux, un d'Archétype et un de Domaine. L'Archétype dit comment votre personnage agit, le Domaine dit avec quoi.
+
+Vous pouvez en débloquer d'autres en cours de partie, d'Archétype comme de Domaine. Débloquer un Arbre coûte 5 PX par Arbre que vous avez déjà : un troisième Arbre coûte 10 PX, un quatrième 15 PX. Une fois débloqué, un Arbre vend ses Compétences comme les autres.
 
 Un Berserker et un Marchand sont deux Archétypes ; Feu et Terre sont deux Domaines. Ce ne sont que des exemples : la liste des Arbres publiés vit et change. L'index des arbres porte celle du jour, et c'est elle qui fait foi, pas ce chapitre.
 

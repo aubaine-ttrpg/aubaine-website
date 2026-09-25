@@ -31,7 +31,7 @@ La table
 - Une fiche de personnage.
 - Des dés : des d12 surtout, plus un d4 et quelques autres pour les dégâts.
 - De quoi écrire, parce que la fiche change en jeu.
-- Vos deux Arbres, celui de votre Archétype et celui de votre Domaine.
+- Vos Arbres, à commencer par celui de votre Archétype et celui de votre Domaine.
 
 Rien d'autre. Ni figurines, ni quadrillage : les distances se comptent en mètres et s'annoncent à voix haute.
 

@@ -33,7 +33,7 @@ PP
 
 ## The order of the steps
 
-1. **Species, Archetype, Domain.** Choose them from what the GM offers, and your regional origin where the Species has any. They fix your two Trees, your two Species Skills and your movement.
+1. **Species, Archetype, Domain.** Choose them from what the GM offers, and your regional origin where the Species has any. They fix your first two Trees, your two Species Skills and your movement.
 2. **The Soul.** Write down the Phobia, the Mania, the Flaw, the Speciality and the Gift.
 3. **Characteristics.** Spend MP.
 4. **Aptitudes and Speciality.** Spend MP.
@@ -163,7 +163,7 @@ Energy pays for the Skills that cost something. A Skill whose cost exceeds your 
 
 ## Spending the 25 XP
 
-XP buys the Skills of your two Trees and their Levels. Each purchase costs 5 to 100 XP, in steps of 5, and the price is printed on the Skill.
+XP buys the Skills of your Trees and their Levels, and unlocks new Trees. Each purchase costs 5 to 100 XP, in steps of 5, and the price is printed on the Skill.
 
 Twenty-five XP does not make a complete character. It makes an opening: two or three cheap Skills that say how they act in the first round. The rest comes in play.
 

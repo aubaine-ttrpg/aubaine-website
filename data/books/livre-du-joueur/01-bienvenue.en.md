@@ -31,7 +31,7 @@ The table
 - A character sheet.
 - Dice: d12s above all, plus a d4 and a few others for damage.
 - Something to write with, because the sheet changes in play.
-- Your two Trees, your Archetype's and your Domain's.
+- Your Trees, starting with your Archetype's and your Domain's.
 
 Nothing else. No miniatures and no grid: distances are counted in metres and said out loud.
 
