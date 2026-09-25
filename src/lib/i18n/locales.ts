@@ -10,6 +10,8 @@ export const OG_LOCALE: Record<Locale, string> = { fr: 'fr_FR', en: 'en_GB' }
 
 export const LOCALE_NAME: Record<Locale, string> = { fr: 'Français', en: 'English' }
 
+export const LOCALE_FLAG: Record<Locale, string> = { fr: '/flags/fr.svg', en: '/flags/gb.svg' }
+
 export function isLocale(value: string): value is Locale {
   return (LOCALES as readonly string[]).includes(value)
 }

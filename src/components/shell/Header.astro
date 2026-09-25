@@ -1,10 +1,10 @@
 ---
 import type { Corpus } from '../../lib/game/corpus'
 import { bookDot, bookLink, indexDescriptors } from '../../lib/game/indexes'
-import { LOCALE_NAME, LOCALES, type Locale } from '../../lib/i18n/locales'
+import { LOCALE_FLAG, LOCALE_NAME, LOCALES, type Locale } from '../../lib/i18n/locales'
 import { pathFor, type RouteParams, sectionFor, type ViewKind } from '../../lib/i18n/routes'
 import { strings } from '../../lib/i18n/strings'
-import Logo from './Logo.astro'
+import Masthead from './Masthead.astro'
 
 type Props = { locale: Locale; kind: ViewKind; params: RouteParams; corpus: Corpus }
 
@@ -45,223 +45,200 @@ const menus = [
     items: indexItems,
   },
 ]
-
-const flagFor = (value: Locale) => (value === 'fr' ? '/flags/fr.svg' : '/flags/gb.svg')
 ---
 
-<header
-  id="site-header"
-  data-shell-header
-  style="position:sticky; top:0; z-index:50; border-bottom:1px solid rgba(255,255,255,.12); box-shadow:inset 0 1px 0 rgba(255,255,255,.08); background:rgba(6,5,13,.94)"
->
-  <div
-    style="margin:0 auto; padding:9px 26px; display:flex; flex-wrap:wrap; align-items:center; gap:9px 14px; min-height:64px"
+<Masthead home={pathFor('home', locale)}>
+  <nav
+    aria-label={t.navLabel}
+    style="display:flex; flex-wrap:wrap; align-items:center; gap:2px 0; flex:1 1 380px; min-width:0"
   >
     <a
       href={pathFor('home', locale)}
-      translate="no"
-      style="display:flex; align-items:center; gap:11px; flex:none"
-      aria-label="Aubaine"
+      aria-current={section === 'home' ? 'page' : undefined}
+      data-nav-link
+      data-nav="home"
+      data-active={section === 'home' ? '' : undefined}
+      style="position:relative; flex:none; padding:9px 10px; font-family:var(--font-ui); font-size:14.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase"
     >
-      <Logo size={26} />
-      <span
-        style="font-family:var(--font-display); font-weight:700; font-size:17px; letter-spacing:.22em; color:#f6f2e6"
-        >AUBAINE</span
-      >
+      <span>{t.home}</span>
+      <span aria-hidden="true" data-nav-underline></span>
     </a>
 
-    <nav
-      aria-label={t.navLabel}
-      style="display:flex; flex-wrap:wrap; align-items:center; gap:2px 0; flex:1 1 380px; min-width:0"
-    >
-      <a
-        href={pathFor('home', locale)}
-        aria-current={section === 'home' ? 'page' : undefined}
-        data-nav-link
-        data-nav="home"
-        data-active={section === 'home' ? '' : undefined}
-        style="position:relative; flex:none; padding:9px 10px; font-family:var(--font-ui); font-size:14.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase"
-      >
-        <span>{t.home}</span>
-        <span aria-hidden="true" data-nav-underline></span>
-      </a>
-
-      {
-        menus.map((menu) => (
-          <div data-menu style="position:relative; flex:none">
+    {
+      menus.map((menu) => (
+        <div data-menu style="position:relative; flex:none">
+          <a
+            href={menu.href}
+            data-menu-trigger
+            aria-haspopup="menu"
+            aria-expanded="false"
+            aria-current={section === menu.id ? 'page' : undefined}
+            data-nav-link
+            data-nav={menu.id}
+            data-active={section === menu.id ? '' : undefined}
+            style="position:relative; display:flex; align-items:center; gap:7px; padding:9px 10px; cursor:pointer; font-family:var(--font-ui); font-size:14.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase"
+          >
+            <span>{menu.label}</span>
+            <span
+              aria-hidden="true"
+              style="width:0; height:0; border-left:4px solid transparent; border-right:4px solid transparent; border-top:5px solid currentColor; opacity:.8"
+            />
+            <span aria-hidden="true" data-nav-underline />
+          </a>
+          <div
+            role="menu"
+            data-menu-panel
+            hidden
+            aria-label={menu.label}
+            style={`position:absolute; left:0; top:100%; margin-top:7px; z-index:60; min-width:${menu.width}; padding:6px; border:1px solid rgba(255,255,255,.16); background:rgba(9,8,20,.95); backdrop-filter:blur(20px); box-shadow:0 20px 44px rgba(0,0,0,.5); animation:au-pop .18s var(--ease) both`}
+          >
             <a
               href={menu.href}
-              data-menu-trigger
-              aria-haspopup="menu"
-              aria-expanded="false"
-              aria-current={section === menu.id ? 'page' : undefined}
-              data-nav-link
-              data-nav={menu.id}
-              data-active={section === menu.id ? '' : undefined}
-              style="position:relative; display:flex; align-items:center; gap:7px; padding:9px 10px; cursor:pointer; font-family:var(--font-ui); font-size:14.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase"
+              role="menuitem"
+              data-menu-item
+              style="display:block; padding:9px 11px; transition:background-color .16s var(--ease)"
             >
-              <span>{menu.label}</span>
-              <span
-                aria-hidden="true"
-                style="width:0; height:0; border-left:4px solid transparent; border-right:4px solid transparent; border-top:5px solid currentColor; opacity:.8"
-              />
-              <span aria-hidden="true" data-nav-underline />
+              <span style="display:block; font-family:var(--font-ui); font-size:15px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#efbe04">
+                {menu.allLabel}
+              </span>
             </a>
-            <div
-              role="menu"
-              data-menu-panel
-              hidden
-              aria-label={menu.label}
-              style={`position:absolute; left:0; top:100%; margin-top:7px; z-index:60; min-width:${menu.width}; padding:6px; border:1px solid rgba(255,255,255,.16); background:rgba(9,8,20,.95); backdrop-filter:blur(20px); box-shadow:0 20px 44px rgba(0,0,0,.5); animation:au-pop .18s var(--ease) both`}
-            >
+            <span
+              aria-hidden="true"
+              style="display:block; height:1px; margin:5px 0; background:rgba(255,255,255,.12)"
+            />
+            {menu.items.map((item) => (
               <a
-                href={menu.href}
+                href={item.href}
                 role="menuitem"
                 data-menu-item
-                style="display:block; padding:9px 11px; transition:background-color .16s var(--ease)"
-              >
-                <span style="display:block; font-family:var(--font-ui); font-size:15px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#efbe04">
-                  {menu.allLabel}
-                </span>
-              </a>
-              <span
-                aria-hidden="true"
-                style="display:block; height:1px; margin:5px 0; background:rgba(255,255,255,.12)"
-              />
-              {menu.items.map((item) => (
-                <a
-                  href={item.href}
-                  role="menuitem"
-                  data-menu-item
-                  download={item.download ? '' : undefined}
-                  style="display:flex; gap:11px; align-items:baseline; padding:9px 11px; transition:background-color .16s var(--ease)"
-                >
-                  <span
-                    aria-hidden="true"
-                    style={`flex:none; width:6px; height:6px; margin-top:6px; background:${item.dot}`}
-                  />
-                  <span style="min-width:0; flex:1">
-                    <span style="display:block; font-family:var(--font-display); font-size:15.5px; font-weight:600; color:#f6f2e6">
-                      {item.title}
-                    </span>
-                  </span>
-                </a>
-              ))}
-            </div>
-          </div>
-        ))
-      }
-    </nav>
-
-    <form
-      method="get"
-      action={pathFor('search', locale)}
-      data-search-form
-      data-search-action={pathFor('search', locale)}
-      style="flex:1 1 150px; min-width:0; max-width:250px; display:flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid rgba(255,255,255,.16); border-radius:3px; background:rgba(255,255,255,.06); transition:border-color .22s var(--ease)"
-    >
-      <span
-        aria-hidden="true"
-        style="flex:none; width:12px; height:12px; border:1.5px solid rgba(246,242,230,.6); border-radius:50%"></span>
-      <input
-        type="search"
-        name="q"
-        autocomplete="off"
-        spellcheck="false"
-        aria-label={t.searchLabel}
-        placeholder={t.search}
-        data-search-input
-        style="flex:1; min-width:0; width:100%; color:#f6f2e6; background:none; border:none; outline:none; font-family:var(--font-ui); font-size:15px"
-      />
-    </form>
-
-    <button
-      type="button"
-      data-theme-toggle
-      aria-label={t.themeLabel}
-      aria-pressed="true"
-      style="flex:none; display:flex; align-items:center; padding:7px; cursor:pointer; color:#d9d3c4; transition:color .2s var(--ease)"
-    >
-      <svg
-        aria-hidden="true"
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        style="display:block"
-      >
-        <mask id="au-theme-moon" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
-          <rect x="0" y="0" width="24" height="24" fill="#fff"></rect>
-          <circle data-theme-bite r="9" fill="#000"></circle>
-        </mask>
-        <circle data-theme-disc cx="12" cy="12" fill="currentColor" mask="url(#au-theme-moon)"
-        ></circle>
-        <path
-          data-theme-rays
-          d="M12 2.2v2.4M12 21.8v-2.4M2.2 12h2.4M21.8 12h-2.4M5.07 5.07l1.7 1.7M18.93 18.93l-1.7-1.7M5.07 18.93l1.7-1.7M18.93 5.07l-1.7 1.7"
-          stroke="currentColor"
-          stroke-width="1.9"
-          stroke-linecap="round"></path>
-      </svg>
-    </button>
-
-    <div data-lang style="flex:none; position:relative">
-      <button
-        type="button"
-        data-lang-trigger
-        aria-haspopup="listbox"
-        aria-expanded="false"
-        aria-label={t.langLabel}
-        style="display:flex; align-items:center; gap:8px; padding:6px 10px; cursor:pointer; border:1px solid rgba(255,255,255,.16); border-radius:3px; background:rgba(255,255,255,.04); transition:border-color .2s var(--ease)"
-      >
-        <span
-          aria-hidden="true"
-          style={`width:20px; height:14px; border:1px solid rgba(255,255,255,.28); background:url('${flagFor(locale)}') center/100% 100% no-repeat`}
-        ></span>
-        <span style="font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; color:#f6f2e6"
-          >{locale.toUpperCase()}</span
-        >
-        <span
-          aria-hidden="true"
-          style="width:0; height:0; border-left:4px solid transparent; border-right:4px solid transparent; border-top:5px solid rgba(246,242,230,.7)"
-        ></span>
-      </button>
-      <ul
-        role="listbox"
-        data-lang-panel
-        hidden
-        aria-label={t.langLabel}
-        style="list-style:none; position:absolute; right:0; top:calc(100% + 7px); z-index:60; margin:0; padding:5px; min-width:172px; border:1px solid rgba(255,255,255,.16); background:rgba(9,8,20,.94); backdrop-filter:blur(20px); box-shadow:0 18px 40px rgba(0,0,0,.5); animation:au-pop .18s var(--ease) both"
-      >
-        {
-          LOCALES.map((value) => (
-            <li role="option" aria-selected={value === locale ? 'true' : 'false'}>
-              <a
-                href={pathFor(kind, value, params)}
-                hreflang={value}
-                data-lang-option={value}
-                style={`display:flex; align-items:center; gap:10px; width:100%; padding:8px 10px; cursor:pointer; text-align:left; background:${value === locale ? 'rgba(239,190,4,.14)' : 'transparent'}; transition:background-color .16s var(--ease)`}
+                download={item.download ? '' : undefined}
+                style="display:flex; gap:11px; align-items:baseline; padding:9px 11px; transition:background-color .16s var(--ease)"
               >
                 <span
                   aria-hidden="true"
-                  style={`flex:none; width:22px; height:15px; border:1px solid rgba(255,255,255,.28); background:url('${flagFor(value)}') center/100% 100% no-repeat`}
+                  style={`flex:none; width:6px; height:6px; margin-top:6px; background:${item.dot}`}
                 />
-                <span style="flex:1; font-family:var(--font-ui); font-size:15px; color:#f6f2e6">
-                  {LOCALE_NAME[value]}
-                </span>
-                <span
-                  style={`font-family:var(--font-mono); font-size:10px; letter-spacing:.1em; color:${value === locale ? '#efbe04' : 'rgba(246,242,230,.55)'}`}
-                >
-                  {value.toUpperCase()}
+                <span style="min-width:0; flex:1">
+                  <span style="display:block; font-family:var(--font-display); font-size:15.5px; font-weight:600; color:#f6f2e6">
+                    {item.title}
+                  </span>
                 </span>
               </a>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </nav>
+
+  <form
+    method="get"
+    action={pathFor('search', locale)}
+    data-search-form
+    data-search-action={pathFor('search', locale)}
+    style="flex:1 1 150px; min-width:0; max-width:250px; display:flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid rgba(255,255,255,.16); border-radius:3px; background:rgba(255,255,255,.06); transition:border-color .22s var(--ease)"
+  >
+    <span
+      aria-hidden="true"
+      style="flex:none; width:12px; height:12px; border:1.5px solid rgba(246,242,230,.6); border-radius:50%"></span>
+    <input
+      type="search"
+      name="q"
+      autocomplete="off"
+      spellcheck="false"
+      aria-label={t.searchLabel}
+      placeholder={t.search}
+      data-search-input
+      style="flex:1; min-width:0; width:100%; color:#f6f2e6; background:none; border:none; outline:none; font-family:var(--font-ui); font-size:15px"
+    />
+  </form>
+
+  <button
+    type="button"
+    data-theme-toggle
+    aria-label={t.themeLabel}
+    aria-pressed="true"
+    style="flex:none; display:flex; align-items:center; padding:7px; cursor:pointer; color:#d9d3c4; transition:color .2s var(--ease)"
+  >
+    <svg
+      aria-hidden="true"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      style="display:block"
+    >
+      <mask id="au-theme-moon" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+        <rect x="0" y="0" width="24" height="24" fill="#fff"></rect>
+        <circle data-theme-bite r="9" fill="#000"></circle>
+      </mask>
+      <circle data-theme-disc cx="12" cy="12" fill="currentColor" mask="url(#au-theme-moon)"
+      ></circle>
+      <path
+        data-theme-rays
+        d="M12 2.2v2.4M12 21.8v-2.4M2.2 12h2.4M21.8 12h-2.4M5.07 5.07l1.7 1.7M18.93 18.93l-1.7-1.7M5.07 18.93l1.7-1.7M18.93 5.07l-1.7 1.7"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"></path>
+    </svg>
+  </button>
+
+  <div data-lang style="flex:none; position:relative">
+    <button
+      type="button"
+      data-lang-trigger
+      aria-haspopup="listbox"
+      aria-expanded="false"
+      aria-label={t.langLabel}
+      style="display:flex; align-items:center; gap:8px; padding:6px 10px; cursor:pointer; border:1px solid rgba(255,255,255,.16); border-radius:3px; background:rgba(255,255,255,.04); transition:border-color .2s var(--ease)"
+    >
+      <span
+        aria-hidden="true"
+        style={`width:20px; height:14px; border:1px solid rgba(255,255,255,.28); background:url('${LOCALE_FLAG[locale]}') center/100% 100% no-repeat`}
+      ></span>
+      <span style="font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; color:#f6f2e6"
+        >{locale.toUpperCase()}</span
+      >
+      <span
+        aria-hidden="true"
+        style="width:0; height:0; border-left:4px solid transparent; border-right:4px solid transparent; border-top:5px solid rgba(246,242,230,.7)"
+      ></span>
+    </button>
+    <ul
+      role="listbox"
+      data-lang-panel
+      hidden
+      aria-label={t.langLabel}
+      style="list-style:none; position:absolute; right:0; top:calc(100% + 7px); z-index:60; margin:0; padding:5px; min-width:172px; border:1px solid rgba(255,255,255,.16); background:rgba(9,8,20,.94); backdrop-filter:blur(20px); box-shadow:0 18px 40px rgba(0,0,0,.5); animation:au-pop .18s var(--ease) both"
+    >
+      {
+        LOCALES.map((value) => (
+          <li role="option" aria-selected={value === locale ? 'true' : 'false'}>
+            <a
+              href={pathFor(kind, value, params)}
+              hreflang={value}
+              data-lang-option={value}
+              style={`display:flex; align-items:center; gap:10px; width:100%; padding:8px 10px; cursor:pointer; text-align:left; background:${value === locale ? 'rgba(239,190,4,.14)' : 'transparent'}; transition:background-color .16s var(--ease)`}
+            >
+              <span
+                aria-hidden="true"
+                style={`flex:none; width:22px; height:15px; border:1px solid rgba(255,255,255,.28); background:url('${LOCALE_FLAG[value]}') center/100% 100% no-repeat`}
+              />
+              <span style="flex:1; font-family:var(--font-ui); font-size:15px; color:#f6f2e6">
+                {LOCALE_NAME[value]}
+              </span>
+              <span
+                style={`font-family:var(--font-mono); font-size:10px; letter-spacing:.1em; color:${value === locale ? '#efbe04' : 'rgba(246,242,230,.55)'}`}
+              >
+                {value.toUpperCase()}
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
   </div>
-</header>
+</Masthead>
 
 <style>
   [data-nav-link] {
