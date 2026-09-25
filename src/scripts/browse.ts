@@ -1,5 +1,5 @@
 import { DRAFTS_TOGGLED, isHiddenDraft, revealDraft } from './drafts'
-import type { SwupInstance } from './swup'
+import type { SwupInstance, SwupVisit } from './swup'
 
 const DETAIL_PREFIX = 'e-'
 const DETAIL_HASH = `#${DETAIL_PREFIX}`
@@ -137,10 +137,22 @@ function onHashChange(): void {
   if (view) restore(view)
 }
 
+function onAnchorLink(visit: SwupVisit): void {
+  const view = browseView()
+  const hash = visit.to.hash
+  if (!view || !hash?.startsWith(DETAIL_HASH)) return
+  const id = hash.slice(DETAIL_HASH.length)
+  const entry = entryFor(view, id)
+  if (!entry) return
+  revealDraft(entry)
+  open(view, id)
+}
+
 export function bindBrowse(swup: SwupInstance): void {
   document.addEventListener('click', onClick)
   window.addEventListener('hashchange', onHashChange)
   document.addEventListener(DRAFTS_TOGGLED, onDraftsToggled)
   swup.hooks.on('content:replace', sync)
+  swup.hooks.on('link:anchor', onAnchorLink)
   sync()
 }

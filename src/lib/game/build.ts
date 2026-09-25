@@ -61,6 +61,7 @@ export type ResolvedSection = {
 export type SkillOrigin = {
   trees: { id: string; name: string }[]
   species: { id: string; name: string; subspecies?: { id: string; name: string } }[]
+  basic: boolean
   bank: boolean
   items: { slug: string; name: string; section: string }[]
   sets: { id: string; name: string }[]
@@ -393,7 +394,7 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
   const origin = (id: string): SkillOrigin => {
     let found = origins.get(id)
     if (!found) {
-      found = { trees: [], species: [], bank: false, items: [], sets: [] }
+      found = { trees: [], species: [], basic: false, bank: false, items: [], sets: [] }
       origins.set(id, found)
     }
     return found
@@ -415,6 +416,7 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
       }
     }
   }
+  for (const skill of basic.resolved) origin(skill.id).basic = true
   for (const skill of bank.resolved) origin(skill.id).bank = true
   for (const [slug, item] of itemsBySlug) {
     const section = catalogue.sections.find((entry) => entry.key === item.section)
@@ -907,7 +909,7 @@ function buildTermIndex(input: TermInput): TermIndex {
       color: 'var(--accent-ink)',
       icon: 'mdi/hexagon',
       text: flattenText(skill.description, 240),
-      href: pathFor('baseActions', locale),
+      href: `${pathFor('skills', locale)}#e-${skill.id}`,
     })
   }
 
@@ -924,7 +926,7 @@ function buildTermIndex(input: TermInput): TermIndex {
         ? iconPath(characteristics.get(characteristicKey(first))?.iconName)
         : 'mdi/hexagon',
       text: flattenText(skill.description, 240),
-      href: pathFor('skills', locale),
+      href: `${pathFor('skills', locale)}#e-${skill.id}`,
     })
   }
 

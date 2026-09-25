@@ -25,10 +25,12 @@ const SOURCE_ICONS: Record<BrowseSource['kind'], string> = {
   tree: 'mdi:family-tree',
   species: 'mdi:dna',
   item: 'mdi:shield-sword',
+  basic: 'mdi:hexagon',
   bank: 'mdi:bank',
   other: 'mdi:information-outline',
 }
-const NOTES: Record<'bank' | 'other', string | undefined> = {
+const NOTES: Record<'basic' | 'bank' | 'other', string | undefined> = {
+  basic: corpus.basic.note,
   bank: corpus.bank.note,
   other: t.otherNote,
 }

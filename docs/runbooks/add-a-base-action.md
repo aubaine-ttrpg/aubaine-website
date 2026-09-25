@@ -1,6 +1,6 @@
 # Add a base action
 
-Produces one card on the base actions page: something every creature can do, that costs no XP and belongs to no tree.
+Produces one card on the base actions page and one row in the skills index: something every creature can do, that costs no XP and belongs to no tree.
 
 ## The files to create and edit
 
@@ -35,7 +35,7 @@ The list file, `data/skill-lists/basic-skills.json`:
 | --- | --- | --- | --- |
 | `name` | required | The printed name of the list. | any non empty string |
 | `subtitle` | optional | The line under the name. | any non empty string |
-| `note` | optional | A paragraph printed with the list. | any non empty string |
+| `note` | optional | A paragraph printed with the list. It is also the note behind the `Compétences de base` source button in the skills index. | any non empty string |
 | `skills` | required | Identifiants, dans l'ordre d'impression. | 1 or more skill ids that exist |
 
 ## A complete example
@@ -66,6 +66,7 @@ The list file, `data/skill-lists/basic-skills.json`:
 {
   "name": "Compétences de base",
   "subtitle": "Ce que toute créature sait faire",
+  "note": "Toute créature possède les Compétences de base, du premier round de la première séance à la fin de la campagne. Elles ne coûtent pas de PX, n'occupent pas de Mémoire, ne demandent pas d'Énergie, et aucun Arbre ne les vend.",
   "skills": [
     "IMPRO-01",
     "ATTAQ-01",
@@ -87,7 +88,9 @@ The list file, `data/skill-lists/basic-skills.json`:
 ## What appears on the site
 
 - `/fr/actions-de-base` and `/en/base-actions`: a card in the grid, with the type as a kicker, the rule text, and an `activation · range` line at the foot. The cards are sorted alphabetically by title, so the order in `skills` does not decide the screen order; it decides the printed order.
-- Anywhere rule text writes `{{Improviser}}`, the name becomes a cross reference with a tooltip that links back to this page.
+- `/fr/competences` and `/en/skills`: a row in the skill index, with `Compétences de base` as its source, filterable by that source alongside the trees and the Banque Commune. Its source button opens the list's `note`.
+- Anywhere rule text writes `{{Improviser}}`, the name becomes a cross reference with a tooltip, and the link opens the skill's entry in the skill index.
+- `/fr/recherche` and `/en/search`: a row under the skills group.
 
 ## How to check it
 
@@ -109,6 +112,8 @@ pnpm dev
 **Leave `energy` out entirely.** A base action has no energy cost. Writing `"energy": 0` would print a `0 énergie` pill, which says something different: that the skill has an energy line and it reads zero.
 
 **Two steps, and the second one is easy to forget.** Adding `data/skills/<ID>.json` without adding the id to `basic-skills.json` produces a skill that appears nowhere.
+
+**The list has an English overlay.** `data/skill-lists/basic-skills.en.json` carries the `name`, `subtitle` and `note` shown on `/en/`. An edit to the French `note` leaves the English one saying something else until you edit it too.
 
 **A manoeuvre that replaces an attack writes `"activation": "1 Attaque"`.** From the schema: `1 Attaque pour une manœuvre qui remplace une Attaque`.
 

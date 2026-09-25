@@ -1,6 +1,7 @@
 {
   "name": "Compétences de base",
   "subtitle": "Ce que toute créature sait faire",
+  "note": "Toute créature possède les Compétences de base, du premier round de la première séance à la fin de la campagne. Elles ne coûtent pas de PX, n'occupent pas de Mémoire, ne demandent pas d'Énergie, et aucun Arbre ne les vend.",
   "skills": [
     "IMPRO-01",
     "ATTAQ-01",

@@ -192,6 +192,29 @@ test('the Common Bank source opens its note and closes it again', async ({ page 
   await expect(note).toBeHidden()
 })
 
+test('the basic skills source opens its note', async ({ page }) => {
+  await page.goto('/en/skills#e-ATTAQ-01')
+  await enhanced(page)
+
+  const source = page.locator('#e-ATTAQ-01').getByRole('button', { name: 'Basic Skills' })
+  const note = page.locator('#note-basic-ATTAQ-01')
+  await expect(note).toBeHidden()
+  await source.click()
+  await expect(note).toBeVisible()
+  await expect(note).toContainText('Every creature has the basic Skills')
+})
+
+test('a cross reference to a skill of the same index selects that skill', async ({ page }) => {
+  await page.goto('/fr/competences#e-OPPOR-01')
+  await enhanced(page)
+
+  await page.locator('#e-OPPOR-01 a[href="/fr/competences#e-DESEN-01"]').click()
+  await expect(page).toHaveURL('/fr/competences#e-DESEN-01')
+  await expect(page.locator('#e-DESEN-01')).toBeVisible()
+  await expect(page.locator('#e-OPPOR-01')).toBeHidden()
+  await expect(row(page, 'DESEN-01')).toHaveAttribute('aria-current', 'true')
+})
+
 test('a tree source opens the skill on its plate', async ({ page }) => {
   await page.goto('/en/skills#e-RAGER-01')
   await enhanced(page)

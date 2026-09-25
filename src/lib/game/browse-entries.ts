@@ -28,7 +28,7 @@ import { type BadgedStatus, badgedStatus } from './status.ts'
 
 export type BrowseSource =
   | { kind: 'tree' | 'species' | 'item'; title: string; href: string }
-  | { kind: 'bank' | 'other'; title: string }
+  | { kind: 'basic' | 'bank' | 'other'; title: string }
 type FacetValue = { value: string; label: string }
 type Facet = { group: string; values: string[]; labels: string[] }
 
@@ -120,6 +120,7 @@ export function skillBrowseEntries(
   species?: ResolvedSpecies,
 ): BrowseEntry[] {
   const t = strings(locale)
+  const basicName = corpus.basic.name
   const bankName = corpus.bank.name
   const typeLabels = { active: t.active, passive: t.passive, special: t.special }
   const domainColor = (key: string): string => corpus.domains.get(key)?.color ?? DOMAIN_FALLBACK
@@ -157,7 +158,9 @@ export function skillBrowseEntries(
           ? source.species.map((entry) => entry.name).join(' + ')
           : source.bank
             ? bankName
-            : t.other_
+            : source.basic
+              ? basicName
+              : t.other_
     const activation = skill.activation || EM_DASH
     const xpLabel = !species && showsXp(skill) ? `${formatNumber(xpOf(skill), locale)} ${t.xp}` : ''
 
@@ -165,6 +168,7 @@ export function skillBrowseEntries(
     if (source.trees.length > 0) acquisition.push({ value: 'tree', label: t.fromTrees })
     if (source.species.length > 0) acquisition.push({ value: 'species', label: t.fromSpecies })
     if (source.bank) acquisition.push({ value: 'bank', label: bankName })
+    if (source.basic) acquisition.push({ value: 'basic', label: basicName })
     if (source.items.length > 0) acquisition.push({ value: 'item', label: t.fromItems })
     if (acquisition.length === 0) acquisition.push({ value: 'other', label: t.other_ })
 
@@ -208,6 +212,7 @@ export function skillBrowseEntries(
       ),
     ]
     if (source.bank) sources.push({ kind: 'bank', title: bankName })
+    if (source.basic) sources.push({ kind: 'basic', title: basicName })
     if (sources.length === 0 && !species) sources.push({ kind: 'other', title: t.other_ })
 
     return {

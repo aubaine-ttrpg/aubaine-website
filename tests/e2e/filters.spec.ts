@@ -87,6 +87,24 @@ test('the skills filter narrows by École', async ({ page }) => {
   }
 })
 
+test('the skills filter gathers the basic skills under their own provenance', async ({ page }) => {
+  await page.goto('/fr/competences')
+  await hydrated(page)
+
+  await page.getByRole('button', { name: 'Filtres' }).click()
+  const dialog = page.getByRole('dialog')
+  await dialog.getByRole('button', { name: /^Compétences de base/ }).click()
+  await page.keyboard.press('Escape')
+
+  const shown = page.locator('[data-rows] [data-entry]:not([hidden])')
+  await expect(page.locator('[data-rows] [data-entry="ATTAQ-01"]')).toBeVisible()
+  for (const acquisition of await shown.evaluateAll((nodes) =>
+    nodes.map((node) => node.getAttribute('data-facet-acq') ?? ''),
+  )) {
+    expect(acquisition.split(' ')).toContain('basic')
+  }
+})
+
 test('a browse entry is selectable through its own url', async ({ page }) => {
   await page.goto('/en/skills')
   await hydrated(page)

@@ -93,7 +93,7 @@ The list file, `data/skill-lists/common-bank.json`:
 ## What appears on the site
 
 - `/fr/competences` and `/en/skills`: a card in the skill index, with `Banque Commune` as its source, filterable by that source alongside the trees.
-- Anywhere rule text writes `{{Repli vif}}`, the name becomes a cross reference with a tooltip carrying the type, the list name and the first lines of the description.
+- Anywhere rule text writes `{{Repli vif}}`, the name becomes a cross reference with a tooltip carrying the type, the list name and the first lines of the description, and the link opens the skill's entry in the skill index.
 - `/fr/recherche` and `/en/search`: a row under the skills group.
 - Anywhere rule text or a chapter writes `Banque Commune` (`Common Bank` in English), the words carry the rule term's icon and a tooltip that reads the list's `note`.
 

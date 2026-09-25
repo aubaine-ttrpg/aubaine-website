@@ -86,20 +86,22 @@ for (const tree of corpus.trees) {
   }
 }
 
-for (const skill of corpus.bank.resolved) {
-  if (placed.has(skill.id)) continue
-  const typeText = typeLabelFor(skill.type, typeLabels)
-  const row: Row = {
-    id: skill.id,
-    title: skill.title,
-    href: `${pathFor('skills', locale)}#e-${skill.id}`,
-    sub: `${corpus.bank.name} · ${typeText}`,
-    mark: tint(skill.domains),
-    value: xpLabel(skill),
-    status: badgedStatus(corpus.skillStatus.get(skill.id)),
+for (const list of [corpus.bank, corpus.basic]) {
+  for (const skill of list.resolved) {
+    if (placed.has(skill.id)) continue
+    const typeText = typeLabelFor(skill.type, typeLabels)
+    const row: Row = {
+      id: skill.id,
+      title: skill.title,
+      href: `${pathFor('skills', locale)}#e-${skill.id}`,
+      sub: `${list.name} · ${typeText}`,
+      mark: tint(skill.domains),
+      value: xpLabel(skill),
+      status: badgedStatus(corpus.skillStatus.get(skill.id)),
+    }
+    placed.set(skill.id, { row, trees: [], type: typeText })
+    skillRows.push(row)
   }
-  placed.set(skill.id, { row, trees: [], type: typeText })
-  skillRows.push(row)
 }
 
 skillRows.sort((a, b) => compare.compare(a.title, b.title))

@@ -6,6 +6,7 @@ import sharp from 'sharp'
 import { describe, expect, it } from 'vitest'
 
 import { latestRelease, notes, releases } from '../../src/lib/booklet/manifest'
+import { originSkills, skillBrowseEntries } from '../../src/lib/game/browse-entries'
 import { type Corpus, definition, label } from '../../src/lib/game/build'
 import {
   characteristicKey,
@@ -18,6 +19,7 @@ import {
 import { readCorpus, readSources } from '../../src/lib/game/fs-sources'
 import { overlays } from '../../src/lib/game/schema'
 import { LOCALES } from '../../src/lib/i18n/locales'
+import { pathFor } from '../../src/lib/i18n/routes'
 import { strings } from '../../src/lib/i18n/strings'
 import { PLACEHOLDER_BANNER, PLACEHOLDER_COVER, PLACEHOLDER_SQUARE } from '../../src/lib/media'
 import { FONT_FAMILIES, ICON_SETS } from '../../src/lib/rights/attribution'
@@ -983,6 +985,40 @@ describe('definitions', () => {
           )
         }
         expect(ANTITHESIS.test(record.text), `${where} writes the antithesis`).toBe(false)
+      }
+    }
+  })
+})
+
+describe('the basic skills', () => {
+  it('offers every basic skill in the skills index, under a provenance with its own note', async () => {
+    for (const locale of LOCALES) {
+      const built = await readCorpus(root, locale)
+      expect(built.basic.note?.trim(), `${locale} basic-skills note`).toBeTruthy()
+      const entries = new Map(
+        skillBrowseEntries(originSkills(built), built, locale).map((entry) => [entry.id, entry]),
+      )
+      for (const skill of built.basic.resolved) {
+        const entry = entries.get(skill.id)
+        expect(entry?.attrs['data-facet-acq']?.split(' '), `${locale} ${skill.id}`).toContain(
+          'basic',
+        )
+        expect(entry?.sources, `${locale} ${skill.id}`).toEqual([
+          { kind: 'basic', title: built.basic.name },
+        ])
+      }
+    }
+    expect(en.basic.name).not.toBe(fr.basic.name)
+    expect(en.basic.note).not.toBe(fr.basic.note)
+  })
+
+  it('sends the cross reference of a basic or Common Bank skill to its skills index entry', async () => {
+    for (const locale of LOCALES) {
+      const built = await readCorpus(root, locale)
+      for (const skill of [...built.basic.resolved, ...built.bank.resolved]) {
+        expect(built.terms.map.get(skill.title.toLowerCase())?.href, `${locale} ${skill.id}`).toBe(
+          `${pathFor('skills', locale)}#e-${skill.id}`,
+        )
       }
     }
   })
