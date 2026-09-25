@@ -30,7 +30,7 @@ Other brotherhoods have come into being: guilds of smiths and engineers, circles
 
 Humans carry within them the drive of discovery and a morality shaped by uprooting: they see every native people as the keeper of precious knowledge, and seek above all to understand rather than to dominate. Although frictions arise (notably with the elves), most humans show sincere goodwill, respecting local customs and taking care not to erode established balances.
 
-Their ingenuity unfolds as much in the exploration of magical arcana as in the study of galdùrian traditions and draconic rites, and they ground their actions in a moral code that values exchange, hospitality and shared progress. Firmly believing that every encounter is a chance for mutual enrichment, they build cultural bridges.
+Their ingenuity unfolds as much in the exploration of magical arcana as in the study of Galwarian traditions and draconic rites, and they ground their actions in a moral code that values exchange, hospitality and shared progress. Firmly believing that every encounter is a chance for mutual enrichment, they build cultural bridges.
 
 ## Human names
 

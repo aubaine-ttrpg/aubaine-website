@@ -30,7 +30,7 @@ D'autres confréries ont vu le jour : guildes de forgerons et d'ingénieurs, cer
 
 Les humains portent en eux l'élan de la découverte et une morale façonnée par le déracinement : ils voient chaque peuple autochtone comme un gardien d'un savoir précieux et cherchent avant tout à comprendre plutôt qu'à dominer. Bien que des frictions surgissent (notamment avec les elfes), la majorité des humains fait preuve d'une bienveillance sincère, respectant les coutumes locales et veillant à ne pas éroder les équilibres établis.
 
-Leur ingéniosité se déploie autant dans l'exploration des arcanes magiques que dans l'étude des traditions galdùriennes et des rites draconiques, et ils fondent leurs actions sur un code moral valorisant l'échange, l'hospitalité et le progrès partagé. Croyant fermement que chaque rencontre est une occasion d'enrichissement mutuel, ils construisent des ponts culturels.
+Leur ingéniosité se déploie autant dans l'exploration des arcanes magiques que dans l'étude des traditions galwariennes et des rites draconiques, et ils fondent leurs actions sur un code moral valorisant l'échange, l'hospitalité et le progrès partagé. Croyant fermement que chaque rencontre est une occasion d'enrichissement mutuel, ils construisent des ponts culturels.
 
 ## Noms humains
 
