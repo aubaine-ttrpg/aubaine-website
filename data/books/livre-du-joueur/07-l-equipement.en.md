@@ -7,6 +7,8 @@ A creature wears eight pieces at a time, one per slot. Until a piece is worn it 
 
 Skills granted by an equipped piece do not count against your Memory and do not have to be learnt. The piece grants them while it is worn, and takes them back when you remove it.
 
+A piece may carry a Prerequisite, printed under its name. Only a creature that meets it can equip it.
+
 ## The eight slots
 
 Head

@@ -878,6 +878,12 @@
   color: var(--rarity);
 }
 
+.au-item__prerequisite {
+  margin-top: 11px;
+  font: 600 var(--skill-stats) / 1.4 var(--font-ui);
+  color: var(--paper-meta);
+}
+
 .au-item__headline {
   margin-top: 11px;
   padding: 8px 12px 9px;

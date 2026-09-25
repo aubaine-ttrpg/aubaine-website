@@ -568,11 +568,19 @@ export const equipmentItem = z
       .string()
       .optional()
       .describe("Identifiant d'une Panoplie déclarée dans data/equipment/sets/."),
+    prerequisite: z
+      .string()
+      .min(1)
+      .optional()
+      .describe(
+        "Condition à remplir pour équiper la pièce, rendue sous son nom : une Caractéristique et son seuil, une Espèce ou une sous-espèce. Absente : n'importe qui peut la porter.",
+      ),
     headlines: z
       .array(stat)
       .min(1)
+      .optional()
       .describe(
-        "Les valeurs par lesquelles l'entrée est consultée : CA et sa formule pour une armure, Dégâts pour une arme. L'entrée nomme elle-même son intitulé, le gabarit ne connaît aucun type d'objet.",
+        "Les valeurs par lesquelles l'entrée est consultée : CA et sa formule pour une armure, Dégâts pour une arme. L'entrée nomme elle-même son intitulé, le gabarit ne connaît aucun type d'objet. Absent : l'entrée n'a pas de bandeau, son texte suffit.",
       ),
     stats: z.array(stat).optional().describe('Cellules sous le bandeau.'),
     properties: z
@@ -1110,6 +1118,7 @@ export const overlays = {
   equipmentItem: localized({
     name: z.string().optional(),
     kind: z.string().optional(),
+    prerequisite: z.string().optional(),
     headlines: z.array(stat).optional(),
     stats: z.array(stat).optional(),
     properties: z.array(z.object({ name: z.string(), text: z.string() }).strict()).optional(),

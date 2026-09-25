@@ -23,7 +23,8 @@ The filename is the slug and the slug is the item's handle everywhere else. Lowe
 | `art` | optional | Illustration au rapport 1:1, dans `data/media/items/`. Plusieurs pièces peuvent partager la même. Absente, la fiche retombe sur l'illustration 1:1 par défaut. | a filename that exists, named per [add-an-image.md](add-an-image.md) |
 | `price` | optional | Prix en pièces de bronze, la plus petite pièce : 100 bronze font 1 argent, 100 argent font 1 or. Un seul nombre. Absent : l'objet ne s'achète pas. | integer, 1 or more |
 | `set` | optional | Identifiant d'une Panoplie déclarée dans `data/equipment/sets/`. | a set id that exists |
-| `headlines` | required | Les valeurs par lesquelles l'entrée est consultée : CA et sa formule pour une armure, Dégâts pour une arme. L'entrée nomme elle-même son intitulé, le gabarit ne connaît aucun type d'objet. | 1 or more `{ label, value }` |
+| `prerequisite` | optional | Condition à remplir pour équiper la pièce, rendue sous son nom : une Caractéristique et son seuil, une Espèce ou une sous-espèce. Absente : n'importe qui peut la porter. | free text, written like a skill's: `Être Squelette` |
+| `headlines` | optional | Les valeurs par lesquelles l'entrée est consultée : CA et sa formule pour une armure, Dégâts pour une arme. L'entrée nomme elle-même son intitulé, le gabarit ne connaît aucun type d'objet. Absent : l'entrée n'a pas de bandeau, son texte suffit. | 1 or more `{ label, value }` |
 | `stats` | optional | Cellules sous le bandeau. | `{ label, value }` pairs |
 | `properties` | optional | Règles nommées portées par l'objet. Le nom porte sa ponctuation : « Finesse. » | `{ name, text }` pairs |
 | `craft` | optional | Absent : l'objet ne se fabrique pas. | object, see below |

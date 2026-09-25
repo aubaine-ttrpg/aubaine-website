@@ -710,8 +710,8 @@ const RULE_TERMS: readonly RuleTerm[] = [
     color: 'var(--term-roll)',
     icon: 'mdi/lock',
     definition: {
-      fr: 'Une condition à remplir pour acheter une Compétence.',
-      en: 'A condition to meet to buy a Skill.',
+      fr: 'Une condition à remplir pour acheter une Compétence ou pour équiper un objet.',
+      en: 'A condition to meet to buy a Skill or to equip an item.',
     },
   },
   {

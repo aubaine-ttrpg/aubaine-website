@@ -53,7 +53,13 @@
       "description": "Identifiant d'une Panoplie déclarée dans data/equipment/sets/.",
       "type": "string"
     },
+    "prerequisite": {
+      "description": "Condition à remplir pour équiper la pièce, rendue sous son nom : une Caractéristique et son seuil, une Espèce ou une sous-espèce. Absente : n'importe qui peut la porter.",
+      "type": "string",
+      "minLength": 1
+    },
     "headlines": {
+      "description": "Les valeurs par lesquelles l'entrée est consultée : CA et sa formule pour une armure, Dégâts pour une arme. L'entrée nomme elle-même son intitulé, le gabarit ne connaît aucun type d'objet. Absent : l'entrée n'a pas de bandeau, son texte suffit.",
       "minItems": 1,
       "type": "array",
       "items": {
@@ -73,8 +79,7 @@
           "value"
         ],
         "additionalProperties": false
-      },
-      "description": "Les valeurs par lesquelles l'entrée est consultée : CA et sa formule pour une armure, Dégâts pour une arme. L'entrée nomme elle-même son intitulé, le gabarit ne connaît aucun type d'objet."
+      }
     },
     "stats": {
       "description": "Cellules sous le bandeau.",
@@ -185,7 +190,6 @@
     "position",
     "kind",
     "rarity",
-    "headlines",
     "description"
   ],
   "additionalProperties": false

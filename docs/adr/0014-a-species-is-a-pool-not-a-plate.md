@@ -6,6 +6,7 @@
 **Revised:** 2026-09-23, Decision 3's lore block array is reversed by 0018
 **Revised:** 2026-09-23, Decision 5 is reversed and Decision 4 gains roleplay fields off the plates (0019)
 **Revised:** 2026-09-25, a sub-species may impose one of the two Compétences (addendum in Decision 2)
+**Revised:** 2026-09-26, an equipment item may carry a prerequisite too (addendum in Decision 7)
 **Deciders:** Kori
 **Scope:** The `species` entity in `src/lib/game/schema.ts`, its two routes, its hero plates and lore blocks,
 the one cran of sub-species, the new `prerequisite` field on a skill, and the fact that an empty
@@ -329,6 +330,15 @@ entry cannot nest another, and `speciesPool` still builds the pool a character p
 - Nothing validates a prerequisite's text, so a typo in a species name is invisible to
   `pnpm data:check`. That is the accepted cost of free text and the first thing structuring it would
   buy back.
+
+### Addendum (2026-09-26): an item may carry a prerequisite
+
+The decider reserved the Masque du Métamorphe to Squelettes and widened the rule term: a Prérequis
+is now a condition to buy a Compétence or to equip an item (`RULE_TERMS` in
+`src/lib/game/build.ts`). `equipmentItem.prerequisite` is the same free text as the skill field,
+rendered under the item's name by the `PrerequisiteStat` primitive both cards share, and translated
+by the item overlay. Chapter 07 states that only a creature meeting it can equip the piece. The same
+caveat holds: nothing validates the text.
 
 ---
 

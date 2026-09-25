@@ -7,6 +7,8 @@ Une créature porte huit pièces à la fois, une par emplacement. Tant qu'une pi
 
 Les Compétences accordées par une pièce équipée ne comptent pas dans votre Mémoire et n'ont pas à être apprises. La pièce les donne tant qu'elle est portée, et les reprend quand vous la retirez.
 
+Une pièce peut porter un Prérequis, imprimé sous son nom. Seule une créature qui le remplit peut l'équiper.
+
 ## Les huit emplacements
 
 Tête

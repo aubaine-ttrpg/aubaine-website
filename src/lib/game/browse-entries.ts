@@ -300,6 +300,7 @@ export function equipmentBrowseEntries(corpus: Corpus, locale: Locale): BrowseEn
       })
       const setName = item.set ? (corpus.sets.get(item.set)?.name ?? item.set) : ''
       const properties = item.properties ?? []
+      const headlines = item.headlines ?? []
 
       const disciplineLabel = item.craft
         ? label(corpus.disciplines.get(item.craft.discipline), locale, item.craft.discipline)
@@ -311,7 +312,7 @@ export function equipmentBrowseEntries(corpus: Corpus, locale: Locale): BrowseEn
         title: item.name,
         mark: rarityColor,
         sub: `${sectionTitle} · ${rarityLabel}`,
-        aside: item.headlines.map((headline) => `${headline.label} ${headline.value}`).join(' · '),
+        aside: headlines.map((headline) => `${headline.label} ${headline.value}`).join(' · '),
         value: price,
         coins,
         attrs: attributesFor(slug, item.name, [
@@ -330,7 +331,7 @@ export function equipmentBrowseEntries(corpus: Corpus, locale: Locale): BrowseEn
           ),
           facet(
             'stat',
-            item.headlines.map((headline) => ({ value: headline.label, label: headline.label })),
+            headlines.map((headline) => ({ value: headline.label, label: headline.label })),
           ),
           facet(
             'prop',
