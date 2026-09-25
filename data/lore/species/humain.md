@@ -8,7 +8,7 @@ Les humains sont des artisans de l'espoir et de l'action, peuple d'une créativi
 
 ![](../../media/art/placeholder-16_9-og.png)
 
-En tant qu'exilés du continent perdu de Pandore, les humains d'Eden ont dû chercher leur salut dans l'éloquence des pactes plutôt que dans le fracas des armes. Les humains d'Eden excellent dans l'art de la négociation et de l'alliance. Qu'ils se présentent en chevaliers de la Nouvelle-Aubaine, en ingénieurs du Landenheit ou en érudits de la Victoria, ils savent tisser des réseaux de confiance avec les autres peuples.
+Débarqués du continent perdu de Pandore, les humains d'Eden ont dû chercher leur salut dans l'éloquence des pactes plutôt que dans le fracas des armes. Les humains d'Eden excellent dans l'art de la négociation et de l'alliance. Qu'ils se présentent en chevaliers de la Nouvelle-Aubaine, en ingénieurs du Landenheit ou en érudits de la Victoria, ils savent tisser des réseaux de confiance avec les autres peuples.
 
 Le commerce devient une langue universelle : des cargaisons de soieries, d'épices ou de mécanismes à vapeur circulent sous les auspices d'émissaires habiles, toujours prêts à conclure un accord mutuellement bénéfique. Cette diplomatie pragmatique fait des humains les médiateurs naturels d'Eden.
 
@@ -28,7 +28,7 @@ D'autres confréries ont vu le jour : guildes de forgerons et d'ingénieurs, cer
 
 ## Érudits nomades
 
-Les humains portent en eux l'élan de la découverte et une morale façonnée par l'exil : ils voient chaque peuple autochtone comme un gardien d'un savoir précieux et cherchent avant tout à comprendre plutôt qu'à dominer. Bien que des frictions surgissent (notamment avec les elfes), la majorité des humains fait preuve d'une bienveillance sincère, respectant les coutumes locales et veillant à ne pas éroder les équilibres établis.
+Les humains portent en eux l'élan de la découverte et une morale façonnée par le déracinement : ils voient chaque peuple autochtone comme un gardien d'un savoir précieux et cherchent avant tout à comprendre plutôt qu'à dominer. Bien que des frictions surgissent (notamment avec les elfes), la majorité des humains fait preuve d'une bienveillance sincère, respectant les coutumes locales et veillant à ne pas éroder les équilibres établis.
 
 Leur ingéniosité se déploie autant dans l'exploration des arcanes magiques que dans l'étude des traditions galdùriennes et des rites draconiques, et ils fondent leurs actions sur un code moral valorisant l'échange, l'hospitalité et le progrès partagé. Croyant fermement que chaque rencontre est une occasion d'enrichissement mutuel, ils construisent des ponts culturels.
 
@@ -36,4 +36,4 @@ Leur ingéniosité se déploie autant dans l'exploration des arcanes magiques qu
 
 Les humains reçoivent leur prénom dès la naissance, choisi par leurs parents en hommage à un ancêtre valeureux, à un héros légendaire ou à une vertu qu'ils souhaitent voir s'épanouir. Ce prénom reste immuable tout au long de la vie. Les prénoms sont clairement sexués et varient selon les traditions. Chaque prénom s'inscrit dans une tendance générale propre à sa région d'origine.
 
-Tous portent également un nom de famille hérité, transmis de génération en génération, qui renvoie à l'histoire de la maison : métier, toponyme ou statut social. Certains exilés ajustent la prononciation ou la graphie de leur patronyme pour s'intégrer dans une nouvelle communauté, tandis que d'autres préservent jalousement la forme originelle, assurant ainsi la continuité de leur lignée.
+Tous portent également un nom de famille hérité, transmis de génération en génération, qui renvoie à l'histoire de la maison : métier, toponyme ou statut social. Certains ajustent la prononciation ou la graphie de leur patronyme pour s'intégrer dans une nouvelle communauté, tandis que d'autres préservent jalousement la forme originelle, assurant ainsi la continuité de leur lignée.

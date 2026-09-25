@@ -8,7 +8,7 @@ Humans are artisans of hope and action, a people of boundless creativity and an 
 
 ![](../../media/art/placeholder-16_9-og.png)
 
-As exiles from the lost continent of Pandore, the humans of Eden had to seek their salvation in the eloquence of pacts rather than in the clash of arms. The humans of Eden excel in the art of negotiation and alliance. Whether they present themselves as knights of Nouvelle-Aubaine, engineers of Landenheit or scholars of Victoria, they know how to weave networks of trust with the other peoples.
+Having come ashore from the lost continent of Pandore, the humans of Eden had to seek their salvation in the eloquence of pacts rather than in the clash of arms. The humans of Eden excel in the art of negotiation and alliance. Whether they present themselves as knights of Nouvelle-Aubaine, engineers of Landenheit or scholars of Victoria, they know how to weave networks of trust with the other peoples.
 
 Trade becomes a universal language: cargoes of silks, spices or steam-driven mechanisms travel under the auspices of skilled emissaries, always ready to strike a mutually beneficial deal. This pragmatic diplomacy makes humans the natural mediators of Eden.
 
@@ -28,7 +28,7 @@ Other brotherhoods have come into being: guilds of smiths and engineers, circles
 
 ## Nomad scholars
 
-Humans carry within them the drive of discovery and a morality shaped by exile: they see every native people as the keeper of precious knowledge, and seek above all to understand rather than to dominate. Although frictions arise (notably with the elves), most humans show sincere goodwill, respecting local customs and taking care not to erode established balances.
+Humans carry within them the drive of discovery and a morality shaped by uprooting: they see every native people as the keeper of precious knowledge, and seek above all to understand rather than to dominate. Although frictions arise (notably with the elves), most humans show sincere goodwill, respecting local customs and taking care not to erode established balances.
 
 Their ingenuity unfolds as much in the exploration of magical arcana as in the study of galdùrian traditions and draconic rites, and they ground their actions in a moral code that values exchange, hospitality and shared progress. Firmly believing that every encounter is a chance for mutual enrichment, they build cultural bridges.
 
@@ -36,4 +36,4 @@ Their ingenuity unfolds as much in the exploration of magical arcana as in the s
 
 Humans receive their first name at birth, chosen by their parents in tribute to a valiant ancestor, a legendary hero or a virtue they hope to see flourish. That name stays the same for life. First names are clearly gendered and vary with tradition. Each first name follows a general trend particular to its region of origin.
 
-All of them also bear an inherited family name, handed down from generation to generation, which recalls the history of the house: a trade, a place name or a social standing. Some exiles adjust the pronunciation or spelling of their surname to settle into a new community, while others jealously preserve its original form, ensuring the continuity of their line.
+All of them also bear an inherited family name, handed down from generation to generation, which recalls the history of the house: a trade, a place name or a social standing. Some adjust the pronunciation or spelling of their surname to settle into a new community, while others jealously preserve its original form, ensuring the continuity of their line.
