@@ -32,10 +32,10 @@ import because they collided; check that `data/skills/<ID>.json` does not exist 
 Names appear in search, in tooltips, on the plate, and in the printed index. A name that is clear on
 a card and ambiguous in a list is a name to reconsider.
 
-## A people's regional variant is an origine régionale
+## A people's variant is a sous-espèce or an origine régionale
 
-Reader-facing text never calls the regional variant of a people a « sous-espèce » or a « race », in
-either locale (EN: never "sub-species" or "race"). Those words read peoples as breeds, which the game
-refuses. The reader sees « origine régionale », or "regional origin" in English. The data field stays
-`subspecies`, and the species runbook names it that way; that is a machine name, and it never reaches
-a page.
+The two names mean one thing, the variant a people holds in the data field `subspecies`.
+« Sous-espèce » is the general name (EN "subspecies"); some Espèces, Humain first, call theirs
+« origines régionales » (EN "regional origins"). An entry uses the name its Espèce uses, and rule
+text that must reach every Espèce names both, as the Scothan Compétences do. The interface labels the
+section « Origines régionales » for now. Reader-facing text never says « race », in either locale.
