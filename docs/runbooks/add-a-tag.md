@@ -10,7 +10,7 @@ A skill has three reserved slots, and none of them is mandatory:
 - **École**: the family its effect belongs to. One at most, and it must accept the Pratique when both are set.
 - **Spéciale**: a particularity that carries, or will carry, a rule. As many as needed.
 
-For each slot, ask whether this skill needs it for balance, flavour or a combo. If the answer is no, leave the slot empty; if no slot applies, leave `tags` out of the skill. Base actions and skills that only change the character sheet when bought carry no tag. The definitions in `data/meta/tags.json` guide the choice, they do not compute it: when a rule of thumb and the skill's flavour disagree, flavour and combos win.
+For each slot, ask whether this skill needs it for balance, flavour or a combo. If the answer is no, leave the slot empty; if no slot applies, leave `tags` out of the skill. Basic skills and skills that only change the character sheet when bought carry no tag. The definitions in `data/meta/tags.json` guide the choice, they do not compute it: when a rule of thumb and the skill's flavour disagree, flavour and combos win.
 
 ## When a new tag is justified
 
@@ -85,6 +85,7 @@ A definition says what the tag means at the table, with a touch of flavour, in r
 
 - The chip in the footer of every skill that carries the tag, in both locales, with the definition on hover and keyboard focus.
 - A new value in the Pratique, École or Spéciale filter on `/fr/competences` and `/en/skills`.
+- A row on `/fr/regles` and `/en/rules`, filed under the `Étiquette` family, whose detail shows the definition. A tag a rule term reads, as `Sort` reads `spell`, has no row of its own: the rule term's row also files under the tags.
 
 ## How to check it
 

@@ -14,7 +14,7 @@ One job per page. Every job is done by adding or editing a file under `data/`. T
 | Add a weapon, armour, jewel or consumable | [add-an-item.md](add-an-item.md) |
 | Group pieces into a set with tiered bonuses | [add-a-set.md](add-a-set.md) |
 | Add a condition that rule text names between double square brackets | [add-a-state.md](add-a-state.md) |
-| Add something every creature can do, with no XP cost | [add-a-base-action.md](add-a-base-action.md) |
+| Add something every creature can do, with no XP cost | [add-a-basic-skill.md](add-a-basic-skill.md) |
 | Add a skill anyone can buy without a tree | [add-a-common-bank-skill.md](add-a-common-bank-skill.md) |
 | Tag a skill, or add, rename or retire a tag | [add-a-tag.md](add-a-tag.md) |
 | Start a new book, or attach a PDF | [add-a-book.md](add-a-book.md) |

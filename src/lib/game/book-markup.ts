@@ -101,7 +101,7 @@ function localeOf(path: string): Locale {
 
 type Marker = {
   index: TermIndex
-  statesHref: string
+  rulesHref: string
   openLabel: string
   glossed: Set<string>
 }
@@ -171,7 +171,7 @@ export function rehypeCodexTerms(root: string) {
     if (!value) {
       value = readCorpus(root, locale).then((built) => ({
         index: built.terms,
-        statesHref: pathFor('states', locale),
+        rulesHref: pathFor('rules', locale),
         openLabel: strings(locale).openRef,
         glossed: new Set([
           strings(locale).ruleTerm,
@@ -192,7 +192,7 @@ export function rehypeCodexTerms(root: string) {
       markIcons(tree, await iconSources(root))
       if (!marker.index.pattern) return
 
-      const options = { statesHref: marker.statesHref, resolveReference: (): null => null }
+      const options = { rulesHref: marker.rulesHref, resolveReference: (): null => null }
       const seen = new Set<string>()
 
       const walk = (node: HastParent): void => {

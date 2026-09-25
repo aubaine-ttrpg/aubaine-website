@@ -41,7 +41,7 @@ The order is not arbitrary. A tree or a species is where a skill lives, and an i
 
 `balanced` exists so that a skill can contradict its tree. Absent means inherited, `balanced` means settled on purpose, and the two are not the same thing even though neither prints a badge.
 
-Two kinds fall outside this. A skill list carries no status, so the Common Bank skills and the base actions only ever badge from a `status` written on the skill itself. A set never prints a badge of its own either, because it has no page and its bonuses are rendered on the pieces; its status exists only to reach the skills its tiers grant.
+Two kinds fall outside this. A skill list carries no status, so the Common Bank skills and the basic skills only ever badge from a `status` written on the skill itself. A set never prints a badge of its own either, because it has no page and its bonuses are rendered on the pieces; its status exists only to reach the skills its tiers grant.
 
 ## Translations sit beside the French file
 
@@ -64,7 +64,7 @@ Machine values are never translated. Ids, `key` fields, domain keys, characteris
 | --- | --- |
 | `data/skills/` | one skill, named `<ID>.json` |
 | `data/skill-trees/` | one plate, named `<tree-id>.json`, listing placements |
-| `data/skill-lists/` | one ordered list of skill ids: the base actions and the common bank |
+| `data/skill-lists/` | one ordered list of skill ids: the basic skills and the common bank |
 | `data/species/` | one playable species, named `<id>.json`, listing the skills it offers |
 | `data/states/` | one condition, named `<key>.json` |
 | `data/equipment/catalogue.json` | the catalogue's id, its plates and its sections, in reading order |
@@ -188,8 +188,8 @@ These are recorded, not fixed. They come from the import and the hand written ch
 | Id | Kept by | The one that had to move |
 | --- | --- | --- |
 | `SURCH-01` | Technomancien's Surcharge | Feu's Surchauffe became `SCHAU-01` |
-| `IMPRO-01` | the base action Improviser | Artisan's Improvisation became `IMPRV-01` |
-| `BOUSC-01` | the base action Bousculer | Physique's Bousculade became `BOUSD-01` |
+| `IMPRO-01` | the basic skill Improviser | Artisan's Improvisation became `IMPRV-01` |
+| `BOUSC-01` | the basic skill Bousculer | Physique's Bousculade became `BOUSD-01` |
 
 **The difficulty class formula was written two ways, and is now settled at `10`.** Skill prose in `data/skills/` writes a DC as `10 + Caractéristique + Aptitude`, in forty five files, and so does the printed Livre du joueur. An earlier external design spec wrote `11 + Caractéristique + Aptitude`. The shipped data and the printed book agree, so `10` is the rule and the chapters print it. No skill file was changed. An `aubaine.io` architecture decision record had assigned the difficulty ladder to that external spec; this repository does not inherit it, because `.claude/rules/content/authority.md` makes this repository the only authority.
 

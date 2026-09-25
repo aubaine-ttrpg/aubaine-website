@@ -88,7 +88,7 @@ Then open the tree page and look at the node and its card.
 
 **A skill usually inherits its status, so leave `status` out.** An absent `status` takes the value of the tree that places the skill, then of an item that grants it, then of a set bonus that grants it. Write `status` only to contradict that owner, and write `"status": "balanced"` to say the skill is settled even though its tree is not. `balanced` prints no badge; it only stops the inheritance.
 
-**A skill no owner covers shows nothing.** A Common Bank skill and a base action belong to a list, and a list carries no status, so those two kinds only ever badge from a `status` written on the skill itself.
+**A skill no owner covers shows nothing.** A Common Bank skill and a basic skill belong to a list, and a list carries no status, so those two kinds only ever badge from a `status` written on the skill itself.
 
 **The id is permanent and unique across the whole repo.** Two skills may never share one, not even in two different trees. Before you invent an id, check that `data/skills/<ID>.json` does not exist. Three ids were renamed on import because they collided; see the known inconsistencies in [../data-contract.md](../data-contract.md).
 
@@ -96,7 +96,7 @@ Then open the tree page and look at the node and its card.
 
 **A passive skill may not carry an energy cost above 0.** The schema rejects it: `une Compétence passive ne coûte pas d'Énergie. energy: 0 reste permis pour marquer explicitement une absence de coût.`
 
-**Tags are optional, and each one has to earn its place.** `tags` holds up to three kinds of key from `data/meta/tags.json`: one Pratique, one École, any number of Spéciales. For each slot, ask whether this skill needs it for balance, flavour or a combo; leave it empty otherwise, and leave `tags` out entirely when nothing applies, as the base actions do. An École must accept the Pratique it is paired with (its `practices` list). A key that is not declared, or declared in another slot, fails `pnpm data:check`. Never invent a tag for one skill: [add-a-tag.md](add-a-tag.md) says when a new one is justified.
+**Tags are optional, and each one has to earn its place.** `tags` holds up to three kinds of key from `data/meta/tags.json`: one Pratique, one École, any number of Spéciales. For each slot, ask whether this skill needs it for balance, flavour or a combo; leave it empty otherwise, and leave `tags` out entirely when nothing applies, as the basic skills do. An École must accept the Pratique it is paired with (its `practices` list). A key that is not declared, or declared in another slot, fails `pnpm data:check`. Never invent a tag for one skill: [add-a-tag.md](add-a-tag.md) says when a new one is justified.
 
 **`spell` carries a rule.** A skill whose Pratique is `spell` is a Sort: it needs a Catalyseur equipped to be activated, whether it is passive or active. `shout` carries one too: a Cri only affects creatures that can hear it. Rule text that cites a tag writes « l'étiquette » followed by its French label exactly, `l'étiquette Illusion`, so the citation reaches every skill that carries it.
 

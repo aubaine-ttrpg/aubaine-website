@@ -5,7 +5,7 @@ import { strings } from '../../lib/i18n/strings'
 
 type Props = {
   locale: Locale
-  variant: 'trees' | 'species' | 'skills' | 'speciesSkills' | 'equipment' | 'baseActions' | 'states'
+  variant: 'trees' | 'species' | 'skills' | 'speciesSkills' | 'equipment' | 'rules'
   total: number
   drafts: number
 }
@@ -55,8 +55,10 @@ const GROUPS: Record<Props['variant'], FilterGroup[]> = {
     { key: 'set', label: t.set_ },
     { key: 'sta', label: t.status_ },
   ],
-  baseActions: [{ key: 'act', label: t.activation }],
-  states: [{ key: 'eff', label: t.effect_ }],
+  rules: [
+    { key: 'fam', label: t.family_ },
+    { key: 'eff', label: t.effect_ },
+  ],
 }
 
 const kinds: FilterKind[] | undefined =

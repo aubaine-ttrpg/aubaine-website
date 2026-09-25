@@ -5,6 +5,7 @@ import {
   characteristicKey,
   collator,
   primeCharacteristics,
+  slugify,
   speciesPool,
   treeDomains,
   VARIABLE_CHARACTERISTIC,
@@ -79,6 +80,19 @@ export type ResolvedTag = {
   practices?: string[] | undefined
 }
 
+type GlossaryWord = {
+  key: string
+  spellings: string[]
+  record: Omit<TermRecord, 'spelling'>
+}
+
+export type GlossaryTerm = GlossaryWord &
+  (
+    | { family: 'rule'; tag: string | undefined }
+    | { family: 'characteristic' | 'aptitude' }
+    | { family: 'state'; state: GameState }
+  )
+
 export type Corpus = {
   locale: Locale
   creatureTypes: Map<string, VocabularyEntry>
@@ -110,6 +124,7 @@ export type Corpus = {
   origins: Map<string, SkillOrigin>
   skillStatus: Map<string, ContentStatus>
   books: ResolvedBook[]
+  glossary: GlossaryTerm[]
   terms: TermIndex
 }
 
@@ -451,18 +466,8 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
     })
     .sort((a, b) => a.order - b.order)
 
-  const terms = buildTermIndex({
-    locale,
-    characteristics,
-    aptitudes,
-    tags,
-    states,
-    trees,
-    basic,
-    bank,
-    skills,
-    t,
-  })
+  const glossary = buildGlossary({ locale, characteristics, aptitudes, tags, states, bank, t })
+  const terms = buildTermIndex({ locale, characteristics, glossary, trees, basic, bank, t })
 
   return {
     locale,
@@ -495,20 +500,28 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
     origins,
     skillStatus,
     books,
+    glossary,
     terms,
   }
 }
 
-type TermInput = {
+type GlossaryInput = {
   locale: Locale
   characteristics: Map<string, VocabularyEntry>
   aptitudes: Map<string, VocabularyEntry>
   tags: Map<string, ResolvedTag>
   states: GameState[]
+  bank: SkillList
+  t: ReturnType<typeof strings>
+}
+
+type TermInput = {
+  locale: Locale
+  characteristics: Map<string, VocabularyEntry>
+  glossary: GlossaryTerm[]
   trees: ResolvedTree[]
   basic: SkillList & { resolved: Skill[] }
   bank: SkillList & { resolved: Skill[] }
-  skills: Map<string, Skill>
   t: ReturnType<typeof strings>
 }
 
@@ -803,9 +816,94 @@ function ruleTermDefinition(
   return requiredDefinition(tag, locale, `data/meta/tags.json ${tag.key}`)
 }
 
-function buildTermIndex(input: TermInput): TermIndex {
-  const { locale, characteristics, aptitudes, tags, states, trees, basic, bank, t } = input
+function buildGlossary(input: GlossaryInput): GlossaryTerm[] {
+  const { locale, characteristics, aptitudes, tags, states, bank, t } = input
   const english = locale === 'en'
+  const glossary: GlossaryTerm[] = []
+
+  for (const rule of RULE_TERMS) {
+    glossary.push({
+      family: 'rule',
+      key: slugify(rule.fr[0]),
+      tag: 'tag' in rule ? rule.tag : undefined,
+      spellings: [...rule.fr, ...rule.en],
+      record: {
+        family: 'rule',
+        kind: t.ruleTerm,
+        title: english ? rule.en[0] : rule.fr[0],
+        meta: '',
+        color: rule.color,
+        icon: rule.icon,
+        text: ruleTermDefinition(rule, tags, bank, locale),
+      },
+    })
+  }
+
+  for (const entry of characteristics.values()) {
+    if (entry.key === VARIABLE_CHARACTERISTIC) continue
+    glossary.push({
+      family: 'characteristic',
+      key: entry.key,
+      spellings: spellingsOf(entry),
+      record: {
+        family: 'characteristic',
+        kind: t.characteristic,
+        title: english ? entry.labelEn : entry.labelFr,
+        meta: '',
+        color: entry.color ?? 'var(--accent-ink)',
+        icon: iconPath(entry.iconName),
+        text: requiredDefinition(entry, locale, `data/meta/characteristics.json ${entry.key}`),
+      },
+    })
+  }
+
+  for (const entry of aptitudes.values()) {
+    glossary.push({
+      family: 'aptitude',
+      key: entry.key,
+      spellings: spellingsOf(entry),
+      record: {
+        family: 'aptitude',
+        kind: t.aptitude,
+        title: english ? entry.labelEn : entry.labelFr,
+        meta: '',
+        color: entry.color ?? 'var(--term-apt)',
+        icon: APTITUDE_ICON,
+        text: requiredDefinition(entry, locale, `data/meta/aptitudes.json ${entry.key}`),
+      },
+    })
+  }
+
+  for (const state of states) {
+    const kindLabel =
+      state.kind === 'buff' ? t.buff : state.kind === 'debuff' ? t.debuff : t.neutral
+    glossary.push({
+      family: 'state',
+      key: state.key,
+      state,
+      spellings: [state.name, ...(state.forms ?? [])],
+      record: {
+        family: 'state',
+        kind: t.states,
+        title: state.name,
+        meta: kindLabel,
+        color:
+          state.kind === 'buff'
+            ? 'var(--state-buff)'
+            : state.kind === 'debuff'
+              ? 'var(--state-debuff)'
+              : 'var(--state-neutral)',
+        icon: iconPath(state.icon),
+        text: flattenText(state.description, 240),
+      },
+    })
+  }
+
+  return glossary
+}
+
+function buildTermIndex(input: TermInput): TermIndex {
+  const { locale, characteristics, glossary, trees, basic, bank, t } = input
   const map = new Map<string, TermRecord>()
 
   const put = (name: string, record: Omit<TermRecord, 'spelling'>): void => {
@@ -814,70 +912,8 @@ function buildTermIndex(input: TermInput): TermIndex {
     map.set(key, { ...record, spelling: name })
   }
 
-  for (const rule of RULE_TERMS) {
-    const text = ruleTermDefinition(rule, tags, bank, locale)
-    for (const word of [...rule.fr, ...rule.en]) {
-      put(word, {
-        family: 'rule',
-        kind: t.ruleTerm,
-        title: english ? rule.en[0] : rule.fr[0],
-        meta: '',
-        color: rule.color,
-        icon: rule.icon,
-        text,
-      })
-    }
-  }
-
-  for (const entry of characteristics.values()) {
-    if (entry.key === VARIABLE_CHARACTERISTIC) continue
-    const text = requiredDefinition(entry, locale, `data/meta/characteristics.json ${entry.key}`)
-    for (const word of spellingsOf(entry)) {
-      put(word, {
-        family: 'characteristic',
-        kind: t.characteristic,
-        title: english ? entry.labelEn : entry.labelFr,
-        meta: '',
-        color: entry.color ?? 'var(--accent-ink)',
-        icon: iconPath(entry.iconName),
-        text,
-      })
-    }
-  }
-
-  for (const entry of aptitudes.values()) {
-    const text = requiredDefinition(entry, locale, `data/meta/aptitudes.json ${entry.key}`)
-    for (const word of spellingsOf(entry)) {
-      put(word, {
-        family: 'aptitude',
-        kind: t.aptitude,
-        title: english ? entry.labelEn : entry.labelFr,
-        meta: '',
-        color: entry.color ?? 'var(--term-apt)',
-        icon: APTITUDE_ICON,
-        text,
-      })
-    }
-  }
-
-  for (const state of states) {
-    const kindLabel =
-      state.kind === 'buff' ? t.buff : state.kind === 'debuff' ? t.debuff : t.neutral
-    const record = {
-      family: 'state' as const,
-      kind: t.states,
-      title: state.name,
-      meta: kindLabel,
-      color:
-        state.kind === 'buff'
-          ? 'var(--state-buff)'
-          : state.kind === 'debuff'
-            ? 'var(--state-debuff)'
-            : 'var(--state-neutral)',
-      icon: iconPath(state.icon),
-      text: flattenText(state.description, 240),
-    }
-    for (const word of [state.name, ...(state.forms ?? [])]) put(word, record)
+  for (const term of glossary) {
+    for (const word of term.spellings) put(word, term.record)
   }
 
   for (const tree of trees) {

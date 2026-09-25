@@ -160,7 +160,7 @@ Then point both halves of the hero at the new files in `src/components/views/Hom
 - `cover` and `backCover` on the catalogue: the two faces of the equipment booklet. `banner`: the plate behind the hero at `/fr/equipement`.
 - `art` on an item: the picture on its card and in its detail panel at `/fr/equipement`.
 - a skill has no picture field. Its detail panel at `/fr/competences` draws the 1:1 default plate.
-- `icon` on a state: the glyph inside the pastille wherever `[[Nom]]` appears, and on the card at `/fr/etats`.
+- `icon` on a state: the glyph inside the pastille wherever `[[Nom]]` appears, and in its detail at `/fr/regles`.
 - a booklet in `data/media/pdf/`: the download button on the card at `/fr/livres` and in the hero of `/fr/arbre/<tree-id>`, resolved through `data/pdf/releases.json`.
 - `data/media/video/<nom>-16_9-compressed.mp4`: the loop behind the home hero, over the plate it fades in from.
 

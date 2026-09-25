@@ -1,4 +1,5 @@
 ---
+import { ruleBrowseEntries } from '../../lib/game/browse-entries'
 import type { Corpus } from '../../lib/game/corpus'
 import {
   collator,
@@ -36,8 +37,6 @@ const t = strings(locale)
 
 const DOMAIN_FALLBACK = '#2a2a2e'
 const RARITY_FALLBACK = '#6b6459'
-const BUFF = '#4f7a2e'
-const DEBUFF = '#a84d16'
 
 const compare = collator(locale)
 const typeLabels = { active: t.active, passive: t.passive, special: t.special }
@@ -126,22 +125,22 @@ const itemRows: Row[] = corpus.items
   })
   .sort((a, b) => compare.compare(a.title, b.title))
 
-const stateRows: Row[] = corpus.states
-  .map((state) => ({
-    id: state.key,
-    title: state.name,
-    href: pathFor('states', locale),
-    sub: state.kind === 'buff' ? t.buff : state.kind === 'debuff' ? t.debuff : t.neutral,
-    mark: state.kind === 'buff' ? BUFF : DEBUFF,
-    value: '',
+const ruleRows: Row[] = ruleBrowseEntries(corpus, locale)
+  .filter((entry) => entry.entity.kind !== 'skill')
+  .map((entry) => ({
+    id: entry.id,
+    title: entry.title,
+    href: `${pathFor('rules', locale)}#e-${entry.id}`,
+    sub: entry.sub,
+    mark: entry.mark,
+    value: entry.value,
   }))
-  .sort((a, b) => compare.compare(a.title, b.title))
 
 const groups: Group[] = [
   { title: t.trees, rows: treeRows },
   { title: t.skills, rows: skillRows },
   { title: t.items, rows: itemRows },
-  { title: t.states_, rows: stateRows },
+  { title: t.rules, rows: ruleRows },
 ].filter((group) => group.rows.length > 0)
 
 const total = groups.reduce((sum, group) => sum + group.rows.length, 0)

@@ -18,7 +18,7 @@ const { source, corpus, locale, class: className } = Astro.props
 const t = strings(locale)
 
 const paragraphs = parseParagraphs(source, corpus.terms, {
-  statesHref: pathFor('states', locale),
+  rulesHref: pathFor('rules', locale),
   resolveReference: (): null => null,
 })
 

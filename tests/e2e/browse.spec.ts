@@ -215,6 +215,17 @@ test('a cross reference to a skill of the same index selects that skill', async 
   await expect(row(page, 'DESEN-01')).toHaveAttribute('aria-current', 'true')
 })
 
+test('selecting a rule word shows its definition', async ({ page }) => {
+  await page.goto('/fr/regles')
+  await enhanced(page)
+
+  await row(page, 'rule-avantage').click()
+  const detail = page.locator('#e-rule-avantage')
+  await expect(detail).toBeVisible()
+  await expect(detail.locator('.au-term-entry__name')).toHaveText('Avantage')
+  await expect(detail.locator('.au-term-entry__desc')).toHaveText(/\S/)
+})
+
 test('a tree source opens the skill on its plate', async ({ page }) => {
   await page.goto('/en/skills#e-RAGER-01')
   await enhanced(page)

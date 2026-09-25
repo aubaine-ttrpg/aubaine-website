@@ -42,7 +42,7 @@ test('a species filters its pool by sub-species', async ({ page }) => {
 })
 
 test('the filter modal is reachable and dismissable by keyboard', async ({ page }) => {
-  await page.goto('/en/states')
+  await page.goto('/en/rules')
   await hydrated(page)
   await page.getByRole('button', { name: 'Filters' }).click()
   const dialog = page.getByRole('dialog')
@@ -84,6 +84,24 @@ test('the skills filter narrows by École', async ({ page }) => {
     nodes.map((node) => node.getAttribute('data-facet-sch') ?? ''),
   )) {
     expect(school.split(' ')).toContain('illusion')
+  }
+})
+
+test('the rules filter narrows the list to one family', async ({ page }) => {
+  await page.goto('/en/rules')
+  await hydrated(page)
+
+  await page.getByRole('button', { name: 'Filters' }).click()
+  const dialog = page.getByRole('dialog')
+  await dialog.getByRole('button', { name: /^State/ }).click()
+  await page.keyboard.press('Escape')
+
+  const shown = page.locator('[data-rows] [data-entry]:not([hidden])')
+  expect(await shown.count()).toBeGreaterThan(0)
+  for (const family of await shown.evaluateAll((nodes) =>
+    nodes.map((node) => node.getAttribute('data-facet-fam') ?? ''),
+  )) {
+    expect(family.split(' ')).toEqual(['state'])
   }
 })
 

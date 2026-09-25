@@ -3,8 +3,10 @@ import { getEntry } from 'astro:content'
 
 import { hasBooklet } from '../../lib/booklet/manifest'
 import {
+  type BrowseEntry,
   equipmentBrowseEntries,
   originSkills,
+  ruleBrowseEntries,
   skillBrowseEntries,
 } from '../../lib/game/browse-entries'
 import type { Corpus } from '../../lib/game/corpus'
@@ -18,22 +20,32 @@ import Hero from '../primitives/Hero.astro'
 
 import '../../styles/prose.css'
 
-type Variant = 'skills' | 'equipment'
+type Variant = 'skills' | 'equipment' | 'rules'
 
 type Props = { locale: Locale; corpus: Corpus; variant: Variant }
 
 const { locale, corpus, variant } = Astro.props
 const t = strings(locale)
 
-const entries =
-  variant === 'skills'
-    ? skillBrowseEntries(originSkills(corpus), corpus, locale)
-    : equipmentBrowseEntries(corpus, locale)
-const heroArt =
-  variant === 'skills'
-    ? 'bacchi-qui-travaille-16_9-og.png'
-    : (corpus.catalogue.banner ?? PLACEHOLDER_BANNER)
-const heroTitle = variant === 'skills' ? t.spells : t.items
+const VIEWS: Record<Variant, () => { entries: BrowseEntry[]; art: string; title: string }> = {
+  skills: () => ({
+    entries: skillBrowseEntries(originSkills(corpus), corpus, locale),
+    art: 'bacchi-qui-travaille-16_9-og.png',
+    title: t.spells,
+  }),
+  equipment: () => ({
+    entries: equipmentBrowseEntries(corpus, locale),
+    art: corpus.catalogue.banner ?? PLACEHOLDER_BANNER,
+    title: t.items,
+  }),
+  rules: () => ({
+    entries: ruleBrowseEntries(corpus, locale),
+    art: 'priest-16_9-og.png',
+    title: t.rules,
+  }),
+}
+
+const { entries, art: heroArt, title: heroTitle } = VIEWS[variant]()
 
 const booklet =
   variant === 'equipment' ? bookletHref('equipment', corpus.catalogue.id, locale) : undefined

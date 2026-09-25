@@ -6,7 +6,11 @@ import sharp from 'sharp'
 import { describe, expect, it } from 'vitest'
 
 import { latestRelease, notes, releases } from '../../src/lib/booklet/manifest'
-import { originSkills, skillBrowseEntries } from '../../src/lib/game/browse-entries'
+import {
+  originSkills,
+  ruleBrowseEntries,
+  skillBrowseEntries,
+} from '../../src/lib/game/browse-entries'
 import { type Corpus, definition, label } from '../../src/lib/game/build'
 import {
   characteristicKey,
@@ -987,6 +991,43 @@ describe('definitions', () => {
         expect(ANTITHESIS.test(record.text), `${where} writes the antithesis`).toBe(false)
       }
     }
+  })
+})
+
+describe('the rules index', () => {
+  it('lists every defined word, every tag and every basic skill once, under ids both locales share', async () => {
+    const idsOf = async (locale: (typeof LOCALES)[number]): Promise<string[]> =>
+      ruleBrowseEntries(await readCorpus(root, locale), locale).map((entry) => entry.id)
+    const ids = await idsOf('fr')
+    expect(new Set(ids).size, 'rule ids are unique').toBe(ids.length)
+    expect(new Set(await idsOf('en'))).toEqual(new Set(ids))
+
+    const listed = new Set(ids)
+    const ruleWords = new Set(
+      [...fr.terms.map.values()].filter((record) => record.family === 'rule').map((r) => r.title),
+    )
+    expect(ids.filter((id) => id.startsWith('rule-')).length).toBe(ruleWords.size)
+    for (const key of fr.characteristics.keys()) {
+      if (key === VARIABLE_CHARACTERISTIC) continue
+      expect(listed.has(`characteristic-${key}`), key).toBe(true)
+    }
+    for (const key of fr.aptitudes.keys()) expect(listed.has(`aptitude-${key}`), key).toBe(true)
+    for (const state of fr.states) expect(listed.has(`state-${state.key}`), state.key).toBe(true)
+    for (const skill of fr.basic.resolved)
+      expect(listed.has(`basic-${skill.id}`), skill.id).toBe(true)
+
+    const filedAsTags = ruleBrowseEntries(fr, 'fr').filter((entry) =>
+      entry.attrs['data-facet-fam']?.split(' ').includes('tag'),
+    )
+    expect(filedAsTags.length).toBe(fr.tags.size)
+  })
+
+  it('lists Sort once, as a rule word that also files under the tags', () => {
+    const entries = ruleBrowseEntries(fr, 'fr')
+    const sort = entries.filter((entry) => entry.title === 'Sort')
+    expect(sort.map((entry) => entry.id)).toEqual(['rule-sort'])
+    expect(sort[0]?.attrs['data-facet-fam']).toBe('rule tag')
+    expect(entries.some((entry) => entry.id === 'tag-spell')).toBe(false)
   })
 })
 

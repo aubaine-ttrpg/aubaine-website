@@ -1,21 +1,15 @@
 ---
 import type { Corpus } from '../../lib/game/corpus'
-import { collator, slugify } from '../../lib/game/derive'
 import { bookDot, bookLink, indexDescriptors } from '../../lib/game/indexes'
-import type { GameState } from '../../lib/game/schema'
 import type { Locale } from '../../lib/i18n/locales'
 import { pathFor } from '../../lib/i18n/routes'
 import { strings } from '../../lib/i18n/strings'
 import { PLACEHOLDER_BANNER } from '../../lib/media'
 import Card from '../primitives/Card.astro'
-import EntryCard from '../primitives/EntryCard.astro'
-import FilterBar from '../primitives/FilterBar.astro'
 import Hero from '../primitives/Hero.astro'
-import SkillEntry from '../primitives/SkillEntry.astro'
-import StateEntry from '../primitives/StateEntry.astro'
 import { enterDelay, STAGGER_STEP } from '../primitives/stagger'
 
-type Variant = 'books' | 'almanach' | 'baseActions' | 'states'
+type Variant = 'books' | 'almanach'
 
 type Props = { locale: Locale; corpus: Corpus; variant: Variant }
 
@@ -34,26 +28,14 @@ type CardModel = {
 const { locale, corpus, variant } = Astro.props
 const t = strings(locale)
 
-const EM_DASH = String.fromCodePoint(0x2014)
-
 const HERO_ART: Record<Variant, string> = {
   books: 'bibliotheque-des-oracles-16_9-og.png',
   almanach: 'bureau-de-archibald-16_9-upscaled_4.jpg',
-  baseActions: 'castagneur-16_9-og.png',
-  states: 'priest-16_9-og.png',
 }
 
 const HERO_TEXT: Record<Variant, { title: string; lead: string }> = {
   books: { title: t.resources, lead: t.hubLead },
   almanach: { title: t.almanach, lead: t.almanachLead },
-  baseActions: { title: t.rules, lead: t.rulesLead },
-  states: { title: t.states_, lead: t.statesLead },
-}
-
-const STATE_KIND: Record<GameState['kind'], string> = {
-  buff: t.buff,
-  debuff: t.debuff,
-  neutral: t.neutral,
 }
 
 const bookCards = (): CardModel[] =>
@@ -86,15 +68,7 @@ const indexCards = (): CardModel[] =>
     delay: enterDelay(index, STAGGER_STEP.card),
   }))
 
-const baseActions = [...corpus.basic.resolved].sort((a, b) =>
-  collator(locale).compare(a.title, b.title),
-)
-
-const cards: CardModel[] =
-  variant === 'books' ? bookCards() : variant === 'almanach' ? indexCards() : []
-
-const total =
-  variant === 'baseActions' ? baseActions.length : variant === 'states' ? corpus.states.length : 0
+const cards: CardModel[] = variant === 'books' ? bookCards() : indexCards()
 
 const hero = HERO_TEXT[variant]
 ---
@@ -122,48 +96,7 @@ const hero = HERO_TEXT[variant]
       {hero.lead}
     </p>
   </Hero>
-  {
-    (variant === 'baseActions' || variant === 'states') && (
-      <FilterBar locale={locale} variant={variant} total={total} drafts={0} />
-    )
-  }
   <section style="max-width:1560px; margin:0 auto; padding:40px 26px 80px">
-    {
-      variant === 'baseActions' && (
-        <ul class="au-entry-list">
-          {baseActions.map((skill, index) => (
-            <EntryCard
-              entryId={skill.id}
-              name={skill.title}
-              facetGroup="act"
-              facetValue={slugify(skill.activation ?? '') || 'none'}
-              facetLabel={skill.activation ?? EM_DASH}
-              delay={enterDelay(index, STAGGER_STEP.entry)}
-            >
-              <SkillEntry skill={skill} corpus={corpus} locale={locale} marks={false} />
-            </EntryCard>
-          ))}
-        </ul>
-      )
-    }
-    {
-      variant === 'states' && (
-        <ul class="au-entry-list">
-          {corpus.states.map((state, index) => (
-            <EntryCard
-              entryId={state.key}
-              name={state.name}
-              facetGroup="eff"
-              facetValue={state.kind}
-              facetLabel={STATE_KIND[state.kind]}
-              delay={enterDelay(index, STAGGER_STEP.entry)}
-            >
-              <StateEntry state={state} corpus={corpus} locale={locale} />
-            </EntryCard>
-          ))}
-        </ul>
-      )
-    }
     {
       cards.length > 0 && (
         <ul style="list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,318px),1fr)); gap:22px">

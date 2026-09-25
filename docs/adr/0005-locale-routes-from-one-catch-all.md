@@ -6,6 +6,8 @@
 **Revised:** 2026-09-21, the indexes page is renamed and both locales share one slug
 **Revised:** 2026-09-25, `/` stops redirecting and becomes a threshold page, so `src/pages/` gains
 `index.astro` (0021)
+**Revised:** 2026-09-25, the states and base actions pages give way to one rules index, and their
+slugs retire behind 301s (0023)
 **Deciders:** Kori
 **Scope:** The URL scheme, where routes come from, and the constraint a segment must satisfy. Does
 not cover how a page is rendered (0006) or how navigation between them works (0007).
@@ -64,6 +66,16 @@ content is.
 `curl -sI https://aubaine.io/`. 0021 replaces it with a page that picks `/fr` or `/en` from the
 browser's languages and hands off through Swup. Every other bullet of this decision stands: each
 page still lives under its locale prefix, and the root is `noindex` with its canonical at `/fr`.
+
+### Addendum (2026-09-25): two index slugs retire behind 301s
+
+`/fr/etats`, `/en/states`, `/fr/actions-de-base` and `/en/base-actions` no longer build. 0023
+replaces both pages with one rules index at `/fr/regles` and `/en/rules`, its `SEGMENT` entry in
+`src/lib/i18n/routes.ts` like every other. `public/_redirects` answers the four old paths with a
+301, the states pair to the rules index and the base actions pair to the skills index, following
+the almanach precedent in the Decision 3 addendum. The example slugs in the bullets above are kept
+as the record of what Decision 1 was written against. `INDEX_KINDS` lists five indexes again, and
+`src/lib/game/indexes.ts` now reads it.
 
 ---
 

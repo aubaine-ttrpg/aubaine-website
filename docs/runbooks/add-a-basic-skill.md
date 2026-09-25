@@ -1,6 +1,6 @@
-# Add a base action
+# Add a basic skill
 
-Produces one card on the base actions page and one row in the skills index: something every creature can do, that costs no XP and belongs to no tree.
+Produces one Compétence de base: something every creature can do, that costs no XP and belongs to no tree. It is listed in the skills index and on the Rules page.
 
 ## The files to create and edit
 
@@ -16,17 +16,17 @@ Then add its id to the list, in printing order:
 data/skill-lists/basic-skills.json
 ```
 
-Two steps. A skill file on its own is not a base action; the list is what makes it one.
+Two steps. A skill file on its own is not a basic skill; the list is what makes it one.
 
 ## The fields
 
-The skill file uses the ordinary skill schema. See [add-a-skill.md](add-a-skill.md) for the full table. What a base action does differently:
+The skill file uses the ordinary skill schema. See [add-a-skill.md](add-a-skill.md) for the full table. What a basic skill does differently:
 
-| Field | Value for a base action | Why |
+| Field | Value for a basic skill | Why |
 | --- | --- | --- |
 | `showXp` | `false` | Absent vaut true. false pour une Compétence octroyée par un équipement ou par un autre nœud, et jamais achetée : le jeton doré disparaît. |
 | `tier` | `1` | Required by the schema, but the price is never shown. |
-| `energy` | leave out | A base action has no energy cost line. |
+| `energy` | leave out | A basic skill has no energy cost line. |
 | `domains` | `[]` | `[]` vaut Neutre. |
 
 The list file, `data/skill-lists/basic-skills.json`:
@@ -87,8 +87,9 @@ The list file, `data/skill-lists/basic-skills.json`:
 
 ## What appears on the site
 
-- `/fr/actions-de-base` and `/en/base-actions`: a card in the grid, with the type as a kicker, the rule text, and an `activation · range` line at the foot. The cards are sorted alphabetically by title, so the order in `skills` does not decide the screen order; it decides the printed order.
 - `/fr/competences` and `/en/skills`: a row in the skill index, with `Compétences de base` as its source, filterable by that source alongside the trees and the Banque Commune. Its source button opens the list's `note`.
+- `/fr/regles` and `/en/rules`: a row filed under the `Compétence de base` family, whose detail is the full skill card.
+- Both lists sort alphabetically by title, so the order in `skills` does not decide the screen order; it decides the printed order.
 - Anywhere rule text writes `{{Improviser}}`, the name becomes a cross reference with a tooltip, and the link opens the skill's entry in the skill index.
 - `/fr/recherche` and `/en/search`: a row under the skills group.
 
@@ -103,13 +104,13 @@ pnpm dev
 
 ## Traps
 
-**The id is permanent and unique across the whole repo.** Base actions were imported first, so they hold the plain ids. `IMPRO-01` is the base action Improviser; Artisan's Improvisation had to become `IMPRV-01`. `BOUSC-01` is the base action Bousculer; Physique's Bousculade had to become `BOUSD-01`. See [../data-contract.md](../data-contract.md).
+**The id is permanent and unique across the whole repo.** Basic skills were imported first, so they hold the plain ids. `IMPRO-01` is the basic skill Improviser; Artisan's Improvisation had to become `IMPRV-01`. `BOUSC-01` is the basic skill Bousculer; Physique's Bousculade had to become `BOUSD-01`. See [../data-contract.md](../data-contract.md).
 
-**`showXp: false`, not `xpOverride: 0`.** `tier` is required and the schema has no way to omit a price, so you hide the token instead. A base action costs no XP and no Memory.
+**`showXp: false`, not `xpOverride: 0`.** `tier` is required and the schema has no way to omit a price, so you hide the token instead. A basic skill costs no XP and no Memory.
 
-**Leave `tags` out.** Every character has every base action from the start, so a tag on one would make each combo that cites the tag apply to everyone. See [add-a-tag.md](add-a-tag.md).
+**Leave `tags` out.** Every character has every basic skill from the start, so a tag on one would make each combo that cites the tag apply to everyone. See [add-a-tag.md](add-a-tag.md).
 
-**Leave `energy` out entirely.** A base action has no energy cost. Writing `"energy": 0` would print a `0 énergie` pill, which says something different: that the skill has an energy line and it reads zero.
+**Leave `energy` out entirely.** A basic skill has no energy cost. Writing `"energy": 0` would print a `0 énergie` pill, which says something different: that the skill has an energy line and it reads zero.
 
 **Two steps, and the second one is easy to forget.** Adding `data/skills/<ID>.json` without adding the id to `basic-skills.json` produces a skill that appears nowhere.
 

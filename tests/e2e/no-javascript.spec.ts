@@ -18,8 +18,8 @@ const ROUTES = [
   '/en/species/scothan',
   '/fr/competences',
   '/fr/equipement',
-  '/fr/actions-de-base',
-  '/fr/etats',
+  '/fr/regles',
+  '/en/rules',
   '/fr/recherche',
   '/fr/archives',
   '/en/archives',
@@ -136,6 +136,12 @@ test('a browse row still changes the detail without javascript', async ({ page }
   await page.locator('[data-entry="arc-long"] [data-row]').click()
   await expect(page.locator('#e-arc-long')).toBeVisible()
   await expect(first).toBeHidden()
+})
+
+test('a rule opens its detail on its own hash without javascript', async ({ page }) => {
+  await page.goto('/fr/regles#e-state-agonie')
+  await expect(page.locator('#e-state-agonie .au-state-entry')).toBeVisible()
+  await expect(page.locator('[data-detail]:visible')).toHaveCount(1)
 })
 
 test('the equipment index offers its booklet without javascript', async ({ page }) => {

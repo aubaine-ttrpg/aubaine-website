@@ -330,7 +330,7 @@ describe('nav sections', () => {
     expect(sectionFor('species')).toBe('almanach')
     expect(sectionFor('speciesEntry')).toBe('almanach')
     expect(sectionFor('skills')).toBe('almanach')
-    expect(sectionFor('states')).toBe('almanach')
+    expect(sectionFor('rules')).toBe('almanach')
   })
 
   it('leaves search and 404 outside the navigation', () => {
@@ -349,6 +349,20 @@ describe('nav sections', () => {
         1,
       )
     }
+  })
+})
+
+describe('retired routes', () => {
+  it('sends the old states and base actions pages to the indexes that replaced them', async () => {
+    const table = new Map<string, string>()
+    for (const line of (await readFile(resolve(root, 'public/_redirects'), 'utf8')).split('\n')) {
+      const [from, to, status] = line.trim().split(/\s+/)
+      if (from && to && status === '301') table.set(from, to)
+    }
+    expect(table.get('/fr/etats')).toBe(pathFor('rules', 'fr'))
+    expect(table.get('/en/states')).toBe(pathFor('rules', 'en'))
+    expect(table.get('/fr/actions-de-base')).toBe(pathFor('skills', 'fr'))
+    expect(table.get('/en/base-actions')).toBe(pathFor('skills', 'en'))
   })
 })
 

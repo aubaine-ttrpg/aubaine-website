@@ -92,7 +92,7 @@ export type ResolveReference = (name: string) => string | null
 export function parseRuns(
   source: string,
   index: TermIndex,
-  options: { statesHref: string; resolveReference: ResolveReference },
+  options: { rulesHref: string; resolveReference: ResolveReference },
 ): Run[] {
   const out: Run[] = []
   let cursor = 0
@@ -107,7 +107,7 @@ export function parseRuns(
     if (bold !== undefined) {
       out.push({ kind: 'bold', text: bold })
     } else if (state !== undefined) {
-      out.push(termRun(index, state) ?? { kind: 'ref', text: state, href: options.statesHref })
+      out.push(termRun(index, state) ?? { kind: 'ref', text: state, href: options.rulesHref })
     } else if (skill !== undefined) {
       const name = skill.trim()
       const resolved = termRun(index, name)
@@ -131,7 +131,7 @@ export function parseRuns(
 export function ruleRuns(
   source: string | undefined,
   index: TermIndex,
-  options: { statesHref: string; resolveReference: ResolveReference },
+  options: { rulesHref: string; resolveReference: ResolveReference },
 ): Run[] {
   if (!source) return []
   return parseRuns(source.replace(CALLOUT, '').trim(), index, options)
@@ -153,7 +153,7 @@ export function calloutNames(source: string | undefined): string[] {
 export function parseParagraphs(
   source: string | undefined,
   index: TermIndex,
-  options: { statesHref: string; resolveReference: ResolveReference },
+  options: { rulesHref: string; resolveReference: ResolveReference },
 ): Paragraph[] {
   if (!source) return []
   return source

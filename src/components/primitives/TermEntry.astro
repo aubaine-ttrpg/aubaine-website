@@ -1,0 +1,21 @@
+---
+import type { DefinedWord } from '../../lib/game/browse-entries'
+import type { Corpus } from '../../lib/game/corpus'
+import type { Locale } from '../../lib/i18n/locales'
+import Icon from './Icon.astro'
+import RuleText from './RuleText.astro'
+
+type Props = { term: DefinedWord; corpus: Corpus; locale: Locale }
+
+const { term, corpus, locale } = Astro.props
+---
+
+<div class="au-term-entry">
+  <div class="au-term-entry__hd">
+    <span class="au-term-entry__name" style={`color:${term.color}`}>
+      <Icon name={term.icon ?? undefined} class="au-term-entry__icon" />{term.title}
+    </span>
+    <span class="au-term-entry__kind">{term.kind}</span>
+  </div>
+  <RuleText source={term.text} corpus={corpus} locale={locale} class="au-term-entry__desc" />
+</div>

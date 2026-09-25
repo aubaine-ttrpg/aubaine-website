@@ -7,14 +7,16 @@ import FilterBar from './FilterBar.astro'
 import Icon from './Icon.astro'
 import ItemEntry from './ItemEntry.astro'
 import SkillEntry from './SkillEntry.astro'
+import StateEntry from './StateEntry.astro'
 import StatusBadge from './StatusBadge.astro'
+import TermEntry from './TermEntry.astro'
 
 type Props = {
   locale: Locale
   corpus: Corpus
   entries: BrowseEntry[]
   label: string
-  variant: 'skills' | 'speciesSkills' | 'equipment'
+  variant: 'skills' | 'speciesSkills' | 'equipment' | 'rules'
 }
 
 const { locale, corpus, entries, label, variant } = Astro.props
@@ -44,7 +46,7 @@ const NOTES: Record<'basic' | 'bank' | 'other', string | undefined> = {
 />
 
 <div
-  data-browse={variant === 'equipment' ? 'equipment' : 'skills'}
+  data-browse={variant === 'speciesSkills' ? 'skills' : variant}
   data-selection="static"
   style="max-width:1560px; margin:0 auto; padding:0 26px 80px; display:flex; flex-wrap:wrap; gap:0 34px; align-items:flex-start"
 >
@@ -106,19 +108,24 @@ const NOTES: Record<'basic' | 'bank' | 'other', string | undefined> = {
     {
       entries.map((entry) => (
         <article data-detail id={`e-${entry.id}`}>
-          {
-            entry.entity.kind === 'skill' ? (
-              <SkillEntry
-                skill={entry.entity.skill}
-                corpus={corpus}
-                locale={locale}
-                marks={false}
-                priced={entry.entity.priced}
-              />
-            ) : (
-              <ItemEntry item={entry.entity.item} corpus={corpus} locale={locale} />
-            )
-          }
+          {entry.entity.kind === 'skill' && (
+            <SkillEntry
+              skill={entry.entity.skill}
+              corpus={corpus}
+              locale={locale}
+              marks={false}
+              priced={entry.entity.priced}
+            />
+          )}
+          {entry.entity.kind === 'item' && (
+            <ItemEntry item={entry.entity.item} corpus={corpus} locale={locale} />
+          )}
+          {entry.entity.kind === 'state' && (
+            <StateEntry state={entry.entity.state} corpus={corpus} locale={locale} />
+          )}
+          {entry.entity.kind === 'term' && (
+            <TermEntry term={entry.entity.term} corpus={corpus} locale={locale} />
+          )}
 
           {entry.sources.length > 0 && (
             <div class="au-sources">

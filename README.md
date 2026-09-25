@@ -19,7 +19,7 @@ data/
   meta/            the closed lists: domains, characteristics, node types, rarities, disciplines
   skills/          one file per skill, the single definition of each
   skill-trees/     layout only: which skills sit where on a plate, and what links to what
-  skill-lists/     the base actions and the Common Bank, as ordered lists of skill ids
+  skill-lists/     the basic skills and the Common Bank, as ordered lists of skill ids
   equipment/       the catalogue, one file per item, one file per set
   states/          one file per state
   books/           one folder per book: book.json plus one Markdown file per page

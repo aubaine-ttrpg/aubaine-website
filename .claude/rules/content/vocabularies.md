@@ -15,6 +15,7 @@ paths:
 - The vocabulary schema is strict and narrow. Read `vocabulary` in `src/lib/game/schema.ts` for the fields it allows. `formsFr` and `formsEn` carry the other written forms of a label, agreement and plural included, so that a bare word is still marked in rule text. They are spellings, not a glossary.
 - `definitionFr` and `definitionEn` are the tooltip text of a word, written together or not at all, in plain text. Only the vocabularies whose words carry a tooltip hold them: `characteristics.json` (every entry but the `any` marker) and `aptitudes.json`. `pnpm data:check` requires them there and refuses them anywhere else. Aliases, gender and usage notes still have no field.
 - A definition is the source of truth for its word. A chapter that restates the word follows it.
+- The Rules page, `/fr/regles`, shows the same definition in the detail of each rule term, Caractéristique, Aptitude and tag. `ruleBrowseEntries` in `src/lib/game/browse-entries.ts` reads the words from the `glossary` that `src/lib/game/build.ts` also builds the term index from, and the tags from `data/meta/tags.json`, so a tooltip and its Rules entry cannot disagree.
 - A terminology decision that does not fit the schema belongs in prose, in `docs/`, not in a data file.
 
 ## Rule terms

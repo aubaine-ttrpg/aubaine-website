@@ -95,7 +95,7 @@ The list file, `data/skill-lists/common-bank.json`:
 - `/fr/competences` and `/en/skills`: a card in the skill index, with `Banque Commune` as its source, filterable by that source alongside the trees.
 - Anywhere rule text writes `{{Repli vif}}`, the name becomes a cross reference with a tooltip carrying the type, the list name and the first lines of the description, and the link opens the skill's entry in the skill index.
 - `/fr/recherche` and `/en/search`: a row under the skills group.
-- Anywhere rule text or a chapter writes `Banque Commune` (`Common Bank` in English), the words carry the rule term's icon and a tooltip that reads the list's `note`.
+- Anywhere rule text or a chapter writes `Banque Commune` (`Common Bank` in English), the words carry the rule term's icon and a tooltip that reads the list's `note`. The rule term also has a row on `/fr/regles` and `/en/rules`, whose detail is that `note`.
 
 A bank skill never appears on a plate. It has no placement, no `pos` and no `linked`.
 

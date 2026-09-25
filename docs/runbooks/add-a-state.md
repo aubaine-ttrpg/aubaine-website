@@ -1,6 +1,6 @@
 # Add a state
 
-Produces one card on the states page, and turns the state's name into a pastille with a tooltip everywhere rule text writes it between double square brackets.
+Produces one entry on the Rules page, and turns the state's name into a pastille with a tooltip everywhere rule text writes it between double square brackets.
 
 ## The file to create
 
@@ -38,9 +38,9 @@ The filename is the key. Lowercase, no accents, hyphens between words: `combusti
 
 ## What appears on the site
 
-- `/fr/etats` and `/en/states`: a card, sorted alphabetically with the others, showing the name, the kind as a coloured kicker and the rule text.
+- `/fr/regles` and `/en/rules`: a row, sorted alphabetically among every rule entry and filterable by the `État` family and by its effect, whose detail shows the name and the rule text.
 - Everywhere a skill, a state, an item or a set writes `[[Combustion]]`, the name becomes a coloured pastille with a tooltip carrying the kind and the first lines of the description.
-- `/fr/recherche` and `/en/search`: a row under the states group.
+- `/fr/recherche` and `/en/search`: a row under the rules group.
 
 ## How to check it
 
@@ -65,4 +65,4 @@ pnpm dev
 
 **`kind` decides the colour, not `color`.** `buff` is green, `debuff` is orange, `neutral` is grey. Use `color` only to keep several steps of one family visually in order.
 
-**Adding the file is enough.** The card, the pastille, the tooltip and the search row all appear on their own.
+**Adding the file is enough.** The Rules entry, the pastille, the tooltip and the search row all appear on their own.

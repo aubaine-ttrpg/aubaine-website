@@ -33,8 +33,8 @@ the navigation.
 Reference a state with `[[...]]` and a skill with `{{...}}` where the reference is deliberate.
 Everything else links by being spelled correctly.
 
-An entry that nothing references and that references nothing is isolated. That is fine for a base
-action and wrong for a skill in the middle of a tree.
+An entry that nothing references and that references nothing is isolated. That is fine for a basic
+skill and wrong for a skill in the middle of a tree.
 
 ## Do not restate what the reader can reach
 

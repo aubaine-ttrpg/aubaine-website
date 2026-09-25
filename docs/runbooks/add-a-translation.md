@@ -87,7 +87,7 @@ A skill overlay with upgrades would look like this. Keys not listed stay French:
 
 ## What appears on the site
 
-The `/en/` half of the site. `/en/tree/berserker`, `/en/states`, `/en/equipment`, `/en/books`. Every French page has an English twin at the same position, and the language switch in the header moves between them. An entry with no overlay shows its French text on the English page.
+The `/en/` half of the site. `/en/tree/berserker`, `/en/rules`, `/en/equipment`, `/en/books`. Every French page has an English twin at the same position, and the language switch in the header moves between them. An entry with no overlay shows its French text on the English page.
 
 ## How to check it
 

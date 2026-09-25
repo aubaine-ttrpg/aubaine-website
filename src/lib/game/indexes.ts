@@ -1,18 +1,18 @@
 import type { Locale } from '../i18n/locales.ts'
-import { pathFor, type ViewKind } from '../i18n/routes.ts'
+import { INDEX_KINDS, type IndexKind, pathFor } from '../i18n/routes.ts'
 import { strings } from '../i18n/strings.ts'
 import { bookletHref } from '../media.ts'
 import type { ResolvedBook } from './build.ts'
 
 export type IndexDescriptor = {
-  kind: Extract<ViewKind, 'trees' | 'species' | 'skills' | 'equipment' | 'baseActions' | 'states'>
+  kind: IndexKind
   art: string
   mark: string
   title: string
   description: string
 }
 
-const DESCRIPTIONS: Record<IndexDescriptor['kind'], Record<Locale, string>> = {
+const DESCRIPTIONS: Record<IndexKind, Record<Locale, string>> = {
   trees: {
     fr: 'Quinze archétypes et huit domaines, chacun avec sa planche imprimée et ses compétences.',
     en: 'Fifteen archetypes and eight domains, each with its printed plate and full skill list.',
@@ -29,53 +29,44 @@ const DESCRIPTIONS: Record<IndexDescriptor['kind'], Record<Locale, string>> = {
     fr: 'Protections, armes, bijoux et consommables, avec leurs stats, propriétés et fabrication.',
     en: 'Armour, weapons, jewels and consumables, with their stats, properties and craft.',
   },
-  baseActions: {
-    fr: 'Communes à tout le monde et toujours Mémorisées, sans coût en Mémoire ni en PX.',
-    en: 'Common to everyone and always Memorised, costing no Memory and no XP.',
-  },
-  states: {
-    fr: 'Les états bénéfiques et néfastes, leur texte de règle et leurs cumuls.',
-    en: 'Beneficial and harmful states, their rule text and their stacking.',
+  rules: {
+    fr: 'Mots de règle, Caractéristiques, Aptitudes, états, étiquettes et Compétences de base, avec la définition ou la règle de chacun.',
+    en: 'Rule words, Characteristics, Aptitudes, states, tags and basic Skills, each with its definition or its rule.',
   },
 }
 
-const ART: Record<IndexDescriptor['kind'], string> = {
+const ART: Record<IndexKind, string> = {
   trees: 'bravado-16_9-upscaled_2.jpg',
   species: 'ikyrio-16_9-og.png',
   skills: 'bacchi-qui-travaille-16_9-og.png',
   equipment: 'forge-d-izequiel-16_9-og.png',
-  baseActions: 'castagneur-16_9-og.png',
-  states: 'priest-16_9-og.png',
+  rules: 'priest-16_9-og.png',
 }
 
-const MARK: Record<IndexDescriptor['kind'], string> = {
+const MARK: Record<IndexKind, string> = {
   trees: '#efbe04',
   species: '#b8601e',
   skills: '#8a5cc4',
   equipment: '#a84d16',
-  baseActions: '#2f6ea8',
-  states: '#4f7a2e',
+  rules: '#4f7a2e',
 }
 
 export function indexDescriptors(locale: Locale): IndexDescriptor[] {
   const t = strings(locale)
-  const titles: Record<IndexDescriptor['kind'], string> = {
+  const titles: Record<IndexKind, string> = {
     trees: t.trees,
     species: t.speciesIndex,
     skills: t.spells,
     equipment: t.items,
-    baseActions: t.rules,
-    states: t.states_,
+    rules: t.rules,
   }
-  return (['trees', 'species', 'skills', 'equipment', 'baseActions', 'states'] as const).map(
-    (kind) => ({
-      kind,
-      art: ART[kind],
-      mark: MARK[kind],
-      title: titles[kind],
-      description: DESCRIPTIONS[kind][locale],
-    }),
-  )
+  return INDEX_KINDS.map((kind) => ({
+    kind,
+    art: ART[kind],
+    mark: MARK[kind],
+    title: titles[kind],
+    description: DESCRIPTIONS[kind][locale],
+  }))
 }
 
 export const BOOK_DOTS = ['#efbe04', '#8a5cc4', '#4f7a2e', '#2f6ea8'] as const

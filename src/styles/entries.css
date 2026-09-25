@@ -10,26 +10,9 @@
   overflow: hidden;
 }
 
-.au-skill-list,
-.au-entry-list {
+.au-skill-list {
   columns: 2 440px;
   column-gap: 26px;
-}
-
-.au-entry-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.au-entry-card {
-  break-inside: avoid;
-  margin-bottom: 26px;
-  scroll-margin-top: 110px;
-}
-
-.au-entry-card[hidden] {
-  display: none;
 }
 
 .au-skill-card {
@@ -388,6 +371,7 @@
 .au-skill__desc strong,
 .au-upgrade__desc strong,
 .au-state-entry__desc strong,
+.au-term-entry__desc strong,
 .au-state-callout__desc strong {
   font-weight: 700;
   font-style: italic;
@@ -508,7 +492,8 @@
   border-radius: 2px;
 }
 
-.au-state {
+.au-state,
+.au-term-entry__name {
   display: inline-flex;
   align-items: baseline;
   gap: 3px;
@@ -516,7 +501,8 @@
   white-space: nowrap;
 }
 
-.au-state__icon {
+.au-state__icon,
+.au-term-entry__icon {
   width: 0.85em;
   height: 0.85em;
   align-self: center;
@@ -563,11 +549,13 @@
   font-weight: 400;
 }
 
-.au-state-entry {
+.au-state-entry,
+.au-term-entry {
   margin-bottom: 22px;
 }
 
-.au-state-entry__hd {
+.au-state-entry__hd,
+.au-term-entry__hd {
   display: flex;
   align-items: baseline;
   gap: 10px;
@@ -578,11 +566,20 @@
   break-after: avoid;
 }
 
-.au-state-entry__hd .au-state {
+.au-state-entry__hd .au-state,
+.au-term-entry__name {
   font-size: var(--skill-name);
 }
 
-.au-state-entry__desc {
+.au-term-entry__kind {
+  font: 700 var(--skill-tags) / 1.5 var(--font-ui);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--paper-sub2);
+}
+
+.au-state-entry__desc,
+.au-term-entry__desc {
   font: 400 var(--skill-desc) / 1.5 var(--font-body);
   color: var(--paper-body);
   text-align: justify;

@@ -1,7 +1,7 @@
 import type { Locale } from '../i18n/locales.ts'
 import { pathFor } from '../i18n/routes.ts'
 import { strings } from '../i18n/strings.ts'
-import { type Corpus, label, type ResolvedSpecies } from './build.ts'
+import { type Corpus, definition, type GlossaryTerm, label, type ResolvedSpecies } from './build.ts'
 import {
   characteristicKey,
   collator,
@@ -20,6 +20,7 @@ import {
 import {
   type ContentStatus,
   type EquipmentItem,
+  type GameState,
   type Skill,
   TAG_KINDS,
   type TagKind,
@@ -32,9 +33,19 @@ export type BrowseSource =
 type FacetValue = { value: string; label: string }
 type Facet = { group: string; values: string[]; labels: string[] }
 
+export type DefinedWord = {
+  title: string
+  kind: string
+  color: string
+  icon: string | null
+  text: string | undefined
+}
+
 type BrowseEntity =
   | { kind: 'skill'; skill: Skill; priced: boolean }
   | { kind: 'item'; item: EquipmentItem }
+  | { kind: 'state'; state: GameState }
+  | { kind: 'term'; term: DefinedWord }
 
 type CoinPart = { amount: string; name: string; color: string; iconName: string | undefined }
 
@@ -55,6 +66,10 @@ export type BrowseEntry = {
 const DOMAIN_FALLBACK = '#2a2a2e'
 const RARITY_FALLBACK = '#6b6459'
 const NEUTRAL = 'neutral'
+const TAG_INK = 'var(--paper-sub2)'
+
+const skillTint = (skill: Skill, corpus: Corpus): string =>
+  corpus.domains.get(skill.domains[0] ?? NEUTRAL)?.color ?? DOMAIN_FALLBACK
 
 const facetToken = (value: string): string => slugify(value) || 'none'
 
@@ -123,7 +138,6 @@ export function skillBrowseEntries(
   const basicName = corpus.basic.name
   const bankName = corpus.bank.name
   const typeLabels = { active: t.active, passive: t.passive, special: t.special }
-  const domainColor = (key: string): string => corpus.domains.get(key)?.color ?? DOMAIN_FALLBACK
   const domainLabel = (key: string): string => label(corpus.domains.get(key), locale, key)
   const subspeciesOf = new Map(
     (species?.subspecies ?? []).flatMap((sub) =>
@@ -146,7 +160,7 @@ export function skillBrowseEntries(
       : source.species
 
     const domains = skill.domains.length > 0 ? skill.domains : [NEUTRAL]
-    const tint = domainColor(domains[0] as string)
+    const tint = skillTint(skill, corpus)
     const domainText = domains.map(domainLabel).join(' + ')
     const typeText = typeLabelFor(skill.type, typeLabels)
     const within = species ? (subspeciesOf.get(skill.id) ?? species) : undefined
@@ -326,4 +340,120 @@ export function equipmentBrowseEntries(corpus: Corpus, locale: Locale): BrowseEn
       } satisfies BrowseEntry
     })
     .sort((a, b) => compare.compare(a.title, b.title))
+}
+
+type RuleFamily = GlossaryTerm['family'] | 'tag' | 'basic'
+
+const RULE_ROW = {
+  aside: '',
+  value: '',
+  coins: [],
+  status: undefined,
+  sources: [],
+} satisfies Partial<BrowseEntry>
+
+export function ruleBrowseEntries(corpus: Corpus, locale: Locale): BrowseEntry[] {
+  const t = strings(locale)
+  const familyLabels: Record<RuleFamily, string> = {
+    rule: t.ruleTerm,
+    characteristic: t.characteristic,
+    aptitude: t.aptitude,
+    state: t.state,
+    tag: t.tag,
+    basic: t.basic,
+  }
+  const slotLabels: Record<TagKind, string> = {
+    practice: t.tagPractice,
+    school: t.tagSchool,
+    special: t.tagSpecial,
+  }
+  const effectLabels: Record<GameState['kind'], string> = {
+    buff: t.buff,
+    debuff: t.debuff,
+    neutral: t.neutral,
+  }
+  const typeLabels = { active: t.active, passive: t.passive, special: t.special }
+  const familyFacet = (families: RuleFamily[]): Facet =>
+    facet(
+      'fam',
+      families.map((family) => ({ value: family, label: familyLabels[family] })),
+    )
+  const readByRuleTerm = new Set(
+    corpus.glossary.flatMap((term) => (term.family === 'rule' && term.tag ? [term.tag] : [])),
+  )
+
+  const glossaryRows = corpus.glossary.map((term): BrowseEntry => {
+    const id = `${term.family}-${term.key}`
+    const { title, color } = term.record
+    if (term.family === 'state') {
+      const effect = effectLabels[term.state.kind]
+      return {
+        ...RULE_ROW,
+        id,
+        entity: { kind: 'state', state: term.state },
+        title,
+        mark: color,
+        sub: `${familyLabels.state} · ${effect}`,
+        attrs: attributesFor(id, title, [
+          familyFacet(['state']),
+          facet('eff', [{ value: term.state.kind, label: effect }]),
+        ]),
+      }
+    }
+    const tag = term.family === 'rule' && term.tag ? corpus.tags.get(term.tag) : undefined
+    const kind = tag
+      ? `${familyLabels[term.family]} · ${slotLabels[tag.kind]}`
+      : familyLabels[term.family]
+    return {
+      ...RULE_ROW,
+      id,
+      entity: {
+        kind: 'term',
+        term: { title, kind, color, icon: term.record.icon, text: term.record.text },
+      },
+      title,
+      mark: color,
+      sub: kind,
+      attrs: attributesFor(id, title, [familyFacet(tag ? [term.family, 'tag'] : [term.family])]),
+    }
+  })
+
+  const tagRows = [...corpus.tags.values()]
+    .filter((tag) => !readByRuleTerm.has(tag.key))
+    .map((tag): BrowseEntry => {
+      const id = `tag-${tag.key}`
+      const title = label(tag, locale, tag.key)
+      const kind = `${familyLabels.tag} · ${slotLabels[tag.kind]}`
+      return {
+        ...RULE_ROW,
+        id,
+        entity: {
+          kind: 'term',
+          term: { title, kind, color: TAG_INK, icon: null, text: definition(tag, locale) },
+        },
+        title,
+        mark: TAG_INK,
+        sub: kind,
+        attrs: attributesFor(id, title, [familyFacet(['tag'])]),
+      }
+    })
+
+  const basicRows = corpus.basic.resolved.map((skill): BrowseEntry => {
+    const id = `basic-${skill.id}`
+    return {
+      ...RULE_ROW,
+      id,
+      entity: { kind: 'skill', skill, priced: false },
+      title: skill.title,
+      mark: skillTint(skill, corpus),
+      sub: `${familyLabels.basic} · ${typeLabelFor(skill.type, typeLabels)}`,
+      aside: `${skill.activation || EM_DASH} · ${skill.range || EM_DASH}`,
+      attrs: attributesFor(id, skill.title, [familyFacet(['basic'])]),
+    }
+  })
+
+  const compare = collator(locale)
+  return [...glossaryRows, ...tagRows, ...basicRows].sort((a, b) =>
+    compare.compare(a.title, b.title),
+  )
 }

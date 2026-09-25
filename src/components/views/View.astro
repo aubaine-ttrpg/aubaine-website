@@ -31,10 +31,9 @@ if (kind === 'speciesEntry' && !species) throw new Error(`unknown species: ${par
 {kind === 'home' && <Home locale={locale} corpus={corpus} />}
 {kind === 'books' && <Cards locale={locale} corpus={corpus} variant="books" />}
 {kind === 'almanach' && <Cards locale={locale} corpus={corpus} variant="almanach" />}
-{kind === 'baseActions' && <Cards locale={locale} corpus={corpus} variant="baseActions" />}
-{kind === 'states' && <Cards locale={locale} corpus={corpus} variant="states" />}
 {kind === 'skills' && <Browse locale={locale} corpus={corpus} variant="skills" />}
 {kind === 'equipment' && <Browse locale={locale} corpus={corpus} variant="equipment" />}
+{kind === 'rules' && <Browse locale={locale} corpus={corpus} variant="rules" />}
 {kind === 'search' && <Search locale={locale} corpus={corpus} />}
 {kind === 'trees' && <Trees locale={locale} corpus={corpus} />}
 {kind === 'species' && <SpeciesIndex locale={locale} corpus={corpus} />}
