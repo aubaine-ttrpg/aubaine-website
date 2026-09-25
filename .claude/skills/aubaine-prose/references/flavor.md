@@ -29,6 +29,9 @@ If one sensory image is enough, stop there.
 
 ## Where flavor goes
 
+Lore is not flavor. A species or tree lore page tells history in its own register, held in
+`lore.md`.
+
 The item `description` is the flavor field. It is one or two sentences and it sits apart from the
 mechanical `text`.
 

@@ -37,5 +37,8 @@ The item `description` is the only place in an entry where the voice relaxes. On
 concrete, physical, and never implying a mechanic. `Lame de ceinture : on la garde à portée de main,
 on la lance au besoin.` is the length and the tone.
 
+Lore is the loosest register: full paragraphs, narrative past tense, and a world that reacts. The
+compact default above does not apply to it. `lore.md` holds it.
+
 Book chapters speak to a player learning the system. They may use a full paragraph, an aside, and a
 worked example, but they still lead with the definition.

@@ -43,9 +43,10 @@ a file.
 ## Registers
 
 Where the text renders sets the register. Rule text executes at a table, flavour gives an entry
-identity, a chapter teaches, an interface label is read in passing, and a policy page is the project
-speaking in its own name. `references/house-voice.md` and `references/reference-voice.md` hold the
-set, and keeping them distinguishable is the standing job.
+identity, lore tells history, a chapter teaches, an interface label is read in passing, and a policy
+page is the project speaking in its own name. `references/house-voice.md`,
+`references/reference-voice.md` and `references/lore.md` hold the set, and keeping them
+distinguishable is the standing job.
 
 ## Operating procedure
 
@@ -92,8 +93,8 @@ set, and keeping them distinguishable is the standing job.
 - `references/source-hierarchy.md`
 - `references/editorial-workflow.md`, `references/validation.md`
 - `references/keyword-rendering.md`, `references/site-copy.md`
-- `references/house-voice.md`, `references/flavor.md`, `references/reference-voice.md`,
-  `references/naming.md`
+- `references/house-voice.md`, `references/flavor.md`, `references/lore.md`,
+  `references/reference-voice.md`, `references/naming.md`
 - `references/ai-tells.md`, `references/claims-and-evidence.md`,
   `references/one-entry-one-job.md`, `references/revising-an-entry.md`
 - `references/locale-fr.md`, `references/locale-en.md`

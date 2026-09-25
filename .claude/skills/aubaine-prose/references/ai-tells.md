@@ -70,6 +70,23 @@ This is the single strongest separator between an entry that is worth reading an
 have been written about anything in the same tree. If the entry cannot supply one, that is a design
 gap to report, not a sentence to smooth over. See `claims-and-evidence.md`.
 
+## In lore
+
+Long narrative prose has tells of its own, and one early Scothan draft had all of them.
+
+- A catalogue of possibilities: sentence after sentence of « un clan pouvait… », « un greffier
+  peut… ». Say what happened, to whom.
+- The paired contrast on repeat: welcomed at one table, searched at the next door, praised at the
+  guild, stopped at the bridge. Once can be the point; three times is a tic.
+- The wry aside, a knowing quip at the reader's elbow (« les érudits préfèrent la première
+  traduction, les ivrognes la dernière »). Lore is told from inside the world, not winked at.
+- One motif hammered: the same image in every section, a clerk and his register, a bolted door.
+  Give each section its own.
+- The epitaph closer. Every section of a history is tempted to end on a line fit for a tombstone;
+  most should simply stop.
+- The stock arc: they suffered, then they reclaimed their name. Tell the specific history, and let
+  the arc emerge from it or not at all.
+
 ## The two locales are localized, not mirrored
 
 A French entry and its English overlay that map sentence for sentence are a tell in themselves, and
