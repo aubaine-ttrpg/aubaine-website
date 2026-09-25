@@ -1,4 +1,4 @@
 {
   "name": "Asleep",
-  "description": "A creature that is Asleep falls unconscious: it is [[À terre]] and cannot take any Action, Bonus Action or Reaction.\n\nThe state ends when the Skill that put it to sleep ends, when the creature takes damage, or when another creature spends an Action to shake or slap it awake.\n\nAn Undead cannot fall Asleep."
+  "description": "A creature that is Asleep falls unconscious: it is [[À terre]] and cannot take any Action, Bonus Action or Reaction.\n\nThe state ends when the Skill that put it to sleep ends, when the creature takes damage, or when another creature spends an Action to shake or slap it awake.\n\nAn Undead or a Construct cannot fall Asleep."
 }
