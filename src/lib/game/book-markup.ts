@@ -17,6 +17,13 @@ type HastElement = {
 type HastChild = HastElement | HastText
 type HastRoot = { type: 'root'; children: HastChild[] }
 type HastParent = HastRoot | HastElement
+type HastComment = { type: 'comment'; value: string }
+type HastRaw = { type: 'raw'; value: string }
+type AuthoredChild =
+  | HastComment
+  | HastRaw
+  | HastText
+  | (Omit<HastElement, 'children'> & { children: AuthoredChild[] })
 
 const OPAQUE = new Set(['code', 'pre', 'a', 'script', 'style', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'])
 
@@ -285,5 +292,23 @@ export function rehypeProseTables() {
     }
 
     wrap(tree)
+  }
+}
+
+const HTML_COMMENT = /^\s*<!--(?:(?!-->)[\s\S])*-->\s*$/
+
+function isComment(node: AuthoredChild): boolean {
+  return node.type === 'comment' || (node.type === 'raw' && HTML_COMMENT.test(node.value))
+}
+
+export function rehypeDropComments() {
+  return (tree: { type: 'root'; children: AuthoredChild[] }): void => {
+    const kept = (children: AuthoredChild[]): AuthoredChild[] =>
+      children.flatMap((child) => {
+        if (isComment(child)) return []
+        if (child.type === 'element') child.children = kept(child.children)
+        return [child]
+      })
+    tree.children = kept(tree.children)
   }
 }

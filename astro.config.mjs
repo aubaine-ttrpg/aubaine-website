@@ -7,6 +7,7 @@ import { defListHastHandlers, remarkDefinitionList } from 'remark-definition-lis
 
 import {
   rehypeCodexTerms,
+  rehypeDropComments,
   rehypeProseQuotes,
   rehypeProseTables,
 } from './src/lib/game/book-markup.ts'
@@ -34,6 +35,7 @@ export default defineConfig({
       remarkPlugins: [remarkDefinitionList],
       remarkRehype: { handlers: { ...defListHastHandlers } },
       rehypePlugins: [
+        rehypeDropComments,
         rehypeProseQuotes,
         rehypeCodexTerms(new URL('.', import.meta.url).pathname),
         rehypeProseTables,
