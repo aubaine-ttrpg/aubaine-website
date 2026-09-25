@@ -18,7 +18,7 @@ The filename is the id and the id becomes the URL. Lowercase letters, digits and
 | Field | Required | What it means (from `schema.ts`) | Allowed values |
 | --- | --- | --- | --- |
 | `id` | required | Identifiant de l'arbre, qui devient son URL. | `^[a-z][a-z0-9-]*$` |
-| `status` | optional | Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une pièce d'équipement ou une panoplie, dans cet ordre. | `draft`, `playtest`, `beta`, `balanced` |
+| `status` | optional | Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une Espèce, une pièce d'équipement ou une panoplie, dans cet ordre. | `draft`, `playtest`, `beta`, `balanced` |
 | `name` | required | Titre rendu sur la planche. | any non empty string |
 | `treeType` | required | Rendu en sous-titre : Espèce, Archétype ou Domaine. | `species`, `archetype`, `domain` |
 | `size` | required | Nombre de Compétences que la planche est dessinée pour tenir. | `8` or `16` |

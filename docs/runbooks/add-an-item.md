@@ -15,7 +15,7 @@ The filename is the slug and the slug is the item's handle everywhere else. Lowe
 | Field | Required | What it means (from `schema.ts`) | Allowed values |
 | --- | --- | --- | --- |
 | `name` | required | The printed name. | any non empty string |
-| `status` | optional | Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une pièce d'équipement ou une panoplie, dans cet ordre. | `draft`, `playtest`, `beta`, `balanced` |
+| `status` | optional | Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une Espèce, une pièce d'équipement ou une panoplie, dans cet ordre. | `draft`, `playtest`, `beta`, `balanced` |
 | `section` | required | Clé de la section du catalogue où la pièce est imprimée. | a `key` from `data/equipment/catalogue.json` |
 | `position` | required | Rang dans sa section. | integer, 0 or more |
 | `kind` | required | Nature de l'objet, rendue avec la rareté : Armure, Arme de mêlée. | free text |

@@ -18,7 +18,7 @@ The filename is the id and the id becomes the URL. Lowercase letters, digits and
 | Field | Required | What it means (from `schema.ts`) | Allowed values |
 | --- | --- | --- | --- |
 | `id` | required | Identifiant de l'Espèce, qui devient son URL. | `^[a-z][a-z0-9-]*$` |
-| `status` | optional | Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une pièce d'équipement ou une panoplie, dans cet ordre. | `draft`, `playtest`, `beta`, `balanced` |
+| `status` | optional | Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une Espèce, une pièce d'équipement ou une panoplie, dans cet ordre. | `draft`, `playtest`, `beta`, `balanced` |
 | `name` | required | Nom rendu en titre. | any non empty string |
 | `subtitle` | optional | Devise de l'Espèce, rendue en italique sous le titre. Absente, le titre reste seul. | any non empty string |
 | `cover` | optional | Couverture au rapport 3:4, dans `data/media/art/`. Absente, la carte retombe sur la bannière, puis sur la planche 3:4 par défaut. | a filename that exists, named per [add-an-image.md](add-an-image.md) |
