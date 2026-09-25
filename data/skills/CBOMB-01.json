@@ -16,7 +16,7 @@
     "practice": "technique",
     "school": "illusion"
   },
-  "description": "Un pas de côté, une colonne, un pan de mur : vous savez choisir le moment où personne ne vous regarde.\n\nVous effectuez l'Action de base {{Se cacher}} avec une Action Bonus au lieu d'une Action.",
+  "description": "Un pas de côté, une colonne, un pan de mur : vous savez choisir le moment où personne ne vous regarde.\n\nVous jouez la Compétence de base {{Se cacher}} avec une Action Bonus au lieu d'une Action.",
   "upgrades": [
     {
       "level": 2,
