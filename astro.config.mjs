@@ -11,6 +11,7 @@ import {
   rehypeProseTables,
 } from './src/lib/game/book-markup.ts'
 import { DEFAULT_LOCALE, LOCALES } from './src/lib/i18n/locales.ts'
+import { inlineScriptPolicy } from './src/lib/security/script-policy.ts'
 
 export default defineConfig({
   site: 'https://aubaine.io',
@@ -64,6 +65,7 @@ export default defineConfig({
       i18n: { defaultLocale: DEFAULT_LOCALE, locales: { fr: 'fr-FR', en: 'en-GB' } },
       filter: (page) => !/\/(recherche|search)(\/|$)/.test(page),
     }),
+    inlineScriptPolicy(),
   ],
   vite: {
     resolve: {

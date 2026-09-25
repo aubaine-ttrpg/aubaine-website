@@ -6,6 +6,8 @@
 **Revised:** 2026-09-21, Decision 2 gains an addendum: `:target` is the scriptless floor rather
 than the whole selection mechanism, because Swup suppresses fragment navigation
 **Revised:** 2026-09-23, the browse markup of Decision 2 moves to `BrowseList.astro` and serves the species page (0019)
+**Revised:** 2026-09-25, Decision 4 gains an addendum: the deployed policy admits the build's own inline
+scripts by hash, without which the island never hydrated in production (0022)
 **Deciders:** Kori
 **Scope:** What runs at build time versus in the browser, how interaction that the design expressed
 as client state is expressed instead, and the cache policy that follows. Does not cover client
@@ -188,6 +190,13 @@ The file named in the rationale and in the summary table is now `BrowseList.astr
   original design export. That weakens the policy against style injection specifically. It is
   accepted because the site renders no untrusted HTML: every string comes from the repository's own
   data files.
+
+### Addendum (2026-09-25): the policy admits the build's own inline scripts
+
+`script-src 'self'` blocked two inline scripts the build emits: the theme bootstrap in `Base.astro`
+and Astro's island runtime. On aubaine.io the saved theme was never restored and the island in
+Decision 3 never hydrated. 0022 has the build append a SHA-256 source for each of its own inline
+scripts to `script-src` in `dist/_headers`, while `public/_headers` keeps the authored policy.
 
 ---
 
