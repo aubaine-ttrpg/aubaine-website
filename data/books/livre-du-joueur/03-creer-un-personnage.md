@@ -33,7 +33,7 @@ PP
 
 ## L'ordre des étapes
 
-1. **Espèce, Archétype, Domaine.** Choisissez-les parmi ceux que le MJ propose, avec votre origine régionale quand l'Espèce en compte. Ils fixent vos deux premiers Arbres, vos deux Compétences d'Espèce et votre déplacement.
+1. **Espèce, Archétype, Domaine.** Choisissez-les parmi ceux que le MJ propose, avec votre sous-espèce ou votre origine régionale quand l'Espèce en compte. Ils fixent vos deux premiers Arbres, vos deux Compétences d'Espèce et votre déplacement.
 2. **L'Âme.** Écrivez la Phobie, la Manie, le Défaut, la Spécialité et le Don.
 3. **Caractéristiques.** Dépensez des PM.
 4. **Aptitudes et Spécialité.** Dépensez des PM.

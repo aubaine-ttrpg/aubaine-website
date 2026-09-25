@@ -5,6 +5,7 @@
 **Date:** 2026-09-22
 **Revised:** 2026-09-23, Decision 3's lore block array is reversed by 0018
 **Revised:** 2026-09-23, Decision 5 is reversed and Decision 4 gains roleplay fields off the plates (0019)
+**Revised:** 2026-09-25, a sub-species may impose one of the two Compétences (addendum in Decision 2)
 **Deciders:** Kori
 **Scope:** The `species` entity in `src/lib/game/schema.ts`, its two routes, its hero plates and lore blocks,
 the one cran of sub-species, the new `prerequisite` field on a skill, and the fact that an empty
@@ -95,6 +96,24 @@ allowed to buy it.
 - **A `choose` field defaulting to 2**: allows a future species that grants three. Rejected as the
   speculative abstraction `.claude/CLAUDE.md` forbids. If one ever grants three, the constant becomes
   a field in one edit, and the runbook already names where to look.
+
+### Addendum (2026-09-25): a sub-species may impose one of the two
+
+The Mort-vivant needed each of its six sub-species to carry one Compétence every member has: the
+Fantôme passes through walls, the Zombie refuses to die. The decider chose to keep two picks canon
+and let the imposed Compétence fill one of them, the way Scothan's pool of exactly two already
+forces both picks.
+
+- `subspecies[].imposed` names one skill id. It stays out of every `offered`, so 0019 Decision 1's
+  rule that a skill is named once across a species and its sub-species holds, and the page can tell
+  the imposed row from the choosable ones.
+- `SPECIES_SKILL_CHOICES` stays 2. The floor in `tests/data/integrity.test.ts` becomes: nothing
+  imposed and an empty pool, or at least `SPECIES_SKILL_CHOICES` minus the imposed count to pick
+  from. An imposed skill beside an empty pool is refused.
+- Chapter 09 states the rule, and an imposed skill writes `"showXp": false` because no one buys it.
+- Rejected: an imposed skill on top of the two. Undead would then start with three Compétences
+  d'Espèce, more than any other Espèce, and chapters 03, 06 and 09 would each need an exception.
+  It reopens if an Espèce is ever meant to be that much richer at creation.
 
 ---
 

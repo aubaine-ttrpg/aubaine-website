@@ -36,6 +36,10 @@ a card and ambiguous in a list is a name to reconsider.
 
 The two names mean one thing, the variant a people holds in the data field `subspecies`.
 « Sous-espèce » is the general name (EN "subspecies"); some Espèces, Humain first, call theirs
-« origines régionales » (EN "regional origins"). An entry uses the name its Espèce uses, and rule
-text that must reach every Espèce names both, as the Scothan Compétences do. The interface labels the
-section « Origines régionales » for now. Reader-facing text never says « race », in either locale.
+« origines régionales » (EN "regional origins"). A people split by region, like Humain, uses « origine
+régionale »; an Espèce that truly has sub-species, like the Mort-vivant's forms, uses « sous-espèce ».
+The species file says which through `subspeciesLabel`, and the page, the rail and the filter follow it.
+An entry uses the name its Espèce uses, and rule text that must reach every Espèce names both, as the
+Scothan Compétences do. A sub-species name that is a common noun takes its English counterpart in the
+overlay (Fantôme becomes Ghost); a proper noun such as Landenheit does not. Reader-facing text never
+says « race », in either locale.

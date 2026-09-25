@@ -6,9 +6,11 @@ import {
   DEFAULT_MOVEMENT_METRES,
   formatNumber,
   SPECIES_PLATE_ICONS,
+  SUBSPECIES_SECTIONS,
   subspeciesAnchor,
 } from '../../lib/game/derive'
 import { loreFor } from '../../lib/game/prose'
+import type { SubspeciesLabel } from '../../lib/game/schema'
 import { badgedStatus } from '../../lib/game/status'
 import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
@@ -68,7 +70,12 @@ const plates = [
       ]),
 ]
 
-const SUBSPECIES_ID = 'origines-regionales'
+const SUBSPECIES_WORDS: Record<SubspeciesLabel, { plural: string; singular: string }> = {
+  'regional-origins': { plural: t.regionalOrigins, singular: t.regionalOrigin_ },
+  subspecies: { plural: t.subspecies, singular: t.subspecies_ },
+}
+const words = SUBSPECIES_WORDS[species.subspeciesLabel]
+const SUBSPECIES_ID = SUBSPECIES_SECTIONS[species.subspeciesLabel]
 const PLAYING_ID = 'jouer'
 
 const languages = named(corpus.languages, species.languages ?? [])
@@ -92,7 +99,7 @@ const trail = [
   ...(hasSubspecies
     ? [
         {
-          text: t.subspecies,
+          text: words.plural,
           href: `#${SUBSPECIES_ID}`,
           sections: species.subspecies.map((sub) => ({
             text: sub.name,
@@ -176,19 +183,31 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
 
             {hasSubspecies && (
               <section>
-                <h2 id={SUBSPECIES_ID}>{t.subspecies}</h2>
+                <h2 id={SUBSPECIES_ID}>{words.plural}</h2>
                 {species.subspecies.map((sub) => (
                   <article id={subspeciesAnchor(sub.id)} class="au-subspecies">
                     <h3>{sub.name}</h3>
                     <RuleText source={sub.text} corpus={corpus} locale={locale} />
-                    {sub.names && (
+                    {(sub.imposedSkill || sub.names) && (
                       <dl>
-                        <dt>{t.namesMasculine}</dt>
-                        <dd>{sub.names.masculine.join(', ')}</dd>
-                        <dt>{t.namesFeminine}</dt>
-                        <dd>{sub.names.feminine.join(', ')}</dd>
-                        <dt>{t.namesFamily}</dt>
-                        <dd>{sub.names.family.join(', ')}</dd>
+                        {sub.imposedSkill && (
+                          <>
+                            <dt>{t.imposedSkill}</dt>
+                            <dd>
+                              <a href={`#e-${sub.imposedSkill.id}`}>{sub.imposedSkill.title}</a>
+                            </dd>
+                          </>
+                        )}
+                        {sub.names && (
+                          <>
+                            <dt>{t.namesMasculine}</dt>
+                            <dd>{sub.names.masculine.join(', ')}</dd>
+                            <dt>{t.namesFeminine}</dt>
+                            <dd>{sub.names.feminine.join(', ')}</dd>
+                            <dt>{t.namesFamily}</dt>
+                            <dd>{sub.names.family.join(', ')}</dd>
+                          </>
+                        )}
                       </dl>
                     )}
                   </article>
@@ -210,7 +229,7 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
                     ))}
                     {hasSubspecies && (
                       <>
-                        <dt>{t.subspecies}</dt>
+                        <dt>{words.plural}</dt>
                         <dd>
                           {species.subspecies.map((sub, index) => (
                             <>
@@ -254,6 +273,7 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
           entries={entries}
           label={t.speciesOffer}
           variant="speciesSkills"
+          subspeciesLabel={words.singular}
         />
       )
     }

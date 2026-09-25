@@ -33,7 +33,7 @@ PP
 
 ## The order of the steps
 
-1. **Species, Archetype, Domain.** Choose them from what the GM offers, and your regional origin where the Species has any. They fix your first two Trees, your two Species Skills and your movement.
+1. **Species, Archetype, Domain.** Choose them from what the GM offers, and your subspecies or regional origin where the Species has any. They fix your first two Trees, your two Species Skills and your movement.
 2. **The Soul.** Write down the Phobia, the Mania, the Flaw, the Speciality and the Gift.
 3. **Characteristics.** Spend MP.
 4. **Aptitudes and Speciality.** Spend MP.

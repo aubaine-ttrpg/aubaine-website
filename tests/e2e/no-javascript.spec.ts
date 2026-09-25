@@ -65,6 +65,8 @@ test('a species carries its lore, its regional origins and its whole pool in the
     'Al-Wahaa',
   ])
   await expect(page.locator('[id^="origine-"]')).toHaveCount(4)
+  await expect(page.locator('#origines-regionales')).toHaveText('Origines régionales')
+  await expect(page.locator('#sous-especes')).toHaveCount(0)
   const playing = page.locator('#jouer').locator('xpath=..')
   await expect(playing.locator('dd')).toContainText(['Vers 18 à 20 ans'])
   await expect(playing).toContainText('Commun')

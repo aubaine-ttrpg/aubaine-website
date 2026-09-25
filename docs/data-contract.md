@@ -33,7 +33,7 @@ A skill that writes no `status` inherits one, which is what makes the field wort
 
 1. The skill's own `status`.
 2. The tree that places it.
-3. The species that offers it.
+3. The species that offers it, or imposes it through one of its sub-species.
 4. An item that grants it.
 5. A set tier that grants it.
 

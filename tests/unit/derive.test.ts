@@ -10,10 +10,13 @@ import {
   initialOf,
   priceInCoins,
   primeCharacteristics,
+  SUBSPECIES_SECTIONS,
   showsXp,
   skillTags,
   slugify,
   speciesPool,
+  subspeciesAnchor,
+  subspeciesSkills,
   treeDomains,
   xpOf,
 } from '../../src/lib/game/derive'
@@ -217,6 +220,31 @@ describe('species pools', () => {
       'ESHUM-01',
       'ESHUM-05',
     ])
+  })
+
+  it('puts a sub-species imposed skill ahead of the ones it offers', () => {
+    expect(
+      ids(
+        subspeciesSkills({
+          imposedSkill: skill('ESMOR-05'),
+          offeredSkills: [skill('ESMOR-11')],
+        }),
+      ),
+    ).toEqual(['ESMOR-05', 'ESMOR-11'])
+    expect(
+      ids(subspeciesSkills({ imposedSkill: undefined, offeredSkills: [skill('ESHUM-04')] })),
+    ).toEqual(['ESHUM-04'])
+  })
+
+  it('anchors a sub-species at origine-<id> whatever its Espèce calls it', () => {
+    expect(subspeciesAnchor('fantome')).toBe('origine-fantome')
+  })
+
+  it('names the sub-species section after the word its Espèce uses', () => {
+    expect(SUBSPECIES_SECTIONS).toEqual({
+      'regional-origins': 'origines-regionales',
+      subspecies: 'sous-especes',
+    })
   })
 })
 

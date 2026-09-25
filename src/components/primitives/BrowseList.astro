@@ -16,12 +16,19 @@ type Props = {
   corpus: Corpus
   entries: BrowseEntry[]
   label: string
-  variant: 'skills' | 'speciesSkills' | 'equipment' | 'rules'
-}
+} & (
+  | { variant: 'skills' | 'equipment' | 'rules' }
+  | { variant: 'speciesSkills'; subspeciesLabel: string }
+)
 
 const { locale, corpus, entries, label, variant } = Astro.props
 const t = strings(locale)
 const sourcesLabel = variant === 'speciesSkills' ? t.alsoAvailable : t.provenance
+const drafts = entries.filter((entry) => entry.status === 'draft').length
+const filter =
+  Astro.props.variant === 'speciesSkills'
+    ? { variant: 'speciesSkills' as const, subspeciesLabel: Astro.props.subspeciesLabel }
+    : { variant: Astro.props.variant }
 
 const SOURCE_ICONS: Record<BrowseSource['kind'], string> = {
   tree: 'mdi:family-tree',
@@ -38,12 +45,7 @@ const NOTES: Record<'basic' | 'bank' | 'other', string | undefined> = {
 }
 ---
 
-<FilterBar
-  locale={locale}
-  variant={variant}
-  total={entries.length}
-  drafts={entries.filter((entry) => entry.status === 'draft').length}
-/>
+<FilterBar locale={locale} total={entries.length} drafts={drafts} {...filter} />
 
 <div
   data-browse={variant === 'speciesSkills' ? 'skills' : variant}

@@ -42,7 +42,7 @@ Four of these are keyed maps rather than arrays:
 | Field | Keyed by | From `schema.ts` |
 | --- | --- | --- |
 | skill `upgrades` | the upgrade's `level`, as a string | Améliorations traduites, keyées par leur niveau sous forme de chaîne. |
-| species `subspecies` | the sub-species' `id` | Présentations traduites, keyées par l'identifiant de la sous-espèce. Each value is `{ "text": "..." }`. |
+| species `subspecies` | the sub-species' `id` | Noms et présentations traduits, keyés par l'identifiant de la sous-espèce. Un nom ne se traduit que s'il est un nom commun. Each value is `{ "name": "...", "text": "..." }`, either key optional. |
 | set `bonuses` | the tier's `pieces`, as a string | each value is `{ "text": "..." }` |
 | catalogue `sections` | the section's `key` | each value is the translated title |
 

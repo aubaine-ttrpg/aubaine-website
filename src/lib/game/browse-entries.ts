@@ -14,6 +14,7 @@ import {
   skillTags,
   slugify,
   subspeciesAnchor,
+  subspeciesSkills,
   typeLabelFor,
   xpOf,
 } from './derive.ts'
@@ -141,8 +142,11 @@ export function skillBrowseEntries(
   const domainLabel = (key: string): string => label(corpus.domains.get(key), locale, key)
   const subspeciesOf = new Map(
     (species?.subspecies ?? []).flatMap((sub) =>
-      sub.offeredSkills.map((skill) => [skill.id, sub] as const),
+      subspeciesSkills(sub).map((skill) => [skill.id, sub] as const),
     ),
+  )
+  const imposed = new Set(
+    (species?.subspecies ?? []).flatMap((sub) => (sub.imposedSkill ? [sub.imposedSkill.id] : [])),
   )
   const groupRank = new Map(
     (species?.subspecies ?? []).map((sub, position) => [sub.id, position + 1] as const),
@@ -234,7 +238,7 @@ export function skillBrowseEntries(
       entity: { kind: 'skill', skill, priced: !species },
       title: skill.title,
       mark: tint,
-      sub: `${typeText} · ${domainText} · ${src}`,
+      sub: [...(imposed.has(skill.id) ? [t.imposed] : []), typeText, domainText, src].join(' · '),
       aside: `${activation} · ${skill.range || EM_DASH}`,
       value: xpLabel,
       coins: [],
@@ -261,7 +265,10 @@ export function skillBrowseEntries(
   const compare = collator(locale)
   const rank = new Map(skills.map((skill) => [skill.id, rankOf(skill)]))
   return out.sort(
-    (a, b) => (rank.get(a.id) ?? 0) - (rank.get(b.id) ?? 0) || compare.compare(a.title, b.title),
+    (a, b) =>
+      (rank.get(a.id) ?? 0) - (rank.get(b.id) ?? 0) ||
+      Number(imposed.has(b.id)) - Number(imposed.has(a.id)) ||
+      compare.compare(a.title, b.title),
   )
 }
 

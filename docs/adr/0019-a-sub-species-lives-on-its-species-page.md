@@ -6,6 +6,7 @@
 **Revised:** 2026-09-23, the reader sees « Origines régionales », species skills join the Banque Commune, and rule terms grow (addenda in Decisions 1, 3 and 4)
 **Revised:** 2026-09-23, `Sort` becomes a rule term with its own colour, and Second souffle moves its rest limit to `recharge` (Decision 4)
 **Revised:** 2026-09-24, `Sort` reads its definition from its tag and its rule covers passive Sorts (0020, addendum in Decision 4)
+**Revised:** 2026-09-25, a sub-species may impose a Compétence, each Espèce names its sub-species, and a common-noun name translates (addenda in Decisions 1 and 3)
 **Deciders:** Kori
 **Scope:** The `subspecies`, `roleplay` and `languages` fields on `species` in
 `src/lib/game/schema.ts`, the `languages` vocabulary in `data/meta/`, the sections of the species
@@ -89,6 +90,26 @@ table row, the rail and chapters 03 and 09. The anchors follow the words a reade
 address bar: the section is `#origines-regionales` and each origin `#origine-<id>`, still built by
 `subspeciesAnchor`. The rail now nests each origin under its section entry, through the one level
 of nesting `SectionTrail` already supports.
+
+### Addendum (2026-09-25): the Espèce names its sub-species, and may impose one Compétence
+
+The Mort-vivant's six forms (Fantôme, Squelette, Revenant, Zombie, Goule, Liche) are sub-species in
+the plain sense, not peoples split by region, and printing them under « Origines régionales » was
+false. The decider ruled that « sous-espèce » may be shown where the Espèce truly has sub-species, so
+the addendum above now holds only for the per-Espèce surfaces of peoples. Chapters 03 and 09 reach every Espèce, so they now name both words (« sous-espèce ou origine régionale », « Sous-espèces et origines régionales »), as `.claude/skills/aubaine-prose/references/naming.md` asks of general rule text.
+
+- `species.subspeciesLabel` is `regional-origins` or `subspecies`, absent meaning
+  `regional-origins`, so Humain stays byte-identical. The section heading, the rail, the Jouer table
+  row and the filter facet follow it, through `SUBSPECIES_SECTIONS` in `src/lib/game/derive.ts` and
+  the string pairs in `src/lib/i18n/strings.ts`. The section anchor follows the word
+  (`#origines-regionales` or `#sous-especes`); every entry anchor stays `#origine-<id>`, so Humain's anchors do not move and `subspeciesAnchor` stays a function of the id alone, shared by `src/components/views/Species.astro` and the provenance in `src/lib/game/browse-entries.ts`. On a « Sous-espèces » page the entry anchors therefore no longer follow the visible word, as the addendum above promised they would.
+- `subspecies[].imposed` is resolved to `imposedSkill` in `src/lib/game/build.ts`. `subspeciesSkills`
+  puts it ahead of the sub-species' own skills, so the pool, the term index, the provenance and the
+  status inheritance all reach it with no change of their own. 0014 Decision 2 carries the rule.
+- The English overlay may translate a sub-species `name` that is a common noun, as Fantôme becomes
+  Ghost. A proper noun such as Landenheit stays, and `names` still has no overlay.
+- Rejected: a new word such as « Formes » for the undead page only. The decider preferred the word
+  the Espèce genuinely calls for; it reopens if another Espèce needs a word neither label fits.
 
 ---
 
@@ -194,6 +215,12 @@ of nesting `SectionTrail` already supports.
   puts them in the term index and in the search page, which they were not before.
 - The species index card no longer prints the size of the pool, at the decider's request. The
   `meta` slot of `CoverCard` had no other caller and is removed.
+
+### Addendum (2026-09-25): an imposed row leads its group
+
+A sub-species' imposed Compétence is listed first in that sub-species' group and its row carries
+« Imposée » / "Imposed", sorted in `skillBrowseEntries` in `src/lib/game/browse-entries.ts`. Unlike
+the species' own skills, it is not an entry of `data/skill-lists/common-bank.json`.
 
 ---
 

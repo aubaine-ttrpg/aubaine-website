@@ -6,6 +6,7 @@ import type {
   Skill,
   SkillTags,
   SkillTree,
+  SubspeciesLabel,
   TagKind,
   Upgrade,
   VocabularyEntry,
@@ -39,8 +40,22 @@ export const SPECIES_PLATE_ICONS = {
 
 export const DEFAULT_MOVEMENT_METRES = 9
 
+export const DEFAULT_SUBSPECIES_LABEL: SubspeciesLabel = 'regional-origins'
+
+export const SUBSPECIES_SECTIONS: Record<SubspeciesLabel, string> = {
+  'regional-origins': 'origines-regionales',
+  subspecies: 'sous-especes',
+}
+
 export function subspeciesAnchor(id: string): string {
   return `origine-${id}`
+}
+
+export function subspeciesSkills(sub: {
+  imposedSkill: Skill | undefined
+  offeredSkills: Skill[]
+}): Skill[] {
+  return sub.imposedSkill ? [sub.imposedSkill, ...sub.offeredSkills] : sub.offeredSkills
 }
 
 export function speciesPool(inherited: Skill[], own: Skill[]): Skill[] {

@@ -71,7 +71,7 @@
       ]
     },
     "languages": {
-      "description": "Langue(s) que l'Espèce parle, lit et écrit. Absent : l'Espèce n'en déclare pas encore, ou elle les tient de l'une de ses Espèces parentes.",
+      "description": "Langue(s) que l'Espèce parle, lit et écrit. Absent : l'Espèce n'en déclare pas encore, ou elle les tient de son origine ou de l'une de ses Espèces parentes, selon derivedFrom.",
       "minItems": 1,
       "type": "array",
       "items": {
@@ -86,7 +86,15 @@
         "pattern": "^[A-Z0-9]{5}-[0-9]{2}$",
         "description": "Identité immuable d'une Compétence : cinq caractères tirés du nom, puis un numéro. Deux Compétences ne peuvent pas la partager, même dans deux arbres différents."
       },
-      "description": "Compétences d'Espèce proposées au choix, définies dans data/skills/. Le personnage en retient deux à la création : elles sont Mémorisées sans occuper de Mémoire, ne coûtent pas de PX et ne se changent plus ensuite. Il peut acheter les autres plus tard, au prix imprimé. Une sous-espèce ajoute les siennes à celles-ci. [] : l'Espèce n'en propose encore aucune."
+      "description": "Compétences d'Espèce proposées au choix, définies dans data/skills/. Le personnage en retient deux à la création : elles sont Mémorisées sans occuper de Mémoire, ne coûtent pas de PX et ne se changent plus ensuite. Il peut acheter les autres plus tard, au prix imprimé. Une sous-espèce ajoute les siennes à celles-ci, et peut imposer l'une des deux. [] : l'Espèce n'en propose encore aucune."
+    },
+    "subspeciesLabel": {
+      "description": "Le nom que l'Espèce donne à ses sous-espèces, celui que le lecteur lit en intertitre, dans le sommaire, dans la table Jouer et sur le filtre : 'regional-origins' pour « Origines régionales », 'subspecies' pour « Sous-espèces ». Absent : 'regional-origins'. Ne s'écrit qu'avec subspecies.",
+      "type": "string",
+      "enum": [
+        "regional-origins",
+        "subspecies"
+      ]
     },
     "subspecies": {
       "description": "Les sous-espèces de l'Espèce, présentées sur sa page et jamais sur une page à elles. Le personnage en choisit une à la création. Absent : l'Espèce n'en compte aucune.",
@@ -103,7 +111,7 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "description": "Nom rendu en intertitre. Il ne se traduit pas."
+            "description": "Nom rendu en intertitre. L'overlay anglais le traduit quand c'est un nom commun, comme Fantôme, et le laisse tel quel quand c'est un nom propre, comme Landenheit."
           },
           "text": {
             "type": "string",
@@ -149,6 +157,11 @@
             ],
             "additionalProperties": false
           },
+          "imposed": {
+            "description": "Compétence que la sous-espèce impose, définie dans data/skills/ : l'une des deux Compétences d'Espèce que le personnage garde à la création, sans la choisir. Il choisit la seconde parmi celles de son Espèce et de sa sous-espèce. Elle porte la sous-espèce en Prérequis, n'appartient qu'à cette sous-espèce et ne figure dans aucun offered. Absente : le personnage choisit ses deux Compétences.",
+            "type": "string",
+            "pattern": "^[A-Z0-9]{5}-[0-9]{2}$"
+          },
           "offered": {
             "type": "array",
             "items": {
@@ -166,7 +179,7 @@
           "offered"
         ],
         "additionalProperties": false,
-        "description": "Une sous-espèce : un nom, une présentation, ses noms et les Compétences qu'elle ajoute."
+        "description": "Une sous-espèce : un nom, une présentation, ses noms, la Compétence qu'elle impose et celles qu'elle ajoute."
       }
     },
     "roleplay": {

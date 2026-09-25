@@ -3,17 +3,18 @@ import Island, { type FilterGroup, type FilterKind } from '../../islands/FilterB
 import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
 
+type ListVariant = 'trees' | 'species' | 'skills' | 'equipment' | 'rules'
+
 type Props = {
   locale: Locale
-  variant: 'trees' | 'species' | 'skills' | 'speciesSkills' | 'equipment' | 'rules'
   total: number
   drafts: number
-}
+} & ({ variant: ListVariant } | { variant: 'speciesSkills'; subspeciesLabel: string })
 
 const { locale, variant, total, drafts } = Astro.props
 const t = strings(locale)
 
-const GROUPS: Record<Props['variant'], FilterGroup[]> = {
+const GROUPS: Record<ListVariant, FilterGroup[]> = {
   trees: [
     { key: 'tdom', label: t.domains },
     { key: 'tchar', label: t.primeChar },
@@ -22,19 +23,6 @@ const GROUPS: Record<Props['variant'], FilterGroup[]> = {
   species: [{ key: 'sta', label: t.status_ }],
   skills: [
     { key: 'acq', label: t.provenance },
-    { key: 'dom', label: t.domain_ },
-    { key: 'typ', label: t.type_ },
-    { key: 'cost', label: t.cost_ },
-    { key: 'act', label: t.activation },
-    { key: 'chr', label: t.characteristic_ },
-    { key: 'tier', label: t.tier_ },
-    { key: 'pra', label: t.tagPractice },
-    { key: 'sch', label: t.tagSchool },
-    { key: 'spe', label: t.tagSpecial },
-    { key: 'sta', label: t.status_ },
-  ],
-  speciesSkills: [
-    { key: 'sub', label: t.subspecies_ },
     { key: 'dom', label: t.domain_ },
     { key: 'typ', label: t.type_ },
     { key: 'cost', label: t.cost_ },
@@ -60,6 +48,23 @@ const GROUPS: Record<Props['variant'], FilterGroup[]> = {
     { key: 'eff', label: t.effect_ },
   ],
 }
+
+const groups: FilterGroup[] =
+  Astro.props.variant === 'speciesSkills'
+    ? [
+        { key: 'sub', label: Astro.props.subspeciesLabel },
+        { key: 'dom', label: t.domain_ },
+        { key: 'typ', label: t.type_ },
+        { key: 'cost', label: t.cost_ },
+        { key: 'act', label: t.activation },
+        { key: 'chr', label: t.characteristic_ },
+        { key: 'tier', label: t.tier_ },
+        { key: 'pra', label: t.tagPractice },
+        { key: 'sch', label: t.tagSchool },
+        { key: 'spe', label: t.tagSpecial },
+        { key: 'sta', label: t.status_ },
+      ]
+    : GROUPS[Astro.props.variant]
 
 const kinds: FilterKind[] | undefined =
   variant === 'trees'
@@ -93,7 +98,7 @@ const islandStrings = {
 <Island
   client:idle
   strings={islandStrings}
-  groups={GROUPS[variant]}
+  groups={groups}
   kinds={kinds}
   total={total}
   drafts={drafts}

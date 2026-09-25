@@ -16,8 +16,10 @@ import {
   characteristicKey,
   SPECIES_PLATE_ICONS,
   SPECIES_SKILL_CHOICES,
+  showsXp,
   skillTags,
   speciesPool,
+  subspeciesSkills,
   VARIABLE_CHARACTERISTIC,
 } from '../../src/lib/game/derive'
 import { readCorpus, readSources } from '../../src/lib/game/fs-sources'
@@ -285,14 +287,17 @@ describe('cross references', () => {
     }
   })
 
-  it('offers only skills that exist from every species and sub-species', () => {
+  it('offers and imposes only skills that exist from every species and sub-species', () => {
     for (const entry of sources.speciesEntries) {
-      const offered = [
+      const named = [
         ...entry.data.offered,
-        ...(entry.data.subspecies ?? []).flatMap((sub) => sub.offered),
+        ...(entry.data.subspecies ?? []).flatMap((sub) => [
+          ...sub.offered,
+          ...(sub.imposed ? [sub.imposed] : []),
+        ]),
       ]
-      for (const id of offered) {
-        expect(fr.skills.has(id), `${entry.data.id} offers ${id}`).toBe(true)
+      for (const id of named) {
+        expect(fr.skills.has(id), `${entry.data.id} offers or imposes ${id}`).toBe(true)
       }
     }
   })
@@ -304,13 +309,16 @@ describe('cross references', () => {
     }
   })
 
-  it('offers each skill once across a species and its sub-species', () => {
+  it('offers or imposes each skill once across a species and its sub-species', () => {
     for (const entry of sources.speciesEntries) {
-      const offered = [
+      const named = [
         ...entry.data.offered,
-        ...(entry.data.subspecies ?? []).flatMap((sub) => sub.offered),
+        ...(entry.data.subspecies ?? []).flatMap((sub) => [
+          ...sub.offered,
+          ...(sub.imposed ? [sub.imposed] : []),
+        ]),
       ]
-      expect(new Set(offered).size, `${entry.data.id} offers a skill twice`).toBe(offered.length)
+      expect(new Set(named).size, `${entry.data.id} names a skill twice`).toBe(named.length)
     }
   })
 
@@ -318,25 +326,27 @@ describe('cross references', () => {
     for (const entry of fr.species) {
       const pools =
         entry.subspecies.length === 0
-          ? [{ who: entry.id, skills: entry.offeredSkills }]
+          ? [{ who: entry.id, skills: entry.offeredSkills, imposed: 0 }]
           : entry.subspecies.map((sub) => ({
               who: `${entry.id} ${sub.id}`,
               skills: speciesPool(entry.offeredSkills, sub.offeredSkills),
+              imposed: sub.imposedSkill ? 1 : 0,
             }))
-      for (const { who, skills } of pools) {
+      for (const { who, skills, imposed } of pools) {
+        const needed = SPECIES_SKILL_CHOICES - imposed
         expect(
-          skills.length === 0 || skills.length >= SPECIES_SKILL_CHOICES,
-          `${who} offers ${skills.length} skills, which is fewer than the ${SPECIES_SKILL_CHOICES} a character keeps`,
+          (skills.length === 0 && imposed === 0) || skills.length >= needed,
+          `${who} offers ${skills.length} skills beside ${imposed} imposed, fewer than the ${needed} a character still picks`,
         ).toBe(true)
       }
     }
   })
 
-  it('lists on the page the species skills first, then each sub-species own, once each', () => {
+  it('lists on the page the species skills first, then each sub-species imposed and own, once each', () => {
     for (const entry of fr.species) {
       const expected = [
         ...entry.offeredSkills,
-        ...entry.subspecies.flatMap((sub) => sub.offeredSkills),
+        ...entry.subspecies.flatMap((sub) => subspeciesSkills(sub)),
       ].map((skill) => skill.id)
       expect(
         entry.pool.map((skill) => skill.id),
@@ -360,6 +370,87 @@ describe('cross references', () => {
   it('names only skills that exist in every skill list', () => {
     for (const list of [fr.basic, fr.bank]) {
       expect(list.resolved.length, `${list.name} has unresolved ids`).toBe(list.skills.length)
+    }
+  })
+})
+
+describe('imposed skills', () => {
+  it('imposes each skill from one sub-species only, across every species', () => {
+    const named = sources.speciesEntries.flatMap((entry) => [
+      ...entry.data.offered,
+      ...(entry.data.subspecies ?? []).flatMap((sub) => [
+        ...sub.offered,
+        ...(sub.imposed ? [sub.imposed] : []),
+      ]),
+    ])
+    for (const entry of sources.speciesEntries) {
+      for (const sub of entry.data.subspecies ?? []) {
+        if (!sub.imposed) continue
+        expect(
+          named.filter((id) => id === sub.imposed).length,
+          `${entry.data.id} ${sub.id} imposes ${sub.imposed}, which another list also names`,
+        ).toBe(1)
+      }
+    }
+  })
+
+  it('names the sub-species in the provenance of the skill it imposes', () => {
+    for (const entry of fr.species) {
+      for (const sub of entry.subspecies) {
+        if (!sub.imposedSkill) continue
+        expect(
+          fr.origins.get(sub.imposedSkill.id)?.species,
+          `${entry.id} ${sub.id}`,
+        ).toContainEqual({
+          id: entry.id,
+          name: entry.name,
+          subspecies: { id: sub.id, name: sub.name },
+        })
+      }
+    }
+  })
+
+  it('hands the species status down to the skill a sub-species imposes', () => {
+    for (const entry of fr.species) {
+      for (const sub of entry.subspecies) {
+        const skill = sub.imposedSkill
+        if (!skill || (fr.origins.get(skill.id)?.trees.length ?? 0) > 0) continue
+        expect(fr.skillStatus.get(skill.id), `${entry.id} ${sub.id} ${skill.id}`).toBe(
+          skill.status ?? entry.status,
+        )
+      }
+    }
+  })
+
+  it('keeps an imposed skill unpriced and out of the Banque Commune', () => {
+    const banked = new Set(fr.bank.resolved.map((skill) => skill.id))
+    for (const entry of fr.species) {
+      for (const sub of entry.subspecies) {
+        const skill = sub.imposedSkill
+        if (!skill) continue
+        expect(
+          banked.has(skill.id),
+          `${entry.id} ${sub.id} imposes ${skill.id}, which the Banque Commune lists`,
+        ).toBe(false)
+        expect(
+          showsXp(skill),
+          `${entry.id} ${sub.id} imposes ${skill.id}, which shows a price`,
+        ).toBe(false)
+      }
+    }
+  })
+
+  it('reserves an imposed skill to its sub-species by its prerequisite, in both locales', () => {
+    for (const built of [fr, en]) {
+      for (const entry of built.species) {
+        for (const sub of entry.subspecies) {
+          const skill = sub.imposedSkill
+          if (!skill) continue
+          expect(skill.prerequisite ?? '', `${built.locale} ${entry.id} ${sub.id}`).toContain(
+            sub.name,
+          )
+        }
+      }
     }
   })
 })
@@ -897,6 +988,20 @@ describe('the term index', () => {
       for (const state of built.states) {
         for (const word of [state.name, ...(state.forms ?? [])]) {
           expect(spelling(word), `${locale} state ${state.key} form ${word}`).toBe(word)
+        }
+      }
+    }
+  })
+
+  it('links every skill a playable species page lists, imposed ones included', () => {
+    for (const built of [fr, en]) {
+      for (const entry of built.species) {
+        if (entry.status === 'draft') continue
+        for (const skill of entry.pool) {
+          expect(
+            built.terms.map.get(skill.title.toLowerCase())?.skillId,
+            `${built.locale} ${entry.id} ${skill.title}`,
+          ).toBe(skill.id)
         }
       }
     }

@@ -116,7 +116,7 @@ pnpm dev
 
 **A passive bank skill may not carry an energy cost above 0.** `"energy": 0` on a passive is allowed and is used by four bank skills today. Anything above 0 is rejected by the schema: `une Compétence passive ne coûte pas d'Énergie.`
 
-**A species skill is listed here too, and keeps its own id.** A Compétence d'Espèce that a character did not keep at creation is bought from the Banque Commune, so its id goes in `common-bank.json` without the `CB` prefix, and its `prerequisite` reserves it to its species or its origine régionale. See [add-a-species.md](add-a-species.md).
+**A species skill is listed here too, and keeps its own id.** A Compétence d'Espèce that a character did not keep at creation is bought from the Banque Commune, so its id goes in `common-bank.json` without the `CB` prefix, and its `prerequisite` reserves it to its species or its sous-espèce or origine régionale. A Compétence a sub-species imposes never goes here, because no one buys it. See [add-a-species.md](add-a-species.md).
 
 **Two steps, and the second one is easy to forget.** A skill file that no list and no tree names appears nowhere.
 

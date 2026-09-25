@@ -4,9 +4,11 @@ import { strings } from '../i18n/strings.ts'
 import {
   characteristicKey,
   collator,
+  DEFAULT_SUBSPECIES_LABEL,
   primeCharacteristics,
   slugify,
   speciesPool,
+  subspeciesSkills,
   treeDomains,
   VARIABLE_CHARACTERISTIC,
 } from './derive.ts'
@@ -23,6 +25,7 @@ import type {
   SkillTree,
   Species,
   Subspecies,
+  SubspeciesLabel,
   TagKind,
   TagTaxonomy,
   VocabularyEntry,
@@ -43,9 +46,13 @@ export type ResolvedTree = Omit<SkillTree, 'placements'> & {
   primeCharacteristics: string[]
 }
 
-export type ResolvedSubspecies = Subspecies & { offeredSkills: Skill[] }
+export type ResolvedSubspecies = Subspecies & {
+  offeredSkills: Skill[]
+  imposedSkill: Skill | undefined
+}
 
-export type ResolvedSpecies = Omit<Species, 'subspecies'> & {
+export type ResolvedSpecies = Omit<Species, 'subspecies' | 'subspeciesLabel'> & {
+  subspeciesLabel: SubspeciesLabel
   offeredSkills: Skill[]
   subspecies: ResolvedSubspecies[]
   pool: Skill[]
@@ -312,12 +319,17 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
     const subspecies = (entry.subspecies ?? []).map((sub) => ({
       ...sub,
       offeredSkills: skillsOf(sub.offered),
+      imposedSkill: sub.imposed === undefined ? undefined : skills.get(sub.imposed),
     }))
     species.push({
       ...entry,
+      subspeciesLabel: entry.subspeciesLabel ?? DEFAULT_SUBSPECIES_LABEL,
       offeredSkills,
       subspecies,
-      pool: subspecies.reduce((pool, sub) => speciesPool(pool, sub.offeredSkills), offeredSkills),
+      pool: subspecies.reduce(
+        (pool, sub) => speciesPool(pool, subspeciesSkills(sub)),
+        offeredSkills,
+      ),
     })
   }
   species.sort((a, b) => collator(locale).compare(a.name, b.name))
@@ -422,7 +434,7 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
       origin(skill.id).species.push({ id: entry.id, name: entry.name })
     }
     for (const sub of entry.subspecies) {
-      for (const skill of sub.offeredSkills) {
+      for (const skill of subspeciesSkills(sub)) {
         origin(skill.id).species.push({
           id: entry.id,
           name: entry.name,

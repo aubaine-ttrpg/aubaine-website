@@ -362,6 +362,8 @@ const stat = z.object({ label: z.string().min(1), value: z.string().min(1) }).st
 
 const nameList = z.array(z.string().min(1)).min(1)
 
+export const SUBSPECIES_LABELS = ['regional-origins', 'subspecies'] as const
+
 const subspecies = z
   .object({
     id: z
@@ -370,7 +372,12 @@ const subspecies = z
       .describe(
         "Identifiant de la sous-espèce, unique dans son Espèce, et l'ancre de sa présentation.",
       ),
-    name: z.string().min(1).describe('Nom rendu en intertitre. Il ne se traduit pas.'),
+    name: z
+      .string()
+      .min(1)
+      .describe(
+        "Nom rendu en intertitre. L'overlay anglais le traduit quand c'est un nom commun, comme Fantôme, et le laisse tel quel quand c'est un nom propre, comme Landenheit.",
+      ),
     text: z
       .string()
       .min(1)
@@ -386,6 +393,11 @@ const subspecies = z
       .describe(
         "Les noms que porte la sous-espèce. Ils ne se traduisent pas. Absent : elle n'en déclare pas encore.",
       ),
+    imposed: skillId
+      .optional()
+      .describe(
+        "Compétence que la sous-espèce impose, définie dans data/skills/ : l'une des deux Compétences d'Espèce que le personnage garde à la création, sans la choisir. Il choisit la seconde parmi celles de son Espèce et de sa sous-espèce. Elle porte la sous-espèce en Prérequis, n'appartient qu'à cette sous-espèce et ne figure dans aucun offered. Absente : le personnage choisit ses deux Compétences.",
+      ),
     offered: z
       .array(skillId)
       .describe(
@@ -394,7 +406,7 @@ const subspecies = z
   })
   .strict()
   .describe(
-    "Une sous-espèce : un nom, une présentation, ses noms et les Compétences qu'elle ajoute.",
+    "Une sous-espèce : un nom, une présentation, ses noms, la Compétence qu'elle impose et celles qu'elle ajoute.",
   )
 
 const roleplay = z
@@ -475,12 +487,18 @@ export const species = z
       .min(1)
       .optional()
       .describe(
-        "Langue(s) que l'Espèce parle, lit et écrit. Absent : l'Espèce n'en déclare pas encore, ou elle les tient de l'une de ses Espèces parentes.",
+        "Langue(s) que l'Espèce parle, lit et écrit. Absent : l'Espèce n'en déclare pas encore, ou elle les tient de son origine ou de l'une de ses Espèces parentes, selon derivedFrom.",
       ),
     offered: z
       .array(skillId)
       .describe(
-        "Compétences d'Espèce proposées au choix, définies dans data/skills/. Le personnage en retient deux à la création : elles sont Mémorisées sans occuper de Mémoire, ne coûtent pas de PX et ne se changent plus ensuite. Il peut acheter les autres plus tard, au prix imprimé. Une sous-espèce ajoute les siennes à celles-ci. [] : l'Espèce n'en propose encore aucune.",
+        "Compétences d'Espèce proposées au choix, définies dans data/skills/. Le personnage en retient deux à la création : elles sont Mémorisées sans occuper de Mémoire, ne coûtent pas de PX et ne se changent plus ensuite. Il peut acheter les autres plus tard, au prix imprimé. Une sous-espèce ajoute les siennes à celles-ci, et peut imposer l'une des deux. [] : l'Espèce n'en propose encore aucune.",
+      ),
+    subspeciesLabel: z
+      .enum(SUBSPECIES_LABELS)
+      .optional()
+      .describe(
+        "Le nom que l'Espèce donne à ses sous-espèces, celui que le lecteur lit en intertitre, dans le sommaire, dans la table Jouer et sur le filtre : 'regional-origins' pour « Origines régionales », 'subspecies' pour « Sous-espèces ». Absent : 'regional-origins'. Ne s'écrit qu'avec subspecies.",
       ),
     subspecies: z
       .array(subspecies)
@@ -505,6 +523,10 @@ export const species = z
       path: ['derivedFrom'],
     },
   )
+  .refine((value) => value.subspeciesLabel === undefined || value.subspecies !== undefined, {
+    message: "une Espèce sans sous-espèce n'a pas à les nommer : omettez subspeciesLabel.",
+    path: ['subspeciesLabel'],
+  })
 
 export const skillList = z
   .object({
@@ -1068,9 +1090,11 @@ export const overlays = {
     subtitle: z.string().optional(),
     movement: z.string().optional(),
     subspecies: z
-      .record(z.string(), localized({ text: z.string().optional() }))
+      .record(z.string(), localized({ name: z.string().optional(), text: z.string().optional() }))
       .optional()
-      .describe("Présentations traduites, keyées par l'identifiant de la sous-espèce."),
+      .describe(
+        "Noms et présentations traduits, keyés par l'identifiant de la sous-espèce. Un nom ne se traduit que s'il est un nom commun.",
+      ),
     roleplay: localized({
       adulthood: z.string().optional(),
       lifespan: z.string().optional(),
@@ -1120,6 +1144,7 @@ export type Placement = z.infer<typeof placement>
 export type SkillTree = z.infer<typeof skillTree>
 export type Species = z.infer<typeof species>
 export type Subspecies = z.infer<typeof subspecies>
+export type SubspeciesLabel = (typeof SUBSPECIES_LABELS)[number]
 export type SkillList = z.infer<typeof skillList>
 export type EquipmentItem = z.infer<typeof equipmentItem>
 export type EquipmentSet = z.infer<typeof equipmentSet>
