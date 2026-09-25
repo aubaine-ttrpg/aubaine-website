@@ -22,8 +22,9 @@ Rule terms, Caractéristiques and Aptitudes each show their own definition in th
 the index: each chip in a card footer shows its definition from `data/meta/tags.json`, and a tag
 label is never marked in prose.
 
-A skill enters the index only if it is placed on a tree or named in a skill list. A skill reachable
-only through an equipment `grants` is not indexed, so `{{...}}` falls back to a plain reference.
+A skill enters the index only if it is placed on a tree, named in a skill list, or offered by a
+species. A skill reachable only through an equipment `grants` is not indexed, so `{{...}}` falls
+back to a plain reference.
 
 The index is first wins, in the order above. Two entries sharing a name collide, and the later one
 never links.

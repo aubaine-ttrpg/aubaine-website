@@ -467,7 +467,16 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
     .sort((a, b) => a.order - b.order)
 
   const glossary = buildGlossary({ locale, characteristics, aptitudes, tags, states, bank, t })
-  const terms = buildTermIndex({ locale, characteristics, glossary, trees, basic, bank, t })
+  const terms = buildTermIndex({
+    locale,
+    characteristics,
+    glossary,
+    trees,
+    basic,
+    bank,
+    species,
+    t,
+  })
 
   return {
     locale,
@@ -522,6 +531,7 @@ type TermInput = {
   trees: ResolvedTree[]
   basic: SkillList & { resolved: Skill[] }
   bank: SkillList & { resolved: Skill[] }
+  species: ResolvedSpecies[]
   t: ReturnType<typeof strings>
 }
 
@@ -903,7 +913,7 @@ function buildGlossary(input: GlossaryInput): GlossaryTerm[] {
 }
 
 function buildTermIndex(input: TermInput): TermIndex {
-  const { locale, characteristics, glossary, trees, basic, bank, t } = input
+  const { locale, characteristics, glossary, trees, basic, bank, species, t } = input
   const map = new Map<string, TermRecord>()
 
   const put = (name: string, record: Omit<TermRecord, 'spelling'>): void => {
@@ -958,6 +968,22 @@ function buildTermIndex(input: TermInput): TermIndex {
       text: flattenText(skill.description, 240),
       href: `${pathFor('skills', locale)}#e-${skill.id}`,
     })
+  }
+
+  for (const entry of species) {
+    for (const skill of entry.pool) {
+      put(skill.title, {
+        family: 'skill',
+        skillId: skill.id,
+        kind: t.speciesOffer,
+        title: skill.title,
+        meta: `${typeLabel(skill.type, t)} · ${entry.name}`,
+        color: 'var(--accent-ink)',
+        icon: skillIcon(skill, characteristics),
+        text: flattenText(skill.description, 240),
+        href: `${pathFor('speciesEntry', locale, { species: entry.id })}#e-${skill.id}`,
+      })
+    }
   }
 
   return { map, pattern: buildTermPattern([...map.keys()]) }
