@@ -176,16 +176,22 @@ export function rehypeCodexTerms(root: string) {
   const markerFor = (locale: Locale): Promise<Marker> => {
     let value = markers.get(locale)
     if (!value) {
-      value = readCorpus(root, locale).then((built) => ({
-        index: built.terms,
-        rulesHref: pathFor('rules', locale),
-        openLabel: strings(locale).openRef,
-        glossed: new Set([
-          strings(locale).ruleTerm,
-          strings(locale).characteristic,
-          strings(locale).aptitude,
-        ]),
-      }))
+      value = readCorpus(root, locale).then(
+        (built) => ({
+          index: built.terms,
+          rulesHref: pathFor('rules', locale),
+          openLabel: strings(locale).openRef,
+          glossed: new Set([
+            strings(locale).ruleTerm,
+            strings(locale).characteristic,
+            strings(locale).aptitude,
+          ]),
+        }),
+        (error: unknown) => {
+          markers.delete(locale)
+          throw error
+        },
+      )
       markers.set(locale, value)
     }
     return value
