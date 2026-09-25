@@ -23,7 +23,6 @@ export default defineConfig({
     defaultLocale: DEFAULT_LOCALE,
     routing: { prefixDefaultLocale: true, redirectToDefaultLocale: false },
   },
-  redirects: { '/': `/${DEFAULT_LOCALE}` },
   image: {
     service: { entrypoint: './src/lib/rights/image-service.ts', config: {} },
     responsiveStyles: true,
@@ -63,7 +62,7 @@ export default defineConfig({
     }),
     sitemap({
       i18n: { defaultLocale: DEFAULT_LOCALE, locales: { fr: 'fr-FR', en: 'en-GB' } },
-      filter: (page) => !/\/(recherche|search)(\/|$)/.test(page),
+      filter: (page) => new URL(page).pathname !== '/' && !/\/(recherche|search)(\/|$)/.test(page),
     }),
     inlineScriptPolicy(),
   ],

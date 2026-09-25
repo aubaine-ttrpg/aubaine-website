@@ -3,6 +3,7 @@ import type { SwupInstance } from './swup'
 const SHOW_AFTER = 400
 const MIN_VISIBLE = 260
 const SPIN_DEGREES_PER_SECOND = 130
+const DOCUMENT_START = 0
 
 type Beats = { collapse: number; hold: number; burst: number }
 
@@ -127,8 +128,19 @@ function reveal(): void {
   later(teardown, wait + beats.collapse + beats.hold + beats.burst)
 }
 
+function adoptRenderedCrest(): void {
+  const crest = crestElement()
+  if (crest?.dataset['phase'] !== 'loading') return
+  state = 'showing'
+  shownAt = DOCUMENT_START
+  startSpin(crest)
+}
+
 export function bindLoading(swup: SwupInstance): void {
+  adoptRenderedCrest()
+
   swup.hooks.on('visit:start', () => {
+    if (state === 'showing') return
     teardown()
     state = 'armed'
     later(show, SHOW_AFTER)

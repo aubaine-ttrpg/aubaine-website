@@ -3,6 +3,7 @@ import { bindBook } from './book'
 import { bindBrowse } from './browse'
 import { bindLoading } from './loading'
 import { type SwupVisit, swupInstance, withSwup } from './swup'
+import { bindThreshold } from './threshold'
 
 const THEME_KEY = 'aubaine.theme'
 const SEARCH_DELAY = 320
@@ -334,4 +335,5 @@ withSwup((swup) => {
   bindBrowse(swup)
   bindLoading(swup)
   swup.hooks.on('visit:start', onVisitStart)
+  bindThreshold(swup)
 })

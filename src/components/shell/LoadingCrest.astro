@@ -1,4 +1,8 @@
 ---
+type Props = { phase?: 'loading' | undefined }
+
+const { phase } = Astro.props
+
 const SPARK_TONES = ['var(--gold)', 'var(--accent-ink)', 'var(--accent)']
 
 const sparks = Array.from({ length: 14 }, (_, index) => {
@@ -15,7 +19,7 @@ const sparks = Array.from({ length: 14 }, (_, index) => {
 })
 ---
 
-<div data-load-crest aria-hidden="true">
+<div data-load-crest data-phase={phase} aria-hidden="true">
   <div data-crest-scene>
     <div data-crest-halo></div>
     <div data-crest-burst>
@@ -456,6 +460,12 @@ const sparks = Array.from({ length: 14 }, (_, index) => {
     top: 50%;
     border-radius: 50%;
     animation: au-crest-spark var(--crest-spark) cubic-bezier(0.2, 0.6, 0.3, 1) both;
+  }
+
+  @media (scripting: none) {
+    [data-load-crest][data-phase] {
+      display: none;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {

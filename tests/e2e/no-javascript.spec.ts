@@ -217,3 +217,34 @@ test.describe('without javascript', () => {
     await expect(page.locator('[data-drafts-control]')).toBeHidden()
   })
 })
+
+test.describe('the threshold without javascript', () => {
+  test.use({ javaScriptEnabled: false })
+
+  test('offers both languages and stays until the reader picks one', async ({ page }) => {
+    const response = await page.goto('/')
+    expect(response?.status()).toBe(200)
+    await expect(page.locator('h1')).toHaveCount(1)
+    await expect(page.locator('main')).toBeVisible()
+    await expect(page.locator('[data-load-crest]')).toBeHidden()
+    await expect(page.locator('[data-threshold-prompt]')).toBeVisible()
+    await expect(page.locator('[data-threshold-prompt] [lang="fr-FR"]')).toHaveText(
+      'Choisissez votre langue',
+    )
+    await expect(page.locator('[data-threshold-prompt] [lang="en-GB"]')).toHaveText(
+      'Choose your language',
+    )
+
+    const french = page.getByRole('link', { name: 'Français', exact: true })
+    const english = page.getByRole('link', { name: 'English', exact: true })
+    await expect(french).toHaveAttribute('href', '/fr')
+    await expect(english).toHaveAttribute('href', '/en')
+
+    await page.waitForTimeout(600)
+    await expect(page).toHaveURL('/')
+
+    await english.click()
+    await expect(page).toHaveURL('/en')
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en-GB')
+  })
+})

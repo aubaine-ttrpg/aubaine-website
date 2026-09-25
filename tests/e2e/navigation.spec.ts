@@ -1,10 +1,5 @@
 import { expect, test } from '@playwright/test'
 
-test('the root redirects to the default locale', async ({ page }) => {
-  await page.goto('/')
-  await expect(page).toHaveURL(/\/fr$/)
-})
-
 test('swup navigation keeps the head correct', async ({ page }) => {
   await page.goto('/en/trees')
   await expect(page).toHaveTitle('Skill Trees · Aubaine')

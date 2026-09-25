@@ -1,0 +1,29 @@
+---
+import LoadingCrest from '../components/shell/LoadingCrest.astro'
+import Masthead from '../components/shell/Masthead.astro'
+import Threshold from '../components/views/Threshold.astro'
+import Base from '../layouts/Base.astro'
+import { corpus } from '../lib/game/corpus'
+import { homePage } from '../lib/game/pages'
+import { DEFAULT_LOCALE } from '../lib/i18n/locales'
+import { socialImage } from '../lib/social-image'
+
+const data = await corpus(DEFAULT_LOCALE)
+const home = homePage(DEFAULT_LOCALE, data)
+const ogImage = await socialImage(home.ogArt)
+---
+
+<Base
+  locale={home.locale}
+  kind={home.kind}
+  params={home.params}
+  title={home.title}
+  description={home.description}
+  corpus={data}
+  ogImage={ogImage}
+  noIndex
+>
+  <Masthead slot="header" home="/" />
+  <Threshold />
+  <LoadingCrest slot="crest" phase="loading" />
+</Base>

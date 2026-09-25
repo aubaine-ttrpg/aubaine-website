@@ -3,6 +3,8 @@
 **Project:** Aubaine, the wiki
 **Status:** Accepted
 **Date:** 2026-09-22
+**Revised:** 2026-09-25, Decision 3 gains an addendum: a server rendered crest is adopted, and a visit
+that starts while the crest shows keeps it (0021)
 **Deciders:** Kori
 **Scope:** Which parts of the shell Swup replaces, how the header's per-page state reaches it once it
 is no longer replaced, and what motion a navigation shows. Supersedes 0007, whose Decision 2 this
@@ -189,6 +191,17 @@ had no affordance at all for a navigation that outruns the hover preload.
   because the subject is a black hole and a cream one would not read as one.
 - The overlay markup ships on every page, about one kilobyte of inert SVG, to avoid building it in
   JavaScript on first need.
+
+### Addendum (2026-09-25): a server rendered crest is adopted
+
+- `LoadingCrest.astro` accepts `phase="loading"`, and `bindLoading` in `src/scripts/loading.ts`
+  adopts that crest as already showing, spinning from the document start. The root threshold renders
+  it so the crest is on screen from first paint (0021 Decision 3).
+- `visit:start` returns early while the crest shows. A visit that starts during a slow one keeps the
+  crest, where it was torn down and shown again 400ms later.
+- `@media (scripting: none)` hides a server rendered crest, so a reader without JavaScript never
+  sees a load that cannot finish.
+- The 400ms threshold, the 260ms floor and the phase schedule above are unchanged.
 
 ---
 

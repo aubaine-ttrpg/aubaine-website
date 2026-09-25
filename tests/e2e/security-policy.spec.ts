@@ -53,6 +53,14 @@ for (const path of PAGES) {
   })
 }
 
+test('the threshold hands off under the deployed policy', async ({ page }) => {
+  await servedUnder(page, policyIn('dist/_headers'))
+  await page.goto('/')
+  await expect(page).toHaveURL('/en')
+  await expect(page.locator('#site-header [data-nav]')).toHaveCount(3)
+  expect(await violations(page)).toEqual([])
+})
+
 test('an island hydrates under the deployed policy', async ({ page }) => {
   await servedUnder(page, policyIn('dist/_headers'))
   await page.goto('/en/trees')

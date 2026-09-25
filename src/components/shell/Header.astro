@@ -50,7 +50,8 @@ const menus = [
 <Masthead home={pathFor('home', locale)}>
   <nav
     aria-label={t.navLabel}
-    style="display:flex; flex-wrap:wrap; align-items:center; gap:2px 0; flex:1 1 380px; min-width:0"
+    data-arrive
+    style="--arrive-order:1; display:flex; flex-wrap:wrap; align-items:center; gap:2px 0; flex:1 1 380px; min-width:0"
   >
     <a
       href={pathFor('home', locale)}
@@ -136,7 +137,8 @@ const menus = [
     action={pathFor('search', locale)}
     data-search-form
     data-search-action={pathFor('search', locale)}
-    style="flex:1 1 150px; min-width:0; max-width:250px; display:flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid rgba(255,255,255,.16); border-radius:3px; background:rgba(255,255,255,.06); transition:border-color .22s var(--ease)"
+    data-arrive
+    style="--arrive-order:2; flex:1 1 150px; min-width:0; max-width:250px; display:flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid rgba(255,255,255,.16); border-radius:3px; background:rgba(255,255,255,.06); transition:border-color .22s var(--ease)"
   >
     <span
       aria-hidden="true"
@@ -158,7 +160,8 @@ const menus = [
     data-theme-toggle
     aria-label={t.themeLabel}
     aria-pressed="true"
-    style="flex:none; display:flex; align-items:center; padding:7px; cursor:pointer; color:#d9d3c4; transition:color .2s var(--ease)"
+    data-arrive
+    style="--arrive-order:3; flex:none; display:flex; align-items:center; padding:7px; cursor:pointer; color:#d9d3c4; transition:color .2s var(--ease)"
   >
     <svg
       aria-hidden="true"
@@ -183,7 +186,7 @@ const menus = [
     </svg>
   </button>
 
-  <div data-lang style="flex:none; position:relative">
+  <div data-lang data-arrive style="--arrive-order:4; flex:none; position:relative">
     <button
       type="button"
       data-lang-trigger
@@ -241,6 +244,10 @@ const menus = [
 </Masthead>
 
 <style>
+  :global([data-arriving]) [data-arrive] {
+    animation: au-pop 0.42s var(--ease) calc(var(--arrive-order) * 60ms) both;
+  }
+
   [data-nav-link] {
     color: rgba(246, 242, 230, 0.66);
     transition: color 0.22s var(--ease);

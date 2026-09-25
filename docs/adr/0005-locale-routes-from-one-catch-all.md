@@ -4,6 +4,8 @@
 **Status:** Accepted
 **Date:** 2026-09-20
 **Revised:** 2026-09-21, the indexes page is renamed and both locales share one slug
+**Revised:** 2026-09-25, `/` stops redirecting and becomes a threshold page, so `src/pages/` gains
+`index.astro` (0021)
 **Deciders:** Kori
 **Scope:** The URL scheme, where routes come from, and the constraint a segment must satisfy. Does
 not cover how a page is rendered (0006) or how navigation between them works (0007).
@@ -55,6 +57,14 @@ content is.
 - **No prefix on the default locale**: rejected. It makes French the special case in every path
   building function and complicates the sibling calculation for no user benefit.
 
+### Addendum (2026-09-25): the root is a threshold, not a redirect
+
+`/` no longer redirects to `/fr`. It never did so permanently: the `redirects` entry in
+`astro.config.mjs` built a page served with status 200 and a zero second meta refresh, verified with
+`curl -sI https://aubaine.io/`. 0021 replaces it with a page that picks `/fr` or `/en` from the
+browser's languages and hands off through Swup. Every other bullet of this decision stands: each
+page still lives under its locale prefix, and the root is `noindex` with its canonical at `/fr`.
+
 ---
 
 ## Decision 2: One catch-all, and the routes come from the data
@@ -80,6 +90,13 @@ content is.
 - One catch-all means the router is a dispatch rather than a directory listing, so the set of views
   is discoverable from `View.astro` and `registry.ts` rather than from `ls src/pages`. That is a
   real loss of legibility, accepted because the alternative loses the self registration.
+
+### Addendum (2026-09-25): the root has its own page file
+
+`src/pages/index.astro` joins the catch-all and `404.astro`. Like `404.astro`, it renders no locale
+route, so it stays outside `pageRoutes()` and the catch-all remains the only page file that renders a
+locale's content. The file list in this decision was already short of `src/pages/print/`, which 0015
+records.
 
 ---
 
