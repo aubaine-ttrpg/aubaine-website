@@ -683,6 +683,16 @@ const RULE_TERMS: readonly RuleTerm[] = [
     },
   },
   {
+    fr: ['Taille', 'Tailles'],
+    en: ['Size', 'Sizes'],
+    color: 'var(--term-move)',
+    icon: 'material-symbols/people-size-increase-rounded',
+    definition: {
+      fr: "Le gabarit d'une créature, rangé en catégories, du plus menu au plus colossal. La vôtre vient de votre Espèce.",
+      en: "A creature's build, sorted into categories from the slightest to the most colossal. Yours comes from your Species.",
+    },
+  },
+  {
     fr: ['Prérequis'],
     en: ['Prerequisite', 'Prerequisites'],
     color: 'var(--term-roll)',

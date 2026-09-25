@@ -871,7 +871,7 @@ describe('prose hygiene', () => {
 describe('the term index', () => {
   it('gives every icon it names a file on disk', async () => {
     const owned = new Set<string>()
-    for (const set of ['mdi', 'game-icons']) {
+    for (const { prefix: set } of ICON_SETS) {
       for (const file of await readdir(resolve(root, 'data/media/icons', set))) {
         owned.add(`${set}/${file.replace(/\.svg$/, '')}`)
       }
