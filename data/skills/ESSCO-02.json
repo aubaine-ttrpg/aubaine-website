@@ -1,10 +1,10 @@
 {
   "id": "ESSCO-02",
-  "status": "draft",
-  "title": "Commodo consectetur",
+  "title": "Sang de l'autre",
   "type": "passive",
-  "tier": 1,
+  "tier": 5,
   "domains": [],
   "prerequisite": "Être Scothan",
-  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  "activation": "Passif",
+  "description": "Vous tenez votre lignée de l'une de vos deux Espèces parentes : son ou ses types de créature, son espérance de vie, son âge adulte et ses langues deviennent les vôtres. La première fois que vous mémorisez cette Compétence, choisissez cette Espèce et, si elle en compte, l'une de ses sous-espèces ou origines régionales.\n\nPour tout Prérequis, vous comptez comme un personnage de cette Espèce et de la sous-espèce ou de l'origine régionale retenue. Choisissez aussi une Compétence parmi celles de cette Espèce et de la sous-espèce ou de l'origine régionale retenue : elle est Mémorisée sans occuper de Mémoire et n'a pas à être achetée. Vous ne pouvez plus la changer. Si cette Espèce ne fixe pas elle-même ce que vous tenez d'elle, comme les Morts-vivants et les Scothans, décidez-le avec le MJ.\n\nVotre Énergie maximum vaut 8, plus la moitié, arrondie à l'inférieur, de la somme de votre Esprit, de vos Niveaux d'Énergie et de toute autre source d'Énergie maximum. Un Esprit négatif entre dans cette somme. Avec +2 en Esprit et 1 Niveau d'Énergie, elle vaut ainsi 9 au lieu de 11, et avec -1 en Esprit et 3 Niveaux d'Énergie, 9 au lieu de 10.\n\nVous ne pouvez pas choisir cette même Espèce pour {{Chair de l'un}}."
 }

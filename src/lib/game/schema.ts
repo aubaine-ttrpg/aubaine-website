@@ -455,7 +455,7 @@ export const species = z
       .min(1)
       .optional()
       .describe(
-        "Type(s) de créature de l'Espèce. La plupart sont Humanoïdes ; un peuple façonné en cumule deux, Humanoïde et Artificiel. Absent : l'Espèce n'en déclare pas encore.",
+        "Type(s) de créature de l'Espèce. La plupart sont Humanoïdes ; un peuple façonné en cumule deux, Humanoïde et Artificiel. Absent : l'Espèce n'en déclare pas encore, ou elle les tient de l'une de ses Espèces parentes.",
       ),
     size: z
       .array(sizeKey)
@@ -475,7 +475,7 @@ export const species = z
       .min(1)
       .optional()
       .describe(
-        "Langue(s) que l'Espèce parle, lit et écrit. Absent : l'Espèce n'en déclare pas encore.",
+        "Langue(s) que l'Espèce parle, lit et écrit. Absent : l'Espèce n'en déclare pas encore, ou elle les tient de l'une de ses Espèces parentes.",
       ),
     offered: z
       .array(skillId)

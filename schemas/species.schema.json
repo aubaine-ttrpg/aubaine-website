@@ -45,7 +45,7 @@
       "minLength": 1
     },
     "types": {
-      "description": "Type(s) de créature de l'Espèce. La plupart sont Humanoïdes ; un peuple façonné en cumule deux, Humanoïde et Artificiel. Absent : l'Espèce n'en déclare pas encore.",
+      "description": "Type(s) de créature de l'Espèce. La plupart sont Humanoïdes ; un peuple façonné en cumule deux, Humanoïde et Artificiel. Absent : l'Espèce n'en déclare pas encore, ou elle les tient de l'une de ses Espèces parentes.",
       "minItems": 1,
       "type": "array",
       "items": {
@@ -71,7 +71,7 @@
       ]
     },
     "languages": {
-      "description": "Langue(s) que l'Espèce parle, lit et écrit. Absent : l'Espèce n'en déclare pas encore.",
+      "description": "Langue(s) que l'Espèce parle, lit et écrit. Absent : l'Espèce n'en déclare pas encore, ou elle les tient de l'une de ses Espèces parentes.",
       "minItems": 1,
       "type": "array",
       "items": {

@@ -1,13 +1,13 @@
 {
   "id": "scothan",
-  "status": "draft",
+  "status": "playtest",
   "name": "Scothan",
-  "types": [
-    "humanoid"
-  ],
   "derivedFrom": "parents",
   "offered": [
     "ESSCO-01",
     "ESSCO-02"
-  ]
+  ],
+  "roleplay": {
+    "text": "Un Scothan naît de deux Espèces différentes, ses Espèces parentes. {{Chair de l'un}} vous donne le corps de l'une, {{Sang de l'autre}} la lignée de l'autre.\n\nDécidez aussi de ce que vous montrez de votre sang. Beaucoup de Scothans cachent un trait pour passer pour l'une de leurs Espèces parentes, d'autres l'affichent avec fierté. Si la chair et le sang ne pouvaient pas vous donner le jour et qu'il a fallu de la magie pour que vous naissiez, vous êtes un Garthae, et les Oracles vous traquent pour vous tuer."
+  }
 }
