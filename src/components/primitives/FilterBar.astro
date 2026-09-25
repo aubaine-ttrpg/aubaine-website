@@ -7,9 +7,10 @@ type Props = {
   locale: Locale
   variant: 'trees' | 'species' | 'skills' | 'speciesSkills' | 'equipment' | 'baseActions' | 'states'
   total: number
+  drafts: number
 }
 
-const { locale, variant, total } = Astro.props
+const { locale, variant, total, drafts } = Astro.props
 const t = strings(locale)
 
 const GROUPS: Record<Props['variant'], FilterGroup[]> = {
@@ -81,6 +82,9 @@ const islandStrings = {
   emptyBody: t.emptyBody,
   treeKind: t.treeKind,
   allTrees: t.allTrees,
+  drafts: t.drafts,
+  emptyListTitle: t.emptyListTitle,
+  emptyListBody: t.emptyListBody,
 }
 ---
 
@@ -90,6 +94,90 @@ const islandStrings = {
   groups={GROUPS[variant]}
   kinds={kinds}
   total={total}
+  drafts={drafts}
   locale={locale}
   inputMaxWidth={variant === 'trees' ? '300px' : '340px'}
 />
+
+<style is:global>
+  .au-drafts-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-family: var(--font-ui);
+    font-size: 14.5px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .au-switch {
+    appearance: none;
+    position: relative;
+    flex: none;
+    width: 36px;
+    height: 20px;
+    margin: 0;
+    border: 1px solid var(--ink3);
+    border-radius: 999px;
+    background: var(--field);
+    cursor: pointer;
+    transition:
+      background-color 0.2s var(--ease),
+      border-color 0.2s var(--ease);
+  }
+
+  .au-switch::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--ink3);
+    transition:
+      transform 0.18s var(--ease),
+      background-color 0.2s var(--ease);
+  }
+
+  .au-switch:checked,
+  :root[data-drafts='shown'] .au-switch {
+    border-color: var(--gold);
+    background: var(--accent-soft);
+  }
+
+  .au-switch:checked::before,
+  :root[data-drafts='shown'] .au-switch::before {
+    transform: translateX(16px);
+    background: var(--gold);
+  }
+
+  .au-switch:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .au-switch,
+    .au-switch::before {
+      transition: none;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .au-switch {
+      border-color: CanvasText;
+    }
+
+    .au-switch::before {
+      background: CanvasText;
+    }
+
+    .au-switch:checked::before {
+      background: Highlight;
+    }
+  }
+</style>

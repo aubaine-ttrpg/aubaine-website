@@ -1,5 +1,6 @@
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { DRAFT_REVEALED, draftsShown, isDraft, isRevealed, setDraftsShown } from '../scripts/drafts'
 
 export type FilterGroup = { key: string; label: string }
 export type FilterKind = { key: string; label: string; dot: string }
@@ -18,6 +19,9 @@ export type FilterStrings = {
   emptyBody: string
   treeKind: string
   allTrees: string
+  drafts: string
+  emptyListTitle: string
+  emptyListBody: string
 }
 
 type Props = {
@@ -25,13 +29,16 @@ type Props = {
   groups: FilterGroup[]
   kinds?: FilterKind[] | undefined
   total: number
+  drafts: number
   locale: string
   inputMaxWidth?: string | undefined
 }
 
 type Entry = {
   element: HTMLElement
+  id: string
   name: string
+  draft: boolean
   facets: Map<string, string[]>
 }
 
@@ -48,8 +55,18 @@ function readEntries(): Entry[] {
       const key = attribute.name.slice('data-facet-'.length)
       facets.set(key, attribute.value.split(' ').filter(Boolean))
     }
-    return { element, name: element.dataset['name'] ?? '', facets }
+    return {
+      element,
+      id: element.dataset['entry'] ?? '',
+      name: element.dataset['name'] ?? '',
+      draft: isDraft(element),
+      facets,
+    }
   })
+}
+
+function readRevealed(entries: Entry[]): Set<string> {
+  return new Set(entries.filter((entry) => isRevealed(entry.element)).map((entry) => entry.id))
 }
 
 function readLabels(entries: Entry[], group: string): Map<string, string> {
@@ -80,10 +97,13 @@ export default function FilterBar({
   groups,
   kinds,
   total,
+  drafts,
   locale,
   inputMaxWidth = '340px',
 }: Props) {
   const [entries, setEntries] = useState<Entry[]>([])
+  const [withDrafts, setWithDrafts] = useState(false)
+  const [revealed, setRevealed] = useState<Set<string>>(new Set())
   const [query, setQuery] = useState('')
   const [selected, setSelected] = useState<Map<string, Set<string>>>(new Map())
   const [kind, setKind] = useState('all')
@@ -100,15 +120,26 @@ export default function FilterBar({
   const dialogTiming = reducedMotion ? { duration: 0 } : { duration: 0.24, ease: POP_EASE }
 
   useEffect(() => {
-    setEntries(readEntries())
+    const read = readEntries()
+    setEntries(read)
+    setWithDrafts(draftsShown())
+    setRevealed(readRevealed(read))
+    const onRevealed = () => setRevealed(readRevealed(read))
+    document.addEventListener(DRAFT_REVEALED, onRevealed)
+    return () => document.removeEventListener(DRAFT_REVEALED, onRevealed)
   }, [])
+
+  const pool = useMemo(
+    () => entries.filter((entry) => withDrafts || !entry.draft || revealed.has(entry.id)),
+    [entries, withDrafts, revealed],
+  )
 
   const kindFiltered = useMemo(
     () =>
       kind === 'all'
-        ? entries
-        : entries.filter((entry) => (entry.facets.get('kind') ?? []).includes(kind)),
-    [entries, kind],
+        ? pool
+        : pool.filter((entry) => (entry.facets.get('kind') ?? []).includes(kind)),
+    [pool, kind],
   )
 
   const visible = useMemo(
@@ -190,8 +221,15 @@ export default function FilterBar({
     setQuery('')
   }
 
-  const count = entries.length === 0 ? total : visible.length
-  const countLabel = `${new Intl.NumberFormat(locale === 'en' ? 'en-US' : 'fr-FR').format(count)} ${count === 1 ? strings.result : strings.results}`
+  const showDrafts = (shown: boolean) => {
+    setDraftsShown(shown)
+    setWithDrafts(shown)
+  }
+
+  const resultLabel = (value: number) =>
+    `${new Intl.NumberFormat(locale === 'en' ? 'en-US' : 'fr-FR').format(value)} ${value === 1 ? strings.result : strings.results}`
+  const hydrated = entries.length > 0
+  const count = hydrated ? visible.length : total
   const filterBc = activeCount > 0 ? 'var(--gold)' : 'var(--line)'
   const filterBg = activeCount > 0 ? 'var(--accent-soft)' : 'var(--field)'
   const kindLabel = kinds?.find((entry) => entry.key === kind)?.label ?? strings.allTrees
@@ -351,7 +389,28 @@ export default function FilterBar({
           />
         </div>
 
-        <div style={{ flex: 'none', display: 'flex', alignItems: 'center', gap: '14px' }}>
+        <div
+          style={{
+            flex: 'none',
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            gap: '12px 14px',
+          }}
+        >
+          {drafts > 0 && (
+            <label data-drafts-control="" className="au-drafts-switch">
+              <input
+                type="checkbox"
+                role="switch"
+                aria-checked={withDrafts}
+                className="au-switch"
+                checked={withDrafts}
+                onChange={(event) => showDrafts(event.target.checked)}
+              />
+              <span>{strings.drafts}</span>
+            </label>
+          )}
           <span
             aria-live="polite"
             style={{
@@ -363,7 +422,14 @@ export default function FilterBar({
               fontVariantNumeric: 'tabular-nums',
             }}
           >
-            {countLabel}
+            {hydrated || drafts === 0 ? (
+              resultLabel(count)
+            ) : (
+              <>
+                <span data-drafts-count="all">{resultLabel(total)}</span>
+                <span data-drafts-count="public">{resultLabel(total - drafts)}</span>
+              </>
+            )}
           </span>
           <button
             type="button"
@@ -437,6 +503,22 @@ export default function FilterBar({
 
       {entries.length > 0 && visible.length === 0 && (
         <div style={{ margin: '0 auto', padding: '46px 26px', maxWidth: 'min(1560px,46ch)' }}>
+          {!narrowed && (
+            <svg
+              aria-hidden="true"
+              width="30"
+              height="34"
+              viewBox="0 0 30 34"
+              style={{ display: 'block', margin: '0 0 16px', color: 'var(--ink3)' }}
+            >
+              <path
+                d="M15 1.5 28.5 9.25v15.5L15 32.5 1.5 24.75V9.25Z"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+              />
+            </svg>
+          )}
           <p
             style={{
               margin: '0 0 10px',
@@ -445,35 +527,37 @@ export default function FilterBar({
               color: 'var(--ink)',
             }}
           >
-            {strings.emptyTitle}
+            {narrowed ? strings.emptyTitle : strings.emptyListTitle}
           </p>
           <p
             style={{
-              margin: '0 0 18px',
+              margin: narrowed ? '0 0 18px' : 0,
               fontSize: '15.5px',
               lineHeight: 1.64,
               color: 'var(--ink2)',
             }}
           >
-            {strings.emptyBody}
+            {narrowed ? strings.emptyBody : strings.emptyListBody}
           </p>
-          <button
-            type="button"
-            onClick={reset}
-            style={{
-              padding: '9px 15px',
-              cursor: 'pointer',
-              fontFamily: 'var(--font-ui)',
-              fontSize: '14px',
-              fontWeight: 600,
-              letterSpacing: '.08em',
-              textTransform: 'uppercase',
-              color: 'var(--ink)',
-              border: '1px solid var(--line2)',
-            }}
-          >
-            {strings.resetFilters}
-          </button>
+          {narrowed && (
+            <button
+              type="button"
+              onClick={reset}
+              style={{
+                padding: '9px 15px',
+                cursor: 'pointer',
+                fontFamily: 'var(--font-ui)',
+                fontSize: '14px',
+                fontWeight: 600,
+                letterSpacing: '.08em',
+                textTransform: 'uppercase',
+                color: 'var(--ink)',
+                border: '1px solid var(--line2)',
+              }}
+            >
+              {strings.resetFilters}
+            </button>
+          )}
         </div>
       )}
 

@@ -152,6 +152,16 @@ input {
   animation: au-fade 0.18s var(--ease) both;
 }
 
+:root[data-drafts="hidden"] [data-entry][data-facet-sta="draft"]:not([data-revealed]) {
+  display: none;
+}
+
+:root:not([data-drafts]) [data-drafts-control],
+:root[data-drafts="hidden"] [data-drafts-count="all"],
+:root:not([data-drafts="hidden"]) [data-drafts-count="public"] {
+  display: none;
+}
+
 .au-swup-page {
   transition: opacity 0.2s var(--ease);
 }

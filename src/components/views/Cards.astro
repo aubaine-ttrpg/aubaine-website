@@ -124,7 +124,7 @@ const hero = HERO_TEXT[variant]
   </Hero>
   {
     (variant === 'baseActions' || variant === 'states') && (
-      <FilterBar locale={locale} variant={variant} total={total} />
+      <FilterBar locale={locale} variant={variant} total={total} drafts={0} />
     )
   }
   <section style="max-width:1560px; margin:0 auto; padding:40px 26px 80px">

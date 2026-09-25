@@ -205,3 +205,15 @@ test('a tree page reaches its own history without javascript', async ({ page }) 
   await page.locator('[data-versions]').click()
   await expect(page).toHaveURL('/fr/archives/berserker')
 })
+
+test.describe('without javascript', () => {
+  test.use({ javaScriptEnabled: false })
+
+  test('every draft stays listed without javascript, and no switch pretends otherwise', async ({
+    page,
+  }) => {
+    await page.goto('/en/trees')
+    await expect(page.locator('[data-entry]').filter({ visible: true })).toHaveCount(24)
+    await expect(page.locator('[data-drafts-control]')).toBeHidden()
+  })
+})

@@ -21,7 +21,12 @@ const { locale, corpus, entries, label, variant } = Astro.props
 const t = strings(locale)
 ---
 
-<FilterBar locale={locale} variant={variant} total={entries.length} />
+<FilterBar
+  locale={locale}
+  variant={variant}
+  total={entries.length}
+  drafts={entries.filter((entry) => entry.status === 'draft').length}
+/>
 
 <div
   data-browse={variant === 'equipment' ? 'equipment' : 'skills'}

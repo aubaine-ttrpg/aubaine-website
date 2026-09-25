@@ -115,6 +115,14 @@ const structuredData = {
       } catch (error) {
         document.documentElement.setAttribute('data-theme', 'dark')
       }
+      try {
+        document.documentElement.setAttribute(
+          'data-drafts',
+          window.localStorage.getItem('aubaine.drafts') === 'shown' ? 'shown' : 'hidden'
+        )
+      } catch (error) {
+        document.documentElement.setAttribute('data-drafts', 'hidden')
+      }
     </script>
 
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />

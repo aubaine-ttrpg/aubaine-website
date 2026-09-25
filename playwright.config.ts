@@ -9,7 +9,14 @@ export default defineConfig({
   forbidOnly: Boolean(process.env['CI']),
   retries: process.env['CI'] ? 2 : 0,
   reporter: process.env['CI'] ? 'github' : 'list',
-  use: { baseURL: BASE_URL, trace: 'on-first-retry' },
+  use: {
+    baseURL: BASE_URL,
+    trace: 'on-first-retry',
+    storageState: {
+      cookies: [],
+      origins: [{ origin: BASE_URL, localStorage: [{ name: 'aubaine.drafts', value: 'shown' }] }],
+    },
+  },
   projects: [
     { name: 'chromium', use: devices['Desktop Chrome'] },
     {

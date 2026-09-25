@@ -76,7 +76,12 @@ const cards: Card[] = corpus.species.map((entry) => {
     </p>
   </Hero>
 
-  <FilterBar locale={locale} variant="species" total={cards.length} />
+  <FilterBar
+    locale={locale}
+    variant="species"
+    total={cards.length}
+    drafts={cards.filter((card) => card.status === 'draft').length}
+  />
 
   <section style="max-width:1560px; margin:0 auto; padding:26px 26px 78px">
     <div

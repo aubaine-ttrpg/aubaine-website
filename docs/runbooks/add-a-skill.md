@@ -15,7 +15,7 @@ The filename is the id and nothing else. The id matches `^[A-Z0-9]{5}-[0-9]{2}$`
 | Field | Required | What it means (from `schema.ts`) | Allowed values |
 | --- | --- | --- | --- |
 | `id` | required | Identité immuable d'une Compétence : cinq caractères tirés du nom, puis un numéro. Deux Compétences ne peuvent pas la partager, même dans deux arbres différents. | `^[A-Z0-9]{5}-[0-9]{2}$` |
-| `status` | optional | Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une Espèce, une pièce d'équipement ou une panoplie, dans cet ordre. | `draft`, `playtest`, `beta`, `balanced` |
+| `status` | optional | Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable : les listes le masquent tant que le lecteur n'affiche pas les brouillons ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une Espèce, une pièce d'équipement ou une panoplie, dans cet ordre. | `draft`, `playtest`, `beta`, `balanced` |
 | `title` | required | Nom imprimé. Un texte de règle appelle la Compétence par ce nom, entre doubles accolades. | any non empty string |
 | `type` | required | Forme du nœud sur la planche : rond pour active, carré arrondi pour passive, concave pour spéciale. | `active`, `passive`, `special` |
 | `tier` | required | Palier de prix. Le PX rendu vaut 5 × tier, sauf si xpOverride le remplace. | integer 1 to 10 |

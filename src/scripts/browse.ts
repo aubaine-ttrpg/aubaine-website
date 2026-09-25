@@ -1,3 +1,4 @@
+import { DRAFTS_TOGGLED, isHiddenDraft, revealDraft } from './drafts'
 import type { SwupInstance } from './swup'
 
 const DETAIL_PREFIX = 'e-'
@@ -23,15 +24,34 @@ function detailFor(view: BrowseView, id: string): HTMLElement | null {
   return detail && view.panel.contains(detail) ? detail : null
 }
 
+function entryFor(view: BrowseView, id: string): HTMLElement | null {
+  return view.list.querySelector<HTMLElement>(`[data-entry="${CSS.escape(id)}"]`)
+}
+
 function rowFor(view: BrowseView, id: string): HTMLElement | null {
-  return view.list.querySelector<HTMLElement>(`[data-entry="${CSS.escape(id)}"] [data-row]`)
+  return entryFor(view, id)?.querySelector<HTMLElement>('[data-row]') ?? null
+}
+
+function entries(view: BrowseView): HTMLElement[] {
+  return Array.from(view.list.querySelectorAll<HTMLElement>('[data-entry]'))
 }
 
 function firstVisibleId(view: BrowseView): string | undefined {
-  for (const entry of view.list.querySelectorAll<HTMLElement>('[data-entry]')) {
-    if (!entry.hidden) return entry.dataset['entry']
+  return entries(view).find((entry) => !entry.hidden && !isHiddenDraft(entry))?.dataset['entry']
+}
+
+function currentEntry(view: BrowseView): HTMLElement | null {
+  return (
+    view.list
+      .querySelector<HTMLElement>('[data-row][aria-current]')
+      ?.closest<HTMLElement>('[data-entry]') ?? null
+  )
+}
+
+function hideDrafts(view: BrowseView): void {
+  for (const entry of entries(view)) {
+    if (isHiddenDraft(entry)) entry.hidden = true
   }
-  return undefined
 }
 
 function select(view: BrowseView, id: string): HTMLElement | undefined {
@@ -68,7 +88,12 @@ function open(view: BrowseView, id: string): void {
 
 function restore(view: BrowseView): void {
   const hash = window.location.hash
-  if (hash.startsWith(DETAIL_HASH) && select(view, hash.slice(DETAIL_HASH.length))) return
+  const linked = hash.startsWith(DETAIL_HASH) ? hash.slice(DETAIL_HASH.length) : undefined
+  const entry = linked ? entryFor(view, linked) : null
+  if (linked && entry && select(view, linked)) {
+    revealDraft(entry)
+    return
+  }
   const first = firstVisibleId(view)
   if (first) select(view, first)
 }
@@ -77,7 +102,21 @@ function sync(): void {
   const view = browseView()
   if (!view) return
   view.root.setAttribute('data-selection', 'enhanced')
+  hideDrafts(view)
   restore(view)
+}
+
+function onDraftsToggled(): void {
+  const view = browseView()
+  if (!view) return
+  const current = currentEntry(view)
+  if (!current || !isHiddenDraft(current)) return
+  const first = firstVisibleId(view)
+  if (!first) return
+  select(view, first)
+  if (window.location.hash === `${DETAIL_HASH}${current.dataset['entry']}`) {
+    window.history.replaceState(window.history.state, '', `${DETAIL_HASH}${first}`)
+  }
 }
 
 function onClick(event: MouseEvent): void {
@@ -101,6 +140,7 @@ function onHashChange(): void {
 export function bindBrowse(swup: SwupInstance): void {
   document.addEventListener('click', onClick)
   window.addEventListener('hashchange', onHashChange)
+  document.addEventListener(DRAFTS_TOGGLED, onDraftsToggled)
   swup.hooks.on('content:replace', sync)
   sync()
 }
