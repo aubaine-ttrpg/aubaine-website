@@ -136,8 +136,8 @@ Au delà, ce n'est plus une difficulté mais une impossibilité. Une cible enti�
 
 ## Il n'y a ni attaque ni sauvegarde
 
-Aubaine ne connaît pas de type de Jet séparé pour attaquer ou pour résister. Une attaque est un Jet ordinaire comparé à une CA. Une résistance est un Jet ordinaire comparé à un DD.
+Aubaine ne connaît pas de type de Jet séparé pour attaquer ou pour résister. Une attaque est un Jet ordinaire comparé à une CA. Résister, c'est effectuer un Jet ordinaire comparé à un DD.
 
 Trois Aptitudes servent le plus souvent à porter un coup, Mêlée, Finesse et Visée, et trois à y résister, Réflexes, Résistance et Volonté. Elles n'ont aucune règle particulière. Elles reviennent simplement plus que les autres, ce qui vous dit où investir.
 
-Elles ne ferment rien pour autant. Toute Aptitude peut porter une attaque ou une résistance quand la manière d'agir le justifie : Investigation pour percer une illusion trop régulière, Athlétisme pour planter ses talons contre une traction, Intimidation pour tenir tête à ce qui cherche à terrifier.
+Elles ne ferment rien pour autant. Toute Aptitude peut porter une attaque ou servir à résister quand la manière d'agir le justifie : Investigation pour percer une illusion trop régulière, Athlétisme pour planter ses talons contre une traction, Intimidation pour tenir tête à ce qui cherche à terrifier.

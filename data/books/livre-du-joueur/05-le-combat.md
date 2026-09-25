@@ -1,11 +1,13 @@
 ---
 title: "Le combat"
-description: "L'économie du tour, l'initiative, attaquer, la Classe d'armure, tomber à 0 PdV et les états."
+description: "L'économie du tour, l'initiative, attaquer, la Classe d'armure, les types de dégâts, tomber à 0 PdV et les états."
 ---
 
 Le combat n'a pas de règles de résolution à lui. On y lance les mêmes Jets que partout ailleurs. Ce qu'il ajoute, c'est un ordre de passage et un budget par tour.
 
 ## Votre tour
+
+Un round dure environ 6 secondes, le temps que chaque créature joue son tour.
 
 À votre tour, vous disposez de quatre choses. Elles sont indépendantes : ne pas en utiliser une ne vous en rend pas une autre.
 
@@ -87,6 +89,26 @@ Une seule formule de base s'applique à la fois, celle de la pièce occupant l'e
 Un exemple. Sans armure avec une Dextérité de +3, votre CA est 15. Enfilez une armure en `14 + Dextérité` et elle passe à 17, pas à 29. Ajoutez une targe et elle monte à 18.
 
 Chaque armure imprime sa propre formule, et certaines plafonnent la Dextérité qu'elles laissent compter ou exigent une Force minimale. Lisez la pièce : elle porte ses contraintes.
+
+## Les types de dégâts
+
+Des dégâts peuvent porter un type, comme les dégâts Contondants ou les dégâts de Feu. Une arme imprime le sien, et une Compétence le nomme quand ses dégâts en portent un.
+
+Une créature peut avoir une résistance ou une vulnérabilité à un type de dégâts, à une source de dégâts, ou à tous les dégâts, qu'ils portent un type ou non. Avec une résistance, elle subit la moitié des dégâts concernés, arrondie à l'inférieur. Avec une vulnérabilité, elle en subit le double. Aucune des deux ne demande de Jet : elles s'appliquent au total, une fois les dés lancés.
+
+Quand d'autres règles modifient les mêmes dégâts, procédez dans cet ordre :
+
+1. Totalisez les dégâts avec tout ce qui les augmente ou les réduit d'un nombre fixe, comme la Caractéristique d'une attaque ou « vous en subissez 1 de moins ».
+2. Si la Compétence n'en inflige que la moitié, sur une réussite par exemple, divisez ce total par deux, arrondi à l'inférieur.
+3. Divisez le résultat par deux en cas de résistance, ou doublez-le en cas de vulnérabilité.
+
+Quand un même coup inflige des dégâts de plusieurs types, une résistance ou une vulnérabilité ne touche que la part de son type. Ce qui s'ajoute sans nommer de type, comme la Caractéristique d'une attaque, compte avec les dégâts de l'arme ou de la Compétence. Ce qui retire un nombre fixe sans nommer de type, comme « vous en subissez 1 de moins », se retire de la part la plus forte.
+
+Des dégâts réduits à 0 ne comptent pas comme des dégâts subis, et ne font donc pas descendre le compteur d'[[Agonie]].
+
+Une résistance et une vulnérabilité qui touchent les mêmes dégâts s'annulent, et ces dégâts ne changent pas. Une résistance reçue de deux sources ne s'applique qu'une fois, selon la règle « Deux fois le même effet » du chapitre Comment jouer, tout comme une vulnérabilité. Deux résistances et une vulnérabilité aux mêmes dégâts s'annulent donc encore.
+
+Un exemple. Un coup de 10 dégâts Contondants frappe une créature qui en subit 1 de moins et qui a une résistance aux dégâts Contondants : elle en subit 4, la moitié de 9 arrondie à l'inférieur. Avec une vulnérabilité à la place, elle en subirait 18.
 
 ## Tomber à 0 PdV
 

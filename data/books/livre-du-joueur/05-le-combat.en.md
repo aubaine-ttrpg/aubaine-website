@@ -1,11 +1,13 @@
 ---
 title: "Combat"
-description: "Turn economy, initiative, attacking, Armour Class, dropping to 0 HP and states."
+description: "Turn economy, initiative, attacking, Armour Class, damage types, dropping to 0 HP and states."
 ---
 
 Combat has no resolution rules of its own. The Rolls are the same ones you make everywhere else. What it adds is an order of play and a budget per turn.
 
 ## Your turn
+
+A round lasts about 6 seconds, the time it takes for every creature to have its turn.
 
 On your turn you have four things. They are independent: not spending one does not give you another.
 
@@ -87,6 +89,26 @@ Only one base formula applies at a time, the one on the piece in the Armour slot
 An example. Unarmoured with Dexterity +3, your AC is 15. Put on armour rated `14 + Dexterity` and it becomes 17, not 29. Add a targe and it reaches 18.
 
 Each armour prints its own formula, and some cap the Dexterity they let you count or demand a minimum Strength. Read the piece: it carries its constraints.
+
+## Damage types
+
+Damage can carry a type, such as Bludgeoning damage or Fire damage. A weapon prints its own, and a Skill names it when its damage has one.
+
+A creature can have a resistance or a vulnerability to one type of damage, to one source of damage, or to all damage, typed or not. With a resistance it takes half the damage concerned, rounded down. With a vulnerability it takes double. Neither involves a Roll: both apply to the total once the dice are rolled.
+
+When other rules change the same damage, work in this order:
+
+1. Total the damage with everything that raises or lowers it by a fixed number, such as an attack's Characteristic or "you take 1 less".
+2. If the Skill deals only half, on a success for instance, halve that total, rounded down.
+3. Halve the result for a resistance, or double it for a vulnerability.
+
+When one blow deals damage of several types, a resistance or a vulnerability touches only the part of its type. Anything added without naming a type, such as an attack's Characteristic, counts with the damage of the weapon or the Skill. Anything that removes a fixed number without naming a type, such as "you take 1 less", comes off the largest part.
+
+Damage reduced to 0 does not count as damage taken, so it does not lower the [[Agonie]] counter.
+
+A resistance and a vulnerability to the same damage cancel out, and that damage stays as it is. A resistance received from two sources applies only once, under "The same effect twice" in How to play, and a vulnerability works the same way. Two resistances and one vulnerability to the same damage therefore still cancel out.
+
+An example. A blow deals 10 Bludgeoning damage to a creature that takes 1 less and has a resistance to Bludgeoning damage: it takes 4, half of 9 rounded down. With a vulnerability instead, it would take 18.
 
 ## Dropping to 0 HP
 

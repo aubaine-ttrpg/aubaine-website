@@ -136,8 +136,8 @@ Past that it is not difficulty but impossibility. A target in full cover cannot 
 
 ## There is no attack roll and no saving throw
 
-Aubaine has no separate kind of Roll for attacking or for resisting. An attack is an ordinary Roll measured against an AC. A resistance is an ordinary Roll measured against a DC.
+Aubaine has no separate kind of Roll for attacking or for resisting. An attack is an ordinary Roll measured against an AC. Resisting means making an ordinary Roll measured against a DC.
 
 Three Aptitudes most often land a blow, Melee, Finesse and Aim, and three most often resist one, Reflexes, Resistance and Will. They follow no special rule. They simply come up more than the others, which tells you where to invest.
 
-They close nothing, though. Any Aptitude can carry an attack or a resistance when the way you are acting warrants it: Investigation to see through an apparition that repeats too regularly, Athletics to dig your heels in against a pull, Intimidation to face down something trying to terrify you.
+They close nothing, though. Any Aptitude can carry an attack or serve to resist when the way you are acting warrants it: Investigation to see through an apparition that repeats too regularly, Athletics to dig your heels in against a pull, Intimidation to face down something trying to terrify you.
