@@ -1,0 +1,18 @@
+{
+  "id": "ESMOR-09",
+  "title": "Festin",
+  "type": "active",
+  "tier": 5,
+  "showXp": false,
+  "domains": [],
+  "prerequisite": "Être Goule",
+  "activation": "10 minutes",
+  "range": "Contact",
+  "duration": "Instantanée",
+  "recharge": "short-rest",
+  "energy": 0,
+  "tags": {
+    "school": "necromancy"
+  },
+  "description": "Vous vous repaissez du cadavre d'une créature morte depuis un jour au plus. Vous récupérez 3d4 PdV et vous goûtez l'un de ses souvenirs : posez au MJ une question sur ce que la créature a vu, entendu ou fait de son vivant. Le MJ y répond par le souvenir qui s'en approche le plus, tel qu'elle s'en souvenait.\n\nUn cadavre ne nourrit qu'un seul festin."
+}

@@ -16,6 +16,8 @@ const ROUTES = [
   '/en/species',
   '/fr/espece/humain',
   '/en/species/scothan',
+  '/fr/espece/mort-vivant',
+  '/en/species/mort-vivant',
   '/fr/competences',
   '/fr/equipement',
   '/fr/regles',
@@ -91,6 +93,52 @@ test('a species carries its lore, its regional origins and its whole pool in the
   ])
   await expect(page.locator('[data-details] .au-skill__xp')).toHaveCount(0)
   await expect(page.locator('[data-detail]').first()).toBeVisible()
+})
+
+test('a species with sub-species prints each one with the skill it imposes', async ({ page }) => {
+  await page.goto('/fr/espece/mort-vivant')
+  await expect(page.locator('.au-trait')).toHaveCount(2)
+  await expect(page.locator('#sous-especes')).toHaveText('Sous-espèces')
+  await expect(page.locator('#origines-regionales')).toHaveCount(0)
+  await expect(page.locator('[id^="origine-"]')).toHaveCount(6)
+  await expect(page.locator('.au-aside .au-trail .au-trail a')).toHaveText([
+    'Fantôme',
+    'Squelette',
+    'Revenant',
+    'Zombie',
+    'Goule',
+    'Liche',
+  ])
+  const fantome = page.locator('#origine-fantome')
+  await expect(fantome.locator('dt').first()).toHaveText('Compétence imposée')
+  await expect(fantome.locator('dd a')).toHaveAttribute('href', '#e-ESMOR-05')
+  expect(
+    await page
+      .locator('[data-rows] [data-entry]')
+      .evaluateAll((rows) => rows.map((row) => row.getAttribute('data-entry'))),
+  ).toEqual([
+    'ESMOR-01',
+    'ESMOR-02',
+    'ESMOR-03',
+    'ESMOR-04',
+    'ESMOR-05',
+    'ESMOR-06',
+    'ESMOR-07',
+    'ESMOR-08',
+    'ESMOR-09',
+    'ESMOR-10',
+  ])
+
+  await page.goto('/en/species/mort-vivant')
+  await expect(page.locator('#sous-especes')).toHaveText('Subspecies')
+  await expect(page.locator('.au-aside .au-trail .au-trail a')).toHaveText([
+    'Ghost',
+    'Skeleton',
+    'Revenant',
+    'Zombie',
+    'Ghoul',
+    'Lich',
+  ])
 })
 
 test('a skill tree plate draws its nodes without javascript', async ({ page }) => {

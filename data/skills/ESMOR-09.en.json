@@ -1,0 +1,6 @@
+{
+  "title": "Feast",
+  "prerequisite": "Ghoul",
+  "duration": "Instantaneous",
+  "description": "You gorge on the corpse of a creature that died no more than a day ago. You regain 3d4 HP and taste one of its memories: ask the GM one question about what the creature saw, heard or did in life, and the GM answers with the memory that comes closest, as the creature remembered it.\n\nA corpse feeds only one feast."
+}

@@ -1,0 +1,6 @@
+{
+  "title": "Knell",
+  "prerequisite": "Undead",
+  "activation": "Passive",
+  "description": "You know where every corpse, and every creature in [[Agonie]], lies within 18 m of you, even out of sight or Caché, along with the Agonie value of each such creature. Knowing where a Caché creature lies does not let you target it. An Undead does not count as a corpse.\n\nWhen you touch a corpse, you know how many hours ago the creature died, or how many days once it has been more than one."
+}

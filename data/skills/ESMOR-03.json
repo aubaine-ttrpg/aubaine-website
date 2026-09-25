@@ -1,10 +1,13 @@
 {
   "id": "ESMOR-03",
-  "status": "draft",
-  "title": "Voluptate eiusmod",
+  "title": "Glas",
   "type": "passive",
-  "tier": 1,
+  "tier": 5,
   "domains": [],
   "prerequisite": "Être Mort-vivant",
-  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  "activation": "Passif",
+  "tags": {
+    "school": "divination"
+  },
+  "description": "Vous savez où se trouve chaque cadavre et chaque créature qui subit [[Agonie]] à 18 m ou moins de vous, même hors de vue ou Cachée, ainsi que la valeur de l'Agonie de chacune de ces créatures. Savoir où se trouve une créature Cachée ne vous permet pas pour autant de la prendre pour cible. Un Mort-vivant ne compte pas comme un cadavre.\n\nLorsque vous touchez un cadavre, vous savez depuis combien d'heures la créature est morte, ou depuis combien de jours si cela fait plus d'un jour."
 }

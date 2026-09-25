@@ -1,0 +1,6 @@
+{
+  "title": "Morbid Tenacity",
+  "prerequisite": "Zombie",
+  "activation": "Passive",
+  "description": "The first time you memorise this Skill, you receive 5 reprieves. A spent reprieve never comes back.\n\nWhen your [[Agonie]] reaches 0, you can spend 1 reprieve instead of dying: you regain 1 HP, which ends the state, and you stay [[À terre]].\n\nWhen you make a Roll measured against a DC, an AC or an Opposed Roll, you can declare before rolling that you are staking 1 reprieve on it. You then roll 1d100 instead: if the result is equal to or lower than 20 times the number of reprieves you have, the Roll succeeds, and you win it if it is opposed; otherwise it fails, and the other creature wins it if it is opposed. If the other creature also stakes a reprieve on it, each spends its own and the Opposed Roll resolves as normal. The reprieve is spent once the d100 is rolled, success or failure. With 5 reprieves the Roll therefore always succeeds; with 1, it needs 20 or lower. Neither that success nor that failure is critical. A damage Roll or an initiative Roll cannot take a reprieve.\n\nYour Speed decreases by 1.5 m."
+}

@@ -1,0 +1,6 @@
+{
+  "title": "Phylactery",
+  "prerequisite": "Lich",
+  "activation": "Passive",
+  "description": "The first time you memorise this Skill, choose with the GM the object that becomes your phylactery: a small object that fits in one hand, in which your soul is sealed. You always sense which direction it lies in.\n\nIf you die and your phylactery is still intact one day later, you re-form with 1 HP, 0 Energy and no state, in the free space nearest to it, wherever it is. When you die, your body crumbles to dust, and whatever you were carrying stays where you died.\n\nIf it is destroyed, you feel it, and this Skill no longer brings you back until your soul has been sealed in another object. The GM decides what that costs."
+}

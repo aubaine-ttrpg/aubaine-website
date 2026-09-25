@@ -1,0 +1,8 @@
+{
+  "title": "Through Walls",
+  "prerequisite": "Ghost",
+  "activation": "1 Bonus Action",
+  "range": "Self",
+  "duration": "Until the start of your next turn",
+  "description": "Your body loses its substance. You can pass through walls, objects and creatures, and you gain a resistance to all damage. What you carry passes through with you, and the ground still bears your weight. Your Attacks, and those made against you, resolve as normal.\n\nIf the effect ends while you are inside a wall, an object or a creature, you are thrown out into the nearest free space and fall [[À terre]]."
+}

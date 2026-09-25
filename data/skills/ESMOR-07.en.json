@@ -1,0 +1,6 @@
+{
+  "title": "Rigor Mortis",
+  "prerequisite": "Revenant",
+  "activation": "Passive",
+  "description": "Your flesh has set with the stiffness of the dead. Each time you take damage, you take 1 less in total.\n\nWhile you are in [[Agonie]], you can give up your turn to make a Constitution + Will Roll against a DC of 20. On a success, you regain 1 HP, which ends the state, and you get back on your feet without spending movement. Either way, your turn ends."
+}

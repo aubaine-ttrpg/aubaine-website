@@ -1,0 +1,7 @@
+{
+  "title": "Paint and Perfume",
+  "prerequisite": "Undead",
+  "range": "Self",
+  "duration": "Until your next Long Rest",
+  "description": "Painted and perfumed, you pass for one of the living: no one can tell you are Undead, however closely they look at you or however long they spend with you.\n\nWhen a Skill or another effect, magical or not, would let a creature learn your creature type, you can spend your Reaction to make a Charisma + Deception Roll against its DC (10 + Spirit + Perception). On a success, it does not learn it, even by magic. On a failure, it realises you are Undead.\n\nThe effect ends early if water washes the paint away: in a downpour, in a bath, or as soon as you are [[Trempé]]. A Skeleton has to wear a skin to benefit from it."
+}

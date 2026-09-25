@@ -1,6 +1,6 @@
 {
   "id": "mort-vivant",
-  "status": "draft",
+  "status": "playtest",
   "name": "Mort-vivant",
   "types": [
     "undead"
@@ -11,5 +11,54 @@
     "ESMOR-02",
     "ESMOR-03",
     "ESMOR-04"
-  ]
+  ],
+  "subspeciesLabel": "subspecies",
+  "subspecies": [
+    {
+      "id": "fantome",
+      "name": "Fantôme",
+      "text": "***En tant que Fantôme***, vous êtes revenu dans un corps qui a gardé vos traits et votre voix, et qui laisse passer la lumière : une lampe posée derrière vous éclaire vos doigts par transparence. Il ne tient qu'à peu de chose. Quand vous le laissez aller, murs et cloisons ne vous arrêtent pas plus qu'un rideau, et une lame ne trouve presque plus rien à trancher. Vous gardez ensuite longtemps dans la bouche un goût de plâtre.",
+      "imposed": "ESMOR-05",
+      "offered": []
+    },
+    {
+      "id": "squelette",
+      "name": "Squelette",
+      "text": "***En tant que Squelette***, il ne vous reste que vos os, et personne ne se trompe sur ce que vous êtes quand vous vous montrez ainsi. Vos orbites vides suivent ceux qui vous parlent, et les gens reculent avant que vous ayez pu dire votre nom. Sans chair ni peau, vous êtes plus léger et plus vif que de votre vivant, et un coup de gourdin qui laisserait un bleu sur un bras vous fait bien plus de mal. Vous avez appris à écorcher un cadavre de votre Taille pour vous vêtir de sa peau. Elle vous donne l'apparence de celui qui la portait. Elle ne cache pas pour autant que vous êtes un Mort-vivant.",
+      "imposed": "ESMOR-06",
+      "offered": []
+    },
+    {
+      "id": "revenant",
+      "name": "Revenant",
+      "text": "***En tant que Revenant***, la mort vous a rendu votre propre chair, et l'a raidie au passage. Vous vous levez d'un bloc et vous tournez tout le buste pour regarder de côté. Au coin du feu, vous passez pour un vieux soldat perclus de blessures, jusqu'à ce qu'une main se pose sur votre bras et trouve une peau fraîche et dure comme une pierre restée à l'ombre. Les coups y marquent à peine. Dans les villes, un Revenant qui ne fait pas parler de lui finit parfois par se faire oublier.",
+      "imposed": "ESMOR-07",
+      "offered": []
+    },
+    {
+      "id": "zombie",
+      "name": "Zombie",
+      "text": "***En tant que Zombie***, vous portez votre mort sur vous. Vous aviez commencé à pourrir quand vous vous êtes relevé, et vos plaies ne se sont jamais refermées ; sous les bandages, elles ne saignent plus. Vous traînez la jambe, et l'odeur vous dénonce tôt ou tard, d'abord sur vos vêtements, puis dans une pièce où vous êtes resté trop longtemps. Quelque chose en vous refuse encore de retourner à la tombe, et chaque fois que vous lui échappez, vous sentez ce refus s'user. Vous pensez, vous parlez et vous vous souvenez de votre nom. Les vivants ne s'en soucient guère, et l'on lâche les chiens sur un Zombie bien avant de lui poser la moindre question.",
+      "imposed": "ESMOR-08",
+      "offered": []
+    },
+    {
+      "id": "goule",
+      "name": "Goule",
+      "text": "***En tant que Goule***, vous avez gardé l'allure d'un vivant, en plus maigre, et le goût de la chair des morts. Votre haleine a l'odeur d'une fosse qu'on vient d'ouvrir, vos ongles noircissent quoi que vous fassiez, et les cimetières et les champs de bataille vous attirent. Là où une Goule a déjà rôdé, on ne laisse plus un défunt seul jusqu'à sa mise en terre, et l'on surveille la nuit les tombes fraîches. Un mort dont vous vous repaissez vous laisse l'un de ses souvenirs, aussi net que si vous l'aviez vécu : une voix, une rue, la chanson qu'il fredonnait.",
+      "imposed": "ESMOR-09",
+      "offered": []
+    },
+    {
+      "id": "liche",
+      "name": "Liche",
+      "text": "***En tant que Liche***, votre âme n'est plus en vous. Elle est scellée dans votre phylactère, un petit objet, et vous sentez toujours de quel côté il vous attend. Votre visage s'est desséché sur les os, et vous le cachez sous un col relevé et un chapeau à large bord, les mains gantées. Dans la Victoria, le mot seul suffit à vider une taverne, car chacun y sait ce que les Liches font des soldats tombés. Quand vous mourez, ce qui reste de vous tombe en poussière, et tant que l'objet est intact, c'est auprès de lui que vous revenez.",
+      "imposed": "ESMOR-10",
+      "offered": []
+    }
+  ],
+  "roleplay": {
+    "height": "Celle que vous aviez de votre vivant",
+    "text": "Un Mort-vivant a d'abord vécu. Choisissez l'Espèce que vous étiez de votre vivant et, si elle en compte, sa sous-espèce ou son origine régionale. Vous en gardez la Taille, la stature, le Déplacement et les langues. Si elle propose plusieurs Tailles, retenez-en une. Pour tout Prérequis, vous comptez comme un personnage de cette Espèce et de la sous-espèce ou de l'origine régionale retenue. Si cette Espèce ne fixe pas elle-même ce que vous tenez d'elle, comme les Scothans, décidez-le avec le MJ.\n\nChoisissez ensuite votre sous-espèce de Mort-vivant, ce que la mort a fait de vous : sa Compétence est l'une de vos deux Compétences d'Espèce.\n\nDécidez enfin de ce que les vivants finissent par remarquer chez vous."
+  }
 }

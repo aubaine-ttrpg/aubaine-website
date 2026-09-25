@@ -161,6 +161,17 @@
       "labelEn": "Creation",
       "definitionFr": "L'art de donner forme. Ses Compétences font naître, façonnent, réparent ou défont la matière et les objets.",
       "definitionEn": "The art of giving shape. Its Skills bring into being, shape, repair or undo matter and objects."
+    },
+    {
+      "key": "necromancy",
+      "practices": [
+        "spell",
+        "technique"
+      ],
+      "labelFr": "Nécromancie",
+      "labelEn": "Necromancy",
+      "definitionFr": "L'art de traiter avec la mort et avec ceux qu'elle a pris. Ses Compétences puisent dans ce qu'un défunt laisse derrière lui, sa chair comme ses souvenirs, ou arrachent à la mort ce qu'elle croyait tenir.",
+      "definitionEn": "The art of dealing with death and with those it has taken. Its Skills draw on what the dead leave behind, their flesh as much as their memories, or snatch back what death thought it had claimed."
     }
   ],
   "specials": [

@@ -1,0 +1,14 @@
+{
+  "id": "ESMOR-10",
+  "title": "Phylactère",
+  "type": "passive",
+  "tier": 5,
+  "showXp": false,
+  "domains": [],
+  "prerequisite": "Être Liche",
+  "activation": "Passif",
+  "tags": {
+    "school": "necromancy"
+  },
+  "description": "La première fois que vous mémorisez cette Compétence, choisissez avec le MJ l'objet qui devient votre phylactère : un petit objet qui tient dans une main, où votre âme est scellée. Vous sentez toujours dans quelle direction il se trouve.\n\nSi vous mourez et que votre phylactère est encore intact un jour plus tard, vous vous reformez avec 1 PdV et 0 Énergie, sans aucun état, dans l'espace libre le plus proche de lui, où qu'il soit. À votre mort, votre corps tombe en poussière, et ce que vous portiez reste là où vous êtes mort.\n\nS'il est détruit, vous le sentez, et cette Compétence ne vous ramène plus tant que votre âme n'est pas scellée dans un autre objet. Le MJ décide de ce qu'il en coûte."
+}

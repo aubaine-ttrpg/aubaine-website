@@ -1,3 +1,31 @@
 {
-  "name": "Undead"
+  "name": "Undead",
+  "subspecies": {
+    "fantome": {
+      "name": "Ghost",
+      "text": "***As a Ghost***, you came back in a body that has kept your features and your voice but lets the light through, so that a lamp set behind you shines straight through your fingers. It holds together on very little. Let it go, and walls and partitions stop you no more than a curtain would, while a blade finds almost nothing to cut. The taste of plaster stays in your mouth for a long while afterwards."
+    },
+    "squelette": {
+      "name": "Skeleton",
+      "text": "***As a Skeleton***, you are down to your bones, and nobody mistakes what you are when you go about like that. Your empty sockets follow whoever is talking to you, and people back away before you can give your name. With neither flesh nor skin to carry, you are lighter and quicker than you were in life, though a cudgel that would only bruise an arm does you far more harm. You have learned to flay a corpse of your own Size and dress yourself in its skin. It gives you the looks of whoever wore it before you, and it does not hide that you are Undead."
+    },
+    "revenant": {
+      "text": "***As a Revenant***, death gave you back your own flesh, gone stiff along the way. You rise in one stiff movement and turn from the waist to look sideways. By the fire you pass for a veteran racked by old wounds, until someone lays a hand on your arm and finds skin as cool and hard as a stone left in the shade; blows barely mark it. In towns, a Revenant who keeps out of gossip is sometimes simply forgotten."
+    },
+    "zombie": {
+      "text": "***As a Zombie***, you carry your death about with you. You had already begun to rot when you got up, and your wounds never closed; under the bandages they no longer bleed. You drag one leg, and sooner or later the smell betrays you, first on your clothes, then in any room you have lingered in. Something in you still refuses to go back to the grave, and every time you escape it you feel that refusal wear a little thinner. You think, you speak, you remember your own name, but the living hardly care: they set the dogs on a Zombie long before they ask it a single question."
+    },
+    "goule": {
+      "name": "Ghoul",
+      "text": "***As a Ghoul***, you still look like one of the living, only thinner, and you have a taste for the flesh of the dead. Your breath smells like a freshly opened pit and your nails blacken whatever you do. Graveyards and battlefields draw you in, and where a Ghoul has prowled before, fresh graves are guarded after dark and nobody leaves the dead alone until they are buried. Each of the dead you feed on leaves you one of their memories: a voice, a street, a song they used to hum, as sharp as if you had lived it yourself."
+    },
+    "liche": {
+      "name": "Lich",
+      "text": "***As a Lich***, your soul is no longer inside you. It is sealed in your phylactery, a small object, and you can always feel which way it lies. Your face has dried onto the bone; you keep it under a turned-up collar and a wide-brimmed hat, and your hands in gloves. In Victoria the word alone can empty a tavern, because everyone there knows what Liches do with fallen soldiers. When you die, what is left of you crumbles to dust, and you come back beside the object for as long as it stays whole."
+    }
+  },
+  "roleplay": {
+    "height": "As in life",
+    "text": "An Undead has lived before. Choose the Species you were in life and, if it has any, its subspecies or regional origin. Its Size, its height, its Movement and its languages are yours. If it offers more than one Size, keep one. For every Prerequisite, you count as a character of that Species and of the chosen subspecies or regional origin. If that Species does not fix for itself what you inherit from it, as with Scothans, settle it with the GM.\n\nThen choose your Undead subspecies, what death made of you: its Skill is one of your two Species Skills.\n\nFinally, decide what the living end up noticing about you."
+  }
 }

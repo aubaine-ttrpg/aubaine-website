@@ -1,0 +1,17 @@
+{
+  "id": "ESMOR-06",
+  "title": "Dépouille",
+  "type": "passive",
+  "tier": 5,
+  "showXp": false,
+  "domains": [],
+  "characteristics": [
+    "intelligence"
+  ],
+  "prerequisite": "Être Squelette",
+  "activation": "Passif",
+  "tags": {
+    "school": "illusion"
+  },
+  "description": "Vous pouvez passer 10 minutes à écorcher le cadavre d'une créature de votre Taille pour revêtir sa peau. Effectuez un Jet d'Intelligence + Médecine contre un DD de 15. En cas de réussite, vous portez sa peau et vous prenez son apparence. En cas d'échec, la peau se déchire et ce cadavre ne peut plus en fournir.\n\nVous ne portez qu'une peau à la fois, et elle tient jusqu'à ce que vous la retiriez, ce qui prend 10 minutes : retirez-la avant d'en revêtir une autre. Une peau retirée est perdue. Tant que vous en portez une, vos Jets pour imiter la créature dont elle vient ou pour usurper son identité gagnent 1 Avantage. La peau ne cache pas que vous êtes un Mort-vivant.\n\nTant que vous ne portez aucune peau, vous avez une vulnérabilité aux dégâts Contondants et votre Vitesse augmente de 1,5 m."
+}

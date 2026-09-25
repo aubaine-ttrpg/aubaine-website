@@ -3,6 +3,7 @@
 **Project:** Aubaine, the wiki
 **Status:** Accepted
 **Date:** 2026-09-24
+**Revised:** 2026-09-25, the Nécromancie École is added (addendum in Decision 5)
 **Deciders:** Kori
 **Scope:** The `tags` field on a skill and its removal from upgrades and English overlays, the new
 vocabulary file `data/meta/tags.json`, the definitions shown in the tooltips of rule terms,
@@ -171,6 +172,15 @@ pages printed the French tags.
 ### Alternatives considered
 
 - **Free tags with a review convention**: the state this record replaces.
+
+### Addendum (2026-09-25): the Nécromancie École
+
+The decider asked for a necromancy tag with the Mort-vivant work, and placed it as an École rather
+than a Spéciale. `necromancy` (Nécromancie / Necromancy) accepts Sort and Technique and is carried by
+the Compétences that work on death or on the dead: Ténacité morbide, Festin and Phylactère
+(ESMOR-08, 09 and 10). A skill carrying it gives up any other École, which is why the undead bodily
+traits keep theirs (Passe-muraille is Mobilité, Rigidité cadavérique is Protection). Rules can now
+target « l'étiquette Nécromancie », as the lore's forbidden occult magic will want.
 
 ---
 

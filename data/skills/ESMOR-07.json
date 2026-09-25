@@ -1,0 +1,17 @@
+{
+  "id": "ESMOR-07",
+  "title": "Rigidité cadavérique",
+  "type": "passive",
+  "tier": 5,
+  "showXp": false,
+  "domains": [],
+  "characteristics": [
+    "constitution"
+  ],
+  "prerequisite": "Être Revenant",
+  "activation": "Passif",
+  "tags": {
+    "school": "protection"
+  },
+  "description": "Votre chair a pris la raideur des morts. Chaque fois que vous subissez des dégâts, vous en subissez 1 de moins au total.\n\nTant que vous subissez [[Agonie]], vous pouvez, au lieu de jouer votre tour, effectuer un Jet de Constitution + Volonté contre un DD de 20. En cas de réussite, vous récupérez 1 PdV, ce qui met fin à l'état, et vous vous relevez sans dépenser de déplacement. Dans les deux cas, votre tour prend fin."
+}

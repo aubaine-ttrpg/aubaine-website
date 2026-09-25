@@ -1,0 +1,6 @@
+{
+  "title": "Effigy",
+  "prerequisite": "Undead",
+  "activation": "Passive",
+  "description": "While you are [[À terre]] and keep still, you pass for a corpse. Only a creature that saw you fall or lie down, or has seen you move since, knows you are no mere corpse. The rest can learn it only by magical means.\n\nWhen you get up in sight of a creature that believed you dead, your next Roll against it before the end of your turn gains 1 Advantage."
+}

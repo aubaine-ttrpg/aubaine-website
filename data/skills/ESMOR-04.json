@@ -1,10 +1,10 @@
 {
   "id": "ESMOR-04",
-  "status": "draft",
-  "title": "Voluptate incididunt",
+  "title": "Vie d'avant",
   "type": "passive",
-  "tier": 1,
+  "tier": 5,
   "domains": [],
   "prerequisite": "Être Mort-vivant",
-  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  "activation": "Passif",
+  "description": "La première fois que vous mémorisez cette Compétence, choisissez une Compétence parmi celles de l'Espèce que vous étiez de votre vivant et, si vous en aviez une, de votre sous-espèce ou de votre origine régionale. Vous ne pouvez plus changer ce choix.\n\nTant que cette Compétence est Mémorisée, celle que vous avez choisie l'est aussi, sans avoir à être achetée et sans occuper de Mémoire."
 }

@@ -1,10 +1,13 @@
 {
   "id": "ESMOR-02",
-  "status": "draft",
-  "title": "Voluptate consectetur",
+  "title": "Gisant",
   "type": "passive",
-  "tier": 1,
+  "tier": 5,
   "domains": [],
   "prerequisite": "Être Mort-vivant",
-  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  "activation": "Passif",
+  "tags": {
+    "school": "illusion"
+  },
+  "description": "Tant que vous êtes [[À terre]] et que vous ne bougez pas, vous passez pour un cadavre. Seule une créature qui vous a vu tomber ou vous étendre, ou bouger depuis, sait que vous n'êtes pas un simple cadavre. Les autres ne le découvrent que par un moyen magique.\n\nLorsque vous vous relevez sous les yeux d'une créature qui vous croyait mort, votre prochain Jet contre elle avant la fin de votre tour gagne 1 Avantage."
 }

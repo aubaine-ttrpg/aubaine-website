@@ -41,6 +41,28 @@ test('a species filters its pool by sub-species', async ({ page }) => {
   await expect(dialog).toBeHidden()
 })
 
+test('a species names its sub-species facet after what it calls them', async ({ page }) => {
+  await page.goto('/en/species/mort-vivant')
+  await hydrated(page)
+  const count = page.locator('[aria-live="polite"]').first()
+  await expect(count).toHaveText('10 results')
+
+  await page.getByRole('button', { name: 'Filters' }).click()
+  const dialog = page.getByRole('dialog')
+  await expect(dialog.getByRole('group', { name: 'Subspecies' })).toBeVisible()
+  await expect(dialog.getByRole('group', { name: 'Regional origin' })).toHaveCount(0)
+  await dialog.getByRole('button', { name: /^Ghost/ }).click()
+  await expect(count).toHaveText('1 result')
+  await page.keyboard.press('Escape')
+
+  await page.goto('/en/species/humain')
+  await hydrated(page)
+  await page.getByRole('button', { name: 'Filters' }).click()
+  await expect(
+    page.getByRole('dialog').getByRole('group', { name: 'Regional origin' }),
+  ).toBeVisible()
+})
+
 test('the filter modal is reachable and dismissable by keyboard', async ({ page }) => {
   await page.goto('/en/rules')
   await hydrated(page)

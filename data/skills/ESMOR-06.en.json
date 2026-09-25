@@ -1,0 +1,6 @@
+{
+  "title": "Second Skin",
+  "prerequisite": "Skeleton",
+  "activation": "Passive",
+  "description": "You can spend 10 minutes flaying the corpse of a creature of your Size to wear its skin. Make an Intelligence + Medicine Roll against a DC of 15. On a success, you put on its skin and take on its appearance. On a failure, the skin tears and that corpse has none left to give.\n\nYou wear one skin at a time, and it holds until you remove it, which takes 10 minutes: remove it before putting on another. A skin you remove is ruined. While you wear one, your Rolls to imitate the creature it came from or to take over its identity gain 1 Advantage. The skin does not hide that you are Undead.\n\nWhile you wear no skin, you have a vulnerability to Bludgeoning damage and your Speed increases by 1.5 m."
+}
