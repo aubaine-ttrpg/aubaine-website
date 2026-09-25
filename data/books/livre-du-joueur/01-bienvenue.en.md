@@ -64,6 +64,6 @@ It also has a consequence for this book. It explains mechanics, not catalogues. 
 
 The next chapter explains the Roll, and it is the only one you need for a first session. The rest can wait until it is useful.
 
-A coloured word in this book is a rule term. Hover it, or give it focus with the keyboard, and its definition appears. State and Skill names lead straight to their entries.
+A coloured word in this book is a rule term. Hover it, or give it focus with the keyboard, and its definition appears. The Rules page lists every one of them, and a Skill name leads straight to its entry.
 
 Numbers that belong to a piece of equipment or a Skill are printed on it, not here. This book explains the mechanics; the entries carry the values.

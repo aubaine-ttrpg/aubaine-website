@@ -64,6 +64,6 @@ Cela a aussi une conséquence sur ce livre. Il explique des mécaniques, pas des
 
 Le chapitre suivant explique le Jet, et c'est le seul dont vous avez besoin pour jouer une première séance. Le reste se lit quand il sert.
 
-Un mot en couleur dans ce livre est un terme de règle. Survolez-le, ou posez-lui le focus au clavier, et sa définition s'affiche. Les noms d'états et de Compétences y mènent directement.
+Un mot en couleur dans ce livre est un terme de règle. Survolez-le, ou posez-lui le focus au clavier, et sa définition s'affiche ; la page Règles les rassemble tous. Un nom de Compétence mène à sa fiche.
 
 Les nombres qui appartiennent à une pièce d'équipement ou à une Compétence sont imprimés sur elle, pas ici. Ce livre explique les mécaniques ; les fiches portent les valeurs.
