@@ -1,0 +1,13 @@
+{
+  "id": "ESELF-05",
+  "title": "Sens aiguisés",
+  "type": "passive",
+  "tier": 5,
+  "domains": [],
+  "prerequisite": "Être Elfe",
+  "activation": "Passif",
+  "tags": {
+    "school": "divination"
+  },
+  "description": "Les siècles de communion avec les forêts et les astres ont affiné vos perceptions.\n\nTant que cette Compétence est Mémorisée, vous avez l'Expertise dans la Perception et dans l'Investigation."
+}

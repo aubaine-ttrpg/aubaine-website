@@ -22,8 +22,8 @@ test('drafts are hidden by default and the switch shows them', async ({ page }) 
   await page.goto('/en/species')
   await hydrated(page)
   await expect(draftsSwitch(page)).not.toBeChecked()
-  await expect(results(page)).toHaveText('2 results')
-  await expect(visibleEntries(page)).toHaveCount(2)
+  await expect(results(page)).toHaveText('3 results')
+  await expect(visibleEntries(page)).toHaveCount(3)
 
   await draftsSwitch(page).click()
   await expect(draftsSwitch(page)).toBeChecked()
@@ -31,7 +31,7 @@ test('drafts are hidden by default and the switch shows them', async ({ page }) 
   await expect(visibleEntries(page)).toHaveCount(17)
 
   await draftsSwitch(page).click()
-  await expect(results(page)).toHaveText('2 results')
+  await expect(results(page)).toHaveText('3 results')
 })
 
 test('a list made only of drafts shows an empty state', async ({ page }) => {
@@ -99,6 +99,6 @@ test('drafts stay hidden before the filter island hydrates', async ({ page }) =>
   await page.route(/FilterBar/, (route) => route.abort())
   await page.goto('/en/species')
   await expect(page.locator('astro-island[ssr]')).toHaveCount(1)
-  await expect(visibleEntries(page)).toHaveCount(2)
-  await expect(results(page)).toHaveText(/^2 results$/i, { useInnerText: true })
+  await expect(visibleEntries(page)).toHaveCount(3)
+  await expect(results(page)).toHaveText(/^3 results$/i, { useInnerText: true })
 })

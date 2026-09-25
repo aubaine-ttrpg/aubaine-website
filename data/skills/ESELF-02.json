@@ -1,10 +1,14 @@
 {
   "id": "ESELF-02",
-  "status": "draft",
-  "title": "Lorem reprehenderit",
+  "status": "playtest",
+  "title": "Savoir d'Élyséa",
   "type": "passive",
-  "tier": 1,
+  "tier": 5,
   "domains": [],
-  "prerequisite": "Être Elfe",
-  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  "prerequisite": "Être Elfe, Drow, Fir Bolg ou Halfelin",
+  "activation": "Passif",
+  "tags": {
+    "school": "enhancement"
+  },
+  "description": "Le flux magique d'Élyséa pulse dans votre sang depuis votre naissance.\n\nLa première fois que vous mémorisez cette Compétence, débloquez gratuitement un Arbre de Domaine que vous n'avez pas encore, et apprenez sans la payer la Compétence qui tient le centre de sa planche."
 }

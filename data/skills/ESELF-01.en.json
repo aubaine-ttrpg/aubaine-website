@@ -1,0 +1,6 @@
+{
+  "title": "Elven Focus",
+  "prerequisite": "Elf or Drow",
+  "activation": "Passive",
+  "description": "When one of your Dexterity, Intelligence, Spirit or Charisma Rolls gains at least 1 Advantage, you may reroll one of its dice, once, and keep the new result."
+}

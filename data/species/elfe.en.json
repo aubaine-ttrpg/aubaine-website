@@ -1,3 +1,9 @@
 {
-  "name": "Elf"
+  "name": "Elf",
+  "roleplay": {
+    "adulthood": "Around 100 years, though their bodies reach full mastery around 20",
+    "lifespan": "Often beyond 700 years",
+    "height": "Between 1.50 m and 1.80 m",
+    "text": "Elves belong to an ancient lineage, forged in the deep roots of Eden and the eternal murmurs of the first woods. They are the guardians of a forgotten balance, heirs to ancient pacts between magic, nature and the stars. Their grace hides a constant vigilance, for none watches over the world more ardently than those who have seen its ages fall.\n\nThe elvish language is a slow song, woven of poetry and harmonics, that few mortal beings can reproduce faithfully."
+  }
 }

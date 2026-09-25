@@ -1,10 +1,14 @@
 {
   "id": "ESELF-01",
-  "status": "draft",
-  "title": "Lorem exercitation",
+  "status": "playtest",
+  "title": "Concentration elfique",
   "type": "passive",
-  "tier": 1,
+  "tier": 5,
   "domains": [],
-  "prerequisite": "Être Elfe",
-  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  "prerequisite": "Être Elfe ou Drow",
+  "activation": "Passif",
+  "tags": {
+    "school": "enhancement"
+  },
+  "description": "Lorsqu'un de vos Jets de Dextérité, d'Intelligence, d'Esprit ou de Charisme gagne au moins 1 Avantage, vous pouvez relancer l'un de ses dés, une fois, et garder le nouveau résultat."
 }

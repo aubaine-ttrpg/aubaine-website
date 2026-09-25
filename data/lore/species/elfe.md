@@ -1,19 +1,49 @@
-## Origines
+Les elfes sont les héritiers des Galwariens, porteurs d'une grâce infinie et d'un lien millénaire avec la nature. Dans le monde d'Eden, ils habitent au creux des arbres-mondes qu'Élyséa a fait apparaître, leurs demeures s'élevant en fines passerelles et plateformes de bois vivant, éclairées par la lueur phosphorescente des runes druidiques. Ils se meuvent avec légèreté sous la canopée, où le chant des feuilles et le murmure des rivières tissent une mélodie constante. Animés par un profond respect pour la vie, ils vont chercher dans la magie de la nature l'équilibre et la beauté, cultivant l'artisanat et la poésie plutôt que l'exploitation et le profit.
+
+> « Élyséa… pourquoi laisses-tu cela arriver ? Ici ? Si tu étais vraiment là, nous ne serions pas dans ce chaos : cette guerre n'aurait jamais dû éclater. Combien de vies encore doivent-elles être sacrifiées pour une cause qui a perdu tout sens ? Que faire quand tout semble se consumer ? Attendre ? Observer ? Et pendant ce temps, mes gens meurent. Où es-tu quand j'ai besoin de toi ? Je protégerai Brécelann, avec ou sans toi. »
+>
+> :source[La reine Tiar Vyrefiel s'adressant à la déesse Élyséa dans le sanctuaire de Teyrdrassil, l'Arbre-Monde, en l'an 30 après le Second Éclat, à l'aube de la guerre de Brécelann.]
+
+## Héritage sylvestre
 
 ![](../../media/art/placeholder-16_9-og.png)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Les elfes descendent des anciens Galwariens, ces maîtres de la magie primordiale qui, jadis, façonnaient Eden aux côtés des dragons anciens. Lorsque le Premier Éclat ravagea leurs pouvoirs, un groupe d'exilés se retira dans les forêts profondes, appelant à l'aide la déesse Élyséa, gardienne de la vie sauvage. Touchée par leur supplice, elle insuffla une part de sa force aux racines mêmes d'Eden, faisant naître les arbres-mondes et enseignant aux premiers elfes l'art de puiser dans la sève et la chlorophylle plutôt que dans le feu ancien. Depuis lors, la magie elfique coule dans la sève des hêtres millénaires et danse dans la brume des clairières, liant à jamais ces enfants des Galwariens à la respiration de la nature et à l'équilibre sacré de leur monde.
 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+## Civilisation et villes
 
-## Coutumes
+Les elfes vivent en petits hameaux nichés au creux des arbres ou le long des rives, où leurs habitations se fondent dans la végétation : des structures en verre vert semi-opaque, ornées de dorures organiques, ou des maisons « vivantes » façonnées autour et dans les troncs, respectant la croissance naturelle des arbres. Leur économie repose avant tout sur le troc : artisans de haut rang, ils échangent étoffes fines, bijoux en bois et gemmes enchantées contre le strict nécessaire (métaux et denrées rares qu'ils refusent de miner eux-mêmes), évitant toute surconsommation ou exploitation abusive. Guidés par l'enseignement d'Élyséa, ils ne prélèvent de la forêt que ce qui est vital, pratiquant une cueillette raisonnée et utilisant des techniques ancestrales pour restaurer et cultiver sans jamais dégrader les lieux. Toute décision collective est prise par consensus lors des veillées de la Canopée, où anciens et jeunes veillent ensemble à préserver l'équilibre fragile de leur monde.
 
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
-
-Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
-
-## Dans le monde
+## Société elfique
 
 ![](../../media/art/placeholder-16_9-og.png)
 
-At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.
+Dans la société elfique, le pouvoir et l'autorité sont avant tout l'apanage des femmes, incarnés par une reine régente : c'est un matriarcat où les lignées se transmettent par la mère, qui choisit elle-même l'héritière de son nom et de ses responsabilités. Les grandes cités au pied des arbres-mondes sont gouvernées par des conseils de matrones, composés des aînées de chaque clan, dont la sagesse guide les décisions politiques, culturelles et spirituelles. Les prêtresses de la sylve, chargées de veiller à l'équilibre entre la magie druidique et la vie sauvage, occupent une place centrale et servent d'intermédiaires entre Élyséa et le peuple. Les jeunes elfes, quel que soit leur genre, apprennent dès l'enfance à respecter l'autorité maternelle et à honorer les anciens, mais ce sont les femmes qui détiennent les clés des archives, les savoirs médicinaux et les rituels sacrés. Cette structure garantit une stabilité millénaire : le pouvoir, incarné par la mère protectrice, veille à ce que chaque génération perpétue l'harmonie avec la nature et la mémoire ancestrale.
+
+## Culture et noblesse
+
+Au pied de chaque arbre-monde s'érige une grande cité elfique, fondation vivante incarnant l'alliance entre nature et civilisation, où les tours de verre vert scintillent au soleil et les dorures dessinent des motifs de feuillages. Dans ces cités royales, la vie culturelle s'épanouit autour des arts : la musique druidique aux mélodies envoûtantes, la poésie chantée lors des veillées sous les frondaisons, la sculpture du bois et de la pierre vivante, ainsi que le tissage de tissus infusés de magie lunaire. Si chaque elfe respecte profondément Élyséa et honore les arbres-mondes comme source première de leur magie, tous ne lui vouent pas un culte formel ; certains cherchent néanmoins d'autres voies spirituelles, tout en gardant un respect sincère pour la déesse qui sauva leurs ancêtres.
+
+Parallèlement, l'art du combat elfique se distingue par sa noblesse et sa grâce : les guerriers et gardiens s'entraînent dès l'enfance à manier l'épée fine et l'arc long lors de passes rituelles dans les clairières, apprenant la stratégie fluide qui imite le mouvement des branches au vent. Les académies martiales, ouvertes à la fois aux nobles et aux aventuriers, allient discipline physique et méditation druidique, assurant que chaque geste, chaque tir, soit en harmonie avec l'esprit du monde. Ainsi, entre chant des bardes et danse des lames, la culture elfique perpétue un idéal d'équilibre où beauté et efficacité ne font qu'un.
+
+## Un peuple hautain
+
+Pendant des siècles, les elfes sont restés un peuple discret, repliés au cœur de leurs cités au pied des arbres-mondes et n'entretenant de liens commerciaux qu'avec les halfelins des plaines, célèbres pour leurs marchandises simples et leur sens du troc. Cette relation exclusive, fondée sur la confiance mutuelle et le respect des coutumes, permit aux elfes de préserver leur culture et leur harmonie avec la nature, tout en échangeant étoffes fines et essences druidiques contre denrées et objets artisanaux. Mais, après le Second Éclat, l'arrivée massive des humains bouscula cet équilibre : ils franchirent les frontières elfiques et déclenchèrent plus d'un demi-siècle de conflits qui ravagèrent forêts et cités. De cette longue guerre naquit une méfiance tenace : les elfes, blessés dans leur sanctuaire sacré, apprirent à se protéger derrière un voile d'arrogance et à juger les étrangers avec prudence, souvent perçue comme hautaine par ceux qui n'avaient pas à cœur la préservation du monde naturel.
+
+## Un physique élégant
+
+Les elfes se distinguent par leur silhouette élancée et leur port altier. Leur taille oscille généralement entre 1,50 m et 1,80 m, pour un poids situé entre 45 kg et 65 kg, hommes et femmes affichant des gabarits très proches. Leurs traits sont d'une finesse presque sculpturale : pommettes hautes, mâchoire délicate et front lisse. Les oreilles se terminent en pointe fine, rappelant la forme d'une feuille, et leurs chairs, lisses et imberbes, confèrent à leur visage un aspect immuable.
+
+La palette de leurs carnations va des teintes humaines classiques (ivoire, hâlé, brun clair) aux nuances plus exotiques : cuivre poli, bronze satiné ou blanc bleuté. Leurs cheveux, souvent longs et soyeux, adoptent les couleurs de la nature : bruns et blonds se mêlent parfois à des tons feuillus (verts profonds, bleus brumeux, voire argentés). Quant au regard, il paraît capturer la lumière : iris dorés, argent liquide ou vert émeraude, offrant un éclat presque surnaturel qui trahit leur communion avec la magie de la sève et des feuilles.
+
+Leur tenue quotidienne marie élégance et fonctionnalité : tuniques et tresses ornées de motifs végétaux, tissus fins teintés de vert mousse, d'ocre et de bleu ciel, complétés de légères broderies dorées évoquant les nervures foliaires. Les bijoux, souvent confectionnés en bois gravé, gemmes naturelles ou filigranes de bronze, sont discrets mais raffinés, soulignant les formes sans jamais entraver les mouvements fluides et aériens qui caractérisent chaque pas elfique.
+
+## Noms elfes
+
+Chez les elfes d'Eden, chaque prénom porte un véritable héritage : il naît d'un événement glorieux de la famille ou d'un fait marquant dans l'histoire du village, qu'il s'agisse d'une victoire contre un fléau ancien ou de la découverte d'une clairière oubliée. Les elfes ne distinguent pas les prénoms « masculins » et « féminins » comme le font les humains ; un même nom peut autant convenir à l'un qu'à l'autre, reflétant leur conception de l'identité au-delà des différences de genre. Quant aux noms de famille, transmis par la mère, ils sont façonnés à partir d'une créature gardienne qui veille sur leur lignée ou de l'arbre-monde sous lequel leur clan a élu domicile, symbolisant leur lien indéfectible avec la nature et la protection qu'elle leur offre. Ainsi, un nom elfique est toujours un récit vivant, un murmure de mémoire et de promesse qui se transmet à chaque naissance.
+
+Noms mixtes
+: Adhran, Aeryn, Bryndar, Caelith, Daeris, Eryndor, Faelith, Gaelwyn, Helindor, Illarien, Jaedryn, Kaelith, Luthien, Maerion, Naeris, Olyndor, Phaeron, Quelindra, Rhaella, Saelar, Thalion, Ulvaris, Vaelora, Wyneth, Xandriel, Ysilith, Zephyra, Aerion, Branthir, Cerelyth, Dornath, Elorim, Farendir, Galathor, Ivariel, Jorendil, Kiralyn, Leyanth, Moriel, Nythorin.
+
+Noms de famille
+: Gerawen, Faelgorn, Aelor, Thandril, Myrath, Halindor, Oryndel, Elandor, Coranthia, Brethil, Fenrath, Galdorin, Drakanor, Sylvinar, Yavandil, Rhyolin, Vorandel, Quenelor, Nelgros, Vyranth, Thalorin, Althoris, Ilveran, Sorandir, Caranthor, Elashar, Danthir, Lyrandor, Mirelith, Faerendil, Nymren, Pelorin, Quelinar, Ryndor, Sylendril, Tharion, Valtorin, Ylandeor, Caerindel, Dorandel, Evelith, Mirithor.

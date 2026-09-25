@@ -1,0 +1,8 @@
+{
+  "title": "Nature's Cover",
+  "prerequisite": "Elf",
+  "activation": "1 Bonus Action",
+  "range": "Self",
+  "duration": "Instantaneous",
+  "description": "Your bond with nature lets you vanish where others would be exposed.\n\nIf natural cover surrounds you (branches, driving rain, fog, falling snow or any other darkness of natural origin), you become [[Caché]] to every creature, even in full light."
+}

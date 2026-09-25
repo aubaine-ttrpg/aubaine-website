@@ -1,0 +1,11 @@
+{
+  "id": "ESELF-06",
+  "status": "playtest",
+  "title": "Méditation elfique",
+  "type": "passive",
+  "tier": 5,
+  "domains": [],
+  "prerequisite": "Être Elfe ou Drow",
+  "activation": "Passif",
+  "description": "Votre Repos long ne dure que quatre heures."
+}

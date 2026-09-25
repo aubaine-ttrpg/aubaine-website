@@ -1,0 +1,6 @@
+{
+  "title": "Elven Meditation",
+  "prerequisite": "Elf or Drow",
+  "activation": "Passive",
+  "description": "Your Long Rest lasts only four hours."
+}

@@ -1,6 +1,6 @@
 {
   "id": "elfe",
-  "status": "draft",
+  "status": "playtest",
   "name": "Elfe",
   "types": [
     "humanoid"
@@ -8,10 +8,22 @@
   "size": [
     "medium"
   ],
+  "languages": [
+    "common",
+    "elvish"
+  ],
   "offered": [
     "ESELF-01",
     "ESELF-02",
     "ESELF-03",
-    "ESELF-04"
-  ]
+    "ESELF-04",
+    "ESELF-05",
+    "ESELF-06"
+  ],
+  "roleplay": {
+    "adulthood": "Vers 100 ans, bien que leur corps atteigne sa pleine maîtrise vers 20 ans",
+    "lifespan": "Souvent au-delà de 700 ans",
+    "height": "Entre 1,50 m et 1,80 m",
+    "text": "Les elfes appartiennent à une lignée ancienne, forgée dans les racines profondes d'Eden et les murmures éternels des bois premiers. Ils sont les gardiens d'un équilibre oublié, héritiers d'antiques pactes entre la magie, la nature et les étoiles. Leur grâce cache une vigilance constante, car nul ne veille plus ardemment sur le monde que ceux qui ont vu ses âges s'effondrer.\n\nLa langue elfique est un chant lent, tissé de poésie et d'harmoniques, que peu d'êtres mortels peuvent reproduire avec justesse."
+  }
 }
