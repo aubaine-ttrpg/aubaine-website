@@ -86,6 +86,9 @@ Long narrative prose has tells of its own, and one early Scothan draft had all o
   most should simply stop.
 - The stock arc: they suffered, then they reclaimed their name. Tell the specific history, and let
   the arc emerge from it or not at all.
+- The reach-ahead: a sentence that borrows a fact another section of the same page tells, as an
+  opening that says the living fear the dead « depuis l'histoire de Bruford » when a Bruford section
+  follows. Each fact lives in its own section; elsewhere, just say what holds.
 
 ## The two locales are localized, not mirrored
 
