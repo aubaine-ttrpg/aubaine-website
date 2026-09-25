@@ -257,3 +257,16 @@ test.describe('the threshold without javascript', () => {
     await expect(page.locator('html')).toHaveAttribute('lang', 'en-GB')
   })
 })
+
+test('a species page lists the other sources as also available, never itself', async ({ page }) => {
+  await page.goto('/en/species/humain#e-ESHUM-09')
+  const onSpecies = page.locator('#e-ESHUM-09 .au-sources')
+  await expect(onSpecies.locator('.au-sources__label')).toHaveText('Also available')
+  await expect(onSpecies.getByRole('button', { name: 'Common Bank' })).toBeVisible()
+  await expect(onSpecies.getByRole('link', { name: /Human/ })).toHaveCount(0)
+
+  await page.goto('/en/skills#e-ESHUM-09')
+  const inIndex = page.locator('#e-ESHUM-09 .au-sources')
+  await expect(inIndex.locator('.au-sources__label')).toHaveText('Where to Get It')
+  await expect(inIndex.getByRole('link', { name: 'Human · Victoria' })).toBeVisible()
+})

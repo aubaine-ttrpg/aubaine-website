@@ -19,6 +19,7 @@ type Props = {
 
 const { locale, corpus, entries, label, variant } = Astro.props
 const t = strings(locale)
+const sourcesLabel = variant === 'speciesSkills' ? t.alsoAvailable : t.provenance
 
 const SOURCE_ICONS: Record<BrowseSource['kind'], string> = {
   tree: 'mdi:family-tree',
@@ -120,7 +121,7 @@ const NOTES: Record<'bank' | 'other', string | undefined> = {
           {entry.sources.length > 0 && (
             <div class="au-sources">
               <p class="au-sources__label" id={`src-${entry.id}`}>
-                {t.provenance}
+                {sourcesLabel}
               </p>
               <ul class="au-sources__list" aria-labelledby={`src-${entry.id}`}>
                 {entry.sources.map((source) => (
@@ -148,7 +149,7 @@ const NOTES: Record<'bank' | 'other', string | undefined> = {
                           aria-labelledby={`note-${source.kind}-${entry.id}-title`}
                           style={`position-anchor:--note-${source.kind}-${entry.id}`}
                         >
-                          <p class="au-source-note__kind">{t.provenance}</p>
+                          <p class="au-source-note__kind">{sourcesLabel}</p>
                           <p class="au-source-note__title" id={`note-${source.kind}-${entry.id}-title`}>
                             {source.title}
                           </p>
