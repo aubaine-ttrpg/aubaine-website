@@ -42,6 +42,28 @@ For a skill that is literal: the first 160 characters of the description become 
 description, cut at a word boundary. `site-copy.md` has the mechanics. Write the opening so that
 the cut lands after the meaning, not before it.
 
+## Writing a definition
+
+A tooltip definition (a rule term, a Caractéristique, an Aptitude, a tag, or the note a term reads
+in their place) says what the thing is in the game's own voice. It reads as the page of a
+roleplaying book, not as a specification or a usage report.
+
+- Say what the thing is, with a touch of flavour. Never reduce it to one verb (« Soin : ça
+  soigne »).
+- Never list the skills or items that use it. That list grows, and the definition rots with it.
+- Never define an Aubaine term by contrast with another game (« il n'y a pas de jet de
+  sauvegarde »). The comparison imports a game the reader may not know and the codex does not
+  follow.
+- Never define by exclusion (« ni un Sort, ni une Manœuvre »). The excluded set grows too.
+- Write permissively where the game permits: « Vous pouvez changer vos Compétences Mémorisées
+  pendant un repos », not an order.
+- A tag describes its Compétences, not an order to the character: « L'art du faux-semblant. Ses
+  Compétences trompent… », not « Tromper les sens ».
+- An Aptitude is its field of knowledge first, and what it lets you make follows from it:
+  « Connaître X. Peut aussi servir à fabriquer Y. », never « le travail à la forge ».
+- Write real sentences, not fragment lists, and check each fact against the data before trusting
+  a first impression of the word.
+
 ## Shapes that survive being lifted
 
 A definition, a short list where membership matters, and a table where the facts are genuinely

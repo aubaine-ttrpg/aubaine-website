@@ -51,8 +51,8 @@ set, and keeping them distinguishable is the standing job.
 
 1. Identify the surface, then the entity kind and the locale.
 2. Open its runbook and read the field table and the traps.
-3. Read two or three sibling files in the same directory before drafting, to match the established
-   register and terminology.
+3. Read two or three settled sibling files before drafting, to match the established register and
+   terminology. `references/editorial-workflow.md` says which entries count; a `draft` never does.
 4. Settle every fact you cannot verify before drafting around it. A gap surfaced now is a question;
    the same gap discovered at review is a rewrite.
 5. Build the mechanical skeleton from the schema fields first. Write prose only once the mechanic is

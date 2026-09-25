@@ -8,7 +8,7 @@ repository says so".
 
 1. A schema field that carries the value.
 2. A runbook that states the procedure.
-3. A sibling entry that already settled the pattern.
+3. A sibling entry that already settled the pattern. A `draft` has settled nothing.
 4. A book chapter that explains the mechanic.
 5. A controlled vocabulary in `data/meta/` or `RULE_TERMS`.
 
@@ -17,6 +17,15 @@ repository says so".
 If a sentence rests on none of the five, it does not ship. Report the gap and let it be decided.
 Softening the wording is the wrong repair: a hedged invention is still an invention, and
 `editorial-style.md` already refuses writing around a missing fact.
+
+## A single word can assert canon
+
+A claim can hide in one word. « Exilé » says that someone drove the subject out. « Conquis »,
+« fondé », « trahi » and « hérité » each name a cause, an agent or a relationship. Before writing
+a word like that, in either locale, check that one of the five above states what it implies. When
+none does, choose the word that states only the known fact (« débarqués » says they arrived, and
+nothing about why), or ask. A word picked for its colour still binds the setting to whatever it
+means.
 
 ## Numbers
 

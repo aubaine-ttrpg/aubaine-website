@@ -4,7 +4,12 @@
 
 1. Identify the entity kind and open its runbook in `docs/runbooks/`.
 2. Read two or three siblings in the same directory. They carry the register, the terminology, and
-   the level of detail the codex has settled on.
+   the level of detail the codex has settled on. Take them only from entries whose resolved status
+   is `playtest`, `beta` or `balanced`. A `draft` is lorem ipsum or unverified text and is never a
+   model, however finished it looks. Resolve the status as the build does: an entry that writes
+   none inherits it from what owns it, and the `status` field in `src/lib/game/schema.ts` says
+   from what. When the directory holds no settled sibling, read the nearest settled entries of the
+   same kind elsewhere, and name the ones you used when you report.
 3. Build the field skeleton from the schema. Decide every structured value before writing a sentence.
 4. Write the mechanic until it is internally complete: trigger, subject, resolution, outcome, ending.
 5. Apply keyword spelling.

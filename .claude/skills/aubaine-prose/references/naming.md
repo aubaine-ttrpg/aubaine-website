@@ -31,3 +31,11 @@ import because they collided; check that `data/skills/<ID>.json` does not exist 
 
 Names appear in search, in tooltips, on the plate, and in the printed index. A name that is clear on
 a card and ambiguous in a list is a name to reconsider.
+
+## A people's regional variant is an origine régionale
+
+Reader-facing text never calls the regional variant of a people a « sous-espèce » or a « race », in
+either locale (EN: never "sub-species" or "race"). Those words read peoples as breeds, which the game
+refuses. The reader sees « origine régionale », or "regional origin" in English. The data field stays
+`subspecies`, and the species runbook names it that way; that is a machine name, and it never reaches
+a page.
