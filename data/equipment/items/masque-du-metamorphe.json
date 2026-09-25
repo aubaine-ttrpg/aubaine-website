@@ -8,5 +8,5 @@
   "art": "masque-du-metamorphe-1_1-og.png",
   "prerequisite": "Être Squelette",
   "text": "Le masque garde jusqu'à 4 peaux, celle que vous portez comprise. Tant que vous le portez, une peau que vous retirez y reste au lieu d'être perdue, et vous pouvez prendre une peau avec {{Dépouille}} sans retirer celle que vous portez : la nouvelle y entre et vous la portez aussitôt. S'il était déjà plein, choisissez laquelle est perdue, parmi celles qu'il gardait et la nouvelle. Si vous choisissez la nouvelle, vous gardez celle que vous portiez. Lorsque vous mettez le masque, la peau que vous portez y entre de la même façon ; si c'est elle qui est perdue, vous n'en portez plus aucune.\n\nVous pouvez effectuer une Action pour revêtir l'une des peaux qu'il garde qui vient d'une créature de votre Taille, ou pour n'en porter aucune.\n\nLorsque vous retirez le masque, la peau que vous portiez y reste, et vous n'en portez plus aucune. Il garde ses peaux pour qui le portera ensuite.",
-  "description": "Un visage de cuir blême, sans traits, percé pour les yeux. Retourné, il montre l'envers de plusieurs peaux cousues les unes sur les autres."
+  "description": "Un visage de pierre fendue, cerclé de fer rouillé, dont les runes luisent d'un vert vif."
 }

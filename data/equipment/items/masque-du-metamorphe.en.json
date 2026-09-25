@@ -3,5 +3,5 @@
   "kind": "Head",
   "prerequisite": "Skeleton",
   "text": "The mask holds up to 4 skins, the one you are wearing included. While you wear it, a skin you remove stays in it instead of being ruined, and you can take a skin with {{Second Skin}} without removing the one you are wearing: the new one goes into the mask and you wear it at once. If it was already full, choose which skin is ruined, from those it held and the new one. If you choose the new one, you keep wearing the one you had on. When you put the mask on, the skin you are wearing goes into it the same way; if that is the one ruined, you wear none.\n\nYou can spend an Action to put on one of the skins it holds that came from a creature of your Size, or to wear none.\n\nWhen you take the mask off, the skin you were wearing stays in it, and you wear none. It keeps its skins for whoever wears it next.",
-  "description": "A pale leather face with no features, cut through for the eyes. Turn it over and you see the backs of several skins stitched one on top of another."
+  "description": "A cracked stone face bound in rusted iron, carved with runes that glow a bright green."
 }
