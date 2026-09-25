@@ -556,13 +556,6 @@
   color: var(--state-neutral);
 }
 
-.au-state-callout__stacks {
-  font: 700 var(--skill-tags) / 1.5 var(--font-ui);
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  margin-left: 8px;
-}
-
 .au-state-callout__desc {
   display: block;
   margin-top: 2px;
@@ -587,13 +580,6 @@
 
 .au-state-entry__hd .au-state {
   font-size: var(--skill-name);
-}
-
-.au-state-entry__stacks {
-  font: 700 var(--skill-tags) / 1.5 var(--font-ui);
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: var(--paper-sub2);
 }
 
 .au-state-entry__desc {

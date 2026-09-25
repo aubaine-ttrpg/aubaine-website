@@ -41,16 +41,10 @@
       "type": "string",
       "pattern": "^#[0-9a-f]{6}$"
     },
-    "stacks": {
-      "description": "Plafond d'accumulation. Absent : l'état est présent ou absent, sans compteur.",
-      "type": "integer",
-      "minimum": 2,
-      "maximum": 10
-    },
     "description": {
       "type": "string",
       "minLength": 1,
-      "description": "Ce que l'état fait et comment il prend fin. Quand il n'en fixe pas la durée, le DD ou les dégâts, la Compétence ou l'objet qui l'applique les indique."
+      "description": "Ce que l'état fait, jusqu'où il s'accumule s'il s'accumule, et comment il prend fin. Quand il n'en fixe pas la durée, le DD ou les dégâts, la Compétence ou l'objet qui l'applique les indique."
     }
   },
   "required": [

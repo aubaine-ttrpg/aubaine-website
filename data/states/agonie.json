@@ -3,6 +3,5 @@
   "name": "Agonie",
   "kind": "debuff",
   "icon": "mdi:skull",
-  "stacks": 3,
   "description": "Une créature tombée à 0 PdV gagne Agonie 3. Ses PdV ne descendent pas sous 0.\n\nTant qu'elle subit Agonie, elle est [[À terre]] et ne peut pas se relever. Elle ne peut jouer aucune Action, Action Bonus ni Réaction qui coûte de l'Énergie.\n\nÀ la fin de chacun de ses tours, son Agonie diminue de 1, sauf pendant le tour où elle l'a reçue. Une action qui lui inflige des dégâts la diminue aussi de 1, une fois au plus par action. À Agonie 0, la créature meurt.\n\nTout soin qui lui rend au moins 1 PdV met fin à l'état. Elle reste [[À terre]] jusqu'à ce qu'elle se relève.\n\nUne Action et un Jet réussi d'Intelligence + Médecine contre un DD de 20 rendent 1 PdV à une créature qui subit Agonie."
 }

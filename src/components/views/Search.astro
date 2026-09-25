@@ -131,7 +131,7 @@ const stateRows: Row[] = corpus.states
     href: pathFor('states', locale),
     sub: state.kind === 'buff' ? t.buff : state.kind === 'debuff' ? t.debuff : t.neutral,
     mark: state.kind === 'buff' ? BUFF : DEBUFF,
-    value: state.stacks ? `×${formatNumber(state.stacks, locale)}` : '',
+    value: '',
   }))
   .sort((a, b) => compare.compare(a.title, b.title))
 

@@ -20,8 +20,7 @@ The filename is the key. Lowercase, no accents, hyphens between words: `combusti
 | `kind` | required | Couleur de la pastille : ce que l'état fait à qui le porte. | `buff`, `debuff`, `neutral` |
 | `icon` | required | Nom Iconify. Sans fichier correspondant dans `data/media/icons/`, l'état se rend sans icône. | `mdi:<name>` or `game-icons:<name>` |
 | `color` | optional | Encre propre, lorsque les crans d'une même famille doivent se suivre à l'œil. | `#rrggbb`, lowercase hex |
-| `stacks` | optional | Plafond d'accumulation. Absent : l'état est présent ou absent, sans compteur. | integer 2 to 10 |
-| `description` | required | Ce que l'état fait et comment il prend fin. Quand il n'en fixe pas la durée, le DD ou les dégâts, la Compétence ou l'objet qui l'applique les indique. | any non empty string |
+| `description` | required | Ce que l'état fait, jusqu'où il s'accumule s'il s'accumule, et comment il prend fin. Quand il n'en fixe pas la durée, le DD ou les dégâts, la Compétence ou l'objet qui l'applique les indique. | any non empty string |
 
 ## A complete example
 
@@ -33,15 +32,14 @@ The filename is the key. Lowercase, no accents, hyphens between words: `combusti
   "name": "Combustion",
   "kind": "buff",
   "icon": "mdi:fire",
-  "stacks": 5,
   "description": "Combustion s'accumule sur vous jusqu'à 5.\n\nLorsque vous effectuez un Jet de dégâts qui inflige des dégâts de Feu, ajoutez 1 dégât par Combustion que vous portez."
 }
 ```
 
 ## What appears on the site
 
-- `/fr/etats` and `/en/states`: a card, sorted alphabetically with the others, showing the name, the kind as a coloured kicker, the rule text and, when `stacks` is set, a `Cumuls ×5` line.
-- Everywhere a skill, a state, an item or a set writes `[[Combustion]]`, the name becomes a coloured pastille with a tooltip carrying the kind, the stack cap and the first lines of the description.
+- `/fr/etats` and `/en/states`: a card, sorted alphabetically with the others, showing the name, the kind as a coloured kicker and the rule text.
+- Everywhere a skill, a state, an item or a set writes `[[Combustion]]`, the name becomes a coloured pastille with a tooltip carrying the kind and the first lines of the description.
 - `/fr/recherche` and `/en/search`: a row under the states group.
 
 ## How to check it
@@ -63,7 +61,7 @@ pnpm dev
 
 **A French state name that is an adjective needs its `forms`.** Automatic marking of a bare word is exact: `Entravé` is marked and `Entravée` is not, because the agreement makes it a different word. `forms` lists the other spellings, so write `["Entravée", "Entravés", "Entravées"]` beside `Entravé`. The tooltip and the printed name still come from `name`. This only affects bare words in prose; `[[Entravé]]` resolves on its own and is case insensitive.
 
-**`stacks` starts at 2.** A state with no counter simply leaves the key out. Never write `"stacks": null` and never write `"stacks": 1`.
+**A state that accumulates says how far in its description.** There is no stack field and no counter printed beside the name: the cap is rule text, written once in the opening sentence, as `Combustion s'accumule sur vous jusqu'à 5.` does. A state that starts at a value and counts down, like `Agonie`, says that value where the state is gained.
 
 **`kind` decides the colour, not `color`.** `buff` is green, `debuff` is orange, `neutral` is grey. Use `color` only to keep several steps of one family visually in order.
 

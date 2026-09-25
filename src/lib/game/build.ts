@@ -865,7 +865,7 @@ function buildTermIndex(input: TermInput): TermIndex {
       family: 'state' as const,
       kind: t.states,
       title: state.name,
-      meta: kindLabel + (state.stacks ? ` · ×${state.stacks}` : ''),
+      meta: kindLabel,
       color:
         state.kind === 'buff'
           ? 'var(--state-buff)'

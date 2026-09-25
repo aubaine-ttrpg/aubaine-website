@@ -701,18 +701,11 @@ export const state = z
       .regex(HEX)
       .optional()
       .describe("Encre propre, lorsque les crans d'une même famille doivent se suivre à l'œil."),
-    stacks: z
-      .number()
-      .int()
-      .min(2)
-      .max(10)
-      .optional()
-      .describe("Plafond d'accumulation. Absent : l'état est présent ou absent, sans compteur."),
     description: z
       .string()
       .min(1)
       .describe(
-        "Ce que l'état fait et comment il prend fin. Quand il n'en fixe pas la durée, le DD ou les dégâts, la Compétence ou l'objet qui l'applique les indique.",
+        "Ce que l'état fait, jusqu'où il s'accumule s'il s'accumule, et comment il prend fin. Quand il n'en fixe pas la durée, le DD ou les dégâts, la Compétence ou l'objet qui l'applique les indique.",
       ),
   })
   .strict()

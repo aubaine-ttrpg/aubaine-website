@@ -71,7 +71,6 @@ const fr = {
   other_: 'Autre',
   otherNote: 'Aucune source répertoriée pour l’instant.',
   pager: 'Navigation entre les pages',
-  stacks_: 'Cumuls',
   almanach: 'Almanach',
   almanachLead:
     'Les index du codex : l’équipement, les compétences, les actions de base, les états et les arbres. Chacun se filtre et se lit en regard du détail.',
@@ -296,7 +295,6 @@ const en: UiStrings = {
   other_: 'Other',
   otherNote: 'No source recorded yet.',
   pager: 'Page navigation',
-  stacks_: 'Stacks',
   almanach: 'Almanach',
   almanachLead:
     'The codex’s indexes: equipment, skills, base actions, states and the trees. Each one filters and reads alongside its detail.',

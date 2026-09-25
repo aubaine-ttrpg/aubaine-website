@@ -276,9 +276,6 @@ const tags = skillTags(skill.tags).map(({ key, kind }) => {
           <Icon name={state.icon} class="au-rule__icon" />
           <span>{state.name}</span>
         </span>
-        {state.stacks !== undefined && (
-          <span class="au-state-callout__stacks">{`${state.stacks} ${t.stacks_}`}</span>
-        )}
         <RuleText
           source={state.description}
           corpus={corpus}

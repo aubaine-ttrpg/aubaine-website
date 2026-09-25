@@ -3,6 +3,5 @@
   "name": "Combustion",
   "kind": "buff",
   "icon": "mdi:fire",
-  "stacks": 5,
   "description": "Combustion s'accumule sur vous jusqu'à 5.\n\nLorsque vous effectuez un Jet de dégâts qui inflige des dégâts de Feu, ajoutez 1 dégât par Combustion que vous portez."
 }
