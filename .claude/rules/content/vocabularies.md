@@ -6,12 +6,12 @@ paths:
 
 # Vocabularies
 
-`data/meta/` holds one file per controlled vocabulary. Together they are the codex taxonomy and its glossary, and every entry pairs a stable machine `key` with `labelFr` and `labelEn`. Read the directory for the current set; `domains.json` is the shape they all follow.
+`data/meta/` holds one file per controlled vocabulary. Together they are Aubaine's taxonomy and its glossary, and every entry pairs a stable machine `key` with `labelFr` and `labelEn`. Read the directory for the current set; `domains.json` is the shape they all follow.
 
 - These lists are the whole taxonomy. An entry may only name a key that is declared there, and `pnpm data:check` enforces it.
 - Adding, removing, or renaming a key is a product decision that changes the schema surface, not an authoring step.
 - A key is a machine value. It is never translated and never shown to a reader.
-- `labelFr` and `labelEn` are what the reader sees and what the term index matches on. Changing one changes how keywords link across the whole codex.
+- `labelFr` and `labelEn` are what the reader sees and what the term index matches on. Changing one changes how keywords link across the whole of Aubaine.
 - The vocabulary schema is strict and narrow. Read `vocabulary` in `src/lib/game/schema.ts` for the fields it allows. `formsFr` and `formsEn` carry the other written forms of a label, agreement and plural included, so that a bare word is still marked in rule text. They are spellings, not a glossary.
 - `definitionFr` and `definitionEn` are the tooltip text of a word, written together or not at all, in plain text. Only the vocabularies whose words carry a tooltip hold them: `characteristics.json` (every entry but the `any` marker) and `aptitudes.json`. `pnpm data:check` requires them there and refuses them anywhere else. Aliases, gender and usage notes still have no field.
 - A definition is the source of truth for its word. A chapter that restates the word follows it.

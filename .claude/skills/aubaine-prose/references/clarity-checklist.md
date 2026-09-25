@@ -7,7 +7,7 @@ For any text that defines executable behavior.
 - Prerequisites are separated from outcomes.
 - The trigger of a Réaction is in the first sentence of the description, not in `activation`.
 - Target, range, area, and subject are not conflated.
-- Resolution terms match the codex vocabulary.
+- Resolution terms match Aubaine's vocabulary.
 - Alternate outcomes are distinguishable from sequential ones.
 - Timing uses the game's own model: action, bonus action, reaction, round, turn, rest.
 - Optional and mandatory behavior are distinct. `pouvez` is a real permission; the plain indicative is
@@ -15,7 +15,7 @@ For any text that defines executable behavior.
 - A bounded use states both the limit and the reset condition.
 - A persistent effect states how it ends.
 - Singular and plural agree, and the same entity is named the same way throughout.
-- Abbreviations are the codex's own and are used as the codex uses them.
+- Abbreviations are Aubaine's own and are used as Aubaine uses them.
 
 Do not require a concept the mechanic does not have. Aubaine has no damage type on every effect, no
 saving throw on every roll, and no turn boundary on every duration. Write what the mechanic is.

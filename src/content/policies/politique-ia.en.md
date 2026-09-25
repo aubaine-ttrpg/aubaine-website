@@ -17,7 +17,7 @@ Aubaine does not present itself as an AI art project. A generated illustration i
 
 ## What is not generated
 
-The writing, the rules, the systems and the setting are made by hand. The book chapters, the skill descriptions, the balance values and the structure of the codex are written and arbitrated by a person, entry by entry.
+The writing, the rules, the systems and the setting are made by hand. The book chapters, the skill descriptions, the balance values and the structure of the game are written and arbitrated by a person, entry by entry.
 
 ## What the files carry
 

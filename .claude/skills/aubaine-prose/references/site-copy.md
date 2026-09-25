@@ -1,6 +1,6 @@
 # The site's own copy
 
-Three surfaces outside `data/` carry text a reader sees. None of them is codex canon, none of them
+Three surfaces outside `data/` carry text a reader sees. None of them is Aubaine canon, none of them
 runs through the keyword index, and the schema contract does not reach any of them.
 
 ## The interface strings
@@ -25,7 +25,7 @@ makes an omission a compile error, so there is no fallback and no partially tran
 French with an English overlay. ADR 0015 owns their contract.
 
 This is the project speaking in its own name about itself. It is the one surface that may use the
-first person, and it never adopts the in-world voice of the codex. It carries no rule text markup,
+first person, and it never adopts the in-world voice of the game. It carries no rule text markup,
 because nothing here parses it.
 
 A claim on these pages is about rights, data or attribution, so it is verified before it ships or it

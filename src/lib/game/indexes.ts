@@ -22,8 +22,8 @@ const DESCRIPTIONS: Record<IndexKind, Record<Locale, string>> = {
     en: 'The playable Species, the Skills each one offers and the movement it sets.',
   },
   skills: {
-    fr: 'Toutes les compétences du codex, arbres, Banque Commune et Compétences de base, avec les endroits où chacune s’obtient.',
-    en: 'Every skill in the codex, trees, Common Bank and Basic Skills alike, with where each one can be obtained.',
+    fr: 'Toutes les compétences d’Aubaine, arbres, Banque Commune et Compétences de base, avec les endroits où chacune s’obtient.',
+    en: 'Every skill in Aubaine, trees, Common Bank and Basic Skills alike, with where each one can be obtained.',
   },
   equipment: {
     fr: 'Protections, armes, bijoux et consommables, avec leurs stats, propriétés et fabrication.',

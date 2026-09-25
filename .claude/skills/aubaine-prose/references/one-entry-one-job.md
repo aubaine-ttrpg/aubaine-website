@@ -1,6 +1,6 @@
 # One entry, one job
 
-A codex earns its worth by being navigable, and navigability breaks when two entries answer the same
+Aubaine earns its worth by being navigable, and navigability breaks when two entries answer the same
 question. The reader who finds both learns that neither is authoritative.
 
 ## Before adding to a tree that already exists
@@ -25,7 +25,7 @@ reaches it. Cut the chapter back to the explanation and let the keyword carry th
 
 ## Cross references are the structure
 
-The codex links through spelling. A canonical term renders as a keyword and carries the reader to
+Aubaine links through spelling. A canonical term renders as a keyword and carries the reader to
 its definition; a missed capital renders as plain text and the link silently does not exist. That is
 the practical reason `keyword-rendering.md` is strict about capitals: it is not typography, it is
 the navigation.

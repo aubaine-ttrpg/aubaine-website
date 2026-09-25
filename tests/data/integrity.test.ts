@@ -1380,10 +1380,9 @@ describe('what the site credits', () => {
     for (const locale of LOCALES) {
       for (const [key, value] of Object.entries(strings(locale))) {
         if (typeof value !== 'string') continue
-        expect(
-          value,
-          `${locale}.${key} carries a version that cannot follow the codex`,
-        ).not.toMatch(/\bv\d+\.\d+/i)
+        expect(value, `${locale}.${key} carries a version that cannot follow Aubaine`).not.toMatch(
+          /\bv\d+\.\d+/i,
+        )
       }
     }
   })

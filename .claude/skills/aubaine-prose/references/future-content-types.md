@@ -1,6 +1,6 @@
-# Content types the codex does not have yet
+# Content types Aubaine does not have yet
 
-Aubaine is new. The codex today holds skills, skill trees, skill lists, states, equipment items,
+Aubaine is new. Today it holds skills, skill trees, skill lists, states, equipment items,
 sets, the catalogue, and books. Creatures, non player characters, locations, factions, encounters,
 adventures, and standalone lore are planned and not yet modelled.
 

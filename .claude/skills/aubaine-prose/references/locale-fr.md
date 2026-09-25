@@ -1,6 +1,6 @@
 # French writing reference
 
-French is the canonical authoring language of the codex, not a translation target. It is the source
+French is the canonical authoring language of Aubaine, not a translation target. It is the source
 and the fallback: an entry with no English overlay renders in French on the English page.
 
 ## Vocabulary
@@ -21,7 +21,7 @@ That last group is the one to be careful with, because nothing validates it. `MJ
 `Action Bonus` are examples of it, not the whole of it. Read the chapters before inventing a term,
 and reuse what is there.
 
-Capitalize game terms mid sentence, as the codex already does. This is not decoration: it is what
+Capitalize game terms mid sentence, as Aubaine already does. This is not decoration: it is what
 makes the term render with its icon and colour. See `keyword-rendering.md`.
 
 ## Typography in source

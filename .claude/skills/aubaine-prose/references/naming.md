@@ -14,7 +14,7 @@ letter clusters.
 
 For each culture, establish a small naming grammar and reuse it consistently.
 
-## In the codex, a name is also an identifier
+## In Aubaine, a name is also an identifier
 
 A skill `title` and a state `name` are what `{{...}}` and `[[...]]` resolve against and what the term
 index matches. That has three consequences.

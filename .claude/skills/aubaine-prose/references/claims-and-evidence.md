@@ -1,6 +1,6 @@
 # Claims and evidence
 
-A codex asserts things about a game that only this repository defines. There is no outside source to
+Aubaine's pages assert things about a game that only this repository defines. There is no outside source to
 appeal to and none is wanted, so the question is never "where did you read that" but "what in the
 repository says so".
 

@@ -20,7 +20,7 @@ The site has five, and they must stay distinguishable.
 - The item `description`: one or two sentences of flavor, concrete, never implying a mechanic.
 - Book chapters: explanatory prose that teaches a mechanic to a player at the table.
 - Interface strings in `src/lib/i18n/strings.ts`: a label names a destination, a lead is one or two sentences that also serve as the page's meta description, an error says what failed and what to do next.
-- Policy pages under `src/content/policies/`: the project speaking in its own name about itself. Not codex canon, and not the codex voice.
+- Policy pages under `src/content/policies/`: the project speaking in its own name about itself. Not Aubaine canon, and not Aubaine's in-world voice.
 
 ## Voice
 

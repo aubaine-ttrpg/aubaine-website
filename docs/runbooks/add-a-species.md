@@ -110,7 +110,7 @@ the page title is the `name` above.
 ![](../../media/art/feu-16_9-og.png)
 
 Un premier bloc, illustré. Le balisage d'une Compétence marche ici : [[Agonie]], {{Attaquer}} et
-les mots du codex se posent seuls.
+les mots d'Aubaine se posent seuls.
 
 ## Coutumes
 
@@ -168,7 +168,7 @@ Then open `/fr/especes` and click through to the new species.
 
 ## Traps
 
-**A species grants exactly two Compétences.** That number is canon from `data/books/livre-du-joueur/09-les-especes.md`, so it is `SPECIES_SKILL_CHOICES` in `src/lib/game/derive.ts` and not a field. Do not add one. The page states the rule and lists the pool; it does not let a reader pick, because a character sheet is not what the codex is.
+**A species grants exactly two Compétences.** That number is canon from `data/books/livre-du-joueur/09-les-especes.md`, so it is `SPECIES_SKILL_CHOICES` in `src/lib/game/derive.ts` and not a field. Do not add one. The page states the rule and lists the pool; it does not let a reader pick, because a character sheet is not what Aubaine is.
 
 **The hero carries three plates and the file authors no icon.** They are built from `types`, `movement` and `size`, in that order, and their icons are `SPECIES_PLATE_ICONS` in `src/lib/game/derive.ts`. A species that declares neither `types`, `size` nor `derivedFrom` shows the movement alone.
 

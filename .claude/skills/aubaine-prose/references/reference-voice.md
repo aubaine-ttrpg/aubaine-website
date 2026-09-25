@@ -27,7 +27,7 @@ reader has read the chapter that defines its terms.
 
 That does not mean restating the chapter. It means naming the mechanic precisely enough that the
 keyword links carry the reader to the definition. This is the practical reason keyword spelling
-matters: it is the codex's cross referencing, and it only works when the spelling is canonical.
+matters: it is Aubaine's cross referencing, and it only works when the spelling is canonical.
 
 Define an uncommon setting term before leaning on it. Do not define a term the vocabularies already
 own; link it instead.
@@ -52,7 +52,7 @@ roleplaying book, not as a specification or a usage report.
   soigne »).
 - Never list the skills or items that use it. That list grows, and the definition rots with it.
 - Never define an Aubaine term by contrast with another game (« il n'y a pas de jet de
-  sauvegarde »). The comparison imports a game the reader may not know and the codex does not
+  sauvegarde »). The comparison imports a game the reader may not know and Aubaine does not
   follow.
 - Never define by exclusion (« ni un Sort, ni une Manœuvre »). The excluded set grows too.
 - Write permissively where the game permits: « Vous pouvez changer vos Compétences Mémorisées

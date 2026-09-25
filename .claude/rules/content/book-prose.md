@@ -5,7 +5,7 @@ paths:
 
 # Book Prose
 
-Book chapters are the explanatory layer. They teach a mechanic in plain language without changing it, and they are the only long form prose in the codex. `docs/runbooks/add-a-book-page.md` owns the procedure.
+Book chapters are the explanatory layer. They teach a mechanic in plain language without changing it, and they are the only long form prose in Aubaine. `docs/runbooks/add-a-book-page.md` owns the procedure.
 
 ## Format
 

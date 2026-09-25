@@ -1,6 +1,6 @@
 # Revising an entry that already exists
 
-Improving an entry that is already in the codex is usually worth more than adding another one. These
+Improving an entry that is already in Aubaine is usually worth more than adding another one. These
 are the rules for doing it without breaking what points at it.
 
 ## The id is permanent

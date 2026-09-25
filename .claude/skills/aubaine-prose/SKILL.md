@@ -4,7 +4,7 @@ author: Kori
 version: 2.1.0
 last_updated: 2026-09-24
 license: MIT
-description: Write, rewrite, translate, audit, and validate every word a reader sees on Aubaine: the codex under data/, the interface copy in src/lib/i18n/strings.ts, the policy pages in src/content/policies/, the tooltip definitions of rule terms, Caractéristiques, Aptitudes and tags, and the titles and meta descriptions composed from them. Use for skills, upgrades, skill trees, skill lists, states, equipment items, sets, species, the catalogue, book chapters, English overlays, interface labels, policy prose, and editorial audits of game prose.
+description: Write, rewrite, translate, audit, and validate every word a reader sees on Aubaine: the game content under data/, the interface copy in src/lib/i18n/strings.ts, the policy pages in src/content/policies/, the tooltip definitions of rule terms, Caractéristiques, Aptitudes and tags, and the titles and meta descriptions composed from them. Use for skills, upgrades, skill trees, skill lists, states, equipment items, sets, species, the catalogue, book chapters, English overlays, interface labels, policy prose, and editorial audits of game prose.
 ---
 
 # Aubaine Prose
@@ -98,4 +98,4 @@ set, and keeping them distinguishable is the standing job.
   `references/one-entry-one-job.md`, `references/revising-an-entry.md`
 - `references/locale-fr.md`, `references/locale-en.md`
 - `references/style-checklist.md`, `references/clarity-checklist.md`
-- `references/future-content-types.md` for content types the codex does not have yet
+- `references/future-content-types.md` for content types Aubaine does not have yet

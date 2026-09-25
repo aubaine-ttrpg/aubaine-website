@@ -24,7 +24,7 @@ paths:
 
 ## Derived values
 
-- Never author a value the codex computes. A tree's domains and primary characteristics are counted from the skills it places, and the schema has no field for either.
+- Never author a value Aubaine computes. A tree's domains and primary characteristics are counted from the skills it places, and the schema has no field for either.
 - XP is `5 × tier` unless `xpOverride` replaces it.
 - If a plate shows the wrong colour, change the skills, not the tree.
 

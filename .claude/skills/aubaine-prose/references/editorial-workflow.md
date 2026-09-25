@@ -4,7 +4,7 @@
 
 1. Identify the entity kind and open its runbook in `docs/runbooks/`.
 2. Read two or three siblings in the same directory. They carry the register, the terminology, and
-   the level of detail the codex has settled on. Take them only from entries whose resolved status
+   the level of detail Aubaine has settled on. Take them only from entries whose resolved status
    is `playtest`, `beta` or `balanced`. A `draft` is lorem ipsum or unverified text and is never a
    model, however finished it looks. Resolve the status as the build does: an entry that writes
    none inherits it from what owns it, and the `status` field in `src/lib/game/schema.ts` says
@@ -58,7 +58,7 @@ verified against a file in the repository before it ships. See `site-copy.md`.
 
 - Remove filler and repeated conclusions.
 - Replace vague adjectives with concrete facts.
-- Check vocabulary against the codex, not against memory.
+- Check vocabulary against Aubaine's data, not against memory.
 - Check that keywords are spelled canonically.
 - Check that no sentence added a mechanic the structured data does not carry.
 - Check that no structured value was restated in prose.

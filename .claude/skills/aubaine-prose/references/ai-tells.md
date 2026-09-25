@@ -11,7 +11,7 @@ subject.
 ## The refused phrasings live in the check
 
 `BANNED_PHRASES` in `tests/data/integrity.test.ts` holds the current set, in both languages, and
-`pnpm data:check` fails on a hit across the codex, the interface strings and the policy pages.
+`pnpm data:check` fails on a hit across the game content, the interface strings and the policy pages.
 `delve into` is one member. Read the constant when you need the others, and add to it there when a
 new formula turns up in a draft. A copy of that list in a rule or in this file is the copy that goes
 stale.

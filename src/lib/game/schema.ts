@@ -940,7 +940,7 @@ export const pdfRelease = z
     version: z
       .string()
       .regex(VERSION)
-      .describe('Version du codex au moment du tirage, telle que data/aubaine.json la porte.'),
+      .describe("Version d'Aubaine au moment du tirage, telle que data/aubaine.json la porte."),
     styleHash: z
       .string()
       .regex(SHORT_HASH)
@@ -985,7 +985,7 @@ export const pdfReleases = z
 
 export const pdfNote = z
   .object({
-    version: z.string().regex(VERSION).describe('Version du codex que cette note décrit.'),
+    version: z.string().regex(VERSION).describe("Version d'Aubaine que cette note décrit."),
     date: z.string().regex(DATE).describe('Date de la version, en AAAA-MM-JJ.'),
     fr: z.string().min(1).describe('Ce qui a changé, en français.'),
     en: z.string().min(1).describe('Ce qui a changé, en anglais.'),

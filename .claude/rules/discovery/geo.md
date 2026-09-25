@@ -17,7 +17,7 @@ paths:
 - Use descriptive headings that expose the information structure.
 - Keep facts close to the entity or claim they describe.
 - Define uncommon setting terms before relying on them heavily.
-- Use the stable identifiers the codex already has, meaning entity ids, skill titles, and state names, when they disambiguate an entity.
+- Use the stable identifiers Aubaine already has, meaning entity ids, skill titles, and state names, when they disambiguate an entity.
 - Link related concepts through descriptive internal links.
 - Use tables only for genuinely tabular facts.
 - Use lists when order or membership matters.

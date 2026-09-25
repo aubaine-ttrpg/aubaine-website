@@ -30,7 +30,7 @@ project voice.
 
 ## How the voice differs by register
 
-Rule text is the tightest register in the codex. Second person, present tense, no ornament, one
+Rule text is the tightest register in Aubaine. Second person, present tense, no ornament, one
 clause per idea. The reader is mid turn and needs to execute.
 
 The item `description` is the only place in an entry where the voice relaxes. One or two sentences,

@@ -2,8 +2,8 @@ import type { Locale } from './locales.ts'
 
 const fr = {
   skip: 'Aller au contenu',
-  search: 'Rechercher le codex…',
-  searchLabel: 'Rechercher dans le codex',
+  search: 'Rechercher dans Aubaine…',
+  searchLabel: 'Rechercher dans Aubaine',
   navLabel: 'Sections',
   themeLabel: 'Basculer le thème clair ou sombre',
   langLabel: 'Langue',
@@ -16,8 +16,8 @@ const fr = {
   spells: 'Compétences',
   rules: 'Règles',
   states_: 'États',
-  loading: 'Chargement du codex…',
-  errorTitle: 'Le codex n’a pas pu être chargé',
+  loading: 'Chargement d’Aubaine…',
+  errorTitle: 'Impossible de charger Aubaine',
   errorBody:
     'Les données de jeu n’ont pas répondu. Rechargez la page ; si le problème persiste, le fichier de données est absent.',
   heroTitle: 'Aubaine, arbre par arbre',
@@ -73,7 +73,7 @@ const fr = {
   pager: 'Navigation entre les pages',
   almanach: 'Almanach',
   almanachLead:
-    'Les index du codex : l’équipement, les compétences, les règles et les arbres. Chacun se filtre et se lit en regard du détail.',
+    'Les index d’Aubaine : l’équipement, les compétences, les règles et les arbres. Chacun se filtre et se lit en regard du détail.',
   allIndexes: 'Tous les index',
   entries_: 'entrées',
   browse_: 'Consulter',
@@ -143,7 +143,7 @@ const fr = {
     'Toutes les Compétences du jeu, avec leur texte de règle complet, leur ligne de stats et leurs améliorations.',
   itemsLead: 'Protections, armes et objets, avec leurs propriétés, leur fabrication et leur prix.',
   rulesLead:
-    'Les termes de règle du codex et leur définition, les étiquettes et les Compétences de base que toute créature possède.',
+    'Les termes de règle d’Aubaine et leur définition, les étiquettes et les Compétences de base que toute créature possède.',
   searchTitle: 'Recherche',
   states: 'États',
   state: 'État',
@@ -197,12 +197,12 @@ const fr = {
   hintSpells:
     'Choisissez une compétence pour lire sa règle complète, sa ligne de stats et ses améliorations.',
   hintRules: 'Choisissez une entrée pour en lire le texte complet.',
-  emptyTitle: 'Rien à cet endroit du codex.',
+  emptyTitle: 'Rien à cet endroit d’Aubaine.',
   emptyBody: 'Retirez un filtre ou effacez la recherche pour revoir la liste complète.',
   resetFilters: 'Réinitialiser',
   drafts: 'Brouillons',
   emptyListTitle: 'Rien à afficher pour l’instant.',
-  emptyListBody: 'Cette liste s’étoffera au fil de l’écriture du codex.',
+  emptyListBody: 'Cette liste s’étoffera au fil de l’écriture d’Aubaine.',
   searchEmpty:
     'Aucun arbre, compétence, objet ou règle ne porte ce nom. Essayez un mot plus court.',
   searchTitleFor: 'Résultats pour',
@@ -214,7 +214,7 @@ const fr = {
   footerNote: (version: string) => `Données de jeu v${version}, susceptibles de changer`,
   archives: 'Archives',
   archivesLead:
-    "Chaque version du codex et les livrets qu'elle a produits. La génération courante se télécharge livret par livret ; les précédentes tiennent dans une archive par langue.",
+    "Chaque version d'Aubaine et les livrets qu'elle a produits. La génération courante se télécharge livret par livret ; les précédentes tiennent dans une archive par langue.",
   archiveLead: 'Toutes les éditions imprimées de ce livret, de la plus récente à la plus ancienne.',
   versionHistory: 'Versions précédentes',
   currentVersion: 'Version courante',
@@ -227,8 +227,8 @@ export type UiStrings = typeof fr
 
 const en: UiStrings = {
   skip: 'Skip to Content',
-  search: 'Search the codex…',
-  searchLabel: 'Search the codex',
+  search: 'Search Aubaine…',
+  searchLabel: 'Search Aubaine',
   navLabel: 'Sections',
   themeLabel: 'Toggle light or dark theme',
   langLabel: 'Language',
@@ -241,8 +241,8 @@ const en: UiStrings = {
   spells: 'Skills',
   rules: 'Rules',
   states_: 'States',
-  loading: 'Loading the codex…',
-  errorTitle: 'The Codex Failed to Load',
+  loading: 'Loading Aubaine…',
+  errorTitle: 'Aubaine Failed to Load',
   errorBody:
     'The game data did not respond. Reload the page; if it persists, the data file is missing.',
   heroTitle: 'Aubaine, Plate by Plate',
@@ -299,7 +299,7 @@ const en: UiStrings = {
   pager: 'Page navigation',
   almanach: 'Almanach',
   almanachLead:
-    'The codex’s indexes: equipment, skills, rules and the trees. Each one filters and reads alongside its detail.',
+    'Aubaine’s indexes: equipment, skills, rules and the trees. Each one filters and reads alongside its detail.',
   allIndexes: 'All indexes',
   entries_: 'entries',
   browse_: 'Browse',
@@ -368,7 +368,7 @@ const en: UiStrings = {
   spellsLead: 'Every skill in the game, with its full rule text, its stat line and its upgrades.',
   itemsLead: 'Armour, weapons and objects, with their properties, their crafting and their price.',
   rulesLead:
-    'The codex’s rule terms with their definitions, the tags, and the basic Skills every creature has.',
+    'Aubaine’s rule terms with their definitions, the tags, and the basic Skills every creature has.',
   searchTitle: 'Search',
   states: 'States',
   state: 'State',
@@ -420,12 +420,12 @@ const en: UiStrings = {
   hintItems: 'Pick a piece of equipment to read its properties, its craft and its price.',
   hintSpells: 'Pick a skill to read its full rule text, its stat line and its upgrades.',
   hintRules: 'Pick an entry to read its full text.',
-  emptyTitle: 'Nothing in this part of the codex.',
+  emptyTitle: 'Nothing in this part of Aubaine.',
   emptyBody: 'Drop a filter or clear the search to see the full list again.',
   resetFilters: 'Reset',
   drafts: 'Drafts',
   emptyListTitle: 'Nothing to show yet.',
-  emptyListBody: 'This list will grow as the codex is written.',
+  emptyListBody: 'This list will grow as Aubaine is written.',
   searchEmpty: 'No tree, skill, item or rule carries that name. Try a shorter word.',
   searchTitleFor: 'Results for',
   craft: 'Craft',
@@ -436,7 +436,7 @@ const en: UiStrings = {
   footerNote: (version: string) => `Game data v${version}, subject to change`,
   archives: 'Archives',
   archivesLead:
-    'Every version of the codex and the booklets it printed. The current generation downloads booklet by booklet; earlier ones travel as one archive per language.',
+    'Every version of Aubaine and the booklets it printed. The current generation downloads booklet by booklet; earlier ones travel as one archive per language.',
   archiveLead: 'Every printed edition of this booklet, newest first.',
   versionHistory: 'Earlier versions',
   currentVersion: 'Current version',

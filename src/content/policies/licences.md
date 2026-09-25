@@ -12,7 +12,7 @@ Le code qui fait tourner ce site est sous licence MIT. Vous pouvez le lire, le r
 
 ## Le contenu du jeu
 
-Tout ce que le codex porte est sous licence [Creative Commons CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr) : les règles, les Compétences, les arbres, l'équipement, les États, les chapitres des livres et les illustrations.
+Tout le contenu du jeu Aubaine est sous licence [Creative Commons CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr) : les règles, les Compétences, les arbres, l'équipement, les États, les chapitres des livres et les illustrations.
 
 ## Ce que vous pouvez en faire
 

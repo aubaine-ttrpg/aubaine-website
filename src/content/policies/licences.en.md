@@ -11,7 +11,7 @@ The code that runs this site is under the MIT licence. You may read it, reuse it
 
 ## The game content
 
-Everything the codex carries is under the [Creative Commons CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) licence: the rules, the skills, the trees, the equipment, the states, the book chapters and the illustrations.
+All of Aubaine's game content is under the [Creative Commons CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) licence: the rules, the skills, the trees, the equipment, the states, the book chapters and the illustrations.
 
 ## What you may do with it
 
