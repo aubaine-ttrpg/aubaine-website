@@ -50,6 +50,11 @@ function describe(
   return { kind, locale, params: {}, title, description }
 }
 
+export function homePage(locale: Locale, data: Corpus): PageDescriptor {
+  const t = strings(locale)
+  return describe(locale, 'home', t.heroTitle, t.heroLead(data.trees.length, data.species.length))
+}
+
 export type ChapterHead = { title: string; description?: string | undefined }
 
 export async function bookChapterHeads(locale: Locale): Promise<Map<string, ChapterHead>> {
@@ -83,7 +88,7 @@ export async function pageRoutes(): Promise<PageRoute[]> {
     const heads = await bookChapterHeads(locale)
 
     const pages: PageDescriptor[] = [
-      describe(locale, 'home', t.heroTitle, t.heroLead(data.trees.length, data.species.length)),
+      homePage(locale, data),
       describe(locale, 'books', t.resources, t.hubLead),
       describe(locale, 'almanach', t.almanach, t.almanachLead),
       describe(locale, 'trees', t.trees, t.treesLead),
