@@ -10,20 +10,6 @@
   overflow: hidden;
 }
 
-.au-skill-list {
-  columns: 2 440px;
-  column-gap: 26px;
-}
-
-.au-skill-card {
-  break-inside: avoid;
-  scroll-margin-top: 110px;
-}
-
-.au-skill-card[data-selected] .au-skill__hd {
-  border-bottom-color: var(--gold);
-}
-
 .au-skill {
   margin-bottom: 22px;
   display: flex;

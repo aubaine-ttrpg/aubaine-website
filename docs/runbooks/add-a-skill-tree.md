@@ -1,6 +1,6 @@
 # Add a skill tree
 
-Produces one plate page with its banner, its nodes and the list of its skills underneath, plus a card in the tree index.
+Produces one plate page with its banner, its lore and its nodes, a page per node where that skill opens beside the plate, plus a card in the tree index.
 
 ## The files to create
 
@@ -9,7 +9,7 @@ data/skill-trees/<id>.json
 data/lore/skill-trees/<id>.md
 ```
 
-The JSON carries the plate. The Markdown carries the prose the reader reads, and is optional: a tree with no file renders its plate and its skills alone.
+The JSON carries the plate. The Markdown carries the prose the reader reads, and is optional: a tree with no file renders its plate and its skills alone, with no outline.
 
 The filename is the id and the id becomes the URL. Lowercase letters, digits and hyphens, starting with a letter: `berserker`, `mage`, `feu`, `prestidigitateur`.
 
@@ -88,8 +88,8 @@ Without a `core`, one skill holds the centre instead. `data/skill-trees/berserke
 ## What appears on the site
 
 - `/fr/arbres` and `/en/trees`: a new card in the tree index, with the cover when the tree has one and the banner otherwise, the computed domains and the skill count.
-- `/fr/arbre/<id>` and `/en/tree/<id>`: the hero with the banner and the tree name, the plate with its nodes and link lines, then the lore beside its sticky outline when the tree has one, then the skill list under the heading `Compétences` with one card per placement, sorted by tier.
-- `/fr/arbre/<id>/<SKILL-ID>`: the same page with one card and one node highlighted.
+- `/fr/arbre/<id>` and `/en/tree/<id>`: the hero with the banner and the tree name, then the lore beside its sticky outline when the tree has one, then the section « Arbre de compétences » at `#arbre`, which the outline names last. The section holds the filters, then the legend over the plate with its nodes and link lines, beside a pane of the same width that asks the reader to choose a skill.
+- `/fr/arbre/<id>/<SKILL-ID>`: the same page with that skill's card in the pane and its node circled in gold. A node on the plate links here with `#arbre`, and with JavaScript only the pane changes.
 - If `data/media/pdf/<id>.pdf` exists, a booklet download button appears in the hero. The filename must be the tree id.
 
 ## How to check it

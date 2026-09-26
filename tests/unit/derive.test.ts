@@ -27,6 +27,9 @@ import {
   pathFor,
   sectionFor,
   segmentsFor,
+  TREE_ANCHOR,
+  treeNodeHref,
+  treeRef,
   VIEW_KINDS,
   type ViewKind,
 } from '../../src/lib/i18n/routes'
@@ -419,5 +422,37 @@ describe('book chapter references', () => {
     expect(bookChapterRef('/de/livres/livre-du-joueur/comment-jouer')).toBeUndefined()
     expect(bookChapterRef('/livres/livre-du-joueur/comment-jouer')).toBeUndefined()
     expect(bookChapterRef('/fr/livres/livre-du-joueur/comment-jouer/extra')).toBeUndefined()
+  })
+})
+
+describe('tree references', () => {
+  it('names the tree of a plate and of each of its nodes', () => {
+    expect(treeRef('/fr/arbre/berserker')).toBe('fr/berserker')
+    expect(treeRef('/fr/arbre/berserker/')).toBe('fr/berserker')
+    expect(treeRef('/fr/arbre/berserker/RAGER-01')).toBe('fr/berserker')
+    expect(treeRef('/en/tree/berserker/TOURB-01/')).toBe('en/berserker')
+  })
+
+  it('matches two nodes of one tree and separates everything else', () => {
+    const tree = treeRef('/fr/arbre/berserker/RAGER-01')
+    expect(treeRef('/fr/arbre/berserker/TOURB-01')).toBe(tree)
+    expect(treeRef('/fr/arbre/feu/SCHAU-01')).not.toBe(tree)
+    expect(treeRef('/en/tree/berserker/RAGER-01')).not.toBe(tree)
+  })
+
+  it('rejects paths that are not a tree or a node', () => {
+    expect(treeRef('/fr/arbres')).toBeUndefined()
+    expect(treeRef('/fr/arbre')).toBeUndefined()
+    expect(treeRef('/en/arbre/berserker')).toBeUndefined()
+    expect(treeRef('/de/arbre/berserker')).toBeUndefined()
+    expect(treeRef('/fr/competences/berserker')).toBeUndefined()
+    expect(treeRef('/fr/arbre/berserker/RAGER-01/extra')).toBeUndefined()
+  })
+
+  it('links a node to the tree section of its own page', () => {
+    expect(treeNodeHref('fr', 'berserker', 'RAGER-01')).toBe(
+      `/fr/arbre/berserker/RAGER-01#${TREE_ANCHOR}`,
+    )
+    expect(treeNodeHref('en', 'berserker', 'RAGER-01')).toBe('/en/tree/berserker/RAGER-01#arbre')
   })
 })

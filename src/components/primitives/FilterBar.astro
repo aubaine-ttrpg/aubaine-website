@@ -1,10 +1,14 @@
 ---
-import Island, { type FilterGroup, type FilterKind } from '../../islands/FilterBar'
+import Island, {
+  type FilterGroup,
+  type FilterKind,
+  type UnmatchedEntries,
+} from '../../islands/FilterBar'
 import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
 import EmptyState from './EmptyState.astro'
 
-type ListVariant = 'trees' | 'species' | 'skills' | 'equipment' | 'rules'
+type ListVariant = 'trees' | 'species' | 'skills' | 'treeNodes' | 'equipment' | 'rules'
 
 type Props = {
   locale: Locale
@@ -15,6 +19,19 @@ type Props = {
 const { locale, variant, total, drafts } = Astro.props
 const t = strings(locale)
 
+const SKILL_FACETS: FilterGroup[] = [
+  { key: 'dom', label: t.domain_ },
+  { key: 'typ', label: t.type_ },
+  { key: 'cost', label: t.cost_ },
+  { key: 'act', label: t.activation },
+  { key: 'chr', label: t.characteristic_ },
+  { key: 'tier', label: t.tier_ },
+  { key: 'pra', label: t.tagPractice },
+  { key: 'sch', label: t.tagSchool },
+  { key: 'spe', label: t.tagSpecial },
+]
+const STATUS_FACET: FilterGroup = { key: 'sta', label: t.status_ }
+
 const GROUPS: Record<ListVariant, FilterGroup[]> = {
   trees: [
     { key: 'tdom', label: t.domains },
@@ -22,19 +39,8 @@ const GROUPS: Record<ListVariant, FilterGroup[]> = {
     { key: 'sta', label: t.status_ },
   ],
   species: [{ key: 'sta', label: t.status_ }],
-  skills: [
-    { key: 'acq', label: t.provenance },
-    { key: 'dom', label: t.domain_ },
-    { key: 'typ', label: t.type_ },
-    { key: 'cost', label: t.cost_ },
-    { key: 'act', label: t.activation },
-    { key: 'chr', label: t.characteristic_ },
-    { key: 'tier', label: t.tier_ },
-    { key: 'pra', label: t.tagPractice },
-    { key: 'sch', label: t.tagSchool },
-    { key: 'spe', label: t.tagSpecial },
-    { key: 'sta', label: t.status_ },
-  ],
+  skills: [{ key: 'acq', label: t.provenance }, ...SKILL_FACETS, STATUS_FACET],
+  treeNodes: SKILL_FACETS,
   equipment: [
     { key: 'cat', label: t.category },
     { key: 'rar', label: t.rarity_ },
@@ -52,20 +58,10 @@ const GROUPS: Record<ListVariant, FilterGroup[]> = {
 
 const groups: FilterGroup[] =
   Astro.props.variant === 'speciesSkills'
-    ? [
-        { key: 'sub', label: Astro.props.subspeciesLabel },
-        { key: 'dom', label: t.domain_ },
-        { key: 'typ', label: t.type_ },
-        { key: 'cost', label: t.cost_ },
-        { key: 'act', label: t.activation },
-        { key: 'chr', label: t.characteristic_ },
-        { key: 'tier', label: t.tier_ },
-        { key: 'pra', label: t.tagPractice },
-        { key: 'sch', label: t.tagSchool },
-        { key: 'spe', label: t.tagSpecial },
-        { key: 'sta', label: t.status_ },
-      ]
+    ? [{ key: 'sub', label: Astro.props.subspeciesLabel }, ...SKILL_FACETS, STATUS_FACET]
     : GROUPS[Astro.props.variant]
+
+const unmatched: UnmatchedEntries = variant === 'treeNodes' ? 'dimmed' : 'hidden'
 
 const kinds: FilterKind[] | undefined =
   variant === 'trees'
@@ -100,6 +96,7 @@ const islandStrings = {
   total={total}
   drafts={drafts}
   locale={locale}
+  unmatched={unmatched}
   inputMaxWidth={variant === 'trees' ? '300px' : '340px'}
 />
 

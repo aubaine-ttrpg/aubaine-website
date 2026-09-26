@@ -1,5 +1,5 @@
 import type { Locale } from '../i18n/locales.ts'
-import { pathFor } from '../i18n/routes.ts'
+import { pathFor, treeNodeHref } from '../i18n/routes.ts'
 import { strings } from '../i18n/strings.ts'
 import {
   type Corpus,
@@ -39,7 +39,7 @@ export type BrowseSource =
   | { kind: 'tree' | 'species' | 'item'; title: string; href: string }
   | { kind: 'basic' | 'bank' | 'other'; title: string }
 
-export type SourceOwner = { kind: 'species'; id: string }
+export type SourceOwner = { kind: 'tree' | 'species'; id: string }
 type FacetValue = { value: string; label: string }
 type Facet = { group: string; values: string[]; labels: string[] }
 
@@ -172,6 +172,14 @@ function skillFacets(skill: Skill, corpus: Corpus, locale: Locale): Facet[] {
   ]
 }
 
+export function treeNodeAttributes(
+  skill: Skill,
+  corpus: Corpus,
+  locale: Locale,
+): Record<string, string> {
+  return attributesFor(skill.id, skill.title, skillFacets(skill, corpus, locale))
+}
+
 function originOf(skill: Skill, corpus: Corpus): SkillOrigin {
   const source = corpus.origins.get(skill.id)
   if (!source) throw new Error(`${skill.id} is listed but nothing offers it`)
@@ -190,13 +198,15 @@ export function skillSources(
     owner?.kind === kind && owner.id === id
 
   const sources: BrowseSource[] = [
-    ...source.trees.map(
-      (tree): BrowseSource => ({
-        kind: 'tree',
-        title: tree.name,
-        href: pathFor('tree', locale, { tree: tree.id, node: skill.id }),
-      }),
-    ),
+    ...source.trees
+      .filter((tree) => !isOwner('tree', tree.id))
+      .map(
+        (tree): BrowseSource => ({
+          kind: 'tree',
+          title: tree.name,
+          href: treeNodeHref(locale, tree.id, skill.id),
+        }),
+      ),
     ...source.species
       .filter((entry) => !isOwner('species', entry.id))
       .map(

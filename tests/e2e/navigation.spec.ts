@@ -69,8 +69,12 @@ test('the theme toggle keeps a localized name without a text label', async ({ pa
 
 test('a selected skill tree node deep links and highlights', async ({ page }) => {
   await page.goto('/en/tree/berserker/RAGER-01')
-  await expect(page.locator('[data-plate-node][aria-current="true"]')).toHaveCount(1)
-  await expect(page.locator('#skill-RAGER-01')).toBeVisible()
+  await expect(page.locator('[data-plate-node][aria-current="page"]')).toHaveCount(1)
+  await expect(page.locator('[data-plate-node][aria-current="page"]')).toHaveAttribute(
+    'data-node',
+    'RAGER-01',
+  )
+  await expect(page.locator('#tree-detail [data-selected-node="RAGER-01"]')).toBeVisible()
 })
 
 test('an unknown url returns a real 404', async ({ page }) => {

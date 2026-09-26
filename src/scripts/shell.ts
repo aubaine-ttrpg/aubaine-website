@@ -2,8 +2,10 @@ import { HTML_LANG, isLocale } from '../lib/i18n/locales'
 import { bindBook } from './book'
 import { bindBrowse } from './browse'
 import { bindLoading } from './loading'
+import { bindPlateViewer } from './plate-viewer'
 import { type SwupVisit, swupInstance, withSwup } from './swup'
 import { bindThreshold } from './threshold'
+import { bindTree } from './tree'
 
 const THEME_KEY = 'aubaine.theme'
 const SEARCH_DELAY = 320
@@ -332,6 +334,8 @@ withSwup((swup) => {
     setActiveSection(currentSection())
   })
   bindBook(swup)
+  bindTree(swup)
+  bindPlateViewer(swup)
   bindBrowse(swup)
   bindLoading(swup)
   swup.hooks.on('visit:start', onVisitStart)

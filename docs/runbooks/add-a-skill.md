@@ -1,6 +1,6 @@
 # Add a skill
 
-Produces one skill card: a node on a plate, an entry in the tree's skill list, and a tooltip wherever rule text names it.
+Produces one skill card: a node on a plate, the node's own page where the card opens beside the plate, and a tooltip wherever rule text names it.
 
 ## The file to create
 
@@ -70,8 +70,8 @@ Key order is the order of this table. Keep it.
 
 The file alone creates no page. A skill is shown once a tree names it. Add the placement, then:
 
-- `/fr/arbre/feu` and `/en/tree/feu`: the node on the plate, plus its card in the skill list under the plate.
-- `/fr/arbre/feu/SCHAU-01` and `/en/tree/feu/SCHAU-01`: the same page with that card highlighted in gold and the node enlarged.
+- `/fr/arbre/feu` and `/en/tree/feu`: the node on the plate, in the « Arbre de compétences » section after the lore.
+- `/fr/arbre/feu/SCHAU-01` and `/en/tree/feu/SCHAU-01`: the same page with the card open in the pane beside the plate, the node circled in gold and its lines drawn gold. Choosing the node on the tree page leads here.
 - Anywhere rule text writes `{{Surchauffe}}`, the name becomes a tooltip carrying the type, the tree and the first lines of the description.
 - In the card footer, each tag shows its label and, on hover or keyboard focus, its definition. On `/fr/competences` and `/en/skills` the Pratique, École and Spéciale filters find it.
 
@@ -84,7 +84,7 @@ pnpm data:check
 pnpm dev
 ```
 
-Then open the tree page and look at the node and its card.
+Then open the tree page, choose the node and read its card in the pane.
 
 ## Traps
 

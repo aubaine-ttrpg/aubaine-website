@@ -4,6 +4,7 @@ import { DRAFT_REVEALED, draftsShown, isDraft, isRevealed, setDraftsShown } from
 
 export type FilterGroup = { key: string; label: string }
 export type FilterKind = { key: string; label: string; dot: string }
+export type UnmatchedEntries = 'hidden' | 'dimmed'
 
 export type FilterStrings = {
   filterHere: string
@@ -27,6 +28,7 @@ type Props = {
   total: number
   drafts: number
   locale: string
+  unmatched: UnmatchedEntries
   inputMaxWidth?: string | undefined
 }
 
@@ -95,6 +97,7 @@ export default function FilterBar({
   total,
   drafts,
   locale,
+  unmatched,
   inputMaxWidth = '340px',
 }: Props) {
   const [entries, setEntries] = useState<Entry[]>([])
@@ -147,8 +150,12 @@ export default function FilterBar({
   useEffect(() => {
     if (entries.length === 0) return
     const shown = new Set(visible.map((entry) => entry.element))
-    for (const entry of entries) entry.element.hidden = !shown.has(entry.element)
-  }, [entries, visible])
+    for (const entry of entries) {
+      const matched = shown.has(entry.element)
+      if (unmatched === 'dimmed') entry.element.toggleAttribute('data-dimmed', !matched)
+      else entry.element.hidden = !matched
+    }
+  }, [entries, visible, unmatched])
 
   useEffect(() => {
     if (!modalOpen) return

@@ -1,6 +1,6 @@
 # Place a skill on a tree
 
-Produces one node on a plate, the line that joins it to its parent, and one card in that tree's skill list.
+Produces one node on a plate, the line that joins it to its parent, and a page for that node where its card opens beside the plate.
 
 ## The file to edit
 
@@ -192,8 +192,8 @@ In a tree with a `core`, the first ring links to it instead. `data/skill-trees/m
 
 ## What appears on the site
 
-- `/fr/arbre/berserker` and `/en/tree/berserker`: the node appears on the plate at `pos`, with a line drawn to each entry in `linked`, and a card in the skill list under the plate.
-- `/fr/arbre/berserker/RAGER-01` and `/en/tree/berserker/RAGER-01`: that node is enlarged and outlined in gold, and its card is outlined in gold.
+- `/fr/arbre/berserker` and `/en/tree/berserker`: the node appears on the plate at `pos`, with a line drawn to each entry in `linked`, and the tree's filters count it.
+- `/fr/arbre/berserker/RAGER-01` and `/en/tree/berserker/RAGER-01`: that node is circled in gold, the lines that touch it are drawn gold, and its card opens in the pane beside the plate. Choosing the node on the tree page leads here.
 - `/fr/arbres` and `/en/trees`: the tree's skill count and computed domains change, because both are counted from the placements.
 
 ## How to check it
@@ -213,10 +213,10 @@ pnpm dev
 
 **`linked` may contain the literal `CORE`, and only when the tree has a `core`.** Only `mage` has one today. In a tree without a core, the centre node has no `linked` at all.
 
-**A placement with no `pos` is listed with the tree but draws no dot on the plate.** That is the schema's intent: `Absent : la Compétence est listée avec l'arbre mais n'a pas de pastille sur la planche.` Be aware that the current plate renderer does not skip it, it stacks such a node at the centre of the board. Until that is fixed, give every placement a `pos`.
+**A placement with no `pos` is listed with the tree but draws no dot on the plate.** That is the schema's intent: `Absent : la Compétence est listée avec l'arbre mais n'a pas de pastille sur la planche.` On the web it is a link under the plate, headed « Pas encore sur la planche », and it keeps its own node page. The booklet lists it with the other skills.
 
 **16 placements maximum.** The schema caps `placements` at 16.
 
-**Order does not matter at render time.** `L'ordre n'a pas d'effet au rendu.` The skill list is sorted by tier. Keep the array in a readable order for yourself.
+**Order does not change the drawing.** `L'ordre n'a pas d'effet au rendu.` It does set the order in which the keyboard reaches the nodes on the web plate, so keep the array a readable walk of the tree, the way `berserker.json` lists the centre and then each branch. The booklet lists the skills roots first, then alphabetically, through `treeSkillOrder` in `src/lib/game/derive.ts`.
 
 **Never write `"pos": null` or `"linked": null`.** Leave the key out.

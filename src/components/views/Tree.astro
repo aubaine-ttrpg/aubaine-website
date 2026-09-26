@@ -1,20 +1,27 @@
 ---
 import { hasBooklet } from '../../lib/booklet/manifest'
+import { skillSources, treeNodeAttributes } from '../../lib/game/browse-entries'
 import type { Corpus, ResolvedTree } from '../../lib/game/corpus'
 import {
   characteristicKey,
   formatNumber,
-  treeSkillOrder,
+  showsXp,
   treeTypeLabel,
+  xpOf,
 } from '../../lib/game/derive'
 import { loreFor } from '../../lib/game/prose'
 import { badgedStatus } from '../../lib/game/status'
 import type { Locale } from '../../lib/i18n/locales'
-import { pathFor } from '../../lib/i18n/routes'
+import { pathFor, TREE_ANCHOR, treeNodeHref } from '../../lib/i18n/routes'
 import { strings } from '../../lib/i18n/strings'
 import { bookletHref, PLACEHOLDER_BANNER } from '../../lib/media'
+import DetailPane from '../primitives/DetailPane.astro'
+import EmptyState from '../primitives/EmptyState.astro'
+import FilterBar from '../primitives/FilterBar.astro'
 import Hero from '../primitives/Hero.astro'
 import Plate from '../primitives/Plate.astro'
+import PlateLegend from '../primitives/PlateLegend.astro'
+import Provenance from '../primitives/Provenance.astro'
 import SectionHead from '../primitives/SectionHead.astro'
 import SectionTrail from '../primitives/SectionTrail.astro'
 import SkillEntry from '../primitives/SkillEntry.astro'
@@ -46,7 +53,12 @@ const scrollCue = treeTypeLabel(tree.treeType, {
   species: t.scrollCueSpecies,
 })
 
-const skills = treeSkillOrder(tree.placements, locale)
+const selectedSkill = selected ? tree.skills.find((skill) => skill.id === selected) : undefined
+if (selected && !selectedSkill) throw new Error(`${selected} is not placed on the ${tree.id} tree`)
+
+const offPlate = tree.placements
+  .filter((placement) => placement.pos === undefined)
+  .map((placement) => placement.skill)
 
 const lore = await loreFor('skill-trees', tree.id, locale)
 const LoreContent = lore?.Content
@@ -55,7 +67,7 @@ const trail = lore
       ...lore.headings
         .filter((heading) => heading.depth === 2)
         .map((heading) => ({ text: heading.text, href: `#${heading.slug}` })),
-      { text: t.skills, href: '#skills' },
+      { text: t.plate, href: `#${TREE_ANCHOR}` },
     ].map((section, position) => ({ ...section, num: String(position + 1).padStart(2, '0') }))
   : []
 ---
@@ -144,10 +156,6 @@ const trail = lore
     </div>
   </Hero>
 
-  <section class="au-plate-frame">
-    <Plate locale={locale} corpus={corpus} tree={tree} selected={selected} linked />
-  </section>
-
   {
     LoreContent && (
       <div class="au-reading">
@@ -166,25 +174,86 @@ const trail = lore
     )
   }
 
-  <section style="max-width:1560px; margin:0 auto; padding:34px 26px 80px">
-    <SectionHead
-      title={t.skills}
-      count={`${formatNumber(tree.placements.length, locale)} ${t.nodes}`}
-      id="skills"
-    />
+  <section class="au-tree" aria-labelledby={TREE_ANCHOR}>
+    <div class="au-tree__head">
+      <SectionHead
+        title={t.plate}
+        count={`${formatNumber(tree.placements.length, locale)} ${t.nodes}`}
+        id={TREE_ANCHOR}
+      />
+    </div>
 
-    <div class="au-skill-list">
-      {
-        skills.map((skill) => (
-          <article
-            id={`skill-${skill.id}`}
-            class="au-skill-card"
-            data-selected={selected === skill.id ? 'true' : undefined}
-          >
-            <SkillEntry skill={skill} corpus={corpus} locale={locale} marks={false} />
-          </article>
-        ))
-      }
+    {
+      tree.placements.length > 1 && (
+        <FilterBar
+          locale={locale}
+          variant="treeNodes"
+          total={tree.placements.length}
+          drafts={0}
+        />
+      )
+    }
+
+    <div class="au-tree__split">
+      <div class="au-tree__board">
+        <PlateLegend class="au-board-legend" locale={locale} corpus={corpus} tree={tree} />
+        <Plate variant="board" locale={locale} corpus={corpus} tree={tree} selected={selected} />
+        {
+          offPlate.length > 0 && (
+            <div class="au-off-plate">
+              <p class="au-off-plate__label" id={`hors-planche-${tree.id}`}>
+                {t.offPlate}
+              </p>
+              <ul class="au-off-plate__list" aria-labelledby={`hors-planche-${tree.id}`}>
+                {offPlate.map((skill) => (
+                  <li>
+                    <a
+                      class="au-off-plate__link"
+                      href={treeNodeHref(locale, tree.id, skill.id)}
+                      data-node={skill.id}
+                      {...treeNodeAttributes(skill, corpus, locale)}
+                      aria-current={selected === skill.id ? 'page' : undefined}
+                    >
+                      {showsXp(skill) && (
+                        <span class="au-nameplate__xp">{formatNumber(xpOf(skill), locale)}</span>
+                      )}
+                      <span>{skill.title}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+      </div>
+
+      <DetailPane label={t.detail} id="tree-detail">
+        {
+          selectedSkill ? (
+            <article
+              class="au-tree__detail"
+              aria-label={selectedSkill.title}
+              data-selected-node={selectedSkill.id}
+            >
+              <SkillEntry skill={selectedSkill} corpus={corpus} locale={locale} marks={false} />
+              <Provenance
+                entryId={selectedSkill.id}
+                label={t.alsoAvailable}
+                sources={skillSources(selectedSkill, corpus, locale, {
+                  kind: 'tree',
+                  id: tree.id,
+                })}
+                corpus={corpus}
+                locale={locale}
+              />
+            </article>
+          ) : (
+            <div class="au-tree__empty">
+              <EmptyState title={t.emptyListTitle} body={t.treeDetailEmpty} />
+            </div>
+          )
+        }
+      </DetailPane>
     </div>
   </section>
 </div>
@@ -192,6 +261,88 @@ const trail = lore
 <style>
   .au-reading {
     padding-block: 40px 0;
+  }
+
+  .au-tree {
+    max-width: 1560px;
+    margin: 0 auto;
+    padding: 34px 0 80px;
+  }
+
+  .au-tree__head {
+    padding: 0 26px;
+  }
+
+  .au-tree__split {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 22px 26px 0;
+  }
+
+  .au-tree__board {
+    width: 100%;
+    max-width: 1080px;
+    margin-inline: auto;
+  }
+
+  .au-tree__empty {
+    display: grid;
+    place-items: center;
+    min-height: 16rem;
+    padding: 24px 0;
+  }
+
+  .au-tree__detail {
+    animation: au-rise 0.32s var(--ease) backwards;
+  }
+
+  .au-tree__split > :global(.au-detail-pane) > * {
+    transition: opacity 0.16s var(--ease);
+  }
+
+  .au-tree__split > :global(.au-detail-pane[data-leaving]) > * {
+    opacity: 0.35;
+  }
+
+  @media (width >= 76rem) {
+    .au-tree__split {
+      --tree-half: calc((100% - 34px) / 2);
+      flex-direction: row;
+      align-items: stretch;
+      gap: 34px;
+    }
+
+    .au-tree__board {
+      flex: 0 0 var(--tree-half);
+      align-self: flex-start;
+      min-width: 0;
+      max-width: none;
+      margin-inline: 0;
+    }
+
+    .au-tree__split > :global(.au-detail-pane) {
+      box-sizing: border-box;
+      flex: 0 0 var(--tree-half);
+      min-width: 0;
+    }
+
+    .au-tree__empty {
+      height: 100%;
+      min-height: 0;
+      box-sizing: border-box;
+    }
+  }
+
+  @media (width < 76rem) {
+    .au-tree__split > :global(.au-detail-pane) {
+      position: static;
+      max-height: none;
+      overflow-y: visible;
+      padding: 22px 0 0;
+      border-left: 0;
+      border-top: 1px solid var(--accent-line);
+    }
   }
 
   [data-booklet]:hover {

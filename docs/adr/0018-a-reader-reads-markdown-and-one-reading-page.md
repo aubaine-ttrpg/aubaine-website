@@ -3,6 +3,8 @@
 **Project:** Aubaine, the wiki
 **Status:** Accepted
 **Date:** 2026-09-23
+**Revised:** 2026-09-26, the tree page renders the grid for its lore only, and its rail ends on the
+tree section that follows it (0025)
 **Deciders:** Kori
 **Scope:** Where long-form prose that a reader reads is authored, and how the four surfaces that
 carry it are laid out: the book chapter, the policy page, the Species page and the skill tree page.
@@ -190,6 +192,14 @@ same site, and a third and fourth surface had nowhere to inherit from.
   to 75 that typographic guidance gives and above the 74 that `40rem` produced. Line height is 1.7,
   which carries a long line better than a tight one would, but this is a readability cost taken on
   instruction and it should be the first thing revisited if the pages read as tiring.
+
+### Addendum (2026-09-26): the tree page ends on a section outside the grid
+
+`Tree.astro` still renders this grid, for its lore. The plate no longer sits above it. The tree now
+follows it in a full-width « Arbre de compétences » section, with the plate on the left and a detail
+pane on the right, and the rail's last entry points there (`#arbre`) rather than to a list of skills.
+The measure, the rail and the breakpoint above are untouched. The tree section takes its side by side
+layout from the same `76rem`. 0025 Decisions 1 and 3 record the section.
 
 ---
 

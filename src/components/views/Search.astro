@@ -15,7 +15,7 @@ import {
 import type { EquipmentItem, Skill } from '../../lib/game/schema'
 import { type BadgedStatus, badgedStatus } from '../../lib/game/status'
 import type { Locale } from '../../lib/i18n/locales'
-import { pathFor } from '../../lib/i18n/routes'
+import { pathFor, treeNodeHref } from '../../lib/i18n/routes'
 import { strings } from '../../lib/i18n/strings'
 import StatusBadge from '../primitives/StatusBadge.astro'
 
@@ -74,7 +74,7 @@ for (const tree of corpus.trees) {
     const row: Row = {
       id: skill.id,
       title: skill.title,
-      href: pathFor('tree', locale, { tree: tree.id, node: skill.id }),
+      href: treeNodeHref(locale, tree.id, skill.id),
       sub: `${tree.name} · ${typeText}`,
       mark: tint(skill.domains),
       value: xpLabel(skill),

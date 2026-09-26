@@ -82,6 +82,20 @@ export function pathFor(kind: ViewKind, locale: Locale, params: RouteParams = {}
   return `/${[locale, ...segmentsFor(kind, locale, params)].join('/')}`
 }
 
+export const TREE_ANCHOR = 'arbre'
+
+export function treeNodeHref(locale: Locale, tree: string, node: string): string {
+  return `${pathFor('tree', locale, { tree, node })}#${TREE_ANCHOR}`
+}
+
+export function treeRef(pathname: string): string | undefined {
+  const [locale, section, tree, ...node] = pathname.split('/').filter(Boolean)
+  if (locale === undefined || section === undefined || tree === undefined) return undefined
+  if (node.length > 1) return undefined
+  if (!isLocale(locale) || SEGMENT.tree[locale] !== section) return undefined
+  return `${locale}/${tree}`
+}
+
 export function bookChapterRef(pathname: string): string | undefined {
   const [locale, section, book, chapter, ...rest] = pathname.split('/').filter(Boolean)
   if (locale === undefined || section === undefined) return undefined

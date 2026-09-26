@@ -147,6 +147,28 @@ test('a skill tree plate draws its nodes without javascript', async ({ page }) =
   await expect(page.locator('svg line')).not.toHaveCount(0)
 })
 
+test('a bare skill tree asks for a skill and a node link opens it on its tree', async ({
+  page,
+}) => {
+  await page.goto('/fr/arbre/berserker')
+  await expect(page.locator('#tree-detail')).toContainText(
+    'Choisissez une Compétence dans l’arbre pour l’afficher ici.',
+  )
+  await expect(page.locator('[data-node][aria-current]')).toHaveCount(0)
+
+  const node = page.locator('[data-plate-node][data-node="TOURB-01"]')
+  await expect(node).toHaveAttribute('href', '/fr/arbre/berserker/TOURB-01#arbre')
+  await node.click()
+  await expect(page).toHaveURL('/fr/arbre/berserker/TOURB-01#arbre')
+  await expect(page.locator('#tree-detail [data-selected-node="TOURB-01"]')).toBeVisible()
+  await expect(page.locator('[data-plate-node][aria-current="page"]')).toHaveAttribute(
+    'data-node',
+    'TOURB-01',
+  )
+  await expect(page.locator('line[data-lit]')).toHaveCount(1)
+  await expect(page.locator('#arbre')).toBeInViewport()
+})
+
 test('a tall hero still cues the reader below it without javascript', async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 700 })
   await page.goto('/fr/arbre/berserker')
@@ -264,6 +286,12 @@ test('a tree page reaches its own history without javascript', async ({ page }) 
 
 test.describe('without javascript', () => {
   test.use({ javaScriptEnabled: false })
+
+  test('the tree viewer hides the zoom controls it cannot drive', async ({ page }) => {
+    await page.goto('/fr/arbre/berserker')
+    await expect(page.locator('[data-viewer-controls]')).toBeHidden()
+    await expect(page.locator('[data-plate-node]')).toHaveCount(14)
+  })
 
   test('the Common Bank source still opens its note without javascript', async ({ page }) => {
     await page.goto('/en/skills#e-CBREP-01')

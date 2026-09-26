@@ -87,7 +87,7 @@ For a price above 50 XP you need `xpOverride`, because tier 10 stops at 50. `dat
 
 ## What appears on the site
 
-On `/fr/arbre/berserker/RAGER-01` and `/en/tree/berserker/RAGER-01`, each upgrade is a block under the base card in the skill list, by increasing level, with its title, its XP price and its rule text. The plate node itself is unchanged: an upgrade never draws a node.
+On `/fr/arbre/berserker/RAGER-01` and `/en/tree/berserker/RAGER-01`, each upgrade is a block under the base card in the pane beside the plate, by increasing level, with its title, its XP price and its rule text. The plate node itself is unchanged: an upgrade never draws a node.
 
 ## How to check it
 

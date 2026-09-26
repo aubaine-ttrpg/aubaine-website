@@ -1,5 +1,5 @@
 import { DEFAULT_LOCALE, type Locale } from '../i18n/locales.ts'
-import { pathFor } from '../i18n/routes.ts'
+import { pathFor, treeNodeHref } from '../i18n/routes.ts'
 import { strings } from '../i18n/strings.ts'
 import {
   characteristicKey,
@@ -959,7 +959,7 @@ function buildTermIndex(input: TermInput): TermIndex {
         color: 'var(--accent-ink)',
         icon: skillIcon(skill, characteristics),
         text: flattenText(skill.description, 240),
-        href: pathFor('tree', locale, { tree: tree.id, node: skill.id }),
+        href: treeNodeHref(locale, tree.id, skill.id),
       })
     }
   }

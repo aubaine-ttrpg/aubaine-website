@@ -8,6 +8,9 @@ than the whole selection mechanism, because Swup suppresses fragment navigation
 **Revised:** 2026-09-23, the browse markup of Decision 2 moves to `BrowseList.astro` and serves the species page (0019)
 **Revised:** 2026-09-25, Decision 4 gains an addendum: the deployed policy admits the build's own inline
 scripts by hash, without which the island never hydrated in production (0022)
+**Revised:** 2026-09-26, Decisions 2 and 3 gain addenda: a tree node page carries its skill beside the
+plate and a same-tree selection swaps only that pane; the island dims a tree's nodes and no longer
+renders the empty state (0025)
 **Deciders:** Kori
 **Scope:** What runs at build time versus in the browser, how interaction that the design expressed
 as client state is expressed instead, and the cache policy that follows. Does not cover client
@@ -127,6 +130,17 @@ Almanach views and the species page both render (0019 Decision 3). The markup mo
 so the `:target` floor, the `data-no-swup` row list and the script above it behave as written here.
 The file named in the rationale and in the summary table is now `BrowseList.astro`.
 
+### Addendum (2026-09-26): a tree node page carries its skill, and a selection swaps only the pane
+
+The first bullet above still holds as written. A skill tree node is an `<a>` to
+`/{locale}/arbre/{tree}/{node}`, now with `#arbre` so a document load lands on the tree section, and
+the server renders the highlight. What changed is what that page shows. It no longer lists every
+skill of the tree under the plate: it shows the selected skill in a detail pane beside the plate, and
+the bare tree route shows an empty state there. With JavaScript, `src/scripts/tree.ts` narrows a
+visit between two nodes of one tree to that pane and the footer, with no animation, no scroll and a
+replaced history entry. The fragment and `:target` mechanism above was not reused for trees, because
+the node pages are published, linked and indexed. 0025 Decision 2 records why.
+
 ---
 
 ## Decision 3: Exactly one island
@@ -160,6 +174,18 @@ The file named in the rationale and in the summary table is now `BrowseList.astr
   because the facet modal is a focus-trapped dialog with enter and exit animation, which is exactly
   what Motion and React are good at. The shell script handles the menus and the theme, which are
   simpler, so the boundary is drawn at animated stateful UI.
+
+### Addendum (2026-09-26): the island dims a tree's nodes and no longer renders the empty state
+
+The island is still the only one, and it still reads its entries from the DOM. Two things changed.
+
+- It takes `unmatched: 'hidden' | 'dimmed'`. A skill tree filters its nodes in dimmed mode, which
+  sets `data-dimmed` instead of toggling `hidden`, so the drawing stays whole.
+- The empty state it used to render as inline JSX is now
+  `src/components/primitives/EmptyState.astro`, which `FilterBar.astro` renders on the server. The
+  island only toggles its `hidden` and wires its reset button.
+
+Tree pages now load the island too. 0025 Decision 4 records both changes.
 
 ---
 
