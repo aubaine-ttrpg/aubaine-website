@@ -62,7 +62,7 @@ Two Practices set a condition. You need a Catalyseur equipped, meaning a piece o
 
 Alongside your Trees, a list of Skills belongs to nobody: the Common Bank.
 
-They are independent of one another. Any character may buy one at any time, whatever their Trees, for its price in XP and the Prerequisite some of them carry. The Species Skills a character did not keep at creation are bought there too, reserved to their Species by that Prerequisite. Nothing stops a merchant slipping into the shadows or an artisan catching their breath mid-melee.
+They are independent of one another. Any character may buy one at any time, whatever their Trees, for its price in XP and the Prerequisite some of them carry. The Species Skills a character did not keep at creation are bought there too, reserved to their Species by that Prerequisite, and so are some Tree Skills, such as the ones the Catalyseurs grant: buying one there makes it Learned without unlocking its Tree. Nothing stops a merchant slipping into the shadows or an artisan catching their breath mid-melee.
 
 ## What equipment grants
 

@@ -62,7 +62,7 @@ Deux Pratiques posent une condition. Vous avez besoin d'un Catalyseur équipé, 
 
 À côté de vos Arbres, une liste de Compétences n'appartient à personne : la Banque Commune.
 
-Elles sont indépendantes les unes des autres. N'importe quel personnage peut en acheter une à tout moment, quels que soient ses Arbres, contre son prix en PX et le Prérequis que certaines portent. Les Compétences d'Espèce qu'un personnage n'a pas retenues à la création s'y achètent aussi, réservées à leur Espèce par ce Prérequis. Rien n'empêche un marchand de se glisser dans l'ombre ni un artisan de reprendre son souffle au milieu d'une mêlée.
+Elles sont indépendantes les unes des autres. N'importe quel personnage peut en acheter une à tout moment, quels que soient ses Arbres, contre son prix en PX et le Prérequis que certaines portent. Les Compétences d'Espèce qu'un personnage n'a pas retenues à la création s'y achètent aussi, réservées à leur Espèce par ce Prérequis, ainsi que certaines Compétences d'Arbre, comme celles qu'accordent les Catalyseurs : les acheter ici les rend Apprises sans débloquer leur Arbre. Rien n'empêche un marchand de se glisser dans l'ombre ni un artisan de reprendre son souffle au milieu d'une mêlée.
 
 ## Ce que l'équipement donne
 

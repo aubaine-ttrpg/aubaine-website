@@ -25,7 +25,7 @@ import {
 import { readCorpus, readSources } from '../../src/lib/game/fs-sources'
 import { overlays } from '../../src/lib/game/schema'
 import { LOCALES } from '../../src/lib/i18n/locales'
-import { pathFor } from '../../src/lib/i18n/routes'
+import { pathFor, treeNodeHref } from '../../src/lib/i18n/routes'
 import { strings } from '../../src/lib/i18n/strings'
 import { PLACEHOLDER_BANNER, PLACEHOLDER_COVER, PLACEHOLDER_SQUARE } from '../../src/lib/media'
 import { FONT_FAMILIES, ICON_SETS } from '../../src/lib/rights/attribution'
@@ -1158,12 +1158,18 @@ describe('the basic skills', () => {
     expect(en.basic.note).not.toBe(fr.basic.note)
   })
 
-  it('sends the cross reference of a basic or Common Bank skill to its skills index entry', async () => {
+  it('sends the cross reference of a basic or Common Bank skill to its node when a tree places it, and to its skills index entry otherwise', async () => {
     for (const locale of LOCALES) {
       const built = await readCorpus(root, locale)
       for (const skill of [...built.basic.resolved, ...built.bank.resolved]) {
+        const tree = built.trees.find((candidate) =>
+          candidate.placements.some((placement) => placement.skill.id === skill.id),
+        )
+        const expected = tree
+          ? treeNodeHref(locale, tree.id, skill.id)
+          : `${pathFor('skills', locale)}#e-${skill.id}`
         expect(built.terms.map.get(skill.title.toLowerCase())?.href, `${locale} ${skill.id}`).toBe(
-          `${pathFor('skills', locale)}#e-${skill.id}`,
+          expected,
         )
       }
     }
