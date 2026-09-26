@@ -25,9 +25,11 @@ Les traits relient un nœud à ses voisins. **Ils dessinent la lecture de la pla
 
 Chaque achat coûte de 5 à 100 PX, par pas de 5, et le prix est imprimé sur la Compétence.
 
-Acheter une Compétence, c'est l'apprendre, pas la mémoriser. Une Compétence apprise reste à vous pour toujours. Ce qui est limité, c'est le nombre que vous pouvez porter en même temps, et c'est votre Mémoire qui le dit.
+Acheter une Compétence, c'est l'apprendre, pas la mémoriser. Une Compétence Apprise reste à vous pour toujours. Ce qui est limité, c'est le nombre que vous pouvez porter en même temps, et c'est votre Mémoire qui le dit.
 
 Une Compétence Mémorisée est une Compétence que vous portez et pouvez jouer. Elle occupe 1 Mémoire, sauf dans les cas que liste « Où va votre Mémoire ».
+
+Une Compétence ne s'apprend qu'une fois, qu'elle vous vienne d'un achat, de votre Espèce ou d'une autre Compétence. Si un Arbre que vous débloquez vend une Compétence déjà Apprise, vous ne la rachetez pas : elle compte comme achetée dans cet Arbre. Un personnage qui a acheté {{Trait de feu}} dans la Banque Commune, puis qui débloque l'Arbre Feu, n'a pas à la payer une seconde fois.
 
 ## Les Niveaux
 

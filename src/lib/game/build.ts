@@ -762,6 +762,16 @@ const RULE_TERMS: readonly RuleTerm[] = [
     },
   },
   {
+    fr: ['Apprise', 'Apprises', 'Appris'],
+    en: ['Learned'],
+    color: 'var(--term-res)',
+    icon: 'mdi/book-check',
+    definition: {
+      fr: "Se dit d'une Compétence que vous avez acquise, que vous l'ayez achetée ou reçue. Une Compétence Apprise ne s'apprend pas une seconde fois.",
+      en: 'Said of a Skill you have acquired, whether you bought it or were given it. A Learned Skill is never learned a second time.',
+    },
+  },
+  {
     fr: ['Expertise'],
     en: ['Expertise'],
     color: 'var(--term-adv)',

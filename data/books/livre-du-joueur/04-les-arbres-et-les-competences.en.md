@@ -25,9 +25,11 @@ The lines join a node to its neighbours. **They draw how the plate reads, they d
 
 Each purchase costs 5 to 100 XP, in steps of 5, and the price is printed on the Skill.
 
-Buying a Skill means learning it, not memorising it. A Skill you have learnt is yours for good. What is limited is how many you can carry at once, and your Memory is what says so.
+Buying a Skill means learning it, not memorising it. A Learned Skill is yours for good. What is limited is how many you can carry at once, and your Memory is what says so.
 
 A Memorised Skill is a Skill you carry and can play. It takes 1 Memory, except in the cases listed under "Where your Memory goes".
+
+A Skill is learned only once, whether it came to you from a purchase, from your Species or from another Skill. If a Tree you unlock sells a Skill that is already Learned, you do not buy it again: it counts as bought in that Tree. A character who bought {{Trait de feu}} in the Common Bank and later unlocks the Feu Tree does not pay for it a second time.
 
 ## Levels
 
