@@ -834,6 +834,66 @@ const RULE_TERMS: readonly RuleTerm[] = [
       en: 'Points granted by the GM. By default, a point can add an Advantage or a Disadvantage to the Roll of your choice.',
     },
   },
+  {
+    fr: ['Âme', 'Âmes'],
+    en: ['Soul', 'Souls'],
+    color: 'var(--term-res)',
+    icon: 'game-icons/spark-spirit',
+    definition: {
+      fr: "Ce qui fait d'un personnage quelqu'un, au-delà de ses chiffres. Elle réunit sa Phobie, sa Manie, son Défaut, sa Spécialité et son Don, et se décide avec le MJ à la création.",
+      en: 'What makes a character someone, beyond their numbers. It gathers their Phobia, Mania, Flaw, Speciality and Gift, and is decided with the GM at creation.',
+    },
+  },
+  {
+    fr: ['Phobie', 'Phobies'],
+    en: ['Phobia', 'Phobias'],
+    color: 'var(--term-res)',
+    icon: 'game-icons/spider-alt',
+    definition: {
+      fr: 'Une peur qui pèse sur les décisions du personnage, du vertige à la terreur des araignées. Elle porte un emplacement de Karma, que le MJ remplit souvent quand elle lui coûte quelque chose.',
+      en: "A fear that weighs on the character's decisions, from vertigo to a terror of spiders. It carries a Karma slot, which the GM often fills when it costs them something.",
+    },
+  },
+  {
+    fr: ['Manie', 'Manies'],
+    en: ['Mania', 'Manias'],
+    color: 'var(--term-res)',
+    icon: 'game-icons/cycle',
+    definition: {
+      fr: 'Une habitude, une obsession ou un geste qui revient sans cesse : compter ses pas, ramasser tout ce qui brille. Elle porte un emplacement de Karma.',
+      en: 'A habit, an obsession or a gesture that keeps coming back: counting every step, picking up anything that glitters. It carries a Karma slot.',
+    },
+  },
+  {
+    fr: ['Défaut', 'Défauts'],
+    en: ['Flaw', 'Flaws'],
+    color: 'var(--term-res)',
+    icon: 'game-icons/cracked-mask',
+    definition: {
+      fr: "Un trait durable qui attire des ennuis au personnage, comme l'orgueil, l'avidité ou une langue trop bien pendue. Il porte un emplacement de Karma.",
+      en: 'A lasting trait that draws trouble towards the character, such as pride, greed or a tongue too quick for its own good. It carries a Karma slot.',
+    },
+  },
+  {
+    fr: ['Spécialité', 'Spécialités'],
+    en: ['Speciality', 'Specialities'],
+    color: 'var(--term-apt)',
+    icon: 'mdi/rhombus-split',
+    definition: {
+      fr: "Une Aptitude que vous inventez, au champ étroit : la peinture, les pièges, la cuisine. Quand elle s'applique, elle entre dans le Jet comme une Aptitude ordinaire et lui donne 1 Avantage.",
+      en: 'An Aptitude you invent, with a narrow field: painting, traps, cooking. When it applies, it enters the Roll like an ordinary Aptitude and gives it 1 Advantage.',
+    },
+  },
+  {
+    fr: ['Don', 'Dons'],
+    en: ['Gift', 'Gifts'],
+    color: 'var(--term-res)',
+    icon: 'game-icons/magic-palm',
+    definition: {
+      fr: "Une faculté exceptionnelle qui n'appartient qu'à vous : vos peintures prennent vie, vous parlez aux morts, vous recevez des prémonitions. Il vous ouvre une information, une permission ou une occasion qu'aucun autre personnage n'aurait.",
+      en: 'An exceptional faculty that belongs to you alone: your paintings come to life, you speak to the dead, you receive premonitions. It opens up information, permission or an opportunity no other character would have.',
+    },
+  },
 ]
 
 const FALLBACK_ICON = 'mdi/hexagon'
