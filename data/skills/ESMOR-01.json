@@ -13,7 +13,9 @@
   "duration": "Jusqu'à votre prochain Repos long",
   "energy": 0,
   "tags": {
-    "school": "illusion"
+    "schools": [
+      "illusion"
+    ]
   },
   "description": "Fardé et parfumé, vous passez pour vivant : personne ne peut deviner que vous êtes un Mort-vivant, ni à vous regarder de près, ni à passer du temps avec vous.\n\nLorsqu'une Compétence ou un autre effet, magique ou non, permettrait à une créature de connaître votre type de créature, vous pouvez dépenser votre Réaction pour effectuer un Jet de Charisme + Tromperie contre son DD (10 + Esprit + Perception). En cas de réussite, elle ne l'apprend pas, même par la magie. En cas d'échec, elle comprend que vous êtes un Mort-vivant.\n\nL'effet prend fin plus tôt si l'eau emporte le fard : sous une averse, dans un bain, ou dès que vous êtes [[Trempé]]. Un Squelette doit porter une peau pour en profiter."
 }

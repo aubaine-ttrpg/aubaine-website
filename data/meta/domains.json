@@ -67,6 +67,12 @@
       "labelEn": "Blood"
     },
     {
+      "key": "necrotic",
+      "color": "#1e5a3c",
+      "labelFr": "Nécrotique",
+      "labelEn": "Necrotic"
+    },
+    {
       "key": "neutral",
       "color": "#2a2a2e",
       "labelFr": "Neutre",

@@ -12,7 +12,9 @@
   "energy": 1,
   "tags": {
     "practice": "spell",
-    "school": "healing"
+    "schools": [
+      "healing"
+    ]
   },
   "description": "Vous jouez cette Réaction lorsqu'une créature que vous voyez à portée tombe [[À terre]].\n\nLe sol se soulève sous elle et la remet sur ses pieds. Elle n'est plus [[À terre]], et cela ne lui coûte aucun déplacement."
 }

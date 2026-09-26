@@ -9,7 +9,9 @@
   "duration": "Instantanée",
   "energy": 2,
   "tags": {
-    "school": "summoning",
+    "schools": [
+      "summoning"
+    ],
     "specials": [
       "unleashed"
     ]

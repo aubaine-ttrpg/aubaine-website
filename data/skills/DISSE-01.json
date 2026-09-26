@@ -11,7 +11,9 @@
   "duration": "Instantanée",
   "tags": {
     "practice": "technique",
-    "school": "creation"
+    "schools": [
+      "creation"
+    ]
   },
   "description": "Une carcasse est un magasin pour qui sait où couper. Après une rencontre significative remportée contre une créature qui n'est ni humanoïde ni construite, vous pouvez passer 10 minutes à l'ouvrir proprement.\n\nEffectuez un Jet d'Intelligence + Médecine contre un DD de 15. En cas de réussite, vous recevez une Occasion de butin de plus sur cette source. En cas d'échec, vous abîmez ce que vous cherchiez et n'en tirez rien de plus.",
   "upgrades": [

@@ -13,7 +13,9 @@
   "energy": 1,
   "tags": {
     "practice": "technique",
-    "school": "influence",
+    "schools": [
+      "influence"
+    ],
     "specials": [
       "unleashed"
     ]

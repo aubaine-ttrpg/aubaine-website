@@ -13,7 +13,9 @@
   "energy": 1,
   "tags": {
     "practice": "spell",
-    "school": "illusion"
+    "schools": [
+      "illusion"
+    ]
   },
   "description": "Vous créez à portée une illusion visuelle d'au plus 1 m³. Elle n'inflige aucun dégât et ne produit ni matière, ni chaleur, ni aucun effet physique.\n\nUne créature qui veut la déjouer y consacre son Action et effectue un Jet d'Esprit + Perception contre votre DD (10 + Intelligence + Tromperie). En cas de réussite, elle voit au travers, et elle seule.",
   "upgrades": [

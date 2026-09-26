@@ -12,7 +12,9 @@
   "duration": "—",
   "tags": {
     "practice": "technique",
-    "school": "influence"
+    "schools": [
+      "influence"
+    ]
   },
   "description": "On vous a décrit avant que vous n'entriez. Choisissez, à l'achat, ce qui se dit de vous : généreux, dangereux, bien né, incorruptible, ou tout ce qui vous arrange.\n\nUne créature qui a entendu parler de vous vous traite en conséquence, et vous gagnez 1 Avantage à vos Jets de Charisme qui s'appuient sur cette réputation. Une créature qui vous a vu la démentir n'y croit plus."
 }

@@ -9,7 +9,9 @@
   "duration": "—",
   "tags": {
     "practice": "technique",
-    "school": "divination"
+    "schools": [
+      "divination"
+    ]
   },
   "description": "Vous ne vendez pas que des cordes. Vous savez ce qu'une arme, une armure ou un catalyseur vaut vraiment, et ce qu'il faudrait lui faire pour qu'elle vaille davantage.\n\nUne pièce d'équipement que vous avez tenue une minute vous livre sa recette de fabrication, s'il en existe une."
 }

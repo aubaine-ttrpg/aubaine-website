@@ -10,7 +10,9 @@
   "energy": 2,
   "tags": {
     "practice": "shout",
-    "school": "control",
+    "schools": [
+      "control"
+    ],
     "specials": [
       "unleashed"
     ]

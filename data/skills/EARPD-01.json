@@ -12,7 +12,9 @@
   "duration": "—",
   "tags": {
     "practice": "spell",
-    "school": "divination"
+    "schools": [
+      "divination"
+    ]
   },
   "description": "Lorsque vous effectuez un Jet pour détecter, ressentir ou en apprendre plus sur un élément composé de magie de Terre, vous gagnez 2 Avantages pour ce Jet."
 }

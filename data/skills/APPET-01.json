@@ -10,7 +10,9 @@
   "range": "—",
   "duration": "—",
   "tags": {
-    "school": "healing",
+    "schools": [
+      "healing"
+    ],
     "specials": [
       "lifesteal"
     ]

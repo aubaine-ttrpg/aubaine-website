@@ -13,7 +13,9 @@
   "energy": 2,
   "tags": {
     "practice": "spell",
-    "school": "control"
+    "schools": [
+      "control"
+    ]
   },
   "description": "La rune ne blesse pas, elle retient. La première créature qui la déclenche effectue un Jet de Force + Athlétisme contre votre DD (10 + Intelligence + Arcanes).\n\nEn cas d'échec, elle est [[Entravé]] par des liens de lumière gravée. En cas de réussite, elle s'arrache et la rune se consume."
 }

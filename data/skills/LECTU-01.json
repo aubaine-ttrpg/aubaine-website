@@ -14,7 +14,9 @@
   "duration": "Instantanée",
   "energy": 1,
   "tags": {
-    "school": "divination"
+    "schools": [
+      "divination"
+    ]
   },
   "description": "Vous posez la main sur une inscription, une rune, un sceau ou une marque, et vous la lisez comme vous liriez votre propre écriture.\n\nVous apprenez ce qu'elle dit, ce qu'elle fait, ce qui la déclenche, et de quelle main elle vient. Vous n'apprenez pas comment la désarmer, seulement ce qui arrive si vous ne le faites pas."
 }

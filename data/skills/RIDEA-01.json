@@ -12,7 +12,9 @@
   "energy": 1,
   "tags": {
     "practice": "spell",
-    "school": "protection"
+    "schools": [
+      "protection"
+    ]
   },
   "description": "Vous jouez cette Réaction lorsqu'une créature que vous voyez à portée effectue un Jet de Visée pour lancer un projectile.\n\nUn rideau d'eau se dresse en travers de la trajectoire. Elle relance ce Jet et garde le nouveau résultat."
 }

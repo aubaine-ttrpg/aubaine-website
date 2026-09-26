@@ -13,7 +13,9 @@
   "energy": 2,
   "evolvesFrom": "COURR-01",
   "tags": {
-    "school": "enhancement"
+    "schools": [
+      "enhancement"
+    ]
   },
   "description": "Vous vous faites bas, silencieux et patient. Pendant 1 minute, vous gagnez 2 Avantages à vos Jets pour vous cacher, et vos Attaques produisent une réussite critique sur deux dés conservés de 11 ou plus."
 }

@@ -7,7 +7,9 @@
   "prerequisite": "Être Humain",
   "activation": "Passif",
   "tags": {
-    "school": "enhancement"
+    "schools": [
+      "enhancement"
+    ]
   },
   "description": "La première fois que vous mémorisez cette Compétence, choisissez deux Aptitudes. Tant qu'elle est Mémorisée, vous avez l'Expertise dans ces deux Aptitudes."
 }

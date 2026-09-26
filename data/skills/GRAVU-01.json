@@ -13,7 +13,9 @@
   "energy": 1,
   "tags": {
     "practice": "spell",
-    "school": "creation",
+    "schools": [
+      "creation"
+    ],
     "specials": [
       "unleashed"
     ]

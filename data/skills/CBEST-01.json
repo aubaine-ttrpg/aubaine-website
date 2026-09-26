@@ -14,7 +14,9 @@
   "energy": 0,
   "tags": {
     "practice": "technique",
-    "school": "divination"
+    "schools": [
+      "divination"
+    ]
   },
   "description": "Vous savez ce que valent les choses, et surtout ce qu'elles valent pour celui qui les vend.\n\nAu premier examen d'un objet, le MJ vous donne son prix courant. S'il y a lieu, il vous dit aussi ce qui cloche : contrefaçon, pièce volée, prix gonflé."
 }

@@ -12,7 +12,9 @@
   "energy": 2,
   "tags": {
     "practice": "spell",
-    "school": "creation"
+    "schools": [
+      "creation"
+    ]
   },
   "description": "Vous précipitez la croissance d'une graine, d'une pousse, d'une plante, d'un arbre ou d'une créature végétale que vous voyez à portée. En quelques instants, elle atteint la pleine maturité que la nature lui destinait : une graine plantée devient un arbre adulte."
 }

@@ -13,7 +13,9 @@
   "energy": 2,
   "tags": {
     "practice": "spell",
-    "school": "illusion"
+    "schools": [
+      "illusion"
+    ]
   },
   "description": "Vous jouez cette Réaction lorsque vous subissez des dégâts.\n\nVous vous effondrez, et l'illusion d'un corps sans vie reste à votre place pendant que vous vous relevez ailleurs, à 3 m ou moins, hors de vue si la scène le permet. Toute créature qui vous croyait mort vous a perdu ; celle qui effectue un Jet d'Esprit + Perception contre votre DD (10 + Intelligence + Tromperie) ne s'y trompe pas."
 }

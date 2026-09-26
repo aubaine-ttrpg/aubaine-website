@@ -13,7 +13,9 @@
   "energy": 5,
   "tags": {
     "practice": "spell",
-    "school": "illusion"
+    "schools": [
+      "illusion"
+    ]
   },
   "description": "Vous montez une illusion vaste : un décor, un terrain, une foule, une scène entière, avec l'image et le son.\n\nUne créature qui veut la percer à jour y consacre son Action et effectue un Jet d'Esprit + Perception contre votre DD (10 + Intelligence + Tromperie). Le reste de la scène tient pour elle comme pour les autres : elle sait seulement que ce qu'elle voit n'existe pas."
 }

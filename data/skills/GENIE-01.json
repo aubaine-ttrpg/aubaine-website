@@ -16,7 +16,9 @@
   "energy": 2,
   "tags": {
     "practice": "spell",
-    "school": "enhancement"
+    "schools": [
+      "enhancement"
+    ]
   },
   "description": "Un arc traverse votre crâne et, le temps d'un souffle, tout devient limpide. Jusqu'à la fin de votre tour, votre Intelligence est de +6.\n\nÀ la fin de votre tour, l'arc retombe et vous laisse vide : vous êtes [[Sonné]] jusqu'à la fin de votre prochain tour."
 }

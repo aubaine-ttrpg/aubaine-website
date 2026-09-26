@@ -8,7 +8,9 @@
   "range": "—",
   "duration": "—",
   "tags": {
-    "school": "enhancement"
+    "schools": [
+      "enhancement"
+    ]
   },
   "description": "Le tour vous coûte moins qu'il ne coûterait à un autre. Vos Compétences portant l'étiquette Sort ou Illusion coûtent 1 Énergie de moins, jusqu'à un minimum de 0."
 }

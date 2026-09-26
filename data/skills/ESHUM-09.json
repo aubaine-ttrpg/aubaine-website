@@ -7,7 +7,9 @@
   "prerequisite": "Être Humain de la Victoria",
   "activation": "Passif",
   "tags": {
-    "school": "enhancement"
+    "schools": [
+      "enhancement"
+    ]
   },
   "description": "La première fois que vous mémorisez cette Compétence, choisissez deux Sorts de la Banque Commune qui coûtent 1 Énergie ou moins. Tant qu'elle est Mémorisée, ces deux Sorts le sont aussi, sans avoir à être achetés et sans occuper de Mémoire."
 }

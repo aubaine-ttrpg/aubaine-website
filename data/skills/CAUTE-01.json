@@ -12,7 +12,9 @@
   "energy": 2,
   "tags": {
     "practice": "spell",
-    "school": "healing"
+    "schools": [
+      "healing"
+    ]
   },
   "description": "Vous touchez une créature et refermez ses plaies par le feu. Elle récupère 2d6 PdV.",
   "upgrades": [

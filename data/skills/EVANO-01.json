@@ -10,7 +10,9 @@
   "energy": 3,
   "tags": {
     "practice": "spell",
-    "school": "illusion"
+    "schools": [
+      "illusion"
+    ]
   },
   "description": "Vous cessez d'être là où l'on vous regarde. Vous devenez invisible.\n\nAttaquer ou lancer un Sort met fin à l'effet, au moment où vous le faites et non après."
 }

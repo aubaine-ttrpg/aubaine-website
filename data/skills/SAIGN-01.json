@@ -15,7 +15,9 @@
   "life": "1d6",
   "tags": {
     "practice": "spell",
-    "school": "destruction",
+    "schools": [
+      "destruction"
+    ],
     "specials": [
       "unleashed"
     ]

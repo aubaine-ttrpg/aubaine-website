@@ -235,10 +235,13 @@ export const skill = z
           .describe(
             'Pratique : la manière dont la Compétence se pratique, une clé de practices. Une au plus.',
           ),
-        school: tagKey
+        schools: z
+          .array(tagKey)
+          .min(1)
+          .max(2)
           .optional()
           .describe(
-            "École : la famille d'effets de la Compétence, une clé de schools. Une au plus, et elle doit accepter la Pratique quand les deux sont posées.",
+            "Écoles : la ou les familles d'effets de la Compétence, une ou deux clés de schools, sans doublon. Chacune doit accepter la Pratique quand elle est posée.",
           ),
         specials: z
           .array(tagKey)
@@ -250,17 +253,21 @@ export const skill = z
       .refine(
         (value) =>
           value.practice !== undefined ||
-          value.school !== undefined ||
+          value.schools !== undefined ||
           value.specials !== undefined,
         { message: "une Compétence sans étiquette s'écrit en omettant la clé tags." },
       )
+      .refine((value) => new Set(value.schools).size === (value.schools ?? []).length, {
+        message: 'une École ne se répète pas.',
+        path: ['schools'],
+      })
       .refine((value) => new Set(value.specials).size === (value.specials ?? []).length, {
         message: 'une Spéciale ne se répète pas.',
         path: ['specials'],
       })
       .optional()
       .describe(
-        "Étiquettes rendues en pied d'entrée, dans l'ordre Pratique, École, Spéciales, chacune avec sa définition au survol. Aucune n'est obligatoire : une Compétence ne porte que celles qui servent l'équilibre, la saveur ou les combinaisons.",
+        "Étiquettes rendues en pied d'entrée, dans l'ordre Pratique, Écoles, Spéciales, chacune avec sa définition au survol. Aucune n'est obligatoire : une Compétence ne porte que celles qui servent l'équilibre, la saveur ou les combinaisons.",
       ),
     description: z
       .string()

@@ -7,7 +7,9 @@
   "prerequisite": "Être Mort-vivant",
   "activation": "Passif",
   "tags": {
-    "school": "illusion"
+    "schools": [
+      "illusion"
+    ]
   },
   "description": "Tant que vous êtes [[À terre]] et que vous ne bougez pas, vous passez pour un cadavre. Seule une créature qui vous a vu tomber ou vous étendre, ou bouger depuis, sait que vous n'êtes pas un simple cadavre. Les autres ne le découvrent que par un moyen magique.\n\nLorsque vous vous relevez sous les yeux d'une créature qui vous croyait mort, votre prochain Jet contre elle avant la fin de votre tour gagne 1 Avantage."
 }

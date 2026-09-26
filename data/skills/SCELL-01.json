@@ -10,7 +10,9 @@
   "energy": 2,
   "tags": {
     "practice": "spell",
-    "school": "protection"
+    "schools": [
+      "protection"
+    ]
   },
   "description": "Vous scellez une porte, un coffre, une fenêtre, un cercueil. Tant que la rune tient, l'ouvrir demande de la briser.\n\nLa rune a une CA de 15 et 25 PdV, et une créature peut l'attaquer. Vous pouvez nommer un mot de passe en la gravant : qui le prononce passe sans rien casser."
 }

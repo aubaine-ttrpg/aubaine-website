@@ -11,7 +11,9 @@
   "duration": "1 heure",
   "life": "2d6",
   "tags": {
-    "school": "enhancement",
+    "schools": [
+      "enhancement"
+    ],
     "specials": [
       "graft"
     ]

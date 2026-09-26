@@ -11,7 +11,9 @@
   "duration": "—",
   "tags": {
     "practice": "spell",
-    "school": "mobility"
+    "schools": [
+      "mobility"
+    ]
   },
   "description": "Vous partez avant le tonnerre. Lorsque vous lancez votre Initiative, lancez un second 1d4 et gardez le meilleur des deux. Votre Vitesse augmente de 3 m."
 }

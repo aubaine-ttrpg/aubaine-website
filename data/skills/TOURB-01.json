@@ -12,7 +12,9 @@
   "energy": 2,
   "tags": {
     "practice": "manoeuvre",
-    "school": "destruction"
+    "schools": [
+      "destruction"
+    ]
   },
   "description": "Vous tournez sur vous-même, armes tendues, et vous frappez tout ce qui est à portée.\n\nPortez cette Attaque contre chaque créature à 1,5 m ou moins de vous. Vous n'effectuez qu'un seul Jet et vous le comparez à la CA de chacune d'elles."
 }

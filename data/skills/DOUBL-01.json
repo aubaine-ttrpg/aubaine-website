@@ -13,7 +13,9 @@
   "energy": 2,
   "tags": {
     "practice": "spell",
-    "school": "illusion"
+    "schools": [
+      "illusion"
+    ]
   },
   "description": "Vous créez jusqu'à 3 doubles de vous-même qui reprennent vos gestes à l'identique.\n\nQuand une Attaque devrait vous toucher, un double la prend à votre place et disparaît. Une créature qui veut vous distinguer d'eux y consacre son Action et effectue un Jet d'Esprit + Perception contre votre DD (10 + Intelligence + Tromperie)."
 }

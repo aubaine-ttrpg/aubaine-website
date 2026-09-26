@@ -11,7 +11,9 @@
   "duration": "—",
   "tags": {
     "practice": "spell",
-    "school": "mobility"
+    "schools": [
+      "mobility"
+    ]
   },
   "description": "Rien ne vous déplace contre votre gré. Un effet que vous n'avez pas choisi ne peut ni vous pousser ni vous mettre [[À terre]], et un terrain difficile ne vous coûte aucun déplacement supplémentaire."
 }

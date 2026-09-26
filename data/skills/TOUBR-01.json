@@ -12,7 +12,9 @@
   "energy": 0,
   "tags": {
     "practice": "spell",
-    "school": "enhancement"
+    "schools": [
+      "enhancement"
+    ]
   },
   "description": "Vous jouez cette Réaction lorsque vous utilisez une Compétence du Domaine Feu.\n\nDépensez votre [[Combustion]] pour un seul des effets suivants.\n\n***1 Combustion.*** Relancez un dé de dégâts de cette Compétence et gardez le nouveau résultat.\n***2 Combustion.*** Gagnez 1 Avantage sur le Jet de cette Compétence.\n***3 Combustion.*** Réduisez de 1 le coût en Énergie de cette Compétence.\n***5 Combustion.*** Doublez le nombre de dés de dégâts de cette Compétence."
 }

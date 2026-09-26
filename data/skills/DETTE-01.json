@@ -9,7 +9,9 @@
   "duration": "—",
   "tags": {
     "practice": "technique",
-    "school": "influence"
+    "schools": [
+      "influence"
+    ]
   },
   "description": "Vous tenez vos comptes mieux que ceux qui vous doivent.\n\nUne créature peut vous devoir jusqu'à 5 [[Redevable]] au lieu de 3, et vous savez à tout moment qui vous doit quoi, où cette personne se trouve la dernière fois que vous l'avez su, et ce qu'elle serait prête à faire pour solder."
 }

@@ -12,7 +12,9 @@
   "karma": 1,
   "tags": {
     "practice": "manoeuvre",
-    "school": "enhancement"
+    "schools": [
+      "enhancement"
+    ]
   },
   "description": "Vous dépensez 1 Karma et vous arrachez à votre corps un tour de plus.\n\nVous gagnez une Action supplémentaire, à jouer avant la fin de ce tour.",
   "upgrades": [

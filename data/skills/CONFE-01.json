@@ -11,7 +11,9 @@
   "duration": "—",
   "tags": {
     "practice": "technique",
-    "school": "protection"
+    "schools": [
+      "protection"
+    ]
   },
   "description": "Votre carcasse encaisse ce qui couche les autres. Chaque Niveau de Vitalité vous donne 6 PdV maximum au lieu de 5.\n\nLe compte est refait sur-le-champ : les Niveaux de Vitalité que vous possédez déjà valent eux aussi 6.",
   "upgrades": [

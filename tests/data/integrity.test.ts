@@ -1179,13 +1179,15 @@ describe('skill tags', () => {
     }
   })
 
-  it('pairs an École only with a Pratique it accepts', () => {
+  it('pairs every École only with a Pratique it accepts', () => {
     for (const skill of fr.skills.values()) {
-      const { practice, school } = skill.tags ?? {}
-      if (practice === undefined || school === undefined) continue
-      expect(fr.tags.get(school)?.practices, `${skill.id} ${school} x ${practice}`).toContain(
-        practice,
-      )
+      const { practice, schools = [] } = skill.tags ?? {}
+      if (practice === undefined) continue
+      for (const school of schools) {
+        expect(fr.tags.get(school)?.practices, `${skill.id} ${school} x ${practice}`).toContain(
+          practice,
+        )
+      }
     }
   })
 

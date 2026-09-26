@@ -11,7 +11,9 @@
   "energy": 1,
   "tags": {
     "practice": "spell",
-    "school": "summoning"
+    "schools": [
+      "summoning"
+    ]
   },
   "description": "Vous touchez un objet et vous l'animez. Tant que vous vous concentrez, vous le faites se déplacer et bouger dans un rayon de 9 m autour de vous.\n\nIl reste ce qu'il est : une forme, un poids, des articulations ou pas. Il n'a aucune intelligence propre et effectue ses Jets avec vos Caractéristiques.",
   "upgrades": [

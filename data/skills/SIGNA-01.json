@@ -9,7 +9,9 @@
   "duration": "—",
   "tags": {
     "practice": "technique",
-    "school": "influence"
+    "schools": [
+      "influence"
+    ]
   },
   "description": "Vous laissez une marque sur ce que vous faites, et on la reconnaît.\n\nUn objet sorti de vos mains porte votre signe. Qui le voit sait de qui vient la pièce, et une créature qui tient votre travail en estime vous traite en conséquence. Une pièce signée se revend deux fois ce qu'elle vaut, et se retrouve."
 }

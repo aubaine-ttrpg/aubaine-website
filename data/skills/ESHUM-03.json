@@ -11,7 +11,9 @@
   "recharge": "short-rest",
   "energy": 0,
   "tags": {
-    "school": "healing"
+    "schools": [
+      "healing"
+    ]
   },
   "description": "Vous mettez fin à un état néfaste qui vous affecte."
 }

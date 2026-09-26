@@ -8,7 +8,9 @@
   "prerequisite": "Être Elfe, Drow, Fir Bolg ou Halfelin",
   "activation": "Passif",
   "tags": {
-    "school": "enhancement"
+    "schools": [
+      "enhancement"
+    ]
   },
   "description": "Le flux magique d'Élyséa pulse dans votre sang depuis votre naissance.\n\nLa première fois que vous mémorisez cette Compétence, débloquez gratuitement un Arbre de Domaine que vous n'avez pas encore, et apprenez sans la payer la Compétence qui tient le centre de sa planche."
 }

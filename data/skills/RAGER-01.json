@@ -12,7 +12,9 @@
   "energy": 2,
   "tags": {
     "practice": "manoeuvre",
-    "school": "enhancement"
+    "schools": [
+      "enhancement"
+    ]
   },
   "description": "Vous entrez en rage. Vous êtes [[Enragé]] jusqu'à la fin de votre prochain tour.\n\nChacune des choses suivantes la prolonge d'un tour de plus, au moment où elle arrive.\n\n***Frapper.*** Vous effectuez un Jet d'Attaque contre un ennemi.\n***Encaisser.*** Vous subissez des dégâts.\n***Contraindre.*** Vous forcez un ennemi à effectuer un Jet pour résister à l'une de vos Compétences.\n***Tenir.*** Vous dépensez une Action Bonus à la prolonger.\n\nLa rage ne dure pas plus de 10 minutes d'affilée.\n\n[[[Enragé]]]",
   "upgrades": [

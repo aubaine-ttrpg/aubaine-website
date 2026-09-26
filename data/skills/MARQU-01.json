@@ -15,7 +15,9 @@
   "energy": 2,
   "tags": {
     "practice": "spell",
-    "school": "creation",
+    "schools": [
+      "creation"
+    ],
     "specials": [
       "graft"
     ]

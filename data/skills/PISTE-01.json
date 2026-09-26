@@ -12,7 +12,9 @@
   "duration": "—",
   "tags": {
     "practice": "technique",
-    "school": "divination"
+    "schools": [
+      "divination"
+    ]
   },
   "description": "Vous lisez le sol comme une page. Vous gagnez 1 Avantage à vos Jets d'Esprit + Survie pour suivre une piste, et une piste que vous avez suivie une fois, vous la reconnaissez ensuite à l'odeur.\n\nTant que vous êtes métamorphosé en une Bête qui chasse, vous en gagnez 2 au lieu de 1."
 }

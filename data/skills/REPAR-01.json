@@ -9,7 +9,9 @@
   "duration": "Instantanée",
   "energy": 3,
   "tags": {
-    "school": "healing"
+    "schools": [
+      "healing"
+    ]
   },
   "description": "Vous posez les mains sur une créature artificielle et vous forcez sa structure à se refermer. Elle récupère 4d10 PdV.\n\nVotre Automate compte comme une cible valide, et il est le plus souvent le seul à portée de main."
 }

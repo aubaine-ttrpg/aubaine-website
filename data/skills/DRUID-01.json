@@ -14,7 +14,9 @@
   "duration": "—",
   "tags": {
     "practice": "technique",
-    "school": "enhancement"
+    "schools": [
+      "enhancement"
+    ]
   },
   "description": "Vous avez passé plus de temps dehors que dedans. Lorsque vous effectuez un Jet de Charisme, d'Intelligence ou d'Esprit visant une Plante ou une Bête, vous gagnez 1 Avantage pour ce Jet."
 }

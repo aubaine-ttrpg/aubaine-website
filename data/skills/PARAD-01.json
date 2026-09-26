@@ -12,7 +12,9 @@
   "energy": 1,
   "tags": {
     "practice": "manoeuvre",
-    "school": "protection"
+    "schools": [
+      "protection"
+    ]
   },
   "description": "Vous jouez cette Réaction lorsqu'une Attaque vous touche.\n\nVous détournez le coup du plat de la lame ou de la garde : réduisez ces dégâts de 1d10 plus votre modificateur de Dextérité."
 }

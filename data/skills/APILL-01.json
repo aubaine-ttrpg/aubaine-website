@@ -8,7 +8,9 @@
   "range": "—",
   "duration": "—",
   "tags": {
-    "school": "enhancement"
+    "schools": [
+      "enhancement"
+    ]
   },
   "description": "Vous savez où poser le mensonge pour qu'il tienne. Lorsque vous calculez le DD d'un Sort portant l'étiquette Illusion, ajoutez la moitié de votre modificateur d'Arcanes, arrondie à l'inférieur.",
   "upgrades": [

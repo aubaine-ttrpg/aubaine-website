@@ -16,7 +16,9 @@
   "energy": 1,
   "tags": {
     "practice": "manoeuvre",
-    "school": "protection"
+    "schools": [
+      "protection"
+    ]
   },
   "description": "Vous jouez cette Réaction lorsque vous subissez les dégâts d'une Attaque que vous voyez venir.\n\nVous opposez arme, bouclier ou avant-bras : ces dégâts sont réduits de 1d6 + votre Constitution."
 }

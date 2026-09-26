@@ -13,7 +13,9 @@
   "energy": 3,
   "tags": {
     "practice": "spell",
-    "school": "destruction"
+    "schools": [
+      "destruction"
+    ]
   },
   "description": "Vous gravez une rune qui frappe ce qui la franchit. Choisissez un Domaine magique dont vous connaissez l'Arbre : la rune inflige 4d8 dégâts de ce Domaine dans une sphère de 3 m de rayon.\n\nChaque créature prise dedans effectue un Jet de Dextérité + Réflexes contre votre DD (10 + Intelligence + Arcanes). En cas de réussite, elle n'en subit que la moitié.\n\nCette rune compte parmi celles que vous maintenez."
 }

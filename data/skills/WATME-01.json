@@ -14,7 +14,9 @@
   "energy": 1,
   "tags": {
     "practice": "spell",
-    "school": "enhancement"
+    "schools": [
+      "enhancement"
+    ]
   },
   "description": "Vous touchez une arme et l'enveloppez d'une eau vivifiante. Une fois par tour, lorsque vous réussissez une Attaque avec elle, vous récupérez 1d4 PdV.",
   "upgrades": [

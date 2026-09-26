@@ -11,7 +11,9 @@
   "duration": "—",
   "tags": {
     "practice": "technique",
-    "school": "influence"
+    "schools": [
+      "influence"
+    ]
   },
   "description": "Ce que vous êtes se lit à votre port et à vos cicatrices. Vous gagnez 1 Avantage à vos Jets de Charisme + Intimidation contre une créature qui vous a vu combattre.\n\nLes gens d'armes vous reconnaissent comme l'un des leurs : sentinelles, mercenaires et soldats vous adressent la parole avant de vous barrer la route."
 }

@@ -12,7 +12,9 @@
   "energy": 2,
   "tags": {
     "practice": "spell",
-    "school": "protection"
+    "schools": [
+      "protection"
+    ]
   },
   "description": "Vous touchez une créature consentante. Tant que le Sort dure, sa peau prend le grain et la dureté de l'écorce : sa CA passe à 17 si elle était inférieure."
 }

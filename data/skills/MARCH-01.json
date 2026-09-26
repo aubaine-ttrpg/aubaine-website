@@ -11,7 +11,9 @@
   "duration": "—",
   "tags": {
     "practice": "spell",
-    "school": "mobility"
+    "schools": [
+      "mobility"
+    ]
   },
   "description": "Vous vous tenez sur l'eau comme sur la pierre. Vous marchez sur toute surface liquide et vous pouvez vous y arrêter, vous nagez à votre Vitesse, et un terrain détrempé, un courant ou une pluie battante ne vous imposent aucun Désavantage."
 }

@@ -12,7 +12,9 @@
   "energy": 2,
   "tags": {
     "practice": "manoeuvre",
-    "school": "destruction"
+    "schools": [
+      "destruction"
+    ]
   },
   "description": "Vous portez cette Attaque contre une créature qui possède la moitié ou moins de ses PdV maximum, et vous frappez pour en finir.\n\nEn cas de réussite, ajoutez 3d8 dégâts du type de votre arme. Si la créature tombe à 0 PdV, vous récupérez aussitôt l'Attaque que celle-ci vous a coûtée."
 }

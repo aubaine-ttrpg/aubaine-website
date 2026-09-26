@@ -59,7 +59,9 @@ The list file, `data/skill-lists/common-bank.json`:
   "energy": 0,
   "tags": {
     "practice": "manoeuvre",
-    "school": "mobility"
+    "schools": [
+      "mobility"
+    ]
   },
   "description": "Vous décrochez du contact sans laisser d'ouverture derrière vous.\n\nVous jouez la Compétence de base {{Se désengager}} avec une Action Bonus au lieu d'une Action."
 }

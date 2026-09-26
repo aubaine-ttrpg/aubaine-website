@@ -11,7 +11,9 @@
   "duration": "—",
   "tags": {
     "practice": "manoeuvre",
-    "school": "enhancement"
+    "schools": [
+      "enhancement"
+    ]
   },
   "description": "Lorsque vous effectuez l'action Attaquer, vous portez 2 Attaques au lieu d'une. Rien ne vous oblige à les porter sur la même cible.",
   "upgrades": [

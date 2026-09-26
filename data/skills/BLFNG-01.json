@@ -11,7 +11,9 @@
   "duration": "Instantanée",
   "tags": {
     "practice": "manoeuvre",
-    "school": "destruction",
+    "schools": [
+      "destruction"
+    ],
     "specials": [
       "lifesteal"
     ]

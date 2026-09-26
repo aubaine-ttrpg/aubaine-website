@@ -4,6 +4,7 @@
 **Status:** Accepted
 **Date:** 2026-09-24
 **Revised:** 2026-09-25, the Nécromancie École is added (addendum in Decision 5)
+**Revised:** 2026-09-26, a skill may carry two Écoles and base actions carry tags, reversed by 0026 (addenda in Decisions 3 and 5)
 **Deciders:** Kori
 **Scope:** The `tags` field on a skill and its removal from upgrades and English overlays, the new
 vocabulary file `data/meta/tags.json`, the definitions shown in the tooltips of rule terms,
@@ -131,6 +132,13 @@ pages printed the French tags.
 - Classification is judgement. The table in the approved plan records it skill by skill, and the
   definitions guide rather than decide: Illusion mortelle stays Illusion although it deals damage.
 
+### Addendum (2026-09-26): reversed in part by 0026
+
+[0026](0026-a-skill-may-carry-two-ecoles-and-a-base-action-carries-its-tags.md) reverses two bullets
+of this decision. The École slot is now `schools`, one or two distinct keys, each accepting the
+Pratique. The 13 base actions carry the tags they need. The skills that only change the sheet when
+bought still carry none.
+
 ---
 
 ## Decision 4: Tags stay out of the prose term index
@@ -181,6 +189,12 @@ the Compétences that work on death or on the dead: Ténacité morbide, Festin a
 (ESMOR-08, 09 and 10). A skill carrying it gives up any other École, which is why the undead bodily
 traits keep theirs (Passe-muraille is Mobilité, Rigidité cadavérique is Protection). Rules can now
 target « l'étiquette Nécromancie », as the lore's forbidden occult magic will want.
+
+### Addendum (2026-09-26): Nécromancie no longer excludes another École
+
+Since [0026](0026-a-skill-may-carry-two-ecoles-and-a-base-action-carries-its-tags.md), a skill may
+carry two Écoles, so Nécromancie no longer costs the other one. Dépouille (ESMOR-06) carries Illusion
+and Nécromancie.
 
 ---
 

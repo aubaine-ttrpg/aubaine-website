@@ -13,7 +13,9 @@
   "energy": 2,
   "tags": {
     "practice": "technique",
-    "school": "influence"
+    "schools": [
+      "influence"
+    ]
   },
   "description": "Vous prenez quelqu'un en public et vous ne le lâchez plus. Chacun effectue un Jet de Charisme + Persuasion, Tromperie ou Intimidation ; le plus haut total l'emporte, et vous recommencez.\n\nÀ la troisième manche gagnée par l'un des deux, le duel s'arrête. Le vainqueur obtient de l'autre ce qui était en jeu, et l'assistance a vu. Un perdant qui tenait à sa réputation vient de la laisser sur la table."
 }

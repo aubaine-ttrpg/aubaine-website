@@ -9,7 +9,9 @@
   "duration": "—",
   "tags": {
     "practice": "technique",
-    "school": "influence"
+    "schools": [
+      "influence"
+    ]
   },
   "description": "La première fois après un Repos long que vous réussissez un Jet de Force + Intimidation contre une créature, celle-ci obéit à tous vos ordres dans la mesure du possible pendant les 10 prochaines minutes."
 }

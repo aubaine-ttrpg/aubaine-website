@@ -8,7 +8,9 @@
   "prerequisite": "Être Elfe ou Drow",
   "activation": "Passif",
   "tags": {
-    "school": "enhancement"
+    "schools": [
+      "enhancement"
+    ]
   },
   "description": "Lorsqu'un de vos Jets de Dextérité, d'Intelligence, d'Esprit ou de Charisme gagne au moins 1 Avantage, vous pouvez relancer l'un de ses dés, une fois, et garder le nouveau résultat."
 }

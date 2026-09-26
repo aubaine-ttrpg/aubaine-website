@@ -17,7 +17,9 @@
   "energy": 0,
   "tags": {
     "practice": "spell",
-    "school": "destruction"
+    "schools": [
+      "destruction"
+    ]
   },
   "description": "Un fil de foudre part de votre main et cherche le métal. Visez une créature que vous voyez à portée qui porte du métal sur elle : une arme, une pièce d'armure, une boucle, une poignée de monnaie. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\nEffectuez un Jet de la Caractéristique choisie + Visée contre la CA de la cible. En cas de réussite, elle subit 1d10 dégâts de Foudre, puis effectue un Jet de Force + Athlétisme contre votre DD (10 + la Caractéristique choisie + Arcanes). En cas d'échec, le fil se tend et la tire de 3 m vers vous."
 }

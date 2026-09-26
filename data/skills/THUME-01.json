@@ -14,7 +14,9 @@
   "energy": 1,
   "tags": {
     "practice": "spell",
-    "school": "enhancement"
+    "schools": [
+      "enhancement"
+    ]
   },
   "description": "Vous touchez une arme et la chargez d'un arc bleu qui crépite le long du fer. Une fois par tour, lorsque vous réussissez une Attaque avec elle, l'arc saute de la cible vers une autre créature à 3 m ou moins d'elle et lui inflige 1d4 dégâts de Foudre.",
   "upgrades": [

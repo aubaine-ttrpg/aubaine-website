@@ -17,7 +17,9 @@
   "energy": 5,
   "tags": {
     "practice": "spell",
-    "school": "destruction"
+    "schools": [
+      "destruction"
+    ]
   },
   "description": "La terre se déchire dans une sphère de 6 m de rayon centrée sur un point que vous voyez à portée. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\nChaque créature au sol dans la zone effectue un Jet de Dextérité + Réflexes contre votre DD (10 + la Caractéristique choisie + Arcanes). En cas d'échec, elle subit 6d6 dégâts Contondants et tombe [[À terre]]. En cas de réussite, elle n'en subit que la moitié et reste debout.\n\nLa zone reste un terrain difficile jusqu'à ce que quelqu'un la dégage. Toute construction non magique qui s'y trouve subit également 6d6 dégâts Contondants."
 }

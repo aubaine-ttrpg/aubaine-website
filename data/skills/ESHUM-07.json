@@ -11,7 +11,9 @@
   "recharge": "long-rest",
   "energy": 0,
   "tags": {
-    "school": "enhancement"
+    "schools": [
+      "enhancement"
+    ]
   },
   "description": "Votre prochain Jet d'Artisanat, d'Arcanes, de Technologie ou de Science gagne 2 Avantages."
 }

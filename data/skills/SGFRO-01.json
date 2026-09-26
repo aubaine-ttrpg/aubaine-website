@@ -11,7 +11,9 @@
   "duration": "—",
   "tags": {
     "practice": "technique",
-    "school": "protection"
+    "schools": [
+      "protection"
+    ]
   },
   "description": "Vous avez trop saigné pour que cela vous impressionne encore. Vous ne subissez aucun Désavantage pour agir à bas PdV, et vous gagnez 1 Avantage à vos Jets de Constitution + Résistance contre le poison, la maladie et la perte de sang."
 }

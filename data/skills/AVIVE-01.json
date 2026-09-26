@@ -17,7 +17,9 @@
   "energy": 1,
   "tags": {
     "practice": "spell",
-    "school": "destruction",
+    "schools": [
+      "destruction"
+    ],
     "specials": [
       "unleashed"
     ]

@@ -15,7 +15,9 @@
   "energy": 3,
   "tags": {
     "practice": "spell",
-    "school": "illusion"
+    "schools": [
+      "illusion"
+    ]
   },
   "description": "Une illusion ne blesse pas. Ce qu'une créature en croit, si.\n\nTant qu'un Sort portant l'étiquette Illusion est en place, choisissez une créature qui le voit et le tient pour réel. Elle effectue un Jet d'Esprit + Perception contre le DD de cette illusion. En cas d'échec, elle subit 2d6 dégâts Psychiques."
 }

@@ -8,7 +8,9 @@
   "prerequisite": "Être Zombie",
   "activation": "Passif",
   "tags": {
-    "school": "necromancy"
+    "schools": [
+      "necromancy"
+    ]
   },
   "description": "La première fois que vous mémorisez cette Compétence, vous recevez 5 sursis. Un sursis dépensé ne revient jamais.\n\nLorsque votre [[Agonie]] atteint 0, vous pouvez dépenser 1 sursis au lieu de mourir : vous récupérez 1 PdV, ce qui met fin à l'état, et vous restez [[À terre]].\n\nLorsque vous effectuez un Jet comparé à un DD, à une CA ou à un Jet opposé, vous pouvez annoncer avant de lancer les dés que vous y engagez 1 sursis. Lancez alors 1d100 à la place du Jet : si le résultat est inférieur ou égal à 20 fois le nombre de sursis que vous avez, le Jet réussit, et vous l'emportez s'il est opposé ; sinon, il échoue, et l'autre créature l'emporte s'il est opposé. Si l'autre créature y engage elle aussi un sursis, chacune dépense le sien et le Jet opposé se résout normalement. Le sursis est dépensé une fois le d100 lancé, réussite ou échec. Avec 5 sursis, le Jet réussit donc toujours ; avec 1, il faut 20 ou moins. Ni cette réussite ni cet échec ne sont critiques. Un Jet de dégâts ou d'initiative ne peut pas recevoir de sursis.\n\nVotre Vitesse diminue de 1,5 m."
 }

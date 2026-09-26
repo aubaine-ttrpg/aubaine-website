@@ -11,7 +11,9 @@
   "duration": "—",
   "tags": {
     "practice": "spell",
-    "school": "enhancement"
+    "schools": [
+      "enhancement"
+    ]
   },
   "description": "Chaque fois que vous terminez d'utiliser une Compétence du Domaine Feu, vous gagnez 1 [[Combustion]].\n\n[[[Combustion]]]"
 }

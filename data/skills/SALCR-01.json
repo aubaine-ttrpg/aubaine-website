@@ -10,7 +10,9 @@
   "energy": 3,
   "tags": {
     "practice": "shout",
-    "school": "healing"
+    "schools": [
+      "healing"
+    ]
   },
   "description": "Vous couvrez le bruit de la bataille d'un seul mot. Choisissez jusqu'à 5 créatures de votre choix à portée qui peuvent vous entendre.\n\nChacune guérit d'un effet négatif qui l'affecte."
 }

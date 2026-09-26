@@ -9,7 +9,9 @@
   "duration": "—",
   "tags": {
     "practice": "technique",
-    "school": "divination"
+    "schools": [
+      "divination"
+    ]
   },
   "description": "Vous voyez la valeur avant de voir l'objet. Lorsque le groupe reçoit une Occasion de butin, vous savez à l'avance ce que la source a de plus intéressant à donner.\n\nUne fois par Repos long, vous pouvez relancer un Dé de butin et garder le résultat de votre choix."
 }

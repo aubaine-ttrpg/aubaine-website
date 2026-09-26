@@ -7,7 +7,9 @@
   "prerequisite": "Être Humain de la Victoria",
   "activation": "Passif",
   "tags": {
-    "school": "protection"
+    "schools": [
+      "protection"
+    ]
   },
   "description": "Vos Jets pour résister à l'état Effrayé ou pour y mettre fin gagnent 2 Avantages."
 }

@@ -10,7 +10,9 @@
   "range": "—",
   "duration": "—",
   "tags": {
-    "school": "illusion",
+    "schools": [
+      "illusion"
+    ],
     "specials": [
       "graft"
     ]

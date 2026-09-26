@@ -123,7 +123,7 @@
       "pattern": "^[A-Z0-9]{5}-[0-9]{2}$"
     },
     "tags": {
-      "description": "Étiquettes rendues en pied d'entrée, dans l'ordre Pratique, École, Spéciales, chacune avec sa définition au survol. Aucune n'est obligatoire : une Compétence ne porte que celles qui servent l'équilibre, la saveur ou les combinaisons.",
+      "description": "Étiquettes rendues en pied d'entrée, dans l'ordre Pratique, Écoles, Spéciales, chacune avec sa définition au survol. Aucune n'est obligatoire : une Compétence ne porte que celles qui servent l'équilibre, la saveur ou les combinaisons.",
       "type": "object",
       "properties": {
         "practice": {
@@ -131,10 +131,16 @@
           "type": "string",
           "pattern": "^[a-z][a-z0-9-]*$"
         },
-        "school": {
-          "description": "École : la famille d'effets de la Compétence, une clé de schools. Une au plus, et elle doit accepter la Pratique quand les deux sont posées.",
-          "type": "string",
-          "pattern": "^[a-z][a-z0-9-]*$"
+        "schools": {
+          "description": "Écoles : la ou les familles d'effets de la Compétence, une ou deux clés de schools, sans doublon. Chacune doit accepter la Pratique quand elle est posée.",
+          "minItems": 1,
+          "maxItems": 2,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "description": "Clé d'étiquette, telle qu'elle est déclarée dans data/meta/tags.json."
+          }
         },
         "specials": {
           "description": "Spéciales : une ou plusieurs clés de specials, sans doublon.",

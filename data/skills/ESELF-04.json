@@ -10,7 +10,9 @@
   "duration": "Instantanée",
   "energy": 2,
   "tags": {
-    "school": "illusion"
+    "schools": [
+      "illusion"
+    ]
   },
   "description": "Votre lien avec la nature vous permet de disparaître là où d'autres seraient vulnérables.\n\nSi un couvert naturel vous entoure (branchages, pluie battante, brouillard, chute de neige ou toute autre obscurité d'origine naturelle), vous devenez Caché aux yeux de toutes les créatures, même en pleine lumière."
 }

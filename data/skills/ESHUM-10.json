@@ -7,7 +7,9 @@
   "prerequisite": "Être Humain d'Al-Wahaa",
   "activation": "Passif",
   "tags": {
-    "school": "divination"
+    "schools": [
+      "divination"
+    ]
   },
   "description": "Vous possédez une mémoire parfaite des cartes et de la géographie : vous vous souvenez toujours de la configuration générale d'un terrain, d'une agglomération ou de tout autre agencement aperçu, et seules des mesures magiques peuvent vous faire vous égarer.\n\nChaque jour, si le terrain offre de quoi vivre (baies, petit gibier, point d'eau), vous trouvez de la nourriture et de l'eau fraîche pour vous et pour jusqu'à cinq autres créatures de taille Petite ou Moyenne."
 }

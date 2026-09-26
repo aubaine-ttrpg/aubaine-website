@@ -14,7 +14,9 @@
   "energy": 0,
   "tags": {
     "practice": "technique",
-    "school": "divination"
+    "schools": [
+      "divination"
+    ]
   },
   "description": "Vous choisissez une créature que vous voyez et vous retenez sa trace : son odeur, son pas, la façon dont elle déplace l'air derrière elle.\n\nPendant 1 heure, vous savez dans quelle direction elle se trouve tant qu'elle reste à moins de 1 kilomètre de vous, et vos Jets d'Esprit + Survie pour la suivre gagnent 1 Avantage.\n\nVous ne retenez qu'une créature à la fois. En choisir une autre libère la première."
 }

@@ -14,7 +14,9 @@
   "energy": 0,
   "tags": {
     "practice": "technique",
-    "school": "mobility"
+    "schools": [
+      "mobility"
+    ]
   },
   "description": "Vous lancez la jambe avant que la tête ne décide.\n\nVous jouez la Compétence de base {{Courir}} avec une Action Bonus au lieu d'une Action."
 }

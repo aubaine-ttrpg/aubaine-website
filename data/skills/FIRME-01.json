@@ -14,7 +14,9 @@
   "energy": 1,
   "tags": {
     "practice": "spell",
-    "school": "enhancement"
+    "schools": [
+      "enhancement"
+    ]
   },
   "description": "Vous touchez une arme et l'enflammez d'un feu qui ne la consume pas. L'arme répand une lumière vive. Une fois par tour, lorsque vous réussissez une Attaque avec elle, vous infligez 1d4 dégâts de Feu supplémentaires.",
   "upgrades": [

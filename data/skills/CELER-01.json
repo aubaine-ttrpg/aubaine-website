@@ -13,7 +13,9 @@
   "energy": 2,
   "tags": {
     "practice": "spell",
-    "school": "mobility"
+    "schools": [
+      "mobility"
+    ]
   },
   "description": "La foudre court sous votre peau et vous précède d'un battement. Tant que Célérité dure, votre Vitesse augmente de 6 m et vous gagnez 1 Avantage à vos Jets de Réflexes."
 }

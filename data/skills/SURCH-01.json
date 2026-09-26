@@ -9,7 +9,9 @@
   "duration": "Jusqu'à la fin du tour",
   "energy": 3,
   "tags": {
-    "school": "destruction"
+    "schools": [
+      "destruction"
+    ]
   },
   "description": "Vous poussez le noyau au-delà de ce qu'il encaisse. La prochaine attaque de votre Automate ce tour inflige un dé de dégâts de plus par Énergie que vous dépensez, jusqu'à 3.\n\nÀ la fin du tour, l'Automate est [[Sonné]] jusqu'à la fin de son prochain tour : il faut bien que la chaleur sorte quelque part."
 }

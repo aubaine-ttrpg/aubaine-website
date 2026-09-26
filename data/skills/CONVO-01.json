@@ -13,7 +13,9 @@
   "energy": 2,
   "tags": {
     "practice": "technique",
-    "school": "influence"
+    "schools": [
+      "influence"
+    ]
   },
   "description": "Vous faites venir ou partir ce que vous ne pouvez pas porter. Une charrette, une mule, un bateau, deux hommes payés à ne pas poser de questions.\n\nEffectuez un Jet de Charisme + Culture contre un DD de 15. En cas de réussite, la marchandise voyage et arrive. En cas d'échec, elle voyage aussi ; le MJ dit ce qui manque à l'arrivée."
 }

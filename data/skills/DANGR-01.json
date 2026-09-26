@@ -11,7 +11,9 @@
   "duration": "—",
   "tags": {
     "practice": "manoeuvre",
-    "school": "protection"
+    "schools": [
+      "protection"
+    ]
   },
   "description": "Vous sentez le coup avant de le voir. Vous gagnez 1 Avantage à vos Jets de Dextérité + Réflexes contre un effet que vous auriez pu voir venir, et vous ne pouvez pas être pris au dépourvu tant que vous êtes conscient."
 }

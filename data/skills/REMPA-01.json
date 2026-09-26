@@ -12,7 +12,9 @@
   "energy": 1,
   "tags": {
     "practice": "spell",
-    "school": "protection"
+    "schools": [
+      "protection"
+    ]
   },
   "description": "Vous jouez cette Réaction lorsqu'une créature que vous voyez à portée est prise pour cible par une Attaque.\n\nUne dalle de pierre jaillit du sol sur la trajectoire. L'Attaque subit 1 Désavantage, puis la dalle s'effrite."
 }

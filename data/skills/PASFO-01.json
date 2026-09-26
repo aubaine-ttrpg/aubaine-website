@@ -12,7 +12,9 @@
   "energy": 1,
   "tags": {
     "practice": "spell",
-    "school": "mobility"
+    "schools": [
+      "mobility"
+    ]
   },
   "description": "Vous vous défaites en un arc et vous reformez ailleurs. Vous vous téléportez jusqu'à un emplacement libre que vous voyez à 9 m ou moins."
 }

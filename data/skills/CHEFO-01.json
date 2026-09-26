@@ -14,7 +14,9 @@
   "energy": 5,
   "tags": {
     "practice": "technique",
-    "school": "creation",
+    "schools": [
+      "creation"
+    ],
     "specials": [
       "unleashed"
     ]

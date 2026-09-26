@@ -7,7 +7,9 @@
   "prerequisite": "Être Humain de la Nouvelle-Aubaine",
   "activation": "Passif",
   "tags": {
-    "school": "enhancement"
+    "schools": [
+      "enhancement"
+    ]
   },
   "description": "Tant que cette Compétence est Mémorisée, vos modificateurs de Persuasion et d'Athlétisme augmentent de 1, jusqu'au maximum de +6."
 }

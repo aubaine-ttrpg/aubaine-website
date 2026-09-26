@@ -9,7 +9,9 @@
   "duration": "—",
   "tags": {
     "practice": "technique",
-    "school": "creation"
+    "schools": [
+      "creation"
+    ]
   },
   "description": "Vous savez où couper pour que la matière reste bonne. Lorsque vous dépensez une Occasion de butin en Prélèvement ciblé pour obtenir un matériau, vous gagnez 1 Avantage à ce Jet.\n\nUn échec ne consume plus l'Occasion : vous rangez la lame et vous recommencerez plus tard."
 }

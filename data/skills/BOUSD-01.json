@@ -12,7 +12,9 @@
   "energy": 0,
   "tags": {
     "practice": "manoeuvre",
-    "school": "control"
+    "schools": [
+      "control"
+    ]
   },
   "description": "Vous rentrez dans une créature à 1,5 m ou moins, de l'épaule ou du bouclier, au lieu de la frapper.\n\nElle effectue un Jet de Force + Athlétisme contre votre DD (10 + la Caractéristique de cette Attaque + Athlétisme). En cas d'échec, choisissez : elle est poussée de 3 m, ou elle tombe [[À terre]]."
 }

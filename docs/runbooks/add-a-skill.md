@@ -33,7 +33,7 @@ The filename is the id and nothing else. The id matches `^[A-Z0-9]{5}-[0-9]{2}$`
 | `karma` | optional | Pastille KARMA. Une créature en garde 3 au plus et n'en récupère à aucun repos, alors une Compétence qui en coûte pèse lourd. | integer 1 to 3 |
 | `life` | optional | Pastille PDV : un coût payé en Points de vie, en dés (1d6) ou en nombre fixe. | `"6"`, `"1d6"` |
 | `evolvesFrom` | optional | `Compétence dérivée : identifiant de la base, rendu « ▲ <titre> ». Réservé aux nœuds rattachés à une base, jamais aux améliorations imbriquées.` | a skill id that exists |
-| `tags` | optional | Étiquettes rendues en pied d'entrée, dans l'ordre Pratique, École, Spéciales, chacune avec sa définition au survol. Aucune n'est obligatoire : une Compétence ne porte que celles qui servent l'équilibre, la saveur ou les combinaisons. | an object with `practice` (one key), `school` (one key) and `specials` (one or more keys), each optional, keys from `data/meta/tags.json`; never an empty object |
+| `tags` | optional | Étiquettes rendues en pied d'entrée, dans l'ordre Pratique, Écoles, Spéciales, chacune avec sa définition au survol. Aucune n'est obligatoire : une Compétence ne porte que celles qui servent l'équilibre, la saveur ou les combinaisons. | an object with `practice` (one key), `schools` (one or two distinct keys) and `specials` (one or more keys), each optional, keys from `data/meta/tags.json`; never an empty object |
 | `description` | required | Texte de règle. Les retours à la ligne sont respectés, une ligne vide sépare deux paragraphes. Balisage : `***gras***`, `[[Nom d'état]]`, `{{Nom de compétence}}`, et `[[[Nom d'état]]]` pour un marqueur retiré du rendu. | any non empty string |
 | `upgrades` | optional | Améliorations imbriquées, rendues sous la carte par niveau croissant. | see [add-an-upgrade.md](add-an-upgrade.md) |
 
@@ -58,7 +58,9 @@ Key order is the order of this table. Keep it.
   "energy": 1,
   "tags": {
     "practice": "spell",
-    "school": "protection"
+    "schools": [
+      "protection"
+    ]
   },
   "description": "Vous portez votre chaleur au-delà de ce que votre corps supporte au repos. Tant que Surchauffe dure, vous gagnez une résistance aux dégâts infligés par les Sorts d'Eau et par toute autre source magique d'Eau, et votre Vitesse augmente de 3 m."
 }
@@ -96,7 +98,7 @@ Then open the tree page and look at the node and its card.
 
 **A passive skill may not carry an energy cost above 0.** The schema rejects it: `une Compétence passive ne coûte pas d'Énergie. energy: 0 reste permis pour marquer explicitement une absence de coût.`
 
-**Tags are optional, and each one has to earn its place.** `tags` holds up to three kinds of key from `data/meta/tags.json`: one Pratique, one École, any number of Spéciales. For each slot, ask whether this skill needs it for balance, flavour or a combo; leave it empty otherwise, and leave `tags` out entirely when nothing applies, as the basic skills do. An École must accept the Pratique it is paired with (its `practices` list). A key that is not declared, or declared in another slot, fails `pnpm data:check`. Never invent a tag for one skill: [add-a-tag.md](add-a-tag.md) says when a new one is justified.
+**Tags are optional, and each one has to earn its place.** `tags` holds up to three kinds of key from `data/meta/tags.json`: one Pratique, one or two Écoles, any number of Spéciales. For each slot, ask whether this skill needs it for balance, flavour or a combo; leave it empty otherwise, and leave `tags` out entirely when nothing applies. Each École must accept the Pratique it is paired with (its `practices` list). A key that is not declared, or declared in another slot, fails `pnpm data:check`. Never invent a tag for one skill: [add-a-tag.md](add-a-tag.md) says when a new one is justified.
 
 **`spell` carries a rule.** A skill whose Pratique is `spell` is a Sort: it needs a Catalyseur equipped to be activated, whether it is passive or active. `shout` carries one too: a Cri only affects creatures that can hear it. Rule text that cites a tag writes « l'étiquette » followed by its French label exactly, `l'étiquette Illusion`, so the citation reaches every skill that carries it.
 

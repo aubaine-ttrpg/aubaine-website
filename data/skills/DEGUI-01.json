@@ -13,7 +13,9 @@
   "energy": 2,
   "tags": {
     "practice": "spell",
-    "school": "illusion"
+    "schools": [
+      "illusion"
+    ]
   },
   "description": "Vous drapez une créature consentante, ou vous-même, d'une illusion qui change son apparence et sa voix.\n\nPlus le déguisement est extravagant, plus il se repère : l'observateur gagne jusqu'à 5 Avantages à son Jet d'Esprit + Perception contre votre DD (10 + Intelligence + Tromperie). Faire passer un rat pour un dragon se paie ; changer la couleur d'un manteau ne se paie pas."
 }

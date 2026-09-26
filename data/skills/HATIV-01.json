@@ -8,7 +8,9 @@
   "range": "—",
   "duration": "—",
   "tags": {
-    "school": "enhancement"
+    "schools": [
+      "enhancement"
+    ]
   },
   "description": "Vous gravez juste assez vite pour que cela compte. Vous pouvez graver une rune en 1 Action au lieu de 10 minutes.\n\nUne rune gravée ainsi tient une heure, puis s'efface d'elle-même : le trait n'a pas eu le temps de mordre."
 }

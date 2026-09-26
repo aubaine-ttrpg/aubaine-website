@@ -10,7 +10,9 @@
   "range": "Personnelle",
   "duration": "Jusqu'au rejet",
   "tags": {
-    "school": "enhancement",
+    "schools": [
+      "enhancement"
+    ],
     "specials": [
       "graft"
     ]

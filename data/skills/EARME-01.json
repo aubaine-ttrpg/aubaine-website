@@ -14,7 +14,9 @@
   "energy": 1,
   "tags": {
     "practice": "spell",
-    "school": "enhancement"
+    "schools": [
+      "enhancement"
+    ]
   },
   "description": "Vous touchez une arme et la gainez de pierre et de ronces. Une fois par tour, lorsque vous réussissez une Attaque avec elle, vous gagnez 1d4 PdV temporaires.",
   "upgrades": [

@@ -11,7 +11,9 @@
   "duration": "—",
   "tags": {
     "practice": "spell",
-    "school": "control"
+    "schools": [
+      "control"
+    ]
   },
   "description": "La première fois à chaque tour où vous infligez des dégâts de Foudre à une créature, ses muscles se verrouillent : elle ne peut pas jouer de Réaction jusqu'à la fin de son prochain tour."
 }

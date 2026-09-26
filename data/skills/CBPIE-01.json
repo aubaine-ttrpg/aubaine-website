@@ -14,7 +14,9 @@
   "energy": 0,
   "tags": {
     "practice": "technique",
-    "school": "mobility"
+    "schools": [
+      "mobility"
+    ]
   },
   "description": "Toits mouillés, gravier, poutres : vous posez le pied là où les autres cherchent une prise.\n\nLe terrain difficile ne coûte pas de déplacement supplémentaire, et vos Jets de Dextérité + Acrobaties pour garder l'équilibre gagnent 1 Avantage."
 }

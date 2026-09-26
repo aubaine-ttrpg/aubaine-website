@@ -13,7 +13,9 @@
   "energy": 0,
   "tags": {
     "practice": "technique",
-    "school": "influence"
+    "schools": [
+      "influence"
+    ]
   },
   "description": "Vous savez une chose qu'elle préférerait que personne ne sache. Vous n'avez pas besoin qu'elle soit vraie, seulement qu'elle tienne debout.\n\nEffectuez un Jet de Charisme + Tromperie contre son DD (10 + Esprit + Volonté). En cas de réussite, elle gagne 2 [[Redevable]] envers vous.\n\nEn cas d'échec, elle sait ce que vous avez tenté : elle ne vous devra plus rien, jamais, et elle a désormais quelque chose sur vous."
 }

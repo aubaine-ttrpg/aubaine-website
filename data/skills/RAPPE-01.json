@@ -10,7 +10,9 @@
   "energy": 3,
   "tags": {
     "practice": "spell",
-    "school": "mobility"
+    "schools": [
+      "mobility"
+    ]
   },
   "description": "Vous gravez une rune qui vous garde une place. Tant qu'elle tient, vous pouvez la déclencher à distance, où que vous soyez, et vous vous téléportez auprès d'elle.\n\nLa rune se consume en vous ramenant. Elle ne ramène que vous, et ce que vous portez."
 }

@@ -13,7 +13,9 @@
   "energy": 0,
   "tags": {
     "practice": "technique",
-    "school": "influence"
+    "schools": [
+      "influence"
+    ]
   },
   "description": "Vous discutez le prix jusqu'à ce que l'autre ait envie d'en finir.\n\nEffectuez un Jet de Charisme + Persuasion contre le DD du vendeur (10 + Esprit + Volonté). En cas de réussite, le prix baisse d'un tiers, ou monte d'autant si c'est vous qui vendez.\n\nEn cas d'échec, il tient son prix et ne le rediscutera plus aujourd'hui. On ne marchande pas deux fois la même chose au même homme."
 }

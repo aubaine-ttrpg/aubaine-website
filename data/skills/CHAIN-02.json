@@ -8,7 +8,9 @@
   "range": "—",
   "duration": "—",
   "tags": {
-    "school": "enhancement"
+    "schools": [
+      "enhancement"
+    ]
   },
   "description": "Vous gravez vos runes en série, et le déclenchement de l'une devient le déclencheur de la suivante.\n\nEn gravant une rune, vous pouvez la lier à une autre des vôtres. Quand la première part, la seconde part avec elle, où qu'elle soit."
 }

@@ -12,7 +12,9 @@
   "duration": "Instantanée",
   "life": "1d6",
   "tags": {
-    "school": "divination"
+    "schools": [
+      "divination"
+    ]
   },
   "description": "Vous touchez du sang, vous le reniflez, vous le goûtez. Vous apprenez une information de votre choix sur la créature dont il provient : ce qu'elle est, ce dont elle souffre, de quel côté elle est partie, ou depuis combien de temps elle saigne."
 }

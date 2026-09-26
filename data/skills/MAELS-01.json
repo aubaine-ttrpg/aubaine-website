@@ -17,7 +17,9 @@
   "energy": 5,
   "tags": {
     "practice": "spell",
-    "school": "destruction"
+    "schools": [
+      "destruction"
+    ]
   },
   "description": "Vous ouvrez un tourbillon au point que vous visez, dans une sphère de 4,5 m de rayon. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\nChaque créature prise dans la sphère effectue un Jet de Force + Athlétisme contre votre DD (10 + la Caractéristique choisie + Arcanes). En cas d'échec, elle subit 6d6 dégâts Contondants, gagne 2 [[Trempé]] et est tirée de 3 m vers le centre. En cas de réussite, elle n'en subit que la moitié et ne bouge pas.\n\nL'eau retombe et laisse la zone détrempée."
 }

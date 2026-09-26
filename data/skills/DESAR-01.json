@@ -12,7 +12,9 @@
   "energy": 1,
   "tags": {
     "practice": "manoeuvre",
-    "school": "control"
+    "schools": [
+      "control"
+    ]
   },
   "description": "Vous frappez la garde plutôt que la main qui la tient.\n\nLa créature effectue un Jet de Force + Athlétisme contre votre DD (10 + la Caractéristique de cette Attaque + Finesse). En cas d'échec, elle lâche un objet de votre choix parmi ceux qu'elle tient. L'objet tombe à ses pieds, ou à 3 m d'elle si vous dépensez 1 Énergie de plus."
 }

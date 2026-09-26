@@ -8,7 +8,9 @@
   "range": "—",
   "duration": "—",
   "tags": {
-    "school": "enhancement"
+    "schools": [
+      "enhancement"
+    ]
   },
   "description": "Avant que votre Automate attaque, vous pouvez changer son mode.\n\n***N0RM4L.*** Il attaque comme il est monté, sans rien changer.\n***P01NGS.*** Ses attaques utilisent la Force et infligent 2d6 dégâts.\n***T1R3UR.*** Ses Jets d'Attaque utilisent la Dextérité seule, gagnent 2 Avantages à distance, et sa portée augmente de 9 m."
 }

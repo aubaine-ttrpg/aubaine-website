@@ -10,7 +10,9 @@
   "energy": 3,
   "tags": {
     "practice": "spell",
-    "school": "enhancement",
+    "schools": [
+      "enhancement"
+    ],
     "specials": [
       "unleashed"
     ]

@@ -174,19 +174,24 @@ describe('xp', () => {
 })
 
 describe('skill tags', () => {
-  it('reads the slots in card order: Pratique, École, then each Spéciale', () => {
+  it('reads the slots in card order: Pratique, each École, then each Spéciale', () => {
     expect(
-      skillTags({ specials: ['graft', 'lifesteal'], school: 'healing', practice: 'technique' }),
+      skillTags({
+        specials: ['graft', 'lifesteal'],
+        schools: ['healing', 'necromancy'],
+        practice: 'technique',
+      }),
     ).toEqual([
       { key: 'technique', kind: 'practice' },
       { key: 'healing', kind: 'school' },
+      { key: 'necromancy', kind: 'school' },
       { key: 'graft', kind: 'special' },
       { key: 'lifesteal', kind: 'special' },
     ])
   })
 
   it('leaves out a slot the skill does not fill', () => {
-    expect(skillTags({ school: 'illusion' })).toEqual([{ key: 'illusion', kind: 'school' }])
+    expect(skillTags({ schools: ['illusion'] })).toEqual([{ key: 'illusion', kind: 'school' }])
   })
 
   it('reads nothing from a skill without tags', () => {

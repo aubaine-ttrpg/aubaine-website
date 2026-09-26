@@ -13,7 +13,9 @@
   "energy": 0,
   "tags": {
     "practice": "technique",
-    "school": "divination"
+    "schools": [
+      "divination"
+    ]
   },
   "description": "Vous prenez l'objet, vous le tournez une fois, vous le rendez.\n\nVous apprenez ce qu'il vaut vraiment, ce qu'on vous en demanderait ici, de quoi il est fait, et s'il est ce qu'il prétend être. Un faux ne vous trompe pas deux fois."
 }

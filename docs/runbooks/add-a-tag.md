@@ -7,10 +7,10 @@ Produces one new tag: a label a skill can carry in its card footer, with a defin
 A skill has three reserved slots, and none of them is mandatory:
 
 - **Pratique**: how the skill is practised. One at most.
-- **École**: the family its effect belongs to. One at most, and it must accept the Pratique when both are set.
+- **École**: the family its effect belongs to. One or two, and each must accept the Pratique when one is set. A second École is kept for a skill whose effect truly belongs to both families, as Dépouille belongs to Illusion and to Nécromancie.
 - **Spéciale**: a particularity that carries, or will carry, a rule. As many as needed.
 
-For each slot, ask whether this skill needs it for balance, flavour or a combo. If the answer is no, leave the slot empty; if no slot applies, leave `tags` out of the skill. Basic skills and skills that only change the character sheet when bought carry no tag. The definitions in `data/meta/tags.json` guide the choice, they do not compute it: when a rule of thumb and the skill's flavour disagree, flavour and combos win.
+For each slot, ask whether this skill needs it for balance, flavour or a combo. If the answer is no, leave the slot empty; if no slot applies, leave `tags` out of the skill. A base action is judged like any other skill; a skill that only changes the character sheet when bought carries no tag. The definitions in `data/meta/tags.json` guide the choice, they do not compute it: when a rule of thumb and the skill's flavour disagree, flavour and combos win.
 
 ## When a new tag is justified
 
@@ -65,7 +65,9 @@ A skill carrying it:
 ```json
 "tags": {
   "practice": "spell",
-  "school": "illusion"
+  "schools": [
+    "illusion"
+  ]
 },
 ```
 
@@ -94,7 +96,7 @@ pnpm data:check
 pnpm dev
 ```
 
-`pnpm data:check` fails on a tag declared twice, a label used twice, a tag no skill carries, a key used in the wrong slot, an École paired with a Pratique it does not accept, and a French citation of an undeclared label.
+`pnpm data:check` fails on a tag declared twice, a label used twice, a tag no skill carries, a key used in the wrong slot, an École paired with a Pratique it does not accept, an École repeated on one skill, a third École, and a French citation of an undeclared label.
 
 ## Traps
 

@@ -9,7 +9,9 @@
   "duration": "Jusqu'au début de votre prochain tour",
   "energy": 1,
   "tags": {
-    "school": "protection"
+    "schools": [
+      "protection"
+    ]
   },
   "description": "Si votre Automate est à portée, il se tient prêt à se jeter devant vous. Jusqu'au début de votre prochain tour, la prochaine Attaque qui vous prend pour cible peut le viser à votre place.\n\nIl doit pouvoir s'interposer d'une manière que sa forme actuelle rend crédible."
 }

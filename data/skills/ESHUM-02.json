@@ -15,7 +15,9 @@
   "duration": "1 minute",
   "energy": 1,
   "tags": {
-    "school": "influence"
+    "schools": [
+      "influence"
+    ]
   },
   "description": "Vous amadouez une créature à portée qui vous comprend, par le langage ou autrement : elle est Charmée pour la durée de la Compétence.\n\nLorsque l'état prend fin, la créature vous en veut. Le MJ décide si elle s'en tient à la rancune ou si elle vous attaque."
 }

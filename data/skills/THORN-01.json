@@ -12,7 +12,9 @@
   "energy": 1,
   "tags": {
     "practice": "spell",
-    "school": "protection"
+    "schools": [
+      "protection"
+    ]
   },
   "description": "Une armure d'épines pousse à travers votre peau, ou à travers ce qui vous en tient lieu.\n\nTant que le Sort dure, chaque fois qu'une Attaque au contact vous touche, celui qui l'a portée subit 1d4 dégâts Perforants."
 }

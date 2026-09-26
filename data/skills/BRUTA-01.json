@@ -11,7 +11,9 @@
   "duration": "—",
   "tags": {
     "practice": "manoeuvre",
-    "school": "enhancement"
+    "schools": [
+      "enhancement"
+    ]
   },
   "description": "Tant que vous êtes [[Enragé]], vos Attaques produisent une réussite critique sur deux dés conservés de 11 ou plus, au lieu de deux 12.\n\nPour rappel, chacun de vos critiques double vos dés de dégâts sur l'Attaque critique."
 }

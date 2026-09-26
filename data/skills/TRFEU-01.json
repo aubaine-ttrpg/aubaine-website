@@ -17,7 +17,9 @@
   "energy": 0,
   "tags": {
     "practice": "spell",
-    "school": "destruction"
+    "schools": [
+      "destruction"
+    ]
   },
   "description": "Vous projetez un trait de feu sur une créature ou un objet que vous voyez à portée. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\nEffectuez un Jet de la Caractéristique choisie + Visée contre la CA de la cible. En cas de réussite, elle subit 1d12 dégâts de Feu."
 }

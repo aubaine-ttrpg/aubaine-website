@@ -13,7 +13,9 @@
   "energy": 0,
   "tags": {
     "practice": "spell",
-    "school": "illusion",
+    "schools": [
+      "illusion"
+    ],
     "specials": [
       "unleashed"
     ]

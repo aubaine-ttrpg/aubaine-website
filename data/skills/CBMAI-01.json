@@ -14,7 +14,9 @@
   "energy": 0,
   "tags": {
     "practice": "technique",
-    "school": "enhancement"
+    "schools": [
+      "enhancement"
+    ]
   },
   "description": "Tirer une fiole de sa ceinture, retourner une clé dans une serrure, glisser une pièce dans une poche : un seul geste, fait vite et sans y penser.\n\nVous dégainez, rangez ou manipulez un objet avec une Action Bonus. Lorsque le geste doit passer inaperçu, votre Jet de Dextérité + Finesse gagne 1 Avantage."
 }

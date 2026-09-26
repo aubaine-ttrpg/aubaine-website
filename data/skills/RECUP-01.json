@@ -9,7 +9,9 @@
   "duration": "—",
   "tags": {
     "practice": "technique",
-    "school": "creation"
+    "schools": [
+      "creation"
+    ]
   },
   "description": "Un ratage n'est pas une perte totale : il reste toujours de quoi refondre.\n\nLorsqu'un de vos Jets de fabrication échoue et que la fabrication s'arrête, vous récupérez la moitié de la Valeur de matière engagée, arrondie à l'inférieur, dans les Types de votre choix parmi ceux que vous aviez engagés."
 }

@@ -12,7 +12,9 @@
   "life": "1d6",
   "tags": {
     "practice": "spell",
-    "school": "healing",
+    "schools": [
+      "healing"
+    ],
     "specials": [
       "lifesteal"
     ]

@@ -12,7 +12,9 @@
   "energy": 2,
   "tags": {
     "practice": "manoeuvre",
-    "school": "destruction",
+    "schools": [
+      "destruction"
+    ],
     "specials": [
       "lifesteal"
     ]

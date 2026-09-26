@@ -12,7 +12,9 @@
   "energy": 1,
   "tags": {
     "practice": "manoeuvre",
-    "school": "destruction"
+    "schools": [
+      "destruction"
+    ]
   },
   "description": "Vous jouez cette Réaction lorsqu'une créature à 1,5 m ou moins vous manque avec une Attaque.\n\nVous portez aussitôt une Attaque contre elle. Cette Attaque ne se prend sur aucune de vos actions."
 }
