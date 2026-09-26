@@ -6,6 +6,6 @@
   ],
   "kind": "buff",
   "icon": "mdi:elevation-rise",
-  "color": "#4fb8a8",
-  "description": "Vent ascendant s'accumule sur vous jusqu'à 3.\n\nVotre Vitesse augmente de 1,5 m par Vent ascendant que vous portez, sauf si vous êtes Immobilisé.\n\nVous perdez tout votre Vent ascendant lorsque vous gagnez [[Vent descendant]] et lorsque vous terminez l'un de vos tours sans avoir lancé de Sort du Domaine Vent pendant ce tour.\n\nAu début d'un combat, vous perdez tout votre Vent ascendant."
+  "color": "#2a8a7b",
+  "description": "Vent ascendant s'accumule sur vous jusqu'à 3.\n\nAu début de chacun de vos tours, votre Vitesse augmente de 1,5 m par Vent ascendant que vous portez. Cette augmentation dure jusqu'à la fin de ce tour, même si vous perdez votre Vent ascendant entre-temps, et elle ne s'applique pas si vous êtes Immobilisé.\n\nVous perdez tout votre Vent ascendant lorsque vous gagnez [[Vent descendant]] et lorsque vous terminez l'un de vos tours sans avoir lancé de Sort du Domaine Vent pendant ce tour.\n\nAu début d'un combat, vous perdez tout votre Vent ascendant."
 }

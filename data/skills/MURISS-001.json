@@ -21,7 +21,7 @@
       "destruction"
     ]
   },
-  "description": "Vous serrez le poing et la Poisse que vous visez s'échauffe. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\nChoisissez une créature que vous voyez à portée qui porte de la Poisse. Elle se couvre de [[Poisse liquide]].\n\nLorsqu'une créature effectue un Jet pour résister contre cette Poisse, elle effectue son Jet contre votre DD (10 + la Caractéristique choisie + Arcanes). Le cran explosif s'en sert pour sa détonation.",
+  "description": "Vous serrez le poing, et la Poisse d'une créature monte d'un cran. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\nChoisissez une créature que vous voyez à portée qui porte de la Poisse. Elle se couvre de [[Poisse liquide]].\n\nUne Poisse que ce Sort rend explosive utilise, pour sa détonation, votre DD (10 + la Caractéristique choisie + Arcanes).",
   "upgrades": [
     {
       "level": 2,

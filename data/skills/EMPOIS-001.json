@@ -23,13 +23,13 @@
       "enhancement"
     ]
   },
-  "description": "Vous touchez une arme et l'enduisez d'un mucus qui ne sèche pas. Une fois par tour, lorsque vous réussissez une Attaque avec elle, la cible se couvre de [[Poisse liquide]].\n\nAu moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme. Lorsqu'une créature effectue un Jet pour résister contre cette Poisse, elle effectue son Jet contre votre DD (10 + la Caractéristique choisie + Arcanes). Le cran explosif s'en sert pour sa détonation.",
+  "description": "Vous touchez une arme et l'enduisez d'un mucus qui ne sèche pas. Une fois par tour, lorsque vous réussissez une Attaque avec elle, la cible se couvre de [[Poisse liquide]].\n\nAu moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme. Une Poisse que ce Sort rend explosive utilise, pour sa détonation, votre DD (10 + la Caractéristique choisie + Arcanes).",
   "upgrades": [
     {
       "level": 2,
       "tier": 7,
       "title": "Étendue perfectionnée",
-      "description": "Pour chaque amélioration de {{Pétrir la poisse}} que vous possédez, la cible que {{Étendue martiale}} couvre de Poisse subit aussi 1d4 dégâts d'Acide."
+      "description": "Pour chaque amélioration de {{Pétrir la poisse}} que vous possédez, la cible que ce Sort couvre de Poisse subit aussi 1d4 dégâts d'Acide."
     }
   ]
 }

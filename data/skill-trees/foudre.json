@@ -114,16 +114,6 @@
       ]
     },
     {
-      "skill": "DECHAR-001",
-      "pos": {
-        "x": 74.68,
-        "y": 68.25
-      },
-      "linked": [
-        "COUTON-001"
-      ]
-    },
-    {
       "skill": "REFORA-001",
       "pos": {
         "x": 34.21,
@@ -151,6 +141,16 @@
       },
       "linked": [
         "REFORA-001"
+      ]
+    },
+    {
+      "skill": "DECHAR-001",
+      "pos": {
+        "x": 20.13,
+        "y": 80.97
+      },
+      "linked": [
+        "ELESTA-001"
       ]
     },
     {

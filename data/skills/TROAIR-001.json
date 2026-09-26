@@ -21,5 +21,5 @@
       "control"
     ]
   },
-  "description": "L'air se dérobe sous une créature que vous voyez à portée. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\nElle effectue un Jet de Dextérité + Acrobaties contre votre DD (10 + la Caractéristique choisie + Arcanes). En cas d'échec, si elle est en l'air, elle est d'abord rabattue à la verticale de 9 m au plus, sans subir de dégâts de chute ; si elle se trouve alors au sol, elle tombe [[À terre]]. En cas de réussite, elle garde l'équilibre.\n\nVous gagnez ensuite 1 [[Vent descendant]]."
+  "description": "L'air se dérobe sous une créature que vous voyez à portée pour la faire chuter. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\nElle effectue un Jet de Dextérité + Acrobaties contre votre DD (10 + la Caractéristique choisie + Arcanes). En cas d'échec, si elle est en l'air, elle est d'abord rabattue à la verticale de 9 m, ou jusqu'au sol s'il est plus proche, sans subir de dégâts de chute. Si elle se trouve alors au sol, qu'elle y ait été rabattue ou non, elle tombe [[À terre]]. En cas de réussite, elle garde l'équilibre.\n\nVous gagnez ensuite 1 [[Vent descendant]]."
 }

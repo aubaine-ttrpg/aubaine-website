@@ -2,15 +2,15 @@
   "id": "EMBRAS-001",
   "title": "Embrasement",
   "type": "active",
-  "tier": 4,
+  "tier": 5,
   "domains": [
     "fire"
   ],
   "activation": "1 Action Bonus",
   "range": "Personnel",
-  "duration": "Jusqu'à la fin de votre prochain tour",
+  "duration": "Jusqu'à la fin de votre tour",
   "recharge": "short-rest",
-  "energy": 0,
+  "energy": 2,
   "tags": {
     "practice": "spell",
     "schools": [

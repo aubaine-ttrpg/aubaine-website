@@ -22,7 +22,7 @@
       "level": 2,
       "tier": 4,
       "title": "Manteau de flammes",
-      "description": "Vous pouvez aussi jouer {{Retour de flammes}} lorsqu'une créature à 1,5 m ou moins vous touche avec une Attaque, quel que soit le type de ses dégâts. Si cette Attaque ne vous inflige aucun dégât de Feu, réduisez ses dégâts de 1d6 au lieu de 1d8."
+      "description": "Vous pouvez aussi jouer {{Retour de flammes}} lorsqu'une créature à 1,5 m ou moins vous touche avec une Attaque, quel que soit le type de ses dégâts. Réduisez alors les dégâts de cette Attaque, tous types confondus, de 1d8 si elle vous inflige des dégâts de Feu, et de 1d6 sinon."
     }
   ]
 }

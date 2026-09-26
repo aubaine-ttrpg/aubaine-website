@@ -21,7 +21,7 @@
       "destruction"
     ]
   },
-  "description": "Vous lâchez d'un coup la charge qui vous parcourt. Vous ne pouvez lancer ce Sort que si vous portez au moins 1 [[Surtension]]. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\nDépensez toute votre [[Surtension]], puis choisissez jusqu'à trois créatures à 3 m ou moins de vous. Chacune effectue un Jet de Dextérité + Réflexes contre votre DD (10 + la Caractéristique choisie + Arcanes). En cas d'échec, elle subit 1d6 dégâts de Foudre par [[Surtension]] dépensée. En cas de réussite, elle n'en subit que la moitié.",
+  "description": "Vous lâchez d'un coup la charge qui vous parcourt, en arcs vers les créatures qui vous entourent. Vous ne pouvez lancer ce Sort que si vous portez au moins 1 [[Surtension]]. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\nDépensez toute votre [[Surtension]], puis choisissez jusqu'à trois créatures que vous voyez à 3 m ou moins de vous. Chacune effectue un Jet de Dextérité + Réflexes contre votre DD (10 + la Caractéristique choisie + Arcanes). En cas d'échec, elle subit 1d4 dégâts de Foudre par [[Surtension]] dépensée. En cas de réussite, elle n'en subit que la moitié.",
   "upgrades": [
     {
       "level": 2,

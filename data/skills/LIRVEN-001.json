@@ -16,5 +16,5 @@
       "divination"
     ]
   },
-  "description": "Vous vous tournez face au vent et laissez venir ce qu'il porte. Vous apprenez trois informations de votre choix sur l'air qui circule à portée.\n\nVous choisissez chaque information séparément : la direction de l'issue à l'air libre la plus proche, l'emplacement du passage dérobé le plus proche qu'un courant d'air trahit à 18 m ou moins de vous, la direction et la distance approximative d'un bruit ou d'une odeur que vous nommez et que le vent porte jusqu'à vous, ou le temps qu'il fera ici au cours des six prochaines heures."
+  "description": "Vous vous tournez face au vent et laissez venir ce qu'il porte. Vous apprenez trois informations différentes de votre choix sur l'air qui circule à portée.\n\nChoisissez chacune parmi les suivantes : la direction de l'issue à l'air libre la plus proche, l'emplacement du passage dérobé le plus proche qu'un courant d'air trahit à 18 m ou moins de vous, la direction et la distance approximative d'un bruit ou d'une odeur que vous nommez et que le vent porte jusqu'à vous, ou le temps qu'il fera ici au cours des six prochaines heures. Seule l'information sur un bruit ou une odeur peut être choisie plusieurs fois, en nommant chaque fois un autre bruit ou une autre odeur."
 }

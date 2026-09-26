@@ -39,7 +39,7 @@
     "domains": ["fire"],
     "prime": ["any"],
     "upgrades": 9,
-    "xpTotal": 260
+    "xpTotal": 265
   },
   "foudre": {
     "domains": ["thunder"],
