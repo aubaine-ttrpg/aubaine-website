@@ -15,13 +15,9 @@ export type FilterStrings = {
   resetFilters: string
   result: string
   results: string
-  emptyTitle: string
-  emptyBody: string
   treeKind: string
   allTrees: string
   drafts: string
-  emptyListTitle: string
-  emptyListBody: string
 }
 
 type Props = {
@@ -111,6 +107,7 @@ export default function FilterBar({
   const [kindOpen, setKindOpen] = useState(false)
   const closeRef = useRef<HTMLButtonElement | null>(null)
   const openerRef = useRef<HTMLButtonElement | null>(null)
+  const inputRef = useRef<HTMLInputElement | null>(null)
   const reducedMotion = useReducedMotion()
 
   const popFrom = reducedMotion ? { opacity: 0 } : { opacity: 0, y: 10, scale: 0.985 }
@@ -216,10 +213,31 @@ export default function FilterBar({
     })
   }
 
-  const reset = () => {
+  const reset = useCallback(() => {
     setSelected(new Map())
     setQuery('')
-  }
+  }, [])
+
+  const nothingShown = entries.length > 0 && visible.length === 0
+
+  useEffect(() => {
+    for (const panel of document.querySelectorAll<HTMLElement>('[data-filter-empty]')) {
+      const forFilters = panel.dataset['filterEmpty'] === 'filtered'
+      panel.hidden = !nothingShown || forFilters !== narrowed
+    }
+  }, [nothingShown, narrowed])
+
+  useEffect(() => {
+    const buttons = Array.from(document.querySelectorAll<HTMLElement>('[data-filter-reset]'))
+    const onReset = () => {
+      reset()
+      inputRef.current?.focus()
+    }
+    for (const button of buttons) button.addEventListener('click', onReset)
+    return () => {
+      for (const button of buttons) button.removeEventListener('click', onReset)
+    }
+  }, [reset])
 
   const showDrafts = (shown: boolean) => {
     setDraftsShown(shown)
@@ -366,6 +384,7 @@ export default function FilterBar({
             </div>
           )}
           <input
+            ref={inputRef}
             type="search"
             name="filter"
             autoComplete="off"
@@ -500,66 +519,6 @@ export default function FilterBar({
           </button>
         </div>
       </div>
-
-      {entries.length > 0 && visible.length === 0 && (
-        <div style={{ margin: '0 auto', padding: '46px 26px', maxWidth: 'min(1560px,46ch)' }}>
-          {!narrowed && (
-            <svg
-              aria-hidden="true"
-              width="30"
-              height="34"
-              viewBox="0 0 30 34"
-              style={{ display: 'block', margin: '0 0 16px', color: 'var(--ink3)' }}
-            >
-              <path
-                d="M15 1.5 28.5 9.25v15.5L15 32.5 1.5 24.75V9.25Z"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-              />
-            </svg>
-          )}
-          <p
-            style={{
-              margin: '0 0 10px',
-              fontFamily: 'var(--font-display)',
-              fontSize: '19px',
-              color: 'var(--ink)',
-            }}
-          >
-            {narrowed ? strings.emptyTitle : strings.emptyListTitle}
-          </p>
-          <p
-            style={{
-              margin: narrowed ? '0 0 18px' : 0,
-              fontSize: '15.5px',
-              lineHeight: 1.64,
-              color: 'var(--ink2)',
-            }}
-          >
-            {narrowed ? strings.emptyBody : strings.emptyListBody}
-          </p>
-          {narrowed && (
-            <button
-              type="button"
-              onClick={reset}
-              style={{
-                padding: '9px 15px',
-                cursor: 'pointer',
-                fontFamily: 'var(--font-ui)',
-                fontSize: '14px',
-                fontWeight: 600,
-                letterSpacing: '.08em',
-                textTransform: 'uppercase',
-                color: 'var(--ink)',
-                border: '1px solid var(--line2)',
-              }}
-            >
-              {strings.resetFilters}
-            </button>
-          )}
-        </div>
-      )}
 
       <AnimatePresence>
         {modalOpen && (

@@ -1,0 +1,69 @@
+---
+type Props = { title: string; body: string }
+
+const { title, body } = Astro.props
+---
+
+<div class="au-empty">
+  <svg class="au-empty__mark" aria-hidden="true" viewBox="0 0 30 34">
+    <path
+      d="M15 1.5 28.5 9.25v15.5L15 32.5 1.5 24.75V9.25Z"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      vector-effect="non-scaling-stroke"></path>
+  </svg>
+  <div class="au-empty__text">
+    <p class="au-empty__title">{title}</p>
+    <p class="au-empty__body">{body}</p>
+    {
+      Astro.slots.has('default') && (
+        <div class="au-empty__actions">
+          <slot />
+        </div>
+      )
+    }
+  </div>
+</div>
+
+<style>
+  .au-empty {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    max-width: 40rem;
+  }
+
+  .au-empty__mark {
+    flex: none;
+    display: block;
+    width: 46px;
+    height: 52px;
+    color: var(--ink3);
+  }
+
+  .au-empty__text {
+    min-width: 0;
+    padding-block: 4px;
+    padding-inline-start: 22px;
+    border-inline-start: 1px solid var(--line2);
+  }
+
+  .au-empty__title {
+    margin: 0 0 8px;
+    font-family: var(--font-display);
+    font-size: 19px;
+    color: var(--ink);
+  }
+
+  .au-empty__body {
+    margin: 0;
+    font-size: 15.5px;
+    line-height: 1.64;
+    color: var(--ink2);
+  }
+
+  .au-empty__actions {
+    margin-top: 18px;
+  }
+</style>

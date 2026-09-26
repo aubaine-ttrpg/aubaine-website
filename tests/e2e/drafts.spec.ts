@@ -39,6 +39,7 @@ test('a list made only of drafts shows an empty state', async ({ page }) => {
   await hydrated(page)
   await expect(results(page)).toHaveText('0 results')
   await expect(page.getByText('Nothing to show yet.')).toBeVisible()
+  await expect(page.locator('[data-filter-empty="unpublished"] .au-empty__mark')).toBeVisible()
   await expect(page.getByRole('button', { name: 'Reset' })).toHaveCount(0)
 
   await draftsSwitch(page).click()

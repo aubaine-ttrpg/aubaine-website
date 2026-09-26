@@ -2,6 +2,7 @@
 import Island, { type FilterGroup, type FilterKind } from '../../islands/FilterBar'
 import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
+import EmptyState from './EmptyState.astro'
 
 type ListVariant = 'trees' | 'species' | 'skills' | 'equipment' | 'rules'
 
@@ -85,13 +86,9 @@ const islandStrings = {
   resetFilters: t.resetFilters,
   result: t.result,
   results: t.results,
-  emptyTitle: t.emptyTitle,
-  emptyBody: t.emptyBody,
   treeKind: t.treeKind,
   allTrees: t.allTrees,
   drafts: t.drafts,
-  emptyListTitle: t.emptyListTitle,
-  emptyListBody: t.emptyListBody,
 }
 ---
 
@@ -105,6 +102,48 @@ const islandStrings = {
   locale={locale}
   inputMaxWidth={variant === 'trees' ? '300px' : '340px'}
 />
+
+<div class="au-filter-empty" data-filter-empty="unpublished" hidden>
+  <EmptyState title={t.emptyListTitle} body={t.emptyListBody} />
+</div>
+<div class="au-filter-empty" data-filter-empty="filtered" hidden>
+  <EmptyState title={t.emptyTitle} body={t.emptyBody}>
+    <button type="button" class="au-filter-reset" data-filter-reset>{t.resetFilters}</button>
+  </EmptyState>
+</div>
+
+<style>
+  .au-filter-empty {
+    box-sizing: border-box;
+    max-width: 1560px;
+    min-height: min(56vh, 34rem);
+    margin: 0 auto;
+    padding: 46px 26px;
+  }
+
+  .au-filter-empty:not([hidden]) {
+    display: grid;
+    place-items: center;
+  }
+
+  .au-filter-reset {
+    padding: 9px 15px;
+    border: 1px solid var(--line2);
+    cursor: pointer;
+    font-family: var(--font-ui);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    transition: border-color 0.2s var(--ease);
+  }
+
+  .au-filter-reset:hover,
+  .au-filter-reset:focus-visible {
+    border-color: var(--gold);
+  }
+</style>
 
 <style is:global>
   .au-drafts-switch {
