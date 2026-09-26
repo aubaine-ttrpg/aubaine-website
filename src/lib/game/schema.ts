@@ -467,7 +467,7 @@ export const species = z
       .min(1)
       .optional()
       .describe(
-        "Déplacement de l'Espèce, quand il s'écarte des 9 mètres par défaut. Absent : 9 mètres.",
+        "Vitesse de l'Espèce, quand elle s'écarte des 9 mètres par défaut. Absente : 9 mètres.",
       ),
     types: z
       .array(creatureTypeKey)
@@ -487,7 +487,7 @@ export const species = z
       .enum(['origin', 'parents'])
       .optional()
       .describe(
-        "D'où l'Espèce tient sa taille et son Déplacement quand elle ne les fixe pas elle-même : 'origin' pour une Espèce qui en était une autre avant, 'parents' pour une Espèce née de deux autres. Exclut `size` et `movement`, qui ne sont alors pas fixés.",
+        "D'où l'Espèce tient sa taille et sa Vitesse quand elle ne les fixe pas elle-même : 'origin' pour une Espèce qui en était une autre avant, 'parents' pour une Espèce née de deux autres. Exclut `size` et `movement`, qui ne sont alors pas fixés.",
       ),
     languages: z
       .array(languageKey)
@@ -526,7 +526,7 @@ export const species = z
       value.derivedFrom === undefined || (value.size === undefined && value.movement === undefined),
     {
       message:
-        "une Espèce qui tient sa taille et son Déplacement de son origine n'en fixe aucun des deux.",
+        "une Espèce qui tient sa taille et sa Vitesse de son origine n'en fixe aucune des deux.",
       path: ['derivedFrom'],
     },
   )

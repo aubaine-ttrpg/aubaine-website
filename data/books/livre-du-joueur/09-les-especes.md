@@ -10,13 +10,13 @@ L'Espèce est le premier des trois choix de l'étape 1, avec l'Archétype et le 
 Elle apporte deux choses à la création :
 
 - **deux Compétences d'Espèce**, retenues parmi celles que votre Espèce et, si vous en avez une, votre sous-espèce ou votre origine régionale proposent ou imposent. Elles sont Mémorisées sans occuper de Mémoire et n'ont pas à être achetées. Une fois la création terminée, vous ne pouvez plus les changer ;
-- **votre Déplacement**, quand il s'écarte des 9 mètres par défaut.
+- **votre Vitesse**, quand elle s'écarte des 9 mètres par défaut.
 
 Ces deux apports sont acquis. Ils ne coûtent ni PX ni PM, et ils ne comptent pas dans les 22 PM ni dans les 25 PX que le MJ vous donne.
 
 Une Espèce peut aussi nommer les langues que vous parlez, lisez et écrivez.
 
-Certaines Espèces tiennent leur Taille et leur Déplacement d'une autre Espèce, et leur page dit de laquelle.
+Certaines Espèces tiennent leur Taille et leur Vitesse d'une autre Espèce, et leur page dit de laquelle.
 
 ## Retenir deux Compétences sur celles proposées
 
@@ -36,6 +36,6 @@ Les Compétences d'une sous-espèce portent cette sous-espèce en Prérequis. Un
 
 ## Où lire les Espèces
 
-L'index des Espèces porte la liste du jour, et la page de chacune sa Taille, son Déplacement, ses sous-espèces ou ses origines régionales, ses Compétences et l'état de son écriture. C'est lui qui fait foi, pas ce chapitre.
+L'index des Espèces porte la liste du jour, et la page de chacune sa Taille, sa Vitesse, ses sous-espèces ou ses origines régionales, ses Compétences et l'état de son écriture. C'est lui qui fait foi, pas ce chapitre.
 
 Une Espèce encore en Brouillon porte son badge. Tant qu'une table joue sur des entrées non arrêtées, le MJ annonce les Espèces disponibles et les Compétences que chacune propose.

@@ -708,6 +708,16 @@ const RULE_TERMS: readonly RuleTerm[] = [
     },
   },
   {
+    fr: ['Vitesse', 'Vitesses'],
+    en: ['Speed', 'Speeds'],
+    color: 'var(--term-move)',
+    icon: 'mdi/speedometer',
+    definition: {
+      fr: "L'allure que votre corps sait tenir : la distance que vous pouvez parcourir à chacun de vos tours, 9 mètres sauf si votre Espèce en fixe une autre.",
+      en: 'The pace your body can hold: the distance you can cover on each of your turns, 9 metres unless your Species sets another.',
+    },
+  },
+  {
     fr: ['Taille', 'Tailles'],
     en: ['Size', 'Sizes'],
     color: 'var(--term-move)',

@@ -40,7 +40,7 @@
       "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-\\d{1,2}_\\d{1,2}-(?:og|cleaned|upscaled_[24])\\.(?:png|jpg)$"
     },
     "movement": {
-      "description": "Déplacement de l'Espèce, quand il s'écarte des 9 mètres par défaut. Absent : 9 mètres.",
+      "description": "Vitesse de l'Espèce, quand elle s'écarte des 9 mètres par défaut. Absente : 9 mètres.",
       "type": "string",
       "minLength": 1
     },
@@ -63,7 +63,7 @@
       }
     },
     "derivedFrom": {
-      "description": "D'où l'Espèce tient sa taille et son Déplacement quand elle ne les fixe pas elle-même : 'origin' pour une Espèce qui en était une autre avant, 'parents' pour une Espèce née de deux autres. Exclut `size` et `movement`, qui ne sont alors pas fixés.",
+      "description": "D'où l'Espèce tient sa taille et sa Vitesse quand elle ne les fixe pas elle-même : 'origin' pour une Espèce qui en était une autre avant, 'parents' pour une Espèce née de deux autres. Exclut `size` et `movement`, qui ne sont alors pas fixés.",
       "type": "string",
       "enum": [
         "origin",

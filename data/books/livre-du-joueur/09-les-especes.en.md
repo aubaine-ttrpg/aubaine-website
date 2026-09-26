@@ -10,13 +10,13 @@ Species is the first of the three choices in step 1, alongside Archetype and Dom
 It brings two things at creation:
 
 - **two Species Skills**, kept from among those your Species and, if you have one, your subspecies or regional origin offer or impose. They are Memorised without taking up any Memory and do not have to be bought. Once creation is over, you can no longer change them;
-- **your Movement**, where it differs from the default 9 metres.
+- **your Speed**, where it differs from the default 9 metres.
 
 Both are granted outright. They cost neither XP nor MP, and they do not count against the 22 MP or the 25 XP the GM gives you.
 
 A Species may also name the languages you speak, read and write.
 
-Some Species take their Size and their Movement from another Species, and their page says which.
+Some Species take their Size and their Speed from another Species, and their page says which.
 
 ## Keeping two of the Skills offered
 
@@ -36,6 +36,6 @@ The Skills of a subspecies carry that subspecies as a Prerequisite. A character 
 
 ## Where to read the Species
 
-The Species index carries the current list, and each Species page its Size, its Movement, its subspecies or regional origins, its Skills and how settled its writing is. That index is what holds, not this chapter.
+The Species index carries the current list, and each Species page its Size, its Speed, its subspecies or regional origins, its Skills and how settled its writing is. That index is what holds, not this chapter.
 
 A Species still in Draft carries its badge. While a table plays on entries that are not settled, the GM announces the Species available and the Skills each one offers.
