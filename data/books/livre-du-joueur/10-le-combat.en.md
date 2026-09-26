@@ -59,7 +59,7 @@ A Reaction
 >
 > On her turn, Sélène backs off 6 metres to get out of a wolf's reach, uses {{ATTAQU-001}} with her bow on another wolf, then slips 3 metres behind a boulder. She has used her Movement in two parts and her Action. She still has her Bonus Action, which none of her Skills uses this turn, and her Reaction for the wolves' turn.
 >
-> By backing off, she left the first wolf's reach: it can use its {{Attaque d'opportunité}}. To avoid that, she would have had to use {{DESENG-001}}, at the cost of her Action.
+> By backing off, she left the first wolf's reach: it can use its {{ATTOPP-001}}. To avoid that, she would have had to use {{DESENG-001}}, at the cost of her Action.
 
 ## Moving
 
@@ -74,7 +74,7 @@ Standing up
 : A creature lying {{a-terre}} stands up by spending half its Speed, on its turn.
 
 Leaving an opponent
-: Leaving the reach of a creature that can see you lets it use its {{Attaque d'opportunité}}, unless you used {{DESENG-001}} this turn.
+: Leaving the reach of a creature that can see you lets it use its {{ATTOPP-001}}, unless you used {{DESENG-001}} this turn.
 
 Your Speed can drop to 0, and some states do exactly that. A Speed of 0 does not stop you acting: you keep your Action, your Bonus Action and your Reaction.
 
@@ -141,7 +141,7 @@ A low wall, a tree trunk or a half-open door gives partial protection; aiming fo
 
 Your Reaction is your only way to act during someone else's turn, and you have one per round. You use it when a rule gives you its trigger.
 
-Two Basic Skills give everyone one. {{Attaque d'opportunité}} strikes a creature that leaves your reach. {{PREPAR-001}} holds an action back for a moment you name: "the moment he comes through the door, I shoot". Other Skills add more, and their entry names the trigger.
+Two Basic Skills give everyone one. {{ATTOPP-001}} strikes a creature that leaves your reach. {{PREPAR-001}} holds an action back for a moment you name: "the moment he comes through the door, I shoot". Other Skills add more, and their entry names the trigger.
 
 ## States
 

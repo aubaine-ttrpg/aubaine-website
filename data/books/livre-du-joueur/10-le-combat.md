@@ -59,7 +59,7 @@ Une Réaction
 >
 > À son tour, Sélène recule de 6 mètres pour sortir du contact d'un loup, joue {{ATTAQU-001}} avec son arc sur un autre loup, puis se glisse de 3 mètres derrière un rocher. Elle a utilisé son Déplacement en deux fois et son Action. Il lui reste son Action Bonus, qu'aucune de ses Compétences n'utilise ce tour-ci, et sa Réaction pour le tour des loups.
 >
-> En reculant, elle a quitté l'allonge du premier loup : il peut jouer son {{Attaque d'opportunité}}. Pour l'éviter, il lui aurait fallu jouer {{DESENG-001}}, au prix de son Action.
+> En reculant, elle a quitté l'allonge du premier loup : il peut jouer son {{ATTOPP-001}}. Pour l'éviter, il lui aurait fallu jouer {{DESENG-001}}, au prix de son Action.
 
 ## Se déplacer
 
@@ -74,7 +74,7 @@ Se relever
 : Une créature {{a-terre}} se relève en dépensant la moitié de sa Vitesse, à son tour.
 
 Quitter un adversaire
-: Quitter l'allonge d'une créature qui vous voit lui permet de jouer son {{Attaque d'opportunité}}, sauf si vous avez joué {{DESENG-001}} ce tour-ci.
+: Quitter l'allonge d'une créature qui vous voit lui permet de jouer son {{ATTOPP-001}}, sauf si vous avez joué {{DESENG-001}} ce tour-ci.
 
 Votre Vitesse peut tomber à 0, et certains états y parviennent. Une Vitesse de 0 n'empêche pas d'agir : vous gardez votre Action, votre Action Bonus et votre Réaction.
 
@@ -141,7 +141,7 @@ Un muret, un tronc ou une porte entrouverte protègent en partie ; viser une mai
 
 Votre Réaction est votre seule façon d'agir pendant le tour d'un autre, et vous n'en avez qu'une par round. Elle se joue quand une règle vous en donne le déclencheur.
 
-Deux Compétences de base en fournissent un à tout le monde. {{Attaque d'opportunité}} frappe une créature qui quitte votre allonge. {{PREPAR-001}} garde une action en réserve pour un moment que vous annoncez : « dès qu'il passe la porte, je tire ». D'autres Compétences en ajoutent, et leur fiche nomme le déclencheur.
+Deux Compétences de base en fournissent un à tout le monde. {{ATTOPP-001}} frappe une créature qui quitte votre allonge. {{PREPAR-001}} garde une action en réserve pour un moment que vous annoncez : « dès qu'il passe la porte, je tire ». D'autres Compétences en ajoutent, et leur fiche nomme le déclencheur.
 
 ## Les états
 

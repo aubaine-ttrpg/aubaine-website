@@ -15,7 +15,7 @@ Une fiche marquée « 1 {{attaque}} » ne se joue pas seule : elle remplace l'un
 
 ## Ce qu'elles couvrent
 
-La plupart servent au combat. On y trouve de quoi frapper, de quoi se protéger et de quoi se dégager : {{ESQUIV-001}} rend plus difficile à toucher, {{DESENG-001}} permet de quitter un adversaire sans lui offrir d'{{Attaque d'opportunité}}, {{PREPAR-001}} garde une action en réserve pour le moment où quelque chose arrive.
+La plupart servent au combat. On y trouve de quoi frapper, de quoi se protéger et de quoi se dégager : {{ESQUIV-001}} rend plus difficile à toucher, {{DESENG-001}} permet de quitter un adversaire sans lui offrir d'{{ATTOPP-001}}, {{PREPAR-001}} garde une action en réserve pour le moment où quelque chose arrive.
 
 D'autres servent partout. {{CACHER-001}} et {{CHERCH-001}} s'opposent l'une à l'autre, dans une ruelle comme sur un champ de bataille, et {{AIDERX-001}} donne un coup de main à un allié qui tente quelque chose que vous sauriez faire vous-même.
 

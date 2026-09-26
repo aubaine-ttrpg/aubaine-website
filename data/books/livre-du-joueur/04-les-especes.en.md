@@ -24,7 +24,7 @@ The others are not lost: you can buy them later from the {{banque-commune}}, at 
 
 > [!EXAMPLE] Example
 >
-> A player creates an elf scout. From the Skills the Elf Species offers, she keeps {{SENAIG-001}} and {{MEDELF-001}}. A few sessions later, she buys {{Nature's Cover}} from the Common Bank. That one takes 1 Memory when she Memorises it; the first two take none.
+> A player creates an elf scout. From the Skills the Elf Species offers, she keeps {{SENAIG-001}} and {{MEDELF-001}}. A few sessions later, she buys {{CACNAT-001}} from the Common Bank. That one takes 1 Memory when she Memorises it; the first two take none.
 
 So two characters of the same Species do not start with the same gifts. A Species that offers only two Skills leaves no choice: you take both.
 
