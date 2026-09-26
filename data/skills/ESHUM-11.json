@@ -3,13 +3,16 @@
   "title": "Enfant du désert",
   "type": "passive",
   "tier": 5,
-  "domains": [],
+  "domains": [
+    "physical"
+  ],
   "characteristics": [
     "constitution"
   ],
   "prerequisite": "Être Humain d'Al-Wahaa",
   "activation": "Passif",
   "tags": {
+    "practice": "technique",
     "schools": [
       "protection"
     ]

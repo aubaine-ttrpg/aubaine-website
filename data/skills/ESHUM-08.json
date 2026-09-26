@@ -3,10 +3,13 @@
   "title": "Vivre dans l'horreur",
   "type": "passive",
   "tier": 5,
-  "domains": [],
+  "domains": [
+    "psychic"
+  ],
   "prerequisite": "Être Humain de la Victoria",
   "activation": "Passif",
   "tags": {
+    "practice": "technique",
     "schools": [
       "protection"
     ]

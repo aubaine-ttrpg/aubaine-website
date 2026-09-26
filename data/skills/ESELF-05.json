@@ -3,10 +3,13 @@
   "title": "Sens aiguisés",
   "type": "passive",
   "tier": 5,
-  "domains": [],
+  "domains": [
+    "psychic"
+  ],
   "prerequisite": "Être Elfe",
   "activation": "Passif",
   "tags": {
+    "practice": "technique",
     "schools": [
       "divination"
     ]

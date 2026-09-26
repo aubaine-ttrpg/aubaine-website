@@ -3,7 +3,9 @@
   "title": "Ingéniosité technique",
   "type": "active",
   "tier": 5,
-  "domains": [],
+  "domains": [
+    "psychic"
+  ],
   "prerequisite": "Être Humain du Landenheit",
   "activation": "1 Action Bonus",
   "range": "Personnel",
@@ -11,6 +13,7 @@
   "recharge": "long-rest",
   "energy": 0,
   "tags": {
+    "practice": "technique",
     "schools": [
       "enhancement"
     ]

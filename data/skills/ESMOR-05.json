@@ -4,15 +4,19 @@
   "type": "active",
   "tier": 5,
   "showXp": false,
-  "domains": [],
+  "domains": [
+    "necrotic"
+  ],
   "prerequisite": "Être Fantôme",
   "activation": "1 Action Bonus",
   "range": "Personnel",
   "duration": "Jusqu'au début de votre prochain tour",
   "energy": 3,
   "tags": {
+    "practice": "technique",
     "schools": [
-      "mobility"
+      "mobility",
+      "protection"
     ]
   },
   "description": "Votre corps perd sa consistance. Vous pouvez traverser les murs, les objets et les créatures, et vous gagnez une résistance à tous les dégâts. Ce que vous portez traverse avec vous, et le sol vous soutient toujours. Vos Attaques et celles qui vous visent se résolvent normalement.\n\nSi l'effet prend fin alors que vous êtes dans un mur, un objet ou une créature, vous êtes rejeté dans l'espace libre le plus proche et vous tombez [[À terre]]."

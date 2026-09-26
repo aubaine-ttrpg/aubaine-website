@@ -4,12 +4,20 @@
   "type": "active",
   "tier": 1,
   "showXp": false,
-  "domains": [],
+  "domains": [
+    "physical"
+  ],
   "characteristics": [
     "dexterity"
   ],
   "activation": "1 Action",
   "range": "Personnel",
   "duration": "Jusqu'à la fin de l'état",
+  "tags": {
+    "practice": "technique",
+    "schools": [
+      "illusion"
+    ]
+  },
   "description": "Vous vous soustrayez à la vue, depuis un couvert, une pénombre, ou le dos d'une créature occupée ailleurs.\n\nEffectuez un Jet opposé de Dextérité + Discrétion contre le Jet d'Esprit + Perception de chaque créature qui pourrait vous remarquer. Vous gagnez [[Caché]] vis-à-vis de celles sur lesquelles vous l'emportez ; les autres vous ont vu.\n\n[[[Caché]]]"
 }

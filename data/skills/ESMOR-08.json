@@ -4,10 +4,13 @@
   "type": "passive",
   "tier": 5,
   "showXp": false,
-  "domains": [],
+  "domains": [
+    "necrotic"
+  ],
   "prerequisite": "Être Zombie",
   "activation": "Passif",
   "tags": {
+    "practice": "technique",
     "schools": [
       "necromancy"
     ]

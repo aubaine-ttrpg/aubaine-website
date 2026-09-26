@@ -3,7 +3,9 @@
   "title": "Volonté de survivre",
   "type": "active",
   "tier": 5,
-  "domains": [],
+  "domains": [
+    "psychic"
+  ],
   "prerequisite": "Être Humain",
   "activation": "1 Action Bonus",
   "range": "Personnel",
@@ -11,6 +13,7 @@
   "recharge": "short-rest",
   "energy": 0,
   "tags": {
+    "practice": "technique",
     "schools": [
       "healing"
     ]

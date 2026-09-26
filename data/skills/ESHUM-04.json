@@ -3,10 +3,14 @@
   "title": "Prestance héroïque",
   "type": "passive",
   "tier": 5,
-  "domains": [],
+  "domains": [
+    "physical",
+    "psychic"
+  ],
   "prerequisite": "Être Humain de la Nouvelle-Aubaine",
   "activation": "Passif",
   "tags": {
+    "practice": "technique",
     "schools": [
       "enhancement"
     ]

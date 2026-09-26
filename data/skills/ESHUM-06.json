@@ -3,10 +3,13 @@
   "title": "Formation technique",
   "type": "passive",
   "tier": 5,
-  "domains": [],
+  "domains": [
+    "psychic"
+  ],
   "prerequisite": "Être Humain du Landenheit",
   "activation": "Passif",
   "tags": {
+    "practice": "technique",
     "schools": [
       "enhancement"
     ]

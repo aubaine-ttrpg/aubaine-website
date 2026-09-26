@@ -8,6 +8,7 @@
   "prerequisite": "Être Elfe, Drow, Fir Bolg ou Halfelin",
   "activation": "Passif",
   "tags": {
+    "practice": "technique",
     "schools": [
       "enhancement"
     ]

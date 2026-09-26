@@ -4,10 +4,13 @@
   "title": "Héritage des Galwariens",
   "type": "passive",
   "tier": 5,
-  "domains": [],
+  "domains": [
+    "psychic"
+  ],
   "prerequisite": "Être Elfe, Drow, Fir Bolg, Gobelin, Halfelin ou Orc",
   "activation": "Passif",
   "tags": {
+    "practice": "technique",
     "schools": [
       "protection"
     ]

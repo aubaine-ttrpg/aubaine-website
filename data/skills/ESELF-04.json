@@ -3,13 +3,17 @@
   "title": "Cachette naturelle",
   "type": "active",
   "tier": 5,
-  "domains": [],
+  "domains": [
+    "earth",
+    "wind"
+  ],
   "prerequisite": "Être Elfe",
   "activation": "1 Action Bonus",
   "range": "Personnel",
   "duration": "Instantanée",
   "energy": 2,
   "tags": {
+    "practice": "technique",
     "schools": [
       "illusion"
     ]

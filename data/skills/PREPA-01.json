@@ -8,5 +8,8 @@
   "activation": "1 Action",
   "range": "Personnel",
   "duration": "1 round",
+  "tags": {
+    "practice": "technique"
+  },
   "description": "Vous annoncez un déclencheur observable et l'action que vous jouerez lorsqu'il se produira : « dès qu'il passe la porte, je tire ».\n\nJusqu'au début de votre prochain tour, la première fois que le déclencheur se produit, jouez l'action annoncée en dépensant votre Réaction. Vous en payez les coûts à ce moment-là.\n\nUn déclencheur qui ne se produit pas vous fait perdre l'action."
 }

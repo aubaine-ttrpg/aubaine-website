@@ -4,13 +4,17 @@
   "type": "passive",
   "tier": 5,
   "showXp": false,
-  "domains": [],
+  "domains": [
+    "necrotic",
+    "physical"
+  ],
   "characteristics": [
     "constitution"
   ],
   "prerequisite": "Être Revenant",
   "activation": "Passif",
   "tags": {
+    "practice": "technique",
     "schools": [
       "protection"
     ]
