@@ -17,8 +17,11 @@ export type TermRecord = {
 
 export type TermIndex = {
   map: Map<string, TermRecord>
+  keys: Map<string, TermRecord>
   pattern: RegExp | null
 }
+
+export type LabelOf = (key: string) => string | undefined
 
 export type Run =
   | { kind: 'text'; text: string }
@@ -30,6 +33,8 @@ export type Paragraph = { runs: Run[] }
 
 const MARKUP = /\*\*\*([^*]+)\*\*\*|\[\[([^\]]+)\]\]|\{\{([^}]+)\}\}/g
 const WORD = /[\p{L}\p{N}]/u
+const REFERENCE_KEY = /^(?:[a-z0-9]+(?:-[a-z0-9]+)*|[A-Z0-9]{6}-[0-9]{3})$/
+const REFERENCE = /\{\{([^}|]+)(?:\|([^}]+))?\}\}/g
 
 export function escapeForRegExp(value: string): string {
   return value.replace(/[\\^$*+?.()|[\]{}/]/g, '\\$&')
@@ -51,7 +56,20 @@ export function buildTermPattern(names: string[]): RegExp | null {
 }
 
 export function emptyTermIndex(): TermIndex {
-  return { map: new Map(), pattern: null }
+  return { map: new Map(), keys: new Map(), pattern: null }
+}
+
+type Reference = { key: string; shown: string | undefined }
+
+export function referenceKey(content: string): string | undefined {
+  return referenceOf(content)?.key
+}
+
+function referenceOf(content: string): Reference | undefined {
+  const bar = content.indexOf('|')
+  const key = (bar === -1 ? content : content.slice(0, bar)).trim()
+  if (!REFERENCE_KEY.test(key)) return undefined
+  return { key, shown: bar === -1 ? undefined : content.slice(bar + 1) }
 }
 
 function termRun(index: TermIndex, name: string): Run | null {
@@ -87,6 +105,18 @@ function pushPlain(out: Run[], text: string, index: TermIndex): void {
 
 export type ResolveReference = (name: string) => string | null
 
+function referenceRun(content: string, index: TermIndex, resolveReference: ResolveReference): Run {
+  const reference = referenceOf(content)
+  const record = reference ? index.keys.get(reference.key) : undefined
+  if (reference && record)
+    return { kind: 'term', text: reference.shown ?? record.title, term: record }
+  const name = content.trim()
+  const resolved = termRun(index, name)
+  if (resolved) return resolved
+  const href = resolveReference(name)
+  return href ? { kind: 'ref', text: name, href } : { kind: 'text', text: name }
+}
+
 export function parseRuns(
   source: string,
   index: TermIndex,
@@ -107,14 +137,7 @@ export function parseRuns(
     } else if (state !== undefined) {
       out.push(termRun(index, state) ?? { kind: 'ref', text: state, href: options.rulesHref })
     } else if (skill !== undefined) {
-      const name = skill.trim()
-      const resolved = termRun(index, name)
-      if (resolved) {
-        out.push(resolved)
-      } else {
-        const href = options.resolveReference(name)
-        out.push(href ? { kind: 'ref', text: name, href } : { kind: 'text', text: name })
-      }
+      out.push(referenceRun(skill, index, options.resolveReference))
     }
     cursor = match.index + match[0].length
     match = MARKUP.exec(source)
@@ -148,8 +171,12 @@ export function parseParagraphs(
     .map((part) => ({ runs: parseRuns(part.replace(/\n/g, ' '), index, options) }))
 }
 
-export function flattenText(source: string | undefined, limit?: number): string {
+export function flattenText(source: string | undefined, labelOf: LabelOf, limit?: number): string {
   const value = String(source ?? '')
+    .replace(REFERENCE, (_, key: string, shown: string | undefined) => {
+      const name = key.trim()
+      return shown ?? labelOf(name) ?? name
+    })
     .replace(/\*\*\*/g, '')
     .replace(/\[\[|\]\]/g, '')
     .replace(/\s+/g, ' ')

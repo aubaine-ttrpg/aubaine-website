@@ -24,6 +24,7 @@ import {
   VARIABLE_CHARACTERISTIC,
 } from '../../src/lib/game/derive'
 import { readCorpus, readSources } from '../../src/lib/game/fs-sources'
+import { referenceKey } from '../../src/lib/game/richtext'
 import { overlays } from '../../src/lib/game/schema'
 import { LOCALES } from '../../src/lib/i18n/locales'
 import { pathFor, treeNodeHref } from '../../src/lib/i18n/routes'
@@ -486,8 +487,23 @@ describe('rule text markup', () => {
     for (const skill of fr.skills.values()) titles.add(skill.title.toLowerCase())
     for (const { where, text } of texts) {
       for (const match of text.matchAll(SKILL_REF)) {
+        if (referenceKey(match[1] ?? '') !== undefined) continue
         const name = (match[1] ?? '').trim().toLowerCase()
         expect(titles.has(name), `${where} skill {{${match[1]}}}`).toBe(true)
+      }
+    }
+  })
+
+  it('resolves every reference by key in the locale it is written in', () => {
+    for (const corpus of [fr, en]) {
+      for (const { where, text } of allRuleText(corpus)) {
+        for (const match of text.matchAll(SKILL_REF)) {
+          const key = referenceKey(match[1] ?? '')
+          if (key === undefined) continue
+          expect(corpus.terms.keys.has(key), `${where} {{${match[1]}}} in ${corpus.locale}`).toBe(
+            true,
+          )
+        }
       }
     }
   })
@@ -944,6 +960,14 @@ describe('authored prose markup', () => {
         expect(built[locale].statesByName.has(name), `${where} state [[${match[1]}]]`).toBe(true)
       }
       for (const match of text.matchAll(SKILL_REF)) {
+        const key = referenceKey(match[1] ?? '')
+        if (key !== undefined) {
+          expect(
+            built[locale].terms.keys.has(key),
+            `${where} {{${match[1]}}} resolves nothing`,
+          ).toBe(true)
+          continue
+        }
         const name = (match[1] ?? '').trim().toLowerCase()
         expect(titles[locale].has(name), `${where} skill {{${match[1]}}} is not in the index`).toBe(
           true,

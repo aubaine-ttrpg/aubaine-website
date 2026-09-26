@@ -124,7 +124,11 @@ export async function pageRoutes(): Promise<PageRoute[]> {
           locale,
           params: { tree: tree.id, node: placement.skill.id },
           title: `${placement.skill.title} · ${tree.name}`,
-          description: flattenText(placement.skill.description, 160),
+          description: flattenText(
+            placement.skill.description,
+            (key) => data.terms.keys.get(key)?.title,
+            160,
+          ),
           ogArt: tree.banner,
         })
       }

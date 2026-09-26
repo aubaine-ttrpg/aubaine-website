@@ -12,7 +12,13 @@ import {
   treeDomains,
   VARIABLE_CHARACTERISTIC,
 } from './derive.ts'
-import { buildTermPattern, flattenText, type TermIndex, type TermRecord } from './richtext.ts'
+import {
+  buildTermPattern,
+  flattenText,
+  type LabelOf,
+  type TermIndex,
+  type TermRecord,
+} from './richtext.ts'
 import type {
   Book,
   ContentStatus,
@@ -89,6 +95,7 @@ export type ResolvedTag = {
 
 type GlossaryWord = {
   key: string
+  reference: string
   spellings: string[]
   record: Omit<TermRecord, 'spelling'>
 }
@@ -478,7 +485,18 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
     })
     .sort((a, b) => a.order - b.order)
 
-  const glossary = buildGlossary({ locale, characteristics, aptitudes, tags, states, bank, t })
+  const labels = referenceLabels({ locale, characteristics, aptitudes, states, skills })
+  const labelOf: LabelOf = (key) => labels.get(key)
+  const glossary = buildGlossary({
+    locale,
+    characteristics,
+    aptitudes,
+    tags,
+    states,
+    bank,
+    labelOf,
+    t,
+  })
   const equipmentGrants = [
     ...items.flatMap((item) => (item.grants ?? []).map((id) => ({ id, source: item.name }))),
     ...[...sets.values()].flatMap((set) =>
@@ -497,6 +515,7 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
     bank,
     species,
     equipmentGrants,
+    labelOf,
     t,
   })
 
@@ -543,6 +562,7 @@ type GlossaryInput = {
   tags: Map<string, ResolvedTag>
   states: GameState[]
   bank: SkillList
+  labelOf: LabelOf
   t: ReturnType<typeof strings>
 }
 
@@ -555,7 +575,16 @@ type TermInput = {
   bank: SkillList & { resolved: Skill[] }
   species: ResolvedSpecies[]
   equipmentGrants: EquipmentGrant[]
+  labelOf: LabelOf
   t: ReturnType<typeof strings>
+}
+
+type LabelInput = {
+  locale: Locale
+  characteristics: Map<string, VocabularyEntry>
+  aptitudes: Map<string, VocabularyEntry>
+  states: GameState[]
+  skills: Map<string, Skill>
 }
 
 type EquipmentGrant = { skill: Skill; source: string }
@@ -941,21 +970,54 @@ function ruleTermDefinition(
   return requiredDefinition(tag, locale, `data/meta/tags.json ${tag.key}`)
 }
 
+function ruleReference(rule: RuleTerm): string {
+  return slugify(rule.fr[0])
+}
+
+function vocabularyReference(entry: VocabularyEntry): string {
+  return slugify(entry.labelFr)
+}
+
+function ruleLabel(rule: RuleTerm, english: boolean): string {
+  return english ? rule.en[0] : rule.fr[0]
+}
+
+function vocabularyLabel(entry: VocabularyEntry, english: boolean): string {
+  return english ? entry.labelEn : entry.labelFr
+}
+
+function referenceLabels(input: LabelInput): Map<string, string> {
+  const english = input.locale === 'en'
+  const labels = new Map<string, string>()
+  for (const rule of RULE_TERMS) labels.set(ruleReference(rule), ruleLabel(rule, english))
+  for (const entry of input.characteristics.values()) {
+    if (entry.key === VARIABLE_CHARACTERISTIC) continue
+    labels.set(vocabularyReference(entry), vocabularyLabel(entry, english))
+  }
+  for (const entry of input.aptitudes.values()) {
+    labels.set(vocabularyReference(entry), vocabularyLabel(entry, english))
+  }
+  for (const state of input.states) labels.set(state.key, state.name)
+  for (const skill of input.skills.values()) labels.set(skill.id, skill.title)
+  return labels
+}
+
 function buildGlossary(input: GlossaryInput): GlossaryTerm[] {
-  const { locale, characteristics, aptitudes, tags, states, bank, t } = input
+  const { locale, characteristics, aptitudes, tags, states, bank, labelOf, t } = input
   const english = locale === 'en'
   const glossary: GlossaryTerm[] = []
 
   for (const rule of RULE_TERMS) {
     glossary.push({
       family: 'rule',
-      key: slugify(rule.fr[0]),
+      key: ruleReference(rule),
+      reference: ruleReference(rule),
       tag: 'tag' in rule ? rule.tag : undefined,
       spellings: [...rule.fr, ...rule.en],
       record: {
         family: 'rule',
         kind: t.ruleTerm,
-        title: english ? rule.en[0] : rule.fr[0],
+        title: ruleLabel(rule, english),
         meta: '',
         color: rule.color,
         icon: rule.icon,
@@ -969,11 +1031,12 @@ function buildGlossary(input: GlossaryInput): GlossaryTerm[] {
     glossary.push({
       family: 'characteristic',
       key: entry.key,
+      reference: vocabularyReference(entry),
       spellings: spellingsOf(entry),
       record: {
         family: 'characteristic',
         kind: t.characteristic,
-        title: english ? entry.labelEn : entry.labelFr,
+        title: vocabularyLabel(entry, english),
         meta: '',
         color: entry.color ?? 'var(--accent-ink)',
         icon: iconPath(entry.iconName),
@@ -986,11 +1049,12 @@ function buildGlossary(input: GlossaryInput): GlossaryTerm[] {
     glossary.push({
       family: 'aptitude',
       key: entry.key,
+      reference: vocabularyReference(entry),
       spellings: spellingsOf(entry),
       record: {
         family: 'aptitude',
         kind: t.aptitude,
-        title: english ? entry.labelEn : entry.labelFr,
+        title: vocabularyLabel(entry, english),
         meta: '',
         color: entry.color ?? 'var(--term-apt)',
         icon: APTITUDE_ICON,
@@ -1005,6 +1069,7 @@ function buildGlossary(input: GlossaryInput): GlossaryTerm[] {
     glossary.push({
       family: 'state',
       key: state.key,
+      reference: state.key,
       state,
       spellings: [state.name, ...(state.forms ?? [])],
       record: {
@@ -1019,7 +1084,7 @@ function buildGlossary(input: GlossaryInput): GlossaryTerm[] {
               ? 'var(--state-debuff)'
               : 'var(--state-neutral)',
         icon: iconPath(state.icon),
-        text: flattenText(state.description, 240),
+        text: flattenText(state.description, labelOf, 240),
       },
     })
   }
@@ -1028,9 +1093,20 @@ function buildGlossary(input: GlossaryInput): GlossaryTerm[] {
 }
 
 function buildTermIndex(input: TermInput): TermIndex {
-  const { locale, characteristics, glossary, trees, basic, bank, species, equipmentGrants, t } =
-    input
+  const {
+    locale,
+    characteristics,
+    glossary,
+    trees,
+    basic,
+    bank,
+    species,
+    equipmentGrants,
+    labelOf,
+    t,
+  } = input
   const map = new Map<string, TermRecord>()
+  const keys = new Map<string, TermRecord>()
 
   const put = (name: string, record: Omit<TermRecord, 'spelling'>): void => {
     const key = name.toLowerCase()
@@ -1038,13 +1114,22 @@ function buildTermIndex(input: TermInput): TermIndex {
     map.set(key, { ...record, spelling: name })
   }
 
+  const putSkill = (skill: Skill, record: Omit<TermRecord, 'spelling'>): void => {
+    put(skill.title, record)
+    if (!keys.has(skill.id)) keys.set(skill.id, { ...record, spelling: skill.title })
+  }
+
   for (const term of glossary) {
+    if (keys.has(term.reference)) {
+      throw new Error(`two glossary entries answer to the reference {{${term.reference}}}`)
+    }
+    keys.set(term.reference, { ...term.record, spelling: term.record.title })
     for (const word of term.spellings) put(word, term.record)
   }
 
   for (const tree of trees) {
     for (const skill of tree.skills) {
-      put(skill.title, {
+      putSkill(skill, {
         family: 'skill',
         skillId: skill.id,
         kind: t.spells,
@@ -1052,14 +1137,14 @@ function buildTermIndex(input: TermInput): TermIndex {
         meta: `${typeLabel(skill.type, t)} · ${tree.name}`,
         color: 'var(--accent-ink)',
         icon: skillIcon(skill, characteristics),
-        text: flattenText(skill.description, 240),
+        text: flattenText(skill.description, labelOf, 240),
         href: treeNodeHref(locale, tree.id, skill.id),
       })
     }
   }
 
   for (const skill of basic.resolved) {
-    put(skill.title, {
+    putSkill(skill, {
       family: 'skill',
       skillId: skill.id,
       kind: t.basic,
@@ -1067,13 +1152,13 @@ function buildTermIndex(input: TermInput): TermIndex {
       meta: typeLabel(skill.type, t),
       color: 'var(--accent-ink)',
       icon: 'mdi/hexagon',
-      text: flattenText(skill.description, 240),
+      text: flattenText(skill.description, labelOf, 240),
       href: `${pathFor('skills', locale)}#e-${skill.id}`,
     })
   }
 
   for (const skill of bank.resolved) {
-    put(skill.title, {
+    putSkill(skill, {
       family: 'skill',
       skillId: skill.id,
       kind: bank.name,
@@ -1081,14 +1166,14 @@ function buildTermIndex(input: TermInput): TermIndex {
       meta: `${typeLabel(skill.type, t)} · ${bank.name}`,
       color: 'var(--accent-ink)',
       icon: skillIcon(skill, characteristics),
-      text: flattenText(skill.description, 240),
+      text: flattenText(skill.description, labelOf, 240),
       href: `${pathFor('skills', locale)}#e-${skill.id}`,
     })
   }
 
   for (const entry of species) {
     for (const skill of entry.pool) {
-      put(skill.title, {
+      putSkill(skill, {
         family: 'skill',
         skillId: skill.id,
         kind: t.speciesOffer,
@@ -1096,14 +1181,14 @@ function buildTermIndex(input: TermInput): TermIndex {
         meta: `${typeLabel(skill.type, t)} · ${entry.name}`,
         color: 'var(--accent-ink)',
         icon: skillIcon(skill, characteristics),
-        text: flattenText(skill.description, 240),
+        text: flattenText(skill.description, labelOf, 240),
         href: `${pathFor('speciesEntry', locale, { species: entry.id })}#e-${skill.id}`,
       })
     }
   }
 
   for (const { skill, source } of equipmentGrants) {
-    put(skill.title, {
+    putSkill(skill, {
       family: 'skill',
       skillId: skill.id,
       kind: t.fromItems,
@@ -1111,12 +1196,12 @@ function buildTermIndex(input: TermInput): TermIndex {
       meta: `${typeLabel(skill.type, t)} · ${source}`,
       color: 'var(--accent-ink)',
       icon: skillIcon(skill, characteristics),
-      text: flattenText(skill.description, 240),
+      text: flattenText(skill.description, labelOf, 240),
       href: `${pathFor('skills', locale)}#e-${skill.id}`,
     })
   }
 
-  return { map, pattern: buildTermPattern([...map.keys()]) }
+  return { map, keys, pattern: buildTermPattern([...map.keys()]) }
 }
 
 function skillIcon(skill: Skill, characteristics: Map<string, VocabularyEntry>): string {
