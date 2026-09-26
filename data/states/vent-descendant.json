@@ -1,9 +1,6 @@
 {
   "key": "vent-descendant",
   "name": "Vent descendant",
-  "forms": [
-    "Vents descendants"
-  ],
   "kind": "buff",
   "icon": "mdi:elevation-decline",
   "color": "#1d665d",

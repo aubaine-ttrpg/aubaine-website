@@ -2,7 +2,6 @@
 import type { Corpus } from '../../lib/game/corpus'
 import { parseParagraphs } from '../../lib/game/richtext'
 import type { Locale } from '../../lib/i18n/locales'
-import { pathFor } from '../../lib/i18n/routes'
 import RuleTerm from './RuleTerm.astro'
 
 type Props = {
@@ -13,10 +12,7 @@ type Props = {
 }
 
 const { source, corpus, locale, class: className } = Astro.props
-const paragraphs = parseParagraphs(source, corpus.terms, {
-  rulesHref: pathFor('rules', locale),
-  resolveReference: (): null => null,
-})
+const paragraphs = parseParagraphs(source, corpus.terms)
 ---
 
 <div class:list={['au-rule-text', className]}>
@@ -25,13 +21,6 @@ const paragraphs = parseParagraphs(source, corpus.terms, {
       <p>
         {paragraph.runs.map((run) => {
           if (run.kind === 'bold') return <strong>{run.text}</strong>
-          if (run.kind === 'ref') {
-            return (
-              <a href={run.href} class="au-rule au-rule--rule">
-                {run.text}
-              </a>
-            )
-          }
           if (run.kind !== 'term') return <Fragment>{run.text}</Fragment>
           return <RuleTerm term={run.term} text={run.text} corpus={corpus} locale={locale} />
         })}

@@ -2,7 +2,6 @@ import { readdir, readFile } from 'node:fs/promises'
 import { join, resolve } from 'node:path'
 
 import { DEFAULT_LOCALE, LOCALES, type Locale } from '../i18n/locales.ts'
-import { pathFor } from '../i18n/routes.ts'
 import { strings } from '../i18n/strings.ts'
 import { readCorpus } from './fs-sources.ts'
 import { parseRuns, type Run, type TermIndex } from './richtext.ts'
@@ -86,18 +85,10 @@ function termNode(run: Extract<Run, { kind: 'term' }>, openLabel: string): HastE
   return element('a', { href: run.term.href, className: 'au-term-link' }, [pill])
 }
 
-function runsToChildren(runs: Run[], marker: Marker, seen: Set<string>): HastChild[] {
+function runsToChildren(runs: Run[], marker: Marker): HastChild[] {
   return runs.map((run) => {
-    if (run.kind === 'term') {
-      if (!marker.glossed.has(run.term.kind)) return termNode(run, marker.openLabel)
-      if (seen.has(run.term.title)) return text(run.text)
-      seen.add(run.term.title)
-      return termNode(run, marker.openLabel)
-    }
+    if (run.kind === 'term') return termNode(run, marker.openLabel)
     if (run.kind === 'bold') return element('strong', {}, [text(run.text)])
-    if (run.kind === 'ref') {
-      return element('a', { href: run.href, className: 'au-term-plain' }, [text(run.text)])
-    }
     return text(run.text)
   })
 }
@@ -108,9 +99,7 @@ function localeOf(path: string): Locale {
 
 type Marker = {
   index: TermIndex
-  rulesHref: string
   openLabel: string
-  glossed: Set<string>
 }
 
 const ICON_DIRECTIVE = /:icon\[([a-z-]+:[a-z0-9-]+)\]\s?/g
@@ -177,16 +166,7 @@ export function rehypeCodexTerms(root: string) {
     let value = markers.get(locale)
     if (!value) {
       value = readCorpus(root, locale).then(
-        (built) => ({
-          index: built.terms,
-          rulesHref: pathFor('rules', locale),
-          openLabel: strings(locale).openRef,
-          glossed: new Set([
-            strings(locale).ruleTerm,
-            strings(locale).characteristic,
-            strings(locale).aptitude,
-          ]),
-        }),
+        (built) => ({ index: built.terms, openLabel: strings(locale).openRef }),
         (error: unknown) => {
           markers.delete(locale)
           throw error
@@ -203,10 +183,6 @@ export function rehypeCodexTerms(root: string) {
       if (!path.includes('/data/')) return
       const marker = await markerFor(localeOf(path))
       markIcons(tree, await iconSources(root))
-      if (!marker.index.pattern) return
-
-      const options = { rulesHref: marker.rulesHref, resolveReference: (): null => null }
-      const seen = new Set<string>()
 
       const walk = (node: HastParent): void => {
         const next: HastChild[] = []
@@ -216,12 +192,12 @@ export function rehypeCodexTerms(root: string) {
             next.push(child)
             continue
           }
-          const runs = parseRuns(child.value, marker.index, options)
+          const runs = parseRuns(child.value, marker.index)
           if (runs.length === 1 && runs[0]?.kind === 'text') {
             next.push(child)
             continue
           }
-          next.push(...runsToChildren(runs, marker, seen))
+          next.push(...runsToChildren(runs, marker))
         }
         node.children = next
       }

@@ -3,6 +3,7 @@
 **Project:** Aubaine, the wiki
 **Status:** Accepted
 **Date:** 2026-09-26
+**Revised:** 2026-09-27, states and words are collected from references by key (0029, addenda in Decisions 1 and 2)
 **Deciders:** Kori
 **Scope:** The printed tree and catalogue booklets built by `src/pages/print/[...booklet].astro`,
 the booklet fingerprint in `src/lib/booklet/fingerprint.ts`, and the rule text markup that
@@ -46,6 +47,11 @@ coloured in the booklets and defined nowhere in them.
   state would grow by its full text, and most states would print several times per booklet. Reopens
   if a booklet ever loses its closing pages.
 
+### Addendum (2026-09-27): no automatic marking
+
+- A state is linked only through `{{clé}}` now (0029). The test refuses any `[[`, which covers the
+  retired triple bracket.
+
 ---
 
 ## Decision 2: A booklet ends on the words it uses
@@ -74,6 +80,15 @@ coloured in the booklets and defined nowhere in them.
 
 - Tags are still not defined in a booklet: the Pratique, École and Spéciale line on each card relies
   on the reader knowing them.
+
+### Addendum (2026-09-27): states come from references
+
+- The « États » page lists the states the skills reference by key, and the states those states
+  reference, instead of every state whose name or form appears as a substring (`statesNamedIn` in
+  `src/lib/booklet/fingerprint.ts`). Compared with the lists before the migration, three booklets
+  change. Runiste, in both locales, drops Endormi, which MARCHI-001 writes « endormie » without a
+  link, and with it À terre and Action Bonus, which only Endormi's own text brought in. The English
+  Vent booklet gains Endormi, which Portance names and which its English pages now link.
 
 ---
 

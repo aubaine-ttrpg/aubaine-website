@@ -13,7 +13,6 @@ import {
   VARIABLE_CHARACTERISTIC,
 } from './derive.ts'
 import {
-  buildTermPattern,
   flattenText,
   type LabelOf,
   pinReferenceLabels,
@@ -97,14 +96,13 @@ export type ResolvedTag = {
 type GlossaryWord = {
   key: string
   reference: string
-  spellings: string[]
-  record: Omit<TermRecord, 'spelling'>
+  record: TermRecord
 }
 
 export type GlossaryTerm = GlossaryWord &
   (
-    | { family: 'rule'; tag: string | undefined }
-    | { family: 'characteristic' | 'aptitude' }
+    | { family: 'rule'; tag: string | undefined; definition: string }
+    | { family: 'characteristic' | 'aptitude'; definition: string }
     | { family: 'state'; state: GameState }
   )
 
@@ -128,7 +126,6 @@ export type Corpus = {
   species: ResolvedSpecies[]
   speciesById: Map<string, ResolvedSpecies>
   states: GameState[]
-  statesByName: Map<string, GameState>
   basic: SkillList & { resolved: Skill[] }
   bank: SkillList & { resolved: Skill[] }
   catalogue: EquipmentCatalogue
@@ -588,7 +585,6 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
     species,
     speciesById,
     states,
-    statesByName: new Map(states.map((state) => [state.name.toLowerCase(), state])),
     basic,
     bank,
     catalogue,
@@ -641,103 +637,103 @@ type EquipmentGrant = { skill: Skill; source: string }
 const APTITUDE_ICON = 'mdi/rhombus-outline'
 
 type RuleTerm = {
-  fr: readonly [string, ...string[]]
-  en: readonly [string, ...string[]]
+  fr: string
+  en: string
   color: string
   icon: string
 } & ({ definition: Record<Locale, string> } | { tag: string } | { skillList: 'bank' })
 
 const RULE_TERMS: readonly RuleTerm[] = [
   {
-    fr: ['Avantage', 'Avantages'],
-    en: ['Advantage', 'Advantages'],
+    fr: 'Avantage',
+    en: 'Advantage',
     color: 'var(--term-adv)',
     icon: 'mdi/chevron-double-up',
     definition: {
-      fr: "Ajoute un d12 au Jet. Gardez les deux meilleurs dés. Un Avantage et un Désavantage s'annulent.",
-      en: 'Adds a d12 to the Roll. Keep the two highest dice. An Advantage and a Disadvantage cancel out.',
+      fr: "Ajoute un d12 au {{jet}}. Gardez les deux meilleurs dés. Un {{avantage}} et un {{desavantage}} s'annulent.",
+      en: 'Adds a d12 to the {{jet}}. Keep the two highest dice. An {{avantage}} and a {{desavantage}} cancel out.',
     },
   },
   {
-    fr: ['Désavantage', 'Désavantages'],
-    en: ['Disadvantage', 'Disadvantages'],
+    fr: 'Désavantage',
+    en: 'Disadvantage',
     color: 'var(--term-dis)',
     icon: 'mdi/chevron-double-down',
     definition: {
-      fr: "Ajoute un d12 au Jet. Gardez les deux moins bons dés. Un Désavantage et un Avantage s'annulent.",
-      en: 'Adds a d12 to the Roll. Keep the two lowest dice. A Disadvantage and an Advantage cancel out.',
+      fr: "Ajoute un d12 au {{jet}}. Gardez les deux moins bons dés. Un {{desavantage}} et un {{avantage}} s'annulent.",
+      en: 'Adds a d12 to the {{jet}}. Keep the two lowest dice. A {{desavantage}} and an {{avantage}} cancel out.',
     },
   },
   {
-    fr: ['Attaque', 'Attaques'],
-    en: ['Attack', 'Attacks'],
+    fr: 'Attaque',
+    en: 'Attack',
     color: 'var(--term-atk)',
     icon: 'game-icons/crossed-swords',
     definition: {
-      fr: "Un Jet porté contre la CA d'une cible pour la toucher.",
-      en: "A Roll made against a target's AC to hit it.",
+      fr: "Un {{jet}} porté contre la {{ca}} d'une cible pour la toucher.",
+      en: "A {{jet}} made against a target's {{ca}} to hit it.",
     },
   },
   {
-    fr: ['Jet', 'Jets'],
-    en: ['Roll', 'Rolls'],
+    fr: 'Jet',
+    en: 'Roll',
     color: 'var(--term-roll)',
     icon: 'game-icons/rolling-dices',
     definition: {
-      fr: '2d12 + une Caractéristique + une Aptitude, comparé à un DD, à une CA ou à un Jet opposé.',
-      en: '2d12 + one Characteristic + one Aptitude, measured against a DC, an AC or an Opposed Roll.',
+      fr: '2d12 + une {{caracteristique}} + une {{aptitude}}, comparé à un {{dd}}, à une {{ca}} ou à un {{jet}} opposé.',
+      en: '2d12 + one {{caracteristique}} + one {{aptitude}}, measured against a {{dd}}, an {{ca}} or an Opposed {{jet}}.',
     },
   },
   {
-    fr: ['Sort', 'Sorts'],
-    en: ['Spell', 'Spells'],
+    fr: 'Sort',
+    en: 'Spell',
     color: 'var(--term-spell)',
     icon: 'game-icons/magic-swirl',
     tag: 'spell',
   },
   {
-    fr: ['Caractéristique', 'Caractéristiques'],
-    en: ['Characteristic', 'Characteristics'],
+    fr: 'Caractéristique',
+    en: 'Characteristic',
     color: 'var(--accent-ink)',
     icon: 'mdi/hexagon',
     definition: {
-      fr: "L'une des six valeurs de base d'un personnage. Elle forme la moitié de chaque Jet.",
-      en: "One of a character's six core scores. It makes up half of every Roll.",
+      fr: "L'une des six valeurs de base d'un personnage. Elle forme la moitié de chaque {{jet}}.",
+      en: "One of a character's six core scores. It makes up half of every {{jet}}.",
     },
   },
   {
-    fr: ['Aptitude', 'Aptitudes'],
-    en: ['Aptitude', 'Aptitudes'],
+    fr: 'Aptitude',
+    en: 'Aptitude',
     color: 'var(--term-apt)',
     icon: APTITUDE_ICON,
     definition: {
-      fr: 'Un domaine de savoir-faire. Elle forme la moitié de chaque Jet.',
-      en: 'A field of know-how. It makes up half of every Roll.',
+      fr: 'Un domaine de savoir-faire. Elle forme la moitié de chaque {{jet}}.',
+      en: 'A field of know-how. It makes up half of every {{jet}}.',
     },
   },
   {
-    fr: ['DD'],
-    en: ['DC'],
+    fr: 'DD',
+    en: 'DC',
     color: 'var(--term-roll)',
     icon: 'mdi/bullseye-arrow',
     definition: {
-      fr: "La difficulté qu'un Jet doit atteindre, fixée par le MJ ou par une règle.",
-      en: 'The difficulty a Roll has to reach, set by the GM or by a rule.',
+      fr: "La difficulté qu'un {{jet}} doit atteindre, fixée par le MJ ou par une règle.",
+      en: 'The difficulty a {{jet}} has to reach, set by the GM or by a rule.',
     },
   },
   {
-    fr: ['CA'],
-    en: ['AC'],
+    fr: 'CA',
+    en: 'AC',
     color: 'var(--term-roll)',
     icon: 'game-icons/breastplate',
     definition: {
-      fr: "La Classe d'armure, le total qu'une Attaque doit atteindre pour vous toucher.",
-      en: 'Armour Class, the total an Attack has to reach to hit you.',
+      fr: "La Classe d'armure, le total qu'une {{attaque}} doit atteindre pour vous toucher.",
+      en: 'Armour Class, the total an {{attaque}} has to reach to hit you.',
     },
   },
   {
-    fr: ['Action Bonus'],
-    en: ['Bonus Action', 'Bonus Actions'],
+    fr: 'Action Bonus',
+    en: 'Bonus Action',
     color: 'var(--term-bonus)',
     icon: 'mdi/triangle',
     definition: {
@@ -746,8 +742,8 @@ const RULE_TERMS: readonly RuleTerm[] = [
     },
   },
   {
-    fr: ['Réaction', 'Réactions'],
-    en: ['Reaction', 'Reactions'],
+    fr: 'Réaction',
+    en: 'Reaction',
     color: 'var(--term-reaction)',
     icon: 'mdi/rhombus',
     definition: {
@@ -756,8 +752,8 @@ const RULE_TERMS: readonly RuleTerm[] = [
     },
   },
   {
-    fr: ['Action', 'Actions'],
-    en: ['Action', 'Actions'],
+    fr: 'Action',
+    en: 'Action',
     color: 'var(--term-action)',
     icon: 'mdi/circle',
     definition: {
@@ -766,8 +762,8 @@ const RULE_TERMS: readonly RuleTerm[] = [
     },
   },
   {
-    fr: ['Passif', 'Passive'],
-    en: ['Passive'],
+    fr: 'Passif',
+    en: 'Passive',
     color: 'var(--term-passive)',
     icon: 'mdi/square',
     definition: {
@@ -776,18 +772,18 @@ const RULE_TERMS: readonly RuleTerm[] = [
     },
   },
   {
-    fr: ['Déplacement', 'Déplacements'],
-    en: ['Movement', 'Movements'],
+    fr: 'Déplacement',
+    en: 'Movement',
     color: 'var(--term-move)',
     icon: 'game-icons/walking-boot',
     definition: {
-      fr: "La distance que vous parcourez à votre tour, jusqu'à votre Vitesse.",
-      en: 'The distance you cover on your turn, up to your Speed.',
+      fr: "La distance que vous parcourez à votre tour, jusqu'à votre {{vitesse}}.",
+      en: 'The distance you cover on your turn, up to your {{vitesse}}.',
     },
   },
   {
-    fr: ['Vitesse', 'Vitesses'],
-    en: ['Speed', 'Speeds'],
+    fr: 'Vitesse',
+    en: 'Speed',
     color: 'var(--term-move)',
     icon: 'mdi/speedometer',
     definition: {
@@ -796,8 +792,8 @@ const RULE_TERMS: readonly RuleTerm[] = [
     },
   },
   {
-    fr: ['Taille', 'Tailles'],
-    en: ['Size', 'Sizes'],
+    fr: 'Taille',
+    en: 'Size',
     color: 'var(--term-move)',
     icon: 'material-symbols/people-size-increase-rounded',
     definition: {
@@ -806,8 +802,8 @@ const RULE_TERMS: readonly RuleTerm[] = [
     },
   },
   {
-    fr: ['Prérequis'],
-    en: ['Prerequisite', 'Prerequisites'],
+    fr: 'Prérequis',
+    en: 'Prerequisite',
     color: 'var(--term-roll)',
     icon: 'mdi/lock',
     definition: {
@@ -816,25 +812,25 @@ const RULE_TERMS: readonly RuleTerm[] = [
     },
   },
   {
-    fr: ['Banque Commune'],
-    en: ['Common Bank'],
+    fr: 'Banque Commune',
+    en: 'Common Bank',
     color: 'var(--accent-ink)',
     icon: 'mdi/bank',
     skillList: 'bank',
   },
   {
-    fr: ['PdV'],
-    en: ['HP'],
+    fr: 'PdV',
+    en: 'HP',
     color: 'var(--term-res)',
     icon: 'game-icons/heart-organ',
     definition: {
-      fr: "Les Points de vie, ce qu'une créature peut encaisser. À 0, elle tombe en Agonie.",
-      en: 'Hit Points, what a creature can take. At 0, it falls into Agonie.',
+      fr: "Les Points de vie, ce qu'une créature peut encaisser. À 0, elle tombe en {{agonie}}.",
+      en: 'Hit Points, what a creature can take. At 0, it falls into {{agonie}}.',
     },
   },
   {
-    fr: ['Énergie', 'Énergies'],
-    en: ['Energy'],
+    fr: 'Énergie',
+    en: 'Energy',
     color: 'var(--term-res)',
     icon: 'mdi/lightning-bolt',
     definition: {
@@ -843,18 +839,18 @@ const RULE_TERMS: readonly RuleTerm[] = [
     },
   },
   {
-    fr: ['Mémoire'],
-    en: ['Memory'],
+    fr: 'Mémoire',
+    en: 'Memory',
     color: 'var(--term-res)',
     icon: 'game-icons/bookshelf',
     definition: {
-      fr: 'Le nombre de Compétences que vous pouvez avoir Mémorisées en même temps.',
-      en: 'The number of Skills you can have Memorised at the same time.',
+      fr: 'Le nombre de Compétences que vous pouvez avoir {{memorisee|Mémorisées}} en même temps.',
+      en: 'The number of Skills you can have {{memorisee}} at the same time.',
     },
   },
   {
-    fr: ['Mémorisée', 'Mémorisées', 'Mémorisé', 'Mémorisés', 'mémoriser', 'mémorisez', 'mémorise'],
-    en: ['Memorised', 'memorise', 'memorising'],
+    fr: 'Mémorisée',
+    en: 'Memorised',
     color: 'var(--term-res)',
     icon: 'mdi/brain',
     definition: {
@@ -863,108 +859,108 @@ const RULE_TERMS: readonly RuleTerm[] = [
     },
   },
   {
-    fr: ['Apprise', 'Apprises', 'Appris'],
-    en: ['Learned'],
+    fr: 'Apprise',
+    en: 'Learned',
     color: 'var(--term-res)',
     icon: 'mdi/book-check',
     definition: {
-      fr: "Se dit d'une Compétence que vous avez acquise, que vous l'ayez achetée ou reçue. Une Compétence Apprise ne s'apprend pas une seconde fois.",
-      en: 'Said of a Skill you have acquired, whether you bought it or were given it. A Learned Skill is never learned a second time.',
+      fr: "Se dit d'une Compétence que vous avez acquise, que vous l'ayez achetée ou reçue. Une Compétence {{apprise}} ne s'apprend pas une seconde fois.",
+      en: 'Said of a Skill you have acquired, whether you bought it or were given it. A {{apprise}} Skill is never learned a second time.',
     },
   },
   {
-    fr: ['Expertise'],
-    en: ['Expertise'],
+    fr: 'Expertise',
+    en: 'Expertise',
     color: 'var(--term-adv)',
     icon: 'mdi/medal',
     definition: {
-      fr: "Donne 1 Avantage à chaque Jet qui emploie l'Aptitude concernée.",
-      en: 'Gives 1 Advantage on every Roll that uses the Aptitude in question.',
+      fr: "Donne 1 {{avantage}} à chaque {{jet}} qui emploie l'{{aptitude}} concernée.",
+      en: 'Gives 1 {{avantage}} on every {{jet}} that uses the {{aptitude}} in question.',
     },
   },
   {
-    fr: ['Repos court', 'Repos courts'],
-    en: ['Short Rest', 'Short Rests'],
+    fr: 'Repos court',
+    en: 'Short Rest',
     color: 'var(--term-res)',
     icon: 'mdi/campfire',
     definition: {
-      fr: 'Dix minutes de pause, durant lesquelles vous pouvez faire une activité légère, qui rendent la moitié de vos PdV et de votre Énergie maximum. Vous pouvez faire au maximum 2 Repos courts par Repos long.',
-      en: 'Ten minutes of pause, during which you can do light activity, that restore half your maximum HP and Energy. You can take at most 2 Short Rests per Long Rest.',
+      fr: 'Dix minutes de pause, durant lesquelles vous pouvez faire une activité légère, qui rendent la moitié de vos {{pdv}} et de votre {{energie}} maximum. Vous pouvez faire au maximum 2 {{repos-court|Repos courts}} par {{repos-long}}.',
+      en: 'Ten minutes of pause, during which you can do light activity, that restore half your maximum {{pdv}} and {{energie}}. You can take at most 2 {{repos-court|Short Rests}} per {{repos-long}}.',
     },
   },
   {
-    fr: ['Repos long', 'Repos longs'],
-    en: ['Long Rest', 'Long Rests'],
+    fr: 'Repos long',
+    en: 'Long Rest',
     color: 'var(--term-res)',
     icon: 'mdi/bed',
     definition: {
-      fr: 'Huit heures de sommeil, une fois par jour, qui rendent tous vos PdV et toute votre Énergie.',
-      en: 'Eight hours of sleep, once per day, that restore all your HP and all your Energy.',
+      fr: 'Huit heures de sommeil, une fois par jour, qui rendent tous vos {{pdv}} et toute votre {{energie}}.',
+      en: 'Eight hours of sleep, once per day, that restore all your {{pdv}} and all your {{energie}}.',
     },
   },
   {
-    fr: ['Karma'],
-    en: ['Karma'],
+    fr: 'Karma',
+    en: 'Karma',
     color: 'var(--term-res)',
     icon: 'game-icons/abstract-107',
     definition: {
-      fr: 'Des points accordés par le MJ. Par défaut, un point peut ajouter un Avantage ou un Désavantage au Jet de votre choix.',
-      en: 'Points granted by the GM. By default, a point can add an Advantage or a Disadvantage to the Roll of your choice.',
+      fr: 'Des points accordés par le MJ. Par défaut, un point peut ajouter un {{avantage}} ou un {{desavantage}} au {{jet}} de votre choix.',
+      en: 'Points granted by the GM. By default, a point can add an {{avantage}} or a {{desavantage}} to the {{jet}} of your choice.',
     },
   },
   {
-    fr: ['Âme', 'Âmes'],
-    en: ['Soul', 'Souls'],
+    fr: 'Âme',
+    en: 'Soul',
     color: 'var(--term-res)',
     icon: 'game-icons/spark-spirit',
     definition: {
-      fr: "Ce qui fait d'un personnage quelqu'un, au-delà de ses chiffres. Elle réunit sa Phobie, sa Manie, son Défaut, sa Spécialité et son Don, et se décide avec le MJ à la création.",
-      en: 'What makes a character someone, beyond their numbers. It gathers their Phobia, Mania, Flaw, Speciality and Gift, and is decided with the GM at creation.',
+      fr: "Ce qui fait d'un personnage quelqu'un, au-delà de ses chiffres. Elle réunit sa {{phobie}}, sa {{manie}}, son {{defaut}}, sa {{specialite}} et son {{don}}, et se décide avec le MJ à la création.",
+      en: 'What makes a character someone, beyond their numbers. It gathers their {{phobie}}, {{manie}}, {{defaut}}, {{specialite}} and {{don}}, and is decided with the GM at creation.',
     },
   },
   {
-    fr: ['Phobie', 'Phobies'],
-    en: ['Phobia', 'Phobias'],
+    fr: 'Phobie',
+    en: 'Phobia',
     color: 'var(--term-res)',
     icon: 'game-icons/spider-alt',
     definition: {
-      fr: 'Une peur qui pèse sur les décisions du personnage, du vertige à la terreur des araignées. Elle porte un emplacement de Karma, que le MJ remplit souvent quand elle lui coûte quelque chose.',
-      en: "A fear that weighs on the character's decisions, from vertigo to a terror of spiders. It carries a Karma slot, which the GM often fills when it costs them something.",
+      fr: 'Une peur qui pèse sur les décisions du personnage, du vertige à la terreur des araignées. Elle porte un emplacement de {{karma}}, que le MJ remplit souvent quand elle lui coûte quelque chose.',
+      en: "A fear that weighs on the character's decisions, from vertigo to a terror of spiders. It carries a {{karma}} slot, which the GM often fills when it costs them something.",
     },
   },
   {
-    fr: ['Manie', 'Manies'],
-    en: ['Mania', 'Manias'],
+    fr: 'Manie',
+    en: 'Mania',
     color: 'var(--term-res)',
     icon: 'game-icons/cycle',
     definition: {
-      fr: 'Une habitude, une obsession ou un geste qui revient sans cesse : compter ses pas, ramasser tout ce qui brille. Elle porte un emplacement de Karma.',
-      en: 'A habit, an obsession or a gesture that keeps coming back: counting every step, picking up anything that glitters. It carries a Karma slot.',
+      fr: 'Une habitude, une obsession ou un geste qui revient sans cesse : compter ses pas, ramasser tout ce qui brille. Elle porte un emplacement de {{karma}}.',
+      en: 'A habit, an obsession or a gesture that keeps coming back: counting every step, picking up anything that glitters. It carries a {{karma}} slot.',
     },
   },
   {
-    fr: ['Défaut', 'Défauts'],
-    en: ['Flaw', 'Flaws'],
+    fr: 'Défaut',
+    en: 'Flaw',
     color: 'var(--term-res)',
     icon: 'game-icons/cracked-mask',
     definition: {
-      fr: "Un trait durable qui attire des ennuis au personnage, comme l'orgueil, l'avidité ou une langue trop bien pendue. Il porte un emplacement de Karma.",
-      en: 'A lasting trait that draws trouble towards the character, such as pride, greed or a tongue too quick for its own good. It carries a Karma slot.',
+      fr: "Un trait durable qui attire des ennuis au personnage, comme l'orgueil, l'avidité ou une langue trop bien pendue. Il porte un emplacement de {{karma}}.",
+      en: 'A lasting trait that draws trouble towards the character, such as pride, greed or a tongue too quick for its own good. It carries a {{karma}} slot.',
     },
   },
   {
-    fr: ['Spécialité', 'Spécialités'],
-    en: ['Speciality', 'Specialities'],
+    fr: 'Spécialité',
+    en: 'Speciality',
     color: 'var(--term-apt)',
     icon: 'mdi/rhombus-split',
     definition: {
-      fr: "Une Aptitude que vous inventez, au champ étroit : la peinture, les pièges, la cuisine. Quand elle s'applique, elle entre dans le Jet comme une Aptitude ordinaire et lui donne 1 Avantage.",
-      en: 'An Aptitude you invent, with a narrow field: painting, traps, cooking. When it applies, it enters the Roll like an ordinary Aptitude and gives it 1 Advantage.',
+      fr: "Une {{aptitude}} que vous inventez, au champ étroit : la peinture, les pièges, la cuisine. Quand elle s'applique, elle entre dans le {{jet}} comme une {{aptitude}} ordinaire et lui donne 1 {{avantage}}.",
+      en: 'An {{aptitude}} you invent, with a narrow field: painting, traps, cooking. When it applies, it enters the {{jet}} like an ordinary {{aptitude}} and gives it 1 {{avantage}}.',
     },
   },
   {
-    fr: ['Don', 'Dons'],
-    en: ['Gift', 'Gifts'],
+    fr: 'Don',
+    en: 'Gift',
     color: 'var(--term-res)',
     icon: 'game-icons/magic-palm',
     definition: {
@@ -978,10 +974,6 @@ const FALLBACK_ICON = 'mdi/hexagon'
 
 function iconPath(name: string | undefined): string {
   return name ? name.replace(':', '/') : FALLBACK_ICON
-}
-
-function spellingsOf(entry: VocabularyEntry): string[] {
-  return [entry.labelFr, ...(entry.formsFr ?? []), entry.labelEn, ...(entry.formsEn ?? [])]
 }
 
 function typeLabel(type: Skill['type'], t: ReturnType<typeof strings>): string {
@@ -1006,7 +998,7 @@ function ruleTermDefinition(
   if ('skillList' in rule) {
     if (!bank.note?.trim()) {
       throw new Error(
-        `rule term ${rule.fr[0]} reads the note of data/skill-lists/common-bank.json, which has none`,
+        `rule term ${rule.fr} reads the note of data/skill-lists/common-bank.json, which has none`,
       )
     }
     return bank.note
@@ -1014,13 +1006,13 @@ function ruleTermDefinition(
   const tag = tags.get(rule.tag)
   if (!tag)
     throw new Error(
-      `rule term ${rule.fr[0]} reads the tag ${rule.tag}, which data/meta/tags.json does not declare`,
+      `rule term ${rule.fr} reads the tag ${rule.tag}, which data/meta/tags.json does not declare`,
     )
   return requiredDefinition(tag, locale, `data/meta/tags.json ${tag.key}`)
 }
 
 function ruleReference(rule: RuleTerm): string {
-  return slugify(rule.fr[0])
+  return slugify(rule.fr)
 }
 
 function vocabularyReference(entry: VocabularyEntry): string {
@@ -1028,7 +1020,7 @@ function vocabularyReference(entry: VocabularyEntry): string {
 }
 
 function ruleLabel(rule: RuleTerm, english: boolean): string {
-  return english ? rule.en[0] : rule.fr[0]
+  return english ? rule.en : rule.fr
 }
 
 function vocabularyLabel(entry: VocabularyEntry, english: boolean): string {
@@ -1057,12 +1049,13 @@ function buildGlossary(input: GlossaryInput): GlossaryTerm[] {
   const glossary: GlossaryTerm[] = []
 
   for (const rule of RULE_TERMS) {
+    const definition = ruleTermDefinition(rule, tags, bank, locale)
     glossary.push({
       family: 'rule',
       key: ruleReference(rule),
       reference: ruleReference(rule),
       tag: 'tag' in rule ? rule.tag : undefined,
-      spellings: [...rule.fr, ...rule.en],
+      definition,
       record: {
         family: 'rule',
         kind: t.ruleTerm,
@@ -1070,18 +1063,23 @@ function buildGlossary(input: GlossaryInput): GlossaryTerm[] {
         meta: '',
         color: rule.color,
         icon: rule.icon,
-        text: ruleTermDefinition(rule, tags, bank, locale),
+        text: flattenText(definition, labelOf),
       },
     })
   }
 
   for (const entry of characteristics.values()) {
     if (entry.key === VARIABLE_CHARACTERISTIC) continue
+    const definition = requiredDefinition(
+      entry,
+      locale,
+      `data/meta/characteristics.json ${entry.key}`,
+    )
     glossary.push({
       family: 'characteristic',
       key: entry.key,
       reference: vocabularyReference(entry),
-      spellings: spellingsOf(entry),
+      definition,
       record: {
         family: 'characteristic',
         kind: t.characteristic,
@@ -1089,17 +1087,18 @@ function buildGlossary(input: GlossaryInput): GlossaryTerm[] {
         meta: '',
         color: entry.color ?? 'var(--accent-ink)',
         icon: iconPath(entry.iconName),
-        text: requiredDefinition(entry, locale, `data/meta/characteristics.json ${entry.key}`),
+        text: flattenText(definition, labelOf),
       },
     })
   }
 
   for (const entry of aptitudes.values()) {
+    const definition = requiredDefinition(entry, locale, `data/meta/aptitudes.json ${entry.key}`)
     glossary.push({
       family: 'aptitude',
       key: entry.key,
       reference: vocabularyReference(entry),
-      spellings: spellingsOf(entry),
+      definition,
       record: {
         family: 'aptitude',
         kind: t.aptitude,
@@ -1107,7 +1106,7 @@ function buildGlossary(input: GlossaryInput): GlossaryTerm[] {
         meta: '',
         color: entry.color ?? 'var(--term-apt)',
         icon: APTITUDE_ICON,
-        text: requiredDefinition(entry, locale, `data/meta/aptitudes.json ${entry.key}`),
+        text: flattenText(definition, labelOf),
       },
     })
   }
@@ -1120,7 +1119,6 @@ function buildGlossary(input: GlossaryInput): GlossaryTerm[] {
       key: state.key,
       reference: state.key,
       state,
-      spellings: [state.name, ...(state.forms ?? [])],
       record: {
         family: 'state',
         kind: t.states,
@@ -1154,26 +1152,17 @@ function buildTermIndex(input: TermInput): TermIndex {
     labelOf,
     t,
   } = input
-  const map = new Map<string, TermRecord>()
   const keys = new Map<string, TermRecord>()
 
-  const put = (name: string, record: Omit<TermRecord, 'spelling'>): void => {
-    const key = name.toLowerCase()
-    if (!key || map.has(key)) return
-    map.set(key, { ...record, spelling: name })
-  }
-
-  const putSkill = (skill: Skill, record: Omit<TermRecord, 'spelling'>): void => {
-    put(skill.title, record)
-    if (!keys.has(skill.id)) keys.set(skill.id, { ...record, spelling: skill.title })
+  const putSkill = (skill: Skill, record: TermRecord): void => {
+    if (!keys.has(skill.id)) keys.set(skill.id, record)
   }
 
   for (const term of glossary) {
     if (keys.has(term.reference)) {
       throw new Error(`two glossary entries answer to the reference {{${term.reference}}}`)
     }
-    keys.set(term.reference, { ...term.record, spelling: term.record.title })
-    for (const word of term.spellings) put(word, term.record)
+    keys.set(term.reference, term.record)
   }
 
   for (const tree of trees) {
@@ -1250,7 +1239,7 @@ function buildTermIndex(input: TermInput): TermIndex {
     })
   }
 
-  return { map, keys, pattern: buildTermPattern([...map.keys()]) }
+  return { keys }
 }
 
 function skillIcon(skill: Skill, characteristics: Map<string, VocabularyEntry>): string {

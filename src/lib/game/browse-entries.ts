@@ -473,7 +473,7 @@ export function ruleBrowseEntries(corpus: Corpus, locale: Locale): BrowseEntry[]
       id,
       entity: {
         kind: 'term',
-        term: { title, kind, color, icon: term.record.icon, text: term.record.text },
+        term: { title, kind, color, icon: term.record.icon, text: term.definition },
       },
       title,
       mark: color,

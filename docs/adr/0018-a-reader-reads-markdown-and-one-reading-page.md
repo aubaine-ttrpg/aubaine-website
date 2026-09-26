@@ -7,6 +7,7 @@
 tree section that follows it (0025)
 **Revised:** 2026-09-26, a chapter can frame an example or a founding principle as a callout
 (addendum in Decision 1)
+**Revised:** 2026-09-27, lore and chapters link only through references by key (0029, addendum in Decision 1)
 **Deciders:** Kori
 **Scope:** Where long-form prose that a reader reads is authored, and how the four surfaces that
 carry it are laid out: the book chapter, the policy page, the Species page and the skill tree page.
@@ -102,6 +103,13 @@ list, `CALLOUT_KINDS`, that `tests/data/integrity.test.ts` enforces along with a
 `>` second line. The styles live in `src/styles/prose.css` for the site and `src/styles/print.css`
 for the booklets. `role="note"` was chosen over `aside` so a page with several examples does not
 fill with complementary landmarks.
+
+### Addendum (2026-09-27): links are references by key
+
+- Lore, chapters and the equipment guide no longer get `[[State]]`, `{{Competence}}` or bare keyword
+  pills. A link is a `{{clé}}` or `{{clé|texte}}` reference its author writes, every one renders, and
+  nothing is marked at a first appearance (0029). `rehypeCodexTerms` still gates on `/data/` and
+  still picks the locale from the `.<locale>.md` suffix.
 
 ---
 

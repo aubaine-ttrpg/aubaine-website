@@ -38,17 +38,6 @@ const TIP =
           if (run.kind === 'bold') {
             return <strong style="color:var(--ink); font-weight:600">{run.text}</strong>
           }
-          if (run.kind === 'ref') {
-            return (
-              <a
-                href={run.href}
-                data-inline-ref
-                style="color:var(--accent-ink); border-bottom:1px solid var(--accent-line)"
-              >
-                {run.text}
-              </a>
-            )
-          }
           if (run.kind === 'term') {
             const icon = hasIcon(run.term.icon) ? run.term.icon : null
             return (
@@ -94,10 +83,3 @@ const TIP =
     ))
   }
 </div>
-
-<style is:global>
-  [data-inline-ref]:hover {
-    color: var(--gold);
-    border-color: var(--gold);
-  }
-</style>

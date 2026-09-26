@@ -7,6 +7,7 @@
 **Revised:** 2026-09-23, `Sort` becomes a rule term with its own colour, and Second souffle moves its rest limit to `recharge` (Decision 4)
 **Revised:** 2026-09-24, `Sort` reads its definition from its tag and its rule covers passive Sorts (0020, addendum in Decision 4)
 **Revised:** 2026-09-25, a sub-species may impose a Compétence, each Espèce names its sub-species, and a common-noun name translates (addenda in Decisions 1 and 3)
+**Revised:** 2026-09-27, a rule term keeps one label per locale and links only where a text writes it (0029, addendum in Decision 4)
 **Deciders:** Kori
 **Scope:** The `subspecies`, `roleplay` and `languages` fields on `species` in
 `src/lib/game/schema.ts`, the `languages` vocabulary in `data/meta/`, the sections of the species
@@ -287,3 +288,12 @@ the species' own skills, it is not an entry of `data/skill-lists/common-bank.jso
   `spell` tag in `data/meta/tags.json`, so the word is defined once (0020 Decision 1).
 - The rule now names passives: a Sort needs a Catalyseur equipped to be activated, whether it is
   passive or active. The Catalyseur property on the catalyst items says the same.
+
+### Addendum (2026-09-27): a rule term keeps one label
+
+- `Caractéristique` and `Aptitude` stay rule terms and `Compétence` stays out, but a word now links
+  only where a text writes its reference (0029), so the counts of capitalised occurrences no longer
+  decide anything.
+- `Mémorisée` lists no verb forms any more: `RULE_TERMS` holds one label per locale, and a text that
+  wants the verb linked writes it, as `{{memorisee|mémorisez}}`.
+

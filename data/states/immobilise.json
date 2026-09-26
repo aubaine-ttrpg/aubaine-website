@@ -1,11 +1,6 @@
 {
   "key": "immobilise",
   "name": "Immobilisé",
-  "forms": [
-    "Immobilisée",
-    "Immobilisés",
-    "Immobilisées"
-  ],
   "kind": "debuff",
   "icon": "mdi:lock",
   "description": "Une créature {{immobilise|Immobilisée}} ne peut pas quitter l'endroit où elle se trouve par ses propres moyens : sa {{vitesse}} tombe à 0, et elle ne peut ni bondir, ni planer, ni se téléporter.\n\nUn effet qui la déplace contre son gré la déplace normalement.\n\nLa Compétence ou l'état qui l'applique indique combien de temps l'état dure."

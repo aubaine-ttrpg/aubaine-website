@@ -1,6 +1,7 @@
 ---
 import type { BrowseSource } from '../../lib/game/browse-entries'
 import type { Corpus } from '../../lib/game/corpus'
+import { flattenText } from '../../lib/game/richtext'
 import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
 import Icon from './Icon.astro'
@@ -24,9 +25,10 @@ const SOURCE_ICONS: Record<BrowseSource['kind'], string> = {
   bank: 'mdi:bank',
   other: 'mdi:information-outline',
 }
+const labelOf = (key: string): string | undefined => corpus.terms.keys.get(key)?.title
 const NOTES: Record<'basic' | 'bank' | 'other', string | undefined> = {
-  basic: corpus.basic.note,
-  bank: corpus.bank.note,
+  basic: corpus.basic.note && flattenText(corpus.basic.note, labelOf),
+  bank: corpus.bank.note && flattenText(corpus.bank.note, labelOf),
   other: t.otherNote,
 }
 ---

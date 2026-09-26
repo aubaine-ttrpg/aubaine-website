@@ -1,9 +1,6 @@
 {
   "key": "vent-ascendant",
   "name": "Vent ascendant",
-  "forms": [
-    "Vents ascendants"
-  ],
   "kind": "buff",
   "icon": "mdi:elevation-rise",
   "color": "#2a8a7b",

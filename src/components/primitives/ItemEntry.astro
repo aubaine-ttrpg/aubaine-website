@@ -41,8 +41,7 @@ const price = priceInCoins(item.price, coins).map((part) => {
 const grants = (item.grants ?? []).flatMap((id) => {
   const skill = corpus.skills.get(id)
   if (!skill) return []
-  const term = corpus.terms.map.get(skill.title.toLowerCase())
-  return [{ skill, term: term?.skillId === skill.id ? term : undefined }]
+  return [{ skill, term: corpus.terms.keys.get(skill.id) }]
 })
 const set = item.set ? corpus.sets.get(item.set) : undefined
 const setPieces = set ? cataloguePieceCount(corpus.items, set.id) : 0

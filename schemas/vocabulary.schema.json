@@ -50,24 +50,8 @@
             "type": "string",
             "minLength": 1
           },
-          "formsFr": {
-            "description": "Autres formes écrites de labelFr, accord et pluriel compris, reconnues dans un texte de règle.",
-            "type": "array",
-            "items": {
-              "type": "string",
-              "minLength": 1
-            }
-          },
-          "formsEn": {
-            "description": "Autres formes écrites de labelEn, pluriel compris.",
-            "type": "array",
-            "items": {
-              "type": "string",
-              "minLength": 1
-            }
-          },
           "definitionFr": {
-            "description": "Texte de l'infobulle du mot, en clair et sans balisage. Propre aux vocabulaires dont les mots portent une infobulle : les Caractéristiques et les Aptitudes.",
+            "description": "Texte de l'infobulle du mot. Il peut citer une entrée par {{clé}} ou {{clé|texte}} : la page des règles en fait un lien, l'infobulle n'en garde que le texte imprimé. Propre aux vocabulaires dont les mots portent une infobulle : les Caractéristiques et les Aptitudes.",
             "type": "string",
             "minLength": 1
           },

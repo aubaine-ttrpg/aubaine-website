@@ -59,33 +59,34 @@ export async function styleHash(root: string): Promise<string> {
   return digest(blobs)
 }
 
-function statesNamedIn(descriptions: string[], states: GameState[]): GameState[] {
-  const text = descriptions.join('\n').toLowerCase()
-  return states.filter((state) =>
-    [state.name, ...(state.forms ?? [])].some((form) => text.includes(form.toLowerCase())),
-  )
+function statesNamedIn(descriptions: string[], corpus: Corpus): GameState[] {
+  const named = new Set<string>()
+  for (const description of descriptions) {
+    for (const run of ruleRuns(description, corpus.terms)) {
+      if (run.kind === 'term' && run.term.family === 'state') named.add(run.term.title)
+    }
+  }
+  return corpus.states.filter((state) => named.has(state.name))
 }
 
-function statesUsedBy(descriptions: string[], states: GameState[]): GameState[] {
-  const direct = statesNamedIn(descriptions, states)
+function statesUsedBy(descriptions: string[], corpus: Corpus): GameState[] {
+  const direct = statesNamedIn(descriptions, corpus)
   const named = new Set([
     ...direct,
     ...statesNamedIn(
       direct.map((state) => state.description),
-      states,
+      corpus,
     ),
   ])
-  return states.filter((state) => named.has(state))
+  return corpus.states.filter((state) => named.has(state))
 }
 
 export type RuleWord = Exclude<GlossaryTerm, { family: 'state' }>
 
-const NO_LINKS = { rulesHref: '', resolveReference: (): null => null }
-
 function ruleWordsUsedBy(descriptions: string[], corpus: Corpus): RuleWord[] {
   const used = new Set<string>()
   for (const description of descriptions) {
-    for (const run of ruleRuns(description, corpus.terms, NO_LINKS)) {
+    for (const run of ruleRuns(description, corpus.terms)) {
       if (run.kind === 'term') used.add(`${run.term.family}:${run.term.title}`)
     }
   }
@@ -110,7 +111,7 @@ export function treeDescriptions(tree: ResolvedTree): string[] {
 }
 
 export function treeStates(tree: ResolvedTree, corpus: Corpus): GameState[] {
-  return statesUsedBy(treeDescriptions(tree), corpus.states)
+  return statesUsedBy(treeDescriptions(tree), corpus)
 }
 
 export function treeRuleWords(tree: ResolvedTree, corpus: Corpus): RuleWord[] {
@@ -153,7 +154,7 @@ export function catalogueDescriptions(corpus: Corpus): string[] {
 }
 
 export function catalogueStates(corpus: Corpus): GameState[] {
-  return statesUsedBy(catalogueDescriptions(corpus), corpus.states)
+  return statesUsedBy(catalogueDescriptions(corpus), corpus)
 }
 
 export function catalogueRuleWords(corpus: Corpus): RuleWord[] {

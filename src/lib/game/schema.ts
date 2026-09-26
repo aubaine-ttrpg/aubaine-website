@@ -126,7 +126,7 @@ export const skill = z
       .string()
       .min(1)
       .describe(
-        'Nom imprimé. Un texte de règle appelle la Compétence par ce nom, entre doubles accolades.',
+        "Nom imprimé, et libellé par défaut d'une référence {{clé}} vers cette Compétence, dont la clé est l'identifiant.",
       ),
     type: z
       .enum(['passive', 'active', 'special'])
@@ -273,7 +273,7 @@ export const skill = z
       .string()
       .min(1)
       .describe(
-        "Texte de règle. Les retours à la ligne sont respectés, une ligne vide sépare deux paragraphes. Balisage : ***gras***, [[Nom d'état]] et {{Nom de compétence}}.",
+        'Texte de règle. Les retours à la ligne sont respectés, une ligne vide sépare deux paragraphes. Balisage : ***gras***, et {{clé}} ou {{clé|texte}} pour lier un terme de règle, une Caractéristique, une Aptitude, un état ou une Compétence par sa clé. Un mot écrit sans balise reste du texte.',
       ),
     upgrades: z
       .array(upgrade)
@@ -711,18 +711,14 @@ export const state = z
     key: z
       .string()
       .regex(MACHINE_KEY)
-      .describe("Identifiant machine, employé par l'ancre de la planche."),
+      .describe(
+        "Identifiant machine, employé par l'ancre de la planche et par {{clé}} dans un texte de règle.",
+      ),
     name: z
       .string()
       .min(1)
       .describe(
-        "Nom imprimé, et ce qu'un texte de règle écrit entre doubles crochets. Il doit être unique.",
-      ),
-    forms: z
-      .array(z.string().min(1))
-      .optional()
-      .describe(
-        'Autres formes écrites du nom, accord et pluriel compris, reconnues dans un texte de règle. Le nom imprimé reste celui de name.',
+        "Nom imprimé, et libellé par défaut d'une référence {{clé}} vers cet état. Il doit être unique.",
       ),
     kind: z
       .enum(['buff', 'debuff', 'neutral'])
@@ -826,22 +822,12 @@ export const vocabulary = z
           ),
         labelFr: z.string().min(1),
         labelEn: z.string().min(1),
-        formsFr: z
-          .array(z.string().min(1))
-          .optional()
-          .describe(
-            'Autres formes écrites de labelFr, accord et pluriel compris, reconnues dans un texte de règle.',
-          ),
-        formsEn: z
-          .array(z.string().min(1))
-          .optional()
-          .describe('Autres formes écrites de labelEn, pluriel compris.'),
         definitionFr: z
           .string()
           .min(1)
           .optional()
           .describe(
-            "Texte de l'infobulle du mot, en clair et sans balisage. Propre aux vocabulaires dont les mots portent une infobulle : les Caractéristiques et les Aptitudes.",
+            "Texte de l'infobulle du mot. Il peut citer une entrée par {{clé}} ou {{clé|texte}} : la page des règles en fait un lien, l'infobulle n'en garde que le texte imprimé. Propre aux vocabulaires dont les mots portent une infobulle : les Caractéristiques et les Aptitudes.",
           ),
         definitionEn: z
           .string()
@@ -866,7 +852,9 @@ const tagWords = {
   definitionFr: z
     .string()
     .min(1)
-    .describe("Texte de l'infobulle de l'étiquette, en clair et sans balisage."),
+    .describe(
+      "Texte de l'infobulle de l'étiquette. Il peut citer une entrée par {{clé}} ou {{clé|texte}} : la page des règles en fait un lien, l'infobulle n'en garde que le texte imprimé.",
+    ),
   definitionEn: z.string().min(1).describe("Texte anglais de l'infobulle."),
 }
 
@@ -1147,7 +1135,6 @@ export const overlays = {
   }),
   state: localized({
     name: z.string().optional(),
-    forms: z.array(z.string()).optional(),
     description: z.string().optional(),
   }),
   book: localized({ title: z.string().optional(), description: z.string().optional() }),

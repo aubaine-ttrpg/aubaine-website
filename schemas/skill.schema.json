@@ -22,7 +22,7 @@
     "title": {
       "type": "string",
       "minLength": 1,
-      "description": "Nom imprimé. Un texte de règle appelle la Compétence par ce nom, entre doubles accolades."
+      "description": "Nom imprimé, et libellé par défaut d'une référence {{clé}} vers cette Compétence, dont la clé est l'identifiant."
     },
     "type": {
       "type": "string",
@@ -158,7 +158,7 @@
     "description": {
       "type": "string",
       "minLength": 1,
-      "description": "Texte de règle. Les retours à la ligne sont respectés, une ligne vide sépare deux paragraphes. Balisage : ***gras***, [[Nom d'état]] et {{Nom de compétence}}."
+      "description": "Texte de règle. Les retours à la ligne sont respectés, une ligne vide sépare deux paragraphes. Balisage : ***gras***, et {{clé}} ou {{clé|texte}} pour lier un terme de règle, une Caractéristique, une Aptitude, un état ou une Compétence par sa clé. Un mot écrit sans balise reste du texte."
     },
     "upgrades": {
       "description": "Améliorations imbriquées, rendues sous la carte par niveau croissant.",

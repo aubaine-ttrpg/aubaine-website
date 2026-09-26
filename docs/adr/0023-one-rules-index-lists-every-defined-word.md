@@ -3,6 +3,7 @@
 **Project:** Aubaine, the wiki
 **Status:** Accepted
 **Date:** 2026-09-25
+**Revised:** 2026-09-27, the term index holds one record per word, keyed as the Règles rows are (0029, addendum in Decision 2)
 **Deciders:** Kori
 **Scope:** The Règles page that replaces the États and Actions de base pages, the glossary it shares
 with the term index, where the Compétences de base are listed and where their cross references
@@ -90,6 +91,13 @@ use, and for the Compétences de base to be skills in the skills index as well a
   term index comes to hold one record per word instead of one per spelling.
 - **Export `RULE_TERMS` and walk the vocabularies again in the page**: rejected; it repeats the
   colour and icon fallbacks of `buildTermIndex`.
+
+### Addendum (2026-09-27): one record per word
+
+- The glossary carries no spellings, and `buildTermIndex` keeps one map from key to record, with the
+  rule term keys this decision gave the Règles rows (0029). The rejected alternative above, reading
+  the page from the term index, now meets its reopen condition; the page keeps reading the glossary,
+  which also holds the definition source that the Règles detail renders with its links.
 
 ---
 

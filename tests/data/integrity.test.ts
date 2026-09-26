@@ -19,6 +19,7 @@ import {
   SPECIES_SKILL_CHOICES,
   showsXp,
   skillTags,
+  slugify,
   speciesPool,
   subspeciesSkills,
   VARIABLE_CHARACTERISTIC,
@@ -65,8 +66,7 @@ const captions = indexCaptions(
   JSON.parse(await readFile(resolve(root, 'data/media-captions.json'), 'utf8')),
 )
 
-const STATE_REF = /\[\[([^\]]+)\]\]/g
-const SKILL_REF = /\{\{([^}]+)\}\}/g
+const REFERENCE_MARKUP = /\{\{([^}]+)\}\}/g
 const MEDIA_FILE =
   /^[a-z0-9]+(?:-[a-z0-9]+)*-(\d{1,2})_(\d{1,2})-(?:og|cleaned|upscaled_[24])\.(?:png|jpg)$/
 const VIDEO_FILE = /^[a-z0-9]+(?:-[a-z0-9]+)*-(\d{1,2})_(\d{1,2})-(?:og|compressed)\.mp4$/
@@ -465,31 +465,44 @@ describe('imposed skills', () => {
 })
 
 describe('rule text markup', () => {
-  const texts = allRuleText()
-
-  it('writes no triple bracket, since a booklet defines its states at the back', () => {
-    for (const { where, text } of texts) {
-      expect(text.includes('[[['), `${where} writes [[[ ]]]`).toBe(false)
+  it('writes no double bracket, since a state is referenced by its key', () => {
+    for (const { where, text } of everyRuleText) {
+      expect(text.includes('[['), `${where} writes [[ ]]`).toBe(false)
     }
   })
 
-  it('names only known states between double brackets', () => {
-    for (const { where, text } of texts) {
-      for (const match of text.matchAll(STATE_REF)) {
-        const name = (match[1] ?? '').trim().toLowerCase()
-        expect(fr.statesByName.has(name), `${where} state [[${match[1]}]]`).toBe(true)
+  it('writes every double brace as a reference by key', () => {
+    for (const { where, text } of everyRuleText) {
+      for (const match of text.matchAll(REFERENCE_MARKUP)) {
+        expect(referenceKey(match[1] ?? ''), `${where} {{${match[1]}}} is not a key`).toBeDefined()
       }
     }
   })
 
-  it('names only known skills between double braces', () => {
-    const titles = new Set<string>()
-    for (const skill of fr.skills.values()) titles.add(skill.title.toLowerCase())
-    for (const { where, text } of texts) {
-      for (const match of text.matchAll(SKILL_REF)) {
-        if (referenceKey(match[1] ?? '') !== undefined) continue
-        const name = (match[1] ?? '').trim().toLowerCase()
-        expect(titles.has(name), `${where} skill {{${match[1]}}}`).toBe(true)
+  it('resolves every reference a definition or a list note writes', () => {
+    for (const corpus of [fr, en]) {
+      const texts = [
+        ...corpus.glossary.flatMap((term) => (term.family === 'state' ? [] : [term.definition])),
+        ...[...corpus.tags.values()].map((tag) => definition(tag, corpus.locale) ?? ''),
+        corpus.basic.note ?? '',
+        corpus.bank.note ?? '',
+      ]
+      for (const text of texts) {
+        for (const match of text.matchAll(REFERENCE_MARKUP)) {
+          const key = referenceKey(match[1] ?? '')
+          expect(
+            key !== undefined && corpus.terms.keys.has(key),
+            `${corpus.locale} {{${match[1]}}}`,
+          ).toBe(true)
+        }
+      }
+    }
+  })
+
+  it('shows every tooltip without markup', () => {
+    for (const corpus of [fr, en]) {
+      for (const [key, record] of corpus.terms.keys) {
+        expect(/\{\{|\}\}|\*\*\*/.test(record.text), `${corpus.locale} ${key}`).toBe(false)
       }
     }
   })
@@ -497,7 +510,7 @@ describe('rule text markup', () => {
   it('resolves every reference by key in the locale it is written in', () => {
     for (const corpus of [fr, en]) {
       for (const { where, text } of allRuleText(corpus)) {
-        for (const match of text.matchAll(SKILL_REF)) {
+        for (const match of text.matchAll(REFERENCE_MARKUP)) {
           const key = referenceKey(match[1] ?? '')
           if (key === undefined) continue
           expect(corpus.terms.keys.has(key), `${where} {{${match[1]}}} in ${corpus.locale}`).toBe(
@@ -759,7 +772,7 @@ describe('release notes', () => {
 
 describe('uniqueness', () => {
   it('gives every state a unique printed name', () => {
-    expect(fr.statesByName.size).toBe(fr.states.length)
+    expect(new Set(fr.states.map((state) => state.name.toLowerCase())).size).toBe(fr.states.length)
   })
 
   it('gives every equipment item a unique slug and a known section', () => {
@@ -875,7 +888,7 @@ describe('authoring hygiene', () => {
       for (const glyph of FOREIGN_TYPOGRAPHY) {
         expect(
           raw.includes(glyph),
-          `${file} carries U+${codePointOf(glyph)}, which breaks keyword matching invisibly`,
+          `${file} carries U+${codePointOf(glyph)}, where data keeps the straight apostrophe and the ordinary space`,
         ).toBe(false)
       }
     }
@@ -948,30 +961,26 @@ describe('authored prose markup', () => {
     }
   })
 
-  it('names only states and skills the reader can reach', async () => {
+  it('writes every link in authored prose as a reference by key that resolves', async () => {
     const built = { fr, en }
-    const titles = {
-      fr: new Set(built.fr.terms.map.keys()),
-      en: new Set(built.en.terms.map.keys()),
-    }
     for (const { where, text, locale } of await authoredProse()) {
-      for (const match of text.matchAll(STATE_REF)) {
-        const name = (match[1] ?? '').trim().toLowerCase()
-        expect(built[locale].statesByName.has(name), `${where} state [[${match[1]}]]`).toBe(true)
-      }
-      for (const match of text.matchAll(SKILL_REF)) {
+      expect(text.includes('[['), `${where} writes [[ ]]`).toBe(false)
+      for (const match of text.matchAll(REFERENCE_MARKUP)) {
         const key = referenceKey(match[1] ?? '')
-        if (key !== undefined) {
-          expect(
-            built[locale].terms.keys.has(key),
-            `${where} {{${match[1]}}} resolves nothing`,
-          ).toBe(true)
-          continue
-        }
-        const name = (match[1] ?? '').trim().toLowerCase()
-        expect(titles[locale].has(name), `${where} skill {{${match[1]}}} is not in the index`).toBe(
+        expect(key, `${where} {{${match[1]}}} is not a key`).toBeDefined()
+        if (key === undefined) continue
+        expect(built[locale].terms.keys.has(key), `${where} {{${match[1]}}} resolves nothing`).toBe(
           true,
         )
+      }
+    }
+  })
+
+  it('keeps references out of headings, where nothing renders them', async () => {
+    for (const { where, text } of await authoredProse()) {
+      for (const line of text.split('\n')) {
+        if (!/^#{1,6} /.test(line)) continue
+        expect(line.includes('{{'), `${where} heading « ${line} »`).toBe(false)
       }
     }
   })
@@ -1080,26 +1089,29 @@ describe('the term index', () => {
     }
     for (const locale of LOCALES) {
       const built = await readCorpus(root, locale)
-      for (const [key, record] of built.terms.map) {
+      for (const [key, record] of built.terms.keys) {
         if (!record.icon) continue
         expect(owned.has(record.icon), `${locale} term ${key} icon ${record.icon}`).toBe(true)
       }
     }
   })
 
-  it('registers every aptitude and every written form of a state', async () => {
+  it('gives every defined word, state and reachable skill a reference key', async () => {
     for (const locale of LOCALES) {
       const built = await readCorpus(root, locale)
-      const spelling = (word: string): string | undefined =>
-        built.terms.map.get(word.toLowerCase())?.spelling
+      for (const term of built.glossary) {
+        expect(
+          built.terms.keys.get(term.reference),
+          `${locale} ${term.family} ${term.reference}`,
+        ).toBe(term.record)
+      }
       for (const entry of built.aptitudes.values()) {
-        const label = locale === 'en' ? entry.labelEn : entry.labelFr
-        expect(spelling(label), `${locale} aptitude ${entry.key}`).toBe(label)
+        expect(built.terms.keys.get(slugify(entry.labelFr))?.family, `${locale} ${entry.key}`).toBe(
+          'aptitude',
+        )
       }
       for (const state of built.states) {
-        for (const word of [state.name, ...(state.forms ?? [])]) {
-          expect(spelling(word), `${locale} state ${state.key} form ${word}`).toBe(word)
-        }
+        expect(built.terms.keys.get(state.key)?.title, `${locale} ${state.key}`).toBe(state.name)
       }
     }
   })
@@ -1110,29 +1122,12 @@ describe('the term index', () => {
         if (entry.status === 'draft') continue
         for (const skill of entry.pool) {
           expect(
-            built.terms.map.get(skill.title.toLowerCase())?.skillId,
+            built.terms.keys.get(skill.id)?.skillId,
             `${built.locale} ${entry.id} ${skill.title}`,
           ).toBe(skill.id)
         }
       }
     }
-  })
-
-  it('marks every keyword that rule text actually writes', () => {
-    const missed: string[] = []
-    for (const { where, text } of allRuleText()) {
-      const bare = text.replace(STATE_REF, '').replace(SKILL_REF, '')
-      for (const state of fr.states) {
-        for (const word of [state.name, ...(state.forms ?? [])]) {
-          const pattern = new RegExp(`(?<![\\p{L}\\p{N}])${word}(?![\\p{L}\\p{N}])`, 'u')
-          if (!pattern.test(bare)) continue
-          if (fr.terms.map.get(word.toLowerCase())?.spelling !== word) {
-            missed.push(`${where}: ${word}`)
-          }
-        }
-      }
-    }
-    expect(missed, 'state words written in rule text that the index cannot mark').toEqual([])
   })
 })
 
@@ -1144,7 +1139,7 @@ describe('definitions', () => {
     for (const locale of LOCALES) {
       const built = await readCorpus(root, locale)
       const byWord = new Map<string, string>()
-      for (const record of built.terms.map.values()) {
+      for (const record of built.terms.keys.values()) {
         if (!DEFINED_FAMILIES.has(record.family)) continue
         expect(record.text.trim(), `${locale} ${record.family} ${record.title}`).not.toBe('')
         byWord.set(`${record.family} ${record.title}`, record.text)
@@ -1161,11 +1156,9 @@ describe('definitions', () => {
   it('defines the Banque Commune with the Common Bank note, in every locale', async () => {
     for (const locale of LOCALES) {
       const built = await readCorpus(root, locale)
-      for (const word of ['banque commune', 'common bank']) {
-        const record = built.terms.map.get(word)
-        expect(record?.family, `${locale} ${word}`).toBe('rule')
-        expect(record?.text, `${locale} ${word}`).toBe(built.bank.note)
-      }
+      const term = built.glossary.find((entry) => entry.reference === 'banque-commune')
+      expect(term?.family, locale).toBe('rule')
+      expect(term?.family === 'rule' ? term.definition : undefined, locale).toBe(built.bank.note)
     }
   })
 
@@ -1186,14 +1179,14 @@ describe('definitions', () => {
     const entry = fr.characteristics.get(VARIABLE_CHARACTERISTIC)
     expect(entry, 'meta/characteristics any').toBeDefined()
     for (const word of [entry?.labelFr, entry?.labelEn]) {
-      expect(fr.terms.map.get(String(word).toLowerCase()), `${word} is indexed`).toBeUndefined()
+      expect(fr.terms.keys.get(slugify(String(word))), `${word} is indexed`).toBeUndefined()
     }
   })
 
   it('writes every definition the index shows in the house typography and voice', async () => {
     for (const locale of LOCALES) {
       const built = await readCorpus(root, locale)
-      for (const record of built.terms.map.values()) {
+      for (const record of built.terms.keys.values()) {
         if (!DEFINED_FAMILIES.has(record.family)) continue
         const where = `${locale} ${record.family} ${record.title}`
         for (const glyph of [...BANNED_DASHES, ...FOREIGN_TYPOGRAPHY]) {
@@ -1220,7 +1213,7 @@ describe('the rules index', () => {
 
     const listed = new Set(ids)
     const ruleWords = new Set(
-      [...fr.terms.map.values()].filter((record) => record.family === 'rule').map((r) => r.title),
+      [...fr.terms.keys.values()].filter((record) => record.family === 'rule').map((r) => r.title),
     )
     expect(ids.filter((id) => id.startsWith('rule-')).length).toBe(ruleWords.size)
     for (const key of fr.characteristics.keys()) {
@@ -1279,9 +1272,7 @@ describe('the basic skills', () => {
         const expected = tree
           ? treeNodeHref(locale, tree.id, skill.id)
           : `${pathFor('skills', locale)}#e-${skill.id}`
-        expect(built.terms.map.get(skill.title.toLowerCase())?.href, `${locale} ${skill.id}`).toBe(
-          expected,
-        )
+        expect(built.terms.keys.get(skill.id)?.href, `${locale} ${skill.id}`).toBe(expected)
       }
     }
   })
@@ -1322,10 +1313,12 @@ describe('skill tags', () => {
       const built = await readCorpus(root, locale)
       const spell = built.tags.get('spell')
       const word = label(spell, locale, 'spell')
-      const record = built.terms.map.get(word.toLowerCase())
-      expect(record?.family, `${locale} ${word}`).toBe('rule')
-      expect(record?.title, `${locale} ${word} title`).toBe(word)
-      expect(record?.text, `${locale} ${word} definition`).toBe(definition(spell, locale))
+      const term = built.glossary.find((entry) => entry.reference === 'sort')
+      expect(term?.family, `${locale} ${word}`).toBe('rule')
+      expect(term?.record.title, `${locale} ${word} title`).toBe(word)
+      expect(term?.family === 'rule' ? term.definition : undefined, `${locale} ${word}`).toBe(
+        definition(spell, locale),
+      )
     }
   })
 

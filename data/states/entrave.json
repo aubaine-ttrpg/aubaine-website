@@ -1,11 +1,6 @@
 {
   "key": "entrave",
   "name": "Entravé",
-  "forms": [
-    "Entravée",
-    "Entravés",
-    "Entravées"
-  ],
   "kind": "debuff",
   "icon": "mdi:anchor",
   "description": "Une créature {{entrave|Entravée}} est retenue sur place : elle est {{immobilise|Immobilisée}}. Ses {{attaque|Attaques}} et ses {{jet|Jets}} de {{dexterite}} subissent 1 {{desavantage}}, et les {{attaque|Attaques}} faites contre elle gagnent 1 {{avantage}}.\n\nÀ la fin de chacun de ses tours, elle effectue un {{jet}} de {{force}} + {{athletisme}} contre le {{dd}} de la Compétence qui l'a entravée. En cas de réussite, elle se dégage et l'état prend fin."

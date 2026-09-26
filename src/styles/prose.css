@@ -333,16 +333,6 @@
   color: inherit;
 }
 
-.au-term-plain {
-  color: var(--accent-ink);
-  border-bottom: 1px solid var(--accent-line);
-}
-
-.au-term-plain:hover {
-  border-bottom-width: 2px;
-  border-color: currentcolor;
-}
-
 .au-term-tip {
   position: absolute;
   left: 0;

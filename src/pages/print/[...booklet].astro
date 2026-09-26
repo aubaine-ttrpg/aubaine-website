@@ -117,12 +117,12 @@ const eyebrow = 'Aubaine'
 const skills = tree ? treeSkillOrder(tree.placements, locale) : []
 const states = tree ? treeStates(tree, data) : []
 const ruleWords = tree ? treeRuleWords(tree, data) : []
-const definedWord = ({ record }: RuleWord) => ({
+const definedWord = ({ record, definition }: RuleWord) => ({
   title: record.title,
   kind: record.kind,
   color: record.color,
   icon: record.icon,
-  text: record.text,
+  text: definition,
 })
 
 const grantedSkills = catalogue ? catalogueSkills(data) : []

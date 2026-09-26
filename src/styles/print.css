@@ -685,11 +685,6 @@
   cursor: auto;
 }
 
-.au-print [data-inline-ref] {
-  color: inherit;
-  border-bottom: 0;
-}
-
 .au-slot-glyph {
   display: inline-block;
   width: 1.05em;

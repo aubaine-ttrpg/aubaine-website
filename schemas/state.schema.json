@@ -7,20 +7,12 @@
     "key": {
       "type": "string",
       "pattern": "^[a-z][a-z0-9-]*$",
-      "description": "Identifiant machine, employé par l'ancre de la planche."
+      "description": "Identifiant machine, employé par l'ancre de la planche et par {{clé}} dans un texte de règle."
     },
     "name": {
       "type": "string",
       "minLength": 1,
-      "description": "Nom imprimé, et ce qu'un texte de règle écrit entre doubles crochets. Il doit être unique."
-    },
-    "forms": {
-      "description": "Autres formes écrites du nom, accord et pluriel compris, reconnues dans un texte de règle. Le nom imprimé reste celui de name.",
-      "type": "array",
-      "items": {
-        "type": "string",
-        "minLength": 1
-      }
+      "description": "Nom imprimé, et libellé par défaut d'une référence {{clé}} vers cet état. Il doit être unique."
     },
     "kind": {
       "type": "string",

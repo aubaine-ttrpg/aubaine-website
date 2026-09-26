@@ -1,5 +1,4 @@
 import type { Locale } from '../i18n/locales.ts'
-import { buildTermPattern } from './richtext.ts'
 import type {
   EquipmentItem,
   EquipmentSet,
@@ -166,14 +165,23 @@ export type StatRun = { text: string; characteristic?: string }
 export function characteristicSpellings(entries: Iterable<VocabularyEntry>): Map<string, string> {
   const spellings = new Map<string, string>()
   for (const entry of entries) {
-    const words = [entry.labelFr, ...(entry.formsFr ?? []), entry.labelEn, ...(entry.formsEn ?? [])]
-    for (const word of words) spellings.set(word.toLowerCase(), entry.key)
+    for (const word of [entry.labelFr, entry.labelEn]) spellings.set(word.toLowerCase(), entry.key)
   }
   return spellings
 }
 
+function escapeForRegExp(value: string): string {
+  return value.replace(/[\\^$*+?.()|[\]{}/]/g, '\\$&')
+}
+
+function labelPattern(labels: string[]): RegExp | null {
+  if (labels.length === 0) return null
+  const alternatives = [...labels].sort((a, b) => b.length - a.length).map(escapeForRegExp)
+  return new RegExp(`(?:${alternatives.join('|')})`, 'giu')
+}
+
 export function statRuns(value: string, spellings: Map<string, string>): StatRun[] {
-  const pattern = buildTermPattern([...spellings.keys()])
+  const pattern = labelPattern([...spellings.keys()])
   if (!pattern) return [{ text: value }]
 
   const runs: StatRun[] = []

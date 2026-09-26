@@ -11,8 +11,8 @@
       "key": "arcana",
       "labelFr": "Arcanes",
       "labelEn": "Arcana",
-      "definitionFr": "Connaître la magie, ses Sorts, ses runes et ses objets. Peut aussi servir à mener les fabrications arcaniques.",
-      "definitionEn": "Knowing magic, its Spells, its runes and its objects. Can also be used to carry out arcane crafting."
+      "definitionFr": "Connaître la magie, ses {{sort|Sorts}}, ses runes et ses objets. Peut aussi servir à mener les fabrications arcaniques.",
+      "definitionEn": "Knowing magic, its {{sort|Spells}}, its runes and its objects. Can also be used to carry out arcane crafting."
     },
     {
       "key": "craft",
@@ -186,8 +186,8 @@
       "key": "aim",
       "labelFr": "Visée",
       "labelEn": "Aim",
-      "definitionFr": "Toucher à distance, en tirant, en lançant une arme ou un objet, ou en projetant un Sort.",
-      "definitionEn": "Hitting at range, by shooting, throwing a weapon or an object, or hurling a Spell."
+      "definitionFr": "Toucher à distance, en tirant, en lançant une arme ou un objet, ou en projetant un {{sort}}.",
+      "definitionEn": "Hitting at range, by shooting, throwing a weapon or an object, or hurling a {{sort}}."
     },
     {
       "key": "reflexes",
