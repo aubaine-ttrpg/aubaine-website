@@ -54,7 +54,7 @@ Special
 
 The Skills index carries the current list: its Practice, School and Special filters show every value, and each tag gives its definition there.
 
-Two Practices set a condition. You need a Catalyseur equipped, meaning a piece of equipment that carries the Catalyseur property, to activate a Spell, whether it is passive or active: without one, a Spell cannot be cast and a passive Spell stops applying. A Shout, for its part, only affects creatures that can hear it.
+Two Practices set a condition. You need a Catalyseur equipped, meaning a piece of equipment that carries the Catalyseur property, to use a Spell, whether it is passive or active: without one, a Spell cannot be cast and a passive Spell stops applying. A Shout, for its part, only affects creatures that can hear it.
 
 ## The Common Bank
 

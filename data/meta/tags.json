@@ -4,8 +4,8 @@
       "key": "spell",
       "labelFr": "Sort",
       "labelEn": "Spell",
-      "definitionFr": "Une Compétence magique. Vous avez besoin d'un Catalyseur équipé pour activer un Sort, qu'il soit passif ou actif.",
-      "definitionEn": "A magical Skill. You need a Catalyseur equipped to activate a Spell, whether it is passive or active."
+      "definitionFr": "Une Compétence magique. Vous avez besoin d'un Catalyseur équipé pour utiliser un Sort, qu'il soit passif ou actif.",
+      "definitionEn": "A magical Skill. You need a Catalyseur equipped to use a Spell, whether it is passive or active."
     },
     {
       "key": "manoeuvre",

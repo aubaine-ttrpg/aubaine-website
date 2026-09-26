@@ -54,7 +54,7 @@ Spéciale
 
 L'index des Compétences porte la liste du jour : ses filtres Pratique, École et Spéciale en montrent chaque valeur, et chaque étiquette y donne sa définition.
 
-Deux Pratiques posent une condition. Vous avez besoin d'un Catalyseur équipé, c'est-à-dire d'une pièce d'équipement qui porte la propriété Catalyseur, pour activer un Sort, qu'il soit passif ou actif : sans lui, un Sort ne se lance pas et un Sort passif cesse de s'appliquer. Un Cri, lui, n'affecte que les créatures qui l'entendent.
+Deux Pratiques posent une condition. Vous avez besoin d'un Catalyseur équipé, c'est-à-dire d'une pièce d'équipement qui porte la propriété Catalyseur, pour utiliser un Sort, qu'il soit passif ou actif : sans lui, un Sort ne se lance pas et un Sort passif cesse de s'appliquer. Un Cri, lui, n'affecte que les créatures qui l'entendent.
 
 ## La Banque Commune
 
