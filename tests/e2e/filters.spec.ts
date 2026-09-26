@@ -78,6 +78,7 @@ test('resetting restores every entry', async ({ page }) => {
   await page.goto('/en/equipment')
   await hydrated(page)
   const count = page.locator('[aria-live="polite"]').first()
+  await expect(count.locator('[data-drafts-count]')).toHaveCount(0)
   const total = await count.textContent()
 
   await page.getByPlaceholder('Filter by name').fill('zzzz')
