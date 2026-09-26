@@ -768,7 +768,7 @@ const RULE_TERMS: readonly RuleTerm[] = [
     fr: ['Mémoire'],
     en: ['Memory'],
     color: 'var(--term-res)',
-    icon: 'mdi/memory',
+    icon: 'game-icons/bookshelf',
     definition: {
       fr: 'Le nombre de Compétences que vous pouvez avoir Mémorisées en même temps.',
       en: 'The number of Skills you can have Memorised at the same time.',
@@ -828,7 +828,7 @@ const RULE_TERMS: readonly RuleTerm[] = [
     fr: ['Karma'],
     en: ['Karma'],
     color: 'var(--term-res)',
-    icon: 'game-icons/spiked-halo',
+    icon: 'game-icons/abstract-107',
     definition: {
       fr: 'Des points accordés par le MJ. Par défaut, un point peut ajouter un Avantage ou un Désavantage au Jet de votre choix.',
       en: 'Points granted by the GM. By default, a point can add an Advantage or a Disadvantage to the Roll of your choice.',
