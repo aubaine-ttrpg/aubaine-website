@@ -219,7 +219,7 @@ const fr = {
   craftCost: 'Coût de fabrication',
   craftMaterials: 'Matériaux',
   craftSequence: 'Séquence',
-  grants: 'Ouvre',
+  grants: 'Donne',
   footerNote: (version: string) => `Données de jeu v${version}, susceptibles de changer`,
   archives: 'Archives',
   archivesLead:
