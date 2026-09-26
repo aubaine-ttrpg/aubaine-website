@@ -62,9 +62,9 @@ Write the keys in that order. The exact bytes of the file must equal `JSON.strin
     "common"
   ],
   "offered": [
-    "ESHUM-01",
-    "ESHUM-02",
-    "ESHUM-03"
+    "ESPHUM-001",
+    "AMIXXX-001",
+    "VOLSUR-001"
   ],
   "subspecies": [
     {
@@ -86,8 +86,8 @@ Write the keys in that order. The exact bytes of the file must equal `JSON.strin
         ]
       },
       "offered": [
-        "ESHUM-06",
-        "ESHUM-07"
+        "FORTEC-001",
+        "INGTEC-001"
       ]
     }
   ],
@@ -98,7 +98,7 @@ Write the keys in that order. The exact bytes of the file must equal `JSON.strin
 }
 ```
 
-A Landenheit Humain chooses two out of ESHUM-01, 02 and 03 plus ESHUM-06 and 07. A skill a sub-species adds lives in that sub-species' `offered`, never in the species', and carries the sub-species as its `prerequisite`: `Être Humain du Landenheit`.
+A Landenheit Humain chooses two out of ESPHUM-001, AMIXXX-001 and VOLSUR-001 plus FORTEC-001 and INGTEC-001. A skill a sub-species adds lives in that sub-species' `offered`, never in the species', and carries the sub-species as its `prerequisite`: `Être Humain du Landenheit`.
 
 ## The lore file
 

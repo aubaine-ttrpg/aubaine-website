@@ -7,150 +7,150 @@
   "size": 16,
   "placements": [
     {
-      "skill": "FACON-01",
+      "skill": "FACTER-001",
       "pos": {
         "x": 50,
         "y": 50.81
       }
     },
     {
-      "skill": "ECLAT-01",
+      "skill": "ECLPIE-001",
       "pos": {
         "x": 50,
         "y": 37.92
       },
       "linked": [
-        "FACON-01"
+        "FACTER-001"
       ]
     },
     {
-      "skill": "MURPI-01",
+      "skill": "MURPIE-001",
       "pos": {
         "x": 50,
         "y": 26.14
       },
       "linked": [
-        "ECLAT-01"
+        "ECLPIE-001"
       ]
     },
     {
-      "skill": "SEISM-01",
+      "skill": "SEISME-001",
       "pos": {
         "x": 83.71,
         "y": 80.5
       },
       "linked": [
-        "BRISE-01"
+        "TERBRI-001"
       ]
     },
     {
-      "skill": "EARME-01",
+      "skill": "EMTERR-001",
       "pos": {
         "x": 34.21,
         "y": 44.37
       },
       "linked": [
-        "FACON-01"
+        "FACTER-001"
       ]
     },
     {
-      "skill": "PHTST-01",
+      "skill": "PHOTOS-001",
       "pos": {
         "x": 65.79,
         "y": 44.37
       },
       "linked": [
-        "FACON-01"
+        "FACTER-001"
       ]
     },
     {
-      "skill": "VOIXT-01",
+      "skill": "VOITER-001",
       "pos": {
         "x": 83.71,
         "y": 44.42
       },
       "linked": [
-        "PHTST-01"
+        "PHOTOS-001"
       ]
     },
     {
-      "skill": "RONCE-01",
+      "skill": "SENRON-001",
       "pos": {
         "x": 72.44,
         "y": 31.91
       },
       "linked": [
-        "PHTST-01"
+        "PHOTOS-001"
       ]
     },
     {
-      "skill": "SOLPO-01",
+      "skill": "SOLPOR-001",
       "pos": {
         "x": 17.21,
         "y": 42.37
       },
       "linked": [
-        "PEAUP-01"
+        "PEAPIE-001"
       ]
     },
     {
-      "skill": "POIGN-01",
+      "skill": "POITER-001",
       "pos": {
         "x": 65.79,
         "y": 57.25
       },
       "linked": [
-        "FACON-01"
+        "FACTER-001"
       ]
     },
     {
-      "skill": "BRISE-01",
+      "skill": "TERBRI-001",
       "pos": {
         "x": 83.71,
         "y": 57.2
       },
       "linked": [
-        "POIGN-01"
+        "POITER-001"
       ]
     },
     {
-      "skill": "MONTA-01",
+      "skill": "PASMON-001",
       "pos": {
         "x": 74.68,
         "y": 68.25
       },
       "linked": [
-        "POIGN-01"
+        "POITER-001"
       ]
     },
     {
-      "skill": "PEAUP-01",
+      "skill": "PEAPIE-001",
       "pos": {
         "x": 34.21,
         "y": 57.25
       },
       "linked": [
-        "FACON-01"
+        "FACTER-001"
       ]
     },
     {
-      "skill": "REMPA-01",
+      "skill": "REMPAR-001",
       "pos": {
         "x": 19.78,
         "y": 63.15
       },
       "linked": [
-        "PEAUP-01"
+        "PEAPIE-001"
       ]
     },
     {
-      "skill": "EARPD-01",
+      "skill": "DPTERR-001",
       "pos": {
         "x": 30.5,
         "y": 70.5
       },
       "linked": [
-        "PEAUP-01"
+        "PEAPIE-001"
       ]
     }
   ]

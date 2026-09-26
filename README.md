@@ -28,7 +28,7 @@ schemas/           the published JSON Schema contracts, generated from src/lib/g
 ```
 
 French is the canonical language. English lives in sidecar overlay files next to the original
-(`RAGER-01.en.json` beside `RAGER-01.json`) and holds only the translated strings. Anything missing
+(`RAGEXX-001.en.json` beside `RAGEXX-001.json`) and holds only the translated strings. Anything missing
 falls back to French. See [`docs/runbooks/add-a-translation.md`](docs/runbooks/add-a-translation.md).
 
 ## Commands

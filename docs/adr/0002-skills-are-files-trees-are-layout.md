@@ -5,6 +5,7 @@
 **Date:** 2026-09-20
 **Revised:** 2026-09-20, the tree's `art` field became `cover` and `banner` (0009)
 **Revised:** 2026-09-24, `tags` leaves the upgrade tri-state and becomes a set of optional slots on the skill (0020, addendum in Decision 4)
+**Revised:** 2026-09-26, skill ids are drawn from the French title and the three renames are retired (0028, addenda in Decisions 1 and 3)
 **Deciders:** Kori
 **Scope:** How game data is split into files under `data/`, what owns a skill's identity, and which
 authoring invariants the layout must preserve. Does not cover translation (0003), the validation
@@ -46,6 +47,13 @@ equipment catalogue, with different `tier` and `showXp` values in the two copies
   unit a tool serialises.
 - It makes the id do its job. A collision is now two files claiming one filename, which is
   impossible, instead of two objects in two arrays, which is invisible.
+
+### Addendum (2026-09-26): the id format moved to 0028
+
+- The id is now `^[A-Z0-9]{6}-[0-9]{3}$`, drawn from the French title, and it may change while its
+  skill is a draft. 0028 records the rule and the one-pass redraw of every id; the ids this record
+  cites are those of 2026-09-20.
+- One file per skill, the filename as the id, and the lists as ordered arrays of ids are unchanged.
 
 ### Alternatives considered
 
@@ -122,6 +130,16 @@ equipment catalogue, with different `tier` and `showXp` values in the two copies
 - These renames changed canon. They are recorded here, in `docs/data-contract.md`, and in
   `tests/unit/derive.test.ts`, which asserts the renamed ids exist and no longer share a title with
   the id they were split from.
+
+### Addendum (2026-09-26): the renames are retired by the redraw
+
+- 0028 redrew every id from its French title. The three pairs now differ by their letters under the
+  collision rule of `docs/runbooks/choose-a-skill-id.md`: Surchauffe `SURCHA-001` and Surcharge
+  `SURCHR-001`, Improviser `IMPROV-001` and Improvisation `IMPROI-001`, Bousculer `BOUSCU-001` and
+  Bousculade `BOUSCL-001`.
+- The assertion in `tests/unit/derive.test.ts` that the caveat above describes is removed with the
+  renames; the `skill ids` block of `tests/data/integrity.test.ts` checks the collision rule instead.
+- The principle of this decision stands: two different skills never share an id.
 
 ---
 

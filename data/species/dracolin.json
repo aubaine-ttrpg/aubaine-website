@@ -12,9 +12,9 @@
     "medium"
   ],
   "offered": [
-    "ESDRA-01",
-    "ESDRA-02",
-    "ESDRA-03",
-    "ESDRA-04"
+    "VADRAC-001",
+    "VCDRAC-001",
+    "VEDRAC-001",
+    "VIDRAC-001"
   ]
 }

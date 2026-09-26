@@ -83,8 +83,8 @@
       "type": "array",
       "items": {
         "type": "string",
-        "pattern": "^[A-Z0-9]{5}-[0-9]{2}$",
-        "description": "Identité immuable d'une Compétence : cinq caractères tirés du nom, puis un numéro. Deux Compétences ne peuvent pas la partager, même dans deux arbres différents."
+        "pattern": "^[A-Z0-9]{6}-[0-9]{3}$",
+        "description": "Identité d'une Compétence : six caractères tirés de son titre français, ceux de sa base pour une Compétence dérivée, puis un numéro à trois chiffres, 001 sauf pour une Compétence dérivée, selon docs/runbooks/choose-a-skill-id.md. Deux Compétences ne peuvent pas la partager, même dans deux arbres différents. Elle suit le titre tant que la Compétence est un brouillon, puis ne change plus."
       },
       "description": "Compétences d'Espèce proposées au choix, définies dans data/skills/. Le personnage en retient deux à la création : elles sont Mémorisées sans occuper de Mémoire, ne coûtent pas de PX et ne se changent plus ensuite. Il peut acheter les autres plus tard, au prix imprimé. Une sous-espèce ajoute les siennes à celles-ci, et peut imposer l'une des deux. [] : l'Espèce n'en propose encore aucune."
     },
@@ -160,14 +160,14 @@
           "imposed": {
             "description": "Compétence que la sous-espèce impose, définie dans data/skills/ : l'une des deux Compétences d'Espèce que le personnage garde à la création, sans la choisir. Il choisit la seconde parmi celles de son Espèce et de sa sous-espèce. Elle porte la sous-espèce en Prérequis, n'appartient qu'à cette sous-espèce et ne figure dans aucun offered. Absente : le personnage choisit ses deux Compétences.",
             "type": "string",
-            "pattern": "^[A-Z0-9]{5}-[0-9]{2}$"
+            "pattern": "^[A-Z0-9]{6}-[0-9]{3}$"
           },
           "offered": {
             "type": "array",
             "items": {
               "type": "string",
-              "pattern": "^[A-Z0-9]{5}-[0-9]{2}$",
-              "description": "Identité immuable d'une Compétence : cinq caractères tirés du nom, puis un numéro. Deux Compétences ne peuvent pas la partager, même dans deux arbres différents."
+              "pattern": "^[A-Z0-9]{6}-[0-9]{3}$",
+              "description": "Identité d'une Compétence : six caractères tirés de son titre français, ceux de sa base pour une Compétence dérivée, puis un numéro à trois chiffres, 001 sauf pour une Compétence dérivée, selon docs/runbooks/choose-a-skill-id.md. Deux Compétences ne peuvent pas la partager, même dans deux arbres différents. Elle suit le titre tant que la Compétence est un brouillon, puis ne change plus."
             },
             "description": "Compétences que la sous-espèce ajoute à celles de son Espèce, définies dans data/skills/. Elles portent la sous-espèce en Prérequis. [] : elle n'en ajoute encore aucune."
           }

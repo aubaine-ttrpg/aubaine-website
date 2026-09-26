@@ -6,120 +6,120 @@
   "size": 16,
   "placements": [
     {
-      "skill": "METIE-01",
+      "skill": "METIER-001",
       "pos": {
         "x": 50,
         "y": 50.81
       }
     },
     {
-      "skill": "RECUP-01",
+      "skill": "RECUPE-001",
       "pos": {
         "x": 50,
         "y": 37.92
       },
       "linked": [
-        "METIE-01"
+        "METIER-001"
       ]
     },
     {
-      "skill": "SECON-01",
+      "skill": "SECCHA-001",
       "pos": {
         "x": 50,
         "y": 26.14
       },
       "linked": [
-        "RECUP-01"
+        "RECUPE-001"
       ]
     },
     {
-      "skill": "DEMON-01",
+      "skill": "DEMONT-001",
       "pos": {
         "x": 72.44,
         "y": 31.91
       },
       "linked": [
-        "RECUP-01"
+        "RECUPE-001"
       ]
     },
     {
-      "skill": "ATELI-01",
+      "skill": "ATEPOR-001",
       "pos": {
         "x": 65.79,
         "y": 44.37
       },
       "linked": [
-        "METIE-01"
+        "METIER-001"
       ]
     },
     {
-      "skill": "REPAR-02",
+      "skill": "REMETA-001",
       "pos": {
         "x": 83.71,
         "y": 44.42
       },
       "linked": [
-        "ATELI-01"
+        "ATEPOR-001"
       ]
     },
     {
-      "skill": "IMPRV-01",
+      "skill": "IMPROI-001",
       "pos": {
         "x": 65.79,
         "y": 57.25
       },
       "linked": [
-        "METIE-01"
+        "METIER-001"
       ]
     },
     {
-      "skill": "RETOU-01",
+      "skill": "RETOUC-001",
       "pos": {
         "x": 83.71,
         "y": 57.2
       },
       "linked": [
-        "IMPRV-01"
+        "IMPROI-001"
       ]
     },
     {
-      "skill": "MATIE-01",
+      "skill": "OEIMAT-001",
       "pos": {
         "x": 34.21,
         "y": 44.37
       },
       "linked": [
-        "METIE-01"
+        "METIER-001"
       ]
     },
     {
-      "skill": "PRELE-01",
+      "skill": "PREATE-001",
       "pos": {
         "x": 34.21,
         "y": 57.25
       },
       "linked": [
-        "METIE-01"
+        "METIER-001"
       ]
     },
     {
-      "skill": "SIGNA-01",
+      "skill": "SIGNAT-001",
       "pos": {
         "x": 19.78,
         "y": 63.15
       },
       "linked": [
-        "PRELE-01"
+        "PREATE-001"
       ]
     },
     {
-      "skill": "CHEFO-01",
+      "skill": "CHEOEU-001",
       "pos": {
         "x": 30.5,
         "y": 70.5
       },
       "linked": [
-        "PRELE-01"
+        "PREATE-001"
       ]
     }
   ]

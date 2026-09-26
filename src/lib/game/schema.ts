@@ -5,7 +5,7 @@ import { LOCALES } from '../i18n/locales.ts'
 import { POLICY_KINDS } from '../i18n/routes.ts'
 import { ICON_NAME_PATTERN } from '../rights/attribution.ts'
 
-const SKILL_ID = /^[A-Z0-9]{5}-[0-9]{2}$/
+const SKILL_ID = /^[A-Z0-9]{6}-[0-9]{3}$/
 const MACHINE_KEY = /^[a-z][a-z0-9-]*$/
 const HEX = /^#[0-9a-f]{6}$/
 const LIFE_COST = /^[1-9][0-9]*(d[1-9][0-9]*)?$/
@@ -23,7 +23,7 @@ const skillId = z
   .string()
   .regex(SKILL_ID)
   .describe(
-    "Identité immuable d'une Compétence : cinq caractères tirés du nom, puis un numéro. Deux Compétences ne peuvent pas la partager, même dans deux arbres différents.",
+    "Identité d'une Compétence : six caractères tirés de son titre français, ceux de sa base pour une Compétence dérivée, puis un numéro à trois chiffres, 001 sauf pour une Compétence dérivée, selon docs/runbooks/choose-a-skill-id.md. Deux Compétences ne peuvent pas la partager, même dans deux arbres différents. Elle suit le titre tant que la Compétence est un brouillon, puis ne change plus.",
   )
 
 const domainKey = z

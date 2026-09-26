@@ -1,0 +1,22 @@
+{
+  "id": "INGTEC-001",
+  "title": "Ingéniosité technique",
+  "type": "active",
+  "tier": 5,
+  "domains": [
+    "psychic"
+  ],
+  "prerequisite": "Être Humain du Landenheit",
+  "activation": "1 Action Bonus",
+  "range": "Personnel",
+  "duration": "jusqu'à 10 minutes",
+  "recharge": "long-rest",
+  "energy": 0,
+  "tags": {
+    "practice": "technique",
+    "schools": [
+      "enhancement"
+    ]
+  },
+  "description": "Votre prochain Jet d'Artisanat, d'Arcanes, de Technologie ou de Science gagne 2 Avantages."
+}

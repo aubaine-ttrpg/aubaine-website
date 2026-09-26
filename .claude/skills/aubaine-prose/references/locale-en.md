@@ -6,7 +6,7 @@ worked examples.
 
 ## The overlay
 
-- Same path, `.en` before the extension. `data/skills/RAGER-01.en.json` beside `RAGER-01.json`.
+- Same path, `.en` before the extension. `data/skills/RAGEXX-001.en.json` beside `RAGEXX-001.json`.
 - It holds only the strings that change. Every key it omits falls back to French.
 - It may carry only the fields its kind allows. One disallowed or misspelled key drops the whole
   overlay and the entry renders in French on the English page, with no error anywhere. If an English

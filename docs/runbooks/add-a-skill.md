@@ -8,13 +8,13 @@ Produces one skill card: a node on a plate, the node's own page where the card o
 data/skills/<ID>.json
 ```
 
-The filename is the id and nothing else. The id matches `^[A-Z0-9]{5}-[0-9]{2}$`: five capital letters or digits drawn from the name, a hyphen, then two digits. `SCHAU-01`, `RAGER-01`, `CBREP-01`.
+The filename is the id and nothing else. The id matches `^[A-Z0-9]{6}-[0-9]{3}$`: six capital letters or digits drawn from the French title, a hyphen, then three digits. `SURCHA-001`, `RAGEXX-001`, `REPVIF-001`. [choose-a-skill-id.md](choose-a-skill-id.md) gives the rule, and `pnpm skill:id "<titre>"` applies it.
 
 ## The fields
 
 | Field | Required | What it means (from `schema.ts`) | Allowed values |
 | --- | --- | --- | --- |
-| `id` | required | Identité immuable d'une Compétence : cinq caractères tirés du nom, puis un numéro. Deux Compétences ne peuvent pas la partager, même dans deux arbres différents. | `^[A-Z0-9]{5}-[0-9]{2}$` |
+| `id` | required | Identité d'une Compétence : six caractères tirés de son titre français, ceux de sa base pour une Compétence dérivée, puis un numéro à trois chiffres, 001 sauf pour une Compétence dérivée, selon docs/runbooks/choose-a-skill-id.md. Deux Compétences ne peuvent pas la partager, même dans deux arbres différents. Elle suit le titre tant que la Compétence est un brouillon, puis ne change plus. | `^[A-Z0-9]{6}-[0-9]{3}$` |
 | `status` | optional | Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable : les listes le masquent tant que le lecteur n'affiche pas les brouillons ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une Espèce, une pièce d'équipement ou une panoplie, dans cet ordre. | `draft`, `playtest`, `beta`, `balanced` |
 | `title` | required | Nom imprimé. Un texte de règle appelle la Compétence par ce nom, entre doubles accolades. | any non empty string |
 | `type` | required | Forme du nœud sur la planche : rond pour active, carré arrondi pour passive, concave pour spéciale. | `active`, `passive`, `special` |
@@ -41,11 +41,11 @@ Key order is the order of this table. Keep it.
 
 ## A complete example
 
-`data/skills/SCHAU-01.json`:
+`data/skills/SURCHA-001.json`:
 
 ```json
 {
-  "id": "SCHAU-01",
+  "id": "SURCHA-001",
   "title": "Surchauffe",
   "type": "active",
   "tier": 3,
@@ -71,7 +71,7 @@ Key order is the order of this table. Keep it.
 The file alone creates no page. A skill is shown once a tree names it. Add the placement, then:
 
 - `/fr/arbre/feu` and `/en/tree/feu`: the node on the plate, in the « Arbre de compétences » section after the lore.
-- `/fr/arbre/feu/SCHAU-01` and `/en/tree/feu/SCHAU-01`: the same page with the card open in the pane beside the plate, the node circled in gold and its lines drawn gold. Choosing the node on the tree page leads here.
+- `/fr/arbre/feu/SURCHA-001` and `/en/tree/feu/SURCHA-001`: the same page with the card open in the pane beside the plate, the node circled in gold and its lines drawn gold. Choosing the node on the tree page leads here.
 - Anywhere rule text writes `{{Surchauffe}}`, the name becomes a tooltip carrying the type, the tree and the first lines of the description.
 - In the card footer, each tag shows its label and, on hover or keyboard focus, its definition. On `/fr/competences` and `/en/skills` the Pratique, École and Spéciale filters find it.
 
@@ -92,7 +92,7 @@ Then open the tree page, choose the node and read its card in the pane.
 
 **A skill no owner covers shows nothing.** A Common Bank skill and a basic skill belong to a list, and a list carries no status, so those two kinds only ever badge from a `status` written on the skill itself.
 
-**The id is permanent and unique across the whole repo.** Two skills may never share one, not even in two different trees. Before you invent an id, check that `data/skills/<ID>.json` does not exist. Three ids were renamed on import because they collided; see the known inconsistencies in [../data-contract.md](../data-contract.md).
+**The id is drawn from the French title, and it is unique across the whole repo.** Two skills may never share one, not even in two different trees. Never invent one: run `pnpm skill:id "<titre>"`, which also tells you when another skill already holds the letters. It follows the title while the skill is a draft and never changes after. See [choose-a-skill-id.md](choose-a-skill-id.md).
 
 **`energy: 0` is not the same as no `energy`.** `"energy": 0` prints a `0 énergie` pill, which says the skill costs nothing on purpose. Leaving the key out prints no energy pill at all, which says energy is not part of this skill. Pick the one you mean.
 

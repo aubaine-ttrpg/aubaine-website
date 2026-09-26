@@ -25,9 +25,9 @@ index matches. That has three consequences.
 - A name that collides with a rule term or a characteristic label loses. The index is first wins, and
   the later entry simply never links.
 
-The id is drawn from the name but is permanent and independent of it. Five characters plus a number.
-Once an id exists it is never reused, even if the title changes. Three ids were already renamed on
-import because they collided; check that `data/skills/<ID>.json` does not exist before inventing one.
+The id is drawn from the French title by `docs/runbooks/choose-a-skill-id.md`: six characters, then a
+number, and `pnpm skill:id` computes it. It follows the title while the skill is a draft and is fixed
+from `playtest` on, so settle a name before the entry leaves draft.
 
 Names appear in search, in tooltips, on the plate, and in the printed index. A name that is clear on
 a card and ambiguous in a list is a name to reconsider.

@@ -1,0 +1,23 @@
+{
+  "id": "BOUSCU-001",
+  "title": "Bousculer",
+  "type": "active",
+  "tier": 1,
+  "showXp": false,
+  "domains": [
+    "physical"
+  ],
+  "characteristics": [
+    "strength"
+  ],
+  "activation": "1 Attaque",
+  "range": "Allonge de l'arme",
+  "duration": "Instantanée",
+  "tags": {
+    "practice": "manoeuvre",
+    "schools": [
+      "control"
+    ]
+  },
+  "description": "Effectuez un Jet opposé de Force + Athlétisme contre le Jet de Force + Athlétisme ou de Dextérité + Acrobaties de la cible, à son choix. En cas de réussite, choisissez : elle tombe [[À terre]], ou vous la repoussez de 1,5 m."
+}

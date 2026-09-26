@@ -9,120 +9,120 @@
   "backCover": "prestidigitateur-dos-3_4-og.png",
   "placements": [
     {
-      "skill": "PREST-01",
+      "skill": "PRESTI-001",
       "pos": {
         "x": 50,
         "y": 50.81
       }
     },
     {
-      "skill": "ILLUS-01",
+      "skill": "ILLMIN-001",
       "pos": {
         "x": 50,
         "y": 37.92
       },
       "linked": [
-        "PREST-01"
+        "PRESTI-001"
       ]
     },
     {
-      "skill": "GRAND-01",
+      "skill": "ILLGRA-001",
       "pos": {
         "x": 50,
         "y": 26.14
       },
       "linked": [
-        "ILLUS-01"
+        "ILLMIN-001"
       ]
     },
     {
-      "skill": "DREAD-01",
+      "skill": "ILLMOR-001",
       "pos": {
         "x": 72.44,
         "y": 31.91
       },
       "linked": [
-        "ILLUS-01"
+        "ILLMIN-001"
       ]
     },
     {
-      "skill": "APILL-01",
+      "skill": "APPILL-001",
       "pos": {
         "x": 65.79,
         "y": 44.37
       },
       "linked": [
-        "PREST-01"
+        "PRESTI-001"
       ]
     },
     {
-      "skill": "FLUXM-01",
+      "skill": "FLUMYS-001",
       "pos": {
         "x": 83.71,
         "y": 44.42
       },
       "linked": [
-        "APILL-01"
+        "APPILL-001"
       ]
     },
     {
-      "skill": "OBJAN-01",
+      "skill": "OBJANI-001",
       "pos": {
         "x": 65.79,
         "y": 57.25
       },
       "linked": [
-        "PREST-01"
+        "PRESTI-001"
       ]
     },
     {
-      "skill": "SONFA-01",
+      "skill": "SONFAN-001",
       "pos": {
         "x": 83.71,
         "y": 57.2
       },
       "linked": [
-        "OBJAN-01"
+        "OBJANI-001"
       ]
     },
     {
-      "skill": "DEGUI-01",
+      "skill": "DEGUIS-001",
       "pos": {
         "x": 34.21,
         "y": 44.37
       },
       "linked": [
-        "PREST-01"
+        "PRESTI-001"
       ]
     },
     {
-      "skill": "EVANO-01",
+      "skill": "EVANOU-001",
       "pos": {
         "x": 17.21,
         "y": 42.37
       },
       "linked": [
-        "DEGUI-01"
+        "DEGUIS-001"
       ]
     },
     {
-      "skill": "DOUBL-01",
+      "skill": "DOUILL-001",
       "pos": {
         "x": 34.21,
         "y": 57.25
       },
       "linked": [
-        "PREST-01"
+        "PRESTI-001"
       ]
     },
     {
-      "skill": "FAUSM-01",
+      "skill": "FAUMOR-001",
       "pos": {
         "x": 19.78,
         "y": 63.15
       },
       "linked": [
-        "DOUBL-01"
+        "DOUILL-001"
       ]
     }
   ]

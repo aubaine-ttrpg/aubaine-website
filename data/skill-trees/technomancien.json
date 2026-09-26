@@ -9,110 +9,110 @@
   "backCover": "technomancien-dos-3_4-og.png",
   "placements": [
     {
-      "skill": "AUTOM-01",
+      "skill": "AUTOMA-001",
       "pos": {
         "x": 50,
         "y": 50.81
       }
     },
     {
-      "skill": "CMDLN-01",
+      "skill": "LIGCOM-001",
       "pos": {
         "x": 50,
         "y": 37.92
       },
       "linked": [
-        "AUTOM-01"
+        "AUTOMA-001"
       ]
     },
     {
-      "skill": "GNFST-01",
+      "skill": "PISPOI-001",
       "pos": {
         "x": 65.79,
         "y": 44.37
       },
       "linked": [
-        "AUTOM-01"
+        "AUTOMA-001"
       ]
     },
     {
-      "skill": "SURCH-01",
+      "skill": "SURCHR-001",
       "pos": {
         "x": 72.44,
         "y": 31.91
       },
       "linked": [
-        "GNFST-01"
+        "PISPOI-001"
       ]
     },
     {
-      "skill": "INTER-01",
+      "skill": "INTERF-001",
       "pos": {
         "x": 83.71,
         "y": 44.42
       },
       "linked": [
-        "GNFST-01"
+        "PISPOI-001"
       ]
     },
     {
-      "skill": "REPAR-01",
+      "skill": "REPARA-001",
       "pos": {
         "x": 65.79,
         "y": 57.25
       },
       "linked": [
-        "AUTOM-01"
+        "AUTOMA-001"
       ]
     },
     {
-      "skill": "CHASS-01",
+      "skill": "CHAREN-001",
       "pos": {
         "x": 83.71,
         "y": 57.2
       },
       "linked": [
-        "REPAR-01"
+        "REPARA-001"
       ]
     },
     {
-      "skill": "TELAB-01",
+      "skill": "TELABS-001",
       "pos": {
         "x": 34.21,
         "y": 44.37
       },
       "linked": [
-        "AUTOM-01"
+        "AUTOMA-001"
       ]
     },
     {
-      "skill": "TCHTH-01",
+      "skill": "TECCHA-001",
       "pos": {
         "x": 17.21,
         "y": 42.37
       },
       "linked": [
-        "TELAB-01"
+        "TELABS-001"
       ]
     },
     {
-      "skill": "RETRO-01",
+      "skill": "RETING-001",
       "pos": {
         "x": 34.21,
         "y": 57.25
       },
       "linked": [
-        "AUTOM-01"
+        "AUTOMA-001"
       ]
     },
     {
-      "skill": "BRICO-01",
+      "skill": "BRFOTE-001",
       "pos": {
         "x": 19.78,
         "y": 63.15
       },
       "linked": [
-        "RETRO-01"
+        "RETING-001"
       ]
     }
   ]

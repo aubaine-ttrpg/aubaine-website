@@ -1,0 +1,21 @@
+{
+  "id": "GREDIS-001",
+  "title": "Greffes dissimulées",
+  "type": "passive",
+  "tier": 5,
+  "domains": [
+    "blood"
+  ],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "tags": {
+    "schools": [
+      "illusion"
+    ],
+    "specials": [
+      "graft"
+    ]
+  },
+  "description": "Vos coutures disparaissent sous la peau et vos greffes passent pour vôtres. Seule une créature qui vous examine de près et réussit un Jet d'Esprit + Perception contre votre DD (10 + Charisme + Tromperie) remarque qu'un morceau de vous n'a pas poussé là."
+}

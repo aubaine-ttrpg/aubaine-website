@@ -7,7 +7,7 @@
       "pieces": 2,
       "text": "Vous gagnez la Compétence {{Sillage}}. Elle n'occupe aucune Mémoire et n'a pas à être apprise.",
       "grants": [
-        "SILLA-01"
+        "SILLAG-001"
       ]
     },
     {

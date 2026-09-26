@@ -17,7 +17,7 @@ paths:
 
 ## Identity
 
-- An id is permanent and unique across the whole repository, including across trees. Check that the file does not already exist before inventing one.
+- A skill id is drawn from the French title by `docs/runbooks/choose-a-skill-id.md`; run `pnpm skill:id` rather than inventing one. It is unique across the whole repository, including across trees, and never changes once its skill leaves draft.
 - A skill `title` and a state `name` are identifiers as well as labels: they are what `{{...}}` and `[[...]]` resolve against and what the term index matches. Renaming one is a repository wide change.
 - A state `name` must be unique.
 - Machine values, meaning ids, `key` fields, and domain, characteristic, rarity, discipline and tag keys, are shared across locales and are never translated.

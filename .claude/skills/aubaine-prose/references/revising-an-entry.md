@@ -3,10 +3,11 @@
 Improving an entry that is already in Aubaine is usually worth more than adding another one. These
 are the rules for doing it without breaking what points at it.
 
-## The id is permanent
+## The id is fixed once the entry leaves draft
 
-An id is five characters and a number, and it is never reused even when the title changes. It is the
-filename, so a rename is a new file plus a deletion, and the old id must not come back.
+A skill id is drawn from the French title by `docs/runbooks/choose-a-skill-id.md`. While the skill is
+a draft, a new title means a new id, a renamed file and every reference moved. From `playtest` on,
+the id stays what it was, whatever the title becomes.
 
 ## A title is a reference, so renaming one is a repository wide change
 

@@ -9,130 +9,130 @@
   "backCover": "draugar-dos-3_4-og.png",
   "placements": [
     {
-      "skill": "GREFF-01",
+      "skill": "GREFFE-001",
       "pos": {
         "x": 50,
         "y": 50.81
       }
     },
     {
-      "skill": "BLFNG-01",
+      "skill": "CROSAN-001",
       "pos": {
         "x": 50,
         "y": 37.92
       },
       "linked": [
-        "GREFF-01"
+        "GREFFE-001"
       ]
     },
     {
-      "skill": "PONCT-01",
+      "skill": "PONCTI-001",
       "pos": {
         "x": 50,
         "y": 26.14
       },
       "linked": [
-        "BLFNG-01"
+        "CROSAN-001"
       ]
     },
     {
-      "skill": "REGEN-01",
+      "skill": "REGENE-001",
       "pos": {
         "x": 72.44,
         "y": 31.91
       },
       "linked": [
-        "BLFNG-01"
+        "CROSAN-001"
       ]
     },
     {
-      "skill": "SAIGN-01",
+      "skill": "SAIGNE-001",
       "pos": {
         "x": 65.79,
         "y": 44.37
       },
       "linked": [
-        "GREFF-01"
+        "GREFFE-001"
       ]
     },
     {
-      "skill": "BTRAK-01",
+      "skill": "HEMOTR-001",
       "pos": {
         "x": 83.71,
         "y": 44.42
       },
       "linked": [
-        "SAIGN-01"
+        "SAIGNE-001"
       ]
     },
     {
-      "skill": "DISSE-01",
+      "skill": "DISSEC-001",
       "pos": {
         "x": 65.79,
         "y": 57.25
       },
       "linked": [
-        "GREFF-01"
+        "GREFFE-001"
       ]
     },
     {
-      "skill": "CHIRU-01",
+      "skill": "CHICAM-001",
       "pos": {
         "x": 83.71,
         "y": 57.2
       },
       "linked": [
-        "DISSE-01"
+        "DISSEC-001"
       ]
     },
     {
-      "skill": "DISSI-01",
+      "skill": "GREDIS-001",
       "pos": {
         "x": 34.21,
         "y": 44.37
       },
       "linked": [
-        "GREFF-01"
+        "GREFFE-001"
       ]
     },
     {
-      "skill": "VISAG-01",
+      "skill": "VISEMP-001",
       "pos": {
         "x": 17.21,
         "y": 42.37
       },
       "linked": [
-        "DISSI-01"
+        "GREDIS-001"
       ]
     },
     {
-      "skill": "SGFRO-01",
+      "skill": "SANFRO-001",
       "pos": {
         "x": 30.5,
         "y": 70.5
       },
       "linked": [
-        "REMAN-01"
+        "REMANI-001"
       ]
     },
     {
-      "skill": "APPET-01",
+      "skill": "APPETI-001",
       "pos": {
         "x": 19.78,
         "y": 63.15
       },
       "linked": [
-        "SGFRO-01"
+        "SANFRO-001"
       ]
     },
     {
-      "skill": "REMAN-01",
+      "skill": "REMANI-001",
       "pos": {
         "x": 34.21,
         "y": 57.25
       },
       "linked": [
-        "GREFF-01"
+        "GREFFE-001"
       ]
     }
   ]

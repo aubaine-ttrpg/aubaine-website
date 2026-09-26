@@ -1,0 +1,16 @@
+{
+  "id": "CHAREN-001",
+  "title": "Châssis renforcé",
+  "type": "passive",
+  "tier": 3,
+  "domains": [],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "tags": {
+    "schools": [
+      "protection"
+    ]
+  },
+  "description": "Vous doublez les plaques là où ça compte. Votre Automate gagne 10 PdV maximum et 1 de CA.\n\nVous pouvez refondre le châssis à chaque Repos long : décrivez ce que vous changez, le MJ dit ce que cela lui coûte en souplesse."
+}

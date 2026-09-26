@@ -140,7 +140,7 @@ An item that grants a skill, `data/equipment/items/pyro-catalyseur.json`:
     ]
   },
   "grants": [
-    "TRFEU-01"
+    "TRAFEU-001"
   ],
   "description": "Gemme taillée où le feu tourne sans consumer sa monture. Elle chauffe la paume qui la tient."
 }

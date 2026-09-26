@@ -1,0 +1,16 @@
+{
+  "id": "MEDELF-001",
+  "status": "playtest",
+  "title": "Méditation elfique",
+  "type": "passive",
+  "tier": 5,
+  "domains": [
+    "psychic"
+  ],
+  "prerequisite": "Être Elfe ou Drow",
+  "activation": "Passif",
+  "tags": {
+    "practice": "technique"
+  },
+  "description": "Votre Repos long ne dure que quatre heures."
+}

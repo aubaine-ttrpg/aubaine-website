@@ -9,110 +9,110 @@
   "banner": "feu-16_9-og.png",
   "placements": [
     {
-      "skill": "AVIVE-01",
+      "skill": "AVIFLA-001",
       "pos": {
         "x": 50,
         "y": 50.81
       }
     },
     {
-      "skill": "TRFEU-01",
+      "skill": "TRAFEU-001",
       "pos": {
         "x": 50,
         "y": 37.92
       },
       "linked": [
-        "AVIVE-01"
+        "AVIFLA-001"
       ]
     },
     {
-      "skill": "CAUTE-01",
+      "skill": "CAUTER-001",
       "pos": {
         "x": 50,
         "y": 26.14
       },
       "linked": [
-        "TRFEU-01"
+        "TRAFEU-001"
       ]
     },
     {
-      "skill": "BOULE-01",
+      "skill": "BOUFEU-001",
       "pos": {
         "x": 72.44,
         "y": 31.91
       },
       "linked": [
-        "TRFEU-01"
+        "TRAFEU-001"
       ]
     },
     {
-      "skill": "FIRME-01",
+      "skill": "EMFEUX-001",
       "pos": {
         "x": 65.79,
         "y": 57.25
       },
       "linked": [
-        "AVIVE-01"
+        "AVIFLA-001"
       ]
     },
     {
-      "skill": "RETFL-01",
+      "skill": "RETFLA-001",
       "pos": {
         "x": 34.21,
         "y": 57.25
       },
       "linked": [
-        "AVIVE-01"
+        "AVIFLA-001"
       ]
     },
     {
-      "skill": "SCHAU-01",
+      "skill": "SURCHA-001",
       "pos": {
         "x": 74.68,
         "y": 68.25
       },
       "linked": [
-        "FIRME-01"
+        "EMFEUX-001"
       ]
     },
     {
-      "skill": "FIRPD-01",
+      "skill": "DPFEUX-001",
       "pos": {
         "x": 83.71,
         "y": 57.2
       },
       "linked": [
-        "FIRME-01"
+        "EMFEUX-001"
       ]
     },
     {
-      "skill": "FLASH-01",
+      "skill": "FLASHX-001",
       "pos": {
         "x": 19.78,
         "y": 63.15
       },
       "linked": [
-        "RETFL-01"
+        "RETFLA-001"
       ]
     },
     {
-      "skill": "COMBU-01",
+      "skill": "COMBUS-001",
       "pos": {
         "x": 30.5,
         "y": 70.5
       },
       "linked": [
-        "RETFL-01"
+        "RETFLA-001"
       ]
     },
     {
-      "skill": "TOUBR-01",
+      "skill": "TOUBRU-001",
       "pos": {
         "x": 17,
         "y": 71.5
       },
       "linked": [
-        "COMBU-01"
+        "COMBUS-001"
       ]
     }
   ]

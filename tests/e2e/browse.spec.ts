@@ -29,9 +29,9 @@ test('a hash typed into the address bar selects its entry', async ({ page }) => 
   await enhanced(page)
   await expect(await firstDetail(page)).toBeVisible()
 
-  await page.goto('/en/skills#e-RAGER-01')
-  await expect(page.locator('#e-RAGER-01')).toBeVisible()
-  await expect(row(page, 'RAGER-01')).toHaveAttribute('aria-current', 'true')
+  await page.goto('/en/skills#e-RAGEXX-001')
+  await expect(page.locator('#e-RAGEXX-001')).toBeVisible()
+  await expect(row(page, 'RAGEXX-001')).toHaveAttribute('aria-current', 'true')
 })
 
 test('clicking a row swaps the detail panel', async ({ page }) => {
@@ -40,8 +40,8 @@ test('clicking a row swaps the detail panel', async ({ page }) => {
   const first = await firstDetail(page)
   await expect(first).toBeVisible()
 
-  await row(page, 'RAGER-01').click()
-  await expect(page.locator('#e-RAGER-01')).toBeVisible()
+  await row(page, 'RAGEXX-001').click()
+  await expect(page.locator('#e-RAGEXX-001')).toBeVisible()
   await expect(first).toBeHidden()
 })
 
@@ -62,13 +62,13 @@ test('a selection survives reload through its url', async ({ page }) => {
   await page.goto('/en/skills')
   await enhanced(page)
 
-  await row(page, 'RAGER-01').click()
-  await expect(page).toHaveURL('/en/skills#e-RAGER-01')
+  await row(page, 'RAGEXX-001').click()
+  await expect(page).toHaveURL('/en/skills#e-RAGEXX-001')
 
   await page.reload()
   await enhanced(page)
-  await expect(page.locator('#e-RAGER-01')).toBeVisible()
-  await expect(row(page, 'RAGER-01')).toHaveAttribute('aria-current', 'true')
+  await expect(page.locator('#e-RAGEXX-001')).toBeVisible()
+  await expect(row(page, 'RAGEXX-001')).toHaveAttribute('aria-current', 'true')
 })
 
 test('selecting leaves the history intact for the back button', async ({ page }) => {
@@ -77,8 +77,8 @@ test('selecting leaves the history intact for the back button', async ({ page })
   await expect(page).toHaveURL('/en/skills')
   await enhanced(page)
 
-  await row(page, 'RAGER-01').click()
-  await row(page, 'APPEL-01').click()
+  await row(page, 'RAGEXX-001').click()
+  await row(page, 'APPNAT-001').click()
 
   await page.goBack()
   await expect(page).toHaveURL('/en/almanach')
@@ -102,12 +102,12 @@ test('selecting does not scroll the document on a desktop viewport', async ({ pa
   await page.goto('/en/skills')
   await enhanced(page)
 
-  await row(page, 'APPEL-01').scrollIntoViewIfNeeded()
-  await expect(row(page, 'APPEL-01')).toBeInViewport()
+  await row(page, 'APPNAT-001').scrollIntoViewIfNeeded()
+  await expect(row(page, 'APPNAT-001')).toBeInViewport()
   const before = await page.evaluate(() => window.scrollY)
 
-  await row(page, 'APPEL-01').click()
-  await expect(page.locator('#e-APPEL-01')).toBeVisible()
+  await row(page, 'APPNAT-001').click()
+  await expect(page.locator('#e-APPNAT-001')).toBeVisible()
   expect(await page.evaluate(() => window.scrollY)).toBe(before)
 })
 
@@ -115,11 +115,11 @@ test('a row is operable by keyboard and hands focus to the detail', async ({ pag
   await page.goto('/en/skills')
   await enhanced(page)
 
-  await row(page, 'RAGER-01').focus()
+  await row(page, 'RAGEXX-001').focus()
   await page.keyboard.press('Enter')
 
-  await expect(page.locator('#e-RAGER-01')).toBeVisible()
-  await expect(page.locator('#e-RAGER-01')).toBeFocused()
+  await expect(page.locator('#e-RAGEXX-001')).toBeVisible()
+  await expect(page.locator('#e-RAGEXX-001')).toBeFocused()
 })
 
 test('the detail panel opens a new entry at its own top', async ({ page }) => {
@@ -127,7 +127,7 @@ test('the detail panel opens a new entry at its own top', async ({ page }) => {
   await page.goto('/en/skills')
   await enhanced(page)
 
-  await row(page, 'RAGER-01').click()
+  await row(page, 'RAGEXX-001').click()
   await page.locator('[data-details]').evaluate((panel) => {
     panel.scrollTop = panel.scrollHeight
   })
@@ -135,7 +135,7 @@ test('the detail panel opens a new entry at its own top', async ({ page }) => {
     0,
   )
 
-  await row(page, 'APPEL-01').click()
+  await row(page, 'APPNAT-001').click()
   expect(await page.locator('[data-details]').evaluate((panel) => panel.scrollTop)).toBe(0)
 })
 
@@ -159,9 +159,9 @@ test.describe('with reduced motion', () => {
     await page.goto('/en/skills')
     await enhanced(page)
 
-    await row(page, 'RAGER-01').click()
-    await expect(page.locator('#e-RAGER-01')).toBeVisible()
-    await expect(row(page, 'RAGER-01')).toHaveAttribute('aria-current', 'true')
+    await row(page, 'RAGEXX-001').click()
+    await expect(page.locator('#e-RAGEXX-001')).toBeVisible()
+    await expect(row(page, 'RAGEXX-001')).toHaveAttribute('aria-current', 'true')
   })
 })
 
@@ -174,11 +174,11 @@ test('a resting tooltip occupies no layout', async ({ page }) => {
 })
 
 test('the Common Bank source opens its note and closes it again', async ({ page }) => {
-  await page.goto('/en/skills#e-CBREP-01')
+  await page.goto('/en/skills#e-REPVIF-001')
   await enhanced(page)
 
-  const source = page.locator('#e-CBREP-01').getByRole('button', { name: 'Common Bank' })
-  const note = page.locator('#note-bank-CBREP-01')
+  const source = page.locator('#e-REPVIF-001').getByRole('button', { name: 'Common Bank' })
+  const note = page.locator('#note-bank-REPVIF-001')
   await expect(note).toBeHidden()
 
   await source.click()
@@ -193,11 +193,11 @@ test('the Common Bank source opens its note and closes it again', async ({ page 
 })
 
 test('the basic skills source opens its note', async ({ page }) => {
-  await page.goto('/en/skills#e-ATTAQ-01')
+  await page.goto('/en/skills#e-ATTAQU-001')
   await enhanced(page)
 
-  const source = page.locator('#e-ATTAQ-01').getByRole('button', { name: 'Basic Skills' })
-  const note = page.locator('#note-basic-ATTAQ-01')
+  const source = page.locator('#e-ATTAQU-001').getByRole('button', { name: 'Basic Skills' })
+  const note = page.locator('#note-basic-ATTAQU-001')
   await expect(note).toBeHidden()
   await source.click()
   await expect(note).toBeVisible()
@@ -205,14 +205,14 @@ test('the basic skills source opens its note', async ({ page }) => {
 })
 
 test('a cross reference to a skill of the same index selects that skill', async ({ page }) => {
-  await page.goto('/fr/competences#e-OPPOR-01')
+  await page.goto('/fr/competences#e-ATTOPP-001')
   await enhanced(page)
 
-  await page.locator('#e-OPPOR-01 a[href="/fr/competences#e-DESEN-01"]').click()
-  await expect(page).toHaveURL('/fr/competences#e-DESEN-01')
-  await expect(page.locator('#e-DESEN-01')).toBeVisible()
-  await expect(page.locator('#e-OPPOR-01')).toBeHidden()
-  await expect(row(page, 'DESEN-01')).toHaveAttribute('aria-current', 'true')
+  await page.locator('#e-ATTOPP-001 a[href="/fr/competences#e-DESENG-001"]').click()
+  await expect(page).toHaveURL('/fr/competences#e-DESENG-001')
+  await expect(page.locator('#e-DESENG-001')).toBeVisible()
+  await expect(page.locator('#e-ATTOPP-001')).toBeHidden()
+  await expect(row(page, 'DESENG-001')).toHaveAttribute('aria-current', 'true')
 })
 
 test('selecting a rule word shows its definition', async ({ page }) => {
@@ -227,26 +227,26 @@ test('selecting a rule word shows its definition', async ({ page }) => {
 })
 
 test('a tree source opens the skill on its plate', async ({ page }) => {
-  await page.goto('/en/skills#e-RAGER-01')
+  await page.goto('/en/skills#e-RAGEXX-001')
   await enhanced(page)
 
-  const source = page.locator('#e-RAGER-01').getByRole('link', { name: 'Berserker' })
-  await expect(source).toHaveAttribute('href', '/en/tree/berserker/RAGER-01#arbre')
+  const source = page.locator('#e-RAGEXX-001').getByRole('link', { name: 'Berserker' })
+  await expect(source).toHaveAttribute('href', '/en/tree/berserker/RAGEXX-001#arbre')
   await source.click()
-  await expect(page).toHaveURL('/en/tree/berserker/RAGER-01#arbre')
-  await expect(page.locator('#tree-detail [data-selected-node="RAGER-01"]')).toBeVisible()
+  await expect(page).toHaveURL('/en/tree/berserker/RAGEXX-001#arbre')
+  await expect(page.locator('#tree-detail [data-selected-node="RAGEXX-001"]')).toBeVisible()
   await expect(page.locator('#arbre')).toBeInViewport()
 })
 
 for (const { path, kind, name } of [
-  { path: '/en/skills#e-BOULE-01', kind: 'Practice', name: 'Spell' },
-  { path: '/fr/competences#e-BOULE-01', kind: 'Pratique', name: 'Sort' },
+  { path: '/en/skills#e-BOUFEU-001', kind: 'Practice', name: 'Spell' },
+  { path: '/fr/competences#e-BOUFEU-001', kind: 'Pratique', name: 'Sort' },
 ]) {
   test(`a tag opens its definition on keyboard focus at ${path}`, async ({ page }) => {
     await page.goto(path)
     await enhanced(page)
 
-    const tag = page.locator('#e-BOULE-01 .au-skill__tag').first()
+    const tag = page.locator('#e-BOUFEU-001 .au-skill__tag').first()
     const tip = tag.locator('[data-tip]')
     await expect(tip).toBeHidden()
     await tag.focus()

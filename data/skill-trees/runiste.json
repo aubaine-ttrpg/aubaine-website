@@ -6,110 +6,110 @@
   "size": 16,
   "placements": [
     {
-      "skill": "GRAVU-01",
+      "skill": "GRAVUR-001",
       "pos": {
         "x": 50,
         "y": 50.81
       }
     },
     {
-      "skill": "GARDE-01",
+      "skill": "RUNGAR-001",
       "pos": {
         "x": 50,
         "y": 37.92
       },
       "linked": [
-        "GRAVU-01"
+        "GRAVUR-001"
       ]
     },
     {
-      "skill": "ENTRA-02",
+      "skill": "RUNENT-001",
       "pos": {
         "x": 50,
         "y": 26.14
       },
       "linked": [
-        "GARDE-01"
+        "RUNGAR-001"
       ]
     },
     {
-      "skill": "HATIV-01",
+      "skill": "GRAHAT-001",
       "pos": {
         "x": 72.44,
         "y": 31.91
       },
       "linked": [
-        "GARDE-01"
+        "RUNGAR-001"
       ]
     },
     {
-      "skill": "SCELL-01",
+      "skill": "RUNSCE-001",
       "pos": {
         "x": 65.79,
         "y": 44.37
       },
       "linked": [
-        "GRAVU-01"
+        "GRAVUR-001"
       ]
     },
     {
-      "skill": "RAPPE-01",
+      "skill": "RUNRAP-001",
       "pos": {
         "x": 83.71,
         "y": 44.42
       },
       "linked": [
-        "SCELL-01"
+        "RUNSCE-001"
       ]
     },
     {
-      "skill": "LECTU-01",
+      "skill": "LECSIG-001",
       "pos": {
         "x": 34.21,
         "y": 44.37
       },
       "linked": [
-        "GRAVU-01"
+        "GRAVUR-001"
       ]
     },
     {
-      "skill": "EFFAC-01",
+      "skill": "EFFACE-001",
       "pos": {
         "x": 17.21,
         "y": 42.37
       },
       "linked": [
-        "LECTU-01"
+        "LECSIG-001"
       ]
     },
     {
-      "skill": "MARQU-01",
+      "skill": "MARCHI-001",
       "pos": {
         "x": 34.21,
         "y": 57.25
       },
       "linked": [
-        "GRAVU-01"
+        "GRAVUR-001"
       ]
     },
     {
-      "skill": "SENTI-01",
+      "skill": "RUNSEN-001",
       "pos": {
         "x": 19.78,
         "y": 63.15
       },
       "linked": [
-        "MARQU-01"
+        "MARCHI-001"
       ]
     },
     {
-      "skill": "CHAIN-02",
+      "skill": "CHARUN-001",
       "pos": {
         "x": 65.79,
         "y": 57.25
       },
       "linked": [
-        "GRAVU-01"
+        "GRAVUR-001"
       ]
     }
   ]

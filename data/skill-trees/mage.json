@@ -17,7 +17,7 @@
   },
   "placements": [
     {
-      "skill": "PASSE-01",
+      "skill": "TOPAPA-001",
       "pos": {
         "x": 50,
         "y": 37.7
@@ -27,13 +27,13 @@
       ]
     },
     {
-      "skill": "PASSE-02",
+      "skill": "GRTOPP-001",
       "pos": {
         "x": 50,
         "y": 24
       },
       "linked": [
-        "PASSE-01"
+        "TOPAPA-001"
       ]
     }
   ]

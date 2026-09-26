@@ -7,160 +7,160 @@
   "size": 16,
   "placements": [
     {
-      "skill": "ATTSU-01",
+      "skill": "ATTSUP-001",
       "pos": {
         "x": 50,
         "y": 37.92
       },
       "linked": [
-        "SECSO-01"
+        "SECSOU-001"
       ]
     },
     {
-      "skill": "FRETO-01",
+      "skill": "FRAETO-001",
       "pos": {
         "x": 50,
         "y": 26.14
       },
       "linked": [
-        "ATTSU-01"
+        "ATTSUP-001"
       ]
     },
     {
-      "skill": "EXECU-01",
+      "skill": "EXECUT-001",
       "pos": {
         "x": 72.44,
         "y": 31.91
       },
       "linked": [
-        "FRETO-01"
+        "FRAETO-001"
       ]
     },
     {
-      "skill": "PUISS-01",
+      "skill": "ATTPUI-001",
       "pos": {
         "x": 65.79,
         "y": 44.37
       },
       "linked": [
-        "SECSO-01"
+        "SECSOU-001"
       ]
     },
     {
-      "skill": "RIPOS-02",
+      "skill": "RIPOST-001",
       "pos": {
         "x": 83.71,
         "y": 44.42
       },
       "linked": [
-        "PUISS-01"
+        "ATTPUI-001"
       ]
     },
     {
-      "skill": "CONFE-01",
+      "skill": "ENDURA-001",
       "pos": {
         "x": 65.79,
         "y": 57.25
       },
       "linked": [
-        "SECSO-01"
+        "SECSOU-001"
       ]
     },
     {
-      "skill": "SECSO-01",
+      "skill": "SECSOU-001",
       "pos": {
         "x": 50,
         "y": 50.81
       }
     },
     {
-      "skill": "PARAD-01",
+      "skill": "PARADE-001",
       "pos": {
         "x": 74.68,
         "y": 68.25
       },
       "linked": [
-        "CONFE-01"
+        "ENDURA-001"
       ]
     },
     {
-      "skill": "DEVEL-01",
+      "skill": "DEVELO-001",
       "pos": {
         "x": 83.71,
         "y": 80.5
       },
       "linked": [
-        "PARAD-01"
+        "PARADE-001"
       ]
     },
     {
-      "skill": "BOUSD-01",
+      "skill": "BOUSCL-001",
       "pos": {
         "x": 34.21,
         "y": 44.37
       },
       "linked": [
-        "SECSO-01"
+        "SECSOU-001"
       ]
     },
     {
-      "skill": "DESAR-01",
+      "skill": "DESARM-001",
       "pos": {
         "x": 17.21,
         "y": 42.37
       },
       "linked": [
-        "BOUSD-01"
+        "BOUSCL-001"
       ]
     },
     {
-      "skill": "ENTRA-01",
+      "skill": "ENTRAI-001",
       "pos": {
         "x": 34.21,
         "y": 57.25
       },
       "linked": [
-        "SECSO-01"
+        "SECSOU-001"
       ]
     },
     {
-      "skill": "RALLI-01",
+      "skill": "CRIRAL-001",
       "pos": {
         "x": 19.78,
         "y": 63.15
       },
       "linked": [
-        "ENTRA-01"
+        "ENTRAI-001"
       ]
     },
     {
-      "skill": "PRESE-01",
+      "skill": "PREMAR-001",
       "pos": {
         "x": 30.5,
         "y": 70.5
       },
       "linked": [
-        "ENTRA-01"
+        "ENTRAI-001"
       ]
     },
     {
-      "skill": "FOUGU-01",
+      "skill": "FOUGUE-001",
       "pos": {
         "x": 50,
         "y": 63.7
       },
       "linked": [
-        "SECSO-01"
+        "SECSOU-001"
       ]
     },
     {
-      "skill": "FRENE-01",
+      "skill": "FRENES-001",
       "pos": {
         "x": 83.71,
         "y": 57.2
       },
       "linked": [
-        "CONFE-01"
+        "ENDURA-001"
       ]
     }
   ]

@@ -138,7 +138,7 @@ test('the skills filter gathers the basic skills under their own provenance', as
   await page.keyboard.press('Escape')
 
   const shown = page.locator('[data-rows] [data-entry]:not([hidden])')
-  await expect(page.locator('[data-rows] [data-entry="ATTAQ-01"]')).toBeVisible()
+  await expect(page.locator('[data-rows] [data-entry="ATTAQU-001"]')).toBeVisible()
   for (const acquisition of await shown.evaluateAll((nodes) =>
     nodes.map((node) => node.getAttribute('data-facet-acq') ?? ''),
   )) {
@@ -152,6 +152,6 @@ test('a browse entry is selectable through its own url', async ({ page }) => {
   const first = page.locator('[data-detail]').first()
   await expect(first).toBeVisible()
 
-  await page.goto('/en/skills#e-RAGER-01')
-  await expect(page.locator('#e-RAGER-01')).toBeVisible()
+  await page.goto('/en/skills#e-RAGEXX-001')
+  await expect(page.locator('#e-RAGEXX-001')).toBeVisible()
 })

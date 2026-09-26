@@ -45,6 +45,14 @@ import { pdfIsStamped } from '../../src/lib/rights/pdf'
 import { readPngText, stampPng, stripPng } from '../../src/lib/rights/png'
 import { stampSvg } from '../../src/lib/rights/svg'
 import { stampWebp } from '../../src/lib/rights/webp'
+import {
+  BASE_NUMBER,
+  collisionShifts,
+  idLetters,
+  idNumber,
+  sharedSkillIdLetters,
+  skillIdLetters,
+} from '../../tools/skill-id/derive'
 
 const root = resolve(import.meta.dirname, '../..')
 
@@ -743,6 +751,69 @@ describe('uniqueness', () => {
       expect(sections.has(item.section), `${slug} section ${item.section}`).toBe(true)
     }
     expect(fr.items.length).toBe(fr.itemsBySlug.size)
+  })
+})
+
+describe('skill ids', () => {
+  const TITLE_BEFORE_RENAME: Record<string, string> = {}
+  const skills = [...fr.skills.values()]
+  const titleUses = new Map<string, number>()
+  for (const skill of skills) titleUses.set(skill.title, (titleUses.get(skill.title) ?? 0) + 1)
+  const sharesItsTitle = (title: string): boolean => (titleUses.get(title) ?? 0) > 1
+  const ownerName = (id: string): string | undefined =>
+    fr.trees.find((tree) => tree.placements.some((placement) => placement.skill.id === id))?.name ??
+    fr.species.find((entry) => entry.pool.some((skill) => skill.id === id))?.name
+
+  it('draws every base id from the French title, or from its next free letters', () => {
+    for (const skill of skills) {
+      if (skill.evolvesFrom) continue
+      const title = TITLE_BEFORE_RENAME[skill.id] ?? skill.title
+      const owner = ownerName(skill.id)
+      const expected = sharesItsTitle(title)
+        ? sharedSkillIdLetters(title, owner ?? '')
+        : skillIdLetters(title)
+      const actual = idLetters(skill.id)
+      if (actual === expected) continue
+      const holder = skills.find(
+        (other) => other.id !== skill.id && idLetters(other.id) === expected,
+      )
+      expect(holder, `${skill.id} ${skill.title} should be ${expected}-001`).toBeDefined()
+      expect(
+        collisionShifts(title),
+        `${skill.id} ${title}: ${expected} is held by ${holder?.id}, and ${actual} is not one of its shifts`,
+      ).toContain(actual)
+    }
+  })
+
+  it('numbers a base skill 001 and gives two bases different letters', () => {
+    const seen = new Map<string, string>()
+    for (const skill of skills) {
+      if (skill.evolvesFrom) continue
+      expect(idNumber(skill.id), `${skill.id} has no evolvesFrom`).toBe(1)
+      const letters = idLetters(skill.id)
+      expect(
+        seen.get(letters),
+        `${skill.id} and ${seen.get(letters)} share letters`,
+      ).toBeUndefined()
+      seen.set(letters, skill.id)
+    }
+  })
+
+  it('gives a derived skill the letters of its base and a number of its own', () => {
+    for (const skill of skills) {
+      if (!skill.evolvesFrom) continue
+      expect(idLetters(skill.id), `${skill.id} evolves from ${skill.evolvesFrom}`).toBe(
+        idLetters(skill.evolvesFrom),
+      )
+      expect(idNumber(skill.id), `${skill.id}`).toBeGreaterThan(BASE_NUMBER)
+    }
+  })
+
+  it('names a title shared by several skills after the tree or species that owns each', () => {
+    for (const skill of skills) {
+      if (!sharesItsTitle(skill.title)) continue
+      expect(ownerName(skill.id), `${skill.id} ${skill.title} has no tree or species`).toBeDefined()
+    }
   })
 })
 

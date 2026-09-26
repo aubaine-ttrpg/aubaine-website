@@ -11,7 +11,7 @@ const ROUTES = [
   '/fr/almanach',
   '/fr/arbres',
   '/fr/arbre/berserker',
-  '/fr/arbre/berserker/RAGER-01',
+  '/fr/arbre/berserker/RAGEXX-001',
   '/fr/especes',
   '/en/species',
   '/fr/espece/humain',
@@ -79,17 +79,17 @@ test('a species carries its lore, its regional origins and its whole pool in the
       .locator('[data-rows] [data-entry]')
       .evaluateAll((rows) => rows.map((row) => row.getAttribute('data-entry'))),
   ).toEqual([
-    'ESHUM-02',
-    'ESHUM-01',
-    'ESHUM-03',
-    'ESHUM-05',
-    'ESHUM-04',
-    'ESHUM-06',
-    'ESHUM-07',
-    'ESHUM-09',
-    'ESHUM-08',
-    'ESHUM-11',
-    'ESHUM-10',
+    'AMIXXX-001',
+    'ESPHUM-001',
+    'VOLSUR-001',
+    'ACVEEC-001',
+    'PREHER-001',
+    'FORTEC-001',
+    'INGTEC-001',
+    'DISCIP-001',
+    'VIVHOR-001',
+    'ENFDES-001',
+    'NOMADE-001',
   ])
   await expect(page.locator('[data-details] .au-skill__xp')).toHaveCount(0)
   await expect(page.locator('[data-detail]').first()).toBeVisible()
@@ -111,22 +111,22 @@ test('a species with sub-species prints each one with the skill it imposes', asy
   ])
   const fantome = page.locator('#origine-fantome')
   await expect(fantome.locator('dt').first()).toHaveText('Compétence imposée')
-  await expect(fantome.locator('dd a')).toHaveAttribute('href', '#e-ESMOR-05')
+  await expect(fantome.locator('dd a')).toHaveAttribute('href', '#e-PASMUR-001')
   expect(
     await page
       .locator('[data-rows] [data-entry]')
       .evaluateAll((rows) => rows.map((row) => row.getAttribute('data-entry'))),
   ).toEqual([
-    'ESMOR-01',
-    'ESMOR-02',
-    'ESMOR-03',
-    'ESMOR-04',
-    'ESMOR-05',
-    'ESMOR-06',
-    'ESMOR-07',
-    'ESMOR-08',
-    'ESMOR-09',
-    'ESMOR-10',
+    'FARPAR-001',
+    'GISANT-001',
+    'GLASXX-001',
+    'VIEAVA-001',
+    'PASMUR-001',
+    'DEPOUI-001',
+    'RIGCAD-001',
+    'TENMOR-001',
+    'FESTIN-001',
+    'PHYLAC-001',
   ])
 
   await page.goto('/en/species/mort-vivant')
@@ -156,14 +156,14 @@ test('a bare skill tree asks for a skill and a node link opens it on its tree', 
   )
   await expect(page.locator('[data-node][aria-current]')).toHaveCount(0)
 
-  const node = page.locator('[data-plate-node][data-node="TOURB-01"]')
-  await expect(node).toHaveAttribute('href', '/fr/arbre/berserker/TOURB-01#arbre')
+  const node = page.locator('[data-plate-node][data-node="TOURBI-001"]')
+  await expect(node).toHaveAttribute('href', '/fr/arbre/berserker/TOURBI-001#arbre')
   await node.click()
-  await expect(page).toHaveURL('/fr/arbre/berserker/TOURB-01#arbre')
-  await expect(page.locator('#tree-detail [data-selected-node="TOURB-01"]')).toBeVisible()
+  await expect(page).toHaveURL('/fr/arbre/berserker/TOURBI-001#arbre')
+  await expect(page.locator('#tree-detail [data-selected-node="TOURBI-001"]')).toBeVisible()
   await expect(page.locator('[data-plate-node][aria-current="page"]')).toHaveAttribute(
     'data-node',
-    'TOURB-01',
+    'TOURBI-001',
   )
   await expect(page.locator('line[data-lit]')).toHaveCount(1)
   await expect(page.locator('#arbre')).toBeInViewport()
@@ -294,10 +294,10 @@ test.describe('without javascript', () => {
   })
 
   test('the Common Bank source still opens its note without javascript', async ({ page }) => {
-    await page.goto('/en/skills#e-CBREP-01')
-    const note = page.locator('#note-bank-CBREP-01')
+    await page.goto('/en/skills#e-REPVIF-001')
+    const note = page.locator('#note-bank-REPVIF-001')
     await expect(note).toBeHidden()
-    await page.locator('#e-CBREP-01').getByRole('button', { name: 'Common Bank' }).click()
+    await page.locator('#e-REPVIF-001').getByRole('button', { name: 'Common Bank' }).click()
     await expect(note).toBeVisible()
     await expect(note).toContainText('Common Bank skills are independent from one another.')
   })
@@ -343,14 +343,14 @@ test.describe('the threshold without javascript', () => {
 })
 
 test('a species page lists the other sources as also available, never itself', async ({ page }) => {
-  await page.goto('/en/species/humain#e-ESHUM-09')
-  const onSpecies = page.locator('#e-ESHUM-09 .au-sources')
+  await page.goto('/en/species/humain#e-DISCIP-001')
+  const onSpecies = page.locator('#e-DISCIP-001 .au-sources')
   await expect(onSpecies.locator('.au-sources__label')).toHaveText('Also available')
   await expect(onSpecies.getByRole('button', { name: 'Common Bank' })).toBeVisible()
   await expect(onSpecies.getByRole('link', { name: /Human/ })).toHaveCount(0)
 
-  await page.goto('/en/skills#e-ESHUM-09')
-  const inIndex = page.locator('#e-ESHUM-09 .au-sources')
+  await page.goto('/en/skills#e-DISCIP-001')
+  const inIndex = page.locator('#e-DISCIP-001 .au-sources')
   await expect(inIndex.locator('.au-sources__label')).toHaveText('Where to Get It')
   await expect(inIndex.getByRole('link', { name: 'Human · Victoria' })).toBeVisible()
 })

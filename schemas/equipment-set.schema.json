@@ -44,8 +44,8 @@
             "type": "array",
             "items": {
               "type": "string",
-              "pattern": "^[A-Z0-9]{5}-[0-9]{2}$",
-              "description": "Identité immuable d'une Compétence : cinq caractères tirés du nom, puis un numéro. Deux Compétences ne peuvent pas la partager, même dans deux arbres différents."
+              "pattern": "^[A-Z0-9]{6}-[0-9]{3}$",
+              "description": "Identité d'une Compétence : six caractères tirés de son titre français, ceux de sa base pour une Compétence dérivée, puis un numéro à trois chiffres, 001 sauf pour une Compétence dérivée, selon docs/runbooks/choose-a-skill-id.md. Deux Compétences ne peuvent pas la partager, même dans deux arbres différents. Elle suit le titre tant que la Compétence est un brouillon, puis ne change plus."
             }
           }
         },

@@ -6,120 +6,120 @@
   "size": 16,
   "placements": [
     {
-      "skill": "PARLE-01",
+      "skill": "BEAPAR-001",
       "pos": {
         "x": 50,
         "y": 50.81
       }
     },
     {
-      "skill": "SERVI-01",
+      "skill": "SERREN-001",
       "pos": {
         "x": 50,
         "y": 37.92
       },
       "linked": [
-        "PARLE-01"
+        "BEAPAR-001"
       ]
     },
     {
-      "skill": "CHANT-01",
+      "skill": "CHANTA-001",
       "pos": {
         "x": 50,
         "y": 26.14
       },
       "linked": [
-        "SERVI-01"
+        "SERREN-001"
       ]
     },
     {
-      "skill": "LIRES-01",
+      "skill": "LIRSAL-001",
       "pos": {
         "x": 65.79,
         "y": 44.37
       },
       "linked": [
-        "PARLE-01"
+        "BEAPAR-001"
       ]
     },
     {
-      "skill": "MASQU-01",
+      "skill": "MASCOU-001",
       "pos": {
         "x": 83.71,
         "y": 44.42
       },
       "linked": [
-        "LIRES-01"
+        "LIRSAL-001"
       ]
     },
     {
-      "skill": "MOTJU-01",
+      "skill": "MOTJUS-001",
       "pos": {
         "x": 65.79,
         "y": 57.25
       },
       "linked": [
-        "PARLE-01"
+        "BEAPAR-001"
       ]
     },
     {
-      "skill": "DUELS-01",
+      "skill": "DUEESP-001",
       "pos": {
         "x": 83.71,
         "y": 57.2
       },
       "linked": [
-        "MOTJU-01"
+        "MOTJUS-001"
       ]
     },
     {
-      "skill": "CARNE-01",
+      "skill": "CARADR-001",
       "pos": {
         "x": 34.21,
         "y": 44.37
       },
       "linked": [
-        "PARLE-01"
+        "BEAPAR-001"
       ]
     },
     {
-      "skill": "REPUT-01",
+      "skill": "REPUTA-001",
       "pos": {
         "x": 17.21,
         "y": 42.37
       },
       "linked": [
-        "CARNE-01"
+        "CARADR-001"
       ]
     },
     {
-      "skill": "PROTE-01",
+      "skill": "PROTEG-001",
       "pos": {
         "x": 34.21,
         "y": 57.25
       },
       "linked": [
-        "PARLE-01"
+        "BEAPAR-001"
       ]
     },
     {
-      "skill": "DETTE-01",
+      "skill": "CREANC-001",
       "pos": {
         "x": 19.78,
         "y": 63.15
       },
       "linked": [
-        "PROTE-01"
+        "PROTEG-001"
       ]
     },
     {
-      "skill": "AUDIE-01",
+      "skill": "AUDIEN-001",
       "pos": {
         "x": 30.5,
         "y": 70.5
       },
       "linked": [
-        "PROTE-01"
+        "PROTEG-001"
       ]
     }
   ]

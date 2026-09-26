@@ -7,6 +7,7 @@ One job per page. Every job is done by adding or editing a file under `data/`. T
 | I want to | Open |
 | --- | --- |
 | Write a new skill that a tree will sell | [add-a-skill.md](add-a-skill.md) |
+| Find the id a new skill must carry, or rename one | [choose-a-skill-id.md](choose-a-skill-id.md) |
 | Add a level 2, 3, 4 step under a skill that already exists | [add-an-upgrade.md](add-an-upgrade.md) |
 | Create a new archetype or domain plate | [add-a-skill-tree.md](add-a-skill-tree.md) |
 | Put an existing skill on a plate, move it, or link it | [place-a-skill-on-a-tree.md](place-a-skill-on-a-tree.md) |
@@ -37,7 +38,7 @@ pnpm dev
 
 ## The rules that bite hardest
 
-- A skill id is used once, for ever, across the whole repo.
+- A skill id is drawn from its French title with `pnpm skill:id`, and it is unique across the whole repo.
 - Never write `"key": null`. Leave the key out.
 - `energy: 0` and no `energy` key are two different things.
 - `pos` and `linked` belong to the tree file, never to the skill file.

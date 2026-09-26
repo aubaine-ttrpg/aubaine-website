@@ -23,6 +23,7 @@
     "fonts:build": "node tools/fonts/build.ts",
     "verify": "pnpm lint && pnpm data:check && pnpm check && pnpm test && pnpm build",
     "schemas": "node tools/schemas/emit.ts",
+    "skill:id": "node tools/skill-id/derive.ts",
     "media:sync": "node tools/media/sync.ts",
     "media:stamp": "node tools/media/stamp.ts",
     "media:stamp:check": "node tools/media/stamp.ts --check",

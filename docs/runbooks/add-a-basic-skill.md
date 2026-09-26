@@ -40,11 +40,11 @@ The list file, `data/skill-lists/basic-skills.json`:
 
 ## A complete example
 
-`data/skills/IMPRO-01.json`:
+`data/skills/IMPROV-001.json`:
 
 ```json
 {
-  "id": "IMPRO-01",
+  "id": "IMPROV-001",
   "title": "Improviser",
   "type": "active",
   "tier": 1,
@@ -68,19 +68,19 @@ The list file, `data/skill-lists/basic-skills.json`:
   "subtitle": "Ce que toute créature sait faire",
   "note": "Toute créature possède les Compétences de base, du premier round de la première séance à la fin de la campagne. Elles ne coûtent pas de PX, n'occupent pas de Mémoire, ne demandent pas d'Énergie, et aucun Arbre ne les vend.",
   "skills": [
-    "IMPRO-01",
-    "ATTAQ-01",
-    "OPPOR-01",
-    "COURI-01",
-    "DESEN-01",
-    "ESQUI-01",
-    "AIDER-01",
-    "CACHE-01",
-    "CHERC-01",
-    "BOUSC-01",
-    "AGRIP-01",
-    "PREPA-01",
-    "FUITE-01"
+    "IMPROV-001",
+    "ATTAQU-001",
+    "ATTOPP-001",
+    "COURIR-001",
+    "DESENG-001",
+    "ESQUIV-001",
+    "AIDERX-001",
+    "CACHER-001",
+    "CHERCH-001",
+    "BOUSCU-001",
+    "AGRIPP-001",
+    "PREPAR-001",
+    "FUITEX-001"
   ]
 }
 ```
@@ -104,7 +104,7 @@ pnpm dev
 
 ## Traps
 
-**The id is permanent and unique across the whole repo.** Basic skills were imported first, so they hold the plain ids. `IMPRO-01` is the basic skill Improviser; Artisan's Improvisation had to become `IMPRV-01`. `BOUSC-01` is the basic skill Bousculer; Physique's Bousculade had to become `BOUSD-01`. See [../data-contract.md](../data-contract.md).
+**The id is drawn from the French title, and the first skill to hold the letters keeps them.** Basic skills were given their ids first, so they hold the plain letters. `IMPROV-001` is the basic skill Improviser; Artisan's Improvisation takes the next free letters, `IMPROI-001`. `BOUSCU-001` is the basic skill Bousculer; Physique's Bousculade is `BOUSCL-001`. See [choose-a-skill-id.md](choose-a-skill-id.md).
 
 **`showXp: false`, not `xpOverride: 0`.** `tier` is required and the schema has no way to omit a price, so you hide the token instead. A basic skill costs no XP and no Memory.
 

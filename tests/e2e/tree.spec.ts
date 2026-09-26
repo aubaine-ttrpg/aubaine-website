@@ -128,7 +128,7 @@ test('the bare tree pulses its nodes once it comes into view', async ({ page }) 
   await page.evaluate(() => document.getElementById('arbre')?.scrollIntoView())
   await expect(board).toHaveAttribute('data-hinting', '')
 
-  await page.goto(`${TREE}/RAGER-01#arbre`)
+  await page.goto(`${TREE}/RAGEXX-001#arbre`)
   await hydrated(page)
   await page.waitForTimeout(300)
   await expect(page.locator('[data-plate-viewer]')).not.toHaveAttribute('data-hinting')
@@ -140,40 +140,40 @@ test('choosing a node swaps only the detail pane', async ({ page }) => {
   await page.evaluate(() => document.querySelector('main h1')?.setAttribute('data-kept', ''))
   const scrolled = await page.evaluate(() => window.scrollY)
 
-  await node(page, 'TOURB-01').click()
-  await expect(page).toHaveURL('/fr/arbre/berserker/TOURB-01#arbre')
+  await node(page, 'TOURBI-001').click()
+  await expect(page).toHaveURL('/fr/arbre/berserker/TOURBI-001#arbre')
   await expect(page).toHaveTitle(/^Tourbillon · Berserker/)
   await expect(pane(page).locator('[data-selected-node]')).toHaveAttribute(
     'data-selected-node',
-    'TOURB-01',
+    'TOURBI-001',
   )
   await expect(page.locator('[data-node][aria-current]')).toHaveCount(1)
-  await expect(node(page, 'TOURB-01')).toHaveAttribute('aria-current', 'page')
+  await expect(node(page, 'TOURBI-001')).toHaveAttribute('aria-current', 'page')
   await expect(page.locator('line[data-lit]')).toHaveCount(1)
-  await expect(page.locator('line[data-lit]')).toHaveAttribute('data-ends', 'TOURB-01 TEMER-01')
+  await expect(page.locator('line[data-lit]')).toHaveAttribute('data-ends', 'TOURBI-001 ATTTEM-001')
   await expect(page.locator('line[data-lit]')).toHaveAttribute('data-lit', 'start')
   await expect(page.locator('main h1[data-kept]')).toHaveCount(1)
   await expect(pane(page)).toBeFocused()
   expect(await page.evaluate(() => window.scrollY)).toBe(scrolled)
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     'href',
-    /\/fr\/arbre\/berserker\/TOURB-01$/,
+    /\/fr\/arbre\/berserker\/TOURBI-001$/,
   )
   await expect(page.locator('link[rel="alternate"][hreflang="en-GB"]')).toHaveAttribute(
     'href',
-    /\/en\/tree\/berserker\/TOURB-01$/,
+    /\/en\/tree\/berserker\/TOURBI-001$/,
   )
 })
 
 test('the keyboard opens a node', async ({ page }) => {
   await page.goto(`${TREE}#arbre`)
   await hydrated(page)
-  await node(page, 'RAGER-01').focus()
+  await node(page, 'RAGEXX-001').focus()
   await page.keyboard.press('Enter')
-  await expect(page).toHaveURL('/fr/arbre/berserker/RAGER-01#arbre')
+  await expect(page).toHaveURL('/fr/arbre/berserker/RAGEXX-001#arbre')
   await expect(pane(page).locator('[data-selected-node]')).toHaveAttribute(
     'data-selected-node',
-    'RAGER-01',
+    'RAGEXX-001',
   )
   await expect(pane(page)).toBeFocused()
 })
@@ -182,10 +182,10 @@ test('back leaves the tree instead of unwinding each selection', async ({ page }
   await page.goto('/fr/arbres')
   await page.goto(`${TREE}#arbre`)
   await hydrated(page)
-  await node(page, 'RAGER-01').click()
-  await expect(page).toHaveURL(/RAGER-01#arbre$/)
-  await node(page, 'TOURB-01').click()
-  await expect(page).toHaveURL(/TOURB-01#arbre$/)
+  await node(page, 'RAGEXX-001').click()
+  await expect(page).toHaveURL(/RAGEXX-001#arbre$/)
+  await node(page, 'TOURBI-001').click()
+  await expect(page).toHaveURL(/TOURBI-001#arbre$/)
 
   await page.goBack()
   await expect(page).toHaveURL('/fr/arbres')
@@ -194,11 +194,11 @@ test('back leaves the tree instead of unwinding each selection', async ({ page }
 test('the language switch follows the selected node', async ({ page }) => {
   await page.goto(`${TREE}#arbre`)
   await hydrated(page)
-  await node(page, 'TOURB-01').click()
-  await expect(page).toHaveURL(/TOURB-01#arbre$/)
+  await node(page, 'TOURBI-001').click()
+  await expect(page).toHaveURL(/TOURBI-001#arbre$/)
   await expect(page.locator('[data-lang-option="en"]')).toHaveAttribute(
     'href',
-    '/en/tree/berserker/TOURB-01',
+    '/en/tree/berserker/TOURBI-001',
   )
 })
 
@@ -212,8 +212,8 @@ test('a filter dims the nodes it leaves out and keeps them on the tree', async (
   await expect(page.locator('[data-plate-node]:visible')).toHaveCount(14)
   await expect(page.getByText('4 résultats')).toBeVisible()
 
-  await node(page, 'PRMCR-01').click()
-  await expect(page).toHaveURL(/PRMCR-01#arbre$/)
+  await node(page, 'CRIPRI-001').click()
+  await expect(page).toHaveURL(/CRIPRI-001#arbre$/)
   await expect(filter).toHaveValue('cri')
   await expect(dimmed(page)).toHaveCount(10)
 
@@ -334,7 +334,7 @@ test('the keyboard zooms and a focused node comes into view', async ({ page }) =
   await page.goto(`${TREE}#arbre`)
   await hydrated(page)
   const fitted = await viewScale(page)
-  await node(page, 'RAGER-01').focus()
+  await node(page, 'RAGEXX-001').focus()
   for (const _ of [1, 2, 3, 4, 5]) await page.keyboard.press('+')
   await expect.poll(() => viewScale(page)).toBeCloseTo(fitted * 3, 2)
   await expect(viewer(page)).not.toHaveAttribute('data-view-gliding')
@@ -409,8 +409,8 @@ test.describe('on a phone', () => {
     expect(Math.abs(heart.x)).toBeLessThan(1)
     expect(Math.abs(heart.y)).toBeLessThan(1)
 
-    await node(page, 'RAGER-01').click()
-    await expect(page).toHaveURL(/RAGER-01#arbre$/)
+    await node(page, 'RAGEXX-001').click()
+    await expect(page).toHaveURL(/RAGEXX-001#arbre$/)
     await expect(pane(page).locator('[data-selected-node]')).toBeInViewport()
   })
 })

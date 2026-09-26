@@ -77,12 +77,6 @@ const reference = await readJson<Reference>('tests/fixtures/design-derived.json'
 const skills = await loadSkills()
 const trees = await loadTrees()
 
-const RENAMED: Record<string, string> = {
-  'SCHAU-01': 'SURCH-01',
-  'IMPRV-01': 'IMPRO-01',
-  'BOUSD-01': 'BOUSC-01',
-}
-
 describe('tree derivations match the design', () => {
   it('still carries every tree the design measured', () => {
     const present = new Set(trees.map((tree) => tree.id))
@@ -130,13 +124,6 @@ describe('skill identity', () => {
   it('gives every skill a unique file and id', () => {
     expect(skills.size).toBe(295)
     for (const [id, skill] of skills) expect(skill.id).toBe(id)
-  })
-
-  it('keeps the three renamed ids free of their former collisions', () => {
-    for (const [renamed, original] of Object.entries(RENAMED)) {
-      expect(skills.has(renamed), `${renamed} exists`).toBe(true)
-      expect(skills.get(renamed)?.title).not.toBe(skills.get(original)?.title)
-    }
   })
 
   it('places every skill that a tree references, and references no ghost', () => {
@@ -214,19 +201,19 @@ describe('species pools', () => {
   const ids = (pool: Skill[]): string[] => pool.map((entry) => entry.id)
 
   it('puts the species first and adds the sub-species after it', () => {
-    const base = [skill('ESHUM-01'), skill('ESHUM-02')]
-    expect(ids(speciesPool(base, [skill('ESHUM-04')]))).toEqual([
-      'ESHUM-01',
-      'ESHUM-02',
-      'ESHUM-04',
+    const base = [skill('ESPHUM-001'), skill('AMIXXX-001')]
+    expect(ids(speciesPool(base, [skill('PREHER-001')]))).toEqual([
+      'ESPHUM-001',
+      'AMIXXX-001',
+      'PREHER-001',
     ])
   })
 
   it('never lists a skill twice', () => {
-    const base = [skill('ESHUM-01')]
-    expect(ids(speciesPool(base, [skill('ESHUM-01'), skill('ESHUM-05')]))).toEqual([
-      'ESHUM-01',
-      'ESHUM-05',
+    const base = [skill('ESPHUM-001')]
+    expect(ids(speciesPool(base, [skill('ESPHUM-001'), skill('ACVEEC-001')]))).toEqual([
+      'ESPHUM-001',
+      'ACVEEC-001',
     ])
   })
 
@@ -234,14 +221,14 @@ describe('species pools', () => {
     expect(
       ids(
         subspeciesSkills({
-          imposedSkill: skill('ESMOR-05'),
-          offeredSkills: [skill('ESMOR-11')],
+          imposedSkill: skill('PASMUR-001'),
+          offeredSkills: [skill('DEPOUI-001')],
         }),
       ),
-    ).toEqual(['ESMOR-05', 'ESMOR-11'])
+    ).toEqual(['PASMUR-001', 'DEPOUI-001'])
     expect(
-      ids(subspeciesSkills({ imposedSkill: undefined, offeredSkills: [skill('ESHUM-04')] })),
-    ).toEqual(['ESHUM-04'])
+      ids(subspeciesSkills({ imposedSkill: undefined, offeredSkills: [skill('PREHER-001')] })),
+    ).toEqual(['PREHER-001'])
   })
 
   it('anchors a sub-species at origine-<id> whatever its Espèce calls it', () => {
@@ -418,7 +405,7 @@ describe('book chapter references', () => {
   it('rejects paths that are not a book chapter', () => {
     expect(bookChapterRef('/fr/livres')).toBeUndefined()
     expect(bookChapterRef('/fr/livres/livre-du-joueur')).toBeUndefined()
-    expect(bookChapterRef('/fr/arbre/berserker/RAGER-01')).toBeUndefined()
+    expect(bookChapterRef('/fr/arbre/berserker/RAGEXX-001')).toBeUndefined()
     expect(bookChapterRef('/de/livres/livre-du-joueur/comment-jouer')).toBeUndefined()
     expect(bookChapterRef('/livres/livre-du-joueur/comment-jouer')).toBeUndefined()
     expect(bookChapterRef('/fr/livres/livre-du-joueur/comment-jouer/extra')).toBeUndefined()
@@ -429,15 +416,15 @@ describe('tree references', () => {
   it('names the tree of a plate and of each of its nodes', () => {
     expect(treeRef('/fr/arbre/berserker')).toBe('fr/berserker')
     expect(treeRef('/fr/arbre/berserker/')).toBe('fr/berserker')
-    expect(treeRef('/fr/arbre/berserker/RAGER-01')).toBe('fr/berserker')
-    expect(treeRef('/en/tree/berserker/TOURB-01/')).toBe('en/berserker')
+    expect(treeRef('/fr/arbre/berserker/RAGEXX-001')).toBe('fr/berserker')
+    expect(treeRef('/en/tree/berserker/TOURBI-001/')).toBe('en/berserker')
   })
 
   it('matches two nodes of one tree and separates everything else', () => {
-    const tree = treeRef('/fr/arbre/berserker/RAGER-01')
-    expect(treeRef('/fr/arbre/berserker/TOURB-01')).toBe(tree)
-    expect(treeRef('/fr/arbre/feu/SCHAU-01')).not.toBe(tree)
-    expect(treeRef('/en/tree/berserker/RAGER-01')).not.toBe(tree)
+    const tree = treeRef('/fr/arbre/berserker/RAGEXX-001')
+    expect(treeRef('/fr/arbre/berserker/TOURBI-001')).toBe(tree)
+    expect(treeRef('/fr/arbre/feu/SURCHA-001')).not.toBe(tree)
+    expect(treeRef('/en/tree/berserker/RAGEXX-001')).not.toBe(tree)
   })
 
   it('rejects paths that are not a tree or a node', () => {
@@ -446,13 +433,15 @@ describe('tree references', () => {
     expect(treeRef('/en/arbre/berserker')).toBeUndefined()
     expect(treeRef('/de/arbre/berserker')).toBeUndefined()
     expect(treeRef('/fr/competences/berserker')).toBeUndefined()
-    expect(treeRef('/fr/arbre/berserker/RAGER-01/extra')).toBeUndefined()
+    expect(treeRef('/fr/arbre/berserker/RAGEXX-001/extra')).toBeUndefined()
   })
 
   it('links a node to the tree section of its own page', () => {
-    expect(treeNodeHref('fr', 'berserker', 'RAGER-01')).toBe(
-      `/fr/arbre/berserker/RAGER-01#${TREE_ANCHOR}`,
+    expect(treeNodeHref('fr', 'berserker', 'RAGEXX-001')).toBe(
+      `/fr/arbre/berserker/RAGEXX-001#${TREE_ANCHOR}`,
     )
-    expect(treeNodeHref('en', 'berserker', 'RAGER-01')).toBe('/en/tree/berserker/RAGER-01#arbre')
+    expect(treeNodeHref('en', 'berserker', 'RAGEXX-001')).toBe(
+      '/en/tree/berserker/RAGEXX-001#arbre',
+    )
   })
 })

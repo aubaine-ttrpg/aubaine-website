@@ -7,120 +7,120 @@
   "size": 16,
   "placements": [
     {
-      "skill": "FOUDR-01",
+      "skill": "CANCHA-001",
       "pos": {
         "x": 50,
         "y": 50.81
       }
     },
     {
-      "skill": "HARPO-01",
+      "skill": "HARECL-001",
       "pos": {
         "x": 50,
         "y": 37.92
       },
       "linked": [
-        "FOUDR-01"
+        "CANCHA-001"
       ]
     },
     {
-      "skill": "CHAIN-01",
+      "skill": "CHAECL-001",
       "pos": {
         "x": 50,
         "y": 26.14
       },
       "linked": [
-        "HARPO-01"
+        "HARECL-001"
       ]
     },
     {
-      "skill": "THUME-01",
+      "skill": "EMFOUD-001",
       "pos": {
         "x": 34.21,
         "y": 44.37
       },
       "linked": [
-        "FOUDR-01"
+        "CANCHA-001"
       ]
     },
     {
-      "skill": "GENIE-01",
+      "skill": "COUGEN-001",
       "pos": {
         "x": 17.21,
         "y": 42.37
       },
       "linked": [
-        "THUME-01"
+        "EMFOUD-001"
       ]
     },
     {
-      "skill": "PASFO-01",
+      "skill": "PASFOU-001",
       "pos": {
         "x": 65.79,
         "y": 44.37
       },
       "linked": [
-        "FOUDR-01"
+        "CANCHA-001"
       ]
     },
     {
-      "skill": "CELER-01",
+      "skill": "CELERI-001",
       "pos": {
         "x": 72.44,
         "y": 31.91
       },
       "linked": [
-        "PASFO-01"
+        "PASFOU-001"
       ]
     },
     {
-      "skill": "RIPOS-01",
+      "skill": "RIPFUL-001",
       "pos": {
         "x": 83.71,
         "y": 44.42
       },
       "linked": [
-        "PASFO-01"
+        "PASFOU-001"
       ]
     },
     {
-      "skill": "TONNE-01",
+      "skill": "COUTON-001",
       "pos": {
         "x": 65.79,
         "y": 57.25
       },
       "linked": [
-        "FOUDR-01"
+        "CANCHA-001"
       ]
     },
     {
-      "skill": "CONDU-01",
+      "skill": "CONDUC-001",
       "pos": {
         "x": 83.71,
         "y": 57.2
       },
       "linked": [
-        "TONNE-01"
+        "COUTON-001"
       ]
     },
     {
-      "skill": "ORAGE-01",
+      "skill": "REFORA-001",
       "pos": {
         "x": 34.21,
         "y": 57.25
       },
       "linked": [
-        "FOUDR-01"
+        "CANCHA-001"
       ]
     },
     {
-      "skill": "THUPD-01",
+      "skill": "DPFOUD-001",
       "pos": {
         "x": 19.78,
         "y": 63.15
       },
       "linked": [
-        "ORAGE-01"
+        "REFORA-001"
       ]
     }
   ]

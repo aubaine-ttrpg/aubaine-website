@@ -60,7 +60,7 @@ There is no `domains` field and no `characteristics` field on a tree. Both are c
   },
   "placements": [
     {
-      "skill": "PASSE-01",
+      "skill": "TOPAPA-001",
       "pos": {
         "x": 50,
         "y": 37.7
@@ -70,20 +70,20 @@ There is no `domains` field and no `characteristics` field on a tree. Both are c
       ]
     },
     {
-      "skill": "PASSE-02",
+      "skill": "GRTOPP-001",
       "pos": {
         "x": 50,
         "y": 24
       },
       "linked": [
-        "PASSE-01"
+        "TOPAPA-001"
       ]
     }
   ]
 }
 ```
 
-Without a `core`, one skill holds the centre instead. `data/skill-trees/berserker.json` does that: `RAGER-01` sits at `50, 50.81` and every branch links back to it.
+Without a `core`, one skill holds the centre instead. `data/skill-trees/berserker.json` does that: `RAGEXX-001` sits at `50, 50.81` and every branch links back to it.
 
 ## What appears on the site
 

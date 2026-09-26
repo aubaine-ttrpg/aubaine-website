@@ -1,0 +1,18 @@
+{
+  "id": "SENAIG-001",
+  "title": "Sens aiguisés",
+  "type": "passive",
+  "tier": 5,
+  "domains": [
+    "psychic"
+  ],
+  "prerequisite": "Être Elfe",
+  "activation": "Passif",
+  "tags": {
+    "practice": "innate",
+    "schools": [
+      "divination"
+    ]
+  },
+  "description": "Les siècles de communion avec les forêts et les astres ont affiné vos perceptions.\n\nTant que cette Compétence est Mémorisée, vous avez l'Expertise dans la Perception et dans l'Investigation."
+}

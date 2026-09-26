@@ -35,7 +35,7 @@ The filename is the set id. Existing sets use five capital letters: `TRAQU.json`
       "pieces": 2,
       "text": "Vous gagnez la Compétence {{Sillage}}. Elle n'occupe aucune Mémoire et n'a pas à être apprise.",
       "grants": [
-        "SILLA-01"
+        "SILLAG-001"
       ]
     },
     {
@@ -95,7 +95,7 @@ pnpm dev
 
 ## Traps
 
-**A set's `status` is only ever inherited, never printed.** A set has no page of its own and its bonuses are not rendered anywhere, so the value shows up solely on the skills its tiers grant, and only where no tree and no item already cover them. `SILLA-01` is the case it exists for: the Traqueur set is its only owner.
+**A set's `status` is only ever inherited, never printed.** A set has no page of its own and its bonuses are not rendered anywhere, so the value shows up solely on the skills its tiers grant, and only where no tree and no item already cover them. `SILLAG-001` is the case it exists for: the Traqueur set is its only owner.
 
 **A one piece tier is not a set bonus.** The schema requires at least two: `Deux au minimum : un palier à une pièce est une propriété de cette pièce.` Put it in that piece's `properties` instead.
 

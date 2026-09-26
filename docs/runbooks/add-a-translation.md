@@ -8,7 +8,7 @@ Next to the French file, same name, with `.en` before the extension.
 
 | French file | English file |
 | --- | --- |
-| `data/skills/RAGER-01.json` | `data/skills/RAGER-01.en.json` |
+| `data/skills/RAGEXX-001.json` | `data/skills/RAGEXX-001.en.json` |
 | `data/skill-trees/berserker.json` | `data/skill-trees/berserker.en.json` |
 | `data/skill-lists/common-bank.json` | `data/skill-lists/common-bank.en.json` |
 | `data/states/combustion.json` | `data/states/combustion.en.json` |

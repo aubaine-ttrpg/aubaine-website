@@ -12,9 +12,9 @@
     "common"
   ],
   "offered": [
-    "ESHUM-01",
-    "ESHUM-02",
-    "ESHUM-03"
+    "ESPHUM-001",
+    "AMIXXX-001",
+    "VOLSUR-001"
   ],
   "subspecies": [
     {
@@ -164,8 +164,8 @@
         ]
       },
       "offered": [
-        "ESHUM-04",
-        "ESHUM-05"
+        "PREHER-001",
+        "ACVEEC-001"
       ]
     },
     {
@@ -276,8 +276,8 @@
         ]
       },
       "offered": [
-        "ESHUM-06",
-        "ESHUM-07"
+        "FORTEC-001",
+        "INGTEC-001"
       ]
     },
     {
@@ -385,8 +385,8 @@
         ]
       },
       "offered": [
-        "ESHUM-08",
-        "ESHUM-09"
+        "VIVHOR-001",
+        "DISCIP-001"
       ]
     },
     {
@@ -530,8 +530,8 @@
         ]
       },
       "offered": [
-        "ESHUM-10",
-        "ESHUM-11"
+        "NOMADE-001",
+        "ENFDES-001"
       ]
     }
   ],
