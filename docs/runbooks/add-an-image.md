@@ -126,7 +126,7 @@ Several items may name the same picture, and eighteen pictures currently serve t
   "name": "Combustion",
   "kind": "buff",
   "icon": "mdi:fire",
-  "description": "Combustion s'accumule sur vous jusqu'à 5.\n\nLorsque vous effectuez un Jet de dégâts qui inflige des dégâts de Feu, ajoutez 1 dégât par Combustion que vous portez."
+  "description": "{{combustion}} s'accumule sur vous jusqu'à 5.\n\nLorsque vous effectuez un {{jet}} de dégâts qui inflige des dégâts de Feu, ajoutez 1 dégât par {{combustion}} que vous portez.\n\nAu début d'un combat, vous perdez toute votre {{combustion}}."
 }
 ```
 
@@ -160,7 +160,7 @@ Then point both halves of the hero at the new files in `src/components/views/Hom
 - `cover` and `backCover` on the catalogue: the two faces of the equipment booklet. `banner`: the plate behind the hero at `/fr/equipement`.
 - `art` on an item: the picture on its card and in its detail panel at `/fr/equipement`.
 - a skill has no picture field. Its detail panel at `/fr/competences` draws the 1:1 default plate.
-- `icon` on a state: the glyph inside the pastille wherever `[[Nom]]` appears, and in its detail at `/fr/regles`.
+- `icon` on a state: the glyph inside the pastille wherever a text references the state, as `{{combustion}}`, and in its detail at `/fr/regles`.
 - a booklet in `data/media/pdf/`: the download button on the card at `/fr/livres` and in the hero of `/fr/arbre/<tree-id>`, resolved through `data/pdf/releases.json`.
 - `data/media/video/<nom>-16_9-compressed.mp4`: the loop behind the home hero, over the plate it fades in from.
 
@@ -195,7 +195,7 @@ pnpm dev
 
 **Only `.png` and `.jpg` are picked up.** A `.webp` or an `.avif` in `data/media/art/` is invisible to the build and nothing warns you. Astro converts to WebP at build time anyway, so commit the master, not a converted copy.
 
-**Book prose is cached across builds.** Chapters under `data/books/` are rendered through the term index at markdown compile time, and the result is stored in `node_modules/.astro/data-store.json`. Changing a state icon, a `data/meta/` entry (a definition included) or `RULE_TERMS` in `src/lib/game/build.ts` does not invalidate it, so a rebuilt site can keep serving the old glyph or the old tooltip text inside book chapters while every other page shows the new one. Delete `node_modules/.astro` and rebuild when you change anything the term index reads.
+**Book prose is cached across builds.** Chapters under `data/books/` are rendered through the term index at markdown compile time, and the result is stored in `node_modules/.astro/data-store.json`. Changing a state icon or name, a skill title, a `data/meta/` entry (a definition included) or `RULE_TERMS` in `src/lib/game/build.ts` does not invalidate it, so a rebuilt site can keep serving the old glyph, the old label or the old tooltip text inside book chapters while every other page shows the new one. Delete `node_modules/.astro` and rebuild when you change anything the term index reads.
 
 **A booklet is not a file you add.** `pnpm pdf` writes it, names it `<slug>-<locale>-v<version>_<styleHash>_<contentHash>.pdf`, and registers it in `data/pdf/releases.json`, which `bookletHref` in `src/lib/media.ts` reads. Dropping a PDF into `data/media/pdf/` by hand puts a file on disk that no page links and no manifest knows.
 

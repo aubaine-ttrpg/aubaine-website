@@ -18,7 +18,7 @@ data/books/<book-id>/book.json
 
 Two steps. A markdown file that `book.json` does not list is not served, and `pnpm data:check` now fails on it.
 
-The filename matches `^[0-9]{2}-[a-z0-9-]+$`: two digits, a hyphen, then lowercase letters, digits and hyphens. `01-bienvenue.md`, `05-le-combat.md`. The digits keep the folder in reading order and must sort the same way the book reads; they do not decide the URL. The URL comes from the chapter's `slug`.
+The filename matches `^[0-9]{2}-[a-z0-9-]+$`: two digits, a hyphen, then lowercase letters, digits and hyphens. `01-bienvenue.md`, `10-le-combat.md`. The digits keep the folder in reading order and must sort the same way the book reads; they do not decide the URL. The URL comes from the chapter's `slug`.
 
 ## The fields
 
@@ -42,45 +42,52 @@ Everything after the frontmatter is the chapter body. What is supported:
 | `> text`, closed by `> :source[Qui parle]` | a quote framed on its own, the `:source[...]` line becoming its attribution |
 | `> [!EXAMPLE] Titre`, a bare `>`, then the body | a light box for an example of play: it shows a rule at the table and never changes it |
 | `> [!PRINCIPLE] Titre`, a bare `>`, then the body | a solemn framed box with a centred title, kept for the rules that come before all others, like the three golden rules |
+| `{{clé}}` | a link to the entry the key names, with its tooltip, printing its default label |
+| `{{clé\|texte}}` | the same link, printing `texte` as written |
 
-| `[[Nom d'état]]` | the state, marked, with its tooltip |
-| `{{Nom de compétence}}` | the Skill, marked, linking to its entry |
+Rule text references work here and resolve exactly as they do in an entry, with the keys the table in [data-contract.md](../data-contract.md#rule-text-markup) lists: `{{agonie}}`, `{{ATTAQU-001}}`, `{{avantage}}`, `{{jet|Jets}}`. `pnpm data:check` fails on a key that does not resolve and on `[[` anywhere.
 
-Rule text markup works here and resolves exactly as it does in an entry. `pnpm data:check` fails on a name that does not resolve.
-
-Keywords are marked automatically from their spelling, so you never mark `Avantage` or `Jet` by hand. Write `**bold**`, not `***gras***`: markdown owns emphasis in a chapter.
+You choose every link. Each `{{...}}` renders as a link and each bare word as text, so `Avantage` written without markup stays text, at its first appearance as anywhere else. Write `**bold**`, not `***gras***`: markdown owns emphasis in a chapter.
 
 ## A complete example
 
-`data/books/livre-du-joueur/02-l-ame.md`, opening:
+`data/books/livre-du-joueur/03-creer-un-personnage.md`, opening:
 
 ```markdown
 ---
-title: "L'Âme"
+title: "Créer un personnage"
+description: "Les huit étapes, les trois monnaies, l'Âme, les Points de maîtrise, les ressources, les premiers PX et un exemple monté de bout en bout."
 ---
 
-L'Âme est ce qui distingue le personnage une fois les chiffres égaux. Elle se décide avec le MJ, dans le ton que la table s'est donné.
+Créer un personnage se fait en huit étapes, dans l'ordre. Les sept premières se décident, la dernière se calcule. Ne remplissez aucune case chiffrée avant l'étape 8 : un personnage se pose d'abord, il se compte ensuite.
 
-Chaque personnage en porte cinq morceaux.
+Prenez le temps des premières étapes. Qui est ce personnage, d'où vient-il, qu'est-ce qui le pousse sur les routes : les réponses guideront chaque chiffre que vous écrirez ensuite.
 
-Phobie
-: Une peur qui pèse sur ses décisions. Elle sert quand elle coûte quelque chose.
+## Ce que le MJ vous donne
 
-Manie
-: Une habitude, une obsession, un geste qui revient.
+Un personnage neuf reçoit :
 
-Défaut
-: Un trait durable qui lui attire des ennuis.
+- un Arbre de Domaine ;
+- un Arbre d'Archétype ;
+- deux Compétences d'Espèce ;
+- 25 Points d'expérience (PX) ;
+- 22 Points de maîtrise (PM) ;
+- 3 Points de potentiel (PP).
 
-Spécialité
-: Un domaine personnel étroit dans lequel il excelle.
+Le MJ annonce toute modification de cet ensemble avant que la table commence. Une partie d'un soir et une longue campagne n'ouvrent pas sur les mêmes chiffres.
 
-Don
-: Une faculté exceptionnelle qui n'appartient qu'à lui.
+## Trois monnaies
 
-## Karma
+Elles ne se convertissent pas l'une dans l'autre. Une monnaie dépensée au mauvais endroit ne se récupère qu'en jeu.
 
-La Phobie, la Manie et le Défaut portent chacun un emplacement de Karma. Un personnage conserve donc au plus trois points, un par emplacement.
+PX
+: Achètent les Arbres, les Compétences et leurs Niveaux.
+
+PM
+: Achètent les six {{caracteristique|Caractéristiques}}, les {{aptitude|Aptitudes}} et la {{specialite}}.
+
+PP
+: Achètent les trois voies de ressources : Vitalité, {{memoire}} et {{energie}}.
 ```
 
 And the file is listed, in `data/books/livre-du-joueur/book.json`:
@@ -90,17 +97,66 @@ And the file is listed, in `data/books/livre-du-joueur/book.json`:
   "id": "livre-du-joueur",
   "order": 0,
   "title": "Livre du joueur",
-  "description": "...",
-  "banner": "priest-16_9-og.png",
-  "pdf": "livre-du-joueur.pdf",
+  "description": "Tout ce qu'il faut pour jouer : les trois règles d'or, le Jet, créer un personnage, les Arbres, l'équipement, l'exploration, les interactions, le combat et la progression.",
+  "banner": "tableau-de-quetes-16_9-og.png",
   "chapters": [
-    { "slug": "creer-un-personnage", "file": "01-creer-un-personnage" },
-    { "slug": "l-ame", "file": "02-l-ame" }
+    {
+      "slug": "les-trois-regles-d-or",
+      "file": "00-les-trois-regles-d-or"
+    },
+    {
+      "slug": "bienvenue",
+      "file": "01-bienvenue"
+    },
+    {
+      "slug": "comment-jouer",
+      "file": "02-comment-jouer"
+    },
+    {
+      "slug": "creer-un-personnage",
+      "file": "03-creer-un-personnage"
+    },
+    {
+      "slug": "les-especes",
+      "file": "04-les-especes"
+    },
+    {
+      "slug": "les-arbres-et-les-competences",
+      "file": "05-les-arbres-et-les-competences"
+    },
+    {
+      "slug": "les-competences-de-base",
+      "file": "06-les-competences-de-base"
+    },
+    {
+      "slug": "l-equipement",
+      "file": "07-l-equipement"
+    },
+    {
+      "slug": "l-exploration",
+      "file": "08-l-exploration"
+    },
+    {
+      "slug": "les-interactions-sociales",
+      "file": "09-les-interactions-sociales"
+    },
+    {
+      "slug": "le-combat",
+      "file": "10-le-combat"
+    },
+    {
+      "slug": "degats-et-soins",
+      "file": "11-degats-et-soins"
+    },
+    {
+      "slug": "repos-et-progression",
+      "file": "12-repos-et-progression"
+    }
   ]
 }
 ```
 
-`02-l-ame` carries the slug `l-ame`, so it is served at `/fr/livres/livre-du-joueur/l-ame`. Where it sits in `chapters` decides only its place in the reading order and in the pager.
+`03-creer-un-personnage` carries the slug `creer-un-personnage`, so it is served at `/fr/livres/livre-du-joueur/creer-un-personnage`. Where it sits in `chapters` decides only its place in the reading order and in the pager.
 
 ## What appears on the site
 

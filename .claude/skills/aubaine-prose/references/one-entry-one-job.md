@@ -21,17 +21,17 @@ the other.
 
 A book chapter explains a mechanic. An entry executes it. When a chapter reproduces an entry's whole
 rule, the two compete and the entry loses, because the reader who arrived at the chapter never
-reaches it. Cut the chapter back to the explanation and let the keyword carry the reader.
+reaches it. Cut the chapter back to the explanation and let the reference carry the reader.
 
 ## Cross references are the structure
 
-Aubaine links through spelling. A canonical term renders as a keyword and carries the reader to
-its definition; a missed capital renders as plain text and the link silently does not exist. That is
-the practical reason `keyword-rendering.md` is strict about capitals: it is not typography, it is
-the navigation.
+Aubaine links through explicit references by key. A `{{...}}` renders as a keyword and carries the
+reader to its definition; a term written without one is plain text, and the link does not exist.
+The author decides every link, which is why the references are the navigation and not decoration.
 
-Reference a state with `[[...]]` and a skill with `{{...}}` where the reference is deliberate.
-Everything else links by being spelled correctly.
+Reference a state by its key, `{{entrave}}`, a skill by its id, `{{TRAFEU-001}}`, and a rule term, a
+Caractéristique or an Aptitude by the key `keyword-rendering.md` gives it, wherever the reader should
+reach the definition.
 
 An entry that nothing references and that references nothing is isolated. That is fine for a basic
 skill and wrong for a skill in the middle of a tree.

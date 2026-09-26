@@ -64,7 +64,7 @@ The site has five, and they must stay distinguishable.
 
 - Use the vocabulary the game has already adopted. The controlled vocabularies live in `data/meta/`, the rule terms in `RULE_TERMS` in `src/lib/game/build.ts`, and the rest of the game's language is established by the book chapters under `data/books/` and by the existing entries. Read those rather than any list written down elsewhere.
 - Terms such as `MJ`, `Jet`, `PdV`, and `Action Bonus` are Aubaine's own. Do not replace an established term with a literary synonym, and do not treat its resemblance to another game's vocabulary as a reason to change it.
-- Preserve the established capitalization of game terms mid sentence. It is what makes a keyword render.
+- Preserve the established capitalization of game terms mid sentence. It is style, not markup: a word links only through `{{...}}`.
 - Use guillemets for quoted speech and for a named example.
 - Use the straight apostrophe in source. See `keywords-and-markup.md`.
 - Prefer direct verbs and concrete nouns over calques from English, and avoid unnecessary passive voice.

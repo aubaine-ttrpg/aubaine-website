@@ -7,7 +7,9 @@ Before calling an entry finished:
 - Is any flavor pretending to be a rule?
 - Is any interpretation pretending to be canon?
 - Did any external terminology leak in without an Aubaine decision behind it?
-- Is every keyword spelled canonically, capital letters included?
+- Is every term the reader should reach referenced by key, and does each written text after a bar
+  agree with its sentence?
+- Does every game term keep its established spelling and capitals?
 - Does any structured value get restated in prose?
 - Are repeated sentence templates visible when the entries of this tree are read in a row?
 - Are there filler transitions?

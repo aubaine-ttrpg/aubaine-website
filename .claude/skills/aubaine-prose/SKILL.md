@@ -58,8 +58,9 @@ distinguishable is the standing job.
    the same gap discovered at review is a rewrite.
 5. Build the mechanical skeleton from the schema fields first. Write prose only once the mechanic is
    internally complete.
-6. Apply the keyword discipline in `references/keyword-rendering.md`. Canonical spelling is what
-   makes a term render with its icon and colour, and it reaches `data/` only.
+6. Apply the keyword discipline in `references/keyword-rendering.md`. A term renders with its icon
+   and colour only where the text references it by key, `{{energie}}`, and that markup reaches
+   `data/` only.
 7. Check what the first sentence becomes downstream. `references/site-copy.md` explains why an
    entry's opening is also its meta description.
 8. Write the keys in schema declaration order, two space indent, one trailing newline, and never an
@@ -79,8 +80,8 @@ distinguishable is the standing job.
   discipline, and tag keys.
 - Do not tag a skill to fill a slot, and do not invent a tag. A skill carries only the tags it needs;
   `docs/runbooks/add-a-tag.md` says when a new one is justified.
-- Do not write markup where nothing parses it: rule text markup in a book chapter, Markdown headings
-  in a JSON field, or either one in an interface string or a policy page.
+- Do not write markup where nothing parses it: `***gras***` in a book chapter, Markdown headings in
+  a JSON field, or a `{{...}}` reference in an interface string or a policy page.
 - Do not put `pos` or `linked` in a skill file. They belong to the tree.
 - Do not write the antithesis outside a book chapter, in either locale.
 - Do not ship an entry that carries no detail only that entry could carry. Say so and stop.

@@ -25,9 +25,9 @@ Prefer short semantic sections over long essay flow. A heading names what is und
 Most readers arrive at an entry, not at a chapter. An entry has to stand alone: it cannot assume the
 reader has read the chapter that defines its terms.
 
-That does not mean restating the chapter. It means naming the mechanic precisely enough that the
-keyword links carry the reader to the definition. This is the practical reason keyword spelling
-matters: it is Aubaine's cross referencing, and it only works when the spelling is canonical.
+That does not mean restating the chapter. It means naming the mechanic precisely and referencing it
+by key, so the link carries the reader to the definition. Those references are Aubaine's cross
+referencing, and a term written without one does not link, however it is spelled.
 
 Define an uncommon setting term before leaning on it. Do not define a term the vocabularies already
 own; link it instead.
@@ -63,6 +63,8 @@ roleplaying book, not as a specification or a usage report.
   « Connaître X. Peut aussi servir à fabriquer Y. », never « le travail à la forge ».
 - Write real sentences, not fragment lists, and check each fact against the data before trusting
   a first impression of the word.
+- A definition may reference another entry by key, `{{clé}}` or `{{clé|texte}}`. The Rules page
+  links it, and a tooltip prints its label or its written text, never its braces.
 
 ## Shapes that survive being lifted
 

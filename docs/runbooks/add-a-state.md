@@ -1,6 +1,6 @@
 # Add a state
 
-Produces one entry on the Rules page, and turns the state's name into a pastille with a tooltip everywhere rule text writes it between double square brackets.
+Produces one entry on the Rules page, and a pastille with a tooltip everywhere rule text references the state by its key, between double braces.
 
 ## The file to create
 
@@ -8,15 +8,14 @@ Produces one entry on the Rules page, and turns the state's name into a pastille
 data/states/<key>.json
 ```
 
-The filename is the key. Lowercase, no accents, hyphens between words: `combustion.json`, `a-terre.json`, `poisse-explosive.json`. The state named `Enragé` lives in `enrage.json`.
+The filename is the key. Lowercase, no accents, hyphens between words: `combustion.json`, `a-terre.json`, `poisse-explosive.json`. The state named `Enragé` lives in `enrage.json`, and rule text references it as `{{enrage}}`.
 
 ## The fields
 
 | Field | Required | What it means (from `schema.ts`) | Allowed values |
 | --- | --- | --- | --- |
-| `key` | required | Identifiant machine, employé par l'ancre de la planche. | `^[a-z][a-z0-9-]*$`, matching the filename |
-| `name` | required | Nom imprimé, et ce qu'un texte de règle écrit entre doubles crochets. Il doit être unique. | any non empty string |
-| `forms` | optional | Autres formes écrites du nom, accord et pluriel compris, reconnues dans un texte de règle. Le nom imprimé reste celui de `name`. | array of non empty strings |
+| `key` | required | Identifiant machine, employé par l'ancre de la planche et par `{{clé}}` dans un texte de règle. | `^[a-z][a-z0-9-]*$`, matching the filename |
+| `name` | required | Nom imprimé, et libellé par défaut d'une référence `{{clé}}` vers cet état. Il doit être unique. | any non empty string |
 | `kind` | required | Couleur de la pastille : ce que l'état fait à qui le porte. | `buff`, `debuff`, `neutral` |
 | `icon` | required | Nom Iconify. Sans fichier correspondant dans `data/media/icons/`, l'état se rend sans icône. | `mdi:<name>` or `game-icons:<name>` |
 | `color` | optional | Encre propre, lorsque les crans d'une même famille doivent se suivre à l'œil. | `#rrggbb`, lowercase hex |
@@ -32,14 +31,14 @@ The filename is the key. Lowercase, no accents, hyphens between words: `combusti
   "name": "Combustion",
   "kind": "buff",
   "icon": "mdi:fire",
-  "description": "Combustion s'accumule sur vous jusqu'à 5.\n\nLorsque vous effectuez un Jet de dégâts qui inflige des dégâts de Feu, ajoutez 1 dégât par Combustion que vous portez."
+  "description": "{{combustion}} s'accumule sur vous jusqu'à 5.\n\nLorsque vous effectuez un {{jet}} de dégâts qui inflige des dégâts de Feu, ajoutez 1 dégât par {{combustion}} que vous portez.\n\nAu début d'un combat, vous perdez toute votre {{combustion}}."
 }
 ```
 
 ## What appears on the site
 
 - `/fr/regles` and `/en/rules`: a row, sorted alphabetically among every rule entry and filterable by the `État` family and by its effect, whose detail shows the name and the rule text.
-- Everywhere a skill, a state, an item or a set writes `[[Combustion]]`, the name becomes a coloured pastille with a tooltip carrying the kind and the first lines of the description.
+- Everywhere a skill, a state, an item, a set or a chapter writes `{{combustion}}`, a coloured pastille prints the name, with a tooltip carrying the kind and the first lines of the description. `{{combustion|texte}}` prints `texte` in the same pastille.
 - `/fr/recherche` and `/en/search`: a row under the rules group.
 
 ## How to check it
@@ -49,19 +48,19 @@ pnpm data:check
 pnpm dev
 ```
 
-`pnpm data:check` fails if two states share a printed name, and it fails on any `[[name]]` in any rule text that does not match a state.
+`pnpm data:check` fails if two states share a printed name, and it fails on any `{{...}}` whose key matches no entry.
 
 ## Traps
 
-**The `name` is what rule text writes between double square brackets, and it must be unique.** Matching is case insensitive but otherwise exact, accents included. If you rename a state, every `[[old name]]` in `data/skills/`, `data/states/`, `data/equipment/items/` and `data/equipment/sets/` breaks, and `pnpm data:check` will list every one of them.
+**Rule text references the state by its key, never by its `name`.** The key is the filename and does not change. Renaming a state moves no reference: it changes the default label everywhere a reference writes no text of its own, so read those sentences again after a rename. The `name` must still be unique.
 
-**A booklet defines its states at the back.** A tree or catalogue booklet prints every state its rule text names, in full, on its last pages beside the rule words it uses. Nothing in the rule text asks for it, and `pnpm data:check` refuses the old three-bracket marker.
+**A booklet defines its states at the back.** A tree or catalogue booklet prints every state its rule text references by key, in full, on its last pages beside the rule words it references. Nothing in the rule text asks for it, and `pnpm data:check` refuses `[[` anywhere.
 
 **The icon file may be missing and the state simply renders without one.** `Sans fichier correspondant dans data/media/icons/, l'état se rend sans icône.` Add the matching SVG under `data/media/icons/mdi/` or `data/media/icons/game-icons/`. See [add-an-image.md](add-an-image.md). `pnpm data:check` now fails when an icon named by the term index has no file, so a missing one is caught rather than silently dropped.
 
-**A French state name that is an adjective needs its `forms`.** Automatic marking of a bare word is exact: `Entravé` is marked and `Entravée` is not, because the agreement makes it a different word. `forms` lists the other spellings, so write `["Entravée", "Entravés", "Entravées"]` beside `Entravé`. The tooltip and the printed name still come from `name`. This only affects bare words in prose; `[[Entravé]]` resolves on its own and is case insensitive.
+**An agreement is written text, not a field.** A French state name that is an adjective agrees with what carries it, and no state lists its other forms. `{{entrave}}` prints `Entravé`; write the agreed form after the bar, `{{entrave|Entravée}}` or `{{entrave|Entravées}}`. The tooltip still comes from `name`, and a bare `Entravée` is plain text.
 
-**A state that accumulates says how far in its description.** There is no stack field and no counter printed beside the name: the cap is rule text, written once in the opening sentence, as `Combustion s'accumule sur vous jusqu'à 5.` does. A state that starts at a value and counts down, like `Agonie`, says that value where the state is gained.
+**A state that accumulates says how far in its description.** There is no stack field and no counter printed beside the name: the cap is rule text, written once in the opening sentence, as `{{combustion}} s'accumule sur vous jusqu'à 5.` does. A state that starts at a value and counts down, like `Agonie`, says that value where the state is gained.
 
 **`kind` decides the colour, not `color`.** `buff` is green, `debuff` is orange, `neutral` is grey. Use `color` only to keep several steps of one family visually in order.
 

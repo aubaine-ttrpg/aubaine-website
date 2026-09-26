@@ -1,6 +1,6 @@
 # Add a skill
 
-Produces one skill card: a node on a plate, the node's own page where the card opens beside the plate, and a tooltip wherever rule text names it.
+Produces one skill card: a node on a plate, the node's own page where the card opens beside the plate, and a tooltip wherever rule text references it by its id.
 
 ## The file to create
 
@@ -16,7 +16,7 @@ The filename is the id and nothing else. The id matches `^[A-Z0-9]{6}-[0-9]{3}$`
 | --- | --- | --- | --- |
 | `id` | required | Identité d'une Compétence : six caractères tirés de son titre français, ceux de sa base pour une Compétence dérivée, puis un numéro à trois chiffres, 001 sauf pour une Compétence dérivée, selon docs/runbooks/choose-a-skill-id.md. Deux Compétences ne peuvent pas la partager, même dans deux arbres différents. Elle suit le titre tant que la Compétence est un brouillon, puis ne change plus. | `^[A-Z0-9]{6}-[0-9]{3}$` |
 | `status` | optional | Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable : les listes le masquent tant que le lecteur n'affiche pas les brouillons ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une Espèce, une pièce d'équipement ou une panoplie, dans cet ordre. | `draft`, `playtest`, `beta`, `balanced` |
-| `title` | required | Nom imprimé. Un texte de règle appelle la Compétence par ce nom, entre doubles accolades. | any non empty string |
+| `title` | required | Nom imprimé, et libellé par défaut d'une référence `{{clé}}` vers cette Compétence, dont la clé est l'identifiant. | any non empty string |
 | `type` | required | Forme du nœud sur la planche : rond pour active, carré arrondi pour passive, concave pour spéciale. | `active`, `passive`, `special` |
 | `tier` | required | Palier de prix. Le PX rendu vaut 5 × tier, sauf si xpOverride le remplace. | integer 1 to 10 |
 | `xpOverride` | optional | Prix saisi par le concepteur, qui remplace celui du tier. Nécessaire au-delà de 50 PX, que le tier ne peut pas atteindre. | integer 0 to 100 |
@@ -34,7 +34,7 @@ The filename is the id and nothing else. The id matches `^[A-Z0-9]{6}-[0-9]{3}$`
 | `life` | optional | Pastille PDV : un coût payé en Points de vie, en dés (1d6) ou en nombre fixe. | `"6"`, `"1d6"` |
 | `evolvesFrom` | optional | `Compétence dérivée : identifiant de la base, rendu « ▲ <titre> ». Réservé aux nœuds rattachés à une base, jamais aux améliorations imbriquées.` | a skill id that exists |
 | `tags` | optional | Étiquettes rendues en pied d'entrée, dans l'ordre Pratique, Écoles, Spéciales, chacune avec sa définition au survol. Aucune n'est obligatoire : une Compétence ne porte que celles qui servent l'équilibre, la saveur ou les combinaisons. | an object with `practice` (one key), `schools` (one or two distinct keys) and `specials` (one or more keys), each optional, keys from `data/meta/tags.json`; never an empty object |
-| `description` | required | Texte de règle. Les retours à la ligne sont respectés, une ligne vide sépare deux paragraphes. Balisage : `***gras***`, `[[Nom d'état]]` et `{{Nom de compétence}}`. | any non empty string |
+| `description` | required | Texte de règle. Les retours à la ligne sont respectés, une ligne vide sépare deux paragraphes. Balisage : `***gras***`, et `{{clé}}` ou `{{clé\|texte}}` pour lier un terme de règle, une Caractéristique, une Aptitude, un état ou une Compétence par sa clé. Un mot écrit sans balise reste du texte. | any non empty string |
 | `upgrades` | optional | Améliorations imbriquées, rendues sous la carte par niveau croissant. | see [add-an-upgrade.md](add-an-upgrade.md) |
 
 Key order is the order of this table. Keep it.
@@ -62,7 +62,15 @@ Key order is the order of this table. Keep it.
       "protection"
     ]
   },
-  "description": "Vous portez votre chaleur au-delà de ce que votre corps supporte au repos. Tant que Surchauffe dure, vous gagnez une résistance aux dégâts infligés par les Sorts d'Eau et par toute autre source magique d'Eau, et votre Vitesse augmente de 3 m."
+  "description": "Vous portez votre chaleur au-delà de ce que votre corps supporte au repos. Tant que {{SURCHA-001}} dure, vous gagnez une résistance aux dégâts infligés par les {{sort|Sorts}} d'Eau et par toute autre source magique d'Eau, et votre {{vitesse}} augmente de 3 m.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 4,
+      "title": "Ignifuge",
+      "description": "Tant que {{SURCHA-001}} dure, vous gagnez aussi une résistance aux dégâts de Feu. Un feu non magique ne vous inflige alors aucun dégât et n'abîme rien de ce que vous portez ou transportez."
+    }
+  ]
 }
 ```
 
@@ -72,7 +80,7 @@ The file alone creates no page. A skill is shown once a tree names it. Add the p
 
 - `/fr/arbre/feu` and `/en/tree/feu`: the node on the plate, in the « Arbre de compétences » section after the lore.
 - `/fr/arbre/feu/SURCHA-001` and `/en/tree/feu/SURCHA-001`: the same page with the card open in the pane beside the plate, the node circled in gold and its lines drawn gold. Choosing the node on the tree page leads here.
-- Anywhere rule text writes `{{Surchauffe}}`, the name becomes a tooltip carrying the type, the tree and the first lines of the description.
+- Anywhere rule text writes `{{SURCHA-001}}`, the title prints as a link with a tooltip carrying the type, the tree and the first lines of the description. `{{SURCHA-001|cette Compétence}}` prints its own text with the same link.
 - In the card footer, each tag shows its label and, on hover or keyboard focus, its definition. On `/fr/competences` and `/en/skills` the Pratique, École and Spéciale filters find it.
 
 See [place-a-skill-on-a-tree.md](place-a-skill-on-a-tree.md) for the placement.
@@ -110,6 +118,6 @@ Then open the tree page, choose the node and read its card in the pane.
 
 **`pos` and `linked` are not skill fields.** They belong to the tree file, because one skill can sit in more than one tree. The schema is strict and will reject them here.
 
-**Rule text markup.** `***gras***` for bold, `[[Nom d'état]]` for a state pastille, `{{Nom de compétence}}` for a cross reference, a blank line for a paragraph break. Every name inside brackets or braces must match an existing state name or skill title exactly, or `pnpm data:check` fails.
+**Rule text markup.** `***gras***` for bold, `{{clé}}` to link an entry and print its label, `{{clé|texte}}` to link it and print `texte` as written, a blank line for a paragraph break. A skill's key is its id, `{{TRAFEU-001}}`, and a state's is its file name, `{{entrave|Entravée}}`; the table in [data-contract.md](../data-contract.md#rule-text-markup) gives the others. A word without markup never links, whatever its capitals, and a key that does not resolve fails `pnpm data:check`.
 
 **Adding the file is enough.** No index, no registry, no code change.

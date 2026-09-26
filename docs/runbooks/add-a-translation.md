@@ -16,7 +16,7 @@ Next to the French file, same name, with `.en` before the extension.
 | `data/equipment/sets/TRAQU.json` | `data/equipment/sets/TRAQU.en.json` |
 | `data/equipment/catalogue.json` | `data/equipment/catalogue.en.json` |
 | `data/books/livre-du-joueur/book.json` | `data/books/livre-du-joueur/book.en.json` |
-| `data/books/livre-du-joueur/02-l-ame.md` | `data/books/livre-du-joueur/02-l-ame.en.md` |
+| `data/books/livre-du-joueur/03-creer-un-personnage.md` | `data/books/livre-du-joueur/03-creer-un-personnage.en.md` |
 
 French is the source and the fallback. The English file is an overlay: it holds only the strings that change, and every key it leaves out falls back to the French one.
 
@@ -33,7 +33,7 @@ An overlay may only carry the fields listed below, for its kind. Every one of th
 | equipment item | `name`, `kind`, `prerequisite`, `headlines`, `stats`, `properties`, `craft.materials`, `craft.sequence`, `text`, `description` |
 | equipment set | `name`, `bonuses` |
 | catalogue | `name`, `subtitle`, `sections` |
-| state | `name`, `forms`, `description` |
+| state | `name`, `description` |
 | book | `title`, `description` |
 | book page | `title` in the frontmatter, and the body |
 
@@ -55,8 +55,8 @@ Never translate a key, an id, a domain key, a characteristic key, a rarity key, 
 ```json
 {
   "name": "Common Bank",
-  "subtitle": "Free skills · no tree, no prerequisite",
-  "note": "Common Bank skills are independent from one another. Any character may buy one at any time, whatever their trees: they cost XP and nothing else."
+  "subtitle": "Free skills · no tree required",
+  "note": "{{banque-commune}} skills are independent from one another. Any character may buy one at any time, whatever their trees: they cost XP and whatever {{prerequis}} some of them carry."
 }
 ```
 
@@ -65,7 +65,7 @@ Never translate a key, an id, a domain key, a characteristic key, a rarity key, 
 ```json
 {
   "title": "Player Handbook",
-  "description": "Creating a character, the Soul, mastery points, resources and the basic skills."
+  "description": "Everything you need to play: the three golden rules, the Roll, building a character, the Trees, equipment, exploration, social interaction, combat and progression."
 }
 ```
 
@@ -75,11 +75,11 @@ A skill overlay with upgrades would look like this. Keys not listed stay French:
 {
   "title": "Rage",
   "duration": "Until the end of your next turn",
-  "description": "You fly into a rage. You are [[Enraged]] until the end of your next turn.",
+  "description": "You fly into a rage. You are {{enrage}} until the end of your next turn.",
   "upgrades": {
     "2": {
       "title": "Fury",
-      "description": "While you are [[Enraged]], your Attacks deal 2 extra damage."
+      "description": "While you are {{enrage}}, your {{attaque|Attacks}} deal 2 extra damage."
     }
   }
 }
@@ -104,9 +104,9 @@ Then open the `/en/` page and compare it against the `/fr/` one.
 
 **An invalid overlay is ignored without an error at render time.** If you add a field the overlay does not allow, or misspell one, the loader drops the whole overlay and the entry stays French on the English page. If an English page is stubbornly French, check the overlay's field names first.
 
-**`[[State name]]` inside a translated description must name the translated state name.** If you translate `Enragé` to `Enraged` in `data/states/enrage.en.json`, then the English skill descriptions must write `[[Enraged]]`. If you have not translated the state, keep writing `[[Enragé]]`.
+**A reference keeps its key in every locale.** The overlay writes `{{enrage}}` and `{{SILLAG-001}}` exactly as the French file does, never a translated name, and `pnpm data:check` resolves each key in the locale it is written in.
 
-**`{{Skill name}}` follows the same rule.** It resolves by title, in the locale being built.
+**A reference prints the labels of the language its string is written in.** In an overlay, `{{energie}}` prints `Energy`, and `{{enrage}}` prints the state's English name once `data/states/enrage.en.json` gives it one, `Enragé` until then. A French string the English page falls back to keeps its French labels. Write a plural as text after the bar: `{{jet|Rolls}}`.
 
 **Upgrades are keyed by level as a string, not by array position.** `"2"`, not `2`, and not the first element of a list. An upgrade level with no key keeps its French title and text.
 

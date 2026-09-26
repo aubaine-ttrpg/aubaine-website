@@ -21,16 +21,16 @@ That last group is the one to be careful with, because nothing validates it. `MJ
 `Action Bonus` are examples of it, not the whole of it. Read the chapters before inventing a term,
 and reuse what is there.
 
-Capitalize game terms mid sentence, as Aubaine already does. This is not decoration: it is what
-makes the term render with its icon and colour. See `keyword-rendering.md`.
+Capitalize game terms mid sentence, as Aubaine already does. The capitals are house style; the icon
+and the colour come from a `{{...}}` reference, never from the spelling. See `keyword-rendering.md`.
 
 ## Typography in source
 
 - Straight apostrophe `'`. Never the curly one. Titles are `Peau d'écorce` and `Chef-d'œuvre`, and a
-  curly apostrophe inside a name or a marked reference fails the build. The plates render a curly
+  curly apostrophe in a data file fails `pnpm data:check`. The plates render a curly
   apostrophe through the typesetter; that is the render, not the source.
 - No narrow no-break space and no no-break space before `:`, `;`, `?`, or `!`. There are none under
-  `data/` today, and one inside a keyword or a marked name breaks matching invisibly.
+  `data/` today, and `pnpm data:check` refuses one, because it cannot be told apart on screen.
 - Guillemets for quoted speech and for a named example: `« Navigation »`.
 - Decimal comma, and a regular space between the number and the unit: `1,5 m`, `9 m`.
 - Never U+2013 or U+2014 in prose. The em dash appears under `data/` only as the whole value of a

@@ -111,8 +111,8 @@ the page title is the `name` above.
 
 ![](../../media/art/feu-16_9-og.png)
 
-Un premier bloc, illustré. Le balisage d'une Compétence marche ici : [[Agonie]], {{Attaquer}} et
-les mots d'Aubaine se posent seuls.
+Un premier bloc, illustré. Une référence marche ici comme dans une Compétence : {{agonie}},
+{{ATTAQU-001}}, les {{jet|Jets}}. Un mot écrit sans balisage reste du texte.
 
 ## Coutumes
 

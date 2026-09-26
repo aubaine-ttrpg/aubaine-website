@@ -47,25 +47,25 @@ Upgrades are rendered by increasing level, whatever order you write them in. Wri
       "enhancement"
     ]
   },
-  "description": "Vous entrez en rage. Vous êtes [[Enragé]] jusqu'à la fin de votre prochain tour.\n\nChacune des choses suivantes la prolonge d'un tour de plus, au moment où elle arrive.\n\n***Frapper.*** Vous effectuez un Jet d'Attaque contre un ennemi.\n***Encaisser.*** Vous subissez des dégâts.\n***Contraindre.*** Vous forcez un ennemi à effectuer un Jet pour résister à l'une de vos Compétences.\n***Tenir.*** Vous dépensez une Action Bonus à la prolonger.\n\nLa rage ne dure pas plus de 10 minutes d'affilée.",
+  "description": "Vous entrez en rage. Vous êtes {{enrage}} jusqu'à la fin de votre prochain tour.\n\nChacune des choses suivantes la prolonge d'un tour de plus, au moment où elle arrive.\n\n***Frapper.*** Vous effectuez un {{jet}} d'{{attaque}} contre un ennemi.\n***Encaisser.*** Vous subissez des dégâts.\n***Contraindre.*** Vous forcez un ennemi à effectuer un {{jet}} pour résister à l'une de vos Compétences.\n***Tenir.*** Vous dépensez une {{action-bonus}} à la prolonger.\n\nLa rage ne dure pas plus de 10 minutes d'affilée.",
   "upgrades": [
     {
       "level": 2,
       "tier": 3,
       "title": "Fureur",
-      "description": "Tant que vous êtes [[Enragé]], vos Attaques infligent 2 dégâts de plus."
+      "description": "Tant que vous êtes {{enrage}}, vos {{attaque|Attaques}} infligent 2 dégâts de plus."
     },
     {
       "level": 3,
       "tier": 7,
       "title": "Fureur redoublée",
-      "description": "Tant que vous êtes [[Enragé]], vos Attaques infligent 3 dégâts de plus au lieu de 2."
+      "description": "Tant que vous êtes {{enrage}}, vos {{attaque|Attaques}} infligent 3 dégâts de plus au lieu de 2."
     },
     {
       "level": 4,
       "tier": 10,
       "title": "Fureur sans fin",
-      "description": "Tant que vous êtes [[Enragé]], vos Attaques infligent 4 dégâts de plus au lieu de 3, et votre rage peut durer 1 heure d'affilée au lieu de 10 minutes."
+      "description": "Tant que vous êtes {{enrage}}, vos {{attaque|Attaques}} infligent 4 dégâts de plus au lieu de 3, et votre rage peut durer 1 heure d'affilée au lieu de 10 minutes."
     }
   ]
 }
@@ -81,7 +81,7 @@ For a price above 50 XP you need `xpOverride`, because tier 10 stops at 50. `dat
       "tier": 10,
       "xpOverride": 75,
       "title": "Fournaise",
-      "description": "Lorsque vous lancez Aviver les flammes, vous pouvez dépenser 3 Énergies de plus pour lancer Fournaise. Les flammes atteignent la taille d'une cabane, elles infligent 4d12 dégâts de Feu et chaque dimension de leur zone augmente de 4,5 m."
+      "description": "Lorsque vous lancez {{AVIFLA-001}}, vous pouvez dépenser 3 {{energie|Énergies}} de plus pour lancer Fournaise. Les flammes atteignent la taille d'une cabane, elles infligent 4d12 dégâts de Feu et chaque dimension de leur zone augmente de 4,5 m."
     }
 ```
 
@@ -114,4 +114,4 @@ The schema says it plainly: `Ces trois états sont distincts et ne doivent jamai
 
 **An upgrade is not a derived skill.** If the step needs its own node, its own stat line or its own position on the plate, it is a separate skill file with `evolvesFrom` pointing at the base, not an upgrade. `evolvesFrom` is `Réservé aux nœuds rattachés à une base, jamais aux améliorations imbriquées.`
 
-**Same markup as the base.** `***gras***`, `[[Nom d'état]]`, `{{Nom de compétence}}`, blank line for a paragraph break.
+**Same markup as the base.** `***gras***`, `{{clé}}`, `{{clé|texte}}`, blank line for a paragraph break. `{{enrage}}` prints the state's name, `Enragé`.

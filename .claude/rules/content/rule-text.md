@@ -15,7 +15,7 @@ Rule text is the `description` of a skill, an upgrade, or a state, and the `text
 Aubaine trusts its players and its MJ to rule what a skill does not say. What a skill must say is what it can and cannot do against the rest of the game, because that is where its balance lives.
 
 - Keep every limitation: the cost, a cap, a condition under which the skill cannot be used, what a movement costs and what it crosses, the resolution (who rolls what against which DD, and what success and failure do), the order of chained effects and what stops them, and the ending of a lasting effect.
-- When a limitation recurs across skills, name it once as a state or a rule term and refer to it, the way [[Immobilisé]] carries every hold, rather than repeating the clause in each skill.
+- When a limitation recurs across skills, name it once as a state or a rule term and refer to it, the way `{{immobilise}}` carries every hold, rather than repeating the clause in each skill.
 - Leave to the MJ what only narrates what the fiction already makes obvious, or tells them how to judge a scene.
 - Length follows what the skill does. A complex skill may run long.
 

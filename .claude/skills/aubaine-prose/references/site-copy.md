@@ -14,10 +14,10 @@ makes an omission a compile error, so there is no fallback and no partially tran
 - A value may be a function taking a variable. It returns a complete message; never assemble one
   from concatenated fragments.
 - No version string. `tests/data/integrity.test.ts` fails on one.
-- The keyword index does not run here, so a capitalised game term is plain text with no icon, no
-  colour and no tooltip. Write it correctly anyway, because the reader still reads it.
+- Nothing here resolves a `{{...}}` reference, so a game term is plain text with no icon, no colour
+  and no tooltip. Write its capitals correctly anyway, because the reader still reads it.
 - This file uses the curly apostrophe, unlike `data/`, which requires the straight one. That is
-  deliberate: nothing here is matched against a keyword index.
+  deliberate: the straight apostrophe is a rule of `data/` only.
 
 ## The policy pages
 
@@ -41,10 +41,9 @@ editing prose there is a bug. What matters is knowing what your sentence becomes
 - A skill node page takes `flattenText(description, 160)`. **The first 160 characters of a skill's
   rule text are that page's meta description.** 249 of 271 descriptions are longer than that and are
   cut at the last whole word with an ellipsis, so the opening has to carry the meaning on its own.
-- `flattenText` removes the print callout, the `***` emphasis and the `[[` `]]` of a state
-  reference, then collapses whitespace. It does not remove `{{` `}}`, so a skill cross reference
-  inside the first 160 characters would reach the description with its braces. None does today.
-  Keep it that way by opening on the mechanic rather than on a reference.
+- `flattenText` removes the `***` emphasis and replaces each `{{...}}` with what it prints, its
+  written text or the entry's default label, then collapses whitespace. A reference inside the first
+  160 characters reaches the description as a plain word, never with its braces.
 - A tree page description is composed from interface strings and a count, not from authored prose.
 - A book chapter takes its own frontmatter `description`, falling back to the book's. A chapter of
   any length deserves its own.

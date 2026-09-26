@@ -43,6 +43,7 @@ The filename is the slug and the slug is the item's handle everywhere else. Lowe
 ```json
 {
   "name": "Dague",
+  "status": "draft",
   "section": "armes-melee",
   "position": 0,
   "kind": "Arme de mêlée",
@@ -76,15 +77,15 @@ The filename is the slug and the slug is the item's handle everywhere else. Lowe
   "properties": [
     {
       "name": "Finesse.",
-      "text": "Cette arme peut utiliser Dextérité + Finesse à la place de Force + Mêlée. Lorsque vous le faites, utilisez également votre Dextérité à la place de votre Force pour ses dégâts."
+      "text": "Cette arme peut utiliser {{dexterite}} + {{finesse}} à la place de {{force}} + {{melee}}. Lorsque vous le faites, utilisez également votre {{dexterite}} à la place de votre {{force}} pour ses dégâts."
     },
     {
       "name": "Légère.",
-      "text": "Lorsque vous tenez une arme Légère dans chacune de vos mains et que vous effectuez une attaque avec l'une d'elles, vous pouvez utiliser votre Action bonus pour effectuer une attaque avec l'autre. Cette attaque n'ajoute pas sa Caractéristique à ses dégâts."
+      "text": "Lorsque vous tenez une arme Légère dans chacune de vos mains et que vous effectuez une attaque avec l'une d'elles, vous pouvez utiliser votre {{action-bonus}} pour effectuer une attaque avec l'autre. Cette attaque n'ajoute pas sa {{caracteristique}} à ses dégâts."
     },
     {
       "name": "Lancé (9m).",
-      "text": "Cette arme peut être lancée sur une cible située jusqu'à 9 mètres. Lorsqu'elle est lancée, son Jet utilise Visée à la place de son Aptitude habituelle."
+      "text": "Cette arme peut être lancée sur une cible située jusqu'à 9 mètres. Lorsqu'elle est lancée, son {{jet}} utilise {{visee}} à la place de son {{aptitude}} habituelle."
     }
   ],
   "craft": {
@@ -106,6 +107,7 @@ An item that grants a skill, `data/equipment/items/pyro-catalyseur.json`:
 ```json
 {
   "name": "Pyro-catalyseur",
+  "status": "playtest",
   "section": "bijoux",
   "position": 0,
   "kind": "Bijou",
@@ -121,7 +123,7 @@ An item that grants a skill, `data/equipment/items/pyro-catalyseur.json`:
   "properties": [
     {
       "name": "Catalyseur.",
-      "text": "Tant que cette pièce est équipée, vous pouvez activer vos Sorts, passifs comme actifs."
+      "text": "Tant que cette pièce est équipée, vous pouvez utiliser vos {{sort|Sorts}}, passifs comme actifs."
     },
     {
       "name": "Matériel.",
@@ -180,6 +182,6 @@ pnpm dev
 
 **Never write `"key": null`.** Leave the key out.
 
-**Rule markup works in `text`, `description` and property texts.** `***gras***`, `[[Nom d'état]]`, `{{Nom de compétence}}`. Every name must resolve or `pnpm data:check` fails.
+**Rule markup works in `text`, `description` and property texts.** `***gras***`, `{{clé}}`, `{{clé|texte}}`, with the keys [data-contract.md](../data-contract.md#rule-text-markup) lists. Every key must resolve or `pnpm data:check` fails, and a word without markup never links.
 
 **Adding the file is enough.** The grid entry, the filter values and the search row all appear on their own.

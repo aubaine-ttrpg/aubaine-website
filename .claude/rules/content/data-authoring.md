@@ -18,7 +18,7 @@ paths:
 ## Identity
 
 - A skill id is drawn from the French title by `docs/runbooks/choose-a-skill-id.md`; run `pnpm skill:id` rather than inventing one. It is unique across the whole repository, including across trees, and never changes once its skill leaves draft.
-- A skill `title` and a state `name` are identifiers as well as labels: they are what `{{...}}` and `[[...]]` resolve against and what the term index matches. Renaming one is a repository wide change.
+- Rule text references a skill by its `id` and a state by its `key`, never by its `title` or `name`: `{{RAGEXX-001}}`, `{{enrage}}`. Renaming a title or a name moves no reference; it changes the default label wherever a reference writes no text of its own. A state `key` is its file name and does not change.
 - A state `name` must be unique.
 - Machine values, meaning ids, `key` fields, and domain, characteristic, rarity, discipline and tag keys, are shared across locales and are never translated.
 

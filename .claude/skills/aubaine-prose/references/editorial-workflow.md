@@ -12,7 +12,7 @@
    same kind elsewhere, and name the ones you used when you report.
 3. Build the field skeleton from the schema. Decide every structured value before writing a sentence.
 4. Write the mechanic until it is internally complete: trigger, subject, resolution, outcome, ending.
-5. Apply keyword spelling.
+5. Reference by key what the reader should reach, `{{clé}}`, or `{{clé|texte}}` for an agreement.
 6. Add flavor only where it gives the entry identity, and only where it cannot be read as a rule.
 7. Run `pnpm data:check`, then look at the page.
 
@@ -59,7 +59,8 @@ verified against a file in the repository before it ships. See `site-copy.md`.
 - Remove filler and repeated conclusions.
 - Replace vague adjectives with concrete facts.
 - Check vocabulary against Aubaine's data, not against memory.
-- Check that keywords are spelled canonically.
+- Check that game terms keep their established spelling and that every term meant to link is
+  referenced by key.
 - Check that no sentence added a mechanic the structured data does not carry.
 - Check that no structured value was restated in prose.
 - Check canon consistency against the entries and chapters that touch the same concept.

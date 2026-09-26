@@ -11,25 +11,26 @@ paths:
 - These lists are the whole taxonomy. An entry may only name a key that is declared there, and `pnpm data:check` enforces it.
 - Adding, removing, or renaming a key is a product decision that changes the schema surface, not an authoring step.
 - A key is a machine value. It is never translated and never shown to a reader.
-- `labelFr` and `labelEn` are what the reader sees and what the term index matches on. Changing one changes how keywords link across the whole of Aubaine.
-- The vocabulary schema is strict and narrow. Read `vocabulary` in `src/lib/game/schema.ts` for the fields it allows. `formsFr` and `formsEn` carry the other written forms of a label, agreement and plural included, so that a bare word is still marked in rule text. They are spellings, not a glossary.
-- `definitionFr` and `definitionEn` are the tooltip text of a word, written together or not at all, in plain text. Only the vocabularies whose words carry a tooltip hold them: `characteristics.json` (every entry but the `any` marker) and `aptitudes.json`. `pnpm data:check` requires them there and refuses them anywhere else. Aliases, gender and usage notes still have no field.
+- `labelFr` and `labelEn` are what the reader sees. In `characteristics.json` and `aptitudes.json` each label is also the default text of a reference to its word in that locale, and the `slugify` of `labelFr` is the key a text references it by, as `{{dexterite}}`. Changing a `labelFr` there changes the key, and every reference to it has to move.
+- The vocabulary schema is strict and narrow. Read `vocabulary` in `src/lib/game/schema.ts` for the fields it allows. Inflected forms have no field: rule text writes a plural or an agreement as `{{clé|texte}}`.
+- `definitionFr` and `definitionEn` are the tooltip text of a word, written together or not at all. Only the vocabularies whose words carry a tooltip hold them: `characteristics.json` (every entry but the `any` marker) and `aptitudes.json`. `pnpm data:check` requires them there and refuses them anywhere else. Aliases, gender and usage notes still have no field.
 - A definition is the source of truth for its word. A chapter that restates the word follows it.
 - The Rules page, `/fr/regles`, shows the same definition in the detail of each rule term, Caractéristique, Aptitude and tag. `ruleBrowseEntries` in `src/lib/game/browse-entries.ts` reads the words from the `glossary` that `src/lib/game/build.ts` also builds the term index from, and the tags from `data/meta/tags.json`, so a tooltip and its Rules entry cannot disagree.
+- A definition may reference other entries with `{{clé}}` and `{{clé|texte}}`, and so may a tag definition in `data/meta/tags.json`, a definition in `RULE_TERMS` and the `note` of `data/skill-lists/common-bank.json`. The Rules page renders those references as links. A tooltip, the tag hints on a skill entry and the source popover show the same text flattened: each reference prints its label or its written text, never its braces.
 - A terminology decision that does not fit the schema belongs in prose, in `docs/`, not in a data file.
 
 ## Rule terms
 
 - Rule terms are a vocabulary of their own, declared in `RULE_TERMS` in `src/lib/game/build.ts` rather than in `data/meta/`. `Avantage` is one of them. Read the declaration for the current set and never work from a copy of it.
-- Each entry carries its own colour and icon, lists its inflected forms per locale, and carries its tooltip `definition` in both locales. It is matched wherever it appears in rule text.
+- Each entry carries one label per locale, its own colour and icon, and its tooltip `definition` in both locales. Its key is the `slugify` of the French label, as `{{action-bonus}}`, and it links only where a text writes that reference.
 - `Sort` carries no text of its own: it reads the definition of the `spell` tag in `data/meta/tags.json`, so the word is defined once.
 - `Banque Commune` carries none either: it reads the `note` of `data/skill-lists/common-bank.json`, the same paragraph the skills index shows on the Common Bank's label.
-- Changing that list changes the rendering of every entry. Treat it as a vocabulary change, not a code change.
+- Changing that list changes every entry that references it, and a new French label is a new key. Treat it as a vocabulary change, not a code change.
 - It lives in code only for historical reasons. Do not treat that as licence to hard code any other vocabulary.
 
 ## Aptitudes
 
-- Aptitudes are a keyword class of their own, declared in `data/meta/aptitudes.json` and merged into the term index after the characteristics and before the states.
+- Aptitudes are a keyword class of their own, declared in `data/meta/aptitudes.json` and referenced by the `slugify` of `labelFr`, as `{{visee}}`.
 - They share one colour, `--term-apt`, and one icon, `APTITUDE_ICON` in `src/lib/game/build.ts`, because they are a class rather than individually marked concepts. Any Caractéristique can pair with any Aptitude, so a per Aptitude icon or colour would draw a binding the rules do not have.
 - An aptitude entry therefore carries no `iconName`. The schema still allows the field, because the other vocabularies use it; do not add it back here.
 - Each Aptitude carries its own definition: they share a colour and an icon, not a meaning.

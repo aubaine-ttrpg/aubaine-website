@@ -14,16 +14,14 @@ letter clusters.
 
 For each culture, establish a small naming grammar and reuse it consistently.
 
-## In Aubaine, a name is also an identifier
+## In Aubaine, a name is also a default label
 
-A skill `title` and a state `name` are what `{{...}}` and `[[...]]` resolve against and what the term
-index matches. That has three consequences.
+Rule text references a skill by its id and a state by its key, and prints the `title` or the `name`
+wherever the reference writes no text of its own. That has two consequences.
 
 - A name must be unique in its class. Two states may not share a printed name.
-- Renaming is a repository wide change. Every entry that references the old name has to move with it,
-  in both locales, or the build fails.
-- A name that collides with a rule term or a characteristic label loses. The index is first wins, and
-  the later entry simply never links.
+- Renaming moves no reference, and changes the printed label everywhere a reference relies on it, in
+  the locale of that name. An agreement written around the old name may no longer fit.
 
 The id is drawn from the French title by `docs/runbooks/choose-a-skill-id.md`: six characters, then a
 number, and `pnpm skill:id` computes it. It follows the title while the skill is a draft and is fixed

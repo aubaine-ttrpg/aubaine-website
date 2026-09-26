@@ -32,13 +32,17 @@ untranslated and say so.
 `data/meta/*.json` carries `labelEn` for every domain, characteristic, rarity, discipline, and node
 type. Use it exactly.
 
-## Marked references resolve per locale
+## References keep their key
 
-`[[...]]` resolves against the state name in the locale being built, and `{{...}}` against the skill
-title. If a state has been translated, English descriptions must use the translated name. If it has
-not, keep the French name inside the brackets.
+An overlay writes the same key as the French: `{{enrage}}`, `{{RAGEXX-001}}`, never a translated
+name. Written alone, a reference prints the entry's English label, so an overlay writes `{{energie}}`
+and gets "Energy"; an entry nobody has translated yet prints its French label there. A plural goes in
+the written text, `{{jet|Rolls}}`, which prints exactly as written. A French string the English page
+falls back to keeps its French labels. `pnpm data:check` resolves each key in the locale it is
+written in.
 
-Keyword capitalization matters in English for the same reason it matters in French.
+Keep the capitals English game terms are given in `RULE_TERMS` and in `labelEn`. As in French, they
+are style: only a `{{...}}` links.
 
 ## Voice
 

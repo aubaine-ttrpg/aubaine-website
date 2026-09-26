@@ -27,8 +27,8 @@ French is the source language and the fallback. English is a sidecar overlay: th
 
 - Translate the concept, not the sentence shape. A localized entry is not the French one with the nouns replaced.
 - A translation may never change how a rule executes. If the English wording admits a different resolution, the translation is wrong.
-- `[[...]]` and `{{...}}` resolve in the locale being built. If a state is translated, the English descriptions must name the translated state; if it is not, keep the French name inside the brackets.
-- Keyword capitalization matters in English for the same reason it matters in French. See `keywords-and-markup.md`.
+- A reference keeps its key in both locales: an overlay writes `{{enrage}}` and `{{RAGEXX-001}}` exactly as the French does, never a translated name. Written alone, it prints the entry's English label, which stays the French one for an entry nobody has translated yet. A plural goes in the written text, `{{jet|Rolls}}`. `pnpm data:check` resolves each key in the locale it is written in.
+- Keep the established capitalization of English game terms. It is style: a word links only through `{{...}}`. See `keywords-and-markup.md`.
 - Choose one English term per Aubaine concept and use it everywhere. Use `labelEn` from `data/meta/` and the English side of `RULE_TERMS` where they cover the concept.
 - Use British spelling, the Oxford comma where it prevents ambiguity, and direct subject verb object sentences for mechanics.
 

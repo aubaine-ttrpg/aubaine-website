@@ -9,20 +9,19 @@ A skill id is drawn from the French title by `docs/runbooks/choose-a-skill-id.md
 a draft, a new title means a new id, a renamed file and every reference moved. From `playtest` on,
 the id stays what it was, whatever the title becomes.
 
-## A title is a reference, so renaming one is a repository wide change
+## A title is a default label, so renaming one changes every reference that prints it
 
-A skill `title` is what `{{...}}` resolves against and a state `name` is what `[[...]]` resolves
-against. Renaming one means moving every reference to it, in both locales, or the build fails. Check
-the English overlay as well: it carries its own title and resolves against the English index.
-
-A name that collides with a rule term or a characteristic label loses, because the index is first
-wins and the later entry simply never links. Check before renaming, not after.
+Rule text references a skill by its id and a state by its key, so renaming a `title` or a `name`
+breaks no reference. It changes the text of every reference that writes none of its own, in the
+language of each string: the French title in French text, the overlay's title in English text.
+Search the id or the key across `data/` and read each of those sentences again, because an agreement
+written around the old name may no longer fit.
 
 ## Triage before editing
 
 Classify the entry first, because the three cases want different work.
 
-- **Sound.** Tighten the prose, add the detail it lacks, check the keyword spelling.
+- **Sound.** Tighten the prose, add the detail it lacks, check the references by key.
 - **Overlapping.** It answers a question another entry already answers. Differentiate it or merge
   it. See `one-entry-one-job.md`.
 - **Weak.** The mechanic itself is incomplete or contradicts a field. That is a design question and

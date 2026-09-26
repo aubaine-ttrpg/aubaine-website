@@ -37,8 +37,8 @@ It holds three groups, `practices`, `schools` and `specials`. Add the entry to t
 | `practices` | schools only | Les Pratiques que cette École accepte : la matrice Pratique x École. Ouvrir une case est une décision d'équilibrage. | one or more keys from `practices` |
 | `labelFr` | required | The printed French label. | unique across the file |
 | `labelEn` | required | The printed English label. | unique across the file |
-| `definitionFr` | required | Texte de l'infobulle de l'étiquette, en clair et sans balisage. | plain text |
-| `definitionEn` | required | Texte anglais de l'infobulle. | plain text |
+| `definitionFr` | required | Texte de l'infobulle de l'étiquette. Il peut citer une entrée par `{{clé}}` ou `{{clé\|texte}}` : la page des règles en fait un lien, l'infobulle n'en garde que le texte imprimé. | text, with references by key |
+| `definitionEn` | required | Texte anglais de l'infobulle. | text, with references by key |
 
 Key order is the order of this table.
 
@@ -75,6 +75,8 @@ A skill carrying it:
 
 A definition says what the tag means at the table, with a touch of flavour, in real sentences. An École describes what its Compétences do (« L'art du faux-semblant. Ses Compétences… »), never an order to the character. Never define a tag by listing the others it is not: the list grows and the definition drifts. Write French first through the `aubaine-prose` skill, then the English.
 
+A definition may reference an entry by key, `{{clé}}` or `{{clé|texte}}`, as rule text does. The Rules page renders the reference as a link. The chip's tooltip and the tag hints on a skill entry show the same text flattened: the label or the written text, never the braces.
+
 ## The steps
 
 1. Add the entry to `data/meta/tags.json`.
@@ -106,6 +108,6 @@ pnpm dev
 
 **Retire a tag from every skill before removing it.** A skill naming an undeclared key fails the build.
 
-**Tags are not keywords.** A tag label is not marked in prose. Only `Sort` marks, because it is also a rule term.
+**Tags are not keywords.** A tag name is never a reference: a tag has no key, and its label written in prose stays text. `Sort` links as the rule term `{{sort}}`, which reads the definition of the `spell` tag.
 
 **Book chapters cache their tooltips.** Delete `node_modules/.astro` before rebuilding after a definition change, as [add-an-image.md](add-an-image.md) explains.

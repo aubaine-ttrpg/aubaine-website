@@ -29,18 +29,19 @@ The filename is the set id. Existing sets use five capital letters: `TRAQU.json`
 ```json
 {
   "id": "TRAQU",
+  "status": "draft",
   "name": "Panoplie du Traqueur",
   "bonuses": [
     {
       "pieces": 2,
-      "text": "Vous gagnez la Compétence {{Sillage}}. Elle n'occupe aucune Mémoire et n'a pas à être apprise.",
+      "text": "Vous gagnez la Compétence {{SILLAG-001}}. Elle n'occupe aucune {{memoire}} et n'a pas à être apprise.",
       "grants": [
         "SILLAG-001"
       ]
     },
     {
       "pieces": 4,
-      "text": "La première fois que vous touchez une créature alors que vous êtes [[Caché]] au cours d'un combat, elle subit 1d6 dégâts supplémentaires."
+      "text": "La première fois que vous touchez une créature alors que vous êtes {{cache}} au cours d'un combat, elle subit 1d6 dégâts supplémentaires."
     }
   ]
 }
@@ -51,6 +52,7 @@ A piece joins the set by naming it. `data/equipment/items/capuche-de-traque.json
 ```json
 {
   "name": "Capuche de traque",
+  "status": "draft",
   "section": "tetes",
   "position": 0,
   "kind": "Tête",
@@ -105,6 +107,6 @@ pnpm dev
 
 **A granted skill is usually `"showXp": false`.** It is never bought, so the gold XP token should not be shown on it.
 
-**Rule markup works in `text`.** `{{Nom de compétence}}` for a skill, `[[Nom d'état]]` for a state. Both must resolve.
+**Rule markup works in `text`.** A reference names its entry by key, never by name: `{{SILLAG-001}}` for a skill, `{{cache}}` for a state. Every key must resolve.
 
 **Never write `"grants": null`.** Leave the key out on a tier that grants nothing.

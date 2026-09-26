@@ -10,9 +10,8 @@ whether something is covered. The summary below orients you; it does not bound t
 
 - Every domain, characteristic, rarity, and discipline key an entry names is declared in `data/meta/`.
 - Every tree placement link, `evolvesFrom`, equipment `grants`, item `set`, and skill list id resolves.
-- Every `[[...]]` resolves to a state `name` and every `{{...}}` to a skill `title`, case insensitively,
-  across skill descriptions, upgrade descriptions, state descriptions, item text and description, and
-  set bonus text. Callouts are checked and then stripped before the state pass.
+- Every `{{...}}` names a key that resolves in the locale its string is written in, and `[[` appears
+  nowhere.
 - Referenced art, PDFs, and book pages exist on disk.
 - State printed names and item slugs are unique, and every item section is a declared catalogue key.
 - No explicit `null` anywhere under `data/`.
@@ -37,7 +36,10 @@ whether something is covered. The summary below orients you; it does not bound t
 
 These are the failure modes to watch by eye, because CI is silent on them.
 
-- **Keyword capitalization.** A bare term spelled `avantage` passes and simply does not render.
+- **Missing references.** A term written without `{{...}}` passes and simply does not link, whatever
+  its capitals.
+- **Written text.** `{{clé|texte}}` prints `texte` as written. Nothing checks that it agrees with its
+  sentence or still suits the entry it links.
 - **Overlay completeness.** The coverage test counts entries, not translated strings. An overlay with
   one disallowed key is dropped whole and the entry renders in French on the English page, with no
   error anywhere.

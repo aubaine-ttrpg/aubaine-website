@@ -56,7 +56,7 @@ The list file, `data/skill-lists/basic-skills.json`:
   "activation": "1 Action",
   "range": "Spéciale",
   "duration": "Spéciale",
-  "description": "Vous tentez quelque chose qu'aucune Compétence ne couvre. Dites ce que votre personnage cherche à obtenir et comment il s'y prend.\n\nLe MJ répond trois choses : si c'est possible, ce que la tentative coûte et risque, et quel Jet la tranche. Une tentative dont l'issue ne fait aucun doute aboutit sans Jet.\n\nCette page n'est pas une liste fermée. Les Compétences qui suivent sont celles qui reviennent à toutes les tables ; tout ce que la fiction autorise se joue de la même manière."
+  "description": "Vous tentez quelque chose qu'aucune Compétence ne couvre. Dites ce que votre personnage cherche à obtenir et comment il s'y prend.\n\nLe MJ répond trois choses : si c'est possible, ce que la tentative coûte et risque, et quel {{jet}} la tranche. Une tentative dont l'issue ne fait aucun doute aboutit sans {{jet}}.\n\nCette page n'est pas une liste fermée. Les Compétences qui suivent sont celles qui reviennent à toutes les tables ; tout ce que la fiction autorise se joue de la même manière."
 }
 ```
 
@@ -90,7 +90,7 @@ The list file, `data/skill-lists/basic-skills.json`:
 - `/fr/competences` and `/en/skills`: a row in the skill index, with `Compétences de base` as its source, filterable by that source alongside the trees and the Banque Commune. Its source button opens the list's `note`.
 - `/fr/regles` and `/en/rules`: a row filed under the `Compétence de base` family, whose detail is the full skill card.
 - Both lists sort alphabetically by title, so the order in `skills` does not decide the screen order; it decides the printed order.
-- Anywhere rule text writes `{{Improviser}}`, the name becomes a cross reference with a tooltip, and the link opens the skill's entry in the skill index.
+- Anywhere rule text writes `{{IMPROV-001}}`, the title prints as a link with a tooltip, and the link opens the skill's entry in the skill index. The reference names the skill by its id, never by its title.
 - `/fr/recherche` and `/en/search`: a row under the skills group.
 
 ## How to check it

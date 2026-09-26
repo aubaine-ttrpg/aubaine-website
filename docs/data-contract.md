@@ -54,7 +54,7 @@ data/skills/RAGEXX-001.en.json     the English overlay
 
 An overlay holds only the strings that change. Every key it leaves out falls back to French. An overlay may only carry the fields its kind allows, and an overlay that does not fit its shape is dropped whole, which leaves the entry in French on the English page. See `runbooks/add-a-translation.md`.
 
-Markdown book pages follow the same rule: `02-l-ame.md` and `02-l-ame.en.md`.
+Markdown book pages follow the same rule: `03-creer-un-personnage.md` and `03-creer-un-personnage.en.md`.
 
 Machine values are never translated. Ids, `key` fields, domain keys, characteristic keys, rarity keys and discipline keys are shared across locales.
 
@@ -140,19 +140,37 @@ The same markup works in a skill description, an upgrade description, a state de
 | You write | You get |
 | --- | --- |
 | `***gras***` | bold |
-| `[[Nom d'état]]` | a state pastille with a tooltip |
-| `{{Nom de compétence}}` | a cross reference with a tooltip |
+| `{{clé}}` | a link to the entry the key names, with its tooltip, printing the entry's default label |
+| `{{clé\|texte}}` | the same link, printing `texte` exactly as written |
 | a blank line | a paragraph break |
 
-A name inside brackets or braces must resolve exactly, accents included, or `pnpm data:check` fails. States resolve by `name`, skills by `title`.
+Every link is explicit. A word written without markup is plain text and never links, whatever its capitals. `texte` is plain text too, with no markup inside it.
+
+Each entry answers to one key, derived from the entry and never stored in a field. `slugify` in `src/lib/game/derive.ts` lowercases a label, drops its accents and joins its words with hyphens.
+
+| Entry | Key | Example |
+| --- | --- | --- |
+| rule term | the `slugify` of its French label in `RULE_TERMS`, in `src/lib/game/build.ts` | `{{energie}}`, `{{action-bonus}}`, `{{jet\|Jets}}` |
+| Caractéristique | the `slugify` of its `labelFr` in `data/meta/characteristics.json`, not its `key` | `{{dexterite}}` |
+| Aptitude | the `slugify` of its `labelFr` in `data/meta/aptitudes.json` | `{{visee}}` |
+| state | its `key`, which is its file name in `data/states/` | `{{a-terre}}`, `{{entrave\|Entravée}}` |
+| skill | its `id` | `{{TRAFEU-001}}`, `{{RAGEXX-001\|cette Compétence}}` |
+
+The default label is the entry's label in the language the text is written in. A French string prints French labels, and so does a French string an English page falls back to when there is no overlay. Only a string from an `.en` overlay prints English labels: an overlay writes `{{energie}}` and gets `Energy`.
+
+No entry lists inflected forms. A plural or an agreement is written text: `{{entrave|Entravées}}`, `{{energie|Énergies}}`.
+
+`pnpm data:check` fails on a `{{...}}` whose key does not resolve in the locale it is written in, and on `[[` anywhere. Renaming a skill's `title` or a state's `name` moves no reference: it changes the default label wherever a reference writes no text of its own. A state's key is its file name, so it does not change. [adr/0029](adr/0029-every-link-is-an-explicit-reference-by-key.md) records the reasons.
+
+Book chapters, the lore pages and the equipment guide use the same references, and they resolve the same way. Every `{{...}}` renders as a link and every bare word as text, so the author chooses each link. Markdown owns emphasis there, so write `**bold**` rather than `***gras***`.
+
+Definitions carry references too: `definitionFr` and `definitionEn` in `data/meta/`, the definitions in `RULE_TERMS` and the `note` of `data/skill-lists/common-bank.json`. The Rules page renders them as links. A tooltip, the tag hints on a skill entry and the source popover show the same text flattened: each reference prints its label or its written text, never its braces.
 
 Rule text cites a tag in plain words, « l'étiquette » followed by its French label exactly: `l'étiquette Vol de vie`. `pnpm data:check` fails on a label `data/meta/tags.json` does not declare.
 
 ## Tags are a closed vocabulary
 
 A skill's `tags` is an object with three optional slots, `practice` (one key), `schools` (one or two) and `specials` (one or more), filled with keys from `data/meta/tags.json`. That file holds the labels, the tooltip definitions and, on each École, the Pratiques it accepts. A skill carries only the slots it needs, and none at all is a valid answer. [runbooks/add-a-tag.md](runbooks/add-a-tag.md) owns the procedure and [adr/0020](adr/0020-skill-tags-are-three-optional-slots-and-every-hovered-word-is-defined.md) the reasons.
-
-Book chapters use the same markup, and it resolves the same way. They are rendered through the term index too, so a keyword spelled canonically is marked wherever it appears in prose. Markdown owns emphasis there, so write `**bold**` rather than `***gras***`.
 
 ## Where the book chapters came from
 
