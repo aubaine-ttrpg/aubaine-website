@@ -19,5 +19,5 @@
       "control"
     ]
   },
-  "description": "Cette manœuvre remplace l'une des Attaques de l'action {{Attaquer}}.\n\nEffectuez un Jet opposé de Force + Athlétisme contre le Jet de Force + Athlétisme ou de Dextérité + Acrobaties de la cible, à son choix. En cas de réussite, choisissez : elle tombe [[À terre]], ou vous la repoussez de 1,5 m.\n\n[[[À terre]]]"
+  "description": "Effectuez un Jet opposé de Force + Athlétisme contre le Jet de Force + Athlétisme ou de Dextérité + Acrobaties de la cible, à son choix. En cas de réussite, choisissez : elle tombe [[À terre]], ou vous la repoussez de 1,5 m.\n\n[[[À terre]]]"
 }
