@@ -1,7 +1,14 @@
 import type { Locale } from '../i18n/locales.ts'
 import { pathFor } from '../i18n/routes.ts'
 import { strings } from '../i18n/strings.ts'
-import { type Corpus, definition, type GlossaryTerm, label, type ResolvedSpecies } from './build.ts'
+import {
+  type Corpus,
+  definition,
+  type GlossaryTerm,
+  label,
+  type ResolvedSpecies,
+  type SkillOrigin,
+} from './build.ts'
 import {
   characteristicKey,
   collator,
@@ -31,6 +38,8 @@ import { type BadgedStatus, badgedStatus } from './status.ts'
 export type BrowseSource =
   | { kind: 'tree' | 'species' | 'item'; title: string; href: string }
   | { kind: 'basic' | 'bank' | 'other'; title: string }
+
+export type SourceOwner = { kind: 'species'; id: string }
 type FacetValue = { value: string; label: string }
 type Facet = { group: string; values: string[]; labels: string[] }
 
@@ -122,6 +131,97 @@ function statusFacet(status: ContentStatus | undefined, locale: Locale): Facet {
   return facet('sta', [{ value: key, label: labels[key] }])
 }
 
+const skillDomains = (skill: Skill): string[] =>
+  skill.domains.length > 0 ? skill.domains : [NEUTRAL]
+
+const activationOf = (skill: Skill): string => skill.activation || EM_DASH
+
+function skillFacets(skill: Skill, corpus: Corpus, locale: Locale): Facet[] {
+  const t = strings(locale)
+  const typeLabels = { active: t.active, passive: t.passive, special: t.special }
+
+  const costs: FacetValue[] = []
+  if (hasCost(skill.energy)) costs.push({ value: 'energy', label: t.energy })
+  if (hasCost(skill.karma)) costs.push({ value: 'karma', label: t.karma })
+  if (skill.life) costs.push({ value: 'life', label: t.life })
+  if (costs.length === 0) costs.push({ value: 'free', label: t.freeCost })
+
+  const characteristics = (skill.characteristics ?? []).map((key) => {
+    const canonical = characteristicKey(key)
+    return { value: canonical, label: label(corpus.characteristics.get(canonical), locale, key) }
+  })
+  if (characteristics.length === 0) characteristics.push({ value: 'none', label: t.noJet })
+
+  const tier = skill.tier || 1
+  const activation = activationOf(skill)
+
+  return [
+    facet(
+      'dom',
+      skillDomains(skill).map((key) => ({
+        value: key,
+        label: label(corpus.domains.get(key), locale, key),
+      })),
+    ),
+    facet('typ', [{ value: skill.type, label: typeLabelFor(skill.type, typeLabels) }]),
+    facet('cost', costs),
+    facet('act', [{ value: activation, label: activation }]),
+    facet('chr', characteristics),
+    facet('tier', [{ value: `t${tier}`, label: `${t.level} ${tier}` }]),
+    ...tagFacets(skill, corpus, locale),
+  ]
+}
+
+function originOf(skill: Skill, corpus: Corpus): SkillOrigin {
+  const source = corpus.origins.get(skill.id)
+  if (!source) throw new Error(`${skill.id} is listed but nothing offers it`)
+  return source
+}
+
+export function skillSources(
+  skill: Skill,
+  corpus: Corpus,
+  locale: Locale,
+  owner?: SourceOwner,
+): BrowseSource[] {
+  const t = strings(locale)
+  const source = originOf(skill, corpus)
+  const isOwner = (kind: SourceOwner['kind'], id: string): boolean =>
+    owner?.kind === kind && owner.id === id
+
+  const sources: BrowseSource[] = [
+    ...source.trees.map(
+      (tree): BrowseSource => ({
+        kind: 'tree',
+        title: tree.name,
+        href: pathFor('tree', locale, { tree: tree.id, node: skill.id }),
+      }),
+    ),
+    ...source.species
+      .filter((entry) => !isOwner('species', entry.id))
+      .map(
+        (entry): BrowseSource => ({
+          kind: 'species',
+          title: entry.subspecies ? `${entry.name} · ${entry.subspecies.name}` : entry.name,
+          href:
+            pathFor('speciesEntry', locale, { species: entry.id }) +
+            (entry.subspecies ? `#${subspeciesAnchor(entry.subspecies.id)}` : ''),
+        }),
+      ),
+    ...source.items.map(
+      (item): BrowseSource => ({
+        kind: 'item',
+        title: item.name,
+        href: `${pathFor('equipment', locale)}#e-${item.slug}`,
+      }),
+    ),
+  ]
+  if (source.bank) sources.push({ kind: 'bank', title: corpus.bank.name })
+  if (source.basic) sources.push({ kind: 'basic', title: corpus.basic.name })
+  if (sources.length === 0 && !owner) sources.push({ kind: 'other', title: t.other_ })
+  return sources
+}
+
 export function originSkills(corpus: Corpus): Skill[] {
   return [...corpus.origins.keys()].flatMap((id) => {
     const skill = corpus.skills.get(id)
@@ -157,15 +257,9 @@ export function skillBrowseEntries(
   }
 
   const out = skills.map((skill): BrowseEntry => {
-    const source = corpus.origins.get(skill.id)
-    if (!source) throw new Error(`${skill.id} is listed but nothing offers it`)
-    const elsewhere = species
-      ? source.species.filter((entry) => entry.id !== species.id)
-      : source.species
-
-    const domains = skill.domains.length > 0 ? skill.domains : [NEUTRAL]
+    const source = originOf(skill, corpus)
     const tint = skillTint(skill, corpus)
-    const domainText = domains.map(domainLabel).join(' + ')
+    const domainText = skillDomains(skill).map(domainLabel).join(' + ')
     const typeText = typeLabelFor(skill.type, typeLabels)
     const within = species ? (subspeciesOf.get(skill.id) ?? species) : undefined
     const src = within
@@ -179,8 +273,7 @@ export function skillBrowseEntries(
             : source.basic
               ? basicName
               : t.other_
-    const activation = skill.activation || EM_DASH
-    const xpLabel = !species && showsXp(skill) ? `${formatNumber(xpOf(skill), locale)} ${t.xp}` : ''
+    const xpLabel = !species && showsXp(skill) ? `${formatNumber(xpOf(skill), locale)} ${t.xp}` : ''
 
     const acquisition: FacetValue[] = []
     if (source.trees.length > 0) acquisition.push({ value: 'tree', label: t.fromTrees })
@@ -190,75 +283,28 @@ export function skillBrowseEntries(
     if (source.items.length > 0) acquisition.push({ value: 'item', label: t.fromItems })
     if (acquisition.length === 0) acquisition.push({ value: 'other', label: t.other_ })
 
-    const costs: FacetValue[] = []
-    if (hasCost(skill.energy)) costs.push({ value: 'energy', label: t.energy })
-    if (hasCost(skill.karma)) costs.push({ value: 'karma', label: t.karma })
-    if (skill.life) costs.push({ value: 'life', label: t.life })
-    if (costs.length === 0) costs.push({ value: 'free', label: t.freeCost })
-
-    const characteristics = (skill.characteristics ?? []).map((key) => {
-      const canonical = characteristicKey(key)
-      return { value: canonical, label: label(corpus.characteristics.get(canonical), locale, key) }
-    })
-    if (characteristics.length === 0) characteristics.push({ value: 'none', label: t.noJet })
-
-    const tier = skill.tier || 1
-
-    const sources: BrowseSource[] = [
-      ...source.trees.map(
-        (tree): BrowseSource => ({
-          kind: 'tree',
-          title: tree.name,
-          href: pathFor('tree', locale, { tree: tree.id, node: skill.id }),
-        }),
-      ),
-      ...elsewhere.map(
-        (entry): BrowseSource => ({
-          kind: 'species',
-          title: entry.subspecies ? `${entry.name} · ${entry.subspecies.name}` : entry.name,
-          href:
-            pathFor('speciesEntry', locale, { species: entry.id }) +
-            (entry.subspecies ? `#${subspeciesAnchor(entry.subspecies.id)}` : ''),
-        }),
-      ),
-      ...source.items.map(
-        (item): BrowseSource => ({
-          kind: 'item',
-          title: item.name,
-          href: `${pathFor('equipment', locale)}#e-${item.slug}`,
-        }),
-      ),
-    ]
-    if (source.bank) sources.push({ kind: 'bank', title: bankName })
-    if (source.basic) sources.push({ kind: 'basic', title: basicName })
-    if (sources.length === 0 && !species) sources.push({ kind: 'other', title: t.other_ })
-
     return {
       id: skill.id,
       entity: { kind: 'skill', skill, priced: !species },
       title: skill.title,
       mark: tint,
       sub: [...(imposed.has(skill.id) ? [t.imposed] : []), typeText, domainText, src].join(' · '),
-      aside: `${activation} · ${skill.range || EM_DASH}`,
+      aside: `${activationOf(skill)} · ${skill.range || EM_DASH}`,
       value: xpLabel,
       coins: [],
       attrs: attributesFor(skill.id, skill.title, [
         ...(within ? [facet('sub', [{ value: within.id, label: within.name }])] : []),
         facet('acq', acquisition),
-        facet(
-          'dom',
-          domains.map((key) => ({ value: key, label: domainLabel(key) })),
-        ),
-        facet('typ', [{ value: skill.type, label: typeText }]),
-        facet('cost', costs),
-        facet('act', [{ value: activation, label: activation }]),
-        facet('chr', characteristics),
-        facet('tier', [{ value: `t${tier}`, label: `${t.level} ${tier}` }]),
-        ...tagFacets(skill, corpus, locale),
+        ...skillFacets(skill, corpus, locale),
         statusFacet(corpus.skillStatus.get(skill.id), locale),
       ]),
       status: badgedStatus(corpus.skillStatus.get(skill.id)),
-      sources,
+      sources: skillSources(
+        skill,
+        corpus,
+        locale,
+        species ? { kind: 'species', id: species.id } : undefined,
+      ),
     }
   })
 
