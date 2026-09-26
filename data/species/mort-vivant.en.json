@@ -7,7 +7,7 @@
     },
     "squelette": {
       "name": "Skeleton",
-      "text": "***As a Skeleton***, you are down to your bones, and nobody mistakes what you are when you go about like that. Your empty sockets follow whoever is talking to you, and people back away before you can give your name. With neither flesh nor skin to carry, you are lighter and quicker than you were in life, though a cudgel that would only bruise an arm does you far more harm. You have learned to flay a corpse of your own Size and dress yourself in its skin. It gives you the looks of whoever wore it before you, and it does not hide that you are Undead."
+      "text": "***As a Skeleton***, you are down to your bones, and nobody mistakes what you are when you go about like that. Your empty sockets follow whoever is talking to you, and people back away before you can give your name. With neither flesh nor skin to carry, you are lighter and quicker than you were in life, though a cudgel that would only bruise an arm does you far more harm. You have learned to flay a corpse of your own {{taille}} and dress yourself in its skin. It gives you the looks of whoever wore it before you, and it does not hide that you are Undead."
     },
     "revenant": {
       "text": "***As a Revenant***, death gave you back your own flesh, gone stiff along the way. You rise in one stiff movement and turn from the waist to look sideways. By the fire you pass for a veteran racked by old wounds, until someone lays a hand on your arm and finds skin as cool and hard as a stone left in the shade; blows barely mark it. In towns, a Revenant who keeps out of gossip is sometimes simply forgotten."
@@ -26,6 +26,6 @@
   },
   "roleplay": {
     "height": "As in life",
-    "text": "An Undead has lived before. Choose the Species you were in life and, if it has any, its subspecies or regional origin. Its Size, its height, its Speed and its languages are yours. If it offers more than one Size, keep one. For every Prerequisite, you count as a character of that Species and of the chosen subspecies or regional origin. If that Species does not fix for itself what you inherit from it, as with Scothans, settle it with the GM.\n\nThen choose your Undead subspecies, what death made of you: its Skill is one of your two Species Skills.\n\nFinally, decide what the living end up noticing about you."
+    "text": "An Undead has lived before. Choose the Species you were in life and, if it has any, its subspecies or regional origin. Its {{taille}}, its height, its {{vitesse}} and its languages are yours. If it offers more than one {{taille}}, keep one. For every {{prerequis}}, you count as a character of that Species and of the chosen subspecies or regional origin. If that Species does not fix for itself what you inherit from it, as with Scothans, settle it with the GM.\n\nThen choose your Undead subspecies, what death made of you: its Skill is one of your two Species Skills.\n\nFinally, decide what the living end up noticing about you."
   }
 }

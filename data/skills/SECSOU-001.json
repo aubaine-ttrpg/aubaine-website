@@ -17,5 +17,5 @@
       "healing"
     ]
   },
-  "description": "Vous serrez les dents et vous repartez. Vous récupérez 1d10 PdV plus votre modificateur de Constitution."
+  "description": "Vous serrez les dents et vous repartez. Vous récupérez 1d10 {{pdv}} plus votre modificateur de {{constitution}}."
 }

@@ -16,5 +16,5 @@
       "protection"
     ]
   },
-  "description": "Une armure d'épines pousse à travers votre peau, ou à travers ce qui vous en tient lieu.\n\nTant que le Sort dure, chaque fois qu'une Attaque au contact vous touche, celui qui l'a portée subit 1d4 dégâts Perforants."
+  "description": "Une armure d'épines pousse à travers votre peau, ou à travers ce qui vous en tient lieu.\n\nTant que le {{sort}} dure, chaque fois qu'une {{attaque}} au contact vous touche, celui qui l'a portée subit 1d4 dégâts Perforants."
 }

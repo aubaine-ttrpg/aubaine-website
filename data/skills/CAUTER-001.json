@@ -16,13 +16,13 @@
       "healing"
     ]
   },
-  "description": "Vous touchez une créature et refermez ses plaies par le feu. Elle récupère 2d6 PdV.",
+  "description": "Vous touchez une créature et refermez ses plaies par le feu. Elle récupère 2d6 {{pdv}}.",
   "upgrades": [
     {
       "level": 2,
       "tier": 4,
       "title": "Cautérisation profonde",
-      "description": "La créature que vous touchez récupère désormais 3d6 PdV."
+      "description": "La créature que vous touchez récupère désormais 3d6 {{pdv}}."
     }
   ]
 }

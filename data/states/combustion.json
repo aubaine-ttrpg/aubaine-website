@@ -3,5 +3,5 @@
   "name": "Combustion",
   "kind": "buff",
   "icon": "mdi:fire",
-  "description": "Combustion s'accumule sur vous jusqu'à 5.\n\nLorsque vous effectuez un Jet de dégâts qui inflige des dégâts de Feu, ajoutez 1 dégât par Combustion que vous portez.\n\nAu début d'un combat, vous perdez toute votre Combustion."
+  "description": "{{combustion}} s'accumule sur vous jusqu'à 5.\n\nLorsque vous effectuez un {{jet}} de dégâts qui inflige des dégâts de Feu, ajoutez 1 dégât par {{combustion}} que vous portez.\n\nAu début d'un combat, vous perdez toute votre {{combustion}}."
 }

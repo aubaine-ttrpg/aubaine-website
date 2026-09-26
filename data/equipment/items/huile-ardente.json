@@ -37,6 +37,6 @@
       "14 (Int)"
     ]
   },
-  "text": "Vous pouvez effectuer une Action pour lancer cette fiole sur une créature que vous voyez à portée. Effectuez un Jet de Dextérité + Visée contre sa CA. En cas de réussite, elle subit ***2d6*** dégâts de Feu et vous gagnez 2 [[Combustion]].",
+  "text": "Vous pouvez effectuer une {{action}} pour lancer cette fiole sur une créature que vous voyez à portée. Effectuez un {{jet}} de {{dexterite}} + {{visee}} contre sa {{ca}}. En cas de réussite, elle subit ***2d6*** dégâts de Feu et vous gagnez 2 {{combustion}}.",
   "description": "Huile noire qui s'accroche à ce qu'elle touche. Elle brûle lentement, et sa chaleur revient dans la main qui l'a lancée."
 }

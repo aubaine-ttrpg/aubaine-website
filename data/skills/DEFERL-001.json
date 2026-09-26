@@ -15,5 +15,5 @@
       "enhancement"
     ]
   },
-  "description": "Un corps qui tombe vous en désigne un autre. Lorsqu'une de vos Attaques réduit une créature à 0 PdV et que vous êtes [[Enragé]], vous portez aussitôt une Attaque de plus.\n\nCela ne se produit qu'une fois par tour."
+  "description": "Un corps qui tombe vous en désigne un autre. Lorsqu'une de vos {{attaque|Attaques}} réduit une créature à 0 {{pdv}} et que vous êtes {{enrage}}, vous portez aussitôt une {{attaque}} de plus.\n\nCela ne se produit qu'une fois par tour."
 }

@@ -20,5 +20,5 @@
       "protection"
     ]
   },
-  "description": "Vous jouez cette Réaction lorsque vous subissez les dégâts d'une Attaque que vous voyez venir.\n\nVous opposez arme, bouclier ou avant-bras : ces dégâts sont réduits de 1d6 + votre Constitution."
+  "description": "Vous jouez cette {{reaction}} lorsque vous subissez les dégâts d'une {{attaque}} que vous voyez venir.\n\nVous opposez arme, bouclier ou avant-bras : ces dégâts sont réduits de 1d6 + votre {{constitution}}."
 }

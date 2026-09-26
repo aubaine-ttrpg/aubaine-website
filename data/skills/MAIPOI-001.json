@@ -15,5 +15,5 @@
       "mobility"
     ]
   },
-  "description": "Un mucus fin perle de vos paumes et de vos semelles. Vous vous déplacez sur les murs et les plafonds à votre Vitesse, sans Jet, et vous pouvez vous y arrêter les mains libres."
+  "description": "Un mucus fin perle de vos paumes et de vos semelles. Vous vous déplacez sur les murs et les plafonds à votre {{vitesse}}, sans {{jet}}, et vous pouvez vous y arrêter les mains libres."
 }

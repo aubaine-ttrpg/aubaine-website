@@ -5,14 +5,14 @@
   "bonuses": [
     {
       "pieces": 2,
-      "text": "Vous gagnez la Compétence {{Sillage}}. Elle n'occupe aucune Mémoire et n'a pas à être apprise.",
+      "text": "Vous gagnez la Compétence {{SILLAG-001}}. Elle n'occupe aucune {{memoire}} et n'a pas à être apprise.",
       "grants": [
         "SILLAG-001"
       ]
     },
     {
       "pieces": 4,
-      "text": "La première fois que vous touchez une créature alors que vous êtes [[Caché]] au cours d'un combat, elle subit 1d6 dégâts supplémentaires."
+      "text": "La première fois que vous touchez une créature alors que vous êtes {{cache}} au cours d'un combat, elle subit 1d6 dégâts supplémentaires."
     }
   ]
 }

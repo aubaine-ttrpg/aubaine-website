@@ -16,5 +16,5 @@
       "healing"
     ]
   },
-  "description": "Vous jouez cette Réaction lorsqu'une créature que vous voyez à portée tombe [[À terre]].\n\nLe sol se soulève sous elle et la remet sur ses pieds. Elle n'est plus [[À terre]], et cela ne lui coûte aucun déplacement."
+  "description": "Vous jouez cette {{reaction}} lorsqu'une créature que vous voyez à portée tombe {{a-terre}}.\n\nLe sol se soulève sous elle et la remet sur ses pieds. Elle n'est plus {{a-terre}}, et cela ne lui coûte aucun déplacement."
 }

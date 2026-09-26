@@ -20,7 +20,7 @@
       "unleashed"
     ]
   },
-  "description": "Vous gravez une rune sur une surface, un objet, ou une peau consentante. En la gravant, vous énoncez deux choses : ce qui la déclenche, et ce qu'elle fait. Le MJ dit si cela tient dans ce qu'une rune peut porter.\n\nUne rune ne fait qu'une chose, une seule fois. Elle attend sans se fatiguer, et se déclenche même si vous dormez à l'autre bout du monde.\n\nVous ne maintenez qu'une rune à la fois. En graver une autre efface la première, où qu'elle soit.\n\nLorsqu'une créature effectue un Jet pour résister à une rune, elle effectue son Jet contre votre DD (10 + Intelligence + Arcanes).",
+  "description": "Vous gravez une rune sur une surface, un objet, ou une peau consentante. En la gravant, vous énoncez deux choses : ce qui la déclenche, et ce qu'elle fait. Le MJ dit si cela tient dans ce qu'une rune peut porter.\n\nUne rune ne fait qu'une chose, une seule fois. Elle attend sans se fatiguer, et se déclenche même si vous dormez à l'autre bout du monde.\n\nVous ne maintenez qu'une rune à la fois. En graver une autre efface la première, où qu'elle soit.\n\nLorsqu'une créature effectue un {{jet}} pour résister à une rune, elle effectue son {{jet}} contre votre {{dd}} (10 + {{intelligence}} + {{arcanes}}).",
   "upgrades": [
     {
       "level": 2,

@@ -17,5 +17,5 @@
       "enhancement"
     ]
   },
-  "description": "Vos veines rougeoient sous votre peau. Vous gagnez 3 [[Combustion]].\n\nTant qu'Embrasement dure, chaque Jet qu'une créature de votre choix effectue pour résister à l'une de vos Compétences du Domaine Feu subit 1 Désavantage."
+  "description": "Vos veines rougeoient sous votre peau. Vous gagnez 3 {{combustion}}.\n\nTant qu'{{EMBRAS-001}} dure, chaque {{jet}} qu'une créature de votre choix effectue pour résister à l'une de vos Compétences du Domaine Feu subit 1 {{desavantage}}."
 }

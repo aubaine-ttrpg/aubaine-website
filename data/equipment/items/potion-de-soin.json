@@ -37,6 +37,6 @@
       "12 (Int)"
     ]
   },
-  "text": "Vous pouvez effectuer une Action Bonus pour boire cette potion et récupérer ***1d8*** Points de vie.",
+  "text": "Vous pouvez effectuer une {{action-bonus}} pour boire cette potion et récupérer ***1d8*** Points de vie.",
   "description": "Fiole tiède au goût de fer. Elle referme ce qui saigne, pas ce qui est brisé."
 }

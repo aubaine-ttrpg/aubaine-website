@@ -15,5 +15,5 @@
   "tags": {
     "practice": "technique"
   },
-  "description": "Vous fouillez ce qui vous entoure, ou vous cherchez ce qui se dérobe.\n\nEffectuez un Jet d'Esprit + Perception pour ce que vos sens peuvent saisir, ou d'Intelligence + Investigation pour ce qu'il faut déduire. Le MJ fixe le DD.\n\nContre une créature qui porte l'état [[Caché]], votre Jet est opposé au sien. En cas de réussite, elle perd l'état vis-à-vis de vous."
+  "description": "Vous fouillez ce qui vous entoure, ou vous cherchez ce qui se dérobe.\n\nEffectuez un {{jet}} d'{{esprit}} + {{perception}} pour ce que vos sens peuvent saisir, ou d'{{intelligence}} + {{investigation}} pour ce qu'il faut déduire. Le MJ fixe le {{dd}}.\n\nContre une créature qui porte l'état {{cache}}, votre {{jet}} est opposé au sien. En cas de réussite, elle perd l'état vis-à-vis de vous."
 }

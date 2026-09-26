@@ -38,7 +38,7 @@
     },
     {
       "name": "Lancé (9m).",
-      "text": "Cette arme peut être lancée sur une cible située jusqu'à 9 mètres. Lorsqu'elle est lancée, son Jet utilise Visée à la place de son Aptitude habituelle."
+      "text": "Cette arme peut être lancée sur une cible située jusqu'à 9 mètres. Lorsqu'elle est lancée, son {{jet}} utilise {{visee}} à la place de son {{aptitude}} habituelle."
     }
   ],
   "craft": {

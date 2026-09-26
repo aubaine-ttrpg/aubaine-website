@@ -16,5 +16,5 @@
       "divination"
     ]
   },
-  "description": "Lorsque vous effectuez un Jet pour détecter, ressentir ou en apprendre plus sur un élément composé de magie de Foudre, vous gagnez 2 Avantages pour ce Jet."
+  "description": "Lorsque vous effectuez un {{jet}} pour détecter, ressentir ou en apprendre plus sur un élément composé de magie de Foudre, vous gagnez 2 {{avantage|Avantages}} pour ce {{jet}}."
 }

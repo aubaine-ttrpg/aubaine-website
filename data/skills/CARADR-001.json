@@ -20,5 +20,5 @@
       "unleashed"
     ]
   },
-  "description": "Vous connaissez quelqu'un, ici aussi.\n\nDéclarez que vous connaissez une créature de l'endroit où vous vous trouvez, et dites laquelle : le cuisinier, le sergent de garde, la fille du prêteur. Effectuez un Jet de Charisme + Culture contre un DD que le MJ fixe sur l'improbabilité de la chose.\n\nEn cas de réussite, cette créature existe, vous vous connaissez, et le MJ dit d'où. En cas d'échec, vous connaissiez quelqu'un ici : il est parti, ou il est mort, ou il ne veut plus vous voir."
+  "description": "Vous connaissez quelqu'un, ici aussi.\n\nDéclarez que vous connaissez une créature de l'endroit où vous vous trouvez, et dites laquelle : le cuisinier, le sergent de garde, la fille du prêteur. Effectuez un {{jet}} de {{charisme}} + {{culture}} contre un {{dd}} que le MJ fixe sur l'improbabilité de la chose.\n\nEn cas de réussite, cette créature existe, vous vous connaissez, et le MJ dit d'où. En cas d'échec, vous connaissiez quelqu'un ici : il est parti, ou il est mort, ou il ne veut plus vous voir."
 }

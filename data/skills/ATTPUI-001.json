@@ -15,5 +15,5 @@
       "destruction"
     ]
   },
-  "description": "Avant d'effectuer une Attaque, vous pouvez décider de frapper à outrance. Cette Attaque subit 1 Désavantage ; en cas de réussite, elle inflige 1d10 dégâts supplémentaires du type de votre arme.\n\nVous décidez avant de lancer les dés, jamais après."
+  "description": "Avant d'effectuer une {{attaque}}, vous pouvez décider de frapper à outrance. Cette {{attaque}} subit 1 {{desavantage}} ; en cas de réussite, elle inflige 1d10 dégâts supplémentaires du type de votre arme.\n\nVous décidez avant de lancer les dés, jamais après."
 }

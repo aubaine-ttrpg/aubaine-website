@@ -5,7 +5,7 @@
   "bonuses": [
     {
       "pieces": 2,
-      "text": "Vous gagnez la Compétence {{Parade}}. Elle n'occupe aucune Mémoire et n'a pas à être apprise.",
+      "text": "Vous gagnez la Compétence {{PARADE-001}}. Elle n'occupe aucune {{memoire}} et n'a pas à être apprise.",
       "grants": [
         "PARADE-001"
       ]

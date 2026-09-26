@@ -15,5 +15,5 @@
       "enhancement"
     ]
   },
-  "description": "Tant que cette Compétence est Mémorisée, vos modificateurs de Persuasion et d'Athlétisme augmentent de 1, jusqu'au maximum de +6."
+  "description": "Tant que cette Compétence est {{memorisee}}, vos modificateurs de {{persuasion}} et d'{{athletisme}} augmentent de 1, jusqu'au maximum de +6."
 }

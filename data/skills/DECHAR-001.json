@@ -21,13 +21,13 @@
       "destruction"
     ]
   },
-  "description": "Vous lâchez d'un coup la charge qui vous parcourt, en arcs vers les créatures qui vous entourent. Vous ne pouvez lancer ce Sort que si vous portez au moins 1 [[Surtension]]. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\nDépensez toute votre [[Surtension]], puis choisissez jusqu'à trois créatures que vous voyez à 3 m ou moins de vous. Chacune effectue un Jet de Dextérité + Réflexes contre votre DD (10 + la Caractéristique choisie + Arcanes). En cas d'échec, elle subit 1d4 dégâts de Foudre par [[Surtension]] dépensée. En cas de réussite, elle n'en subit que la moitié.",
+  "description": "Vous lâchez d'un coup la charge qui vous parcourt, en arcs vers les créatures qui vous entourent. Vous ne pouvez lancer ce {{sort}} que si vous portez au moins 1 {{surtension}}. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nDépensez toute votre {{surtension}}, puis choisissez jusqu'à trois créatures que vous voyez à 3 m ou moins de vous. Chacune effectue un {{jet}} de {{dexterite}} + {{reflexes}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}}). En cas d'échec, elle subit 1d4 dégâts de Foudre par {{surtension}} dépensée. En cas de réussite, elle n'en subit que la moitié.",
   "upgrades": [
     {
       "level": 2,
       "tier": 6,
       "title": "Pleine décharge",
-      "description": "Lorsque vous dépensez 5 [[Surtension]] pour {{Décharge}}, chaque créature qui échoue à son Jet est aussi Étourdie jusqu'à la fin de son prochain tour."
+      "description": "Lorsque vous dépensez 5 {{surtension}} pour {{DECHAR-001}}, chaque créature qui échoue à son {{jet}} est aussi {{etourdi|Étourdie}} jusqu'à la fin de son prochain tour."
     }
   ]
 }

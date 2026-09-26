@@ -15,5 +15,5 @@
       "enhancement"
     ]
   },
-  "description": "Vos mains tiennent ce qu'elles ne devraient pas tenir. Vous pouvez manier une arme à deux mains dans chaque main.\n\nTant que vous n'êtes pas [[Enragé]], les Attaques que vous portez avec la seconde subissent 1 Désavantage."
+  "description": "Vos mains tiennent ce qu'elles ne devraient pas tenir. Vous pouvez manier une arme à deux mains dans chaque main.\n\nTant que vous n'êtes pas {{enrage}}, les {{attaque|Attaques}} que vous portez avec la seconde subissent 1 {{desavantage}}."
 }

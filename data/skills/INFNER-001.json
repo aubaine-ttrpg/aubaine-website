@@ -17,5 +17,5 @@
       "divination"
     ]
   },
-  "description": "Vous lisez la tension qui monte dans les nerfs d'une créature que vous voyez à portée, autre qu'un Mort-vivant, un Artificiel, une Plante ou une Vase. Rien ne l'avertit que vous la lisez, à moins qu'une Compétence ne le lui permette.\n\nTant qu'Influx nerveux dure, vos Jets d'Esprit + Perspicacité qui portent sur elle gagnent 1 Avantage. Chaque fois qu'elle prend peur ou qu'elle s'apprête à attaquer, le MJ vous signale que sa tension monte, sans préciser laquelle de ces deux causes l'explique.\n\nInflux nerveux prend fin si elle quitte la portée."
+  "description": "Vous lisez la tension qui monte dans les nerfs d'une créature que vous voyez à portée, autre qu'un Mort-vivant, un Artificiel, une Plante ou une Vase. Rien ne l'avertit que vous la lisez, à moins qu'une Compétence ne le lui permette.\n\nTant qu'{{INFNER-001}} dure, vos {{jet|Jets}} d'{{esprit}} + {{perspicacite}} qui portent sur elle gagnent 1 {{avantage}}. Chaque fois qu'elle prend peur ou qu'elle s'apprête à attaquer, le MJ vous signale que sa tension monte, sans préciser laquelle de ces deux causes l'explique.\n\n{{INFNER-001}} prend fin si elle quitte la portée."
 }

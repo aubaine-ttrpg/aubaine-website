@@ -17,7 +17,7 @@
   "properties": [
     {
       "name": "Encombrante.",
-      "text": "Vous gagnez 1 Désavantage à tous vos Jets de Dextérité."
+      "text": "Vous gagnez 1 {{desavantage}} à tous vos {{jet|Jets}} de {{dexterite}}."
     }
   ],
   "craft": {

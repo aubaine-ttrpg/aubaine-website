@@ -15,20 +15,20 @@
       "enhancement"
     ]
   },
-  "description": "Lorsque vous effectuez l'action Attaquer, vous portez 2 Attaques au lieu d'une. Rien ne vous oblige à les porter sur la même cible.",
+  "description": "Lorsque vous effectuez l'action {{ATTAQU-001}}, vous portez 2 {{attaque|Attaques}} au lieu d'une. Rien ne vous oblige à les porter sur la même cible.",
   "upgrades": [
     {
       "level": 2,
       "tier": 10,
       "title": "Troisième attaque",
-      "description": "Vous portez 3 Attaques au lieu de 2 lorsque vous effectuez l'action Attaquer."
+      "description": "Vous portez 3 {{attaque|Attaques}} au lieu de 2 lorsque vous effectuez l'action {{ATTAQU-001}}."
     },
     {
       "level": 3,
       "tier": 10,
       "xpOverride": 100,
       "title": "Quatrième attaque",
-      "description": "Vous portez 4 Attaques au lieu de 3 lorsque vous effectuez l'action Attaquer."
+      "description": "Vous portez 4 {{attaque|Attaques}} au lieu de 3 lorsque vous effectuez l'action {{ATTAQU-001}}."
     }
   ]
 }

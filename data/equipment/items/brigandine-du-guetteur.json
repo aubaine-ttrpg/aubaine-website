@@ -17,7 +17,7 @@
   "properties": [
     {
       "name": "Pas de velours.",
-      "text": "Vous pouvez effectuer l'action Se cacher avec une Action Bonus."
+      "text": "Vous pouvez effectuer l'action {{CACHER-001}} avec une {{action-bonus}}."
     }
   ],
   "craft": {

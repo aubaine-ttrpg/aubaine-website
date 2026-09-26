@@ -16,5 +16,5 @@
       "protection"
     ]
   },
-  "description": "Vous vous mettez en garde et vous lisez les intentions d'en face.\n\nChoisissez l'un des deux effets. Il dure jusqu'au début de votre prochain tour.\n\n***Parade.*** Les Attaques faites contre vous subissent 1 Désavantage.\n\n***Dérobade.*** Vos Jets de Réflexes, de Résistance et de Volonté gagnent 1 Avantage.\n\nL'effet prend fin dès que votre Vitesse tombe à 0."
+  "description": "Vous vous mettez en garde et vous lisez les intentions d'en face.\n\nChoisissez l'un des deux effets. Il dure jusqu'au début de votre prochain tour.\n\n***Parade.*** Les {{attaque|Attaques}} faites contre vous subissent 1 {{desavantage}}.\n\n***Dérobade.*** Vos {{jet|Jets}} de {{reflexes}}, de {{resistance}} et de {{volonte}} gagnent 1 {{avantage}}.\n\nL'effet prend fin dès que votre {{vitesse}} tombe à 0."
 }

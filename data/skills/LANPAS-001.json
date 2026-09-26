@@ -18,5 +18,5 @@
       "influence"
     ]
   },
-  "description": "Vous avez appris à parler aux gens sur leur propre terrain.\n\nChoisissez une langue supplémentaire à l'achat. Dans une ville où elle se parle, vos Jets de Charisme + Persuasion pour obtenir un renseignement ordinaire gagnent 1 Avantage."
+  "description": "Vous avez appris à parler aux gens sur leur propre terrain.\n\nChoisissez une langue supplémentaire à l'achat. Dans une ville où elle se parle, vos {{jet|Jets}} de {{charisme}} + {{persuasion}} pour obtenir un renseignement ordinaire gagnent 1 {{avantage}}."
 }

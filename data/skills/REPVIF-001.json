@@ -18,5 +18,5 @@
       "mobility"
     ]
   },
-  "description": "Vous décrochez du contact sans laisser d'ouverture derrière vous.\n\nVous jouez la Compétence de base {{Se désengager}} avec une Action Bonus au lieu d'une Action."
+  "description": "Vous décrochez du contact sans laisser d'ouverture derrière vous.\n\nVous jouez la Compétence de base {{DESENG-001}} avec une {{action-bonus}} au lieu d'une {{action}}."
 }

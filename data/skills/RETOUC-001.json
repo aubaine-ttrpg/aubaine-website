@@ -20,5 +20,5 @@
       "unleashed"
     ]
   },
-  "description": "Vous reprenez une pièce déjà faite pour lui ajouter ce qui lui manquait.\n\nAnnoncez la modification. Le MJ fixe les Besoins de matière et un Jet, comme pour une fabrication improvisée. En cas de réussite, l'objet gagne la propriété que vous vouliez. En cas d'échec, il garde la cicatrice de votre tentative et ne pourra plus être retouché."
+  "description": "Vous reprenez une pièce déjà faite pour lui ajouter ce qui lui manquait.\n\nAnnoncez la modification. Le MJ fixe les Besoins de matière et un {{jet}}, comme pour une fabrication improvisée. En cas de réussite, l'objet gagne la propriété que vous vouliez. En cas d'échec, il garde la cicatrice de votre tentative et ne pourra plus être retouché."
 }

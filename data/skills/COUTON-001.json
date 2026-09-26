@@ -21,5 +21,5 @@
       "destruction"
     ]
   },
-  "description": "Une onde de tonnerre part de vous et emplit un cube de 4,5 m d'arête. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\nChaque créature dans le cube effectue un Jet de Constitution + Résistance contre votre DD (10 + la Caractéristique choisie + Arcanes). En cas d'échec, elle subit 2d8 dégâts de Tonnerre et est poussée de 3 m loin de vous. En cas de réussite, elle n'en subit que la moitié et ne bouge pas.\n\nLe coup s'entend à 90 m."
+  "description": "Une onde de tonnerre part de vous et emplit un cube de 4,5 m d'arête. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nChaque créature dans le cube effectue un {{jet}} de {{constitution}} + {{resistance}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}}). En cas d'échec, elle subit 2d8 dégâts de Tonnerre et est poussée de 3 m loin de vous. En cas de réussite, elle n'en subit que la moitié et ne bouge pas.\n\nLe coup s'entend à 90 m."
 }

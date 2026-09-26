@@ -3,5 +3,5 @@
   "name": "Surtension",
   "kind": "buff",
   "icon": "mdi:flash",
-  "description": "Surtension s'accumule sur vous jusqu'à 5. Au début de chacun de vos tours, votre Vitesse augmente de 1,5 m par Surtension que vous portez, pour une augmentation de 4,5 m au plus.\n\nCette augmentation dure jusqu'à la fin de ce tour, même si vous perdez ou dépensez votre Surtension entre-temps. Elle ne s'applique pas si vous êtes Immobilisé.\n\nAu début d'un combat, vous perdez toute votre Surtension."
+  "description": "{{surtension}} s'accumule sur vous jusqu'à 5. Au début de chacun de vos tours, votre {{vitesse}} augmente de 1,5 m par {{surtension}} que vous portez, pour une augmentation de 4,5 m au plus.\n\nCette augmentation dure jusqu'à la fin de ce tour, même si vous perdez ou dépensez votre {{surtension}} entre-temps. Elle ne s'applique pas si vous êtes {{immobilise}}.\n\nAu début d'un combat, vous perdez toute votre {{surtension}}."
 }

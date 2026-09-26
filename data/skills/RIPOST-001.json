@@ -16,5 +16,5 @@
       "destruction"
     ]
   },
-  "description": "Vous jouez cette Réaction lorsqu'une créature à 1,5 m ou moins vous manque avec une Attaque.\n\nVous portez aussitôt une Attaque contre elle. Cette Attaque ne se prend sur aucune de vos actions."
+  "description": "Vous jouez cette {{reaction}} lorsqu'une créature à 1,5 m ou moins vous manque avec une {{attaque}}.\n\nVous portez aussitôt une {{attaque}} contre elle. Cette {{attaque}} ne se prend sur aucune de vos actions."
 }

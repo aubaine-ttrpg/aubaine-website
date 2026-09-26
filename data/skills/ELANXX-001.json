@@ -18,5 +18,5 @@
       "mobility"
     ]
   },
-  "description": "Vous lancez la jambe avant que la tête ne décide.\n\nVous jouez la Compétence de base {{Courir}} avec une Action Bonus au lieu d'une Action."
+  "description": "Vous lancez la jambe avant que la tête ne décide.\n\nVous jouez la Compétence de base {{COURIR-001}} avec une {{action-bonus}} au lieu d'une {{action}}."
 }

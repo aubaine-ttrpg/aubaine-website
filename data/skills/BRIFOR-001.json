@@ -18,5 +18,5 @@
       "creation"
     ]
   },
-  "description": "Avec ce qui traîne, vous faites tenir ce qui doit tenir : une corde, une attelle, une serrure forcée, une roue recollée.\n\nFaites un Jet d'Intelligence + Technologie. En cas de réussite, l'objet remplit son office pendant 1 heure, puis lâche. Une même pièce ne se bricole qu'une fois."
+  "description": "Avec ce qui traîne, vous faites tenir ce qui doit tenir : une corde, une attelle, une serrure forcée, une roue recollée.\n\nFaites un {{jet}} d'{{intelligence}} + {{technologie}}. En cas de réussite, l'objet remplit son office pendant 1 heure, puis lâche. Une même pièce ne se bricole qu'une fois."
 }

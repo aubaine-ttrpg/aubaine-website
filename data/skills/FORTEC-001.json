@@ -14,5 +14,5 @@
       "enhancement"
     ]
   },
-  "description": "La première fois que vous mémorisez cette Compétence, choisissez l'Artisanat, les Arcanes, la Technologie ou la Science. Tant qu'elle est Mémorisée, vous avez l'Expertise dans l'Aptitude choisie et son modificateur augmente de 1, jusqu'au maximum de +6."
+  "description": "La première fois que vous {{memorisee|mémorisez}} cette Compétence, choisissez l'{{artisanat}}, les {{arcanes}}, la {{technologie}} ou la {{science}}. Tant qu'elle est {{memorisee}}, vous avez l'{{expertise}} dans l'{{aptitude}} choisie et son modificateur augmente de 1, jusqu'au maximum de +6."
 }

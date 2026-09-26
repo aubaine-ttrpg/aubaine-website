@@ -37,6 +37,6 @@
       "12 (Int)"
     ]
   },
-  "text": "Vous pouvez effectuer une Action Bonus pour boire ce philtre et récupérer ***1d4*** points d'Énergie. Votre Énergie ne dépasse jamais son maximum.",
+  "text": "Vous pouvez effectuer une {{action-bonus}} pour boire ce philtre et récupérer ***1d4*** points d'{{energie}}. Votre {{energie}} ne dépasse jamais son maximum.",
   "description": "Amer, poivré, servi tiède. Il rend le souffle sans rendre le repos."
 }

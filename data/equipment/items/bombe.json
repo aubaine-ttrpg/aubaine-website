@@ -42,6 +42,6 @@
       "12 (Int)"
     ]
   },
-  "text": "Vous pouvez effectuer une Action pour lancer cette bombe sur un point que vous voyez à portée. Chaque créature dans un rayon de ***3 mètres*** subit ***1d4*** dégâts Contondants et ***1d4*** dégâts de Feu.",
+  "text": "Vous pouvez effectuer une {{action}} pour lancer cette bombe sur un point que vous voyez à portée. Chaque créature dans un rayon de ***3 mètres*** subit ***1d4*** dégâts Contondants et ***1d4*** dégâts de Feu.",
   "description": "Sphère de fonte cerclée, mèche courte. On la lance, on se met à couvert, et on ne la récupère pas."
 }

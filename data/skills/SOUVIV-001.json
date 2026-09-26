@@ -16,13 +16,13 @@
       "healing"
     ]
   },
-  "description": "Une eau claire court jusqu'aux plaies et les referme. Vous pouvez d'abord retirer l'état [[Trempé]] à une créature que vous voyez à portée, vous y compris.\n\nChoisissez ensuite une créature que vous voyez à portée, vous y compris. Elle récupère 1d4 PdV, plus 1d4 par [[Trempé]] que vous venez de retirer.",
+  "description": "Une eau claire court jusqu'aux plaies et les referme. Vous pouvez d'abord retirer l'état {{trempe}} à une créature que vous voyez à portée, vous y compris.\n\nChoisissez ensuite une créature que vous voyez à portée, vous y compris. Elle récupère 1d4 {{pdv}}, plus 1d4 par {{trempe}} que vous venez de retirer.",
   "upgrades": [
     {
       "level": 2,
       "tier": 4,
       "title": "Source jaillissante",
-      "description": "{{Source vive}} rend désormais 2d4 PdV au lieu de 1d4, plus 1d4 par [[Trempé]] que vous venez de retirer."
+      "description": "{{SOUVIV-001}} rend désormais 2d4 {{pdv}} au lieu de 1d4, plus 1d4 par {{trempe}} que vous venez de retirer."
     }
   ]
 }

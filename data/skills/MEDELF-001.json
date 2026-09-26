@@ -12,5 +12,5 @@
   "tags": {
     "practice": "technique"
   },
-  "description": "Votre Repos long ne dure que quatre heures."
+  "description": "Votre {{repos-long}} ne dure que quatre heures."
 }

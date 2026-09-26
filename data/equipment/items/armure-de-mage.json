@@ -16,11 +16,11 @@
   "properties": [
     {
       "name": "Catalyseur.",
-      "text": "Tant que cette pièce est équipée, vous pouvez utiliser vos Sorts, passifs comme actifs."
+      "text": "Tant que cette pièce est équipée, vous pouvez utiliser vos {{sort|Sorts}}, passifs comme actifs."
     },
     {
       "name": "Dynamisation arcanique.",
-      "text": "Lorsque vous utilisez un Sort qui ne coûte rien, vous pouvez ajouter votre modificateur d'Intelligence OU d'Esprit OU de Charisme à un dé du Jet de Dégâts du Sort."
+      "text": "Lorsque vous utilisez un {{sort}} qui ne coûte rien, vous pouvez ajouter votre modificateur d'{{intelligence}} OU d'{{esprit}} OU de {{charisme}} à un dé du {{jet}} de Dégâts du {{sort}}."
     }
   ],
   "craft": {

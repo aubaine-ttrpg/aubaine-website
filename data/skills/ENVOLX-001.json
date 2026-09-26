@@ -16,13 +16,13 @@
       "mobility"
     ]
   },
-  "description": "Une poussée d'air vous soulève. Vous ne pouvez pas lancer ce Sort si vous êtes Immobilisé.\n\nVous bondissez jusqu'à un emplacement libre que vous voyez à portée, en hauteur si vous le voulez. Le bond passe par-dessus les obstacles, les créatures et les vides, ne compte pas dans votre déplacement et ne déclenche aucune {{Attaque d'opportunité}}. Si vous étiez [[À terre]], vous ne l'êtes plus.\n\nSi cet emplacement est en l'air, vous y restez en suspens jusqu'à la fin de votre tour, et vous ne pouvez pas y employer votre déplacement. À la fin de votre tour, vous redescendez à la verticale et vous vous posez, sans subir de dégâts, à l'emplacement libre le plus proche du point situé sous vous. Cette descente ne compte pas comme une chute.\n\nVous gagnez 1 [[Vent ascendant]].",
+  "description": "Une poussée d'air vous soulève. Vous ne pouvez pas lancer ce {{sort}} si vous êtes {{immobilise}}.\n\nVous bondissez jusqu'à un emplacement libre que vous voyez à portée, en hauteur si vous le voulez. Le bond passe par-dessus les obstacles, les créatures et les vides, ne compte pas dans votre déplacement et ne déclenche aucune {{ATTOPP-001}}. Si vous étiez {{a-terre}}, vous ne l'êtes plus.\n\nSi cet emplacement est en l'air, vous y restez en suspens jusqu'à la fin de votre tour, et vous ne pouvez pas y employer votre déplacement. À la fin de votre tour, vous redescendez à la verticale et vous vous posez, sans subir de dégâts, à l'emplacement libre le plus proche du point situé sous vous. Cette descente ne compte pas comme une chute.\n\nVous gagnez 1 {{vent-ascendant}}.",
   "upgrades": [
     {
       "level": 2,
       "tier": 4,
       "title": "Envol partagé",
-      "description": "Lorsque vous lancez {{Envol}}, vous pouvez dépenser 1 Énergie de plus pour qu'une créature consentante de Taille Moyenne ou plus petite, à 1,5 m ou moins de vous et qui n'est pas Immobilisée, bondisse avec vous. Elle arrive à un emplacement libre de votre choix, à 1,5 m ou moins du vôtre. Son bond ne compte pas dans son déplacement et ne déclenche aucune {{Attaque d'opportunité}}. Si elle était [[À terre]], elle ne l'est plus. Si son emplacement est en l'air, elle y reste en suspens dans les mêmes conditions que vous et redescend en même temps que vous."
+      "description": "Lorsque vous lancez {{ENVOLX-001}}, vous pouvez dépenser 1 {{energie}} de plus pour qu'une créature consentante de {{taille}} Moyenne ou plus petite, à 1,5 m ou moins de vous et qui n'est pas {{immobilise|Immobilisée}}, bondisse avec vous. Elle arrive à un emplacement libre de votre choix, à 1,5 m ou moins du vôtre. Son bond ne compte pas dans son déplacement et ne déclenche aucune {{ATTOPP-001}}. Si elle était {{a-terre}}, elle ne l'est plus. Si son emplacement est en l'air, elle y reste en suspens dans les mêmes conditions que vous et redescend en même temps que vous."
     }
   ]
 }

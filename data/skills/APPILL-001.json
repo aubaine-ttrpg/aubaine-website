@@ -12,13 +12,13 @@
       "enhancement"
     ]
   },
-  "description": "Vous savez où poser le mensonge pour qu'il tienne. Lorsque vous calculez le DD d'un Sort portant l'étiquette Illusion, ajoutez la moitié de votre modificateur d'Arcanes, arrondie à l'inférieur.",
+  "description": "Vous savez où poser le mensonge pour qu'il tienne. Lorsque vous calculez le {{dd}} d'un {{sort}} portant l'étiquette Illusion, ajoutez la moitié de votre modificateur d'{{arcanes}}, arrondie à l'inférieur.",
   "upgrades": [
     {
       "level": 2,
       "tier": 8,
       "title": "Illusionniste accompli",
-      "description": "Ajoutez la totalité de votre modificateur d'Arcanes au DD de vos Sorts Illusion, au lieu de la moitié."
+      "description": "Ajoutez la totalité de votre modificateur d'{{arcanes}} au {{dd}} de vos {{sort|Sorts}} Illusion, au lieu de la moitié."
     }
   ]
 }

@@ -18,5 +18,5 @@
       "enhancement"
     ]
   },
-  "description": "Votre prochain Jet d'Artisanat, d'Arcanes, de Technologie ou de Science gagne 2 Avantages."
+  "description": "Votre prochain {{jet}} d'{{artisanat}}, d'{{arcanes}}, de {{technologie}} ou de {{science}} gagne 2 {{avantage|Avantages}}."
 }

@@ -15,5 +15,5 @@
       "protection"
     ]
   },
-  "description": "Le sang des Galwariens, premiers enfants de la magie, vous rend réfractaire aux manipulations de l'esprit.\n\nVos Jets pour résister aux états Charmé et Endormi gagnent 1 Avantage."
+  "description": "Le sang des Galwariens, premiers enfants de la magie, vous rend réfractaire aux manipulations de l'esprit.\n\nVos {{jet|Jets}} pour résister aux états {{charme}} et {{endormi}} gagnent 1 {{avantage}}."
 }

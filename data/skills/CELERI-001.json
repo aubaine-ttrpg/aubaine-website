@@ -17,5 +17,5 @@
       "mobility"
     ]
   },
-  "description": "La foudre court sous votre peau et vous précède d'un battement. Tant que Célérité dure, votre Vitesse augmente de 6 m et vous gagnez 1 Avantage à vos Jets de Réflexes."
+  "description": "La foudre court sous votre peau et vous précède d'un battement. Tant que {{CELERI-001}} dure, votre {{vitesse}} augmente de 6 m et vous gagnez 1 {{avantage}} à vos {{jet|Jets}} de {{reflexes}}."
 }

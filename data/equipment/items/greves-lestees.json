@@ -17,7 +17,7 @@
   "properties": [
     {
       "name": "Lourd (Niv. 1).",
-      "text": "Vous devez posséder un modificateur de Force égal ou supérieur à +3 pour équiper cette pièce."
+      "text": "Vous devez posséder un modificateur de {{force}} égal ou supérieur à +3 pour équiper cette pièce."
     }
   ],
   "craft": {

@@ -21,5 +21,5 @@
       "control"
     ]
   },
-  "description": "Une détonation d'air comprimé claque contre une créature que vous voyez à portée et lui brouille la tête et l'ouïe. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\nElle effectue un Jet de Constitution + Résistance contre votre DD (10 + la Caractéristique choisie + Arcanes). En cas d'échec, jusqu'à la fin de son prochain tour, elle est Étourdie et n'entend plus rien : elle rate tout Jet qui demande d'entendre. En cas de réussite, elle ne subit rien.\n\nVous gagnez ensuite 1 [[Vent descendant]]."
+  "description": "Une détonation d'air comprimé claque contre une créature que vous voyez à portée et lui brouille la tête et l'ouïe. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nElle effectue un {{jet}} de {{constitution}} + {{resistance}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}}). En cas d'échec, jusqu'à la fin de son prochain tour, elle est {{etourdi|Étourdie}} et n'entend plus rien : elle rate tout {{jet}} qui demande d'entendre. En cas de réussite, elle ne subit rien.\n\nVous gagnez ensuite 1 {{vent-descendant}}."
 }

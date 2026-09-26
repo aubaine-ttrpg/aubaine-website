@@ -16,5 +16,5 @@
       "divination"
     ]
   },
-  "description": "Vous sentez le métal comme une chaleur sur la peau. Tant que Sens magnétique dure, vous savez où se trouve chaque objet de métal à 9 m ou moins de vous, jusqu'au moindre clou, même dans une poche, derrière une paroi ou sous la terre. Vous en percevez la forme et vous savez s'il bouge.\n\nLe métal que porte une créature Cachée pour vous échappe à ce sens tant qu'elle le reste. Vos Jets d'Esprit + Perception pour trouver une créature Cachée qui porte du métal à 9 m ou moins de vous gagnent 1 Avantage."
+  "description": "Vous sentez le métal comme une chaleur sur la peau. Tant que {{SENMAG-001}} dure, vous savez où se trouve chaque objet de métal à 9 m ou moins de vous, jusqu'au moindre clou, même dans une poche, derrière une paroi ou sous la terre. Vous en percevez la forme et vous savez s'il bouge.\n\nLe métal que porte une créature {{cache|Cachée}} pour vous échappe à ce sens tant qu'elle le reste. Vos {{jet|Jets}} d'{{esprit}} + {{perception}} pour trouver une créature {{cache|Cachée}} qui porte du métal à 9 m ou moins de vous gagnent 1 {{avantage}}."
 }

@@ -34,7 +34,7 @@
   "properties": [
     {
       "name": "Finesse.",
-      "text": "Cette arme peut utiliser Dextérité + Finesse à la place de Force + Mêlée. Lorsque vous le faites, utilisez également votre Dextérité à la place de votre Force pour ses dégâts."
+      "text": "Cette arme peut utiliser {{dexterite}} + {{finesse}} à la place de {{force}} + {{melee}}. Lorsque vous le faites, utilisez également votre {{dexterite}} à la place de votre {{force}} pour ses dégâts."
     }
   ],
   "craft": {

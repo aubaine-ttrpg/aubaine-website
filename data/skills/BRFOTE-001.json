@@ -20,5 +20,5 @@
       "unleashed"
     ]
   },
-  "description": "Vous fabriquez sur place ce dont vous avez besoin, avec ce que vous avez sous la main. Annoncez l'objet et ce qu'il doit faire.\n\nEffectuez un Jet d'Intelligence + Technologie contre un DD que le MJ fixe sur l'ambition de la chose. En cas de réussite, elle fonctionne une fois, puis se démantibule."
+  "description": "Vous fabriquez sur place ce dont vous avez besoin, avec ce que vous avez sous la main. Annoncez l'objet et ce qu'il doit faire.\n\nEffectuez un {{jet}} d'{{intelligence}} + {{technologie}} contre un {{dd}} que le MJ fixe sur l'ambition de la chose. En cas de réussite, elle fonctionne une fois, puis se démantibule."
 }

@@ -4,5 +4,5 @@
   "activation": "1 Bonus Action",
   "range": "Self",
   "duration": "up to 10 minutes",
-  "description": "Your next Craft, Arcana, Technology or Science Roll gains 2 Advantages."
+  "description": "Your next {{artisanat}}, {{arcanes}}, {{technologie}} or {{science}} {{jet}} gains 2 {{avantage|Advantages}}."
 }

@@ -17,5 +17,5 @@
       "influence"
     ]
   },
-  "description": "Vous obtenez d'être reçu. Nommez une créature dont vous connaissez le nom et la position, quelque part dans la même ville, le même camp ou la même maison.\n\nEffectuez un Jet de Charisme + Persuasion contre un DD que le MJ fixe sur la distance qui vous sépare d'elle. En cas de réussite, elle vous accorde un entretien dans la journée, et vous n'y arrivez pas désarmé de tout : vous savez ce qu'elle veut.\n\nCe qui se dit pendant l'entretien ne dépend plus de ce Jet."
+  "description": "Vous obtenez d'être reçu. Nommez une créature dont vous connaissez le nom et la position, quelque part dans la même ville, le même camp ou la même maison.\n\nEffectuez un {{jet}} de {{charisme}} + {{persuasion}} contre un {{dd}} que le MJ fixe sur la distance qui vous sépare d'elle. En cas de réussite, elle vous accorde un entretien dans la journée, et vous n'y arrivez pas désarmé de tout : vous savez ce qu'elle veut.\n\nCe qui se dit pendant l'entretien ne dépend plus de ce {{jet}}."
 }

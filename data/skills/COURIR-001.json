@@ -16,5 +16,5 @@
       "enhancement"
     ]
   },
-  "description": "Vous forcez l'allure et donnez tout votre tour au déplacement.\n\nJusqu'à la fin de votre tour, votre Vitesse est doublée."
+  "description": "Vous forcez l'allure et donnez tout votre tour au déplacement.\n\nJusqu'à la fin de votre tour, votre {{vitesse}} est doublée."
 }

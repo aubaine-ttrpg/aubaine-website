@@ -16,5 +16,5 @@
       "protection"
     ]
   },
-  "description": "Vous touchez une créature consentante. Tant que le Sort dure, sa peau prend le grain et la dureté de l'écorce : sa CA passe à 17 si elle était inférieure."
+  "description": "Vous touchez une créature consentante. Tant que le {{sort}} dure, sa peau prend le grain et la dureté de l'écorce : sa {{ca}} passe à 17 si elle était inférieure."
 }

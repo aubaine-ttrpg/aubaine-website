@@ -22,5 +22,5 @@
       "destruction"
     ]
   },
-  "description": "À votre signal, la Poisse d'au plus trois créatures passe au rouge et détone. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\nChoisissez jusqu'à trois créatures que vous voyez à portée et qui portent de la Poisse. La Poisse de chacune devient [[Poisse explosive]], même si elle l'était déjà. Ensuite, une par une et dans l'ordre de votre choix, la Poisse explosive de chacune détone, sauf si elle a déjà détoné entre-temps.\n\nChaque Poisse que ce Sort rend explosive utilise, pour sa détonation, votre DD (10 + la Caractéristique choisie + Arcanes)."
+  "description": "À votre signal, la Poisse d'au plus trois créatures passe au rouge et détone. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nChoisissez jusqu'à trois créatures que vous voyez à portée et qui portent de la Poisse. La Poisse de chacune devient {{poisse-explosive}}, même si elle l'était déjà. Ensuite, une par une et dans l'ordre de votre choix, la {{poisse-explosive}} de chacune détone, sauf si elle a déjà détoné entre-temps.\n\nChaque Poisse que ce {{sort}} rend explosive utilise, pour sa détonation, votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}})."
 }

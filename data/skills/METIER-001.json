@@ -7,7 +7,7 @@
   "activation": "À l'achat",
   "range": "—",
   "duration": "—",
-  "description": "À l'achat, choisissez une discipline entre Artisanat, Arcanes, Technologie et Science. C'est la vôtre.\n\nVous gagnez 1 Avantage à tous vos Jets de fabrication faits sous cette discipline, et vous pouvez entreprendre une recette que vous n'avez jamais faite sans qu'on vous rie au nez.\n\nUn métier n'occupe aucune Mémoire : on ne range pas ce qu'on a dans les mains.",
+  "description": "À l'achat, choisissez une discipline entre {{artisanat}}, {{arcanes}}, {{technologie}} et {{science}}. C'est la vôtre.\n\nVous gagnez 1 {{avantage}} à tous vos {{jet|Jets}} de fabrication faits sous cette discipline, et vous pouvez entreprendre une recette que vous n'avez jamais faite sans qu'on vous rie au nez.\n\nUn métier n'occupe aucune {{memoire}} : on ne range pas ce qu'on a dans les mains.",
   "upgrades": [
     {
       "level": 2,

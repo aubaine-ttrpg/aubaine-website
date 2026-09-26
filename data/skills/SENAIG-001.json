@@ -14,5 +14,5 @@
       "divination"
     ]
   },
-  "description": "Les siècles de communion avec les forêts et les astres ont affiné vos perceptions.\n\nTant que cette Compétence est Mémorisée, vous avez l'Expertise dans la Perception et dans l'Investigation."
+  "description": "Les siècles de communion avec les forêts et les astres ont affiné vos perceptions.\n\nTant que cette Compétence est {{memorisee}}, vous avez l'{{expertise}} dans la {{perception}} et dans l'{{investigation}}."
 }

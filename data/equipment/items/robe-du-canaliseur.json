@@ -16,11 +16,11 @@
   "properties": [
     {
       "name": "Catalyseur.",
-      "text": "Tant que cette pièce est équipée, vous pouvez utiliser vos Sorts, passifs comme actifs."
+      "text": "Tant que cette pièce est équipée, vous pouvez utiliser vos {{sort|Sorts}}, passifs comme actifs."
     },
     {
       "name": "Concentration tenue.",
-      "text": "Vos Jets de Constitution + Volonté pour maintenir votre concentration gagnent 1 Avantage."
+      "text": "Vos {{jet|Jets}} de {{constitution}} + {{volonte}} pour maintenir votre concentration gagnent 1 {{avantage}}."
     }
   ],
   "craft": {

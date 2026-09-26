@@ -17,5 +17,5 @@
       "influence"
     ]
   },
-  "description": "Vous jouez cette Réaction lorsqu'une créature qui vous entend effectue un Jet social, avant que son résultat ne soit résolu.\n\nVous glissez la phrase qui change la pièce. Ce Jet gagne 1 Avantage s'il vous arrange, ou subit 1 Désavantage s'il vous dessert."
+  "description": "Vous jouez cette {{reaction}} lorsqu'une créature qui vous entend effectue un {{jet}} social, avant que son résultat ne soit résolu.\n\nVous glissez la phrase qui change la pièce. Ce {{jet}} gagne 1 {{avantage}} s'il vous arrange, ou subit 1 {{desavantage}} s'il vous dessert."
 }

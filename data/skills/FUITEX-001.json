@@ -16,5 +16,5 @@
       "enhancement"
     ]
   },
-  "description": "Vous renoncez au combat et vous ne pensez plus qu'à en sortir vivant.\n\nPendant 10 minutes, votre Vitesse est triplée et tous vos Jets subissent 3 Désavantage. Tant que dure la Fuite, deux dés conservés à 3 ou moins produisent un échec critique.\n\nCette Compétence est réservée aux personnages joueurs."
+  "description": "Vous renoncez au combat et vous ne pensez plus qu'à en sortir vivant.\n\nPendant 10 minutes, votre {{vitesse}} est triplée et tous vos {{jet|Jets}} subissent 3 {{desavantage}}. Tant que dure la {{FUITEX-001}}, deux dés conservés à 3 ou moins produisent un échec critique.\n\nCette Compétence est réservée aux personnages joueurs."
 }

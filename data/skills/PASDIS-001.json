@@ -18,13 +18,13 @@
       "illusion"
     ]
   },
-  "description": "Un pas de côté, une colonne, un pan de mur : vous savez choisir le moment où personne ne vous regarde.\n\nVous jouez la Compétence de base {{Se cacher}} avec une Action Bonus au lieu d'une Action.",
+  "description": "Un pas de côté, une colonne, un pan de mur : vous savez choisir le moment où personne ne vous regarde.\n\nVous jouez la Compétence de base {{CACHER-001}} avec une {{action-bonus}} au lieu d'une {{action}}.",
   "upgrades": [
     {
       "level": 2,
       "tier": 4,
       "title": "Effacement",
-      "description": "Lorsque vous devenez [[Caché]] de cette manière, vous pouvez d'abord vous déplacer de 3 mètres."
+      "description": "Lorsque vous devenez {{cache}} de cette manière, vous pouvez d'abord vous déplacer de 3 mètres."
     }
   ]
 }

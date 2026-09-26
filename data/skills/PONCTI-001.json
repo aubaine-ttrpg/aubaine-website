@@ -19,13 +19,13 @@
       "lifesteal"
     ]
   },
-  "description": "Vous ouvrez vos paumes et laissez le sang appeler le sang.\n\nVotre prochaine Attaque de ce tour vous rend des PdV égaux à la moitié des dégâts qu'elle inflige.",
+  "description": "Vous ouvrez vos paumes et laissez le sang appeler le sang.\n\nVotre prochaine {{attaque}} de ce tour vous rend des {{pdv}} égaux à la moitié des dégâts qu'elle inflige.",
   "upgrades": [
     {
       "level": 2,
       "tier": 5,
       "title": "Ponction totale",
-      "description": "{{Ponction}} vous rend des PdV égaux à la totalité des dégâts infligés, au lieu de la moitié."
+      "description": "{{PONCTI-001}} vous rend des {{pdv}} égaux à la totalité des dégâts infligés, au lieu de la moitié."
     }
   ]
 }

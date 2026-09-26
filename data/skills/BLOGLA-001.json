@@ -17,5 +17,5 @@
       "protection"
     ]
   },
-  "description": "Vous jouez cette Réaction lorsqu'une créature hostile vous inflige des dégâts avec une Attaque ou une Compétence.\n\nLa glace vous enferme et amortit les chocs. Jusqu'au début de votre prochain tour, vous gagnez une résistance à tous les dégâts, y compris ceux qui ont déclenché cette Réaction.\n\nPendant votre prochain tour, la glace vous retient encore : vous êtes Immobilisé."
+  "description": "Vous jouez cette {{reaction}} lorsqu'une créature hostile vous inflige des dégâts avec une {{attaque}} ou une Compétence.\n\nLa glace vous enferme et amortit les chocs. Jusqu'au début de votre prochain tour, vous gagnez une résistance à tous les dégâts, y compris ceux qui ont déclenché cette {{reaction}}.\n\nPendant votre prochain tour, la glace vous retient encore : vous êtes {{immobilise}}."
 }

@@ -24,7 +24,7 @@
     {
       "id": "squelette",
       "name": "Squelette",
-      "text": "***En tant que Squelette***, il ne vous reste que vos os, et personne ne se trompe sur ce que vous êtes quand vous vous montrez ainsi. Vos orbites vides suivent ceux qui vous parlent, et les gens reculent avant que vous ayez pu dire votre nom. Sans chair ni peau, vous êtes plus léger et plus vif que de votre vivant, et un coup de gourdin qui laisserait un bleu sur un bras vous fait bien plus de mal. Vous avez appris à écorcher un cadavre de votre Taille pour vous vêtir de sa peau. Elle vous donne l'apparence de celui qui la portait. Elle ne cache pas pour autant que vous êtes un Mort-vivant.",
+      "text": "***En tant que Squelette***, il ne vous reste que vos os, et personne ne se trompe sur ce que vous êtes quand vous vous montrez ainsi. Vos orbites vides suivent ceux qui vous parlent, et les gens reculent avant que vous ayez pu dire votre nom. Sans chair ni peau, vous êtes plus léger et plus vif que de votre vivant, et un coup de gourdin qui laisserait un bleu sur un bras vous fait bien plus de mal. Vous avez appris à écorcher un cadavre de votre {{taille}} pour vous vêtir de sa peau. Elle vous donne l'apparence de celui qui la portait. Elle ne cache pas pour autant que vous êtes un Mort-vivant.",
       "imposed": "DEPOUI-001",
       "offered": []
     },
@@ -59,6 +59,6 @@
   ],
   "roleplay": {
     "height": "Celle que vous aviez de votre vivant",
-    "text": "Un Mort-vivant a d'abord vécu. Choisissez l'Espèce que vous étiez de votre vivant et, si elle en compte, sa sous-espèce ou son origine régionale. Vous en gardez la Taille, la stature, la Vitesse et les langues. Si elle propose plusieurs Tailles, retenez-en une. Pour tout Prérequis, vous comptez comme un personnage de cette Espèce et de la sous-espèce ou de l'origine régionale retenue. Si cette Espèce ne fixe pas elle-même ce que vous tenez d'elle, comme les Scothans, décidez-le avec le MJ.\n\nChoisissez ensuite votre sous-espèce de Mort-vivant, ce que la mort a fait de vous : sa Compétence est l'une de vos deux Compétences d'Espèce.\n\nDécidez enfin de ce que les vivants finissent par remarquer chez vous."
+    "text": "Un Mort-vivant a d'abord vécu. Choisissez l'Espèce que vous étiez de votre vivant et, si elle en compte, sa sous-espèce ou son origine régionale. Vous en gardez la {{taille}}, la stature, la {{vitesse}} et les langues. Si elle propose plusieurs {{taille|Tailles}}, retenez-en une. Pour tout {{prerequis}}, vous comptez comme un personnage de cette Espèce et de la sous-espèce ou de l'origine régionale retenue. Si cette Espèce ne fixe pas elle-même ce que vous tenez d'elle, comme les Scothans, décidez-le avec le MJ.\n\nChoisissez ensuite votre sous-espèce de Mort-vivant, ce que la mort a fait de vous : sa Compétence est l'une de vos deux Compétences d'Espèce.\n\nDécidez enfin de ce que les vivants finissent par remarquer chez vous."
   }
 }

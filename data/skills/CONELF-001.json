@@ -15,5 +15,5 @@
       "enhancement"
     ]
   },
-  "description": "Lorsqu'un de vos Jets de Dextérité, d'Intelligence, d'Esprit ou de Charisme gagne au moins 1 Avantage, vous pouvez relancer l'un de ses dés, une fois, et garder le nouveau résultat."
+  "description": "Lorsqu'un de vos {{jet|Jets}} de {{dexterite}}, d'{{intelligence}}, d'{{esprit}} ou de {{charisme}} gagne au moins 1 {{avantage}}, vous pouvez relancer l'un de ses dés, une fois, et garder le nouveau résultat."
 }

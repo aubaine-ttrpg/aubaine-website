@@ -18,5 +18,5 @@
       "divination"
     ]
   },
-  "description": "Vous dormez d'une oreille et vous marchez l'œil ouvert.\n\nVos Jets d'Esprit + Perception pour repérer une embuscade, un guet ou une porte piégée gagnent 1 Avantage. Une embuscade ne vous surprend pas tant que vous êtes conscient."
+  "description": "Vous dormez d'une oreille et vous marchez l'œil ouvert.\n\nVos {{jet|Jets}} d'{{esprit}} + {{perception}} pour repérer une embuscade, un guet ou une porte piégée gagnent 1 {{avantage}}. Une embuscade ne vous surprend pas tant que vous êtes conscient."
 }

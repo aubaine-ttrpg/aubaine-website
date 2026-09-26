@@ -16,13 +16,13 @@
       "protection"
     ]
   },
-  "description": "Vous jouez cette Réaction lorsqu'une Attaque de Visée prend pour cible une créature que vous voyez à portée, vous compris.\n\nUn écran d'air se dresse en travers du tir : l'Attaque subit 1 Désavantage. Si l'Attaque échoue, vous pouvez gagner 1 [[Vent ascendant]].",
+  "description": "Vous jouez cette {{reaction}} lorsqu'une {{attaque}} de {{visee}} prend pour cible une créature que vous voyez à portée, vous compris.\n\nUn écran d'air se dresse en travers du tir : l'{{attaque}} subit 1 {{desavantage}}. Si l'{{attaque}} échoue, vous pouvez gagner 1 {{vent-ascendant}}.",
   "upgrades": [
     {
       "level": 2,
       "tier": 4,
       "title": "Renvoi",
-      "description": "Lorsqu'une Attaque de Visée contre laquelle vous jouez {{Paravent}} échoue, vous pouvez détourner le tir vers une autre créature que vous voyez, à 3 m ou moins de sa cible et à portée de cette Attaque. L'attaquant refait son Attaque contre cette créature, sans le Désavantage de {{Paravent}}. En cas de réussite, cette créature en subit tous les effets."
+      "description": "Lorsqu'une {{attaque}} de {{visee}} contre laquelle vous jouez {{PARAVE-001}} échoue, vous pouvez détourner le tir vers une autre créature que vous voyez, à 3 m ou moins de sa cible et à portée de cette {{attaque}}. L'attaquant refait son {{attaque}} contre cette créature, sans le {{desavantage}} de {{PARAVE-001}}. En cas de réussite, cette créature en subit tous les effets."
     }
   ]
 }

@@ -16,13 +16,13 @@
       "protection"
     ]
   },
-  "description": "Vous jouez cette Réaction lorsque vous subissez des dégâts de Feu.\n\nRéduisez ces dégâts de 1d8. La créature qui vous les inflige subit autant de dégâts de Feu que vous venez d'en éviter, si vous la voyez à portée.",
+  "description": "Vous jouez cette {{reaction}} lorsque vous subissez des dégâts de Feu.\n\nRéduisez ces dégâts de 1d8. La créature qui vous les inflige subit autant de dégâts de Feu que vous venez d'en éviter, si vous la voyez à portée.",
   "upgrades": [
     {
       "level": 2,
       "tier": 4,
       "title": "Manteau de flammes",
-      "description": "Vous pouvez aussi jouer {{Retour de flammes}} lorsqu'une créature à 1,5 m ou moins vous touche avec une Attaque, quel que soit le type de ses dégâts. Réduisez alors les dégâts de cette Attaque, tous types confondus, de 1d8 si elle vous inflige des dégâts de Feu, et de 1d6 sinon."
+      "description": "Vous pouvez aussi jouer {{RETFLA-001}} lorsqu'une créature à 1,5 m ou moins vous touche avec une {{attaque}}, quel que soit le type de ses dégâts. Réduisez alors les dégâts de cette {{attaque}}, tous types confondus, de 1d8 si elle vous inflige des dégâts de Feu, et de 1d6 sinon."
     }
   ]
 }

@@ -37,6 +37,6 @@
       "12 (Int)"
     ]
   },
-  "text": "Vous pouvez effectuer une Action pour briser cette fiole sur un point que vous voyez à portée. Une fumée épaisse emplit un rayon de ***3 mètres*** jusqu'au début de votre prochain tour. Toute créature qui s'y trouve gagne [[Caché]] vis-à-vis de celles qui sont à l'extérieur, sans avoir à effectuer de Jet.",
+  "text": "Vous pouvez effectuer une {{action}} pour briser cette fiole sur un point que vous voyez à portée. Une fumée épaisse emplit un rayon de ***3 mètres*** jusqu'au début de votre prochain tour. Toute créature qui s'y trouve gagne {{cache}} vis-à-vis de celles qui sont à l'extérieur, sans avoir à effectuer de {{jet}}.",
   "description": "Verre mince rempli de poudre grise. Elle prend l'air d'un coup et sent la cendre mouillée."
 }

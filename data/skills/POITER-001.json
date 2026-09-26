@@ -21,5 +21,5 @@
       "control"
     ]
   },
-  "description": "Le sol se soulève en racines et en mains de pierre sous une créature que vous voyez à portée. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\nElle effectue un Jet de Dextérité + Réflexes contre votre DD (10 + la Caractéristique choisie + Arcanes). En cas d'échec, elle est [[Entravé]]. En cas de réussite, elle s'écarte d'un pas et la poigne se referme sur rien."
+  "description": "Le sol se soulève en racines et en mains de pierre sous une créature que vous voyez à portée. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nElle effectue un {{jet}} de {{dexterite}} + {{reflexes}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}}). En cas d'échec, elle est {{entrave}}. En cas de réussite, elle s'écarte d'un pas et la poigne se referme sur rien."
 }

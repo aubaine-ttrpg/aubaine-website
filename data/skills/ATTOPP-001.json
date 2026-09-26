@@ -16,5 +16,5 @@
   "tags": {
     "practice": "manoeuvre"
   },
-  "description": "Lorsqu'une créature que vous voyez quitte votre allonge au corps à corps par son déplacement, vous pouvez porter une Attaque contre elle.\n\nUne créature qui a joué {{Se désengager}} pendant ce tour ne déclenche rien."
+  "description": "Lorsqu'une créature que vous voyez quitte votre allonge au corps à corps par son déplacement, vous pouvez porter une {{attaque}} contre elle.\n\nUne créature qui a joué {{DESENG-001}} pendant ce tour ne déclenche rien."
 }

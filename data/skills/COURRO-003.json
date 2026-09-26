@@ -17,5 +17,5 @@
       "protection"
     ]
   },
-  "description": "Vous présentez le flanc épais, celui qui a déjà encaissé. Votre CA augmente de 1 jusqu'à la fin de la métamorphose.\n\nVous pouvez rejouer cette Compétence, jusqu'à 5 fois par métamorphose."
+  "description": "Vous présentez le flanc épais, celui qui a déjà encaissé. Votre {{ca}} augmente de 1 jusqu'à la fin de la métamorphose.\n\nVous pouvez rejouer cette Compétence, jusqu'à 5 fois par métamorphose."
 }

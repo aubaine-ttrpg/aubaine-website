@@ -12,5 +12,5 @@
       "enhancement"
     ]
   },
-  "description": "La première fois que vous mémorisez cette Compétence, choisissez deux Aptitudes. Tant qu'elle est Mémorisée, vous avez l'Expertise dans ces deux Aptitudes."
+  "description": "La première fois que vous {{memorisee|mémorisez}} cette Compétence, choisissez deux {{aptitude|Aptitudes}}. Tant qu'elle est {{memorisee}}, vous avez l'{{expertise}} dans ces deux {{aptitude|Aptitudes}}."
 }
