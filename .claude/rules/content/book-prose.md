@@ -22,6 +22,7 @@ Book chapters are the explanatory layer. They teach a mechanic in plain language
 - Use a definition list for a closed set of named things, which is how resources, currencies, and the parts of the Soul are already presented.
 - Use a table for genuinely tabular facts such as costs and derived values.
 - Write a quote as a Markdown blockquote. When it has a speaker, close it with a last line `> :source[...]`: that line becomes the attribution, outside the quote, and `pnpm data:check` refuses a `:source[` anywhere else.
+- Frame an example of play as a callout, `> [!EXAMPLE] Titre`, and keep `> [!PRINCIPLE] Titre` for the rules that come before all others. `docs/runbooks/add-a-book-page.md` owns the syntax.
 - Set formulas as code so they read as formulas.
 
 ## Voice

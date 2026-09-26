@@ -249,6 +249,30 @@ function sourceCaption(paragraph: HastElement): HastChild[] | undefined {
   ]
 }
 
+export const CALLOUT_KINDS = ['principle', 'example'] as const
+
+type CalloutKind = (typeof CALLOUT_KINDS)[number]
+
+export const CALLOUT_MARK = /^\[!([A-Z]+)\][ \t]*/
+
+function isCalloutKind(value: string | undefined): value is CalloutKind {
+  return CALLOUT_KINDS.some((kind) => kind === value)
+}
+
+function calloutNote(blockquote: HastElement): HastElement | undefined {
+  const first = blockquote.children.find((child): child is HastElement => child.type === 'element')
+  const lead = first?.tagName === 'p' ? first.children[0] : undefined
+  if (!first || lead?.type !== 'text') return undefined
+  const match = CALLOUT_MARK.exec(lead.value)
+  const kind = match?.[1]?.toLowerCase()
+  if (!match || !isCalloutKind(kind)) return undefined
+  const title = [text(lead.value.slice(match[0].length)), ...first.children.slice(1)]
+  return element('div', { className: `au-callout au-callout--${kind}`, role: 'note' }, [
+    element('p', { className: 'au-callout__title' }, title),
+    ...blockquote.children.filter((child) => child !== first),
+  ])
+}
+
 function quoteFigure(blockquote: HastElement): HastElement {
   const blocks = blockquote.children.filter(
     (child): child is HastElement => child.type === 'element',
@@ -270,7 +294,8 @@ export function rehypeProseQuotes() {
       node.children = node.children.map((child) => {
         if (child.type === 'text') return child
         wrap(child)
-        return child.tagName === 'blockquote' ? quoteFigure(child) : child
+        if (child.tagName !== 'blockquote') return child
+        return calloutNote(child) ?? quoteFigure(child)
       })
     }
 

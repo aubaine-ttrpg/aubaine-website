@@ -40,6 +40,8 @@ Everything after the frontmatter is the chapter body. What is supported:
 | `Terme` then a line starting with `: ` | a definition list, used for the trait and resource blocks |
 | a table | a table (GitHub flavoured markdown is on) |
 | `> text`, closed by `> :source[Qui parle]` | a quote framed on its own, the `:source[...]` line becoming its attribution |
+| `> [!EXAMPLE] Titre`, a bare `>`, then the body | a light box for an example of play: it shows a rule at the table and never changes it |
+| `> [!PRINCIPLE] Titre`, a bare `>`, then the body | a solemn framed box with a centred title, kept for the rules that come before all others, like the three golden rules |
 
 | `[[Nom d'état]]` | the state, marked, with its tooltip |
 | `{{Nom de compétence}}` | the Skill, marked, linking to its entry |
@@ -118,6 +120,8 @@ And the file is listed, in `data/books/livre-du-joueur/book.json`:
 **The prefixes have to sort into the reading order.** `pnpm data:check` compares the two, so renumber the files when you reorder the book.
 
 **The frontmatter `title` is required.** A page without it fails the build.
+
+**A callout's first line is its kind and its title, and the next line is a bare `>`.** Only `EXAMPLE` and `PRINCIPLE` exist, listed by `CALLOUT_KINDS` in `src/lib/game/book-markup.ts`. `pnpm data:check` fails on another kind, a missing title, or a body written on the title line.
 
 **A `#` heading is rejected.** The chapter title comes from the frontmatter, so the body starts at `##`. `pnpm data:check` fails on a level one heading.
 

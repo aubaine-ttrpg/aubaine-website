@@ -5,6 +5,8 @@
 **Date:** 2026-09-23
 **Revised:** 2026-09-26, the tree page renders the grid for its lore only, and its rail ends on the
 tree section that follows it (0025)
+**Revised:** 2026-09-26, a chapter can frame an example or a founding principle as a callout
+(addendum in Decision 1)
 **Deciders:** Kori
 **Scope:** Where long-form prose that a reader reads is authored, and how the four surfaces that
 carry it are laid out: the book chapter, the policy page, the Species page and the skill tree page.
@@ -88,6 +90,18 @@ same site, and a third and fourth surface had nowhere to inherit from.
 - `tests/data/integrity.test.ts` no longer checks a declared `art` field for lore. It now resolves
   every Markdown image in `data/lore/` against `data/media/art/` and fails on anything pointing
   elsewhere, so the ratio and rights checks that 0014 worried about still see every picture.
+
+### Addendum (2026-09-26): callouts
+
+The rewrite of the Livre du joueur needed a solemn frame for its three golden rules and a light box
+for examples of play. A blockquote whose first line is `[!EXAMPLE] Titre` or `[!PRINCIPLE] Titre`
+becomes a `div` with `role="note"` and a title paragraph, built by `calloutNote` in
+`src/lib/game/book-markup.ts` before the quote figure is considered; any other blockquote stays a
+quote. The syntax stays plain Markdown, so no raw HTML enters a chapter, and the kinds are a closed
+list, `CALLOUT_KINDS`, that `tests/data/integrity.test.ts` enforces along with a title and a bare
+`>` second line. The styles live in `src/styles/prose.css` for the site and `src/styles/print.css`
+for the booklets. `role="note"` was chosen over `aside` so a page with several examples does not
+fill with complementary landmarks.
 
 ---
 

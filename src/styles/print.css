@@ -596,6 +596,43 @@
   font-size: var(--leaf-quote);
 }
 
+.au-leaf__body .au-callout {
+  margin: 2.5mm 0;
+  padding: 2.5mm 3.5mm;
+  break-inside: avoid;
+}
+
+.au-leaf__body .au-callout__title {
+  margin: 0 0 1.5mm;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--paper-ink);
+}
+
+.au-leaf__body .au-callout--principle {
+  padding: 4mm 5mm;
+  border: 0.8mm double var(--edge);
+}
+
+.au-leaf__body .au-callout--principle .au-callout__title {
+  letter-spacing: 0.12em;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--edge);
+}
+
+.au-leaf__body .au-callout--example {
+  border-left: 0.4mm solid var(--edge);
+}
+
+.au-leaf__body .au-callout--example .au-callout__title {
+  font-family: var(--font-ui);
+  font-size: var(--leaf-small);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--paper-quiet);
+}
+
 .au-leaf__body hr {
   height: 0;
   margin: 3mm 0;

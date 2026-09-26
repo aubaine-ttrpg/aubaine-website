@@ -6,6 +6,7 @@ import sharp from 'sharp'
 import { describe, expect, it } from 'vitest'
 
 import { latestRelease, notes, releases } from '../../src/lib/booklet/manifest'
+import { CALLOUT_KINDS } from '../../src/lib/game/book-markup'
 import {
   originSkills,
   ruleBrowseEntries,
@@ -964,6 +965,23 @@ describe('authored prose markup', () => {
           lines[index + 1]?.startsWith('>') ?? false,
           `${where} continues the blockquote after its :source[`,
         ).toBe(false)
+      })
+    }
+  })
+
+  it('opens a callout only with a known kind and a title, followed by a blank line', async () => {
+    for (const { where, text } of await authoredProse()) {
+      const lines = text.split('\n')
+      lines.forEach((line, index) => {
+        const match = /^> \[!([A-Z]+)\](.*)$/.exec(line)
+        if (!match) return
+        const kind = (match[1] ?? '').toLowerCase()
+        expect(
+          CALLOUT_KINDS.some((known) => known === kind),
+          `${where} opens an unknown callout [!${match[1]}]`,
+        ).toBe(true)
+        expect((match[2] ?? '').trim(), `${where} opens a callout without a title`).not.toBe('')
+        expect(lines[index + 1], `${where} writes the callout body on its title line`).toBe('>')
       })
     }
   })

@@ -82,6 +82,54 @@
   letter-spacing: 0.04em;
 }
 
+.au-prose .au-callout {
+  margin-block: 1.6em 0;
+  padding: 1.1em 1.4em 1.2em;
+  background: var(--bg3);
+}
+
+.au-prose .au-callout > :nth-child(2) {
+  margin-block-start: 0.7em;
+}
+
+.au-prose .au-callout__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
+.au-prose .au-callout--principle {
+  margin-block: 2em;
+  padding: 1.8em clamp(1.2em, 4vw, 2.4em) 2em;
+  border: 3px double var(--gold);
+}
+
+.au-prose .au-callout--principle .au-callout__title {
+  font-size: var(--prose-h2);
+  letter-spacing: 0.14em;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.au-prose .au-callout--principle > :nth-child(2) {
+  margin-block-start: 1.1em;
+}
+
+.au-prose .au-callout--example {
+  border-inline-start: 2px solid var(--accent-line);
+}
+
+.au-prose .au-callout--example .au-callout__title {
+  font-family: var(--font-ui);
+  font-size: 0.8em;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink2);
+}
+
 .au-prose p:has(> img:only-child) {
   margin-block: 1.4em 0;
 }
