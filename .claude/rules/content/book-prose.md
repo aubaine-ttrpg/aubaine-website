@@ -28,6 +28,7 @@ Book chapters are the explanatory layer. They teach a mechanic in plain language
 ## Voice
 
 - Open by saying what the thing is and what it is for. No atmosphere before the definition.
+- Explain Aubaine as it is. Never frame a rule against another game or against what roleplaying games usually do, as in « pas de niveau », « ni attaque ni sauvegarde à part » or « ce qu'Aubaine fait à sa façon ». Say what the rule does.
 - Give the direct answer first, then the procedure, then the exceptions, then an example.
 - Address the reader as the player at the table, in the second person, when the chapter tells them what to do.
 - Keep sections short and semantic. A heading names what is under it.

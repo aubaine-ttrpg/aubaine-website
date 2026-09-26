@@ -1,69 +1,91 @@
 ---
 title: "Welcome to Aubaine"
-description: "What a tabletop roleplaying game is, who does what at the table, and what you need to start."
+description: "What a tabletop roleplaying game is, who does what around the table, what you need to start, and Aubaine at a glance."
 ---
 
-Aubaine is a tabletop roleplaying game. One person describes a world, the others each play a character inside it, and everyone finds out together what happens. There is no screen, no compulsory board, and no winner.
+Aubaine is a tabletop roleplaying game, a TTRPG to its friends. One person, the GM, describes a world and everything in it. Everyone else plays one character each, decides what that character does, and the whole table finds out together what happens next. The story takes shape as you play, session after session, and nobody knows in advance where it will lead.
 
-If you have never played one, this chapter is enough to sit down at a table. If you have, it tells you what Aubaine does differently.
+This chapter and the next are enough to sit down at a table.
 
 ## What happens at a table
 
-A session is a conversation with dice in it.
+A game is a conversation with dice in it, and it runs on a simple loop.
 
-The GM describes a situation. You say what your character does. The GM says what comes of it, and if the outcome is uncertain a Roll settles it. Then the situation has changed, and round it goes again.
+1. **The GM describes a situation.** What the characters see and hear, what threatens them, what tempts them.
+2. **You say what your character does.** You speak for them, in their words or your own.
+3. **The GM says what happens.** When the outcome is certain, they narrate it. When it is uncertain and failure would cost something, a Roll decides.
 
-That loop is the whole game. It runs the same on searching a cupboard as on a duel.
+Then the situation has changed, and the loop starts again. It turns the same way for searching a cupboard, a tense negotiation or a duel on the edge of a cliff.
+
+> [!EXAMPLE] An example of play
+>
+> **GM:** "The rope bridge sways over the ravine. Halfway across, three planks have given way, and the drop is waiting for you below."
+>
+> **Sélène's player:** "I take a run-up and jump the gap."
+>
+> **GM:** "The outcome is uncertain, and a fall would cost you dearly. Make a Dexterity + Acrobatics Roll against DC 15."
+>
+> The player rolls two d12s and gets a 7 and a 9. Sélène has +3 in Dexterity and nothing in Acrobatics, so her total is 19, over the DC.
+>
+> **GM:** "You land on the far side with a creak of rope. Behind you, another plank comes loose and tumbles for a long time before the mist swallows it."
 
 ## Who does what
 
 The GM
-: The game master. They describe the world, play everything that is not a player character, settle what the rules leave open, and set the difficulty of what you attempt. They are not playing against you.
+: The game master. They describe the world, play everything that is not a player character, set the difficulty of what you attempt and rule on whatever the rules leave open. They are not playing against you: their job is to make the world feel alive and your choices matter.
 
 The players
-: Each holds one character, decides what they do and speaks for them. You decide your character's actions, never their results.
+: Each runs one character, decides what it does and speaks for it. You decide what your character attempts; the GM and the dice decide how it turns out.
 
 The table
-: All of you. It is the table that decides the tone, and what belongs in the fiction and what does not. Those conversations happen outside the game, and they matter more than any rule.
+: All of you, together. The table decides the tone of the game, what belongs in the fiction and what does not. Those conversations happen outside the game, before the first session and whenever they are needed, and they matter more than any rule.
 
 ## What you need
 
 - A character sheet.
-- Dice: d12s above all, plus a d4 and a few others for damage.
-- Something to write with, because the sheet changes in play.
-- Your Trees, starting with your Archetype's and your Domain's.
+- Dice: mostly d12s, plus a d4 and a few others for damage.
+- Something to write and erase with, because the sheet changes during play.
+- Your first two Trees, your Archetype's and your Domain's, printed or open on a screen.
 
-Nothing else. No miniatures and no grid: distances are counted in metres and said out loud.
+Nothing else: distances are counted in metres and said out loud.
 
-## What Aubaine does its own way
+## Aubaine at a glance
 
-One Roll
-: Everything resolves on `2d12 + one Characteristic + one Aptitude`. There is no separate attack roll and no separate saving throw. One formula, everywhere.
+The Roll
+: Anything uncertain resolves with the same formula, `2d12 + a Characteristic + an Aptitude`. Attacking, shrugging off a poison, lying to a guard or forging a blade: only the number you need changes.
 
-No fixed pairs
-: No Aptitude belongs to a Characteristic. The way you act decides the pair, so a character stays useful outside their speciality.
+The pair
+: How you act decides which Characteristic and which Aptitude you use, so a character stays useful far from their strengths.
 
-No levels
-: A character does not go up a step and drag everything else with them. Three separate currencies buy three separate things.
+The Soul
+: Every character carries a Phobia, a Mania, a Flaw, a Speciality and a Gift. The Speciality is an Aptitude you invent, such as "Cooking" or "Traps". The Gift is a faculty that belongs to you alone, such as "I can speak to the dead" or "My paintings come to life". They are what keep two characters with the same numbers two different people.
 
-Equipment is made
-: You find materials, follow a recipe, make the Rolls. Buying over a counter exists, but it does not cover much.
+Three currencies
+: XP buys your Skills, MP your Characteristics and Aptitudes, PP your resources. Each arrives at its own pace, and that is how a character grows.
 
-Memory limits you
-: You know many Skills and memorise only a few at a time. What you carry is a choice, and it is replayed at every rest.
+Trees to climb
+: You buy Skills on Trees, starting from their heart and following their lines. You unlock new Trees during play to build the character you want.
 
-## A game that moves
+Memory sets the limit
+: You learn many Skills but keep only a few Memorised at a time. What you carry is a choice, and you make it again at every rest.
 
-Aubaine is free and open. Its rules, Skills, Trees and equipment live in a public repository, and the site you are reading renders it directly.
+You make your gear
+: You gather materials, follow a recipe and make the Rolls: most of what you wear passes through your own hands.
 
-That has a practical consequence. There is no edition, no supplement to buy, nothing behind a paywall. A Skill adjustment, a new Tree or a new piece of equipment arrives without anything becoming obsolete, and every plate downloads and prints at home.
+## A living game
 
-It also has a consequence for this book. It explains mechanics, not catalogues. When you need to know which Trees exist today, or exactly what a piece grants, the entry's own page is the reference: it is current, and this book talks about the system.
+Aubaine is free and open. Its rules, Skills, Trees and equipment live in a public repository, and the site you are reading is rendered straight from it.
+
+The game keeps growing: a Skill adjustment, a new Tree or a new piece of equipment arrives without making what you already have obsolete, and every Tree can be downloaded and printed at home.
+
+This book explains the system. When you need to know which Trees exist today, or exactly what an item grants, that entry's page is the reference: it is always up to date.
 
 ## How to read this book
 
-The next chapter explains the Roll, and it is the only one you need for a first session. The rest can wait until it is useful.
+The three golden rules open the book, and they come before everything else. The next chapter, How to play, explains the Roll: it is the only one you need for a first session. Creating a character, Species, and Trees and Skills walk you through your sheet. The chapters after that, from equipment to rest, can be read when they come up.
 
-A coloured word in this book is a rule term. Hover it, or give it focus with the keyboard, and its definition appears. The Rules page lists every one of them, and a Skill name leads straight to its entry.
+A coloured word is a rules term. Hover over it, or give it keyboard focus, and its definition appears; the Rules page gathers them all. A Skill's name leads to its entry.
 
-Numbers that belong to a piece of equipment or a Skill are printed on it, not here. This book explains the mechanics; the entries carry the values.
+The "Example" boxes show a rule in play. They never change it.
+
+Numbers that belong to a Skill or an item are printed on it, not here. This book explains the mechanics; the entries carry the values.

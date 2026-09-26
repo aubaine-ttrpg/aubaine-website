@@ -1,107 +1,111 @@
 ---
 title: "How to play"
-description: "The Roll, the pair of scores, the three defences, Advantage and Disadvantage, criticals and the difficulty ladder."
+description: "The Roll, choosing the pair, the three defences, Advantage and Disadvantage, criticals, the difficulty scale, and the principles that settle clashes between rules."
 ---
 
-A Roll is always the same calculation:
+Anything uncertain in Aubaine is settled by a Roll, and a Roll is always the same sum:
 
-`2d12 + one Characteristic + one Aptitude`
+`2d12 + a Characteristic + an Aptitude`
 
-There is no second formula. An attack, a dodge, a lie and a morning at the forge all resolve this way. What changes is the pair you use and the number you have to reach.
+This formula serves everywhere: an attack, a dodge, a lie and an afternoon at the forge all resolve this way. What changes from one situation to the next is the pair you use and the number you need.
 
-## When dice come out
+## When to roll
 
-You do not roll for everything. A Roll costs the table time, so it has to decide something.
+You do not roll for everything. A Roll takes time at the table, so it should decide something.
 
-1. **Describe.** You say what your character wants and how they go about it.
-2. **Roll.** If the outcome is uncertain and failing costs something, you make a Roll.
+1. **Describe.** Say what your character wants and how they go about it.
+2. **Roll.** If the outcome is uncertain and failure would cost something, the GM asks for a Roll.
 3. **Resolve.** The result settles it, and the situation moves on.
 
-An action whose outcome is not in doubt succeeds without a Roll. An action the fiction forbids does not get one either: it fails. Between the two, you roll.
+An action whose outcome is certain simply succeeds: opening an unlocked door, climbing a ladder, buying bread. An action the fiction makes impossible needs no Roll either: it fails. Everything in between, you roll.
+
+Your Gift moves that line for you alone. Someone with the Gift of speaking to the dead can question a corpse nobody else could make talk, and the GM decides what the dead one answers.
 
 ## Choosing the pair
 
-No Aptitude is tied to a Characteristic. The GM picks the pair from the way you are acting, and every combination is open.
+The GM picks the pair from how you act, and every combination of Characteristic and Aptitude is open.
 
-That is what keeps you useful outside your speciality. A character built on Strength intimidates by breaking a table rather than by raising their voice, and the Roll becomes Strength + Intimidation. A character with nothing but Intelligence gets past a physical obstacle by understanding it, and the Roll becomes Intelligence + Athletics.
+That keeps you useful far from your strengths. A character built on Strength intimidates by smashing a table rather than raising their voice, and the Roll becomes Strength + Intimidation. A character who relies on Intelligence gets past a physical obstacle by understanding it, and the Roll becomes Intelligence + Athletics.
 
-It also gives you a floor. Without the Aptitude you would want, you keep your Characteristic: nobody rolls bare dice.
+It also gives you a floor. Without the Aptitude you would want, you still have your Characteristic: nobody rolls bare dice.
 
-A Skill may impose its pair. Its text says so when it does.
+> [!EXAMPLE] Example
+>
+> The party needs a ferryman to take them across at night. Aldric, a giant of a man with no gift for words, lays his axe on the table and stares at the ferryman in silence. The GM asks for a Strength + Intimidation Roll. His companion would rather open her purse and haggle, so for her it is Charisma + Persuasion. Two approaches, two pairs, and each has its chance.
+
+Your Speciality enters the pair whenever the action falls within its field: it takes the Aptitude's place and adds 1 Advantage to the Roll. A "Traps" Speciality serves to disarm a trapped flagstone, a "Cooking" one to recognise poison in a stew. The Creating a character chapter presents it with the rest of the Soul.
+
+A Skill can set its own pair. When it does, its text names it.
 
 ### Naming a Roll
 
-Two ways, depending on what the rule needs to pin down.
+There are two ways to write it, depending on what the rule needs to pin down.
 
-- **A Melee Roll**, when only the Aptitude matters.
-- **A Strength + Melee Roll**, when the whole pair has to be known.
+- **A Melee Roll**, when only the Aptitude matters and the Characteristic follows how you act.
+- **A Strength + Melee Roll**, when the whole pair is fixed.
 
 ## Against what
 
-The total is compared against one of three defences.
+The total is compared with one of three defences.
 
 DC
-: A number the GM sets, or one printed in a rule.
+: A Difficulty Class, set by the GM or printed in a rule.
 
 AC
-: The Armour Class, when an attack targets a creature directly.
+: Armour Class, when an Attack targets a creature directly.
 
 Opposed Roll
-: The Roll of whoever is on the other side. Both sides roll.
+: The Roll of the creature on the other side. Both sides roll.
 
-Matching the defence is enough. Equal or higher is a success.
+Meeting the defence is enough: a total equal to or higher than it succeeds.
 
 ### Opposed Rolls
 
-Everyone rolls, and the highest total wins. On a tie, settle it in this order:
+Everyone involved rolls, and the highest total wins. On a tie, break it in this order:
 
 1. the higher combined Characteristic and Aptitude;
-2. the greater net number of Advantages;
+2. the higher net number of Advantages;
 3. the status quo.
 
-A status quo means whoever was trying to change the situation does not manage it. Where no status quo exists, only the tied Rolls are made again.
+The status quo means that whoever was trying to change the situation fails to: the prisoner stays held, the barred door stays shut. When there is no status quo, only the tied Rolls are rolled again.
 
 ## Advantage and Disadvantage
 
-An Advantage adds a d12 to the Roll. You keep the two highest dice.
+An Advantage adds a d12 to the Roll, and you keep the two highest dice.
 
-A Disadvantage adds a d12 to the Roll. You keep the two lowest dice.
+A Disadvantage adds a d12 to the Roll, and you keep the two lowest dice.
 
-The total is always worked out from two dice, however many you rolled.
+The total always uses two dice, however many you rolled.
 
 ### Stacking
 
-An Advantage and a Disadvantage cancel, one for one. Count both, remove the pairs, apply whatever is left.
+An Advantage and a Disadvantage cancel out, one for one. Count them, remove the pairs, and apply what is left.
 
 What is left has no ceiling. Three net Advantages add three dice, and you keep the best two of five.
 
-An example. You strike with 2 Advantages and 1 Disadvantage: 1 net Advantage remains, so you roll 3d12 and keep the highest two.
+> [!EXAMPLE] Example
+>
+> You strike with 2 Advantages, because an ally helped you and your target is Aveuglé, and 1 Disadvantage, because you are lying À terre. That leaves 1 net Advantage: you roll three d12s and keep the two highest.
 
-## Expertise
+### Expertise
 
-Having Expertise in an Aptitude gives you 1 Advantage on every Roll that uses it.
-
-## The same effect twice
-
-Unless stated otherwise, the same effect does not stack with itself. The same Skill, the same state or Expertise in the same Aptitude, received from two sources, applies only once, and only the strongest counts. Different effects add up, as Advantages do.
-
-Two Skills that each give you Expertise in Craft give it to you only once.
+Expertise in an Aptitude gives you 1 Advantage on every Roll that uses it.
 
 ## Criticals
 
-Only the two dice you keep count, criticals included.
+Only the two dice you keep count, including for criticals.
 
-Two 12s kept
-: Critical success. You describe an exceptional result, consistent with what you were attempting.
+Two kept 12s
+: A critical success. You describe an exceptional result that fits what you were attempting.
 
-Two 1s kept
-: Critical failure. The GM adds a complication tied to the action you tried.
+Two kept 1s
+: A critical failure. The GM adds a complication tied to what you attempted.
 
-A critical does not make possible what the fiction rules out. A critical success on a jump over a tower is still a failure; it only makes the leap spectacular.
+A critical never makes possible what the fiction forbids. A critical success at leaping over a tower still fails; it only makes the run-up spectacular.
 
-An Advantage therefore changes two things at once: it raises the expected total, and it makes a critical more likely in both directions.
+So an Advantage does two things at once: it raises your expected total, and it makes a critical more likely, in either direction.
 
-## The difficulty ladder
+## The difficulty scale
 
 The GM sets a DC whenever no rule prints one.
 
@@ -114,30 +118,43 @@ The GM sets a DC whenever no rule prints one.
 | Very hard | 30 |
 | Near impossible | 35 |
 
-A DC in between is allowed when the situation calls for it. Thirty-five is the ceiling because it is the highest non-critical total available: 12 and 11 on the kept dice, plus a modifier of +12.
+A DC in between is fine when the situation calls for it. Thirty-five is the ceiling because it is the highest total you can reach without a critical: a 12 and an 11 on the kept dice, plus a modifier of +12.
 
-A trivial action needs no Roll. Setting a DC of 5 is asking for dice that decide nothing.
+A trivial action needs no Roll. Setting DC 5 just makes someone roll for nothing.
 
-### The DC a Skill sets
+### A Skill's DC
 
-When a Skill lets its target resist, the DC comes from whoever plays it:
+When a Skill lets its target resist, the DC comes from whoever uses it:
 
-`10 + one Characteristic + one Aptitude`
+`10 + a Characteristic + an Aptitude`
 
-The Skill names the pair, the Roll the target makes, and what happens on a success as well as on a failure. So: "The target makes a Spirit + Will Roll against your DC of `10 + Charisma + Intimidation`."
+The Skill names the pair, the Roll its target makes, and what happens on a success and on a failure. For example: "The target makes a Spirit + Will Roll against your DC of `10 + Charisma + Intimidation`."
 
-You do not have to remember that number. It is worked out when the Skill is played.
+So there is no number to remember. You work it out when the Skill is used.
 
-### Adjusting an AC
+## Attacking and resisting
 
-A creature's AC is not fixed. The GM may move it by up to three steps, according to what exactly you are aiming at and what is protecting the target: −3 for much easier, +3 for much harder.
+An Attack is a Roll against its target's AC. Resisting an effect is a Roll against a DC.
 
-Past that it is not difficulty but impossibility. A target in full cover cannot be hit, and no modifier brings it back into reach.
+Three Aptitudes are the usual way to land a blow, Melee, Finesse and Aim, and three are the usual way to withstand one, Reflexes, Resistance and Will. They have no special rules. They simply come up more than the others, which tells you where to invest.
 
-## There is no attack roll and no saving throw
+They do not lock anything out, though. Any Aptitude can carry an Attack or a defence when how you act justifies it: Investigation to see through an illusion that is too regular, Athletics to dig your heels in against a pull, Intimidation to stare down something trying to terrify you.
 
-Aubaine has no separate kind of Roll for attacking or for resisting. An attack is an ordinary Roll measured against an AC. Resisting means making an ordinary Roll measured against a DC.
+## When rules meet
 
-Three Aptitudes most often land a blow, Melee, Finesse and Aim, and three most often resist one, Reflexes, Resistance and Will. They follow no special rule. They simply come up more than the others, which tells you where to invest.
+A handful of principles apply everywhere, and they settle two rules that seem to disagree.
 
-They close nothing, though. Any Aptitude can carry an attack or serve to resist when the way you are acting warrants it: Investigation to see through an apparition that repeats too regularly, Athletics to dig your heels in against a pull, Intimidation to face down something trying to terrify you.
+Exceptions win
+: A general rule applies until something contradicts it. When a Skill, an item or a state says otherwise, it wins, for what it covers and for as long as it lasts. A Skill that sets its own pair beats the GM's free choice; a weapon that lets you strike with Dexterity beats Strength.
+
+Round down
+: Whenever a calculation gives a fraction, round down to the whole number, even at one half. A rule that wants you to round up says so, like the cost of an Aptitude.
+
+The same effect twice
+: Unless stated otherwise, an effect does not stack with itself. The same Skill, the same state or Expertise in the same Aptitude, received from two sources, applies once, and only the strongest counts. Different effects add up, like Advantages. Two Skills that each give you Expertise in Craft give it to you once.
+
+Maximum and minimum
+: A resource never goes above its maximum: healing that would give you back more HP than you lost stops at your maximum. Nor does it go below 0, which the Damage and healing chapter spells out for HP.
+
+The GM decides
+: When the rules are silent, or two readings remain possible, the GM decides, in the spirit of the three golden rules. The ruling stands for the scene, and the table can talk it over after the session.

@@ -1,9 +1,11 @@
 ---
 title: "Creating a character"
-description: "The eight steps, the three currencies, the Soul, Mastery Points, resources and a sheet built end to end."
+description: "The eight steps, the three currencies, the Soul, Mastery Points, resources, your first XP and a sheet built end to end."
 ---
 
-Eight steps, in order. The first seven are decided, the last is calculated. Do not fill in a single numbered box before step 8: a character is placed first and counted afterwards.
+Creating a character takes eight steps, in order. The first seven are decisions, the last is arithmetic. Do not fill in a single numbered box before step 8: a character is imagined first and counted afterwards.
+
+Take your time over the early steps. Who is this character, where do they come from, what drives them onto the road: the answers will guide every number you write down later.
 
 ## What the GM gives you
 
@@ -16,14 +18,14 @@ A new character receives:
 - 22 Mastery Points (MP);
 - 3 Potential Points (PP).
 
-The GM announces any change to that set before the table starts. A one-shot and a long campaign do not open on the same numbers.
+The GM announces any change to that set before the table starts. A one-evening game and a long campaign do not open on the same numbers.
 
 ## Three currencies
 
 They do not convert into one another. A currency spent in the wrong place is only recovered in play.
 
 XP
-: Buys Trees, Skills and their Levels. A character has no overall level: their XP is everything that goes up.
+: Buys Trees, Skills and their Levels.
 
 MP
 : Buys the six Characteristics, the Aptitudes and the Speciality.
@@ -43,6 +45,8 @@ PP
 8. **Derived values.** Work out HP, Memory, Energy, AC, Speed and Initiative.
 
 A step can be replayed as long as nobody has rolled a die. After the first Roll of the first session the sheet is fixed, and progression takes over.
+
+The Species chapter covers step 1 in detail, and the Trees and Skills chapter covers step 6.
 
 ## The Soul
 
@@ -65,29 +69,60 @@ Speciality
 Gift
 : An exceptional faculty that belongs to them alone.
 
+The first three make the character's life harder and earn them Karma. The last two say what they can do like nobody else at the table.
+
 ### Karma
 
 The Phobia, the Mania and the Flaw each carry a Karma slot. A character therefore holds at most three points, one per slot.
 
-The GM grants a Karma point when they judge it deserved, and chooses the slot. A slot already filled does not take a second. Karma you hold disappears neither at a rest nor at the end of a session.
+The GM grants a Karma point when they judge it deserved, often when one of those three traits has cost the character something, and chooses the slot. A slot already filled does not take a second. Karma you hold disappears neither at a rest nor at the end of a session.
 
 Spend a point before a Roll, or after the throw while the result is still unresolved. Each point adds an Advantage or a Disadvantage to the Roll of your choice: yours, an ally's, an opponent's. Several points can land on the same Roll.
 
-A point spent after the throw adds its dice to what is already on the table, and the two kept dice are then worked out again across the lot. That is what lets you rescue a failed Roll, and equally what lets you ruin a successful one when the point lands on an opponent.
+A point spent after the throw adds its die to the ones already on the table, and the two kept dice are then worked out again across the lot. That is what lets you rescue a failed Roll, and equally what lets you ruin a successful one when the point lands on an opponent.
 
 Some Skills take Karma as their resource. That is why they are rare in play.
 
 ### The Speciality
 
-The Speciality is an Aptitude you invent, with a deliberately narrow field: "Navigation", "Cooking", "Monsters". It goes up with MP like any other Aptitude.
+The Speciality is an Aptitude you invent, with a deliberately narrow field. It is the trade, the lore or the passion in which your character outdoes everyone: "Painting", "Traps", "Bombs", "Trade", "Cooking", "Navigation", "Monsters". It goes up with MP like any other Aptitude.
 
-When it applies, it enters the Roll like an ordinary Aptitude and grants an Advantage on top. A broad field gives a lukewarm bonus that helps often; a narrow one gives a real push that helps rarely. The GM settles the edge cases.
+When it applies, it enters the Roll like an ordinary Aptitude and grants an Advantage on top. The Characteristic still follows how you act: a "Cooking" Speciality rolls with Spirit to recognise a spice by taste, and with Dexterity to set out a banquet in an hour.
+
+A broad field gives a lukewarm bonus that helps often; a narrow one gives a real push that helps rarely. The GM settles the edge cases.
+
+> [!EXAMPLE] Example
+>
+> Oswin has the Speciality "Trade" at +2 and nothing in Persuasion. At the market he haggles over a saddle: the action falls within his field, and the GM asks for a Charisma + Trade Roll with 1 Advantage.
+>
+> That evening, he has to talk a guard into letting him through after curfew. There is nothing to buy or sell: the Roll goes back to Charisma + Persuasion, and Oswin has only his Charisma to count on. If he slips the guard a coin, the GM can decide they are back to haggling.
 
 ### The Gift
 
-The Gift establishes a capability, a perception or a peculiarity: "I see and speak to the dead", "My drawings come to life", "I know when I am being lied to". It opens up information, permission or an opportunity another character would not have.
+The Gift is an exceptional faculty that belongs to your character alone: a capability, a perception or a peculiarity. Write it as one sentence, in the first person: "My paintings come to life", "I can speak to the dead", "I receive premonitions", "I know when I am being lied to".
+
+It opens up information, permission or an opportunity another character would not have.
+
+Information
+: Someone who can speak to the dead questions a witness's corpse. What the dead one knows, and what they agree to say, is the GM's to decide.
+
+Permission
+: A character with this Gift sees their paintings come to life, and a painted bird can fly away. Nobody else can even attempt it.
+
+Opportunity
+: Premonitions go through the GM, who chooses when a vision comes and what it shows. What you do with it is yours.
 
 When a consequence of the Gift has an uncertain outcome, it resolves with the ordinary rules. The Gift does not touch Rolls, damage, healing, AC, resources or your number of actions, unless another rule bought separately says so.
+
+Settle it with the GM before the first session: what it allows, and how far it goes. The Rule of Good Faith weighs heaviest here: a Gift written to get round the rules, rather than to say who your character is, is Uncool.
+
+> [!EXAMPLE] A Gift and a Speciality
+>
+> Maëlle's Gift is "My paintings come to life" and her Speciality is "Painting". Locked in a cell, she paints a sparrow on the wall with a lump of charcoal.
+>
+> The Gift makes it possible, and the GM accepts that the bird comes to life. Painting a sparrow true enough to fly, in charcoal and by the light of an arrow slit, is still uncertain: the GM asks for a Dexterity + Painting Roll, with 1 Advantage from the Speciality. Maëlle succeeds, and the sparrow flies out between the bars with the message she has entrusted to it.
+>
+> A painted wolf would come to life too, but it would only truly bite with a Skill that provides for it: the Gift deals no damage.
 
 ## Mastery Points
 
@@ -136,11 +171,13 @@ Four of them carry a derived value. That does not make them more important: a Ch
 
 ### The Aptitudes
 
-The sheet carries the full list, one box per Aptitude. They cover what a character can do, from tracking to negotiation.
+The sheet carries the full list, one box per Aptitude, and the Rules page defines each of them. They cover what a character can do, from tracking to negotiation.
 
-Four of them are also the four crafting disciplines: Craft, Arcana, Technology and Science. There are not two ideas here, only one. The discipline a piece is worked under is the Aptitude you roll to make it.
+Four of them are also the four crafting disciplines: Craft, Arcana, Technology and Science. They are one and the same idea: the discipline a piece is worked under is the Aptitude you roll to make it.
 
 Six come up more than the rest, and they are the combat ones: Melee, Finesse and Aim to land a blow, Reflexes, Resistance and Will to resist one.
+
+One more Aptitude joins the list, and it belongs to you alone: your Speciality, introduced with the Soul. It is paid for in MP at the same prices and with the same caps as the others.
 
 ## Resources
 
@@ -165,9 +202,11 @@ Energy pays for the Skills that cost something. A Skill whose cost exceeds your 
 
 XP buys the Skills of your Trees and their Levels, and unlocks new Trees. Each purchase costs 5 to 100 XP, in steps of 5, and the price is printed on the Skill.
 
-Twenty-five XP does not make a complete character. It makes an opening: two or three cheap Skills that say how they act in the first round. The rest comes in play.
+In a Tree, the first Skill you buy is its heart, at the centre; every purchase after that must be joined by a line to a Skill you have already Learned. The Trees and Skills chapter explains the rule in full.
 
-Buy what you will play in every fight first. An expensive Skill far out in a Tree will wait until the table has paid for it.
+Twenty-five XP does not make a complete character. It makes an opening: the heart of a Tree and one or two cheap neighbours that say how your character acts in the first round. The rest comes in play.
+
+Buy what you will play in every fight first. An expensive Skill far from the heart will wait until the table has paid for it.
 
 ## The six values to carry over
 
@@ -186,7 +225,24 @@ Armour replaces the AC formula instead of adding to it. A shield and the other e
 
 ## A worked example
 
-Sélène, a scout. Her 22 MP:
+Sélène is a scout, more at home in the woods than in town, who tracks what others miss. Her player writes her Soul first, with the GM.
+
+Phobia
+: Deep water.
+
+Mania
+: She counts her arrows before she sleeps.
+
+Flaw
+: She trusts nobody in town.
+
+Speciality
+: "Tracking".
+
+Gift
+: "I receive premonitions".
+
+Her 22 MP:
 
 | Characteristic | Value | MP |
 | --- | ---: | ---: |
@@ -219,6 +275,6 @@ Her 3 PP go one to each path. Her derived values:
 - Speed: **9 m**
 - Initiative: `1d4 + 3`
 
-Her 25 XP go into two cheap Skills from her Domain Tree. Six Memory slots for the two Skills that take one, since her Species Skills take none: she has room to grow before she has to choose.
+Her 25 XP go into the heart of her Domain Tree and one cheap Skill joined to it. Two Skills to Memorise against six Memory slots, since her Species Skills take none: she has room to grow before she has to choose.
 
-On a shooting Roll she throws `2d12 + 3 + 2`. When she tracks, her Speciality enters the Roll and gives her an Advantage on top.
+On a shooting Roll she throws `2d12 + 3 + 2`. When she tracks, her Speciality enters the Roll and gives her an Advantage on top. And when danger waits further down the trail, her Gift can show her a glimpse of it before she gets there, if the GM so decides.

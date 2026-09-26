@@ -1,69 +1,91 @@
 ---
 title: "Bienvenue dans Aubaine"
-description: "Ce qu'est un jeu de rôle sur table, qui fait quoi autour de la table, et ce dont vous avez besoin pour commencer."
+description: "Ce qu'est un jeu de rôle sur table, qui fait quoi autour de la table, ce qu'il vous faut pour commencer et les grandes lignes d'Aubaine."
 ---
 
-Aubaine est un jeu de rôle sur table (JDR pour les intimes). Une personne décrit un monde, les autres y incarnent chacune un personnage, et tout le monde découvre ensemble ce qui arrive. Il n'y a pas d'écran, pas de plateau obligatoire, pas de gagnant.
+Aubaine est un jeu de rôle sur table, un JDR pour les intimes. Une personne, le MJ, décrit un monde et tout ce qui l'habite. Les autres y incarnent chacune un personnage, décident de ce qu'il fait, et tout le monde découvre ensemble ce qui arrive. L'histoire se construit en jouant, séance après séance, et personne ne sait d'avance où elle mènera.
 
-Si vous n'en avez jamais joué, ce chapitre suffit pour vous asseoir à une table. Si vous en avez déjà joué, il vous dit ce qu'Aubaine fait différemment.
+Ce chapitre et le suivant suffisent pour vous asseoir à une table.
 
 ## Ce qui se passe à une table
 
-Une partie est une conversation avec des dés dedans.
+Une partie est une conversation avec des dés dedans. Elle tourne sur une boucle toute simple.
 
-Le MJ décrit une situation. Vous dites ce que votre personnage fait. Le MJ dit ce qui en résulte, et si l'issue est incertaine, un Jet tranche. Puis la situation a changé, et on recommence.
+1. **Le MJ décrit une situation.** Ce que les personnages voient, entendent, ce qui les menace ou les tente.
+2. **Vous dites ce que votre personnage fait.** Vous parlez en son nom, avec ses mots ou les vôtres.
+3. **Le MJ dit ce qui en résulte.** Quand l'issue ne fait aucun doute, il la raconte. Quand elle est incertaine et qu'un échec coûterait quelque chose, un Jet tranche.
 
-Cette boucle est tout le jeu. Elle tourne sur une fouille de placard comme sur un duel.
+Puis la situation a changé, et la boucle repart. Elle tourne de la même manière sur une fouille de placard, une négociation tendue ou un duel au bord d'une falaise.
+
+> [!EXAMPLE] Exemple de jeu
+>
+> **MJ :** « Le pont de corde tangue au-dessus du ravin. Au milieu, trois planches ont cédé et le vide vous attend en dessous. »
+>
+> **Joueuse de Sélène :** « Je prends de l'élan et je saute par-dessus le trou. »
+>
+> **MJ :** « L'issue est incertaine, et une chute coûterait cher. Fais un Jet de Dextérité + Acrobaties contre un DD de 15. »
+>
+> La joueuse lance deux d12 et obtient 7 et 9. Sélène a +3 en Dextérité et rien en Acrobaties : son total fait 19, au-dessus du DD.
+>
+> **MJ :** « Tu retombes de l'autre côté dans un grincement de cordes. Derrière toi, une planche de plus se détache et tourne longtemps avant de disparaître dans la brume. »
 
 ## Qui fait quoi
 
 Le MJ
-: Le meneur de jeu. Il décrit le monde, joue tout ce qui n'est pas un personnage joueur, arbitre ce que les règles ne tranchent pas, et fixe la difficulté de ce que vous tentez. Il ne joue pas contre vous.
+: Le meneur de jeu. Il décrit le monde, joue tout ce qui n'est pas un personnage joueur, fixe la difficulté de ce que vous tentez et tranche ce que les règles ne disent pas. Il ne joue pas contre vous : son travail est de rendre le monde vivant et vos choix importants.
 
 Les joueurs
-: Chacun tient un personnage, décide de ce qu'il fait et parle en son nom. Vous décidez de vos actes, jamais de leur résultat.
+: Chacun tient un personnage, décide de ce qu'il fait et parle en son nom. Vous décidez de ce que votre personnage tente ; le MJ et les dés décident de ce qui en résulte.
 
 La table
-: Vous tous. C'est la table qui décide du ton, de ce qui a sa place dans la fiction et de ce qui n'en a pas. Ces conversations se tiennent hors du jeu, et elles sont plus importantes que n'importe quelle règle.
+: Vous tous, ensemble. C'est la table qui décide du ton de la partie, de ce qui a sa place dans la fiction et de ce qui n'en a pas. Ces conversations se tiennent hors du jeu, avant la première séance et chaque fois qu'il le faut, et elles comptent plus que n'importe quelle règle.
 
 ## Ce qu'il vous faut
 
 - Une fiche de personnage.
-- Des dés : des d12 surtout, plus un d4 et quelques autres pour les dégâts.
-- De quoi écrire, parce que la fiche change en jeu.
-- Vos Arbres, à commencer par celui de votre Archétype et celui de votre Domaine.
+- Des dés : des d12 surtout, plus un d4 et quelques autres dés pour les dégâts.
+- De quoi écrire et effacer, parce que la fiche change en jeu.
+- Vos deux premiers Arbres, celui de votre Archétype et celui de votre Domaine, imprimés ou ouverts sur un écran.
 
-Rien d'autre. Ni figurines, ni quadrillage : les distances se comptent en mètres et s'annoncent à voix haute.
+Rien d'autre : les distances se comptent en mètres et s'annoncent à voix haute.
 
-## Ce qu'Aubaine fait à sa façon
+## Aubaine en quelques mots
 
-Un seul Jet
-: Tout se résout par `2d12 + une Caractéristique + une Aptitude`. Il n'y a pas de jet d'attaque à part, pas de jet de sauvegarde à part. Une seule formule, partout.
+Le Jet
+: Tout ce qui est incertain se résout par la même formule, `2d12 + une Caractéristique + une Aptitude`. Attaquer, résister à un poison, mentir à un garde ou forger une lame : seul le nombre à atteindre change.
 
-Aucune paire imposée
-: Aucune Aptitude n'appartient à une Caractéristique. C'est votre manière d'agir qui décide de la paire, donc un personnage reste utile hors de sa spécialité.
+La paire
+: C'est votre manière d'agir qui décide de la Caractéristique et de l'Aptitude employées, si bien qu'un personnage reste utile loin de ses points forts.
 
-Pas de niveau
-: Un personnage ne monte pas d'un cran en entraînant tout le reste. Trois monnaies séparées achètent trois choses séparées.
+L'Âme
+: Chaque personnage porte une Phobie, une Manie, un Défaut, une Spécialité et un Don. La Spécialité est une Aptitude que vous inventez, comme « Cuisine » ou « Pièges ». Le Don est une faculté qui n'appartient qu'à vous, comme « Je peux parler aux morts » ou « Mes peintures prennent vie ». C'est par eux que deux personnages aux mêmes chiffres restent deux personnes différentes.
 
-L'équipement se fabrique
-: On trouve des matériaux, on suit une recette, on lance les Jets. L'achat en boutique existe, mais il ne couvre pas grand-chose.
+Trois monnaies
+: Les PX achètent vos Compétences, les PM vos Caractéristiques et vos Aptitudes, les PP vos ressources. Chacune arrive à son rythme, et c'est ainsi qu'un personnage grandit.
+
+Des Arbres à parcourir
+: Vos Compétences s'achètent sur des Arbres, en partant de leur cœur et en suivant leurs traits. Vous en débloquez de nouveaux en cours de partie pour composer le personnage que vous voulez.
 
 La Mémoire limite
-: Vous connaissez beaucoup de Compétences et vous n'en mémorisez que quelques-unes à la fois. Ce que vous emportez est un choix, et il se rejoue à chaque repos.
+: Vous apprenez beaucoup de Compétences, mais vous n'en gardez que quelques-unes Mémorisées à la fois. Ce que vous emportez est un choix, et il se rejoue à chaque repos.
 
-## Un jeu qui bouge
+L'équipement se fabrique
+: On récolte des matériaux, on suit une recette, on lance les Jets : l'essentiel de ce que vous portez passe par vos mains.
+
+## Un jeu vivant
 
 Aubaine est gratuit et ouvert. Ses règles, ses Compétences, ses Arbres et son équipement vivent dans un dépôt public, et le site que vous lisez en est le rendu direct.
 
-Cela a une conséquence pratique. Il n'y a pas d'édition, pas de supplément à acheter, rien derrière un paywall. Un ajustement de Compétence, un Arbre neuf ou une pièce d'équipement arrivent sans que rien ne devienne caduc, et chaque Arbre se télécharge et s'imprime chez vous.
+Le jeu grandit en continu : un ajustement de Compétence, un Arbre neuf ou une pièce d'équipement arrivent sans rendre caduc ce que vous avez déjà, et chaque Arbre se télécharge et s'imprime chez vous.
 
-Cela a aussi une conséquence sur ce livre. Il explique des mécaniques, pas des catalogues. Quand il faut savoir quels Arbres existent aujourd'hui, ou ce qu'une pièce accorde exactement, la page de l'entrée est la référence : elle est à jour, ce livre parle du système.
+Ce livre explique le système. Quand il faut savoir quels Arbres existent aujourd'hui ou ce qu'une pièce accorde exactement, la page de l'entrée fait foi : elle est toujours à jour.
 
 ## Comment lire ce livre
 
-Le chapitre suivant explique le Jet, et c'est le seul dont vous avez besoin pour jouer une première séance. Le reste se lit quand il sert.
+Les trois règles d'or ouvrent le livre, et elles passent avant tout le reste. Le chapitre suivant, Comment jouer, explique le Jet : c'est le seul dont vous avez besoin pour une première séance. Créer un personnage, les Espèces et les Arbres vous accompagnent pour monter votre fiche. Les chapitres suivants, de l'équipement au repos, se lisent quand ils servent.
 
-Un mot en couleur dans ce livre est un terme de règle. Survolez-le, ou posez-lui le focus au clavier, et sa définition s'affiche ; la page Règles les rassemble tous. Un nom de Compétence mène à sa fiche.
+Un mot en couleur est un terme de règle. Survolez-le, ou donnez-lui le focus au clavier, et sa définition s'affiche ; la page Règles les rassemble tous. Un nom de Compétence mène à sa fiche.
 
-Les nombres qui appartiennent à une pièce d'équipement ou à une Compétence sont imprimés sur elle, pas ici. Ce livre explique les mécaniques ; les fiches portent les valeurs.
+Les encadrés « Exemple » montrent une règle en jeu. Ils ne la modifient jamais.
+
+Les nombres qui appartiennent à une Compétence ou à une pièce d'équipement sont imprimés sur elle, pas ici. Ce livre explique les mécaniques ; les fiches portent les valeurs.
