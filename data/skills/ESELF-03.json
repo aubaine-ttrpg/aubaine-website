@@ -10,7 +10,7 @@
   "prerequisite": "Être Elfe, Drow, Fir Bolg, Gobelin, Halfelin ou Orc",
   "activation": "Passif",
   "tags": {
-    "practice": "technique",
+    "practice": "innate",
     "schools": [
       "protection"
     ]

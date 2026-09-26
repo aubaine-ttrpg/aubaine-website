@@ -10,7 +10,7 @@
   "prerequisite": "Être Zombie",
   "activation": "Passif",
   "tags": {
-    "practice": "technique",
+    "practice": "innate",
     "schools": [
       "necromancy"
     ]

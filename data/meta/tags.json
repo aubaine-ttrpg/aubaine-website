@@ -27,6 +27,20 @@
       "labelEn": "Shout",
       "definitionFr": "Un cri poussé à pleine voix. Il n'affecte que les créatures qui l'entendent.",
       "definitionEn": "A shout at the top of your voice. It only affects creatures that can hear it."
+    },
+    {
+      "key": "teaching",
+      "labelFr": "Enseignement",
+      "labelEn": "Teaching",
+      "definitionFr": "Une Compétence née d'un savoir qu'on vous a transmis, qu'il vienne d'un maître, d'une école, d'un livre ou de votre lignée. Elle tient à ce que vous savez.",
+      "definitionEn": "A Skill born of knowledge passed on to you, whether by a master, a school, a book or your bloodline. It rests on what you know."
+    },
+    {
+      "key": "innate",
+      "labelFr": "Inné",
+      "labelEn": "Innate",
+      "definitionFr": "Une Compétence que vous tenez de votre nature : votre sang, votre corps, ou ce que la mort a fait de vous. Elle vous vient sans apprentissage.",
+      "definitionEn": "A Skill you hold from your nature: your blood, your body, or what death made of you. It comes to you without being learnt."
     }
   ],
   "schools": [
@@ -61,7 +75,8 @@
         "spell",
         "manoeuvre",
         "technique",
-        "shout"
+        "shout",
+        "innate"
       ],
       "labelFr": "Protection",
       "labelEn": "Protection",
@@ -87,7 +102,8 @@
         "spell",
         "manoeuvre",
         "technique",
-        "shout"
+        "shout",
+        "teaching"
       ],
       "labelFr": "Renforcement",
       "labelEn": "Enhancement",
@@ -99,7 +115,8 @@
       "practices": [
         "spell",
         "manoeuvre",
-        "technique"
+        "technique",
+        "innate"
       ],
       "labelFr": "Mobilité",
       "labelEn": "Mobility",
@@ -110,7 +127,8 @@
       "key": "divination",
       "practices": [
         "spell",
-        "technique"
+        "technique",
+        "innate"
       ],
       "labelFr": "Divination",
       "labelEn": "Divination",
@@ -166,7 +184,8 @@
       "key": "necromancy",
       "practices": [
         "spell",
-        "technique"
+        "technique",
+        "innate"
       ],
       "labelFr": "Nécromancie",
       "labelEn": "Necromancy",

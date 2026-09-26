@@ -5,6 +5,7 @@
 **Date:** 2026-09-24
 **Revised:** 2026-09-25, the Nécromancie École is added (addendum in Decision 5)
 **Revised:** 2026-09-26, a skill may carry two Écoles and base actions carry tags, reversed by 0026 (addenda in Decisions 3 and 5)
+**Revised:** 2026-09-26, the Enseignement and Inné Pratiques are added (addendum in Decision 5)
 **Deciders:** Kori
 **Scope:** The `tags` field on a skill and its removal from upgrades and English overlays, the new
 vocabulary file `data/meta/tags.json`, the definitions shown in the tooltips of rule terms,
@@ -195,6 +196,19 @@ target « l'étiquette Nécromancie », as the lore's forbidden occult magic wil
 Since [0026](0026-a-skill-may-carry-two-ecoles-and-a-base-action-carries-its-tags.md), a skill may
 carry two Écoles, so Nécromancie no longer costs the other one. Dépouille (ESMOR-06) carries Illusion
 and Nécromancie.
+
+### Addendum (2026-09-26): the Enseignement and Inné Pratiques
+
+The decider narrowed Technique to something the character does, and added two Pratiques for skills
+that are not an act. `teaching` (Enseignement / Teaching) is knowledge passed on to the character by
+a master, a school, a book or a bloodline, and is carried by Discipulus, Formation technique,
+L'esprit humain and Savoir d'Élyséa (ESHUM-09, ESHUM-06, ESHUM-01, ESELF-02). `innate` (Inné /
+Innate) is what the character holds from their nature, and is carried by Héritage des Galwariens and
+Sens aiguisés (ESELF-03, ESELF-05) and by the Mort-vivant's Glas, Rigidité cadavérique, Ténacité
+morbide, Phylactère and Passe-muraille (ESMOR-03, 07, 08, 10, 05). Only the pairings these skills use
+are open: Renforcement accepts Enseignement, and Protection, Divination, Nécromancie and Mobilité
+accept Inné. Opening another stays a balance decision. The Decision 3 bullet on class powers that
+are not Sorts is unchanged.
 
 ---
 
