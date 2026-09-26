@@ -10,16 +10,14 @@ paths:
 
 Rule text is the `description` of a skill, an upgrade, or a state, and the `text` and `description` of an equipment item, an item property, or a set bonus. It defines executable behavior. Precision outranks style: what is written must execute one way, and what is not written is the MJ's to rule.
 
-## What the text leaves to the table
+## Limitations and the table
 
-Aubaine trusts its players and its MJ to rule what a skill does not say, and a short text leaves room for the uses nobody wrote down. Write only what a table cannot settle on the spot without breaking the game.
+Aubaine trusts its players and its MJ to rule what a skill does not say. What a skill must say is what it can and cannot do against the rest of the game, because that is where its balance lives.
 
-- Keep the costs and the limits: the price, a per-turn or per-round cap, a stack cap.
-- Keep the resolution: who rolls what, against which DD, and what success and failure do.
-- Keep whatever can loop or chain: the order several effects resolve in, and what stops them.
-- Keep the ending of any effect that outlasts the turn.
-- Leave every other case to the MJ: a Vitesse at 0, a fall, what counts against a Vitesse, which surface holds, what blocks the way, how to undo the effect. Do not add a clause for one of these, even when a review asks for it.
-- Length follows what the skill does. A complex skill may run long; a text grows long because it lists cases, and that is what to cut.
+- Keep every limitation: the cost, a cap, a condition under which the skill cannot be used, what a movement costs and what it crosses, the resolution (who rolls what against which DD, and what success and failure do), the order of chained effects and what stops them, and the ending of a lasting effect.
+- When a limitation recurs across skills, name it once as a state or a rule term and refer to it, the way [[Immobilisé]] carries every hold, rather than repeating the clause in each skill.
+- Leave to the MJ what only narrates what the fiction already makes obvious, or tells them how to judge a scene.
+- Length follows what the skill does. A complex skill may run long.
 
 ## What belongs in prose
 
