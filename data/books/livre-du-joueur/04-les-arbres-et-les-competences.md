@@ -47,7 +47,7 @@ Pratique
 : La manière dont la Compétence se pratique, comme Sort ou Manœuvre. Une au plus.
 
 École
-: La famille à laquelle appartient son effet, comme Soin ou Illusion. Une au plus.
+: La famille à laquelle appartient son effet, comme Soin ou Illusion. Une ou deux.
 
 Spéciale
 : Une particularité qui porte une règle, comme Déchaîné. Autant qu'il en faut.

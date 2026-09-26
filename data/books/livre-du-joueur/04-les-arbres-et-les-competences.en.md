@@ -47,7 +47,7 @@ Practice
 : How the Skill is practised, such as Spell or Manoeuvre. One at most.
 
 School
-: The family its effect belongs to, such as Healing or Illusion. One at most.
+: The family its effect belongs to, such as Healing or Illusion. One or two.
 
 Special
 : A particularity that carries a rule, such as Unleashed. As many as it takes.
