@@ -1,11 +1,13 @@
 ---
-import type { BrowseEntry, BrowseSource } from '../../lib/game/browse-entries'
+import type { BrowseEntry } from '../../lib/game/browse-entries'
 import type { Corpus } from '../../lib/game/corpus'
 import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
+import DetailPane from './DetailPane.astro'
 import FilterBar from './FilterBar.astro'
 import Icon from './Icon.astro'
 import ItemEntry from './ItemEntry.astro'
+import Provenance from './Provenance.astro'
 import SkillEntry from './SkillEntry.astro'
 import StateEntry from './StateEntry.astro'
 import StatusBadge from './StatusBadge.astro'
@@ -29,20 +31,6 @@ const filter =
   Astro.props.variant === 'speciesSkills'
     ? { variant: 'speciesSkills' as const, subspeciesLabel: Astro.props.subspeciesLabel }
     : { variant: Astro.props.variant }
-
-const SOURCE_ICONS: Record<BrowseSource['kind'], string> = {
-  tree: 'mdi:family-tree',
-  species: 'mdi:dna',
-  item: 'mdi:shield-sword',
-  basic: 'mdi:hexagon',
-  bank: 'mdi:bank',
-  other: 'mdi:information-outline',
-}
-const NOTES: Record<'basic' | 'bank' | 'other', string | undefined> = {
-  basic: corpus.basic.note,
-  bank: corpus.bank.note,
-  other: t.otherNote,
-}
 ---
 
 <FilterBar locale={locale} total={entries.length} drafts={drafts} {...filter} />
@@ -102,11 +90,7 @@ const NOTES: Record<'basic' | 'bank' | 'other', string | undefined> = {
     </ul>
   </div>
 
-  <aside
-    aria-label={t.detail}
-    data-details
-    style="flex:1 1 370px; min-width:0; position:sticky; top:var(--sticky-top); scroll-margin-top:var(--sticky-top); padding:22px 0 0 26px; border-left:1px solid var(--accent-line); max-height:var(--sticky-max); overflow-x:clip; overflow-y:auto; overscroll-behavior:contain"
-  >
+  <DetailPane label={t.detail}>
     {
       entries.map((entry) => (
         <article data-detail id={`e-${entry.id}`}>
@@ -129,65 +113,24 @@ const NOTES: Record<'basic' | 'bank' | 'other', string | undefined> = {
             <TermEntry term={entry.entity.term} corpus={corpus} locale={locale} />
           )}
 
-          {entry.sources.length > 0 && (
-            <div class="au-sources">
-              <p class="au-sources__label" id={`src-${entry.id}`}>
-                {sourcesLabel}
-              </p>
-              <ul class="au-sources__list" aria-labelledby={`src-${entry.id}`}>
-                {entry.sources.map((source) => (
-                  <li>
-                    {'href' in source ? (
-                      <a class="au-source" href={source.href}>
-                        <Icon name={SOURCE_ICONS[source.kind]} class="au-source__icon" />
-                        <span>{source.title}</span>
-                      </a>
-                    ) : (
-                      <>
-                        <button
-                          type="button"
-                          class="au-source"
-                          popovertarget={`note-${source.kind}-${entry.id}`}
-                          style={`anchor-name:--note-${source.kind}-${entry.id}`}
-                        >
-                          <Icon name={SOURCE_ICONS[source.kind]} class="au-source__icon" />
-                          <span>{source.title}</span>
-                        </button>
-                        <div
-                          popover
-                          id={`note-${source.kind}-${entry.id}`}
-                          class="au-source-note"
-                          aria-labelledby={`note-${source.kind}-${entry.id}-title`}
-                          style={`position-anchor:--note-${source.kind}-${entry.id}`}
-                        >
-                          <p class="au-source-note__kind">{sourcesLabel}</p>
-                          <p class="au-source-note__title" id={`note-${source.kind}-${entry.id}-title`}>
-                            {source.title}
-                          </p>
-                          <p class="au-source-note__body">{NOTES[source.kind]}</p>
-                          <button
-                            type="button"
-                            class="au-source-note__close"
-                            popovertarget={`note-${source.kind}-${entry.id}`}
-                            popovertargetaction="hide"
-                          >
-                            {t.close}
-                          </button>
-                        </div>
-                      </>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+          <Provenance
+            entryId={entry.id}
+            label={sourcesLabel}
+            sources={entry.sources}
+            corpus={corpus}
+            locale={locale}
+          />
         </article>
       ))
     }
-  </aside>
+  </DetailPane>
 </div>
 
 <style>
+  [data-browse] > :global(.au-detail-pane) {
+    flex: 1 1 370px;
+    min-width: 0;
+  }
   [data-row] {
     padding: 13px 8px 13px 0;
     scroll-margin-top: var(--sticky-top);
@@ -214,109 +157,6 @@ const NOTES: Record<'basic' | 'bank' | 'other', string | undefined> = {
     align-self: stretch;
     height: auto;
   }
-  .au-sources {
-    margin-top: 22px;
-    padding-top: 15px;
-    border-top: 1px solid var(--accent-line);
-  }
-  .au-sources__label {
-    margin: 0 0 12px;
-    font-family: var(--font-mono);
-    font-size: 9.5px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
-  .au-sources__list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  .au-source {
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    padding: 9px 13px;
-    border: 1px solid var(--line2);
-    background: var(--field);
-    color: var(--ink);
-    font-family: var(--font-ui);
-    font-size: 13.5px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition:
-      border-color 0.2s var(--ease),
-      background-color 0.2s var(--ease);
-  }
-  .au-source:hover,
-  .au-source:focus-visible {
-    border-color: var(--gold);
-    background: var(--accent-soft);
-  }
-  .au-source :global(.au-source__icon) {
-    flex: none;
-    width: 16px;
-    height: 16px;
-    color: var(--gold);
-  }
-  .au-source-note {
-    width: min(400px, calc(100vw - 32px));
-    padding: 18px 20px 16px;
-    border: 1px solid var(--accent-line);
-    background: var(--bg2);
-    color: var(--ink);
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
-  }
-  @supports (anchor-name: --a) {
-    @media (min-width: 560px) {
-      .au-source-note {
-        inset: auto;
-        margin: 8px 0;
-        position-area: bottom span-right;
-        position-try-fallbacks: flip-block, flip-inline;
-      }
-    }
-  }
-  .au-source-note__kind {
-    margin: 0 0 6px;
-    font-family: var(--font-mono);
-    font-size: 9.5px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
-  .au-source-note__title {
-    margin: 0 0 10px;
-    font-family: var(--font-display);
-    font-size: 19px;
-    font-weight: 600;
-  }
-  .au-source-note__body {
-    margin: 0 0 14px;
-    font-size: 15px;
-    line-height: 1.6;
-    color: var(--ink2);
-  }
-  .au-source-note__close {
-    padding: 7px 13px;
-    border: 1px solid var(--line2);
-    color: var(--ink);
-    font-family: var(--font-ui);
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-  }
-  .au-source-note__close:hover,
-  .au-source-note__close:focus-visible {
-    border-color: var(--gold);
-  }
   [data-detail] {
     display: none;
     scroll-margin-top: var(--sticky-top);
@@ -325,13 +165,13 @@ const NOTES: Record<'basic' | 'bank' | 'other', string | undefined> = {
   [data-selection='static'] [data-detail]:target {
     display: block;
   }
-  [data-selection='static'] [data-details]:not(:has(:target)) [data-detail]:first-child {
+  [data-selection='static'] :global([data-details]):not(:has(:target)) [data-detail]:first-child {
     display: block;
   }
   [data-selection='enhanced'] [data-detail][data-current] {
     display: block;
   }
-  [data-browse]:not(:has([data-entry]:not([hidden]))) [data-details] {
+  [data-browse]:not(:has([data-entry]:not([hidden]))) :global([data-details]) {
     display: none;
   }
 </style>

@@ -1,0 +1,23 @@
+---
+type Props = { label: string; id?: string | undefined }
+
+const { label, id } = Astro.props
+---
+
+<aside class="au-detail-pane" aria-label={label} id={id} data-details>
+  <slot />
+</aside>
+
+<style>
+  .au-detail-pane {
+    position: sticky;
+    top: var(--sticky-top);
+    scroll-margin-top: var(--sticky-top);
+    padding: 22px 0 0 26px;
+    border-left: 1px solid var(--accent-line);
+    max-height: var(--sticky-max);
+    overflow-x: clip;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+</style>
