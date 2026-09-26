@@ -9,22 +9,22 @@ L'Espèce est le premier des trois choix de l'étape 1, avec l'Archétype et le 
 
 Elle apporte deux choses à la création :
 
-- **deux Compétences d'Espèce**, retenues parmi celles que votre Espèce et, si vous en avez une, votre sous-espèce ou votre origine régionale proposent ou imposent. Elles sont Mémorisées sans occuper de Mémoire et n'ont pas à être achetées. Une fois la création terminée, vous ne pouvez plus les changer ;
-- **votre Vitesse**, quand elle s'écarte des 9 mètres par défaut.
+- **deux Compétences d'Espèce**, retenues parmi celles que votre Espèce et, si vous en avez une, votre sous-espèce ou votre origine régionale proposent ou imposent. Elles sont {{memorisee|Mémorisées}} sans occuper de {{memoire}} et n'ont pas à être achetées. Une fois la création terminée, vous ne pouvez plus les changer ;
+- **votre {{vitesse}}**, quand elle s'écarte des 9 mètres par défaut.
 
 Ces deux apports sont acquis. Ils ne coûtent ni PX ni PM, et ils ne comptent pas dans les 22 PM ni dans les 25 PX que le MJ vous donne.
 
-Une Espèce fixe aussi votre Taille, et elle peut nommer les langues que vous parlez, lisez et écrivez.
+Une Espèce fixe aussi votre {{taille}}, et elle peut nommer les langues que vous parlez, lisez et écrivez.
 
 ## Retenir deux Compétences
 
 Une Espèce propose en général plus de Compétences qu'elle n'en accorde. Vous en retenez deux à la création, et ce choix dit déjà quel genre de membre de votre Espèce vous êtes.
 
-Les autres ne sont pas perdues : elles restent achetables ensuite dans la Banque Commune, au prix imprimé sur la Compétence, et leur Prérequis les réserve à votre Espèce. Une Compétence d'Espèce achetée ainsi se mémorise comme les autres et occupe 1 Mémoire tant qu'elle est Mémorisée.
+Les autres ne sont pas perdues : elles restent achetables ensuite dans la {{banque-commune}}, au prix imprimé sur la Compétence, et leur {{prerequis}} les réserve à votre Espèce. Une Compétence d'Espèce achetée ainsi se mémorise comme les autres et occupe 1 Mémoire tant qu'elle est Mémorisée.
 
 > [!EXAMPLE] Exemple
 >
-> Une joueuse crée une elfe éclaireuse. Parmi les Compétences que propose l'Espèce Elfe, elle retient {{Sens aiguisés}} et {{Méditation elfique}}. Quelques séances plus tard, elle achète {{Cachette naturelle}} dans la Banque Commune. Celle-là occupe 1 Mémoire quand elle la mémorise ; les deux premières n'en occupent aucune.
+> Une joueuse crée une elfe éclaireuse. Parmi les Compétences que propose l'Espèce Elfe, elle retient {{SENAIG-001}} et {{MEDELF-001}}. Quelques séances plus tard, elle achète {{CACNAT-001}} dans la Banque Commune. Celle-là occupe 1 Mémoire quand elle la mémorise ; les deux premières n'en occupent aucune.
 
 Deux personnages de la même Espèce ne partent donc pas avec les mêmes acquis. Une Espèce qui ne propose que deux Compétences ne laisse aucun choix : vous prenez les deux.
 

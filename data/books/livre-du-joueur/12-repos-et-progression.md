@@ -3,17 +3,17 @@ title: "Repos et progression"
 description: "Le Repos court, le Repos long, ce qu'ils rendent et ce qu'ils ne rendent pas, et les récompenses qui font grandir un personnage."
 ---
 
-Entre deux épreuves, deux choses se rechargent : vos ressources, par le repos, et votre personnage, par la progression. Elles n'ont rien à voir l'une avec l'autre. Un repos remet votre Énergie à flot ; seule la progression vous rend plus fort.
+Entre deux épreuves, deux choses se rechargent : vos ressources, par le repos, et votre personnage, par la progression. Elles n'ont rien à voir l'une avec l'autre. Un repos remet votre {{energie}} à flot ; seule la progression vous rend plus fort.
 
 ## Le Repos court
 
-Dix minutes de pause, durant lesquelles vous pouvez faire une activité légère : panser une plaie, manger un morceau, fouiller la pièce. Vous en prenez au plus deux entre deux Repos longs.
+Dix minutes de pause, durant lesquelles vous pouvez faire une activité légère : panser une plaie, manger un morceau, fouiller la pièce. Vous en prenez au plus deux entre deux {{repos-long|Repos longs}}.
 
 À la fin, vous récupérez :
 
-- la moitié de vos PdV maximum, arrondie à l'inférieur ;
+- la moitié de vos {{pdv}} maximum, arrondie à l'inférieur ;
 - la moitié de votre Énergie maximum, arrondie à l'inférieur ;
-- les Compétences marquées « 1 fois par Repos court ».
+- les Compétences marquées « 1 fois par {{repos-court}} ».
 
 C'est la moitié du maximum que vous récupérez, pas la moitié de ce qui vous manque. Vous ne dépassez jamais votre maximum.
 
@@ -31,7 +31,7 @@ Un personnage qui n'a pas mangé ou bu à sa faim ce jour-là ne récupère ni P
 
 ## Ce qu'un repos ne rend pas
 
-Le Karma
+Le {{karma}}
 : Un point conservé reste, et un emplacement vide le reste aussi. Ni le repos ni la fin de séance n'y touchent.
 
 Les PdV temporaires
@@ -39,7 +39,7 @@ Les PdV temporaires
 
 ## Changer vos Compétences Mémorisées
 
-Les deux repos vous permettent de changer les Compétences que votre Mémoire tient, sauf vos deux Compétences d'Espèce, fixées à la création. C'est le seul moment où vous remaniez ce que vous emportez.
+Les deux repos vous permettent de changer les Compétences que votre {{memoire}} tient, sauf vos deux Compétences d'Espèce, fixées à la création. C'est le seul moment où vous remaniez ce que vous emportez.
 
 Le Repos court est donc la vraie respiration du groupe : dix minutes suffisent pour arriver au combat suivant avec un autre jeu de Compétences, choisi d'après ce que vous avez vu du danger.
 
@@ -78,7 +78,7 @@ Ce sont des récompenses de jalon, jamais des récompenses par ennemi. À la fin
 
 Il annonce clairement lequel avant que vous ne choisissiez quoi que ce soit.
 
-Les PM font monter vos Caractéristiques, vos Aptitudes et votre Spécialité, aux prix du chapitre Créer un personnage. Les PP font monter vos trois voies de ressources.
+Les PM font monter vos {{caracteristique|Caractéristiques}}, vos {{aptitude|Aptitudes}} et votre {{specialite}}, aux prix du chapitre Créer un personnage. Les PP font monter vos trois voies de ressources.
 
 ### Les récompenses matérielles
 

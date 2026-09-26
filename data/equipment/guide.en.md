@@ -5,7 +5,7 @@ description: "The slots, loot, materials, crafting, equipment sets and money."
 
 A creature wears eight pieces of equipment at a time, one per slot. Until a piece is worn it does nothing: nothing applies from inside a bag.
 
-Skills granted by a worn piece take up no Memory and do not have to be learnt. The piece grants them while it is worn, and takes them back as soon as you remove it.
+Skills granted by a worn piece take up no {{memoire}} and do not have to be learnt. The piece grants them while it is worn, and takes them back as soon as you remove it.
 
 ## The slots
 
@@ -18,7 +18,7 @@ Seven slots, eight pieces worn: the Jewel counts twice.
 : The piece that carries your Armour Class formula. One at a time.
 
 :icon[game-icons:walking-boot] Boots
-: Shoes and greaves: what touches the ground and what sets your Speed.
+: Shoes and greaves: what touches the ground and what sets your {{vitesse}}.
 
 :icon[game-icons:emerald-necklace] Necklace
 : Torc, amulet, pendant. Worn against the skin, under the armour.
@@ -31,7 +31,7 @@ Seven slots, eight pieces worn: the Jewel counts twice.
 
 Every catalogue entry prints what concerns it: its headline value, its cells, its named properties, its recipe and what it grants. Those numbers belong to the piece and are not repeated anywhere else.
 
-The GM announces what you begin equipped with. With no armour your AC is `12 + Dexterity`, and an unarmed Strike deals `1d4 + Strength`.
+The GM announces what you begin equipped with. With no armour your {{ca}} is `12 + Dexterity`, and an unarmed Strike deals `1d4 + Strength`.
 
 ## Finding materials
 
@@ -40,10 +40,10 @@ Equipment is obtained by crafting far more than by buying. What you can wear the
 After a significant encounter, or the discovery of a workable source, each character receives one Loot Opportunity. Spend it one of two ways, never both.
 
 Random loot
-: Roll the source's Loot Die. The GM reads its Loot Table and announces what you get. No further Roll.
+: {{jet}} the source's Loot Die. The GM reads its Loot Table and announces what you get. No further Roll.
 
 Targeted harvest
-: Say what you are after and how you recover it. The GM sets the Roll and its DC. On a failure the Opportunity is spent for nothing.
+: Say what you are after and how you recover it. The GM sets the Roll and its {{dd}}. On a failure the Opportunity is spent for nothing.
 
 The first is safe and asks nothing of you. The second aims precisely and may yield nothing. A target the fiction does not allow you to extract is not obtained on a Roll.
 
@@ -69,9 +69,9 @@ The Rolls read in the order they are made, and physical work comes before knowle
 
 ### The four disciplines
 
-The box's colour restates the discipline the piece is worked under, and its title names it: Craft at the forge, Arcana at the arcane bench, Technology at the workshop, Science at the laboratory.
+The box's colour restates the discipline the piece is worked under, and its title names it: {{artisanat}} at the forge, {{arcanes}} at the arcane bench, {{technologie}} at the workshop, {{science}} at the laboratory.
 
-Each is an Aptitude, and it is the one you roll. The four do not stand in for one another: a piece worked under Arcana is not made under Craft.
+Each is an {{aptitude}}, and it is the one you roll. The four do not stand in for one another: a piece worked under Arcana is not made under Craft.
 
 ### Without a recipe
 
@@ -122,4 +122,4 @@ The GM announces what a place offers. A village counter does not hold a fortress
 
 An object sold on returns half its price. A material sold on returns its Material Value in silver. A merchant's Skills change these prices, and they say by how much.
 
-Money buys neither XP, nor MP, nor PP. No sum raises a Characteristic, an Aptitude, a resource or a Skill. Nor does it buy a recipe your character cannot read, or a material no source in the region produces.
+Money buys neither XP, nor MP, nor PP. No sum raises a {{caracteristique}}, an Aptitude, a resource or a Skill. Nor does it buy a recipe your character cannot read, or a material no source in the region produces.

@@ -3,7 +3,7 @@ title: "Le combat"
 description: "Le déroulement d'un combat, la surprise, l'initiative, votre tour, se déplacer, attaquer, la Classe d'armure, agir hors de son tour et les états."
 ---
 
-Le combat n'a pas de règles de résolution à lui : on y lance les mêmes Jets que partout ailleurs. Ce qu'il ajoute, c'est un ordre de passage et un budget par tour, pour que chacun agisse à son tour quand tout se passe en même temps.
+Le combat n'a pas de règles de résolution à lui : on y lance les mêmes {{jet|Jets}} que partout ailleurs. Ce qu'il ajoute, c'est un ordre de passage et un budget par tour, pour que chacun agisse à son tour quand tout se passe en même temps.
 
 ## Le déroulement d'un combat
 
@@ -19,7 +19,7 @@ Un combat se découpe en rounds. Un round dure environ 6 secondes, le temps que 
 
 Quand un camp tombe sur l'autre sans l'avoir vu venir, une embuscade réussie par exemple, le MJ déclare surprises les créatures qui ne s'y attendaient pas.
 
-Au premier round, une créature surprise joue son tour après toutes celles qui ne le sont pas, dans l'ordre de leurs initiatives. Elle ne peut jouer aucune Réaction avant la fin de ce premier tour.
+Au premier round, une créature surprise joue son tour après toutes celles qui ne le sont pas, dans l'ordre de leurs initiatives. Elle ne peut jouer aucune {{reaction}} avant la fin de ce premier tour.
 
 ## L'initiative
 
@@ -29,7 +29,7 @@ Au début d'un combat, chaque personnage joueur lance :
 
 On agit du résultat le plus élevé au plus faible. Les joueurs l'emportent sur leurs adversaires à égalité, et ils se départagent librement entre eux.
 
-Le dé est petit exprès. Un écart de Dextérité pèse lourd dans cet ordre, plus que dans n'importe quel autre Jet du jeu.
+Le dé est petit exprès. Un écart de {{dexterite}} pèse lourd dans cet ordre, plus que dans n'importe quel autre Jet du jeu.
 
 L'ordre est fixé pour tout le combat. On ne le relance pas à chaque round.
 
@@ -43,23 +43,23 @@ Il peut aussi regrouper les positions alliées qui se suivent sans adversaire en
 
 À votre tour, vous disposez de quatre choses. Elles sont indépendantes : ne pas en utiliser une ne vous en rend pas une autre.
 
-Une Action
-: La plupart des Compétences s'y jouent, à commencer par {{Attaquer}}.
+Une {{action}}
+: La plupart des Compétences s'y jouent, à commencer par {{ATTAQU-001}}.
 
-Une Action Bonus
+Une {{action-bonus}}
 : Une action rapide, réservée aux Compétences qui l'indiquent. Elle ne remplace pas l'Action, et rien ne la convertit.
 
-Un Déplacement
-: Jusqu'à votre Vitesse, 9 mètres sauf si votre Espèce en fixe une autre. Il se répartit librement avant, pendant et après vos actions.
+Un {{deplacement}}
+: Jusqu'à votre {{vitesse}}, 9 mètres sauf si votre Espèce en fixe une autre. Il se répartit librement avant, pendant et après vos actions.
 
 Une Réaction
 : Hors de votre tour, quand une règle vous fournit un déclencheur. Elle revient au début de votre tour suivant.
 
 > [!EXAMPLE] Exemple
 >
-> À son tour, Sélène recule de 6 mètres pour sortir du contact d'un loup, joue {{Attaquer}} avec son arc sur un autre loup, puis se glisse de 3 mètres derrière un rocher. Elle a utilisé son Déplacement en deux fois et son Action. Il lui reste son Action Bonus, qu'aucune de ses Compétences n'utilise ce tour-ci, et sa Réaction pour le tour des loups.
+> À son tour, Sélène recule de 6 mètres pour sortir du contact d'un loup, joue {{ATTAQU-001}} avec son arc sur un autre loup, puis se glisse de 3 mètres derrière un rocher. Elle a utilisé son Déplacement en deux fois et son Action. Il lui reste son Action Bonus, qu'aucune de ses Compétences n'utilise ce tour-ci, et sa Réaction pour le tour des loups.
 >
-> En reculant, elle a quitté l'allonge du premier loup : il peut jouer son {{Attaque d'opportunité}}. Pour l'éviter, il lui aurait fallu jouer {{Se désengager}}, au prix de son Action.
+> En reculant, elle a quitté l'allonge du premier loup : il peut jouer son {{Attaque d'opportunité}}. Pour l'éviter, il lui aurait fallu jouer {{DESENG-001}}, au prix de son Action.
 
 ## Se déplacer
 
@@ -71,18 +71,18 @@ Terrain difficile
 : Des gravats, une pente raide, une eau jusqu'aux genoux ou une foule serrée ralentissent la marche. Chaque mètre parcouru en terrain difficile en coûte deux.
 
 Se relever
-: Une créature [[À terre]] se relève en dépensant la moitié de sa Vitesse, à son tour.
+: Une créature {{a-terre}} se relève en dépensant la moitié de sa Vitesse, à son tour.
 
 Quitter un adversaire
-: Quitter l'allonge d'une créature qui vous voit lui permet de jouer son {{Attaque d'opportunité}}, sauf si vous avez joué {{Se désengager}} ce tour-ci.
+: Quitter l'allonge d'une créature qui vous voit lui permet de jouer son {{Attaque d'opportunité}}, sauf si vous avez joué {{DESENG-001}} ce tour-ci.
 
 Votre Vitesse peut tomber à 0, et certains états y parviennent. Une Vitesse de 0 n'empêche pas d'agir : vous gardez votre Action, votre Action Bonus et votre Réaction.
 
 ## Attaquer
 
-L'action {{Attaquer}} porte une Attaque avec une arme équipée ou à mains nues.
+L'action {{ATTAQU-001}} porte une {{attaque}} avec une arme équipée ou à mains nues.
 
-Effectuez le Jet que l'arme indique contre la CA de la cible. En cas de réussite, la cible subit les dégâts de l'arme, augmentés de la Caractéristique employée par ce Jet.
+Effectuez le Jet que l'arme indique contre la {{ca}} de la cible. En cas de réussite, la cible subit les dégâts de l'arme, augmentés de la {{caracteristique}} employée par ce Jet.
 
 Cette Caractéristique s'ajoute toujours. C'est la même des deux côtés du calcul : celle qui vous a permis de toucher est celle qui alourdit le coup.
 
@@ -92,14 +92,14 @@ Sans arme, une Frappe se résout avec un Jet de `Force + Mêlée`, à 1,5 mètre
 
 Chaque arme imprime sa propre ligne, et c'est elle qui fait foi :
 
-- la Caractéristique et l'Aptitude de son Jet ;
+- la Caractéristique et l'{{aptitude}} de son Jet ;
 - une portée, et une seule ;
 - ses dés et son type de dégâts ;
 - ses propriétés.
 
 Une cible au-delà de la portée ne peut pas être attaquée, sauf si une propriété de l'arme le permet.
 
-Tout ce qu'une arme fait d'inhabituel passe par une propriété nommée, imprimée sur elle. Une arme Finesse permet d'échanger `Force + Mêlée` contre `Dextérité + Finesse`. Deux armes Légères, une dans chaque main, ouvrent une Attaque en Action Bonus.
+Tout ce qu'une arme fait d'inhabituel passe par une propriété nommée, imprimée sur elle. Une arme {{finesse}} permet d'échanger `Force + Mêlée` contre `Dextérité + Finesse`. Deux armes Légères, une dans chaque main, ouvrent une Attaque en Action Bonus.
 
 ## La Classe d'armure
 
@@ -119,7 +119,7 @@ Une seule formule de base s'applique à la fois, celle de la pièce qui occupe l
 >
 > Sans armure, avec une Dextérité de +3, votre CA est de 15. Enfilez une armure en `14 + Dextérité` et elle passe à 17, jamais à 29. Ajoutez une targe et elle monte à 18.
 
-Chaque armure imprime sa propre formule, et certaines plafonnent la Dextérité qu'elles laissent compter ou exigent une Force minimale. Lisez la pièce : elle porte ses contraintes.
+Chaque armure imprime sa propre formule, et certaines plafonnent la Dextérité qu'elles laissent compter ou exigent une {{force}} minimale. Lisez la pièce : elle porte ses contraintes.
 
 ### Précision et couvert
 
@@ -141,14 +141,14 @@ Un muret, un tronc ou une porte entrouverte protègent en partie ; viser une mai
 
 Votre Réaction est votre seule façon d'agir pendant le tour d'un autre, et vous n'en avez qu'une par round. Elle se joue quand une règle vous en donne le déclencheur.
 
-Deux Compétences de base en fournissent un à tout le monde. {{Attaque d'opportunité}} frappe une créature qui quitte votre allonge. {{Se préparer}} garde une action en réserve pour un moment que vous annoncez : « dès qu'il passe la porte, je tire ». D'autres Compétences en ajoutent, et leur fiche nomme le déclencheur.
+Deux Compétences de base en fournissent un à tout le monde. {{Attaque d'opportunité}} frappe une créature qui quitte votre allonge. {{PREPAR-001}} garde une action en réserve pour un moment que vous annoncez : « dès qu'il passe la porte, je tire ». D'autres Compétences en ajoutent, et leur fiche nomme le déclencheur.
 
 ## Les états
 
-Un état est une condition nommée qui modifie les règles tant qu'elle dure, comme [[Aveuglé]], [[Entravé]] ou [[À terre]]. Sa fiche dit ce qu'il fait et comment il prend fin. Quand elle n'en fixe pas la durée, le DD ou les dégâts, la Compétence ou l'objet qui l'applique les indique.
+Un état est une condition nommée qui modifie les règles tant qu'elle dure, comme {{aveugle}}, {{entrave}} ou {{a-terre}}. Sa fiche dit ce qu'il fait et comment il prend fin. Quand elle n'en fixe pas la durée, le {{dd}} ou les dégâts, la Compétence ou l'objet qui l'applique les indique.
 
-Certains portent une Intensité, écrite après leur nom, comme [[Combustion]] 3. Réappliquer le même état conserve l'Intensité la plus élevée, sauf si son texte précise qu'elles s'additionnent.
+Certains portent une Intensité, écrite après leur nom, comme {{combustion}} 3. Réappliquer le même état conserve l'Intensité la plus élevée, sauf si son texte précise qu'elles s'additionnent.
 
-Pour une conséquence improvisée, le MJ n'a pas besoin d'un état écrit. Il peut accorder un Avantage ou un Désavantage jusqu'à ce que la fiction y mette logiquement fin.
+Pour une conséquence improvisée, le MJ n'a pas besoin d'un état écrit. Il peut accorder un {{avantage}} ou un {{desavantage}} jusqu'à ce que la fiction y mette logiquement fin.
 
 La page Règles et l'index des états portent la liste complète.

@@ -9,22 +9,22 @@ Your Species is the first of the three choices in step 1, alongside your Archety
 
 It brings two things to creation:
 
-- **two Species Skills**, chosen from those your Species and, if you have one, your subspecies or regional origin offer or impose. They are Memorised without taking up any Memory and need not be bought. Once creation is over, you cannot change them;
-- **your Speed**, when it differs from the default 9 metres.
+- **two Species Skills**, chosen from those your Species and, if you have one, your subspecies or regional origin offer or impose. They are {{memorisee}} without taking up any {{memoire}} and need not be bought. Once creation is over, you cannot change them;
+- **your {{vitesse}}**, when it differs from the default 9 metres.
 
 Both come free. They cost neither XP nor MP, and they do not count against the 22 MP or the 25 XP the GM gives you.
 
-A Species also sets your Size, and it can name the languages you speak, read and write.
+A Species also sets your {{taille}}, and it can name the languages you speak, read and write.
 
 ## Choosing two Skills
 
 A Species usually offers more Skills than it grants. You keep two at creation, and that choice already says what kind of member of your Species you are.
 
-The others are not lost: you can buy them later from the Common Bank, at the price printed on each Skill, and their Prerequisite keeps them for your Species. A Species Skill bought this way is Memorised like any other and takes 1 Memory while it is Memorised.
+The others are not lost: you can buy them later from the {{banque-commune}}, at the price printed on each Skill, and their {{prerequis}} keeps them for your Species. A Species Skill bought this way is Memorised like any other and takes 1 Memory while it is Memorised.
 
 > [!EXAMPLE] Example
 >
-> A player creates an elf scout. From the Skills the Elf Species offers, she keeps {{Keen Senses}} and {{Elven Meditation}}. A few sessions later, she buys {{Nature's Cover}} from the Common Bank. That one takes 1 Memory when she Memorises it; the first two take none.
+> A player creates an elf scout. From the Skills the Elf Species offers, she keeps {{SENAIG-001}} and {{MEDELF-001}}. A few sessions later, she buys {{Nature's Cover}} from the Common Bank. That one takes 1 Memory when she Memorises it; the first two take none.
 
 So two characters of the same Species do not start with the same gifts. A Species that offers only two Skills leaves no choice: you take both.
 

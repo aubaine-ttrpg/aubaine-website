@@ -18,13 +18,13 @@ Une créature réagit à ce qu'on lui offre et à ce qu'on touche en elle. Un ba
 Chaque créature a une attitude envers vous, et le MJ la fixe au début de la scène.
 
 Amicale
-: Elle vous voit d'un bon œil et penche pour vous aider. Vos Jets pour l'influencer gagnent 1 Avantage.
+: Elle vous voit d'un bon œil et penche pour vous aider. Vos {{jet|Jets}} pour l'influencer gagnent 1 {{avantage}}.
 
 Indifférente
 : Elle ne cherche ni à vous aider ni à vous nuire. C'est l'attitude par défaut d'un inconnu.
 
 Hostile
-: Elle vous voit d'un mauvais œil et penche pour vous nuire. Vos Jets pour l'influencer subissent 1 Désavantage.
+: Elle vous voit d'un mauvais œil et penche pour vous nuire. Vos Jets pour l'influencer subissent 1 {{desavantage}}.
 
 L'attitude change avec ce qui se passe dans la scène. Un service rendu, une insulte, une promesse tenue ou trahie la font bouger, et le MJ l'annonce quand elle change.
 
@@ -41,11 +41,11 @@ Réticente
 Hésitante
 : Elle pourrait accepter, mais rien n'est joué. Vous effectuez un Jet.
 
-Le MJ choisit la paire d'après votre approche : Persuasion pour convaincre de bonne foi, Tromperie pour mentir, Intimidation pour menacer, Représentation pour charmer par un numéro, Dressage pour un animal. La Caractéristique suit votre manière d'agir, comme partout ailleurs.
+Le MJ choisit la paire d'après votre approche : {{persuasion}} pour convaincre de bonne foi, {{tromperie}} pour mentir, {{intimidation}} pour menacer, {{representation}} pour charmer par un numéro, {{dressage}} pour un animal. La {{caracteristique}} suit votre manière d'agir, comme partout ailleurs.
 
-Une Spécialité qui couvre ce que vous faites, comme « Commerce » pour marchander, entre dans le Jet à la place de ces Aptitudes et lui ajoute 1 Avantage.
+Une {{specialite}} qui couvre ce que vous faites, comme « Commerce » pour marchander, entre dans le Jet à la place de ces {{aptitude|Aptitudes}} et lui ajoute 1 Avantage.
 
-Le DD est de 15 par défaut, et le MJ le déplace sur l'échelle de difficulté selon ce que vous demandez. Quand la créature se défend activement, contre un mensonge qu'elle soupçonne ou une menace qu'elle veut braver, le Jet devient opposé : son Esprit + Perspicacité contre votre mensonge, son Esprit + Volonté contre votre menace.
+Le {{dd}} est de 15 par défaut, et le MJ le déplace sur l'échelle de difficulté selon ce que vous demandez. Quand la créature se défend activement, contre un mensonge qu'elle soupçonne ou une menace qu'elle veut braver, le Jet devient opposé : son {{esprit}} + {{perspicacite}} contre votre mensonge, son Esprit + {{volonte}} contre votre menace.
 
 En cas de réussite, la créature fait ce que vous demandez. En cas d'échec, elle ne cède pas, et la même demande présentée de la même manière échoue de nouveau. Il faut changer quelque chose pour retenter sa chance : un nouvel argument, une nouvelle offre, un autre interlocuteur, ou du temps, un jour en général.
 
@@ -55,16 +55,16 @@ En cas de réussite, la créature fait ce que vous demandez. En cas d'échec, el
 >
 > **Joueur :** « Je lui montre la lettre du capitaine, un faux, et je lui dis qu'on vient récupérer une caisse avant l'aube. »
 >
-> Le garde n'est pas disposé à laisser entrer des inconnus, mais il n'y est pas opposé non plus : il hésite. Le MJ demande un Jet de Charisme + Tromperie, opposé au Jet d'Esprit + Perspicacité du garde. Le joueur l'emporte. Le garde grogne, rend la lettre et ouvre la porte. Si le joueur avait échoué, le garde aurait appelé son sergent, et la même lettre n'aurait plus trompé personne ce soir-là.
+> Le garde n'est pas disposé à laisser entrer des inconnus, mais il n'y est pas opposé non plus : il hésite. Le MJ demande un Jet de {{charisme}} + Tromperie, opposé au Jet d'Esprit + Perspicacité du garde. Le joueur l'emporte. Le garde grogne, rend la lettre et ouvre la porte. Si le joueur avait échoué, le garde aurait appelé son sergent, et la même lettre n'aurait plus trompé personne ce soir-là.
 
 ## Lire une créature
 
 Pour deviner ce qu'une créature pense, si elle ment ou ce qu'elle veut vraiment, effectuez un Jet d'Esprit + Perspicacité. Contre un mensonge délibéré, il est opposé à son Jet de Charisme + Tromperie. En cas de réussite, le MJ vous dit ce que vous percevez : une hésitation, une peur, un intérêt qu'elle cache.
 
-Un Don comme « Je sais quand on me ment » vous donne ce savoir sans Jet. Ce que la créature cache derrière son mensonge reste à lire.
+Un {{don}} comme « Je sais quand on me ment » vous donne ce savoir sans Jet. Ce que la créature cache derrière son mensonge reste à lire.
 
 ## Quand une Compétence s'en mêle
 
-Certaines Compétences et certains objets posent des états qui pèsent sur la scène, comme [[Charmé]], [[Effrayé]] ou [[Redevable]]. Leur fiche dit exactement ce qu'ils changent. Un état penche la scène d'un côté, et c'est toujours la conversation qui la conclut.
+Certaines Compétences et certains objets posent des états qui pèsent sur la scène, comme {{charme}}, {{effraye}} ou {{redevable}}. Leur fiche dit exactement ce qu'ils changent. Un état penche la scène d'un côté, et c'est toujours la conversation qui la conclut.
 
-Plusieurs personnages peuvent s'appuyer les uns les autres. Un allié qui soutient votre discours, sait de quoi il parle et intervient au bon moment peut jouer {{Aider}}.
+Plusieurs personnages peuvent s'appuyer les uns les autres. Un allié qui soutient votre discours, sait de quoi il parle et intervient au bon moment peut jouer {{AIDERX-001}}.

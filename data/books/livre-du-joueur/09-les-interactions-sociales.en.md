@@ -18,13 +18,13 @@ A creature reacts to what it is offered and to what you touch in it. A cowardly 
 Every creature has an attitude towards you, which the GM sets at the start of the scene.
 
 Friendly
-: It looks on you kindly and leans towards helping. Your Rolls to influence it gain 1 Advantage.
+: It looks on you kindly and leans towards helping. Your {{jet|Rolls}} to influence it gain 1 {{avantage}}.
 
 Indifferent
 : It wants neither to help you nor to harm you. This is a stranger's default attitude.
 
 Hostile
-: It looks on you badly and leans towards harming you. Your Rolls to influence it take 1 Disadvantage.
+: It looks on you badly and leans towards harming you. Your Rolls to influence it take 1 {{desavantage}}.
 
 Attitude shifts with what happens in the scene. A favour done, an insult, a promise kept or broken moves it, and the GM tells you when it changes.
 
@@ -41,11 +41,11 @@ Unwilling
 Hesitant
 : It might agree, but nothing is settled. You make a Roll.
 
-The GM picks the pair from your approach: Persuasion to convince in good faith, Deception to lie, Intimidation to threaten, Performance to win it over with a show, Animal Handling for an animal. The Characteristic follows how you act, as everywhere else.
+The GM picks the pair from your approach: {{persuasion}} to convince in good faith, {{tromperie}} to lie, {{intimidation}} to threaten, {{representation}} to win it over with a show, {{dressage}} for an animal. The {{caracteristique}} follows how you act, as everywhere else.
 
-A Speciality that covers what you are doing, such as "Trade" for haggling, enters the Roll in place of those Aptitudes and adds 1 Advantage to it.
+A {{specialite}} that covers what you are doing, such as "Trade" for haggling, enters the Roll in place of those {{aptitude|Aptitudes}} and adds 1 Advantage to it.
 
-The DC is 15 by default, and the GM moves it along the difficulty scale depending on what you ask. When the creature actively pushes back, against a lie it suspects or a threat it wants to defy, the Roll becomes opposed: its Spirit + Insight against your lie, its Spirit + Will against your threat.
+The {{dd}} is 15 by default, and the GM moves it along the difficulty scale depending on what you ask. When the creature actively pushes back, against a lie it suspects or a threat it wants to defy, the Roll becomes opposed: its {{esprit}} + {{perspicacite}} against your lie, its Spirit + {{volonte}} against your threat.
 
 On a success, the creature does what you ask. On a failure, it does not give way, and the same request made the same way fails again. You need to change something to try again: a new argument, a new offer, someone else to talk to, or time, usually a day.
 
@@ -55,16 +55,16 @@ On a success, the creature does what you ask. On a failure, it does not give way
 >
 > **Player:** "I show him the captain's letter, a forgery, and tell him we have come to collect a crate before dawn."
 >
-> The guard is not willing to let strangers in, but not set against it either: he hesitates. The GM asks for a Charisma + Deception Roll, opposed by the guard's Spirit + Insight Roll. The player wins. The guard grunts, hands back the letter and opens the door. Had the player failed, the guard would have called his sergeant, and the same letter would not have fooled anyone else that night.
+> The guard is not willing to let strangers in, but not set against it either: he hesitates. The GM asks for a {{charisme}} + Deception Roll, opposed by the guard's Spirit + Insight Roll. The player wins. The guard grunts, hands back the letter and opens the door. Had the player failed, the guard would have called his sergeant, and the same letter would not have fooled anyone else that night.
 
 ## Reading a creature
 
 To guess what a creature is thinking, whether it is lying, or what it really wants, make a Spirit + Insight Roll. Against a deliberate lie, it is opposed by its Charisma + Deception Roll. On a success, the GM tells you what you pick up: a hesitation, a fear, an interest it is hiding.
 
-A Gift such as "I know when I am being lied to" gives you that knowledge without a Roll. What the creature hides behind its lie is still yours to read.
+A {{don}} such as "I know when I am being lied to" gives you that knowledge without a Roll. What the creature hides behind its lie is still yours to read.
 
 ## When a Skill gets involved
 
-Some Skills and items apply states that weigh on the scene, such as [[Charmed]], [[Frightened]] or [[Redevable]]. Their entry says exactly what they change. A state tilts the scene one way, and it is always the conversation that settles it.
+Some Skills and items apply states that weigh on the scene, such as {{charme}}, {{effraye}} or {{redevable}}. Their entry says exactly what they change. A state tilts the scene one way, and it is always the conversation that settles it.
 
-Several characters can back each other up. An ally who supports what you are saying, knows what they are talking about and steps in at the right moment can use {{Aider}}.
+Several characters can back each other up. An ally who supports what you are saying, knows what they are talking about and steps in at the right moment can use {{AIDERX-001}}.

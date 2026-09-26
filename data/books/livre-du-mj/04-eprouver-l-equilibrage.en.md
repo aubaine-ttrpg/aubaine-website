@@ -10,13 +10,13 @@ This chapter is a protocol, not a rule of play. Nothing here applies at the tabl
 ## What to record
 
 Per character
-: The MP and PP granted and the Threat that follows, the Vitality, Memory and Energy levels, maximum and remaining HP and Energy, Memory used, AC, the usual Roll modifiers and DCs, the damage, healing and control produced, and the Karma received then spent.
+: The MP and PP granted and the Threat that follows, the Vitality, {{memoire}} and {{energie}} levels, maximum and remaining {{pdv}} and Energy, Memory used, {{ca}}, the usual {{jet}} modifiers and DCs, the damage, healing and control produced, and the {{karma}} received then spent.
 
 Per monster
-: The same, plus the number of Actions, Bonus Actions and Reactions actually used, and which resistances or special defences fired.
+: The same, plus the number of {{action|Actions}}, {{action-bonus|Bonus Actions}} and {{reaction|Reactions}} actually used, and which resistances or special defences fired.
 
 Per encounter
-: Both Threats and the announced ratio, the number of participants on each side, the number of rounds, the resources spent, the characters who fell into [[Agonie]] or died, the Actions or turns removed, the decisive interactions of terrain or information, and the felt difficulty against the announced one.
+: Both Threats and the announced ratio, the number of participants on each side, the number of rounds, the resources spent, the characters who fell into {{agonie}} or died, the Actions or turns removed, the decisive interactions of terrain or information, and the felt difficulty against the announced one.
 
 That last gap is the measurement that matters. The rest is there to explain it.
 
@@ -24,7 +24,7 @@ That last gap is the measurement that matters. The rest is there to explain it.
 
 At equal Threat, run at least one build that concentrates its Energy, one versatile build that spends Memory, one enduring build that invests in Vitality, one support or control build, and one hybrid.
 
-The scenarios have to let varied Characteristics and Aptitudes bear on the outcome. A damage exchange in an empty room tests one thing and always validates the same build.
+The scenarios have to let varied {{caracteristique|Characteristics}} and {{aptitude|Aptitudes}} bear on the outcome. A damage exchange in an empty room tests one thing and always validates the same build.
 
 ## The series
 

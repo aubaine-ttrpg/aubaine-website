@@ -26,19 +26,19 @@ Les traits relient chaque nœud à ses voisins. Ils dessinent le chemin que vous
 Chaque Compétence coûte de 5 à 100 PX, par pas de 5, et son prix est imprimé sur elle. Pour l'acheter dans un Arbre, il faut encore pouvoir l'atteindre.
 
 - **Le cœur d'abord.** La première Compétence que vous achetez dans un Arbre est son cœur, au centre.
-- **De trait en trait.** Ensuite, vous pouvez acheter une Compétence reliée par un trait à une Compétence de cet Arbre que vous avez déjà Apprise.
+- **De trait en trait.** Ensuite, vous pouvez acheter une Compétence reliée par un trait à une Compétence de cet Arbre que vous avez déjà {{apprise}}.
 
-Une Compétence Apprise ouvre ses voisines, d'où qu'elle vienne : un achat dans cet Arbre, la Banque Commune, une autre Compétence qui vous l'a donnée.
+Une Compétence Apprise ouvre ses voisines, d'où qu'elle vienne : un achat dans cet Arbre, la {{banque-commune}}, une autre Compétence qui vous l'a donnée.
 
 > [!EXAMPLE] Exemple
 >
-> Dans l'Arbre Feu, vous commencez par {{Aviver les flammes}}, son cœur. {{Trait de feu}}, relié au cœur, devient alors achetable, puis {{Boule de Feu}}, reliée à Trait de feu.
+> Dans l'Arbre Feu, vous commencez par {{AVIFLA-001}}, son cœur. {{TRAFEU-001}}, relié au cœur, devient alors achetable, puis {{BOUFEU-001}}, reliée à {{TRAFEU-001}}.
 >
-> Si votre personnage a appris Trait de feu dans la Banque Commune avant de débloquer l'Arbre Feu, il n'a pas à le racheter, et Boule de Feu lui est ouverte dès le déblocage.
+> Si votre personnage a appris {{TRAFEU-001}} dans la Banque Commune avant de débloquer l'Arbre Feu, il n'a pas à le racheter, et {{BOUFEU-001}} lui est ouverte dès le déblocage.
 
 ### Apprendre et mémoriser
 
-Acheter une Compétence, c'est l'apprendre, pas la mémoriser. Une Compétence Apprise reste à vous pour toujours. Ce qui est limité, c'est le nombre que vous pouvez porter en même temps, et c'est votre Mémoire qui le dit.
+Acheter une Compétence, c'est l'apprendre, pas la {{memorisee|mémoriser}}. Une Compétence Apprise reste à vous pour toujours. Ce qui est limité, c'est le nombre que vous pouvez porter en même temps, et c'est votre {{memoire}} qui le dit.
 
 Une Compétence Mémorisée est une Compétence que vous portez et pouvez jouer. Elle occupe 1 Mémoire, sauf dans les cas que liste « Où va votre Mémoire ».
 
@@ -59,7 +59,7 @@ Une Compétence peut porter des étiquettes, imprimées au pied de sa carte. Ell
 Elles se lisent dans cet ordre, et une Compétence ne porte que celles qui lui servent.
 
 Pratique
-: La manière dont la Compétence vit chez votre personnage, comme Sort, Manœuvre ou Technique. Une au plus.
+: La manière dont la Compétence vit chez votre personnage, comme {{sort}}, Manœuvre ou Technique. Une au plus.
 
 École
 : La famille à laquelle appartient son effet, comme Soin ou Illusion. Une ou deux.
@@ -75,7 +75,7 @@ Deux Pratiques posent une condition. Vous avez besoin d'un Catalyseur équipé, 
 
 À côté de vos Arbres, une liste de Compétences n'appartient à personne : la Banque Commune.
 
-Ses Compétences sont indépendantes les unes des autres et ne suivent aucun trait. N'importe quel personnage peut en acheter une à tout moment, quels que soient ses Arbres, contre son prix en PX et le Prérequis que certaines portent. On y trouve les Compétences d'Espèce qu'un personnage n'a pas retenues à la création, réservées à leur Espèce par ce Prérequis, ainsi que certaines Compétences d'Arbre, comme celles qu'accordent les Catalyseurs : les acheter ici les rend Apprises sans débloquer leur Arbre.
+Ses Compétences sont indépendantes les unes des autres et ne suivent aucun trait. N'importe quel personnage peut en acheter une à tout moment, quels que soient ses Arbres, contre son prix en PX et le {{prerequis}} que certaines portent. On y trouve les Compétences d'Espèce qu'un personnage n'a pas retenues à la création, réservées à leur Espèce par ce Prérequis, ainsi que certaines Compétences d'Arbre, comme celles qu'accordent les Catalyseurs : les acheter ici les rend Apprises sans débloquer leur Arbre.
 
 Rien n'empêche un marchand de se glisser dans l'ombre, ni un artisan de reprendre son souffle au milieu d'une mêlée.
 

@@ -3,7 +3,7 @@ title: "Damage and healing"
 description: "HP, damage and its types, resistance and vulnerability, dropping to 0 HP and Agonie, healing and temporary HP."
 ---
 
-HP measure how much a creature can take before it falls. Damage brings them down, healing and rest bring them back up, and when they reach 0, a race against death begins.
+{{pdv}} measure how much a creature can take before it falls. Damage brings them down, healing and rest bring them back up, and when they reach 0, a race against death begins.
 
 ## HP
 
@@ -13,7 +13,7 @@ They never go above your maximum and never below 0.
 
 ## Damage
 
-A Skill, a weapon or a danger that wounds states its damage: dice, sometimes a fixed number, often both. An Attack always adds the Characteristic its Roll used.
+A Skill, a weapon or a danger that wounds states its damage: dice, sometimes a fixed number, often both. An {{attaque}} always adds the {{caracteristique}} its {{jet}} used.
 
 Damage can carry a type, such as Bludgeoning, Fire or Acid damage. A weapon prints its own, and a Skill names it when its damage carries one. The type matters when a creature resists it or is vulnerable to it, or when a rule names it.
 
@@ -21,7 +21,7 @@ Damage can carry a type, such as Bludgeoning, Fire or Acid damage. A weapon prin
 
 A creature can have a resistance or a vulnerability to a damage type, to a source of damage, or to all damage, typed or not.
 
-Resistance
+{{resistance}}
 : It takes half the damage concerned, rounded down.
 
 Vulnerability
@@ -41,27 +41,27 @@ A resistance and a vulnerability to the same damage cancel out, and that damage 
 >
 > A 10-point Bludgeoning blow hits a creature that takes 1 less and has resistance to Bludgeoning damage. Take off the 1 first, then halve: it takes 4, half of 9 rounded down. With a vulnerability instead, it would take 18.
 
-Damage reduced to 0 does not count as damage taken. It triggers nothing that triggers on taking damage, and it does not lower the [[Agonie]] counter.
+Damage reduced to 0 does not count as damage taken. It triggers nothing that triggers on taking damage, and it does not lower the {{agonie}} counter.
 
-Some creatures are entirely beyond an effect's reach: an Undead cannot be [[Asleep]], for example. Their entry, or the state's, says so.
+Some creatures are entirely beyond an effect's reach: an Undead cannot be {{endormi}}, for example. Their entry, or the state's, says so.
 
 ## Dropping to 0 HP
 
-When your HP drop to 0, you gain [[Agonie]] 3 and start dying.
+When your HP drop to 0, you gain {{agonie}} 3 and start dying.
 
 The counter goes down by 1 at the end of each of your turns, but not on the turn you gained it: so you have three of your own turns before the end. Each enemy action that damages you costs you one more, once at most per action.
 
 At 0, you die.
 
-While Agonie lasts, you are [[À terre]] and cannot stand up, and you can play nothing that costs Energy.
+While {{agonie}} lasts, you are {{a-terre}} and cannot stand up, and you can play nothing that costs {{energie}}.
 
 ### Getting someone up
 
-Any healing that restores at least 1 HP ends [[Agonie]] at once. The counter is not held back: a single point is enough, however far down it was.
+Any healing that restores at least 1 HP ends {{agonie}} at once. The counter is not held back: a single point is enough, however far down it was.
 
-Without magic or a potion, an Action and a successful Intelligence + Medicine Roll against DC 20 restore 1 HP, which ends the state.
+Without magic or a potion, an {{action}} and a successful {{intelligence}} + {{medecine}} Roll against {{dd}} 20 restore 1 HP, which ends the state.
 
-Either way, the creature stays [[À terre]]. Standing up costs it half its Speed, on its turn.
+Either way, the creature stays {{a-terre}}. Standing up costs it half its {{vitesse}}, on its turn.
 
 Three turns is short without being instant. An ally on the ground is a problem to solve during the fight, and it stays one even if nobody is hitting them any more.
 
@@ -69,7 +69,7 @@ Three turns is short without being instant. An ally on the ground is a problem t
 
 Healing restores HP, never past your maximum: anything over is lost. A healing Skill, a potion or a rest says how much it restores.
 
-Between fights, rest does most of the work. The Resting and progression chapter says what a Short Rest and a Long Rest give back.
+Between fights, rest does most of the work. The Resting and progression chapter says what a {{repos-court}} and a {{repos-long}} give back.
 
 ## Temporary HP
 

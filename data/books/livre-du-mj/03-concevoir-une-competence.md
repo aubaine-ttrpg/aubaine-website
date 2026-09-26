@@ -12,13 +12,13 @@ Trois types existent.
 Active
 : Activée volontairement, elle coûte un temps d'action.
 
-Passive
+{{passif|Passive}}
 : Applicable volontairement, continuellement ou automatiquement.
 
 Spéciale
 : Son propre texte définit son fonctionnement, parce qu'elle n'entre ni dans Active ni dans Passive.
 
-L'activation dit ce qu'elle prend : une Action, une Action Bonus, une Réaction avec son déclencheur, un temps en tours, un temps en minutes ou en heures, ou rien pour une passive.
+L'activation dit ce qu'elle prend : une {{action}}, une {{action-bonus}}, une {{reaction}} avec son déclencheur, un temps en tours, un temps en minutes ou en heures, ou rien pour une passive.
 
 Une Réaction énonce son déclencheur dans la première phrase de sa description, jamais dans son activation.
 
@@ -36,7 +36,7 @@ L'étiquette Déchaîné signale une Compétence déchaînée au sens du budget 
 
 Le repère de comparaison est l'Unité d'effet. C'est un outil de conception ; il n'apparaît jamais dans le texte que lit un joueur.
 
-Une Unité d'effet vaut approximativement un dé de dégâts, `1d10` par défaut, ou un dé de soin ou de PdV temporaires, `1d4` par défaut, ou un effet secondaire standard. Un effet secondaire peut remplacer un dé de dégâts, ou réduire sa taille d'un cran.
+Une Unité d'effet vaut approximativement un dé de dégâts, `1d10` par défaut, ou un dé de soin ou de {{pdv}} temporaires, `1d4` par défaut, ou un effet secondaire standard. Un effet secondaire peut remplacer un dé de dégâts, ou réduire sa taille d'un cran.
 
 Le budget dépend de la souplesse laissée au joueur :
 
@@ -45,7 +45,7 @@ Le budget dépend de la souplesse laissée au joueur :
 
 L'écart paie la contrainte. Un effet décidé à l'avance vaut moins qu'un effet choisi au bon moment.
 
-La ressource par défaut est l'Énergie. Une règle peut employer les PdV ou le Karma, qui pèsent plus lourd : le Karma ne revient à aucun repos.
+La ressource par défaut est l'{{energie}}. Une règle peut employer les PdV ou le {{karma}}, qui pèsent plus lourd : le Karma ne revient à aucun repos.
 
 ## Portées et zones
 
@@ -55,7 +55,7 @@ Une zone donne sa forme et ses dimensions en multiples de 1,5 mètre. Son budget
 
 ## Résister, et durer
 
-Une Compétence à laquelle on peut résister indique quatre choses : le Jet défensif exact de la cible, la formule exacte du DD, l'effet en cas de réussite, l'effet en cas d'échec. « La cible ne subit que la moitié des dégâts » fait partie du budget, pas de la générosité.
+Une Compétence à laquelle on peut résister indique quatre choses : le {{jet}} défensif exact de la cible, la formule exacte du {{dd}}, l'effet en cas de réussite, l'effet en cas d'échec. « La cible ne subit que la moitié des dégâts » fait partie du budget, pas de la générosité.
 
 Un effet sur la durée répartit ses dés sur plusieurs tours sans augmenter leur total. Son texte dit quand il s'applique, combien de temps, s'il se renouvelle et s'il se cumule.
 

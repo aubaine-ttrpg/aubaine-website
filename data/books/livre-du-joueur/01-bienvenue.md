@@ -13,7 +13,7 @@ Une partie est une conversation avec des dés dedans. Elle tourne sur une boucle
 
 1. **Le MJ décrit une situation.** Ce que les personnages voient, entendent, ce qui les menace ou les tente.
 2. **Vous dites ce que votre personnage fait.** Vous parlez en son nom, avec ses mots ou les vôtres.
-3. **Le MJ dit ce qui en résulte.** Quand l'issue ne fait aucun doute, il la raconte. Quand elle est incertaine et qu'un échec coûterait quelque chose, un Jet tranche.
+3. **Le MJ dit ce qui en résulte.** Quand l'issue ne fait aucun doute, il la raconte. Quand elle est incertaine et qu'un échec coûterait quelque chose, un {{jet}} tranche.
 
 Puis la situation a changé, et la boucle repart. Elle tourne de la même manière sur une fouille de placard, une négociation tendue ou un duel au bord d'une falaise.
 
@@ -23,7 +23,7 @@ Puis la situation a changé, et la boucle repart. Elle tourne de la même maniè
 >
 > **Joueuse de Sélène :** « Je prends de l'élan et je saute par-dessus le trou. »
 >
-> **MJ :** « L'issue est incertaine, et une chute coûterait cher. Fais un Jet de Dextérité + Acrobaties contre un DD de 15. »
+> **MJ :** « L'issue est incertaine, et une chute coûterait cher. Fais un Jet de {{dexterite}} + {{acrobaties}} contre un {{dd}} de 15. »
 >
 > La joueuse lance deux d12 et obtient 7 et 9. Sélène a +3 en Dextérité et rien en Acrobaties : son total fait 19, au-dessus du DD.
 >
@@ -52,13 +52,13 @@ Rien d'autre : les distances se comptent en mètres et s'annoncent à voix haute
 ## Aubaine en quelques mots
 
 Le Jet
-: Tout ce qui est incertain se résout par la même formule, `2d12 + une Caractéristique + une Aptitude`. Attaquer, résister à un poison, mentir à un garde ou forger une lame : seul le nombre à atteindre change.
+: Tout ce qui est incertain se résout par la même formule, `2d12 + une Caractéristique + une Aptitude`. {{ATTAQU-001}}, résister à un poison, mentir à un garde ou forger une lame : seul le nombre à atteindre change.
 
 La paire
-: C'est votre manière d'agir qui décide de la Caractéristique et de l'Aptitude employées, si bien qu'un personnage reste utile loin de ses points forts.
+: C'est votre manière d'agir qui décide de la {{caracteristique}} et de l'{{aptitude}} employées, si bien qu'un personnage reste utile loin de ses points forts.
 
-L'Âme
-: Chaque personnage porte une Phobie, une Manie, un Défaut, une Spécialité et un Don. La Spécialité est une Aptitude que vous inventez, comme « Cuisine » ou « Pièges ». Le Don est une faculté qui n'appartient qu'à vous, comme « Je peux parler aux morts » ou « Mes peintures prennent vie ». C'est par eux que deux personnages aux mêmes chiffres restent deux personnes différentes.
+L'{{ame}}
+: Chaque personnage porte une {{phobie}}, une {{manie}}, un {{defaut}}, une {{specialite}} et un {{don}}. La Spécialité est une Aptitude que vous inventez, comme « Cuisine » ou « Pièges ». Le Don est une faculté qui n'appartient qu'à vous, comme « Je peux parler aux morts » ou « Mes peintures prennent vie ». C'est par eux que deux personnages aux mêmes chiffres restent deux personnes différentes.
 
 Trois monnaies
 : Les PX achètent vos Compétences, les PM vos Caractéristiques et vos Aptitudes, les PP vos ressources. Chacune arrive à son rythme, et c'est ainsi qu'un personnage grandit.
@@ -66,8 +66,8 @@ Trois monnaies
 Des Arbres à parcourir
 : Vos Compétences s'achètent sur des Arbres, en partant de leur cœur et en suivant leurs traits. Vous en débloquez de nouveaux en cours de partie pour composer le personnage que vous voulez.
 
-La Mémoire limite
-: Vous apprenez beaucoup de Compétences, mais vous n'en gardez que quelques-unes Mémorisées à la fois. Ce que vous emportez est un choix, et il se rejoue à chaque repos.
+La {{memoire}} limite
+: Vous apprenez beaucoup de Compétences, mais vous n'en gardez que quelques-unes {{memorisee|Mémorisées}} à la fois. Ce que vous emportez est un choix, et il se rejoue à chaque repos.
 
 L'équipement se fabrique
 : On récolte des matériaux, on suit une recette, on lance les Jets : l'essentiel de ce que vous portez passe par vos mains.

@@ -12,13 +12,13 @@ Ce livre rassemble ce qui n'appartient qu'à lui. Tout le reste, y compris les r
 L'ensemble de départ
 : Les deux Arbres proposés, les Espèces disponibles, et les 25 PX, 22 PM et 3 PP que reçoit un personnage neuf. Annoncez toute modification avant que la table commence : une partie unique et une campagne longue n'ouvrent pas sur les mêmes chiffres.
 
-La paire de chaque Jet
-: Aucune Aptitude n'appartient à une Caractéristique. C'est vous qui lisez la manière d'agir annoncée et choisissez la paire. Récompensez la description : c'est le seul levier qui pousse un joueur à dire comment il s'y prend plutôt que ce qu'il jette.
+La paire de chaque {{jet}}
+: Aucune {{aptitude}} n'appartient à une {{caracteristique}}. C'est vous qui lisez la manière d'agir annoncée et choisissez la paire. Récompensez la description : c'est le seul levier qui pousse un joueur à dire comment il s'y prend plutôt que ce qu'il jette.
 
-Le DD
+Le {{dd}}
 : Quand aucune règle ne l'imprime. Servez-vous de l'échelle, et rappelez-vous qu'une action triviale ne demande pas de Jet.
 
-Le Karma
+Le {{karma}}
 : Quand un point est mérité, et dans quel emplacement il tombe. Un emplacement déjà rempli n'en reçoit pas de second.
 
 Les récompenses

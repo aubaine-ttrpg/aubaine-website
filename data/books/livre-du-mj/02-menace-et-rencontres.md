@@ -15,7 +15,7 @@ Vous n'avez pas à regarder comment il les a répartis. Une valeur abaissée à 
 
 Un personnage de départ standard possède donc une Menace de 25.
 
-Les PX n'entrent pas dans le calcul. Ils décident des Compétences, des combinaisons et de la forme que prend la puissance, pas de sa quantité : les budgets d'effet, la Mémoire et l'Énergie s'en chargent.
+Les PX n'entrent pas dans le calcul. Ils décident des Compétences, des combinaisons et de la forme que prend la puissance, pas de sa quantité : les budgets d'effet, la {{memoire}} et l'{{energie}} s'en chargent.
 
 La Menace n'est pas un niveau. Elle ne limite aucun achat, aucune fabrication et aucune possibilité dans la fiction. Elle ne change rien pour le joueur, qui n'a aucune raison de connaître la sienne.
 
@@ -27,13 +27,13 @@ Quand tout le monde a reçu la même chose, calculez une Menace individuelle et 
 
 ## Les monstres
 
-Un monstre indique ses totaux de PM et de PP, et leur somme. Il emploie les mêmes Caractéristiques, Aptitudes, Jets, ressources et structures de Compétence que les personnages.
+Un monstre indique ses totaux de PM et de PP, et leur somme. Il emploie les mêmes {{caracteristique|Caractéristiques}}, {{aptitude|Aptitudes}}, {{jet|Jets}}, ressources et structures de Compétence que les personnages.
 
 Répartissez ses points selon son rôle réel : dégâts, endurance, mobilité, soutien, contrôle, information, polyvalence. Deux monstres de Menace égale peuvent se jouer très différemment, et c'est le but.
 
 Une valeur élevée doit avoir une façon claire de s'exprimer, dans la fiche ou dans les tactiques. Une Caractéristique haute que le monstre n'emploie jamais est une Menace payée pour rien.
 
-Une Action de boss, une réduction de dégâts, une phase ou une défense spéciale passe par une ressource, une activation ou une limitation explicite. Rien ne s'ajoute après le calcul de la Menace.
+Une {{action}} de boss, une réduction de dégâts, une phase ou une défense spéciale passe par une ressource, une activation ou une limitation explicite. Rien ne s'ajoute après le calcul de la Menace.
 
 Une créature de Menace 0 n'est pas un adversaire autonome. Elle est un élément de décor, un danger, une partie d'un groupe, ou une créature invoquée par une autre règle.
 
@@ -62,7 +62,7 @@ Une confrontation directe, sans avantage décisif déjà acquis. Le terrain, la 
 
 Le ratio devient peu fiable quand une rencontre repose principalement sur l'un de ces éléments :
 
-- un effet capable d'infliger [[Agonie]] à un personnage en pleine santé en une seule activation ;
+- un effet capable d'infliger {{agonie}} à un personnage en pleine santé en une seule activation ;
 - la suppression répétée d'Actions ou de tours complets ;
 - un grand nombre de créatures autonomes ;
 - un adversaire solitaire qui n'a aucun moyen d'agir entre les tours des personnages ;

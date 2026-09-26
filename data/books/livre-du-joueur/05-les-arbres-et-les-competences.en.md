@@ -26,19 +26,19 @@ The lines join each node to its neighbours. They mark the path you follow throug
 Each Skill costs 5 to 100 XP, in steps of 5, and its price is printed on it. To buy it in a Tree, you also need to be able to reach it.
 
 - **The heart first.** The first Skill you buy in a Tree is its heart, at the centre.
-- **Line by line.** After that, you can buy any Skill joined by a line to a Skill of that Tree you have already Learned.
+- **Line by line.** After that, you can buy any Skill joined by a line to a Skill of that Tree you have already {{apprise}}.
 
-A Learned Skill opens its neighbours wherever it came from: a purchase in that Tree, the Common Bank, or another Skill that gave it to you.
+A Learned Skill opens its neighbours wherever it came from: a purchase in that Tree, the {{banque-commune}}, or another Skill that gave it to you.
 
 > [!EXAMPLE] Example
 >
-> In the Feu Tree, you start with {{Aviver les flammes}}, its heart. {{Trait de feu}}, joined to the heart, then becomes available, and after it {{Boule de Feu}}, joined to Trait de feu.
+> In the Feu Tree, you start with {{AVIFLA-001}}, its heart. {{TRAFEU-001}}, joined to the heart, then becomes available, and after it {{BOUFEU-001}}, joined to {{TRAFEU-001}}.
 >
-> If your character learned Trait de feu from the Common Bank before unlocking the Feu Tree, they do not buy it again, and Boule de Feu is open to them from the moment they unlock the Tree.
+> If your character learned {{TRAFEU-001}} from the Common Bank before unlocking the Feu Tree, they do not buy it again, and {{BOUFEU-001}} is open to them from the moment they unlock the Tree.
 
 ### Learning and Memorising
 
-Buying a Skill means learning it, not memorising it. A Learned Skill is yours for good. What is limited is how many you can carry at once, and your Memory is what says so.
+Buying a Skill means learning it, not {{memorisee|memorising}} it. A Learned Skill is yours for good. What is limited is how many you can carry at once, and your {{memoire}} is what says so.
 
 A Memorised Skill is a Skill you carry and can play. It takes 1 Memory, except in the cases listed under "Where your Memory goes".
 
@@ -59,7 +59,7 @@ A Skill can carry tags, printed at the foot of its card. They group Skills of th
 They read in this order, and a Skill carries only the ones it needs.
 
 Practice
-: How the Skill lives in your character, such as Spell, Manoeuvre or Technique. One at most.
+: How the Skill lives in your character, such as {{sort}}, Manoeuvre or Technique. One at most.
 
 School
 : The family its effect belongs to, such as Healing or Illusion. One or two.
@@ -75,7 +75,7 @@ Two Practices set a condition. You need a Catalyseur equipped, meaning a piece o
 
 Alongside your Trees, one list of Skills belongs to nobody: the Common Bank.
 
-Its Skills are independent of one another and follow no lines. Any character may buy one at any time, whatever their Trees, for its price in XP and the Prerequisite some of them carry. It holds the Species Skills a character did not keep at creation, reserved to their Species by that Prerequisite, and some Tree Skills too, such as the ones the Catalyseurs grant: buying one there makes it Learned without unlocking its Tree.
+Its Skills are independent of one another and follow no lines. Any character may buy one at any time, whatever their Trees, for its price in XP and the {{prerequis}} some of them carry. It holds the Species Skills a character did not keep at creation, reserved to their Species by that Prerequisite, and some Tree Skills too, such as the ones the Catalyseurs grant: buying one there makes it Learned without unlocking its Tree.
 
 Nothing stops a merchant slipping into the shadows, or an artisan catching their breath in the middle of a melee.
 

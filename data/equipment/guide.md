@@ -5,7 +5,7 @@ description: "Les emplacements, le butin, les matériaux, la fabrication, les pa
 
 Une créature porte huit pièces d'équipement à la fois, une par emplacement. Tant qu'une pièce n'est pas portée, elle ne fait rien : rien ne s'applique depuis un sac.
 
-Les Compétences accordées par une pièce portée n'occupent aucune Mémoire et n'ont pas à être apprises. La pièce les donne tant qu'elle est portée, et les reprend dès que vous la retirez.
+Les Compétences accordées par une pièce portée n'occupent aucune {{memoire}} et n'ont pas à être apprises. La pièce les donne tant qu'elle est portée, et les reprend dès que vous la retirez.
 
 ## Les emplacements
 
@@ -18,7 +18,7 @@ Sept emplacements, huit pièces portées : le Bijou compte double.
 : La pièce qui porte votre formule de Classe d'armure. Une seule à la fois.
 
 :icon[game-icons:walking-boot] Bottes
-: Chausses et grèves : ce qui touche le sol et ce qui règle votre Vitesse.
+: Chausses et grèves : ce qui touche le sol et ce qui règle votre {{vitesse}}.
 
 :icon[game-icons:emerald-necklace] Collier
 : Torque, amulette, pendentif. Porté à même la peau, sous l'armure.
@@ -31,7 +31,7 @@ Sept emplacements, huit pièces portées : le Bijou compte double.
 
 Chaque entrée du catalogue imprime ce qui la concerne : sa valeur de tête, ses cellules, ses propriétés nommées, sa recette et ce qu'elle accorde. Ces nombres appartiennent à la pièce et ne sont repris nulle part ailleurs.
 
-Le MJ annonce ce dont vous partez équipé. Sans armure, votre CA est `12 + Dextérité`, et une Frappe à mains nues fait `1d4 + Force`.
+Le MJ annonce ce dont vous partez équipé. Sans armure, votre {{ca}} est `12 + Dextérité`, et une Frappe à mains nues fait `1d4 + Force`.
 
 ## Trouver les matériaux
 
@@ -40,10 +40,10 @@ L'équipement s'obtient par la fabrication bien plus que par l'achat. Ce que vou
 Après une rencontre significative ou la découverte d'une source exploitable, chaque personnage reçoit une Occasion de butin. Dépensez-la de l'une de ces deux façons, jamais des deux.
 
 Butin aléatoire
-: Lancez le Dé de butin de la source. Le MJ lit sa Table de butin et annonce ce que vous obtenez. Aucun Jet de plus.
+: Lancez le Dé de butin de la source. Le MJ lit sa Table de butin et annonce ce que vous obtenez. Aucun {{jet}} de plus.
 
 Prélèvement ciblé
-: Annoncez ce que vous cherchez et comment vous le récupérez. Le MJ fixe le Jet et son DD. En cas d'échec, l'Occasion est consommée sans résultat.
+: Annoncez ce que vous cherchez et comment vous le récupérez. Le MJ fixe le Jet et son {{dd}}. En cas d'échec, l'Occasion est consommée sans résultat.
 
 Le premier choix est sûr et ne demande rien. Le second vise juste et peut ne rien donner. Une cible que la fiction ne permet pas d'extraire ne s'obtient pas sur un Jet.
 
@@ -69,9 +69,9 @@ Les Jets se lisent dans l'ordre où ils se font, et le travail physique précèd
 
 ### Les quatre disciplines
 
-La couleur de l'encadré redit la discipline sous laquelle la pièce est travaillée, et son titre la nomme : Artisanat à la forge, Arcanes à l'établi arcanique, Technologie à l'atelier, Science au laboratoire.
+La couleur de l'encadré redit la discipline sous laquelle la pièce est travaillée, et son titre la nomme : {{artisanat}} à la forge, {{arcanes}} à l'établi arcanique, {{technologie}} à l'atelier, {{science}} au laboratoire.
 
-Chacune est une Aptitude, et c'est elle que vous jetez. Les quatre ne se remplacent pas : une pièce travaillée sous Arcanes ne se fabrique pas sous Artisanat.
+Chacune est une {{aptitude}}, et c'est elle que vous jetez. Les quatre ne se remplacent pas : une pièce travaillée sous Arcanes ne se fabrique pas sous Artisanat.
 
 ### Sans recette
 
@@ -122,4 +122,4 @@ Le MJ annonce ce qu'un lieu propose. Un comptoir de village ne tient pas le stoc
 
 Un objet revendu rapporte la moitié de son prix. Un matériau revendu rapporte sa Valeur de matière en pièces d'argent. Les Compétences du marchand modifient ces prix, et elles disent de combien.
 
-La monnaie n'achète ni PX, ni PM, ni PP. Aucune somme ne fait monter une Caractéristique, une Aptitude, une ressource ou une Compétence. Elle n'achète pas non plus une recette que votre personnage ne sait pas lire, ni un matériau qu'aucune source de la région ne produit.
+La monnaie n'achète ni PX, ni PM, ni PP. Aucune somme ne fait monter une {{caracteristique}}, une Aptitude, une ressource ou une Compétence. Elle n'achète pas non plus une recette que votre personnage ne sait pas lire, ni un matériau qu'aucune source de la région ne produit.

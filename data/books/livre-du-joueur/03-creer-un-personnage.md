@@ -28,23 +28,23 @@ PX
 : Achètent les Arbres, les Compétences et leurs Niveaux.
 
 PM
-: Achètent les six Caractéristiques, les Aptitudes et la Spécialité.
+: Achètent les six {{caracteristique|Caractéristiques}}, les {{aptitude|Aptitudes}} et la {{specialite}}.
 
 PP
-: Achètent les trois voies de ressources : Vitalité, Mémoire et Énergie.
+: Achètent les trois voies de ressources : Vitalité, {{memoire}} et {{energie}}.
 
 ## L'ordre des étapes
 
-1. **Espèce, Archétype, Domaine.** Choisissez-les parmi ceux que le MJ propose, avec votre sous-espèce ou votre origine régionale quand l'Espèce en compte. Ils fixent vos deux premiers Arbres, vos deux Compétences d'Espèce et votre Vitesse.
-2. **L'Âme.** Écrivez la Phobie, la Manie, le Défaut, la Spécialité et le Don.
+1. **Espèce, Archétype, Domaine.** Choisissez-les parmi ceux que le MJ propose, avec votre sous-espèce ou votre origine régionale quand l'Espèce en compte. Ils fixent vos deux premiers Arbres, vos deux Compétences d'Espèce et votre {{vitesse}}.
+2. **L'{{ame}}.** Écrivez la {{phobie}}, la {{manie}}, le {{defaut}}, la Spécialité et le {{don}}.
 3. **Caractéristiques.** Dépensez des PM.
 4. **Aptitudes et Spécialité.** Dépensez des PM.
 5. **Ressources.** Placez les 3 PP.
 6. **Compétences.** Dépensez les 25 PX dans vos Arbres.
 7. **Équipement.** Remplissez les huit emplacements portés.
-8. **Valeurs dérivées.** Calculez PdV, Mémoire, Énergie, CA, Vitesse et Initiative.
+8. **Valeurs dérivées.** Calculez {{pdv}}, Mémoire, Énergie, {{ca}}, Vitesse et Initiative.
 
-Une étape peut se rejouer tant que personne n'a lancé de dé. Après le premier Jet de la première séance, la fiche est figée et la progression prend le relais.
+Une étape peut se rejouer tant que personne n'a lancé de dé. Après le premier {{jet}} de la première séance, la fiche est figée et la progression prend le relais.
 
 Le chapitre Les Espèces détaille l'étape 1, et le chapitre Les Arbres et les Compétences l'étape 6.
 
@@ -69,7 +69,7 @@ Spécialité
 Don
 : Une faculté exceptionnelle qui n'appartient qu'à lui.
 
-Les trois premiers compliquent la vie du personnage et lui rapportent du Karma. Les deux derniers disent ce qu'il sait faire comme personne d'autre à la table.
+Les trois premiers compliquent la vie du personnage et lui rapportent du {{karma}}. Les deux derniers disent ce qu'il sait faire comme personne d'autre à la table.
 
 ### Le Karma
 
@@ -77,7 +77,7 @@ La Phobie, la Manie et le Défaut portent chacun un emplacement de Karma. Un per
 
 Le MJ accorde un point de Karma quand il le juge mérité, souvent quand un de ces trois traits a coûté quelque chose au personnage, et choisit l'emplacement. Un emplacement déjà rempli n'en reçoit pas de second. Le Karma conservé ne disparaît ni au repos ni en fin de séance.
 
-Dépensez un point avant un Jet, ou après le lancer tant que le résultat n'est pas résolu. Chaque point ajoute un Avantage ou un Désavantage au Jet de votre choix : le vôtre, celui d'un allié, celui d'un adversaire. Plusieurs points peuvent tomber sur le même Jet.
+Dépensez un point avant un Jet, ou après le lancer tant que le résultat n'est pas résolu. Chaque point ajoute un {{avantage}} ou un {{desavantage}} au Jet de votre choix : le vôtre, celui d'un allié, celui d'un adversaire. Plusieurs points peuvent tomber sur le même Jet.
 
 Un point dépensé après le lancer ajoute son dé à ceux qui sont déjà sur la table, puis les deux dés conservés sont déterminés de nouveau sur l'ensemble. C'est ce qui permet de sauver un Jet raté, et aussi d'en gâcher un réussi quand le point tombe sur un adversaire.
 
@@ -87,13 +87,13 @@ Certaines Compétences prennent le Karma comme ressource. Elles sont rares à l'
 
 La Spécialité est une Aptitude que vous inventez, au champ volontairement étroit. C'est le métier, le savoir ou la passion où votre personnage dépasse tout le monde : « Peinture », « Pièges », « Bombes », « Commerce », « Cuisine », « Navigation », « Monstres ». Elle monte avec des PM comme n'importe quelle Aptitude.
 
-Quand elle s'applique, elle entre dans le Jet comme une Aptitude ordinaire et accorde en plus un Avantage. La Caractéristique suit toujours votre manière d'agir : une Spécialité « Cuisine » se lance avec l'Esprit pour reconnaître une épice au goût, avec la Dextérité pour dresser un banquet en une heure.
+Quand elle s'applique, elle entre dans le Jet comme une Aptitude ordinaire et accorde en plus un Avantage. La Caractéristique suit toujours votre manière d'agir : une Spécialité « Cuisine » se lance avec l'{{esprit}} pour reconnaître une épice au goût, avec la {{dexterite}} pour dresser un banquet en une heure.
 
 Un champ large donne un bonus tiède qui sert souvent ; un champ étroit donne un vrai coup de pouce qui sert rarement. Le MJ tranche les cas limites.
 
 > [!EXAMPLE] Exemple
 >
-> Oswin a la Spécialité « Commerce » à +2 et rien en Persuasion. Au marché, il marchande une selle : l'action tombe dans son champ, et le MJ lui demande un Jet de Charisme + Commerce avec 1 Avantage.
+> Oswin a la Spécialité « Commerce » à +2 et rien en {{persuasion}}. Au marché, il marchande une selle : l'action tombe dans son champ, et le MJ lui demande un Jet de {{charisme}} + Commerce avec 1 Avantage.
 >
 > Le soir, il doit convaincre un garde de le laisser passer après le couvre-feu. Il n'y a rien à vendre ni à acheter : le Jet redevient Charisme + Persuasion, et Oswin ne compte que sur son Charisme. S'il glisse une pièce au garde, le MJ peut juger qu'on revient au marchandage.
 
@@ -149,16 +149,16 @@ Une Caractéristique sert partout où elle apparaît, une Aptitude seulement dan
 
 ### Les six Caractéristiques
 
-Force
+{{force}}
 : La puissance physique du personnage, celle qui soulève, pousse et frappe.
 
 Dextérité
 : La coordination et la précision du personnage, dans le geste comme dans le mouvement. Porte la CA et l'Initiative.
 
-Constitution
+{{constitution}}
 : La santé et l'endurance du personnage, ce qui lui permet d'encaisser et de tenir. Porte les PdV.
 
-Intelligence
+{{intelligence}}
 : La capacité du personnage à analyser, retenir, apprendre et déduire. Porte la Mémoire.
 
 Esprit
@@ -173,9 +173,9 @@ Quatre d'entre elles portent une valeur dérivée. Cela ne les rend pas plus imp
 
 La fiche porte la liste complète, une case par Aptitude, et la page Règles donne la définition de chacune. Elles couvrent ce qu'un personnage sait faire, du pistage à la négociation.
 
-Quatre d'entre elles sont aussi les quatre disciplines de fabrication : Artisanat, Arcanes, Technologie et Science. C'est une seule et même notion : la discipline sous laquelle une pièce se travaille est l'Aptitude que vous jetez pour la fabriquer.
+Quatre d'entre elles sont aussi les quatre disciplines de fabrication : {{artisanat}}, {{arcanes}}, {{technologie}} et {{science}}. C'est une seule et même notion : la discipline sous laquelle une pièce se travaille est l'Aptitude que vous jetez pour la fabriquer.
 
-Six reviennent plus que les autres, et ce sont celles du combat : Mêlée, Finesse et Visée pour porter un coup, Réflexes, Résistance et Volonté pour y résister.
+Six reviennent plus que les autres, et ce sont celles du combat : {{melee}}, {{finesse}} et {{visee}} pour porter un coup, {{reflexes}}, {{resistance}} et {{volonte}} pour y résister.
 
 À cette liste s'ajoute une Aptitude qui n'appartient qu'à vous : votre Spécialité, présentée avec l'Âme. Elle se paie en PM aux mêmes prix et avec les mêmes plafonds que les autres.
 
@@ -194,7 +194,7 @@ Mémoire
 
 Vos 3 PP vont où vous voulez : trois voies d'un niveau, ou une voie de trois.
 
-La Mémoire est la place que vous avez pour vos Compétences. Une Compétence Mémorisée occupe 1 Mémoire, quels que soient son Niveau et son coût. Vos deux Compétences d'Espèce sont Mémorisées sans occuper de Mémoire, comme le détaille le chapitre Les Espèces, et celles que votre équipement vous donne n'occupent rien. Hors vos deux Compétences d'Espèce, vous pouvez changer vos Compétences Mémorisées pendant un Repos court ou un Repos long.
+La Mémoire est la place que vous avez pour vos Compétences. Une Compétence {{memorisee}} occupe 1 Mémoire, quels que soient son Niveau et son coût. Vos deux Compétences d'Espèce sont Mémorisées sans occuper de Mémoire, comme le détaille le chapitre Les Espèces, et celles que votre équipement vous donne n'occupent rien. Hors vos deux Compétences d'Espèce, vous pouvez changer vos Compétences Mémorisées pendant un {{repos-court}} ou un {{repos-long}}.
 
 L'Énergie paie les Compétences qui coûtent quelque chose. Une Compétence dont le coût dépasse votre réserve ne peut pas être jouée. Une tentative dont les conditions ne sont pas réunies ne consomme rien.
 
@@ -202,7 +202,7 @@ L'Énergie paie les Compétences qui coûtent quelque chose. Une Compétence don
 
 Les PX achètent les Compétences de vos Arbres et leurs Niveaux, et débloquent de nouveaux Arbres. Chaque achat coûte de 5 à 100 PX, par pas de 5, et le prix est imprimé sur la Compétence.
 
-Dans un Arbre, la première Compétence que vous achetez est son cœur, au centre ; chaque achat suivant doit être relié par un trait à une Compétence que vous avez déjà Apprise. Le chapitre Les Arbres et les Compétences détaille cette règle.
+Dans un Arbre, la première Compétence que vous achetez est son cœur, au centre ; chaque achat suivant doit être relié par un trait à une Compétence que vous avez déjà {{apprise}}. Le chapitre Les Arbres et les Compétences détaille cette règle.
 
 Vingt-cinq PX ne font pas un personnage complet. Ils font une ouverture : le cœur d'un Arbre et une ou deux voisines bon marché, qui disent comment votre personnage agit au premier round. Le reste vient en jeu.
 
@@ -258,10 +258,10 @@ Douze PM au total. Elle assume le −1 en Force : elle ne pousse pas les portes,
 | Aptitude | Valeur | PM |
 | --- | ---: | ---: |
 | Visée | +2 | 2 |
-| Discrétion | +2 | 2 |
+| {{discretion}} | +2 | 2 |
 | Réflexes | +2 | 2 |
-| Perception | +1 | 1 |
-| Survie | +1 | 1 |
+| {{perception}} | +1 | 1 |
+| {{survie}} | +1 | 1 |
 | Spécialité « Pistage » | +2 | 2 |
 
 Dix PM, et le compte tombe juste à 22.

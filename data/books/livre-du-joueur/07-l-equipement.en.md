@@ -5,13 +5,13 @@ description: "The slots, loot and materials, crafting, sets and money."
 
 A creature wears eight pieces of equipment at once, one per slot. A piece does nothing until it is worn: nothing applies from a backpack.
 
-Most of what you wear, you will have made yourself. Shops exist, but Aubaine routes your equipment through the materials you bring back, the recipes you follow and the Rolls you succeed on.
+Most of what you wear, you will have made yourself. Shops exist, but Aubaine routes your equipment through the materials you bring back, the recipes you follow and the {{jet|Rolls}} you succeed on.
 
 ## Wearing a piece
 
-A piece can carry a Prerequisite, printed under its name. Only a creature that meets it can equip it.
+A piece can carry a {{prerequis}}, printed under its name. Only a creature that meets it can equip it.
 
-Skills granted by a worn piece take up no Memory and do not have to be learned. The piece grants them while it is worn, and takes them back the moment you remove it.
+Skills granted by a worn piece take up no {{memoire}} and do not have to be learned. The piece grants them while it is worn, and takes them back the moment you remove it.
 
 Each catalogue entry prints what concerns it: its headline value, its stats, its named properties, its recipe and what it grants. Those numbers belong to the piece and are not repeated anywhere else.
 
@@ -24,7 +24,7 @@ Torso
 : The piece that carries your Armour Class formula. One at a time.
 
 Boots
-: Hose and greaves: whatever touches the ground and sets your Speed.
+: Hose and greaves: whatever touches the ground and sets your {{vitesse}}.
 
 Necklace
 : Torque, amulet, pendant. Worn against the skin, under the armour.
@@ -35,7 +35,7 @@ One hand (x2)
 Jewel (x2)
 : Two independent slots. Ring, set stone, carved talisman.
 
-The GM tells you what you start with. With no armour, your AC is `12 + Dexterity`, and an unarmed Strike deals `1d4 + Strength`: a character with nothing is never defenceless.
+The GM tells you what you start with. With no armour, your {{ca}} is `12 + Dexterity`, and an unarmed Strike deals `1d4 + Strength`: a character with nothing is never defenceless.
 
 ## Finding materials
 
@@ -47,7 +47,7 @@ Random loot
 : Roll the source's Loot Die. The GM reads its Loot Table and tells you what you get. No further Roll.
 
 Targeted harvest
-: Say what you are after and how you get it. The GM sets the Roll and its DC. On a failure, the Opportunity is spent for nothing.
+: Say what you are after and how you get it. The GM sets the Roll and its {{dd}}. On a failure, the Opportunity is spent for nothing.
 
 The first choice is safe and asks nothing of you. The second aims true and may come back empty. A target the fiction does not let you extract cannot be won with a Roll: you do not harvest scales from a beast that has none.
 
@@ -73,13 +73,13 @@ That is the real cost of an expensive piece: less its price than the risk of sta
 
 > [!EXAMPLE] Example
 >
-> Sélène wants a short bow. Its recipe is worked under Craft: it asks for the Types Wood and Leather at a cost of 4, then two Rolls with Craft as the Aptitude, a Dexterity Roll against DC 12, then an Intelligence Roll against DC 12.
+> Sélène wants a short bow. Its recipe is worked under {{artisanat}}: it asks for the Types Wood and Leather at a cost of 4, then two Rolls with Craft as the {{aptitude}}, a {{dexterite}} Roll against DC 12, then an {{intelligence}} Roll against DC 12.
 >
 > She commits a piece of wood of Value 1 for the Wood and three wolf pelts of Value 1 for the Leather: the cost is met. She passes the Dexterity Roll, fails the Intelligence one, and all four materials are lost. She will have to go hunting again.
 
 ### The four disciplines
 
-The colour of the recipe box repeats the discipline a piece is worked under, and its title names it: Craft at the forge, Arcana at the arcane bench, Technology at the workshop, Science in the laboratory.
+The colour of the recipe box repeats the discipline a piece is worked under, and its title names it: Craft at the forge, {{arcanes}} at the arcane bench, {{technologie}} at the workshop, {{science}} in the laboratory.
 
 Each one is an Aptitude, and that is what you roll. The four do not stand in for one another: a piece worked under Arcana cannot be made under Craft. Raising a discipline with MP raises your ability to craft under it.
 
@@ -134,6 +134,6 @@ An item sold back brings in half its price. A material sold back brings in its M
 
 ### What money cannot buy
 
-No XP, no MP, no PP. No sum raises a Characteristic, an Aptitude, a resource or a Skill. Nor does money buy a recipe your character cannot read, or a material no source in the region produces.
+No XP, no MP, no PP. No sum raises a {{caracteristique}}, an Aptitude, a resource or a Skill. Nor does money buy a recipe your character cannot read, or a material no source in the region produces.
 
 The GM announces your starting purse with the rest of your starting set. Twenty or so silver coins buy an ordinary weapon and a potion, which is enough to play the first session.

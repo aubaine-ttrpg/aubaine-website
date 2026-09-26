@@ -28,23 +28,23 @@ XP
 : Buys Trees, Skills and their Levels.
 
 MP
-: Buys the six Characteristics, the Aptitudes and the Speciality.
+: Buys the six {{caracteristique|Characteristics}}, the {{aptitude|Aptitudes}} and the {{specialite}}.
 
 PP
-: Buys the three resource paths: Vitality, Memory and Energy.
+: Buys the three resource paths: Vitality, {{memoire}} and {{energie}}.
 
 ## The order of the steps
 
-1. **Species, Archetype, Domain.** Choose them from what the GM offers, and your subspecies or regional origin where the Species has any. They fix your first two Trees, your two Species Skills and your Speed.
-2. **The Soul.** Write down the Phobia, the Mania, the Flaw, the Speciality and the Gift.
+1. **Species, Archetype, Domain.** Choose them from what the GM offers, and your subspecies or regional origin where the Species has any. They fix your first two Trees, your two Species Skills and your {{vitesse}}.
+2. **The {{ame}}.** Write down the {{phobie}}, the {{manie}}, the {{defaut}}, the Speciality and the {{don}}.
 3. **Characteristics.** Spend MP.
 4. **Aptitudes and Speciality.** Spend MP.
 5. **Resources.** Place the 3 PP.
 6. **Skills.** Spend the 25 XP in your Trees.
 7. **Equipment.** Fill the eight worn slots.
-8. **Derived values.** Work out HP, Memory, Energy, AC, Speed and Initiative.
+8. **Derived values.** Work out {{pdv}}, Memory, Energy, {{ca}}, Speed and Initiative.
 
-A step can be replayed as long as nobody has rolled a die. After the first Roll of the first session the sheet is fixed, and progression takes over.
+A step can be replayed as long as nobody has rolled a die. After the first {{jet}} of the first session the sheet is fixed, and progression takes over.
 
 The Species chapter covers step 1 in detail, and the Trees and Skills chapter covers step 6.
 
@@ -69,7 +69,7 @@ Speciality
 Gift
 : An exceptional faculty that belongs to them alone.
 
-The first three make the character's life harder and earn them Karma. The last two say what they can do like nobody else at the table.
+The first three make the character's life harder and earn them {{karma}}. The last two say what they can do like nobody else at the table.
 
 ### Karma
 
@@ -77,7 +77,7 @@ The Phobia, the Mania and the Flaw each carry a Karma slot. A character therefor
 
 The GM grants a Karma point when they judge it deserved, often when one of those three traits has cost the character something, and chooses the slot. A slot already filled does not take a second. Karma you hold disappears neither at a rest nor at the end of a session.
 
-Spend a point before a Roll, or after the throw while the result is still unresolved. Each point adds an Advantage or a Disadvantage to the Roll of your choice: yours, an ally's, an opponent's. Several points can land on the same Roll.
+Spend a point before a Roll, or after the throw while the result is still unresolved. Each point adds an {{avantage}} or a {{desavantage}} to the Roll of your choice: yours, an ally's, an opponent's. Several points can land on the same Roll.
 
 A point spent after the throw adds its die to the ones already on the table, and the two kept dice are then worked out again across the lot. That is what lets you rescue a failed Roll, and equally what lets you ruin a successful one when the point lands on an opponent.
 
@@ -87,13 +87,13 @@ Some Skills take Karma as their resource. That is why they are rare in play.
 
 The Speciality is an Aptitude you invent, with a deliberately narrow field. It is the trade, the lore or the passion in which your character outdoes everyone: "Painting", "Traps", "Bombs", "Trade", "Cooking", "Navigation", "Monsters". It goes up with MP like any other Aptitude.
 
-When it applies, it enters the Roll like an ordinary Aptitude and grants an Advantage on top. The Characteristic still follows how you act: a "Cooking" Speciality rolls with Spirit to recognise a spice by taste, and with Dexterity to set out a banquet in an hour.
+When it applies, it enters the Roll like an ordinary Aptitude and grants an Advantage on top. The Characteristic still follows how you act: a "Cooking" Speciality rolls with {{esprit}} to recognise a spice by taste, and with {{dexterite}} to set out a banquet in an hour.
 
 A broad field gives a lukewarm bonus that helps often; a narrow one gives a real push that helps rarely. The GM settles the edge cases.
 
 > [!EXAMPLE] Example
 >
-> Oswin has the Speciality "Trade" at +2 and nothing in Persuasion. At the market he haggles over a saddle: the action falls within his field, and the GM asks for a Charisma + Trade Roll with 1 Advantage.
+> Oswin has the Speciality "Trade" at +2 and nothing in {{persuasion}}. At the market he haggles over a saddle: the action falls within his field, and the GM asks for a {{charisme}} + Trade Roll with 1 Advantage.
 >
 > That evening, he has to talk a guard into letting him through after curfew. There is nothing to buy or sell: the Roll goes back to Charisma + Persuasion, and Oswin has only his Charisma to count on. If he slips the guard a coin, the GM can decide they are back to haggling.
 
@@ -149,16 +149,16 @@ A Characteristic serves everywhere it appears, an Aptitude only in its own field
 
 ### The six Characteristics
 
-Strength
+{{force}}
 : The character's physical power, the kind that lifts, pushes and strikes.
 
 Dexterity
 : The character's coordination and precision, in gesture as in movement. Carries AC and Initiative.
 
-Constitution
+{{constitution}}
 : The character's health and endurance, what lets them take punishment and hold on. Carries HP.
 
-Intelligence
+{{intelligence}}
 : The character's ability to analyse, remember, learn and deduce. Carries Memory.
 
 Spirit
@@ -173,9 +173,9 @@ Four of them carry a derived value. That does not make them more important: a Ch
 
 The sheet carries the full list, one box per Aptitude, and the Rules page defines each of them. They cover what a character can do, from tracking to negotiation.
 
-Four of them are also the four crafting disciplines: Craft, Arcana, Technology and Science. They are one and the same idea: the discipline a piece is worked under is the Aptitude you roll to make it.
+Four of them are also the four crafting disciplines: {{artisanat}}, {{arcanes}}, {{technologie}} and {{science}}. They are one and the same idea: the discipline a piece is worked under is the Aptitude you roll to make it.
 
-Six come up more than the rest, and they are the combat ones: Melee, Finesse and Aim to land a blow, Reflexes, Resistance and Will to resist one.
+Six come up more than the rest, and they are the combat ones: {{melee}}, {{finesse}} and {{visee}} to land a blow, {{reflexes}}, {{resistance}} and {{volonte}} to resist one.
 
 One more Aptitude joins the list, and it belongs to you alone: your Speciality, introduced with the Soul. It is paid for in MP at the same prices and with the same caps as the others.
 
@@ -194,7 +194,7 @@ Energy
 
 Your 3 PP go wherever you like: three paths at one level, or one path at three.
 
-Memory is the room you have for your Skills. A Memorised Skill takes 1 Memory, whatever its Level and its cost. Your two Species Skills are Memorised without taking up any Memory, as the Species chapter explains, and the ones your equipment grants take up nothing. Apart from your two Species Skills, you can change your Memorised Skills during a Short Rest or a Long Rest.
+Memory is the room you have for your Skills. A {{memorisee}} Skill takes 1 Memory, whatever its Level and its cost. Your two Species Skills are Memorised without taking up any Memory, as the Species chapter explains, and the ones your equipment grants take up nothing. Apart from your two Species Skills, you can change your Memorised Skills during a {{repos-court}} or a {{repos-long}}.
 
 Energy pays for the Skills that cost something. A Skill whose cost exceeds your reserve cannot be played. An attempt whose conditions are not met consumes nothing.
 
@@ -202,7 +202,7 @@ Energy pays for the Skills that cost something. A Skill whose cost exceeds your 
 
 XP buys the Skills of your Trees and their Levels, and unlocks new Trees. Each purchase costs 5 to 100 XP, in steps of 5, and the price is printed on the Skill.
 
-In a Tree, the first Skill you buy is its heart, at the centre; every purchase after that must be joined by a line to a Skill you have already Learned. The Trees and Skills chapter explains the rule in full.
+In a Tree, the first Skill you buy is its heart, at the centre; every purchase after that must be joined by a line to a Skill you have already {{apprise}}. The Trees and Skills chapter explains the rule in full.
 
 Twenty-five XP does not make a complete character. It makes an opening: the heart of a Tree and one or two cheap neighbours that say how your character acts in the first round. The rest comes in play.
 
@@ -258,10 +258,10 @@ Twelve MP in all. She accepts the −1 in Strength: she does not push doors open
 | Aptitude | Value | MP |
 | --- | ---: | ---: |
 | Aim | +2 | 2 |
-| Stealth | +2 | 2 |
+| {{discretion}} | +2 | 2 |
 | Reflexes | +2 | 2 |
-| Perception | +1 | 1 |
-| Survival | +1 | 1 |
+| {{perception}} | +1 | 1 |
+| {{survie}} | +1 | 1 |
 | Speciality "Tracking" | +2 | 2 |
 
 Ten MP, and the count lands exactly on 22.

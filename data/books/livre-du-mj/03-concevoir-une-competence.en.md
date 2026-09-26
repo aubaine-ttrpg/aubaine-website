@@ -12,13 +12,13 @@ There are three types.
 Active
 : Deliberately activated, it costs a unit of action time.
 
-Passive
+{{passif}}
 : Applied deliberately, continuously or automatically.
 
 Special
 : Its own text defines how it works, because it fits neither Active nor Passive.
 
-The activation says what it takes: an Action, a Bonus Action, a Reaction with its trigger, a time in turns, a time in minutes or hours, or nothing for a passive.
+The activation says what it takes: an {{action}}, a {{action-bonus}}, a {{reaction}} with its trigger, a time in turns, a time in minutes or hours, or nothing for a passive.
 
 A Reaction states its trigger in the first sentence of its description, never in its activation.
 
@@ -36,7 +36,7 @@ The Unleashed tag marks an unleashed Skill in the sense of the effect budget, be
 
 The unit of comparison is the Effect Unit. It is a design tool; it never appears in text a player reads.
 
-One Effect Unit is roughly one damage die, `1d10` by default, or one die of healing or temporary HP, `1d4` by default, or one standard secondary effect. A secondary effect may replace a damage die, or drop its size by one step.
+One Effect Unit is roughly one damage die, `1d10` by default, or one die of healing or temporary {{pdv}}, `1d4` by default, or one standard secondary effect. A secondary effect may replace a damage die, or drop its size by one step.
 
 The budget depends on the freedom left to the player:
 
@@ -45,7 +45,7 @@ The budget depends on the freedom left to the player:
 
 The gap pays for the constraint. An effect decided in advance is worth less than one chosen at the right moment.
 
-The default resource is Energy. A rule may use HP or Karma, which weigh more: Karma comes back at no rest.
+The default resource is {{energie}}. A rule may use HP or {{karma}}, which weigh more: Karma comes back at no rest.
 
 ## Ranges and areas
 
@@ -55,7 +55,7 @@ An area gives its shape and dimensions in multiples of 1.5 metres. Its budget de
 
 ## Resisting, and lasting
 
-A Skill that can be resisted states four things: the target's exact defensive Roll, the exact DC formula, the effect on a success, the effect on a failure. "The target only takes half damage" is part of the budget, not of generosity.
+A Skill that can be resisted states four things: the target's exact defensive {{jet}}, the exact {{dd}} formula, the effect on a success, the effect on a failure. "The target only takes half damage" is part of the budget, not of generosity.
 
 An effect over time spreads its dice across several turns without raising their total. Its text says when it applies, for how long, whether it renews and whether it stacks.
 

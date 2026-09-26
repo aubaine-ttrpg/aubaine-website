@@ -15,7 +15,7 @@ You do not have to look at how they spread them. A value lowered to −1 returns
 
 A standard starting character therefore has a Threat of 25.
 
-XP does not enter the calculation. It decides the Skills, the combinations and the shape the power takes, not its quantity: effect budgets, Memory and Energy handle that.
+XP does not enter the calculation. It decides the Skills, the combinations and the shape the power takes, not its quantity: effect budgets, {{memoire}} and {{energie}} handle that.
 
 Threat is not a level. It limits no purchase, no crafting and no possibility in the fiction. It changes nothing for the player, who has no reason to know their own.
 
@@ -27,13 +27,13 @@ When everyone has received the same, work out one individual Threat and multiply
 
 ## Monsters
 
-A monster states its MP and PP totals, and their sum. It uses the same Characteristics, Aptitudes, Rolls, resources and Skill structures as the characters.
+A monster states its MP and PP totals, and their sum. It uses the same {{caracteristique|Characteristics}}, {{aptitude|Aptitudes}}, {{jet|Rolls}}, resources and Skill structures as the characters.
 
 Spread its points according to its real role: damage, endurance, mobility, support, control, information, versatility. Two monsters of equal Threat can play very differently, and that is the point.
 
 A high value needs a clear way to express itself, in the entry or in the tactics. A high Characteristic the monster never uses is Threat paid for nothing.
 
-A boss Action, damage reduction, a phase or a special defence goes through an explicit resource, activation or limitation. Nothing is added after the Threat is worked out.
+A boss {{action}}, damage reduction, a phase or a special defence goes through an explicit resource, activation or limitation. Nothing is added after the Threat is worked out.
 
 A creature of Threat 0 is not a standalone opponent. It is scenery, a hazard, part of a group, or a creature summoned by another rule.
 
@@ -62,7 +62,7 @@ A direct confrontation, with no decisive advantage already established. Terrain,
 
 The ratio becomes unreliable when an encounter rests mainly on one of these:
 
-- an effect able to inflict [[Agonie]] on a healthy character in a single activation;
+- an effect able to inflict {{agonie}} on a healthy character in a single activation;
 - repeated removal of Actions or whole turns;
 - a large number of independent creatures;
 - a lone opponent with no way to act between the characters' turns;

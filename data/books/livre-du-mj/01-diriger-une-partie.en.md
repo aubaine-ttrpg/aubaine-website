@@ -12,13 +12,13 @@ This book gathers what belongs to them alone. Everything else, including the rul
 The starting set
 : The two Trees on offer, the Species available, and the 25 XP, 22 MP and 3 PP a new character receives. Announce any change before the table starts: a one-shot and a long campaign do not open on the same numbers.
 
-The pair for every Roll
-: No Aptitude belongs to a Characteristic. You read the way of acting that was announced and choose the pair. Reward the description: it is the only lever that pushes a player to say how they go about it rather than what they are rolling.
+The pair for every {{jet}}
+: No {{aptitude}} belongs to a {{caracteristique}}. You read the way of acting that was announced and choose the pair. Reward the description: it is the only lever that pushes a player to say how they go about it rather than what they are rolling.
 
-The DC
+The {{dd}}
 : Whenever no rule prints one. Use the ladder, and remember that a trivial action needs no Roll.
 
-Karma
+{{karma}}
 : When a point is deserved, and which slot it lands in. A slot already filled does not take a second.
 
 The rewards

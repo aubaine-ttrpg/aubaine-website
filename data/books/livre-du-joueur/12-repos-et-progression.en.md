@@ -3,17 +3,17 @@ title: "Resting and progression"
 description: "The Short Rest, the Long Rest, what they give back and what they do not, and the rewards that make a character grow."
 ---
 
-Between trials, two things recharge: your resources, through rest, and your character, through progression. They have nothing to do with each other. A rest refills your Energy; only progression makes you stronger.
+Between trials, two things recharge: your resources, through rest, and your character, through progression. They have nothing to do with each other. A rest refills your {{energie}}; only progression makes you stronger.
 
 ## The Short Rest
 
-Ten minutes' pause, during which you can do something light: dress a wound, eat a bite, search the room. You can take at most two between Long Rests.
+Ten minutes' pause, during which you can do something light: dress a wound, eat a bite, search the room. You can take at most two between {{repos-long|Long Rests}}.
 
 At the end, you recover:
 
-- half your maximum HP, rounded down;
+- half your maximum {{pdv}}, rounded down;
 - half your maximum Energy, rounded down;
-- the Skills marked "once per Short Rest".
+- the Skills marked "once per {{repos-court}}".
 
 It is half your maximum you recover, not half of what you are missing. You never go above your maximum.
 
@@ -31,7 +31,7 @@ A character who has not eaten or drunk enough that day recovers neither HP nor E
 
 ## What a rest does not give back
 
-Karma
+{{karma}}
 : A point you hold stays, and an empty slot stays empty. Neither a rest nor the end of a session touches it.
 
 Temporary HP
@@ -39,7 +39,7 @@ Temporary HP
 
 ## Changing your Memorised Skills
 
-Both rests let you change the Skills your Memory holds, except your two Species Skills, fixed at creation. It is the only moment you rework what you carry.
+Both rests let you change the Skills your {{memoire}} holds, except your two Species Skills, fixed at creation. It is the only moment you rework what you carry.
 
 That makes the Short Rest the group's real breathing space: ten minutes are enough to walk into the next fight with a different set of Skills, chosen from what you have seen of the danger.
 
@@ -78,7 +78,7 @@ These are milestone rewards, never per-enemy rewards. At the end of a major mile
 
 They say clearly which before you choose anything.
 
-MP raise your Characteristics, your Aptitudes and your Speciality, at the prices in the Creating a character chapter. PP raise your three resource paths.
+MP raise your {{caracteristique|Characteristics}}, your {{aptitude|Aptitudes}} and your {{specialite}}, at the prices in the Creating a character chapter. PP raise your three resource paths.
 
 ### Material rewards
 

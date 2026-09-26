@@ -10,13 +10,13 @@ Ce chapitre est un protocole, pas une règle du jeu. Rien ici ne s'applique à l
 ## Ce qu'il faut noter
 
 Par personnage
-: Les PM et PP accordés et la Menace qui en découle, les niveaux de Vitalité, de Mémoire et d'Énergie, les PdV et l'Énergie maximum et restants, la Mémoire utilisée, la CA, les modificateurs de Jet et les DD courants, les dégâts, soins et contrôles produits, et le Karma reçu puis dépensé.
+: Les PM et PP accordés et la Menace qui en découle, les niveaux de Vitalité, de {{memoire}} et d'{{energie}}, les {{pdv}} et l'Énergie maximum et restants, la Mémoire utilisée, la {{ca}}, les modificateurs de {{jet}} et les {{dd}} courants, les dégâts, soins et contrôles produits, et le {{karma}} reçu puis dépensé.
 
 Par monstre
-: Les mêmes données, plus le nombre d'Actions, d'Actions Bonus et de Réactions réellement employées, et les résistances ou défenses spéciales qui se sont déclenchées.
+: Les mêmes données, plus le nombre d'{{action|Actions}}, d'Actions Bonus et de {{reaction|Réactions}} réellement employées, et les résistances ou défenses spéciales qui se sont déclenchées.
 
 Par rencontre
-: Les deux Menaces et le ratio annoncé, le nombre de participants de chaque côté, le nombre de rounds, les ressources dépensées, les personnages tombés en [[Agonie]] ou morts, les Actions ou tours supprimés, les interactions décisives de terrain ou d'information, et la difficulté ressentie comparée à la difficulté annoncée.
+: Les deux Menaces et le ratio annoncé, le nombre de participants de chaque côté, le nombre de rounds, les ressources dépensées, les personnages tombés en {{agonie}} ou morts, les Actions ou tours supprimés, les interactions décisives de terrain ou d'information, et la difficulté ressentie comparée à la difficulté annoncée.
 
 Ce dernier écart est la mesure qui compte. Le reste sert à l'expliquer.
 
@@ -24,7 +24,7 @@ Ce dernier écart est la mesure qui compte. Le reste sert à l'expliquer.
 
 À Menace égale, faites tourner au minimum une construction qui concentre son Énergie, une polyvalente qui consomme de la Mémoire, une endurante qui investit en Vitalité, une de soutien ou de contrôle, et une hybride.
 
-Les scénarios doivent laisser des Caractéristiques et des Aptitudes variées peser sur l'issue. Un échange de dégâts dans une pièce vide ne teste qu'une chose et valide toujours la même construction.
+Les scénarios doivent laisser des {{caracteristique|Caractéristiques}} et des {{aptitude|Aptitudes}} variées peser sur l'issue. Un échange de dégâts dans une pièce vide ne teste qu'une chose et valide toujours la même construction.
 
 ## Les séries
 

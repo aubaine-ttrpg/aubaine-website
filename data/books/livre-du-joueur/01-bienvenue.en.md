@@ -13,7 +13,7 @@ A game is a conversation with dice in it, and it runs on a simple loop.
 
 1. **The GM describes a situation.** What the characters see and hear, what threatens them, what tempts them.
 2. **You say what your character does.** You speak for them, in their words or your own.
-3. **The GM says what happens.** When the outcome is certain, they narrate it. When it is uncertain and failure would cost something, a Roll decides.
+3. **The GM says what happens.** When the outcome is certain, they narrate it. When it is uncertain and failure would cost something, a {{jet}} decides.
 
 Then the situation has changed, and the loop starts again. It turns the same way for searching a cupboard, a tense negotiation or a duel on the edge of a cliff.
 
@@ -23,7 +23,7 @@ Then the situation has changed, and the loop starts again. It turns the same way
 >
 > **Sélène's player:** "I take a run-up and jump the gap."
 >
-> **GM:** "The outcome is uncertain, and a fall would cost you dearly. Make a Dexterity + Acrobatics Roll against DC 15."
+> **GM:** "The outcome is uncertain, and a fall would cost you dearly. Make a {{dexterite}} + {{acrobaties}} Roll against {{dd}} 15."
 >
 > The player rolls two d12s and gets a 7 and a 9. Sélène has +3 in Dexterity and nothing in Acrobatics, so her total is 19, over the DC.
 >
@@ -55,10 +55,10 @@ The Roll
 : Anything uncertain resolves with the same formula, `2d12 + a Characteristic + an Aptitude`. Attacking, shrugging off a poison, lying to a guard or forging a blade: only the number you need changes.
 
 The pair
-: How you act decides which Characteristic and which Aptitude you use, so a character stays useful far from their strengths.
+: How you act decides which {{caracteristique}} and which {{aptitude}} you use, so a character stays useful far from their strengths.
 
-The Soul
-: Every character carries a Phobia, a Mania, a Flaw, a Speciality and a Gift. The Speciality is an Aptitude you invent, such as "Cooking" or "Traps". The Gift is a faculty that belongs to you alone, such as "I can speak to the dead" or "My paintings come to life". They are what keep two characters with the same numbers two different people.
+The {{ame}}
+: Every character carries a {{phobie}}, a {{manie}}, a {{defaut}}, a {{specialite}} and a {{don}}. The Speciality is an Aptitude you invent, such as "Cooking" or "Traps". The Gift is a faculty that belongs to you alone, such as "I can speak to the dead" or "My paintings come to life". They are what keep two characters with the same numbers two different people.
 
 Three currencies
 : XP buys your Skills, MP your Characteristics and Aptitudes, PP your resources. Each arrives at its own pace, and that is how a character grows.
@@ -66,8 +66,8 @@ Three currencies
 Trees to climb
 : You buy Skills on Trees, starting from their heart and following their lines. You unlock new Trees during play to build the character you want.
 
-Memory sets the limit
-: You learn many Skills but keep only a few Memorised at a time. What you carry is a choice, and you make it again at every rest.
+{{memoire}} sets the limit
+: You learn many Skills but keep only a few {{memorisee}} at a time. What you carry is a choice, and you make it again at every rest.
 
 You make your gear
 : You gather materials, follow a recipe and make the Rolls: most of what you wear passes through your own hands.

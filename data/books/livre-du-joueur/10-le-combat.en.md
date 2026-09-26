@@ -3,7 +3,7 @@ title: "Combat"
 description: "How a fight unfolds, surprise, initiative, your turn, moving, attacking, Armour Class, acting outside your turn, and states."
 ---
 
-Combat has no resolution rules of its own: you roll the same Rolls as anywhere else. What it adds is an order to act in and a budget for each turn, so that everyone gets their go when everything is happening at once.
+Combat has no resolution rules of its own: you roll the same {{jet|Rolls}} as anywhere else. What it adds is an order to act in and a budget for each turn, so that everyone gets their go when everything is happening at once.
 
 ## How a fight unfolds
 
@@ -19,7 +19,7 @@ A fight is split into rounds. A round lasts about 6 seconds, long enough for eve
 
 When one side runs into the other without seeing it coming, a successful ambush for instance, the GM declares surprised the creatures that did not expect it.
 
-In the first round, a surprised creature takes its turn after every creature that is not surprised, in the order of their initiatives. It cannot use any Reaction until the end of that first turn.
+In the first round, a surprised creature takes its turn after every creature that is not surprised, in the order of their initiatives. It cannot use any {{reaction}} until the end of that first turn.
 
 ## Initiative
 
@@ -29,7 +29,7 @@ At the start of a fight, each player character rolls:
 
 You act from the highest result to the lowest. Players win ties against their opponents, and settle ties among themselves however they like.
 
-The die is small on purpose. A gap in Dexterity weighs heavily in this order, more than in any other Roll in the game.
+The die is small on purpose. A gap in {{dexterite}} weighs heavily in this order, more than in any other Roll in the game.
 
 The order holds for the whole fight. You do not roll it again each round.
 
@@ -43,27 +43,27 @@ They can also merge allied positions that follow one another with no opponent in
 
 On your turn, you have four things. They are independent: not using one does not give you another.
 
-An Action
-: Most Skills are played with one, starting with {{Attaquer}}.
+An {{action}}
+: Most Skills are played with one, starting with {{ATTAQU-001}}.
 
-A Bonus Action
+A {{action-bonus}}
 : A quick action, reserved for Skills that say so. It does not replace the Action, and nothing converts it.
 
-Movement
-: Up to your Speed, 9 metres unless your Species sets another. You can spread it freely before, during and after your actions.
+{{deplacement}}
+: Up to your {{vitesse}}, 9 metres unless your Species sets another. You can spread it freely before, during and after your actions.
 
 A Reaction
 : Outside your turn, when a rule gives you a trigger. It comes back at the start of your next turn.
 
 > [!EXAMPLE] Example
 >
-> On her turn, Sélène backs off 6 metres to get out of a wolf's reach, uses {{Attaquer}} with her bow on another wolf, then slips 3 metres behind a boulder. She has used her Movement in two parts and her Action. She still has her Bonus Action, which none of her Skills uses this turn, and her Reaction for the wolves' turn.
+> On her turn, Sélène backs off 6 metres to get out of a wolf's reach, uses {{ATTAQU-001}} with her bow on another wolf, then slips 3 metres behind a boulder. She has used her Movement in two parts and her Action. She still has her Bonus Action, which none of her Skills uses this turn, and her Reaction for the wolves' turn.
 >
-> By backing off, she left the first wolf's reach: it can use its {{Attaque d'opportunité}}. To avoid that, she would have had to use {{Se désengager}}, at the cost of her Action.
+> By backing off, she left the first wolf's reach: it can use its {{Attaque d'opportunité}}. To avoid that, she would have had to use {{DESENG-001}}, at the cost of her Action.
 
 ## Moving
 
-Everything is counted in steps of 1.5 metres. Melee reach is 1.5 metres, a reach weapon extends to 3 metres, and the usual ranged distances are 9, 12 and 18 metres.
+Everything is counted in steps of 1.5 metres. {{melee}} reach is 1.5 metres, a reach weapon extends to 3 metres, and the usual ranged distances are 9, 12 and 18 metres.
 
 You can split your Movement as many times as you like during your turn, as long as the total stays within your Speed.
 
@@ -71,18 +71,18 @@ Difficult terrain
 : Rubble, a steep slope, knee-deep water or a packed crowd slow you down. Every metre moved through difficult terrain costs two.
 
 Standing up
-: A creature lying [[À terre]] stands up by spending half its Speed, on its turn.
+: A creature lying {{a-terre}} stands up by spending half its Speed, on its turn.
 
 Leaving an opponent
-: Leaving the reach of a creature that can see you lets it use its {{Attaque d'opportunité}}, unless you used {{Se désengager}} this turn.
+: Leaving the reach of a creature that can see you lets it use its {{Attaque d'opportunité}}, unless you used {{DESENG-001}} this turn.
 
 Your Speed can drop to 0, and some states do exactly that. A Speed of 0 does not stop you acting: you keep your Action, your Bonus Action and your Reaction.
 
 ## Attacking
 
-The {{Attaquer}} action makes an Attack with an equipped weapon or unarmed.
+The {{ATTAQU-001}} action makes an {{attaque}} with an equipped weapon or unarmed.
 
-Make the Roll the weapon states against the target's AC. On a success, the target takes the weapon's damage, plus the Characteristic that Roll used.
+Make the Roll the weapon states against the target's {{ca}}. On a success, the target takes the weapon's damage, plus the {{caracteristique}} that Roll used.
 
 That Characteristic is always added. It is the same on both sides of the sum: the one that let you hit is the one that makes the blow heavier.
 
@@ -92,14 +92,14 @@ Without a weapon, a Strike resolves with a `Strength + Melee` Roll, at 1.5 metre
 
 Each weapon prints its own line, and that line is the reference:
 
-- the Characteristic and Aptitude of its Roll;
+- the Characteristic and {{aptitude}} of its Roll;
 - one range, and only one;
 - its damage dice and type;
 - its properties.
 
 A target beyond the range cannot be attacked, unless one of the weapon's properties allows it.
 
-Anything unusual a weapon does goes through a named property printed on it. A Finesse weapon lets you swap `Strength + Melee` for `Dexterity + Finesse`. Two Light weapons, one in each hand, open an Attack as a Bonus Action.
+Anything unusual a weapon does goes through a named property printed on it. A {{finesse}} weapon lets you swap `Strength + Melee` for `Dexterity + Finesse`. Two Light weapons, one in each hand, open an Attack as a Bonus Action.
 
 ## Armour Class
 
@@ -119,7 +119,7 @@ Only one base formula applies at a time, the one on the piece in the Torso slot.
 >
 > Unarmoured, with Dexterity +3, your AC is 15. Put on armour at `14 + Dexterity` and it becomes 17, never 29. Add a targe and it rises to 18.
 
-Each piece of armour prints its own formula, and some cap how much Dexterity they let count or demand a minimum Strength. Read the piece: it carries its own limits.
+Each piece of armour prints its own formula, and some cap how much Dexterity they let count or demand a minimum {{force}}. Read the piece: it carries its own limits.
 
 ### Precision and cover
 
@@ -141,14 +141,14 @@ A low wall, a tree trunk or a half-open door gives partial protection; aiming fo
 
 Your Reaction is your only way to act during someone else's turn, and you have one per round. You use it when a rule gives you its trigger.
 
-Two Basic Skills give everyone one. {{Attaque d'opportunité}} strikes a creature that leaves your reach. {{Se préparer}} holds an action back for a moment you name: "the moment he comes through the door, I shoot". Other Skills add more, and their entry names the trigger.
+Two Basic Skills give everyone one. {{Attaque d'opportunité}} strikes a creature that leaves your reach. {{PREPAR-001}} holds an action back for a moment you name: "the moment he comes through the door, I shoot". Other Skills add more, and their entry names the trigger.
 
 ## States
 
-A state is a named condition that changes the rules for as long as it lasts, such as [[Aveuglé]], [[Entravé]] or [[À terre]]. Its entry says what it does and how it ends. When it does not set the duration, the DC or the damage, the Skill or item that applies it does.
+A state is a named condition that changes the rules for as long as it lasts, such as {{aveugle}}, {{entrave}} or {{a-terre}}. Its entry says what it does and how it ends. When it does not set the duration, the {{dd}} or the damage, the Skill or item that applies it does.
 
-Some carry an Intensity, written after their name, like [[Combustion]] 3. Applying the same state again keeps the higher Intensity, unless its text says they add together.
+Some carry an Intensity, written after their name, like {{combustion}} 3. Applying the same state again keeps the higher Intensity, unless its text says they add together.
 
-For an improvised consequence, the GM does not need a written state. They can grant an Advantage or a Disadvantage until the fiction logically ends it.
+For an improvised consequence, the GM does not need a written state. They can grant an {{avantage}} or a {{desavantage}} until the fiction logically ends it.
 
 The Rules page and the states index carry the full list.
