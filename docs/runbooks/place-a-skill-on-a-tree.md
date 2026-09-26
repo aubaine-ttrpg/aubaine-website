@@ -18,7 +18,7 @@ The same skill can be placed in more than one tree. That is why the layout lives
 | --- | --- | --- | --- |
 | `skill` | required | Identifiant de la Compétence posée, définie dans `data/skills/`. | `^[A-Z0-9]{6}-[0-9]{3}$` |
 | `pos` | optional | Absent : la Compétence est listée avec l'arbre mais n'a pas de pastille sur la planche. | `{ "x": 0-100, "y": 0-100 }` |
-| `linked` | optional | Parents visuels vers lesquels tracer un trait. `CORE` vise le cœur de l'arbre. Déclaré d'un seul côté : jamais de doublon inverse. | 1 or more skill ids already placed in this tree, or the literal `CORE` |
+| `linked` | optional | Parents vers lesquels tracer un trait. Le trait compte au jeu : une Compétence ne s'achète que reliée à une Compétence déjà Apprise, et seul le cœur, sans lien, s'achète en premier. `CORE` vise le cœur de l'arbre. Déclaré d'un seul côté : jamais de doublon inverse. | 1 or more skill ids already placed in this tree, or the literal `CORE` |
 
 `pos` is: `Centre du nœud, en pourcentage de la planche, origine en haut à gauche.` `x: 0` is the left edge, `y: 0` is the top edge. The schema adds: `Posé à l'intégration, pas à l'autorat.`
 

@@ -304,7 +304,7 @@ export const placement = z
       .min(1)
       .optional()
       .describe(
-        "Parents visuels vers lesquels tracer un trait. 'CORE' vise le cœur de l'arbre. Déclaré d'un seul côté : jamais de doublon inverse.",
+        "Parents vers lesquels tracer un trait. Le trait compte au jeu : une Compétence ne s'achète que reliée à une Compétence déjà Apprise, et seul le cœur, sans lien, s'achète en premier. 'CORE' vise le cœur de l'arbre. Déclaré d'un seul côté : jamais de doublon inverse.",
       ),
   })
   .strict()
