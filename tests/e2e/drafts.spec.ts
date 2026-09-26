@@ -35,7 +35,7 @@ test('drafts are hidden by default and the switch shows them', async ({ page }) 
 })
 
 test('a list made only of drafts shows an empty state', async ({ page }) => {
-  await page.goto('/en/trees')
+  await page.goto('/en/species/nain')
   await hydrated(page)
   await expect(results(page)).toHaveText('0 results')
   await expect(page.getByText('Nothing to show yet.')).toBeVisible()
@@ -44,7 +44,7 @@ test('a list made only of drafts shows an empty state', async ({ page }) => {
 
   await draftsSwitch(page).click()
   await expect(draftsSwitch(page)).toBeChecked()
-  await expect(results(page)).toHaveText('24 results')
+  await expect(results(page)).toHaveText('4 results')
   await expect(page.getByText('Nothing to show yet.')).toBeHidden()
 })
 
@@ -80,7 +80,7 @@ test('the switch answers the keyboard', async ({ page }) => {
 test('a list of drafts leaves no stale detail on screen', async ({ page }) => {
   await page.goto('/en/equipment')
   await hydrated(page)
-  await expect(results(page)).toHaveText('1 result')
+  await expect(results(page)).toHaveText('7 results')
   await page.getByPlaceholder('Filter by name').fill('Dague')
   await expect(results(page)).toHaveText('0 results')
   await expect(page.locator('[data-details]')).toBeHidden()
@@ -95,7 +95,7 @@ test('a link to a draft still opens it while drafts are hidden', async ({ page }
     'aria-current',
     'true',
   )
-  await expect(results(page)).toHaveText('2 results')
+  await expect(results(page)).toHaveText('8 results')
 })
 
 test('drafts stay hidden before the filter island hydrates', async ({ page }) => {
