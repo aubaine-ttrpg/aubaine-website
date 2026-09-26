@@ -15,7 +15,7 @@ Aubaine renders every load-bearing mechanical noun as an icon plus a colored ter
 - Rule terms, including their inflected forms, from `RULE_TERMS` in `src/lib/game/build.ts`. `Avantage` is one. Read the declaration for the current set rather than assuming a fixed list.
 - Characteristics, from `data/meta/characteristics.json`, matched on `labelFr` and `labelEn`.
 - States, from each `data/states/*.json` `name`.
-- Skills, from each `title`, but only for skills placed on a tree or listed in `data/skill-lists/`. A skill reachable only through an equipment `grants` is not in the index.
+- Skills, from each `title`: skills placed on a tree, listed in `data/skill-lists/`, offered by a species, or granted by an item or a set bonus. The first source wins, so a skill a tree places links to its node.
 - Aptitudes, from `data/meta/aptitudes.json`, matched on `labelFr`, `labelEn` and their written forms. See `vocabularies.md`.
 - Tags are not keywords. A tag label is never marked in prose; only `Sort` marks, because it is also a rule term. Rule text cites a tag as « l'étiquette » followed by its French label spelled exactly, and `pnpm data:check` refuses a label `data/meta/tags.json` does not declare.
 

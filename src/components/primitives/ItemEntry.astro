@@ -10,6 +10,7 @@ import { itemImage, PLACEHOLDER_SQUARE } from '../../lib/media'
 import Icon from './Icon.astro'
 import NodeShape from './NodeShape.astro'
 import PrerequisiteStat from './PrerequisiteStat.astro'
+import RuleTerm from './RuleTerm.astro'
 import RuleText from './RuleText.astro'
 import StatValue from './StatValue.astro'
 
@@ -39,7 +40,9 @@ const price = priceInCoins(item.price, coins).map((part) => {
 
 const grants = (item.grants ?? []).flatMap((id) => {
   const skill = corpus.skills.get(id)
-  return skill ? [skill] : []
+  if (!skill) return []
+  const term = corpus.terms.map.get(skill.title.toLowerCase())
+  return [{ skill, term: term?.skillId === skill.id ? term : undefined }]
 })
 const set = item.set ? corpus.sets.get(item.set) : undefined
 const setPieces = set ? cataloguePieceCount(corpus.items, set.id) : 0
@@ -185,12 +188,16 @@ const setPieces = set ? cataloguePieceCount(corpus.items, set.id) : 0
     grants.length > 0 && (
       <div class="au-item__grant">
         <span class="au-item__grant-label">{t.grants}</span>
-        {grants.map((skill) => (
-          <span class="au-item__grant-skill">
-            <NodeShape skill={skill} corpus={corpus} variant="inline" />
-            <span class="au-item__grant-name">{skill.title}</span>
-          </span>
-        ))}
+        {grants.map(({ skill, term }) =>
+          term ? (
+            <RuleTerm term={term} text={skill.title} corpus={corpus} locale={locale} />
+          ) : (
+            <span class="au-item__grant-skill">
+              <NodeShape skill={skill} corpus={corpus} variant="inline" />
+              <span class="au-item__grant-name">{skill.title}</span>
+            </span>
+          ),
+        )}
       </div>
     )
   }

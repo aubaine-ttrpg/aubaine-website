@@ -1,0 +1,41 @@
+---
+import type { Corpus } from '../../lib/game/corpus'
+import type { TermRecord } from '../../lib/game/richtext'
+import type { Locale } from '../../lib/i18n/locales'
+import { strings } from '../../lib/i18n/strings'
+import Icon from './Icon.astro'
+import NodeShape from './NodeShape.astro'
+
+type Props = { term: TermRecord; text: string; corpus: Corpus; locale: Locale }
+
+const { term, text, corpus, locale } = Astro.props
+const t = strings(locale)
+const skill = term.family === 'skill' && term.skillId ? corpus.skills.get(term.skillId) : undefined
+const Tag = term.href ? 'a' : 'span'
+---
+
+{
+  (
+    <Tag
+      class={`au-rule au-rule--${term.family}`}
+      style={`color:${term.color}`}
+      data-term="true"
+      href={term.href}
+      tabindex={term.href ? undefined : '0'}
+    >
+      {skill ? (
+        <NodeShape skill={skill} corpus={corpus} variant="inline" />
+      ) : (
+        <Icon name={term.icon ?? undefined} class="au-rule__icon" />
+      )}
+      <span>{text}</span>
+      <span class="au-rule__tip" data-tip="true" role="tooltip">
+        <span class="au-rule__tip-kind">{term.kind}</span>
+        <span class="au-rule__tip-title">{term.title}</span>
+        {term.meta && <span class="au-rule__tip-meta">{term.meta}</span>}
+        <span class="au-rule__tip-body">{term.text}</span>
+        {term.href && <span class="au-rule__tip-more">{t.openRef}</span>}
+      </span>
+    </Tag>
+  )
+}

@@ -479,6 +479,15 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
     .sort((a, b) => a.order - b.order)
 
   const glossary = buildGlossary({ locale, characteristics, aptitudes, tags, states, bank, t })
+  const equipmentGrants = [
+    ...items.flatMap((item) => (item.grants ?? []).map((id) => ({ id, source: item.name }))),
+    ...[...sets.values()].flatMap((set) =>
+      set.bonuses.flatMap((bonus) => (bonus.grants ?? []).map((id) => ({ id, source: set.name }))),
+    ),
+  ].flatMap(({ id, source }) => {
+    const skill = skills.get(id)
+    return skill ? [{ skill, source }] : []
+  })
   const terms = buildTermIndex({
     locale,
     characteristics,
@@ -487,6 +496,7 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
     basic,
     bank,
     species,
+    equipmentGrants,
     t,
   })
 
@@ -544,8 +554,11 @@ type TermInput = {
   basic: SkillList & { resolved: Skill[] }
   bank: SkillList & { resolved: Skill[] }
   species: ResolvedSpecies[]
+  equipmentGrants: EquipmentGrant[]
   t: ReturnType<typeof strings>
 }
+
+type EquipmentGrant = { skill: Skill; source: string }
 
 const APTITUDE_ICON = 'mdi/rhombus-outline'
 
@@ -945,7 +958,8 @@ function buildGlossary(input: GlossaryInput): GlossaryTerm[] {
 }
 
 function buildTermIndex(input: TermInput): TermIndex {
-  const { locale, characteristics, glossary, trees, basic, bank, species, t } = input
+  const { locale, characteristics, glossary, trees, basic, bank, species, equipmentGrants, t } =
+    input
   const map = new Map<string, TermRecord>()
 
   const put = (name: string, record: Omit<TermRecord, 'spelling'>): void => {
@@ -1016,6 +1030,20 @@ function buildTermIndex(input: TermInput): TermIndex {
         href: `${pathFor('speciesEntry', locale, { species: entry.id })}#e-${skill.id}`,
       })
     }
+  }
+
+  for (const { skill, source } of equipmentGrants) {
+    put(skill.title, {
+      family: 'skill',
+      skillId: skill.id,
+      kind: t.fromItems,
+      title: skill.title,
+      meta: `${typeLabel(skill.type, t)} · ${source}`,
+      color: 'var(--accent-ink)',
+      icon: skillIcon(skill, characteristics),
+      text: flattenText(skill.description, 240),
+      href: `${pathFor('skills', locale)}#e-${skill.id}`,
+    })
   }
 
   return { map, pattern: buildTermPattern([...map.keys()]) }
