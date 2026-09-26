@@ -18,8 +18,8 @@
       "key": "technique",
       "labelFr": "Technique",
       "labelEn": "Technique",
-      "definitionFr": "Une Compétence courante, que tout le monde peut apprendre, sans rien de magique ni de martial.",
-      "definitionEn": "A common Skill that anyone can learn, with nothing magical or martial about it."
+      "definitionFr": "Une Compétence que vous pratiquez : un geste, un savoir-faire ou une habitude que l'expérience vous a donnés.",
+      "definitionEn": "A Skill you practise: a movement, a knack or a habit that experience has given you."
     },
     {
       "key": "shout",
