@@ -18,7 +18,7 @@
       "enhancement"
     ]
   },
-  "description": "Vous touchez une arme et l'entourez d'un vent tournant. Une fois par tour, lorsque vous réussissez une Attaque avec elle, vous pouvez vous déplacer de 1,5 m, sauf si votre Vitesse est de 0. Ce déplacement ne compte pas dans votre Vitesse et ne déclenche aucune {{Attaque d'opportunité}}.",
+  "description": "Vous touchez une arme et l'entourez d'un vent tournant. Une fois par tour, lorsque vous réussissez une Attaque avec elle, vous pouvez vous déplacer de 1,5 m, sauf si vous êtes Immobilisé. Ce déplacement ne compte pas dans votre Vitesse et ne déclenche aucune {{Attaque d'opportunité}}.",
   "upgrades": [
     {
       "level": 2,
