@@ -65,6 +65,15 @@ export function referenceKey(content: string): string | undefined {
   return referenceOf(content)?.key
 }
 
+export function pinReferenceLabels(source: string, labelOf: LabelOf): string {
+  return source.replace(REFERENCE, (whole, key: string, shown: string | undefined) => {
+    const name = key.trim()
+    if (shown !== undefined || !REFERENCE_KEY.test(name)) return whole
+    const label = labelOf(name)
+    return label === undefined ? whole : `{{${name}|${label}}}`
+  })
+}
+
 function referenceOf(content: string): Reference | undefined {
   const bar = content.indexOf('|')
   const key = (bar === -1 ? content : content.slice(0, bar)).trim()

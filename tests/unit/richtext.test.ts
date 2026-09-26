@@ -4,6 +4,7 @@ import {
   emptyTermIndex,
   flattenText,
   parseRuns,
+  pinReferenceLabels,
   type TermIndex,
   type TermRecord,
 } from '../../src/lib/game/richtext'
@@ -82,5 +83,21 @@ describe('flattened text', () => {
 
   it('prints the name inside the braces of an old reference', () => {
     expect(flattenText('Lancez {{Trait de feu}}.', labelOf)).toBe('Lancez Trait de feu.')
+  })
+})
+
+describe('text inherited from another language', () => {
+  const frenchLabel = (key: string): string | undefined =>
+    new Map([['energie', 'Énergie']]).get(key)
+
+  it('pins a bare reference to the label of the language the text is written in', () => {
+    expect(pinReferenceLabels('Dépensez 1 {{energie}}.', frenchLabel)).toBe(
+      'Dépensez 1 {{energie|Énergie}}.',
+    )
+  })
+
+  it('keeps a written text, an unknown key and an old title as they are', () => {
+    const source = '{{energie|Énergies}}, {{inconnu}} et {{Trait de feu}}'
+    expect(pinReferenceLabels(source, frenchLabel)).toBe(source)
   })
 })

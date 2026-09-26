@@ -16,6 +16,7 @@ import {
   buildTermPattern,
   flattenText,
   type LabelOf,
+  pinReferenceLabels,
   type TermIndex,
   type TermRecord,
 } from './richtext.ts'
@@ -265,9 +266,31 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
   if (!taxonomyEntry) throw new Error('data/meta/tags.json is missing')
   const tags = resolveTags(taxonomyEntry.data)
 
+  const sourceLabels = referenceLabels({
+    locale: DEFAULT_LOCALE,
+    characteristics,
+    aptitudes,
+    states: stateEntries.map((entry) => entry.data),
+    skills: new Map(skillEntries.map((entry) => [entry.data.id, entry.data])),
+  })
+  const inherited = (text: string): string =>
+    locale === DEFAULT_LOCALE ? text : pinReferenceLabels(text, (key) => sourceLabels.get(key))
+
   const skills = new Map<string, Skill>()
   for (const entry of skillEntries) {
-    skills.set(entry.data.id, mergeSkill(entry.data, overlayOf(`skills/${entry.data.id}`)))
+    const base: Skill = {
+      ...entry.data,
+      description: inherited(entry.data.description),
+      ...(entry.data.upgrades === undefined
+        ? {}
+        : {
+            upgrades: entry.data.upgrades.map((upgrade) => ({
+              ...upgrade,
+              description: inherited(upgrade.description),
+            })),
+          }),
+    }
+    skills.set(entry.data.id, mergeSkill(base, overlayOf(`skills/${entry.data.id}`)))
   }
 
   const trees: ResolvedTree[] = []
@@ -298,21 +321,32 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
 
   const localizedSpecies = new Map<string, Species>()
   for (const entry of speciesSources) {
+    const base: Species = {
+      ...entry.data,
+      ...(entry.data.subspecies === undefined
+        ? {}
+        : {
+            subspecies: entry.data.subspecies.map((sub) => ({ ...sub, text: inherited(sub.text) })),
+          }),
+      ...(entry.data.roleplay?.text === undefined
+        ? {}
+        : { roleplay: { ...entry.data.roleplay, text: inherited(entry.data.roleplay.text) } }),
+    }
     const patch = overlays.species.safeParse(overlayOf(`species/${entry.data.id}`) ?? {})
     if (!patch.success) {
-      localizedSpecies.set(entry.data.id, entry.data)
+      localizedSpecies.set(entry.data.id, base)
       continue
     }
     const { subspecies: subspeciesPatch, roleplay: roleplayPatch, ...rest } = patch.data
-    const merged: Species = { ...entry.data, ...pruned(rest) }
-    if (subspeciesPatch && entry.data.subspecies) {
-      merged.subspecies = entry.data.subspecies.map((sub) => {
+    const merged: Species = { ...base, ...pruned(rest) }
+    if (subspeciesPatch && base.subspecies) {
+      merged.subspecies = base.subspecies.map((sub) => {
         const item = subspeciesPatch[sub.id]
         return item ? { ...sub, ...pruned(item) } : sub
       })
     }
-    if (roleplayPatch && entry.data.roleplay) {
-      merged.roleplay = { ...entry.data.roleplay, ...pruned(roleplayPatch) }
+    if (roleplayPatch && base.roleplay) {
+      merged.roleplay = { ...base.roleplay, ...pruned(roleplayPatch) }
     }
     localizedSpecies.set(entry.data.id, merged)
   }
@@ -344,14 +378,17 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
 
   const states: GameState[] = stateEntries
     .map((entry) => {
+      const base: GameState = { ...entry.data, description: inherited(entry.data.description) }
       const patch = overlays.state.safeParse(overlayOf(`states/${entry.data.key}`) ?? {})
-      return patch.success ? { ...entry.data, ...pruned(patch.data) } : entry.data
+      return patch.success ? { ...base, ...pruned(patch.data) } : base
     })
     .sort((a, b) => collator(locale).compare(a.name, b.name))
 
   const resolveList = (id: string): SkillList & { resolved: Skill[] } => {
     const found = listEntries.find((entry) => entry.id === id)
-    const base: SkillList = found ? found.data : { name: id, skills: [] }
+    const canonical: SkillList = found ? found.data : { name: id, skills: [] }
+    const base: SkillList =
+      canonical.note === undefined ? canonical : { ...canonical, note: inherited(canonical.note) }
     const patch = overlays.skillList.safeParse(overlayOf(`skill-lists/${id}`) ?? {})
     const localized = patch.success ? pruned(patch.data) : {}
     return {
@@ -383,15 +420,27 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
 
   const itemsBySlug = new Map<string, EquipmentItem>()
   for (const entry of itemEntries) {
+    const base: EquipmentItem = {
+      ...entry.data,
+      ...(entry.data.text === undefined ? {} : { text: inherited(entry.data.text) }),
+      ...(entry.data.properties === undefined
+        ? {}
+        : {
+            properties: entry.data.properties.map((property) => ({
+              ...property,
+              text: inherited(property.text),
+            })),
+          }),
+    }
     const patch = overlays.equipmentItem.safeParse(overlayOf(`equipment/items/${entry.id}`) ?? {})
     if (!patch.success) {
-      itemsBySlug.set(entry.id, entry.data)
+      itemsBySlug.set(entry.id, base)
       continue
     }
     const { craft: craftPatch, ...rest } = patch.data
-    const merged: EquipmentItem = { ...entry.data, ...pruned(rest) }
-    if (craftPatch && entry.data.craft) {
-      merged.craft = { ...entry.data.craft, ...pruned(craftPatch) }
+    const merged: EquipmentItem = { ...base, ...pruned(rest) }
+    if (craftPatch && base.craft) {
+      merged.craft = { ...base.craft, ...pruned(craftPatch) }
     }
     itemsBySlug.set(entry.id, merged)
   }
@@ -419,7 +468,7 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
       ...pruned({ name: localized.name }),
       bonuses: entry.data.bonuses.map((bonus) => ({
         ...bonus,
-        text: localized.bonuses?.[String(bonus.pieces)]?.text ?? bonus.text,
+        text: localized.bonuses?.[String(bonus.pieces)]?.text ?? inherited(bonus.text),
       })),
     })
   }
