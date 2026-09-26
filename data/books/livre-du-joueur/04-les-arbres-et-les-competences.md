@@ -3,7 +3,7 @@ title: "Les Arbres et les Compétences"
 description: "Ce qu'un Arbre vend, comment une Compétence monte en Niveau, et la Banque Commune."
 ---
 
-Vos PX passent presque entièrement dans vos Arbres. Un Arbre est une planche : une grille de Compétences reliées par des traits, avec un cœur au milieu qui porte son nom.
+Vos PX passent presque entièrement dans vos Arbres. Un Arbre est une grille de Compétences reliées par des traits, avec un cœur au milieu qui porte son nom.
 
 Vous commencez avec deux, un d'Archétype et un de Domaine. L'Archétype dit comment votre personnage agit, le Domaine dit avec quoi.
 
@@ -11,15 +11,15 @@ Vous pouvez en débloquer d'autres en cours de partie, d'Archétype comme de Dom
 
 Un Berserker et un Marchand sont deux Archétypes ; Feu et Terre sont deux Domaines. Ce ne sont que des exemples : la liste des Arbres publiés vit et change. L'index des arbres porte celle du jour, et c'est elle qui fait foi, pas ce chapitre.
 
-Chaque Arbre a sa planche imprimée, téléchargeable depuis sa page. Quand un Arbre change, sa planche change avec lui : il n'y a pas d'édition à racheter, et rien n'attend un supplément.
+Chaque Arbre se télécharge depuis sa page, prêt à imprimer. Quand un Arbre change, sa version imprimable change avec lui : il n'y a pas d'édition à racheter, et rien n'attend un supplément.
 
-## Lire une planche
+## Lire un Arbre
 
 Chaque nœud est une Compétence, et sa forme dit son type : un rond pour une Compétence active, un carré arrondi pour une passive, une forme concave pour une spéciale.
 
 La bordure porte le ou les Domaines de la Compétence, ce qui donne sa couleur. Une Compétence sans Domaine est Neutre. Le jeton doré porte son prix en PX.
 
-Les traits relient un nœud à ses voisins. **Ils dessinent la lecture de la planche, ils ne posent pas de prérequis.** Rien dans un Arbre ne vous oblige à acheter un nœud avant un autre : le prix est la seule barrière.
+Les traits relient un nœud à ses voisins. **Ils dessinent la lecture de l'Arbre, ils ne posent pas de prérequis.** Rien dans un Arbre ne vous oblige à acheter un nœud avant un autre : le prix est la seule barrière.
 
 ## Acheter une Compétence
 

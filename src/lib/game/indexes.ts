@@ -14,7 +14,7 @@ export type IndexDescriptor = {
 
 const DESCRIPTIONS: Record<IndexKind, Record<Locale, string>> = {
   trees: {
-    fr: 'Quinze archétypes et huit domaines, chacun avec sa planche imprimée et ses compétences.',
+    fr: 'Quinze archétypes et huit domaines, chacun prêt à imprimer, avec ses compétences.',
     en: 'Fifteen archetypes and eight domains, each with its printed plate and full skill list.',
   },
   species: {

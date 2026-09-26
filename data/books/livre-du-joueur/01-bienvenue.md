@@ -56,7 +56,7 @@ La Mémoire limite
 
 Aubaine est gratuit et ouvert. Ses règles, ses Compétences, ses Arbres et son équipement vivent dans un dépôt public, et le site que vous lisez en est le rendu direct.
 
-Cela a une conséquence pratique. Il n'y a pas d'édition, pas de supplément à acheter, rien derrière un paywall. Un ajustement de Compétence, un Arbre neuf ou une pièce d'équipement arrivent sans que rien ne devienne caduc, et chaque planche se télécharge et s'imprime chez vous.
+Cela a une conséquence pratique. Il n'y a pas d'édition, pas de supplément à acheter, rien derrière un paywall. Un ajustement de Compétence, un Arbre neuf ou une pièce d'équipement arrivent sans que rien ne devienne caduc, et chaque Arbre se télécharge et s'imprime chez vous.
 
 Cela a aussi une conséquence sur ce livre. Il explique des mécaniques, pas des catalogues. Quand il faut savoir quels Arbres existent aujourd'hui, ou ce qu'une pièce accorde exactement, la page de l'entrée est la référence : elle est à jour, ce livre parle du système.
 

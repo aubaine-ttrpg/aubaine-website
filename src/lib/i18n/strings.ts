@@ -22,7 +22,7 @@ const fr = {
     'Les données de jeu n’ont pas répondu. Rechargez la page ; si le problème persiste, le fichier de données est absent.',
   heroTitle: 'Aubaine, arbre par arbre',
   heroLead: (trees: number, species: number) =>
-    `${trees} planches de compétences, ${species} espèces, un catalogue d’équipement et les états du jeu, rendus depuis les données d’origine. Les planches gardent la mise en page du livre.`,
+    `${trees} arbres de compétences, ${species} espèces, un catalogue d’équipement et les états du jeu, rendus depuis les données d’origine. Les arbres gardent la mise en page du livre.`,
   ctaTrees: 'Ouvrir les arbres',
   ctaRes: 'Commencer à jouer',
   ctaPdf: 'Télécharger le PDF',
@@ -45,7 +45,7 @@ const fr = {
   creditsTerms: 'Licence',
   policies: 'Le projet',
   footerExplore: 'Explorer',
-  statesApplied: 'Les états que les Compétences de cette planche appliquent',
+  statesApplied: 'Les états que les Compétences de cet arbre appliquent',
   statesFromEquipment: 'Les états que ce catalogue applique',
   contents: 'Sommaire',
   sets_: 'Panoplies',
@@ -77,7 +77,7 @@ const fr = {
   allIndexes: 'Tous les index',
   entries_: 'entrées',
   browse_: 'Consulter',
-  downloadPlate: 'Télécharger la planche',
+  downloadPlate: 'Télécharger l’arbre',
   downloadBooklet: 'Télécharger le livret',
   resLead:
     'Les règles telles que les livres les posent : le Jet, la création d’un personnage, le combat, les repos, l’équipement, la progression, et de quoi peser une rencontre côté MJ.',
@@ -90,7 +90,7 @@ const fr = {
   archetypes: 'Archétypes',
   domains: 'Domaines',
   treesLead:
-    'Chaque personnage porte deux arbres : un Archétype et un Domaine. Ouvrez-en un pour voir sa planche complète, ses compétences et leurs niveaux.',
+    'Chaque personnage porte deux arbres : un Archétype et un Domaine. Ouvrez-en un pour le voir en entier, avec ses compétences et leurs niveaux.',
   allTrees: 'Tous les arbres',
   speciesIndex: 'Espèces',
   speciesLead:
@@ -128,9 +128,9 @@ const fr = {
   characteristic: 'Caractéristique',
   aptitude: 'Aptitude',
   openRef: 'Voir la fiche →',
-  plateLabel: 'Planche de l’arbre',
+  plateLabel: 'Arbre de compétences',
   plate: 'Arbre de compétences',
-  offPlate: 'Pas encore sur la planche',
+  offPlate: 'Pas encore dans l’arbre',
   zoomIn: 'Agrandir l’arbre',
   zoomOut: 'Réduire l’arbre',
   zoomFit: 'Voir tout l’arbre',
