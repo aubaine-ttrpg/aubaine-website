@@ -732,7 +732,7 @@ const RULE_TERMS: readonly RuleTerm[] = [
     },
   },
   {
-    fr: ['Énergie'],
+    fr: ['Énergie', 'Énergies'],
     en: ['Energy'],
     color: 'var(--term-res)',
     icon: 'mdi/lightning-bolt',
