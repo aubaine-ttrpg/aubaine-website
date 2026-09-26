@@ -1,0 +1,28 @@
+{
+  "id": "ONGUEN-001",
+  "title": "Onguent",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "slime"
+  ],
+  "activation": "1 Action",
+  "range": "Contact",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "healing"
+    ]
+  },
+  "description": "Vous étalez un mucus tiède sur les plaies d'une créature que vous touchez, où il prend en croûte. La créature récupère 2d4 PdV.\n\nSi elle porte de la Poisse, retirez-lui sa Poisse. Une [[Poisse explosive]] retirée ainsi ne détone pas.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 4,
+      "title": "Giclée",
+      "description": "Vous pouvez désormais lancer {{Onguent}} sur une créature que vous voyez à 9 m ou moins."
+    }
+  ]
+}

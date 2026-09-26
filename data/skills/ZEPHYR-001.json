@@ -1,0 +1,20 @@
+{
+  "id": "ZEPHYR-001",
+  "title": "Zéphyr",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "wind"
+  ],
+  "activation": "1 Action",
+  "range": "Personnel",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "protection"
+    ]
+  },
+  "description": "Un souffle large part de vous et balaie une sphère de 9 m de rayon centrée sur vous.\n\nIl disperse tout gaz, fumée, brume ou brouillard présent dans la zone, y compris ceux qu'une Compétence a créés, et en chasse les odeurs. Ceux qu'une Compétence a créés n'y reviennent pas avant la fin de votre prochain tour. Une créature que ce couvert rendait Cachée cesse de l'être. Les objets mouillés de la zone sèchent sur-le-champ, et vous pouvez y éteindre les flammes non magiques de la taille d'une torche ou moins.\n\nRetirez l'état [[Trempé]] à chaque créature de votre choix dans la zone. Choisissez ensuite au plus une créature couverte de [[Poisse liquide]] dans la zone : retirez-lui [[Poisse liquide]], et elle se couvre de [[Poisse solide]]."
+}

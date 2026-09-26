@@ -1,0 +1,19 @@
+{
+  "id": "MAIPOI-001",
+  "title": "Mains poisseuses",
+  "type": "passive",
+  "tier": 3,
+  "domains": [
+    "slime"
+  ],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "mobility"
+    ]
+  },
+  "description": "Un mucus fin perle de vos paumes et de vos semelles. Vous vous déplacez sur les murs et les plafonds à votre Vitesse, sans Jet, et vous pouvez vous y arrêter les mains libres."
+}

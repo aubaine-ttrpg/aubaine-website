@@ -32,20 +32,20 @@
   "eau": {
     "domains": ["water"],
     "prime": ["any"],
-    "upgrades": 5,
-    "xpTotal": 190
+    "upgrades": 9,
+    "xpTotal": 260
   },
   "feu": {
     "domains": ["fire"],
     "prime": ["any"],
-    "upgrades": 6,
-    "xpTotal": 180
+    "upgrades": 9,
+    "xpTotal": 260
   },
   "foudre": {
     "domains": ["thunder"],
     "prime": ["any"],
-    "upgrades": 5,
-    "xpTotal": 190
+    "upgrades": 8,
+    "xpTotal": 255
   },
   "mage": {
     "domains": ["psychic"],
@@ -64,6 +64,12 @@
     "prime": ["any"],
     "upgrades": 7,
     "xpTotal": 300
+  },
+  "poisse": {
+    "domains": ["slime"],
+    "prime": ["any"],
+    "upgrades": 8,
+    "xpTotal": 260
   },
   "prestidigitateur": {
     "domains": ["psychic"],
@@ -86,7 +92,13 @@
   "terre": {
     "domains": ["earth"],
     "prime": ["any"],
-    "upgrades": 5,
-    "xpTotal": 250
+    "upgrades": 6,
+    "xpTotal": 265
+  },
+  "vent": {
+    "domains": ["wind"],
+    "prime": ["any"],
+    "upgrades": 7,
+    "xpTotal": 240
   }
 }

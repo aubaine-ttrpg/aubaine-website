@@ -1,0 +1,26 @@
+{
+  "id": "GRAPPI-001",
+  "title": "Grappin",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "slime"
+  ],
+  "characteristics": [
+    "intelligence",
+    "spirit",
+    "charisma"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "9 m",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "mobility",
+      "control"
+    ]
+  },
+  "description": "Un filin de glu part de votre main et colle à ce qu'il touche. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme. Choisissez ensuite l'un des effets suivants.\n\n***Se hisser.*** Vous ne pouvez choisir cet effet que si votre Vitesse est supérieure à 0. Visez un point d'une surface solide que vous voyez à portée, sans obstacle entre ce point et vous. Le filin vous tire en ligne droite jusqu'à un emplacement libre où vous pouvez vous tenir, à 1,5 m ou moins de ce point, y compris vers le haut ou par-dessus un vide. Ce trajet ne vous coûte aucun déplacement et ne déclenche aucune {{Attaque d'opportunité}}.\n\n***Saisir.*** Visez un objet qui tient dans une main, que vous voyez à portée et que personne ne tient ni ne porte. Il vient dans votre main libre, ou tombe à vos pieds si vous n'en avez pas.\n\n***Tirer.*** Visez une créature que vous voyez à portée. Elle effectue un Jet de Force + Athlétisme contre votre DD (10 + la Caractéristique choisie + Arcanes). En cas d'échec, le filin la tire de 3 m vers vous, le long du sol, et elle s'arrête devant un obstacle ou au bord d'un vide. En cas de réussite, elle arrache le filin et ne bouge pas. Une créature consentante peut choisir de rater ce Jet."
+}

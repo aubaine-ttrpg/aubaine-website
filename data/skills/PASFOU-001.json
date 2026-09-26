@@ -16,5 +16,13 @@
       "mobility"
     ]
   },
-  "description": "Vous vous défaites en un arc et vous reformez ailleurs. Vous vous téléportez jusqu'à un emplacement libre que vous voyez à 9 m ou moins."
+  "description": "Vous vous défaites en un arc et vous reformez ailleurs. Vous vous téléportez jusqu'à un emplacement libre que vous voyez à 9 m ou moins.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 4,
+      "title": "Pas de deux",
+      "description": "Lorsque vous lancez {{Pas de foudre}}, vous pouvez dépenser 1 Énergie de plus pour emmener une créature consentante que vous touchez, de votre Taille ou plus petite. Elle se téléporte avec vous jusqu'à un emplacement libre à 1,5 m ou moins de celui où vous arrivez."
+    }
+  ]
 }

@@ -16,5 +16,13 @@
       "protection"
     ]
   },
-  "description": "Vous portez votre chaleur au-delà de ce que votre corps supporte au repos. Tant que Surchauffe dure, vous gagnez une résistance aux dégâts infligés par les Sorts d'Eau et par toute autre source magique d'Eau, et votre Vitesse augmente de 3 m."
+  "description": "Vous portez votre chaleur au-delà de ce que votre corps supporte au repos. Tant que Surchauffe dure, vous gagnez une résistance aux dégâts infligés par les Sorts d'Eau et par toute autre source magique d'Eau, et votre Vitesse augmente de 3 m.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 4,
+      "title": "Ignifuge",
+      "description": "Tant que {{Surchauffe}} dure, vous gagnez aussi une résistance aux dégâts de Feu. Un feu non magique ne vous inflige alors aucun dégât et n'abîme rien de ce que vous portez ou transportez."
+    }
+  ]
 }

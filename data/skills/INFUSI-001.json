@@ -1,0 +1,20 @@
+{
+  "id": "INFUSI-001",
+  "title": "Infusion",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "water"
+  ],
+  "activation": "10 minutes",
+  "range": "Contact",
+  "duration": "1 heure",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "enhancement"
+    ]
+  },
+  "description": "Vous touchez au plus trois gobelets, chopes ou fioles remplis d'une boisson, et vous y faites infuser votre magie. Chacun reçoit l'une des vertus suivantes, à votre choix. Une créature peut dépenser 1 Action Bonus pour en boire un et recevoir sa vertu.\n\n***Revigorante.*** La créature gagne 1d4 PdV temporaires.\n***Fortifiante.*** Le prochain Jet de Force, de Dextérité ou de Constitution de la créature gagne 1 Avantage.\n***Stimulante.*** Le prochain Jet d'Intelligence, d'Esprit ou de Charisme de la créature gagne 1 Avantage.\n***Abyssale.*** La créature respire sous l'eau.\n\nUne créature ne profite que d'une vertu à la fois : celle qu'elle boit remplace la précédente. Une vertu qui donne 1 Avantage prend fin dès que cet Avantage s'applique. Lorsqu'Infusion prend fin, les récipients perdent leurs vertus et chaque vertu bue prend fin, PdV temporaires compris."
+}

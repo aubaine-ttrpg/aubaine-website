@@ -1,0 +1,20 @@
+{
+  "id": "DPPOIS-001",
+  "title": "Détection primordiale",
+  "type": "passive",
+  "tier": 3,
+  "domains": [
+    "slime",
+    "psychic"
+  ],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "divination"
+    ]
+  },
+  "description": "Lorsque vous effectuez un Jet pour détecter, ressentir ou en apprendre plus sur un élément composé de magie de Poisse, vous gagnez 2 Avantages pour ce Jet."
+}

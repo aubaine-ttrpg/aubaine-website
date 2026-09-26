@@ -1,0 +1,25 @@
+{
+  "id": "BOUGLU-001",
+  "title": "Bouclier de glu",
+  "type": "active",
+  "tier": 2,
+  "domains": [
+    "slime"
+  ],
+  "characteristics": [
+    "intelligence",
+    "spirit",
+    "charisma"
+  ],
+  "activation": "1 Réaction",
+  "range": "9 m",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "protection"
+    ]
+  },
+  "description": "Vous jouez cette Réaction lorsqu'une Attaque vous touche, ou touche une créature que vous voyez à portée.\n\nAu moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme. Une couche de glu se fige au point d'impact et amortit le coup. Réduisez de 1d6 les dégâts de cette Attaque. Si l'attaquant se tient à 1,5 m ou moins de sa cible, il se couvre de [[Poisse liquide]].\n\nLorsqu'une créature effectue un Jet pour résister contre cette Poisse, elle effectue son Jet contre votre DD (10 + la Caractéristique choisie + Arcanes). Le cran explosif s'en sert pour sa détonation."
+}

@@ -1,0 +1,21 @@
+{
+  "id": "BLOGLA-001",
+  "title": "Bloc de glace",
+  "type": "active",
+  "tier": 5,
+  "domains": [
+    "water"
+  ],
+  "activation": "1 Réaction",
+  "range": "Personnel",
+  "duration": "Jusqu'à la fin de votre prochain tour",
+  "recharge": "short-rest",
+  "energy": 2,
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "protection"
+    ]
+  },
+  "description": "Vous jouez cette Réaction lorsqu'une créature hostile vous inflige des dégâts avec une Attaque ou une Compétence.\n\nLa glace se referme sur vous d'un seul coup. Jusqu'au début de votre prochain tour, vous gagnez une résistance à tous les dégâts, y compris ceux qui ont déclenché cette Réaction.\n\nPendant votre prochain tour, la glace vous retient encore : votre Vitesse tombe à 0."
+}

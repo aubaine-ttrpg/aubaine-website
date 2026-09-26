@@ -2,8 +2,7 @@
   "id": "AMOPOI-001",
   "title": "Amorce de poisse",
   "type": "active",
-  "tier": 1,
-  "showXp": false,
+  "tier": 2,
   "domains": [
     "slime"
   ],

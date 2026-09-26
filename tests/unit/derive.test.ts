@@ -122,7 +122,7 @@ describe('tree derivations match the design', () => {
 
 describe('skill identity', () => {
   it('gives every skill a unique file and id', () => {
-    expect(skills.size).toBe(295)
+    expect(skills.size).toBe(337)
     for (const [id, skill] of skills) expect(skill.id).toBe(id)
   })
 

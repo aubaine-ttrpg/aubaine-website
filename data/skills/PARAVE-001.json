@@ -1,0 +1,28 @@
+{
+  "id": "PARAVE-001",
+  "title": "Paravent",
+  "type": "active",
+  "tier": 2,
+  "domains": [
+    "wind"
+  ],
+  "activation": "1 Réaction",
+  "range": "9 m",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "protection"
+    ]
+  },
+  "description": "Vous jouez cette Réaction lorsqu'une Attaque de Visée prend pour cible une créature que vous voyez à portée, vous compris.\n\nUn écran d'air se dresse en travers du tir : l'Attaque subit 1 Désavantage. Si l'Attaque échoue, vous gagnez 1 [[Vent ascendant]].",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 4,
+      "title": "Renvoi",
+      "description": "Lorsqu'une Attaque de Visée contre laquelle vous jouez {{Paravent}} échoue, vous pouvez détourner le tir vers une autre créature que vous voyez à 3 m ou moins de sa cible. L'attaquant refait son Attaque contre cette créature, sans le Désavantage de {{Paravent}}. En cas de réussite, cette créature en subit tous les effets."
+    }
+  ]
+}

@@ -1,16 +1,167 @@
 {
   "id": "poisse",
-  "status": "draft",
+  "status": "playtest",
   "name": "Poisse",
+  "subtitle": "La gangue incandescente",
   "treeType": "domain",
   "size": 16,
   "placements": [
     {
-      "skill": "COMEIU-001",
+      "skill": "PETPOI-001",
       "pos": {
         "x": 50,
         "y": 50.81
       }
+    },
+    {
+      "skill": "AMOPOI-001",
+      "pos": {
+        "x": 50,
+        "y": 37.92
+      },
+      "linked": [
+        "PETPOI-001"
+      ]
+    },
+    {
+      "skill": "DISSOL-001",
+      "pos": {
+        "x": 50,
+        "y": 26.14
+      },
+      "linked": [
+        "AMOPOI-001"
+      ]
+    },
+    {
+      "skill": "RAZPOI-001",
+      "pos": {
+        "x": 72.44,
+        "y": 31.91
+      },
+      "linked": [
+        "AMOPOI-001"
+      ]
+    },
+    {
+      "skill": "MURISS-001",
+      "pos": {
+        "x": 27.56,
+        "y": 31.91
+      },
+      "linked": [
+        "AMOPOI-001"
+      ]
+    },
+    {
+      "skill": "MECCOU-001",
+      "pos": {
+        "x": 65.79,
+        "y": 44.37
+      },
+      "linked": [
+        "PETPOI-001"
+      ]
+    },
+    {
+      "skill": "RETOMB-001",
+      "pos": {
+        "x": 83.71,
+        "y": 44.42
+      },
+      "linked": [
+        "MECCOU-001"
+      ]
+    },
+    {
+      "skill": "ENGLUE-001",
+      "pos": {
+        "x": 65.79,
+        "y": 57.25
+      },
+      "linked": [
+        "PETPOI-001"
+      ]
+    },
+    {
+      "skill": "GRAPPI-001",
+      "pos": {
+        "x": 83.71,
+        "y": 57.2
+      },
+      "linked": [
+        "ENGLUE-001"
+      ]
+    },
+    {
+      "skill": "COLMAT-001",
+      "pos": {
+        "x": 74.68,
+        "y": 68.25
+      },
+      "linked": [
+        "ENGLUE-001"
+      ]
+    },
+    {
+      "skill": "FILATU-001",
+      "pos": {
+        "x": 50,
+        "y": 63.7
+      },
+      "linked": [
+        "PETPOI-001"
+      ]
+    },
+    {
+      "skill": "BOUGLU-001",
+      "pos": {
+        "x": 34.21,
+        "y": 57.25
+      },
+      "linked": [
+        "PETPOI-001"
+      ]
+    },
+    {
+      "skill": "ONGUEN-001",
+      "pos": {
+        "x": 19.78,
+        "y": 63.15
+      },
+      "linked": [
+        "BOUGLU-001"
+      ]
+    },
+    {
+      "skill": "DPPOIS-001",
+      "pos": {
+        "x": 30.5,
+        "y": 70.5
+      },
+      "linked": [
+        "BOUGLU-001"
+      ]
+    },
+    {
+      "skill": "EMPOIS-001",
+      "pos": {
+        "x": 34.21,
+        "y": 44.37
+      },
+      "linked": [
+        "PETPOI-001"
+      ]
+    },
+    {
+      "skill": "MAIPOI-001",
+      "pos": {
+        "x": 17.21,
+        "y": 42.37
+      },
+      "linked": [
+        "EMPOIS-001"
+      ]
     }
   ]
 }

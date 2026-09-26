@@ -1,0 +1,25 @@
+{
+  "id": "ENGLUE-001",
+  "title": "Engluer",
+  "type": "active",
+  "tier": 2,
+  "domains": [
+    "slime"
+  ],
+  "characteristics": [
+    "intelligence",
+    "spirit",
+    "charisma"
+  ],
+  "activation": "1 Action",
+  "range": "9 m",
+  "duration": "Instantanée ou jusqu'à 1 heure",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "control"
+    ]
+  },
+  "description": "Vous lancez un paquet de glu aux pieds d'une créature, ou sur un carré de sol, que vous voyez à portée. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\n***Sur une créature.*** La créature effectue un Jet de Dextérité + Réflexes contre votre DD (10 + la Caractéristique choisie + Arcanes). En cas d'échec, elle est [[Entravé]]. En cas de réussite, elle s'écarte à temps et la glu ne prend pas.\n\n***Sur le sol.*** La glu couvre un carré libre de 1,5 m de côté. Une créature qui ignore sa présence ne la remarque qu'en réussissant un Jet d'Esprit + Perception contre votre DD. La première créature qui entre dans ce carré, de son plein gré ou non, effectue le même Jet de Dextérité + Réflexes, avec les mêmes effets. Ensuite, la glu du carré sèche, et une créature qu'elle a entravée le reste jusqu'à ce que l'état prenne fin. Si personne n'y entre, la glu sèche au terme de la durée.\n\nVous ne maintenez qu'un carré de glu à la fois. En poser un autre fait sécher le premier."
+}

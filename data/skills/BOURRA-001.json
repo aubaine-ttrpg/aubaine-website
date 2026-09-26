@@ -2,8 +2,7 @@
   "id": "BOURRA-001",
   "title": "Bourrasque",
   "type": "active",
-  "tier": 1,
-  "showXp": false,
+  "tier": 2,
   "domains": [
     "wind"
   ],

@@ -1,0 +1,33 @@
+{
+  "id": "ESCARB-001",
+  "title": "Escarbille",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "fire"
+  ],
+  "characteristics": [
+    "intelligence",
+    "spirit",
+    "charisma"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "6 m",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "mobility"
+    ]
+  },
+  "description": "Une gerbe de flammes jaillit sous vos pieds et vous projette. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\nChaque créature de votre choix à 1,5 m ou moins de vous effectue un Jet de Dextérité + Réflexes contre votre DD (10 + la Caractéristique choisie + Arcanes). En cas d'échec, elle subit 1d6 dégâts de Feu. En cas de réussite, elle s'écarte des flammes et ne subit rien.\n\nEnsuite, si votre Vitesse est supérieure à 0 et que vous n'êtes pas [[À terre]], vous bondissez jusqu'à un emplacement libre que vous voyez à portée, au sol ou en hauteur, sur une surface capable de vous porter. Aucun obstacle ne doit barrer la ligne droite qui vous en sépare. L'espace d'une créature n'est pas un obstacle pour ce bond. Ce bond ne compte pas dans votre déplacement et ne déclenche aucune {{Attaque d'opportunité}}. Si aucun emplacement ne remplit ces conditions, vous restez sur place.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 4,
+      "title": "Pluie de braises",
+      "description": "Lorsque vous lancez {{Escarbille}}, vous pouvez dépenser 1 Énergie de plus pour lancer Pluie de braises. À l'arrivée du bond, chaque créature de votre choix à 1,5 m ou moins de vous effectue elle aussi le Jet de Dextérité + Réflexes d'{{Escarbille}}, avec les mêmes effets. Une créature qui a déjà effectué ce Jet au départ n'en effectue pas un second."
+    }
+  ]
+}

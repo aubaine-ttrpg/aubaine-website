@@ -1,0 +1,30 @@
+{
+  "id": "EMVENT-001",
+  "title": "Étendue martiale",
+  "type": "active",
+  "tier": 2,
+  "domains": [
+    "wind",
+    "physical"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "Contact",
+  "duration": "jusqu'à 1 minute",
+  "concentration": true,
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "enhancement"
+    ]
+  },
+  "description": "Vous touchez une arme et l'entourez d'un vent tournant. Une fois par tour, lorsque vous réussissez une Attaque avec elle, vous pouvez vous déplacer de 1,5 m, sauf si votre Vitesse est de 0. Ce déplacement ne compte pas dans votre Vitesse et ne déclenche aucune {{Attaque d'opportunité}}.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 7,
+      "title": "Étendue perfectionnée",
+      "description": "Pour chaque amélioration de {{Dompter les vents}} que vous possédez, le déplacement qu'offre {{Étendue martiale}} augmente de 1,5 m."
+    }
+  ]
+}

@@ -152,6 +152,16 @@
       "linked": [
         "PEAPIE-001"
       ]
+    },
+    {
+      "skill": "ORETEL-001",
+      "pos": {
+        "x": 50,
+        "y": 63.7
+      },
+      "linked": [
+        "FACTER-001"
+      ]
     }
   ]
 }

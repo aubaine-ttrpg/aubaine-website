@@ -34,6 +34,16 @@
       ]
     },
     {
+      "skill": "SENMAG-001",
+      "pos": {
+        "x": 27.56,
+        "y": 31.91
+      },
+      "linked": [
+        "HARECL-001"
+      ]
+    },
+    {
       "skill": "EMFOUD-001",
       "pos": {
         "x": 34.21,
@@ -104,6 +114,16 @@
       ]
     },
     {
+      "skill": "DECHAR-001",
+      "pos": {
+        "x": 74.68,
+        "y": 68.25
+      },
+      "linked": [
+        "COUTON-001"
+      ]
+    },
+    {
       "skill": "REFORA-001",
       "pos": {
         "x": 34.21,
@@ -121,6 +141,26 @@
       },
       "linked": [
         "REFORA-001"
+      ]
+    },
+    {
+      "skill": "ELESTA-001",
+      "pos": {
+        "x": 30.5,
+        "y": 70.5
+      },
+      "linked": [
+        "REFORA-001"
+      ]
+    },
+    {
+      "skill": "INFNER-001",
+      "pos": {
+        "x": 50,
+        "y": 63.7
+      },
+      "linked": [
+        "CANCHA-001"
       ]
     }
   ]

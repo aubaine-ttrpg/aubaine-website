@@ -1,0 +1,19 @@
+{
+  "id": "RETOMB-001",
+  "title": "Retombées",
+  "type": "passive",
+  "tier": 4,
+  "domains": [
+    "slime"
+  ],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "destruction"
+    ]
+  },
+  "description": "Lorsque vous faites détoner, avec l'une de vos Compétences, une [[Poisse explosive]] que vous avez rendue explosive, résolvez d'abord sa détonation. Choisissez ensuite, parmi la créature qui la portait et celles qui ont raté leur Jet contre cette détonation, lesquelles se couvrent de [[Poisse liquide]].\n\nUne gangue qui détone d'elle-même, à la fin du tour de la créature qui la porte, ne retombe pas. Une même créature ne reçoit ces retombées qu'une fois par tour. Une Poisse que ces retombées rendent explosive utilise, pour sa détonation, le DD de la détonation qui les a projetées. Les détonations que ces retombées déclenchent se résolvent une par une, dans l'ordre de votre choix."
+}

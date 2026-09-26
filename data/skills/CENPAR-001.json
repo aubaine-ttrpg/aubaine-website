@@ -1,0 +1,20 @@
+{
+  "id": "CENPAR-001",
+  "title": "Cendres parlantes",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "fire"
+  ],
+  "activation": "10 minutes",
+  "range": "Contact",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "divination"
+    ]
+  },
+  "description": "Vous enfoncez la main dans les cendres ou les restes calcinés du dernier feu qui a brûlé à cet endroit. Ce feu doit s'être éteint il y a 30 jours au plus. Choisissez l'un des effets suivants.\n\n***Témoin.*** Choisissez le moment où ce feu a pris ou celui où il s'est éteint. Vous voyez et entendez la minute qui a précédé ce moment, telle qu'on l'aurait perçue depuis l'endroit que vous touchez.\n\n***Vestige.*** Si les restes que vous touchez sont ceux d'un objet pas plus grand qu'une caisse, vous voyez cet objet tel qu'il était juste avant de brûler, assez nettement pour lire ce qui y est écrit ou reconnaître un visage peint. Si c'est un livre, un registre ou une liasse de feuillets, vous en lisez aussi une page de votre choix."
+}

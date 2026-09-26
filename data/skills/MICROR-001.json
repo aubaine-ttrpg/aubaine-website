@@ -1,0 +1,25 @@
+{
+  "id": "MICROR-001",
+  "title": "Microrafale",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "wind"
+  ],
+  "characteristics": [
+    "intelligence",
+    "spirit",
+    "charisma"
+  ],
+  "activation": "1 Action",
+  "range": "9 m",
+  "duration": "Instantanée",
+  "energy": 2,
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "destruction"
+    ]
+  },
+  "description": "L'air que vous avez levé retombe d'un bloc sur une créature que vous voyez à portée. Vous ne pouvez lancer ce Sort que si vous portez au moins 1 [[Vent ascendant]]. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\nLa créature effectue un Jet de Dextérité + Réflexes contre votre DD (10 + la Caractéristique choisie + Arcanes). Une créature que {{Portance}} soulève rate ce Jet sans le lancer. En cas d'échec, elle subit 2d8 dégâts Contondants, plus 1d8 par [[Vent ascendant]] que vous portez. Si elle est en l'air, elle est ensuite rabattue à la verticale de 9 m au plus, sans subir de dégâts de chute ; si elle se trouve alors au sol, elle tombe [[À terre]]. En cas de réussite, elle n'en subit que la moitié et ne bouge pas.\n\nVous perdez ensuite tout votre [[Vent ascendant]] et gagnez 1 [[Vent descendant]]."
+}

@@ -1,0 +1,21 @@
+{
+  "id": "EMBRAS-001",
+  "title": "Embrasement",
+  "type": "active",
+  "tier": 4,
+  "domains": [
+    "fire"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "Personnel",
+  "duration": "Jusqu'à la fin de votre prochain tour",
+  "recharge": "short-rest",
+  "energy": 0,
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "enhancement"
+    ]
+  },
+  "description": "Vos veines rougeoient sous votre peau. Vous gagnez 3 [[Combustion]].\n\nTant qu'Embrasement dure, chaque Jet qu'une créature de votre choix effectue pour résister à l'une de vos Compétences du Domaine Feu subit 1 Désavantage."
+}

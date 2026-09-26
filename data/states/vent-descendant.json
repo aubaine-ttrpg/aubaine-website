@@ -1,0 +1,11 @@
+{
+  "key": "vent-descendant",
+  "name": "Vent descendant",
+  "forms": [
+    "Vents descendants"
+  ],
+  "kind": "buff",
+  "icon": "mdi:elevation-decline",
+  "color": "#1d665d",
+  "description": "Vent descendant s'accumule sur vous jusqu'à 3.\n\nAu moment où vous lancez un Sort du Domaine Vent qui fait effectuer un Jet contre votre DD, vous pouvez perdre tout votre Vent descendant. Le DD de ce Sort augmente alors de 1 par Vent descendant perdu, jusqu'à la fin de ses effets.\n\nVous perdez tout votre Vent descendant lorsque vous gagnez [[Vent ascendant]] et lorsque vous terminez l'un de vos tours sans avoir lancé de Sort du Domaine Vent pendant ce tour.\n\nAu début d'un combat, vous perdez tout votre Vent descendant."
+}

@@ -1,0 +1,56 @@
+{
+  "id": "DOMVEN-001",
+  "title": "Dompter les vents",
+  "type": "active",
+  "tier": 1,
+  "domains": [
+    "wind"
+  ],
+  "characteristics": [
+    "intelligence",
+    "spirit",
+    "charisma"
+  ],
+  "activation": "1 Action",
+  "range": "9 m",
+  "duration": "Instantanée ou jusqu'à 10 minutes",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "destruction"
+    ],
+    "specials": [
+      "unleashed"
+    ]
+  },
+  "description": "Vous créez, remodelez ou déplacez un vent de la taille d'une caisse. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\n***Dégâts.*** Utilisé de façon offensive, ce vent inflige 1d8 dégâts Contondants ou Tranchants, selon la forme que vous lui donnez : une masse d'air écrase, une lame d'air tranche. Toute zone plus grande, durée plus longue ou portée accrue que vous lui demandez rend le vent moins puissant, jusqu'à le rendre inoffensif.\n\n***DD.*** Lorsqu'une créature effectue un Jet pour résister contre ce vent, elle effectue son Jet contre votre DD (10 + la Caractéristique choisie + Arcanes).\n\n***Forme.*** Ce vent peut prendre n'importe quelle forme comme un souffle lancé sur une cible, un courant d'air qui fait claquer une porte, un tourbillon qui soulève la poussière, ou même une zone d'effet au choix. Lorsqu'il est réparti en zone il peut former, au maximum, un cube de 1,5 m d'arête, une sphère de 1,5 m de rayon, un cône de 3 m ou une ligne de 4,5 m sur 1,5 m.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 5,
+      "title": "Rafale",
+      "description": "Lorsque vous lancez {{Dompter les vents}}, vous pouvez dépenser 1 Énergie de plus pour lancer Rafale. Le vent atteint la taille d'un tonneau, il inflige 2d8 dégâts et chaque dimension de sa zone augmente de 1,5 m."
+    },
+    {
+      "level": 3,
+      "tier": 10,
+      "title": "Tourmente",
+      "description": "Lorsque vous lancez {{Dompter les vents}}, vous pouvez dépenser 2 Énergies de plus pour lancer Tourmente. Le vent atteint la taille d'une chambre, il inflige 3d8 dégâts et chaque dimension de sa zone augmente de 3 m."
+    },
+    {
+      "level": 4,
+      "tier": 10,
+      "xpOverride": 75,
+      "title": "Cyclone",
+      "description": "Lorsque vous lancez {{Dompter les vents}}, vous pouvez dépenser 3 Énergies de plus pour lancer Cyclone. Le vent atteint la taille d'une cabane, il inflige 4d8 dégâts et chaque dimension de sa zone augmente de 4,5 m."
+    },
+    {
+      "level": 5,
+      "tier": 10,
+      "xpOverride": 100,
+      "title": "Typhon",
+      "description": "Lorsque vous lancez {{Dompter les vents}}, vous pouvez dépenser 4 Énergies de plus pour lancer Typhon. Le vent atteint la taille d'une maison, il inflige 5d8 dégâts et chaque dimension de sa zone augmente de 6 m."
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "MOTORE-001",
+  "title": "Mot à l'oreille",
+  "type": "active",
+  "tier": 2,
+  "domains": [
+    "wind"
+  ],
+  "activation": "1 Action",
+  "range": "1 kilomètre",
+  "duration": "jusqu'à 10 minutes",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "illusion"
+    ]
+  },
+  "description": "Vous tendez un fil d'air qui porte la voix entre vous et jusqu'à quatre autres créatures. Chacune doit se trouver à portée, et vous devez la voir ou connaître l'endroit exact où elle se trouve.\n\nTant que le Sort dure, ce que l'un de vous dit dans le fil parvient aux autres comme un murmure à l'oreille. Personne d'autre ne l'entend, même tout près. Chacun choisit, à chaque phrase, de parler dans le fil ou à voix haute.\n\nLes mots passent partout où l'air circule ; un lieu hermétiquement clos les arrête. Une créature qui sort de portée perd le fil, et chacune peut le quitter quand elle le veut."
+}

@@ -1,0 +1,19 @@
+{
+  "id": "ELESTA-001",
+  "title": "Électricité statique",
+  "type": "passive",
+  "tier": 3,
+  "domains": [
+    "thunder"
+  ],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "mobility"
+    ]
+  },
+  "description": "Le mouvement vous charge comme la laine qu'on frotte. À la fin de chacun de vos tours, vous gagnez 1 [[Surtension]] pour chacune des conditions suivantes que vous remplissez. Si vous n'en remplissez aucune, vous perdez l'état [[Surtension]].\n\n***Course.*** Pendant ce tour, vous avez parcouru au moins 6 m en dépensant votre déplacement.\n***Téléportation.*** Depuis la fin de votre tour précédent, vous vous êtes téléporté au moins une fois, ou vous avez joué {{Riposte fulgurante}}."
+}

@@ -1,0 +1,19 @@
+{
+  "id": "VOILUR-001",
+  "title": "Voilure",
+  "type": "passive",
+  "tier": 3,
+  "domains": [
+    "wind"
+  ],
+  "activation": "Passif",
+  "range": "—",
+  "duration": "—",
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "mobility"
+    ]
+  },
+  "description": "L'air se tend sous vous dès que le sol vous manque. Lorsque vous tombez dans le vide, vous pouvez planer : vous vous posez à l'emplacement libre de votre choix, jusqu'à 3 m plus loin à l'horizontale pour chaque tranche complète de 1,5 m de chute. Vous ne subissez alors aucun dégât de cette chute et vous ne tombez pas [[À terre]].\n\nPendant un combat, la distance que vous parcourez à l'horizontale en planant ne dépasse pas votre Vitesse. Pendant votre tour, elle compte dans votre déplacement.\n\nUne créature consentante de Taille Moyenne ou plus petite que vous tenez au moment de tomber plane avec vous. Elle se pose à 1,5 m ou moins de vous, sans subir de dégâts et sans tomber [[À terre]]."
+}

@@ -1,0 +1,39 @@
+{
+  "id": "MURISS-001",
+  "title": "Mûrissement",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "slime"
+  ],
+  "characteristics": [
+    "intelligence",
+    "spirit",
+    "charisma"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "18 m",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "destruction"
+    ]
+  },
+  "description": "Vous serrez le poing et la Poisse que vous visez s'échauffe. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\nChoisissez une créature que vous voyez à portée qui porte de la Poisse. Elle se couvre de [[Poisse liquide]].\n\nLorsqu'une créature effectue un Jet pour résister contre cette Poisse, elle effectue son Jet contre votre DD (10 + la Caractéristique choisie + Arcanes). Le cran explosif s'en sert pour sa détonation.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 6,
+      "title": "Contagion",
+      "description": "Lorsque vous lancez {{Mûrissement}}, vous pouvez choisir en plus une seconde créature que vous voyez à portée, qui porte de la Poisse et se trouve à 3 m ou moins de la première. Elles se couvrent de [[Poisse liquide]] l'une après l'autre, dans l'ordre de votre choix. Une créature qui ne porte plus de Poisse à ce moment-là ne se couvre de rien."
+    },
+    {
+      "level": 3,
+      "tier": 7,
+      "title": "Emballement",
+      "description": "Si une [[Poisse explosive]] que vous avez rendue explosive a déjà détoné pendant ce tour, {{Mûrissement}} ne vous coûte pas d'Énergie."
+    }
+  ]
+}

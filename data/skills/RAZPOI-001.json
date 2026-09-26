@@ -1,0 +1,26 @@
+{
+  "id": "RAZPOI-001",
+  "title": "Raz-de-poisse",
+  "type": "active",
+  "tier": 10,
+  "domains": [
+    "slime"
+  ],
+  "characteristics": [
+    "intelligence",
+    "spirit",
+    "charisma"
+  ],
+  "activation": "1 Action",
+  "range": "Personnel",
+  "duration": "1 minute",
+  "energy": 5,
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "destruction",
+      "control"
+    ]
+  },
+  "description": "Une vague de mucus se lève devant vous et déferle sur une ligne de 18 m de long et de 3 m de large. Plus elle court, plus elle chauffe. Au moment où vous lancez ce Sort, choisissez sa Caractéristique entre Intelligence, Esprit et Charisme.\n\nChaque créature de votre choix sur son passage effectue un Jet de Force + Athlétisme contre votre DD (10 + la Caractéristique choisie + Arcanes). En cas d'échec, elle subit 6d6 dégâts d'Acide et se couvre de la Poisse de la portion de vague qui l'atteint. En cas de réussite, elle n'en subit que la moitié et ne se couvre de rien.\n\n***Les 6 premiers mètres.*** [[Poisse liquide]].\n***De 6 à 12 m.*** [[Poisse solide]].\n***Au-delà de 12 m.*** [[Poisse explosive]].\n\nLorsqu'une créature effectue un Jet pour résister contre cette Poisse, elle effectue son Jet contre votre DD. Le cran explosif s'en sert pour sa détonation. Les détonations que ce Sort déclenche se résolvent une fois les dégâts de la vague infligés, une par une, dans l'ordre de votre choix, et une gangue qui a déjà détoné entre-temps ne détone pas une seconde fois.\n\n***Glu.*** La vague retombe en une nappe de glu sur toute la ligne. Tant que Raz-de-poisse dure, chaque fois qu'une créature entre dans la nappe ou y commence son tour, vous pouvez décider que la nappe la retient : elle effectue un Jet de Dextérité + Réflexes contre votre DD. En cas d'échec, elle est [[Entravé]]. Une même créature n'effectue ce Jet qu'une fois par tour. La nappe laisse passer toutes les autres."
+}

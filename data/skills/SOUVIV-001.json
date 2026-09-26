@@ -1,0 +1,28 @@
+{
+  "id": "SOUVIV-001",
+  "title": "Source vive",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "water"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "9 m",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "healing"
+    ]
+  },
+  "description": "Une eau claire court jusqu'aux plaies et les referme. Vous pouvez d'abord retirer l'état [[Trempé]] à une créature que vous voyez à portée.\n\nChoisissez ensuite une créature que vous voyez à portée, vous y compris. Elle récupère 1d4 PdV, plus 1d4 par [[Trempé]] que vous venez de retirer.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 4,
+      "title": "Source jaillissante",
+      "description": "{{Source vive}} rend désormais 2d4 PdV au lieu de 1d4, plus 1d4 par [[Trempé]] que vous venez de retirer."
+    }
+  ]
+}

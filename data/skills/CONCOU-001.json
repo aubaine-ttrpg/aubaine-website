@@ -1,0 +1,20 @@
+{
+  "id": "CONCOU-001",
+  "title": "Contre-courant",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "wind"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "12 m",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "mobility"
+    ]
+  },
+  "description": "La pression que vous portez se retourne d'un coup et ramène vos alliés vers vous. Vous ne pouvez lancer ce Sort que si vous portez au moins 1 [[Vent descendant]].\n\nChoisissez, parmi les créatures alliées que vous voyez à portée, jusqu'à une créature par [[Vent descendant]] que vous portez. Dans l'ordre de votre choix, chacune est emportée en ligne droite jusqu'à l'emplacement libre le plus proche de vous, par-dessus les créatures et les vides. Ce déplacement ne compte pas dans sa Vitesse et ne déclenche aucune {{Attaque d'opportunité}}. Une créature dont la Vitesse est de 0, ou dont un obstacle barre la route, ne bouge pas.\n\nVous perdez ensuite tout votre [[Vent descendant]] et gagnez 1 [[Vent ascendant]]."
+}
