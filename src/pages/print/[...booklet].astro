@@ -257,7 +257,7 @@ const chapters = book
             wrappers=".au-skill"
           >
             {skills.map((skill) => (
-              <SkillEntry skill={skill} corpus={data} locale={locale} />
+              <SkillEntry skill={skill} corpus={data} locale={locale} stateCallouts />
             ))}
           </ListLeaf>
 
@@ -328,7 +328,7 @@ const chapters = book
               anchor={skillsAnchor}
             >
               {grantedSkills.map((skill) => (
-                <SkillEntry skill={skill} corpus={data} locale={locale} marks={false} />
+                <SkillEntry skill={skill} corpus={data} locale={locale} marks={false} stateCallouts />
               ))}
             </ListLeaf>
           )}

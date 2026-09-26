@@ -19,12 +19,19 @@ import NodeShape from './NodeShape.astro'
 import PrerequisiteStat from './PrerequisiteStat.astro'
 import RuleText from './RuleText.astro'
 
-type Props = { skill: Skill; corpus: Corpus; locale: Locale; marks?: boolean; priced?: boolean }
+type Props = {
+  skill: Skill
+  corpus: Corpus
+  locale: Locale
+  marks?: boolean
+  priced?: boolean
+  stateCallouts?: boolean
+}
 
-const { skill, corpus, locale, marks = true, priced = true } = Astro.props
+const { skill, corpus, locale, marks = true, priced = true, stateCallouts = false } = Astro.props
 const t = strings(locale)
 
-const callouts = calloutNames(skill.description)
+const callouts = (stateCallouts ? calloutNames(skill.description) : [])
   .map((name) => corpus.statesByName.get(name.toLowerCase()))
   .filter((state): state is NonNullable<typeof state> => state !== undefined)
 
