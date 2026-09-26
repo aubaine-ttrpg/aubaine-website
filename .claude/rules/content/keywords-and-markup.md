@@ -36,7 +36,7 @@ The markup table in `docs/data-contract.md` is the reference, and `MARKUP` in `s
 - `***gras***` sets bold.
 - `[[Nom d'état]]` marks a state. It resolves against a state `name`.
 - `{{Nom de compétence}}` marks a skill. It resolves against a skill `title`.
-- `[[[Nom d'état]]]` is a print only callout. It is stripped from the web rendering and expands to the full state text on the printed plates.
+- Rule text has no print-only markup. A tree or catalogue booklet prints every state and rule word its entries use, with its definition, on its last pages.
 - A blank line separates paragraphs. A single newline is a line break.
 - Explicit markup is case insensitive, but matches on nothing else. Accents, apostrophes, spacing, and punctuation must be exact or `pnpm data:check` fails.
 - Do not use Markdown in a JSON field. A `#` heading, a list marker, a link, or an emphasis run other than `***gras***` renders literally.

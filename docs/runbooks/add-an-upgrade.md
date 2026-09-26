@@ -47,7 +47,7 @@ Upgrades are rendered by increasing level, whatever order you write them in. Wri
       "enhancement"
     ]
   },
-  "description": "Vous entrez en rage. Vous êtes [[Enragé]] jusqu'à la fin de votre prochain tour.\n\nChacune des choses suivantes la prolonge d'un tour de plus, au moment où elle arrive.\n\n***Frapper.*** Vous effectuez un Jet d'Attaque contre un ennemi.\n***Encaisser.*** Vous subissez des dégâts.\n***Contraindre.*** Vous forcez un ennemi à effectuer un Jet pour résister à l'une de vos Compétences.\n***Tenir.*** Vous dépensez une Action Bonus à la prolonger.\n\nLa rage ne dure pas plus de 10 minutes d'affilée.\n\n[[[Enragé]]]",
+  "description": "Vous entrez en rage. Vous êtes [[Enragé]] jusqu'à la fin de votre prochain tour.\n\nChacune des choses suivantes la prolonge d'un tour de plus, au moment où elle arrive.\n\n***Frapper.*** Vous effectuez un Jet d'Attaque contre un ennemi.\n***Encaisser.*** Vous subissez des dégâts.\n***Contraindre.*** Vous forcez un ennemi à effectuer un Jet pour résister à l'une de vos Compétences.\n***Tenir.*** Vous dépensez une Action Bonus à la prolonger.\n\nLa rage ne dure pas plus de 10 minutes d'affilée.",
   "upgrades": [
     {
       "level": 2,
@@ -114,4 +114,4 @@ The schema says it plainly: `Ces trois états sont distincts et ne doivent jamai
 
 **An upgrade is not a derived skill.** If the step needs its own node, its own stat line or its own position on the plate, it is a separate skill file with `evolvesFrom` pointing at the base, not an upgrade. `evolvesFrom` is `Réservé aux nœuds rattachés à une base, jamais aux améliorations imbriquées.`
 
-**Same markup as the base.** `***gras***`, `[[Nom d'état]]`, `{{Nom de compétence}}`, `[[[Nom d'état]]]`, blank line for a paragraph break.
+**Same markup as the base.** `***gras***`, `[[Nom d'état]]`, `{{Nom de compétence}}`, blank line for a paragraph break.

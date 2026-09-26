@@ -3,7 +3,8 @@ import type { Dirent } from 'node:fs'
 import { readdir, readFile } from 'node:fs/promises'
 import { join, relative, resolve, sep } from 'node:path'
 
-import type { Corpus, ResolvedBook, ResolvedTree } from '../game/build.ts'
+import type { Corpus, GlossaryTerm, ResolvedBook, ResolvedTree } from '../game/build.ts'
+import { ruleRuns } from '../game/richtext.ts'
 import type { EquipmentCatalogue, GameState, Skill } from '../game/schema.ts'
 import type { Locale } from '../i18n/locales.ts'
 import { stripJpeg } from '../rights/jpeg.ts'
@@ -58,11 +59,45 @@ export async function styleHash(root: string): Promise<string> {
   return digest(blobs)
 }
 
-function statesUsedBy(descriptions: string[], states: GameState[]): GameState[] {
+function statesNamedIn(descriptions: string[], states: GameState[]): GameState[] {
   const text = descriptions.join('\n').toLowerCase()
   return states.filter((state) =>
     [state.name, ...(state.forms ?? [])].some((form) => text.includes(form.toLowerCase())),
   )
+}
+
+function statesUsedBy(descriptions: string[], states: GameState[]): GameState[] {
+  const direct = statesNamedIn(descriptions, states)
+  const named = new Set([
+    ...direct,
+    ...statesNamedIn(
+      direct.map((state) => state.description),
+      states,
+    ),
+  ])
+  return states.filter((state) => named.has(state))
+}
+
+export type RuleWord = Exclude<GlossaryTerm, { family: 'state' }>
+
+const NO_LINKS = { rulesHref: '', resolveReference: (): null => null }
+
+function ruleWordsUsedBy(descriptions: string[], corpus: Corpus): RuleWord[] {
+  const used = new Set<string>()
+  for (const description of descriptions) {
+    for (const run of ruleRuns(description, corpus.terms, NO_LINKS)) {
+      if (run.kind === 'term') used.add(`${run.term.family}:${run.term.title}`)
+    }
+  }
+  return corpus.glossary
+    .filter((term): term is RuleWord => term.family !== 'state')
+    .filter((term) => used.has(`${term.family}:${term.record.title}`))
+    .sort((a, b) => a.record.title.localeCompare(b.record.title, corpus.locale))
+}
+
+function addRuleWords(blobs: Blobs, words: RuleWord[]): void {
+  const text = words.map((word) => `${word.record.title}\n${word.record.text}`).join('\n\n')
+  blobs.set('@rule-words', Buffer.from(text))
 }
 
 export function treeDescriptions(tree: ResolvedTree): string[] {
@@ -76,6 +111,11 @@ export function treeDescriptions(tree: ResolvedTree): string[] {
 
 export function treeStates(tree: ResolvedTree, corpus: Corpus): GameState[] {
   return statesUsedBy(treeDescriptions(tree), corpus.states)
+}
+
+export function treeRuleWords(tree: ResolvedTree, corpus: Corpus): RuleWord[] {
+  const states = treeStates(tree, corpus).map((state) => state.description)
+  return ruleWordsUsedBy([...treeDescriptions(tree), ...states], corpus)
 }
 
 export function catalogueSkills(corpus: Corpus): Skill[] {
@@ -114,6 +154,11 @@ export function catalogueDescriptions(corpus: Corpus): string[] {
 
 export function catalogueStates(corpus: Corpus): GameState[] {
   return statesUsedBy(catalogueDescriptions(corpus), corpus.states)
+}
+
+export function catalogueRuleWords(corpus: Corpus): RuleWord[] {
+  const states = catalogueStates(corpus).map((state) => state.description)
+  return ruleWordsUsedBy([...catalogueDescriptions(corpus), ...states], corpus)
 }
 
 async function addMeta(blobs: Blobs, root: string, locale: Locale): Promise<void> {
@@ -191,6 +236,7 @@ export async function treeContentHash(
       resolve(root, `data/states/${state.key}.${locale}.json`),
     )
   }
+  addRuleWords(blobs, treeRuleWords(tree, corpus))
   await addArt(blobs, root, [tree.cover, tree.banner, tree.backCover])
   await addMeta(blobs, root, locale)
   return digest(blobs)
@@ -277,6 +323,7 @@ export async function equipmentContentHash(
       resolve(root, `data/skills/${skill.id}.${locale}.json`),
     )
   }
+  addRuleWords(blobs, catalogueRuleWords(corpus))
   for (const state of catalogueStates(corpus)) {
     await addFile(blobs, `states/${state.key}.json`, resolve(root, `data/states/${state.key}.json`))
     await addOverlay(

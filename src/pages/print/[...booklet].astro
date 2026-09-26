@@ -5,6 +5,7 @@ import codex from '../../../data/aubaine.json'
 import Plate from '../../components/primitives/Plate.astro'
 import SkillEntry from '../../components/primitives/SkillEntry.astro'
 import StateEntry from '../../components/primitives/StateEntry.astro'
+import TermEntry from '../../components/primitives/TermEntry.astro'
 import BackCover from '../../components/print/BackCover.astro'
 import CatalogueLeaf from '../../components/print/CatalogueLeaf.astro'
 import Colophon from '../../components/print/Colophon.astro'
@@ -15,10 +16,13 @@ import Leaf from '../../components/print/Leaf.astro'
 import ListLeaf from '../../components/print/ListLeaf.astro'
 import {
   type BookletTarget,
+  catalogueRuleWords,
   catalogueSkills,
   catalogueStates,
+  type RuleWord,
   releaseFor,
   styleHash,
+  treeRuleWords,
   treeStates,
 } from '../../lib/booklet/fingerprint'
 import { type BookletKind, releaseShort, releaseStamp } from '../../lib/booklet/release'
@@ -112,9 +116,18 @@ const eyebrow = 'Aubaine'
 
 const skills = tree ? treeSkillOrder(tree.placements, locale) : []
 const states = tree ? treeStates(tree, data) : []
+const ruleWords = tree ? treeRuleWords(tree, data) : []
+const definedWord = ({ record }: RuleWord) => ({
+  title: record.title,
+  kind: record.kind,
+  color: record.color,
+  icon: record.icon,
+  text: record.text,
+})
 
 const grantedSkills = catalogue ? catalogueSkills(data) : []
 const catalogueStateList = catalogue ? catalogueStates(data) : []
+const catalogueWords = catalogue ? catalogueRuleWords(data) : []
 
 const rarityBlocks = catalogue
   ? catalogueByRarity(
@@ -163,6 +176,7 @@ const catalogueLeaves: CatalogueLeafPlan[] = rarityBlocks.flatMap((block) =>
 const guideAnchor = 'guide'
 const skillsAnchor = 'competences-accordees'
 const statesAnchor = 'etats-du-catalogue'
+const ruleWordsAnchor = 'mots-de-regle-du-catalogue'
 
 const guide = catalogue
   ? await (async () => {
@@ -193,6 +207,9 @@ const contentsRows: ContentsRow[] = catalogue
       ]),
       ...(grantedSkills.length > 0
         ? [{ anchor: skillsAnchor, label: t.grantedSkills, depth: 0 as const }]
+        : []),
+      ...(catalogueWords.length > 0
+        ? [{ anchor: ruleWordsAnchor, label: t.ruleWords, depth: 0 as const }]
         : []),
       ...(catalogueStateList.length > 0
         ? [{ anchor: statesAnchor, label: t.states_, depth: 0 as const }]
@@ -254,12 +271,27 @@ const chapters = book
             title={t.skills}
             sub={`${kindLabel} · ${tree.name}`}
             footLeft={`Aubaine · ${tree.name}`}
+            footRight={t.rulesAtBack}
             wrappers=".au-skill"
           >
             {skills.map((skill) => (
-              <SkillEntry skill={skill} corpus={data} locale={locale} stateCallouts />
+              <SkillEntry skill={skill} corpus={data} locale={locale} />
             ))}
           </ListLeaf>
+
+          {ruleWords.length > 0 && (
+            <ListLeaf
+              title={t.ruleWords}
+              sub={`${kindLabel} · ${tree.name}`}
+              footLeft={`Aubaine · ${tree.name}`}
+              footRight={t.ruleWordsUsed}
+              wrappers=".au-term-entry"
+            >
+              {ruleWords.map((word) => (
+                <TermEntry term={definedWord(word)} corpus={data} locale={locale} />
+              ))}
+            </ListLeaf>
+          )}
 
           {states.length > 0 && (
             <ListLeaf
@@ -324,11 +356,27 @@ const chapters = book
               title={t.grantedSkills}
               sub={shortTitle}
               footLeft={`Aubaine · ${shortTitle}`}
+              footRight={t.rulesAtBack}
               wrappers=".au-skill"
               anchor={skillsAnchor}
             >
               {grantedSkills.map((skill) => (
-                <SkillEntry skill={skill} corpus={data} locale={locale} marks={false} stateCallouts />
+                <SkillEntry skill={skill} corpus={data} locale={locale} marks={false} />
+              ))}
+            </ListLeaf>
+          )}
+
+          {catalogueWords.length > 0 && (
+            <ListLeaf
+              title={t.ruleWords}
+              sub={shortTitle}
+              footLeft={`Aubaine · ${shortTitle}`}
+              footRight={t.ruleWordsFromEquipment}
+              wrappers=".au-term-entry"
+              anchor={ruleWordsAnchor}
+            >
+              {catalogueWords.map((word) => (
+                <TermEntry term={definedWord(word)} corpus={data} locale={locale} />
               ))}
             </ListLeaf>
           )}

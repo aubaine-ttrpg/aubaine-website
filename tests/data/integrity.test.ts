@@ -55,7 +55,6 @@ const captions = indexCaptions(
   JSON.parse(await readFile(resolve(root, 'data/media-captions.json'), 'utf8')),
 )
 
-const CALLOUT = /\[\[\[([^\]]+)\]\]\]/g
 const STATE_REF = /\[\[([^\]]+)\]\]/g
 const SKILL_REF = /\{\{([^}]+)\}\}/g
 const MEDIA_FILE =
@@ -458,16 +457,15 @@ describe('imposed skills', () => {
 describe('rule text markup', () => {
   const texts = allRuleText()
 
+  it('writes no triple bracket, since a booklet defines its states at the back', () => {
+    for (const { where, text } of texts) {
+      expect(text.includes('[[['), `${where} writes [[[ ]]]`).toBe(false)
+    }
+  })
+
   it('names only known states between double brackets', () => {
     for (const { where, text } of texts) {
-      const withoutCallouts = text.replace(CALLOUT, (_match, inner: string) => {
-        expect(
-          fr.statesByName.has(inner.trim().toLowerCase()),
-          `${where} callout [[[${inner}]]]`,
-        ).toBe(true)
-        return ''
-      })
-      for (const match of withoutCallouts.matchAll(STATE_REF)) {
+      for (const match of text.matchAll(STATE_REF)) {
         const name = (match[1] ?? '').trim().toLowerCase()
         expect(fr.statesByName.has(name), `${where} state [[${match[1]}]]`).toBe(true)
       }
@@ -1010,7 +1008,7 @@ describe('the term index', () => {
   it('marks every keyword that rule text actually writes', () => {
     const missed: string[] = []
     for (const { where, text } of allRuleText()) {
-      const bare = text.replace(CALLOUT, '').replace(STATE_REF, '').replace(SKILL_REF, '')
+      const bare = text.replace(STATE_REF, '').replace(SKILL_REF, '')
       for (const state of fr.states) {
         for (const word of [state.name, ...(state.forms ?? [])]) {
           const pattern = new RegExp(`(?<![\\p{L}\\p{N}])${word}(?![\\p{L}\\p{N}])`, 'u')

@@ -142,7 +142,6 @@ The same markup works in a skill description, an upgrade description, a state de
 | `***gras***` | bold |
 | `[[Nom d'état]]` | a state pastille with a tooltip |
 | `{{Nom de compétence}}` | a cross reference with a tooltip |
-| `[[[Nom d'état]]]` | a marker stripped from the web rendering, kept for the printed plates |
 | a blank line | a paragraph break |
 
 A name inside brackets or braces must resolve exactly, accents included, or `pnpm data:check` fails. States resolve by `name`, skills by `title`.

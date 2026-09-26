@@ -53,9 +53,9 @@ pnpm dev
 
 ## Traps
 
-**The `name` is what rule text writes between double square brackets, and it must be unique.** Matching is case insensitive but otherwise exact, accents included. If you rename a state, every `[[old name]]` and `[[[old name]]]` in `data/skills/`, `data/states/`, `data/equipment/items/` and `data/equipment/sets/` breaks, and `pnpm data:check` will list every one of them.
+**The `name` is what rule text writes between double square brackets, and it must be unique.** Matching is case insensitive but otherwise exact, accents included. If you rename a state, every `[[old name]]` in `data/skills/`, `data/states/`, `data/equipment/items/` and `data/equipment/sets/` breaks, and `pnpm data:check` will list every one of them.
 
-**`[[[Nom d'état]]]`, with three brackets, is a marker stripped from the web rendering.** Several skills end with a line like `[[[Enragé]]]` to declare which state they attach to for the printed plates. It still has to name a state that exists, but it prints nothing on the site.
+**A booklet defines its states at the back.** A tree or catalogue booklet prints every state its rule text names, in full, on its last pages beside the rule words it uses. Nothing in the rule text asks for it, and `pnpm data:check` refuses the old three-bracket marker.
 
 **The icon file may be missing and the state simply renders without one.** `Sans fichier correspondant dans data/media/icons/, l'état se rend sans icône.` Add the matching SVG under `data/media/icons/mdi/` or `data/media/icons/game-icons/`. See [add-an-image.md](add-an-image.md). `pnpm data:check` now fails when an icon named by the term index has no file, so a missing one is caught rather than silently dropped.
 

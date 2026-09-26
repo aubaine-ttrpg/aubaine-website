@@ -34,7 +34,7 @@ The filename is the id and nothing else. The id matches `^[A-Z0-9]{5}-[0-9]{2}$`
 | `life` | optional | Pastille PDV : un coût payé en Points de vie, en dés (1d6) ou en nombre fixe. | `"6"`, `"1d6"` |
 | `evolvesFrom` | optional | `Compétence dérivée : identifiant de la base, rendu « ▲ <titre> ». Réservé aux nœuds rattachés à une base, jamais aux améliorations imbriquées.` | a skill id that exists |
 | `tags` | optional | Étiquettes rendues en pied d'entrée, dans l'ordre Pratique, Écoles, Spéciales, chacune avec sa définition au survol. Aucune n'est obligatoire : une Compétence ne porte que celles qui servent l'équilibre, la saveur ou les combinaisons. | an object with `practice` (one key), `schools` (one or two distinct keys) and `specials` (one or more keys), each optional, keys from `data/meta/tags.json`; never an empty object |
-| `description` | required | Texte de règle. Les retours à la ligne sont respectés, une ligne vide sépare deux paragraphes. Balisage : `***gras***`, `[[Nom d'état]]`, `{{Nom de compétence}}`, et `[[[Nom d'état]]]` pour un marqueur retiré du rendu. | any non empty string |
+| `description` | required | Texte de règle. Les retours à la ligne sont respectés, une ligne vide sépare deux paragraphes. Balisage : `***gras***`, `[[Nom d'état]]` et `{{Nom de compétence}}`. | any non empty string |
 | `upgrades` | optional | Améliorations imbriquées, rendues sous la carte par niveau croissant. | see [add-an-upgrade.md](add-an-upgrade.md) |
 
 Key order is the order of this table. Keep it.
@@ -110,6 +110,6 @@ Then open the tree page, choose the node and read its card in the pane.
 
 **`pos` and `linked` are not skill fields.** They belong to the tree file, because one skill can sit in more than one tree. The schema is strict and will reject them here.
 
-**Rule text markup.** `***gras***` for bold, `[[Nom d'état]]` for a state pastille, `{{Nom de compétence}}` for a cross reference, `[[[Nom d'état]]]` for a marker that is stripped from the web rendering, a blank line for a paragraph break. Every name inside brackets or braces must match an existing state name or skill title exactly, or `pnpm data:check` fails.
+**Rule text markup.** `***gras***` for bold, `[[Nom d'état]]` for a state pastille, `{{Nom de compétence}}` for a cross reference, a blank line for a paragraph break. Every name inside brackets or braces must match an existing state name or skill title exactly, or `pnpm data:check` fails.
 
 **Adding the file is enough.** No index, no registry, no code change.

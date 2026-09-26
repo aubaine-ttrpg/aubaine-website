@@ -8,7 +8,6 @@ import {
   typeLabelFor,
   xpOf,
 } from '../../lib/game/derive'
-import { calloutNames } from '../../lib/game/richtext'
 import type { Skill } from '../../lib/game/schema'
 import { badgedStatus } from '../../lib/game/status'
 import type { Locale } from '../../lib/i18n/locales'
@@ -19,21 +18,10 @@ import NodeShape from './NodeShape.astro'
 import PrerequisiteStat from './PrerequisiteStat.astro'
 import RuleText from './RuleText.astro'
 
-type Props = {
-  skill: Skill
-  corpus: Corpus
-  locale: Locale
-  marks?: boolean
-  priced?: boolean
-  stateCallouts?: boolean
-}
+type Props = { skill: Skill; corpus: Corpus; locale: Locale; marks?: boolean; priced?: boolean }
 
-const { skill, corpus, locale, marks = true, priced = true, stateCallouts = false } = Astro.props
+const { skill, corpus, locale, marks = true, priced = true } = Astro.props
 const t = strings(locale)
-
-const callouts = (stateCallouts ? calloutNames(skill.description) : [])
-  .map((name) => corpus.statesByName.get(name.toLowerCase()))
-  .filter((state): state is NonNullable<typeof state> => state !== undefined)
 
 const status = badgedStatus(corpus.skillStatus.get(skill.id))
 const STATUS_LABELS = { draft: t.draft, playtest: t.playtest, beta: t.beta }
@@ -254,23 +242,6 @@ const tags = skillTags(skill.tags).map(({ key, kind }) => {
   </div>
 
   <RuleText source={skill.description} corpus={corpus} locale={locale} class="au-skill__desc" />
-
-  {
-    callouts.map((state) => (
-      <div class={`au-state-callout au-state-callout--${state.kind}`}>
-        <span class="au-rule au-rule--state" style={state.color ? `color:${state.color}` : undefined}>
-          <Icon name={state.icon} class="au-rule__icon" />
-          <span>{state.name}</span>
-        </span>
-        <RuleText
-          source={state.description}
-          corpus={corpus}
-          locale={locale}
-          class="au-state-callout__desc"
-        />
-      </div>
-    ))
-  }
 
   {
     (skill.upgrades ?? []).map((upgrade) => (

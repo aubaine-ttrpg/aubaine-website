@@ -53,8 +53,8 @@ agent trusting the copy will miss terms that have since been added.
   affordance. Capitalization is a rendering decision, not a typographic preference.
 - `[[...]]` and `{{...}}` are matched case insensitively but must otherwise be exact, accents,
   apostrophes, and spacing included, or `pnpm data:check` fails.
-- `[[[...]]]` is stripped from the web and expands to the full state text on the printed plates. Use
-  it when a plate should carry a state's rules beside the skill that applies it.
+- A tree or catalogue booklet prints every state and rule word its entries mark, with its
+  definition, on its last pages. Nothing in the rule text asks for it.
 
 ## What the writer does not control
 

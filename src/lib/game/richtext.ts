@@ -29,8 +29,6 @@ export type Run =
 export type Paragraph = { runs: Run[] }
 
 const MARKUP = /\*\*\*([^*]+)\*\*\*|\[\[([^\]]+)\]\]|\{\{([^}]+)\}\}/g
-const CALLOUT = /\[\[\[[^\]]+\]\]\]/g
-const CALLOUT_NAME = /\[\[\[([^\]]+)\]\]\]/g
 const WORD = /[\p{L}\p{N}]/u
 
 export function escapeForRegExp(value: string): string {
@@ -134,20 +132,7 @@ export function ruleRuns(
   options: { rulesHref: string; resolveReference: ResolveReference },
 ): Run[] {
   if (!source) return []
-  return parseRuns(source.replace(CALLOUT, '').trim(), index, options)
-}
-
-export function calloutNames(source: string | undefined): string[] {
-  if (!source) return []
-  const names: string[] = []
-  CALLOUT_NAME.lastIndex = 0
-  let match = CALLOUT_NAME.exec(source)
-  while (match !== null) {
-    const name = match[1]?.trim()
-    if (name !== undefined && name !== '' && !names.includes(name)) names.push(name)
-    match = CALLOUT_NAME.exec(source)
-  }
-  return names
+  return parseRuns(source.trim(), index, options)
 }
 
 export function parseParagraphs(
@@ -157,7 +142,6 @@ export function parseParagraphs(
 ): Paragraph[] {
   if (!source) return []
   return source
-    .replace(CALLOUT, '')
     .split(/\n{2,}/)
     .map((part) => part.trim())
     .filter(Boolean)
@@ -166,7 +150,6 @@ export function parseParagraphs(
 
 export function flattenText(source: string | undefined, limit?: number): string {
   const value = String(source ?? '')
-    .replace(CALLOUT, '')
     .replace(/\*\*\*/g, '')
     .replace(/\[\[|\]\]/g, '')
     .replace(/\s+/g, ' ')

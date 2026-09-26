@@ -273,7 +273,7 @@ export const skill = z
       .string()
       .min(1)
       .describe(
-        "Texte de règle. Les retours à la ligne sont respectés, une ligne vide sépare deux paragraphes. Balisage : ***gras***, [[Nom d'état]], {{Nom de compétence}}, et [[[Nom d'état]]] pour un marqueur retiré du rendu.",
+        "Texte de règle. Les retours à la ligne sont respectés, une ligne vide sépare deux paragraphes. Balisage : ***gras***, [[Nom d'état]] et {{Nom de compétence}}.",
       ),
     upgrades: z
       .array(upgrade)

@@ -357,8 +357,7 @@
 .au-skill__desc strong,
 .au-upgrade__desc strong,
 .au-state-entry__desc strong,
-.au-term-entry__desc strong,
-.au-state-callout__desc strong {
+.au-term-entry__desc strong {
   font-weight: 700;
   font-style: italic;
   color: var(--paper-ink);
@@ -505,34 +504,6 @@
 
 .au-state--neutral {
   color: var(--state-neutral);
-}
-
-.au-state-callout {
-  display: block;
-  margin: 6px 0;
-  padding: 5px 0 5px 10px;
-  border-left: 2.5px solid currentcolor;
-  background: color-mix(in srgb, currentcolor 6%, transparent);
-  break-inside: avoid;
-}
-
-.au-state-callout--buff {
-  color: var(--state-buff);
-}
-
-.au-state-callout--debuff {
-  color: var(--state-debuff);
-}
-
-.au-state-callout--neutral {
-  color: var(--state-neutral);
-}
-
-.au-state-callout__desc {
-  display: block;
-  margin-top: 2px;
-  color: var(--paper-body);
-  font-weight: 400;
 }
 
 .au-state-entry,
