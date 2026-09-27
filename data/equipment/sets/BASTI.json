@@ -2,6 +2,7 @@
   "id": "BASTI",
   "status": "draft",
   "name": "Panoplie du Bastion",
+  "description": "Acier plein, gueuses de fonte et galet d'ambre. On entend venir celui qui porte le Bastion bien avant de le voir, et il ne cherche pas à s'en cacher.",
   "bonuses": [
     {
       "pieces": 2,

@@ -17,6 +17,7 @@ The filename is the set id. Existing sets use five capital letters: `TRAQU.json`
 | `id` | required | Identifiant, celui qu'une pièce nomme dans `set`. | any non empty string, matching the filename |
 | `status` | optional | Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable : les listes le masquent tant que le lecteur n'affiche pas les brouillons ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une Espèce, une pièce d'équipement ou une panoplie, dans cet ordre. | `draft`, `playtest`, `beta`, `balanced` |
 | `name` | required | The printed name of the set. | any non empty string |
+| `description` | required | Présentation de la panoplie, imprimée sous son nom : d'où elle vient et à quoi elle ressemble. Aucune règle n'y figure. | one to three sentences of plain text, no rule markup |
 | `bonuses` | required | Les paliers, par nombre de pièces croissant. | 1 or more tiers |
 | `bonuses[].pieces` | required | Combien de pièces doivent être portées ensemble. Deux au minimum : un palier à une pièce est une propriété de cette pièce. | integer, 2 or more |
 | `bonuses[].text` | required | The rule text of that tier. | any non empty string, with rule markup |
@@ -31,6 +32,7 @@ The filename is the set id. Existing sets use five capital letters: `TRAQU.json`
   "id": "TRAQU",
   "status": "draft",
   "name": "Panoplie du Traqueur",
+  "description": "Feutre, cuir maté au noir et pierre grise. Les chasseurs se passent ces pièces une à une, de piste en piste, et rares sont ceux qui les portent toutes.",
   "bonuses": [
     {
       "pieces": 2,

@@ -591,6 +591,14 @@
   color: var(--paper-sub2);
 }
 
+.au-set__desc {
+  margin: 0 0 14px;
+  font: 400 var(--item-desc) / 1.5 var(--font-body);
+  font-style: italic;
+  color: var(--paper-quiet);
+  break-inside: avoid;
+}
+
 .au-set__rung {
   margin-top: 7px;
   break-inside: avoid;

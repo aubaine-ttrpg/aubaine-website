@@ -16,6 +16,7 @@ const t = strings(locale)
     <span class="au-set__name">{set.name}</span>
     <span class="au-set__count">{`${pieces} ${t.setPieces}`}</span>
   </div>
+  <p class="au-set__desc">{set.description}</p>
   {
     set.bonuses.map((bonus) => (
       <div class="au-set__rung">

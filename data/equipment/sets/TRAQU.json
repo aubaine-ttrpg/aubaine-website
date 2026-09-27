@@ -2,6 +2,7 @@
   "id": "TRAQU",
   "status": "draft",
   "name": "Panoplie du Traqueur",
+  "description": "Feutre, cuir maté au noir et pierre grise. Les chasseurs se passent ces pièces une à une, de piste en piste, et rares sont ceux qui les portent toutes.",
   "bonuses": [
     {
       "pieces": 2,

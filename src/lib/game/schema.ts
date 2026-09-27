@@ -630,6 +630,12 @@ export const equipmentSet = z
     id: z.string().min(1).describe("Identifiant, celui qu'une pièce nomme dans 'set'."),
     status: contentStatus.optional(),
     name: z.string().min(1),
+    description: z
+      .string()
+      .min(1)
+      .describe(
+        "Présentation de la panoplie, imprimée sous son nom : d'où elle vient et à quoi elle ressemble. Aucune règle n'y figure.",
+      ),
     bonuses: z
       .array(
         z
@@ -1137,6 +1143,7 @@ export const overlays = {
   }),
   equipmentSet: localized({
     name: z.string().optional(),
+    description: z.string().optional(),
     bonuses: z.record(z.string(), localized({ text: z.string().optional() })).optional(),
   }),
   equipmentCatalogue: localized({

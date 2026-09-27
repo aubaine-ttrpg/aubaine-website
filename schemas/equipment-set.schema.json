@@ -23,6 +23,11 @@
       "type": "string",
       "minLength": 1
     },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Présentation de la panoplie, imprimée sous son nom : d'où elle vient et à quoi elle ressemble. Aucune règle n'y figure."
+    },
     "bonuses": {
       "minItems": 1,
       "type": "array",
@@ -61,6 +66,7 @@
   "required": [
     "id",
     "name",
+    "description",
     "bonuses"
   ],
   "additionalProperties": false

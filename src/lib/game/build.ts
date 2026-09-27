@@ -465,7 +465,7 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
     const localized = patch.success ? pruned(patch.data) : {}
     sets.set(entry.data.id, {
       ...entry.data,
-      ...pruned({ name: localized.name }),
+      ...pruned({ name: localized.name, description: localized.description }),
       bonuses: entry.data.bonuses.map((bonus) => ({
         ...bonus,
         text: localized.bonuses?.[String(bonus.pieces)]?.text ?? inherited(bonus.text),
