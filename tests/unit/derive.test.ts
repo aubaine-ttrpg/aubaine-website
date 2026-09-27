@@ -3,6 +3,7 @@ import { resolve } from 'node:path'
 import { describe, expect, it } from 'vitest'
 
 import {
+  cataloguePanoplies,
   collator,
   formatNumber,
   formatPrice,
@@ -21,7 +22,13 @@ import {
   treeDomains,
   xpOf,
 } from '../../src/lib/game/derive'
-import type { GameState, Skill, SkillTree } from '../../src/lib/game/schema'
+import type {
+  EquipmentItem,
+  EquipmentSet,
+  GameState,
+  Skill,
+  SkillTree,
+} from '../../src/lib/game/schema'
 import {
   bookChapterRef,
   NAV_SECTIONS,
@@ -481,5 +488,59 @@ describe('state order', () => {
   it('refuses a cran that follows no state, or a chain that loops', () => {
     expect(() => inCranOrder([state('a', 'A', 'absent')], compare)).toThrow()
     expect(() => inCranOrder([state('a', 'A', 'b'), state('b', 'B', 'a')], compare)).toThrow()
+  })
+})
+
+describe('panoply pages', () => {
+  const rarities = ['common', 'uncommon', 'very-rare'].map((key) => ({
+    key,
+    labelFr: key,
+    labelEn: key,
+  }))
+  const set = (id: string, name: string): EquipmentSet => ({
+    id,
+    name,
+    description: name,
+    bonuses: [{ pieces: 2, text: name }],
+  })
+  const piece = (name: string, setId: string, rarity: string): EquipmentItem => ({
+    name,
+    section: 'bijoux',
+    position: 0,
+    kind: 'Bijou',
+    rarity,
+    set: setId,
+    description: name,
+  })
+
+  it('sorts panoplies by rarity, then alphabetically within a rarity', () => {
+    const sets = [
+      set('FAEBI', 'Panoplie des Faebies'),
+      set('TRAQU', 'Panoplie du Traqueur'),
+      set('BASTI', 'Panoplie du Bastion'),
+      set('ECLAT', "Panoplie de l'Éclat"),
+    ]
+    const items = [
+      piece('Boucle', 'FAEBI', 'very-rare'),
+      piece('Capuche', 'TRAQU', 'uncommon'),
+      piece('Heaume', 'BASTI', 'uncommon'),
+      piece('Anneau', 'ECLAT', 'common'),
+    ]
+    expect(cataloguePanoplies(rarities, sets, items, 'fr').map((entry) => entry.set.id)).toEqual([
+      'ECLAT',
+      'BASTI',
+      'TRAQU',
+      'FAEBI',
+    ])
+  })
+
+  it('keeps the pieces of a panoply in the order the catalogue gives them', () => {
+    const items = [
+      piece('Heaume', 'BASTI', 'uncommon'),
+      piece('Dague', 'NONE', 'uncommon'),
+      piece('Grèves', 'BASTI', 'uncommon'),
+    ]
+    const [bastion] = cataloguePanoplies(rarities, [set('BASTI', 'Bastion')], items, 'fr')
+    expect(bastion?.pieces.map((entry) => entry.name)).toEqual(['Heaume', 'Grèves'])
   })
 })

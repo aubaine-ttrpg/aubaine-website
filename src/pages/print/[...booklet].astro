@@ -26,10 +26,16 @@ import {
   treeStates,
 } from '../../lib/booklet/fingerprint'
 import { type BookletKind, releaseShort, releaseStamp } from '../../lib/booklet/release'
-import { corpus } from '../../lib/game/corpus'
+import { corpus, label } from '../../lib/game/corpus'
 import type { CatalogueGroup, CataloguePanoply } from '../../lib/game/derive'
-import { catalogueByRarity, treeSkillOrder, treeTypeLabel } from '../../lib/game/derive'
+import {
+  catalogueByRarity,
+  cataloguePanoplies,
+  treeSkillOrder,
+  treeTypeLabel,
+} from '../../lib/game/derive'
 import { renderProse } from '../../lib/game/prose'
+import type { EquipmentSet } from '../../lib/game/schema'
 import { DEFAULT_LOCALE, HTML_LANG, LOCALES, type Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
 
@@ -130,15 +136,10 @@ const catalogueStateList = catalogue ? catalogueStates(data) : []
 const catalogueWords = catalogue ? catalogueRuleWords(data) : []
 
 const rarityBlocks = catalogue
-  ? catalogueByRarity(
-      data.rarities.values(),
-      catalogue.families,
-      data.sections,
-      data.sets.values(),
-      data.items,
-      locale,
-      t.sets_,
-    )
+  ? catalogueByRarity(data.rarities.values(), catalogue.families, data.sections, locale)
+  : []
+const panoplies = catalogue
+  ? cataloguePanoplies(data.rarities.values(), data.sets.values(), data.items, locale)
   : []
 
 const familyAnchor = (rarity: string, family: string): string => `bloc-${rarity}-${family}`
@@ -151,27 +152,30 @@ type CatalogueLeafPlan = {
   panoply: CataloguePanoply | undefined
 }
 
-const catalogueLeaves: CatalogueLeafPlan[] = rarityBlocks.flatMap((block) =>
-  block.families.flatMap((family): CatalogueLeafPlan[] => {
-    const familyHead = familyAnchor(block.key, family.key)
-    if (family.groups.length === 0) {
-      return family.panoplies.map((panoply, index) => ({
+const panoplyAnchor = (set: EquipmentSet): string => `panoplie-${set.id.toLowerCase()}`
+const [firstPanoply] = panoplies
+
+const catalogueLeaves: CatalogueLeafPlan[] = [
+  ...rarityBlocks.flatMap((block) =>
+    block.families.flatMap((family): CatalogueLeafPlan[] => {
+      const familyHead = familyAnchor(block.key, family.key)
+      return family.groups.map((group, index) => ({
         anchor: index === 0 ? familyHead : undefined,
         rarity: block.label,
         family: family.title,
-        group: undefined,
-        panoply,
+        group,
+        panoply: undefined,
       }))
-    }
-    return family.groups.map((group, index) => ({
-      anchor: index === 0 ? familyHead : undefined,
-      rarity: block.label,
-      family: family.title,
-      group,
-      panoply: undefined,
-    }))
-  }),
-)
+    }),
+  ),
+  ...panoplies.map((panoply) => ({
+    anchor: panoplyAnchor(panoply.set),
+    rarity: label(panoply.rarity, locale, panoply.rarity.key),
+    family: t.sets_,
+    group: undefined,
+    panoply,
+  })),
+]
 
 const guideAnchor = 'guide'
 const skillsAnchor = 'competences-accordees'
@@ -205,6 +209,16 @@ const contentsRows: ContentsRow[] = catalogue
           depth: 1 as const,
         })),
       ]),
+      ...(firstPanoply
+        ? [
+            { anchor: panoplyAnchor(firstPanoply.set), label: t.sets_, depth: 0 as const },
+            ...panoplies.map((panoply) => ({
+              anchor: panoplyAnchor(panoply.set),
+              label: panoply.set.name,
+              depth: 1 as const,
+            })),
+          ]
+        : []),
       ...(grantedSkills.length > 0
         ? [{ anchor: skillsAnchor, label: t.grantedSkills, depth: 0 as const }]
         : []),

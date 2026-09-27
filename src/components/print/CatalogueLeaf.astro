@@ -22,7 +22,6 @@ type Props = {
 const { corpus, locale, anchor, rarity, family, title, group, panoply } = Astro.props
 
 const slot = group?.section.slot ? corpus.slots.get(group.section.slot) : undefined
-const heading = group ? group.section.title : (panoply?.set.name ?? family)
 const rest = group ? group.rest : (panoply?.pieces ?? [])
 ---
 
@@ -36,20 +35,28 @@ const rest = group ? group.rest : (panoply?.pieces ?? [])
 
       <div class="au-catalogue__columns" data-columns>
         <div data-equipment-group>
-          <div class="au-section" id={anchor}>
-            {slot && <Icon name={slot.iconName} class="au-section__slot" />}
-            <span class="au-section__title">{heading}</span>
-            <span class="au-section__rule" />
-          </div>
-          {group && <ItemEntry item={group.lead} corpus={corpus} locale={locale} />}
+          {
+            group && (
+              <Fragment>
+                <div class="au-section" id={anchor}>
+                  {slot && <Icon name={slot.iconName} class="au-section__slot" />}
+                  <span class="au-section__title">{group.section.title}</span>
+                  <span class="au-section__rule" />
+                </div>
+                <ItemEntry item={group.lead} corpus={corpus} locale={locale} />
+              </Fragment>
+            )
+          }
           {
             panoply && (
-              <SetEntry
-                set={panoply.set}
-                pieces={panoply.pieces.length}
-                corpus={corpus}
-                locale={locale}
-              />
+              <div id={anchor}>
+                <SetEntry
+                  set={panoply.set}
+                  pieces={panoply.pieces.length}
+                  corpus={corpus}
+                  locale={locale}
+                />
+              </div>
             )
           }
         </div>

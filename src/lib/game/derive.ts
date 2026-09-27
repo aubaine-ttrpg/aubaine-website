@@ -382,33 +382,28 @@ export type CatalogueGroup = {
   rest: EquipmentItem[]
 }
 
-export type CataloguePanoply = { set: EquipmentSet; pieces: EquipmentItem[] }
+export type CataloguePanoply = {
+  set: EquipmentSet
+  rarity: VocabularyEntry
+  pieces: EquipmentItem[]
+}
 
 export type CatalogueFamily = {
   key: string
   title: string
   groups: CatalogueGroup[]
-  panoplies: CataloguePanoply[]
 }
 
 export type CatalogueRarity = { key: string; label: string; families: CatalogueFamily[] }
-
-export const PANOPLY_FAMILY = 'panoplies'
 
 export function catalogueByRarity(
   rarities: Iterable<VocabularyEntry>,
   families: Iterable<{ key: string; title: string }>,
   sections: Iterable<CatalogueSection>,
-  sets: Iterable<EquipmentSet>,
-  items: Iterable<EquipmentItem>,
   locale: Locale,
-  panoplyTitle: string,
 ): CatalogueRarity[] {
   const allSections = [...sections]
   const allFamilies = [...families]
-  const allItems = [...items]
-  const allSets = [...sets]
-  const sectionRank = new Map(allSections.map((section, at) => [section.key, at]))
   const out: CatalogueRarity[] = []
 
   for (const rarity of rarities) {
@@ -423,24 +418,7 @@ export function catalogueByRarity(
         )
         if (lead) groups.push({ section, lead, rest })
       }
-      if (groups.length > 0) blocks.push({ ...family, groups, panoplies: [] })
-    }
-
-    const panoplies: CataloguePanoply[] = allSets
-      .filter((set) => setRarity(allItems, set.id) === rarity.key)
-      .map((set) => ({
-        set,
-        pieces: allItems
-          .filter((item) => item.set === set.id)
-          .sort(
-            (a, b) =>
-              (sectionRank.get(a.section) ?? 0) - (sectionRank.get(b.section) ?? 0) ||
-              a.position - b.position,
-          ),
-      }))
-
-    if (panoplies.length > 0) {
-      blocks.push({ key: PANOPLY_FAMILY, title: panoplyTitle, groups: [], panoplies })
+      if (groups.length > 0) blocks.push({ ...family, groups })
     }
 
     if (blocks.length > 0) {
@@ -452,6 +430,30 @@ export function catalogueByRarity(
     }
   }
   return out
+}
+
+export function cataloguePanoplies(
+  rarities: Iterable<VocabularyEntry>,
+  sets: Iterable<EquipmentSet>,
+  itemsInCatalogueOrder: EquipmentItem[],
+  locale: Locale,
+): CataloguePanoply[] {
+  const ranked = [...rarities]
+  const rank = new Map(ranked.map((rarity, at) => [rarity.key, at]))
+  const compare = collator(locale)
+  return [...sets]
+    .map((set) => {
+      const key = setRarity(itemsInCatalogueOrder, set.id)
+      const rarity = ranked.find((entry) => entry.key === key)
+      if (!rarity) throw new Error(`set ${set.id} has the undeclared rarity ${key}`)
+      const pieces = itemsInCatalogueOrder.filter((item) => item.set === set.id)
+      return { set, rarity, pieces }
+    })
+    .sort(
+      (a, b) =>
+        (rank.get(a.rarity.key) ?? 0) - (rank.get(b.rarity.key) ?? 0) ||
+        compare.compare(a.set.name, b.set.name),
+    )
 }
 
 export type CostPill = { key: string; label: string; fg: string; bc: string; bg: string }
