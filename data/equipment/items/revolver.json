@@ -1,5 +1,5 @@
 {
-  "name": "Pistolet",
+  "name": "Revolver",
   "status": "playtest",
   "section": "armes-distance",
   "position": 0,
@@ -10,7 +10,7 @@
   "headlines": [
     {
       "label": "Dégâts",
-      "value": "1d6 + Dextérité"
+      "value": "1d8 + Dextérité"
     }
   ],
   "stats": [
@@ -53,5 +53,5 @@
       "Intelligence 15"
     ]
   },
-  "description": "Six chambres, une détente. Le rechargement coûte une Action entière."
+  "description": "Canon d'acier noir cerclé d'or, crosse gainée de cuir. Chaque coup laisse dans l'air une odeur d'orage."
 }
