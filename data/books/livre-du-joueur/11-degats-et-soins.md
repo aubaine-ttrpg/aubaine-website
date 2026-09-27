@@ -61,7 +61,7 @@ Tout soin qui rend au moins 1 {{pdv}} met fin à l'{{agonie}} immédiatement. Le
 
 Sans magie ni potion, une {{action}} et un {{jet}} réussi d'{{intelligence}} + {{medecine}} contre un {{dd}} de 20 rendent 1 {{pdv}}, ce qui met fin à l'état.
 
-Dans les deux cas, la créature reste {{a-terre}}. Se relever lui coûte la moitié de sa {{vitesse}}, à son tour.
+Dans les deux cas, la créature reste {{a-terre}}. Se relever lui coûte la moitié de sa {{vitesse}}, à son tour, et une créature dont la {{vitesse}} est de 0 ne peut pas se relever.
 
 Trois tours, c'est court sans être immédiat. Un allié à terre est un problème à résoudre pendant le combat, et il le reste même si personne ne le frappe plus.
 

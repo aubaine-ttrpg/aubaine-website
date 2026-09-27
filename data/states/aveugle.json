@@ -3,5 +3,5 @@
   "name": "Aveuglé",
   "kind": "debuff",
   "icon": "mdi:eye-off",
-  "description": "Une créature {{aveugle|Aveuglée}} ne voit plus. Elle rate tout {{jet}} qui demande de voir, ses autres {{jet|Jets}} subissent 1 {{desavantage}}, et les {{jet|Jets}} qui la prennent pour cible gagnent 1 {{avantage}}.\n\nLa Compétence qui l'applique indique combien de temps l'état dure."
+  "description": "Une créature {{aveugle|Aveuglée}} ne voit plus. Elle rate tout {{jet}} qui ne repose que sur la vue, comme lire une inscription ou repérer une créature silencieuse. Ses {{attaque|Attaques}} et ses autres {{jet|Jets}} subissent 1 {{desavantage}}, et les {{jet|Jets}} qui la prennent pour cible gagnent 1 {{avantage}}.\n\nLa Compétence qui l'applique indique combien de temps l'état dure."
 }

@@ -71,7 +71,7 @@ Difficult terrain
 : Rubble, a steep slope, knee-deep water or a packed crowd slow you down. Every metre moved through difficult terrain costs two.
 
 Standing up
-: A creature lying {{a-terre}} stands up by spending half its {{vitesse}}, on its turn.
+: A creature lying {{a-terre}} stands up by spending half its {{vitesse}}, on its turn. If its {{vitesse}} is 0, it cannot stand up, and no effect stands it back up.
 
 Leaving an opponent
 : Leaving the reach of a creature that can see you lets it use its {{ATTOPP-001}}, unless you used {{DESENG-001}} this turn.

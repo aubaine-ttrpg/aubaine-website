@@ -22,7 +22,7 @@
       "level": 2,
       "tier": 4,
       "title": "Envol partagé",
-      "description": "Lorsque vous lancez {{ENVOLX-001}}, vous pouvez dépenser 1 {{energie}} de plus pour qu'une créature consentante de {{taille}} Moyenne ou plus petite, à 1,5 m ou moins de vous et qui n'est pas {{immobilise|Immobilisée}}, bondisse avec vous. Elle arrive à un emplacement libre de votre choix, à 1,5 m ou moins du vôtre. Son bond ne compte pas dans son {{deplacement|déplacement}} et ne déclenche aucune {{ATTOPP-001}}. Si elle était {{a-terre}}, elle ne l'est plus. Si son emplacement est en l'air, elle y reste en suspens dans les mêmes conditions que vous et redescend en même temps que vous."
+      "description": "Lorsque vous lancez {{ENVOLX-001}}, vous pouvez dépenser 1 {{energie}} de plus pour qu'une créature consentante de {{taille}} Moyenne ou plus petite, à 1,5 m ou moins de vous, bondisse avec vous. Elle arrive à un emplacement libre de votre choix, à 1,5 m ou moins du vôtre. Son bond ne compte pas dans son {{deplacement|déplacement}} et ne déclenche aucune {{ATTOPP-001}}. Si elle bondit ainsi et qu'elle était {{a-terre}}, elle ne l'est plus. Si son emplacement est en l'air, elle y reste en suspens dans les mêmes conditions que vous et redescend en même temps que vous."
     }
   ]
 }

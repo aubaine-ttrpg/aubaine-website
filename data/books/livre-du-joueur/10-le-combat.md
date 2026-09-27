@@ -71,7 +71,7 @@ Terrain difficile
 : Des gravats, une pente raide, une eau jusqu'aux genoux ou une foule serrée ralentissent la marche. Chaque mètre parcouru en terrain difficile en coûte deux.
 
 Se relever
-: Une créature {{a-terre}} se relève en dépensant la moitié de sa {{vitesse}}, à son tour.
+: Une créature {{a-terre}} se relève en dépensant la moitié de sa {{vitesse}}, à son tour. Si sa {{vitesse}} est de 0, elle ne peut pas se relever, et aucun effet ne la remet debout.
 
 Quitter un adversaire
 : Quitter l'allonge d'une créature qui vous voit lui permet de jouer son {{ATTOPP-001}}, sauf si vous avez joué {{DESENG-001}} ce tour-ci.

@@ -3,5 +3,5 @@
   "name": "À terre",
   "kind": "debuff",
   "icon": "mdi:arrow-down-bold",
-  "description": "Une créature {{a-terre}} est au sol. Elle ne peut que ramper, pour la moitié de sa {{vitesse}}.\n\nSes {{attaque|Attaques}} subissent 1 {{desavantage}}. Les {{attaque|Attaques}} faites contre elle à 1,5 m ou moins gagnent 1 {{avantage}} ; celles faites de plus loin subissent 1 {{desavantage}}.\n\nSe relever coûte la moitié de son {{deplacement|déplacement}}."
+  "description": "Une créature {{a-terre}} est étendue de tout son long. Elle ne peut que ramper, pour la moitié de sa {{vitesse}}.\n\nSes {{attaque|Attaques}} subissent 1 {{desavantage}}. Les {{attaque|Attaques}} faites contre elle à 1,5 m ou moins gagnent 1 {{avantage}} ; celles faites de plus loin subissent 1 {{desavantage}}.\n\nSe relever lui coûte une part de son {{deplacement|déplacement}} égale à la moitié de sa {{vitesse}}. Si sa {{vitesse}} est de 0, elle ne peut pas se relever, et aucun effet ne la remet debout."
 }

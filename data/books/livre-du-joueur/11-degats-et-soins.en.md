@@ -61,7 +61,7 @@ Any healing that restores at least 1 {{pdv}} ends {{agonie}} at once. The counte
 
 Without magic or a potion, an {{action}} and a successful {{intelligence}} + {{medecine}} {{jet}} against {{dd}} 20 restore 1 {{pdv}}, which ends the state.
 
-Either way, the creature stays {{a-terre}}. Standing up costs it half its {{vitesse}}, on its turn.
+Either way, the creature stays {{a-terre}}. Standing up costs it half its {{vitesse}}, on its turn, and a creature whose {{vitesse}} is 0 cannot stand up.
 
 Three turns is short without being instant. An ally on the ground is a problem to solve during the fight, and it stays one even if nobody is hitting them any more.
 
