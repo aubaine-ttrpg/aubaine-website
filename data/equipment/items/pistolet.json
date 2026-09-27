@@ -34,7 +34,7 @@
   "properties": [
     {
       "name": "Barillet (6).",
-      "text": "Cette arme peut effectuer jusqu'à 6 attaques avant de devoir être rechargée. Une fois son Barillet vide, vous devez utiliser une {{action}} pour le recharger complètement avant de pouvoir effectuer une nouvelle attaque avec cette arme."
+      "text": "Cette arme peut effectuer jusqu'à 6 {{attaque|attaques}} avant de devoir être rechargée. Une fois son Barillet vide, vous devez utiliser une {{action}} pour le recharger complètement avant de pouvoir effectuer une nouvelle {{attaque|attaque}} avec cette arme."
     },
     {
       "name": "Munitions catalysées.",

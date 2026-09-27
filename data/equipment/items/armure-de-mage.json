@@ -20,7 +20,7 @@
     },
     {
       "name": "Dynamisation arcanique.",
-      "text": "Lorsque vous utilisez un {{sort}} qui ne coûte rien, vous pouvez ajouter votre modificateur d'{{intelligence}} OU d'{{esprit}} OU de {{charisme}} à un dé du {{jet}} de Dégâts du {{sort}}."
+      "text": "Lorsque vous utilisez un {{sort}} qui ne coûte rien, vous pouvez ajouter votre modificateur d'{{intelligence}} OU d'{{esprit}} OU de {{charisme}} à un dé du Jet de Dégâts du {{sort}}."
     }
   ],
   "craft": {

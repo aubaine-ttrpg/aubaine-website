@@ -15,5 +15,5 @@
       "mobility"
     ]
   },
-  "description": "Le mouvement vous charge comme la laine qu'on frotte. À la fin de chacun de vos tours, vous gagnez 1 {{surtension}} pour chacune des conditions suivantes que vous remplissez. Si vous n'en remplissez aucune, vous perdez toute votre {{surtension}}.\n\n***Course.*** Pendant ce tour, vous avez parcouru au moins 6 m en dépensant votre déplacement.\n***Téléportation.*** Depuis la fin de votre tour précédent, vous vous êtes téléporté au moins une fois, ou vous avez joué {{RIPFUL-001}}."
+  "description": "Le mouvement vous charge comme la laine qu'on frotte. À la fin de chacun de vos tours, vous gagnez 1 {{surtension}} pour chacune des conditions suivantes que vous remplissez. Si vous n'en remplissez aucune, vous perdez toute votre {{surtension}}.\n\n***Course.*** Pendant ce tour, vous avez parcouru au moins 6 m en dépensant votre {{deplacement|déplacement}}.\n***Téléportation.*** Depuis la fin de votre tour précédent, vous vous êtes téléporté au moins une fois, ou vous avez joué {{RIPFUL-001}}."
 }

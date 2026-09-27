@@ -3,5 +3,5 @@
   "name": "Endormi",
   "kind": "debuff",
   "icon": "mdi:sleep",
-  "description": "Une créature {{endormi|Endormie}} tombe inconsciente : elle est {{a-terre}} et ne peut jouer aucune {{action}}, {{action-bonus}} ni {{reaction}}.\n\nL'état prend fin lorsque la Compétence qui l'a endormie se termine, lorsque la créature subit des dégâts, ou lorsqu'une autre créature dépense une {{action}} pour la secouer ou la gifler.\n\nUn Mort-vivant ou un Artificiel ne peut pas être {{endormi}}."
+  "description": "Une créature {{endormi|Endormie}} tombe inconsciente : elle est {{a-terre}} et ne peut jouer aucune {{action}}, {{action-bonus}} ni {{reaction}}.\n\nL'état prend fin lorsque la Compétence qui l'a {{endormi|endormie}} se termine, lorsque la créature subit des dégâts, ou lorsqu'une autre créature dépense une {{action}} pour la secouer ou la gifler.\n\nUn Mort-vivant ou un Artificiel ne peut pas être {{endormi}}."
 }

@@ -13,7 +13,7 @@
       "summoning"
     ]
   },
-  "description": "Vous montez un Automate fait d'un Domaine magique dont vous connaissez l'Arbre, sous la forme que vous voulez lui donner. Il est Petit : 1 m³ au maximum. Ce qu'il est, ce à quoi il ressemble et ce qu'il sait faire de sa carcasse vous regardent.\n\nIl possède 1 dans chacune de ses {{caracteristique|Caractéristiques}}, plus 3 points que vous répartissez entre elles. Sa {{ca}} est de 12 + sa {{constitution}}, et il gagne la moitié des PX, PM et PP que vous gagnez.\n\nIl inflige 1d4 + sa {{force}} ou sa {{dexterite}}. Le type de ses dégâts suit la forme que prend son attaque sur le moment : Contondants, Tranchants, Perforants, ou celui de son Domaine.",
+  "description": "Vous montez un Automate fait d'un Domaine magique dont vous connaissez l'Arbre, sous la forme que vous voulez lui donner. Il est Petit : 1 m³ au maximum. Ce qu'il est, ce à quoi il ressemble et ce qu'il sait faire de sa carcasse vous regardent.\n\nIl possède 1 dans chacune de ses {{caracteristique|Caractéristiques}}, plus 3 points que vous répartissez entre elles. Sa {{ca}} est de 12 + sa {{constitution}}, et il gagne la moitié des PX, PM et PP que vous gagnez.\n\nIl inflige 1d4 + sa {{force}} ou sa {{dexterite}}. Le type de ses dégâts suit la forme que prend son {{attaque|attaque}} sur le moment : Contondants, Tranchants, Perforants, ou celui de son Domaine.",
   "upgrades": [
     {
       "level": 2,

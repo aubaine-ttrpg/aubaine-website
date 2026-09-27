@@ -7,5 +7,5 @@
   "activation": "Passif",
   "range": "—",
   "duration": "—",
-  "description": "Au déblocage de cette compétence, choisissez une compétence de n'importe quel arbre coûtant 25 XP ou moins et portant l'étiquette {{sort}}. Vous apprenez la compétence choisie."
+  "description": "Au déblocage de cette compétence, choisissez une compétence de n'importe quel arbre coûtant 25 XP ou moins et portant l'étiquette {{sort}}. Vous {{apprise|apprenez}} la compétence choisie."
 }

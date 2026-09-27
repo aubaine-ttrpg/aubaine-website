@@ -21,7 +21,7 @@
       "control"
     ]
   },
-  "description": "L'eau qui imprègne une créature se fige d'un coup. Choisissez une créature que vous voyez à portée qui porte au moins 1 {{trempe}}, puis retirez-lui l'état {{trempe}}. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nElle effectue un {{jet}} de {{constitution}} + {{resistance}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}}), augmenté de 1 par {{trempe}} que vous venez de lui retirer. En cas d'échec, elle est {{gele}}. En cas de réussite, elle subit 1d6 dégâts de Froid et n'est pas gelée. Les {{jet|Jets}} que l'état {{gele}} lui fait effectuer ensuite se font sans l'augmentation due au {{trempe}}.",
+  "description": "L'eau qui imprègne une créature se fige d'un coup. Choisissez une créature que vous voyez à portée qui porte au moins 1 {{trempe}}, puis retirez-lui l'état {{trempe}}. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nElle effectue un {{jet}} de {{constitution}} + {{resistance}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}}), augmenté de 1 par {{trempe}} que vous venez de lui retirer. En cas d'échec, elle est {{gele}}. En cas de réussite, elle subit 1d6 dégâts de Froid et n'est pas {{gele|gelée}}. Les {{jet|Jets}} que l'état {{gele}} lui fait effectuer ensuite se font sans l'augmentation due au {{trempe}}.",
   "upgrades": [
     {
       "level": 2,

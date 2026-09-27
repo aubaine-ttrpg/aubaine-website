@@ -5,7 +5,7 @@
   "bonuses": [
     {
       "pieces": 2,
-      "text": "Vous gagnez la Compétence {{SILLAG-001}}. Elle n'occupe aucune {{memoire}} et n'a pas à être apprise.",
+      "text": "Vous gagnez la Compétence {{SILLAG-001}}. Elle n'occupe aucune {{memoire}} et n'a pas à être {{apprise|apprise}}.",
       "grants": [
         "SILLAG-001"
       ]

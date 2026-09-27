@@ -12,5 +12,5 @@
       "enhancement"
     ]
   },
-  "description": "Avant que votre Automate attaque, vous pouvez changer son mode.\n\n***N0RM4L.*** Il attaque comme il est monté, sans rien changer.\n***P01NGS.*** Ses attaques utilisent la {{force}} et infligent 2d6 dégâts.\n***T1R3UR.*** Ses {{jet|Jets}} d'{{attaque}} utilisent la {{dexterite}} seule, gagnent 2 {{avantage|Avantages}} à distance, et sa portée augmente de 9 m."
+  "description": "Avant que votre Automate attaque, vous pouvez changer son mode.\n\n***N0RM4L.*** Il attaque comme il est monté, sans rien changer.\n***P01NGS.*** Ses {{attaque|attaques}} utilisent la {{force}} et infligent 2d6 dégâts.\n***T1R3UR.*** Ses {{jet|Jets}} d'{{attaque}} utilisent la {{dexterite}} seule, gagnent 2 {{avantage|Avantages}} à distance, et sa portée augmente de 9 m."
 }

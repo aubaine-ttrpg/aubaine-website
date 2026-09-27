@@ -3,5 +3,5 @@
   "name": "Gelé",
   "kind": "debuff",
   "icon": "mdi:snowflake",
-  "description": "Une créature {{gele|Gelée}} est prise dans la glace. Elle est {{immobilise|Immobilisée}}, elle rate tout {{jet}} de {{dexterite}}, et les {{jet|Jets}} qui la prennent pour cible gagnent 1 {{avantage}}.\n\nÀ la fin de chacun de ses tours, elle effectue un {{jet}} de {{force}} + {{athletisme}} contre le {{dd}} de la Compétence qui l'a gelée. En cas de réussite, la glace cède et l'état prend fin."
+  "description": "Une créature {{gele|Gelée}} est prise dans la glace. Elle est {{immobilise|Immobilisée}}, elle rate tout {{jet}} de {{dexterite}}, et les {{jet|Jets}} qui la prennent pour cible gagnent 1 {{avantage}}.\n\nÀ la fin de chacun de ses tours, elle effectue un {{jet}} de {{force}} + {{athletisme}} contre le {{dd}} de la Compétence qui l'a {{gele|gelée}}. En cas de réussite, la glace cède et l'état prend fin."
 }

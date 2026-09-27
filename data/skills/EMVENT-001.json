@@ -18,7 +18,7 @@
       "enhancement"
     ]
   },
-  "description": "Vous touchez une arme et l'entourez d'un vent tournant. Une fois par tour, lorsque vous réussissez une {{attaque}} avec elle, vous pouvez vous déplacer de 1,5 m, sauf si vous êtes {{immobilise}}. Ce trajet ne compte pas dans votre déplacement et ne déclenche aucune {{ATTOPP-001}}.",
+  "description": "Vous touchez une arme et l'entourez d'un vent tournant. Une fois par tour, lorsque vous réussissez une {{attaque}} avec elle, vous pouvez vous déplacer de 1,5 m, sauf si vous êtes {{immobilise}}. Ce trajet ne compte pas dans votre {{deplacement|déplacement}} et ne déclenche aucune {{ATTOPP-001}}.",
   "upgrades": [
     {
       "level": 2,
