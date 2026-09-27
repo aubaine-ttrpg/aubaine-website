@@ -2,6 +2,7 @@
 import type { Corpus } from '../../lib/game/corpus'
 import type { CatalogueGroup, CataloguePanoply } from '../../lib/game/derive'
 import type { Locale } from '../../lib/i18n/locales'
+import Divider from '../primitives/Divider.astro'
 import Icon from '../primitives/Icon.astro'
 import ItemEntry from '../primitives/ItemEntry.astro'
 import SetEntry from '../primitives/SetEntry.astro'
@@ -56,11 +57,7 @@ const rest = group ? group.rest : (panoply?.pieces ?? [])
       </div>
 
       <footer class="au-catalogue__foot">
-        <span class="au-catalogue__foot-rule">
-          <span class="au-catalogue__foot-line"></span>
-          <span class="au-catalogue__foot-mark"></span>
-          <span class="au-catalogue__foot-line"></span>
-        </span>
+        <Divider />
         <span class="au-catalogue__foot-meta">
           <span>{`Aubaine · ${title}`}</span>
           <span data-page-number></span>

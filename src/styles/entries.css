@@ -747,20 +747,20 @@
   gap: 8px;
 }
 
-.au-catalogue__foot-rule {
+.au-divider {
   display: flex;
   align-items: center;
   gap: 11px;
 }
 
-.au-catalogue__foot-line {
+.au-divider__line {
   flex: 1;
   height: 1px;
   background: var(--gold);
   opacity: 0.55;
 }
 
-.au-catalogue__foot-mark {
+.au-divider__mark {
   flex: 0 0 auto;
   width: 11px;
   height: 11px;
