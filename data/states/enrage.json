@@ -3,5 +3,5 @@
   "name": "Enragé",
   "kind": "buff",
   "icon": "mdi:emoticon-angry",
-  "description": "Une créature {{enrage|Enragée}} gagne une résistance aux dégâts Tranchants, Contondants et Perforants, et 1 {{avantage}} à tous ses {{jet|Jets}} de {{force}}.\n\nElle ne peut pas se concentrer, et ses {{jet|Jets}} d'{{intelligence}} subissent 1 {{desavantage}} : il ne reste plus grand-chose pour penser.\n\nLa Compétence qui l'applique indique combien de temps l'état dure. Il prend fin dans tous les cas lorsque la créature tombe à 0 {{pdv}}."
+  "description": "Une créature {{enrage|Enragée}} gagne une résistance aux dégâts Tranchants, Contondants et Perforants, et 1 {{avantage}} à tous ses {{jet|Jets}} de {{force}}.\n\nElle ne peut pas {{concentration|se concentrer}}, et ses {{jet|Jets}} d'{{intelligence}} subissent 1 {{desavantage}} : il ne reste plus grand-chose pour penser.\n\nLa Compétence qui l'applique indique combien de temps l'état dure. Il prend fin dans tous les cas lorsque la créature tombe à 0 {{pdv}}."
 }

@@ -18,5 +18,5 @@
       "mobility"
     ]
   },
-  "description": "Toits mouillés, gravier, poutres : vous posez le pied là où les autres cherchent une prise.\n\nLe terrain difficile ne coûte pas de {{deplacement|déplacement}} supplémentaire, et vos {{jet|Jets}} de {{dexterite}} + {{acrobaties}} pour garder l'équilibre gagnent 1 {{avantage}}."
+  "description": "Toits mouillés, gravier, poutres : vous posez le pied là où les autres cherchent une prise.\n\nLe {{terrain-difficile|terrain difficile}} ne coûte pas de {{deplacement|déplacement}} supplémentaire, et vos {{jet|Jets}} de {{dexterite}} + {{acrobaties}} pour garder l'équilibre gagnent 1 {{avantage}}."
 }

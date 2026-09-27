@@ -22,5 +22,5 @@
       "control"
     ]
   },
-  "description": "Une masse d'eau se referme sur une créature que vous voyez à portée. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nTant que vous vous concentrez, la créature ne respire plus et elle est {{immobilise|Immobilisée}}. À la fin de chacun de ses tours, elle subit 1d10 dégâts Contondants, puis effectue un {{jet}} de {{force}} + {{athletisme}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}}). En cas de réussite, elle se dégage et l'effet prend fin."
+  "description": "Une masse d'eau se referme sur une créature que vous voyez à portée. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nTant que vous {{concentration|vous concentrez}}, la créature ne respire plus et elle est {{immobilise|Immobilisée}}. À la fin de chacun de ses tours, elle subit 1d10 dégâts Contondants, puis effectue un {{jet}} de {{force}} + {{athletisme}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}}). En cas de réussite, elle se dégage et l'effet prend fin."
 }

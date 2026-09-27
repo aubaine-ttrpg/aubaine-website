@@ -1,6 +1,6 @@
 ---
 title: "Le combat"
-description: "Le déroulement d'un combat, la surprise, l'initiative, votre tour, se déplacer, attaquer, la Classe d'armure, agir hors de son tour et les états."
+description: "Le déroulement d'un combat, la surprise, l'initiative, votre tour, se déplacer, attaquer, la Classe d'armure, agir hors de son tour, la Concentration et les états."
 ---
 
 Le combat n'a pas de règles de résolution à lui : on y lance les mêmes {{jet|Jets}} que partout ailleurs. Ce qu'il ajoute, c'est un ordre de passage et un budget par tour, pour que chacun agisse à son tour quand tout se passe en même temps.
@@ -142,6 +142,14 @@ Un muret, un tronc ou une porte entrouverte protègent en partie ; viser une mai
 Votre {{reaction}} est votre seule façon d'agir pendant le tour d'un autre, et vous n'en avez qu'une par round. Elle se joue quand une règle vous en donne le déclencheur.
 
 Deux Compétences de base en fournissent un à tout le monde. {{ATTOPP-001}} frappe une créature qui quitte votre allonge. {{PREPAR-001}} garde une action en réserve pour un moment que vous annoncez : « dès qu'il passe la porte, je tire ». D'autres Compétences en ajoutent, et leur fiche nomme le déclencheur.
+
+## La Concentration
+
+Certaines Compétences durent tant que vous vous concentrez : leur durée porte la mention {{concentration}}. Vous ne maintenez qu'une Compétence de {{concentration}} à la fois, et en jouer une autre met fin à la première.
+
+Chaque fois que vous subissez des dégâts pendant que vous en maintenez une, effectuez un {{jet}} de {{constitution}} + {{volonte}} contre un {{dd}} de 15 pour maintenir votre {{concentration}}. En cas d'échec, elle prend fin.
+
+Votre {{concentration}} prend fin aussi lorsque vous gagnez {{agonie}}, lorsque vous êtes {{endormi}}, {{sonne}} ou {{enrage}}, et lorsque vous y mettez fin, ce qui ne vous coûte rien.
 
 ## Les états
 

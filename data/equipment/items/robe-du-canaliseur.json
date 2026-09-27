@@ -20,7 +20,7 @@
     },
     {
       "name": "Concentration tenue.",
-      "text": "Vos {{jet|Jets}} de {{constitution}} + {{volonte}} pour maintenir votre concentration gagnent 1 {{avantage}}."
+      "text": "Vos {{jet|Jets}} de {{constitution}} + {{volonte}} pour maintenir votre {{concentration}} gagnent 1 {{avantage}}."
     }
   ],
   "craft": {

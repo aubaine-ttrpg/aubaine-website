@@ -695,6 +695,16 @@ const RULE_TERMS: readonly RuleTerm[] = [
     tag: 'spell',
   },
   {
+    fr: 'Concentration',
+    en: 'Concentration',
+    color: 'var(--term-spell)',
+    icon: 'game-icons/brain',
+    definition: {
+      fr: "L'attention que vous demande une Compétence qui dure : elle agit tant que vous la maintenez, dans la limite de sa durée. Vous ne maintenez qu'une Compétence de {{concentration}} à la fois : en jouer une autre met fin à la première. Chaque fois que vous subissez des dégâts, effectuez un {{jet}} de {{constitution}} + {{volonte}} contre un {{dd}} de 15 : en cas d'échec, votre {{concentration}} prend fin. Elle prend fin aussi lorsque vous gagnez {{agonie}}, lorsque vous êtes {{endormi}}, {{sonne}} ou {{enrage}}, et lorsque vous y mettez fin, ce qui ne vous coûte rien.",
+      en: 'The attention a lasting Skill asks of you: it acts while you maintain it, up to its duration. You maintain only one {{concentration}} Skill at a time: playing another ends the first. Each time you take damage, make a {{jet}} of {{constitution}} + {{volonte}} against a {{dd}} of 15: on a failure, your {{concentration}} ends. It also ends when you gain {{agonie}}, when you are {{endormi}}, {{sonne}} or {{enrage}}, and when you end it, which costs nothing.',
+    },
+  },
+  {
     fr: 'Caractéristique',
     en: 'Characteristic',
     color: 'var(--accent-ink)',
@@ -802,6 +812,16 @@ const RULE_TERMS: readonly RuleTerm[] = [
     definition: {
       fr: "Le gabarit d'une créature, rangé en catégories, du plus menu au plus colossal. La vôtre vient de votre Espèce.",
       en: "A creature's build, sorted into categories from the slightest to the most colossal. Yours comes from your Species.",
+    },
+  },
+  {
+    fr: 'Terrain difficile',
+    en: 'Difficult Terrain',
+    color: 'var(--term-move)',
+    icon: 'mdi/terrain',
+    definition: {
+      fr: "Un terrain qui ralentit la marche, comme des gravats, une pente raide, une eau jusqu'aux genoux ou une foule serrée. Chaque mètre qu'on y parcourt coûte deux mètres de {{deplacement|déplacement}}.",
+      en: 'Terrain that slows the going, such as rubble, a steep slope, knee-deep water or a packed crowd. Each metre crossed there costs two metres of {{deplacement|movement}}.',
     },
   },
   {

@@ -17,7 +17,7 @@
       "control"
     ]
   },
-  "description": "Une pluie drue s'abat dans un cylindre de 3 m de rayon et de 6 m de haut, dont la base est centrée sur un point que vous voyez à portée.\n\nTant que vous vous concentrez, la pluie reste en place, et chaque créature qui commence son tour dans la pluie est touchée par {{AVERSE-001}}. Une créature ainsi touchée qui ne porte pas {{trempe}} en gagne 1.\n\nLa pluie éteint les flammes qu'elle touche et qu'aucune magie n'entretient.",
+  "description": "Une pluie drue s'abat dans un cylindre de 3 m de rayon et de 6 m de haut, dont la base est centrée sur un point que vous voyez à portée.\n\nTant que vous {{concentration|vous concentrez}}, la pluie reste en place, et chaque créature qui commence son tour dans la pluie est touchée par {{AVERSE-001}}. Une créature ainsi touchée qui ne porte pas {{trempe}} en gagne 1.\n\nLa pluie éteint les flammes qu'elle touche et qu'aucune magie n'entretient.",
   "upgrades": [
     {
       "level": 2,

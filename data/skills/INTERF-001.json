@@ -16,5 +16,5 @@
       "divination"
     ]
   },
-  "description": "Vous fermez les yeux et vous ouvrez les siens. Tant que vous vous concentrez, vous voyez et entendez depuis votre Automate au lieu de votre propre corps, où qu'il se trouve.\n\nPendant ce temps, votre corps ne voit ni n'entend rien de ce qui l'entoure."
+  "description": "Vous fermez les yeux et vous ouvrez les siens. Tant que vous {{concentration|vous concentrez}}, vous voyez et entendez depuis votre Automate au lieu de votre propre corps, où qu'il se trouve.\n\nPendant ce temps, votre corps ne voit ni n'entend rien de ce qui l'entoure."
 }

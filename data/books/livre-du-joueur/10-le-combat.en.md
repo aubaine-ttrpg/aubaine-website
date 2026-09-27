@@ -1,6 +1,6 @@
 ---
 title: "Combat"
-description: "How a fight unfolds, surprise, initiative, your turn, moving, attacking, Armour Class, acting outside your turn, and states."
+description: "How a fight unfolds, surprise, initiative, your turn, moving, attacking, Armour Class, acting outside your turn, Concentration, and states."
 ---
 
 Combat has no resolution rules of its own: you roll the same {{jet|Rolls}} as anywhere else. What it adds is an order to act in and a budget for each turn, so that everyone gets their go when everything is happening at once.
@@ -142,6 +142,14 @@ A low wall, a tree trunk or a half-open door gives partial protection; aiming fo
 Your {{reaction}} is your only way to act during someone else's turn, and you have one per round. You use it when a rule gives you its trigger.
 
 Two Basic Skills give everyone one. {{ATTOPP-001}} strikes a creature that leaves your reach. {{PREPAR-001}} holds an action back for a moment you name: "the moment he comes through the door, I shoot". Other Skills add more, and their entry names the trigger.
+
+## Concentration
+
+Some Skills last as long as you concentrate: their duration is marked {{concentration}}. You maintain only one {{concentration}} Skill at a time, and playing another ends the first.
+
+Each time you take damage while you maintain one, make a {{constitution}} + {{volonte}} {{jet}} against {{dd}} 15 to maintain your {{concentration}}. On a failure, it ends.
+
+Your {{concentration}} also ends when you gain {{agonie}}, when you are {{endormi}}, {{sonne}} or {{enrage}}, and when you end it, which costs nothing.
 
 ## States
 
