@@ -1,7 +1,11 @@
 ---
-type Props = { label: string; text: string }
+import type { Corpus } from '../../lib/game/corpus'
+import type { Locale } from '../../lib/i18n/locales'
+import StatValue from './StatValue.astro'
 
-const { label, text } = Astro.props
+type Props = { label: string; text: string; corpus: Corpus; locale: Locale }
+
+const { label, text, corpus, locale } = Astro.props
 ---
 
 <span class="au-stat au-stat--prerequisite">
@@ -21,5 +25,5 @@ const { label, text } = Astro.props
     <rect x="4" y="11" width="16" height="10" rx="2" />
   </svg>
   <span class="au-stat__label">{label}</span>
-  {text}
+  <StatValue value={text} corpus={corpus} locale={locale} />
 </span>

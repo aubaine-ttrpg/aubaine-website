@@ -133,7 +133,14 @@ const tags = skillTags(skill.tags).map(({ key, kind }) => {
       </div>
 
       <div class="au-skill__stats">
-        {skill.prerequisite && <PrerequisiteStat label={t.prerequisite} text={skill.prerequisite} />}
+        {skill.prerequisite && (
+          <PrerequisiteStat
+            label={t.prerequisite}
+            text={skill.prerequisite}
+            corpus={corpus}
+            locale={locale}
+          />
+        )}
         {
           skill.activation && (
             <span class="au-stat">
