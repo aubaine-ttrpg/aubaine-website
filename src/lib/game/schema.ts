@@ -605,7 +605,9 @@ export const equipmentItem = z
         sequence: z
           .array(z.string())
           .min(1)
-          .describe("La fabrication dans l'ordre. Le travail physique précède le savoir."),
+          .describe(
+            "La fabrication dans l'ordre, un Jet par étape : le nom de la Caractéristique puis son DD. Le travail physique précède le savoir.",
+          ),
       })
       .strict()
       .optional()

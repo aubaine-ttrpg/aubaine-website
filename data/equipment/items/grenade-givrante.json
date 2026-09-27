@@ -39,8 +39,8 @@
       "Plante"
     ],
     "sequence": [
-      "12 (Dex)",
-      "15 (Int)"
+      "Dextérité 12",
+      "Intelligence 15"
     ]
   },
   "text": "Vous pouvez effectuer une {{action}} pour lancer cette grenade sur un point que vous voyez à portée. Chaque créature dans un rayon de ***3 mètres*** subit ***2d6*** dégâts de Froid, puis effectue un {{jet}} de {{constitution}} + {{resistance}} contre un {{dd}} de ***15***. En cas d'échec, elle est {{gele|Gelée}}, et son {{jet}} pour briser la glace se fait contre ce même {{dd}}.",

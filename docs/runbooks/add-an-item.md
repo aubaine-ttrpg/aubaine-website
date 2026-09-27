@@ -31,7 +31,7 @@ The filename is the slug and the slug is the item's handle everywhere else. Lowe
 | `craft.discipline` | required inside `craft` | Clé déclarée dans `data/meta/disciplines.json`. | `artisanat`, `arcanes`, `technologie`, `science` |
 | `craft.cost` | required inside `craft` | Valeur de matière totale à atteindre. | integer, 1 or more |
 | `craft.materials` | required inside `craft` | Types de matière acceptés. Chacun doit être représenté. | 1 or more strings |
-| `craft.sequence` | required inside `craft` | La fabrication dans l'ordre. Le travail physique précède le savoir. | 1 or more strings |
+| `craft.sequence` | required inside `craft` | La fabrication dans l'ordre, un Jet par étape : le nom de la Caractéristique puis son DD. Le travail physique précède le savoir. | 1 or more strings: `Dextérité 12` |
 | `grants` | optional | Compétences accordées par la pièce, définies dans `data/skills/`. | 1 or more skill ids that exist |
 | `text` | optional | Corps de l'entrée : ce que fait l'objet. | free text with rule markup |
 | `description` | required | Une à deux phrases, rendues en italique sous le filet de pied. | any non empty string |
@@ -95,7 +95,7 @@ The filename is the slug and the slug is the item's handle everywhere else. Lowe
       "Métal"
     ],
     "sequence": [
-      "10 (Str)"
+      "Force 10"
     ]
   },
   "description": "Lame de ceinture : on la garde à portée de main, on la lance au besoin."
@@ -137,8 +137,8 @@ An item that grants a skill, `data/equipment/items/pyro-catalyseur.json`:
       "Gemme"
     ],
     "sequence": [
-      "12 (Dex)",
-      "15 (Int)"
+      "Dextérité 12",
+      "Intelligence 15"
     ]
   },
   "grants": [

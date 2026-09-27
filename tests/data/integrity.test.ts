@@ -251,6 +251,22 @@ describe('vocabulary references', () => {
       }
     }
   })
+
+  it('names every craft step by a Caractéristique and its DD', () => {
+    const names = new Set(
+      [...fr.characteristics.values()]
+        .filter((entry) => entry.key !== VARIABLE_CHARACTERISTIC)
+        .map((entry) => entry.labelFr),
+    )
+    for (const item of fr.items) {
+      for (const step of item.craft?.sequence ?? []) {
+        const [, name, dd] = /^(.+) ([0-9]+)$/.exec(step) ?? []
+        expect(names.has(String(name)) && dd !== undefined, `${item.name} craft step ${step}`).toBe(
+          true,
+        )
+      }
+    }
+  })
 })
 
 describe('cross references', () => {

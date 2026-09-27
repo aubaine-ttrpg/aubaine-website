@@ -1000,6 +1000,15 @@
   color: var(--paper-body);
 }
 
+.au-item__craft-step {
+  white-space: nowrap;
+}
+
+.au-item__craft-then {
+  margin-inline: 6px;
+  color: var(--paper-quiet);
+}
+
 .au-item__text,
 .au-item__property {
   margin-top: 8px;

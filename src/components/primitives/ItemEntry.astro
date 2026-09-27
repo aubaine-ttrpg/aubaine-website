@@ -165,7 +165,20 @@ const setPieces = set ? cataloguePieceCount(corpus.items, set.id) : 0
           </span>
           <span class="au-item__craft-col">
             <span class="au-item__craft-label">{t.craftSequence}</span>
-            <span class="au-item__craft-value">{item.craft.sequence.join(', ')}</span>
+            <span class="au-item__craft-value">
+              {item.craft.sequence.map((step, index) => (
+                <Fragment>
+                  {index > 0 && (
+                    <span class="au-item__craft-then" aria-hidden="true">
+                      →
+                    </span>
+                  )}
+                  <span class="au-item__craft-step">
+                    <StatValue value={step} corpus={corpus} locale={locale} />
+                  </span>
+                </Fragment>
+              ))}
+            </span>
           </span>
         </div>
       </div>

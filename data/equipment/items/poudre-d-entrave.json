@@ -34,8 +34,8 @@
       "Gemme"
     ],
     "sequence": [
-      "14 (Dex)",
-      "18 (Int)"
+      "Dextérité 14",
+      "Intelligence 18"
     ]
   },
   "text": "Vous pouvez effectuer une {{action}} pour jeter cette poudre sur un point que vous voyez à portée. Chaque créature dans un rayon de ***3 mètres*** effectue un {{jet}} de {{dexterite}} + {{reflexes}} contre un {{dd}} de ***18***. En cas d'échec, elle est {{entrave}}, et son {{jet}} de dégagement se fait contre ce même {{dd}}.",

@@ -34,7 +34,7 @@
       "Plante"
     ],
     "sequence": [
-      "12 (Int)"
+      "Intelligence 12"
     ]
   },
   "text": "Vous pouvez effectuer une {{action-bonus}} pour boire ce philtre et récupérer ***1d4*** points d'{{energie}}. Votre {{energie}} ne dépasse jamais son maximum.",

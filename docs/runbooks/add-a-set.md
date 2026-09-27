@@ -73,7 +73,7 @@ A piece joins the set by naming it. `data/equipment/items/capuche-de-traque.json
       "Cuir"
     ],
     "sequence": [
-      "13 (Dex)"
+      "Dextérité 13"
     ]
   },
   "description": "Capuche doublée qui laisse les oreilles libres. Elle coupe le vent sans couper le bruit."
