@@ -53,7 +53,7 @@ Un {{deplacement}}
 : Jusqu'à votre {{vitesse}}, 9 mètres sauf si votre Espèce en fixe une autre. Il se répartit librement avant, pendant et après vos actions.
 
 Une {{reaction}}
-: Hors de votre tour, quand une règle vous fournit un déclencheur. Elle revient au début de votre tour suivant.
+: Quand une règle vous fournit un déclencheur, le plus souvent hors de votre tour. Elle revient au début de votre tour suivant.
 
 > [!EXAMPLE] Exemple
 >

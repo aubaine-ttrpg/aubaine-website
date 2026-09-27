@@ -760,8 +760,8 @@ const RULE_TERMS: readonly RuleTerm[] = [
     color: 'var(--term-reaction)',
     icon: 'mdi/rhombus',
     definition: {
-      fr: 'Une action jouée hors de votre tour, en réponse à un déclencheur. Vous en avez une par tour.',
-      en: 'An action played outside your turn, in response to a trigger. You have one per turn.',
+      fr: 'Une action jouée en réponse à un déclencheur, le plus souvent hors de votre tour. Vous en avez une par round, et elle revient au début de votre tour.',
+      en: 'An action played in response to a trigger, most often outside your turn. You have one per round, and it comes back at the start of your turn.',
     },
   },
   {

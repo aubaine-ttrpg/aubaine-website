@@ -53,7 +53,7 @@ A {{action-bonus}}
 : Up to your {{vitesse}}, 9 metres unless your Species sets another. You can spread it freely before, during and after your actions.
 
 A {{reaction}}
-: Outside your turn, when a rule gives you a trigger. It comes back at the start of your next turn.
+: When a rule gives you a trigger, most often outside your turn. It comes back at the start of your next turn.
 
 > [!EXAMPLE] Example
 >
