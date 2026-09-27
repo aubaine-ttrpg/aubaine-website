@@ -16,5 +16,5 @@
       "divination"
     ]
   },
-  "description": "Vous vous concentrez sur une eau que vous touchez, d'un lac entier à la bave d'une créature. Au bout de 10 minutes, vous apprenez trois informations de votre choix sur cette eau ou sur sa provenance.\n\nVous choisissez chaque information séparément : d'où vient cette eau, ce qu'elle a traversé, ce qu'elle transporte encore, qui l'a touchée et quand, ou ce qu'une créature y a laissé."
+  "description": "Vous posez la main sur une eau, d'un lac entier à la bave d'une créature, et vous interrogez ce dont elle se souvient. Vous apprenez trois informations différentes de votre choix sur cette eau ou sur sa provenance. L'eau ne se souvient que de ce qui lui est arrivé au cours des 30 derniers jours.\n\nChoisissez chacune parmi les suivantes : d'où vient cette eau, ce qu'elle a traversé, ce qu'elle transporte encore, la dernière créature qui l'a touchée avant vous et quand, ou ce qu'une créature que vous nommez y a laissé. Seule l'information sur ce qu'une créature y a laissé peut être choisie plusieurs fois, en nommant chaque fois une autre créature."
 }

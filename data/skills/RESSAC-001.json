@@ -21,5 +21,5 @@
       "control"
     ]
   },
-  "description": "Un courant vous obéit et frappe une créature au niveau des jambes. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nLa créature que vous visez effectue un {{jet}} de {{force}} + {{athletisme}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}}). En cas d'échec, elle est poussée de 3 m et tombe {{a-terre}}. Si elle percute un mur, une créature ou un obstacle pendant ce recul, elle subit 1d6 dégâts Contondants."
+  "description": "Un courant vous obéit, fauche les jambes d'une créature que vous voyez à portée et la renverse. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nLa créature effectue un {{jet}} de {{force}} + {{athletisme}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}}). En cas d'échec, le courant la pousse à l'horizontale, dans la direction de votre choix, de 3 m plus 1,5 m par {{trempe}} qu'elle porte. Si elle percute un mur, une créature ou un obstacle en chemin, elle s'y arrête et subit 1d6 dégâts Contondants. Elle tombe ensuite {{a-terre}}. En cas de réussite, elle tient bon et ne bouge pas."
 }

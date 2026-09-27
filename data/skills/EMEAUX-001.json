@@ -18,13 +18,13 @@
       "enhancement"
     ]
   },
-  "description": "Vous touchez une arme et l'enveloppez d'une eau vivifiante. Une fois par tour, lorsque vous réussissez une {{attaque}} avec elle, vous récupérez 1d4 {{pdv}}.",
+  "description": "Vous touchez une arme et l'enveloppez d'une eau vivifiante. Une fois par tour, lorsque vous réussissez une {{attaque}} avec elle contre une créature hostile, choisissez l'un des effets suivants : vous récupérez 1d4 {{pdv}}, ou la cible gagne 1 {{trempe}}.",
   "upgrades": [
     {
       "level": 2,
       "tier": 7,
       "title": "Étendue perfectionnée",
-      "description": "Pour chaque amélioration de {{COMFLO-001}} que vous possédez, ce {{sort}} rend 1d4 {{pdv}} supplémentaires."
+      "description": "Pour chaque amélioration de {{COMFLO-001}} que vous possédez, les {{pdv}} que ce {{sort}} vous fait récupérer augmentent de 1d4."
     }
   ]
 }

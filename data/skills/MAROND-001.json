@@ -15,5 +15,5 @@
       "mobility"
     ]
   },
-  "description": "Vous vous tenez sur l'eau comme sur la pierre. Vous marchez sur toute surface liquide et vous pouvez vous y arrêter, vous nagez à votre {{vitesse}}, et un terrain détrempé, un courant ou une pluie battante ne vous imposent aucun {{desavantage}}."
+  "description": "Vous vous tenez sur l'eau comme sur la pierre : vous pouvez y marcher et vous y arrêter. Vous nagez à votre {{vitesse}}. Un {{terrain-difficile|terrain difficile}} fait d'eau ou de boue ne vous coûte aucun {{deplacement|déplacement}} supplémentaire, et un courant ou une pluie battante ne vous imposent aucun {{desavantage}}. Le {{trempe}} que vous portez ne réduit pas votre {{vitesse}}."
 }

@@ -32,7 +32,7 @@
   "eau": {
     "domains": ["water"],
     "prime": ["any"],
-    "upgrades": 9,
+    "upgrades": 11,
     "xpTotal": 260
   },
   "feu": {

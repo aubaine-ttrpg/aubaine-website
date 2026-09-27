@@ -21,7 +21,7 @@
       "destruction"
     ]
   },
-  "description": "Une vague se lève et parcourt une ligne de 9 m sur 1,5 m devant vous. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nChaque créature sur son passage effectue un {{jet}} de {{force}} + {{athletisme}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}}). En cas d'échec, elle subit 2d8 dégâts Contondants, est poussée jusqu'au bout de la vague et tombe {{a-terre}}. En cas de réussite, elle tient bon et ne subit rien.",
+  "description": "Une vague se lève devant vous, déferle sur une ligne de 9 m sur 1,5 m et renverse les créatures qu'elle emporte. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nChaque créature sur son passage effectue un {{jet}} de {{force}} + {{athletisme}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}}). En cas d'échec, elle subit 2d8 dégâts Contondants, puis la vague la pousse le long de la ligne, loin de vous, jusqu'à son bout ou jusqu'à ce qu'une créature ou un obstacle l'arrête. Elle tombe ensuite {{a-terre}}. En cas de réussite, elle tient bon et ne subit rien. Les créatures poussées se déplacent l'une après l'autre, de la plus éloignée de vous à la plus proche.",
   "upgrades": [
     {
       "level": 2,

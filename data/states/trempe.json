@@ -3,5 +3,6 @@
   "name": "Trempé",
   "kind": "debuff",
   "icon": "mdi:water",
-  "description": "{{trempe}} s'accumule sur une créature jusqu'à 3. Sa {{vitesse}} diminue de 1,5 m par {{trempe}} qu'elle porte.\n\nLorsqu'elle subit des dégâts de Foudre, elle en subit 1 de plus par {{trempe}}.\n\nElle perd l'état lorsqu'elle termine un tour sans avoir été touchée par une Compétence du Domaine Eau."
+  "color": "#348da5",
+  "description": "{{trempe}} s'accumule sur une créature jusqu'à 3. Sa {{vitesse}} diminue de 1,5 m par {{trempe}} qu'elle porte.\n\nLorsqu'elle subit des dégâts de Foudre, elle en subit 1 de plus par {{trempe}}.\n\nElle perd tout son {{trempe}} lorsqu'elle termine l'un de ses tours sans avoir été touchée par une Compétence du Domaine Eau depuis la fin de son tour précédent, ou depuis le début du combat si c'est son premier tour. Une Compétence du Domaine Eau touche la créature lorsqu'elle lui inflige des dégâts, lui applique un état ou lui fait effectuer un {{jet}} pour y résister, ou lorsque son texte le dit. Hors combat, la créature perd tout son {{trempe}} au bout de 1 minute sans être touchée."
 }

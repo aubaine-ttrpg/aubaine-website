@@ -21,13 +21,19 @@
       "control"
     ]
   },
-  "description": "L'eau qui imprègne une créature se fige d'un coup. Choisissez une créature que vous voyez à portée qui porte au moins 1 {{trempe}}, puis retirez-lui l'état {{trempe}}. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nElle effectue un {{jet}} de {{constitution}} + {{resistance}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}}), augmenté de 1 par {{trempe}} que vous venez de lui retirer. En cas d'échec, elle est {{gele}}. En cas de réussite, elle subit 1d6 dégâts de Froid et n'est pas {{gele|gelée}}. Les {{jet|Jets}} que l'état {{gele}} lui fait effectuer ensuite se font sans l'augmentation due au {{trempe}}.",
+  "description": "L'eau qui imprègne une créature se fige d'un coup. Choisissez une créature que vous voyez à portée qui porte au moins 1 {{trempe}}, puis retirez-lui l'état {{trempe}}. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nLa créature effectue un {{jet}} de {{constitution}} + {{resistance}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}}), augmenté de 1 par {{trempe}} que vous venez de lui retirer. En cas d'échec, elle est {{gele|Gelée}}. En cas de réussite, elle subit 1d6 dégâts de Froid et n'est pas {{gele|Gelée}}. Les {{jet|Jets}} que l'état {{gele}} lui fait effectuer ensuite se font sans l'augmentation due au {{trempe}}.",
   "upgrades": [
     {
       "level": 2,
       "tier": 6,
       "title": "Emprise glaciale",
       "description": "Lorsque vous lancez {{EMPGEL-001}}, vous pouvez dépenser 1 {{energie}} de plus par créature pour viser jusqu'à deux créatures de plus, choisies parmi celles que vous voyez à portée qui portent au moins 1 {{trempe}}. Le {{sort}} traite chacune comme la première : vous lui retirez l'état {{trempe}}, puis elle effectue son propre {{jet}} contre votre {{dd}}, augmenté de 1 par {{trempe}} que vous venez de lui retirer."
+    },
+    {
+      "level": 2,
+      "tier": 6,
+      "title": "Glace brisée",
+      "description": "Lorsqu'une créature {{gele|Gelée}} par votre {{EMPGEL-001}} subit des dégâts Contondants, vous pouvez briser la glace : la créature n'est plus {{gele|Gelée}} et subit 2d6 dégâts de Froid."
     }
   ]
 }
