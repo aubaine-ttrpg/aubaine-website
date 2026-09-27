@@ -1,0 +1,13 @@
+{
+  "name": "Boucle de l'un",
+  "status": "playtest",
+  "section": "bijoux",
+  "position": 6,
+  "kind": "Bijou",
+  "rarity": "very-rare",
+  "art": "boucle-de-l-un-1_1-og.png",
+  "set": "FAEBI",
+  "prerequisite": "Être Scothan",
+  "text": "Tant que cette pièce est équipée, {{CHAIRX-001}} ne réduit plus vos {{pdv}} maximum : chaque point de {{constitution}}, chaque Niveau de Vitalité et toute autre source de {{pdv}} maximum vous en donne autant qu'à un autre personnage.",
+  "description": "Cristal bleu taillé en pointe, serti d'or au bout d'un crochet ouvert. Les joailliers faebies ne la taillent jamais seule et ne la confient qu'à un Scothan."
+}

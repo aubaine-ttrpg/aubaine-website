@@ -1,0 +1,13 @@
+{
+  "name": "Boucle de l'autre",
+  "status": "playtest",
+  "section": "bijoux",
+  "position": 7,
+  "kind": "Bijou",
+  "rarity": "very-rare",
+  "art": "boucle-de-l-autre-1_1-og.png",
+  "set": "FAEBI",
+  "prerequisite": "Être Scothan",
+  "text": "Tant que cette pièce est équipée, {{SANAUT-001}} ne réduit plus votre {{energie}} maximum : elle vaut 8 plus la somme de votre {{esprit}}, de vos Niveaux d'{{energie}} et de toute autre source d'{{energie}} maximum, comme pour un autre personnage.",
+  "description": "Pointe de cristal bleu sous un losange de saphir, pendue à un crochet d'or. Les joailliers faebies ne la taillent jamais seule et ne la confient qu'à un Scothan."
+}

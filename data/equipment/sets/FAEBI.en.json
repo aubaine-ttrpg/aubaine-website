@@ -1,0 +1,9 @@
+{
+  "name": "Faebie Set",
+  "description": "Odran Lineless, a Faebie jeweller born of a halfling and a gnome, cut the first pair, the one Shadeheart wore on the day she refused to cover her antlers. Since then, every Faebie house keeps a pair under lock and key. It gives the pair to the Scothan of its choosing, on the evening they first step through its widened doors.",
+  "bonuses": {
+    "2": {
+      "text": "At the end of a {{repos-long}}, you can replace the Skill you chose with {{CHAIRX-001}}, the one you chose with {{SANAUT-001}}, or both, with another from the same Species and the same subspecies or regional origin."
+    }
+  }
+}

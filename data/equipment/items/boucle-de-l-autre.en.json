@@ -1,0 +1,7 @@
+{
+  "name": "Earring of the Other",
+  "kind": "Jewel",
+  "prerequisite": "Scothan",
+  "text": "While this piece is equipped, {{SANAUT-001}} no longer reduces your maximum {{energie}}: it is 8 plus the sum of your {{esprit}}, your {{energie}} Levels and every other source of maximum {{energie}}, as for any other character.",
+  "description": "A point of blue crystal beneath a small sapphire lozenge, hung from a gold hook. Faebie jewellers never cut one alone, and entrust it only to a Scothan."
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Earring of the One",
+  "kind": "Jewel",
+  "prerequisite": "Scothan",
+  "text": "While this piece is equipped, {{CHAIRX-001}} no longer reduces your maximum {{pdv}}: every point of {{constitution}}, every Vitality Level and every other source of maximum {{pdv}} grants you as many as it would grant any other character.",
+  "description": "A blue crystal cut to a point, set in gold at the end of an open hook. Faebie jewellers never cut one alone, and entrust it only to a Scothan."
+}

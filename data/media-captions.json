@@ -46,6 +46,24 @@
       ]
     },
     {
+      "file": "items/boucle-de-l-autre-1_1-og.png",
+      "title": "Boucle de l'autre",
+      "description": "Pendant de cristal bleu serti d'or, crochet ouvert à gauche, sur fond de volutes bleues.",
+      "keywords": [
+        "bijou",
+        "objet"
+      ]
+    },
+    {
+      "file": "items/boucle-de-l-un-1_1-og.png",
+      "title": "Boucle de l'un",
+      "description": "Pendant de cristal bleu serti d'or, crochet ouvert à droite, sur fond de volutes bleues.",
+      "keywords": [
+        "bijou",
+        "objet"
+      ]
+    },
+    {
       "file": "items/cotte-de-mailles-1_1-og.png",
       "title": "Cotte de mailles",
       "description": "Armure lourde d'acier sombre à épaulières dorées, sur fond d'or.",

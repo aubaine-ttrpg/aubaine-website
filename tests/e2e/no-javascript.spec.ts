@@ -196,7 +196,7 @@ test('a chapter reaches its neighbour through the pager', async ({ page }) => {
 
 test('a browse page shows its list and a detail without javascript', async ({ page }) => {
   await page.goto('/fr/equipement')
-  await expect(page.locator('[data-entry]')).toHaveCount(39)
+  await expect(page.locator('[data-entry]')).toHaveCount(41)
   await expect(page.locator('[data-detail]').first()).toBeVisible()
 })
 

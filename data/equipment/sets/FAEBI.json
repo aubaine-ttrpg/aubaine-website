@@ -1,0 +1,12 @@
+{
+  "id": "FAEBI",
+  "status": "playtest",
+  "name": "Panoplie des Faebies",
+  "description": "Odran Sansligne, joaillier faebie né d'un halfelin et d'une gnome, tailla la première paire, celle que Sombrecœur portait le jour où elle refusa de couvrir ses bois. Depuis, chaque maison faebie garde une paire sous clé. Elle la remet au Scothan de son choix, le soir où il franchit pour la première fois ses portes élargies.",
+  "bonuses": [
+    {
+      "pieces": 2,
+      "text": "À la fin d'un {{repos-long}}, vous pouvez remplacer la Compétence que vous avez choisie avec {{CHAIRX-001}}, celle que vous avez choisie avec {{SANAUT-001}}, ou les deux, par une autre parmi celles de la même Espèce et de la même sous-espèce ou origine régionale."
+    }
+  ]
+}
