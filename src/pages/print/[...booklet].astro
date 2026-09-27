@@ -11,9 +11,9 @@ import CatalogueLeaf from '../../components/print/CatalogueLeaf.astro'
 import Colophon from '../../components/print/Colophon.astro'
 import ContentsLeaf, { type ContentsRow } from '../../components/print/ContentsLeaf.astro'
 import Cover from '../../components/print/Cover.astro'
-import GuideLeaf from '../../components/print/GuideLeaf.astro'
 import Leaf from '../../components/print/Leaf.astro'
 import ListLeaf from '../../components/print/ListLeaf.astro'
+import ProseLeaf from '../../components/print/ProseLeaf.astro'
 import {
   type BookletTarget,
   catalogueRuleWords,
@@ -326,13 +326,9 @@ const chapters = book
 
     {
       chapters.map((chapter) => (
-        <Leaf class="au-leaf" numbered>
-          <div class="au-leaf__body">
-            <h1>{chapter.title}</h1>
-            <chapter.Content />
-          </div>
-          <span class="au-leaf__folio" data-page-number />
-        </Leaf>
+        <ProseLeaf title={chapter.title}>
+          <chapter.Content />
+        </ProseLeaf>
       ))
     }
 
@@ -347,9 +343,9 @@ const chapters = book
           />
 
           {guide && (
-            <GuideLeaf title={guide.title} anchor={guideAnchor}>
+            <ProseLeaf title={guide.title} anchor={guideAnchor}>
               <guide.Content />
-            </GuideLeaf>
+            </ProseLeaf>
           )}
 
           {catalogueLeaves.map((leaf) => (
