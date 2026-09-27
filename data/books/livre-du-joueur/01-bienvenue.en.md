@@ -23,9 +23,9 @@ Then the situation has changed, and the loop starts again. It turns the same way
 >
 > **Sélène's player:** "I take a run-up and jump the gap."
 >
-> **GM:** "The outcome is uncertain, and a fall would cost you dearly. Make a {{dexterite}} + {{acrobaties}} Roll against {{dd}} 15."
+> **GM:** "The outcome is uncertain, and a fall would cost you dearly. Make a {{dexterite}} + {{acrobaties}} {{jet}} against {{dd}} 15."
 >
-> The player rolls two d12s and gets a 7 and a 9. Sélène has +3 in Dexterity and nothing in Acrobatics, so her total is 19, over the DC.
+> The player rolls two d12s and gets a 7 and a 9. Sélène has +3 in {{dexterite}} and nothing in {{acrobaties}}, so her total is 19, over the {{dd}}.
 >
 > **GM:** "You land on the far side with a creak of rope. Behind you, another plank comes loose and tumbles for a long time before the mist swallows it."
 
@@ -51,26 +51,26 @@ Nothing else: distances are counted in metres and said out loud.
 
 ## Aubaine at a glance
 
-The Roll
-: Anything uncertain resolves with the same formula, `2d12 + a Characteristic + an Aptitude`. Attacking, shrugging off a poison, lying to a guard or forging a blade: only the number you need changes.
+The {{jet}}
+: Anything uncertain resolves with the same formula, `2d12 + a {{caracteristique}} + an {{aptitude}}`. {{ATTAQU-001|Attacking}}, shrugging off a poison, lying to a guard or forging a blade: only the number you need changes.
 
 The pair
 : How you act decides which {{caracteristique}} and which {{aptitude}} you use, so a character stays useful far from their strengths.
 
 The {{ame}}
-: Every character carries a {{phobie}}, a {{manie}}, a {{defaut}}, a {{specialite}} and a {{don}}. The Speciality is an Aptitude you invent, such as "Cooking" or "Traps". The Gift is a faculty that belongs to you alone, such as "I can speak to the dead" or "My paintings come to life". They are what keep two characters with the same numbers two different people.
+: Every character carries a {{phobie}}, a {{manie}}, a {{defaut}}, a {{specialite}} and a {{don}}. The {{specialite}} is an {{aptitude}} you invent, such as "Cooking" or "Traps". The {{don}} is a faculty that belongs to you alone, such as "I can speak to the dead" or "My paintings come to life". They are what keep two characters with the same numbers two different people.
 
 Three currencies
-: XP buys your Skills, MP your Characteristics and Aptitudes, PP your resources. Each arrives at its own pace, and that is how a character grows.
+: XP buys your Skills, MP your {{caracteristique|Characteristics}} and {{aptitude|Aptitudes}}, PP your resources. Each arrives at its own pace, and that is how a character grows.
 
 Trees to climb
 : You buy Skills on Trees, starting from their heart and following their lines. You unlock new Trees during play to build the character you want.
 
 {{memoire}} sets the limit
-: You learn many Skills but keep only a few {{memorisee}} at a time. What you carry is a choice, and you make it again at every rest.
+: You {{apprise|learn}} many Skills but keep only a few {{memorisee}} at a time. What you carry is a choice, and you make it again at every rest.
 
 You make your gear
-: You gather materials, follow a recipe and make the Rolls: most of what you wear passes through your own hands.
+: You gather materials, follow a recipe and make the {{jet|Rolls}}: most of what you wear passes through your own hands.
 
 ## A living game
 
@@ -82,7 +82,7 @@ This book explains the system. When you need to know which Trees exist today, or
 
 ## How to read this book
 
-The three golden rules open the book, and they come before everything else. The next chapter, How to play, explains the Roll: it is the only one you need for a first session. Creating a character, Species, and Trees and Skills walk you through your sheet. The chapters after that, from equipment to rest, can be read when they come up.
+The three golden rules open the book, and they come before everything else. The next chapter, How to play, explains the {{jet}}: it is the only one you need for a first session. Creating a character, Species, and Trees and Skills walk you through your sheet. The chapters after that, from equipment to rest, can be read when they come up.
 
 A coloured word is a rules term. Hover over it, or give it keyboard focus, and its definition appears; the Rules page gathers them all. A Skill's name leads to its entry.
 

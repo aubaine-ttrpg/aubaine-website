@@ -23,9 +23,9 @@ Puis la situation a changé, et la boucle repart. Elle tourne de la même maniè
 >
 > **Joueuse de Sélène :** « Je prends de l'élan et je saute par-dessus le trou. »
 >
-> **MJ :** « L'issue est incertaine, et une chute coûterait cher. Fais un Jet de {{dexterite}} + {{acrobaties}} contre un {{dd}} de 15. »
+> **MJ :** « L'issue est incertaine, et une chute coûterait cher. Fais un {{jet}} de {{dexterite}} + {{acrobaties}} contre un {{dd}} de 15. »
 >
-> La joueuse lance deux d12 et obtient 7 et 9. Sélène a +3 en Dextérité et rien en Acrobaties : son total fait 19, au-dessus du DD.
+> La joueuse lance deux d12 et obtient 7 et 9. Sélène a +3 en {{dexterite}} et rien en {{acrobaties}} : son total fait 19, au-dessus du {{dd}}.
 >
 > **MJ :** « Tu retombes de l'autre côté dans un grincement de cordes. Derrière toi, une planche de plus se détache et tourne longtemps avant de disparaître dans la brume. »
 
@@ -51,26 +51,26 @@ Rien d'autre : les distances se comptent en mètres et s'annoncent à voix haute
 
 ## Aubaine en quelques mots
 
-Le Jet
-: Tout ce qui est incertain se résout par la même formule, `2d12 + une Caractéristique + une Aptitude`. {{ATTAQU-001}}, résister à un poison, mentir à un garde ou forger une lame : seul le nombre à atteindre change.
+Le {{jet}}
+: Tout ce qui est incertain se résout par la même formule, `2d12 + une {{caracteristique}} + une {{aptitude}}`. {{ATTAQU-001}}, résister à un poison, mentir à un garde ou forger une lame : seul le nombre à atteindre change.
 
 La paire
 : C'est votre manière d'agir qui décide de la {{caracteristique}} et de l'{{aptitude}} employées, si bien qu'un personnage reste utile loin de ses points forts.
 
 L'{{ame}}
-: Chaque personnage porte une {{phobie}}, une {{manie}}, un {{defaut}}, une {{specialite}} et un {{don}}. La Spécialité est une Aptitude que vous inventez, comme « Cuisine » ou « Pièges ». Le Don est une faculté qui n'appartient qu'à vous, comme « Je peux parler aux morts » ou « Mes peintures prennent vie ». C'est par eux que deux personnages aux mêmes chiffres restent deux personnes différentes.
+: Chaque personnage porte une {{phobie}}, une {{manie}}, un {{defaut}}, une {{specialite}} et un {{don}}. La {{specialite}} est une {{aptitude}} que vous inventez, comme « Cuisine » ou « Pièges ». Le {{don}} est une faculté qui n'appartient qu'à vous, comme « Je peux parler aux morts » ou « Mes peintures prennent vie ». C'est par eux que deux personnages aux mêmes chiffres restent deux personnes différentes.
 
 Trois monnaies
-: Les PX achètent vos Compétences, les PM vos Caractéristiques et vos Aptitudes, les PP vos ressources. Chacune arrive à son rythme, et c'est ainsi qu'un personnage grandit.
+: Les PX achètent vos Compétences, les PM vos {{caracteristique|Caractéristiques}} et vos {{aptitude|Aptitudes}}, les PP vos ressources. Chacune arrive à son rythme, et c'est ainsi qu'un personnage grandit.
 
 Des Arbres à parcourir
 : Vos Compétences s'achètent sur des Arbres, en partant de leur cœur et en suivant leurs traits. Vous en débloquez de nouveaux en cours de partie pour composer le personnage que vous voulez.
 
 La {{memoire}} limite
-: Vous apprenez beaucoup de Compétences, mais vous n'en gardez que quelques-unes {{memorisee|Mémorisées}} à la fois. Ce que vous emportez est un choix, et il se rejoue à chaque repos.
+: Vous {{apprise|apprenez}} beaucoup de Compétences, mais vous n'en gardez que quelques-unes {{memorisee|Mémorisées}} à la fois. Ce que vous emportez est un choix, et il se rejoue à chaque repos.
 
 L'équipement se fabrique
-: On récolte des matériaux, on suit une recette, on lance les Jets : l'essentiel de ce que vous portez passe par vos mains.
+: On récolte des matériaux, on suit une recette, on lance les {{jet|Jets}} : l'essentiel de ce que vous portez passe par vos mains.
 
 ## Un jeu vivant
 
@@ -82,7 +82,7 @@ Ce livre explique le système. Quand il faut savoir quels Arbres existent aujour
 
 ## Comment lire ce livre
 
-Les trois règles d'or ouvrent le livre, et elles passent avant tout le reste. Le chapitre suivant, Comment jouer, explique le Jet : c'est le seul dont vous avez besoin pour une première séance. Créer un personnage, les Espèces et les Arbres vous accompagnent pour monter votre fiche. Les chapitres suivants, de l'équipement au repos, se lisent quand ils servent.
+Les trois règles d'or ouvrent le livre, et elles passent avant tout le reste. Le chapitre suivant, Comment jouer, explique le {{jet}} : c'est le seul dont vous avez besoin pour une première séance. Créer un personnage, les Espèces et les Arbres vous accompagnent pour monter votre fiche. Les chapitres suivants, de l'équipement au repos, se lisent quand ils servent.
 
 Un mot en couleur est un terme de règle. Survolez-le, ou donnez-lui le focus au clavier, et sa définition s'affiche ; la page Règles les rassemble tous. Un nom de Compétence mène à sa fiche.
 

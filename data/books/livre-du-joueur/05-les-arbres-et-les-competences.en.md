@@ -15,7 +15,7 @@ During play you can unlock more Trees, Archetypes and Domains alike. Unlocking a
 
 ## Reading a Tree
 
-Every node is a Skill, and its shape gives its type: a circle for an active Skill, a rounded square for a passive one, a concave shape for a special one.
+Every node is a Skill, and its shape gives its type: a circle for an active Skill, a rounded square for a {{passif|passive}} one, a concave shape for a special one.
 
 The border carries the Skill's Domain or Domains, and that is what gives it its colour. A Skill with no Domain is Neutral. The gold token carries its price in XP.
 
@@ -28,29 +28,29 @@ Each Skill costs 5 to 100 XP, in steps of 5, and its price is printed on it. To 
 - **The heart first.** The first Skill you buy in a Tree is its heart, at the centre.
 - **Line by line.** After that, you can buy any Skill joined by a line to a Skill of that Tree you have already {{apprise}}.
 
-A Learned Skill opens its neighbours wherever it came from: a purchase in that Tree, the {{banque-commune}}, or another Skill that gave it to you.
+A {{apprise}} Skill opens its neighbours wherever it came from: a purchase in that Tree, the {{banque-commune}}, or another Skill that gave it to you.
 
 > [!EXAMPLE] Example
 >
 > In the Feu Tree, you start with {{AVIFLA-001}}, its heart. {{TRAFEU-001}}, joined to the heart, then becomes available, and after it {{BOUFEU-001}}, joined to {{TRAFEU-001}}.
 >
-> If your character learned {{TRAFEU-001}} from the Common Bank before unlocking the Feu Tree, they do not buy it again, and {{BOUFEU-001}} is open to them from the moment they unlock the Tree.
+> If your character {{apprise|learned}} {{TRAFEU-001}} from the {{banque-commune}} before unlocking the Feu Tree, they do not buy it again, and {{BOUFEU-001}} is open to them from the moment they unlock the Tree.
 
 ### Learning and Memorising
 
-Buying a Skill means learning it, not {{memorisee|memorising}} it. A Learned Skill is yours for good. What is limited is how many you can carry at once, and your {{memoire}} is what says so.
+Buying a Skill means {{apprise|learning}} it, not {{memorisee|memorising}} it. A {{apprise}} Skill is yours for good. What is limited is how many you can carry at once, and your {{memoire}} is what says so.
 
-A Memorised Skill is a Skill you carry and can play. It takes 1 Memory, except in the cases listed under "Where your Memory goes".
+A {{memorisee}} Skill is a Skill you carry and can play. It takes 1 {{memoire}}, except in the cases listed under "Where your {{memoire}} goes".
 
-A Skill is learned only once, whether it came to you from a purchase, from your Species or from another Skill. If a Tree you unlock sells a Skill that is already Learned, you do not buy it again: it counts as bought in that Tree, and it opens its neighbours like any other.
+A Skill is {{apprise|learned}} only once, whether it came to you from a purchase, from your Species or from another Skill. If a Tree you unlock sells a Skill that is already {{apprise}}, you do not buy it again: it counts as bought in that Tree, and it opens its neighbours like any other.
 
 ## Levels
 
 Some Skills carry Levels, bought separately and in order. A Level is not a new Skill: it is the same one, doing more.
 
-A Memorised Skill takes 1 Memory whatever its Level. Raising a Skill therefore never costs you room, only XP.
+A {{memorisee}} Skill takes 1 {{memoire}} whatever its Level. Raising a Skill therefore never costs you room, only XP.
 
-Some Skills give rise to another, more specialised one, which appears as its own node joined to its base. It is bought like the others, once its base is Learned.
+Some Skills give rise to another, more specialised one, which appears as its own node joined to its base. It is bought like the others, once its base is {{apprise}}.
 
 ## Tags
 
@@ -69,24 +69,24 @@ Special
 
 The Skills index carries the current list: its Practice, School and Special filters show every value, and each tag gives its definition there.
 
-Two Practices set a condition. You need a Catalyseur equipped, meaning a piece of equipment that carries the Catalyseur property, to use a Spell, whether it is passive or active: without one, a Spell cannot be cast and a passive Spell stops applying. A Shout, for its part, only affects creatures that can hear it.
+Two Practices set a condition. You need a Catalyseur equipped, meaning a piece of equipment that carries the Catalyseur property, to use a {{sort}}, whether it is {{passif|passive}} or active: without one, a {{sort}} cannot be cast and a {{passif|passive}} {{sort}} stops applying. A Shout, for its part, only affects creatures that can hear it.
 
 ## The Common Bank
 
-Alongside your Trees, one list of Skills belongs to nobody: the Common Bank.
+Alongside your Trees, one list of Skills belongs to nobody: the {{banque-commune}}.
 
-Its Skills are independent of one another and follow no lines. Any character may buy one at any time, whatever their Trees, for its price in XP and the {{prerequis}} some of them carry. It holds the Species Skills a character did not keep at creation, reserved to their Species by that Prerequisite, and some Tree Skills too, such as the ones the Catalyseurs grant: buying one there makes it Learned without unlocking its Tree.
+Its Skills are independent of one another and follow no lines. Any character may buy one at any time, whatever their Trees, for its price in XP and the {{prerequis}} some of them carry. It holds the Species Skills a character did not keep at creation, reserved to their Species by that {{prerequis}}, and some Tree Skills too, such as the ones the Catalyseurs grant: buying one there makes it {{apprise}} without unlocking its Tree.
 
 Nothing stops a merchant slipping into the shadows, or an artisan catching their breath in the middle of a melee.
 
 ## What equipment grants
 
-A piece of equipment or a set tier can grant a Skill. That Skill does not have to be bought, takes up no Memory, and leaves you as soon as the piece leaves its slot.
+A piece of equipment or a set tier can grant a Skill. That Skill does not have to be bought, takes up no {{memoire}}, and leaves you as soon as the piece leaves its slot.
 
 It is another way to widen what you can do, one that does not go through XP at all.
 
 ## Where your Memory goes
 
-Three things take up no Memory: your two Species Skills, the ones your equipment grants, and the Basic Skills everyone has. Your two Species Skills stay Memorised and never change after creation, as the Species chapter explains.
+Three things take up no {{memoire}}: your two Species Skills, the ones your equipment grants, and the Basic Skills everyone has. Your two Species Skills stay {{memorisee}} and never change after creation, as the Species chapter explains.
 
-Everything else takes 1 Memory per Memorised Skill. That is where the choice happens, and you make it again at every rest.
+Everything else takes 1 {{memoire}} per {{memorisee}} Skill. That is where the choice happens, and you make it again at every rest.

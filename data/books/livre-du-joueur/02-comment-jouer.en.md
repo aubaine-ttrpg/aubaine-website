@@ -3,37 +3,37 @@ title: "How to play"
 description: "The Roll, choosing the pair, the three defences, Advantage and Disadvantage, criticals, the difficulty scale, and the principles that settle clashes between rules."
 ---
 
-Anything uncertain in Aubaine is settled by a {{jet}}, and a Roll is always the same sum:
+Anything uncertain in Aubaine is settled by a {{jet}}, and a {{jet}} is always the same sum:
 
-`2d12 + a Characteristic + an Aptitude`
+`2d12 + a {{caracteristique}} + an {{aptitude}}`
 
 This formula serves everywhere: an attack, a dodge, a lie and an afternoon at the forge all resolve this way. What changes from one situation to the next is the pair you use and the number you need.
 
 ## When to roll
 
-You do not roll for everything. A Roll takes time at the table, so it should decide something.
+You do not roll for everything. A {{jet}} takes time at the table, so it should decide something.
 
 1. **Describe.** Say what your character wants and how they go about it.
-2. **Roll.** If the outcome is uncertain and failure would cost something, the GM asks for a Roll.
+2. **Roll.** If the outcome is uncertain and failure would cost something, the GM asks for a {{jet}}.
 3. **Resolve.** The result settles it, and the situation moves on.
 
-An action whose outcome is certain simply succeeds: opening an unlocked door, climbing a ladder, buying bread. An action the fiction makes impossible needs no Roll either: it fails. Everything in between, you roll.
+An action whose outcome is certain simply succeeds: opening an unlocked door, climbing a ladder, buying bread. An action the fiction makes impossible needs no {{jet}} either: it fails. Everything in between, you roll.
 
-Your {{don}} moves that line for you alone. Someone with the Gift of speaking to the dead can question a corpse nobody else could make talk, and the GM decides what the dead one answers.
+Your {{don}} moves that line for you alone. Someone with the {{don}} of speaking to the dead can question a corpse nobody else could make talk, and the GM decides what the dead one answers.
 
 ## Choosing the pair
 
 The GM picks the pair from how you act, and every combination of {{caracteristique}} and {{aptitude}} is open.
 
-That keeps you useful far from your strengths. A character built on {{force}} intimidates by smashing a table rather than raising their voice, and the Roll becomes Strength + {{intimidation}}. A character who relies on {{intelligence}} gets past a physical obstacle by understanding it, and the Roll becomes Intelligence + {{athletisme}}.
+That keeps you useful far from your strengths. A character built on {{force}} intimidates by smashing a table rather than raising their voice, and the {{jet}} becomes {{force}} + {{intimidation}}. A character who relies on {{intelligence}} gets past a physical obstacle by understanding it, and the {{jet}} becomes {{intelligence}} + {{athletisme}}.
 
-It also gives you a floor. Without the Aptitude you would want, you still have your Characteristic: nobody rolls bare dice.
+It also gives you a floor. Without the {{aptitude}} you would want, you still have your {{caracteristique}}: nobody rolls bare dice.
 
 > [!EXAMPLE] Example
 >
-> The party needs a ferryman to take them across at night. Aldric, a giant of a man with no gift for words, lays his axe on the table and stares at the ferryman in silence. The GM asks for a Strength + Intimidation Roll. His companion would rather open her purse and haggle, so for her it is {{charisme}} + {{persuasion}}. Two approaches, two pairs, and each has its chance.
+> The party needs a ferryman to take them across at night. Aldric, a giant of a man with no gift for words, lays his axe on the table and stares at the ferryman in silence. The GM asks for a {{force}} + {{intimidation}} {{jet}}. His companion would rather open her purse and haggle, so for her it is {{charisme}} + {{persuasion}}. Two approaches, two pairs, and each has its chance.
 
-Your {{specialite}} enters the pair whenever the action falls within its field: it takes the Aptitude's place and adds 1 {{avantage}} to the Roll. A "Traps" Speciality serves to disarm a trapped flagstone, a "Cooking" one to recognise poison in a stew. The Creating a character chapter presents it with the rest of the {{ame}}.
+Your {{specialite}} enters the pair whenever the action falls within its field: it takes the {{aptitude|Aptitude's}} place and adds 1 {{avantage}} to the {{jet}}. A "Traps" {{specialite}} serves to disarm a trapped flagstone, a "Cooking" one to recognise poison in a stew. The Creating a character chapter presents it with the rest of the {{ame}}.
 
 A Skill can set its own pair. When it does, its text names it.
 
@@ -41,8 +41,8 @@ A Skill can set its own pair. When it does, its text names it.
 
 There are two ways to write it, depending on what the rule needs to pin down.
 
-- **A {{melee}} Roll**, when only the Aptitude matters and the Characteristic follows how you act.
-- **A Strength + Melee Roll**, when the whole pair is fixed.
+- **A {{melee}} {{jet}}**, when only the {{aptitude}} matters and the {{caracteristique}} follows how you act.
+- **A {{force}} + {{melee}} {{jet}}**, when the whole pair is fixed.
 
 ## Against what
 
@@ -54,8 +54,8 @@ The total is compared with one of three defences.
 {{ca}}
 : Armour Class, when an {{attaque}} targets a creature directly.
 
-Opposed Roll
-: The Roll of the creature on the other side. Both sides roll.
+Opposed {{jet}}
+: The {{jet}} of the creature on the other side. Both sides roll.
 
 Meeting the defence is enough: a total equal to or higher than it succeeds.
 
@@ -63,33 +63,33 @@ Meeting the defence is enough: a total equal to or higher than it succeeds.
 
 Everyone involved rolls, and the highest total wins. On a tie, break it in this order:
 
-1. the higher combined Characteristic and Aptitude;
-2. the higher net number of Advantages;
+1. the higher combined {{caracteristique}} and {{aptitude}};
+2. the higher net number of {{avantage|Advantages}};
 3. the status quo.
 
-The status quo means that whoever was trying to change the situation fails to: the prisoner stays held, the barred door stays shut. When there is no status quo, only the tied Rolls are rolled again.
+The status quo means that whoever was trying to change the situation fails to: the prisoner stays held, the barred door stays shut. When there is no status quo, only the tied {{jet|Rolls}} are rolled again.
 
 ## Advantage and Disadvantage
 
-An Advantage adds a d12 to the Roll, and you keep the two highest dice.
+An {{avantage}} adds a d12 to the {{jet}}, and you keep the two highest dice.
 
-A {{desavantage}} adds a d12 to the Roll, and you keep the two lowest dice.
+A {{desavantage}} adds a d12 to the {{jet}}, and you keep the two lowest dice.
 
 The total always uses two dice, however many you rolled.
 
 ### Stacking
 
-An Advantage and a Disadvantage cancel out, one for one. Count them, remove the pairs, and apply what is left.
+An {{avantage}} and a {{desavantage}} cancel out, one for one. Count them, remove the pairs, and apply what is left.
 
-What is left has no ceiling. Three net Advantages add three dice, and you keep the best two of five.
+What is left has no ceiling. Three net {{avantage|Advantages}} add three dice, and you keep the best two of five.
 
 > [!EXAMPLE] Example
 >
-> You strike with 2 Advantages, because an ally helped you and your target is {{aveugle}}, and 1 Disadvantage, because you are lying {{a-terre}}. That leaves 1 net Advantage: you roll three d12s and keep the two highest.
+> You strike with 2 {{avantage|Advantages}}, because an ally helped you and your target is {{aveugle}}, and 1 {{desavantage}}, because you are lying {{a-terre}}. That leaves 1 net {{avantage}}: you roll three d12s and keep the two highest.
 
 ### Expertise
 
-{{expertise}} in an Aptitude gives you 1 Advantage on every Roll that uses it.
+{{expertise}} in an {{aptitude}} gives you 1 {{avantage}} on every {{jet}} that uses it.
 
 ## Criticals
 
@@ -103,13 +103,13 @@ Two kept 1s
 
 A critical never makes possible what the fiction forbids. A critical success at leaping over a tower still fails; it only makes the run-up spectacular.
 
-So an Advantage does two things at once: it raises your expected total, and it makes a critical more likely, in either direction.
+So an {{avantage}} does two things at once: it raises your expected total, and it makes a critical more likely, in either direction.
 
 ## The difficulty scale
 
-The GM sets a DC whenever no rule prints one.
+The GM sets a {{dd}} whenever no rule prints one.
 
-| Difficulty | DC |
+| Difficulty | {{dd}} |
 | --- | ---: |
 | Easy | 10 |
 | Ordinary | 15 |
@@ -118,43 +118,43 @@ The GM sets a DC whenever no rule prints one.
 | Very hard | 30 |
 | Near impossible | 35 |
 
-A DC in between is fine when the situation calls for it. Thirty-five is the ceiling because it is the highest total you can reach without a critical: a 12 and an 11 on the kept dice, plus a modifier of +12.
+A {{dd}} in between is fine when the situation calls for it. Thirty-five is the ceiling because it is the highest total you can reach without a critical: a 12 and an 11 on the kept dice, plus a modifier of +12.
 
-A trivial action needs no Roll. Setting DC 5 just makes someone roll for nothing.
+A trivial action needs no {{jet}}. Setting {{dd}} 5 just makes someone roll for nothing.
 
 ### A Skill's DC
 
-When a Skill lets its target resist, the DC comes from whoever uses it:
+When a Skill lets its target resist, the {{dd}} comes from whoever uses it:
 
-`10 + a Characteristic + an Aptitude`
+`10 + a {{caracteristique}} + an {{aptitude}}`
 
-The Skill names the pair, the Roll its target makes, and what happens on a success and on a failure. For example: "The target makes a {{esprit}} + {{volonte}} Roll against your DC of `10 + Charisma + Intimidation`."
+The Skill names the pair, the {{jet}} its target makes, and what happens on a success and on a failure. For example: "The target makes a {{esprit}} + {{volonte}} {{jet}} against your {{dd}} of `10 + {{charisme}} + {{intimidation}}`."
 
 So there is no number to remember. You work it out when the Skill is used.
 
 ## Attacking and resisting
 
-An Attack is a Roll against its target's AC. Resisting an effect is a Roll against a DC.
+An {{attaque}} is a {{jet}} against its target's {{ca}}. Resisting an effect is a {{jet}} against a {{dd}}.
 
-Three Aptitudes are the usual way to land a blow, Melee, {{finesse}} and {{visee}}, and three are the usual way to withstand one, {{reflexes}}, {{resistance}} and Will. They have no special rules. They simply come up more than the others, which tells you where to invest.
+Three {{aptitude|Aptitudes}} are the usual way to land a blow, {{melee}}, {{finesse}} and {{visee}}, and three are the usual way to withstand one, {{reflexes}}, {{resistance}} and {{volonte}}. They have no special rules. They simply come up more than the others, which tells you where to invest.
 
-They do not lock anything out, though. Any Aptitude can carry an Attack or a defence when how you act justifies it: {{investigation}} to see through an illusion that is too regular, Athletics to dig your heels in against a pull, Intimidation to stare down something trying to terrify you.
+They do not lock anything out, though. Any {{aptitude}} can carry an {{attaque}} or a defence when how you act justifies it: {{investigation}} to see through an illusion that is too regular, {{athletisme}} to dig your heels in against a pull, {{intimidation}} to stare down something trying to terrify you.
 
 ## When rules meet
 
 A handful of principles apply everywhere, and they settle two rules that seem to disagree.
 
 Exceptions win
-: A general rule applies until something contradicts it. When a Skill, an item or a state says otherwise, it wins, for what it covers and for as long as it lasts. A Skill that sets its own pair beats the GM's free choice; a weapon that lets you strike with {{dexterite}} beats Strength.
+: A general rule applies until something contradicts it. When a Skill, an item or a state says otherwise, it wins, for what it covers and for as long as it lasts. A Skill that sets its own pair beats the GM's free choice; a weapon that lets you strike with {{dexterite}} beats {{force}}.
 
 Round down
-: Whenever a calculation gives a fraction, round down to the whole number, even at one half. A rule that wants you to round up says so, like the cost of an Aptitude.
+: Whenever a calculation gives a fraction, round down to the whole number, even at one half. A rule that wants you to round up says so, like the cost of an {{aptitude}}.
 
 The same effect twice
-: Unless stated otherwise, an effect does not stack with itself. The same Skill, the same state or Expertise in the same Aptitude, received from two sources, applies once, and only the strongest counts. Different effects add up, like Advantages. Two Skills that each give you Expertise in {{artisanat}} give it to you once.
+: Unless stated otherwise, an effect does not stack with itself. The same Skill, the same state or {{expertise}} in the same {{aptitude}}, received from two sources, applies once, and only the strongest counts. Different effects add up, like {{avantage|Advantages}}. Two Skills that each give you {{expertise}} in {{artisanat}} give it to you once.
 
 Maximum and minimum
-: A resource never goes above its maximum: healing that would give you back more {{pdv}} than you lost stops at your maximum. Nor does it go below 0, which the Damage and healing chapter spells out for HP.
+: A resource never goes above its maximum: healing that would give you back more {{pdv}} than you lost stops at your maximum. Nor does it go below 0, which the Damage and healing chapter spells out for {{pdv}}.
 
 The GM decides
 : When the rules are silent, or two readings remain possible, the GM decides, in the spirit of the three golden rules. The ruling stands for the scene, and the table can talk it over after the session.

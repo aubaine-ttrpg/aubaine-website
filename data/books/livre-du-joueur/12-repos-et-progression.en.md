@@ -12,40 +12,40 @@ Ten minutes' pause, during which you can do something light: dress a wound, eat 
 At the end, you recover:
 
 - half your maximum {{pdv}}, rounded down;
-- half your maximum Energy, rounded down;
+- half your maximum {{energie}}, rounded down;
 - the Skills marked "once per {{repos-court}}".
 
 It is half your maximum you recover, not half of what you are missing. You never go above your maximum.
 
 > [!EXAMPLE] Example
 >
-> Sélène comes out of a fight on 2 HP out of 29. After a Short Rest she recovers 14 HP, half of 29 rounded down, and climbs back to 16.
+> Sélène comes out of a fight on 2 {{pdv}} out of 29. After a {{repos-court}} she recovers 14 {{pdv}}, half of 29 rounded down, and climbs back to 16.
 
 ## The Long Rest
 
-Eight hours of sleep. Two Long Rests must be at least sixteen hours apart, which allows one a day.
+Eight hours of sleep. Two {{repos-long|Long Rests}} must be at least sixteen hours apart, which allows one a day.
 
-At the end, you recover all your HP, all your Energy, and the Skills marked "once per Short Rest" or "once per Long Rest".
+At the end, you recover all your {{pdv}}, all your {{energie}}, and the Skills marked "once per {{repos-court}}" or "once per {{repos-long}}".
 
-A character who has not eaten or drunk enough that day recovers neither HP nor Energy, as the Exploration chapter explains.
+A character who has not eaten or drunk enough that day recovers neither {{pdv}} nor {{energie}}, as the Exploration chapter explains.
 
 ## What a rest does not give back
 
 {{karma}}
 : A point you hold stays, and an empty slot stays empty. Neither a rest nor the end of a session touches it.
 
-Temporary HP
+Temporary {{pdv}}
 : Healing does not restore them, and any left over disappear at the end of a rest.
 
 ## Changing your Memorised Skills
 
 Both rests let you change the Skills your {{memoire}} holds, except your two Species Skills, fixed at creation. It is the only moment you rework what you carry.
 
-That makes the Short Rest the group's real breathing space: ten minutes are enough to walk into the next fight with a different set of Skills, chosen from what you have seen of the danger.
+That makes the {{repos-court}} the group's real breathing space: ten minutes are enough to walk into the next fight with a different set of Skills, chosen from what you have seen of the danger.
 
 ## The expected rhythm
 
-The game is tuned for five or six significant encounters between two Long Rests, with two Short Rests in between. Over a full cycle, the Energy available to you comes to about twice your maximum.
+The game is tuned for five or six significant encounters between two {{repos-long|Long Rests}}, with two {{repos-court|Short Rests}} in between. Over a full cycle, the {{energie}} available to you comes to about twice your maximum.
 
 This rhythm is a design benchmark that every table adapts. A table that rests less plays more frugal characters, and the GM adjusts what they send at them.
 

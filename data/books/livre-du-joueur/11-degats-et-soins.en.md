@@ -7,7 +7,7 @@ description: "HP, damage and its types, resistance and vulnerability, dropping t
 
 ## HP
 
-Your maximum HP is worked out at creation and rises with your Vitality, as the Creating a character chapter explains. Your current HP go down when you take damage and back up when you are healed.
+Your maximum {{pdv}} is worked out at creation and rises with your Vitality, as the Creating a character chapter explains. Your current {{pdv}} go down when you take damage and back up when you are healed.
 
 They never go above your maximum and never below 0.
 
@@ -21,19 +21,19 @@ Damage can carry a type, such as Bludgeoning, Fire or Acid damage. A weapon prin
 
 A creature can have a resistance or a vulnerability to a damage type, to a source of damage, or to all damage, typed or not.
 
-{{resistance}}
+Resistance
 : It takes half the damage concerned, rounded down.
 
 Vulnerability
 : It takes double.
 
-Neither calls for a Roll: they apply to the total, once the dice are rolled. When other rules change the same damage, go in this order:
+Neither calls for a {{jet}}: they apply to the total, once the dice are rolled. When other rules change the same damage, go in this order:
 
-1. Total the damage with anything that raises or lowers it by a fixed number, such as an Attack's Characteristic or "you take 1 less".
+1. Total the damage with anything that raises or lowers it by a fixed number, such as an {{attaque|Attack's}} {{caracteristique}} or "you take 1 less".
 2. If the Skill only deals half, on a success for instance, halve that total, rounded down.
 3. Halve the result for a resistance, or double it for a vulnerability.
 
-When one blow deals damage of several types, a resistance or a vulnerability only touches the share of its own type. Anything added without naming a type, such as an Attack's Characteristic, counts with the weapon's or the Skill's damage. Anything that removes a fixed number without naming a type, such as "you take 1 less", comes off the largest share.
+When one blow deals damage of several types, a resistance or a vulnerability only touches the share of its own type. Anything added without naming a type, such as an {{attaque|Attack's}} {{caracteristique}}, counts with the weapon's or the Skill's damage. Anything that removes a fixed number without naming a type, such as "you take 1 less", comes off the largest share.
 
 A resistance and a vulnerability to the same damage cancel out, and that damage does not change. A resistance from two sources applies only once, following the same-effect-twice principle in the How to play chapter, and so does a vulnerability. Two resistances and one vulnerability to the same damage therefore still cancel out.
 
@@ -47,7 +47,7 @@ Some creatures are entirely beyond an effect's reach: an Undead cannot be {{endo
 
 ## Dropping to 0 HP
 
-When your HP drop to 0, you gain {{agonie}} 3 and start dying.
+When your {{pdv}} drop to 0, you gain {{agonie}} 3 and start dying.
 
 The counter goes down by 1 at the end of each of your turns, but not on the turn you gained it: so you have three of your own turns before the end. Each enemy action that damages you costs you one more, once at most per action.
 
@@ -57,9 +57,9 @@ While {{agonie}} lasts, you are {{a-terre}} and cannot stand up, and you can pla
 
 ### Getting someone up
 
-Any healing that restores at least 1 HP ends {{agonie}} at once. The counter is not held back: a single point is enough, however far down it was.
+Any healing that restores at least 1 {{pdv}} ends {{agonie}} at once. The counter is not held back: a single point is enough, however far down it was.
 
-Without magic or a potion, an {{action}} and a successful {{intelligence}} + {{medecine}} Roll against {{dd}} 20 restore 1 HP, which ends the state.
+Without magic or a potion, an {{action}} and a successful {{intelligence}} + {{medecine}} {{jet}} against {{dd}} 20 restore 1 {{pdv}}, which ends the state.
 
 Either way, the creature stays {{a-terre}}. Standing up costs it half its {{vitesse}}, on its turn.
 
@@ -67,15 +67,15 @@ Three turns is short without being instant. An ally on the ground is a problem t
 
 ## Healing
 
-Healing restores HP, never past your maximum: anything over is lost. A healing Skill, a potion or a rest says how much it restores.
+Healing restores {{pdv}}, never past your maximum: anything over is lost. A healing Skill, a potion or a rest says how much it restores.
 
 Between fights, rest does most of the work. The Resting and progression chapter says what a {{repos-court}} and a {{repos-long}} give back.
 
 ## Temporary HP
 
-Some Skills grant temporary HP. They form a separate pool that soaks up damage before your HP and does not count towards your maximum.
+Some Skills grant temporary {{pdv}}. They form a separate pool that soaks up damage before your {{pdv}} and does not count towards your maximum.
 
-- Temporary HP from different effects add together.
+- Temporary {{pdv}} from different effects add together.
 - The same effect does not stack with itself: you keep the higher total.
-- Healing does not restore temporary HP.
-- The effect that grants them states their duration. Any left over disappear at the end of that duration, or at the end of a Short Rest or a Long Rest, whichever comes first.
+- Healing does not restore temporary {{pdv}}.
+- The effect that grants them states their duration. Any left over disappear at the end of that duration, or at the end of a {{repos-court}} or a {{repos-long}}, whichever comes first.

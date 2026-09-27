@@ -11,7 +11,7 @@ Ensemble, elles forment la liste de ce qu'on peut toujours tenter, avec ou sans 
 
 Elles se lisent comme celles de vos Arbres : le nom, puis ce que la Compétence demande pour être jouée, sa portée et sa durée, puis sa règle. Elles ne portent ni prix ni case à cocher, puisqu'il n'y a rien à acheter et rien à {{memorisee|mémoriser}}.
 
-Une fiche marquée « 1 {{attaque}} » ne se joue pas seule : elle remplace l'une des Attaques de l'action {{ATTAQU-001}}. C'est le cas des manœuvres comme {{BOUSCU-001}} et {{AGRIPP-001}}, qui renversent ou retiennent un adversaire au lieu de le blesser.
+Une fiche marquée « 1 {{attaque}} » ne se joue pas seule : elle remplace l'une des {{attaque|Attaques}} de l'action {{ATTAQU-001}}. C'est le cas des manœuvres comme {{BOUSCU-001}} et {{AGRIPP-001}}, qui renversent ou retiennent un adversaire au lieu de le blesser.
 
 ## Ce qu'elles couvrent
 
@@ -29,6 +29,6 @@ Quand rien ne couvre ce que vous tentez, annoncez ce que votre personnage cherch
 >
 > **Joueur :** « Je lance mon couteau sur la corde du lustre, pour qu'il tombe sur les gardes. »
 >
-> **MJ :** « C'est possible, et ça te prend ton {{action}}. Fais un Jet de {{dexterite}} + {{visee}} pour trancher la corde au bon moment. Si tu réussis, les gardes en dessous effectuent un Jet de Dextérité + {{reflexes}} contre ton {{dd}}, ou tombent {{a-terre}}. »
+> **MJ :** « C'est possible, et ça te prend ton {{action}}. Fais un {{jet}} de {{dexterite}} + {{visee}} pour trancher la corde au bon moment. Si tu réussis, les gardes en dessous effectuent un {{jet}} de {{dexterite}} + {{reflexes}} contre ton {{dd}}, ou tombent {{a-terre}}. »
 
 Cette liste n'est pas fermée. Elle décrit ce que les tables font le plus souvent ; tout ce que la fiction autorise se joue de la même manière, et la règle du Cool compte ici plus qu'ailleurs.

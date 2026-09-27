@@ -965,7 +965,7 @@ describe('authored prose markup', () => {
     const built = { fr, en }
     for (const { where, text, locale } of await authoredProse()) {
       expect(text.includes('[['), `${where} writes [[ ]]`).toBe(false)
-      for (const match of text.matchAll(REFERENCE_MARKUP)) {
+      for (const match of text.replace(/\\\|/g, '|').matchAll(REFERENCE_MARKUP)) {
         const key = referenceKey(match[1] ?? '')
         expect(key, `${where} {{${match[1]}}} is not a key`).toBeDefined()
         if (key === undefined) continue
@@ -976,11 +976,22 @@ describe('authored prose markup', () => {
     }
   })
 
-  it('keeps references out of headings, where nothing renders them', async () => {
+  it('keeps an apostrophe inside the reference it follows, so the typography curls it right', async () => {
     for (const { where, text } of await authoredProse()) {
+      for (const match of text.matchAll(/\}\}'/g)) {
+        const at = match.index ?? 0
+        expect(text.slice(Math.max(0, at - 30), at + 5), `${where} writes }}' `).toBe('')
+      }
+    }
+  })
+
+  it('keeps references out of headings and code blocks, where nothing renders them', async () => {
+    for (const { where, text } of await authoredProse()) {
+      let fenced = false
       for (const line of text.split('\n')) {
-        if (!/^#{1,6} /.test(line)) continue
-        expect(line.includes('{{'), `${where} heading « ${line} »`).toBe(false)
+        if (line.startsWith('```')) fenced = !fenced
+        if (!fenced && !/^#{1,6} /.test(line)) continue
+        expect(line.includes('{{'), `${where} « ${line} »`).toBe(false)
       }
     }
   })

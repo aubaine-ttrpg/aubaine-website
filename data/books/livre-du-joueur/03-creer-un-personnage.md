@@ -36,13 +36,13 @@ PP
 ## L'ordre des étapes
 
 1. **Espèce, Archétype, Domaine.** Choisissez-les parmi ceux que le MJ propose, avec votre sous-espèce ou votre origine régionale quand l'Espèce en compte. Ils fixent vos deux premiers Arbres, vos deux Compétences d'Espèce et votre {{vitesse}}.
-2. **L'{{ame}}.** Écrivez la {{phobie}}, la {{manie}}, le {{defaut}}, la Spécialité et le {{don}}.
-3. **Caractéristiques.** Dépensez des PM.
-4. **Aptitudes et Spécialité.** Dépensez des PM.
+2. **L'{{ame}}.** Écrivez la {{phobie}}, la {{manie}}, le {{defaut}}, la {{specialite}} et le {{don}}.
+3. **{{caracteristique|Caractéristiques}}.** Dépensez des PM.
+4. **{{aptitude|Aptitudes}} et {{specialite}}.** Dépensez des PM.
 5. **Ressources.** Placez les 3 PP.
 6. **Compétences.** Dépensez les 25 PX dans vos Arbres.
 7. **Équipement.** Remplissez les huit emplacements portés.
-8. **Valeurs dérivées.** Calculez {{pdv}}, Mémoire, Énergie, {{ca}}, Vitesse et Initiative.
+8. **Valeurs dérivées.** Calculez {{pdv}}, {{memoire}}, {{energie}}, {{ca}}, {{vitesse}} et Initiative.
 
 Une étape peut se rejouer tant que personne n'a lancé de dé. Après le premier {{jet}} de la première séance, la fiche est figée et la progression prend le relais.
 
@@ -50,56 +50,56 @@ Le chapitre Les Espèces détaille l'étape 1, et le chapitre Les Arbres et les 
 
 ## L'Âme
 
-L'Âme est ce qui distingue un personnage d'un autre une fois les chiffres égaux. Elle se décide avec le MJ, dans le ton que la table s'est donné.
+L'{{ame}} est ce qui distingue un personnage d'un autre une fois les chiffres égaux. Elle se décide avec le MJ, dans le ton que la table s'est donné.
 
 Chaque personnage en porte cinq morceaux.
 
-Phobie
+{{phobie}}
 : Une peur qui pèse sur ses décisions. Elle sert quand elle coûte quelque chose.
 
-Manie
+{{manie}}
 : Une habitude, une obsession, un geste qui revient.
 
-Défaut
+{{defaut}}
 : Un trait durable qui lui attire des ennuis.
 
-Spécialité
+{{specialite}}
 : Un domaine personnel étroit dans lequel il excelle.
 
-Don
+{{don}}
 : Une faculté exceptionnelle qui n'appartient qu'à lui.
 
 Les trois premiers compliquent la vie du personnage et lui rapportent du {{karma}}. Les deux derniers disent ce qu'il sait faire comme personne d'autre à la table.
 
 ### Le Karma
 
-La Phobie, la Manie et le Défaut portent chacun un emplacement de Karma. Un personnage conserve donc au plus trois points, un par emplacement.
+La {{phobie}}, la {{manie}} et le {{defaut}} portent chacun un emplacement de {{karma}}. Un personnage conserve donc au plus trois points, un par emplacement.
 
-Le MJ accorde un point de Karma quand il le juge mérité, souvent quand un de ces trois traits a coûté quelque chose au personnage, et choisit l'emplacement. Un emplacement déjà rempli n'en reçoit pas de second. Le Karma conservé ne disparaît ni au repos ni en fin de séance.
+Le MJ accorde un point de {{karma}} quand il le juge mérité, souvent quand un de ces trois traits a coûté quelque chose au personnage, et choisit l'emplacement. Un emplacement déjà rempli n'en reçoit pas de second. Le {{karma}} conservé ne disparaît ni au repos ni en fin de séance.
 
-Dépensez un point avant un Jet, ou après le lancer tant que le résultat n'est pas résolu. Chaque point ajoute un {{avantage}} ou un {{desavantage}} au Jet de votre choix : le vôtre, celui d'un allié, celui d'un adversaire. Plusieurs points peuvent tomber sur le même Jet.
+Dépensez un point avant un {{jet}}, ou après le lancer tant que le résultat n'est pas résolu. Chaque point ajoute un {{avantage}} ou un {{desavantage}} au {{jet}} de votre choix : le vôtre, celui d'un allié, celui d'un adversaire. Plusieurs points peuvent tomber sur le même {{jet}}.
 
-Un point dépensé après le lancer ajoute son dé à ceux qui sont déjà sur la table, puis les deux dés conservés sont déterminés de nouveau sur l'ensemble. C'est ce qui permet de sauver un Jet raté, et aussi d'en gâcher un réussi quand le point tombe sur un adversaire.
+Un point dépensé après le lancer ajoute son dé à ceux qui sont déjà sur la table, puis les deux dés conservés sont déterminés de nouveau sur l'ensemble. C'est ce qui permet de sauver un {{jet}} raté, et aussi d'en gâcher un réussi quand le point tombe sur un adversaire.
 
-Certaines Compétences prennent le Karma comme ressource. Elles sont rares à l'usage pour cette raison.
+Certaines Compétences prennent le {{karma}} comme ressource. Elles sont rares à l'usage pour cette raison.
 
 ### La Spécialité
 
-La Spécialité est une Aptitude que vous inventez, au champ volontairement étroit. C'est le métier, le savoir ou la passion où votre personnage dépasse tout le monde : « Peinture », « Pièges », « Bombes », « Commerce », « Cuisine », « Navigation », « Monstres ». Elle monte avec des PM comme n'importe quelle Aptitude.
+La {{specialite}} est une {{aptitude}} que vous inventez, au champ volontairement étroit. C'est le métier, le savoir ou la passion où votre personnage dépasse tout le monde : « Peinture », « Pièges », « Bombes », « Commerce », « Cuisine », « Navigation », « Monstres ». Elle monte avec des PM comme n'importe quelle {{aptitude}}.
 
-Quand elle s'applique, elle entre dans le Jet comme une Aptitude ordinaire et accorde en plus un Avantage. La Caractéristique suit toujours votre manière d'agir : une Spécialité « Cuisine » se lance avec l'{{esprit}} pour reconnaître une épice au goût, avec la {{dexterite}} pour dresser un banquet en une heure.
+Quand elle s'applique, elle entre dans le {{jet}} comme une {{aptitude}} ordinaire et accorde en plus un {{avantage}}. La {{caracteristique}} suit toujours votre manière d'agir : une {{specialite}} « Cuisine » se lance avec l'{{esprit}} pour reconnaître une épice au goût, avec la {{dexterite}} pour dresser un banquet en une heure.
 
 Un champ large donne un bonus tiède qui sert souvent ; un champ étroit donne un vrai coup de pouce qui sert rarement. Le MJ tranche les cas limites.
 
 > [!EXAMPLE] Exemple
 >
-> Oswin a la Spécialité « Commerce » à +2 et rien en {{persuasion}}. Au marché, il marchande une selle : l'action tombe dans son champ, et le MJ lui demande un Jet de {{charisme}} + Commerce avec 1 Avantage.
+> Oswin a la {{specialite}} « Commerce » à +2 et rien en {{persuasion}}. Au marché, il marchande une selle : l'action tombe dans son champ, et le MJ lui demande un {{jet}} de {{charisme}} + Commerce avec 1 {{avantage}}.
 >
-> Le soir, il doit convaincre un garde de le laisser passer après le couvre-feu. Il n'y a rien à vendre ni à acheter : le Jet redevient Charisme + Persuasion, et Oswin ne compte que sur son Charisme. S'il glisse une pièce au garde, le MJ peut juger qu'on revient au marchandage.
+> Le soir, il doit convaincre un garde de le laisser passer après le couvre-feu. Il n'y a rien à vendre ni à acheter : le {{jet}} redevient {{charisme}} + {{persuasion}}, et Oswin ne compte que sur son {{charisme}}. S'il glisse une pièce au garde, le MJ peut juger qu'on revient au marchandage.
 
 ### Le Don
 
-Le Don est une faculté exceptionnelle qui n'appartient qu'à votre personnage : une capacité, une perception ou une particularité. Écrivez-le en une phrase, à la première personne : « Mes peintures prennent vie », « Je peux parler aux morts », « Je reçois des prémonitions », « Je sais quand on me ment ».
+Le {{don}} est une faculté exceptionnelle qui n'appartient qu'à votre personnage : une capacité, une perception ou une particularité. Écrivez-le en une phrase, à la première personne : « Mes peintures prennent vie », « Je peux parler aux morts », « Je reçois des prémonitions », « Je sais quand on me ment ».
 
 Il ouvre une information, une permission ou une occasion qu'un autre personnage n'aurait pas.
 
@@ -107,30 +107,30 @@ Une information
 : Qui peut parler aux morts interroge le cadavre d'un témoin. Ce que le mort sait, et ce qu'il accepte de dire, c'est le MJ qui le décide.
 
 Une permission
-: Les peintures d'un personnage qui a ce Don prennent vie, et un oiseau peint peut s'envoler. Personne d'autre ne peut seulement le tenter.
+: Les peintures d'un personnage qui a ce {{don}} prennent vie, et un oiseau peint peut s'envoler. Personne d'autre ne peut seulement le tenter.
 
 Une occasion
 : Les prémonitions passent par le MJ, qui choisit quand une vision arrive et ce qu'elle montre. Ce que vous en faites vous appartient.
 
-Quand une conséquence du Don a une issue incertaine, elle se résout avec les règles ordinaires. Le Don ne touche pas aux Jets, aux dégâts, aux soins, à la CA, aux ressources ni au nombre d'actions, sauf si une autre règle achetée à part le prévoit.
+Quand une conséquence du {{don}} a une issue incertaine, elle se résout avec les règles ordinaires. Le {{don}} ne touche pas aux {{jet|Jets}}, aux dégâts, aux soins, à la {{ca}}, aux ressources ni au nombre d'actions, sauf si une autre règle achetée à part le prévoit.
 
-Précisez-le avec le MJ avant la première séance : ce qu'il permet, et jusqu'où il va. La règle de la bonne foi pèse ici de tout son poids : un Don écrit pour contourner les règles plutôt que pour dire qui est votre personnage est Pas-cool.
+Précisez-le avec le MJ avant la première séance : ce qu'il permet, et jusqu'où il va. La règle de la bonne foi pèse ici de tout son poids : un {{don}} écrit pour contourner les règles plutôt que pour dire qui est votre personnage est Pas-cool.
 
 > [!EXAMPLE] Un Don et une Spécialité
 >
-> Maëlle a pour Don « Mes peintures prennent vie » et pour Spécialité « Peinture ». Enfermée dans une cellule, elle peint un moineau sur le mur avec un morceau de charbon.
+> Maëlle a pour {{don}} « Mes peintures prennent vie » et pour {{specialite}} « Peinture ». Enfermée dans une cellule, elle peint un moineau sur le mur avec un morceau de charbon.
 >
-> Le Don rend la chose possible, et le MJ accepte que l'oiseau prenne vie. Peindre un moineau assez vrai pour voler, au charbon et à la lueur d'une meurtrière, reste incertain : le MJ demande un Jet de Dextérité + Peinture, avec 1 Avantage grâce à la Spécialité. Maëlle réussit, et le moineau s'envole entre les barreaux avec le message qu'elle lui a confié.
+> Le {{don}} rend la chose possible, et le MJ accepte que l'oiseau prenne vie. Peindre un moineau assez vrai pour voler, au charbon et à la lueur d'une meurtrière, reste incertain : le MJ demande un {{jet}} de {{dexterite}} + Peinture, avec 1 {{avantage}} grâce à la {{specialite}}. Maëlle réussit, et le moineau s'envole entre les barreaux avec le message qu'elle lui a confié.
 >
-> Un loup peint prendrait vie lui aussi, mais il ne mordrait pour de bon qu'avec une Compétence qui le prévoit : le Don ne fait pas de dégâts.
+> Un loup peint prendrait vie lui aussi, mais il ne mordrait pour de bon qu'avec une Compétence qui le prévoit : le {{don}} ne fait pas de dégâts.
 
 ## Les Points de maîtrise
 
-Les six Caractéristiques et toutes les Aptitudes commencent à 0. Vos 22 PM les font monter. Ce sont les deux moitiés de chaque Jet, et elles se paient dans la même monnaie.
+Les six {{caracteristique|Caractéristiques}} et toutes les {{aptitude|Aptitudes}} commencent à 0. Vos 22 PM les font monter. Ce sont les deux moitiés de chaque {{jet}}, et elles se paient dans la même monnaie.
 
-Une Caractéristique coûte sa nouvelle valeur. Une Aptitude coûte la moitié de sa nouvelle valeur, arrondie au supérieur. Les deux coûtent au moins 1.
+Une {{caracteristique}} coûte sa nouvelle valeur. Une {{aptitude}} coûte la moitié de sa nouvelle valeur, arrondie au supérieur. Les deux coûtent au moins 1.
 
-| Nouvelle valeur | Caractéristique | Aptitude |
+| Nouvelle valeur | {{caracteristique}} | {{aptitude}} |
 | ---: | ---: | ---: |
 | 1 | 1 | 1 |
 | 2 | 2 | 1 |
@@ -139,64 +139,64 @@ Une Caractéristique coûte sa nouvelle valeur. Une Aptitude coûte la moitié d
 | 5 | 5 | 3 |
 | 6 | 6 | 3 |
 
-Le coût est cumulatif : passer une Caractéristique de 0 à +3 coûte `1 + 2 + 3`, donc 6 PM. La même montée sur une Aptitude coûte `1 + 1 + 2`, donc 4 PM.
+Le coût est cumulatif : passer une {{caracteristique}} de 0 à +3 coûte `1 + 2 + 3`, donc 6 PM. La même montée sur une {{aptitude}} coûte `1 + 1 + 2`, donc 4 PM.
 
-À la création, une Caractéristique plafonne à +3 et une Aptitude à +2. En jeu, les deux montent jusqu'à +6.
+À la création, une {{caracteristique}} plafonne à +3 et une {{aptitude}} à +2. En jeu, les deux montent jusqu'à +6.
 
-Vous pouvez descendre une Caractéristique ou une Aptitude à −1. Chaque valeur ainsi abaissée libère 1 PM à dépenser ailleurs. Un −1 se paie à chaque Jet qui l'emploie, et comme c'est le MJ qui choisit la paire, vous ne contrôlez pas quand il tombe.
+Vous pouvez descendre une {{caracteristique}} ou une {{aptitude}} à −1. Chaque valeur ainsi abaissée libère 1 PM à dépenser ailleurs. Un −1 se paie à chaque {{jet}} qui l'emploie, et comme c'est le MJ qui choisit la paire, vous ne contrôlez pas quand il tombe.
 
-Une Caractéristique sert partout où elle apparaît, une Aptitude seulement dans son domaine, et une Caractéristique coûte le double. La question n'est donc pas de savoir laquelle est la meilleure, mais combien de Jets différents vous voulez pouvoir tenter.
+Une {{caracteristique}} sert partout où elle apparaît, une {{aptitude}} seulement dans son domaine, et une {{caracteristique}} coûte le double. La question n'est donc pas de savoir laquelle est la meilleure, mais combien de {{jet|Jets}} différents vous voulez pouvoir tenter.
 
 ### Les six Caractéristiques
 
 {{force}}
 : La puissance physique du personnage, celle qui soulève, pousse et frappe.
 
-Dextérité
-: La coordination et la précision du personnage, dans le geste comme dans le mouvement. Porte la CA et l'Initiative.
+{{dexterite}}
+: La coordination et la précision du personnage, dans le geste comme dans le mouvement. Porte la {{ca}} et l'Initiative.
 
 {{constitution}}
-: La santé et l'endurance du personnage, ce qui lui permet d'encaisser et de tenir. Porte les PdV.
+: La santé et l'endurance du personnage, ce qui lui permet d'encaisser et de tenir. Porte les {{pdv}}.
 
 {{intelligence}}
-: La capacité du personnage à analyser, retenir, apprendre et déduire. Porte la Mémoire.
+: La capacité du personnage à analyser, retenir, apprendre et déduire. Porte la {{memoire}}.
 
-Esprit
-: L'attention et l'empathie du personnage, l'acuité de ses sens et son lien avec le surnaturel. Porte l'Énergie.
+{{esprit}}
+: L'attention et l'empathie du personnage, l'acuité de ses sens et son lien avec le surnaturel. Porte l'{{energie}}.
 
-Charisme
+{{charisme}}
 : La présence du personnage, sa manière de s'exprimer et l'autorité qu'il dégage.
 
-Quatre d'entre elles portent une valeur dérivée. Cela ne les rend pas plus importantes : une Caractéristique sans valeur dérivée sert à chaque Jet qui l'emploie, ce qui arrive bien plus souvent.
+Quatre d'entre elles portent une valeur dérivée. Cela ne les rend pas plus importantes : une {{caracteristique}} sans valeur dérivée sert à chaque {{jet}} qui l'emploie, ce qui arrive bien plus souvent.
 
 ### Les Aptitudes
 
-La fiche porte la liste complète, une case par Aptitude, et la page Règles donne la définition de chacune. Elles couvrent ce qu'un personnage sait faire, du pistage à la négociation.
+La fiche porte la liste complète, une case par {{aptitude}}, et la page Règles donne la définition de chacune. Elles couvrent ce qu'un personnage sait faire, du pistage à la négociation.
 
-Quatre d'entre elles sont aussi les quatre disciplines de fabrication : {{artisanat}}, {{arcanes}}, {{technologie}} et {{science}}. C'est une seule et même notion : la discipline sous laquelle une pièce se travaille est l'Aptitude que vous jetez pour la fabriquer.
+Quatre d'entre elles sont aussi les quatre disciplines de fabrication : {{artisanat}}, {{arcanes}}, {{technologie}} et {{science}}. C'est une seule et même notion : la discipline sous laquelle une pièce se travaille est l'{{aptitude}} que vous jetez pour la fabriquer.
 
 Six reviennent plus que les autres, et ce sont celles du combat : {{melee}}, {{finesse}} et {{visee}} pour porter un coup, {{reflexes}}, {{resistance}} et {{volonte}} pour y résister.
 
-À cette liste s'ajoute une Aptitude qui n'appartient qu'à vous : votre Spécialité, présentée avec l'Âme. Elle se paie en PM aux mêmes prix et avec les mêmes plafonds que les autres.
+À cette liste s'ajoute une {{aptitude}} qui n'appartient qu'à vous : votre {{specialite}}, présentée avec l'{{ame}}. Elle se paie en PM aux mêmes prix et avec les mêmes plafonds que les autres.
 
 ## Les ressources
 
 Chaque Point de potentiel monte d'un niveau l'une des trois voies. Elles sont indépendantes, et chacune plafonne au niveau 10.
 
 Vitalité
-: `PdV = 20 + 2 × Constitution + 5 × Niveau de Vitalité`
+: `{{pdv}} = 20 + 2 × {{constitution}} + 5 × Niveau de Vitalité`
 
-Mémoire
-: `Mémoire = 4 + Intelligence + Niveau de Mémoire`
+{{memoire}}
+: `{{memoire}} = 4 + {{intelligence}} + Niveau de {{memoire}}`
 
-Énergie
-: `Énergie = 8 + Esprit + Niveau d'Énergie`
+{{energie}}
+: `{{energie}} = 8 + {{esprit}} + Niveau d'{{energie}}`
 
 Vos 3 PP vont où vous voulez : trois voies d'un niveau, ou une voie de trois.
 
-La Mémoire est la place que vous avez pour vos Compétences. Une Compétence {{memorisee}} occupe 1 Mémoire, quels que soient son Niveau et son coût. Vos deux Compétences d'Espèce sont Mémorisées sans occuper de Mémoire, comme le détaille le chapitre Les Espèces, et celles que votre équipement vous donne n'occupent rien. Hors vos deux Compétences d'Espèce, vous pouvez changer vos Compétences Mémorisées pendant un {{repos-court}} ou un {{repos-long}}.
+La {{memoire}} est la place que vous avez pour vos Compétences. Une Compétence {{memorisee}} occupe 1 {{memoire}}, quels que soient son Niveau et son coût. Vos deux Compétences d'Espèce sont {{memorisee|Mémorisées}} sans occuper de {{memoire}}, comme le détaille le chapitre Les Espèces, et celles que votre équipement vous donne n'occupent rien. Hors vos deux Compétences d'Espèce, vous pouvez changer vos Compétences {{memorisee|Mémorisées}} pendant un {{repos-court}} ou un {{repos-long}}.
 
-L'Énergie paie les Compétences qui coûtent quelque chose. Une Compétence dont le coût dépasse votre réserve ne peut pas être jouée. Une tentative dont les conditions ne sont pas réunies ne consomme rien.
+L'{{energie}} paie les Compétences qui coûtent quelque chose. Une Compétence dont le coût dépasse votre réserve ne peut pas être jouée. Une tentative dont les conditions ne sont pas réunies ne consomme rien.
 
 ## Dépenser les 25 PX
 
@@ -214,67 +214,67 @@ Ces six cases sont les seules qui se calculent. Reprenez-les après chaque achat
 
 | Case | Formule |
 | --- | --- |
-| PdV | `20 + 2 × Constitution + 5 × Niveau de Vitalité` |
-| Mémoire | `4 + Intelligence + Niveau de Mémoire` |
-| Énergie | `8 + Esprit + Niveau d'Énergie` |
-| CA | `12 + Dextérité` sans armure, sinon la formule de l'armure |
-| Vitesse | 9 mètres, sauf mention de votre Espèce |
-| Initiative | `1d4 + Dextérité`, lancé au début du combat |
+| {{pdv}} | `20 + 2 × {{constitution}} + 5 × Niveau de Vitalité` |
+| {{memoire}} | `4 + {{intelligence}} + Niveau de {{memoire}}` |
+| {{energie}} | `8 + {{esprit}} + Niveau d'{{energie}}` |
+| {{ca}} | `12 + {{dexterite}}` sans armure, sinon la formule de l'armure |
+| {{vitesse}} | 9 mètres, sauf mention de votre Espèce |
+| Initiative | `1d4 + {{dexterite}}`, lancé au début du combat |
 
-Une armure remplace la formule de CA au lieu de s'y ajouter. Un bouclier et les autres modificateurs explicites s'ajoutent ensuite.
+Une armure remplace la formule de {{ca}} au lieu de s'y ajouter. Un bouclier et les autres modificateurs explicites s'ajoutent ensuite.
 
 ## Un exemple complet
 
-Sélène est une éclaireuse, plus à l'aise dans les bois qu'en ville, qui piste ce que les autres ne voient pas. Sa joueuse écrit d'abord son Âme avec le MJ.
+Sélène est une éclaireuse, plus à l'aise dans les bois qu'en ville, qui piste ce que les autres ne voient pas. Sa joueuse écrit d'abord son {{ame}} avec le MJ.
 
-Phobie
+{{phobie}}
 : L'eau profonde.
 
-Manie
+{{manie}}
 : Elle compte ses flèches avant de dormir.
 
-Défaut
+{{defaut}}
 : Elle ne fait confiance à personne en ville.
 
-Spécialité
+{{specialite}}
 : « Pistage ».
 
-Don
+{{don}}
 : « Je reçois des prémonitions ».
 
 Ses 22 PM :
 
-| Caractéristique | Valeur | PM |
+| {{caracteristique}} | Valeur | PM |
 | --- | ---: | ---: |
-| Dextérité | +3 | 6 |
-| Constitution | +2 | 3 |
-| Esprit | +2 | 3 |
-| Intelligence | +1 | 1 |
-| Charisme | 0 | 0 |
-| Force | −1 | −1 |
+| {{dexterite}} | +3 | 6 |
+| {{constitution}} | +2 | 3 |
+| {{esprit}} | +2 | 3 |
+| {{intelligence}} | +1 | 1 |
+| {{charisme}} | 0 | 0 |
+| {{force}} | −1 | −1 |
 
-Douze PM au total. Elle assume le −1 en Force : elle ne pousse pas les portes, elle les contourne.
+Douze PM au total. Elle assume le −1 en {{force}} : elle ne pousse pas les portes, elle les contourne.
 
-| Aptitude | Valeur | PM |
+| {{aptitude}} | Valeur | PM |
 | --- | ---: | ---: |
-| Visée | +2 | 2 |
+| {{visee}} | +2 | 2 |
 | {{discretion}} | +2 | 2 |
-| Réflexes | +2 | 2 |
+| {{reflexes}} | +2 | 2 |
 | {{perception}} | +1 | 1 |
 | {{survie}} | +1 | 1 |
-| Spécialité « Pistage » | +2 | 2 |
+| {{specialite}} « Pistage » | +2 | 2 |
 
 Dix PM, et le compte tombe juste à 22.
 
 Ses 3 PP vont un par voie. Ses valeurs dérivées :
 
-- PdV : `20 + 2 × 2 + 5 × 1` = **29**
-- Mémoire : `4 + 1 + 1` = **6**
-- Énergie : `8 + 2 + 1` = **11**
-- CA : `12 + 3` = **15** sans armure
-- Vitesse : **9 m**
+- {{pdv}} : `20 + 2 × 2 + 5 × 1` = **29**
+- {{memoire}} : `4 + 1 + 1` = **6**
+- {{energie}} : `8 + 2 + 1` = **11**
+- {{ca}} : `12 + 3` = **15** sans armure
+- {{vitesse}} : **9 m**
 - Initiative : `1d4 + 3`
 
-Ses 25 PX partent dans le cœur de son Arbre de Domaine et dans une Compétence bon marché qui lui est reliée. Deux Compétences à mémoriser pour six emplacements de Mémoire, ses Compétences d'Espèce n'en prenant aucun : elle a de la place pour grandir avant d'avoir à choisir.
+Ses 25 PX partent dans le cœur de son Arbre de Domaine et dans une Compétence bon marché qui lui est reliée. Deux Compétences à {{memorisee|mémoriser}} pour six emplacements de {{memoire}}, ses Compétences d'Espèce n'en prenant aucun : elle a de la place pour grandir avant d'avoir à choisir.
 
-Sur un Jet de tir, elle lance `2d12 + 3 + 2`. Quand elle piste, sa Spécialité entre dans le Jet et lui donne un Avantage par-dessus. Et quand un danger l'attend plus loin sur la piste, son Don peut lui en montrer un éclat avant qu'elle n'y arrive, si le MJ le décide.
+Sur un {{jet}} de tir, elle lance `2d12 + 3 + 2`. Quand elle piste, sa {{specialite}} entre dans le {{jet}} et lui donne un {{avantage}} par-dessus. Et quand un danger l'attend plus loin sur la piste, son {{don}} peut lui en montrer un éclat avant qu'elle n'y arrive, si le MJ le décide.

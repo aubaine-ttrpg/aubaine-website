@@ -11,7 +11,7 @@ Most of what you wear, you will have made yourself. Shops exist, but Aubaine rou
 
 A piece can carry a {{prerequis}}, printed under its name. Only a creature that meets it can equip it.
 
-Skills granted by a worn piece take up no {{memoire}} and do not have to be learned. The piece grants them while it is worn, and takes them back the moment you remove it.
+Skills granted by a worn piece take up no {{memoire}} and do not have to be {{apprise|learned}}. The piece grants them while it is worn, and takes them back the moment you remove it.
 
 Each catalogue entry prints what concerns it: its headline value, its stats, its named properties, its recipe and what it grants. Those numbers belong to the piece and are not repeated anywhere else.
 
@@ -21,7 +21,7 @@ Head
 : Helm, hood, crown. Whatever protects or marks the face.
 
 Torso
-: The piece that carries your Armour Class formula. One at a time.
+: The piece that carries your {{ca|Armour Class}} formula. One at a time.
 
 Boots
 : Hose and greaves: whatever touches the ground and sets your {{vitesse}}.
@@ -35,7 +35,7 @@ One hand (x2)
 Jewel (x2)
 : Two independent slots. Ring, set stone, carved talisman.
 
-The GM tells you what you start with. With no armour, your {{ca}} is `12 + Dexterity`, and an unarmed Strike deals `1d4 + Strength`: a character with nothing is never defenceless.
+The GM tells you what you start with. With no armour, your {{ca}} is `12 + {{dexterite}}`, and an unarmed Strike deals `1d4 + {{force}}`: a character with nothing is never defenceless.
 
 ## Finding materials
 
@@ -44,12 +44,12 @@ What you can wear depends on the materials you bring back.
 After a significant encounter, or on finding a source worth working, each character receives a Loot Opportunity. Spend it in one of these two ways, never both.
 
 Random loot
-: Roll the source's Loot Die. The GM reads its Loot Table and tells you what you get. No further Roll.
+: Roll the source's Loot Die. The GM reads its Loot Table and tells you what you get. No further {{jet}}.
 
 Targeted harvest
-: Say what you are after and how you get it. The GM sets the Roll and its {{dd}}. On a failure, the Opportunity is spent for nothing.
+: Say what you are after and how you get it. The GM sets the {{jet}} and its {{dd}}. On a failure, the Opportunity is spent for nothing.
 
-The first choice is safe and asks nothing of you. The second aims true and may come back empty. A target the fiction does not let you extract cannot be won with a Roll: you do not harvest scales from a beast that has none.
+The first choice is safe and asks nothing of you. The second aims true and may come back empty. A target the fiction does not let you extract cannot be won with a {{jet}}: you do not harvest scales from a beast that has none.
 
 ## Reading a material
 
@@ -61,31 +61,31 @@ The Material Value works twice: it counts towards a recipe's cost, and a materia
 
 ## Crafting
 
-An entry's recipe box names its discipline, its cost, the Types it accepts and its Rolls in order.
+An entry's recipe box names its discipline, its cost, the Types it accepts and its {{jet|Rolls}} in order.
 
 1. Gather materials that cover each of the Types asked for.
 2. Reach or exceed the cost, all materials together. How you split it between the Types is up to you: one ingot and ten pelts will do as well as an even share.
-3. Commit the materials, then make the Rolls in order.
+3. Commit the materials, then make the {{jet|Rolls}} in order.
 
-Every Roll must succeed. The materials are used up from the start: if a Roll fails, the crafting stops and they are lost. The Rolls read in the order they are made, and the physical work comes before the knowledge.
+Every {{jet}} must succeed. The materials are used up from the start: if a {{jet}} fails, the crafting stops and they are lost. The {{jet|Rolls}} read in the order they are made, and the physical work comes before the knowledge.
 
-That is the real cost of an expensive piece: less its price than the risk of staking everything on a string of Rolls.
+That is the real cost of an expensive piece: less its price than the risk of staking everything on a string of {{jet|Rolls}}.
 
 > [!EXAMPLE] Example
 >
-> Sélène wants a short bow. Its recipe is worked under {{artisanat}}: it asks for the Types Wood and Leather at a cost of 4, then two Rolls with Craft as the {{aptitude}}, a {{dexterite}} Roll against DC 12, then an {{intelligence}} Roll against DC 12.
+> Sélène wants a short bow. Its recipe is worked under {{artisanat}}: it asks for the Types Wood and Leather at a cost of 4, then two {{jet|Rolls}} with {{artisanat}} as the {{aptitude}}, a {{dexterite}} {{jet}} against {{dd}} 12, then an {{intelligence}} {{jet}} against {{dd}} 12.
 >
-> She commits a piece of wood of Value 1 for the Wood and three wolf pelts of Value 1 for the Leather: the cost is met. She passes the Dexterity Roll, fails the Intelligence one, and all four materials are lost. She will have to go hunting again.
+> She commits a piece of wood of Value 1 for the Wood and three wolf pelts of Value 1 for the Leather: the cost is met. She passes the {{dexterite}} {{jet}}, fails the {{intelligence}} one, and all four materials are lost. She will have to go hunting again.
 
 ### The four disciplines
 
-The colour of the recipe box repeats the discipline a piece is worked under, and its title names it: Craft at the forge, {{arcanes}} at the arcane bench, {{technologie}} at the workshop, {{science}} in the laboratory.
+The colour of the recipe box repeats the discipline a piece is worked under, and its title names it: {{artisanat}} at the forge, {{arcanes}} at the arcane bench, {{technologie}} at the workshop, {{science}} in the laboratory.
 
-Each one is an Aptitude, and that is what you roll. The four do not stand in for one another: a piece worked under Arcana cannot be made under Craft. Raising a discipline with MP raises your ability to craft under it.
+Each one is an {{aptitude}}, and that is what you roll. The four do not stand in for one another: a piece worked under {{arcanes}} cannot be made under {{artisanat}}. Raising a discipline with MP raises your ability to craft under it.
 
 ### Without a recipe
 
-Suggest the item or the change to the GM. They start from the closest existing piece, set the Types, the cost and the Rolls, and then the procedure is the same. An approved creation can become a permanent recipe in the campaign.
+Suggest the item or the change to the GM. They start from the closest existing piece, set the Types, the cost and the {{jet|Rolls}}, and then the procedure is the same. An approved creation can become a permanent recipe in the campaign.
 
 ## Sets
 
@@ -95,7 +95,7 @@ A tier counts the pieces of the set you are wearing. Two pieces at the bottom of
 
 Every tier you reach adds to the ones below it. Wearing four pieces of a set with a tier at two and a tier at four gives you both effects. Take off a piece and you drop below the tier immediately.
 
-A Skill granted by a tier takes up no Memory and does not have to be learned, exactly like one a piece grants. That is what makes a set precious to a character whose Memory is already full.
+A Skill granted by a tier takes up no {{memoire}} and does not have to be {{apprise|learned}}, exactly like one a piece grants. That is what makes a set precious to a character whose {{memoire}} is already full.
 
 The pieces of a set do not all take the same slot, and nothing forces you to complete it. Two pieces taken for their first tier, with six slots free for anything else, is an ordinary choice.
 
@@ -134,6 +134,6 @@ An item sold back brings in half its price. A material sold back brings in its M
 
 ### What money cannot buy
 
-No XP, no MP, no PP. No sum raises a {{caracteristique}}, an Aptitude, a resource or a Skill. Nor does money buy a recipe your character cannot read, or a material no source in the region produces.
+No XP, no MP, no PP. No sum raises a {{caracteristique}}, an {{aptitude}}, a resource or a Skill. Nor does money buy a recipe your character cannot read, or a material no source in the region produces.
 
 The GM announces your starting purse with the rest of your starting set. Twenty or so silver coins buy an ordinary weapon and a potion, which is enough to play the first session.

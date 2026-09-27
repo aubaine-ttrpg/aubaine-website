@@ -23,7 +23,7 @@ Book chapters are the explanatory layer. They teach a mechanic in plain language
 - Use a table for genuinely tabular facts such as costs and derived values.
 - Write a quote as a Markdown blockquote. When it has a speaker, close it with a last line `> :source[...]`: that line becomes the attribution, outside the quote, and `pnpm data:check` refuses a `:source[` anywhere else.
 - Frame an example of play as a callout, `> [!EXAMPLE] Titre`, and keep `> [!PRINCIPLE] Titre` for the rules that come before all others. `docs/runbooks/add-a-book-page.md` owns the syntax.
-- Set formulas as code so they read as formulas.
+- Set formulas as code so they read as formulas. A reference inside one renders like the rest of the text, as in `` `{{ca}} = 12 + {{dexterite}}` ``; a heading or a fenced code block renders none.
 
 ## Voice
 

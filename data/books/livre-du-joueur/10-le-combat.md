@@ -25,11 +25,11 @@ Au premier round, une créature surprise joue son tour après toutes celles qui 
 
 Au début d'un combat, chaque personnage joueur lance :
 
-`1d4 + Dextérité`
+`1d4 + {{dexterite}}`
 
 On agit du résultat le plus élevé au plus faible. Les joueurs l'emportent sur leurs adversaires à égalité, et ils se départagent librement entre eux.
 
-Le dé est petit exprès. Un écart de {{dexterite}} pèse lourd dans cet ordre, plus que dans n'importe quel autre Jet du jeu.
+Le dé est petit exprès. Un écart de {{dexterite}} pèse lourd dans cet ordre, plus que dans n'importe quel autre {{jet}} du jeu.
 
 L'ordre est fixé pour tout le combat. On ne le relance pas à chaque round.
 
@@ -37,7 +37,7 @@ L'ordre est fixé pour tout le combat. On ne le relance pas à chaque round.
 
 Le MJ peut lancer une seule fois pour un groupe de créatures identiques, et séparément pour chaque créature majeure. Cela raccourcit un combat à nombreux adversaires sans rien changer aux règles.
 
-Il peut aussi regrouper les positions alliées qui se suivent sans adversaire entre elles. Les alliés d'un même bloc entrelacent alors leurs déplacements et leurs actions. Chacun garde son propre début et sa propre fin de tour, ce qui compte pour tout effet qui s'y déclenche, et les Réactions interrompent normalement.
+Il peut aussi regrouper les positions alliées qui se suivent sans adversaire entre elles. Les alliés d'un même bloc entrelacent alors leurs {{deplacement|déplacements}} et leurs actions. Chacun garde son propre début et sa propre fin de tour, ce qui compte pour tout effet qui s'y déclenche, et les {{reaction|Réactions}} interrompent normalement.
 
 ## Votre tour
 
@@ -47,83 +47,83 @@ Une {{action}}
 : La plupart des Compétences s'y jouent, à commencer par {{ATTAQU-001}}.
 
 Une {{action-bonus}}
-: Une action rapide, réservée aux Compétences qui l'indiquent. Elle ne remplace pas l'Action, et rien ne la convertit.
+: Une action rapide, réservée aux Compétences qui l'indiquent. Elle ne remplace pas l'{{action}}, et rien ne la convertit.
 
 Un {{deplacement}}
 : Jusqu'à votre {{vitesse}}, 9 mètres sauf si votre Espèce en fixe une autre. Il se répartit librement avant, pendant et après vos actions.
 
-Une Réaction
+Une {{reaction}}
 : Hors de votre tour, quand une règle vous fournit un déclencheur. Elle revient au début de votre tour suivant.
 
 > [!EXAMPLE] Exemple
 >
-> À son tour, Sélène recule de 6 mètres pour sortir du contact d'un loup, joue {{ATTAQU-001}} avec son arc sur un autre loup, puis se glisse de 3 mètres derrière un rocher. Elle a utilisé son Déplacement en deux fois et son Action. Il lui reste son Action Bonus, qu'aucune de ses Compétences n'utilise ce tour-ci, et sa Réaction pour le tour des loups.
+> À son tour, Sélène recule de 6 mètres pour sortir du contact d'un loup, joue {{ATTAQU-001}} avec son arc sur un autre loup, puis se glisse de 3 mètres derrière un rocher. Elle a utilisé son {{deplacement}} en deux fois et son {{action}}. Il lui reste son {{action-bonus}}, qu'aucune de ses Compétences n'utilise ce tour-ci, et sa {{reaction}} pour le tour des loups.
 >
-> En reculant, elle a quitté l'allonge du premier loup : il peut jouer son {{ATTOPP-001}}. Pour l'éviter, il lui aurait fallu jouer {{DESENG-001}}, au prix de son Action.
+> En reculant, elle a quitté l'allonge du premier loup : il peut jouer son {{ATTOPP-001}}. Pour l'éviter, il lui aurait fallu jouer {{DESENG-001}}, au prix de son {{action}}.
 
 ## Se déplacer
 
 Tout se compte par pas de 1,5 mètre. Le contact est à 1,5 mètre, une arme d'allonge porte à 3 mètres, et les portées à distance courantes sont de 9, 12 et 18 mètres.
 
-Vous pouvez couper votre Déplacement autant de fois que vous le voulez dans votre tour, tant que le total ne dépasse pas votre Vitesse.
+Vous pouvez couper votre {{deplacement}} autant de fois que vous le voulez dans votre tour, tant que le total ne dépasse pas votre {{vitesse}}.
 
 Terrain difficile
 : Des gravats, une pente raide, une eau jusqu'aux genoux ou une foule serrée ralentissent la marche. Chaque mètre parcouru en terrain difficile en coûte deux.
 
 Se relever
-: Une créature {{a-terre}} se relève en dépensant la moitié de sa Vitesse, à son tour.
+: Une créature {{a-terre}} se relève en dépensant la moitié de sa {{vitesse}}, à son tour.
 
 Quitter un adversaire
 : Quitter l'allonge d'une créature qui vous voit lui permet de jouer son {{ATTOPP-001}}, sauf si vous avez joué {{DESENG-001}} ce tour-ci.
 
-Votre Vitesse peut tomber à 0, et certains états y parviennent. Une Vitesse de 0 n'empêche pas d'agir : vous gardez votre Action, votre Action Bonus et votre Réaction.
+Votre {{vitesse}} peut tomber à 0, et certains états y parviennent. Une {{vitesse}} de 0 n'empêche pas d'agir : vous gardez votre {{action}}, votre {{action-bonus}} et votre {{reaction}}.
 
 ## Attaquer
 
 L'action {{ATTAQU-001}} porte une {{attaque}} avec une arme équipée ou à mains nues.
 
-Effectuez le Jet que l'arme indique contre la {{ca}} de la cible. En cas de réussite, la cible subit les dégâts de l'arme, augmentés de la {{caracteristique}} employée par ce Jet.
+Effectuez le {{jet}} que l'arme indique contre la {{ca}} de la cible. En cas de réussite, la cible subit les dégâts de l'arme, augmentés de la {{caracteristique}} employée par ce {{jet}}.
 
-Cette Caractéristique s'ajoute toujours. C'est la même des deux côtés du calcul : celle qui vous a permis de toucher est celle qui alourdit le coup.
+Cette {{caracteristique}} s'ajoute toujours. C'est la même des deux côtés du calcul : celle qui vous a permis de toucher est celle qui alourdit le coup.
 
-Sans arme, une Frappe se résout avec un Jet de `Force + Mêlée`, à 1,5 mètre, pour `1d4 + Force` dégâts.
+Sans arme, une Frappe se résout avec un {{jet}} de `{{force}} + {{melee}}`, à 1,5 mètre, pour `1d4 + {{force}}` dégâts.
 
 ### Ce qu'une arme indique
 
 Chaque arme imprime sa propre ligne, et c'est elle qui fait foi :
 
-- la Caractéristique et l'{{aptitude}} de son Jet ;
+- la {{caracteristique}} et l'{{aptitude}} de son {{jet}} ;
 - une portée, et une seule ;
 - ses dés et son type de dégâts ;
 - ses propriétés.
 
 Une cible au-delà de la portée ne peut pas être attaquée, sauf si une propriété de l'arme le permet.
 
-Tout ce qu'une arme fait d'inhabituel passe par une propriété nommée, imprimée sur elle. Une arme {{finesse}} permet d'échanger `Force + Mêlée` contre `Dextérité + Finesse`. Deux armes Légères, une dans chaque main, ouvrent une Attaque en Action Bonus.
+Tout ce qu'une arme fait d'inhabituel passe par une propriété nommée, imprimée sur elle. Une arme Finesse permet d'échanger `{{force}} + {{melee}}` contre `{{dexterite}} + {{finesse}}`. Deux armes Légères, une dans chaque main, ouvrent une {{attaque}} en {{action-bonus}}.
 
 ## La Classe d'armure
 
-La CA est le nombre qu'une Attaque doit atteindre pour vous toucher. Sans armure :
+La {{ca}} est le nombre qu'une {{attaque}} doit atteindre pour vous toucher. Sans armure :
 
-`CA = 12 + Dextérité`
+`{{ca}} = 12 + {{dexterite}}`
 
 Une armure portée efface cette formule et impose la sienne. **Elle ne s'ajoute jamais à 12.** C'est la règle qu'on oublie le plus souvent.
 
 Une seule formule de base s'applique à la fois, celle de la pièce qui occupe l'emplacement Torse. Les boucliers et les autres modificateurs explicites s'ajoutent ensuite, par-dessus le résultat.
 
-1. Prenez la formule de votre armure, ou `12 + Dextérité` si vous n'en portez pas.
+1. Prenez la formule de votre armure, ou `12 + {{dexterite}}` si vous n'en portez pas.
 2. Ajoutez le bouclier.
 3. Ajoutez les autres modificateurs explicites, pièce par pièce.
 
 > [!EXAMPLE] Exemple
 >
-> Sans armure, avec une Dextérité de +3, votre CA est de 15. Enfilez une armure en `14 + Dextérité` et elle passe à 17, jamais à 29. Ajoutez une targe et elle monte à 18.
+> Sans armure, avec une {{dexterite}} de +3, votre {{ca}} est de 15. Enfilez une armure en `14 + {{dexterite}}` et elle passe à 17, jamais à 29. Ajoutez une targe et elle monte à 18.
 
-Chaque armure imprime sa propre formule, et certaines plafonnent la Dextérité qu'elles laissent compter ou exigent une {{force}} minimale. Lisez la pièce : elle porte ses contraintes.
+Chaque armure imprime sa propre formule, et certaines plafonnent la {{dexterite}} qu'elles laissent compter ou exigent une {{force}} minimale. Lisez la pièce : elle porte ses contraintes.
 
 ### Précision et couvert
 
-La CA d'une créature n'est pas figée. Le MJ peut la déplacer de trois crans au plus, selon ce que vous visez exactement et ce qui protège la cible.
+La {{ca}} d'une créature n'est pas figée. Le MJ peut la déplacer de trois crans au plus, selon ce que vous visez exactement et ce qui protège la cible.
 
 | Ajustement | Difficulté relative |
 | ---: | --- |
@@ -139,7 +139,7 @@ Un muret, un tronc ou une porte entrouverte protègent en partie ; viser une mai
 
 ## Agir hors de son tour
 
-Votre Réaction est votre seule façon d'agir pendant le tour d'un autre, et vous n'en avez qu'une par round. Elle se joue quand une règle vous en donne le déclencheur.
+Votre {{reaction}} est votre seule façon d'agir pendant le tour d'un autre, et vous n'en avez qu'une par round. Elle se joue quand une règle vous en donne le déclencheur.
 
 Deux Compétences de base en fournissent un à tout le monde. {{ATTOPP-001}} frappe une créature qui quitte votre allonge. {{PREPAR-001}} garde une action en réserve pour un moment que vous annoncez : « dès qu'il passe la porte, je tire ». D'autres Compétences en ajoutent, et leur fiche nomme le déclencheur.
 

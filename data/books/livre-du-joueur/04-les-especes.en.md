@@ -20,11 +20,11 @@ A Species also sets your {{taille}}, and it can name the languages you speak, re
 
 A Species usually offers more Skills than it grants. You keep two at creation, and that choice already says what kind of member of your Species you are.
 
-The others are not lost: you can buy them later from the {{banque-commune}}, at the price printed on each Skill, and their {{prerequis}} keeps them for your Species. A Species Skill bought this way is Memorised like any other and takes 1 Memory while it is Memorised.
+The others are not lost: you can buy them later from the {{banque-commune}}, at the price printed on each Skill, and their {{prerequis}} keeps them for your Species. A Species Skill bought this way is {{memorisee}} like any other and takes 1 {{memoire}} while it is {{memorisee}}.
 
 > [!EXAMPLE] Example
 >
-> A player creates an elf scout. From the Skills the Elf Species offers, she keeps {{SENAIG-001}} and {{MEDELF-001}}. A few sessions later, she buys {{CACNAT-001}} from the Common Bank. That one takes 1 Memory when she Memorises it; the first two take none.
+> A player creates an elf scout. From the Skills the Elf Species offers, she keeps {{SENAIG-001}} and {{MEDELF-001}}. A few sessions later, she buys {{CACNAT-001}} from the {{banque-commune}}. That one takes 1 {{memoire}} when she {{memorisee|memorises}} it; the first two take none.
 
 So two characters of the same Species do not start with the same gifts. A Species that offers only two Skills leaves no choice: you take both.
 
@@ -34,13 +34,13 @@ Some Species divide into subspecies, shown on the Species page. A few call them 
 
 A subspecies can impose one of those two Skills, and the Species page marks it as imposed. You take it automatically, and choose the second from the other Skills of your Species and your subspecies.
 
-A subspecies' Skills carry that subspecies as their Prerequisite. A character of another subspecies cannot buy them.
+A subspecies' Skills carry that subspecies as their {{prerequis}}. A character of another subspecies cannot buy them.
 
 ## Species that borrow from another
 
-Some Species take part of what they are from another Species: an Undead keeps the body of the Species it was in life, and a Scothan takes theirs from one of their two parents. Their page says which to choose and what you take from it, such as Size, Speed or languages.
+Some Species take part of what they are from another Species: an Undead keeps the body of the Species it was in life, and a Scothan takes theirs from one of their two parents. Their page says which to choose and what you take from it, such as {{taille}}, {{vitesse}} or languages.
 
-For any Prerequisite, such a character also counts as a member of the Species they take those traits from, when their page says so.
+For any {{prerequis}}, such a character also counts as a member of the Species they take those traits from, when their page says so.
 
 ## Playing your Species
 
@@ -50,6 +50,6 @@ Nothing forces your character to be what their people expect. An elf who hates t
 
 ## Where to read about Species
 
-The Species index carries today's list, and each Species page its Size, Speed, subspecies or regional origins, Skills and how far along its writing is. That index is the reference.
+The Species index carries today's list, and each Species page its {{taille}}, {{vitesse}}, subspecies or regional origins, Skills and how far along its writing is. That index is the reference.
 
 A Species still in Draft carries its badge. While a table plays on entries that are not settled, the GM announces which Species are available and the Skills each one offers.

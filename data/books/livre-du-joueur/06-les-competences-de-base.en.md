@@ -11,7 +11,7 @@ Together they make the list of what anyone can always attempt, with or without a
 
 They read like the Skills in your Trees: the name, then what the Skill takes to play, its range and its duration, then its rule. They carry no price and no box to tick, since there is nothing to buy and nothing to {{memorisee|memorise}}.
 
-An entry marked "1 {{attaque}}" is not played on its own: it replaces one of the Attacks of the {{ATTAQU-001}} action. That is the case for manoeuvres such as {{BOUSCU-001}} and {{AGRIPP-001}}, which knock down or hold an opponent instead of wounding them.
+An entry marked "1 {{attaque}}" is not played on its own: it replaces one of the {{attaque|Attacks}} of the {{ATTAQU-001}} action. That is the case for manoeuvres such as {{BOUSCU-001}} and {{AGRIPP-001}}, which knock down or hold an opponent instead of wounding them.
 
 ## What they cover
 
@@ -29,6 +29,6 @@ When nothing covers what you are attempting, say what your character wants and h
 >
 > **Player:** "I throw my knife at the chandelier's rope, so it comes down on the guards."
 >
-> **GM:** "You can, and it takes your {{action}}. Make a {{dexterite}} + {{visee}} Roll to cut the rope at the right moment. If you succeed, the guards underneath make a Dexterity + {{reflexes}} Roll against your {{dd}}, or they are knocked {{a-terre}}."
+> **GM:** "You can, and it takes your {{action}}. Make a {{dexterite}} + {{visee}} {{jet}} to cut the rope at the right moment. If you succeed, the guards underneath make a {{dexterite}} + {{reflexes}} {{jet}} against your {{dd}}, or they are knocked {{a-terre}}."
 
 This list is not closed. It describes what tables do most often; anything the fiction allows plays out the same way, and the Rule of Cool counts here more than anywhere.

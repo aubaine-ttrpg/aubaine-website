@@ -12,40 +12,40 @@ Dix minutes de pause, durant lesquelles vous pouvez faire une activité légère
 À la fin, vous récupérez :
 
 - la moitié de vos {{pdv}} maximum, arrondie à l'inférieur ;
-- la moitié de votre Énergie maximum, arrondie à l'inférieur ;
+- la moitié de votre {{energie}} maximum, arrondie à l'inférieur ;
 - les Compétences marquées « 1 fois par {{repos-court}} ».
 
 C'est la moitié du maximum que vous récupérez, pas la moitié de ce qui vous manque. Vous ne dépassez jamais votre maximum.
 
 > [!EXAMPLE] Exemple
 >
-> Sélène sort d'un combat à 2 PdV sur 29. Après un Repos court, elle récupère 14 PdV, la moitié de 29 arrondie à l'inférieur, et remonte à 16.
+> Sélène sort d'un combat à 2 {{pdv}} sur 29. Après un {{repos-court}}, elle récupère 14 {{pdv}}, la moitié de 29 arrondie à l'inférieur, et remonte à 16.
 
 ## Le Repos long
 
-Huit heures de sommeil. Deux Repos longs doivent être séparés d'au moins seize heures, ce qui en permet un par journée.
+Huit heures de sommeil. Deux {{repos-long|Repos longs}} doivent être séparés d'au moins seize heures, ce qui en permet un par journée.
 
-À la fin, vous récupérez tous vos PdV, toute votre Énergie, et les Compétences marquées « 1 fois par Repos court » ou « 1 fois par Repos long ».
+À la fin, vous récupérez tous vos {{pdv}}, toute votre {{energie}}, et les Compétences marquées « 1 fois par {{repos-court}} » ou « 1 fois par {{repos-long}} ».
 
-Un personnage qui n'a pas mangé ou bu à sa faim ce jour-là ne récupère ni PdV ni Énergie, comme l'explique le chapitre L'exploration.
+Un personnage qui n'a pas mangé ou bu à sa faim ce jour-là ne récupère ni {{pdv}} ni {{energie}}, comme l'explique le chapitre L'exploration.
 
 ## Ce qu'un repos ne rend pas
 
 Le {{karma}}
 : Un point conservé reste, et un emplacement vide le reste aussi. Ni le repos ni la fin de séance n'y touchent.
 
-Les PdV temporaires
+Les {{pdv}} temporaires
 : Un soin ne les rend pas, et ceux qui restent disparaissent à la fin d'un repos.
 
 ## Changer vos Compétences Mémorisées
 
 Les deux repos vous permettent de changer les Compétences que votre {{memoire}} tient, sauf vos deux Compétences d'Espèce, fixées à la création. C'est le seul moment où vous remaniez ce que vous emportez.
 
-Le Repos court est donc la vraie respiration du groupe : dix minutes suffisent pour arriver au combat suivant avec un autre jeu de Compétences, choisi d'après ce que vous avez vu du danger.
+Le {{repos-court}} est donc la vraie respiration du groupe : dix minutes suffisent pour arriver au combat suivant avec un autre jeu de Compétences, choisi d'après ce que vous avez vu du danger.
 
 ## Le rythme attendu
 
-Le jeu est calibré sur cinq ou six rencontres significatives entre deux Repos longs, avec deux Repos courts au milieu. Sur un cycle complet, votre Énergie disponible avoisine donc le double de votre maximum.
+Le jeu est calibré sur cinq ou six rencontres significatives entre deux {{repos-long|Repos longs}}, avec deux {{repos-court|Repos courts}} au milieu. Sur un cycle complet, votre {{energie}} disponible avoisine donc le double de votre maximum.
 
 Ce rythme est un repère de conception, que chaque table adapte. Une table qui se repose moins joue des personnages plus économes, et le MJ ajuste ce qu'il leur envoie.
 

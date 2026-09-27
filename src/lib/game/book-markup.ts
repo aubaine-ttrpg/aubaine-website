@@ -24,7 +24,7 @@ type AuthoredChild =
   | HastText
   | (Omit<HastElement, 'children'> & { children: AuthoredChild[] })
 
-const OPAQUE = new Set(['code', 'pre', 'a', 'script', 'style', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'])
+const OPAQUE = new Set(['pre', 'a', 'script', 'style', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'])
 
 function element(
   tagName: string,

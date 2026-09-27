@@ -20,11 +20,11 @@ Une Espèce fixe aussi votre {{taille}}, et elle peut nommer les langues que vou
 
 Une Espèce propose en général plus de Compétences qu'elle n'en accorde. Vous en retenez deux à la création, et ce choix dit déjà quel genre de membre de votre Espèce vous êtes.
 
-Les autres ne sont pas perdues : elles restent achetables ensuite dans la {{banque-commune}}, au prix imprimé sur la Compétence, et leur {{prerequis}} les réserve à votre Espèce. Une Compétence d'Espèce achetée ainsi se mémorise comme les autres et occupe 1 Mémoire tant qu'elle est Mémorisée.
+Les autres ne sont pas perdues : elles restent achetables ensuite dans la {{banque-commune}}, au prix imprimé sur la Compétence, et leur {{prerequis}} les réserve à votre Espèce. Une Compétence d'Espèce achetée ainsi se {{memorisee|mémorise}} comme les autres et occupe 1 {{memoire}} tant qu'elle est {{memorisee}}.
 
 > [!EXAMPLE] Exemple
 >
-> Une joueuse crée une elfe éclaireuse. Parmi les Compétences que propose l'Espèce Elfe, elle retient {{SENAIG-001}} et {{MEDELF-001}}. Quelques séances plus tard, elle achète {{CACNAT-001}} dans la Banque Commune. Celle-là occupe 1 Mémoire quand elle la mémorise ; les deux premières n'en occupent aucune.
+> Une joueuse crée une elfe éclaireuse. Parmi les Compétences que propose l'Espèce Elfe, elle retient {{SENAIG-001}} et {{MEDELF-001}}. Quelques séances plus tard, elle achète {{CACNAT-001}} dans la {{banque-commune}}. Celle-là occupe 1 {{memoire}} quand elle la {{memorisee|mémorise}} ; les deux premières n'en occupent aucune.
 
 Deux personnages de la même Espèce ne partent donc pas avec les mêmes acquis. Une Espèce qui ne propose que deux Compétences ne laisse aucun choix : vous prenez les deux.
 
@@ -34,13 +34,13 @@ Certaines Espèces se divisent en sous-espèces, présentées sur la page de l'E
 
 Une sous-espèce peut imposer l'une de ces deux Compétences, et la page de l'Espèce la présente comme imposée. Vous la retenez d'office, et vous choisissez la seconde parmi les autres Compétences de votre Espèce et de votre sous-espèce.
 
-Les Compétences d'une sous-espèce portent cette sous-espèce en Prérequis. Un personnage d'une autre sous-espèce ne peut pas les acheter.
+Les Compétences d'une sous-espèce portent cette sous-espèce en {{prerequis}}. Un personnage d'une autre sous-espèce ne peut pas les acheter.
 
 ## Les Espèces qui en empruntent une autre
 
-Certaines Espèces tiennent une partie de ce qu'elles sont d'une autre Espèce : un Mort-vivant garde le corps de l'Espèce qu'il était de son vivant, et un Scothan tient le sien de l'un de ses deux parents. Leur page dit laquelle choisir, et ce que vous en tenez, comme la Taille, la Vitesse ou les langues.
+Certaines Espèces tiennent une partie de ce qu'elles sont d'une autre Espèce : un Mort-vivant garde le corps de l'Espèce qu'il était de son vivant, et un Scothan tient le sien de l'un de ses deux parents. Leur page dit laquelle choisir, et ce que vous en tenez, comme la {{taille}}, la {{vitesse}} ou les langues.
 
-Pour tout Prérequis, un tel personnage compte aussi comme un membre de l'Espèce dont il tient ces traits, quand sa page le précise.
+Pour tout {{prerequis}}, un tel personnage compte aussi comme un membre de l'Espèce dont il tient ces traits, quand sa page le précise.
 
 ## Jouer son Espèce
 
@@ -50,6 +50,6 @@ Rien n'oblige votre personnage à ressembler à ce que son peuple attend de lui.
 
 ## Où lire les Espèces
 
-L'index des Espèces porte la liste du jour, et la page de chacune sa Taille, sa Vitesse, ses sous-espèces ou ses origines régionales, ses Compétences et l'état de son écriture. C'est lui qui fait foi.
+L'index des Espèces porte la liste du jour, et la page de chacune sa {{taille}}, sa {{vitesse}}, ses sous-espèces ou ses origines régionales, ses Compétences et l'état de son écriture. C'est lui qui fait foi.
 
 Une Espèce encore en Brouillon porte son badge. Tant qu'une table joue sur des entrées non arrêtées, le MJ annonce les Espèces disponibles et les Compétences que chacune propose.

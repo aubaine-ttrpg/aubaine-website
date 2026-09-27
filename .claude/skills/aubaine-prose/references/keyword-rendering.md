@@ -74,9 +74,10 @@ Chapters, the lore pages and the equipment guide resolve their references throug
 registered in `astro.config.mjs`. The locale comes from the filename, so
 `03-creer-un-personnage.en.md` resolves against the English index and prints English labels.
 
-The plugin skips `code`, `pre`, existing links and every heading, so a formula and a section title
-stay plain. Everything else runs through the same `parseRuns` as an entry, which is why there is one
-matcher and not two.
+The plugin skips fenced code blocks, existing links and every heading, so a section title stays
+plain and `pnpm data:check` refuses a reference in either. An inline formula is read like the rest of
+the text: `` `{{force}} + {{melee}}` `` keeps its code look and its words become pills. Everything else
+runs through the same `parseRuns` as an entry, which is why there is one parser and not two.
 
 The author chooses every link in a chapter, exactly as in an entry. Every `{{...}}` renders, every
 time it is written, and nothing is marked on the author's behalf, at a first appearance or anywhere

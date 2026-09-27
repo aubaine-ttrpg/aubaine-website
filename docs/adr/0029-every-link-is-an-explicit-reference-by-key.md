@@ -3,6 +3,7 @@
 **Project:** Aubaine, the wiki
 **Status:** Accepted
 **Date:** 2026-09-27
+**Revised:** 2026-09-27, references inside an inline formula render, and the Livre du joueur links every word in its game sense (addendum in Decision 3)
 **Deciders:** Kori
 **Scope:** How rule text, definitions, list notes, book chapters, lore and the equipment guide link a
 word to its entry: the markup read by `src/lib/game/richtext.ts`, the term index built in
@@ -121,6 +122,19 @@ nothing links by its spelling any more.
 
 - **Keep marking a glossed word at its first appearance automatically**: rejected; that is linking by
   spelling in another place, and the author could not decide against it.
+
+### Addendum (2026-09-27): formulas link, and the handbook links every game word
+
+- The chapter pass reads inline code. A formula such as `` `{{ca}} = 12 + {{dexterite}}` `` keeps its
+  code look and its words become pills; a fenced code block and a heading still render none, and
+  `pnpm data:check` refuses a reference in either. Seventy eight words sat inside formulas.
+- On the owner's request the Livre du joueur links every word used in its game sense, not only its
+  first appearance: 891 references were added across both locales, lowercase game senses included
+  (« une créature {{cache|cachée}} », « {{apprise|apprenez}} »), and the visible text of every page
+  stayed the same apart from two verbs set in lower case. Three older links that named the wrong
+  entry became plain text: the damage rule Résistance, the weapon property Finesse, and melee reach.
+- A reference followed by an apostrophe made the typography curl it the wrong way, so a possessive
+  is written inside the reference, `{{aptitude|Aptitude's}}`, and `pnpm data:check` refuses `}}'`.
 
 ---
 
