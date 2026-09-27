@@ -172,15 +172,24 @@
   --tip-shadow: rgba(20, 26, 51, 0.22);
   --card-shadow: 0 8px 20px rgba(20, 26, 51, 0.1);
   --scroll-thumb: rgba(31, 61, 143, 0.45);
-  --state-buff: #9a6b1f;
-  --state-debuff: #8d2f26;
-  --state-neutral: #4a5a72;
   --status-draft: #8b93b0;
   --status-draft-ink: #565f7d;
   --status-playtest: #f2c807;
   --on-playtest: #14100a;
   --status-beta: #2f7d8c;
   --status-beta-ink: #1f5b66;
+  --scrim1: rgba(9, 11, 22, 0.9);
+  --scrim-mid: rgba(9, 11, 22, 0.34);
+  --scrim2: rgba(9, 11, 22, 0);
+  --scrim-side: rgba(9, 11, 22, 0.54);
+  color-scheme: light;
+}
+
+:root[data-theme="light"],
+.au-print {
+  --state-buff: #92651d;
+  --state-debuff: #8d2f26;
+  --state-neutral: #4a5a72;
   --term-adv: #3f7d3a;
   --term-dis: #a33b30;
   --term-atk: #5a4632;
@@ -190,12 +199,7 @@
   --term-apt: #2f6f66;
   --term-passive: #3f7d3a;
   --term-action: #a33b30;
-  --term-bonus: #9a7b0c;
+  --term-bonus: #846a0a;
   --term-reaction: #5b3f94;
   --term-spell: #8f2f86;
-  --scrim1: rgba(9, 11, 22, 0.9);
-  --scrim-mid: rgba(9, 11, 22, 0.34);
-  --scrim2: rgba(9, 11, 22, 0);
-  --scrim-side: rgba(9, 11, 22, 0.54);
-  color-scheme: light;
 }

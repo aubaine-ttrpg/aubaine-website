@@ -1142,6 +1142,57 @@ describe('the term index', () => {
   })
 })
 
+function tokensIn(css: string, selector: string): Map<string, string> {
+  const start = css.indexOf(`${selector} {`)
+  const body = css.slice(start, css.indexOf('\n}', start))
+  return new Map(
+    [...body.matchAll(/--([a-z-]+): (#[0-9a-f]{6});/g)].map((m) => [m[1] ?? '', m[2] ?? '']),
+  )
+}
+
+function luminance(hex: string): number {
+  const channel = (offset: number): number => {
+    const value = Number.parseInt(hex.slice(offset, offset + 2), 16) / 255
+    return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4
+  }
+  return 0.2126 * channel(1) + 0.7152 * channel(3) + 0.0722 * channel(5)
+}
+
+function contrast(a: string, b: string): number {
+  const [light, dark] = [luminance(a), luminance(b)].sort((x, y) => y - x)
+  return ((light ?? 0) + 0.05) / ((dark ?? 0) + 0.05)
+}
+
+describe('term colours', () => {
+  const tokens = readFile(resolve(root, 'src/styles/tokens.css'), 'utf8')
+  const palettes = async () => {
+    const css = await tokens
+    const pick = (map: Map<string, string>) =>
+      new Map([...map].filter(([name]) => name.startsWith('term-') || name.startsWith('state-')))
+    return {
+      dark: pick(tokensIn(css, ':root')),
+      light: pick(tokensIn(css, ':root[data-theme="light"],\n.au-print')),
+    }
+  }
+
+  it('gives every term and state colour a dark value and a light value that print shares', async () => {
+    const { dark, light } = await palettes()
+    expect(dark.size).toBeGreaterThan(0)
+    expect(new Set(light.keys())).toEqual(new Set(dark.keys()))
+  })
+
+  it('keeps every term and state colour legible on its own background, paper included', async () => {
+    const { dark, light } = await palettes()
+    for (const [name, value] of dark) {
+      expect(contrast(value, '#06050d'), `dark --${name}`).toBeGreaterThanOrEqual(4.5)
+    }
+    for (const [name, value] of light) {
+      expect(contrast(value, '#f7f6f1'), `light --${name}`).toBeGreaterThanOrEqual(4.5)
+      expect(contrast(value, '#ffffff'), `paper --${name}`).toBeGreaterThanOrEqual(4.5)
+    }
+  })
+})
+
 describe('definitions', () => {
   const GLOSSED_VOCABULARIES = new Set(['aptitudes', 'characteristics'])
   const DEFINED_FAMILIES = new Set(['rule', 'characteristic', 'aptitude'])
