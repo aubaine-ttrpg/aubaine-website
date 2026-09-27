@@ -21,5 +21,5 @@
       "destruction"
     ]
   },
-  "description": "Vous projetez un trait de feu sur une créature ou un objet que vous voyez à portée. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nEffectuez un {{jet}} de la {{caracteristique}} choisie + {{visee}} contre la {{ca}} de la cible. En cas de réussite, elle subit 1d12 dégâts de Feu."
+  "description": "Vous projetez un trait de feu sur une créature ou un objet que vous voyez à portée. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nEffectuez un {{jet}} de la {{caracteristique}} choisie + {{visee}} contre la {{ca}} de la cible. En cas de réussite, elle subit 1d10 dégâts de Feu."
 }

@@ -3,5 +3,6 @@
   "name": "Combustion",
   "kind": "buff",
   "icon": "mdi:fire",
-  "description": "{{combustion}} s'accumule sur vous jusqu'à 5.\n\nLorsque vous effectuez un Jet de dégâts qui inflige des dégâts de Feu, ajoutez 1 dégât par {{combustion}} que vous portez.\n\nAu début d'un combat, vous perdez toute votre {{combustion}}."
+  "color": "#e6740b",
+  "description": "{{combustion}} s'accumule sur vous jusqu'à 5.\n\nLorsque vous effectuez un Jet de dégâts qui inflige des dégâts de Feu, ajoutez 1 dégât de Feu par {{combustion}} que vous portez.\n\nVous perdez toute votre {{combustion}} lorsque vous terminez l'un de vos tours sans avoir lancé de {{sort}} du Domaine Feu ni infligé de dégâts de Feu à une autre créature pendant ce tour.\n\nAu début d'un combat, vous perdez toute votre {{combustion}}."
 }

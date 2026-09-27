@@ -24,33 +24,33 @@
       "unleashed"
     ]
   },
-  "description": "Vous créez, remodelez ou déplacez des flammes de la taille d'une caisse. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\n***Dégâts.*** Utilisé de façon offensive, ce feu inflige 1d12 dégâts de Feu. Toute zone plus grande, durée plus longue ou portée accrue que vous lui demandez rend le feu moins puissant, jusqu'à rendre ce feu inoffensif.\n\n***DD.*** Lorsqu'une créature effectue un {{jet}} pour résister à ce feu, elle effectue son {{jet}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}}).\n\n***Forme.*** Ce feu peut prendre n'importe quelle forme comme un projectile lancé sur une cible, une lumière vive pour éclairer un couloir sombre, ou même une zone d'effet au choix. Lorsqu'il est réparti en zone, il peut former, au maximum, un cube de 1,5 m d'arête, une sphère de 1,5 m de rayon, un cône de 3 m ou une ligne de 4,5 m sur 1,5 m.",
+  "description": "Vous créez, remodelez ou déplacez un feu de la taille d'une caisse. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\n***Dégâts.*** Utilisé de façon offensive, ce feu inflige 1d12 dégâts de Feu. Toute zone plus grande, durée plus longue ou portée accrue que vous lui demandez rend le feu moins puissant, jusqu'à le rendre inoffensif.\n\n***DD.*** Lorsqu'une créature effectue un {{jet}} pour résister à ce feu, elle effectue son {{jet}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}}).\n\n***Forme.*** Ce feu peut prendre n'importe quelle forme comme un projectile lancé sur une cible, une lumière vive pour éclairer un couloir sombre, ou même une zone d'effet au choix. Lorsqu'il est réparti en zone, il peut former, au maximum, un cube de 1,5 m d'arête, une sphère de 1,5 m de rayon, un cône de 3 m ou une ligne de 4,5 m sur 1,5 m.",
   "upgrades": [
     {
       "level": 2,
       "tier": 5,
       "title": "Flambée",
-      "description": "Lorsque vous lancez {{AVIFLA-001}}, vous pouvez dépenser 1 {{energie}} de plus pour lancer Flambée. Les flammes atteignent la taille d'un tonneau, elles infligent 2d12 dégâts de Feu et chaque dimension de leur zone augmente de 1,5 m."
+      "description": "Lorsque vous lancez {{AVIFLA-001}}, vous pouvez dépenser 1 {{energie}} de plus pour lancer Flambée. Le feu atteint la taille d'un tonneau, il inflige 2d12 dégâts de Feu et chaque dimension de sa zone augmente de 1,5 m."
     },
     {
       "level": 3,
       "tier": 10,
       "title": "Brasier",
-      "description": "Lorsque vous lancez {{AVIFLA-001}}, vous pouvez dépenser 2 {{energie|Énergies}} de plus pour lancer Brasier. Les flammes atteignent la taille d'une chambre, elles infligent 3d12 dégâts de Feu et chaque dimension de leur zone augmente de 3 m."
+      "description": "Lorsque vous lancez {{AVIFLA-001}}, vous pouvez dépenser 2 {{energie|Énergies}} de plus pour lancer Brasier. Le feu atteint la taille d'une chambre, il inflige 3d12 dégâts de Feu et chaque dimension de sa zone augmente de 3 m."
     },
     {
       "level": 4,
       "tier": 10,
       "xpOverride": 75,
       "title": "Fournaise",
-      "description": "Lorsque vous lancez {{AVIFLA-001}}, vous pouvez dépenser 3 {{energie|Énergies}} de plus pour lancer Fournaise. Les flammes atteignent la taille d'une cabane, elles infligent 4d12 dégâts de Feu et chaque dimension de leur zone augmente de 4,5 m."
+      "description": "Lorsque vous lancez {{AVIFLA-001}}, vous pouvez dépenser 3 {{energie|Énergies}} de plus pour lancer Fournaise. Le feu atteint la taille d'une cabane, il inflige 4d12 dégâts de Feu et chaque dimension de sa zone augmente de 4,5 m."
     },
     {
       "level": 5,
       "tier": 10,
       "xpOverride": 100,
       "title": "Conflagration",
-      "description": "Lorsque vous lancez {{AVIFLA-001}}, vous pouvez dépenser 4 {{energie|Énergies}} de plus pour lancer Conflagration. Les flammes atteignent la taille d'une maison, elles infligent 5d12 dégâts de Feu et chaque dimension de leur zone augmente de 6 m."
+      "description": "Lorsque vous lancez {{AVIFLA-001}}, vous pouvez dépenser 4 {{energie|Énergies}} de plus pour lancer Conflagration. Le feu atteint la taille d'une maison, il inflige 5d12 dégâts de Feu et chaque dimension de sa zone augmente de 6 m."
     }
   ]
 }

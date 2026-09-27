@@ -21,5 +21,13 @@
       "destruction"
     ]
   },
-  "description": "Vous lancez une bille incandescente vers un point que vous voyez à portée, où elle éclate en une sphère de flammes de 4,5 m de rayon. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nChaque créature prise dans la sphère effectue un {{jet}} de {{dexterite}} + {{reflexes}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}}). En cas d'échec, elle subit 6d6 dégâts de Feu. En cas de réussite, elle n'en subit que la moitié.\n\nLes flammes contournent les angles. Elles enflamment ce qui n'est ni porté ni transporté."
+  "description": "Vous lancez une bille incandescente vers un point que vous voyez à portée, où elle éclate en une sphère de flammes de 4,5 m de rayon. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nChaque créature prise dans la sphère effectue un {{jet}} de {{dexterite}} + {{reflexes}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}}). En cas d'échec, elle subit 6d6 dégâts de Feu. En cas de réussite, elle n'en subit que la moitié. Une fois ces dégâts infligés, vous gagnez 1 {{combustion}} par créature qui a échoué à son {{jet}}.\n\nLes flammes contournent les angles. Elles enflamment ce qui n'est ni porté ni transporté.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 8,
+      "title": "Flammes dociles",
+      "description": "Lorsque vous lancez {{BOUFEU-001}}, vous pouvez dépenser autant de {{combustion}} que vous le voulez. Pour chaque {{combustion}} dépensée, choisissez une créature dans la sphère : les flammes s'écartent d'elle, elle n'effectue pas de {{jet}} et ne subit aucun dégât."
+    }
+  ]
 }

@@ -27,7 +27,7 @@
       "level": 2,
       "tier": 4,
       "title": "Pluie de braises",
-      "description": "Lorsque vous lancez {{ESCARB-001}}, vous pouvez dépenser 1 {{energie}} de plus pour lancer Pluie de braises. À l'arrivée du bond, chaque créature de votre choix à 1,5 m ou moins de vous effectue elle aussi le {{jet}} de {{dexterite}} + {{reflexes}} d'{{ESCARB-001}}, avec les mêmes effets. Une créature qui a déjà effectué ce {{jet}} au départ n'en effectue pas un second."
+      "description": "Lorsque vous lancez {{ESCARB-001}}, vous pouvez dépenser 1 {{energie}} de plus pour lancer Pluie de braises. À l'arrivée du bond, chaque créature de votre choix à 1,5 m ou moins de vous effectue elle aussi le {{jet}} de {{dexterite}} + {{reflexes}} d'{{ESCARB-001}}, avec les mêmes effets. Lancez de nouveau les dés de dégâts pour ces créatures. Une créature qui a déjà effectué ce {{jet}} au départ n'en effectue pas un second. Si vous ne bondissez pas, Pluie de braises n'a aucun effet."
     }
   ]
 }

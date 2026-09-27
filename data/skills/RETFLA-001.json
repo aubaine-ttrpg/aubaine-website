@@ -16,13 +16,13 @@
       "protection"
     ]
   },
-  "description": "Vous jouez cette {{reaction}} lorsque vous subissez des dégâts de Feu.\n\nRéduisez ces dégâts de 1d8. La créature qui vous les inflige subit autant de dégâts de Feu que vous venez d'en éviter, si vous la voyez à portée.",
+  "description": "Vous jouez cette {{reaction}} lorsque vous subissez des dégâts de Feu, ou lorsqu'une créature à 1,5 m ou moins vous touche avec une {{attaque}}.\n\nRéduisez les dégâts que vous subissez ainsi, tous types confondus, de 1d8 s'ils comprennent des dégâts de Feu, et de 1d6 sinon. Si une autre créature vous les inflige et que vous la voyez à portée, elle subit autant de dégâts de Feu que cette réduction vous en a retiré.",
   "upgrades": [
     {
       "level": 2,
       "tier": 4,
       "title": "Manteau de flammes",
-      "description": "Vous pouvez aussi jouer {{RETFLA-001}} lorsqu'une créature à 1,5 m ou moins vous touche avec une {{attaque}}, quel que soit le type de ses dégâts. Réduisez alors les dégâts de cette {{attaque}}, tous types confondus, de 1d8 si elle vous inflige des dégâts de Feu, et de 1d6 sinon."
+      "description": "Vous pouvez aussi jouer {{RETFLA-001}} pour protéger une autre créature que vous voyez à portée, lorsqu'elle subit des dégâts de Feu ou qu'une créature à 1,5 m ou moins d'elle la touche avec une {{attaque}}. Réduisez ses dégâts de la même façon que les vôtres. Si la créature qui les lui inflige n'est ni vous ni elle et que vous la voyez à portée, cette créature subit autant de dégâts de Feu que la réduction en a retiré."
     }
   ]
 }

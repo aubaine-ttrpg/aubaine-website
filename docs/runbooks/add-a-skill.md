@@ -62,7 +62,7 @@ Key order is the order of this table. Keep it.
       "protection"
     ]
   },
-  "description": "Vous portez votre chaleur au-delà de ce que votre corps supporte au repos. Tant que {{SURCHA-001}} dure, vous gagnez une résistance aux dégâts infligés par les {{sort|Sorts}} d'Eau et par toute autre source magique d'Eau, et votre {{vitesse}} augmente de 3 m.",
+  "description": "Votre peau rougit sous la chaleur. Tant que {{SURCHA-001}} dure, votre {{vitesse}} augmente de 3 m et vous gagnez une résistance aux dégâts des {{sort|Sorts}} du Domaine Eau et de toute autre magie d'Eau.",
   "upgrades": [
     {
       "level": 2,

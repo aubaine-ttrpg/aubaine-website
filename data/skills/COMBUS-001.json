@@ -1,6 +1,6 @@
 {
   "id": "COMBUS-001",
-  "title": "Combustion",
+  "title": "Feu nourri",
   "type": "passive",
   "tier": 3,
   "domains": [
@@ -15,5 +15,5 @@
       "enhancement"
     ]
   },
-  "description": "Chaque fois que vous terminez d'utiliser une Compétence du Domaine Feu, vous gagnez 1 {{combustion}}."
+  "description": "Chaque fois que vous jouez une Compétence du Domaine Feu autre que {{AVIFLA-001}} en y dépensant au moins 1 {{energie}}, vous gagnez 1 {{combustion}}, juste après avoir résolu les {{jet|Jets}} et les dégâts qu'elle provoque au moment où vous la jouez."
 }

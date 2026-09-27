@@ -38,7 +38,7 @@
   "feu": {
     "domains": ["fire"],
     "prime": ["any"],
-    "upgrades": 9,
+    "upgrades": 10,
     "xpTotal": 265
   },
   "foudre": {

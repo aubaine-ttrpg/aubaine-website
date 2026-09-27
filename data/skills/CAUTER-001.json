@@ -16,7 +16,7 @@
       "healing"
     ]
   },
-  "description": "Vous touchez une créature et refermez ses plaies par le feu. Elle récupère 2d6 {{pdv}}.",
+  "description": "Vous refermez par le feu les plaies d'une créature que vous touchez, vous y compris. Elle récupère 2d6 {{pdv}}.\n\nAu moment où vous lancez ce {{sort}}, vous pouvez dépenser 2 {{combustion}} pour que la créature récupère 1d6 {{pdv}} de plus, ou 4 {{combustion}} pour qu'elle en récupère 2d6 de plus.",
   "upgrades": [
     {
       "level": 2,

@@ -16,5 +16,5 @@
       "enhancement"
     ]
   },
-  "description": "Vous jouez cette {{reaction}} lorsque vous utilisez une Compétence du Domaine Feu.\n\nDépensez votre {{combustion}} pour un seul des effets suivants.\n\n***1 Combustion.*** Relancez un dé de dégâts de cette Compétence et gardez le nouveau résultat.\n***2 Combustion.*** Gagnez 1 {{avantage}} sur le {{jet}} de cette Compétence.\n***3 Combustion.*** Réduisez de 1 le coût en {{energie}} de cette Compétence.\n***5 Combustion.*** Doublez le nombre de dés de dégâts de cette Compétence."
+  "description": "Vous jouez cette {{reaction}} lorsque vous lancez un {{sort}} du Domaine Feu, avant d'en payer le coût et avant tout {{jet}} qu'il demande.\n\nChoisissez un seul des effets suivants et dépensez la {{combustion}} qu'il indique.\n\n***1 Combustion.*** Une fois, après un Jet de dégâts de cette Compétence, relancez l'un de ses dés et gardez le nouveau résultat.\n***2 Combustion.*** Le premier {{jet}} que cette Compétence vous fait effectuer gagne 1 {{avantage}}, ou le premier {{jet}} qu'une créature de votre choix effectue pour lui résister subit 1 {{desavantage}}.\n***3 Combustion.*** Réduisez de 1 le coût en {{energie}} de cette Compétence.\n***5 Combustion.*** Doublez le nombre de dés du premier Jet de dégâts de cette Compétence, jusqu'à 3 dés de plus."
 }
