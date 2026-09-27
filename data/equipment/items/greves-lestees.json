@@ -8,16 +8,11 @@
   "art": "cuirasse-1_1-og.png",
   "price": 12000,
   "set": "BASTI",
+  "prerequisite": "Force +3",
   "headlines": [
     {
       "label": "CA",
       "value": "+1"
-    }
-  ],
-  "properties": [
-    {
-      "name": "Lourd (Niv. 1).",
-      "text": "Vous devez posséder un modificateur de {{force}} égal ou supérieur à +3 pour équiper cette pièce."
     }
   ],
   "craft": {

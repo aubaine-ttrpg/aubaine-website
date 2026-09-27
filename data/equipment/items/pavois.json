@@ -7,6 +7,7 @@
   "rarity": "common",
   "art": "pavois-1_1-og.png",
   "price": 800,
+  "prerequisite": "Force +3",
   "headlines": [
     {
       "label": "CA",
@@ -33,12 +34,6 @@
     {
       "label": "Mains",
       "value": "1 main"
-    }
-  ],
-  "properties": [
-    {
-      "name": "Lourd (Niv. 1).",
-      "text": "Vous devez posséder un modificateur de {{force}} égal ou supérieur à +3 pour équiper cette pièce."
     }
   ],
   "craft": {
