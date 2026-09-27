@@ -15,5 +15,13 @@
       "control"
     ]
   },
-  "description": "La première fois à chaque tour où vous infligez des dégâts de Foudre à une créature, ses muscles se verrouillent : elle ne peut pas jouer de {{reaction}} jusqu'à la fin de son prochain tour."
+  "description": "La première fois à chaque tour où vous infligez des dégâts de Foudre, choisissez l'une des créatures qui les subissent. Ses muscles se verrouillent : elle ne peut pas jouer de {{reaction}} jusqu'à la fin de son prochain tour.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 5,
+      "title": "Court-circuit",
+      "description": "Lorsque {{CONDUC-001}} verrouille une créature pendant l'un de vos tours, vous gagnez 1 {{surtension}}."
+    }
+  ]
 }

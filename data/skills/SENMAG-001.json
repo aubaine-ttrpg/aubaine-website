@@ -16,5 +16,13 @@
       "divination"
     ]
   },
-  "description": "Vous sentez le métal comme une chaleur sur la peau. Tant que {{SENMAG-001}} dure, vous savez où se trouve chaque objet de métal à 9 m ou moins de vous, jusqu'au moindre clou, même dans une poche, derrière une paroi ou sous la terre. Vous en percevez la forme et vous savez s'il bouge.\n\nLe métal que porte une créature {{cache|Cachée}} pour vous échappe à ce sens tant qu'elle le reste. Vos {{jet|Jets}} d'{{esprit}} + {{perception}} pour trouver une créature {{cache|Cachée}} qui porte du métal à 9 m ou moins de vous gagnent 1 {{avantage}}."
+  "description": "Vous sentez le métal comme une chaleur sur la peau. Tant que {{SENMAG-001}} dure, vous savez où se trouve chaque objet de métal à 9 m ou moins de vous, jusqu'au moindre clou, même dans une poche, derrière une paroi ou sous la terre. Vous en percevez la forme et vous savez s'il bouge.\n\nLe métal que porte une créature {{cache|Cachée}} pour vous échappe à ce sens tant qu'elle le reste. Vos {{jet|Jets}} d'{{esprit}} + {{perception}} pour trouver une créature {{cache|Cachée}} qui porte du métal à 9 m ou moins de vous gagnent 1 {{avantage}}.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 4,
+      "title": "Aiguille aimantée",
+      "description": "Lorsque vous lancez {{SENMAG-001}}, vous pouvez dépenser 1 {{energie}} de plus pour nommer un objet de métal que vous avez déjà tenu en main. Tant que {{SENMAG-001}} dure, vous savez dans quelle direction et à quelle distance se trouve cet objet, si 1 kilomètre ou moins vous en sépare. Il vous échappe tant qu'une créature {{cache|Cachée}} pour vous le porte."
+    }
+  ]
 }

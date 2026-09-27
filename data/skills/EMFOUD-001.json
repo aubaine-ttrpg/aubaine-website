@@ -18,13 +18,13 @@
       "enhancement"
     ]
   },
-  "description": "Vous touchez une arme et la chargez d'un arc bleu qui crépite le long du fer. Une fois par tour, lorsque vous réussissez une {{attaque}} avec elle, l'arc saute de la cible vers une autre créature à 3 m ou moins d'elle et lui inflige 1d4 dégâts de Foudre.",
+  "description": "Vous touchez une arme et la chargez d'un arc bleu qui crépite sur toute sa longueur. Une fois par tour, lorsque vous réussissez une {{attaque}} avec elle, l'arc saute de la cible vers une autre créature de votre choix à 3 m ou moins d'elle, autre que vous, et lui inflige 1d4 dégâts de Foudre.",
   "upgrades": [
     {
       "level": 2,
       "tier": 7,
       "title": "Étendue perfectionnée",
-      "description": "Pour chaque amélioration de {{CANCHA-001}} que vous possédez, l'arc saute une fois de plus, chaque saut partant de la dernière créature touchée et portant à 3 m ou moins. Il ne frappe jamais deux fois la même créature."
+      "description": "Pour chaque amélioration de {{CANCHA-001}} que vous possédez, l'arc de ce {{sort}} saute une fois de plus, de la dernière créature qu'il a touchée vers une autre créature de votre choix à 3 m ou moins d'elle, autre que vous. Chaque créature que l'arc touche ainsi subit 1d4 dégâts de Foudre. L'arc ne frappe jamais deux fois la même créature, ni la cible de votre {{attaque}}."
     }
   ]
 }

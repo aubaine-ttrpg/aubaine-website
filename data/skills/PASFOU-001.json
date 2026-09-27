@@ -16,13 +16,13 @@
       "mobility"
     ]
   },
-  "description": "Vous vous défaites en un arc et vous reformez ailleurs. Vous vous téléportez jusqu'à un emplacement libre que vous voyez à 9 m ou moins.",
+  "description": "Vous vous défaites en un arc et vous reformez ailleurs. Vous vous téléportez jusqu'à un emplacement libre que vous voyez à portée. Ce trajet ne compte pas dans votre {{deplacement|déplacement}} et ne déclenche aucune {{ATTOPP-001}}.",
   "upgrades": [
     {
       "level": 2,
       "tier": 4,
       "title": "Pas de deux",
-      "description": "Lorsque vous lancez {{PASFOU-001}}, vous pouvez dépenser 1 {{energie}} de plus pour emmener une créature consentante que vous touchez, de votre {{taille}} ou plus petite. Elle se téléporte avec vous jusqu'à un emplacement libre de votre choix, à 1,5 m ou moins de celui où vous arrivez."
+      "description": "Lorsque vous lancez {{PASFOU-001}}, vous pouvez dépenser 1 {{energie}} de plus pour emmener une créature consentante que vous touchez, de votre {{taille}} ou plus petite. Elle se téléporte avec vous jusqu'à un emplacement libre de votre choix, à 1,5 m ou moins de celui où vous arrivez. Ce trajet ne compte pas dans son {{deplacement|déplacement}} et ne déclenche aucune {{ATTOPP-001}}."
     }
   ]
 }

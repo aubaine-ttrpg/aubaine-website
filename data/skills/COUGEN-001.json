@@ -7,18 +7,15 @@
     "thunder",
     "psychic"
   ],
-  "characteristics": [
-    "intelligence"
-  ],
   "activation": "1 Action Bonus",
   "range": "Personnel",
   "duration": "Jusqu'à la fin de votre tour",
-  "energy": 2,
+  "energy": 1,
   "tags": {
     "practice": "spell",
     "schools": [
       "enhancement"
     ]
   },
-  "description": "Un arc traverse votre crâne et, le temps d'un souffle, tout devient limpide. Jusqu'à la fin de votre tour, votre {{intelligence}} est de +6.\n\nÀ la fin de votre tour, l'arc retombe et vous laisse vide : vous êtes {{sonne}} jusqu'à la fin de votre prochain tour."
+  "description": "Un arc traverse votre crâne et, le temps d'un souffle, tout devient limpide. Tant que {{COUGEN-001}} dure, votre {{intelligence}} est de +6. Hors combat, il prend fin dès que vous avez effectué un {{jet}} ou joué une autre Compétence. Le {{dd}} d'une Compétence que vous jouez pendant ce temps garde cette {{intelligence}} jusqu'à la fin de ses effets.\n\nLorsque {{COUGEN-001}} prend fin, l'arc retombe et vous laisse vide : vous êtes {{sonne}} jusqu'à la fin de votre prochain tour, ou pendant 1 minute hors combat."
 }

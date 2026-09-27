@@ -44,7 +44,7 @@
   "foudre": {
     "domains": ["thunder"],
     "prime": ["any"],
-    "upgrades": 8,
+    "upgrades": 11,
     "xpTotal": 255
   },
   "mage": {

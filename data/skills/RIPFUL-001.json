@@ -6,20 +6,16 @@
   "domains": [
     "thunder"
   ],
-  "characteristics": [
-    "intelligence",
-    "spirit",
-    "charisma"
-  ],
   "activation": "1 Réaction",
-  "range": "Personnel",
+  "range": "9 m",
   "duration": "Instantanée",
-  "energy": 1,
+  "energy": 2,
   "tags": {
     "practice": "spell",
     "schools": [
-      "mobility"
+      "mobility",
+      "protection"
     ]
   },
-  "description": "Vous jouez cette {{reaction}} lorsqu'une créature à 1,5 m ou moins vous touche avec une {{attaque}}.\n\nVous vous défaites sur place et vous reformez à un emplacement libre que vous voyez à 9 m ou moins. La créature subit 1d10 dégâts de Foudre au passage de l'arc."
+  "description": "Vous jouez cette {{reaction}} lorsqu'une créature à 1,5 m ou moins vous touche avec une {{attaque}}.\n\nRéduisez de 1d8 les dégâts de cette {{attaque}}. Vous vous défaites ensuite sur place et vous vous téléportez jusqu'à un emplacement libre que vous voyez à portée. Ce trajet ne compte pas dans votre {{deplacement|déplacement}} et ne déclenche aucune {{ATTOPP-001}}. S'il a lieu, la créature subit 1d10 dégâts de Foudre au passage de l'arc."
 }

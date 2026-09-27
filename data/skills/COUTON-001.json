@@ -21,5 +21,13 @@
       "destruction"
     ]
   },
-  "description": "Une onde de tonnerre part de vous et emplit un cube de 4,5 m d'arête. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nChaque créature dans le cube effectue un {{jet}} de {{constitution}} + {{resistance}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}}). En cas d'échec, elle subit 2d8 dégâts de Tonnerre et est poussée de 3 m loin de vous. En cas de réussite, elle n'en subit que la moitié et ne bouge pas.\n\nLe coup s'entend à 90 m."
+  "description": "Une onde de tonnerre part de vous et emplit un cube de 4,5 m d'arête dont l'une des faces touche votre emplacement, du côté de votre choix. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nChaque créature dans le cube effectue un {{jet}} de {{constitution}} + {{resistance}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}}). En cas d'échec, elle subit 2d8 dégâts de Tonnerre et est poussée de 3 m à l'horizontale, loin de vous, jusqu'à ce qu'une créature ou un obstacle l'arrête. En cas de réussite, elle n'en subit que la moitié et ne bouge pas. Les créatures poussées se déplacent l'une après l'autre, de la plus éloignée de vous à la plus proche.\n\nLe coup s'entend à 90 m.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 5,
+      "title": "Onde de choc",
+      "description": "Lorsque vous lancez {{COUTON-001}}, vous pouvez dépenser jusqu'à 3 {{surtension}}. Chaque créature qui échoue à son {{jet}} contre {{COUTON-001}} est poussée de 1,5 m de plus par {{surtension}} dépensée."
+    }
+  ]
 }

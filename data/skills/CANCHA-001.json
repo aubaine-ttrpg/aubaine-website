@@ -29,28 +29,28 @@
     {
       "level": 2,
       "tier": 5,
-      "title": "Arc",
-      "description": "Lorsque vous lancez {{CANCHA-001}}, vous pouvez dépenser 1 {{energie}} de plus pour lancer Arc. La foudre atteint la taille d'un tonneau, elle inflige 2d10 dégâts et chaque dimension de sa zone augmente de 1,5 m."
+      "title": "Zébrure",
+      "description": "Lorsque vous lancez {{CANCHA-001}}, vous pouvez dépenser 1 {{energie}} de plus pour lancer Zébrure. La charge atteint la taille d'un tonneau, elle inflige 2d10 dégâts et chaque dimension de sa zone augmente de 1,5 m."
     },
     {
       "level": 3,
       "tier": 10,
       "title": "Fulgurance",
-      "description": "Lorsque vous lancez {{CANCHA-001}}, vous pouvez dépenser 2 {{energie|Énergies}} de plus pour lancer Fulgurance. La foudre atteint la taille d'une chambre, elle inflige 3d10 dégâts et chaque dimension de sa zone augmente de 3 m."
+      "description": "Lorsque vous lancez {{CANCHA-001}}, vous pouvez dépenser 2 {{energie|Énergies}} de plus pour lancer Fulgurance. La charge atteint la taille d'une chambre, elle inflige 3d10 dégâts et chaque dimension de sa zone augmente de 3 m."
     },
     {
       "level": 4,
       "tier": 10,
       "xpOverride": 75,
       "title": "Orage",
-      "description": "Lorsque vous lancez {{CANCHA-001}}, vous pouvez dépenser 3 {{energie|Énergies}} de plus pour lancer Orage. La foudre atteint la taille d'une cabane, elle inflige 4d10 dégâts et chaque dimension de sa zone augmente de 4,5 m."
+      "description": "Lorsque vous lancez {{CANCHA-001}}, vous pouvez dépenser 3 {{energie|Énergies}} de plus pour lancer Orage. La charge atteint la taille d'une cabane, elle inflige 4d10 dégâts et chaque dimension de sa zone augmente de 4,5 m."
     },
     {
       "level": 5,
       "tier": 10,
       "xpOverride": 100,
       "title": "Tempête",
-      "description": "Lorsque vous lancez {{CANCHA-001}}, vous pouvez dépenser 4 {{energie|Énergies}} de plus pour lancer Tempête. La foudre atteint la taille d'une maison, elle inflige 5d10 dégâts et chaque dimension de sa zone augmente de 6 m."
+      "description": "Lorsque vous lancez {{CANCHA-001}}, vous pouvez dépenser 4 {{energie|Énergies}} de plus pour lancer Tempête. La charge atteint la taille d'une maison, elle inflige 5d10 dégâts et chaque dimension de sa zone augmente de 6 m."
     }
   ]
 }
