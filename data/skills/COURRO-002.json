@@ -18,5 +18,5 @@
       "destruction"
     ]
   },
-  "description": "Vous assénez un coup qui vient du ventre. Effectuez un {{jet}} de {{force}} + {{melee}} avec une arme naturelle de votre forme. En cas de réussite, la cible subit 1d10 dégâts du type de cette arme.\n\nElle effectue ensuite un {{jet}} de {{constitution}} + {{resistance}} contre votre {{dd}} (10 + {{force}} + {{athletisme}}). En cas d'échec, elle est {{etourdi}} jusqu'à la fin de son prochain tour."
+  "description": "Vous assénez un coup qui vient du ventre. Effectuez un {{jet}} de {{force}} + {{melee}} avec une arme naturelle de votre forme. En cas de réussite, la cible subit 1d10 dégâts du type de cette arme.\n\nElle effectue ensuite un {{jet}} de {{constitution}} + {{resistance}} contre votre {{dd}} (10 + {{force}} + {{athletisme}}). En cas d'échec, elle est {{etourdi|Étourdie}} jusqu'à la fin de son prochain tour."
 }
