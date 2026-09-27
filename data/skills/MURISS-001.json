@@ -6,11 +6,6 @@
   "domains": [
     "slime"
   ],
-  "characteristics": [
-    "intelligence",
-    "spirit",
-    "charisma"
-  ],
   "activation": "1 Action Bonus",
   "range": "18 m",
   "duration": "Instantanée",
@@ -21,7 +16,7 @@
       "destruction"
     ]
   },
-  "description": "Vous serrez le poing, et la Poisse d'une créature monte d'un cran. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nChoisissez une créature que vous voyez à portée qui porte de la Poisse. Elle se couvre de {{poisse-liquide}}.\n\nUne Poisse que ce {{sort}} rend explosive utilise, pour sa détonation, votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}}).",
+  "description": "Vous serrez le poing, et la Poisse d'une créature monte d'un cran.\n\nChoisissez une créature que vous voyez à portée qui porte de la Poisse. Elle se couvre de {{poisse-liquide}}.",
   "upgrades": [
     {
       "level": 2,

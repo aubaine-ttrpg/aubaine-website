@@ -23,7 +23,7 @@
       "enhancement"
     ]
   },
-  "description": "Vous touchez une arme et l'enduisez d'un mucus qui ne sèche pas. Une fois par tour, lorsque vous réussissez une {{attaque}} avec elle, la cible se couvre de {{poisse-liquide}}.\n\nAu moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}. Une Poisse que ce {{sort}} rend explosive utilise, pour sa détonation, votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}}).",
+  "description": "Vous touchez une arme et l'enduisez d'un mucus qui ne sèche pas. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nUne fois par tour, lorsque vous réussissez une {{attaque}} avec cette arme, la cible se couvre de {{poisse-liquide}}.",
   "upgrades": [
     {
       "level": 2,
