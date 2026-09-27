@@ -17,5 +17,5 @@
       "creation"
     ]
   },
-  "description": "Vous précipitez la croissance d'une graine, d'une pousse, d'une plante, d'un arbre ou d'une créature végétale que vous voyez à portée. En quelques instants, elle atteint la pleine maturité que la nature lui destinait : une graine plantée devient un arbre adulte."
+  "description": "Vous précipitez la croissance d'un végétal que vous voyez à portée : une graine, une pousse, une plante ou un arbre. Choisissez l'un des effets suivants.\n\n***Maturité.*** Le végétal atteint en quelques instants la pleine maturité que la nature lui destinait : un gland planté devient un chêne adulte. Il ne pousse que dans l'espace libre et cesse de croître là où une créature, un objet ou une paroi lui barre la place : il ne soulève, ne déplace ni ne brise rien, et ne retient aucune créature.\n***Récolte.*** S'il porte des fruits, des graines ou des tubercules, ils mûrissent tous d'un coup, assez pour que six créatures au plus mangent à leur faim pendant une journée.\n***Vigueur.*** Visez à la place une créature que vous voyez à portée et qui est une Plante. Elle récupère 2d4 {{pdv}}."
 }

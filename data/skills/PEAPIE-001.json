@@ -17,5 +17,5 @@
       "protection"
     ]
   },
-  "description": "Votre peau se couvre d'écailles de pierre. Tant que {{PEAPIE-001}} dure, réduisez de 2 chaque dégât Contondant, Perforant ou Tranchant que vous subissez."
+  "description": "Votre peau se couvre d'écailles de pierre. Tant que {{PEAPIE-001}} dure, chaque fois que vous subissez des dégâts Contondants, Perforants ou Tranchants, vous en subissez 2 de moins."
 }

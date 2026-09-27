@@ -92,8 +92,8 @@
   "terre": {
     "domains": ["earth"],
     "prime": ["any"],
-    "upgrades": 6,
-    "xpTotal": 265
+    "upgrades": 7,
+    "xpTotal": 270
   },
   "vent": {
     "domains": ["wind"],

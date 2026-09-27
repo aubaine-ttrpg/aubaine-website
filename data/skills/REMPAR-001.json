@@ -16,5 +16,13 @@
       "protection"
     ]
   },
-  "description": "Vous jouez cette {{reaction}} lorsqu'une créature que vous voyez à portée est prise pour cible par une {{attaque}}.\n\nUne dalle de pierre jaillit du sol sur la trajectoire. L'{{attaque}} subit 1 {{desavantage}}, puis la dalle s'effrite."
+  "description": "Vous jouez cette {{reaction}} lorsqu'une créature que vous voyez à portée, vous y compris, est prise pour cible par une {{attaque}}.\n\nUne dalle de pierre se dresse sur la trajectoire. L'{{attaque}} subit 1 {{desavantage}}, puis la dalle s'effrite. Si l'{{attaque}} échoue, vous pouvez gagner 1 {{strate}}.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 5,
+      "title": "Contrefort",
+      "description": "Lorsque vous lancez {{REMPAR-001}}, vous pouvez dépenser 2 {{strate}} pour que la dalle tienne. Elle reste dressée jusqu'au début de votre prochain tour, et d'ici là, chaque autre {{attaque}} qui prend pour cible la créature qu'elle protège subit elle aussi 1 {{desavantage}}. La dalle s'effrite plus tôt si cette créature quitte l'emplacement qu'elle occupe."
+    }
+  ]
 }

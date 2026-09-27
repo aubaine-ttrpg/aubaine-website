@@ -16,5 +16,5 @@
       "creation"
     ]
   },
-  "description": "Un mur de pierre jaillit du sol à l'endroit que vous désignez : 9 m de long, 3 m de haut et 30 cm d'épaisseur, que vous pouvez répartir autrement tant que le volume reste le même.\n\nLe mur coupe le passage et la vue. Chaque section de 1,5 m possède une {{ca}} de 15 et 30 {{pdv}}, et s'effondre quand elle tombe à 0."
+  "description": "Un mur de pierre jaillit du sol en un endroit que vous voyez à portée : 9 m de long, 3 m de haut et 30 cm d'épaisseur. Vous pouvez changer sa longueur et sa hauteur, par pas de 1,5 m, tant que sa surface reste la même, sans descendre sous 1,5 m pour l'une ni pour l'autre.\n\nLe mur ne peut pas apparaître dans l'espace qu'occupe une créature. Il coupe le passage et la vue. Chaque section de 1,5 m de long possède une {{ca}} de 15 et 30 {{pdv}}, et s'effondre quand elle tombe à 0 {{pdv}}.\n\nLe mur s'effrite en poussière au terme de la durée. Vous pouvez le réduire en poussière plus tôt en le touchant, sans y consacrer d'{{action}}."
 }

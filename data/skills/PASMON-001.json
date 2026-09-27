@@ -2,7 +2,7 @@
   "id": "PASMON-001",
   "title": "Pas de la montagne",
   "type": "passive",
-  "tier": 3,
+  "tier": 4,
   "domains": [
     "earth"
   ],
@@ -15,5 +15,5 @@
       "mobility"
     ]
   },
-  "description": "Rien ne vous déplace contre votre gré. Un effet que vous n'avez pas choisi ne peut ni vous pousser ni vous mettre {{a-terre}}, et un {{terrain-difficile|terrain difficile}} ne vous coûte aucun {{deplacement|déplacement}} supplémentaire."
+  "description": "Tant que vous vous tenez sur de la terre, de la pierre ou un plancher posé directement dessus, un effet auquel vous ne consentez pas ne peut ni vous déplacer ni vous faire tomber {{a-terre}}. Cela ne vous empêche pas d'être {{a-terre}} lorsque vous subissez {{agonie}} ou que vous êtes {{endormi}}. Un {{terrain-difficile|terrain difficile}} ne vous coûte aucun {{deplacement|déplacement}} supplémentaire.\n\nÀ la fin de chacun de vos tours, si vous vous tenez sur de la terre, de la pierre ou un plancher posé directement dessus sans avoir quitté l'emplacement où vous avez commencé ce tour, vous gagnez 1 {{strate}}."
 }

@@ -22,5 +22,5 @@
       "destruction"
     ]
   },
-  "description": "Vous arrachez une pierre au sol et la lancez à la tempe d'une créature que vous voyez à portée. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nEffectuez un {{jet}} de la {{caracteristique}} choisie + {{visee}} contre la {{ca}} de la cible. En cas de réussite, elle subit 1d6 dégâts Contondants, puis effectue un {{jet}} de {{constitution}} + {{resistance}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}}). En cas d'échec, elle est {{etourdi}} jusqu'à la fin de son prochain tour."
+  "description": "Vous faites naître un éclat de pierre au creux de votre main et le lancez à la tempe d'une créature que vous voyez à portée. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nEffectuez un {{jet}} de la {{caracteristique}} choisie + {{visee}} contre la {{ca}} de la cible. En cas de réussite, elle subit 1d6 dégâts Contondants, puis effectue un {{jet}} de {{constitution}} + {{resistance}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}}). En cas d'échec, elle est {{etourdi|Étourdie}} jusqu'à la fin de son prochain tour."
 }

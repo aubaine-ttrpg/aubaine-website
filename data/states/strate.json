@@ -1,0 +1,8 @@
+{
+  "key": "strate",
+  "name": "Strate",
+  "kind": "buff",
+  "icon": "mdi:layers-triple",
+  "color": "#784840",
+  "description": "{{strate}} s'accumule sur vous jusqu'à 3.\n\nChaque fois que vous subissez des dégâts, vous en subissez 1 de moins par {{strate}} que vous portez.\n\nVous perdez toute votre {{strate}} lorsque vous quittez l'emplacement que vous occupez, de votre plein gré ou non, et lorsque vous tombez à 0 {{pdv}}.\n\nAu début d'un combat, vous perdez toute votre {{strate}}."
+}
