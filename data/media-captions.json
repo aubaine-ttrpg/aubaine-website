@@ -3,7 +3,16 @@
     {
       "file": "items/arc-court-1_1-og.png",
       "title": "Arc court",
-      "description": "Arc court en bois gravé aux volutes bleues, corde tendue.",
+      "description": "Arc de bois serti d'un cristal bleu, une flèche de lumière encochée, sur fond de volutes bleues.",
+      "keywords": [
+        "arme",
+        "objet"
+      ]
+    },
+    {
+      "file": "items/arc-long-1_1-og.png",
+      "title": "Arc long",
+      "description": "Arc en bois gravé aux volutes bleues, corde tendue.",
       "keywords": [
         "arme",
         "objet"
@@ -24,6 +33,15 @@
       "description": "Robe de mage violette à ferrures dorées et gemme au col.",
       "keywords": [
         "armure",
+        "objet"
+      ]
+    },
+    {
+      "file": "items/bandes-de-poing-1_1-og.png",
+      "title": "Bandes de poing",
+      "description": "Poing serré dans des bandes de cuir cuivré, sur fond de flammes dorées.",
+      "keywords": [
+        "arme",
         "objet"
       ]
     },
