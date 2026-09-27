@@ -84,7 +84,7 @@ A piece joins the set by naming it. `data/equipment/items/capuche-de-traque.json
 
 ## What appears on the site
 
-- `/fr/equipement` and `/en/equipment`: every piece carrying `"set": "TRAQU"` shows the set name and the list of tiers, in increasing piece order.
+- `/fr/equipement` and `/en/equipment`: under the description of every piece carrying `"set": "TRAQU"`, a block shows the set name, its description, the tiers in increasing piece order, and the list of its pieces. Each piece in that list is a reference like `{{capuche-de-traque}}`, with its slot icon and its kind, and opens that piece's entry.
 - A skill named in `grants` lists the set as one of the places it is obtained.
 - The set file alone shows nothing. A set with no piece pointing at it is invisible.
 
@@ -99,7 +99,7 @@ pnpm dev
 
 ## Traps
 
-**A set's `status` is only ever inherited, never printed.** A set has no page of its own and its bonuses are not rendered anywhere, so the value shows up solely on the skills its tiers grant, and only where no tree and no item already cover them. `SILLAG-001` is the case it exists for: the Traqueur set is its only owner.
+**A set's `status` is only ever inherited, never printed.** A set has no page of its own and prints no badge, so the value shows up solely on the skills its tiers grant, and only where no tree and no item already cover them. `SILLAG-001` is the case it exists for: the Traqueur set is its only owner.
 
 **A one piece tier is not a set bonus.** The schema requires at least two: `Deux au minimum : un palier à une pièce est une propriété de cette pièce.` Put it in that piece's `properties` instead.
 

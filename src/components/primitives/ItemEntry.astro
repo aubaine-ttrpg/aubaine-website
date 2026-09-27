@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets'
 
 import { type Corpus, label } from '../../lib/game/corpus'
-import { cataloguePieceCount, formatNumber, priceInCoins } from '../../lib/game/derive'
+import { formatNumber, priceInCoins } from '../../lib/game/derive'
 import type { EquipmentItem } from '../../lib/game/schema'
 import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
@@ -43,8 +43,6 @@ const grants = (item.grants ?? []).flatMap((id) => {
   if (!skill) return []
   return [{ skill, term: corpus.terms.keys.get(skill.id) }]
 })
-const set = item.set ? corpus.sets.get(item.set) : undefined
-const setPieces = set ? cataloguePieceCount(corpus.items, set.id) : 0
 ---
 
 <div class="au-item">
@@ -215,16 +213,6 @@ const setPieces = set ? cataloguePieceCount(corpus.items, set.id) : 0
             </span>
           ),
         )}
-      </div>
-    )
-  }
-
-  {
-    set && (
-      <div class="au-item__set">
-        <span class="au-item__set-label">{t.set_}</span>
-        <span class="au-item__set-name">{set.name}</span>
-        <span class="au-item__set-count">{`${setPieces} ${t.setPieces}`}</span>
       </div>
     )
   }

@@ -1,0 +1,51 @@
+---
+import type { Corpus } from '../../lib/game/corpus'
+import type { EquipmentItem } from '../../lib/game/schema'
+import type { Locale } from '../../lib/i18n/locales'
+import Divider from './Divider.astro'
+import Icon from './Icon.astro'
+import RuleTerm from './RuleTerm.astro'
+import SetEntry from './SetEntry.astro'
+
+type Props = { item: EquipmentItem; corpus: Corpus; locale: Locale }
+
+const { item, corpus, locale } = Astro.props
+
+const set = item.set ? corpus.sets.get(item.set) : undefined
+const slugs = new Map([...corpus.itemsBySlug].map(([slug, entry]) => [entry, slug]))
+const slotIcons = new Map(
+  corpus.sections.map((section) => [
+    section.key,
+    section.slot ? corpus.slots.get(section.slot)?.iconName : undefined,
+  ]),
+)
+const pieces = set
+  ? corpus.items.flatMap((entry) => {
+      const slug = slugs.get(entry)
+      const term = slug ? corpus.terms.keys.get(slug) : undefined
+      const slotIcon = slotIcons.get(entry.section)
+      return entry.set === set.id && term ? [{ entry, term, slotIcon }] : []
+    })
+  : []
+---
+
+{
+  set && (
+    <div class="au-item__panoply">
+      <Divider />
+      <SetEntry set={set} pieces={pieces.length} corpus={corpus} locale={locale}>
+        <ul class="au-set__members">
+          {pieces.map(({ entry, term, slotIcon }) => (
+            <li class="au-set__member" aria-current={entry === item ? 'true' : undefined}>
+              <RuleTerm term={term} text={entry.name} corpus={corpus} locale={locale} />
+              <span class="au-set__member-kind">
+                <Icon name={slotIcon} class="au-set__member-slot" />
+                {entry.kind}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </SetEntry>
+    </div>
+  )
+}

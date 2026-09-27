@@ -355,14 +355,6 @@ export function formatPrice(
     .join(' ')
 }
 
-export function cataloguePieceCount(items: Iterable<EquipmentItem>, setId: string): number {
-  let count = 0
-  for (const item of items) {
-    if (item.set === setId) count += 1
-  }
-  return count
-}
-
 export function setRarity(items: Iterable<EquipmentItem>, setId: string): string {
   const worn = [...items].filter((item) => item.set === setId)
   const first = worn[0]

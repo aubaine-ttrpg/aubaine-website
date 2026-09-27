@@ -7,6 +7,7 @@ import DetailPane from './DetailPane.astro'
 import FilterBar from './FilterBar.astro'
 import Icon from './Icon.astro'
 import ItemEntry from './ItemEntry.astro'
+import ItemSet from './ItemSet.astro'
 import Provenance from './Provenance.astro'
 import SkillEntry from './SkillEntry.astro'
 import StateEntry from './StateEntry.astro'
@@ -104,7 +105,10 @@ const filter =
             />
           )}
           {entry.entity.kind === 'item' && (
-            <ItemEntry item={entry.entity.item} corpus={corpus} locale={locale} />
+            <Fragment>
+              <ItemEntry item={entry.entity.item} corpus={corpus} locale={locale} />
+              <ItemSet item={entry.entity.item} corpus={corpus} locale={locale} />
+            </Fragment>
           )}
           {entry.entity.kind === 'state' && (
             <StateEntry state={entry.entity.state} corpus={corpus} locale={locale} />

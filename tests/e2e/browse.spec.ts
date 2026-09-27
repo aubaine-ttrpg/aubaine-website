@@ -281,3 +281,19 @@ test('selecting a row never makes the panel scroll', async ({ page }) => {
     expect(overflow.y, `row ${index} vertical`).toBe(0)
   }
 })
+
+test('a panoply piece shows its tiers and opens the other pieces', async ({ page }) => {
+  await page.goto('/fr/equipement#e-boucle-de-l-un')
+  await enhanced(page)
+  const detail = page.locator('#e-boucle-de-l-un')
+  await expect(detail.locator('.au-set__rung')).toHaveCount(1)
+  await expect(detail.locator('.au-set__member[aria-current] .au-rule')).toHaveAttribute(
+    'href',
+    '/fr/equipement#e-boucle-de-l-un',
+  )
+
+  await detail.locator('.au-set__member a[href$="#e-boucle-de-l-autre"]').click()
+  await expect(page).toHaveURL('/fr/equipement#e-boucle-de-l-autre')
+  await expect(page.locator('#e-boucle-de-l-autre')).toBeVisible()
+  await expect(row(page, 'boucle-de-l-autre')).toHaveAttribute('aria-current', 'true')
+})
