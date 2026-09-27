@@ -723,6 +723,13 @@ export const state = z
     kind: z
       .enum(['buff', 'debuff', 'neutral'])
       .describe("Couleur de la pastille : ce que l'état fait à qui le porte."),
+    follows: z
+      .string()
+      .regex(MACHINE_KEY)
+      .optional()
+      .describe(
+        "Clé de l'état dont celui-ci est le cran suivant, comme poisse-solide après poisse-liquide. Les états se rangent par ordre alphabétique, et une chaîne de crans se range à la place de son premier cran, dans l'ordre des crans.",
+      ),
     icon: z
       .string()
       .regex(ICON_NAME_PATTERN)

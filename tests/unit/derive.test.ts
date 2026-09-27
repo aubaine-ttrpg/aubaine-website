@@ -7,6 +7,7 @@ import {
   formatNumber,
   formatPrice,
   frame,
+  inCranOrder,
   initialOf,
   priceInCoins,
   primeCharacteristics,
@@ -20,7 +21,7 @@ import {
   treeDomains,
   xpOf,
 } from '../../src/lib/game/derive'
-import type { Skill, SkillTree } from '../../src/lib/game/schema'
+import type { GameState, Skill, SkillTree } from '../../src/lib/game/schema'
 import {
   bookChapterRef,
   NAV_SECTIONS,
@@ -443,5 +444,42 @@ describe('tree references', () => {
     expect(treeNodeHref('en', 'berserker', 'RAGEXX-001')).toBe(
       '/en/tree/berserker/RAGEXX-001#arbre',
     )
+  })
+})
+
+describe('state order', () => {
+  const state = (key: string, name: string, follows?: string): GameState => ({
+    key,
+    name,
+    kind: 'debuff',
+    icon: 'mdi:circle',
+    description: name,
+    ...(follows === undefined ? {} : { follows }),
+  })
+  const compare = collator('fr').compare
+  const names = (states: GameState[]): string[] => states.map((entry) => entry.name)
+
+  it('keeps states alphabetical, and a chain of crans at the place of its first, in cran order', () => {
+    const states = [
+      state('trempe', 'Trempé'),
+      state('poisse-explosive', 'Poisse explosive', 'poisse-solide'),
+      state('agonie', 'Agonie'),
+      state('poisse-solide', 'Poisse solide', 'poisse-liquide'),
+      state('poisse-liquide', 'Poisse liquide'),
+      state('entrave', 'Entravé'),
+    ]
+    expect(names(inCranOrder(states, compare))).toEqual([
+      'Agonie',
+      'Entravé',
+      'Poisse liquide',
+      'Poisse solide',
+      'Poisse explosive',
+      'Trempé',
+    ])
+  })
+
+  it('refuses a cran that follows no state, or a chain that loops', () => {
+    expect(() => inCranOrder([state('a', 'A', 'absent')], compare)).toThrow()
+    expect(() => inCranOrder([state('a', 'A', 'b'), state('b', 'B', 'a')], compare)).toThrow()
   })
 })

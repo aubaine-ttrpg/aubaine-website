@@ -771,6 +771,30 @@ describe('release notes', () => {
 })
 
 describe('uniqueness', () => {
+  it('lets a state follow only another state, and each state be followed by one cran at most', () => {
+    const keys = new Set(fr.states.map((state) => state.key))
+    const followed = new Set<string>()
+    for (const state of fr.states) {
+      if (state.follows === undefined) continue
+      expect(keys.has(state.follows), `${state.key} follows ${state.follows}`).toBe(true)
+      expect(state.follows, `${state.key} follows itself`).not.toBe(state.key)
+      expect(followed.has(state.follows), `two states follow ${state.follows}`).toBe(false)
+      followed.add(state.follows)
+    }
+  })
+
+  it('lists each cran right after the state it follows, in both locales', () => {
+    for (const corpus of [fr, en]) {
+      const order = corpus.states.map((state) => state.key)
+      for (const state of corpus.states) {
+        if (state.follows === undefined) continue
+        expect(order.indexOf(state.key), `${corpus.locale} ${state.key}`).toBe(
+          order.indexOf(state.follows) + 1,
+        )
+      }
+    }
+  })
+
   it('gives every state a unique printed name', () => {
     expect(new Set(fr.states.map((state) => state.name.toLowerCase())).size).toBe(fr.states.length)
   })

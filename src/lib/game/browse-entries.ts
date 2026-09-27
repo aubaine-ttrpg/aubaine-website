@@ -20,6 +20,7 @@ import {
   showsXp,
   skillTags,
   slugify,
+  stateSteps,
   subspeciesAnchor,
   subspeciesSkills,
   typeLabelFor,
@@ -517,7 +518,15 @@ export function ruleBrowseEntries(corpus: Corpus, locale: Locale): BrowseEntry[]
   })
 
   const compare = collator(locale)
-  return [...glossaryRows, ...tagRows, ...basicRows].sort((a, b) =>
-    compare.compare(a.title, b.title),
-  )
+  const steps = stateSteps(corpus.states)
+  const place = (entry: BrowseEntry): { title: string; step: number } => {
+    if (entry.entity.kind !== 'state') return { title: entry.title, step: 0 }
+    const found = steps.get(entry.entity.state.key)
+    return found ? { title: found.first.name, step: found.step } : { title: entry.title, step: 0 }
+  }
+  return [...glossaryRows, ...tagRows, ...basicRows].sort((a, b) => {
+    const left = place(a)
+    const right = place(b)
+    return compare.compare(left.title, right.title) || left.step - right.step
+  })
 }

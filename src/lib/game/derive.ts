@@ -161,6 +161,42 @@ export function treeSkillCount(tree: SkillTree): number {
   return tree.placements.length
 }
 
+export type StateStep = { first: GameState; step: number }
+
+export function stateSteps(states: readonly GameState[]): Map<string, StateStep> {
+  const byKey = new Map(states.map((state) => [state.key, state]))
+  const steps = new Map<string, StateStep>()
+  for (const state of states) {
+    const seen = new Set([state.key])
+    let first = state
+    let step = 0
+    while (first.follows !== undefined) {
+      const previous = byKey.get(first.follows)
+      if (!previous)
+        throw new Error(`state ${first.key} follows ${first.follows}, which is no state`)
+      if (seen.has(previous.key)) throw new Error(`the crans of state ${state.key} loop`)
+      seen.add(previous.key)
+      first = previous
+      step += 1
+    }
+    steps.set(state.key, { first, step })
+  }
+  return steps
+}
+
+export function inCranOrder(
+  states: readonly GameState[],
+  compare: (a: string, b: string) => number,
+): GameState[] {
+  const steps = stateSteps(states)
+  const place = (state: GameState): StateStep => steps.get(state.key) ?? { first: state, step: 0 }
+  return [...states].sort((a, b) => {
+    const left = place(a)
+    const right = place(b)
+    return compare(left.first.name, right.first.name) || left.step - right.step
+  })
+}
+
 const STATE_KIND_INK: Record<GameState['kind'], string> = {
   buff: 'var(--state-buff)',
   debuff: 'var(--state-debuff)',

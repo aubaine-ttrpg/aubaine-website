@@ -5,6 +5,7 @@ import {
   characteristicKey,
   collator,
   DEFAULT_SUBSPECIES_LABEL,
+  inCranOrder,
   primeCharacteristics,
   slugify,
   speciesPool,
@@ -374,13 +375,14 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
   species.sort((a, b) => collator(locale).compare(a.name, b.name))
   const speciesById = new Map(species.map((entry) => [entry.id, entry]))
 
-  const states: GameState[] = stateEntries
-    .map((entry) => {
+  const states: GameState[] = inCranOrder(
+    stateEntries.map((entry) => {
       const base: GameState = { ...entry.data, description: inherited(entry.data.description) }
       const patch = overlays.state.safeParse(overlayOf(`states/${entry.data.key}`) ?? {})
       return patch.success ? { ...base, ...pruned(patch.data) } : base
-    })
-    .sort((a, b) => collator(locale).compare(a.name, b.name))
+    }),
+    collator(locale).compare,
+  )
 
   const resolveList = (id: string): SkillList & { resolved: Skill[] } => {
     const found = listEntries.find((entry) => entry.id === id)

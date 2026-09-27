@@ -17,6 +17,7 @@ The filename is the key. Lowercase, no accents, hyphens between words: `combusti
 | `key` | required | Identifiant machine, employé par l'ancre de la planche et par `{{clé}}` dans un texte de règle. | `^[a-z][a-z0-9-]*$`, matching the filename |
 | `name` | required | Nom imprimé, et libellé par défaut d'une référence `{{clé}}` vers cet état. Il doit être unique. | any non empty string |
 | `kind` | required | Couleur de la pastille : ce que l'état fait à qui le porte. | `buff`, `debuff`, `neutral` |
+| `follows` | optional | Clé de l'état dont celui-ci est le cran suivant, comme poisse-solide après poisse-liquide. Les états se rangent par ordre alphabétique, et une chaîne de crans se range à la place de son premier cran, dans l'ordre des crans. | a state `key` from `data/states/` |
 | `icon` | required | Nom Iconify. Sans fichier correspondant dans `data/media/icons/`, l'état se rend sans icône. | `mdi:<name>` or `game-icons:<name>` |
 | `color` | optional | Encre propre de l'état, que portent son titre et chaque pastille qui le nomme, par exemple pour distinguer les crans d'une même famille. | `#rrggbb`, lowercase hex |
 | `description` | required | Ce que l'état fait, jusqu'où il s'accumule s'il s'accumule, et comment il prend fin. Quand il n'en fixe pas la durée, le DD ou les dégâts, la Compétence ou l'objet qui l'applique les indique. | any non empty string |
