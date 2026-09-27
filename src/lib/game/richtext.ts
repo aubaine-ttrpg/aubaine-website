@@ -25,7 +25,9 @@ export type Run =
   | { kind: 'bold'; text: string }
   | { kind: 'term'; text: string; term: TermRecord }
 
-export type Paragraph = { runs: Run[] }
+export type Line = Run[]
+
+export type Paragraph = { lines: Line[] }
 
 const MARKUP = /\*\*\*([^*]+)\*\*\*|\{\{([^}]+)\}\}/g
 const REFERENCE_KEY = /^(?:[a-z0-9]+(?:-[a-z0-9]+)*|[A-Z0-9]{6}-[0-9]{3})$/
@@ -96,7 +98,15 @@ export function parseParagraphs(source: string | undefined, index: TermIndex): P
     .split(/\n{2,}/)
     .map((part) => part.trim())
     .filter(Boolean)
-    .map((part) => ({ runs: parseRuns(part.replace(/\n/g, ' '), index) }))
+    .map((part) => ({ lines: linesOf(part, index) }))
+}
+
+function linesOf(paragraph: string, index: TermIndex): Line[] {
+  return paragraph
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => parseRuns(line, index))
 }
 
 export function flattenText(source: string | undefined, labelOf: LabelOf, limit?: number): string {

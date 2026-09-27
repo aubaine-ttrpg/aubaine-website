@@ -34,51 +34,56 @@ const TIP =
   {
     paragraphs.map((paragraph) => (
       <p style={paragraphStyle}>
-        {paragraph.runs.map((run) => {
-          if (run.kind === 'bold') {
-            return <strong style="color:var(--ink); font-weight:600">{run.text}</strong>
-          }
-          if (run.kind === 'term') {
-            const icon = hasIcon(run.term.icon) ? run.term.icon : null
-            return (
-              <span
-                data-term="true"
-                tabindex="0"
-                style={`position:relative; display:inline-block; cursor:help; color:${run.term.color}; font-weight:600; white-space:nowrap; border-bottom:1px dotted currentColor`}
-              >
-                {icon && (
+        {paragraph.lines.map((line, position) => (
+          <Fragment>
+            {position > 0 && <br />}
+            {line.map((run) => {
+              if (run.kind === 'bold') {
+                return <strong style="color:var(--ink); font-weight:600">{run.text}</strong>
+              }
+              if (run.kind === 'term') {
+                const icon = hasIcon(run.term.icon) ? run.term.icon : null
+                return (
                   <span
-                    aria-hidden="true"
-                    style={`display:inline-block; width:.85em; height:.85em; margin-right:.18em; vertical-align:-.04em; background:currentColor; -webkit-mask:${iconMask(icon)}; mask:${iconMask(icon)}`}
-                  />
-                )}
-                <span>{run.text}</span>
-                <span data-tip="true" role="tooltip" style={TIP}>
-                  <span style="display:block; font-family:var(--font-mono); font-size:9.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold)">
-                    {run.term.kind}
-                  </span>
-                  <span style="display:block; margin-top:5px; font-family:var(--font-display); font-size:16px; font-weight:600; color:var(--ink)">
-                    {run.term.title}
-                  </span>
-                  {run.term.meta && (
-                    <span style="display:block; margin-top:4px; font-family:var(--font-ui); font-size:12.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink3)">
-                      {run.term.meta}
+                    data-term="true"
+                    tabindex="0"
+                    style={`position:relative; display:inline-block; cursor:help; color:${run.term.color}; font-weight:600; white-space:nowrap; border-bottom:1px dotted currentColor`}
+                  >
+                    {icon && (
+                      <span
+                        aria-hidden="true"
+                        style={`display:inline-block; width:.85em; height:.85em; margin-right:.18em; vertical-align:-.04em; background:currentColor; -webkit-mask:${iconMask(icon)}; mask:${iconMask(icon)}`}
+                      />
+                    )}
+                    <span>{run.text}</span>
+                    <span data-tip="true" role="tooltip" style={TIP}>
+                      <span style="display:block; font-family:var(--font-mono); font-size:9.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold)">
+                        {run.term.kind}
+                      </span>
+                      <span style="display:block; margin-top:5px; font-family:var(--font-display); font-size:16px; font-weight:600; color:var(--ink)">
+                        {run.term.title}
+                      </span>
+                      {run.term.meta && (
+                        <span style="display:block; margin-top:4px; font-family:var(--font-ui); font-size:12.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink3)">
+                          {run.term.meta}
+                        </span>
+                      )}
+                      <span style="display:block; margin-top:8px; font-family:var(--font-body); font-size:14px; line-height:1.6">
+                        {run.term.text}
+                      </span>
+                      {run.term.href && (
+                        <span style="display:block; margin-top:9px; font-family:var(--font-ui); font-size:12.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gold)">
+                          {t.openRef}
+                        </span>
+                      )}
                     </span>
-                  )}
-                  <span style="display:block; margin-top:8px; font-family:var(--font-body); font-size:14px; line-height:1.6">
-                    {run.term.text}
                   </span>
-                  {run.term.href && (
-                    <span style="display:block; margin-top:9px; font-family:var(--font-ui); font-size:12.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gold)">
-                      {t.openRef}
-                    </span>
-                  )}
-                </span>
-              </span>
-            )
-          }
-          return <span>{run.text}</span>
-        })}
+                )
+              }
+              return <span>{run.text}</span>
+            })}
+          </Fragment>
+        ))}
       </p>
     ))
   }

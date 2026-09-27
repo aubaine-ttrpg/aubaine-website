@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import {
   flattenText,
+  parseParagraphs,
   parseRuns,
   pinReferenceLabels,
   type TermIndex,
@@ -63,6 +64,34 @@ describe('references by key', () => {
 
   it('leaves an unknown key as plain text', () => {
     expect(parseRuns('{{inconnu}}', index)).toEqual([{ kind: 'text', text: 'inconnu' }])
+  })
+})
+
+describe('paragraphs and lines', () => {
+  it('starts a paragraph after a blank line', () => {
+    expect(parseParagraphs('Premier.\n\nSecond.', index)).toEqual([
+      { lines: [[{ kind: 'text', text: 'Premier.' }]] },
+      { lines: [[{ kind: 'text', text: 'Second.' }]] },
+    ])
+  })
+
+  it('breaks the line on a single newline, inside the same paragraph', () => {
+    expect(parseParagraphs('***Sceller.*** Une porte.\n***Coller.*** Deux objets.', index)).toEqual(
+      [
+        {
+          lines: [
+            [
+              { kind: 'bold', text: 'Sceller.' },
+              { kind: 'text', text: ' Une porte.' },
+            ],
+            [
+              { kind: 'bold', text: 'Coller.' },
+              { kind: 'text', text: ' Deux objets.' },
+            ],
+          ],
+        },
+      ],
+    )
   })
 })
 

@@ -19,11 +19,16 @@ const paragraphs = parseParagraphs(source, corpus.terms)
   {
     paragraphs.map((paragraph) => (
       <p>
-        {paragraph.runs.map((run) => {
-          if (run.kind === 'bold') return <strong>{run.text}</strong>
-          if (run.kind !== 'term') return <Fragment>{run.text}</Fragment>
-          return <RuleTerm term={run.term} text={run.text} corpus={corpus} locale={locale} />
-        })}
+        {paragraph.lines.map((line, position) => (
+          <Fragment>
+            {position > 0 && <br />}
+            {line.map((run) => {
+              if (run.kind === 'bold') return <strong>{run.text}</strong>
+              if (run.kind !== 'term') return <Fragment>{run.text}</Fragment>
+              return <RuleTerm term={run.term} text={run.text} corpus={corpus} locale={locale} />
+            })}
+          </Fragment>
+        ))}
       </p>
     ))
   }
