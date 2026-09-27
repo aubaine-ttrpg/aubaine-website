@@ -1,0 +1,25 @@
+---
+import { getImage } from 'astro:assets'
+
+import type { Corpus } from '../../lib/game/corpus'
+import type { EquipmentItem } from '../../lib/game/schema'
+import { itemImage, PLACEHOLDER_SQUARE } from '../../lib/media'
+
+type Props = { item: EquipmentItem; corpus: Corpus }
+
+const { item, corpus } = Astro.props
+
+const rarity = corpus.rarities.get(item.rarity)?.color ?? '#6b6459'
+const source = itemImage(item.art) ?? itemImage(PLACEHOLDER_SQUARE)
+const picture = source
+  ? await getImage({ src: source, width: 64, height: 64, format: 'webp', quality: 82 })
+  : undefined
+---
+
+<span
+  class="au-item-thumb"
+  style={`--rarity:${rarity}${picture ? `; --art:url('${picture.src}')` : ''}`}
+  aria-hidden="true"
+>
+  <span class="au-item-thumb__plate"></span>
+</span>

@@ -4,6 +4,7 @@ import type { TermRecord } from '../../lib/game/richtext'
 import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
 import Icon from './Icon.astro'
+import ItemThumb from './ItemThumb.astro'
 import NodeShape from './NodeShape.astro'
 
 type Props = { term: TermRecord; text: string; corpus: Corpus; locale: Locale }
@@ -11,6 +12,8 @@ type Props = { term: TermRecord; text: string; corpus: Corpus; locale: Locale }
 const { term, text, corpus, locale } = Astro.props
 const t = strings(locale)
 const skill = term.family === 'skill' && term.skillId ? corpus.skills.get(term.skillId) : undefined
+const item =
+  term.family === 'item' && term.itemSlug ? corpus.itemsBySlug.get(term.itemSlug) : undefined
 const Tag = term.href ? 'a' : 'span'
 ---
 
@@ -25,6 +28,8 @@ const Tag = term.href ? 'a' : 'span'
     >
       {skill ? (
         <NodeShape skill={skill} corpus={corpus} variant="inline" />
+      ) : item ? (
+        <ItemThumb item={item} corpus={corpus} />
       ) : (
         <Icon name={term.icon ?? undefined} class="au-rule__icon" />
       )}

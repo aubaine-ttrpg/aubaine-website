@@ -564,6 +564,10 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
     bank,
     species,
     equipmentGrants,
+    itemsBySlug,
+    sections,
+    rarities,
+    slots,
     labelOf,
     t,
   })
@@ -623,6 +627,10 @@ type TermInput = {
   bank: SkillList & { resolved: Skill[] }
   species: ResolvedSpecies[]
   equipmentGrants: EquipmentGrant[]
+  itemsBySlug: Map<string, EquipmentItem>
+  sections: ResolvedSection[]
+  rarities: Map<string, VocabularyEntry>
+  slots: Map<string, VocabularyEntry>
   labelOf: LabelOf
   t: ReturnType<typeof strings>
 }
@@ -1167,6 +1175,10 @@ function buildTermIndex(input: TermInput): TermIndex {
     bank,
     species,
     equipmentGrants,
+    itemsBySlug,
+    sections,
+    rarities,
+    slots,
     labelOf,
     t,
   } = input
@@ -1254,6 +1266,27 @@ function buildTermIndex(input: TermInput): TermIndex {
       icon: skillIcon(skill, characteristics),
       text: flattenText(skill.description, labelOf, 240),
       href: `${pathFor('skills', locale)}#e-${skill.id}`,
+    })
+  }
+
+  const slotOf = new Map(sections.map((section) => [section.key, section.slot]))
+  for (const [slug, item] of itemsBySlug) {
+    if (keys.has(slug)) {
+      throw new Error(
+        `item ${slug} answers to the reference {{${slug}}}, which another entry holds`,
+      )
+    }
+    const slot = slotOf.get(item.section)
+    keys.set(slug, {
+      family: 'item',
+      itemSlug: slug,
+      kind: t.items,
+      title: item.name,
+      meta: `${item.kind} · ${label(rarities.get(item.rarity), locale, item.rarity)}`,
+      color: 'var(--accent-ink)',
+      icon: slot ? iconPath(slots.get(slot)?.iconName) : null,
+      text: flattenText(item.text ?? item.description, labelOf, 240),
+      href: `${pathFor('equipment', locale)}#e-${slug}`,
     })
   }
 

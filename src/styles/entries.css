@@ -458,6 +458,27 @@
   align-self: center;
 }
 
+.au-rule--item {
+  gap: 4px;
+}
+
+.au-item-thumb {
+  position: relative;
+  align-self: center;
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  clip-path: var(--chamfer);
+  background: var(--rarity);
+}
+
+.au-item-thumb__plate {
+  position: absolute;
+  inset: 1.5px;
+  clip-path: var(--chamfer);
+  background: #171310 var(--art) center / cover no-repeat;
+}
+
 .au-rule--unknown {
   color: var(--state-debuff);
   text-decoration: line-through;
@@ -767,9 +788,12 @@
   gap: 11px;
 }
 
-.au-item__art {
+.au-item__art,
+.au-item-thumb {
   --chamfer: polygon(13% 0%, 87% 0%, 100% 13%, 100% 87%, 87% 100%, 13% 100%, 0% 87%, 0% 13%);
+}
 
+.au-item__art {
   position: relative;
   flex: 0 0 auto;
   width: 56px;

@@ -17,6 +17,7 @@ Aubaine renders every load-bearing mechanical noun as an icon plus a colored ter
 - Aptitudes, from `data/meta/aptitudes.json`, keyed the same way: `{{visee}}`. See `vocabularies.md`.
 - States, from `data/states/`. The key is the state `key`, which is its file name: `{{a-terre}}`.
 - Skills, by `id`: `{{TRAFEU-001}}`. A skill placed on a tree, listed in `data/skill-lists/`, offered by a species, or granted by an item or a set bonus links to the first of those, so a skill a tree places links to its node.
+- Equipment items, by file name: `{{dague}}`. The reference shows the icon of the item's slot and links to its entry on the equipment page.
 - Tags are not keywords. A tag has no key and never links; `{{sort}}` links the rule term, which reads the definition of the `spell` tag. Rule text cites a tag as « l'étiquette » followed by its French label spelled exactly, and `pnpm data:check` refuses a label `data/meta/tags.json` does not declare.
 
 Each of these lists has a source of truth in the repository. Read it when you need the members. Do not copy a vocabulary into prose, a rule, or a comment, because the copy is what goes stale.

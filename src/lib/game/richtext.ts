@@ -1,10 +1,18 @@
-export const TERM_FAMILIES = ['rule', 'characteristic', 'aptitude', 'state', 'skill'] as const
+export const TERM_FAMILIES = [
+  'rule',
+  'characteristic',
+  'aptitude',
+  'state',
+  'skill',
+  'item',
+] as const
 
 export type TermFamily = (typeof TERM_FAMILIES)[number]
 
 export type TermRecord = {
   family: TermFamily
   skillId?: string
+  itemSlug?: string
   kind: string
   title: string
   meta: string
@@ -63,7 +71,11 @@ function referenceRun(content: string, index: TermIndex): Run {
   const reference = referenceOf(content)
   const record = reference ? index.keys.get(reference.key) : undefined
   if (reference && record) {
-    return { kind: 'term', text: reference.shown ?? record.title, term: record }
+    return {
+      kind: 'term',
+      text: reference.shown ?? record.title,
+      term: record,
+    }
   }
   return { kind: 'text', text: reference?.shown ?? content.trim() }
 }
