@@ -18,7 +18,7 @@ The filename is the key. Lowercase, no accents, hyphens between words: `combusti
 | `name` | required | Nom imprimé, et libellé par défaut d'une référence `{{clé}}` vers cet état. Il doit être unique. | any non empty string |
 | `kind` | required | Couleur de la pastille : ce que l'état fait à qui le porte. | `buff`, `debuff`, `neutral` |
 | `icon` | required | Nom Iconify. Sans fichier correspondant dans `data/media/icons/`, l'état se rend sans icône. | `mdi:<name>` or `game-icons:<name>` |
-| `color` | optional | Encre propre, lorsque les crans d'une même famille doivent se suivre à l'œil. | `#rrggbb`, lowercase hex |
+| `color` | optional | Encre propre de l'état, que portent son titre et chaque pastille qui le nomme, par exemple pour distinguer les crans d'une même famille. | `#rrggbb`, lowercase hex |
 | `description` | required | Ce que l'état fait, jusqu'où il s'accumule s'il s'accumule, et comment il prend fin. Quand il n'en fixe pas la durée, le DD ou les dégâts, la Compétence ou l'objet qui l'applique les indique. | any non empty string |
 
 ## A complete example
@@ -62,6 +62,6 @@ pnpm dev
 
 **A state that accumulates says how far in its description.** There is no stack field and no counter printed beside the name: the cap is rule text, written once in the opening sentence, as `{{combustion}} s'accumule sur vous jusqu'à 5.` does. A state that starts at a value and counts down, like `Agonie`, says that value where the state is gained.
 
-**`kind` decides the colour, not `color`.** `buff` is green, `debuff` is orange, `neutral` is grey. Use `color` only to keep several steps of one family visually in order.
+**`kind` gives the colour unless `color` gives the state its own.** Without `color`, a `buff` is gold, a `debuff` red and a `neutral` state blue-grey, from the `--state-` tokens in `src/styles/tokens.css`. With it, the state's heading and every pill that names it wear that colour, as the Poisse and Vent states do; `stateInk` in `src/lib/game/derive.ts` keeps its hue and adjusts its lightness so it stays legible on the dark theme, the light theme and paper.
 
 **Adding the file is enough.** The Rules entry, the pastille, the tooltip and the search row all appear on their own.

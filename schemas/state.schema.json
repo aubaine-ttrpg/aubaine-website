@@ -29,7 +29,7 @@
       "description": "Nom Iconify. Sans fichier correspondant dans data/media/icons/, l'état se rend sans icône."
     },
     "color": {
-      "description": "Encre propre, lorsque les crans d'une même famille doivent se suivre à l'œil.",
+      "description": "Encre propre de l'état, que portent son titre et chaque pastille qui le nomme, par exemple pour distinguer les crans d'une même famille.",
       "type": "string",
       "pattern": "^#[0-9a-f]{6}$"
     },

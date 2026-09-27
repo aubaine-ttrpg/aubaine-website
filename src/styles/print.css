@@ -16,6 +16,7 @@
 }
 
 .au-print {
+  color-scheme: light;
   --paper: #fff;
   --paper-tex: none;
   --paper-ink: #211c17;

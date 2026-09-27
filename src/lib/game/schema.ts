@@ -733,7 +733,9 @@ export const state = z
       .string()
       .regex(HEX)
       .optional()
-      .describe("Encre propre, lorsque les crans d'une même famille doivent se suivre à l'œil."),
+      .describe(
+        "Encre propre de l'état, que portent son titre et chaque pastille qui le nomme, par exemple pour distinguer les crans d'une même famille.",
+      ),
     description: z
       .string()
       .min(1)

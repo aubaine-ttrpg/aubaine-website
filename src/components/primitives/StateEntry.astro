@@ -1,5 +1,6 @@
 ---
 import type { Corpus } from '../../lib/game/corpus'
+import { stateInk } from '../../lib/game/derive'
 import type { GameState } from '../../lib/game/schema'
 import type { Locale } from '../../lib/i18n/locales'
 import Icon from './Icon.astro'
@@ -14,7 +15,7 @@ const { state, corpus, locale } = Astro.props
   <div class="au-state-entry__hd">
     <span
       class={`au-state au-state--${state.kind}`}
-      style={state.color ? `color:${state.color}` : undefined}
+      style={state.color ? `color:${stateInk(state)}` : undefined}
     >
       <Icon name={state.icon} class="au-state__icon" />{state.name}
     </span>

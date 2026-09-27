@@ -8,6 +8,7 @@ import {
   primeCharacteristics,
   slugify,
   speciesPool,
+  stateInk,
   subspeciesSkills,
   treeDomains,
   VARIABLE_CHARACTERISTIC,
@@ -1124,12 +1125,7 @@ function buildGlossary(input: GlossaryInput): GlossaryTerm[] {
         kind: t.states,
         title: state.name,
         meta: kindLabel,
-        color:
-          state.kind === 'buff'
-            ? 'var(--state-buff)'
-            : state.kind === 'debuff'
-              ? 'var(--state-debuff)'
-              : 'var(--state-neutral)',
+        color: stateInk(state),
         icon: iconPath(state.icon),
         text: flattenText(state.description, labelOf, 240),
       },
