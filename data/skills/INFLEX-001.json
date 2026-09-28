@@ -1,0 +1,20 @@
+{
+  "id": "INFLEX-001",
+  "title": "Inflexion",
+  "type": "active",
+  "tier": 4,
+  "domains": [
+    "ether"
+  ],
+  "activation": "1 Réaction",
+  "range": "Personnel",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "enhancement"
+    ]
+  },
+  "description": "Vous jouez cette {{reaction}} lorsque vous lancez un autre {{sort}}, avant d'en payer le coût et avant tout {{jet}} qu'il demande. Vous ne pouvez la jouer que si vous portez au moins 1 {{glyphe}} et que ce {{sort}} porte l'une des étiquettes ci-dessous.\n\nVous infléchissez sa magie : dépensez 1 ou 2 {{glyphe|Glyphes}}, puis choisissez l'une de ces étiquettes que porte ce {{sort}}. Il gagne l'effet qui lui correspond et ne vous fait gagner aucun {{glyphe}}. {{ALPPRI-001}} ne vous laisse dépenser aucun {{glyphe}} pour cette {{reaction}}.\n\n***Destruction.*** Son premier Jet de dégâts gagne 1 dé par {{glyphe}} dépensé, de la taille du plus gros dé de ce Jet.\n***Contrôle.*** Son {{dd}} augmente de 1 par {{glyphe}} dépensé, jusqu'à la fin de ses effets.\n***Protection.*** Chaque créature qu'il cible, ou vous s'il n'en cible aucune, gagne 1d6 {{pdv}} temporaires par {{glyphe}} dépensé.\n***Soin.*** Chaque créature qu'il soigne récupère 1 dé de plus par {{glyphe}} dépensé, de la taille du plus gros dé de ce soin.\n***Mobilité.*** Choisissez sa portée ou l'une des distances qu'il fait parcourir, si elle se compte en mètres : elle augmente de 3 m par {{glyphe}} dépensé.\n***Déchaîné.*** Chaque dimension de sa zone augmente de 1,5 m par {{glyphe}} dépensé."
+}

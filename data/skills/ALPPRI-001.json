@@ -1,0 +1,29 @@
+{
+  "id": "ALPPRI-001",
+  "title": "Alphabet primordial",
+  "type": "passive",
+  "tier": 3,
+  "domains": [],
+  "activation": "Passif",
+  "tags": {
+    "practice": "teaching",
+    "schools": [
+      "enhancement"
+    ]
+  },
+  "description": "La magie primordiale vous marque : lorsque vous lancez un {{sort}} du Domaine Feu, Eau, Terre, Vent, Foudre ou Poisse, vous gagnez le {{glyphe}} de ce Domaine, une fois ce {{sort}} résolu, sauf s'il porte aussi le Domaine Éther. S'il porte deux de ces Domaines, choisissez celui dont vous gagnez le {{glyphe}}.\n\nAu moment où vous lancez un {{sort}} du Domaine Éther, avant d'en payer le coût, vous pouvez dépenser 1 {{glyphe}}. Ce {{sort}} gagne alors l'effet du Domaine de ce {{glyphe}}.\n\n***Feu.*** Le premier Jet de dégâts de ce {{sort}} inflige 1d8 dégâts de Feu de plus.\n***Eau.*** Réduisez de 1 le coût en {{energie}} de ce {{sort}}, jusqu'à un minimum de 0.\n***Terre.*** Vous gagnez 1d6 {{pdv}} temporaires.\n***Vent.*** Une fois ce {{sort}} résolu, vous pouvez vous déplacer de 3 m au plus, sauf si vous êtes {{immobilise}}. Ce trajet ne compte pas dans votre {{deplacement|déplacement}} et ne déclenche aucune {{ATTOPP-001}}.\n***Foudre.*** Chaque créature qui subit des dégâts de ce {{sort}} ne peut plus jouer de {{reaction}} jusqu'au début de son prochain tour.\n***Poisse.*** Chaque créature qui effectue un {{jet}} pour résister à ce {{sort}} ou s'y opposer subit 1 {{desavantage}} à ce {{jet}}.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 4,
+      "title": "Écho changeant",
+      "description": "Une fois par tour, lorsque {{ALPPRI-001}} vous fait gagner un {{glyphe}}, vous pouvez gagner à sa place celui d'un autre Domaine parmi Feu, Eau, Terre, Vent, Foudre et Poisse."
+    },
+    {
+      "level": 3,
+      "tier": 6,
+      "title": "Double tracé",
+      "description": "Au moment où vous lancez un {{sort}} du Domaine Éther, vous pouvez dépenser jusqu'à 2 {{glyphe|Glyphes}} pour {{ALPPRI-001}} au lieu d'un seul. Ce {{sort}} gagne l'effet de chacun."
+    }
+  ]
+}

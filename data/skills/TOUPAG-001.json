@@ -1,0 +1,16 @@
+{
+  "id": "TOUPAG-001",
+  "title": "Tourner la page",
+  "type": "active",
+  "tier": 3,
+  "domains": [],
+  "activation": "1 Action Bonus",
+  "range": "Personnel",
+  "duration": "Instantanée",
+  "recharge": "short-rest",
+  "energy": 1,
+  "tags": {
+    "practice": "technique"
+  },
+  "description": "Un {{sort}} en chasse un autre au fil des pages de votre {{GRIMOI-001|grimoire}}. Vous ne pouvez jouer cette Compétence que si vous tenez votre {{GRIMOI-001|grimoire}} en main et en bon état. Remplacez l'un des {{sort|Sorts}} qu'il vous fait {{memorisee|mémoriser}} par un autre {{sort}} inscrit qui n'est pas {{memorisee|Mémorisé}} : votre {{GRIMOI-001|grimoire}} vous fait {{memorisee|mémoriser}} le nouveau jusqu'à votre prochain repos. Un effet que le {{sort}} remplacé a déjà produit suit son cours."
+}

@@ -1,0 +1,20 @@
+{
+  "id": "CHACRO-001",
+  "title": "Chassé-croisé",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "ether"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "12 m",
+  "duration": "Instantanée",
+  "energy": 2,
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "mobility"
+    ]
+  },
+  "description": "Un battement de paupières, et vous voilà à la place d'un autre. Choisissez pour cible, parmi ce que vous voyez à portée, une créature consentante ou un objet que personne ne porte ni ne tient et qui n'est pas plus grand qu'une créature de {{taille}} Moyenne. Vous ne pouvez pas lancer ce {{sort}} si vous ou votre cible êtes {{immobilise|Immobilisés}}, ou si l'emplacement de l'un est trop étroit pour l'autre.\n\nVous et votre cible échangez vos places : chacun se téléporte à l'emplacement que l'autre occupait. Ces trajets ne comptent dans aucun {{deplacement|déplacement}} et ne déclenchent aucune {{ATTOPP-001}}."
+}

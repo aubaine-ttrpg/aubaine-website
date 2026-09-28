@@ -39,51 +39,51 @@ There is no `domains` field and no `characteristics` field on a tree. Both are c
 
 ## A complete example
 
-`data/skill-trees/mage.json` is the only tree with a `core`:
+`data/skill-trees/mage.json`, cut to its centre and its first branch:
 
 ```json
 {
   "id": "mage",
+  "status": "playtest",
   "name": "Mage",
+  "subtitle": "L'encre et les Glyphes",
   "treeType": "archetype",
   "size": 16,
-  "core": {
-    "label": "Mage",
-    "sublabel": "Archétype",
-    "domains": [
-      "psychic"
-    ],
-    "pos": {
-      "x": 50,
-      "y": 50.81
-    }
-  },
+  "cover": "bacchi-qui-travaille-3_4-og.png",
+  "banner": "bacchi-qui-travaille-16_9-og.png",
   "placements": [
     {
-      "skill": "TOPAPA-001",
+      "skill": "GRIMOI-001",
       "pos": {
         "x": 50,
-        "y": 37.7
+        "y": 50.81
+      }
+    },
+    {
+      "skill": "ALPPRI-001",
+      "pos": {
+        "x": 50,
+        "y": 37.92
       },
       "linked": [
-        "CORE"
+        "GRIMOI-001"
       ]
     },
     {
-      "skill": "GRTOPP-001",
+      "skill": "CONVER-001",
       "pos": {
         "x": 50,
-        "y": 24
+        "y": 26.14
       },
       "linked": [
-        "TOPAPA-001"
+        "ALPPRI-001"
       ]
     }
   ]
 }
 ```
 
-Without a `core`, one skill holds the centre instead. `data/skill-trees/berserker.json` does that: `RAGEXX-001` sits at `50, 50.81` and every branch links back to it.
+The skill at `50, 50.81` holds the centre and has no `linked`, and every branch links back to it. A tree may instead declare a `core` emblem, and its first ring then links to `CORE`; no tree does today.
 
 ## What appears on the site
 
@@ -107,11 +107,11 @@ Then open `/fr/arbres` and click through to the new plate.
 
 **A tree's `domains` and primary characteristics are computed, never authored.** The domain badge on the plate and the characteristic banners in the hero are counted from the skills the tree places, plus `core.domains` if there is a core. If a plate shows the wrong domain, change the skills, not the tree file. The schema has no field to override it.
 
-**Trailing `size` is a drawing hint, not a limit.** It says how many skills the plate is drawn to hold. The hard cap is 16 placements, from `placements`. Every tree in the repo uses `size: 16`, with 2 to 16 placements.
+**Trailing `size` is a drawing hint, not a limit.** It says how many skills the plate is drawn to hold. The hard cap is 16 placements, from `placements`. Every tree in the repo uses `size: 16`, with 1 to 16 placements.
 
 **An empty plate is legal only while the tree is a brouillon.** `"placements": []` announces a tree whose Compétences are not written yet. The schema refuses it on any other `status`, so a tree cannot be promoted out of `draft` while its plate is still bare.
 
-**`core` is optional and rare.** Only `mage` has one. Without it, place a skill at `50, 50.81` and let it hold the centre.
+**`core` is optional, and no tree uses it today.** Place a skill at `50, 50.81` and let it hold the centre.
 
 **`linked: ["CORE"]` requires a `core`.** `pnpm data:check` fails on a `CORE` link in a tree that has no `core`.
 

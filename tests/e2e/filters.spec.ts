@@ -20,7 +20,7 @@ test('the trees filter narrows by name and by facet', async ({ page }) => {
   const dialog = page.getByRole('dialog')
   await expect(dialog).toBeVisible()
   await dialog.getByRole('button', { name: /^Psychic/ }).click()
-  await expect(count).toHaveText('6 results')
+  await expect(count).toHaveText('5 results')
 
   await page.keyboard.press('Escape')
   await expect(dialog).toBeHidden()

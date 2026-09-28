@@ -1,39 +1,168 @@
 {
   "id": "mage",
-  "status": "draft",
+  "status": "playtest",
   "name": "Mage",
+  "subtitle": "L'encre et les Glyphes",
   "treeType": "archetype",
   "size": 16,
-  "core": {
-    "label": "Mage",
-    "sublabel": "Archétype",
-    "domains": [
-      "psychic"
-    ],
-    "pos": {
-      "x": 50,
-      "y": 50.81
-    }
-  },
+  "cover": "bacchi-qui-travaille-3_4-og.png",
+  "banner": "bacchi-qui-travaille-16_9-og.png",
   "placements": [
     {
-      "skill": "TOPAPA-001",
+      "skill": "GRIMOI-001",
       "pos": {
         "x": 50,
-        "y": 37.7
+        "y": 50.81
+      }
+    },
+    {
+      "skill": "ALPPRI-001",
+      "pos": {
+        "x": 50,
+        "y": 37.92
       },
       "linked": [
-        "CORE"
+        "GRIMOI-001"
       ]
     },
     {
-      "skill": "GRTOPP-001",
+      "skill": "CONVER-001",
       "pos": {
         "x": 50,
-        "y": 24
+        "y": 26.14
       },
       "linked": [
-        "TOPAPA-001"
+        "ALPPRI-001"
+      ]
+    },
+    {
+      "skill": "BRECHE-001",
+      "pos": {
+        "x": 72.44,
+        "y": 31.91
+      },
+      "linked": [
+        "ALPPRI-001"
+      ]
+    },
+    {
+      "skill": "INFLEX-001",
+      "pos": {
+        "x": 27.56,
+        "y": 31.91
+      },
+      "linked": [
+        "ALPPRI-001"
+      ]
+    },
+    {
+      "skill": "TRAAZU-001",
+      "pos": {
+        "x": 65.79,
+        "y": 44.37
+      },
+      "linked": [
+        "GRIMOI-001"
+      ]
+    },
+    {
+      "skill": "CHACRO-001",
+      "pos": {
+        "x": 83.71,
+        "y": 44.42
+      },
+      "linked": [
+        "TRAAZU-001"
+      ]
+    },
+    {
+      "skill": "OUVETH-001",
+      "pos": {
+        "x": 65.79,
+        "y": 57.25
+      },
+      "linked": [
+        "GRIMOI-001"
+      ]
+    },
+    {
+      "skill": "PALIMP-001",
+      "pos": {
+        "x": 83.71,
+        "y": 57.2
+      },
+      "linked": [
+        "OUVETH-001"
+      ]
+    },
+    {
+      "skill": "TOUPAG-001",
+      "pos": {
+        "x": 74.68,
+        "y": 68.25
+      },
+      "linked": [
+        "OUVETH-001"
+      ]
+    },
+    {
+      "skill": "DECHIF-001",
+      "pos": {
+        "x": 50,
+        "y": 63.7
+      },
+      "linked": [
+        "GRIMOI-001"
+      ]
+    },
+    {
+      "skill": "COPIST-001",
+      "pos": {
+        "x": 34.21,
+        "y": 57.25
+      },
+      "linked": [
+        "GRIMOI-001"
+      ]
+    },
+    {
+      "skill": "LECVOL-001",
+      "pos": {
+        "x": 19.78,
+        "y": 63.15
+      },
+      "linked": [
+        "COPIST-001"
+      ]
+    },
+    {
+      "skill": "MISAIL-001",
+      "pos": {
+        "x": 30.5,
+        "y": 70.5
+      },
+      "linked": [
+        "COPIST-001"
+      ]
+    },
+    {
+      "skill": "CONTRE-001",
+      "pos": {
+        "x": 34.21,
+        "y": 44.37
+      },
+      "linked": [
+        "GRIMOI-001"
+      ]
+    },
+    {
+      "skill": "MAIBAS-001",
+      "pos": {
+        "x": 17.21,
+        "y": 42.37
+      },
+      "linked": [
+        "CONTRE-001"
       ]
     }
   ]

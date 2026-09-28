@@ -175,20 +175,7 @@ The same skill can be placed in more than one tree. That is why the layout lives
 }
 ```
 
-In a tree with a `core`, the first ring links to it instead. `data/skill-trees/mage.json`:
-
-```json
-    {
-      "skill": "TOPAPA-001",
-      "pos": {
-        "x": 50,
-        "y": 37.7
-      },
-      "linked": [
-        "CORE"
-      ]
-    }
-```
+In a tree with a `core` emblem, the first ring links to the literal `CORE` instead, as `"linked": ["CORE"]`. No tree has one today.
 
 ## What appears on the site
 
@@ -211,7 +198,7 @@ pnpm dev
 
 **`linked` is declared on one side only.** If `ATTTEM-001` lists `RAGEXX-001`, do not also add `ATTTEM-001` to `RAGEXX-001`. The line is drawn once. The mirror link draws the same line twice and makes the file lie about which node is the parent.
 
-**`linked` may contain the literal `CORE`, and only when the tree has a `core`.** Only `mage` has one today. In a tree without a core, the centre node has no `linked` at all.
+**`linked` may contain the literal `CORE`, and only when the tree has a `core`.** No tree has one today. In a tree without a core, the centre node has no `linked` at all.
 
 **A placement with no `pos` is listed with the tree but draws no dot on the plate.** That is the schema's intent: `Absent : la Compétence est listée avec l'arbre mais n'a pas de pastille sur la planche.` On the web it is a link under the plate, headed « Pas encore sur la planche », and it keeps its own node page. The booklet lists it with the other skills.
 

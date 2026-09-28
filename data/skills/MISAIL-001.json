@@ -1,0 +1,20 @@
+{
+  "id": "MISAIL-001",
+  "title": "Missive ailée",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "ether"
+  ],
+  "activation": "10 minutes",
+  "range": "Illimitée",
+  "duration": "jusqu'à 24 heures",
+  "energy": 2,
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "summoning"
+    ]
+  },
+  "description": "Vous écrivez un message sur une page de votre {{GRIMOI-001|grimoire}}, puis vous l'arrachez, sans endommager votre {{GRIMOI-001|grimoire}}, et la pliez en oiseau. Nommez une créature que vous avez déjà rencontrée : l'oiseau s'envole vers elle à 30 km par heure, se glisse par la moindre ouverture et se pose à portée de sa main. Personne ne peut le suivre ni le retenir en chemin. Un lieu hermétiquement clos l'arrête. Vous n'apprenez pas où se trouve la créature.\n\nLa créature peut écrire une réponse au dos de la page, que l'oiseau vous rapporte de la même façon. Dès que vous avez lu la réponse, ou au terme de la durée de ce {{sort}}, l'oiseau se défait en cendres bleues."
+}

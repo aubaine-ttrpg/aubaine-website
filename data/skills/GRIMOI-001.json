@@ -1,0 +1,35 @@
+{
+  "id": "GRIMOI-001",
+  "title": "Grimoire",
+  "type": "passive",
+  "tier": 1,
+  "domains": [],
+  "activation": "Passif",
+  "tags": {
+    "practice": "teaching",
+    "schools": [
+      "enhancement"
+    ]
+  },
+  "description": "Votre grimoire, un livre écrit de votre main, vous fait {{memorisee|mémoriser}} des {{sort|Sorts}} au-delà de votre {{memoire}}.\n\n***Inscrire.*** Tout {{sort}} que vous avez {{apprise|appris}} y est inscrit. Vous pouvez aussi y inscrire un {{sort}} d'un Arbre autre que l'Arbre Mage, de la {{banque-commune}} ou d'une Espèce, sans avoir débloqué son Arbre ni pouvoir l'atteindre de trait en trait. Il vous faut une source : un texte qui le décrit, comme un autre grimoire, ou une créature qui le connaît et vous l'enseigne. L'inscrire vous prend 1 heure et vous coûte son prix en PX. Vous l'avez alors {{apprise|appris}}, et vous pouvez en acheter les Niveaux. Le {{prerequis}} qui réserve à une Espèce un {{sort}} que vous inscrivez ainsi ne s'applique pas à vous. Tout autre {{prerequis}} que porte ce {{sort}} doit être rempli.\n\n***Mémoriser.*** Pendant un repos, choisissez parmi les {{sort|Sorts}} inscrits ceux que votre grimoire vous fait {{memorisee|mémoriser}} jusqu'à votre prochain repos : autant que votre modificateur d'{{arcanes}}, avec un minimum de 1 et un maximum de 2. Ces {{sort|Sorts}} et cette Compétence sont {{memorisee|Mémorisés}} sans occuper de {{memoire}}.\n\n***Perdre.*** Votre grimoire vous manque tant qu'il n'est ni en main ni dans un sac que vous portez, ou qu'il est endommagé. Les dégâts que vous subissez ne l'endommagent pas. Seul ce qui s'en prend au livre lui-même l'endommage, comme une lame qui le lacère, ou le feu ou l'eau où il tombe. Tant qu'il vous manque, les {{sort|Sorts}} qu'il vous fait {{memorisee|mémoriser}} ne sont plus {{memorisee|Mémorisés}}, et un effet qu'ils ont déjà produit suit son cours. Ils le redeviennent dès qu'il ne vous manque plus. Le tenir en main occupe l'un de vos emplacements Une main.\n\n***Réparer.*** Passer 1 heure à recoudre votre grimoire endommagé et à recopier ses pages gâtées le répare. S'il est perdu ou détruit, 8 heures d'écriture dans un livre vierge vous en rendent un. L'ancien cesse alors d'être votre grimoire, même s'il reparaît.\n\nVous pouvez décider de l'allure de votre grimoire.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 5,
+      "title": "Notes en marge",
+      "description": "{{apprise|Apprendre}} un {{sort}} en l'inscrivant dans votre grimoire vous coûte 5 PX de moins que son prix, jusqu'à un minimum de 5 PX. Cela ne change pas son coût en {{energie}}, et ses Niveaux gardent leur prix en PX."
+    },
+    {
+      "level": 3,
+      "tier": 7,
+      "title": "Reliure arcanique",
+      "description": "Tant que vous tenez votre grimoire en main et en bon état, vous pouvez utiliser vos {{sort|Sorts}} comme si vous aviez un Catalyseur équipé."
+    },
+    {
+      "level": 4,
+      "tier": 10,
+      "title": "Grimoire jumeau",
+      "description": "Vous gardez un second exemplaire de votre grimoire. Les deux ne forment qu'un seul grimoire : ils ne vous font pas {{memorisee|mémoriser}} plus de {{sort|Sorts}}, et votre grimoire ne vous manque que si les deux vous manquent. Si l'un est perdu ou détruit, recopier l'autre dans un livre vierge pendant 1 heure le remplace. Le livre remplacé ne compte plus comme votre grimoire, même si vous le retrouvez."
+    }
+  ]
+}

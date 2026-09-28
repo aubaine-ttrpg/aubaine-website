@@ -1,0 +1,23 @@
+{
+  "id": "LECVOL-001",
+  "title": "Leçon volée",
+  "type": "passive",
+  "tier": 3,
+  "domains": [],
+  "activation": "Passif",
+  "tags": {
+    "practice": "teaching",
+    "schools": [
+      "enhancement"
+    ]
+  },
+  "description": "Vous avez surpris un {{sort}} dans une leçon qui ne vous était pas destinée. La première fois que vous {{memorisee|mémorisez}} cette Compétence, choisissez un {{sort}} d'un Arbre autre que l'Arbre Mage, de la {{banque-commune}} ou d'une Espèce. Vous l'{{apprise|apprenez}} en payant son prix en PX, et vous pouvez en acheter les Niveaux.\n\nLe {{prerequis}} qui réserve ce {{sort}} à une Espèce ne s'applique pas à vous. Tout autre {{prerequis}} qu'il porte doit être rempli.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 7,
+      "title": "Seconde leçon",
+      "description": "À l'achat de ce Niveau, vous {{apprise|apprenez}} un second {{sort}} de la même façon."
+    }
+  ]
+}

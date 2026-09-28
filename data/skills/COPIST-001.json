@@ -1,0 +1,26 @@
+{
+  "id": "COPIST-001",
+  "title": "Copiste",
+  "type": "passive",
+  "tier": 2,
+  "domains": [],
+  "characteristics": [
+    "intelligence"
+  ],
+  "activation": "Passif",
+  "tags": {
+    "practice": "technique",
+    "schools": [
+      "divination"
+    ]
+  },
+  "description": "Des nuits passées sur les traités vous ont exercé l'œil. Lorsqu'une créature que vous voyez lance un {{sort}}, vous le reconnaissez : le MJ vous dit son nom, ses Domaines et ses Écoles. Un {{sort}} qui porte l'étiquette Illusion ne se reconnaît ainsi que si vous réussissez le {{jet}} ci-dessous.\n\nVous pouvez aussi tenter de le retenir : effectuez un {{jet}} d'{{intelligence}} + {{arcanes}} contre le {{dd}} de cette créature (10 + {{intelligence}} + {{arcanes}}). En cas de réussite, et si ce {{sort}} peut s'inscrire dans votre {{GRIMOI-001|grimoire}}, ce souvenir vous sert de source pour l'y inscrire avant votre prochain {{repos-long}}. En cas d'échec, vous ne pouvez plus tenter ce {{jet}} pour ce {{sort}} avant de l'avoir vu lancer une autre fois.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 5,
+      "title": "Coup d'œil",
+      "description": "Vous gagnez 1 {{avantage}} au {{jet}} que {{COPIST-001}} vous fait effectuer pour retenir un {{sort}}."
+    }
+  ]
+}

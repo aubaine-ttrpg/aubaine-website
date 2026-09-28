@@ -1,0 +1,32 @@
+{
+  "id": "CONTRE-001",
+  "title": "Contresort",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "ether"
+  ],
+  "characteristics": [
+    "intelligence"
+  ],
+  "activation": "1 Réaction",
+  "range": "18 m",
+  "duration": "Instantanée",
+  "energy": 3,
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "protection",
+      "control"
+    ]
+  },
+  "description": "Vous jouez cette {{reaction}} lorsqu'une créature que vous voyez à portée lance un {{sort}}, avant qu'il ne produise le moindre effet. Le MJ vous dit ses Domaines et ses Écoles.\n\nEffectuez un {{jet}} d'{{intelligence}} + {{arcanes}}, opposé au {{jet}} d'{{esprit}} + {{arcanes}} de la créature. Si vous portez le {{glyphe}} de l'un des Domaines de son {{sort}}, vous pouvez le dépenser pour gagner 1 {{avantage}} à ce {{jet}}.\n\nEn cas de réussite, son {{sort}} ne produit aucun effet, et elle perd l'action qu'elle y a consacrée et ce qu'elle a payé pour le lancer. Si ce {{sort}} a une École, choisissez l'une de ses Écoles : jusqu'à la fin de son prochain tour, la créature ne peut plus lancer de {{sort}} de cette École. En cas d'échec, son {{sort}} se déroule normalement.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 10,
+      "title": "Dernier mot",
+      "description": "Lorsque vous jouez {{CONTRE-001}}, vous pouvez dépenser 1 {{karma}} au lieu d'effectuer le {{jet}} opposé : vous l'emportez d'office."
+    }
+  ]
+}

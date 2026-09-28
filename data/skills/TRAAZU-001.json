@@ -1,0 +1,23 @@
+{
+  "id": "TRAAZU-001",
+  "title": "Trait d'azur",
+  "type": "active",
+  "tier": 2,
+  "domains": [
+    "ether"
+  ],
+  "characteristics": [
+    "intelligence"
+  ],
+  "activation": "1 Action",
+  "range": "9 m",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "destruction"
+    ]
+  },
+  "description": "Un trait de magie pure, d'un bleu vif, part de votre main vers une créature ou un objet que vous voyez à portée. Effectuez un {{jet}} d'{{intelligence}} + {{visee}} contre la {{ca}} de la cible. En cas de réussite, elle subit 1d8 dégâts de Force, plus 1 par {{glyphe}} que vous portez."
+}

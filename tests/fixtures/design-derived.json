@@ -48,10 +48,10 @@
     "xpTotal": 255
   },
   "mage": {
-    "domains": ["psychic"],
-    "prime": ["any"],
-    "upgrades": 0,
-    "xpTotal": 70
+    "domains": ["ether"],
+    "prime": ["intelligence"],
+    "upgrades": 11,
+    "xpTotal": 265
   },
   "marchand": {
     "domains": [],

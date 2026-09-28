@@ -1,0 +1,24 @@
+{
+  "id": "MAIBAS-001",
+  "title": "Main basse",
+  "type": "active",
+  "tier": 5,
+  "domains": [
+    "ether"
+  ],
+  "characteristics": [
+    "intelligence"
+  ],
+  "activation": "1 Action",
+  "range": "9 m",
+  "duration": "Instantanée",
+  "energy": 3,
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "control",
+      "enhancement"
+    ]
+  },
+  "description": "Vous arrachez à une créature l'effet d'un {{sort}} qui s'applique à elle. Choisissez une créature que vous voyez à portée : le MJ vous dit quels effets de {{sort}} s'appliquent à elle, et vous en choisissez un dont la durée n'est ni instantanée ni permanente.\n\nSi la créature ne consent pas, elle effectue un {{jet}} d'{{esprit}} + {{volonte}} contre votre {{dd}} (10 + {{intelligence}} + {{arcanes}}). En cas d'échec, ou si elle consent, l'effet la quitte, et vous choisissez : il prend fin, ou il passe sur vous pour le reste de sa durée, 1 minute au plus. En cas de réussite, rien ne se passe.\n\nSi l'effet qui passe sur vous demandait une {{concentration}}, vous la maintenez à la place de la créature qui la maintenait, et toute autre {{concentration}} que vous mainteniez prend fin. S'il ne peut pas s'appliquer à vous, il prend fin."
+}

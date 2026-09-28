@@ -1,0 +1,23 @@
+{
+  "id": "DECHIF-001",
+  "title": "Déchiffrer",
+  "type": "active",
+  "tier": 2,
+  "domains": [
+    "ether"
+  ],
+  "characteristics": [
+    "intelligence"
+  ],
+  "activation": "10 minutes",
+  "range": "Contact",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "divination"
+    ]
+  },
+  "description": "Vous suivez du doigt la magie qui court dans un objet ou un lieu d'au plus 3 m de côté, ou dans une créature consentante, que vous touchez. Le MJ vous dit quels effets de {{sort}} s'appliquent à votre cible, avec leurs Domaines et leurs Écoles, et, pour un objet, ce que fait sa magie. Les effets que portent les créatures et les objets présents dans un lieu ne comptent pas parmi ceux du lieu.\n\nLorsqu'une Compétence dissimule l'un de ces effets, effectuez un {{jet}} d'{{intelligence}} + {{arcanes}} contre le {{dd}} de cette Compétence, ou contre un {{dd}} que fixe le MJ si elle n'en a pas. En cas d'échec, cet effet vous reste caché."
+}

@@ -1,0 +1,23 @@
+{
+  "id": "CONVER-001",
+  "title": "Convergence",
+  "type": "active",
+  "tier": 10,
+  "domains": [
+    "ether"
+  ],
+  "characteristics": [
+    "intelligence"
+  ],
+  "activation": "1 Action",
+  "range": "18 m",
+  "duration": "Instantanée",
+  "energy": 5,
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "destruction"
+    ]
+  },
+  "description": "Vos {{glyphe|Glyphes}} se détachent de vous, se rejoignent en un point que vous voyez à portée et y éclatent en une sphère de 4,5 m de rayon. Vous ne pouvez lancer ce {{sort}} que si vous portez au moins 1 {{glyphe}}.\n\nAvant de payer le coût de ce {{sort}}, et avant de jouer toute autre Compétence, dépensez tous vos {{glyphe|Glyphes}} : ce {{sort}} gagne l'effet que {{ALPPRI-001}} donne au Domaine de chacun.\n\nChaque créature prise dans la sphère effectue un {{jet}} de {{dexterite}} + {{reflexes}} contre votre {{dd}} (10 + {{intelligence}} + {{arcanes}}). En cas d'échec, elle subit 6d6 dégâts de Force. En cas de réussite, elle n'en subit que la moitié.\n\nSi ce {{sort}} vous a fait dépenser 4 {{glyphe|Glyphes}}, chaque créature qui a échoué à son {{jet}} est aussi {{etourdi|Étourdie}} jusqu'à la fin de son prochain tour."
+}

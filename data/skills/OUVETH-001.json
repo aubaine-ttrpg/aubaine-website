@@ -1,0 +1,30 @@
+{
+  "id": "OUVETH-001",
+  "title": "S'ouvrir à l'Éther",
+  "type": "passive",
+  "tier": 2,
+  "domains": [
+    "ether"
+  ],
+  "activation": "Passif",
+  "tags": {
+    "schools": [
+      "enhancement"
+    ]
+  },
+  "description": "Vous savez vous ouvrir à l'Éther et y puiser du {{mana}}, une ressource ancienne que vous pouvez utiliser à la place de l'{{energie}} pour lancer vos {{sort|Sorts}}. Votre {{mana}} maximum est de 3. Votre {{mana}} est plein la première fois que vous {{memorisee|mémorisez}} cette Compétence, et un {{repos-long}} le remplit.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 4,
+      "title": "Afflux",
+      "description": "Votre {{mana}} maximum passe à 4 au lieu de 3."
+    },
+    {
+      "level": 3,
+      "tier": 6,
+      "title": "Plénitude",
+      "description": "Votre {{mana}} maximum passe à 5 au lieu de 4."
+    }
+  ]
+}

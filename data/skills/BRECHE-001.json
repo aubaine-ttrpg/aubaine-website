@@ -1,0 +1,23 @@
+{
+  "id": "BRECHE-001",
+  "title": "Brèche",
+  "type": "active",
+  "tier": 4,
+  "domains": [
+    "ether"
+  ],
+  "characteristics": [
+    "intelligence"
+  ],
+  "activation": "1 Action",
+  "range": "18 m",
+  "duration": "Jusqu'à la fin de votre prochain tour",
+  "energy": 3,
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "destruction"
+    ]
+  },
+  "description": "D'un geste, vous fendez les défenses magiques d'une créature que vous voyez à portée. Elle effectue un {{jet}} d'{{esprit}} + {{volonte}} contre votre {{dd}} (10 + {{intelligence}} + {{arcanes}}). En cas d'échec, elle subit 2d8 dégâts de Force et, tant que {{BRECHE-001}} dure, chaque {{jet}} qu'elle effectue pour résister à l'un de vos {{sort|Sorts}} subit 1 {{desavantage}}. En cas de réussite, elle n'en subit que la moitié, sans autre effet.\n\nSi vous portez exactement 3 {{glyphe|Glyphes}} une fois ce {{sort}} payé, vous pouvez les dépenser avant qu'elle n'effectue son {{jet}}. Si elle y échoue, tant que {{BRECHE-001}} dure, chaque {{sort}} de l'un de ces trois Domaines qui lui inflige des dégâts, que vous le lanciez ou non, lui en inflige 1 dé de plus, de la taille du plus gros dé de son Jet de dégâts."
+}

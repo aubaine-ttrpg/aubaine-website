@@ -1,0 +1,22 @@
+{
+  "id": "PALIMP-001",
+  "title": "Palimpseste",
+  "type": "passive",
+  "tier": 3,
+  "domains": [],
+  "activation": "Passif",
+  "tags": {
+    "schools": [
+      "enhancement"
+    ]
+  },
+  "description": "Vous grattez vos pages pour écrire par-dessus sans rien perdre de ce qu'elles portaient. Le maximum de {{sort|Sorts}} que votre {{GRIMOI-001|grimoire}} peut vous faire {{memorisee|mémoriser}} passe à 4. Cette Compétence est {{memorisee|Mémorisée}} sans occuper de {{memoire}}.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 7,
+      "title": "Pattes de mouche",
+      "description": "Ce maximum passe à 6 au lieu de 4."
+    }
+  ]
+}
