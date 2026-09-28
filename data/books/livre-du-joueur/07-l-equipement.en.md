@@ -51,6 +51,8 @@ Targeted harvest
 
 The first choice is safe and asks nothing of you. The second aims true and may come back empty. A target the fiction does not let you extract cannot be won with a {{jet}}: you do not harvest scales from a beast that has none.
 
+The land is a source too. Once per {{repos-long}}, the basic Skill {{RECOLT-001}} has you roll the Loot Die of the environment you are in, from forest to ruins, and you bring back what its Loot Table gives. The Materials index gives every environment's table and says where each material is found.
+
 ## Reading a material
 
 A material has a name, one or more Types and a Material Value. For example: Wolf pelt, Types Leather and Beast, Value 1.

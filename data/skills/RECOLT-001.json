@@ -1,0 +1,16 @@
+{
+  "id": "RECOLT-001",
+  "title": "Récolter",
+  "type": "active",
+  "tier": 1,
+  "showXp": false,
+  "domains": [],
+  "activation": "1 heure",
+  "range": "Personnel",
+  "duration": "Instantanée",
+  "recharge": "long-rest",
+  "tags": {
+    "practice": "technique"
+  },
+  "description": "Vous fouillez les environs pour ce que le terrain laisse à qui se baisse : bois mort, herbes, pierres, restes.\n\nLancez le Dé de butin de l'environnement où vous vous trouvez. Sa Table de butin donne le matériau et la quantité que vous rapportez."
+}

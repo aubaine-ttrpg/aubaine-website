@@ -51,6 +51,8 @@ Prélèvement ciblé
 
 Le premier choix est sûr et ne demande rien. Le second vise juste et peut ne rien donner. Une cible que la fiction ne permet pas d'extraire ne s'obtient pas sur un {{jet}} : on ne prélève pas d'écailles sur une bête qui n'en a pas.
 
+Le terrain est lui aussi une source. Une fois par {{repos-long}}, la Compétence de base {{RECOLT-001}} vous fait lancer le Dé de butin de l'environnement où vous vous trouvez, de la forêt aux ruines, et vous rapportez ce que sa Table de butin indique. L'index des Matériaux donne la table de chaque environnement et dit où se trouve chaque matériau.
+
 ## Lire un matériau
 
 Un matériau porte un nom, un ou plusieurs Types et une Valeur de matière. Ainsi : Peau de loup, Types Cuir et Bête, Valeur 1.

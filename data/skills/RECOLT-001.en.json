@@ -1,0 +1,7 @@
+{
+  "title": "Gather",
+  "activation": "1 hour",
+  "range": "Self",
+  "duration": "Instantaneous",
+  "description": "You search the surroundings for what the land leaves to anyone who bends down: dead wood, herbs, stones, remains.\n\nRoll the Loot Die of the environment you are in. Its Loot Table gives the material and the quantity you bring back."
+}
