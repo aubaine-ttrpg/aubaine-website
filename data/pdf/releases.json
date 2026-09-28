@@ -6,11 +6,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "ea13d5a5",
-      "file": "artisan-en-v0.2.1_aeed9ccd_ea13d5a5.pdf",
-      "bytes": 1204614,
+      "contentHash": "ca2dfa75",
+      "file": "artisan-en-v0.2.1_aeed9ccd_ca2dfa75.pdf",
+      "bytes": 1204714,
       "pages": 8,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "artisan",
@@ -18,11 +18,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "4255d6d9",
-      "file": "artisan-fr-v0.2.1_aeed9ccd_4255d6d9.pdf",
-      "bytes": 1226287,
+      "contentHash": "5f390d87",
+      "file": "artisan-fr-v0.2.1_aeed9ccd_5f390d87.pdf",
+      "bytes": 1227088,
       "pages": 8,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "berserker",
@@ -30,11 +30,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "005fa995",
-      "file": "berserker-en-v0.2.1_aeed9ccd_005fa995.pdf",
-      "bytes": 1794646,
+      "contentHash": "046d6070",
+      "file": "berserker-en-v0.2.1_aeed9ccd_046d6070.pdf",
+      "bytes": 1794786,
       "pages": 9,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "berserker",
@@ -42,11 +42,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "466d01fa",
-      "file": "berserker-fr-v0.2.1_aeed9ccd_466d01fa.pdf",
-      "bytes": 1824149,
+      "contentHash": "9a254330",
+      "file": "berserker-fr-v0.2.1_aeed9ccd_9a254330.pdf",
+      "bytes": 1824296,
       "pages": 9,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "courtisan",
@@ -54,11 +54,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "2a020b8f",
-      "file": "courtisan-en-v0.2.1_aeed9ccd_2a020b8f.pdf",
-      "bytes": 1246099,
+      "contentHash": "0e761f87",
+      "file": "courtisan-en-v0.2.1_aeed9ccd_0e761f87.pdf",
+      "bytes": 1246644,
       "pages": 9,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "courtisan",
@@ -66,11 +66,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "7afe9705",
-      "file": "courtisan-fr-v0.2.1_aeed9ccd_7afe9705.pdf",
-      "bytes": 1268467,
+      "contentHash": "8eb16827",
+      "file": "courtisan-fr-v0.2.1_aeed9ccd_8eb16827.pdf",
+      "bytes": 1268661,
       "pages": 9,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "demoniste",
@@ -78,11 +78,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "6eb65ff7",
-      "file": "demoniste-en-v0.2.1_aeed9ccd_6eb65ff7.pdf",
-      "bytes": 746150,
+      "contentHash": "bbca2b74",
+      "file": "demoniste-en-v0.2.1_aeed9ccd_bbca2b74.pdf",
+      "bytes": 745440,
       "pages": 6,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "demoniste",
@@ -90,11 +90,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "0055d696",
-      "file": "demoniste-fr-v0.2.1_aeed9ccd_0055d696.pdf",
-      "bytes": 764848,
+      "contentHash": "6fcc1efd",
+      "file": "demoniste-fr-v0.2.1_aeed9ccd_6fcc1efd.pdf",
+      "bytes": 764670,
       "pages": 6,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "draugar",
@@ -102,11 +102,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "52e1fca7",
-      "file": "draugar-en-v0.2.1_aeed9ccd_52e1fca7.pdf",
-      "bytes": 1816770,
+      "contentHash": "38420e0e",
+      "file": "draugar-en-v0.2.1_aeed9ccd_38420e0e.pdf",
+      "bytes": 1817080,
       "pages": 9,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "draugar",
@@ -114,11 +114,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "91f4ccd7",
-      "file": "draugar-fr-v0.2.1_aeed9ccd_91f4ccd7.pdf",
-      "bytes": 1845283,
+      "contentHash": "ea00e15a",
+      "file": "draugar-fr-v0.2.1_aeed9ccd_ea00e15a.pdf",
+      "bytes": 1845029,
       "pages": 10,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "druide",
@@ -126,11 +126,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "dc6932cb",
-      "file": "druide-en-v0.2.1_aeed9ccd_dc6932cb.pdf",
-      "bytes": 1673284,
+      "contentHash": "c2d9a97d",
+      "file": "druide-en-v0.2.1_aeed9ccd_c2d9a97d.pdf",
+      "bytes": 1672813,
       "pages": 9,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "druide",
@@ -138,11 +138,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "812295d1",
-      "file": "druide-fr-v0.2.1_aeed9ccd_812295d1.pdf",
-      "bytes": 1699677,
+      "contentHash": "147da048",
+      "file": "druide-fr-v0.2.1_aeed9ccd_147da048.pdf",
+      "bytes": 1699707,
       "pages": 9,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "eau",
@@ -150,11 +150,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "90dc4f54",
-      "file": "eau-en-v0.2.1_aeed9ccd_90dc4f54.pdf",
-      "bytes": 2360608,
+      "contentHash": "7d9c3510",
+      "file": "eau-en-v0.2.1_aeed9ccd_7d9c3510.pdf",
+      "bytes": 2360677,
       "pages": 12,
-      "generatedAt": "2026-09-27T22:14:19Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "eau",
@@ -162,11 +162,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "bc45cf93",
-      "file": "eau-fr-v0.2.1_aeed9ccd_bc45cf93.pdf",
-      "bytes": 2388392,
+      "contentHash": "5ae22739",
+      "file": "eau-fr-v0.2.1_aeed9ccd_5ae22739.pdf",
+      "bytes": 2388135,
       "pages": 12,
-      "generatedAt": "2026-09-27T22:14:19Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "equipement",
@@ -174,11 +174,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "f48333df",
-      "file": "equipement-en-v0.2.1_aeed9ccd_f48333df.pdf",
-      "bytes": 3931177,
-      "pages": 34,
-      "generatedAt": "2026-09-28T09:30:35Z"
+      "contentHash": "5a5652fd",
+      "file": "equipement-en-v0.2.1_aeed9ccd_5a5652fd.pdf",
+      "bytes": 3902304,
+      "pages": 37,
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "equipement",
@@ -186,11 +186,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "450318c6",
-      "file": "equipement-fr-v0.2.1_aeed9ccd_450318c6.pdf",
-      "bytes": 3938394,
-      "pages": 34,
-      "generatedAt": "2026-09-28T09:30:35Z"
+      "contentHash": "4dfbb2c1",
+      "file": "equipement-fr-v0.2.1_aeed9ccd_4dfbb2c1.pdf",
+      "bytes": 3919528,
+      "pages": 37,
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "feu",
@@ -198,11 +198,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "4f79a7dc",
-      "file": "feu-en-v0.2.1_aeed9ccd_4f79a7dc.pdf",
-      "bytes": 1986179,
+      "contentHash": "04fcbf3d",
+      "file": "feu-en-v0.2.1_aeed9ccd_04fcbf3d.pdf",
+      "bytes": 1986320,
       "pages": 12,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "feu",
@@ -210,11 +210,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "ed5113de",
-      "file": "feu-fr-v0.2.1_aeed9ccd_ed5113de.pdf",
-      "bytes": 2013301,
+      "contentHash": "33d5d2aa",
+      "file": "feu-fr-v0.2.1_aeed9ccd_33d5d2aa.pdf",
+      "bytes": 2013283,
       "pages": 12,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "foudre",
@@ -222,11 +222,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "41016e90",
-      "file": "foudre-en-v0.2.1_aeed9ccd_41016e90.pdf",
-      "bytes": 1791876,
+      "contentHash": "e21e9bf3",
+      "file": "foudre-en-v0.2.1_aeed9ccd_e21e9bf3.pdf",
+      "bytes": 1791725,
       "pages": 11,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "foudre",
@@ -234,11 +234,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "0b6e4fa8",
-      "file": "foudre-fr-v0.2.1_aeed9ccd_0b6e4fa8.pdf",
-      "bytes": 1815410,
+      "contentHash": "bb7b5025",
+      "file": "foudre-fr-v0.2.1_aeed9ccd_bb7b5025.pdf",
+      "bytes": 1814779,
       "pages": 11,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "gladiateur",
@@ -246,11 +246,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "b6630807",
-      "file": "gladiateur-en-v0.2.1_aeed9ccd_b6630807.pdf",
-      "bytes": 1035489,
+      "contentHash": "357b9f1b",
+      "file": "gladiateur-en-v0.2.1_aeed9ccd_357b9f1b.pdf",
+      "bytes": 1035299,
       "pages": 6,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "gladiateur",
@@ -258,11 +258,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "83c2a564",
-      "file": "gladiateur-fr-v0.2.1_aeed9ccd_83c2a564.pdf",
-      "bytes": 1059088,
+      "contentHash": "a1ec2844",
+      "file": "gladiateur-fr-v0.2.1_aeed9ccd_a1ec2844.pdf",
+      "bytes": 1058042,
       "pages": 6,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "heros",
@@ -270,11 +270,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "f8c46d81",
-      "file": "heros-en-v0.2.1_aeed9ccd_f8c46d81.pdf",
-      "bytes": 958843,
+      "contentHash": "90b02230",
+      "file": "heros-en-v0.2.1_aeed9ccd_90b02230.pdf",
+      "bytes": 957786,
       "pages": 6,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "heros",
@@ -282,11 +282,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "f348745b",
-      "file": "heros-fr-v0.2.1_aeed9ccd_f348745b.pdf",
-      "bytes": 981428,
+      "contentHash": "df11f64b",
+      "file": "heros-fr-v0.2.1_aeed9ccd_df11f64b.pdf",
+      "bytes": 980269,
       "pages": 6,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "livre-du-joueur",
@@ -294,11 +294,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "6055608c",
-      "file": "livre-du-joueur-en-v0.2.1_aeed9ccd_6055608c.pdf",
-      "bytes": 1609981,
+      "contentHash": "122bda0d",
+      "file": "livre-du-joueur-en-v0.2.1_aeed9ccd_122bda0d.pdf",
+      "bytes": 1608652,
       "pages": 34,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "livre-du-joueur",
@@ -306,11 +306,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "eeb1b676",
-      "file": "livre-du-joueur-fr-v0.2.1_aeed9ccd_eeb1b676.pdf",
-      "bytes": 1624781,
+      "contentHash": "6e41655b",
+      "file": "livre-du-joueur-fr-v0.2.1_aeed9ccd_6e41655b.pdf",
+      "bytes": 1625237,
       "pages": 35,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "livre-du-mj",
@@ -318,11 +318,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "3c95a44f",
-      "file": "livre-du-mj-en-v0.2.1_aeed9ccd_3c95a44f.pdf",
-      "bytes": 941285,
+      "contentHash": "48b4bdfa",
+      "file": "livre-du-mj-en-v0.2.1_aeed9ccd_48b4bdfa.pdf",
+      "bytes": 941139,
       "pages": 10,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "livre-du-mj",
@@ -330,11 +330,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "d1338bee",
-      "file": "livre-du-mj-fr-v0.2.1_aeed9ccd_d1338bee.pdf",
-      "bytes": 964740,
+      "contentHash": "a9661ca6",
+      "file": "livre-du-mj-fr-v0.2.1_aeed9ccd_a9661ca6.pdf",
+      "bytes": 964127,
       "pages": 11,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "mage",
@@ -342,11 +342,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "39568034",
-      "file": "mage-en-v0.2.1_aeed9ccd_39568034.pdf",
-      "bytes": 727002,
-      "pages": 7,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "contentHash": "c019c1a8",
+      "file": "mage-en-v0.2.1_aeed9ccd_c019c1a8.pdf",
+      "bytes": 1959986,
+      "pages": 12,
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "mage",
@@ -354,11 +354,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "29f1df8a",
-      "file": "mage-fr-v0.2.1_aeed9ccd_29f1df8a.pdf",
-      "bytes": 746402,
-      "pages": 7,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "contentHash": "e9f05e0f",
+      "file": "mage-fr-v0.2.1_aeed9ccd_e9f05e0f.pdf",
+      "bytes": 1974128,
+      "pages": 12,
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "marchand",
@@ -366,11 +366,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "55cae15c",
-      "file": "marchand-en-v0.2.1_aeed9ccd_55cae15c.pdf",
-      "bytes": 1265529,
+      "contentHash": "22290ac9",
+      "file": "marchand-en-v0.2.1_aeed9ccd_22290ac9.pdf",
+      "bytes": 1265101,
       "pages": 9,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "marchand",
@@ -378,11 +378,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "e6c1c78e",
-      "file": "marchand-fr-v0.2.1_aeed9ccd_e6c1c78e.pdf",
-      "bytes": 1285961,
+      "contentHash": "fb4f0b0b",
+      "file": "marchand-fr-v0.2.1_aeed9ccd_fb4f0b0b.pdf",
+      "bytes": 1285397,
       "pages": 9,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "paladin",
@@ -390,11 +390,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "95ef9bc0",
-      "file": "paladin-en-v0.2.1_aeed9ccd_95ef9bc0.pdf",
-      "bytes": 711344,
+      "contentHash": "25209125",
+      "file": "paladin-en-v0.2.1_aeed9ccd_25209125.pdf",
+      "bytes": 711099,
       "pages": 6,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "paladin",
@@ -402,11 +402,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "b3d06c91",
-      "file": "paladin-fr-v0.2.1_aeed9ccd_b3d06c91.pdf",
-      "bytes": 735326,
+      "contentHash": "f303ee67",
+      "file": "paladin-fr-v0.2.1_aeed9ccd_f303ee67.pdf",
+      "bytes": 735780,
       "pages": 6,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "physique",
@@ -414,11 +414,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "de373ab9",
-      "file": "physique-en-v0.2.1_aeed9ccd_de373ab9.pdf",
-      "bytes": 1498368,
+      "contentHash": "7a06afa9",
+      "file": "physique-en-v0.2.1_aeed9ccd_7a06afa9.pdf",
+      "bytes": 1498605,
       "pages": 10,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "physique",
@@ -426,11 +426,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "afcccdbf",
-      "file": "physique-fr-v0.2.1_aeed9ccd_afcccdbf.pdf",
-      "bytes": 1530445,
+      "contentHash": "ac97d05f",
+      "file": "physique-fr-v0.2.1_aeed9ccd_ac97d05f.pdf",
+      "bytes": 1531098,
       "pages": 11,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "poisse",
@@ -438,11 +438,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "1df8da01",
-      "file": "poisse-en-v0.2.1_aeed9ccd_1df8da01.pdf",
-      "bytes": 1870521,
+      "contentHash": "5ff68ed7",
+      "file": "poisse-en-v0.2.1_aeed9ccd_5ff68ed7.pdf",
+      "bytes": 1871435,
       "pages": 12,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "poisse",
@@ -450,11 +450,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "4c9c6aff",
-      "file": "poisse-fr-v0.2.1_aeed9ccd_4c9c6aff.pdf",
-      "bytes": 1896824,
+      "contentHash": "bef02a97",
+      "file": "poisse-fr-v0.2.1_aeed9ccd_bef02a97.pdf",
+      "bytes": 1896454,
       "pages": 12,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "prestidigitateur",
@@ -462,11 +462,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "69bbbac2",
-      "file": "prestidigitateur-en-v0.2.1_aeed9ccd_69bbbac2.pdf",
-      "bytes": 1820518,
+      "contentHash": "984f7bf0",
+      "file": "prestidigitateur-en-v0.2.1_aeed9ccd_984f7bf0.pdf",
+      "bytes": 1821436,
       "pages": 8,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "prestidigitateur",
@@ -474,11 +474,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "78ba56ff",
-      "file": "prestidigitateur-fr-v0.2.1_aeed9ccd_78ba56ff.pdf",
-      "bytes": 1844469,
+      "contentHash": "47b6b190",
+      "file": "prestidigitateur-fr-v0.2.1_aeed9ccd_47b6b190.pdf",
+      "bytes": 1843545,
       "pages": 8,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "psychique",
@@ -486,11 +486,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "c2a5ebe9",
-      "file": "psychique-en-v0.2.1_aeed9ccd_c2a5ebe9.pdf",
-      "bytes": 737451,
+      "contentHash": "0674958b",
+      "file": "psychique-en-v0.2.1_aeed9ccd_0674958b.pdf",
+      "bytes": 738762,
       "pages": 6,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "psychique",
@@ -498,11 +498,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "59a09176",
-      "file": "psychique-fr-v0.2.1_aeed9ccd_59a09176.pdf",
-      "bytes": 760497,
+      "contentHash": "cdb0204d",
+      "file": "psychique-fr-v0.2.1_aeed9ccd_cdb0204d.pdf",
+      "bytes": 759790,
       "pages": 6,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "roublard",
@@ -510,11 +510,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "c940f5e6",
-      "file": "roublard-en-v0.2.1_aeed9ccd_c940f5e6.pdf",
-      "bytes": 1028467,
+      "contentHash": "0a477c01",
+      "file": "roublard-en-v0.2.1_aeed9ccd_0a477c01.pdf",
+      "bytes": 1027690,
       "pages": 6,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "roublard",
@@ -522,11 +522,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "a5773b3b",
-      "file": "roublard-fr-v0.2.1_aeed9ccd_a5773b3b.pdf",
-      "bytes": 1051609,
+      "contentHash": "c8a52e91",
+      "file": "roublard-fr-v0.2.1_aeed9ccd_c8a52e91.pdf",
+      "bytes": 1051643,
       "pages": 6,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "runiste",
@@ -534,11 +534,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "4bbbd2f9",
-      "file": "runiste-en-v0.2.1_aeed9ccd_4bbbd2f9.pdf",
-      "bytes": 1264328,
+      "contentHash": "9665caa7",
+      "file": "runiste-en-v0.2.1_aeed9ccd_9665caa7.pdf",
+      "bytes": 1264769,
       "pages": 9,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "runiste",
@@ -546,11 +546,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "f018f682",
-      "file": "runiste-fr-v0.2.1_aeed9ccd_f018f682.pdf",
-      "bytes": 1293968,
+      "contentHash": "e1947748",
+      "file": "runiste-fr-v0.2.1_aeed9ccd_e1947748.pdf",
+      "bytes": 1293832,
       "pages": 9,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "tavernier",
@@ -558,11 +558,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "91a2f0ff",
-      "file": "tavernier-en-v0.2.1_aeed9ccd_91a2f0ff.pdf",
-      "bytes": 732463,
+      "contentHash": "713c3b27",
+      "file": "tavernier-en-v0.2.1_aeed9ccd_713c3b27.pdf",
+      "bytes": 732795,
       "pages": 6,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "tavernier",
@@ -570,11 +570,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "104d48b8",
-      "file": "tavernier-fr-v0.2.1_aeed9ccd_104d48b8.pdf",
-      "bytes": 755652,
+      "contentHash": "dbe8a694",
+      "file": "tavernier-fr-v0.2.1_aeed9ccd_dbe8a694.pdf",
+      "bytes": 755981,
       "pages": 6,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "technomancien",
@@ -582,11 +582,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "1f5dfdde",
-      "file": "technomancien-en-v0.2.1_aeed9ccd_1f5dfdde.pdf",
-      "bytes": 1733476,
+      "contentHash": "8539ce6a",
+      "file": "technomancien-en-v0.2.1_aeed9ccd_8539ce6a.pdf",
+      "bytes": 1734479,
       "pages": 9,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "technomancien",
@@ -594,11 +594,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "a9a8fd52",
-      "file": "technomancien-fr-v0.2.1_aeed9ccd_a9a8fd52.pdf",
-      "bytes": 1760049,
+      "contentHash": "83785eb3",
+      "file": "technomancien-fr-v0.2.1_aeed9ccd_83785eb3.pdf",
+      "bytes": 1760357,
       "pages": 9,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "terre",
@@ -606,11 +606,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "b460739f",
-      "file": "terre-en-v0.2.1_aeed9ccd_b460739f.pdf",
-      "bytes": 1894265,
+      "contentHash": "8fd9e07d",
+      "file": "terre-en-v0.2.1_aeed9ccd_8fd9e07d.pdf",
+      "bytes": 1893897,
       "pages": 12,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "terre",
@@ -618,11 +618,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "91bda1e4",
-      "file": "terre-fr-v0.2.1_aeed9ccd_91bda1e4.pdf",
-      "bytes": 1911814,
+      "contentHash": "99daa2f3",
+      "file": "terre-fr-v0.2.1_aeed9ccd_99daa2f3.pdf",
+      "bytes": 1912164,
       "pages": 12,
-      "generatedAt": "2026-09-27T21:41:36Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "vent",
@@ -630,11 +630,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "d0f02276",
-      "file": "vent-en-v0.2.1_aeed9ccd_d0f02276.pdf",
-      "bytes": 2323211,
+      "contentHash": "eaf04878",
+      "file": "vent-en-v0.2.1_aeed9ccd_eaf04878.pdf",
+      "bytes": 2323672,
       "pages": 13,
-      "generatedAt": "2026-09-27T22:17:59Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     },
     {
       "slug": "vent",
@@ -642,11 +642,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "23960380",
-      "file": "vent-fr-v0.2.1_aeed9ccd_23960380.pdf",
-      "bytes": 2341583,
+      "contentHash": "3c133ee1",
+      "file": "vent-fr-v0.2.1_aeed9ccd_3c133ee1.pdf",
+      "bytes": 2340659,
       "pages": 13,
-      "generatedAt": "2026-09-27T22:17:59Z"
+      "generatedAt": "2026-09-28T13:06:05Z"
     }
   ]
 }
