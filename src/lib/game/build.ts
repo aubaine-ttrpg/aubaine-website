@@ -713,6 +713,16 @@ const RULE_TERMS: readonly RuleTerm[] = [
     },
   },
   {
+    fr: 'Glyphe',
+    en: 'Glyph',
+    color: 'var(--term-spell)',
+    icon: 'mdi/star-four-points',
+    definition: {
+      fr: "Une marque de magie aux couleurs d'un Domaine, qui se pose sur vous et en porte le nom, comme un {{glyphe}} de Feu. Vous en gagnez lorsqu'une Compétence le dit, et d'autres Compétences les lisent ou les dépensent. Vous n'en portez qu'un par Domaine, et 4 au plus : gagner un {{glyphe}} que vous portez déjà ne change rien, et en gagner un cinquième vous fait choisir celui que vous perdez, y compris le nouveau. Vous perdez tous vos {{glyphe|Glyphes}} lorsque vous terminez l'un de vos tours sans avoir lancé de {{sort}} pendant ce tour, et au début d'un combat.",
+      en: "A mark of magic in a Domain's colours that settles on you and is named after that Domain, such as a Fire {{glyphe}}. You gain one when a Skill says so, and other Skills read or spend them. You carry at most one per Domain and 4 in all: gaining a {{glyphe}} you already carry changes nothing, and gaining a fifth makes you choose one to lose, including the new one. You lose all your {{glyphe|Glyphs}} at the start of a combat, and whenever you end one of your turns without having cast a {{sort}} during it.",
+    },
+  },
+  {
     fr: 'Caractéristique',
     en: 'Characteristic',
     color: 'var(--accent-ink)',
@@ -867,6 +877,16 @@ const RULE_TERMS: readonly RuleTerm[] = [
     definition: {
       fr: 'La réserve qui paie le coût des Compétences.',
       en: 'The reserve that pays the cost of Skills.',
+    },
+  },
+  {
+    fr: 'Mana',
+    en: 'Mana',
+    color: 'var(--term-res)',
+    icon: 'game-icons/crystal-shine',
+    definition: {
+      fr: "Une réserve de magie mise de côté, qui ne sert qu'aux {{sort|Sorts}}. Chaque point de {{mana}} paie 1 {{energie}} du coût d'un {{sort}}, y compris l'{{energie}} que ce {{sort}} vous laisse dépenser en plus, et vous pouvez mêler {{mana}} et {{energie}} pour payer un même {{sort}}. Ce que vous payez en {{mana}} compte comme de l'{{energie}} dépensée, et un {{sort}} dont le coût dépasse votre {{energie}} et votre {{mana}} réunis ne peut pas être lancé. La Compétence qui vous accorde du {{mana}} en fixe le maximum et dit ce qui le remplit.",
+      en: "A reserve of magic set aside for {{sort|Spells}} alone. Each point of {{mana}} pays 1 {{energie}} of a {{sort|Spell's}} cost, including any extra {{energie}} that {{sort}} lets you spend, and you can pay for one {{sort}} with a mix of {{mana}} and {{energie}}. What you pay in {{mana}} counts as {{energie}} spent, and a {{sort}} whose cost exceeds your {{energie}} and {{mana}} combined cannot be cast. The Skill that grants you {{mana}} sets its maximum and says what refills it.",
     },
   },
   {
