@@ -414,11 +414,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "310dd773",
-      "contentHash": "c5d9362e",
-      "file": "physique-en-v0.2.1_310dd773_c5d9362e.pdf",
-      "bytes": 1861487,
-      "pages": 12,
-      "generatedAt": "2026-09-28T13:38:16Z"
+      "contentHash": "5648d6b2",
+      "file": "physique-en-v0.2.1_310dd773_5648d6b2.pdf",
+      "bytes": 2104792,
+      "pages": 11,
+      "generatedAt": "2026-09-28T17:58:37Z"
     },
     {
       "slug": "physique",
@@ -426,11 +426,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
-      "contentHash": "05987e73",
-      "file": "physique-fr-v0.2.1_310dd773_05987e73.pdf",
-      "bytes": 1884462,
-      "pages": 12,
-      "generatedAt": "2026-09-28T13:38:16Z"
+      "contentHash": "837fecde",
+      "file": "physique-fr-v0.2.1_310dd773_837fecde.pdf",
+      "bytes": 2119279,
+      "pages": 11,
+      "generatedAt": "2026-09-28T17:58:37Z"
     },
     {
       "slug": "poisse",
@@ -486,11 +486,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "310dd773",
-      "contentHash": "2b444432",
-      "file": "psychique-en-v0.2.1_310dd773_2b444432.pdf",
-      "bytes": 2540260,
-      "pages": 13,
-      "generatedAt": "2026-09-28T15:05:46Z"
+      "contentHash": "cfdf1f9e",
+      "file": "psychique-en-v0.2.1_310dd773_cfdf1f9e.pdf",
+      "bytes": 2418968,
+      "pages": 12,
+      "generatedAt": "2026-09-28T17:58:37Z"
     },
     {
       "slug": "psychique",
@@ -498,11 +498,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
-      "contentHash": "454bb9e7",
-      "file": "psychique-fr-v0.2.1_310dd773_454bb9e7.pdf",
-      "bytes": 2553284,
-      "pages": 13,
-      "generatedAt": "2026-09-28T15:05:46Z"
+      "contentHash": "1fc5885e",
+      "file": "psychique-fr-v0.2.1_310dd773_1fc5885e.pdf",
+      "bytes": 2434496,
+      "pages": 12,
+      "generatedAt": "2026-09-28T17:58:37Z"
     },
     {
       "slug": "roublard",
