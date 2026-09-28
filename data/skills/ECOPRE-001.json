@@ -1,0 +1,24 @@
+{
+  "id": "ECOPRE-001",
+  "status": "playtest",
+  "title": "École de prédilection",
+  "type": "passive",
+  "tier": 4,
+  "domains": [],
+  "activation": "Passif",
+  "tags": {
+    "practice": "teaching",
+    "schools": [
+      "enhancement"
+    ]
+  },
+  "description": "Votre {{dd}} augmente de 1 pour vos Compétences qui portent l'École et la Pratique de votre choix, et vous ajoutez 1 aux {{jet|Jets}} qu'elles vous font effectuer.\n\nLa première fois que vous {{memorisee|mémorisez}} cette Compétence, choisissez cette École parmi Destruction, Contrôle, Protection, Soin, Renforcement, Mobilité, Divination, Illusion, Influence, Invocation, Création et Nécromancie, et cette Pratique parmi Sort, Manœuvre et Technique.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 8,
+      "title": "Maîtrise de l'École",
+      "description": "Les deux bonus de {{ECOPRE-001}} passent à 2 au lieu de 1."
+    }
+  ]
+}
