@@ -80,22 +80,22 @@ test('the switch answers the keyboard', async ({ page }) => {
 test('a list of drafts leaves no stale detail on screen', async ({ page }) => {
   await page.goto('/en/equipment')
   await hydrated(page)
-  await expect(results(page)).toHaveText('22 results')
-  await page.getByPlaceholder('Filter by name').fill('Arc long')
+  await expect(results(page)).toHaveText('36 results')
+  await page.getByPlaceholder('Filter by name').fill('Poudre')
   await expect(results(page)).toHaveText('0 results')
   await expect(page.locator('[data-details]')).toBeHidden()
 })
 
 test('a link to a draft still opens it while drafts are hidden', async ({ page }) => {
-  await page.goto('/en/equipment#e-arc-long')
+  await page.goto('/en/equipment#e-poudre-d-entrave')
   await expect(page.locator('[data-browse]')).toHaveAttribute('data-selection', 'enhanced')
   await hydrated(page)
-  await expect(page.locator('#e-arc-long')).toBeVisible()
-  await expect(page.locator('[data-entry="arc-long"] [data-row]')).toHaveAttribute(
+  await expect(page.locator('#e-poudre-d-entrave')).toBeVisible()
+  await expect(page.locator('[data-entry="poudre-d-entrave"] [data-row]')).toHaveAttribute(
     'aria-current',
     'true',
   )
-  await expect(results(page)).toHaveText('23 results')
+  await expect(results(page)).toHaveText('37 results')
 })
 
 test('drafts stay hidden before the filter island hydrates', async ({ page }) => {
