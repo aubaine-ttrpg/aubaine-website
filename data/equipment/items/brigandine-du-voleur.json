@@ -1,5 +1,5 @@
 {
-  "name": "Brigandine du guetteur",
+  "name": "Brigandine du voleur",
   "status": "playtest",
   "section": "torse",
   "position": 4,
@@ -10,12 +10,6 @@
     {
       "label": "CA",
       "value": "14 + Dextérité"
-    }
-  ],
-  "properties": [
-    {
-      "name": "Pas de velours.",
-      "text": "Vous pouvez effectuer l'action {{CACHER-001}} avec une {{action-bonus}}."
     }
   ],
   "craft": {
@@ -30,5 +24,8 @@
       "Dextérité 14"
     ]
   },
+  "grants": [
+    "PASVEL-001"
+  ],
   "description": "Plaques rivetées entre deux cuirs, matées au noir. Elle ne renvoie pas la lumière et ne grince pas."
 }

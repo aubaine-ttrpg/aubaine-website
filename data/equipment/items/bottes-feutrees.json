@@ -6,12 +6,6 @@
   "kind": "Bottes",
   "rarity": "uncommon",
   "price": 10400,
-  "headlines": [
-    {
-      "label": "Vitesse",
-      "value": "+3 m"
-    }
-  ],
   "craft": {
     "discipline": "artisanat",
     "cost": 26,
@@ -22,5 +16,8 @@
       "Dextérité 14"
     ]
   },
+  "grants": [
+    "ELANXX-001"
+  ],
   "description": "Semelles de feutre cousues sous le cuir. Elles avalent le gravier et rendent la pente facile."
 }
