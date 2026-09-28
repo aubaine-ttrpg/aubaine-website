@@ -76,7 +76,7 @@
       ]
     },
     {
-      "skill": "OUVETH-001",
+      "skill": "PALIMP-001",
       "pos": {
         "x": 65.79,
         "y": 57.25
@@ -86,13 +86,13 @@
       ]
     },
     {
-      "skill": "PALIMP-001",
+      "skill": "OUVETH-001",
       "pos": {
         "x": 83.71,
         "y": 57.2
       },
       "linked": [
-        "OUVETH-001"
+        "PALIMP-001"
       ]
     },
     {
@@ -102,7 +102,7 @@
         "y": 68.25
       },
       "linked": [
-        "OUVETH-001"
+        "PALIMP-001"
       ]
     },
     {
