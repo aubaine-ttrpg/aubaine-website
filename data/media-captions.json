@@ -1,6 +1,24 @@
 {
   "captions": [
     {
+      "file": "art/physique-16_9-og.png",
+      "title": "Mannequin d'entraînement",
+      "description": "Mannequin d'entraînement en paille criblé de flèches, au milieu d'armes plantées et de bannières pourpres, devant des pagodes à flanc de falaise.",
+      "keywords": [
+        "arbre",
+        "entraînement"
+      ]
+    },
+    {
+      "file": "art/physique-3_4-og.png",
+      "title": "Mannequin d'entraînement",
+      "description": "Mannequin d'entraînement en paille lacéré et criblé de flèches, entre des armes plantées et des bannières pourpres, sous des érables rouges.",
+      "keywords": [
+        "arbre",
+        "entraînement"
+      ]
+    },
+    {
       "file": "items/arc-court-1_1-og.png",
       "title": "Arc court",
       "description": "Arc de bois brut, poignée et extrémités liées de cuir, sur fond sombre éclairé d'ambre.",
