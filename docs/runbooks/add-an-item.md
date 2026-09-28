@@ -174,6 +174,8 @@ pnpm dev
 
 **`headlines` names its own labels.** The template knows nothing about weapons or armour. Write `Dégâts` for a weapon, `CA` for armour, `Domaine` for a catalyst. Whatever you write in `label` is what is printed. Leave `headlines` out when the text already says everything a reader looks up, as the Masque du Métamorphe does: the card then has no band, and its row in the list leaves that column empty.
 
+**CA has a ceiling that rises one point every two rarities.** A Commun piece sets the base CA of its kind of armour, and a Peu commun piece of the same kind gives no more than that: the Brigandine du voleur stays at the Armure de cuir's `13 + Dextérité`. A Rare or Très rare piece may add up to 1 to that base, a Légendaire or Artéfact piece up to 2. These are ceilings, not steps every piece takes: a rarer piece can stay at the base and earn its rarity elsewhere. A slot whose Commun pieces give no CA, such as Tête or Bottes, starts from +0, so a Rare helmet gives at most `+1`. Stay under the ceiling: every attack is rolled against CA, so a point of it weighs more than any other number on an item.
+
 **`position` orders the item inside its section, and two items in the same section must not share one.** It is not a global rank.
 
 **`grants` points at a skill that exists.** Create `data/skills/<ID>.json` first. A granted skill is usually written with `"showXp": false`, because it is never bought.
