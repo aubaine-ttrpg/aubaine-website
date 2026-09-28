@@ -1,7 +1,7 @@
 {
-  "id": "ECOPRE-001",
+  "id": "COMGAG-001",
   "status": "playtest",
-  "title": "École de prédilection",
+  "title": "Combo gagnant",
   "type": "passive",
   "tier": 4,
   "domains": [],
@@ -17,8 +17,8 @@
     {
       "level": 2,
       "tier": 8,
-      "title": "Maîtrise de l'École",
-      "description": "Les deux bonus de {{ECOPRE-001}} passent à 2 au lieu de 1."
+      "title": "Combo parfait",
+      "description": "Les deux bonus de {{COMGAG-001}} passent à 2 au lieu de 1."
     }
   ]
 }
