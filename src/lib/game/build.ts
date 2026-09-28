@@ -690,6 +690,16 @@ const RULE_TERMS: readonly RuleTerm[] = [
     },
   },
   {
+    fr: 'Attaque martiale',
+    en: 'Martial Attack',
+    color: 'var(--term-atk)',
+    icon: 'mdi/sword',
+    definition: {
+      fr: "Une {{attaque}} portée avec une arme, un bouclier, une arme naturelle ou à mains nues, dont le {{jet}} emploie {{melee}}, {{finesse}} ou {{visee}}. Une {{attaque}} dont un {{sort}} fixe le {{jet}} n'en est pas une, même quand ce {{jet}} emploie {{visee}}. Une {{attaque}} portée avec un objet qui n'est pas une arme, comme une fiole lancée, n'en est pas une non plus.",
+      en: 'An {{attaque}} made with a weapon, a shield, a natural weapon or bare-handed, whose {{jet}} uses {{melee}}, {{finesse}} or {{visee}}. An {{attaque}} whose {{jet}} is set by a {{sort}} is not one, even when that {{jet}} uses {{visee}}. Nor is an {{attaque}} made with an object that is not a weapon, such as a thrown flask.',
+    },
+  },
+  {
     fr: 'Jet',
     en: 'Roll',
     color: 'var(--term-roll)',
@@ -844,6 +854,16 @@ const RULE_TERMS: readonly RuleTerm[] = [
     definition: {
       fr: "Un terrain qui ralentit la marche, comme des gravats, une pente raide, une eau jusqu'aux genoux ou une foule serrée. Chaque mètre qu'on y parcourt coûte deux mètres de {{deplacement|déplacement}}.",
       en: 'Terrain that slows the going, such as rubble, a steep slope, knee-deep water or a packed crowd. Each metre crossed there costs two metres of {{deplacement|movement}}.',
+    },
+  },
+  {
+    fr: 'Objet libre',
+    en: 'Loose Object',
+    color: 'var(--term-move)',
+    icon: 'mdi/package-variant-closed',
+    definition: {
+      fr: "Un objet laissé à lui-même : personne ne le porte ni ne le tient, et il ne pèse pas plus qu'une créature de {{taille}} Moyenne.",
+      en: 'An object left to itself: nobody wears or holds it, and it weighs no more than a creature of Medium {{taille|size}}.',
     },
   },
   {
