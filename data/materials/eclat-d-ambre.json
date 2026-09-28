@@ -1,0 +1,9 @@
+{
+  "name": "Éclat d'ambre",
+  "status": "playtest",
+  "types": [
+    "gemme"
+  ],
+  "value": 2,
+  "description": "Résine durcie où dort parfois un insecte."
+}

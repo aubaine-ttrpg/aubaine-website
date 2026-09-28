@@ -1,0 +1,57 @@
+{
+  "name": "Forêt",
+  "status": "playtest",
+  "icon": "game-icons:forest",
+  "die": 10,
+  "description": "Sous-bois, clairières et lisières : ce que l'arbre laisse tomber et ce qui pousse à son pied.",
+  "loot": [
+    {
+      "from": 1,
+      "to": 2,
+      "material": "branche-morte",
+      "quantity": 1
+    },
+    {
+      "from": 3,
+      "to": 4,
+      "material": "branche-morte",
+      "quantity": 2
+    },
+    {
+      "from": 5,
+      "to": 5,
+      "material": "champignon-des-bois",
+      "quantity": 1
+    },
+    {
+      "from": 6,
+      "to": 6,
+      "material": "champignon-des-bois",
+      "quantity": 2
+    },
+    {
+      "from": 7,
+      "to": 7,
+      "material": "bois-de-chene",
+      "quantity": 1
+    },
+    {
+      "from": 8,
+      "to": 8,
+      "material": "truffe",
+      "quantity": 1
+    },
+    {
+      "from": 9,
+      "to": 9,
+      "material": "eclat-d-ambre",
+      "quantity": 1
+    },
+    {
+      "from": 10,
+      "to": 10,
+      "material": "coeur-d-if",
+      "quantity": 1
+    }
+  ]
+}

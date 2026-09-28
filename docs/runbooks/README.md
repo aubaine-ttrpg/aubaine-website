@@ -14,6 +14,8 @@ One job per page. Every job is done by adding or editing a file under `data/`. T
 | Create a playable species, or a sub-species | [add-a-species.md](add-a-species.md) |
 | Add a weapon, armour, jewel or consumable | [add-an-item.md](add-an-item.md) |
 | Group pieces into a set with tiered bonuses | [add-a-set.md](add-a-set.md) |
+| Add a material that environments give | [add-a-material.md](add-a-material.md) |
+| Add an environment and its Loot Table | [add-an-environment.md](add-an-environment.md) |
 | Add a condition that rule text names between double square brackets | [add-a-state.md](add-a-state.md) |
 | Add something every creature can do, with no XP cost | [add-a-basic-skill.md](add-a-basic-skill.md) |
 | Add a skill anyone can buy without a tree | [add-a-common-bank-skill.md](add-a-common-bank-skill.md) |

@@ -1,0 +1,10 @@
+{
+  "name": "Relique sertie",
+  "status": "playtest",
+  "types": [
+    "metal",
+    "gemme"
+  ],
+  "value": 3,
+  "description": "Bijou d'un autre âge, la monture tordue et la pierre intacte."
+}

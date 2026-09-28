@@ -1,0 +1,9 @@
+{
+  "name": "Grenat brut",
+  "status": "playtest",
+  "types": [
+    "gemme"
+  ],
+  "value": 2,
+  "description": "Grain rouge sombre pris dans le schiste."
+}

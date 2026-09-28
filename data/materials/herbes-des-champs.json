@@ -1,0 +1,9 @@
+{
+  "name": "Herbes des champs",
+  "status": "playtest",
+  "types": [
+    "plante"
+  ],
+  "value": 1,
+  "description": "Botte de simples : trèfle, ortie et camomille."
+}

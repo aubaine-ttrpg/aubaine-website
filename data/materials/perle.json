@@ -1,0 +1,9 @@
+{
+  "name": "Perle",
+  "status": "playtest",
+  "types": [
+    "gemme"
+  ],
+  "value": 3,
+  "description": "Bille nacrée, trouvée dans une huître sur cent."
+}

@@ -1130,6 +1130,54 @@ describe('prose hygiene', () => {
   })
 })
 
+describe('materials and environments', () => {
+  it('gives every material only declared Types', () => {
+    for (const [slug, material] of fr.materials) {
+      for (const key of material.types) {
+        expect(fr.materialTypes.has(key), `materials/${slug} Type ${key}`).toBe(true)
+      }
+    }
+  })
+
+  it('names only declared Types in a recipe', () => {
+    const names = new Set([...fr.materialTypes.values()].map((entry) => entry.labelFr))
+    for (const item of fr.items) {
+      for (const name of item.craft?.materials ?? []) {
+        expect(names.has(name), `${item.name} recipe Type ${name}`).toBe(true)
+      }
+    }
+  })
+
+  it('covers every face of each Loot Die once, in order, with materials that exist', () => {
+    for (const [slug, environment] of fr.environments) {
+      const faces = environment.loot.flatMap((row) => {
+        expect(row.to >= row.from, `environments/${slug} row ${row.from}-${row.to}`).toBe(true)
+        expect(fr.materials.has(row.material), `environments/${slug} ${row.material}`).toBe(true)
+        return Array.from({ length: row.to - row.from + 1 }, (_, at) => row.from + at)
+      })
+      expect(faces, `environments/${slug} faces`).toEqual(
+        Array.from({ length: environment.die }, (_, at) => at + 1),
+      )
+    }
+  })
+
+  it('draws every environment icon from a file on disk', async () => {
+    for (const [slug, environment] of fr.environments) {
+      const [set, name] = environment.icon.split(':')
+      const files = await readdir(resolve(root, 'data/media/icons', String(set)))
+      expect(files.includes(`${name}.svg`), `environments/${slug} icon ${environment.icon}`).toBe(
+        true,
+      )
+    }
+  })
+
+  it('never gives a material and an environment the same id', () => {
+    for (const slug of fr.materials.keys()) {
+      expect(fr.environments.has(slug), `${slug} is both`).toBe(false)
+    }
+  })
+})
+
 describe('the term index', () => {
   it('gives every icon it names a file on disk', async () => {
     const owned = new Set<string>()
@@ -1465,6 +1513,8 @@ describe('translation coverage', () => {
     for (const entry of sources.states) known.add(`states/${entry.id}`)
     for (const entry of sources.equipmentItems) known.add(`equipment/items/${entry.id}`)
     for (const entry of sources.equipmentSets) known.add(`equipment/sets/${entry.id}`)
+    for (const entry of sources.materials) known.add(`materials/${entry.id}`)
+    for (const entry of sources.environments) known.add(`environments/${entry.id}`)
     for (const entry of sources.books) known.add(`books/${entry.id}`)
     known.add('equipment/catalogue')
 
@@ -1484,6 +1534,8 @@ describe('translation coverage', () => {
       ['equipment/items/', overlays.equipmentItem],
       ['equipment/sets/', overlays.equipmentSet],
       ['equipment/catalogue', overlays.equipmentCatalogue],
+      ['materials/', overlays.material],
+      ['environments/', overlays.environment],
       ['books/', overlays.book],
     ] as const
     for (const overlay of sources.translations) {

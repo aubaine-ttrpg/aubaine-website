@@ -1,0 +1,9 @@
+{
+  "name": "Edelweiss",
+  "status": "playtest",
+  "types": [
+    "plante"
+  ],
+  "value": 3,
+  "description": "Fleur laineuse des corniches, qu'on ne cueille qu'au bord du vide."
+}

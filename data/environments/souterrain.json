@@ -1,0 +1,69 @@
+{
+  "name": "Souterrain",
+  "status": "playtest",
+  "icon": "game-icons:cave-entrance",
+  "die": 10,
+  "description": "Grottes, galeries et mines abandonnées, fouillées à la lueur de sa propre lampe.",
+  "loot": [
+    {
+      "from": 1,
+      "to": 1,
+      "material": "quartz-brut",
+      "quantity": 1
+    },
+    {
+      "from": 2,
+      "to": 2,
+      "material": "quartz-brut",
+      "quantity": 2
+    },
+    {
+      "from": 3,
+      "to": 3,
+      "material": "pepite-de-cuivre",
+      "quantity": 1
+    },
+    {
+      "from": 4,
+      "to": 4,
+      "material": "minerai-de-fer",
+      "quantity": 1
+    },
+    {
+      "from": 5,
+      "to": 5,
+      "material": "carapace-de-scarabee",
+      "quantity": 1
+    },
+    {
+      "from": 6,
+      "to": 6,
+      "material": "champignon-des-profondeurs",
+      "quantity": 1
+    },
+    {
+      "from": 7,
+      "to": 7,
+      "material": "geode",
+      "quantity": 1
+    },
+    {
+      "from": 8,
+      "to": 8,
+      "material": "minerai-d-argent",
+      "quantity": 1
+    },
+    {
+      "from": 9,
+      "to": 9,
+      "material": "minerai-d-argent",
+      "quantity": 2
+    },
+    {
+      "from": 10,
+      "to": 10,
+      "material": "pepite-d-or",
+      "quantity": 1
+    }
+  ]
+}

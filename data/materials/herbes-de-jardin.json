@@ -1,0 +1,9 @@
+{
+  "name": "Herbes de jardin",
+  "status": "playtest",
+  "types": [
+    "plante"
+  ],
+  "value": 1,
+  "description": "Thym, sauge et persil tirés d'un potager, avec ou sans permission."
+}

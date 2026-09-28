@@ -1,0 +1,51 @@
+{
+  "name": "Marais",
+  "status": "playtest",
+  "icon": "game-icons:swamp",
+  "die": 8,
+  "description": "Tourbières, roselières et eaux dormantes, où chaque pas s'enfonce.",
+  "loot": [
+    {
+      "from": 1,
+      "to": 2,
+      "material": "roseau",
+      "quantity": 1
+    },
+    {
+      "from": 3,
+      "to": 3,
+      "material": "roseau",
+      "quantity": 2
+    },
+    {
+      "from": 4,
+      "to": 4,
+      "material": "mousse-humide",
+      "quantity": 2
+    },
+    {
+      "from": 5,
+      "to": 5,
+      "material": "mue-de-serpent",
+      "quantity": 1
+    },
+    {
+      "from": 6,
+      "to": 6,
+      "material": "lys-des-marais",
+      "quantity": 1
+    },
+    {
+      "from": 7,
+      "to": 7,
+      "material": "lys-des-marais",
+      "quantity": 2
+    },
+    {
+      "from": 8,
+      "to": 8,
+      "material": "mandragore",
+      "quantity": 1
+    }
+  ]
+}

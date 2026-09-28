@@ -1,0 +1,9 @@
+{
+  "name": "Pépite d'or",
+  "status": "playtest",
+  "types": [
+    "metal"
+  ],
+  "value": 3,
+  "description": "Grain lourd et jaune, lavé dans le sable d'un torrent souterrain."
+}

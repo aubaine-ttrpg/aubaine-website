@@ -1,0 +1,10 @@
+{
+  "name": "Roseau",
+  "status": "playtest",
+  "types": [
+    "bois",
+    "plante"
+  ],
+  "value": 1,
+  "description": "Tige creuse et droite, qui se tresse ou se taille en hampe."
+}

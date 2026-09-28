@@ -1,0 +1,53 @@
+{
+  "entries": [
+    {
+      "key": "bois",
+      "labelFr": "Bois",
+      "labelEn": "Wood",
+      "color": "#9c6b30",
+      "iconName": "game-icons:wood-pile"
+    },
+    {
+      "key": "cuir",
+      "labelFr": "Cuir",
+      "labelEn": "Leather",
+      "color": "#7a4a2a",
+      "iconName": "game-icons:animal-hide"
+    },
+    {
+      "key": "metal",
+      "labelFr": "Métal",
+      "labelEn": "Metal",
+      "color": "#7d8a96",
+      "iconName": "game-icons:metal-bar"
+    },
+    {
+      "key": "gemme",
+      "labelFr": "Gemme",
+      "labelEn": "Gem",
+      "color": "#2f8fb8",
+      "iconName": "game-icons:cut-diamond"
+    },
+    {
+      "key": "plante",
+      "labelFr": "Plante",
+      "labelEn": "Plant",
+      "color": "#4f8a2e",
+      "iconName": "game-icons:herbs-bundle"
+    },
+    {
+      "key": "bete",
+      "labelFr": "Bête",
+      "labelEn": "Beast",
+      "color": "#b0603a",
+      "iconName": "game-icons:fangs"
+    },
+    {
+      "key": "catalyseur",
+      "labelFr": "Catalyseur",
+      "labelEn": "Catalyst",
+      "color": "#7a4bab",
+      "iconName": "game-icons:crystal-shine"
+    }
+  ]
+}

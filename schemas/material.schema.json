@@ -1,0 +1,50 @@
+{
+  "$id": "https://aubaine.io/schema/material.json",
+  "title": "Matériau",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Nom imprimé du matériau."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "playtest",
+        "beta",
+        "balanced"
+      ],
+      "description": "Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable : les listes le masquent tant que le lecteur n'affiche pas les brouillons ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une Espèce, une pièce d'équipement ou une panoplie, dans cet ordre."
+    },
+    "types": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*$"
+      },
+      "description": "Types de matière, des clés déclarées dans data/meta/material-types.json. Dans une même fabrication, le matériau ne compte que pour l'un d'eux."
+    },
+    "value": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991,
+      "description": "Valeur de matière : ce que le matériau apporte au coût d'une recette, et ce qu'il rapporte revendu, en pièces d'argent."
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Une phrase de saveur : l'allure du matériau, là où on le trouve. Aucune règle."
+    }
+  },
+  "required": [
+    "name",
+    "types",
+    "value",
+    "description"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,9 @@
+{
+  "name": "Lichen",
+  "status": "playtest",
+  "types": [
+    "plante"
+  ],
+  "value": 1,
+  "description": "Croûte grise grattée sur la roche, qui ne pousse que dans le froid."
+}

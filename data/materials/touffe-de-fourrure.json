@@ -1,0 +1,10 @@
+{
+  "name": "Touffe de fourrure",
+  "status": "playtest",
+  "types": [
+    "cuir",
+    "bete"
+  ],
+  "value": 1,
+  "description": "Poils d'hiver laissés sur une branche basse par une bête de passage."
+}

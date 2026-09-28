@@ -1,0 +1,9 @@
+{
+  "name": "Tesson de verre coloré",
+  "status": "playtest",
+  "types": [
+    "gemme"
+  ],
+  "value": 1,
+  "description": "Morceau de vitrail ou de bouteille, poli par le temps."
+}

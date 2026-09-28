@@ -3,9 +3,11 @@ import { glob } from 'astro/loaders'
 
 import {
   book,
+  environment,
   equipmentCatalogue,
   equipmentItem,
   equipmentSet,
+  material,
   policy,
   skill,
   skillList,
@@ -34,6 +36,8 @@ const equipmentItems = defineCollection({
   schema: equipmentItem,
 })
 const equipmentSets = defineCollection({ loader: jsonIn('equipment/sets'), schema: equipmentSet })
+const materials = defineCollection({ loader: jsonIn('materials'), schema: material })
+const environments = defineCollection({ loader: jsonIn('environments'), schema: environment })
 
 const catalogues = defineCollection({
   loader: glob({ base: './data/equipment', pattern: ['*.json'], generateId }),
@@ -94,6 +98,8 @@ export const collections = {
   states,
   equipmentItems,
   equipmentSets,
+  materials,
+  environments,
   catalogues,
   equipmentGuide,
   vocabularies,

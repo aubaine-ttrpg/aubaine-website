@@ -15,6 +15,8 @@ Next to the French file, same name, with `.en` before the extension.
 | `data/equipment/items/dague.json` | `data/equipment/items/dague.en.json` |
 | `data/equipment/sets/FAEBI.json` | `data/equipment/sets/FAEBI.en.json` |
 | `data/equipment/catalogue.json` | `data/equipment/catalogue.en.json` |
+| `data/materials/branche-morte.json` | `data/materials/branche-morte.en.json` |
+| `data/environments/foret.json` | `data/environments/foret.en.json` |
 | `data/books/livre-du-joueur/book.json` | `data/books/livre-du-joueur/book.en.json` |
 | `data/books/livre-du-joueur/03-creer-un-personnage.md` | `data/books/livre-du-joueur/03-creer-un-personnage.en.md` |
 
@@ -33,6 +35,8 @@ An overlay may only carry the fields listed below, for its kind. Every one of th
 | equipment item | `name`, `kind`, `prerequisite`, `headlines`, `stats`, `properties`, `craft.materials`, `craft.sequence`, `text`, `description` |
 | equipment set | `name`, `description`, `bonuses` |
 | catalogue | `name`, `subtitle`, `sections` |
+| material | `name`, `description` |
+| environment | `name`, `description` |
 | state | `name`, `description` |
 | book | `title`, `description` |
 | book page | `title` in the frontmatter, and the body |

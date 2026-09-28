@@ -657,6 +657,72 @@ export const equipmentSet = z
   })
   .strict()
 
+export const material = z
+  .object({
+    name: z.string().min(1).describe('Nom imprimé du matériau.'),
+    status: contentStatus.optional(),
+    types: z
+      .array(z.string().regex(MACHINE_KEY))
+      .min(1)
+      .describe(
+        "Types de matière, des clés déclarées dans data/meta/material-types.json. Dans une même fabrication, le matériau ne compte que pour l'un d'eux.",
+      ),
+    value: z
+      .number()
+      .int()
+      .min(1)
+      .describe(
+        "Valeur de matière : ce que le matériau apporte au coût d'une recette, et ce qu'il rapporte revendu, en pièces d'argent.",
+      ),
+    description: z
+      .string()
+      .min(1)
+      .describe("Une phrase de saveur : l'allure du matériau, là où on le trouve. Aucune règle."),
+  })
+  .strict()
+
+export const environment = z
+  .object({
+    name: z.string().min(1).describe("Nom imprimé de l'environnement."),
+    status: contentStatus.optional(),
+    icon: z
+      .string()
+      .regex(ICON_NAME_PATTERN)
+      .describe("Nom Iconify de l'icône, dessinée devant le nom de l'environnement."),
+    die: z
+      .number()
+      .int()
+      .min(2)
+      .describe(
+        'Nombre de faces du Dé de butin de cet environnement, que lance la Compétence Récolter.',
+      ),
+    description: z
+      .string()
+      .min(1)
+      .describe(
+        "Une phrase : ce que l'environnement recouvre et ce qu'on y ramasse. Aucune règle.",
+      ),
+    loot: z
+      .array(
+        z
+          .object({
+            from: z.number().int().min(1).describe('Premier résultat du dé qui donne cette ligne.'),
+            to: z.number().int().min(1).describe('Dernier résultat du dé qui donne cette ligne.'),
+            material: z
+              .string()
+              .regex(MACHINE_KEY)
+              .describe('Matériau obtenu, le nom de son fichier dans data/materials/.'),
+            quantity: z.number().int().min(1).describe('Combien de ce matériau la ligne donne.'),
+          })
+          .strict(),
+      )
+      .min(1)
+      .describe(
+        'La Table de butin, du plus petit résultat au plus grand. Les lignes couvrent chaque face du dé, une seule fois chacune.',
+      ),
+  })
+  .strict()
+
 export const equipmentCatalogue = z
   .object({
     id: z.string().regex(MACHINE_KEY),
@@ -1151,6 +1217,14 @@ export const overlays = {
     subtitle: z.string().optional(),
     sections: z.record(z.string(), z.string()).optional(),
   }),
+  material: localized({
+    name: z.string().optional(),
+    description: z.string().optional(),
+  }),
+  environment: localized({
+    name: z.string().optional(),
+    description: z.string().optional(),
+  }),
   state: localized({
     name: z.string().optional(),
     description: z.string().optional(),
@@ -1169,6 +1243,8 @@ export type SubspeciesLabel = (typeof SUBSPECIES_LABELS)[number]
 export type SkillList = z.infer<typeof skillList>
 export type EquipmentItem = z.infer<typeof equipmentItem>
 export type EquipmentSet = z.infer<typeof equipmentSet>
+export type Material = z.infer<typeof material>
+export type Environment = z.infer<typeof environment>
 export type EquipmentCatalogue = z.infer<typeof equipmentCatalogue>
 export type GameState = z.infer<typeof state>
 export type BookChapter = z.infer<typeof bookChapter>

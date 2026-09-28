@@ -1,0 +1,39 @@
+{
+  "name": "Neiges",
+  "status": "playtest",
+  "icon": "game-icons:snowflake-1",
+  "die": 6,
+  "description": "Glaciers, cols et toundras, où il faut creuser la neige pour trouver quoi que ce soit.",
+  "loot": [
+    {
+      "from": 1,
+      "to": 2,
+      "material": "lichen",
+      "quantity": 1
+    },
+    {
+      "from": 3,
+      "to": 3,
+      "material": "lichen",
+      "quantity": 2
+    },
+    {
+      "from": 4,
+      "to": 4,
+      "material": "touffe-de-fourrure",
+      "quantity": 1
+    },
+    {
+      "from": 5,
+      "to": 5,
+      "material": "bois-de-cerf",
+      "quantity": 1
+    },
+    {
+      "from": 6,
+      "to": 6,
+      "material": "cristal-de-glace-eternelle",
+      "quantity": 1
+    }
+  ]
+}

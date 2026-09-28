@@ -6,9 +6,11 @@ import { z } from 'astro/zod'
 
 import {
   book,
+  environment,
   equipmentCatalogue,
   equipmentItem,
   equipmentSet,
+  material,
   mediaCaptions,
   skill,
   skillList,
@@ -30,6 +32,8 @@ const CONTRACTS = [
   { file: 'equipment-item', title: "Pièce d'équipement", schema: equipmentItem },
   { file: 'equipment-set', title: 'Panoplie', schema: equipmentSet },
   { file: 'equipment-catalogue', title: "Catalogue d'équipement", schema: equipmentCatalogue },
+  { file: 'material', title: 'Matériau', schema: material },
+  { file: 'environment', title: 'Environnement', schema: environment },
   { file: 'state', title: 'État', schema: state },
   { file: 'book', title: 'Livre', schema: book },
   { file: 'vocabulary', title: 'Vocabulaire du jeu', schema: z.object({ entries: vocabulary }) },

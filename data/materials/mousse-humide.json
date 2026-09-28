@@ -1,0 +1,9 @@
+{
+  "name": "Mousse humide",
+  "status": "playtest",
+  "types": [
+    "plante"
+  ],
+  "value": 1,
+  "description": "Tapis vert qu'on détache des pierres et des troncs à l'ombre."
+}

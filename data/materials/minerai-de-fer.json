@@ -1,0 +1,9 @@
+{
+  "name": "Minerai de fer",
+  "status": "playtest",
+  "types": [
+    "metal"
+  ],
+  "value": 1,
+  "description": "Pierre rougeâtre et lourde, qui rend du fer à la fonte."
+}

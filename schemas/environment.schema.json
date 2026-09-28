@@ -1,0 +1,87 @@
+{
+  "$id": "https://aubaine.io/schema/environment.json",
+  "title": "Environnement",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Nom imprimé de l'environnement."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "playtest",
+        "beta",
+        "balanced"
+      ],
+      "description": "Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable : les listes le masquent tant que le lecteur n'affiche pas les brouillons ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une Espèce, une pièce d'équipement ou une panoplie, dans cet ordre."
+    },
+    "icon": {
+      "type": "string",
+      "pattern": "^(mdi|material-symbols|game-icons):[a-z0-9-]+$",
+      "description": "Nom Iconify de l'icône, dessinée devant le nom de l'environnement."
+    },
+    "die": {
+      "type": "integer",
+      "minimum": 2,
+      "maximum": 9007199254740991,
+      "description": "Nombre de faces du Dé de butin de cet environnement, que lance la Compétence Récolter."
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Une phrase : ce que l'environnement recouvre et ce qu'on y ramasse. Aucune règle."
+    },
+    "loot": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991,
+            "description": "Premier résultat du dé qui donne cette ligne."
+          },
+          "to": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991,
+            "description": "Dernier résultat du dé qui donne cette ligne."
+          },
+          "material": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "description": "Matériau obtenu, le nom de son fichier dans data/materials/."
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991,
+            "description": "Combien de ce matériau la ligne donne."
+          }
+        },
+        "required": [
+          "from",
+          "to",
+          "material",
+          "quantity"
+        ],
+        "additionalProperties": false
+      },
+      "description": "La Table de butin, du plus petit résultat au plus grand. Les lignes couvrent chaque face du dé, une seule fois chacune."
+    }
+  },
+  "required": [
+    "name",
+    "icon",
+    "die",
+    "description",
+    "loot"
+  ],
+  "additionalProperties": false
+}

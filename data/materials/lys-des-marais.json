@@ -1,0 +1,9 @@
+{
+  "name": "Lys des marais",
+  "status": "playtest",
+  "types": [
+    "plante"
+  ],
+  "value": 2,
+  "description": "Fleur blanche dont les racines sont gorgées d'une sève amère."
+}

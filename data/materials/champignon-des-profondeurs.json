@@ -1,0 +1,9 @@
+{
+  "name": "Champignon des profondeurs",
+  "status": "playtest",
+  "types": [
+    "plante"
+  ],
+  "value": 2,
+  "description": "Pied pâle et bleuté, qui ne pousse que loin de toute lumière."
+}

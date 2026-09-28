@@ -1,0 +1,10 @@
+{
+  "name": "Mue de serpent",
+  "status": "playtest",
+  "types": [
+    "bete",
+    "cuir"
+  ],
+  "value": 1,
+  "description": "Peau abandonnée, fine comme du papier et solide comme du cuir."
+}

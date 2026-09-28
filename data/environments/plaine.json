@@ -1,0 +1,45 @@
+{
+  "name": "Plaine",
+  "status": "playtest",
+  "icon": "game-icons:wheat",
+  "die": 8,
+  "description": "Prés, champs en friche et haies : peu de choses, mais faciles à ramasser.",
+  "loot": [
+    {
+      "from": 1,
+      "to": 3,
+      "material": "herbes-des-champs",
+      "quantity": 1
+    },
+    {
+      "from": 4,
+      "to": 4,
+      "material": "herbes-des-champs",
+      "quantity": 2
+    },
+    {
+      "from": 5,
+      "to": 5,
+      "material": "epis-sauvages",
+      "quantity": 2
+    },
+    {
+      "from": 6,
+      "to": 6,
+      "material": "plume-de-rapace",
+      "quantity": 1
+    },
+    {
+      "from": 7,
+      "to": 7,
+      "material": "bois-de-cerf",
+      "quantity": 1
+    },
+    {
+      "from": 8,
+      "to": 8,
+      "material": "fer-meteorique",
+      "quantity": 1
+    }
+  ]
+}

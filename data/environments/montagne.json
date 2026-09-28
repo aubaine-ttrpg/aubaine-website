@@ -1,0 +1,63 @@
+{
+  "name": "Montagne",
+  "status": "playtest",
+  "icon": "game-icons:mountains",
+  "die": 10,
+  "description": "Éboulis, corniches et torrents : la pierre donne, à qui sait où frapper.",
+  "loot": [
+    {
+      "from": 1,
+      "to": 2,
+      "material": "quartz-brut",
+      "quantity": 1
+    },
+    {
+      "from": 3,
+      "to": 3,
+      "material": "minerai-de-fer",
+      "quantity": 1
+    },
+    {
+      "from": 4,
+      "to": 4,
+      "material": "minerai-de-fer",
+      "quantity": 2
+    },
+    {
+      "from": 5,
+      "to": 5,
+      "material": "lichen",
+      "quantity": 1
+    },
+    {
+      "from": 6,
+      "to": 6,
+      "material": "plume-de-rapace",
+      "quantity": 1
+    },
+    {
+      "from": 7,
+      "to": 7,
+      "material": "corne-de-bouquetin",
+      "quantity": 1
+    },
+    {
+      "from": 8,
+      "to": 8,
+      "material": "grenat-brut",
+      "quantity": 1
+    },
+    {
+      "from": 9,
+      "to": 9,
+      "material": "minerai-d-argent",
+      "quantity": 1
+    },
+    {
+      "from": 10,
+      "to": 10,
+      "material": "edelweiss",
+      "quantity": 1
+    }
+  ]
+}

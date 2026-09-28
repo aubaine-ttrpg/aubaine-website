@@ -1,0 +1,9 @@
+{
+  "name": "Ferraille",
+  "status": "playtest",
+  "types": [
+    "metal"
+  ],
+  "value": 1,
+  "description": "Clous, gonds et lames brisées, bons pour la refonte."
+}

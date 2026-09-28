@@ -1,0 +1,10 @@
+{
+  "name": "Bois pétrifié",
+  "status": "playtest",
+  "types": [
+    "bois",
+    "gemme"
+  ],
+  "value": 3,
+  "description": "Tronc changé en pierre, veiné de couleurs sous le sable."
+}

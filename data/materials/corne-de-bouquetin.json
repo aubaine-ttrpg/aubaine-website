@@ -1,0 +1,9 @@
+{
+  "name": "Corne de bouquetin",
+  "status": "playtest",
+  "types": [
+    "bete"
+  ],
+  "value": 2,
+  "description": "Corne annelée, trouvée au pied d'une paroi."
+}

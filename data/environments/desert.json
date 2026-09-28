@@ -1,0 +1,51 @@
+{
+  "name": "Désert",
+  "status": "playtest",
+  "icon": "game-icons:desert",
+  "die": 8,
+  "description": "Dunes, regs et oasis : le vent y déterre autant qu'il enfouit.",
+  "loot": [
+    {
+      "from": 1,
+      "to": 2,
+      "material": "os-blanchi",
+      "quantity": 1
+    },
+    {
+      "from": 3,
+      "to": 3,
+      "material": "chair-de-cactus",
+      "quantity": 1
+    },
+    {
+      "from": 4,
+      "to": 4,
+      "material": "chair-de-cactus",
+      "quantity": 2
+    },
+    {
+      "from": 5,
+      "to": 5,
+      "material": "mue-de-serpent",
+      "quantity": 1
+    },
+    {
+      "from": 6,
+      "to": 6,
+      "material": "carapace-de-scarabee",
+      "quantity": 1
+    },
+    {
+      "from": 7,
+      "to": 7,
+      "material": "obsidienne",
+      "quantity": 1
+    },
+    {
+      "from": 8,
+      "to": 8,
+      "material": "bois-petrifie",
+      "quantity": 1
+    }
+  ]
+}

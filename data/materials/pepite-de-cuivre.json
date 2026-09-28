@@ -1,0 +1,9 @@
+{
+  "name": "Pépite de cuivre",
+  "status": "playtest",
+  "types": [
+    "metal"
+  ],
+  "value": 1,
+  "description": "Grain vert-de-gris détaché de la roche."
+}

@@ -1,0 +1,9 @@
+{
+  "name": "Géode",
+  "status": "playtest",
+  "types": [
+    "gemme"
+  ],
+  "value": 2,
+  "description": "Pierre ronde et banale, pleine de cristaux une fois brisée."
+}

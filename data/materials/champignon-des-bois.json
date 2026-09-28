@@ -1,0 +1,9 @@
+{
+  "name": "Champignon des bois",
+  "status": "playtest",
+  "types": [
+    "plante"
+  ],
+  "value": 1,
+  "description": "Chapeau brun ramassé au pied des souches."
+}

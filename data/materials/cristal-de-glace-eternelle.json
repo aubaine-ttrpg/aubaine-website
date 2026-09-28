@@ -1,0 +1,9 @@
+{
+  "name": "Cristal de glace éternelle",
+  "status": "playtest",
+  "types": [
+    "gemme"
+  ],
+  "value": 3,
+  "description": "Glace qui ne fond pas, même serrée dans la main."
+}

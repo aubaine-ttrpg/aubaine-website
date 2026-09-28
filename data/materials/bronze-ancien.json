@@ -1,0 +1,9 @@
+{
+  "name": "Bronze ancien",
+  "status": "playtest",
+  "types": [
+    "metal"
+  ],
+  "value": 2,
+  "description": "Plaque verte d'un âge oublié, gravée de signes que plus personne ne lit."
+}

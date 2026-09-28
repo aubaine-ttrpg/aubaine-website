@@ -1,0 +1,63 @@
+{
+  "name": "Ruines",
+  "status": "playtest",
+  "icon": "game-icons:broken-wall",
+  "die": 10,
+  "description": "Forts effondrés, temples et cités mortes, déjà fouillés mais jamais vidés.",
+  "loot": [
+    {
+      "from": 1,
+      "to": 2,
+      "material": "ferraille",
+      "quantity": 1
+    },
+    {
+      "from": 3,
+      "to": 3,
+      "material": "ferraille",
+      "quantity": 2
+    },
+    {
+      "from": 4,
+      "to": 4,
+      "material": "planche-vermoulue",
+      "quantity": 1
+    },
+    {
+      "from": 5,
+      "to": 5,
+      "material": "tesson-de-verre",
+      "quantity": 1
+    },
+    {
+      "from": 6,
+      "to": 6,
+      "material": "lanieres-de-cuir-use",
+      "quantity": 1
+    },
+    {
+      "from": 7,
+      "to": 7,
+      "material": "os-blanchi",
+      "quantity": 1
+    },
+    {
+      "from": 8,
+      "to": 8,
+      "material": "bronze-ancien",
+      "quantity": 1
+    },
+    {
+      "from": 9,
+      "to": 9,
+      "material": "bronze-ancien",
+      "quantity": 2
+    },
+    {
+      "from": 10,
+      "to": 10,
+      "material": "relique-sertie",
+      "quantity": 1
+    }
+  ]
+}

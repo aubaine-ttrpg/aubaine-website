@@ -1,0 +1,9 @@
+{
+  "name": "Épis sauvages",
+  "status": "playtest",
+  "types": [
+    "plante"
+  ],
+  "value": 1,
+  "description": "Poignée de grains mûrs cueillie dans les herbes hautes."
+}

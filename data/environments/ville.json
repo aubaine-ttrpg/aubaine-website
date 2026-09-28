@@ -1,0 +1,51 @@
+{
+  "name": "Ville",
+  "status": "playtest",
+  "icon": "game-icons:village",
+  "die": 8,
+  "description": "Ruelles, dépotoirs et arrière-cours, pour qui n'a pas peur de se salir les mains.",
+  "loot": [
+    {
+      "from": 1,
+      "to": 2,
+      "material": "ferraille",
+      "quantity": 1
+    },
+    {
+      "from": 3,
+      "to": 3,
+      "material": "ferraille",
+      "quantity": 2
+    },
+    {
+      "from": 4,
+      "to": 4,
+      "material": "planche-vermoulue",
+      "quantity": 1
+    },
+    {
+      "from": 5,
+      "to": 5,
+      "material": "herbes-de-jardin",
+      "quantity": 1
+    },
+    {
+      "from": 6,
+      "to": 6,
+      "material": "lanieres-de-cuir-use",
+      "quantity": 1
+    },
+    {
+      "from": 7,
+      "to": 7,
+      "material": "tesson-de-verre",
+      "quantity": 1
+    },
+    {
+      "from": 8,
+      "to": 8,
+      "material": "relique-sertie",
+      "quantity": 1
+    }
+  ]
+}

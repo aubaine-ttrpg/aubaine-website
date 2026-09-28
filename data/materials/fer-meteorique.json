@@ -1,0 +1,9 @@
+{
+  "name": "Fer météorique",
+  "status": "playtest",
+  "types": [
+    "metal"
+  ],
+  "value": 3,
+  "description": "Bloc noir et piqué tombé du ciel, froid même en plein soleil."
+}

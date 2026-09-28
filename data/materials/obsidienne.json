@@ -1,0 +1,9 @@
+{
+  "name": "Obsidienne",
+  "status": "playtest",
+  "types": [
+    "gemme"
+  ],
+  "value": 2,
+  "description": "Verre noir né du feu de la terre, tranchant à la cassure."
+}

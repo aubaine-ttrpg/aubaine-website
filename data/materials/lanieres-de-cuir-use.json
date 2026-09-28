@@ -1,0 +1,9 @@
+{
+  "name": "Lanières de cuir usé",
+  "status": "playtest",
+  "types": [
+    "cuir"
+  ],
+  "value": 1,
+  "description": "Sangles, courroies et semelles récupérées, encore bonnes à coudre."
+}

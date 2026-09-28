@@ -1,0 +1,9 @@
+{
+  "name": "Algue",
+  "status": "playtest",
+  "types": [
+    "plante"
+  ],
+  "value": 1,
+  "description": "Ruban brun ramassé à marée basse, salé et glissant."
+}

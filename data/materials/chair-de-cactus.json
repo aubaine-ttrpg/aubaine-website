@@ -1,0 +1,9 @@
+{
+  "name": "Chair de cactus",
+  "status": "playtest",
+  "types": [
+    "plante"
+  ],
+  "value": 1,
+  "description": "Pulpe épaisse ôtée d'entre les épines, qui garde son eau longtemps."
+}

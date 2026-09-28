@@ -5,9 +5,11 @@ import type { Locale } from '../i18n/locales.ts'
 import { buildCorpus, type Corpus, type CorpusSources, type Entry } from './build.ts'
 import {
   book,
+  environment,
   equipmentCatalogue,
   equipmentItem,
   equipmentSet,
+  material,
   skill,
   skillList,
   skillTree,
@@ -73,6 +75,8 @@ export async function readSources(root: string): Promise<CorpusSources> {
     states,
     equipmentItems,
     equipmentSets,
+    materials,
+    environments,
     vocabularies,
   ] = await Promise.all([
     loadEntries(at('skills'), skill, untranslated),
@@ -82,6 +86,8 @@ export async function readSources(root: string): Promise<CorpusSources> {
     loadEntries(at('states'), state, untranslated),
     loadEntries(at('equipment/items'), equipmentItem, untranslated),
     loadEntries(at('equipment/sets'), equipmentSet, untranslated),
+    loadEntries(at('materials'), material, untranslated),
+    loadEntries(at('environments'), environment, untranslated),
     loadEntries(at('meta'), z.object({ entries: vocabulary }), {
       ...untranslated,
       except: TAG_TAXONOMY_FILE,
@@ -131,6 +137,8 @@ export async function readSources(root: string): Promise<CorpusSources> {
     states,
     equipmentItems,
     equipmentSets,
+    materials,
+    environments,
     catalogues,
     vocabularies,
     tags,

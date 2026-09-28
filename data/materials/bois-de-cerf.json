@@ -1,0 +1,9 @@
+{
+  "name": "Bois de cerf",
+  "status": "playtest",
+  "types": [
+    "bete"
+  ],
+  "value": 2,
+  "description": "Ramure tombée au printemps, retrouvée dans les fougères."
+}

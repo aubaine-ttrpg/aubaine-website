@@ -1,0 +1,9 @@
+{
+  "name": "Bois de chêne",
+  "status": "playtest",
+  "types": [
+    "bois"
+  ],
+  "value": 2,
+  "description": "Bûche serrée et lourde, qui résiste au coup de hache."
+}

@@ -26,10 +26,12 @@ import {
 import type {
   Book,
   ContentStatus,
+  Environment,
   EquipmentCatalogue,
   EquipmentItem,
   EquipmentSet,
   GameState,
+  Material,
   Skill,
   SkillList,
   SkillTree,
@@ -137,6 +139,9 @@ export type Corpus = {
   items: EquipmentItem[]
   itemsBySlug: Map<string, EquipmentItem>
   sets: Map<string, EquipmentSet>
+  materialTypes: Map<string, VocabularyEntry>
+  materials: Map<string, Material>
+  environments: Map<string, Environment>
   origins: Map<string, SkillOrigin>
   skillStatus: Map<string, ContentStatus>
   books: ResolvedBook[]
@@ -222,6 +227,8 @@ export type CorpusSources = {
   states: Entry<GameState>[]
   equipmentItems: Entry<EquipmentItem>[]
   equipmentSets: Entry<EquipmentSet>[]
+  materials: Entry<Material>[]
+  environments: Entry<Environment>[]
   catalogues: Entry<EquipmentCatalogue>[]
   vocabularies: Entry<{ entries: VocabularyEntry[] }>[]
   tags: Entry<TagTaxonomy>[]
@@ -459,6 +466,18 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
   }))
   const items = sections.flatMap((section) => section.items)
 
+  const materialTypes = vocabularyFor('material-types')
+  const materials = new Map<string, Material>()
+  for (const entry of sources.materials) {
+    const patch = overlays.material.safeParse(overlayOf(`materials/${entry.id}`) ?? {})
+    materials.set(entry.id, { ...entry.data, ...(patch.success ? pruned(patch.data) : {}) })
+  }
+  const environments = new Map<string, Environment>()
+  for (const entry of sources.environments) {
+    const patch = overlays.environment.safeParse(overlayOf(`environments/${entry.id}`) ?? {})
+    environments.set(entry.id, { ...entry.data, ...(patch.success ? pruned(patch.data) : {}) })
+  }
+
   const sets = new Map<string, EquipmentSet>()
   for (const entry of setEntries) {
     const patch = overlays.equipmentSet.safeParse(
@@ -602,6 +621,9 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
     items,
     itemsBySlug,
     sets,
+    materialTypes,
+    materials,
+    environments,
     origins,
     skillStatus,
     books,

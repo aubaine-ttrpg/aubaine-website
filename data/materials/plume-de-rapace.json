@@ -1,0 +1,9 @@
+{
+  "name": "Plume de rapace",
+  "status": "playtest",
+  "types": [
+    "bete"
+  ],
+  "value": 1,
+  "description": "Rémige raide perdue par un grand oiseau."
+}

@@ -1,0 +1,10 @@
+{
+  "name": "Carapace de scarabée",
+  "status": "playtest",
+  "types": [
+    "bete",
+    "cuir"
+  ],
+  "value": 1,
+  "description": "Élytre dure et luisante, grande comme une main."
+}

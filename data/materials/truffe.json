@@ -1,0 +1,9 @@
+{
+  "name": "Truffe",
+  "status": "playtest",
+  "types": [
+    "plante"
+  ],
+  "value": 2,
+  "description": "Tubercule noir et parfumé, qu'il faut deviner sous l'humus."
+}

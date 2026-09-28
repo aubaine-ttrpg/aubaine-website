@@ -1,0 +1,9 @@
+{
+  "name": "Bois flotté",
+  "status": "playtest",
+  "types": [
+    "bois"
+  ],
+  "value": 1,
+  "description": "Bois poli par la mer, blanchi et gorgé de sel."
+}

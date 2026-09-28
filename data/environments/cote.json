@@ -1,0 +1,51 @@
+{
+  "name": "Côte",
+  "status": "playtest",
+  "icon": "game-icons:wave-crest",
+  "die": 8,
+  "description": "Grèves, falaises et laisses de mer, que la marée vide et remplit deux fois par jour.",
+  "loot": [
+    {
+      "from": 1,
+      "to": 2,
+      "material": "algue",
+      "quantity": 1
+    },
+    {
+      "from": 3,
+      "to": 3,
+      "material": "algue",
+      "quantity": 2
+    },
+    {
+      "from": 4,
+      "to": 4,
+      "material": "bois-flotte",
+      "quantity": 1
+    },
+    {
+      "from": 5,
+      "to": 5,
+      "material": "bois-flotte",
+      "quantity": 2
+    },
+    {
+      "from": 6,
+      "to": 6,
+      "material": "coquillage-nacre",
+      "quantity": 1
+    },
+    {
+      "from": 7,
+      "to": 7,
+      "material": "coquillage-nacre",
+      "quantity": 2
+    },
+    {
+      "from": 8,
+      "to": 8,
+      "material": "perle",
+      "quantity": 1
+    }
+  ]
+}

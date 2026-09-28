@@ -71,6 +71,8 @@ Machine values are never translated. Ids, `key` fields, domain keys, characteris
 | `data/equipment/guide.md` | the equipment guide, one page, with an `.en.md` twin |
 | `data/equipment/items/` | one item, named `<slug>.json`, its slug being its id |
 | `data/equipment/sets/` | one set, named `<ID>.json`, with its tiered bonuses |
+| `data/materials/` | one material, named `<slug>.json`, with its Types and its Valeur |
+| `data/environments/` | one environment, named `<slug>.json`, with its Loot Die and its Loot Table |
 | `data/books/<book-id>/` | one book: `book.json` plus one `NN-slug.md` per chapter, each a whole page |
 | `data/meta/` | one controlled vocabulary per file. Read the directory for the current set |
 | `data/media/` | covers and banners, item pictures, icons, PDFs, fonts, flags, video |

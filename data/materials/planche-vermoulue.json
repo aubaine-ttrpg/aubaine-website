@@ -1,0 +1,9 @@
+{
+  "name": "Planche vermoulue",
+  "status": "playtest",
+  "types": [
+    "bois"
+  ],
+  "value": 1,
+  "description": "Planche piquée de trous, encore saine une fois la pourriture ôtée."
+}

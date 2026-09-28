@@ -1,0 +1,9 @@
+{
+  "name": "Mandragore",
+  "status": "playtest",
+  "types": [
+    "plante"
+  ],
+  "value": 3,
+  "description": "Racine à la forme presque humaine, qu'on arrache d'un seul geste."
+}

@@ -1,0 +1,9 @@
+{
+  "name": "Minerai d'argent",
+  "status": "playtest",
+  "types": [
+    "metal"
+  ],
+  "value": 2,
+  "description": "Veine claire dans la pierre sombre, qu'on suit au marteau."
+}

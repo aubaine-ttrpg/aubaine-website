@@ -1,0 +1,10 @@
+{
+  "name": "Coquillage nacré",
+  "status": "playtest",
+  "types": [
+    "bete",
+    "gemme"
+  ],
+  "value": 1,
+  "description": "Coquille ouverte par la mer, irisée à l'intérieur."
+}
