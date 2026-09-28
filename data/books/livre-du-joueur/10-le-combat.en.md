@@ -145,7 +145,7 @@ Two Basic Skills give everyone one. {{ATTOPP-001}} strikes a creature that leave
 
 ## Concentration
 
-Some Skills last as long as you concentrate: their duration is marked {{concentration}}. You maintain only one {{concentration}} Skill at a time, and playing another ends the first.
+Some Skills last as long as you concentrate: their duration is marked {{concentration}}. You maintain only one {{concentration}} Skill at a time, and playing another ends the first, even if the second does not resolve or is cancelled.
 
 Each time you take damage while you maintain one, make a {{constitution}} + {{volonte}} {{jet}} against {{dd}} 15 to maintain your {{concentration}}. On a failure, it ends.
 

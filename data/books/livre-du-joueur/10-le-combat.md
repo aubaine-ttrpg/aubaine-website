@@ -145,7 +145,7 @@ Deux Compétences de base en fournissent un à tout le monde. {{ATTOPP-001}} fra
 
 ## La Concentration
 
-Certaines Compétences durent tant que vous vous concentrez : leur durée porte la mention {{concentration}}. Vous ne maintenez qu'une Compétence de {{concentration}} à la fois, et en jouer une autre met fin à la première.
+Certaines Compétences durent tant que vous vous concentrez : leur durée porte la mention {{concentration}}. Vous ne maintenez qu'une Compétence de {{concentration}} à la fois, et en jouer une autre met fin à la première, même si la seconde ne se résout pas ou est annulée.
 
 Chaque fois que vous subissez des dégâts pendant que vous en maintenez une, effectuez un {{jet}} de {{constitution}} + {{volonte}} contre un {{dd}} de 15 pour maintenir votre {{concentration}}. En cas d'échec, elle prend fin.
 
