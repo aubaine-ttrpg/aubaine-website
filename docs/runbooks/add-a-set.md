@@ -8,7 +8,7 @@ Produces a set block on every piece that belongs to it, listing the tiered bonus
 data/equipment/sets/<ID>.json
 ```
 
-The filename is the set id. Existing sets use five capital letters: `TRAQU.json`, `BASTI.json`. The id inside the file must match the filename, and it is what each piece writes in its `set` field.
+The filename is the set id. A set id uses five capital letters, as `FAEBI.json` does. The id inside the file must match the filename, and it is what each piece writes in its `set` field.
 
 ## The fields
 
@@ -25,66 +25,44 @@ The filename is the set id. Existing sets use five capital letters: `TRAQU.json`
 
 ## A complete example
 
-`data/equipment/sets/TRAQU.json`:
+`data/equipment/sets/FAEBI.json`:
 
 ```json
 {
-  "id": "TRAQU",
-  "status": "draft",
-  "name": "Panoplie du Traqueur",
-  "description": "Feutre, cuir maté au noir et pierre grise. Les chasseurs se passent ces pièces une à une, de piste en piste, et rares sont ceux qui les portent toutes.",
+  "id": "FAEBI",
+  "status": "playtest",
+  "name": "Panoplie des Faebies",
+  "description": "Odran Sansligne, joaillier faebie né d'un halfelin et d'une gnome, tailla la première paire, celle que Sombrecœur portait le jour où elle refusa de couvrir ses bois. Depuis, chaque maison faebie garde une paire sous clé. Elle la remet au Scothan de son choix, le soir où il franchit pour la première fois ses portes élargies.",
   "bonuses": [
     {
       "pieces": 2,
-      "text": "Vous gagnez la Compétence {{SILLAG-001}}. Elle n'occupe aucune {{memoire}} et n'a pas à être apprise.",
-      "grants": [
-        "SILLAG-001"
-      ]
-    },
-    {
-      "pieces": 4,
-      "text": "La première fois que vous touchez une créature alors que vous êtes {{cache}} au cours d'un combat, elle subit 1d6 dégâts supplémentaires."
+      "text": "À la fin d'un {{repos-long}}, vous pouvez remplacer la Compétence que vous avez choisie avec {{CHAIRX-001}}, celle que vous avez choisie avec {{SANAUT-001}}, ou les deux, par une autre parmi celles de la même Espèce et de la même sous-espèce ou origine régionale."
     }
   ]
 }
 ```
 
-A piece joins the set by naming it. `data/equipment/items/capuche-de-traque.json`:
+A piece joins the set by naming it. `data/equipment/items/boucle-de-l-un.json`:
 
 ```json
 {
-  "name": "Capuche de traque",
-  "status": "draft",
-  "section": "tetes",
-  "position": 0,
-  "kind": "Tête",
-  "rarity": "uncommon",
-  "art": "armure-de-cuir-1_1-og.png",
-  "price": 10000,
-  "set": "TRAQU",
-  "headlines": [
-    {
-      "label": "Perception",
-      "value": "1 Avantage"
-    }
-  ],
-  "craft": {
-    "discipline": "artisanat",
-    "cost": 25,
-    "materials": [
-      "Cuir"
-    ],
-    "sequence": [
-      "Dextérité 13"
-    ]
-  },
-  "description": "Capuche doublée qui laisse les oreilles libres. Elle coupe le vent sans couper le bruit."
+  "name": "Boucle de l'un",
+  "status": "playtest",
+  "section": "bijoux",
+  "position": 6,
+  "kind": "Bijou",
+  "rarity": "very-rare",
+  "art": "boucle-de-l-un-1_1-og.png",
+  "set": "FAEBI",
+  "prerequisite": "Être Scothan",
+  "text": "Tant que cette pièce est équipée, {{CHAIRX-001}} ne réduit plus vos {{pdv}} maximum : chaque point de {{constitution}}, chaque Niveau de Vitalité et toute autre source de {{pdv}} maximum vous en donne autant qu'à un autre personnage.",
+  "description": "Cristal bleu taillé en pointe, serti d'or au bout d'un crochet ouvert. Les joailliers faebies ne la taillent jamais seule et ne la confient qu'à un Scothan."
 }
 ```
 
 ## What appears on the site
 
-- `/fr/equipement` and `/en/equipment`: under the description of every piece carrying `"set": "TRAQU"`, a block shows the set name, its description, the tiers in increasing piece order, and the list of its pieces. Each piece in that list is a reference like `{{capuche-de-traque}}`, with its slot icon and its kind, and opens that piece's entry.
+- `/fr/equipement` and `/en/equipment`: under the description of every piece carrying `"set": "FAEBI"`, a block shows the set name, its description, the tiers in increasing piece order, and the list of its pieces. Each piece in that list is a reference like `{{boucle-de-l-un}}`, with its slot icon and its kind, and opens that piece's entry.
 - The equipment booklet prints one page per set after the whole equipment list, sorted by rarity, then by name: every Commun set in alphabetical order, then every Peu commun set, and so on. Each page holds the set's name, description and tiers, then its pieces.
 - A skill named in `grants` lists the set as one of the places it is obtained.
 - The set file alone shows nothing. A set with no piece pointing at it is invisible.
@@ -100,7 +78,7 @@ pnpm dev
 
 ## Traps
 
-**A set's `status` is only ever inherited, never printed.** A set has no page of its own and prints no badge, so the value shows up solely on the skills its tiers grant, and only where no tree and no item already cover them. `SILLAG-001` is the case it exists for: the Traqueur set is its only owner.
+**A set's `status` is only ever inherited, never printed.** A set has no page of its own and prints no badge, so the value shows up solely on the skills its tiers grant, and only where no tree and no item already cover them.
 
 **A one piece tier is not a set bonus.** The schema requires at least two: `Deux au minimum : un palier à une pièce est une propriété de cette pièce.` Put it in that piece's `properties` instead.
 
@@ -110,6 +88,6 @@ pnpm dev
 
 **A granted skill is usually `"showXp": false`.** It is never bought, so the gold XP token should not be shown on it.
 
-**Rule markup works in `text`.** A reference names its entry by key, never by name: `{{SILLAG-001}}` for a skill, `{{cache}}` for a state. Every key must resolve.
+**Rule markup works in `text`.** A reference names its entry by key, never by name: `{{CHAIRX-001}}` for a skill, `{{cache}}` for a state. Every key must resolve.
 
 **Never write `"grants": null`.** Leave the key out on a tier that grants nothing.

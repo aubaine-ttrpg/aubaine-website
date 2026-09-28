@@ -13,7 +13,7 @@ Next to the French file, same name, with `.en` before the extension.
 | `data/skill-lists/common-bank.json` | `data/skill-lists/common-bank.en.json` |
 | `data/states/combustion.json` | `data/states/combustion.en.json` |
 | `data/equipment/items/dague.json` | `data/equipment/items/dague.en.json` |
-| `data/equipment/sets/TRAQU.json` | `data/equipment/sets/TRAQU.en.json` |
+| `data/equipment/sets/FAEBI.json` | `data/equipment/sets/FAEBI.en.json` |
 | `data/equipment/catalogue.json` | `data/equipment/catalogue.en.json` |
 | `data/books/livre-du-joueur/book.json` | `data/books/livre-du-joueur/book.en.json` |
 | `data/books/livre-du-joueur/03-creer-un-personnage.md` | `data/books/livre-du-joueur/03-creer-un-personnage.en.md` |
@@ -104,7 +104,7 @@ Then open the `/en/` page and compare it against the `/fr/` one.
 
 **An invalid overlay is ignored without an error at render time.** If you add a field the overlay does not allow, or misspell one, the loader drops the whole overlay and the entry stays French on the English page. If an English page is stubbornly French, check the overlay's field names first.
 
-**A reference keeps its key in every locale.** The overlay writes `{{enrage}}` and `{{SILLAG-001}}` exactly as the French file does, never a translated name, and `pnpm data:check` resolves each key in the locale it is written in.
+**A reference keeps its key in every locale.** The overlay writes `{{enrage}}` and `{{RAGEXX-001}}` exactly as the French file does, never a translated name, and `pnpm data:check` resolves each key in the locale it is written in.
 
 **A reference prints the labels of the language its string is written in.** In an overlay, `{{energie}}` prints `Energy`, and `{{enrage}}` prints the state's English name once `data/states/enrage.en.json` gives it one, `Enragé` until then. A French string the English page falls back to keeps its French labels. Write a plural as text after the bar: `{{jet|Rolls}}`.
 

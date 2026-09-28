@@ -12,7 +12,7 @@ The split exists for two reasons.
 
 **A skill can sit in more than one tree.** Physique and Artisan can both sell the same node, at a different place on each plate, with a different parent on each. If `pos` lived in the skill file, the second tree could not place it.
 
-**Equipment grants reference the same skill.** `data/equipment/items/pyro-catalyseur.json` writes `"grants": ["TRAFEU-001"]`, and `data/equipment/sets/TRAQU.json` writes `"grants": ["SILLAG-001"]`. Those are the same skill files the trees point at, not copies. A granted skill has no placement at all, and usually carries `"showXp": false` because it is never bought.
+**Equipment grants reference the same skill.** `data/equipment/items/pyro-catalyseur.json` writes `"grants": ["TRAFEU-001"]`, and a set tier's `grants` names a skill the same way. That is the same skill file the tree points at, not a copy. A granted skill has no placement at all, and usually carries `"showXp": false` because it is never bought.
 
 The same logic runs through the rest of the model. `data/skill-lists/basic-skills.json` and `data/skill-lists/common-bank.json` are lists of ids, in printing order. A skill belongs to a tree, a list, an item or a set by being named there, never by declaring it about itself.
 
