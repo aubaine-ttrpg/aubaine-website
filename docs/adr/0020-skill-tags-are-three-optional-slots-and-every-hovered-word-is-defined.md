@@ -6,6 +6,7 @@
 **Revised:** 2026-09-25, the Nécromancie École is added (addendum in Decision 5)
 **Revised:** 2026-09-26, a skill may carry two Écoles and base actions carry tags, reversed by 0026 (addenda in Decisions 3 and 5)
 **Revised:** 2026-09-26, the Enseignement and Inné Pratiques are added (addendum in Decision 5)
+**Revised:** 2026-09-28, Inné names the mind, for the Psychique powers (addendum in Decision 5)
 **Deciders:** Kori
 **Scope:** The `tags` field on a skill and its removal from upgrades and English overlays, the new
 vocabulary file `data/meta/tags.json`, the definitions shown in the tooltips of rule terms,
@@ -209,6 +210,15 @@ morbide, Phylactère and Passe-muraille (ESMOR-03, 07, 08, 10, 05). Only the pai
 are open: Renforcement accepts Enseignement, and Protection, Divination, Nécromancie and Mobilité
 accept Inné. Opening another stays a balance decision. The Decision 3 bullet on class powers that
 are not Sorts is unchanged.
+
+### Addendum (2026-09-28): Inné names the mind
+
+The decider ruled that the Psychique tree's powers are innate powers of the mind, not Sorts, so
+Inné's definition now reads « votre sang, votre corps, votre esprit, ou ce que la mort a fait de
+vous ». Psychique powers carry Inné where their École accepts it (Protection and Divination), and no
+Pratique in Destruction, Contrôle, Influence or Soin, as the Decision 3 bullet already allows. No new
+pairing is opened. [0031](0031-the-martial-and-psychic-trees-bring-attaque-martiale-objet-libre-and-innate-powers.md)
+records the choice.
 
 ---
 
