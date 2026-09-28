@@ -6,12 +6,14 @@ import {
   collator,
   DEFAULT_SUBSPECIES_LABEL,
   inCranOrder,
+  inkOf,
   primeCharacteristics,
   slugify,
   speciesPool,
   stateInk,
   subspeciesSkills,
   treeDomains,
+  treeTypeLabel,
   VARIABLE_CHARACTERISTIC,
 } from './derive.ts'
 import {
@@ -568,6 +570,7 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
     sections,
     rarities,
     slots,
+    domains,
     labelOf,
     t,
   })
@@ -631,6 +634,7 @@ type TermInput = {
   sections: ResolvedSection[]
   rarities: Map<string, VocabularyEntry>
   slots: Map<string, VocabularyEntry>
+  domains: Map<string, VocabularyEntry>
   labelOf: LabelOf
   t: ReturnType<typeof strings>
 }
@@ -1199,6 +1203,7 @@ function buildTermIndex(input: TermInput): TermIndex {
     sections,
     rarities,
     slots,
+    domains,
     labelOf,
     t,
   } = input
@@ -1307,6 +1312,26 @@ function buildTermIndex(input: TermInput): TermIndex {
       icon: slot ? iconPath(slots.get(slot)?.iconName) : null,
       text: flattenText(item.text ?? item.description, labelOf, 240),
       href: `${pathFor('equipment', locale)}#e-${slug}`,
+    })
+  }
+
+  const treeTypes = { archetypes: t.archetype, domains: t.domain, species: t.species }
+  for (const tree of trees) {
+    if (keys.has(tree.id)) {
+      throw new Error(
+        `tree ${tree.id} answers to the reference {{${tree.id}}}, which another entry holds`,
+      )
+    }
+    const domain = tree.domains[0] ? domains.get(tree.domains[0]) : undefined
+    keys.set(tree.id, {
+      family: 'tree',
+      kind: t.trees,
+      title: tree.name,
+      meta: treeTypeLabel(tree.treeType, treeTypes),
+      color: domain?.color ? inkOf(domain.color) : 'var(--accent-ink)',
+      icon: 'mdi/family-tree',
+      text: tree.subtitle ?? '',
+      href: pathFor('tree', locale, { tree: tree.id }),
     })
   }
 

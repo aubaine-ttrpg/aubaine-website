@@ -203,11 +203,14 @@ const STATE_KIND_INK: Record<GameState['kind'], string> = {
   neutral: 'var(--state-neutral)',
 }
 
-export function stateInk(state: Pick<GameState, 'kind' | 'color'>): string {
-  if (state.color === undefined) return STATE_KIND_INK[state.kind]
-  const onLight = `oklch(from ${state.color} min(l, 0.5) c h)`
-  const onDark = `oklch(from ${state.color} max(l, 0.72) c h)`
+export function inkOf(color: string): string {
+  const onLight = `oklch(from ${color} min(l, 0.5) c h)`
+  const onDark = `oklch(from ${color} max(l, 0.72) c h)`
   return `light-dark(${onLight}, ${onDark})`
+}
+
+export function stateInk(state: Pick<GameState, 'kind' | 'color'>): string {
+  return state.color === undefined ? STATE_KIND_INK[state.kind] : inkOf(state.color)
 }
 
 export type StatRun = { text: string; characteristic?: string }

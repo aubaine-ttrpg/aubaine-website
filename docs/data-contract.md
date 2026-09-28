@@ -156,6 +156,7 @@ Each entry answers to one key, derived from the entry and never stored in a fiel
 | state | its `key`, which is its file name in `data/states/` | `{{a-terre}}`, `{{entrave\|Entravée}}` |
 | skill | its `id` | `{{TRAFEU-001}}`, `{{RAGEXX-001\|cette Compétence}}` |
 | equipment item | its file name in `data/equipment/items/` | `{{dague}}`, `{{boucle-de-l-un\|la Boucle}}` |
+| skill tree | its `id`, which is its file name in `data/skill-trees/` | `{{feu}}`, `{{berserker\|le Berserker}}` |
 
 The default label is the entry's label in the language the text is written in. A French string prints French labels, and so does a French string an English page falls back to when there is no overlay. Only a string from an `.en` overlay prints English labels: an overlay writes `{{energie}}` and gets `Energy`.
 

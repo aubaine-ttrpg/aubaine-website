@@ -5,6 +5,7 @@ export const TERM_FAMILIES = [
   'state',
   'skill',
   'item',
+  'tree',
 ] as const
 
 export type TermFamily = (typeof TERM_FAMILIES)[number]
