@@ -8,13 +8,13 @@
   ],
   "activation": "1 Action Bonus",
   "range": "Personnel",
-  "duration": "jusqu'à 1 minute",
-  "energy": 1,
+  "duration": "Jusqu'au début de votre prochain tour",
+  "energy": 2,
   "tags": {
     "practice": "manoeuvre",
     "schools": [
       "control"
     ]
   },
-  "description": "Vous plantez les pieds, l'arme tournée vers qui approche : les créatures hostiles ralentissent autour de vous, et celle qui entre dans votre allonge au corps à corps s'expose à votre {{ATTOPP-001}}. Vous ne pouvez jouer cette Compétence que si vous portez au moins 1 {{aplomb}}.\n\nTant que {{TENLIG-001}} dure, les deux effets suivants s'appliquent.\n\n***Barrage.*** Chaque emplacement à 1,5 m ou moins de vous est un {{terrain-difficile|terrain difficile}} pour les créatures hostiles.\n***Coup d'arrêt.*** Vous pouvez aussi jouer {{ATTOPP-001}} lorsqu'une créature hostile que vous voyez entre dans votre allonge au corps à corps par son {{deplacement|déplacement}}. Une créature que votre {{ATTOPP-001}} touche est {{immobilise|Immobilisée}} jusqu'à la fin de son tour.\n\n{{TENLIG-001}} prend fin plus tôt lorsque vous quittez l'emplacement que vous occupez, de votre plein gré ou non, et dès que vous ne portez plus d'{{aplomb}}."
+  "description": "Vous plantez les pieds, l'arme tournée vers qui approche. Tant que {{TENLIG-001}} dure, les deux effets suivants s'appliquent.\n\n***Barrage.*** Chaque emplacement à 1,5 m ou moins de vous est un {{terrain-difficile|terrain difficile}} pour les créatures hostiles.\n***Coup d'arrêt.*** Vous pouvez aussi jouer {{ATTOPP-001}} lorsqu'une créature hostile que vous voyez entre dans votre allonge au corps à corps par son {{deplacement|déplacement}}. Une créature que votre {{ATTOPP-001}} touche est {{immobilise|Immobilisée}} jusqu'à la fin de son tour.\n\n{{TENLIG-001}} prend fin plus tôt lorsque vous quittez l'emplacement que vous occupez, de votre plein gré ou non."
 }

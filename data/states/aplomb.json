@@ -1,8 +1,0 @@
-{
-  "key": "aplomb",
-  "name": "Aplomb",
-  "kind": "buff",
-  "icon": "mdi:shield-half-full",
-  "color": "#4a6582",
-  "description": "{{aplomb}} s'accumule sur vous jusqu'à 3.\n\nVotre {{ca}} augmente de 1 par {{aplomb}} que vous portez.\n\nAu début de chacun de vos tours, vous perdez 1 {{aplomb}}. Vous perdez tout votre {{aplomb}} lorsque vous gagnez {{cadence}}, lorsque vous tombez {{a-terre}} et lorsqu'un effet vous déplace contre votre gré.\n\nAu début d'un combat, vous perdez tout votre {{aplomb}}."
-}

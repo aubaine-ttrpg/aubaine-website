@@ -9,7 +9,7 @@
   "activation": "À l'achat",
   "range": "—",
   "duration": "—",
-  "description": "À l'achat, augmentez de 1 le modificateur d'une {{caracteristique}} de votre choix, jusqu'au maximum de +6.\n\nCette Compétence ne se {{memorisee|mémorise}} pas et n'occupe aucune {{memoire}} : vous l'achetez une fois, vous corrigez votre feuille, et elle est acquise.",
+  "description": "À l'achat, augmentez de 1 le modificateur d'une {{caracteristique}} de votre choix, jusqu'au maximum de +6.\n\nCette Compétence ne se {{memorisee|mémorise}} pas et n'occupe aucune {{memoire}}.",
   "upgrades": [
     {
       "level": 2,

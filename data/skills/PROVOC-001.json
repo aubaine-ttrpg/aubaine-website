@@ -13,7 +13,7 @@
   "activation": "1 Action Bonus",
   "range": "9 m",
   "duration": "Instantanée",
-  "energy": 0,
+  "energy": 1,
   "tags": {
     "practice": "technique",
     "schools": [

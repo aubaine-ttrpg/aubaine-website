@@ -62,7 +62,7 @@
   "physique": {
     "domains": ["physical"],
     "prime": ["strength", "dexterity"],
-    "upgrades": 9,
+    "upgrades": 6,
     "xpTotal": 300
   },
   "poisse": {

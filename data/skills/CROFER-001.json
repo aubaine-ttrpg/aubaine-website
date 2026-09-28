@@ -13,12 +13,12 @@
   "activation": "1 Réaction",
   "range": "Personnel",
   "duration": "Instantanée",
-  "energy": 0,
+  "energy": 1,
   "tags": {
     "practice": "manoeuvre",
     "schools": [
       "protection"
     ]
   },
-  "description": "Vous jouez cette {{reaction}} lorsqu'une créature que vous voyez vous touche avec une {{attaque}} de {{melee}} ou de {{finesse}}, pour parer le coup avant que ses dégâts ne soient lancés. Vous devez tenir une arme ou un bouclier dont le {{jet}} emploie {{melee}}.\n\nVous opposez au coup l'une de ces pièces que vous tenez, à votre choix : effectuez le {{jet}} qu'elle indique. Si votre total égale ou dépasse celui de l'{{attaque}}, l'{{attaque}} vous manque, et vous pouvez gagner 1 {{aplomb}}. Sinon, elle vous touche normalement."
+  "description": "Vous jouez cette {{reaction}} lorsqu'une créature que vous voyez vous touche avec une {{attaque}} de {{melee}} ou de {{finesse}}, pour parer le coup avant que ses dégâts ne soient lancés. Vous devez tenir une arme ou un bouclier dont le {{jet}} emploie {{melee}}.\n\nVous opposez au coup l'une de ces pièces que vous tenez, à votre choix : effectuez le {{jet}} qu'elle indique. Si votre total égale ou dépasse celui de l'{{attaque}}, l'{{attaque}} vous manque. Sinon, elle vous touche."
 }

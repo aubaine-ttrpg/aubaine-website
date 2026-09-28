@@ -21,13 +21,5 @@
       "control"
     ]
   },
-  "description": "Votre pression a creusé une ouverture, et ce coup s'y engouffre : chaque {{cadence}} que vous portez ajoute un effet à cette {{attaque}}. Vous ne pouvez jouer cette Compétence qu'une fois par tour, et seulement si vous portez au moins 1 {{cadence}}.\n\nPortez cette {{attaque}} normalement. En cas de réussite, ses dégâts augmentent de 1d10, et vous choisissez, avant de les lancer, un effet par {{cadence}} que vous portez : ***Acharnement*** autant de fois que vous le voulez, et au plus un des trois autres. Votre {{dd}} vaut 10 + la {{caracteristique}} et l'{{aptitude}} du {{jet}} de cette {{attaque}}.\n\n***Acharnement.*** Les dégâts de l'{{attaque}} augmentent de 1d10 de plus.\n***Renversement.*** La cible effectue un {{jet}} de {{force}} + {{athletisme}} ou de {{dexterite}} + {{acrobaties}}, à son choix, contre votre {{dd}}. En cas d'échec, elle tombe {{a-terre}}.\n***Désarmement.*** La cible effectue un {{jet}} de {{force}} + {{athletisme}} contre votre {{dd}}. En cas d'échec, elle lâche un objet de votre choix parmi ceux qu'elle tient, qui tombe à ses pieds.\n***Étourdissement.*** La cible effectue un {{jet}} de {{constitution}} + {{resistance}} contre votre {{dd}}. En cas d'échec, elle est {{etourdi|Étourdie}} jusqu'à la fin de son prochain tour.\n\nLa cible qui réussit son {{jet}} ne subit pas l'effet choisi. Si l'{{attaque}} réussit, vous perdez ensuite toute votre {{cadence}} et gagnez 1 {{aplomb}}. Si elle échoue, vous conservez votre {{cadence}} et ne gagnez pas d'{{aplomb}}.",
-  "upgrades": [
-    {
-      "level": 2,
-      "tier": 5,
-      "title": "Coup de grâce",
-      "description": "Lorsque l'{{attaque}} de {{POIORG-001}} réduit une créature à 0 {{pdv}}, vous conservez votre {{cadence}} au lieu de la perdre, et vous ne gagnez pas d'{{aplomb}}."
-    }
-  ]
+  "description": "Vous portez le coup qui conclut l'échange. Vous ne pouvez jouer cette Compétence qu'une fois par tour.\n\nPortez l'{{attaque}}. En cas de réussite, ses dégâts augmentent de 1d10, et vous choisissez, avant de les lancer, l'un des effets suivants. Votre {{dd}} vaut 10 + la {{caracteristique}} et l'{{aptitude}} du {{jet}} de cette {{attaque}}.\n\n***Renversement.*** La cible effectue un {{jet}} de {{force}} + {{athletisme}} ou de {{dexterite}} + {{acrobaties}}, à son choix, contre votre {{dd}}. En cas d'échec, elle tombe {{a-terre}}.\n***Désarmement.*** La cible effectue un {{jet}} de {{force}} + {{athletisme}} contre votre {{dd}}. En cas d'échec, elle lâche un objet de votre choix parmi ceux qu'elle tient, qui tombe à ses pieds.\n***Étourdissement.*** La cible effectue un {{jet}} de {{constitution}} + {{resistance}} contre votre {{dd}}. En cas d'échec, elle est {{etourdi|Étourdie}} jusqu'à la fin de son prochain tour.\n\nLa cible qui réussit son {{jet}} ne subit pas l'effet choisi."
 }

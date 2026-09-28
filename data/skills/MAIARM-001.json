@@ -9,7 +9,6 @@
   "activation": "1 Action Bonus",
   "range": "Personnel",
   "duration": "1 minute",
-  "recharge": "short-rest",
   "energy": 3,
   "tags": {
     "practice": "manoeuvre",
@@ -17,5 +16,5 @@
       "enhancement"
     ]
   },
-  "description": "L'assaut et la garde ne font plus qu'un seul geste. Tant que {{MAIARM-001}} dure, gagner {{cadence}} ne vous fait pas perdre votre {{aplomb}}, et gagner {{aplomb}} ne vous fait pas perdre votre {{cadence}}. Lorsque vous jouez {{MENDAN-001}}, vous appliquez à la fois ***Presser*** et ***Se garder***.\n\nAu moment où vous jouez cette Compétence, vous gagnez 1 {{cadence}} et 1 {{aplomb}}.\n\nLorsque {{MAIARM-001}} prend fin, vous perdez, à votre choix, toute votre {{cadence}} ou tout votre {{aplomb}}."
+  "description": "Plus aucune arme n'a de secret pour vous. Tant que {{MAIARM-001}} dure, vos {{attaque|Attaques}} portées avec une arme ou à mains nues gagnent 1 {{avantage}}."
 }
