@@ -2,7 +2,7 @@
   "id": "SECSOU-001",
   "title": "Second souffle",
   "type": "active",
-  "tier": 1,
+  "tier": 2,
   "domains": [
     "physical"
   ],
@@ -17,5 +17,5 @@
       "healing"
     ]
   },
-  "description": "Vous serrez les dents et vous repartez. Vous récupérez 1d10 {{pdv}} plus votre modificateur de {{constitution}}."
+  "description": "Vous serrez les dents et vous repartez : vous récupérez 2d4 {{pdv}} plus votre {{constitution}}. Vous ne pouvez pas jouer cette Compétence tant que vous subissez {{agonie}}.\n\nAvant de lancer ces dés, vous pouvez dépenser tout votre {{aplomb}}. Vous récupérez alors 1d4 {{pdv}} de plus par {{aplomb}} dépensé."
 }

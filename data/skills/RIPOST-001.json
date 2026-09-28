@@ -2,12 +2,16 @@
   "id": "RIPOST-001",
   "title": "Riposte",
   "type": "active",
-  "tier": 3,
+  "tier": 4,
   "domains": [
     "physical"
   ],
+  "characteristics": [
+    "strength",
+    "dexterity"
+  ],
   "activation": "1 Réaction",
-  "range": "Contact",
+  "range": "Allonge de l'arme",
   "duration": "Instantanée",
   "energy": 1,
   "tags": {
@@ -16,5 +20,13 @@
       "destruction"
     ]
   },
-  "description": "Vous jouez cette {{reaction}} lorsqu'une créature à 1,5 m ou moins vous manque avec une {{attaque}}.\n\nVous portez aussitôt une {{attaque}} contre elle. Cette {{attaque}} ne se prend sur aucune de vos actions."
+  "description": "Vous jouez cette {{reaction}} lorsqu'une créature que vous voyez à portée vous manque avec une {{attaque}} de {{melee}} ou de {{finesse}}, pour lui rendre le coup. Vous devez porter au moins 1 {{aplomb}}.\n\nPortez une {{attaque-martiale}} contre elle. En cas de réussite, ses dégâts augmentent de 1d10 par {{aplomb}} que vous portez.\n\nQue l'{{attaque}} réussisse ou non, vous perdez ensuite tout votre {{aplomb}} et gagnez 1 {{cadence}}.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 8,
+      "title": "Du tac au tac",
+      "description": "Lorsqu'une {{attaque}} vous manque parce que vous l'avez détournée avec {{CROFER-001}}, vous pouvez, une fois {{CROFER-001}} résolue, jouer {{RIPOST-001}} contre l'attaquant sans dépenser de {{reaction}}. Les autres conditions de {{RIPOST-001}} s'appliquent : l'attaquant doit être à portée, et vous devez porter au moins 1 {{aplomb}}."
+    }
+  ]
 }

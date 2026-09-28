@@ -104,7 +104,7 @@ pnpm dev
 
 ## Traps
 
-**The id is drawn from the French title, and the first skill to hold the letters keeps them.** Basic skills were given their ids first, so they hold the plain letters. `IMPROV-001` is the basic skill Improviser; Artisan's Improvisation takes the next free letters, `IMPROI-001`. `BOUSCU-001` is the basic skill Bousculer; Physique's Bousculade is `BOUSCL-001`. See [choose-a-skill-id.md](choose-a-skill-id.md).
+**The id is drawn from the French title, and the first skill to hold the letters keeps them.** Basic skills were given their ids first, so they hold the plain letters. `IMPROV-001` is the basic skill Improviser; Artisan's Improvisation takes the next free letters, `IMPROI-001`. See [choose-a-skill-id.md](choose-a-skill-id.md).
 
 **`showXp: false`, not `xpOverride: 0`.** `tier` is required and the schema has no way to omit a price, so you hide the token instead. A basic skill costs no XP and no Memory.
 

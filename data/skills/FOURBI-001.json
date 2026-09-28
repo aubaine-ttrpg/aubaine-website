@@ -1,0 +1,28 @@
+{
+  "id": "FOURBI-001",
+  "title": "Fourbir",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "physical"
+  ],
+  "activation": "10 minutes",
+  "range": "Contact",
+  "duration": "Jusqu'à votre prochain Repos long",
+  "energy": 1,
+  "tags": {
+    "practice": "technique",
+    "schools": [
+      "enhancement"
+    ]
+  },
+  "description": "Pierre à aiguiser, graisse et sangles neuves : jusqu'à deux pièces d'équipement que vous touchez, armes, armures ou boucliers, reçoivent chacune l'apprêt de votre choix parmi les suivants. Si votre {{specialite}} porte sur le travail des armes ou des armures, une pièce de plus en reçoit un.\n\n***Fil.*** Sur une arme. La prochaine {{attaque}} réussie avec elle inflige 1d10 dégâts de plus, du type de ceux de l'arme.\n***Équilibre.*** Sur une arme. La prochaine {{attaque}} portée avec elle gagne 1 {{avantage}}.\n***Ajustement.*** Sur une armure ou un bouclier. La prochaine fois que son porteur subit les dégâts d'une {{attaque}}, il en subit 1d6 de moins.\n\nUne pièce ne porte qu'un apprêt à la fois, et un apprêt se perd dès qu'il a servi. Lorsque vous jouez de nouveau {{FOURBI-001}}, les apprêts que vous aviez donnés et qui n'ont pas servi se perdent.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 4,
+      "title": "Armurier de campagne",
+      "description": "Lorsque vous jouez {{FOURBI-001}}, vous pouvez dépenser 1 {{energie}} de plus pour choisir deux pièces de plus."
+    }
+  ]
+}

@@ -1,49 +1,56 @@
 {
   "id": "physique",
-  "status": "draft",
+  "status": "playtest",
   "name": "Physique",
-  "subtitle": "La voie des guerriers",
+  "subtitle": "Le corps aguerri",
   "treeType": "domain",
   "size": 16,
   "placements": [
     {
-      "skill": "ATTSUP-001",
+      "skill": "MENDAN-001",
+      "pos": {
+        "x": 50,
+        "y": 50.81
+      }
+    },
+    {
+      "skill": "POIORG-001",
       "pos": {
         "x": 50,
         "y": 37.92
       },
       "linked": [
-        "SECSOU-001"
+        "MENDAN-001"
       ]
     },
     {
-      "skill": "FRAETO-001",
+      "skill": "MAIARM-001",
       "pos": {
         "x": 50,
         "y": 26.14
       },
       "linked": [
-        "ATTSUP-001"
+        "POIORG-001"
       ]
     },
     {
-      "skill": "EXECUT-001",
+      "skill": "JAUADV-001",
       "pos": {
         "x": 72.44,
         "y": 31.91
       },
       "linked": [
-        "FRAETO-001"
+        "POIORG-001"
       ]
     },
     {
-      "skill": "ATTPUI-001",
+      "skill": "CROFER-001",
       "pos": {
         "x": 65.79,
         "y": 44.37
       },
       "linked": [
-        "SECSOU-001"
+        "MENDAN-001"
       ]
     },
     {
@@ -53,31 +60,74 @@
         "y": 44.42
       },
       "linked": [
-        "ATTPUI-001"
+        "CROFER-001"
       ]
     },
     {
-      "skill": "ENDURA-001",
+      "skill": "TENLIG-001",
       "pos": {
         "x": 65.79,
         "y": 57.25
       },
       "linked": [
-        "SECSOU-001"
+        "MENDAN-001"
+      ]
+    },
+    {
+      "skill": "GARCOR-001",
+      "pos": {
+        "x": 83.71,
+        "y": 57.2
+      },
+      "linked": [
+        "TENLIG-001"
+      ]
+    },
+    {
+      "skill": "PROVOC-001",
+      "pos": {
+        "x": 74.68,
+        "y": 68.25
+      },
+      "linked": [
+        "TENLIG-001"
       ]
     },
     {
       "skill": "SECSOU-001",
       "pos": {
         "x": 50,
-        "y": 50.81
-      }
+        "y": 63.7
+      },
+      "linked": [
+        "MENDAN-001"
+      ]
     },
     {
-      "skill": "PARADE-001",
+      "skill": "ENDURA-001",
       "pos": {
-        "x": 74.68,
-        "y": 68.25
+        "x": 34.21,
+        "y": 57.25
+      },
+      "linked": [
+        "MENDAN-001"
+      ]
+    },
+    {
+      "skill": "TOUFOR-001",
+      "pos": {
+        "x": 19.78,
+        "y": 63.15
+      },
+      "linked": [
+        "ENDURA-001"
+      ]
+    },
+    {
+      "skill": "ENTRAI-001",
+      "pos": {
+        "x": 30.5,
+        "y": 70.5
       },
       "linked": [
         "ENDURA-001"
@@ -86,81 +136,31 @@
     {
       "skill": "DEVELO-001",
       "pos": {
-        "x": 83.71,
-        "y": 80.5
+        "x": 20.13,
+        "y": 80.97
       },
       "linked": [
-        "PARADE-001"
+        "ENTRAI-001"
       ]
     },
     {
-      "skill": "BOUSCL-001",
+      "skill": "ATTSUP-001",
       "pos": {
         "x": 34.21,
         "y": 44.37
       },
       "linked": [
-        "SECSOU-001"
+        "MENDAN-001"
       ]
     },
     {
-      "skill": "DESARM-001",
+      "skill": "FOURBI-001",
       "pos": {
         "x": 17.21,
         "y": 42.37
       },
       "linked": [
-        "BOUSCL-001"
-      ]
-    },
-    {
-      "skill": "ENTRAI-001",
-      "pos": {
-        "x": 34.21,
-        "y": 57.25
-      },
-      "linked": [
-        "SECSOU-001"
-      ]
-    },
-    {
-      "skill": "CRIRAL-001",
-      "pos": {
-        "x": 19.78,
-        "y": 63.15
-      },
-      "linked": [
-        "ENTRAI-001"
-      ]
-    },
-    {
-      "skill": "PREMAR-001",
-      "pos": {
-        "x": 30.5,
-        "y": 70.5
-      },
-      "linked": [
-        "ENTRAI-001"
-      ]
-    },
-    {
-      "skill": "FOUGUE-001",
-      "pos": {
-        "x": 50,
-        "y": 63.7
-      },
-      "linked": [
-        "SECSOU-001"
-      ]
-    },
-    {
-      "skill": "FRENES-001",
-      "pos": {
-        "x": 83.71,
-        "y": 57.2
-      },
-      "linked": [
-        "ENDURA-001"
+        "ATTSUP-001"
       ]
     }
   ]

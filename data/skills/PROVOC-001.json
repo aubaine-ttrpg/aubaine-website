@@ -1,0 +1,25 @@
+{
+  "id": "PROVOC-001",
+  "title": "Provocation",
+  "type": "active",
+  "tier": 2,
+  "domains": [
+    "physical"
+  ],
+  "characteristics": [
+    "strength",
+    "charisma"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "9 m",
+  "duration": "Instantanée",
+  "energy": 0,
+  "tags": {
+    "practice": "technique",
+    "schools": [
+      "influence",
+      "control"
+    ]
+  },
+  "description": "Du geste, de la voix ou de la pointe de l'arme, vous interpellez une créature qui vous voit ou vous entend à portée : en combat, elle peine à frapper quelqu'un d'autre que vous ; hors combat, elle relève votre défi ou perd la face. Au moment où vous jouez cette Compétence, choisissez sa {{caracteristique}} entre {{force}} et {{charisme}}.\n\nLa créature effectue un {{jet}} d'{{esprit}} + {{volonte}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{intimidation}}). En cas de réussite, elle ignore votre provocation. En cas d'échec, l'effet dépend de la situation.\n\n***En combat.*** Jusqu'à la fin de votre prochain tour, ses {{attaque|Attaques}} contre une autre créature que vous subissent 1 {{desavantage}}.\n***Hors combat.*** Devant au moins un témoin, votre provocation est un appel en duel ; sans témoin, elle n'a aucun effet. Vous fixez le lieu, l'heure et les armes du duel, et ce qui l'arrête : le premier sang, un désarmement ou une reddition. La créature choisit d'accepter, ou de refuser et de perdre la face : ses {{jet|Jets}} de {{charisme}} pour influencer les témoins subissent alors 1 {{desavantage}} jusqu'à la fin de la scène. Vous ne pouvez provoquer ainsi une même créature qu'une fois entre deux {{repos-long|Repos longs}}."
+}

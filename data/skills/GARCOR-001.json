@@ -1,0 +1,20 @@
+{
+  "id": "GARCOR-001",
+  "title": "Garde du corps",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "physical"
+  ],
+  "activation": "10 minutes",
+  "range": "9 m",
+  "duration": "Jusqu'à votre prochain Repos long",
+  "energy": 0,
+  "tags": {
+    "practice": "technique",
+    "schools": [
+      "protection"
+    ]
+  },
+  "description": "Vous prenez sous votre garde une autre créature consentante que vous voyez à portée, et vous pouvez vous jeter devant les coups qui la visent. Vous ne gardez qu'une créature à la fois : en prendre une autre sous votre garde libère la première. {{GARCOR-001}} prend fin plus tôt si votre protégé refuse votre garde.\n\nTant que {{GARCOR-001}} dure, les deux effets suivants s'appliquent.\n\n***Vigilance.*** Au début d'un combat, si vous n'êtes pas surpris et que votre protégé se trouve à portée, il ne l'est pas non plus.\n***Interposition.*** Lorsqu'une créature que vous voyez porte une {{attaque}} contre votre protégé alors que vous êtes à 1,5 m ou moins de lui, vous pouvez dépenser votre {{reaction}}, avant son {{jet}}, pour vous jeter devant le coup. L'{{attaque}} vous prend pour cible à sa place, même si vous êtes hors de sa portée, et son {{jet}} est comparé à votre {{ca}}. Si elle vous manque, vous pouvez gagner 1 {{aplomb}}."
+}

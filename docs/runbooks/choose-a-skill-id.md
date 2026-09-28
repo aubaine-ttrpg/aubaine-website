@@ -79,7 +79,6 @@ The skill that already holds the letters keeps them. The newcomer replaces the l
 
 | Title | Held by | Letters |
 | --- | --- | --- |
-| Bousculade | Bousculer, `BOUSCU` | `BOUSCL` |
 | Improvisation | Improviser, `IMPROV` | `IMPROI` |
 | Marque de chair | Marchandage, `MARCHA` | `MARCHI` |
 | Surcharge | Surchauffe, `SURCHA` | `SURCHR` |

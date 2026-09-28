@@ -1,0 +1,20 @@
+{
+  "id": "JAUADV-001",
+  "title": "Jauger l'adversaire",
+  "type": "active",
+  "tier": 2,
+  "domains": [
+    "physical"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "18 m",
+  "duration": "Instantanée",
+  "energy": 0,
+  "tags": {
+    "practice": "technique",
+    "schools": [
+      "divination"
+    ]
+  },
+  "description": "Vous observez une créature que vous voyez à portée et lisez ce que son corps trahit : le MJ vous donne deux informations de votre choix parmi les suivantes, vraies au moment où vous l'observez. Hors combat, cette observation vous prend 1 minute.\n\n***Défense.*** Sa {{ca}}.\n***Blessures.*** Si elle a la moitié ou moins de ses {{pdv}} maximum.\n***Faille.*** La plus faible de ses {{aptitude|Aptitudes}} parmi {{athletisme}}, {{acrobaties}}, {{resistance}} et {{volonte}}, ou chacune de celles qui partagent ce plus faible modificateur.\n***Savoir-faire.*** Sa {{specialite}}, si elle en a une.\n***Moral.*** Ce qu'elle compte faire si le combat tourne mal : se battre jusqu'au bout, fuir ou se rendre.\n\nVous ne pouvez jauger une même créature qu'une fois par combat, et qu'une fois par scène hors combat."
+}
