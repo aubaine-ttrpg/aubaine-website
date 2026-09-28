@@ -7,13 +7,11 @@
     "physical"
   ],
   "activation": "Passif",
-  "range": "—",
-  "duration": "—",
   "tags": {
     "practice": "manoeuvre",
     "schools": [
       "enhancement"
     ]
   },
-  "description": "Un corps qui tombe vous en désigne un autre. Lorsqu'une de vos {{attaque|Attaques}} réduit une créature à 0 {{pdv}} et que vous êtes {{enrage}}, vous portez aussitôt une {{attaque}} de plus.\n\nCela ne se produit qu'une fois par tour."
+  "description": "Un corps qui tombe vous en désigne un autre. Tant que vous êtes {{enrage}}, lorsque, pendant votre tour, l'une de vos {{attaque|Attaques}} réduit une créature à 0 {{pdv}}, vous pouvez aussitôt porter une {{attaque}} de plus. Vous ne pouvez le faire qu'une fois par tour."
 }

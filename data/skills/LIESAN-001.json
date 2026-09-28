@@ -1,0 +1,21 @@
+{
+  "id": "LIESAN-001",
+  "title": "Lien de sang",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "blood"
+  ],
+  "activation": "10 minutes",
+  "range": "Contact",
+  "duration": "Jusqu'à votre prochain Repos long",
+  "energy": 1,
+  "life": "1d6",
+  "tags": {
+    "schools": [
+      "protection",
+      "divination"
+    ]
+  },
+  "description": "Vous mêlez votre sang à celui d'une autre créature consentante qui a du sang, paume ouverte contre paume ouverte. Vous ne liez qu'une créature à la fois : en lier une autre libère la première.\n\nTant que {{LIESAN-001}} dure, vous savez dans quelle direction se trouve la créature liée et à peu près à quelle distance, et vous sentez chaque fois qu'elle subit des dégâts. Vous pouvez jouer {{SACRIF-001}} pour elle à n'importe quelle distance, même sans la voir. {{LIESAN-001}} prend fin plus tôt si la créature liée rompt le lien de son plein gré."
+}

@@ -68,7 +68,7 @@ test('the theme toggle keeps a localized name without a text label', async ({ pa
 })
 
 test('a selected skill tree node deep links and highlights', async ({ page }) => {
-  await page.goto('/en/tree/berserker/RAGEXX-001')
+  await page.goto('/en/tree/barbare/RAGEXX-001')
   await expect(page.locator('[data-plate-node][aria-current="page"]')).toHaveCount(1)
   await expect(page.locator('[data-plate-node][aria-current="page"]')).toHaveAttribute(
     'data-node',

@@ -1,0 +1,17 @@
+{
+  "id": "ROMFRO-001",
+  "title": "Rompu au froid",
+  "type": "passive",
+  "tier": 3,
+  "domains": [
+    "physical"
+  ],
+  "activation": "Passif",
+  "tags": {
+    "practice": "technique",
+    "schools": [
+      "protection"
+    ]
+  },
+  "description": "Le gel ne vous mord plus. Vous avez une résistance aux dégâts de Froid, et un froid extrême ne vous impose aucun {{jet}}."
+}

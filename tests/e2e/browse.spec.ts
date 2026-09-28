@@ -230,10 +230,10 @@ test('a tree source opens the skill on its plate', async ({ page }) => {
   await page.goto('/en/skills#e-RAGEXX-001')
   await enhanced(page)
 
-  const source = page.locator('#e-RAGEXX-001').getByRole('link', { name: 'Berserker' })
-  await expect(source).toHaveAttribute('href', '/en/tree/berserker/RAGEXX-001#arbre')
+  const source = page.locator('#e-RAGEXX-001').getByRole('link', { name: 'Barbare' })
+  await expect(source).toHaveAttribute('href', '/en/tree/barbare/RAGEXX-001#arbre')
   await source.click()
-  await expect(page).toHaveURL('/en/tree/berserker/RAGEXX-001#arbre')
+  await expect(page).toHaveURL('/en/tree/barbare/RAGEXX-001#arbre')
   await expect(page.locator('#tree-detail [data-selected-node="RAGEXX-001"]')).toBeVisible()
   await expect(page.locator('#arbre')).toBeInViewport()
 })

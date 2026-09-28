@@ -82,7 +82,7 @@ Machine values are never translated. Ids, `key` fields, domain keys, characteris
 
 ## A picture is named for its shape and its history
 
-Every file under `data/media/art/` and `data/media/items/` is called `<nom>-<rapport>-<état>.<extension>`: `berserker-3_4-og.png`, `bravado-16_9-upscaled_2.jpg`. The ratio is written in lowest terms with an underscore in place of the colon, and the state is one of `og`, `cleaned`, `upscaled_2` and `upscaled_4`. The schema rejects any other shape of name.
+Every file under `data/media/art/` and `data/media/items/` is called `<nom>-<rapport>-<état>.<extension>`: `barbare-3_4-og.png`, `bravado-16_9-upscaled_2.jpg`. The ratio is written in lowest terms with an underscore in place of the colon, and the state is one of `og`, `cleaned`, `upscaled_2` and `upscaled_4`. The schema rejects any other shape of name.
 
 Two facts about a picture are otherwise impossible to recover once it is on disk. The first is what it is for: a card wants a 3:4 portrait and a hero wants a 16:9 plate, and a file called `berserker.png` says neither. The second is whether it is the file that came out of the generator. `og` is a claim that nothing has touched it, which is why it never combines with `cleaned` or with an enlargement, and why the original stays in the repo next to anything derived from it.
 

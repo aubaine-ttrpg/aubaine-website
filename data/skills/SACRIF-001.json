@@ -1,0 +1,19 @@
+{
+  "id": "SACRIF-001",
+  "title": "Sacrifice",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "blood"
+  ],
+  "activation": "1 Réaction",
+  "range": "9 m",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "schools": [
+      "protection"
+    ]
+  },
+  "description": "Vous jouez cette {{reaction}} lorsqu'une autre créature que vous voyez à portée va subir des dégâts. Calculez ce qu'elle subirait, sa résistance ou sa vulnérabilité comprise : vous perdez autant de {{pdv}}, et elle ne subit que ce qui dépasse les {{pdv}} que vous aviez. Cette perte n'est pas un dégât. Vos {{pdv}} temporaires n'en absorbent rien et ne comptent pas dans les {{pdv}} que vous aviez. Les autres effets qui accompagnent ces dégâts s'appliquent à elle."
+}

@@ -1,0 +1,21 @@
+{
+  "id": "PRSAPL-001",
+  "title": "Prendre sa place",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "physical"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "6 m",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "manoeuvre",
+    "schools": [
+      "mobility",
+      "protection"
+    ]
+  },
+  "description": "Votre place est au premier rang. Vous ne pouvez pas jouer cette Compétence si vous êtes {{immobilise}} ou {{a-terre}}.\n\nVous bondissez jusqu'à un emplacement libre que vous voyez à portée et à 1,5 m ou moins d'une autre créature consentante, sur une surface capable de vous porter et pas plus de 3 m au-dessus de vous. Aucun obstacle ne doit barrer la ligne droite qui vous en sépare. L'espace d'une créature n'est pas un obstacle pour ce bond. Vous échangez ensuite vos places avec elle. L'échange n'a pas lieu si elle est {{immobilise|Immobilisée}} ou si l'emplacement de l'un est trop étroit pour l'autre. Ce bond et cet échange ne comptent dans aucun {{deplacement|déplacement}} et ne déclenchent aucune {{ATTOPP-001}}."
+}

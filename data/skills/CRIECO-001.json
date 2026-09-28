@@ -1,0 +1,21 @@
+{
+  "id": "CRIECO-001",
+  "title": "Cri écorché",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "blood"
+  ],
+  "activation": "1 Action",
+  "range": "9 m",
+  "duration": "Instantanée",
+  "energy": 1,
+  "life": "1d6",
+  "tags": {
+    "practice": "shout",
+    "schools": [
+      "protection"
+    ]
+  },
+  "description": "Vous hurlez à vous en arracher la gorge, et le sang vous vient aux lèvres. Jusqu'à 3 autres créatures de votre choix à portée gagnent chacune des {{pdv}} temporaires égaux aux {{pdv}} que vous avez perdus en jouant cette Compétence, qui disparaissent au bout de 1 minute. Si {{FRENES-001}} est à son comble, vous pouvez en choisir jusqu'à 5."
+}

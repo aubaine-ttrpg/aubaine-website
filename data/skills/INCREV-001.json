@@ -1,0 +1,20 @@
+{
+  "id": "INCREV-001",
+  "title": "Increvable",
+  "type": "active",
+  "tier": 10,
+  "domains": [
+    "blood"
+  ],
+  "activation": "1 Réaction",
+  "range": "Personnel",
+  "duration": "Jusqu'à la fin de votre prochain tour",
+  "recharge": "short-rest",
+  "energy": 1,
+  "tags": {
+    "schools": [
+      "protection"
+    ]
+  },
+  "description": "Vous jouez cette {{reaction}} lorsque des dégâts devraient vous faire tomber à 0 {{pdv}} alors que vous êtes {{enrage}}. Vos {{pdv}} tombent à 1 à la place. Tant qu'{{INCREV-001}} dure, aucun dégât ne les fait descendre sous 1."
+}

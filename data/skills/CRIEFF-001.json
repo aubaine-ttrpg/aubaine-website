@@ -1,0 +1,35 @@
+{
+  "id": "CRIEFF-001",
+  "title": "Cri d'effroi",
+  "type": "active",
+  "tier": 3,
+  "domains": [],
+  "characteristics": [
+    "strength"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "9 m",
+  "duration": "Instantanée",
+  "energy": 2,
+  "tags": {
+    "practice": "shout",
+    "schools": [
+      "control"
+    ]
+  },
+  "description": "Vous hurlez « Hvelg » dans la langue des Jötnar, un peuple de géants aujourd'hui éteint. Jusqu'à 3 créatures de votre choix à portée effectuent chacune un {{jet}} d'{{esprit}} + {{volonte}} contre votre {{dd}} (10 + {{force}} + {{intimidation}}). En cas d'échec, ses {{attaque|Attaques}} subissent 1 {{desavantage}} jusqu'à la fin de son prochain tour. En cas de réussite, elle ne subit rien.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 5,
+      "title": "Drokk",
+      "description": "Vous hurlez désormais « Hvelg Drokk ». Une créature qui échoue au {{jet}} de {{CRIEFF-001}} est {{effraye|Effrayée}} par vous jusqu'à la fin de son prochain tour, au lieu de subir ce {{desavantage}}."
+    },
+    {
+      "level": 3,
+      "tier": 6,
+      "title": "Skurn",
+      "description": "Vous hurlez désormais « Hvelg Drokk Skurn ». À son prochain tour, une créature {{effraye|Effrayée}} par {{CRIEFF-001}} emploie tout son {{deplacement|déplacement}} à s'éloigner de vous."
+    }
+  ]
+}

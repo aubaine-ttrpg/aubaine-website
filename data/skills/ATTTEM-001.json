@@ -1,20 +1,17 @@
 {
   "id": "ATTTEM-001",
   "title": "Attaque téméraire",
-  "type": "active",
+  "type": "passive",
   "tier": 2,
   "domains": [
     "physical"
   ],
-  "activation": "1 Réaction",
-  "range": "Personnelle",
-  "duration": "Instantanée",
-  "energy": 0,
+  "activation": "Passif",
   "tags": {
     "practice": "manoeuvre",
     "schools": [
       "enhancement"
     ]
   },
-  "description": "Vous jouez cette {{reaction}} lorsque vous effectuez un {{jet}} d'{{attaque}}, avant que son résultat ne soit résolu.\n\nVous vous jetez en avant sans vous garder : ce {{jet}} gagne 1 {{avantage}}, et les {{attaque|Attaques}} faites contre vous gagnent 1 {{avantage}} jusqu'au début de votre prochain tour."
+  "description": "Lorsque vous portez une {{attaque}} de {{melee}} ou de {{finesse}}, vous pouvez vous jeter en avant sans vous garder : elle gagne 1 {{avantage}}, et les {{attaque|Attaques}} faites contre vous en gagnent 1 jusqu'au début de votre prochain tour."
 }

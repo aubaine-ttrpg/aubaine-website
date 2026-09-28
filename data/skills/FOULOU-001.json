@@ -1,0 +1,17 @@
+{
+  "id": "FOULOU-001",
+  "title": "Foulée du loup",
+  "type": "passive",
+  "tier": 2,
+  "domains": [
+    "physical"
+  ],
+  "activation": "Passif",
+  "tags": {
+    "practice": "manoeuvre",
+    "schools": [
+      "mobility"
+    ]
+  },
+  "description": "Vous avalez la lande à longues foulées. Tant que vous ne portez aucune armure, votre {{vitesse}} augmente de 3 m."
+}

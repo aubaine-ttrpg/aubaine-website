@@ -1,0 +1,35 @@
+{
+  "id": "CRICOL-001",
+  "title": "Cri du colosse",
+  "type": "active",
+  "tier": 4,
+  "domains": [],
+  "characteristics": [
+    "strength"
+  ],
+  "activation": "1 Action",
+  "range": "3 m",
+  "duration": "Instantanée",
+  "energy": 2,
+  "tags": {
+    "practice": "shout",
+    "schools": [
+      "control"
+    ]
+  },
+  "description": "Vous tonnez « Dralk » dans la langue des Jötnar, les géants disparus, et votre voix frappe comme un bélier. Jusqu'à 3 créatures de votre choix à portée effectuent chacune un {{jet}} de {{force}} + {{athletisme}} ou de {{dexterite}} + {{acrobaties}}, à son choix, contre votre {{dd}} (10 + {{force}} + {{intimidation}}). En cas d'échec, elle tombe {{a-terre}}. En cas de réussite, elle reste debout.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 5,
+      "title": "Hulv",
+      "description": "Vous tonnez désormais « Dralk Hulv ». Une créature qui échoue au {{jet}} de {{CRICOL-001}} est d'abord repoussée de 3 m en ligne droite, loin de vous, puis tombe {{a-terre}}. Elle s'arrête plus tôt contre un obstacle ou une créature. Les créatures repoussées se déplacent l'une après l'autre, de la plus éloignée de vous à la plus proche."
+    },
+    {
+      "level": 3,
+      "tier": 7,
+      "title": "Gyrn",
+      "description": "Vous tonnez désormais « Dralk Hulv Gyrn ». Une créature qui échoue au {{jet}} de {{CRICOL-001}} est aussi {{etourdi|Étourdie}} jusqu'à la fin de son prochain tour."
+    }
+  ]
+}

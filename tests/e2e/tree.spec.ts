@@ -2,7 +2,8 @@ import { readdirSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { expect, type Page, test } from '@playwright/test'
 
-const TREE = '/fr/arbre/berserker'
+const TREE = '/fr/arbre/barbare'
+const LORE_TREE = '/fr/arbre/berserker'
 const TREE_IDS = readdirSync(resolve(import.meta.dirname, '../../data/skill-trees')).map((file) =>
   file.replace(/\.json$/, ''),
 )
@@ -52,7 +53,7 @@ async function headerHeight(page: Page): Promise<number> {
 }
 
 test('the lore comes first and the rail ends on the tree', async ({ page }) => {
-  await page.goto(TREE)
+  await page.goto(LORE_TREE)
   const rail = page.locator('nav.au-aside .au-trail a')
   await expect(rail.last()).toHaveAttribute('href', '#arbre')
   await expect(rail.last()).toContainText('Arbre de compétences')
@@ -66,7 +67,7 @@ test('the lore comes first and the rail ends on the tree', async ({ page }) => {
 })
 
 test('the rail entry lands the tree below the sticky header', async ({ page }) => {
-  await page.goto(TREE)
+  await page.goto(LORE_TREE)
   await page.locator('nav.au-aside a[href="#arbre"]').click()
   const header = await headerHeight(page)
   const heading = page.locator('#arbre')
@@ -141,8 +142,8 @@ test('choosing a node swaps only the detail pane', async ({ page }) => {
   const scrolled = await page.evaluate(() => window.scrollY)
 
   await node(page, 'TOURBI-001').click()
-  await expect(page).toHaveURL('/fr/arbre/berserker/TOURBI-001#arbre')
-  await expect(page).toHaveTitle(/^Tourbillon · Berserker/)
+  await expect(page).toHaveURL('/fr/arbre/barbare/TOURBI-001#arbre')
+  await expect(page).toHaveTitle(/^Tourbillon · Barbare/)
   await expect(pane(page).locator('[data-selected-node]')).toHaveAttribute(
     'data-selected-node',
     'TOURBI-001',
@@ -157,11 +158,11 @@ test('choosing a node swaps only the detail pane', async ({ page }) => {
   expect(await page.evaluate(() => window.scrollY)).toBe(scrolled)
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     'href',
-    /\/fr\/arbre\/berserker\/TOURBI-001$/,
+    /\/fr\/arbre\/barbare\/TOURBI-001$/,
   )
   await expect(page.locator('link[rel="alternate"][hreflang="en-GB"]')).toHaveAttribute(
     'href',
-    /\/en\/tree\/berserker\/TOURBI-001$/,
+    /\/en\/tree\/barbare\/TOURBI-001$/,
   )
 })
 
@@ -170,7 +171,7 @@ test('the keyboard opens a node', async ({ page }) => {
   await hydrated(page)
   await node(page, 'RAGEXX-001').focus()
   await page.keyboard.press('Enter')
-  await expect(page).toHaveURL('/fr/arbre/berserker/RAGEXX-001#arbre')
+  await expect(page).toHaveURL('/fr/arbre/barbare/RAGEXX-001#arbre')
   await expect(pane(page).locator('[data-selected-node]')).toHaveAttribute(
     'data-selected-node',
     'RAGEXX-001',
@@ -198,7 +199,7 @@ test('the language switch follows the selected node', async ({ page }) => {
   await expect(page).toHaveURL(/TOURBI-001#arbre$/)
   await expect(page.locator('[data-lang-option="en"]')).toHaveAttribute(
     'href',
-    '/en/tree/berserker/TOURBI-001',
+    '/en/tree/barbare/TOURBI-001',
   )
 })
 
@@ -208,14 +209,14 @@ test('a filter dims the nodes it leaves out and keeps them on the tree', async (
   const filter = page.getByRole('searchbox', { name: 'Filtrer par nom…' })
 
   await filter.fill('cri')
-  await expect(dimmed(page)).toHaveCount(10)
-  await expect(page.locator('[data-plate-node]:visible')).toHaveCount(14)
-  await expect(page.getByText('4 résultats')).toBeVisible()
+  await expect(dimmed(page)).toHaveCount(13)
+  await expect(page.locator('[data-plate-node]:visible')).toHaveCount(16)
+  await expect(page.getByText('3 résultats')).toBeVisible()
 
-  await node(page, 'CRIPRI-001').click()
-  await expect(page).toHaveURL(/CRIPRI-001#arbre$/)
+  await node(page, 'CRIEFF-001').click()
+  await expect(page).toHaveURL(/CRIEFF-001#arbre$/)
   await expect(filter).toHaveValue('cri')
-  await expect(dimmed(page)).toHaveCount(10)
+  await expect(dimmed(page)).toHaveCount(13)
 
   await filter.fill('')
   await expect(dimmed(page)).toHaveCount(0)
@@ -227,7 +228,7 @@ test('a filter that matches nothing offers a reset', async ({ page }) => {
   const filter = page.getByRole('searchbox', { name: 'Filtrer par nom…' })
 
   await filter.fill('zzzz')
-  await expect(dimmed(page)).toHaveCount(14)
+  await expect(dimmed(page)).toHaveCount(16)
   const empty = page.locator('[data-filter-empty="filtered"]')
   await expect(empty).toBeVisible()
   await expect(empty.locator('.au-empty__mark')).toBeVisible()

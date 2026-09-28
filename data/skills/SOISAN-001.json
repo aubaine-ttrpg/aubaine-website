@@ -2,14 +2,18 @@
   "id": "SOISAN-001",
   "title": "Soif de sang",
   "type": "active",
-  "tier": 4,
+  "tier": 3,
   "domains": [
     "blood"
   ],
+  "characteristics": [
+    "strength",
+    "dexterity"
+  ],
   "activation": "1 Attaque",
-  "range": "Contact",
+  "range": "Allonge de l'arme",
   "duration": "Instantanée",
-  "energy": 2,
+  "energy": 1,
   "tags": {
     "practice": "manoeuvre",
     "schools": [
@@ -19,5 +23,5 @@
       "lifesteal"
     ]
   },
-  "description": "Vous frappez pour ouvrir, pas pour tuer, et ce qui sort vous revient.\n\nPortez cette {{attaque}} normalement. En cas de réussite, ajoutez 2d6 dégâts Perforants et vous récupérez la moitié de ces 2d6 en {{pdv}}. Une créature sans sang ne vous en rend aucun."
+  "description": "Vous cherchez l'artère. Vous ne pouvez jouer cette Compétence qu'une fois par tour.\n\nPortez l'{{attaque}}. En cas de réussite, ses dégâts augmentent de 2d6. Si {{FRENES-001}} est à son comble et que la cible a du sang, vous récupérez des {{pdv}} égaux à la moitié de ces 2d6."
 }

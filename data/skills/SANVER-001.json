@@ -2,13 +2,11 @@
   "id": "SANVER-001",
   "title": "Sang versé",
   "type": "passive",
-  "tier": 5,
+  "tier": 3,
   "domains": [
     "blood"
   ],
   "activation": "Passif",
-  "range": "—",
-  "duration": "—",
   "tags": {
     "schools": [
       "healing"
@@ -17,5 +15,5 @@
       "lifesteal"
     ]
   },
-  "description": "Le sang répandu autour de vous vous cherche. Tant que vous êtes {{enrage}}, la première fois à chaque tour qu'une créature tombe à 0 {{pdv}} à 9 m ou moins de vous, vous récupérez 1d6 {{pdv}}."
+  "description": "Le sang répandu autour de vous vous cherche. Tant que vous êtes {{enrage}}, la première fois à chaque tour qu'une autre créature qui a du sang tombe à 0 {{pdv}} à 9 m ou moins de vous, vous récupérez 1d6 {{pdv}}."
 }

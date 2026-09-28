@@ -11,7 +11,7 @@ const ROUTES = [
   '/fr/almanach',
   '/fr/arbres',
   '/fr/arbre/berserker',
-  '/fr/arbre/berserker/RAGEXX-001',
+  '/fr/arbre/barbare/RAGEXX-001',
   '/fr/especes',
   '/en/species',
   '/fr/espece/humain',
@@ -143,7 +143,7 @@ test('a species with sub-species prints each one with the skill it imposes', asy
 
 test('a skill tree plate draws its nodes without javascript', async ({ page }) => {
   await page.goto('/fr/arbre/berserker')
-  await expect(page.locator('[data-plate-node]')).toHaveCount(14)
+  await expect(page.locator('[data-plate-node]')).toHaveCount(16)
   await expect(page.locator('svg line')).not.toHaveCount(0)
 })
 
@@ -156,14 +156,14 @@ test('a bare skill tree asks for a skill and a node link opens it on its tree', 
   )
   await expect(page.locator('[data-node][aria-current]')).toHaveCount(0)
 
-  const node = page.locator('[data-plate-node][data-node="TOURBI-001"]')
-  await expect(node).toHaveAttribute('href', '/fr/arbre/berserker/TOURBI-001#arbre')
+  const node = page.locator('[data-plate-node][data-node="DEFERL-001"]')
+  await expect(node).toHaveAttribute('href', '/fr/arbre/berserker/DEFERL-001#arbre')
   await node.click()
-  await expect(page).toHaveURL('/fr/arbre/berserker/TOURBI-001#arbre')
-  await expect(page.locator('#tree-detail [data-selected-node="TOURBI-001"]')).toBeVisible()
+  await expect(page).toHaveURL('/fr/arbre/berserker/DEFERL-001#arbre')
+  await expect(page.locator('#tree-detail [data-selected-node="DEFERL-001"]')).toBeVisible()
   await expect(page.locator('[data-plate-node][aria-current="page"]')).toHaveAttribute(
     'data-node',
-    'TOURBI-001',
+    'DEFERL-001',
   )
   await expect(page.locator('line[data-lit]')).toHaveCount(1)
   await expect(page.locator('#arbre')).toBeInViewport()
@@ -290,7 +290,7 @@ test.describe('without javascript', () => {
   test('the tree viewer hides the zoom controls it cannot drive', async ({ page }) => {
     await page.goto('/fr/arbre/berserker')
     await expect(page.locator('[data-viewer-controls]')).toBeHidden()
-    await expect(page.locator('[data-plate-node]')).toHaveCount(14)
+    await expect(page.locator('[data-plate-node]')).toHaveCount(16)
   })
 
   test('the Common Bank source still opens its note without javascript', async ({ page }) => {
@@ -306,7 +306,7 @@ test.describe('without javascript', () => {
     page,
   }) => {
     await page.goto('/en/trees')
-    await expect(page.locator('[data-entry]').filter({ visible: true })).toHaveCount(24)
+    await expect(page.locator('[data-entry]').filter({ visible: true })).toHaveCount(25)
     await expect(page.locator('[data-drafts-control]')).toBeHidden()
   })
 })

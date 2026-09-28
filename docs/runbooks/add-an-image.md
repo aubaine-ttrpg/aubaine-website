@@ -20,8 +20,8 @@ Every picture under `data/media/art/` and `data/media/items/`, and every video u
 `og` means the file has never been retouched, so it never combines with another state. A file that has been enlarged is `upscaled_2` or `upscaled_4`, not `og-upscaled_2`. A file that has been run through noise removal is `cleaned`. A video that has been re-encoded to a lower bitrate is `compressed`, and that state exists for video only.
 
 ```
-berserker-16_9-og.png            1672 x 941    a banner, untouched
-berserker-3_4-og.png             1086 x 1448   the cover of the same plate
+barbare-16_9-og.png              1672 x 941    a banner, untouched
+barbare-3_4-og.png               1086 x 1448   the cover of the same tree
 bravado-16_9-upscaled_2.jpg      3344 x 1882   the 2x enlargement of bravado-16_9-og.png
 dague-1_1-og.png                 1254 x 1254   an item picture
 le-bastion-16_9-compressed.mp4   1280 x 720    the home hero loop, re-encoded
@@ -91,8 +91,8 @@ If you edit a picture's metadata by hand, `pnpm media:stamp` refuses to run rath
 
 | Where | Field | What you write |
 | --- | --- | --- |
-| `data/skill-trees/<id>.json` | `cover` | Couverture au rapport 3:4. Example: `"cover": "berserker-3_4-og.png"` |
-| `data/skill-trees/<id>.json` | `banner` | Bannière au rapport 16:9. Example: `"banner": "berserker-16_9-og.png"` |
+| `data/skill-trees/<id>.json` | `cover` | Couverture au rapport 3:4. Example: `"cover": "barbare-3_4-og.png"` |
+| `data/skill-trees/<id>.json` | `banner` | Bannière au rapport 16:9. Example: `"banner": "barbare-16_9-og.png"` |
 | `data/books/<id>/book.json` | `cover`, `banner` | The same two fields, the same two ratios |
 | `data/equipment/catalogue.json` | `cover`, `banner`, `backCover` | The same fields again. `cover` and `backCover` are the two faces of the equipment booklet, `banner` is the plate behind the hero at `/fr/equipement` |
 | `data/equipment/items/<slug>.json` | `art` | Illustration au rapport 1:1. Example: `"art": "dague-1_1-og.png"` |
@@ -103,20 +103,23 @@ Several items may name the same picture, and eighteen pictures currently serve t
 
 ## A complete example
 
-`data/skill-trees/berserker.json` names both plates in its head:
+`data/skill-trees/barbare.json` names both plates in its head:
 
 ```json
 {
-  "id": "berserker",
-  "name": "Berserker",
+  "id": "barbare",
+  "status": "playtest",
+  "name": "Barbare",
+  "subtitle": "Les forces de la nature",
   "treeType": "archetype",
   "size": 16,
-  "cover": "berserker-3_4-og.png",
-  "banner": "berserker-16_9-og.png",
+  "cover": "barbare-3_4-og.png",
+  "banner": "barbare-16_9-og.png",
+  "backCover": "barbare-dos-3_4-og.png",
   "placements": [
 ```
 
-`cover` is the portrait on the card at `/fr/arbres`. `banner` is the wide plate behind the hero at `/fr/arbre/berserker` and the source of the social image. The hero also shows a booklet download button, with no field naming it: `pnpm pdf` renders one booklet per tree per locale and `data/pdf/releases.json` is what the page reads.
+`cover` is the portrait on the card at `/fr/arbres`. `banner` is the wide plate behind the hero at `/fr/arbre/barbare` and the source of the social image. The hero also shows a booklet download button, with no field naming it: `pnpm pdf` renders one booklet per tree per locale and `data/pdf/releases.json` is what the page reads.
 
 `data/states/combustion.json` names its icon:
 

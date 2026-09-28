@@ -1,0 +1,32 @@
+{
+  "id": "CRIRAL-001",
+  "title": "Cri de ralliement",
+  "type": "active",
+  "tier": 3,
+  "domains": [],
+  "activation": "1 Action Bonus",
+  "range": "9 m",
+  "duration": "Instantanée",
+  "energy": 2,
+  "tags": {
+    "practice": "shout",
+    "schools": [
+      "protection"
+    ]
+  },
+  "description": "Vous clamez « Brund » dans la langue des Jötnar, les géants disparus. Lancez 1d6 : jusqu'à 3 créatures de votre choix à portée, vous compris, gagnent chacune ce total en {{pdv}} temporaires, qui disparaissent au bout de 1 minute.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 4,
+      "title": "Gelm",
+      "description": "Vous clamez désormais « Brund Gelm ». Pour {{CRIRAL-001}}, lancez 2d6 au lieu de 1d6."
+    },
+    {
+      "level": 3,
+      "tier": 5,
+      "title": "Ymra",
+      "description": "Vous clamez désormais « Brund Gelm Ymra ». Chaque créature que vous choisissez pour {{CRIRAL-001}} n'est plus {{effraye|Effrayée}} ni {{charme|Charmée}}."
+    }
+  ]
+}

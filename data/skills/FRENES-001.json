@@ -1,0 +1,35 @@
+{
+  "id": "FRENES-001",
+  "title": "Frénésie",
+  "type": "active",
+  "tier": 1,
+  "domains": [
+    "blood"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "Personnel",
+  "duration": "jusqu'à 1 minute",
+  "energy": 2,
+  "life": "1d6",
+  "tags": {
+    "practice": "rage",
+    "schools": [
+      "enhancement"
+    ]
+  },
+  "description": "Le sang vous monte aux yeux. Tant que {{FRENES-001}} dure, vous êtes {{enrage}}. Si son coût vous fait tomber à 0 {{pdv}}, {{FRENES-001}} n'a aucun effet.\n\nTant que {{FRENES-001}} dure et que vous avez la moitié ou moins de vos {{pdv}} maximum, elle est à son comble : vos {{attaque|Attaques}} infligent 1d6 dégâts de plus.\n\n{{FRENES-001}} prend fin plus tôt si vous cessez d'être {{enrage}}.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 4,
+      "title": "Premier sang",
+      "description": "{{FRENES-001}} est à son comble dès que vous avez les trois quarts ou moins de vos {{pdv}} maximum, au lieu de la moitié."
+    },
+    {
+      "level": 3,
+      "tier": 8,
+      "title": "Folie furieuse",
+      "description": "{{FRENES-001}} est à son comble tant qu'elle dure, quels que soient vos {{pdv}}."
+    }
+  ]
+}

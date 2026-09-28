@@ -1,167 +1,169 @@
 {
-  "id": "berserker",
+  "id": "barbare",
   "status": "playtest",
-  "name": "Berserker",
-  "subtitle": "La chair à vif",
+  "name": "Barbare",
+  "subtitle": "Les forces de la nature",
   "treeType": "archetype",
   "size": 16,
-  "banner": "berserker-16_9-og.png",
+  "cover": "barbare-3_4-og.png",
+  "banner": "barbare-16_9-og.png",
+  "backCover": "barbare-dos-3_4-og.png",
   "placements": [
     {
-      "skill": "FRENES-001",
+      "skill": "RAGEXX-001",
       "pos": {
         "x": 50,
         "y": 50.81
       }
     },
     {
-      "skill": "SOISAN-001",
+      "skill": "PEABRU-001",
       "pos": {
         "x": 50,
         "y": 37.92
       },
       "linked": [
-        "FRENES-001"
+        "RAGEXX-001"
       ]
     },
     {
-      "skill": "INCREV-001",
+      "skill": "MONMUS-001",
       "pos": {
         "x": 50,
         "y": 26.14
       },
       "linked": [
-        "SOISAN-001"
+        "PEABRU-001"
       ]
     },
     {
-      "skill": "DEFERL-001",
+      "skill": "INSDAN-001",
       "pos": {
         "x": 72.44,
         "y": 31.91
       },
       "linked": [
-        "SOISAN-001"
+        "PEABRU-001"
       ]
     },
     {
-      "skill": "SANVER-001",
+      "skill": "SENBET-001",
       "pos": {
         "x": 27.56,
         "y": 31.91
       },
       "linked": [
-        "SOISAN-001"
+        "PEABRU-001"
       ]
     },
     {
-      "skill": "RECOCO-001",
+      "skill": "BONSAU-001",
       "pos": {
         "x": 65.79,
         "y": 44.37
       },
       "linked": [
-        "FRENES-001"
+        "RAGEXX-001"
       ]
     },
     {
-      "skill": "HALLAL-001",
+      "skill": "FOULOU-001",
       "pos": {
         "x": 83.71,
         "y": 44.42
       },
       "linked": [
-        "RECOCO-001"
+        "BONSAU-001"
       ]
     },
     {
-      "skill": "SACRIF-001",
+      "skill": "CRIEFF-001",
       "pos": {
         "x": 65.79,
         "y": 57.25
       },
       "linked": [
-        "FRENES-001"
+        "RAGEXX-001"
       ]
     },
     {
-      "skill": "PRSAPL-001",
+      "skill": "CRIRAL-001",
       "pos": {
         "x": 83.71,
         "y": 57.2
       },
       "linked": [
-        "SACRIF-001"
+        "CRIEFF-001"
       ]
     },
     {
-      "skill": "LIESAN-001",
+      "skill": "CRICOL-001",
       "pos": {
         "x": 74.68,
         "y": 68.25
       },
       "linked": [
-        "SACRIF-001"
+        "CRIEFF-001"
       ]
     },
     {
-      "skill": "CRIECO-001",
+      "skill": "VISINT-001",
       "pos": {
         "x": 50,
         "y": 63.7
       },
       "linked": [
-        "FRENES-001"
+        "RAGEXX-001"
       ]
     },
     {
-      "skill": "AUTOMU-001",
+      "skill": "ATTTEM-001",
       "pos": {
         "x": 34.21,
         "y": 57.25
       },
       "linked": [
-        "FRENES-001"
+        "RAGEXX-001"
       ]
     },
     {
-      "skill": "CORPER-001",
+      "skill": "TOURBI-001",
       "pos": {
         "x": 19.78,
         "y": 63.15
       },
       "linked": [
-        "AUTOMU-001"
+        "ATTTEM-001"
       ]
     },
     {
-      "skill": "INSDOU-001",
+      "skill": "COUBRU-001",
       "pos": {
         "x": 30.5,
         "y": 70.5
       },
       "linked": [
-        "AUTOMU-001"
+        "ATTTEM-001"
       ]
     },
     {
-      "skill": "VOIROU-001",
+      "skill": "ROMFRO-001",
       "pos": {
         "x": 34.21,
         "y": 44.37
       },
       "linked": [
-        "FRENES-001"
+        "RAGEXX-001"
       ]
     },
     {
-      "skill": "FLAPRE-001",
+      "skill": "ESTFER-001",
       "pos": {
         "x": 17.21,
         "y": 42.37
       },
       "linked": [
-        "VOIROU-001"
+        "ROMFRO-001"
       ]
     }
   ]

@@ -1,17 +1,22 @@
 {
   "id": "VISINT-001",
   "title": "Visage intimidant",
-  "type": "passive",
-  "tier": 4,
+  "type": "active",
+  "tier": 3,
   "domains": [],
-  "activation": "Passif",
-  "range": "—",
-  "duration": "—",
+  "characteristics": [
+    "strength"
+  ],
+  "activation": "1 Action",
+  "range": "3 m",
+  "duration": "10 minutes",
+  "recharge": "long-rest",
+  "energy": 1,
   "tags": {
     "practice": "technique",
     "schools": [
       "influence"
     ]
   },
-  "description": "La première fois après un {{repos-long}} que vous réussissez un {{jet}} de {{force}} + {{intimidation}} contre une créature, celle-ci obéit à tous vos ordres dans la mesure du possible pendant les 10 prochaines minutes."
+  "description": "Vous vous penchez sur une créature à portée qui vous voit et vous comprend, et vous lui laissez deviner ce qui l'attend si elle vous contrarie. Vous ne pouvez jouer cette Compétence que hors combat.\n\nLa créature effectue un {{jet}} d'{{esprit}} + {{volonte}} contre votre {{dd}} (10 + {{force}} + {{intimidation}}). En cas de réussite, elle ne vous obéit pas. En cas d'échec, elle exécute un ordre que vous lui donnez, tant qu'il ne la met pas en danger et ne lui fait pas trahir les siens, et s'y tient pour la durée de la Compétence. L'effet prend fin plus tôt si vous ou l'un de vos alliés lui nuisez."
 }

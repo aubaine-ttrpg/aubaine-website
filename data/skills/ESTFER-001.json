@@ -1,0 +1,17 @@
+{
+  "id": "ESTFER-001",
+  "title": "Estomac de fer",
+  "type": "passive",
+  "tier": 3,
+  "domains": [
+    "physical"
+  ],
+  "activation": "Passif",
+  "tags": {
+    "practice": "technique",
+    "schools": [
+      "protection"
+    ]
+  },
+  "description": "Des années de viande crue et d'alcool fort vous ont tanné le ventre. Vous avez une résistance aux dégâts de Poison. Vous pouvez manger et boire ce que la nature vous offre, cru ou avarié, sans en tomber malade, et vos {{jet|Jets}} de {{constitution}} + {{resistance}} pour tenir l'alcool gagnent 1 {{avantage}}."
+}

@@ -8,13 +8,13 @@ test('the trees filter narrows by name and by facet', async ({ page }) => {
   await page.goto('/en/trees')
   await hydrated(page)
   const count = page.locator('[aria-live="polite"]').first()
-  await expect(count).toHaveText('24 results')
+  await expect(count).toHaveText('25 results')
 
   await page.getByPlaceholder('Filter by name').fill('feu')
   await expect(count).toHaveText('1 result')
 
   await page.getByPlaceholder('Filter by name').fill('')
-  await expect(count).toHaveText('24 results')
+  await expect(count).toHaveText('25 results')
 
   await page.getByRole('button', { name: 'Filters' }).click()
   const dialog = page.getByRole('dialog')

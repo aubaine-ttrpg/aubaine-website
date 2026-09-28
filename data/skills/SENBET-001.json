@@ -1,0 +1,19 @@
+{
+  "id": "SENBET-001",
+  "title": "Sens de la bête",
+  "type": "passive",
+  "tier": 3,
+  "domains": [
+    "physical"
+  ],
+  "characteristics": [
+    "strength"
+  ],
+  "activation": "Passif",
+  "tags": {
+    "schools": [
+      "enhancement"
+    ]
+  },
+  "description": "Quand la tête se tait, le corps prend le relais. Tant que vous êtes {{enrage}}, vos {{jet|Jets}} d'{{acrobaties}}, de {{discretion}}, d'{{intimidation}}, de {{perception}} et de {{survie}} peuvent employer votre {{force}} à la place de la {{caracteristique}} que le MJ a choisie."
+}

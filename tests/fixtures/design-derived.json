@@ -5,11 +5,17 @@
     "upgrades": 2,
     "xpTotal": 220
   },
-  "berserker": {
+  "barbare": {
     "domains": ["physical"],
-    "prime": ["charisma"],
-    "upgrades": 3,
-    "xpTotal": 260
+    "prime": ["strength"],
+    "upgrades": 9,
+    "xpTotal": 265
+  },
+  "berserker": {
+    "domains": ["blood", "physical"],
+    "prime": ["strength", "dexterity"],
+    "upgrades": 2,
+    "xpTotal": 250
   },
   "courtisan": {
     "domains": ["psychic"],

@@ -1,0 +1,17 @@
+{
+  "id": "HALLAL-001",
+  "title": "Hallali",
+  "type": "passive",
+  "tier": 3,
+  "domains": [
+    "physical"
+  ],
+  "activation": "Passif",
+  "tags": {
+    "practice": "manoeuvre",
+    "schools": [
+      "destruction"
+    ]
+  },
+  "description": "Vous sentez la proie faiblir, et vous ne la lâchez plus. Tant que vous êtes {{enrage}}, vos {{attaque|Attaques}} contre une créature qui a la moitié ou moins de ses {{pdv}} maximum gagnent 1 {{avantage}}."
+}

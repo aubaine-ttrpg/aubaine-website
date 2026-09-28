@@ -1,0 +1,24 @@
+{
+  "id": "RECOCO-001",
+  "title": "Rendre coup pour coup",
+  "type": "active",
+  "tier": 2,
+  "domains": [
+    "physical"
+  ],
+  "characteristics": [
+    "strength",
+    "dexterity"
+  ],
+  "activation": "1 Réaction",
+  "range": "Allonge de l'arme",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "manoeuvre",
+    "schools": [
+      "destruction"
+    ]
+  },
+  "description": "Vous jouez cette {{reaction}} lorsqu'une créature que vous voyez à portée vous inflige des dégâts avec une {{attaque}} de {{melee}} ou de {{finesse}}.\n\nVous lui rendez le coup : portez une {{attaque}} contre elle. Si {{FRENES-001}} est à son comble, cette {{attaque}} gagne 1 {{avantage}}."
+}

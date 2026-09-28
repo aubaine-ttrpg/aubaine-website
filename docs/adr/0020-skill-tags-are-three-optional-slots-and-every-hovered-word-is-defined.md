@@ -7,6 +7,7 @@
 **Revised:** 2026-09-26, a skill may carry two Écoles and base actions carry tags, reversed by 0026 (addenda in Decisions 3 and 5)
 **Revised:** 2026-09-26, the Enseignement and Inné Pratiques are added (addendum in Decision 5)
 **Revised:** 2026-09-28, Inné names the mind, for the Psychique powers (addendum in Decision 5)
+**Revised:** 2026-09-28, the Rage Pratique is added (addendum in Decision 5)
 **Deciders:** Kori
 **Scope:** The `tags` field on a skill and its removal from upgrades and English overlays, the new
 vocabulary file `data/meta/tags.json`, the definitions shown in the tooltips of rule terms,
@@ -219,6 +220,16 @@ vous ». Psychique powers carry Inné where their École accepts it (Protection 
 Pratique in Destruction, Contrôle, Influence or Soin, as the Decision 3 bullet already allows. No new
 pairing is opened. [0031](0031-the-martial-and-psychic-trees-bring-attaque-martiale-objet-libre-and-innate-powers.md)
 records the choice.
+
+### Addendum (2026-09-28): the Rage Pratique
+
+The decider split the draft Berserker into the Barbare and the Berserker and asked for one Rage both
+share. `rage` (Rage / Rage) is a Compétence that lets anger take over, and every one makes you
+Enragé (`data/states/enrage.json`). It is carried by the two hearts, Rage and Frénésie (RAGEXX-001,
+FRENES-001), and Bond sauvage (BONSAU-001) cites « l'étiquette Rage » to trigger on either.
+Renforcement and Protection accept it, the pairings those hearts use. Destruction accepts it too,
+opened ahead of any carrier by the decider's choice so that a later striking rage needs no new
+ruling. [0035](0035-the-barbare-and-the-berserker-share-one-rage.md) records the split.
 
 ---
 

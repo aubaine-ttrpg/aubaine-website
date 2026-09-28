@@ -1,0 +1,16 @@
+{
+  "id": "FLAPRE-001",
+  "title": "Flair du prédateur",
+  "type": "passive",
+  "tier": 3,
+  "domains": [
+    "blood"
+  ],
+  "activation": "Passif",
+  "tags": {
+    "schools": [
+      "divination"
+    ]
+  },
+  "description": "Vos narines s'ouvrent à l'odeur du fer. Vous savez où se trouve chaque créature à 18 m ou moins de vous qui a du sang et dont les {{pdv}} sont sous leur maximum, même hors de vue ou {{cache|Cachée}}. Savoir où se trouve une créature {{cache|Cachée}} ne vous permet pas pour autant de la prendre pour cible.\n\nVos {{jet|Jets}} de {{survie}} pour suivre la piste d'une créature blessée qui a du sang gagnent 1 {{avantage}}."
+}

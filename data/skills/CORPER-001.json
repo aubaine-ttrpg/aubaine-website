@@ -1,0 +1,25 @@
+{
+  "id": "CORPER-001",
+  "title": "À corps perdu",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "physical"
+  ],
+  "characteristics": [
+    "strength",
+    "dexterity"
+  ],
+  "activation": "1 Attaque",
+  "range": "Allonge de l'arme",
+  "duration": "Instantanée",
+  "energy": 0,
+  "life": "1d6",
+  "tags": {
+    "practice": "manoeuvre",
+    "schools": [
+      "destruction"
+    ]
+  },
+  "description": "Vous frappez sans rien garder pour vous. Vous ne pouvez jouer cette Compétence qu'une fois par tour.\n\nPortez l'{{attaque}}. En cas de réussite, ses dégâts augmentent du double des {{pdv}} que vous avez perdus en jouant cette Compétence."
+}

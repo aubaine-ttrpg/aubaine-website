@@ -1,0 +1,25 @@
+{
+  "id": "COUBRU-001",
+  "title": "Coup brutal",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "physical"
+  ],
+  "characteristics": [
+    "strength",
+    "dexterity"
+  ],
+  "activation": "1 Attaque",
+  "range": "Allonge de l'arme",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "manoeuvre",
+    "schools": [
+      "destruction",
+      "control"
+    ]
+  },
+  "description": "Vous sacrifiez la précision à la force brute. Vous ne pouvez jouer cette Compétence qu'une fois par tour, et seulement si l'{{attaque}} compte au moins 1 {{avantage}} net.\n\nPortez l'{{attaque}} avec 1 {{avantage}} de moins. En cas de réussite, ses dégâts augmentent de 1d10, et vous choisissez : la cible est repoussée de 3 m en ligne droite, loin de vous, et s'arrête plus tôt contre un obstacle ou une créature, ou sa {{vitesse}} diminue de 3 m jusqu'au début de votre prochain tour."
+}

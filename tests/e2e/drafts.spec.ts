@@ -66,7 +66,7 @@ test('the preference survives a reload and follows the reader to another list', 
   await expect(page).toHaveURL('/en/trees')
   await hydrated(page)
   await expect(draftsSwitch(page)).toBeChecked()
-  await expect(results(page)).toHaveText('24 results')
+  await expect(results(page)).toHaveText('25 results')
 })
 
 test('the switch answers the keyboard', async ({ page }) => {

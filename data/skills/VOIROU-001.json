@@ -1,0 +1,16 @@
+{
+  "id": "VOIROU-001",
+  "title": "Voir rouge",
+  "type": "passive",
+  "tier": 2,
+  "domains": [
+    "blood"
+  ],
+  "activation": "Passif",
+  "tags": {
+    "schools": [
+      "protection"
+    ]
+  },
+  "description": "La colère ne laisse de place à rien d'autre. Tant que vous êtes {{enrage}}, vous ne pouvez être ni {{effraye}} ni {{charme}}. Devenir {{enrage}} met fin à ces deux états."
+}

@@ -29,6 +29,13 @@
       "definitionEn": "A shout at the top of your voice. It only affects creatures that can hear it."
     },
     {
+      "key": "rage",
+      "labelFr": "Rage",
+      "labelEn": "Rage",
+      "definitionFr": "Une Compétence qui laisse la colère prendre le dessus : elle vous rend {{enrage}}.",
+      "definitionEn": "A Skill that lets anger take over: it makes you {{enrage}}."
+    },
+    {
       "key": "teaching",
       "labelFr": "Enseignement",
       "labelEn": "Teaching",
@@ -49,7 +56,8 @@
       "practices": [
         "spell",
         "manoeuvre",
-        "technique"
+        "technique",
+        "rage"
       ],
       "labelFr": "Destruction",
       "labelEn": "Destruction",
@@ -76,6 +84,7 @@
         "manoeuvre",
         "technique",
         "shout",
+        "rage",
         "innate"
       ],
       "labelFr": "Protection",
@@ -103,6 +112,7 @@
         "manoeuvre",
         "technique",
         "shout",
+        "rage",
         "teaching"
       ],
       "labelFr": "Renforcement",

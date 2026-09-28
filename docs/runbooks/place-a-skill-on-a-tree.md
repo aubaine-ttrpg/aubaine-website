@@ -24,15 +24,19 @@ The same skill can be placed in more than one tree. That is why the layout lives
 
 ## A complete example
 
-`data/skill-trees/berserker.json`, whole file. `RAGEXX-001` sits at the centre with no `linked`, every other node names its single parent:
+`data/skill-trees/barbare.json`, whole file. `RAGEXX-001` sits at the centre with no `linked`, every other node names its single parent:
 
 ```json
 {
-  "id": "berserker",
-  "name": "Berserker",
+  "id": "barbare",
+  "status": "playtest",
+  "name": "Barbare",
+  "subtitle": "Les forces de la nature",
   "treeType": "archetype",
   "size": 16,
-  "banner": "berserker-16_9-og.png",
+  "cover": "barbare-3_4-og.png",
+  "banner": "barbare-16_9-og.png",
+  "backCover": "barbare-dos-3_4-og.png",
   "placements": [
     {
       "skill": "RAGEXX-001",
@@ -42,7 +46,7 @@ The same skill can be placed in more than one tree. That is why the layout lives
       }
     },
     {
-      "skill": "ATTTEM-001",
+      "skill": "PEABRU-001",
       "pos": {
         "x": 50,
         "y": 37.92
@@ -52,98 +56,98 @@ The same skill can be placed in more than one tree. That is why the layout lives
       ]
     },
     {
-      "skill": "CRIBRU-001",
+      "skill": "MONMUS-001",
       "pos": {
         "x": 50,
         "y": 26.14
       },
       "linked": [
-        "ATTTEM-001"
-      ]
-    },
-    {
-      "skill": "TOURBI-001",
-      "pos": {
-        "x": 72.44,
-        "y": 31.91
-      },
-      "linked": [
-        "ATTTEM-001"
-      ]
-    },
-    {
-      "skill": "POITIT-001",
-      "pos": {
-        "x": 65.79,
-        "y": 44.37
-      },
-      "linked": [
-        "RAGEXX-001"
-      ]
-    },
-    {
-      "skill": "DEFERL-001",
-      "pos": {
-        "x": 83.71,
-        "y": 44.42
-      },
-      "linked": [
-        "POITIT-001"
-      ]
-    },
-    {
-      "skill": "CRIPRI-001",
-      "pos": {
-        "x": 65.79,
-        "y": 57.25
-      },
-      "linked": [
-        "RAGEXX-001"
-      ]
-    },
-    {
-      "skill": "CRISAL-001",
-      "pos": {
-        "x": 83.71,
-        "y": 57.2
-      },
-      "linked": [
-        "CRIPRI-001"
-      ]
-    },
-    {
-      "skill": "CRIDEM-001",
-      "pos": {
-        "x": 74.68,
-        "y": 68.25
-      },
-      "linked": [
-        "CRIPRI-001"
-      ]
-    },
-    {
-      "skill": "SOISAN-001",
-      "pos": {
-        "x": 34.21,
-        "y": 44.37
-      },
-      "linked": [
-        "RAGEXX-001"
-      ]
-    },
-    {
-      "skill": "SANVER-001",
-      "pos": {
-        "x": 17.21,
-        "y": 42.37
-      },
-      "linked": [
-        "SOISAN-001"
+        "PEABRU-001"
       ]
     },
     {
       "skill": "INSDAN-001",
       "pos": {
+        "x": 72.44,
+        "y": 31.91
+      },
+      "linked": [
+        "PEABRU-001"
+      ]
+    },
+    {
+      "skill": "SENBET-001",
+      "pos": {
+        "x": 27.56,
+        "y": 31.91
+      },
+      "linked": [
+        "PEABRU-001"
+      ]
+    },
+    {
+      "skill": "BONSAU-001",
+      "pos": {
+        "x": 65.79,
+        "y": 44.37
+      },
+      "linked": [
+        "RAGEXX-001"
+      ]
+    },
+    {
+      "skill": "FOULOU-001",
+      "pos": {
+        "x": 83.71,
+        "y": 44.42
+      },
+      "linked": [
+        "BONSAU-001"
+      ]
+    },
+    {
+      "skill": "CRIEFF-001",
+      "pos": {
+        "x": 65.79,
+        "y": 57.25
+      },
+      "linked": [
+        "RAGEXX-001"
+      ]
+    },
+    {
+      "skill": "CRIRAL-001",
+      "pos": {
+        "x": 83.71,
+        "y": 57.2
+      },
+      "linked": [
+        "CRIEFF-001"
+      ]
+    },
+    {
+      "skill": "CRICOL-001",
+      "pos": {
+        "x": 74.68,
+        "y": 68.25
+      },
+      "linked": [
+        "CRIEFF-001"
+      ]
+    },
+    {
+      "skill": "VISINT-001",
+      "pos": {
+        "x": 50,
+        "y": 63.7
+      },
+      "linked": [
+        "RAGEXX-001"
+      ]
+    },
+    {
+      "skill": "ATTTEM-001",
+      "pos": {
         "x": 34.21,
         "y": 57.25
       },
@@ -152,23 +156,43 @@ The same skill can be placed in more than one tree. That is why the layout lives
       ]
     },
     {
-      "skill": "PEABRU-001",
-      "pos": {
-        "x": 30.5,
-        "y": 70.5
-      },
-      "linked": [
-        "INSDAN-001"
-      ]
-    },
-    {
-      "skill": "VISINT-001",
+      "skill": "TOURBI-001",
       "pos": {
         "x": 19.78,
         "y": 63.15
       },
       "linked": [
-        "INSDAN-001"
+        "ATTTEM-001"
+      ]
+    },
+    {
+      "skill": "COUBRU-001",
+      "pos": {
+        "x": 30.5,
+        "y": 70.5
+      },
+      "linked": [
+        "ATTTEM-001"
+      ]
+    },
+    {
+      "skill": "ROMFRO-001",
+      "pos": {
+        "x": 34.21,
+        "y": 44.37
+      },
+      "linked": [
+        "RAGEXX-001"
+      ]
+    },
+    {
+      "skill": "ESTFER-001",
+      "pos": {
+        "x": 17.21,
+        "y": 42.37
+      },
+      "linked": [
+        "ROMFRO-001"
       ]
     }
   ]
@@ -179,8 +203,8 @@ In a tree with a `core` emblem, the first ring links to the literal `CORE` inste
 
 ## What appears on the site
 
-- `/fr/arbre/berserker` and `/en/tree/berserker`: the node appears on the plate at `pos`, with a line drawn to each entry in `linked`, and the tree's filters count it.
-- `/fr/arbre/berserker/RAGEXX-001` and `/en/tree/berserker/RAGEXX-001`: that node is circled in gold, the lines that touch it are drawn gold, and its card opens in the pane beside the plate. Choosing the node on the tree page leads here.
+- `/fr/arbre/barbare` and `/en/tree/barbare`: the node appears on the plate at `pos`, with a line drawn to each entry in `linked`, and the tree's filters count it.
+- `/fr/arbre/barbare/RAGEXX-001` and `/en/tree/barbare/RAGEXX-001`: that node is circled in gold, the lines that touch it are drawn gold, and its card opens in the pane beside the plate. Choosing the node on the tree page leads here.
 - `/fr/arbres` and `/en/trees`: the tree's skill count and computed domains change, because both are counted from the placements.
 
 ## How to check it
@@ -204,6 +228,6 @@ pnpm dev
 
 **16 placements maximum.** The schema caps `placements` at 16.
 
-**Order does not change the drawing.** `L'ordre n'a pas d'effet au rendu.` It does set the order in which the keyboard reaches the nodes on the web plate, so keep the array a readable walk of the tree, the way `berserker.json` lists the centre and then each branch. The booklet lists the skills roots first, then alphabetically, through `treeSkillOrder` in `src/lib/game/derive.ts`.
+**Order does not change the drawing.** `L'ordre n'a pas d'effet au rendu.` It does set the order in which the keyboard reaches the nodes on the web plate, so keep the array a readable walk of the tree, the way `barbare.json` lists the centre and then each branch. The booklet lists the skills roots first, then alphabetically, through `treeSkillOrder` in `src/lib/game/derive.ts`.
 
 **Never write `"pos": null` or `"linked": null`.** Leave the key out.

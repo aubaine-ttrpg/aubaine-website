@@ -1,0 +1,17 @@
+{
+  "id": "INSDOU-001",
+  "title": "Insensible à la douleur",
+  "type": "passive",
+  "tier": 2,
+  "domains": [
+    "physical"
+  ],
+  "activation": "Passif",
+  "tags": {
+    "practice": "technique",
+    "schools": [
+      "protection"
+    ]
+  },
+  "description": "Votre corps a oublié comment se plaindre. Ni la torture ni les menaces ne peuvent vous faire parler, obéir ou supplier contre votre gré."
+}

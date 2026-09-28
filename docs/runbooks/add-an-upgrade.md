@@ -35,37 +35,38 @@ Upgrades are rendered by increasing level, whatever order you write them in. Wri
   "type": "active",
   "tier": 1,
   "domains": [
-    "blood"
+    "physical"
   ],
   "activation": "1 Action Bonus",
-  "range": "Personnelle",
-  "duration": "Jusqu'à la fin de votre prochain tour",
+  "range": "Personnel",
+  "duration": "jusqu'à 10 minutes",
   "energy": 2,
   "tags": {
-    "practice": "manoeuvre",
+    "practice": "rage",
     "schools": [
-      "enhancement"
+      "enhancement",
+      "protection"
     ]
   },
-  "description": "Vous entrez en rage. Vous êtes {{enrage}} jusqu'à la fin de votre prochain tour.\n\nChacune des choses suivantes la prolonge d'un tour de plus, au moment où elle arrive.\n\n***Frapper.*** Vous effectuez un {{jet}} d'{{attaque}} contre un ennemi.\n***Encaisser.*** Vous subissez des dégâts.\n***Contraindre.*** Vous forcez un ennemi à effectuer un {{jet}} pour résister à l'une de vos Compétences.\n***Tenir.*** Vous dépensez une {{action-bonus}} à la prolonger.\n\nLa rage ne dure pas plus de 10 minutes d'affilée.",
+  "description": "Le sang vous bat aux tempes et la douleur recule. Tant que {{RAGEXX-001}} dure, vous êtes {{enrage}}.\n\n{{RAGEXX-001}} dure jusqu'à la fin de votre prochain tour. Chacune des choses suivantes, au moment où elle arrive, la prolonge jusqu'à la fin de votre prochain tour.\n\n***Frapper.*** Vous portez une {{attaque}} contre une créature hostile.\n***Encaisser.*** Vous subissez des dégâts.\n***Contraindre.*** Vous forcez une créature hostile à effectuer un {{jet}} pour résister à l'une de vos Compétences.\n***Tenir.*** Vous dépensez une {{action-bonus}} à la prolonger.\n\n{{RAGEXX-001}} prend fin plus tôt si vous cessez d'être {{enrage}}.",
   "upgrades": [
     {
       "level": 2,
       "tier": 3,
       "title": "Fureur",
-      "description": "Tant que vous êtes {{enrage}}, vos {{attaque|Attaques}} infligent 2 dégâts de plus."
+      "description": "Tant que {{RAGEXX-001}} dure, vos {{attaque|Attaques}} infligent 2 dégâts de plus."
     },
     {
       "level": 3,
       "tier": 7,
       "title": "Fureur redoublée",
-      "description": "Tant que vous êtes {{enrage}}, vos {{attaque|Attaques}} infligent 3 dégâts de plus au lieu de 2."
+      "description": "Tant que {{RAGEXX-001}} dure, vos {{attaque|Attaques}} infligent 3 dégâts de plus au lieu de 2."
     },
     {
       "level": 4,
       "tier": 10,
       "title": "Fureur sans fin",
-      "description": "Tant que vous êtes {{enrage}}, vos {{attaque|Attaques}} infligent 4 dégâts de plus au lieu de 3, et votre rage peut durer 1 heure d'affilée au lieu de 10 minutes."
+      "description": "Tant que {{RAGEXX-001}} dure, vos {{attaque|Attaques}} infligent 4 dégâts de plus au lieu de 3, et {{RAGEXX-001}} peut durer jusqu'à 1 heure."
     }
   ]
 }
@@ -87,7 +88,7 @@ For a price above 50 XP you need `xpOverride`, because tier 10 stops at 50. `dat
 
 ## What appears on the site
 
-On `/fr/arbre/berserker/RAGEXX-001` and `/en/tree/berserker/RAGEXX-001`, each upgrade is a block under the base card in the pane beside the plate, by increasing level, with its title, its XP price and its rule text. The plate node itself is unchanged: an upgrade never draws a node.
+On `/fr/arbre/barbare/RAGEXX-001` and `/en/tree/barbare/RAGEXX-001`, each upgrade is a block under the base card in the pane beside the plate, by increasing level, with its title, its XP price and its rule text. The plate node itself is unchanged: an upgrade never draws a node.
 
 ## How to check it
 

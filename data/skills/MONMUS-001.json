@@ -1,0 +1,16 @@
+{
+  "id": "MONMUS-001",
+  "title": "Montagne de muscles",
+  "type": "passive",
+  "tier": 10,
+  "domains": [
+    "physical"
+  ],
+  "activation": "Passif",
+  "tags": {
+    "schools": [
+      "protection"
+    ]
+  },
+  "description": "Vous encaissez comme la falaise encaisse la houle. Tant que vous êtes {{enrage}} et que vous ne portez aucune armure, vous avez aussi une résistance aux dégâts d'Acide, de Feu, de Foudre, de Froid et de Tonnerre."
+}

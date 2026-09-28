@@ -1,0 +1,16 @@
+{
+  "id": "AUTOMU-001",
+  "title": "Automutilation",
+  "type": "passive",
+  "tier": 2,
+  "domains": [
+    "blood"
+  ],
+  "activation": "Passif",
+  "tags": {
+    "schools": [
+      "enhancement"
+    ]
+  },
+  "description": "Vous rouvrez vos vieilles cicatrices. Lorsque vous jouez {{FRENES-001}}, une fois son coût payé, vous pouvez perdre juste assez de {{pdv}} pour qu'elle soit à son comble. Cette perte n'est pas un dégât."
+}
