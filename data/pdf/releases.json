@@ -174,11 +174,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "c6d590fc",
-      "file": "equipement-en-v0.2.1_aeed9ccd_c6d590fc.pdf",
-      "bytes": 3846951,
+      "contentHash": "f48333df",
+      "file": "equipement-en-v0.2.1_aeed9ccd_f48333df.pdf",
+      "bytes": 3931177,
       "pages": 34,
-      "generatedAt": "2026-09-28T09:24:55Z"
+      "generatedAt": "2026-09-28T09:30:35Z"
     },
     {
       "slug": "equipement",
@@ -186,11 +186,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "aeed9ccd",
-      "contentHash": "b8f124d4",
-      "file": "equipement-fr-v0.2.1_aeed9ccd_b8f124d4.pdf",
-      "bytes": 3853912,
+      "contentHash": "450318c6",
+      "file": "equipement-fr-v0.2.1_aeed9ccd_450318c6.pdf",
+      "bytes": 3938394,
       "pages": 34,
-      "generatedAt": "2026-09-28T09:24:55Z"
+      "generatedAt": "2026-09-28T09:30:35Z"
     },
     {
       "slug": "feu",
