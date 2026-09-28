@@ -4,8 +4,7 @@
   "section": "bottes",
   "position": 1,
   "kind": "Bottes",
-  "rarity": "uncommon",
-  "price": 12000,
+  "rarity": "rare",
   "prerequisite": "Force +3",
   "headlines": [
     {

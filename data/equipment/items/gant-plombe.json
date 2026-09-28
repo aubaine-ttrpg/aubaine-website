@@ -4,8 +4,7 @@
   "section": "armes-poing",
   "position": 2,
   "kind": "Arme de poing",
-  "rarity": "uncommon",
-  "price": 12000,
+  "rarity": "rare",
   "headlines": [
     {
       "label": "Dégâts",
