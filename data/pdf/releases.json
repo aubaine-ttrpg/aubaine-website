@@ -102,11 +102,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "310dd773",
-      "contentHash": "34a5d331",
-      "file": "draugar-en-v0.2.1_310dd773_34a5d331.pdf",
-      "bytes": 1816447,
-      "pages": 9,
-      "generatedAt": "2026-09-28T13:38:16Z"
+      "contentHash": "e6a5459a",
+      "file": "draugar-en-v0.2.1_310dd773_e6a5459a.pdf",
+      "bytes": 1780353,
+      "pages": 11,
+      "generatedAt": "2026-09-28T18:01:31Z"
     },
     {
       "slug": "draugar",
@@ -114,11 +114,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
-      "contentHash": "86f8a929",
-      "file": "draugar-fr-v0.2.1_310dd773_86f8a929.pdf",
-      "bytes": 1846046,
-      "pages": 10,
-      "generatedAt": "2026-09-28T13:38:16Z"
+      "contentHash": "39dfeb34",
+      "file": "draugar-fr-v0.2.1_310dd773_39dfeb34.pdf",
+      "bytes": 1795436,
+      "pages": 11,
+      "generatedAt": "2026-09-28T18:01:31Z"
     },
     {
       "slug": "druide",
@@ -294,11 +294,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "310dd773",
-      "contentHash": "dbda0cdc",
-      "file": "livre-du-joueur-en-v0.2.1_310dd773_dbda0cdc.pdf",
-      "bytes": 1580984,
-      "pages": 35,
-      "generatedAt": "2026-09-28T13:59:54Z"
+      "contentHash": "83f5bb74",
+      "file": "livre-du-joueur-en-v0.2.1_310dd773_83f5bb74.pdf",
+      "bytes": 1614425,
+      "pages": 34,
+      "generatedAt": "2026-09-28T18:00:17Z"
     },
     {
       "slug": "livre-du-joueur",
@@ -306,11 +306,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
-      "contentHash": "1cda53b2",
-      "file": "livre-du-joueur-fr-v0.2.1_310dd773_1cda53b2.pdf",
-      "bytes": 1591384,
+      "contentHash": "b8267e20",
+      "file": "livre-du-joueur-fr-v0.2.1_310dd773_b8267e20.pdf",
+      "bytes": 1629806,
       "pages": 35,
-      "generatedAt": "2026-09-28T13:59:54Z"
+      "generatedAt": "2026-09-28T18:00:17Z"
     },
     {
       "slug": "livre-du-mj",
@@ -606,11 +606,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "310dd773",
-      "contentHash": "9ac25fd7",
-      "file": "terre-en-v0.2.1_310dd773_9ac25fd7.pdf",
-      "bytes": 1964866,
+      "contentHash": "e1ae4077",
+      "file": "terre-en-v0.2.1_310dd773_e1ae4077.pdf",
+      "bytes": 1893630,
       "pages": 12,
-      "generatedAt": "2026-09-28T13:59:54Z"
+      "generatedAt": "2026-09-28T17:59:53Z"
     },
     {
       "slug": "terre",
@@ -618,11 +618,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
-      "contentHash": "a17a938d",
-      "file": "terre-fr-v0.2.1_310dd773_a17a938d.pdf",
-      "bytes": 1972183,
+      "contentHash": "d7dd99c6",
+      "file": "terre-fr-v0.2.1_310dd773_d7dd99c6.pdf",
+      "bytes": 1913226,
       "pages": 12,
-      "generatedAt": "2026-09-28T13:59:54Z"
+      "generatedAt": "2026-09-28T17:59:53Z"
     },
     {
       "slug": "vent",
@@ -630,11 +630,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "310dd773",
-      "contentHash": "8c376df2",
-      "file": "vent-en-v0.2.1_310dd773_8c376df2.pdf",
-      "bytes": 2407799,
+      "contentHash": "73825bef",
+      "file": "vent-en-v0.2.1_310dd773_73825bef.pdf",
+      "bytes": 2323728,
       "pages": 13,
-      "generatedAt": "2026-09-28T13:59:54Z"
+      "generatedAt": "2026-09-28T18:00:05Z"
     },
     {
       "slug": "vent",
@@ -642,11 +642,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
-      "contentHash": "8350f966",
-      "file": "vent-fr-v0.2.1_310dd773_8350f966.pdf",
-      "bytes": 2412851,
+      "contentHash": "9a49b15f",
+      "file": "vent-fr-v0.2.1_310dd773_9a49b15f.pdf",
+      "bytes": 2339144,
       "pages": 13,
-      "generatedAt": "2026-09-28T13:59:54Z"
+      "generatedAt": "2026-09-28T18:00:05Z"
     }
   ]
 }
