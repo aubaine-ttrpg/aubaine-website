@@ -52,8 +52,11 @@ agent trusting the copy will miss terms that have since been added.
   available without declaring it first.
 - A word without markup is plain text and never links, whatever its capitals. A common word used in
   its ordinary sense is therefore safe as it is, and capitals stay a matter of house style.
-- Reference what the reader should reach. Linking every occurrence turns a paragraph naming several
-  pairs into a wall of pills.
+- Reference every occurrence of a word used in the gameplay sense its entry defines: « vous fait
+  `{{memorisee|mémoriser}}` », « un `{{sort}}` », « `{{apprise|appris}}` ». A word used in its
+  ordinary French sense stays bare, and so does a word that only looks like a term: « Jet de
+  dégâts » names dice, not a `{{jet}}`. Write the term rather than a paraphrase: « un `{{sort}}` »,
+  not « une Compétence qui porte l'étiquette Sort ».
 - `pnpm data:check` fails on a key that does not resolve in the locale its string is written in, on
   `[[` anywhere, and on an icon the index names that has no file. It cannot see a term the author
   meant to link and left bare, nor written text that no longer agrees with its sentence: only
