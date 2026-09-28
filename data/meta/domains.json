@@ -73,6 +73,12 @@
       "labelEn": "Necrotic"
     },
     {
+      "key": "ether",
+      "color": "#3450ff",
+      "labelFr": "Éther",
+      "labelEn": "Ether"
+    },
+    {
       "key": "neutral",
       "color": "#2a2a2e",
       "labelFr": "Neutre",
