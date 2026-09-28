@@ -4,5 +4,5 @@
   "kind": "buff",
   "icon": "mdi:metronome",
   "color": "#b83b5e",
-  "description": "{{cadence}} s'accumule sur vous jusqu'à 3.\n\nÀ chacun de vos tours, la première {{attaque-martiale}} que vous réussissez inflige 1 dégât de plus par {{cadence}} que vous portez.\n\nVous perdez toute votre {{cadence}} lorsque vous gagnez {{aplomb}}, et lorsque vous terminez votre tour sans y avoir porté d'{{attaque-martiale}}.\n\nAu début d'un combat, vous perdez toute votre {{cadence}}."
+  "description": "{{cadence}} s'accumule sur vous jusqu'à 3.\n\nÀ chacun de vos tours, la première {{attaque}} que vous réussissez inflige 1 dégât de plus par {{cadence}} que vous portez.\n\nVous perdez toute votre {{cadence}} lorsque vous gagnez {{aplomb}}, et lorsque vous terminez votre tour sans y avoir porté d'{{attaque}}.\n\nAu début d'un combat, vous perdez toute votre {{cadence}}."
 }

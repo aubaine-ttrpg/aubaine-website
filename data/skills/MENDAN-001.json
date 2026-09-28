@@ -21,5 +21,5 @@
       "protection"
     ]
   },
-  "description": "Chaque échange vous laisse prendre le dessus ou vous garder : cette {{attaque-martiale}} peut vous donner 1 {{cadence}} ou 1 {{aplomb}}. Vous ne pouvez jouer cette Compétence qu'une fois par tour.\n\nAvant de lancer le {{jet}}, choisissez l'un des effets suivants, puis portez l'{{attaque}} normalement.\n\n***Presser.*** En cas de réussite, une fois les dégâts infligés, vous gagnez 1 {{cadence}}.\n***Se garder.*** Une fois l'{{attaque}} résolue, qu'elle ait réussi ou non, vous gagnez 1 {{aplomb}}, sauf si vous en portez déjà 2 ou plus."
+  "description": "Chaque échange vous laisse prendre le dessus ou vous garder : cette {{attaque}} peut vous donner 1 {{cadence}} ou 1 {{aplomb}}. Vous ne pouvez jouer cette Compétence qu'une fois par tour.\n\nAvant de lancer le {{jet}}, choisissez l'un des effets suivants, puis portez l'{{attaque}} normalement.\n\n***Presser.*** En cas de réussite, une fois les dégâts infligés, vous gagnez 1 {{cadence}}.\n***Se garder.*** Une fois l'{{attaque}} résolue, qu'elle ait réussi ou non, vous gagnez 1 {{aplomb}}, sauf si vous en portez déjà 2 ou plus."
 }

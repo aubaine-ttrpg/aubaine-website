@@ -20,7 +20,7 @@
       "destruction"
     ]
   },
-  "description": "Vous jouez cette {{reaction}} lorsqu'une créature que vous voyez à portée vous manque avec une {{attaque}} de {{melee}} ou de {{finesse}}, pour lui rendre le coup. Vous devez porter au moins 1 {{aplomb}}.\n\nPortez une {{attaque-martiale}} contre elle. En cas de réussite, ses dégâts augmentent de 1d10 par {{aplomb}} que vous portez.\n\nQue l'{{attaque}} réussisse ou non, vous perdez ensuite tout votre {{aplomb}} et gagnez 1 {{cadence}}.",
+  "description": "Vous jouez cette {{reaction}} lorsqu'une créature que vous voyez à portée vous manque avec une {{attaque}} de {{melee}} ou de {{finesse}}, pour lui rendre le coup. Vous devez porter au moins 1 {{aplomb}}.\n\nPortez une {{attaque}} contre elle. En cas de réussite, ses dégâts augmentent de 1d10 par {{aplomb}} que vous portez.\n\nQue l'{{attaque}} réussisse ou non, vous perdez ensuite tout votre {{aplomb}} et gagnez 1 {{cadence}}.",
   "upgrades": [
     {
       "level": 2,

@@ -712,16 +712,6 @@ const RULE_TERMS: readonly RuleTerm[] = [
     },
   },
   {
-    fr: 'Attaque martiale',
-    en: 'Martial Attack',
-    color: 'var(--term-atk)',
-    icon: 'mdi/sword',
-    definition: {
-      fr: "Une {{attaque}} portée avec une arme, un bouclier, une arme naturelle ou à mains nues, dont le {{jet}} emploie {{melee}}, {{finesse}} ou {{visee}}. Une {{attaque}} dont un {{sort}} fixe le {{jet}} n'en est pas une, même quand ce {{jet}} emploie {{visee}}. Une {{attaque}} portée avec un objet qui n'est pas une arme, comme une fiole lancée, n'en est pas une non plus.",
-      en: 'An {{attaque}} made with a weapon, a shield, a natural weapon or bare-handed, whose {{jet}} uses {{melee}}, {{finesse}} or {{visee}}. An {{attaque}} whose {{jet}} is set by a {{sort}} is not one, even when that {{jet}} uses {{visee}}. Nor is an {{attaque}} made with an object that is not a weapon, such as a thrown flask.',
-    },
-  },
-  {
     fr: 'Jet',
     en: 'Roll',
     color: 'var(--term-roll)',
