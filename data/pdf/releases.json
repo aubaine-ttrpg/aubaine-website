@@ -486,11 +486,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "310dd773",
-      "contentHash": "c24b2aa8",
-      "file": "psychique-en-v0.2.1_310dd773_c24b2aa8.pdf",
-      "bytes": 2115139,
+      "contentHash": "2b444432",
+      "file": "psychique-en-v0.2.1_310dd773_2b444432.pdf",
+      "bytes": 2540260,
       "pages": 13,
-      "generatedAt": "2026-09-28T13:59:54Z"
+      "generatedAt": "2026-09-28T15:05:46Z"
     },
     {
       "slug": "psychique",
@@ -498,11 +498,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
-      "contentHash": "183705a5",
-      "file": "psychique-fr-v0.2.1_310dd773_183705a5.pdf",
-      "bytes": 2127123,
+      "contentHash": "454bb9e7",
+      "file": "psychique-fr-v0.2.1_310dd773_454bb9e7.pdf",
+      "bytes": 2553284,
       "pages": 13,
-      "generatedAt": "2026-09-28T13:59:54Z"
+      "generatedAt": "2026-09-28T15:05:46Z"
     },
     {
       "slug": "roublard",
