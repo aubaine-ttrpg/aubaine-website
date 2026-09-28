@@ -86,6 +86,8 @@ const ANTITHESIS = new RegExp(
   'iu',
 )
 const ASTERISK_RUN = /\*+/g
+const ONE_TIME_SETUP =
+  /La première fois que vous \{\{memorisee\||À l'achat|The first time you \{\{memorisee\|/u
 
 const BANNED_PHRASES = [
   'in a world where',
@@ -484,6 +486,20 @@ describe('rule text markup', () => {
   it('writes no double bracket, since a state is referenced by its key', () => {
     for (const { where, text } of everyRuleText) {
       expect(text.includes('[['), `${where} writes [[ ]]`).toBe(false)
+    }
+  })
+
+  it('puts a one-time setup in the first paragraph of its rule text', () => {
+    for (const { where, text } of everyRuleText) {
+      text
+        .split('\n\n')
+        .slice(1)
+        .forEach((paragraph, index) => {
+          expect(
+            ONE_TIME_SETUP.test(paragraph),
+            `${where} holds its one-time setup in paragraph ${index + 2}`,
+          ).toBe(false)
+        })
     }
   })
 
