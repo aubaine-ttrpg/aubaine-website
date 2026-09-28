@@ -7,13 +7,11 @@
     "blood"
   ],
   "activation": "Passif",
-  "range": "—",
-  "duration": "—",
   "tags": {
     "practice": "technique",
     "schools": [
       "protection"
     ]
   },
-  "description": "Vous avez trop saigné pour que cela vous impressionne encore. Vous ne subissez aucun {{desavantage}} pour agir à bas {{pdv}}, et vous gagnez 1 {{avantage}} à vos {{jet|Jets}} de {{constitution}} + {{resistance}} contre le poison, la maladie et la perte de sang."
+  "description": "Vous avez trop saigné pour que cela vous impressionne encore. Lorsque vous tombez à 0 {{pdv}}, vous gagnez {{agonie}} 4 au lieu de 3.\n\nVous gagnez aussi 1 {{avantage}} à vos {{jet|Jets}} de {{constitution}} + {{resistance}} contre le poison et la maladie."
 }

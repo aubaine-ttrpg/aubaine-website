@@ -6,9 +6,10 @@
   "domains": [
     "blood"
   ],
+  "characteristics": [
+    "intelligence"
+  ],
   "activation": "Passif",
-  "range": "—",
-  "duration": "—",
   "tags": {
     "schools": [
       "illusion"
@@ -17,5 +18,5 @@
       "graft"
     ]
   },
-  "description": "Vos coutures disparaissent sous la peau et vos greffes passent pour vôtres. Seule une créature qui vous examine de près et réussit un {{jet}} d'{{esprit}} + {{perception}} contre votre {{dd}} (10 + {{charisme}} + {{tromperie}}) remarque qu'un morceau de vous n'a pas poussé là."
+  "description": "Vos coutures disparaissent sous la peau, et vos {{GREFFE-001|greffes}} passent pour vôtres. Seule une créature qui vous examine de près et réussit un {{jet}} d'{{esprit}} + {{perception}} contre votre {{dd}} (10 + {{intelligence}} + {{medecine}}) remarque qu'un morceau de vous n'a pas poussé là."
 }

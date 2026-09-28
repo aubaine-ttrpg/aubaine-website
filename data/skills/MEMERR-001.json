@@ -1,0 +1,23 @@
+{
+  "id": "MEMERR-001",
+  "title": "Membre errant",
+  "type": "active",
+  "tier": 4,
+  "domains": [
+    "blood"
+  ],
+  "activation": "1 Action",
+  "range": "30 m",
+  "duration": "jusqu'à 1 heure",
+  "life": "1d6",
+  "tags": {
+    "schools": [
+      "summoning",
+      "divination"
+    ],
+    "specials": [
+      "graft"
+    ]
+  },
+  "description": "Vous détachez l'un de vos membres, et il continue de vous obéir. Choisissez ce que vous détachez parmi les suivants.\n\n***Un œil.*** Vous voyez ce qu'il voit.\n***Une oreille.*** Vous entendez ce qu'elle entend.\n***Une main.*** Vous sentez ce qu'elle touche. Elle peut porter un {{objet-libre}} qui tient dans une main, ouvrir une porte ou un tiroir qui n'est pas verrouillé, tourner une clé ou tirer un levier.\n***Une greffe.*** L'une de vos {{GREFFE-001|greffes}} emporte ce qu'elle vous donnait : vous le perdez tant qu'elle est détachée, et elle s'en sert elle-même, comme une aile qui vole.\n\nAu moment où vous jouez cette Compétence, puis chaque fois que vous y consacrez votre {{action-bonus}}, le membre se déplace d'au plus votre {{vitesse}}, en rampant, en roulant ou comme sa forme le permet. Il ne quitte jamais la portée, et ne peut ni porter d'{{attaque}} ni jouer de Compétence. Il a votre {{ca}}, et vous subissez les dégâts qu'il subit. Vous ne détachez qu'un membre à la fois.\n\n{{MEMERR-001}} prend fin aussi lorsque le membre subit des dégâts, ou lorsque vous y mettez fin. Le membre retombe alors inerte là où il se trouve, et reprend sa place dès que vous le touchez. S'il ne l'a pas reprise à votre prochain {{repos-long}}, un autre repousse à sa place ; une {{GREFFE-001|greffe}} perdue ne repousse pas."
+}

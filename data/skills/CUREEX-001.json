@@ -1,0 +1,26 @@
+{
+  "id": "CUREEX-001",
+  "title": "Curée",
+  "type": "active",
+  "tier": 10,
+  "domains": [
+    "blood"
+  ],
+  "characteristics": [
+    "intelligence"
+  ],
+  "activation": "1 Action",
+  "range": "9 m",
+  "duration": "Instantanée",
+  "life": "4d6",
+  "tags": {
+    "practice": "spell",
+    "schools": [
+      "destruction"
+    ],
+    "specials": [
+      "lifesteal"
+    ]
+  },
+  "description": "Le sang de chaque créature blessée autour de vous s'arrache de ses plaies et vient à vous.\n\nChaque créature de votre choix que vous voyez à portée, dont les {{pdv}} sont sous leur maximum et qui a du sang, effectue un {{jet}} de {{constitution}} + {{resistance}} contre votre {{dd}} (10 + {{intelligence}} + {{arcanes}}). En cas d'échec, elle subit 6d6 dégâts Perforants et vous récupérez 1d6 {{pdv}}. En cas de réussite, elle n'en subit que la moitié."
+}

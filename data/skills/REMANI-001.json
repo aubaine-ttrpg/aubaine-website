@@ -7,7 +7,7 @@
     "blood"
   ],
   "activation": "10 minutes",
-  "range": "Personnelle",
+  "range": "Personnel",
   "duration": "1 heure",
   "life": "2d6",
   "tags": {
@@ -18,13 +18,13 @@
       "graft"
     ]
   },
-  "description": "Vous vous ouvrez et vous vous remontez autrement. Ce qui portait la force porte l'esprit, ce qui portait l'esprit porte autre chose.\n\nChoisissez deux de vos {{caracteristique|Caractéristiques}} et échangez leurs modificateurs. Un draugar à +5 en {{intelligence}} et -1 en {{force}} ressort à +5 en {{force}} et -1 en {{intelligence}}.\n\nTout ce qui découle de ces {{caracteristique|Caractéristiques}} suit l'échange tant qu'il dure : votre {{ca}}, vos {{pdv}} maximum, vos {{jet|Jets}}. Si vos {{pdv}} maximum baissent au point de passer sous vos {{pdv}} actuels, ceux-ci descendent d'autant.",
+  "description": "Vous vous ouvrez et vous vous remontez autrement. Choisissez deux de vos {{caracteristique|Caractéristiques}} et échangez leurs valeurs. Avec +5 en {{intelligence}} et -1 en {{force}}, vous ressortez à +5 en {{force}} et -1 en {{intelligence}}.\n\nVos valeurs dérivées suivent l'échange tant qu'il dure, comme votre {{ca}} et vos {{pdv}} maximum. Si votre maximum de {{pdv}} passe sous vos {{pdv}} actuels, ceux-ci descendent à ce maximum. Lorsque {{REMANI-001}} prend fin, vos {{caracteristique|Caractéristiques}} reprennent leurs valeurs, et vos {{pdv}} actuels ne remontent pas.",
   "upgrades": [
     {
       "level": 2,
       "tier": 8,
       "title": "Remaniement complet",
-      "description": "Vous pouvez échanger les modificateurs de deux paires de {{caracteristique|Caractéristiques}} au lieu d'une, et {{REMANI-001}} tient 8 heures."
+      "description": "Vous pouvez échanger les valeurs de deux paires de {{caracteristique|Caractéristiques}} au lieu d'une, et {{REMANI-001}} dure 8 heures au lieu de 1 heure."
     }
   ]
 }

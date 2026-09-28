@@ -19,9 +19,9 @@
   },
   "draugar": {
     "domains": ["blood"],
-    "prime": ["intelligence", "charisma"],
+    "prime": ["intelligence"],
     "upgrades": 11,
-    "xpTotal": 205
+    "xpTotal": 285
   },
   "druide": {
     "domains": ["earth"],

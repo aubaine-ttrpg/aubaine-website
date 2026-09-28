@@ -7,8 +7,6 @@
     "blood"
   ],
   "activation": "Passif",
-  "range": "—",
-  "duration": "—",
   "tags": {
     "schools": [
       "healing"
@@ -17,5 +15,5 @@
       "lifesteal"
     ]
   },
-  "description": "Ce que vous prenez se recoud tout seul. À la fin de chacun de vos tours où vous avez récupéré des {{pdv}} par une Compétence portant l'étiquette Vol de vie, vous en récupérez 1d4 de plus."
+  "description": "Ce que vous prenez se recoud tout seul. À la fin de chacun de vos tours où une Compétence portant l'étiquette Vol de vie vous a rendu des {{pdv}}, vous récupérez 1d4 {{pdv}} plus votre {{constitution}}."
 }

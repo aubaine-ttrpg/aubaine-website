@@ -7,7 +7,7 @@
     "blood"
   ],
   "activation": "10 minutes",
-  "range": "Personnelle",
+  "range": "Personnel",
   "duration": "Jusqu'au rejet",
   "tags": {
     "schools": [
@@ -17,31 +17,31 @@
       "graft"
     ]
   },
-  "description": "Vous vous greffez par le sang une partie du corps d'une autre créature, prélevée sur une carcasse, récupérée dans un butin ou rapportée d'ailleurs. Vous vous en servez comme de votre propre membre, et elle vous donne ce qu'elle donnait à celle qui la portait.\n\nVous ne maintenez qu'une seule greffe à la fois. Elle tient jusqu'à ce que vous en posiez une autre.",
+  "description": "Vous vous greffez par le sang une partie du corps d'une autre créature, prélevée sur une carcasse, récupérée dans un butin ou rapportée d'ailleurs. Vous vous en servez comme de votre propre membre, et elle vous donne ce qu'elle donnait à celle qui la portait.\n\nVous portez une seule greffe à la fois. Lorsque vous en posez une de plus que vous ne pouvez en porter, votre corps rejette l'une des précédentes, de votre choix : elle se détache et meurt.",
   "upgrades": [
     {
       "level": 2,
       "tier": 3,
       "title": "Double greffe",
-      "description": "Vous maintenez jusqu'à 2 greffes à la fois."
+      "description": "Vous portez jusqu'à 2 greffes à la fois au lieu d'une."
     },
     {
       "level": 3,
       "tier": 6,
       "title": "Triple greffe",
-      "description": "Vous maintenez jusqu'à 3 greffes à la fois."
+      "description": "Vous portez jusqu'à 3 greffes à la fois au lieu de 2."
     },
     {
       "level": 4,
       "tier": 9,
       "title": "Quadruple greffe",
-      "description": "Vous maintenez jusqu'à 4 greffes à la fois."
+      "description": "Vous portez jusqu'à 4 greffes à la fois au lieu de 3."
     },
     {
       "level": 5,
       "tier": 10,
       "title": "Corps chimérique",
-      "description": "Vous maintenez jusqu'à 5 greffes à la fois. Plus rien de ce que vous portez n'est né avec vous."
+      "description": "Vous portez jusqu'à 5 greffes à la fois au lieu de 4."
     }
   ]
 }

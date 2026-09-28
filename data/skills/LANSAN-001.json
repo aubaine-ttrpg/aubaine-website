@@ -1,0 +1,16 @@
+{
+  "id": "LANSAN-001",
+  "title": "Langue de sang",
+  "type": "passive",
+  "tier": 2,
+  "domains": [
+    "blood"
+  ],
+  "activation": "Passif",
+  "tags": {
+    "schools": [
+      "divination"
+    ]
+  },
+  "description": "Lorsque vous goûtez le sang d'une créature, vous comprenez les langues qu'elle parle pendant 1 heure. Vous ne pouvez ni les parler ni les lire."
+}

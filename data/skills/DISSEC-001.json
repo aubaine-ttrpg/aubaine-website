@@ -6,6 +6,9 @@
   "domains": [
     "blood"
   ],
+  "characteristics": [
+    "intelligence"
+  ],
   "activation": "10 minutes",
   "range": "Contact",
   "duration": "Instantanée",
@@ -15,13 +18,13 @@
       "creation"
     ]
   },
-  "description": "Une carcasse est un magasin pour qui sait où couper. Après une rencontre significative remportée contre une créature qui n'est ni humanoïde ni construite, vous pouvez passer 10 minutes à l'ouvrir proprement.\n\nEffectuez un {{jet}} d'{{intelligence}} + {{medecine}} contre un {{dd}} de 15. En cas de réussite, vous recevez une Occasion de butin de plus sur cette source. En cas d'échec, vous abîmez ce que vous cherchiez et n'en tirez rien de plus.",
+  "description": "Une carcasse est un magasin pour qui sait où couper. Vous ouvrez proprement le cadavre d'une créature ni humanoïde ni artificielle, vaincue lors d'une rencontre significative. Un cadavre ne se dissèque qu'une fois.\n\nEffectuez un {{jet}} d'{{intelligence}} + {{medecine}} contre un {{dd}} de 15. En cas de réussite, vous recevez une Occasion de butin de plus sur cette source. En cas d'échec, vous abîmez ce que vous cherchiez et n'en tirez rien de plus.",
   "upgrades": [
     {
       "level": 2,
       "tier": 6,
       "title": "Prélèvement propre",
-      "description": "Un échec à {{DISSEC-001}} n'abîme plus rien : vous pouvez retenter une fois de plus sur la même source."
+      "description": "Lorsque vous échouez au {{jet}} de {{DISSEC-001}}, vous n'abîmez rien, et vous pouvez rejouer {{DISSEC-001}} une seconde fois sur ce cadavre."
     }
   ]
 }

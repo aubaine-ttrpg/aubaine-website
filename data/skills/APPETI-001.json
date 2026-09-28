@@ -7,8 +7,6 @@
     "blood"
   ],
   "activation": "Passif",
-  "range": "—",
-  "duration": "—",
   "tags": {
     "schools": [
       "healing"
@@ -17,5 +15,5 @@
       "lifesteal"
     ]
   },
-  "description": "Plus vous êtes vide, plus vous buvez large. Lorsqu'une Compétence portant l'étiquette Vol de vie vous rend des {{pdv}} et que vous possédez la moitié ou moins de vos {{pdv}} maximum, elle vous en rend le double."
+  "description": "Plus vous êtes vide, plus vous buvez large. Lorsqu'une Compétence portant l'étiquette Vol de vie vous rend des {{pdv}} alors que vous avez la moitié ou moins de vos {{pdv}} maximum, elle vous en rend le double."
 }

@@ -10,7 +10,7 @@
     "charisma"
   ],
   "activation": "1 Action",
-  "range": "Personnelle",
+  "range": "Personnel",
   "duration": "jusqu'à 1 heure",
   "life": "3d6",
   "tags": {
@@ -21,5 +21,5 @@
       "graft"
     ]
   },
-  "description": "Vous avez goûté son sang, vous savez comment elle est faite. Choisissez une créature humanoïde dont vous avez goûté le sang ou dont vous portez une greffe.\n\nVotre chair se remet en place à sa ressemblance tant que la créature ne dépasse pas votre {{taille|taille}}. Tant que cela dure, vous passez pour elle. Une créature peut effectuer un {{jet}} d'{{esprit}} + {{perception}} contre votre {{dd}} (10 + {{charisme}} + {{tromperie}}) pour révéler la vérité."
+  "description": "Votre chair se remet en place à la ressemblance d'une autre créature. Choisissez une créature humanoïde de votre {{taille}} ou d'une {{taille}} inférieure, dont vous avez goûté le sang ou dont vous portez une {{GREFFE-001|greffe}}.\n\nTant que {{VISEMP-001}} dure, vous passez pour elle. Une créature qui a une raison de douter de vous peut effectuer un {{jet}} d'{{esprit}} + {{perception}} contre votre {{dd}} (10 + {{charisme}} + {{tromperie}}) pour révéler la vérité."
 }

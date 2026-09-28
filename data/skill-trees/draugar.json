@@ -1,6 +1,6 @@
 {
   "id": "draugar",
-  "status": "draft",
+  "status": "playtest",
   "name": "Draugar",
   "subtitle": "L'abomination sanguine",
   "treeType": "archetype",
@@ -26,7 +26,7 @@
       ]
     },
     {
-      "skill": "PONCTI-001",
+      "skill": "CUREEX-001",
       "pos": {
         "x": 50,
         "y": 26.14
@@ -39,6 +39,16 @@
       "skill": "REGENE-001",
       "pos": {
         "x": 72.44,
+        "y": 31.91
+      },
+      "linked": [
+        "CROSAN-001"
+      ]
+    },
+    {
+      "skill": "PONCTI-001",
+      "pos": {
+        "x": 27.56,
         "y": 31.91
       },
       "linked": [
@@ -86,23 +96,33 @@
       ]
     },
     {
-      "skill": "GREDIS-001",
+      "skill": "MEMERR-001",
       "pos": {
-        "x": 34.21,
-        "y": 44.37
+        "x": 74.68,
+        "y": 68.25
+      },
+      "linked": [
+        "DISSEC-001"
+      ]
+    },
+    {
+      "skill": "LANSAN-001",
+      "pos": {
+        "x": 50,
+        "y": 63.7
       },
       "linked": [
         "GREFFE-001"
       ]
     },
     {
-      "skill": "VISEMP-001",
+      "skill": "REMANI-001",
       "pos": {
-        "x": 17.21,
-        "y": 42.37
+        "x": 34.21,
+        "y": 57.25
       },
       "linked": [
-        "GREDIS-001"
+        "GREFFE-001"
       ]
     },
     {
@@ -126,13 +146,23 @@
       ]
     },
     {
-      "skill": "REMANI-001",
+      "skill": "GREDIS-001",
       "pos": {
         "x": 34.21,
-        "y": 57.25
+        "y": 44.37
       },
       "linked": [
         "GREFFE-001"
+      ]
+    },
+    {
+      "skill": "VISEMP-001",
+      "pos": {
+        "x": 17.21,
+        "y": 42.37
+      },
+      "linked": [
+        "GREDIS-001"
       ]
     }
   ]

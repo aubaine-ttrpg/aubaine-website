@@ -7,8 +7,8 @@
     "blood"
   ],
   "activation": "1 Action Bonus",
-  "range": "Personnelle",
-  "duration": "Jusqu'à votre prochaine Attaque",
+  "range": "Personnel",
+  "duration": "Jusqu'à la fin de votre tour",
   "life": "1d6",
   "tags": {
     "practice": "spell",
@@ -19,7 +19,7 @@
       "lifesteal"
     ]
   },
-  "description": "Vous ouvrez vos paumes et laissez le sang appeler le sang.\n\nVotre prochaine {{attaque}} de ce tour vous rend des {{pdv}} égaux à la moitié des dégâts qu'elle inflige.",
+  "description": "Vous ouvrez vos paumes et laissez le sang appeler le sang.\n\nVotre prochaine {{attaque}} vous rend des {{pdv}} égaux à la moitié des dégâts qu'elle inflige.",
   "upgrades": [
     {
       "level": 2,
