@@ -1,0 +1,26 @@
+{
+  "id": "COUPOL-001",
+  "title": "Coupole",
+  "type": "active",
+  "tier": 5,
+  "domains": [
+    "psychic"
+  ],
+  "characteristics": [
+    "intelligence",
+    "spirit",
+    "charisma"
+  ],
+  "activation": "1 Action",
+  "range": "18 m",
+  "duration": "jusqu'à 1 minute",
+  "concentration": true,
+  "energy": 3,
+  "tags": {
+    "practice": "innate",
+    "schools": [
+      "protection"
+    ]
+  },
+  "description": "Vous dressez une coupole de force invisible, une demi-sphère de 3 m de rayon posée au sol et centrée sur un point que vous voyez à portée. Au moment où vous jouez cette Compétence, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nUne créature qui se trouve sur le tracé de la paroi est d'abord repoussée, du côté de votre choix, jusqu'à l'emplacement libre le plus proche. Ensuite, chaque créature enfermée sous la coupole qui ne veut pas y rester, et qui n'est pas {{immobilise|Immobilisée}}, effectue un {{jet}} de {{dexterite}} + {{reflexes}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{volonte}}). En cas de réussite, elle sort d'un bond jusqu'à l'emplacement libre le plus proche hors de la coupole ; ce trajet ne compte pas dans son {{deplacement|déplacement}} et ne déclenche aucune {{ATTOPP-001}}. En cas d'échec, elle reste enfermée.\n\nTant que vous {{concentration|vous concentrez}}, rien ne traverse la paroi, dans un sens comme dans l'autre : ni une créature, ni un objet, ni une {{attaque}}, ni une téléportation, et une Compétence jouée d'un côté de la paroi n'a aucun effet de l'autre côté. La lumière, le son et l'air la traversent. Une créature peut prendre la paroi pour cible d'une {{attaque}} ou d'une Compétence, et la paroi l'arrête.\n\nChaque coup que la paroi arrête pèse sur vous. Vous gagnez 1 {{pression}} lorsque vous la dressez, puis 1 de plus chaque fois qu'elle arrête une {{attaque}} ou les effets d'une Compétence.\n\n{{COUPOL-001}} prend fin aussi lorsque son centre se trouve hors de portée."
+}

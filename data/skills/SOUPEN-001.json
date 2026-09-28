@@ -1,0 +1,24 @@
+{
+  "id": "SOUPEN-001",
+  "title": "Souffler une pensée",
+  "type": "active",
+  "tier": 3,
+  "domains": [
+    "psychic"
+  ],
+  "characteristics": [
+    "intelligence",
+    "spirit",
+    "charisma"
+  ],
+  "activation": "1 Action",
+  "range": "9 m",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "schools": [
+      "influence"
+    ]
+  },
+  "description": "Vous glissez une pensée dans l'esprit d'une créature que vous voyez à portée, assez doucement pour qu'elle la croie sienne. La pensée tient en une courte phrase, dans une langue que la créature comprend, comme « La porte du fond n'est pas gardée » ou « Il me ment ». Au moment où vous jouez cette Compétence, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nElle effectue un {{jet}} d'{{esprit}} + {{volonte}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{volonte}}). Si la pensée la pousse à se mettre en danger, à trahir un allié ou à agir contre sa nature, ce {{jet}} gagne 2 {{avantage|Avantages}}. En cas d'échec, elle tient la pensée pour la sienne et y réagit comme à une idée qui lui serait venue ; le MJ décide de ce qu'elle en fait. En cas de réussite, elle entend une voix qui n'est pas la sienne et sait qu'on a touché à son esprit, sans savoir qui.\n\nVous gagnez ensuite 1 {{pression}}."
+}

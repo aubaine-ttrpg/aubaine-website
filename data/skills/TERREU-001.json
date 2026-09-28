@@ -1,0 +1,25 @@
+{
+  "id": "TERREU-001",
+  "title": "Terreur",
+  "type": "active",
+  "tier": 4,
+  "domains": [
+    "psychic"
+  ],
+  "characteristics": [
+    "intelligence",
+    "spirit",
+    "charisma"
+  ],
+  "activation": "1 Action",
+  "range": "18 m",
+  "duration": "jusqu'à 1 minute",
+  "energy": 2,
+  "tags": {
+    "schools": [
+      "control",
+      "influence"
+    ]
+  },
+  "description": "Vous imposez à l'esprit d'une créature que vous voyez à portée l'image de ce qu'elle redoute, et vous l'attachez à ce que vous choisissez : vous, une autre créature qu'elle voit, ou un emplacement qu'elle voit, comme une porte ou un pont. Au moment où vous jouez cette Compétence, choisissez aussi sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nLa créature effectue un {{jet}} d'{{esprit}} + {{volonte}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{volonte}}). Si vous savez ce qu'elle redoute, par sa {{phobie}}, par {{LIRPEN-001}} ou autrement, ce {{jet}} subit 1 {{desavantage}}. En cas d'échec, elle est {{effraye|Effrayée}} par ce que vous avez choisi, pour la durée de la Compétence. En cas de réussite, elle ne subit rien.\n\nVous gagnez ensuite 1 {{pression}}."
+}

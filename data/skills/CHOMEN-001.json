@@ -1,0 +1,32 @@
+{
+  "id": "CHOMEN-001",
+  "title": "Choc mental",
+  "type": "active",
+  "tier": 2,
+  "domains": [
+    "psychic"
+  ],
+  "characteristics": [
+    "intelligence",
+    "spirit",
+    "charisma"
+  ],
+  "activation": "1 Action",
+  "range": "18 m",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "schools": [
+      "destruction"
+    ]
+  },
+  "description": "D'une pointe de pensée, vous blessez l'esprit d'une créature que vous voyez à portée. Au moment où vous jouez cette Compétence, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nElle effectue un {{jet}} d'{{esprit}} + {{volonte}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{volonte}}). En cas d'échec, elle subit 2d8 dégâts Psychiques. En cas de réussite, elle n'en subit que la moitié.\n\nVous gagnez ensuite 1 {{pression}}.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 4,
+      "title": "Choc redoublé",
+      "description": "Lorsque vous jouez {{CHOMEN-001}}, vous pouvez dépenser 1 {{energie}} de plus pour viser aussi une seconde créature que vous voyez à portée. Chacune effectue son {{jet}}, et vous gagnez alors 2 {{pression}} au lieu de 1."
+    }
+  ]
+}

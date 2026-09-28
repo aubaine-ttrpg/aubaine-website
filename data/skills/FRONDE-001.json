@@ -1,0 +1,24 @@
+{
+  "id": "FRONDE-001",
+  "title": "Fronde",
+  "type": "active",
+  "tier": 4,
+  "domains": [
+    "psychic"
+  ],
+  "characteristics": [
+    "intelligence",
+    "spirit",
+    "charisma"
+  ],
+  "activation": "1 Action",
+  "range": "9 m",
+  "duration": "Instantanée",
+  "energy": 2,
+  "tags": {
+    "schools": [
+      "destruction"
+    ]
+  },
+  "description": "Vous soulevez un objet, ou la créature que votre {{ETAUXX-001}} retient, et vous en faites une pierre de fronde. Au moment où vous jouez cette Compétence, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nChoisissez le projectile à portée : un {{objet-libre}}, ou la créature de {{taille}} Moyenne ou plus petite que votre {{ETAUXX-001}} tient {{entrave|Entravée}}. Lancer cette créature met fin à {{ETAUXX-001}}.\n\nLe projectile part à l'horizontale, en ligne droite, vers un point que vous voyez à 9 m ou moins de lui, et s'arrête à ce point ou contre la première créature ou le premier obstacle qu'il heurte. Une créature heurtée effectue un {{jet}} de {{dexterite}} + {{reflexes}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{volonte}}). En cas d'échec, elle subit 2d8 dégâts Contondants et tombe {{a-terre}}. En cas de réussite, elle n'en subit que la moitié et reste debout.\n\nUne créature lancée tombe {{a-terre}} là où sa course s'arrête. Si elle a heurté une créature ou un obstacle, elle subit elle aussi 2d8 dégâts Contondants, sans {{jet}}.\n\nVous gagnez ensuite 1 {{pression}}."
+}

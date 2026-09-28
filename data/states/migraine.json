@@ -1,0 +1,9 @@
+{
+  "key": "migraine",
+  "name": "Migraine",
+  "kind": "debuff",
+  "follows": "pression",
+  "icon": "mdi:head-flash",
+  "color": "#8e3fb5",
+  "description": "Votre esprit a cédé. Au moment où vous gagnez {{migraine}}, vous subissez 2d6 dégâts Psychiques et votre {{concentration}} prend fin.\n\nTant que {{migraine}} dure, vous êtes {{etourdi}}, vous ne pouvez gagner aucune {{pression}}, et vous ne pouvez jouer aucune Compétence dont le texte peut vous en faire gagner.\n\nL'état prend fin à la fin de votre prochain tour. Hors combat, il prend fin au bout de 1 minute."
+}

@@ -1,0 +1,8 @@
+{
+  "key": "pression",
+  "name": "Pression",
+  "kind": "neutral",
+  "icon": "game-icons:psychic-waves",
+  "color": "#a947a3",
+  "description": "{{pression}} s'accumule sur vous jusqu'à 5. Dès que vous en portez 5, votre esprit cède : vous perdez toute votre {{pression}} et vous gagnez {{migraine}}.\n\nVous perdez 1 {{pression}} lorsque vous terminez l'un de vos tours sans en avoir gagné depuis la fin de votre tour précédent, ou depuis le début du combat si c'est votre premier tour. Hors combat, vous perdez toute votre {{pression}} au bout de 1 minute sans en gagner.\n\nAu début d'un combat, vous perdez toute votre {{pression}}."
+}

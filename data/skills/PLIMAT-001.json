@@ -1,0 +1,55 @@
+{
+  "id": "PLIMAT-001",
+  "title": "Plier la matière",
+  "type": "active",
+  "tier": 1,
+  "domains": [
+    "psychic"
+  ],
+  "characteristics": [
+    "intelligence",
+    "spirit",
+    "charisma"
+  ],
+  "activation": "1 Action",
+  "range": "9 m",
+  "duration": "Instantanée ou jusqu'à 10 minutes",
+  "energy": 1,
+  "tags": {
+    "schools": [
+      "destruction"
+    ],
+    "specials": [
+      "unleashed"
+    ]
+  },
+  "description": "Vous créez par la pensée une force invisible de la taille d'une caisse, qui pousse, retient, soulève, déplace ou tord ce qu'elle saisit. Au moment où vous jouez cette Compétence, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\n***Dégâts.*** Utilisée de façon offensive, cette force inflige 1d8 dégâts Contondants ou de Force, selon la forme que vous lui donnez : une force qui écrase, ou qui abat un objet sur sa cible, inflige des dégâts Contondants ; une onde de force pure inflige des dégâts de Force. Toute zone plus grande, durée plus longue ou portée accrue que vous lui demandez rend la force moins puissante, jusqu'à la rendre inoffensive.\n\n***DD.*** Lorsqu'une créature effectue un {{jet}} pour résister à cette force, elle effectue son {{jet}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{volonte}}).\n\n***Forme.*** Cette force peut prendre n'importe quelle forme comme une poussée lancée sur une cible, une caisse soulevée et portée à travers la pièce, un écran qui tient une porte fermée, un élan qui vous porte par-dessus une crevasse, ou même une zone d'effet au choix. Lorsqu'elle est répartie en zone, elle peut former, au maximum, un cube de 1,5 m d'arête, une sphère de 1,5 m de rayon, un cône de 3 m ou une ligne de 4,5 m sur 1,5 m. Quelle que soit sa forme, cette force ne vous fait jamais gagner de {{pression}}.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 5,
+      "title": "Secousse",
+      "description": "Lorsque vous jouez {{PLIMAT-001}}, vous pouvez dépenser 1 {{energie}} de plus pour jouer Secousse. La force atteint la taille d'un tonneau, elle inflige 2d8 dégâts et chaque dimension de sa zone augmente de 1,5 m."
+    },
+    {
+      "level": 3,
+      "tier": 10,
+      "title": "Torsion",
+      "description": "Lorsque vous jouez {{PLIMAT-001}}, vous pouvez dépenser 2 {{energie|Énergies}} de plus pour jouer Torsion. La force atteint la taille d'une chambre, elle inflige 3d8 dégâts et chaque dimension de sa zone augmente de 3 m."
+    },
+    {
+      "level": 4,
+      "tier": 10,
+      "xpOverride": 75,
+      "title": "Écrasement",
+      "description": "Lorsque vous jouez {{PLIMAT-001}}, vous pouvez dépenser 3 {{energie|Énergies}} de plus pour jouer Écrasement. La force atteint la taille d'une cabane, elle inflige 4d8 dégâts et chaque dimension de sa zone augmente de 4,5 m."
+    },
+    {
+      "level": 5,
+      "tier": 10,
+      "xpOverride": 100,
+      "title": "Effondrement",
+      "description": "Lorsque vous jouez {{PLIMAT-001}}, vous pouvez dépenser 4 {{energie|Énergies}} de plus pour jouer Effondrement. La force atteint la taille d'une maison, elle inflige 5d8 dégâts et chaque dimension de sa zone augmente de 6 m."
+    }
+  ]
+}

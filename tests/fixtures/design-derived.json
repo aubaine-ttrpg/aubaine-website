@@ -77,6 +77,12 @@
     "upgrades": 6,
     "xpTotal": 235
   },
+  "psychique": {
+    "domains": ["psychic"],
+    "prime": ["any"],
+    "upgrades": 6,
+    "xpTotal": 285
+  },
   "runiste": {
     "domains": ["psychic", "blood"],
     "prime": ["intelligence"],

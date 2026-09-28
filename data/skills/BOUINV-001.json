@@ -1,0 +1,20 @@
+{
+  "id": "BOUINV-001",
+  "title": "Bouclier invisible",
+  "type": "active",
+  "tier": 2,
+  "domains": [
+    "psychic"
+  ],
+  "activation": "1 Réaction",
+  "range": "9 m",
+  "duration": "Instantanée",
+  "energy": 1,
+  "tags": {
+    "practice": "innate",
+    "schools": [
+      "protection"
+    ]
+  },
+  "description": "Vous jouez cette {{reaction}} lorsqu'une {{attaque}} ou une Compétence inflige des dégâts à une créature que vous voyez à portée, vous compris : réduisez-les de 1d6.\n\nAvant de lancer ce dé, vous pouvez dépenser toute votre {{pression}} : la réduction augmente alors de 1d6 par {{pression}} dépensée. Si vous n'en dépensez pas, vous gagnez ensuite 1 {{pression}}."
+}

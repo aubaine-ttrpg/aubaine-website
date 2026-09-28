@@ -1,16 +1,167 @@
 {
   "id": "psychique",
-  "status": "draft",
+  "status": "playtest",
   "name": "Psychique",
+  "subtitle": "La volonté sans mains",
   "treeType": "domain",
   "size": 16,
   "placements": [
     {
-      "skill": "COMEXE-001",
+      "skill": "PLIMAT-001",
       "pos": {
         "x": 50,
         "y": 50.81
       }
+    },
+    {
+      "skill": "ETAUXX-001",
+      "pos": {
+        "x": 50,
+        "y": 37.92
+      },
+      "linked": [
+        "PLIMAT-001"
+      ]
+    },
+    {
+      "skill": "FRONDE-001",
+      "pos": {
+        "x": 50,
+        "y": 26.14
+      },
+      "linked": [
+        "ETAUXX-001"
+      ]
+    },
+    {
+      "skill": "TROMAI-001",
+      "pos": {
+        "x": 72.44,
+        "y": 31.91
+      },
+      "linked": [
+        "ETAUXX-001"
+      ]
+    },
+    {
+      "skill": "BOUINV-001",
+      "pos": {
+        "x": 65.79,
+        "y": 44.37
+      },
+      "linked": [
+        "PLIMAT-001"
+      ]
+    },
+    {
+      "skill": "COUPOL-001",
+      "pos": {
+        "x": 83.71,
+        "y": 44.42
+      },
+      "linked": [
+        "BOUINV-001"
+      ]
+    },
+    {
+      "skill": "CHOMEN-001",
+      "pos": {
+        "x": 65.79,
+        "y": 57.25
+      },
+      "linked": [
+        "PLIMAT-001"
+      ]
+    },
+    {
+      "skill": "EXUTOI-001",
+      "pos": {
+        "x": 83.71,
+        "y": 57.2
+      },
+      "linked": [
+        "CHOMEN-001"
+      ]
+    },
+    {
+      "skill": "TERREU-001",
+      "pos": {
+        "x": 74.68,
+        "y": 68.25
+      },
+      "linked": [
+        "CHOMEN-001"
+      ]
+    },
+    {
+      "skill": "MARION-001",
+      "pos": {
+        "x": 74.68,
+        "y": 80.5
+      },
+      "linked": [
+        "TERREU-001"
+      ]
+    },
+    {
+      "skill": "ANTICI-001",
+      "pos": {
+        "x": 50,
+        "y": 63.7
+      },
+      "linked": [
+        "PLIMAT-001"
+      ]
+    },
+    {
+      "skill": "RECUEI-001",
+      "pos": {
+        "x": 34.21,
+        "y": 57.25
+      },
+      "linked": [
+        "PLIMAT-001"
+      ]
+    },
+    {
+      "skill": "APAISE-001",
+      "pos": {
+        "x": 19.78,
+        "y": 63.15
+      },
+      "linked": [
+        "RECUEI-001"
+      ]
+    },
+    {
+      "skill": "POIRUP-001",
+      "pos": {
+        "x": 30.5,
+        "y": 70.5
+      },
+      "linked": [
+        "RECUEI-001"
+      ]
+    },
+    {
+      "skill": "LIRPEN-001",
+      "pos": {
+        "x": 34.21,
+        "y": 44.37
+      },
+      "linked": [
+        "PLIMAT-001"
+      ]
+    },
+    {
+      "skill": "SOUPEN-001",
+      "pos": {
+        "x": 17.21,
+        "y": 42.37
+      },
+      "linked": [
+        "LIRPEN-001"
+      ]
     }
   ]
 }

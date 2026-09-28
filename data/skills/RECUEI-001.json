@@ -1,0 +1,20 @@
+{
+  "id": "RECUEI-001",
+  "title": "Recueillement",
+  "type": "active",
+  "tier": 2,
+  "domains": [
+    "psychic"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "Personnel",
+  "duration": "Instantanée",
+  "energy": 0,
+  "tags": {
+    "practice": "innate",
+    "schools": [
+      "protection"
+    ]
+  },
+  "description": "Vous inspirez longuement et vous lâchez prise : vous perdez toute votre {{pression}}, et vous gagnez 1d4 {{pdv}} temporaires par {{pression}} perdue ainsi, qui disparaissent au bout de 1 minute. Si vous {{concentration|vous concentrez}}, votre {{concentration}} prend fin."
+}
