@@ -74,7 +74,7 @@ The list file, `data/skill-lists/common-bank.json`:
   "note": "Les Compétences de la {{banque-commune}} sont indépendantes les unes des autres. N'importe quel personnage peut en acheter une à tout moment, quels que soient ses arbres : elles ne demandent que leur coût en PX et le {{prerequis}} que certaines portent. Rien n'empêche un marchand de se glisser dans l'ombre, ni un artisan de reprendre son souffle au milieu d'une mêlée.",
   "skills": [
     "REPVIF-001",
-    "PASDIS-001",
+    "PASVEL-001",
     "ELANXX-001",
     "MAILES-001",
     "GARHAU-001",

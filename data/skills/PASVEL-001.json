@@ -1,7 +1,7 @@
 {
-  "id": "PASDIS-001",
-  "status": "draft",
-  "title": "Pas discret",
+  "id": "PASVEL-001",
+  "status": "playtest",
+  "title": "Pas de velours",
   "type": "active",
   "tier": 2,
   "domains": [],
@@ -11,7 +11,7 @@
   "activation": "1 Action Bonus",
   "range": "Personnelle",
   "duration": "Instantanée",
-  "energy": 0,
+  "energy": 1,
   "tags": {
     "practice": "technique",
     "schools": [
