@@ -79,7 +79,7 @@
   },
   "psychique": {
     "domains": ["psychic"],
-    "prime": ["any"],
+    "prime": ["spirit"],
     "upgrades": 6,
     "xpTotal": 285
   },

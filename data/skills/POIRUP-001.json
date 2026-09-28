@@ -7,9 +7,7 @@
     "psychic"
   ],
   "characteristics": [
-    "intelligence",
-    "spirit",
-    "charisma"
+    "spirit"
   ],
   "activation": "1 Réaction",
   "range": "Personnel",
@@ -22,5 +20,5 @@
       "control"
     ]
   },
-  "description": "Vous jouez cette {{reaction}} lorsque votre {{pression}} atteint 5, avant que votre esprit ne cède.\n\nVotre esprit déborde en une onde de force qui balaie une sphère de 4,5 m de rayon centrée sur vous. Au moment où vous jouez cette Compétence, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nChaque créature de votre choix dans la sphère effectue un {{jet}} de {{force}} + {{athletisme}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{volonte}}). En cas d'échec, elle subit 3d8 dégâts de Force, puis elle est repoussée de 3 m à l'horizontale, loin de vous, jusqu'à ce qu'une créature ou un obstacle l'arrête. En cas de réussite, elle n'en subit que la moitié et ne bouge pas. Les créatures repoussées se déplacent l'une après l'autre, de la plus éloignée de vous à la plus proche.\n\nVotre esprit cède ensuite, comme le décrit {{pression}}."
+  "description": "Vous jouez cette {{reaction}} lorsque votre {{pression}} atteint 5, avant que votre esprit ne cède.\n\nVotre esprit déborde en une onde de force qui balaie une sphère de 4,5 m de rayon centrée sur vous.\n\nChaque créature de votre choix dans la sphère effectue un {{jet}} de {{force}} + {{athletisme}} contre votre {{dd}} (10 + {{esprit}} + {{volonte}}). En cas d'échec, elle subit 3d8 dégâts de Force, puis elle est repoussée de 3 m à l'horizontale, loin de vous, jusqu'à ce qu'une créature ou un obstacle l'arrête. En cas de réussite, elle n'en subit que la moitié et ne bouge pas. Les créatures repoussées se déplacent l'une après l'autre, de la plus éloignée de vous à la plus proche.\n\nVotre esprit cède ensuite, comme le décrit {{pression}}."
 }

@@ -7,9 +7,7 @@
     "psychic"
   ],
   "characteristics": [
-    "intelligence",
-    "spirit",
-    "charisma"
+    "spirit"
   ],
   "activation": "1 Action",
   "range": "18 m",
@@ -20,7 +18,7 @@
       "destruction"
     ]
   },
-  "description": "D'une pointe de pensée, vous blessez l'esprit d'une créature que vous voyez à portée. Au moment où vous jouez cette Compétence, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nElle effectue un {{jet}} d'{{esprit}} + {{volonte}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{volonte}}). En cas d'échec, elle subit 2d8 dégâts Psychiques. En cas de réussite, elle n'en subit que la moitié.\n\nVous gagnez ensuite 1 {{pression}}.",
+  "description": "D'une pointe de pensée, vous blessez l'esprit d'une créature que vous voyez à portée.\n\nElle effectue un {{jet}} d'{{esprit}} + {{volonte}} contre votre {{dd}} (10 + {{esprit}} + {{volonte}}). En cas d'échec, elle subit 2d8 dégâts Psychiques. En cas de réussite, elle n'en subit que la moitié.\n\nVous gagnez ensuite 1 {{pression}}.",
   "upgrades": [
     {
       "level": 2,

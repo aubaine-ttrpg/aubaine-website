@@ -7,9 +7,7 @@
     "psychic"
   ],
   "characteristics": [
-    "intelligence",
-    "spirit",
-    "charisma"
+    "spirit"
   ],
   "activation": "1 Action",
   "range": "9 m",
@@ -19,5 +17,5 @@
   "tags": {
     "practice": "innate"
   },
-  "description": "Une main que personne ne voit agit pour vous. Au moment où vous jouez cette Compétence, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nLa main accomplit l'un des gestes suivants au moment où vous jouez cette Compétence, puis chaque fois que vous y consacrez votre {{action-bonus}}. Un {{jet}} qu'un geste demande emploie la {{caracteristique}} choisie, avec l'{{aptitude}} que le MJ juge adaptée. Vous gagnez 1 {{pression}} au moment où vous jouez cette Compétence.\n\n***Porter.*** Elle saisit un {{objet-libre}} qui tient dans une main, l'emporte où vous voulez à portée, puis le pose ou le garde en l'air.\n***Manier.*** Elle ouvre une porte ou un tiroir qui n'est pas verrouillé, tourne une clé, tire un levier ou écrit quelques mots.\n***Crocheter.*** Elle crochète une serrure, désamorce un piège ou défait un nœud, si elle tient les outils que le geste demande.\n***Subtiliser.*** Elle prend, dans la poche ou la bourse d'une créature, un objet qui tient dans une main. Effectuez un {{jet}} opposé de la {{caracteristique}} choisie + {{escamotage}} contre son {{jet}} d'{{esprit}} + {{perception}}. Si la créature l'emporte, elle sent la main et garde l'objet.\n\nLa main ne quitte jamais la portée, et on ne peut pas la prendre pour cible. Elle ne peut ni porter d'{{attaque}}, ni jouer de Compétence, ni employer l'effet d'un objet, comme lancer une bombe ou faire boire une potion. Ce qu'elle tient tombe lorsque {{TROMAI-001}} prend fin."
+  "description": "Une main que personne ne voit agit pour vous.\n\nLa main accomplit l'un des gestes suivants au moment où vous jouez cette Compétence, puis chaque fois que vous y consacrez votre {{action-bonus}}. Un {{jet}} qu'un geste demande est un {{jet}} d'{{esprit}}, avec l'{{aptitude}} que le MJ juge adaptée. Vous gagnez 1 {{pression}} au moment où vous jouez cette Compétence.\n\n***Porter.*** Elle saisit un {{objet-libre}} qui tient dans une main, l'emporte où vous voulez à portée, puis le pose ou le garde en l'air.\n***Manier.*** Elle ouvre une porte ou un tiroir qui n'est pas verrouillé, tourne une clé, tire un levier ou écrit quelques mots.\n***Crocheter.*** Elle crochète une serrure, désamorce un piège ou défait un nœud, si elle tient les outils que le geste demande.\n***Subtiliser.*** Elle prend, dans la poche ou la bourse d'une créature, un objet qui tient dans une main. Effectuez un {{jet}} opposé d'{{esprit}} + {{escamotage}} contre son {{jet}} d'{{esprit}} + {{perception}}. Si la créature l'emporte, elle sent la main et garde l'objet.\n\nLa main ne quitte jamais la portée, et on ne peut pas la prendre pour cible. Elle ne peut ni porter d'{{attaque}}, ni jouer de Compétence, ni employer l'effet d'un objet, comme lancer une bombe ou faire boire une potion. Ce qu'elle tient tombe lorsque {{TROMAI-001}} prend fin."
 }

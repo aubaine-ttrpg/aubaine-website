@@ -7,9 +7,7 @@
     "psychic"
   ],
   "characteristics": [
-    "intelligence",
-    "spirit",
-    "charisma"
+    "spirit"
   ],
   "activation": "1 Action",
   "range": "18 m",
@@ -20,5 +18,5 @@
       "destruction"
     ]
   },
-  "description": "Vous déversez toute votre {{pression}} dans l'esprit d'une créature que vous voyez à portée. Vous ne pouvez jouer cette Compétence que si vous portez au moins 1 {{pression}}. Au moment où vous la jouez, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nLa créature effectue un {{jet}} d'{{esprit}} + {{volonte}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{volonte}}). En cas d'échec, elle subit 2d8 dégâts Psychiques, plus 1d8 par {{pression}} dépensée. Si vous en avez dépensé 3 ou plus, elle est aussi {{etourdi|Étourdie}} jusqu'à la fin de son prochain tour. En cas de réussite, elle n'en subit que la moitié et n'est pas {{etourdi|Étourdie}}."
+  "description": "Vous déversez toute votre {{pression}} dans l'esprit d'une créature que vous voyez à portée. Vous ne pouvez jouer cette Compétence que si vous portez au moins 1 {{pression}}.\n\nLa créature effectue un {{jet}} d'{{esprit}} + {{volonte}} contre votre {{dd}} (10 + {{esprit}} + {{volonte}}). En cas d'échec, elle subit 2d8 dégâts Psychiques, plus 1d8 par {{pression}} dépensée. Si vous en avez dépensé 3 ou plus, elle est aussi {{etourdi|Étourdie}} jusqu'à la fin de son prochain tour. En cas de réussite, elle n'en subit que la moitié et n'est pas {{etourdi|Étourdie}}."
 }

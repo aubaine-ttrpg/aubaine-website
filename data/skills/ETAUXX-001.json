@@ -7,9 +7,7 @@
     "psychic"
   ],
   "characteristics": [
-    "intelligence",
-    "spirit",
-    "charisma"
+    "spirit"
   ],
   "activation": "1 Action",
   "range": "9 m",
@@ -21,5 +19,5 @@
       "control"
     ]
   },
-  "description": "Votre esprit se referme sur une créature de {{taille}} Grande ou plus petite que vous voyez à portée. Au moment où vous jouez cette Compétence, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nLa créature effectue un {{jet}} de {{force}} + {{athletisme}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{volonte}}). En cas d'échec, elle est {{entrave|Entravée}} tant que vous {{concentration|vous concentrez}}. En cas de réussite, {{ETAUXX-001}} prend fin. Dans tous les cas, vous gagnez ensuite 1 {{pression}}.\n\nTant qu'{{ETAUXX-001}} la tient {{entrave|Entravée}}, vous pouvez, à chacun de vos tours, consacrer votre {{action-bonus}} à serrer : elle subit 1d6 dégâts Contondants, et vous gagnez 1 {{pression}}.\n\n{{ETAUXX-001}} prend fin aussi lorsque la créature n'est plus {{entrave|Entravée}} et lorsqu'elle se trouve hors de portée."
+  "description": "Votre esprit se referme sur une créature de {{taille}} Grande ou plus petite que vous voyez à portée.\n\nLa créature effectue un {{jet}} de {{force}} + {{athletisme}} contre votre {{dd}} (10 + {{esprit}} + {{volonte}}). En cas d'échec, elle est {{entrave|Entravée}} tant que vous {{concentration|vous concentrez}}. En cas de réussite, {{ETAUXX-001}} prend fin. Dans tous les cas, vous gagnez ensuite 1 {{pression}}.\n\nTant qu'{{ETAUXX-001}} la tient {{entrave|Entravée}}, vous pouvez, à chacun de vos tours, consacrer votre {{action-bonus}} à serrer : elle subit 1d6 dégâts Contondants, et vous gagnez 1 {{pression}}.\n\n{{ETAUXX-001}} prend fin aussi lorsque la créature n'est plus {{entrave|Entravée}} et lorsqu'elle se trouve hors de portée."
 }
