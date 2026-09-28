@@ -11,6 +11,8 @@ Votre maximum de {{pdv}} se calcule à la création et monte avec votre Vitalit�
 
 Ils ne dépassent jamais votre maximum et ne descendent jamais sous 0.
 
+Une Compétence peut coûter des {{pdv}}. Au moment de la jouer, lancez ce coût et perdez autant de {{pdv}}. Cette perte n'est pas un dégât : aucune résistance ne la réduit, et rien de ce qui se déclenche sur des dégâts subis ne s'en déclenche. Elle peut vous faire tomber à 0 {{pdv}} : vous gagnez alors {{agonie}} 3 comme après toute chute, puis la Compétence se résout.
+
 ## Les dégâts
 
 Une Compétence, une arme ou un danger qui blesse indique ses dégâts : des dés, parfois un nombre fixe, souvent les deux. Une {{attaque}} y ajoute toujours la {{caracteristique}} employée par son {{jet}}.
@@ -53,7 +55,7 @@ Le compteur descend de 1 à la fin de chacun de vos tours, mais pas pendant le t
 
 À 0, vous mourez.
 
-Tant que dure l'{{agonie}}, vous êtes {{a-terre}} sans pouvoir vous relever, et vous ne pouvez rien jouer qui coûte de l'{{energie}}.
+Tant que dure l'{{agonie}}, vous êtes {{a-terre}} sans pouvoir vous relever, et vous ne pouvez rien jouer qui coûte de l'{{energie}} ou des {{pdv}}.
 
 ### Relever quelqu'un
 

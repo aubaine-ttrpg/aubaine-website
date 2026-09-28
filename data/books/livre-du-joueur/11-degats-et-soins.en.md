@@ -11,6 +11,8 @@ Your maximum {{pdv}} is worked out at creation and rises with your Vitality, as 
 
 They never go above your maximum and never below 0.
 
+A Skill can cost {{pdv}}. When you play it, roll that cost and lose that many {{pdv}}. This loss is not damage: no resistance reduces it, and nothing that triggers on taking damage triggers from it. It can drop you to 0 {{pdv}}: you then gain {{agonie}} 3 as with any drop, and the Skill resolves after that.
+
 ## Damage
 
 A Skill, a weapon or a danger that wounds states its damage: dice, sometimes a fixed number, often both. An {{attaque}} always adds the {{caracteristique}} its {{jet}} used.
@@ -53,7 +55,7 @@ The counter goes down by 1 at the end of each of your turns, but not on the turn
 
 At 0, you die.
 
-While {{agonie}} lasts, you are {{a-terre}} and cannot stand up, and you can play nothing that costs {{energie}}.
+While {{agonie}} lasts, you are {{a-terre}} and cannot stand up, and you can play nothing that costs {{energie}} or {{pdv}}.
 
 ### Getting someone up
 
