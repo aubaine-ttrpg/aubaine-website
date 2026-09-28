@@ -297,3 +297,15 @@ test('a panoply piece shows its tiers and opens the other pieces', async ({ page
   await expect(page.locator('#e-boucle-de-l-autre')).toBeVisible()
   await expect(row(page, 'boucle-de-l-autre')).toHaveAttribute('aria-current', 'true')
 })
+
+test('an environment shows its Loot Table and opens the materials it gives', async ({ page }) => {
+  await page.goto('/fr/materiaux#e-foret')
+  await enhanced(page)
+  const forest = page.locator('#e-foret')
+  await expect(forest.locator('.au-loot tbody tr')).toHaveCount(8)
+
+  await forest.locator('a[href$="#e-truffe"]').click()
+  await expect(page).toHaveURL('/fr/materiaux#e-truffe')
+  await expect(row(page, 'truffe')).toHaveAttribute('aria-current', 'true')
+  await expect(page.locator('#e-truffe .au-material__place-name')).toHaveText(['Forêt'])
+})

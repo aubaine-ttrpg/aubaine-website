@@ -29,6 +29,10 @@ const DESCRIPTIONS: Record<IndexKind, Record<Locale, string>> = {
     fr: 'Protections, armes, bijoux et consommables, avec leurs stats, propriétés et fabrication.',
     en: 'Armour, weapons, jewels and consumables, with their stats, properties and craft.',
   },
+  materials: {
+    fr: 'Les matériaux ordinaires, leurs Types et leur Valeur, et la Table de butin de chaque environnement.',
+    en: 'Ordinary materials, their Types and Value, and the Loot Table of every environment.',
+  },
   rules: {
     fr: 'Mots de règle, Caractéristiques, Aptitudes, états, étiquettes et Compétences de base, avec la définition ou la règle de chacun.',
     en: 'Rule words, Characteristics, Aptitudes, states, tags and basic Skills, each with its definition or its rule.',
@@ -40,6 +44,7 @@ const ART: Record<IndexKind, string> = {
   species: 'ikyrio-16_9-og.png',
   skills: 'bacchi-qui-travaille-16_9-og.png',
   equipment: 'forge-d-izequiel-16_9-og.png',
+  materials: 'eau-16_9-upscaled_4.jpg',
   rules: 'priest-16_9-og.png',
 }
 
@@ -48,6 +53,7 @@ const MARK: Record<IndexKind, string> = {
   species: '#b8601e',
   skills: '#8a5cc4',
   equipment: '#a84d16',
+  materials: '#4f8a2e',
   rules: '#4f7a2e',
 }
 
@@ -58,6 +64,7 @@ export function indexDescriptors(locale: Locale): IndexDescriptor[] {
     species: t.speciesIndex,
     skills: t.spells,
     equipment: t.items,
+    materials: t.materials,
     rules: t.rules,
   }
   return INDEX_KINDS.map((kind) => ({

@@ -1,0 +1,29 @@
+---
+import { type Corpus, label } from '../../lib/game/corpus'
+import { inkOf } from '../../lib/game/derive'
+import type { Locale } from '../../lib/i18n/locales'
+import Icon from './Icon.astro'
+
+type Props = { types: string[]; corpus: Corpus; locale: Locale }
+
+const { types, corpus, locale } = Astro.props
+const chips = types.map((key) => {
+  const entry = corpus.materialTypes.get(key)
+  return {
+    name: label(entry, locale, key),
+    icon: entry?.iconName,
+    color: entry?.color ? inkOf(entry.color) : 'var(--paper-sub2)',
+  }
+})
+---
+
+<span class="au-material-types">
+  {
+    chips.map((chip) => (
+      <span class="au-material-type" style={`color:${chip.color}`}>
+        <Icon name={chip.icon} class="au-material-type__icon" />
+        {chip.name}
+      </span>
+    ))
+  }
+</span>

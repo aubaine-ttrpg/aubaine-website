@@ -1,5 +1,5 @@
 ---
-import { ruleBrowseEntries } from '../../lib/game/browse-entries'
+import { materialBrowseEntries, ruleBrowseEntries } from '../../lib/game/browse-entries'
 import type { Corpus } from '../../lib/game/corpus'
 import {
   collator,
@@ -125,6 +125,15 @@ const itemRows: Row[] = corpus.items
   })
   .sort((a, b) => compare.compare(a.title, b.title))
 
+const materialRows: Row[] = materialBrowseEntries(corpus, locale).map((entry) => ({
+  id: entry.id,
+  title: entry.title,
+  href: `${pathFor('materials', locale)}#e-${entry.id}`,
+  sub: entry.sub,
+  mark: entry.mark,
+  value: entry.value,
+  status: entry.status,
+}))
 const ruleRows: Row[] = ruleBrowseEntries(corpus, locale)
   .filter((entry) => entry.entity.kind !== 'skill')
   .map((entry) => ({
@@ -140,6 +149,7 @@ const groups: Group[] = [
   { title: t.trees, rows: treeRows },
   { title: t.skills, rows: skillRows },
   { title: t.items, rows: itemRows },
+  { title: t.materials, rows: materialRows },
   { title: t.rules, rows: ruleRows },
 ].filter((group) => group.rows.length > 0)
 

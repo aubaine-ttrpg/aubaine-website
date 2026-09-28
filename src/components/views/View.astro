@@ -33,6 +33,7 @@ if (kind === 'speciesEntry' && !species) throw new Error(`unknown species: ${par
 {kind === 'almanach' && <Cards locale={locale} corpus={corpus} variant="almanach" />}
 {kind === 'skills' && <Browse locale={locale} corpus={corpus} variant="skills" />}
 {kind === 'equipment' && <Browse locale={locale} corpus={corpus} variant="equipment" />}
+{kind === 'materials' && <Browse locale={locale} corpus={corpus} variant="materials" />}
 {kind === 'rules' && <Browse locale={locale} corpus={corpus} variant="rules" />}
 {kind === 'search' && <Search locale={locale} corpus={corpus} />}
 {kind === 'trees' && <Trees locale={locale} corpus={corpus} />}

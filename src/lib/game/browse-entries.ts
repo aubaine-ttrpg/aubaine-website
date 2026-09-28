@@ -26,10 +26,13 @@ import {
   typeLabelFor,
   xpOf,
 } from './derive.ts'
+import { placesOf } from './materials.ts'
 import {
   type ContentStatus,
+  type Environment,
   type EquipmentItem,
   type GameState,
+  type Material,
   type Skill,
   TAG_KINDS,
   type TagKind,
@@ -57,6 +60,8 @@ type BrowseEntity =
   | { kind: 'item'; item: EquipmentItem }
   | { kind: 'state'; state: GameState }
   | { kind: 'term'; term: DefinedWord }
+  | { kind: 'material'; material: Material; slug: string }
+  | { kind: 'environment'; environment: Environment }
 
 type CoinPart = { amount: string; name: string; color: string; iconName: string | undefined }
 
@@ -405,6 +410,70 @@ export function equipmentBrowseEntries(corpus: Corpus, locale: Locale): BrowseEn
       } satisfies BrowseEntry
     })
     .sort((a, b) => compare.compare(a.title, b.title))
+}
+
+export function materialBrowseEntries(corpus: Corpus, locale: Locale): BrowseEntry[] {
+  const t = strings(locale)
+  const compare = collator(locale)
+  const byTitle = (a: BrowseEntry, b: BrowseEntry): number => compare.compare(a.title, b.title)
+  const typeOf = (key: string): FacetValue => ({
+    value: key,
+    label: label(corpus.materialTypes.get(key), locale, key),
+  })
+
+  const environments = [...corpus.environments].map(([slug, environment]): BrowseEntry => {
+    const found = [...new Set(environment.loot.map((row) => row.material))]
+    const types = [...new Set(found.flatMap((key) => corpus.materials.get(key)?.types ?? []))]
+    return {
+      id: slug,
+      entity: { kind: 'environment', environment },
+      title: environment.name,
+      mark: 'var(--gold)',
+      sub: t.environment,
+      aside: `${formatNumber(found.length, locale)} ${t.materials.toLocaleLowerCase(locale)}`,
+      value: `1d${environment.die}`,
+      coins: [],
+      attrs: attributesFor(slug, environment.name, [
+        facet('fam', [{ value: 'environment', label: t.environments }]),
+        facet('mtyp', types.map(typeOf)),
+        facet('env', [{ value: slug, label: environment.name }]),
+        facet('val', []),
+        statusFacet(environment.status, locale),
+      ]),
+      status: badgedStatus(environment.status),
+      sources: [],
+    }
+  })
+
+  const materials = [...corpus.materials].map(([slug, material]): BrowseEntry => {
+    const places = placesOf(slug, corpus.environments)
+    const names = places.map((place) => place.environment.name)
+    const value = formatNumber(material.value, locale)
+    return {
+      id: slug,
+      entity: { kind: 'material', material, slug },
+      title: material.name,
+      mark: corpus.materialTypes.get(material.types[0] ?? '')?.color ?? RARITY_FALLBACK,
+      sub: [t.material, ...material.types.map((key) => typeOf(key).label)].join(' · '),
+      aside: names.join(' · '),
+      value: `${t.materialValue} ${value}`,
+      coins: [],
+      attrs: attributesFor(slug, material.name, [
+        facet('fam', [{ value: 'material', label: t.materials }]),
+        facet('mtyp', material.types.map(typeOf)),
+        facet(
+          'env',
+          places.map((place) => ({ value: place.slug, label: place.environment.name })),
+        ),
+        facet('val', [{ value: `v${material.value}`, label: `${t.materialValue} ${value}` }]),
+        statusFacet(material.status, locale),
+      ]),
+      status: badgedStatus(material.status),
+      sources: [],
+    }
+  })
+
+  return [...environments.sort(byTitle), ...materials.sort(byTitle)]
 }
 
 type RuleFamily = GlossaryTerm['family'] | 'tag' | 'basic'

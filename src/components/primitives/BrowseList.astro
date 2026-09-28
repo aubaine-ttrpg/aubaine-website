@@ -4,10 +4,12 @@ import type { Corpus } from '../../lib/game/corpus'
 import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
 import DetailPane from './DetailPane.astro'
+import EnvironmentEntry from './EnvironmentEntry.astro'
 import FilterBar from './FilterBar.astro'
 import Icon from './Icon.astro'
 import ItemEntry from './ItemEntry.astro'
 import ItemSet from './ItemSet.astro'
+import MaterialEntry from './MaterialEntry.astro'
 import Provenance from './Provenance.astro'
 import SkillEntry from './SkillEntry.astro'
 import StateEntry from './StateEntry.astro'
@@ -20,7 +22,7 @@ type Props = {
   entries: BrowseEntry[]
   label: string
 } & (
-  | { variant: 'skills' | 'equipment' | 'rules' }
+  | { variant: 'skills' | 'equipment' | 'materials' | 'rules' }
   | { variant: 'speciesSkills'; subspeciesLabel: string }
 )
 
@@ -109,6 +111,17 @@ const filter =
               <ItemEntry item={entry.entity.item} corpus={corpus} locale={locale} />
               <ItemSet item={entry.entity.item} corpus={corpus} locale={locale} />
             </Fragment>
+          )}
+          {entry.entity.kind === 'material' && (
+            <MaterialEntry
+              material={entry.entity.material}
+              slug={entry.entity.slug}
+              corpus={corpus}
+              locale={locale}
+            />
+          )}
+          {entry.entity.kind === 'environment' && (
+            <EnvironmentEntry environment={entry.entity.environment} corpus={corpus} locale={locale} />
           )}
           {entry.entity.kind === 'state' && (
             <StateEntry state={entry.entity.state} corpus={corpus} locale={locale} />

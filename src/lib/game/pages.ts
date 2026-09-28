@@ -98,6 +98,7 @@ export async function pageRoutes(): Promise<PageRoute[]> {
         ...describe(locale, 'equipment', t.items, t.itemsLead),
         ogArt: data.catalogue.banner,
       },
+      describe(locale, 'materials', t.materials, t.materialsLead),
       describe(locale, 'rules', t.rules, t.rulesLead),
       { ...describe(locale, 'archives', t.archives, t.archivesLead), ogArt: ARCHIVES_ART },
       { ...describe(locale, 'search', t.searchTitle, t.searchTitle), noIndex: true },

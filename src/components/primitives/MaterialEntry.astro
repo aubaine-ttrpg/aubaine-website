@@ -1,0 +1,53 @@
+---
+import type { Corpus } from '../../lib/game/corpus'
+import { formatNumber } from '../../lib/game/derive'
+import { placesOf } from '../../lib/game/materials'
+import type { Material } from '../../lib/game/schema'
+import type { Locale } from '../../lib/i18n/locales'
+import { strings } from '../../lib/i18n/strings'
+import Icon from './Icon.astro'
+import MaterialTypes from './MaterialTypes.astro'
+
+type Props = { material: Material; slug: string; corpus: Corpus; locale: Locale }
+
+const { material, slug, corpus, locale } = Astro.props
+const t = strings(locale)
+const places = placesOf(slug, corpus.environments)
+const rollsOf = (rolls: { roll: string; quantity: number }[]): string =>
+  rolls.map(({ roll, quantity }) => (quantity > 1 ? `${roll} (${quantity} ×)` : roll)).join(', ')
+---
+
+<div class="au-material">
+  <div class="au-material__hd">
+    <span class="au-material__name">{material.name}</span>
+    <span class="au-material__kind">{t.material}</span>
+  </div>
+  <div class="au-material__facts">
+    <MaterialTypes types={material.types} corpus={corpus} locale={locale} />
+    <span class="au-material__value">
+      <span class="au-material__label">{t.materialValue}</span>
+      {formatNumber(material.value, locale)}
+    </span>
+  </div>
+  <p class="au-material__desc">{material.description}</p>
+  {
+    places.length > 0 && (
+      <div class="au-material__found">
+        <span class="au-material__label">{t.foundIn}</span>
+        <ul class="au-material__places">
+          {places.map((place) => (
+            <li class="au-material__place">
+              <a href={`#e-${place.slug}`} class="au-material__place-name">
+                <Icon name={place.environment.icon} class="au-material__place-icon" />
+                {place.environment.name}
+              </a>
+              <span class="au-material__roll">
+                {`1d${place.environment.die} · ${rollsOf(place.rolls)}`}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
+</div>

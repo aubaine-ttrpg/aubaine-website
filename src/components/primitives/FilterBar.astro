@@ -8,7 +8,14 @@ import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
 import EmptyState from './EmptyState.astro'
 
-type ListVariant = 'trees' | 'species' | 'skills' | 'treeNodes' | 'equipment' | 'rules'
+type ListVariant =
+  | 'trees'
+  | 'species'
+  | 'skills'
+  | 'treeNodes'
+  | 'equipment'
+  | 'materials'
+  | 'rules'
 
 type Props = {
   locale: Locale
@@ -48,6 +55,13 @@ const GROUPS: Record<ListVariant, FilterGroup[]> = {
     { key: 'stat', label: t.stat_ },
     { key: 'prop', label: t.property_ },
     { key: 'set', label: t.set_ },
+    { key: 'sta', label: t.status_ },
+  ],
+  materials: [
+    { key: 'fam', label: t.family_ },
+    { key: 'mtyp', label: t.materialType_ },
+    { key: 'env', label: t.environment },
+    { key: 'val', label: t.materialValue },
     { key: 'sta', label: t.status_ },
   ],
   rules: [

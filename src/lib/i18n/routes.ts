@@ -11,6 +11,7 @@ export const VIEW_KINDS = [
   'speciesEntry',
   'skills',
   'equipment',
+  'materials',
   'rules',
   'archives',
   'archive',
@@ -36,6 +37,7 @@ const SEGMENT: Record<Exclude<ViewKind, 'home'>, SegmentMap> = {
   speciesEntry: { fr: 'espece', en: 'species' },
   skills: { fr: 'competences', en: 'skills' },
   equipment: { fr: 'equipement', en: 'equipment' },
+  materials: { fr: 'materiaux', en: 'materials' },
   rules: { fr: 'regles', en: 'rules' },
   archives: { fr: 'archives', en: 'archives' },
   archive: { fr: 'archives', en: 'archives' },
@@ -121,7 +123,14 @@ export function alternatesFor(
   return LOCALES.map((locale) => ({ locale, href: urlFor(kind, locale, site, params) }))
 }
 
-export const INDEX_KINDS = ['trees', 'species', 'skills', 'equipment', 'rules'] as const
+export const INDEX_KINDS = [
+  'trees',
+  'species',
+  'skills',
+  'equipment',
+  'materials',
+  'rules',
+] as const
 
 export type IndexKind = (typeof INDEX_KINDS)[number]
 
@@ -138,7 +147,17 @@ export const NAV_SECTIONS = [
   { id: 'books', kinds: ['books', 'book'] },
   {
     id: 'almanach',
-    kinds: ['almanach', 'trees', 'tree', 'species', 'speciesEntry', 'skills', 'equipment', 'rules'],
+    kinds: [
+      'almanach',
+      'trees',
+      'tree',
+      'species',
+      'speciesEntry',
+      'skills',
+      'equipment',
+      'materials',
+      'rules',
+    ],
   },
 ] as const satisfies readonly { id: string; kinds: readonly ViewKind[] }[]
 

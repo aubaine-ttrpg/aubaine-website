@@ -5,6 +5,7 @@ import { hasBooklet } from '../../lib/booklet/manifest'
 import {
   type BrowseEntry,
   equipmentBrowseEntries,
+  materialBrowseEntries,
   originSkills,
   ruleBrowseEntries,
   skillBrowseEntries,
@@ -20,7 +21,7 @@ import Hero from '../primitives/Hero.astro'
 
 import '../../styles/prose.css'
 
-type Variant = 'skills' | 'equipment' | 'rules'
+type Variant = 'skills' | 'equipment' | 'materials' | 'rules'
 
 type Props = { locale: Locale; corpus: Corpus; variant: Variant }
 
@@ -37,6 +38,11 @@ const VIEWS: Record<Variant, () => { entries: BrowseEntry[]; art: string; title:
     entries: equipmentBrowseEntries(corpus, locale),
     art: corpus.catalogue.banner ?? PLACEHOLDER_BANNER,
     title: t.items,
+  }),
+  materials: () => ({
+    entries: materialBrowseEntries(corpus, locale),
+    art: 'eau-16_9-upscaled_4.jpg',
+    title: t.materials,
   }),
   rules: () => ({
     entries: ruleBrowseEntries(corpus, locale),

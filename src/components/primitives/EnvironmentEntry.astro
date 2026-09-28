@@ -1,0 +1,56 @@
+---
+import type { Corpus } from '../../lib/game/corpus'
+import { formatNumber } from '../../lib/game/derive'
+import { lootRows } from '../../lib/game/materials'
+import type { Environment } from '../../lib/game/schema'
+import type { Locale } from '../../lib/i18n/locales'
+import { strings } from '../../lib/i18n/strings'
+import Icon from './Icon.astro'
+import MaterialTypes from './MaterialTypes.astro'
+
+type Props = { environment: Environment; corpus: Corpus; locale: Locale }
+
+const { environment, corpus, locale } = Astro.props
+const t = strings(locale)
+const rows = lootRows(environment, corpus.materials)
+---
+
+<div class="au-material">
+  <div class="au-material__hd">
+    <span class="au-material__name">
+      <Icon name={environment.icon} class="au-environment__icon" />
+      {environment.name}
+    </span>
+    <span class="au-material__kind">{t.environment}</span>
+  </div>
+  <p class="au-material__desc">{environment.description}</p>
+  <table class="au-loot">
+    <caption class="au-loot__caption">
+      {`${t.lootTable} · ${t.lootDie} 1d${environment.die}`}
+    </caption>
+    <thead>
+      <tr>
+        <th scope="col">{t.lootRoll}</th>
+        <th scope="col">{t.lootResult}</th>
+        <th scope="col" class="au-loot__value">{t.materialValue}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        rows.map((row) => (
+          <tr>
+            <td class="au-loot__roll">{row.roll}</td>
+            <td>
+              <span class="au-loot__qty">{`${row.quantity} ×`}</span>
+              <a href={`#e-${row.slug}`} class="au-loot__material">
+                {row.material.name}
+              </a>
+              <MaterialTypes types={row.material.types} corpus={corpus} locale={locale} />
+            </td>
+            <td class="au-loot__value">{formatNumber(row.material.value, locale)}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>

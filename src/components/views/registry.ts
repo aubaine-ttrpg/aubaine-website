@@ -7,6 +7,7 @@ export const IMPLEMENTED_VIEWS = new Set<ViewKind>([
   'almanach',
   'skills',
   'equipment',
+  'materials',
   'rules',
   'search',
   'trees',
