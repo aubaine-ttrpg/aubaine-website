@@ -25,6 +25,7 @@ paths:
 - Each entry carries one label per locale, its own colour and icon, and its tooltip `definition` in both locales. Its key is the `slugify` of the French label, as `{{action-bonus}}`, and it links only where a text writes that reference.
 - `Sort` carries no text of its own: it reads the definition of the `spell` tag in `data/meta/tags.json`, so the word is defined once.
 - `Banque Commune` carries none either: it reads the `note` of `data/skill-lists/common-bank.json`, the same paragraph the skills index shows on the Common Bank's label.
+- A new rule term names a concept no existing rule term, Caractéristique, Aptitude, state or tag already names. Never add one whose definition restates an existing entry: reference that entry, and write any narrower condition in the skill or state that needs it.
 - Changing that list changes every entry that references it, and a new French label is a new key. Treat it as a vocabulary change, not a code change.
 - It lives in code only for historical reasons. Do not treat that as licence to hard code any other vocabulary.
 

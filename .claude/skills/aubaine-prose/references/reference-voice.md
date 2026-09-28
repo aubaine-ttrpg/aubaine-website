@@ -40,7 +40,8 @@ question without depending on anything after it.
 
 For a skill that is literal: the first 160 characters of the description become the page's meta
 description, cut at a word boundary. `site-copy.md` has the mechanics. Write the opening so that
-the cut lands after the meaning, not before it.
+the cut lands after the meaning, not before it, and never by previewing the rules that follow:
+`rule-text.md` says each rule once.
 
 ## Writing a definition
 
