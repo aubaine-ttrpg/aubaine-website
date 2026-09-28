@@ -3,6 +3,8 @@
 **Project:** Aubaine, the wiki
 **Status:** Accepted
 **Date:** 2026-09-28
+**Revised:** 2026-09-28, Decision 1 is reversed by 0033, and the Physique tree drops its stances (addendum in Decision 1)
+**Revised:** 2026-09-28, psychic powers use Esprit alone (addendum in Decision 3)
 **Deciders:** Kori
 **Scope:**
 - **Covers:** three choices made while rebuilding the Physique tree as the martial tree and writing the Psychique tree:
@@ -48,6 +50,14 @@ The decider asked for a martial tree that closes the gap with the casters withou
 ### Caveats
 
 - Grapplers lose Cadence on a turn spent only shoving or grappling. That limitation is deliberate, and playtest may move it.
+
+### Addendum (2026-09-28): reversed by 0033
+
+[0033](0033-physique-is-a-simple-tree-and-a-rule-term-never-restates-another.md) withdraws Attaque
+martiale, because Attaque already names the concept. It also removes the Cadence and Aplomb stances,
+which copied the shape of Vent ascendant and Vent descendant, and gives the Physique tree no
+signature state: each of its skills stands alone. The Context above and the Summary below describe
+the loop as it was accepted, before that reversal.
 
 ---
 
@@ -97,6 +107,16 @@ The decider asked for a martial tree that closes the gap with the casters withou
 ### Caveats
 
 - One Aptitude drives the psychic's DD, their defence against fear and charm, and their Concentration Jets. Playtest will say whether that concentrates too much on Volonté.
+
+### Addendum (2026-09-28): psychic powers use Esprit alone
+
+- A resisted psychic power reads its DD as 10 + Esprit + Volonté. No Psychique skill offers a
+  choice of Caractéristique any more. Each one that rolls or resists carries `characteristics:
+  ["spirit"]`, so the tree's primary Caractéristique derives as Esprit (`tests/fixtures/design-derived.json`).
+- The decider ruled that only the elemental trees are open to Intelligence, Esprit or Charisme, as
+  `DOMVEN-001` is. Like Physique, which is tied to Force and Dextérité, Psychique is tied to the
+  Caractéristique that justifies it: the will behind a power of the mind is Esprit.
+- One Caractéristique now drives the DD beside one Aptitude. That sharpens the caveat above.
 
 ---
 
