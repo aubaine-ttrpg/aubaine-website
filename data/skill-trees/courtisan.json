@@ -4,6 +4,8 @@
   "name": "Courtisan",
   "treeType": "archetype",
   "size": 16,
+  "cover": "courtisan-3_4-og.png",
+  "banner": "courtisan-16_9-upscaled_4.jpg",
   "placements": [
     {
       "skill": "BEAPAR-001",

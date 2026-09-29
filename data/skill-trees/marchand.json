@@ -4,6 +4,8 @@
   "name": "Marchand",
   "treeType": "archetype",
   "size": 16,
+  "cover": "marchand-3_4-og.png",
+  "banner": "marchand-16_9-og.png",
   "placements": [
     {
       "skill": "FONCOM-001",

@@ -198,11 +198,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "135bee0d",
-      "contentHash": "8a9e4a10",
-      "file": "berserker-en-v0.2.1_135bee0d_8a9e4a10.pdf",
-      "bytes": 1812870,
+      "contentHash": "61072f67",
+      "file": "berserker-en-v0.2.1_135bee0d_61072f67.pdf",
+      "bytes": 2042821,
       "pages": 9,
-      "generatedAt": "2026-09-29T21:42:43Z"
+      "generatedAt": "2026-09-29T22:23:42Z"
     },
     {
       "slug": "berserker",
@@ -246,11 +246,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "135bee0d",
-      "contentHash": "9ea9f251",
-      "file": "berserker-fr-v0.2.1_135bee0d_9ea9f251.pdf",
-      "bytes": 1835424,
+      "contentHash": "0143e49e",
+      "file": "berserker-fr-v0.2.1_135bee0d_0143e49e.pdf",
+      "bytes": 2065753,
       "pages": 9,
-      "generatedAt": "2026-09-29T21:42:43Z"
+      "generatedAt": "2026-09-29T22:23:42Z"
     },
     {
       "slug": "berserker",
@@ -294,11 +294,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "135bee0d",
-      "contentHash": "1dbbc93d",
-      "file": "courtisan-en-v0.2.1_135bee0d_1dbbc93d.pdf",
-      "bytes": 1467623,
+      "contentHash": "1edf94a7",
+      "file": "courtisan-en-v0.2.1_135bee0d_1edf94a7.pdf",
+      "bytes": 1648372,
       "pages": 9,
-      "generatedAt": "2026-09-29T21:42:43Z"
+      "generatedAt": "2026-09-29T22:28:14Z"
     },
     {
       "slug": "courtisan",
@@ -342,11 +342,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "135bee0d",
-      "contentHash": "ba734680",
-      "file": "courtisan-fr-v0.2.1_135bee0d_ba734680.pdf",
-      "bytes": 1490766,
+      "contentHash": "f2158d30",
+      "file": "courtisan-fr-v0.2.1_135bee0d_f2158d30.pdf",
+      "bytes": 1670426,
       "pages": 9,
-      "generatedAt": "2026-09-29T21:42:43Z"
+      "generatedAt": "2026-09-29T22:28:14Z"
     },
     {
       "slug": "courtisan",
@@ -486,11 +486,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "135bee0d",
-      "contentHash": "83e7a8f5",
-      "file": "draugar-en-v0.2.1_135bee0d_83e7a8f5.pdf",
-      "bytes": 2004758,
+      "contentHash": "96ab55ac",
+      "file": "draugar-en-v0.2.1_135bee0d_96ab55ac.pdf",
+      "bytes": 2140676,
       "pages": 11,
-      "generatedAt": "2026-09-29T21:42:43Z"
+      "generatedAt": "2026-09-29T23:01:48Z"
     },
     {
       "slug": "draugar",
@@ -534,11 +534,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "135bee0d",
-      "contentHash": "2e73a537",
-      "file": "draugar-fr-v0.2.1_135bee0d_2e73a537.pdf",
-      "bytes": 2019244,
+      "contentHash": "cd368170",
+      "file": "draugar-fr-v0.2.1_135bee0d_cd368170.pdf",
+      "bytes": 2156347,
       "pages": 11,
-      "generatedAt": "2026-09-29T21:42:43Z"
+      "generatedAt": "2026-09-29T23:01:48Z"
     },
     {
       "slug": "draugar",
@@ -1542,11 +1542,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "135bee0d",
-      "contentHash": "6eaff869",
-      "file": "marchand-en-v0.2.1_135bee0d_6eaff869.pdf",
-      "bytes": 1488586,
+      "contentHash": "5abb0b52",
+      "file": "marchand-en-v0.2.1_135bee0d_5abb0b52.pdf",
+      "bytes": 1665423,
       "pages": 9,
-      "generatedAt": "2026-09-29T21:42:43Z"
+      "generatedAt": "2026-09-29T22:24:04Z"
     },
     {
       "slug": "marchand",
@@ -1590,11 +1590,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "135bee0d",
-      "contentHash": "994bc9df",
-      "file": "marchand-fr-v0.2.1_135bee0d_994bc9df.pdf",
-      "bytes": 1507650,
+      "contentHash": "49940ffe",
+      "file": "marchand-fr-v0.2.1_135bee0d_49940ffe.pdf",
+      "bytes": 1686075,
       "pages": 9,
-      "generatedAt": "2026-09-29T21:42:43Z"
+      "generatedAt": "2026-09-29T22:24:04Z"
     },
     {
       "slug": "marchand",

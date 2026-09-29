@@ -10,6 +10,69 @@
       ]
     },
     {
+      "file": "art/berserker-3_4-og.png",
+      "title": "Berserker sous la lune",
+      "description": "Guerrier à la peau bleue et aux défenses apparentes, couvert de marques rouges, brandissant deux lames au milieu de ruines baignées de lumière bleue sous la pleine lune.",
+      "keywords": [
+        "arbre",
+        "Berserker"
+      ]
+    },
+    {
+      "file": "art/courtisan-16_9-og.png",
+      "title": "Courtisan au jardin",
+      "description": "Elfe blond vêtu de vert discourant avec de grands gestes à côté d'un homme qui se couvre le visage, dans un jardin fleuri devant une cité aux hautes tours.",
+      "keywords": [
+        "arbre",
+        "Courtisan"
+      ]
+    },
+    {
+      "file": "art/courtisan-16_9-upscaled_4.jpg",
+      "title": "Courtisan au jardin",
+      "description": "Elfe blond vêtu de vert discourant avec de grands gestes à côté d'un homme qui se couvre le visage, dans un jardin fleuri devant une cité aux hautes tours.",
+      "keywords": [
+        "arbre",
+        "Courtisan"
+      ]
+    },
+    {
+      "file": "art/courtisan-3_4-og.png",
+      "title": "Courtisan au jardin",
+      "description": "Elfe blond vêtu de vert gesticulant devant un homme qui se couvre le visage, parmi des invités réunis dans un jardin fleuri.",
+      "keywords": [
+        "arbre",
+        "Courtisan"
+      ]
+    },
+    {
+      "file": "art/draugar-3_4-og.png",
+      "title": "Draugar",
+      "description": "Personnage pâle aux cheveux blancs tendant une main garnie de dents, tandis qu'un appendice violet jaillit de son ventre dans une salle obscure éclairée par la lune.",
+      "keywords": [
+        "arbre",
+        "Draugar"
+      ]
+    },
+    {
+      "file": "art/marchand-16_9-og.png",
+      "title": "Marchand au marché",
+      "description": "Marchand à tête de bélier et aux vêtements bleus tendant une bourse ornée d'une pierre bleue à un client, devant un étal de fioles et une ville animée.",
+      "keywords": [
+        "arbre",
+        "Marchand"
+      ]
+    },
+    {
+      "file": "art/marchand-3_4-og.png",
+      "title": "Marchand au marché",
+      "description": "Marchand à tête de bélier et aux vêtements bleus tendant une bourse ornée d'une pierre bleue à un client, devant un étal de fioles et une cité aux hautes tours.",
+      "keywords": [
+        "arbre",
+        "Marchand"
+      ]
+    },
+    {
       "file": "art/physique-16_9-og.png",
       "title": "Mannequin d'entraînement",
       "description": "Mannequin d'entraînement en paille criblé de flèches, au milieu d'armes plantées et de bannières pourpres, devant des pagodes à flanc de falaise.",
