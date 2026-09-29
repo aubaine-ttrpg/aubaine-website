@@ -785,6 +785,18 @@
       "kind": "equipment",
       "locale": "en",
       "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "a4520ef6",
+      "file": "equipement-en-v0.2.1_135bee0d_a4520ef6.pdf",
+      "bytes": 5446447,
+      "pages": 42,
+      "generatedAt": "2026-09-29T23:20:31Z"
+    },
+    {
+      "slug": "equipement",
+      "kind": "equipment",
+      "locale": "en",
+      "version": "0.2.1",
       "styleHash": "310dd773",
       "contentHash": "500ace01",
       "file": "equipement-en-v0.2.1_310dd773_500ace01.pdf",
@@ -815,6 +827,18 @@
       "bytes": 5410945,
       "pages": 42,
       "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "equipement",
+      "kind": "equipment",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "c9fa6eac",
+      "file": "equipement-fr-v0.2.1_135bee0d_c9fa6eac.pdf",
+      "bytes": 5470419,
+      "pages": 42,
+      "generatedAt": "2026-09-29T23:20:31Z"
     },
     {
       "slug": "equipement",
@@ -966,11 +990,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "135bee0d",
-      "contentHash": "286d8a45",
-      "file": "foudre-en-v0.2.1_135bee0d_286d8a45.pdf",
-      "bytes": 2013967,
+      "contentHash": "369b9639",
+      "file": "foudre-en-v0.2.1_135bee0d_369b9639.pdf",
+      "bytes": 2218844,
       "pages": 11,
-      "generatedAt": "2026-09-29T21:42:43Z"
+      "generatedAt": "2026-09-29T23:16:29Z"
     },
     {
       "slug": "foudre",
@@ -1014,11 +1038,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "135bee0d",
-      "contentHash": "325df40b",
-      "file": "foudre-fr-v0.2.1_135bee0d_325df40b.pdf",
-      "bytes": 2035979,
+      "contentHash": "584528e8",
+      "file": "foudre-fr-v0.2.1_135bee0d_584528e8.pdf",
+      "bytes": 2241752,
       "pages": 11,
-      "generatedAt": "2026-09-29T21:42:43Z"
+      "generatedAt": "2026-09-29T23:16:29Z"
     },
     {
       "slug": "foudre",
@@ -2550,11 +2574,11 @@
       "locale": "en",
       "version": "0.2.1",
       "styleHash": "135bee0d",
-      "contentHash": "6eb9fcce",
-      "file": "terre-en-v0.2.1_135bee0d_6eb9fcce.pdf",
-      "bytes": 2116518,
+      "contentHash": "bf94a5c3",
+      "file": "terre-en-v0.2.1_135bee0d_bf94a5c3.pdf",
+      "bytes": 2353374,
       "pages": 12,
-      "generatedAt": "2026-09-29T21:42:43Z"
+      "generatedAt": "2026-09-29T23:16:57Z"
     },
     {
       "slug": "terre",
@@ -2598,11 +2622,11 @@
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "135bee0d",
-      "contentHash": "1e0c8cfa",
-      "file": "terre-fr-v0.2.1_135bee0d_1e0c8cfa.pdf",
-      "bytes": 2135054,
+      "contentHash": "3659fdb4",
+      "file": "terre-fr-v0.2.1_135bee0d_3659fdb4.pdf",
+      "bytes": 2372038,
       "pages": 12,
-      "generatedAt": "2026-09-29T21:42:43Z"
+      "generatedAt": "2026-09-29T23:16:57Z"
     },
     {
       "slug": "terre",

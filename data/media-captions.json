@@ -55,6 +55,15 @@
       ]
     },
     {
+      "file": "art/foudre-3_4-og.png",
+      "title": "Foudre",
+      "description": "Éclair bleu frappant le cœur d'un amas de machines métalliques brisées, dans un paysage enneigé sous un ciel d'orage.",
+      "keywords": [
+        "arbre",
+        "Foudre"
+      ]
+    },
+    {
       "file": "art/marchand-16_9-og.png",
       "title": "Marchand au marché",
       "description": "Marchand à tête de bélier et aux vêtements bleus tendant une bourse ornée d'une pierre bleue à un client, devant un étal de fioles et une ville animée.",
@@ -88,6 +97,15 @@
       "keywords": [
         "arbre",
         "entraînement"
+      ]
+    },
+    {
+      "file": "art/terre-arches-3_4-og.png",
+      "title": "Arches de la forêt",
+      "description": "Arches naturelles formées par de grands arbres au-dessus d'un ruisseau, dans une forêt verte traversée par la lumière du soleil.",
+      "keywords": [
+        "arbre",
+        "Terre"
       ]
     },
     {
