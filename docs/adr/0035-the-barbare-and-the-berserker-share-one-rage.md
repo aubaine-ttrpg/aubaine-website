@@ -3,6 +3,8 @@
 **Project:** Aubaine, the wiki
 **Status:** Accepted
 **Date:** 2026-09-28
+**Revised:** 2026-09-29, Rage's upgrades are renamed and the Rage tag answers to a key (addendum in Decision 2)
+**Revised:** 2026-09-29, Frénésie puts you in the Fureur state instead of « à son comble » (addendum in Decision 4)
 **Deciders:** Kori
 **Scope:**
 - **Covers:** splitting the draft Berserker archetype into two archetype trees, and the choices that split
@@ -114,6 +116,14 @@ Mix and match between trees is the game's aim, so the two needed a common ground
 - **The state alone, no tag**: rejected because the decider wanted Rage to be « a Primary type of
   skill » as well. It would come back if no rule outside these two trees ever cites the tag.
 
+### Addendum (2026-09-29): Rage's upgrades are renamed, and the tag answers to a key
+
+- Rage's upgrades become Rage ardente, Rage redoublée and Rage sans fin, so that « Fureur » names
+  the Berserker's state alone (Decision 4).
+- The Rage tag answers to `{{rage}}`, as every tag now does
+  ([0036](0036-every-tag-is-a-keyword-and-rule-text-never-writes-etiquette.md)). Bond sauvage
+  triggers on « une {{rage}} ».
+
 ---
 
 ## Decision 3: the Barbare's Cris are Jötnar words, one per Niveau
@@ -178,6 +188,20 @@ Mix and match between trees is the game's aim, so the two needed a common ground
 
 - **A stack gained each time you are hit**: rejected as bookkeeping in a simple tree. It would come
   back if the threshold reads too static in play.
+
+### Addendum (2026-09-29): the Fureur state replaces « à son comble »
+
+The decider asked for a state rather than a phrase, so that the table sees at a glance whether a
+Berserker is in frenzy. It is worded « Vous êtes en Fureur » and « Si vous êtes en Fureur », so that
+the paragraphs read cleanly.
+- `data/states/fureur.json`: while you are in Fureur, your Attaques deal 1d6 more. The Compétence
+  that puts you in Fureur says when you are, and a fall to 0 PdV ends it in any case.
+- Frénésie puts you in Fureur while it lasts and you have half your PdV maximum or less. Premier sang
+  moves that to three quarters, and Folie furieuse keeps you in Fureur for as long as Frénésie lasts.
+- Soif de sang, Rendre coup pour coup, Cri écorché and Automutilation read « Si vous êtes en
+  Fureur ». Another tree can put a character in Fureur on its own terms.
+- « À son comble » as a rule term was considered first, then rejected by the decider in favour of
+  the state.
 
 ---
 

@@ -15,7 +15,7 @@
     "domains": ["blood", "physical"],
     "prime": ["strength", "dexterity"],
     "upgrades": 2,
-    "xpTotal": 250
+    "xpTotal": 270
   },
   "courtisan": {
     "domains": ["psychic"],

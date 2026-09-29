@@ -12,5 +12,5 @@
       "enhancement"
     ]
   },
-  "description": "Vous rouvrez vos vieilles cicatrices. Lorsque vous jouez {{FRENES-001}}, une fois son coût payé, vous pouvez perdre juste assez de {{pdv}} pour qu'elle soit à son comble. Cette perte n'est pas un dégât."
+  "description": "Vous rouvrez vos vieilles cicatrices. Lorsque vous jouez {{FRENES-001}}, une fois son coût payé, vous pouvez perdre juste assez de {{pdv}} pour être en {{fureur}}. Cette perte n'est pas un dégât."
 }

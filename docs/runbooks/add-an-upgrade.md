@@ -53,19 +53,19 @@ Upgrades are rendered by increasing level, whatever order you write them in. Wri
     {
       "level": 2,
       "tier": 3,
-      "title": "Fureur",
+      "title": "Rage ardente",
       "description": "Tant que {{RAGEXX-001}} dure, vos {{attaque|Attaques}} infligent 2 dégâts de plus."
     },
     {
       "level": 3,
       "tier": 7,
-      "title": "Fureur redoublée",
+      "title": "Rage redoublée",
       "description": "Tant que {{RAGEXX-001}} dure, vos {{attaque|Attaques}} infligent 3 dégâts de plus au lieu de 2."
     },
     {
       "level": 4,
       "tier": 10,
-      "title": "Fureur sans fin",
+      "title": "Rage sans fin",
       "description": "Tant que {{RAGEXX-001}} dure, vos {{attaque|Attaques}} infligent 4 dégâts de plus au lieu de 3, et {{RAGEXX-001}} peut durer jusqu'à 1 heure."
     }
   ]

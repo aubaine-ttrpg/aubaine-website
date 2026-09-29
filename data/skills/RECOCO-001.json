@@ -20,5 +20,5 @@
       "destruction"
     ]
   },
-  "description": "Vous jouez cette {{reaction}} lorsqu'une créature que vous voyez à portée vous inflige des dégâts avec une {{attaque}} de {{melee}} ou de {{finesse}}.\n\nVous lui rendez le coup : portez une {{attaque}} contre elle. Si {{FRENES-001}} est à son comble, cette {{attaque}} gagne 1 {{avantage}}."
+  "description": "Vous jouez cette {{reaction}} lorsqu'une créature que vous voyez à portée vous inflige des dégâts avec une {{attaque}} de {{melee}} ou de {{finesse}}.\n\nVous lui rendez le coup : portez une {{attaque}} contre elle. Si vous êtes en {{fureur}}, cette {{attaque}} gagne 1 {{avantage}}."
 }

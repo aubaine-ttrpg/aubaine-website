@@ -1,0 +1,8 @@
+{
+  "key": "fureur",
+  "name": "Fureur",
+  "kind": "buff",
+  "icon": "game-icons:bleeding-heart",
+  "color": "#b3123f",
+  "description": "Tant que vous êtes en {{fureur}}, vos {{attaque|Attaques}} infligent 1d6 dégâts de plus.\n\nLa Compétence qui vous met en {{fureur}} dit quand vous l'êtes. Dans tous les cas, vous n'êtes plus en {{fureur}} lorsque vous tombez à 0 {{pdv}}."
+}

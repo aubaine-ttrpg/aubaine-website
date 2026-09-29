@@ -23,5 +23,5 @@
       "lifesteal"
     ]
   },
-  "description": "Vous cherchez l'artère. Vous ne pouvez jouer cette Compétence qu'une fois par tour.\n\nPortez l'{{attaque}}. En cas de réussite, ses dégâts augmentent de 2d6. Si {{FRENES-001}} est à son comble et que la cible a du sang, vous récupérez des {{pdv}} égaux à la moitié de ces 2d6."
+  "description": "Vous cherchez l'artère. Vous ne pouvez jouer cette Compétence qu'une fois par tour.\n\nPortez l'{{attaque}}. En cas de réussite, ses dégâts augmentent de 2d6. Si vous êtes en {{fureur}} et que la cible a du sang, vous récupérez des {{pdv}} égaux à la moitié de ces 2d6."
 }
