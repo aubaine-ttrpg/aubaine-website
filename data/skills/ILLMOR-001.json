@@ -19,5 +19,5 @@
       "illusion"
     ]
   },
-  "description": "Une illusion ne blesse pas. Ce qu'une créature en croit, si.\n\nTant qu'un {{sort}} portant l'étiquette Illusion est en place, choisissez une créature qui le voit et le tient pour réel. Elle effectue un {{jet}} d'{{esprit}} + {{perception}} contre le {{dd}} de cette illusion. En cas d'échec, elle subit 2d6 dégâts Psychiques."
+  "description": "Une illusion ne blesse pas. Ce qu'une créature en croit, si.\n\nTant qu'un {{sort}} d'{{illusion}} est en place, choisissez une créature qui le voit et le tient pour réel. Elle effectue un {{jet}} d'{{esprit}} + {{perception}} contre le {{dd}} de cette illusion. En cas d'échec, elle subit 2d6 dégâts Psychiques."
 }

@@ -12,7 +12,7 @@
       "enhancement"
     ]
   },
-  "description": "La première fois que vous {{memorisee|mémorisez}} cette Compétence, choisissez une École parmi Destruction, Contrôle, Protection, Soin, Renforcement, Mobilité, Divination, Illusion, Influence, Invocation, Création et Nécromancie, et une Pratique parmi Sort, Manœuvre et Technique.\n\nVotre {{dd}} augmente de 1 pour vos Compétences qui portent cette École et cette Pratique, et vous ajoutez 1 aux {{jet|Jets}} qu'elles vous font effectuer.",
+  "description": "La première fois que vous {{memorisee|mémorisez}} cette Compétence, choisissez une École parmi {{destruction}}, {{controle}}, {{protection}}, {{soin}}, {{renforcement}}, {{mobilite}}, {{divination}}, {{illusion}}, {{influence}}, {{invocation}}, {{creation}} et {{necromancie}}, et une Pratique parmi {{sort}}, {{manoeuvre}} et {{technique}}.\n\nVotre {{dd}} augmente de 1 pour vos Compétences qui portent cette École et cette Pratique, et vous ajoutez 1 aux {{jet|Jets}} qu'elles vous font effectuer.",
   "upgrades": [
     {
       "level": 2,

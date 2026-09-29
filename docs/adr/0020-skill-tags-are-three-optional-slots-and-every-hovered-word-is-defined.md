@@ -8,6 +8,7 @@
 **Revised:** 2026-09-26, the Enseignement and Inné Pratiques are added (addendum in Decision 5)
 **Revised:** 2026-09-28, Inné names the mind, for the Psychique powers (addendum in Decision 5)
 **Revised:** 2026-09-28, the Rage Pratique is added (addendum in Decision 5)
+**Revised:** 2026-09-29, every tag answers to a key and rule text never writes « étiquette », reversed by 0036 (addenda in Decisions 4 and 5)
 **Deciders:** Kori
 **Scope:** The `tags` field on a skill and its removal from upgrades and English overlays, the new
 vocabulary file `data/meta/tags.json`, the definitions shown in the tooltips of rule terms,
@@ -163,6 +164,13 @@ bought still carry none.
 - **Indexing every tag label**: rejected for the collisions above. Reopens if rule text needs to
   cite tags by a spelling no other word shares.
 
+### Addendum (2026-09-29): tags enter the index by key
+
+Reversed by [0036](0036-every-tag-is-a-keyword-and-rule-text-never-writes-etiquette.md). Since
+[0029](0029-every-link-is-an-explicit-reference-by-key.md) nothing links by its spelling, so the
+collisions above no longer apply. Every tag now answers to the `slugify` of its `labelFr`, in one
+shared colour and icon; `Sort` keeps its rule term.
+
 ---
 
 ## Decision 5: A new tag is rare and deliberate
@@ -230,6 +238,13 @@ FRENES-001), and Bond sauvage (BONSAU-001) cites « l'étiquette Rage » to trig
 Renforcement and Protection accept it, the pairings those hearts use. Destruction accepts it too,
 opened ahead of any carrier by the decider's choice so that a later striking rage needs no new
 ruling. [0035](0035-the-barbare-and-the-berserker-share-one-rage.md) records the split.
+
+### Addendum (2026-09-29): no « étiquette » in rule text
+
+Reversed by [0036](0036-every-tag-is-a-keyword-and-rule-text-never-writes-etiquette.md). Rule text
+names a tag by its key, as Bond sauvage now writes « une {{rage}} », and
+`tests/data/integrity.test.ts` refuses the word « étiquette » in rule text instead of checking each
+citation's label.
 
 ---
 

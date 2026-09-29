@@ -3,7 +3,6 @@ import { pathFor, treeNodeHref } from '../i18n/routes.ts'
 import { strings } from '../i18n/strings.ts'
 import {
   type Corpus,
-  definition,
   type GlossaryTerm,
   label,
   type ResolvedSpecies,
@@ -82,7 +81,6 @@ export type BrowseEntry = {
 const DOMAIN_FALLBACK = '#2a2a2e'
 const RARITY_FALLBACK = '#6b6459'
 const NEUTRAL = 'neutral'
-const TAG_INK = 'var(--paper-sub2)'
 
 const skillTint = (skill: Skill, corpus: Corpus): string =>
   corpus.domains.get(skill.domains[0] ?? NEUTRAL)?.color ?? DOMAIN_FALLBACK
@@ -476,7 +474,7 @@ export function materialBrowseEntries(corpus: Corpus, locale: Locale): BrowseEnt
   return [...environments.sort(byTitle), ...materials.sort(byTitle)]
 }
 
-type RuleFamily = GlossaryTerm['family'] | 'tag' | 'basic'
+type RuleFamily = GlossaryTerm['family'] | 'basic'
 
 const RULE_ROW = {
   aside: '',
@@ -512,10 +510,6 @@ export function ruleBrowseEntries(corpus: Corpus, locale: Locale): BrowseEntry[]
       'fam',
       families.map((family) => ({ value: family, label: familyLabels[family] })),
     )
-  const readByRuleTerm = new Set(
-    corpus.glossary.flatMap((term) => (term.family === 'rule' && term.tag ? [term.tag] : [])),
-  )
-
   const glossaryRows = corpus.glossary.map((term): BrowseEntry => {
     const id = `${term.family}-${term.key}`
     const { title, color } = term.record
@@ -534,7 +528,12 @@ export function ruleBrowseEntries(corpus: Corpus, locale: Locale): BrowseEntry[]
         ]),
       }
     }
-    const tag = term.family === 'rule' && term.tag ? corpus.tags.get(term.tag) : undefined
+    const tag =
+      term.family === 'tag'
+        ? term.tag
+        : term.family === 'rule' && term.tag
+          ? corpus.tags.get(term.tag)
+          : undefined
     const kind = tag
       ? `${familyLabels[term.family]} · ${slotLabels[tag.kind]}`
       : familyLabels[term.family]
@@ -548,29 +547,11 @@ export function ruleBrowseEntries(corpus: Corpus, locale: Locale): BrowseEntry[]
       title,
       mark: color,
       sub: kind,
-      attrs: attributesFor(id, title, [familyFacet(tag ? [term.family, 'tag'] : [term.family])]),
+      attrs: attributesFor(id, title, [
+        familyFacet(tag && term.family !== 'tag' ? [term.family, 'tag'] : [term.family]),
+      ]),
     }
   })
-
-  const tagRows = [...corpus.tags.values()]
-    .filter((tag) => !readByRuleTerm.has(tag.key))
-    .map((tag): BrowseEntry => {
-      const id = `tag-${tag.key}`
-      const title = label(tag, locale, tag.key)
-      const kind = `${familyLabels.tag} · ${slotLabels[tag.kind]}`
-      return {
-        ...RULE_ROW,
-        id,
-        entity: {
-          kind: 'term',
-          term: { title, kind, color: TAG_INK, icon: null, text: definition(tag, locale) },
-        },
-        title,
-        mark: TAG_INK,
-        sub: kind,
-        attrs: attributesFor(id, title, [familyFacet(['tag'])]),
-      }
-    })
 
   const basicRows = corpus.basic.resolved.map((skill): BrowseEntry => {
     const id = `basic-${skill.id}`
@@ -593,7 +574,7 @@ export function ruleBrowseEntries(corpus: Corpus, locale: Locale): BrowseEntry[]
     const found = steps.get(entry.entity.state.key)
     return found ? { title: found.first.name, step: found.step } : { title: entry.title, step: 0 }
   }
-  return [...glossaryRows, ...tagRows, ...basicRows].sort((a, b) => {
+  return [...glossaryRows, ...basicRows].sort((a, b) => {
     const left = place(a)
     const right = place(b)
     return compare.compare(left.title, right.title) || left.step - right.step

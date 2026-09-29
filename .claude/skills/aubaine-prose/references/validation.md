@@ -25,8 +25,8 @@ whether something is covered. The summary below orients you; it does not bound t
   locales, no two share a text, and the definitions written in code pass the dash, typography, banned
   phrase and antithesis checks.
 - Every tag a skill carries is declared in `data/meta/tags.json` in the slot it fills, an École
-  accepts the Pratique it is paired with, every declared tag is carried by some skill, and a French
-  citation « l'étiquette X » names a declared label.
+  accepts the Pratique it is paired with, every declared tag is carried by some skill and answers to a
+  key, and no rule text writes « étiquette ».
 - No antithesis outside a book chapter, in rule text or in site copy.
 - Emphasis in rule text is `***gras***`. Any other run of asterisks fails, because `MARKUP` in
   `src/lib/game/richtext.ts` parses only three and the characters otherwise reach the page.

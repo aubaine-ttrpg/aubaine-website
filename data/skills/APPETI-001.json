@@ -15,5 +15,5 @@
       "lifesteal"
     ]
   },
-  "description": "Plus vous êtes vide, plus vous buvez large. Lorsqu'une Compétence portant l'étiquette Vol de vie vous rend des {{pdv}} alors que vous avez la moitié ou moins de vos {{pdv}} maximum, elle vous en rend le double."
+  "description": "Plus vous êtes vide, plus vous buvez large. Lorsqu'une Compétence de {{vol-de-vie}} vous rend des {{pdv}} alors que vous avez la moitié ou moins de vos {{pdv}} maximum, elle vous en rend le double."
 }

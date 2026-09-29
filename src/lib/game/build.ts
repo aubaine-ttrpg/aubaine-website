@@ -109,6 +109,7 @@ export type GlossaryTerm = GlossaryWord &
   (
     | { family: 'rule'; tag: string | undefined; definition: string }
     | { family: 'characteristic' | 'aptitude'; definition: string }
+    | { family: 'tag'; tag: ResolvedTag; definition: string }
     | { family: 'state'; state: GameState }
   )
 
@@ -278,6 +279,7 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
     locale: DEFAULT_LOCALE,
     characteristics,
     aptitudes,
+    tags,
     states: stateEntries.map((entry) => entry.data),
     skills: new Map(skillEntries.map((entry) => [entry.data.id, entry.data])),
   })
@@ -555,7 +557,7 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
     })
     .sort((a, b) => a.order - b.order)
 
-  const labels = referenceLabels({ locale, characteristics, aptitudes, states, skills })
+  const labels = referenceLabels({ locale, characteristics, aptitudes, tags, states, skills })
   const labelOf: LabelOf = (key) => labels.get(key)
   const glossary = buildGlossary({
     locale,
@@ -665,6 +667,7 @@ type LabelInput = {
   locale: Locale
   characteristics: Map<string, VocabularyEntry>
   aptitudes: Map<string, VocabularyEntry>
+  tags: Map<string, ResolvedTag>
   states: GameState[]
   skills: Map<string, Skill>
 }
@@ -672,6 +675,7 @@ type LabelInput = {
 type EquipmentGrant = { skill: Skill; source: string }
 
 const APTITUDE_ICON = 'mdi/rhombus-outline'
+const TAG_ICON = 'mdi/tag-outline'
 
 type RuleTerm = {
   fr: string
@@ -1114,6 +1118,20 @@ function vocabularyLabel(entry: VocabularyEntry, english: boolean): string {
   return english ? entry.labelEn : entry.labelFr
 }
 
+const TAGS_READ_BY_RULE_TERMS = new Set(
+  RULE_TERMS.flatMap((rule) => ('tag' in rule ? [rule.tag] : [])),
+)
+
+function keywordTags(tags: Map<string, ResolvedTag>): ResolvedTag[] {
+  return [...tags.values()].filter((tag) => !TAGS_READ_BY_RULE_TERMS.has(tag.key))
+}
+
+function tagSlotLabel(tag: ResolvedTag, t: ReturnType<typeof strings>): string {
+  if (tag.kind === 'practice') return t.tagPractice
+  if (tag.kind === 'school') return t.tagSchool
+  return t.tagSpecial
+}
+
 function referenceLabels(input: LabelInput): Map<string, string> {
   const english = input.locale === 'en'
   const labels = new Map<string, string>()
@@ -1124,6 +1142,9 @@ function referenceLabels(input: LabelInput): Map<string, string> {
   }
   for (const entry of input.aptitudes.values()) {
     labels.set(vocabularyReference(entry), vocabularyLabel(entry, english))
+  }
+  for (const tag of keywordTags(input.tags)) {
+    labels.set(slugify(tag.labelFr), english ? tag.labelEn : tag.labelFr)
   }
   for (const state of input.states) labels.set(state.key, state.name)
   for (const skill of input.skills.values()) labels.set(skill.id, skill.title)
@@ -1193,6 +1214,26 @@ function buildGlossary(input: GlossaryInput): GlossaryTerm[] {
         meta: '',
         color: entry.color ?? 'var(--term-apt)',
         icon: APTITUDE_ICON,
+        text: flattenText(definition, labelOf),
+      },
+    })
+  }
+
+  for (const tag of keywordTags(tags)) {
+    const definition = requiredDefinition(tag, locale, `data/meta/tags.json ${tag.key}`)
+    glossary.push({
+      family: 'tag',
+      key: tag.key,
+      reference: slugify(tag.labelFr),
+      tag,
+      definition,
+      record: {
+        family: 'tag',
+        kind: t.tag,
+        title: english ? tag.labelEn : tag.labelFr,
+        meta: tagSlotLabel(tag, t),
+        color: 'var(--term-tag)',
+        icon: TAG_ICON,
         text: flattenText(definition, labelOf),
       },
     })

@@ -57,6 +57,7 @@
   --term-bonus: #e0b93a;
   --term-reaction: #a98ad4;
   --term-spell: #d98ad0;
+  --term-tag: #a3b1c2;
   --scrim1: rgba(6, 5, 13, 0.92);
   --scrim-mid: rgba(6, 5, 13, 0.34);
   --scrim2: rgba(6, 5, 13, 0);
@@ -202,4 +203,5 @@
   --term-bonus: #846a0a;
   --term-reaction: #5b3f94;
   --term-spell: #8f2f86;
+  --term-tag: #4b5a6e;
 }

@@ -1,6 +1,6 @@
 # Add a tag
 
-Produces one new tag: a label a skill can carry in its card footer, with a definition in its tooltip, a value in one of the skills filters, and a word rule text can cite as « l'étiquette X ». Also the page to read before tagging a skill at all.
+Produces one new tag: a label a skill can carry in its card footer, with a definition in its tooltip, a value in one of the skills filters, and a keyword rule text references by the `slugify` of its French label, as `{{illusion}}`. Also the page to read before tagging a skill at all.
 
 ## Before anything: does the skill need a tag?
 
@@ -82,13 +82,14 @@ A definition may reference an entry by key, `{{clé}}` or `{{clé|texte}}`, as r
 1. Add the entry to `data/meta/tags.json`.
 2. For a new Pratique, decide for every École whether it accepts it, and add the key to each `practices` list that should.
 3. Tag the skills that need it, in the same change.
-4. If rule text will cite it, write « l'étiquette » followed by the French label exactly.
+4. Rule text names it by its key, the `slugify` of `labelFr`: `{{vol-de-vie}}`. Never write « l'étiquette X ».
 5. Record the addition as an addendum in [0020](../adr/0020-skill-tags-are-three-optional-slots-and-every-hovered-word-is-defined.md).
 
 ## What appears on the site
 
 - The chip in the footer of every skill that carries the tag, in both locales, with the definition on hover and keyboard focus.
 - A new value in the Pratique, École or Spéciale filter on `/fr/competences` and `/en/skills`.
+- A pill in the shared tag colour and icon wherever rule text writes its key, with the definition in its tooltip.
 - A row on `/fr/regles` and `/en/rules`, filed under the `Étiquette` family, whose detail shows the definition. A tag a rule term reads, as `Sort` reads `spell`, has no row of its own: the rule term's row also files under the tags.
 
 ## How to check it
@@ -98,16 +99,16 @@ pnpm data:check
 pnpm dev
 ```
 
-`pnpm data:check` fails on a tag declared twice, a label used twice, a tag no skill carries, a key used in the wrong slot, an École paired with a Pratique it does not accept, an École repeated on one skill, a third École, and a French citation of an undeclared label.
+`pnpm data:check` fails on a tag declared twice, a label used twice, a tag no skill carries, a key used in the wrong slot, an École paired with a Pratique it does not accept, an École repeated on one skill, a third École, a tag that answers to no key, and the word « étiquette » in rule text.
 
 ## Traps
 
-**Rename a label, never a key.** Keys are machine values stored in every skill file. A new label changes the chip and the filter everywhere; a new key breaks every skill that used the old one.
+**Rename a label, never a key.** Keys are machine values stored in every skill file. A new label changes the chip and the filter everywhere; a new key breaks every skill that used the old one. A new `labelFr` is also a new reference, since the reference is its `slugify`: every `{{...}}` to the old label has to move.
 
 **`spell` is read by code.** The `Sort` rule term in `RULE_TERMS` reads its tooltip from the `spell` tag. Renaming or removing that key stops the build.
 
 **Retire a tag from every skill before removing it.** A skill naming an undeclared key fails the build.
 
-**Tags are not keywords.** A tag name is never a reference: a tag has no key, and its label written in prose stays text. `Sort` links as the rule term `{{sort}}`, which reads the definition of the `spell` tag.
+**A tag a rule term reads answers to the rule term.** `Sort` links as the rule term `{{sort}}`, which reads the definition of the `spell` tag, with its own colour and icon. Every other tag answers to its own key, in the shared tag colour and icon.
 
 **Book chapters cache their tooltips.** Delete `node_modules/.astro` before rebuilding after a definition change, as [add-an-image.md](add-an-image.md) explains.

@@ -12,7 +12,7 @@
   "activation": "1 Action Bonus",
   "range": "6 m",
   "duration": "Instantanée",
-  "energy": 1,
+  "energy": 2,
   "tags": {
     "practice": "manoeuvre",
     "schools": [
@@ -20,5 +20,5 @@
       "destruction"
     ]
   },
-  "description": "Vous ramassez vos jambes sous vous et vous vous détendez comme un ressort. Vous ne pouvez pas jouer cette Compétence si vous êtes {{immobilise}} ou {{a-terre}}. Une fois par tour, lorsque vous jouez pendant votre tour une Compétence qui porte l'étiquette Rage, vous pouvez jouer {{BONSAU-001}} aussitôt, sans dépenser d'{{action-bonus}}.\n\nVous bondissez jusqu'à un emplacement libre que vous voyez à portée, sur une surface capable de vous porter et pas plus de 3 m au-dessus de vous. Aucun obstacle ne doit barrer la ligne droite qui vous en sépare. L'espace d'une créature n'est pas un obstacle pour ce bond. Si aucun emplacement ne remplit ces conditions, vous ne pouvez pas jouer cette Compétence. Ce bond ne compte pas dans votre {{deplacement|déplacement}} et ne déclenche aucune {{ATTOPP-001}}.\n\nÀ l'arrivée, chaque créature de votre choix à 1,5 m ou moins de vous effectue un {{jet}} de {{dexterite}} + {{reflexes}} contre votre {{dd}} (10 + {{force}} + {{athletisme}}). En cas d'échec, elle subit 1d6 dégâts Contondants. En cas de réussite, elle ne subit rien."
+  "description": "Vous ramassez vos jambes sous vous et vous vous détendez comme un ressort. Vous ne pouvez pas jouer cette Compétence si vous êtes {{immobilise}} ou {{a-terre}}. Une fois par tour, lorsque vous jouez une {{rage}} pendant votre tour, vous pouvez jouer {{BONSAU-001}} aussitôt, sans dépenser d'{{action-bonus}}.\n\nVous bondissez jusqu'à un emplacement libre que vous voyez à portée, sur une surface capable de vous porter et pas plus de 3 m au-dessus de vous. Aucun obstacle ne doit barrer la ligne droite qui vous en sépare. L'espace d'une créature n'est pas un obstacle pour ce bond. Si aucun emplacement ne remplit ces conditions, vous ne pouvez pas jouer cette Compétence. Ce bond ne compte pas dans votre {{deplacement|déplacement}} et ne déclenche aucune {{ATTOPP-001}}.\n\nÀ l'arrivée, chaque créature de votre choix à 1,5 m ou moins de vous effectue un {{jet}} de {{dexterite}} + {{reflexes}} contre votre {{dd}} (10 + {{force}} + {{athletisme}}). En cas d'échec, elle subit 1d6 dégâts Contondants. En cas de réussite, elle ne subit rien."
 }

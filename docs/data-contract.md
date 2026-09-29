@@ -148,13 +148,14 @@ The same markup works in a skill description, an upgrade description, a state de
 
 Every link is explicit. A word written without markup is plain text and never links, whatever its capitals. `texte` is plain text too, with no markup inside it.
 
-Each entry answers to one key, derived from the entry and never stored in a field. `slugify` in `src/lib/game/derive.ts` lowercases a label, drops its accents and joins its words with hyphens.
+Each entry answers to one key, derived from the entry and never stored in a field. `slugify` in `src/lib/game/derive.ts` lowercases a label, spells out œ and æ, drops its accents and joins its words with hyphens.
 
 | Entry | Key | Example |
 | --- | --- | --- |
 | rule term | the `slugify` of its French label in `RULE_TERMS`, in `src/lib/game/build.ts` | `{{energie}}`, `{{action-bonus}}`, `{{jet\|Jets}}` |
 | Caractéristique | the `slugify` of its `labelFr` in `data/meta/characteristics.json`, not its `key` | `{{dexterite}}` |
 | Aptitude | the `slugify` of its `labelFr` in `data/meta/aptitudes.json` | `{{visee}}` |
+| tag | the `slugify` of its `labelFr` in `data/meta/tags.json`, unless a rule term reads it | `{{illusion}}`, `{{vol-de-vie}}`, `{{manoeuvre}}` |
 | state | its `key`, which is its file name in `data/states/` | `{{a-terre}}`, `{{entrave\|Entravée}}` |
 | skill | its `id` | `{{TRAFEU-001}}`, `{{RAGEXX-001\|cette Compétence}}` |
 | equipment item | its file name in `data/equipment/items/` | `{{dague}}`, `{{boucle-de-l-un\|la Boucle}}` |
@@ -170,7 +171,7 @@ Book chapters, the lore pages and the equipment guide use the same references, a
 
 Definitions carry references too: `definitionFr` and `definitionEn` in `data/meta/`, the definitions in `RULE_TERMS` and the `note` of `data/skill-lists/common-bank.json`. The Rules page renders them as links. A tooltip, the tag hints on a skill entry and the source popover show the same text flattened: each reference prints its label or its written text, never its braces.
 
-Rule text cites a tag in plain words, « l'étiquette » followed by its French label exactly: `l'étiquette Vol de vie`. `pnpm data:check` fails on a label `data/meta/tags.json` does not declare.
+Rule text names a tag by its key: `une Compétence de {{vol-de-vie}}`, `un {{sort}} d'{{illusion}}`. It never writes « étiquette », and `pnpm data:check` refuses the word there.
 
 ## Tags are a closed vocabulary
 

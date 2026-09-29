@@ -41,5 +41,6 @@ paths:
 
 - Skill tags are a vocabulary of their own, declared in `data/meta/tags.json` with its own schema, `tagTaxonomy`, in three groups: `practices`, `schools` and `specials`. Read the file for the current members and never work from a copy of it.
 - Each tag carries its labels and its tooltip definition in both locales. Each École lists the Pratiques it accepts: that list is the Pratique x École matrix.
-- A skill's `tags` fills only the slots it needs, and none is mandatory. Tags are not keywords and are never marked in prose.
+- A skill's `tags` fills only the slots it needs, and none is mandatory.
+- Every tag is a keyword. Rule text names it by the `slugify` of its `labelFr`, as `{{illusion}}`, and never writes « étiquette ». Tags share one colour, `--term-tag`, and one icon, `TAG_ICON` in `src/lib/game/build.ts`, as Aptitudes do. A tag a rule term reads, as `Sort` reads `spell`, answers to that rule term's key instead.
 - Adding, renaming or retiring a tag is a product decision. `docs/runbooks/add-a-tag.md` owns the procedure and `docs/adr/0020-skill-tags-are-three-optional-slots-and-every-hovered-word-is-defined.md` the reasons.

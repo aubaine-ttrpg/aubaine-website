@@ -1488,22 +1488,19 @@ describe('skill tags', () => {
     }
   })
 
-  it('cites only declared tags in French rule text', () => {
-    const labels = [...fr.tags.values()]
-      .map((tag) => tag.labelFr)
-      .sort((a, b) => b.length - a.length)
-    const citation = /l['’]étiquette (?=\p{Lu})/gu
-    for (const { where, text } of allRuleText(fr)) {
-      for (const match of text.matchAll(citation)) {
-        let rest = text.slice((match.index ?? 0) + match[0].length)
-        for (;;) {
-          const cited = labels.find((name) => rest.startsWith(name))
-          expect(cited, `${where} cites an undeclared tag: ${rest.slice(0, 30)}`).toBeDefined()
-          rest = rest.slice(cited?.length ?? 0)
-          const next = rest.match(/^ (?:ou|et) (?=\p{Lu})/u)
-          if (!next) break
-          rest = rest.slice(next[0].length)
-        }
+  it('names a tag by its key, never with the word « étiquette »', () => {
+    for (const { where, text } of everyRuleText) {
+      expect(/étiquette/iu.test(text), `${where} writes « étiquette »`).toBe(false)
+    }
+  })
+
+  it('gives every tag a reference key', async () => {
+    for (const locale of LOCALES) {
+      const built = await readCorpus(root, locale)
+      for (const tag of built.tags.values()) {
+        const term = built.terms.keys.get(slugify(tag.labelFr))
+        expect(term, `${locale} ${tag.key}`).toBeDefined()
+        expect(['tag', 'rule'], `${locale} ${tag.key} family`).toContain(term?.family)
       }
     }
   })

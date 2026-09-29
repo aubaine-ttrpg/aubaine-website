@@ -30,7 +30,7 @@ Choisissez parmi les étiquettes existantes. En inventer une pour une seule Comp
 
 Toutes les Écoles n'acceptent pas toutes les Pratiques : une Manœuvre reste dans les Écoles du combat, un Cri dans ce qu'une voix peut porter.
 
-L'étiquette Déchaîné signale une Compétence déchaînée au sens du budget d'effet, plus bas : le joueur compose son effet au moment de la jouer.
+{{dechaine}} signale une Compétence déchaînée au sens du budget d'effet, plus bas : le joueur compose son effet au moment de la jouer.
 
 ## Le budget d'effet
 

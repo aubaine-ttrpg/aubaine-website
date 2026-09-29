@@ -2,6 +2,7 @@ export const TERM_FAMILIES = [
   'rule',
   'characteristic',
   'aptitude',
+  'tag',
   'state',
   'skill',
   'item',

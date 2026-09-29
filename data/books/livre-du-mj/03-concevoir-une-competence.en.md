@@ -30,7 +30,7 @@ Choose among the existing tags. Inventing one for a single Skill opens one more 
 
 Not every School accepts every Practice: a Manoeuvre stays within the Schools of combat, a Shout within what a voice can carry.
 
-The Unleashed tag marks an unleashed Skill in the sense of the effect budget, below: the player composes its effect at the moment of playing it.
+{{dechaine}} marks an unleashed Skill in the sense of the effect budget, below: the player composes its effect at the moment of playing it.
 
 ## The effect budget
 

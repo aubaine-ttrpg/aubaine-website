@@ -274,6 +274,8 @@ export function treeSkillOrder(placements: OrderablePlacement[], locale: Locale)
 export function slugify(value: string): string {
   return value
     .toLowerCase()
+    .replace(/œ/g, 'oe')
+    .replace(/æ/g, 'ae')
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-z0-9]+/g, '-')

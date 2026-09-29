@@ -266,6 +266,7 @@ describe('text helpers', () => {
     expect(slugify('Myxo-Catalyseur')).toBe('myxo-catalyseur')
     expect(slugify('Rapière de duel')).toBe('rapiere-de-duel')
     expect(slugify('Armes · Mêlée')).toBe('armes-melee')
+    expect(slugify('Manœuvre')).toBe('manoeuvre')
   })
 
   it('buckets initials', () => {

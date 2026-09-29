@@ -16,6 +16,7 @@ links. The index is built in `src/lib/game/build.ts` and applied in `src/lib/gam
 | Rule terms | own colour and icon | `slugify` of the French label, `{{action-bonus}}` | `RULE_TERMS` in `src/lib/game/build.ts` |
 | Characteristics | per term colour and icon | `slugify` of `labelFr`, `{{dexterite}}` | `data/meta/characteristics.json` |
 | Aptitudes | one shared colour and one shared icon, own definition | `slugify` of `labelFr`, `{{visee}}` | `data/meta/aptitudes.json` |
+| Tags | one shared colour and one shared icon, own definition | `slugify` of `labelFr`, `{{illusion}}` | `data/meta/tags.json` |
 | States | kind colour and the state icon | the state `key`, its file name, `{{a-terre}}` | `data/states/` |
 | Skills | badge, plus a tooltip carrying type, tree, and the opening of the description | the skill `id`, `{{TRAFEU-001}}` | `data/skills/` |
 
@@ -23,9 +24,9 @@ A Caractéristique's key comes from its French label, not from its English machi
 never `{{dexterity}}`.
 
 Rule terms, Caractéristiques and Aptitudes each show their own definition in the tooltip, read from
-`RULE_TERMS` and the `definitionFr` and `definitionEn` fields of their vocabulary file. Tags are not in
-the index: each chip in a card footer shows its definition from `data/meta/tags.json`, and a tag
-label never links. A definition, a tag's included, may itself carry references by key. The Rules page
+`RULE_TERMS` and the `definitionFr` and `definitionEn` fields of their vocabulary file. Tags show the
+definition from `data/meta/tags.json`, in a chip in a card footer and wherever rule text writes their key.
+A tag a rule term reads, as Sort reads `spell`, answers to that rule term. A definition, a tag's included, may itself carry references by key. The Rules page
 renders them as links; a tooltip or a chip shows the same text flattened, each reference printing its
 label or its written text, never its braces.
 
