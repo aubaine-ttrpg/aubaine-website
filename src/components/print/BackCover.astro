@@ -4,7 +4,8 @@ import { getImage } from 'astro:assets'
 import qrSource from '../../../data/media/qr-aubaine.png'
 import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
-import { artImage, PLACEHOLDER_BANNER } from '../../lib/media'
+import { DEFAULT_PDF_BACK_COVER } from '../../lib/booklet/back-cover'
+import { artImage } from '../../lib/media'
 import HexLine from './HexLine.astro'
 import Leaf from './Leaf.astro'
 
@@ -19,7 +20,7 @@ type Props = {
 const { art, title, stamp, eyebrow, locale } = Astro.props
 const t = strings(locale)
 
-const source = artImage(art) ?? artImage(PLACEHOLDER_BANNER)
+const source = artImage(art) ?? artImage(DEFAULT_PDF_BACK_COVER)
 const plate = source
   ? await getImage({
       src: source,

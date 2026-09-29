@@ -5,6 +5,18 @@
       "kind": "tree",
       "locale": "en",
       "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "eb4ee8ea",
+      "file": "artisan-en-v0.2.1_135bee0d_eb4ee8ea.pdf",
+      "bytes": 1426294,
+      "pages": 8,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "artisan",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
       "styleHash": "310dd773",
       "contentHash": "3d6adf86",
       "file": "artisan-en-v0.2.1_310dd773_3d6adf86.pdf",
@@ -23,6 +35,30 @@
       "bytes": 1204065,
       "pages": 8,
       "generatedAt": "2026-09-28T13:38:16Z"
+    },
+    {
+      "slug": "artisan",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "3d6adf86",
+      "file": "artisan-en-v0.2.1_d37529a1_3d6adf86.pdf",
+      "bytes": 1205659,
+      "pages": 8,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "artisan",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "c5fef361",
+      "file": "artisan-fr-v0.2.1_135bee0d_c5fef361.pdf",
+      "bytes": 1447786,
+      "pages": 8,
+      "generatedAt": "2026-09-29T21:42:43Z"
     },
     {
       "slug": "artisan",
@@ -49,6 +85,42 @@
       "generatedAt": "2026-09-28T13:38:16Z"
     },
     {
+      "slug": "artisan",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "e020ba1e",
+      "file": "artisan-fr-v0.2.1_d37529a1_e020ba1e.pdf",
+      "bytes": 1226039,
+      "pages": 8,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "barbare",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "4fc3ab40",
+      "file": "barbare-en-v0.2.1_135bee0d_4fc3ab40.pdf",
+      "bytes": 2206795,
+      "pages": 11,
+      "generatedAt": "2026-09-29T21:51:51Z"
+    },
+    {
+      "slug": "barbare",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "e0bac7c4",
+      "file": "barbare-en-v0.2.1_135bee0d_e0bac7c4.pdf",
+      "bytes": 2111088,
+      "pages": 11,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
       "slug": "barbare",
       "kind": "tree",
       "locale": "en",
@@ -63,6 +135,42 @@
     {
       "slug": "barbare",
       "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "e0bac7c4",
+      "file": "barbare-en-v0.2.1_d37529a1_e0bac7c4.pdf",
+      "bytes": 2111517,
+      "pages": 11,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "barbare",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "63f667d6",
+      "file": "barbare-fr-v0.2.1_135bee0d_63f667d6.pdf",
+      "bytes": 2134946,
+      "pages": 11,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "barbare",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "63fe24e6",
+      "file": "barbare-fr-v0.2.1_135bee0d_63fe24e6.pdf",
+      "bytes": 2230644,
+      "pages": 11,
+      "generatedAt": "2026-09-29T21:51:51Z"
+    },
+    {
+      "slug": "barbare",
+      "kind": "tree",
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
@@ -71,6 +179,30 @@
       "bytes": 2095599,
       "pages": 11,
       "generatedAt": "2026-09-28T19:28:57Z"
+    },
+    {
+      "slug": "barbare",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "63f667d6",
+      "file": "barbare-fr-v0.2.1_d37529a1_63f667d6.pdf",
+      "bytes": 2135361,
+      "pages": 11,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "berserker",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "8a9e4a10",
+      "file": "berserker-en-v0.2.1_135bee0d_8a9e4a10.pdf",
+      "bytes": 1812870,
+      "pages": 9,
+      "generatedAt": "2026-09-29T21:42:43Z"
     },
     {
       "slug": "berserker",
@@ -99,6 +231,30 @@
     {
       "slug": "berserker",
       "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "5bb2317e",
+      "file": "berserker-en-v0.2.1_d37529a1_5bb2317e.pdf",
+      "bytes": 1762181,
+      "pages": 9,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "berserker",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "9ea9f251",
+      "file": "berserker-fr-v0.2.1_135bee0d_9ea9f251.pdf",
+      "bytes": 1835424,
+      "pages": 9,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "berserker",
+      "kind": "tree",
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
@@ -119,6 +275,30 @@
       "bytes": 1889617,
       "pages": 9,
       "generatedAt": "2026-09-28T13:59:54Z"
+    },
+    {
+      "slug": "berserker",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "151eabf3",
+      "file": "berserker-fr-v0.2.1_d37529a1_151eabf3.pdf",
+      "bytes": 1785500,
+      "pages": 9,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "courtisan",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "1dbbc93d",
+      "file": "courtisan-en-v0.2.1_135bee0d_1dbbc93d.pdf",
+      "bytes": 1467623,
+      "pages": 9,
+      "generatedAt": "2026-09-29T21:42:43Z"
     },
     {
       "slug": "courtisan",
@@ -147,6 +327,30 @@
     {
       "slug": "courtisan",
       "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "2f2fb223",
+      "file": "courtisan-en-v0.2.1_d37529a1_2f2fb223.pdf",
+      "bytes": 1246512,
+      "pages": 9,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "courtisan",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "ba734680",
+      "file": "courtisan-fr-v0.2.1_135bee0d_ba734680.pdf",
+      "bytes": 1490766,
+      "pages": 9,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "courtisan",
+      "kind": "tree",
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
@@ -167,6 +371,30 @@
       "bytes": 1267972,
       "pages": 9,
       "generatedAt": "2026-09-28T13:38:16Z"
+    },
+    {
+      "slug": "courtisan",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "29731bab",
+      "file": "courtisan-fr-v0.2.1_d37529a1_29731bab.pdf",
+      "bytes": 1268563,
+      "pages": 9,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "demoniste",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "8682316e",
+      "file": "demoniste-en-v0.2.1_135bee0d_8682316e.pdf",
+      "bytes": 967560,
+      "pages": 6,
+      "generatedAt": "2026-09-29T21:42:43Z"
     },
     {
       "slug": "demoniste",
@@ -195,6 +423,30 @@
     {
       "slug": "demoniste",
       "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "785ea88b",
+      "file": "demoniste-en-v0.2.1_d37529a1_785ea88b.pdf",
+      "bytes": 746282,
+      "pages": 6,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "demoniste",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "e3394ac6",
+      "file": "demoniste-fr-v0.2.1_135bee0d_e3394ac6.pdf",
+      "bytes": 986940,
+      "pages": 6,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "demoniste",
+      "kind": "tree",
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
@@ -215,6 +467,30 @@
       "bytes": 765231,
       "pages": 6,
       "generatedAt": "2026-09-28T13:38:16Z"
+    },
+    {
+      "slug": "demoniste",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "8716785b",
+      "file": "demoniste-fr-v0.2.1_d37529a1_8716785b.pdf",
+      "bytes": 765681,
+      "pages": 6,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "draugar",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "83e7a8f5",
+      "file": "draugar-en-v0.2.1_135bee0d_83e7a8f5.pdf",
+      "bytes": 2004758,
+      "pages": 11,
+      "generatedAt": "2026-09-29T21:42:43Z"
     },
     {
       "slug": "draugar",
@@ -243,6 +519,30 @@
     {
       "slug": "draugar",
       "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "dc6853d2",
+      "file": "draugar-en-v0.2.1_d37529a1_dc6853d2.pdf",
+      "bytes": 1783874,
+      "pages": 11,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "draugar",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "2e73a537",
+      "file": "draugar-fr-v0.2.1_135bee0d_2e73a537.pdf",
+      "bytes": 2019244,
+      "pages": 11,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "draugar",
+      "kind": "tree",
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
@@ -263,6 +563,30 @@
       "bytes": 1796042,
       "pages": 11,
       "generatedAt": "2026-09-28T19:28:57Z"
+    },
+    {
+      "slug": "draugar",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "adc9219d",
+      "file": "draugar-fr-v0.2.1_d37529a1_adc9219d.pdf",
+      "bytes": 1798340,
+      "pages": 11,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "druide",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "0cc134ec",
+      "file": "druide-en-v0.2.1_135bee0d_0cc134ec.pdf",
+      "bytes": 1673165,
+      "pages": 9,
+      "generatedAt": "2026-09-29T21:42:43Z"
     },
     {
       "slug": "druide",
@@ -291,6 +615,30 @@
     {
       "slug": "druide",
       "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "0cc134ec",
+      "file": "druide-en-v0.2.1_d37529a1_0cc134ec.pdf",
+      "bytes": 1673826,
+      "pages": 9,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "druide",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "12fa44f0",
+      "file": "druide-fr-v0.2.1_135bee0d_12fa44f0.pdf",
+      "bytes": 1699245,
+      "pages": 9,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "druide",
+      "kind": "tree",
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
@@ -311,6 +659,30 @@
       "bytes": 1699331,
       "pages": 9,
       "generatedAt": "2026-09-28T13:38:16Z"
+    },
+    {
+      "slug": "druide",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "12fa44f0",
+      "file": "druide-fr-v0.2.1_d37529a1_12fa44f0.pdf",
+      "bytes": 1699892,
+      "pages": 9,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "eau",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "23a7d361",
+      "file": "eau-en-v0.2.1_135bee0d_23a7d361.pdf",
+      "bytes": 2292720,
+      "pages": 12,
+      "generatedAt": "2026-09-29T21:42:43Z"
     },
     {
       "slug": "eau",
@@ -339,6 +711,30 @@
     {
       "slug": "eau",
       "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "7f573fad",
+      "file": "eau-en-v0.2.1_d37529a1_7f573fad.pdf",
+      "bytes": 2360708,
+      "pages": 12,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "eau",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "b0769c3c",
+      "file": "eau-fr-v0.2.1_135bee0d_b0769c3c.pdf",
+      "bytes": 2321007,
+      "pages": 12,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "eau",
+      "kind": "tree",
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
@@ -359,6 +755,30 @@
       "bytes": 2437211,
       "pages": 12,
       "generatedAt": "2026-09-28T13:59:54Z"
+    },
+    {
+      "slug": "eau",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "aff41dd3",
+      "file": "eau-fr-v0.2.1_d37529a1_aff41dd3.pdf",
+      "bytes": 2388449,
+      "pages": 12,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "equipement",
+      "kind": "equipment",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "27676bad",
+      "file": "equipement-en-v0.2.1_135bee0d_27676bad.pdf",
+      "bytes": 5410535,
+      "pages": 42,
+      "generatedAt": "2026-09-29T21:42:43Z"
     },
     {
       "slug": "equipement",
@@ -387,6 +807,30 @@
     {
       "slug": "equipement",
       "kind": "equipment",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "27676bad",
+      "file": "equipement-en-v0.2.1_d37529a1_27676bad.pdf",
+      "bytes": 5410945,
+      "pages": 42,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "equipement",
+      "kind": "equipment",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "e4c77108",
+      "file": "equipement-fr-v0.2.1_135bee0d_e4c77108.pdf",
+      "bytes": 5434781,
+      "pages": 42,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "equipement",
+      "kind": "equipment",
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
@@ -407,6 +851,30 @@
       "bytes": 3920554,
       "pages": 37,
       "generatedAt": "2026-09-28T19:28:57Z"
+    },
+    {
+      "slug": "equipement",
+      "kind": "equipment",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "e4c77108",
+      "file": "equipement-fr-v0.2.1_d37529a1_e4c77108.pdf",
+      "bytes": 5435174,
+      "pages": 42,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "feu",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "a2410302",
+      "file": "feu-en-v0.2.1_135bee0d_a2410302.pdf",
+      "bytes": 2102400,
+      "pages": 12,
+      "generatedAt": "2026-09-29T21:42:43Z"
     },
     {
       "slug": "feu",
@@ -435,6 +903,30 @@
     {
       "slug": "feu",
       "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "a8581799",
+      "file": "feu-en-v0.2.1_d37529a1_a8581799.pdf",
+      "bytes": 1986821,
+      "pages": 12,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "feu",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "4abac61e",
+      "file": "feu-fr-v0.2.1_135bee0d_4abac61e.pdf",
+      "bytes": 2129992,
+      "pages": 12,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "feu",
+      "kind": "tree",
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
@@ -455,6 +947,30 @@
       "bytes": 2013581,
       "pages": 12,
       "generatedAt": "2026-09-28T13:38:16Z"
+    },
+    {
+      "slug": "feu",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "86eb13a0",
+      "file": "feu-fr-v0.2.1_d37529a1_86eb13a0.pdf",
+      "bytes": 2014004,
+      "pages": 12,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "foudre",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "286d8a45",
+      "file": "foudre-en-v0.2.1_135bee0d_286d8a45.pdf",
+      "bytes": 2013967,
+      "pages": 11,
+      "generatedAt": "2026-09-29T21:42:43Z"
     },
     {
       "slug": "foudre",
@@ -483,6 +999,30 @@
     {
       "slug": "foudre",
       "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "dbe94ce2",
+      "file": "foudre-en-v0.2.1_d37529a1_dbe94ce2.pdf",
+      "bytes": 1792486,
+      "pages": 11,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "foudre",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "325df40b",
+      "file": "foudre-fr-v0.2.1_135bee0d_325df40b.pdf",
+      "bytes": 2035979,
+      "pages": 11,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "foudre",
+      "kind": "tree",
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
@@ -503,6 +1043,30 @@
       "bytes": 1815080,
       "pages": 11,
       "generatedAt": "2026-09-28T19:28:57Z"
+    },
+    {
+      "slug": "foudre",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "5594fd74",
+      "file": "foudre-fr-v0.2.1_d37529a1_5594fd74.pdf",
+      "bytes": 1815079,
+      "pages": 11,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "gladiateur",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "f0a87c87",
+      "file": "gladiateur-en-v0.2.1_135bee0d_f0a87c87.pdf",
+      "bytes": 1159844,
+      "pages": 6,
+      "generatedAt": "2026-09-29T21:42:43Z"
     },
     {
       "slug": "gladiateur",
@@ -531,6 +1095,30 @@
     {
       "slug": "gladiateur",
       "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "601b08bb",
+      "file": "gladiateur-en-v0.2.1_d37529a1_601b08bb.pdf",
+      "bytes": 1035705,
+      "pages": 6,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "gladiateur",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "90101059",
+      "file": "gladiateur-fr-v0.2.1_135bee0d_90101059.pdf",
+      "bytes": 1182127,
+      "pages": 6,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "gladiateur",
+      "kind": "tree",
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
@@ -551,6 +1139,30 @@
       "bytes": 1058117,
       "pages": 6,
       "generatedAt": "2026-09-28T13:38:16Z"
+    },
+    {
+      "slug": "gladiateur",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "7d6c5c3f",
+      "file": "gladiateur-fr-v0.2.1_d37529a1_7d6c5c3f.pdf",
+      "bytes": 1058742,
+      "pages": 6,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "heros",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "6d05728b",
+      "file": "heros-en-v0.2.1_135bee0d_6d05728b.pdf",
+      "bytes": 1076645,
+      "pages": 6,
+      "generatedAt": "2026-09-29T21:42:43Z"
     },
     {
       "slug": "heros",
@@ -579,6 +1191,30 @@
     {
       "slug": "heros",
       "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "65c4eb29",
+      "file": "heros-en-v0.2.1_d37529a1_65c4eb29.pdf",
+      "bytes": 958928,
+      "pages": 6,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "heros",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "76567698",
+      "file": "heros-fr-v0.2.1_135bee0d_76567698.pdf",
+      "bytes": 1099009,
+      "pages": 6,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "heros",
+      "kind": "tree",
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
@@ -599,6 +1235,30 @@
       "bytes": 979756,
       "pages": 6,
       "generatedAt": "2026-09-28T13:38:16Z"
+    },
+    {
+      "slug": "heros",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "42701fbb",
+      "file": "heros-fr-v0.2.1_d37529a1_42701fbb.pdf",
+      "bytes": 980637,
+      "pages": 6,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "livre-du-joueur",
+      "kind": "book",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "43bdd59b",
+      "file": "livre-du-joueur-en-v0.2.1_135bee0d_43bdd59b.pdf",
+      "bytes": 1759973,
+      "pages": 34,
+      "generatedAt": "2026-09-29T21:42:43Z"
     },
     {
       "slug": "livre-du-joueur",
@@ -627,6 +1287,30 @@
     {
       "slug": "livre-du-joueur",
       "kind": "book",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "0bbb4304",
+      "file": "livre-du-joueur-en-v0.2.1_d37529a1_0bbb4304.pdf",
+      "bytes": 1614030,
+      "pages": 34,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "livre-du-joueur",
+      "kind": "book",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "44601f6e",
+      "file": "livre-du-joueur-fr-v0.2.1_135bee0d_44601f6e.pdf",
+      "bytes": 1776062,
+      "pages": 35,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "livre-du-joueur",
+      "kind": "book",
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
@@ -647,6 +1331,30 @@
       "bytes": 1629123,
       "pages": 35,
       "generatedAt": "2026-09-28T19:28:57Z"
+    },
+    {
+      "slug": "livre-du-joueur",
+      "kind": "book",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "e147eb2e",
+      "file": "livre-du-joueur-fr-v0.2.1_d37529a1_e147eb2e.pdf",
+      "bytes": 1629952,
+      "pages": 35,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "livre-du-mj",
+      "kind": "book",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "8e73295b",
+      "file": "livre-du-mj-en-v0.2.1_135bee0d_8e73295b.pdf",
+      "bytes": 1052621,
+      "pages": 10,
+      "generatedAt": "2026-09-29T21:42:43Z"
     },
     {
       "slug": "livre-du-mj",
@@ -675,6 +1383,30 @@
     {
       "slug": "livre-du-mj",
       "kind": "book",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "d77ba1a4",
+      "file": "livre-du-mj-en-v0.2.1_d37529a1_d77ba1a4.pdf",
+      "bytes": 941226,
+      "pages": 10,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "livre-du-mj",
+      "kind": "book",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "bd4541ad",
+      "file": "livre-du-mj-fr-v0.2.1_135bee0d_bd4541ad.pdf",
+      "bytes": 1075339,
+      "pages": 11,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "livre-du-mj",
+      "kind": "book",
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
@@ -695,6 +1427,30 @@
       "bytes": 964159,
       "pages": 11,
       "generatedAt": "2026-09-28T19:28:57Z"
+    },
+    {
+      "slug": "livre-du-mj",
+      "kind": "book",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "764814a8",
+      "file": "livre-du-mj-fr-v0.2.1_d37529a1_764814a8.pdf",
+      "bytes": 965783,
+      "pages": 11,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "mage",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "d88cf96b",
+      "file": "mage-en-v0.2.1_135bee0d_d88cf96b.pdf",
+      "bytes": 2113700,
+      "pages": 12,
+      "generatedAt": "2026-09-29T21:42:43Z"
     },
     {
       "slug": "mage",
@@ -723,6 +1479,30 @@
     {
       "slug": "mage",
       "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "61d85074",
+      "file": "mage-en-v0.2.1_d37529a1_61d85074.pdf",
+      "bytes": 1973883,
+      "pages": 12,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "mage",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "d39e2ee3",
+      "file": "mage-fr-v0.2.1_135bee0d_d39e2ee3.pdf",
+      "bytes": 2133436,
+      "pages": 12,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "mage",
+      "kind": "tree",
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
@@ -743,6 +1523,30 @@
       "bytes": 1978059,
       "pages": 12,
       "generatedAt": "2026-09-28T19:28:57Z"
+    },
+    {
+      "slug": "mage",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "85c88c45",
+      "file": "mage-fr-v0.2.1_d37529a1_85c88c45.pdf",
+      "bytes": 1994934,
+      "pages": 12,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "marchand",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "6eaff869",
+      "file": "marchand-en-v0.2.1_135bee0d_6eaff869.pdf",
+      "bytes": 1488586,
+      "pages": 9,
+      "generatedAt": "2026-09-29T21:42:43Z"
     },
     {
       "slug": "marchand",
@@ -771,6 +1575,30 @@
     {
       "slug": "marchand",
       "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "e4b18dd1",
+      "file": "marchand-en-v0.2.1_d37529a1_e4b18dd1.pdf",
+      "bytes": 1266874,
+      "pages": 9,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "marchand",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "994bc9df",
+      "file": "marchand-fr-v0.2.1_135bee0d_994bc9df.pdf",
+      "bytes": 1507650,
+      "pages": 9,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "marchand",
+      "kind": "tree",
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
@@ -791,6 +1619,30 @@
       "bytes": 1285606,
       "pages": 9,
       "generatedAt": "2026-09-28T13:38:16Z"
+    },
+    {
+      "slug": "marchand",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "c5548c21",
+      "file": "marchand-fr-v0.2.1_d37529a1_c5548c21.pdf",
+      "bytes": 1286639,
+      "pages": 9,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "paladin",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "9414b13c",
+      "file": "paladin-en-v0.2.1_135bee0d_9414b13c.pdf",
+      "bytes": 933194,
+      "pages": 6,
+      "generatedAt": "2026-09-29T21:42:43Z"
     },
     {
       "slug": "paladin",
@@ -819,6 +1671,30 @@
     {
       "slug": "paladin",
       "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "c256af3d",
+      "file": "paladin-en-v0.2.1_d37529a1_c256af3d.pdf",
+      "bytes": 712218,
+      "pages": 6,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "paladin",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "64785280",
+      "file": "paladin-fr-v0.2.1_135bee0d_64785280.pdf",
+      "bytes": 957571,
+      "pages": 6,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "paladin",
+      "kind": "tree",
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
@@ -839,6 +1715,30 @@
       "bytes": 734505,
       "pages": 6,
       "generatedAt": "2026-09-28T13:38:16Z"
+    },
+    {
+      "slug": "paladin",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "a8727e7a",
+      "file": "paladin-fr-v0.2.1_d37529a1_a8727e7a.pdf",
+      "bytes": 735932,
+      "pages": 6,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "physique",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "f48f0a3b",
+      "file": "physique-en-v0.2.1_135bee0d_f48f0a3b.pdf",
+      "bytes": 2138262,
+      "pages": 11,
+      "generatedAt": "2026-09-29T21:42:43Z"
     },
     {
       "slug": "physique",
@@ -867,6 +1767,30 @@
     {
       "slug": "physique",
       "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "5563ee76",
+      "file": "physique-en-v0.2.1_d37529a1_5563ee76.pdf",
+      "bytes": 2064609,
+      "pages": 11,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "physique",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "85e6a46d",
+      "file": "physique-fr-v0.2.1_135bee0d_85e6a46d.pdf",
+      "bytes": 2163892,
+      "pages": 11,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "physique",
+      "kind": "tree",
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
@@ -887,6 +1811,30 @@
       "bytes": 2119279,
       "pages": 11,
       "generatedAt": "2026-09-28T17:58:37Z"
+    },
+    {
+      "slug": "physique",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "0d146e39",
+      "file": "physique-fr-v0.2.1_d37529a1_0d146e39.pdf",
+      "bytes": 2090360,
+      "pages": 11,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "poisse",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "88f4056f",
+      "file": "poisse-en-v0.2.1_135bee0d_88f4056f.pdf",
+      "bytes": 2104393,
+      "pages": 12,
+      "generatedAt": "2026-09-29T21:42:43Z"
     },
     {
       "slug": "poisse",
@@ -915,6 +1863,30 @@
     {
       "slug": "poisse",
       "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "c6b25867",
+      "file": "poisse-en-v0.2.1_d37529a1_c6b25867.pdf",
+      "bytes": 1883298,
+      "pages": 12,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "poisse",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "d5b1e279",
+      "file": "poisse-fr-v0.2.1_135bee0d_d5b1e279.pdf",
+      "bytes": 2122383,
+      "pages": 12,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "poisse",
+      "kind": "tree",
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
@@ -935,6 +1907,42 @@
       "bytes": 1932441,
       "pages": 12,
       "generatedAt": "2026-09-28T13:59:54Z"
+    },
+    {
+      "slug": "poisse",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "18767b5a",
+      "file": "poisse-fr-v0.2.1_d37529a1_18767b5a.pdf",
+      "bytes": 1901694,
+      "pages": 12,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "prestidigitateur",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "40faa744",
+      "file": "prestidigitateur-en-v0.2.1_135bee0d_40faa744.pdf",
+      "bytes": 1827832,
+      "pages": 8,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "prestidigitateur",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "8d286cbe",
+      "file": "prestidigitateur-en-v0.2.1_135bee0d_8d286cbe.pdf",
+      "bytes": 1803099,
+      "pages": 8,
+      "generatedAt": "2026-09-29T21:51:51Z"
     },
     {
       "slug": "prestidigitateur",
@@ -963,6 +1971,42 @@
     {
       "slug": "prestidigitateur",
       "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "40faa744",
+      "file": "prestidigitateur-en-v0.2.1_d37529a1_40faa744.pdf",
+      "bytes": 1828261,
+      "pages": 8,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "prestidigitateur",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "5655a771",
+      "file": "prestidigitateur-fr-v0.2.1_135bee0d_5655a771.pdf",
+      "bytes": 1822387,
+      "pages": 8,
+      "generatedAt": "2026-09-29T21:51:51Z"
+    },
+    {
+      "slug": "prestidigitateur",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "d8dad9f0",
+      "file": "prestidigitateur-fr-v0.2.1_135bee0d_d8dad9f0.pdf",
+      "bytes": 1848324,
+      "pages": 8,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "prestidigitateur",
+      "kind": "tree",
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
@@ -983,6 +2027,30 @@
       "bytes": 1844259,
       "pages": 8,
       "generatedAt": "2026-09-28T19:28:57Z"
+    },
+    {
+      "slug": "prestidigitateur",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "d8dad9f0",
+      "file": "prestidigitateur-fr-v0.2.1_d37529a1_d8dad9f0.pdf",
+      "bytes": 1848496,
+      "pages": 8,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "psychique",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "4c54f9c1",
+      "file": "psychique-en-v0.2.1_135bee0d_4c54f9c1.pdf",
+      "bytes": 2429868,
+      "pages": 12,
+      "generatedAt": "2026-09-29T21:42:43Z"
     },
     {
       "slug": "psychique",
@@ -1011,6 +2079,30 @@
     {
       "slug": "psychique",
       "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "9652f5cd",
+      "file": "psychique-en-v0.2.1_d37529a1_9652f5cd.pdf",
+      "bytes": 2374081,
+      "pages": 12,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "psychique",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "302b15c3",
+      "file": "psychique-fr-v0.2.1_135bee0d_302b15c3.pdf",
+      "bytes": 2455727,
+      "pages": 12,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "psychique",
+      "kind": "tree",
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
@@ -1031,6 +2123,30 @@
       "bytes": 2400017,
       "pages": 12,
       "generatedAt": "2026-09-28T19:28:57Z"
+    },
+    {
+      "slug": "psychique",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "466c0444",
+      "file": "psychique-fr-v0.2.1_d37529a1_466c0444.pdf",
+      "bytes": 2400796,
+      "pages": 12,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "roublard",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "6fe836c7",
+      "file": "roublard-en-v0.2.1_135bee0d_6fe836c7.pdf",
+      "bytes": 1071475,
+      "pages": 6,
+      "generatedAt": "2026-09-29T21:42:43Z"
     },
     {
       "slug": "roublard",
@@ -1059,6 +2175,30 @@
     {
       "slug": "roublard",
       "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "16363445",
+      "file": "roublard-en-v0.2.1_d37529a1_16363445.pdf",
+      "bytes": 1028459,
+      "pages": 6,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "roublard",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "d26c0896",
+      "file": "roublard-fr-v0.2.1_135bee0d_d26c0896.pdf",
+      "bytes": 1094873,
+      "pages": 6,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "roublard",
+      "kind": "tree",
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
@@ -1079,6 +2219,30 @@
       "bytes": 1051596,
       "pages": 6,
       "generatedAt": "2026-09-28T13:38:16Z"
+    },
+    {
+      "slug": "roublard",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "2e4b6c03",
+      "file": "roublard-fr-v0.2.1_d37529a1_2e4b6c03.pdf",
+      "bytes": 1052146,
+      "pages": 6,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "runiste",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "61e4a964",
+      "file": "runiste-en-v0.2.1_135bee0d_61e4a964.pdf",
+      "bytes": 1486449,
+      "pages": 9,
+      "generatedAt": "2026-09-29T21:42:43Z"
     },
     {
       "slug": "runiste",
@@ -1107,6 +2271,30 @@
     {
       "slug": "runiste",
       "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "62350540",
+      "file": "runiste-en-v0.2.1_d37529a1_62350540.pdf",
+      "bytes": 1265096,
+      "pages": 9,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "runiste",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "e9a6e336",
+      "file": "runiste-fr-v0.2.1_135bee0d_e9a6e336.pdf",
+      "bytes": 1515223,
+      "pages": 9,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "runiste",
+      "kind": "tree",
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
@@ -1127,6 +2315,30 @@
       "bytes": 1293290,
       "pages": 9,
       "generatedAt": "2026-09-28T19:28:57Z"
+    },
+    {
+      "slug": "runiste",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "f6e0a7a7",
+      "file": "runiste-fr-v0.2.1_d37529a1_f6e0a7a7.pdf",
+      "bytes": 1294109,
+      "pages": 9,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "tavernier",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "95f7881f",
+      "file": "tavernier-en-v0.2.1_135bee0d_95f7881f.pdf",
+      "bytes": 955303,
+      "pages": 6,
+      "generatedAt": "2026-09-29T21:42:43Z"
     },
     {
       "slug": "tavernier",
@@ -1155,6 +2367,30 @@
     {
       "slug": "tavernier",
       "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "07bc0414",
+      "file": "tavernier-en-v0.2.1_d37529a1_07bc0414.pdf",
+      "bytes": 733435,
+      "pages": 6,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "tavernier",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "1b0ecfaa",
+      "file": "tavernier-fr-v0.2.1_135bee0d_1b0ecfaa.pdf",
+      "bytes": 976953,
+      "pages": 6,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "tavernier",
+      "kind": "tree",
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
@@ -1175,6 +2411,42 @@
       "bytes": 755395,
       "pages": 6,
       "generatedAt": "2026-09-28T13:38:16Z"
+    },
+    {
+      "slug": "tavernier",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "080e4d52",
+      "file": "tavernier-fr-v0.2.1_d37529a1_080e4d52.pdf",
+      "bytes": 756327,
+      "pages": 6,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "technomancien",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "3339fe27",
+      "file": "technomancien-en-v0.2.1_135bee0d_3339fe27.pdf",
+      "bytes": 1734162,
+      "pages": 9,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "technomancien",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "f2668c32",
+      "file": "technomancien-en-v0.2.1_135bee0d_f2668c32.pdf",
+      "bytes": 1775211,
+      "pages": 9,
+      "generatedAt": "2026-09-29T21:51:51Z"
     },
     {
       "slug": "technomancien",
@@ -1203,6 +2475,42 @@
     {
       "slug": "technomancien",
       "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "3339fe27",
+      "file": "technomancien-en-v0.2.1_d37529a1_3339fe27.pdf",
+      "bytes": 1734174,
+      "pages": 9,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "technomancien",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "2ec25cd9",
+      "file": "technomancien-fr-v0.2.1_135bee0d_2ec25cd9.pdf",
+      "bytes": 1800508,
+      "pages": 9,
+      "generatedAt": "2026-09-29T21:51:51Z"
+    },
+    {
+      "slug": "technomancien",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "cc6c6999",
+      "file": "technomancien-fr-v0.2.1_135bee0d_cc6c6999.pdf",
+      "bytes": 1760135,
+      "pages": 9,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "technomancien",
+      "kind": "tree",
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
@@ -1223,6 +2531,30 @@
       "bytes": 1759914,
       "pages": 9,
       "generatedAt": "2026-09-28T19:28:57Z"
+    },
+    {
+      "slug": "technomancien",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "cc6c6999",
+      "file": "technomancien-fr-v0.2.1_d37529a1_cc6c6999.pdf",
+      "bytes": 1760311,
+      "pages": 9,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "terre",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "6eb9fcce",
+      "file": "terre-en-v0.2.1_135bee0d_6eb9fcce.pdf",
+      "bytes": 2116518,
+      "pages": 12,
+      "generatedAt": "2026-09-29T21:42:43Z"
     },
     {
       "slug": "terre",
@@ -1251,6 +2583,30 @@
     {
       "slug": "terre",
       "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "dfcb1bf3",
+      "file": "terre-en-v0.2.1_d37529a1_dfcb1bf3.pdf",
+      "bytes": 1894840,
+      "pages": 12,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "terre",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "1e0c8cfa",
+      "file": "terre-fr-v0.2.1_135bee0d_1e0c8cfa.pdf",
+      "bytes": 2135054,
+      "pages": 12,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "terre",
+      "kind": "tree",
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
@@ -1271,6 +2627,30 @@
       "bytes": 1913226,
       "pages": 12,
       "generatedAt": "2026-09-28T17:59:53Z"
+    },
+    {
+      "slug": "terre",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "6853b884",
+      "file": "terre-fr-v0.2.1_d37529a1_6853b884.pdf",
+      "bytes": 1914008,
+      "pages": 12,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "vent",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "027a2534",
+      "file": "vent-en-v0.2.1_135bee0d_027a2534.pdf",
+      "bytes": 2277542,
+      "pages": 13,
+      "generatedAt": "2026-09-29T21:42:43Z"
     },
     {
       "slug": "vent",
@@ -1299,6 +2679,30 @@
     {
       "slug": "vent",
       "kind": "tree",
+      "locale": "en",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "df087bea",
+      "file": "vent-en-v0.2.1_d37529a1_df087bea.pdf",
+      "bytes": 2324130,
+      "pages": 13,
+      "generatedAt": "2026-09-29T21:30:03Z"
+    },
+    {
+      "slug": "vent",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "135bee0d",
+      "contentHash": "bb5bf00c",
+      "file": "vent-fr-v0.2.1_135bee0d_bb5bf00c.pdf",
+      "bytes": 2293081,
+      "pages": 13,
+      "generatedAt": "2026-09-29T21:42:43Z"
+    },
+    {
+      "slug": "vent",
+      "kind": "tree",
       "locale": "fr",
       "version": "0.2.1",
       "styleHash": "310dd773",
@@ -1319,6 +2723,18 @@
       "bytes": 2338674,
       "pages": 13,
       "generatedAt": "2026-09-28T19:28:57Z"
+    },
+    {
+      "slug": "vent",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.2.1",
+      "styleHash": "d37529a1",
+      "contentHash": "f2c0742d",
+      "file": "vent-fr-v0.2.1_d37529a1_f2c0742d.pdf",
+      "bytes": 2339517,
+      "pages": 13,
+      "generatedAt": "2026-09-29T21:30:03Z"
     }
   ]
 }

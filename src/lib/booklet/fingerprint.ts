@@ -9,6 +9,7 @@ import type { EquipmentCatalogue, GameState, Skill } from '../game/schema.ts'
 import type { Locale } from '../i18n/locales.ts'
 import { stripJpeg } from '../rights/jpeg.ts'
 import { stripPng } from '../rights/png.ts'
+import { DEFAULT_PDF_BACK_COVER } from './back-cover.ts'
 import type { Release } from './release.ts'
 
 const HASH_LENGTH = 8
@@ -238,7 +239,7 @@ export async function treeContentHash(
     )
   }
   addRuleWords(blobs, treeRuleWords(tree, corpus))
-  await addArt(blobs, root, [tree.cover, tree.banner, tree.backCover])
+  await addArt(blobs, root, [tree.cover, tree.banner, tree.backCover ?? DEFAULT_PDF_BACK_COVER])
   await addMeta(blobs, root, locale)
   return digest(blobs)
 }
@@ -268,7 +269,7 @@ export async function bookContentHash(
       join(directory, `${chapter.file}.${locale}.md`),
     )
   }
-  await addArt(blobs, root, [book.cover, book.banner, book.backCover])
+  await addArt(blobs, root, [book.cover, book.banner, book.backCover ?? DEFAULT_PDF_BACK_COVER])
   await addMeta(blobs, root, locale)
   return digest(blobs)
 }
@@ -338,7 +339,7 @@ export async function equipmentContentHash(
     root,
     corpus.items.map((item) => item.art),
   )
-  await addArt(blobs, root, [catalogue.cover, catalogue.backCover])
+  await addArt(blobs, root, [catalogue.cover, catalogue.backCover ?? DEFAULT_PDF_BACK_COVER])
   await addMeta(blobs, root, locale)
   return digest(blobs)
 }

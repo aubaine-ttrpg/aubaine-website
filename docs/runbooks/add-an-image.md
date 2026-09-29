@@ -42,10 +42,11 @@ Keeping the original beside a retouched version is the point of the state part. 
 | `data/media/pdf/` | the booklets `pnpm pdf` renders | `.pdf`, named by the release, never by hand |
 | `data/media/unassigned/` | pictures kept but not yet placed | named by the convention, read by nothing |
 | `data/media/items/placeholder-1_1-og.png`, `data/media/art/placeholder-3_4-og.png`, `data/media/art/placeholder-16_9-og.png` | the default plate for each ratio | named by `src/lib/media.ts`, not by a field |
+| `data/media/art/randome-3_4-og.png` | the default PDF back cover | named by `src/lib/booklet/back-cover.ts`, not by a field |
 | `data/media/video/` | the loop behind the home hero | `.mp4`, named by the convention, read by `src/components/views/Home.astro` |
 | `data/media/flags/`, `data/media/fonts/` | interface assets | as is, used by the shell rather than by content |
 
-A picture with no field naming it goes in `data/media/unassigned/`, not in `art/`. `src/lib/media.ts` globs `data/media/art/` eagerly, and Astro emits every asset the glob imports, so an unreferenced master ships to the browser at full size even though no page shows it. Five illustrations added 12.3 MB to `dist/` that way. To place one, move it into `art/` and name it in a `cover` or a `banner` in the same change.
+A picture with no field naming it goes in `data/media/unassigned/`, not in `art/`. `src/lib/media.ts` globs `data/media/art/` eagerly, and Astro emits every asset the glob imports, so an unreferenced master ships to the browser at full size even though no page shows it. Five illustrations added 12.3 MB to `dist/` that way. To place one, move it into `art/` and name it in a `cover` or a `banner` in the same change, or name it as a shared PDF back-cover fallback in `src/lib/booklet/back-cover.ts`.
 
 Covers and banners share `data/media/art/`. The ratio in the name says which one a file is, so a second folder would only repeat it.
 
@@ -171,11 +172,12 @@ The social image is always cut from `banner`, never from `cover`. A 3:4 portrait
 
 ## When no field names a picture
 
-Nothing renders an empty frame. A slot with nothing named draws the default plate for its ratio, and `src/lib/media.ts` is the one place those three filenames live.
+Nothing renders an empty frame. A slot with nothing named draws the default plate for its ratio; `src/lib/media.ts` names the site placeholders, and `src/lib/booklet/back-cover.ts` names the PDF back-cover fallback.
 
 | Slot | Falls back to |
 | --- | --- |
 | a tree or book card, after `cover ?? banner` | `placeholder-3_4-og.png` for a tree, `placeholder-16_9-og.png` for a book |
+| a PDF back cover, when `backCover` is absent | `randome-3_4-og.png` |
 | a tree or book hero | `placeholder-16_9-og.png` |
 | an item or a skill in a detail panel | `placeholder-1_1-og.png` |
 

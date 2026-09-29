@@ -410,11 +410,7 @@ const chapters = book
     }
 
     <BackCover
-      art={
-        tree
-          ? (tree.backCover ?? tree.banner)
-          : (book?.backCover ?? book?.banner ?? catalogue?.backCover)
-      }
+      art={tree ? tree.backCover : (book?.backCover ?? catalogue?.backCover)}
       title={title}
       stamp={stamp.toUpperCase()}
       eyebrow={eyebrow}
