@@ -1,0 +1,21 @@
+{
+  "name": "Grèves du Parangon de l'Ordre des Lame-éther",
+  "status": "playtest",
+  "section": "bottes",
+  "position": 4,
+  "kind": "Bottes",
+  "rarity": "rare",
+  "art": "greves-du-parangon-de-l-ordre-des-lame-ether-1_1-og.png",
+  "set": "LAMET",
+  "craft": {
+    "discipline": "artisanat",
+    "cost": 28,
+    "materials": [
+      "Cuir"
+    ],
+    "sequence": [
+      "Dextérité 15"
+    ]
+  },
+  "description": "Des grèves hautes de plaques blanches cerclées d'or couvrent les tibias et descendent sur les bottes. Des cristaux bleus sont sertis dans les plaques."
+}

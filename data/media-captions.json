@@ -19,6 +19,15 @@
       ]
     },
     {
+      "file": "items/anneau-du-parangon-de-l-ordre-des-lame-ether-1_1-og.png",
+      "title": "Anneau du Parangon de l'Ordre des Lame-éther",
+      "description": "Large anneau blanc et doré couronné d'un cristal bleu en pointe, sur fond sombre éclairé de bleu.",
+      "keywords": [
+        "équipement",
+        "Lame-éther"
+      ]
+    },
+    {
       "file": "items/arc-court-1_1-og.png",
       "title": "Arc court",
       "description": "Arc de bois brut, poignée et extrémités liées de cuir, sur fond sombre éclairé d'ambre.",
@@ -55,12 +64,39 @@
       ]
     },
     {
+      "file": "items/bague-du-parangon-de-l-ordre-des-nemerites-1_1-og.png",
+      "title": "Bague du Parangon de l'Ordre des Némérites",
+      "description": "Bague à chaton anguleux blanc, noir et or, sur fond sombre traversé de lumière dorée.",
+      "keywords": [
+        "équipement",
+        "Némérites"
+      ]
+    },
+    {
+      "file": "items/bague-du-parangon-de-l-ordre-des-sibylles-1_1-og.png",
+      "title": "Bague du Parangon de l'Ordre des Sibylles",
+      "description": "Large bague blanche et dorée sertie d'un cristal bleu étoilé, sur fond bleu cosmique.",
+      "keywords": [
+        "équipement",
+        "Sibylles"
+      ]
+    },
+    {
       "file": "items/bandes-de-poing-1_1-og.png",
       "title": "Bandes de poing",
       "description": "Poing serré dans des bandes de cuir cuivré, sur fond de flammes dorées.",
       "keywords": [
         "arme",
         "objet"
+      ]
+    },
+    {
+      "file": "items/bottes-du-parangon-de-l-ordre-des-nemerites-1_1-og.png",
+      "title": "Bottes du Parangon de l'Ordre des Némérites",
+      "description": "Paire de bottes montantes à plaques blanches, noires et dorées, entourée de traînées lumineuses sur fond sombre.",
+      "keywords": [
+        "équipement",
+        "Némérites"
       ]
     },
     {
@@ -82,6 +118,51 @@
       ]
     },
     {
+      "file": "items/broche-du-parangon-de-l-ordre-des-nemerites-1_1-og.png",
+      "title": "Broche du Parangon de l'Ordre des Némérites",
+      "description": "Broche à pointes blanches et dorées autour d'une pierre noire en losange, sur fond sombre.",
+      "keywords": [
+        "équipement",
+        "Némérites"
+      ]
+    },
+    {
+      "file": "items/capuchon-du-parangon-de-l-ordre-des-nemerites-1_1-og.png",
+      "title": "Capuchon du Parangon de l'Ordre des Némérites",
+      "description": "Capuchon blanc bordé d'or et doublé de rouge sombre, au-dessus d'un col de même facture.",
+      "keywords": [
+        "équipement",
+        "Némérites"
+      ]
+    },
+    {
+      "file": "items/catalyseur-du-parangon-de-l-ordre-des-sibylles-1_1-og.png",
+      "title": "Catalyseur du Parangon de l'Ordre des Sibylles",
+      "description": "Grand cristal bleu carré aux reflets d'étoiles, enchâssé dans une monture blanche et dorée, sur fond bleu étoilé.",
+      "keywords": [
+        "équipement",
+        "Sibylles"
+      ]
+    },
+    {
+      "file": "items/coiffe-du-parangon-de-l-ordre-des-sibylles-1_1-og.png",
+      "title": "Coiffe du Parangon de l'Ordre des Sibylles",
+      "description": "Coiffe ouverte à bandeau doré et longs pans de tissu blanc, sur fond bleu étoilé.",
+      "keywords": [
+        "équipement",
+        "Sibylles"
+      ]
+    },
+    {
+      "file": "items/collier-du-parangon-de-l-ordre-des-sibylles-1_1-og.png",
+      "title": "Collier du Parangon de l'Ordre des Sibylles",
+      "description": "Collier d'or à grand cristal bleu, chaînettes et pans de tissu blanc, sur fond bleu étoilé.",
+      "keywords": [
+        "équipement",
+        "Sibylles"
+      ]
+    },
+    {
       "file": "items/cotte-de-mailles-1_1-og.png",
       "title": "Cotte de mailles",
       "description": "Armure lourde d'acier sombre à épaulières dorées, sur fond d'or.",
@@ -97,6 +178,15 @@
       "keywords": [
         "armure",
         "objet"
+      ]
+    },
+    {
+      "file": "items/cuirasse-du-parangon-de-l-ordre-des-lame-ether-1_1-og.png",
+      "title": "Cuirasse du Parangon de l'Ordre des Lame-éther",
+      "description": "Cuirasse à plaques blanches et dorées sur cuir sombre, tissu bleu et cristaux bleus, sur fond lumineux.",
+      "keywords": [
+        "équipement",
+        "Lame-éther"
       ]
     },
     {
@@ -127,6 +217,24 @@
       ]
     },
     {
+      "file": "items/greves-du-parangon-de-l-ordre-des-lame-ether-1_1-og.png",
+      "title": "Grèves du Parangon de l'Ordre des Lame-éther",
+      "description": "Paire de grèves et bottes à plaques blanches et dorées, serties de cristaux bleus, sur fond sombre.",
+      "keywords": [
+        "équipement",
+        "Lame-éther"
+      ]
+    },
+    {
+      "file": "items/heaume-du-parangon-de-l-ordre-des-lame-ether-1_1-og.png",
+      "title": "Heaume du Parangon de l'Ordre des Lame-éther",
+      "description": "Heaume blanc et doré à cornes, visière étroite et cristal bleu au front, sur fond sombre.",
+      "keywords": [
+        "équipement",
+        "Lame-éther"
+      ]
+    },
+    {
       "file": "items/masque-du-metamorphe-1_1-og.png",
       "title": "Masque du Métamorphe",
       "description": "Masque de pierre fendue et d'os, cerclé de ferrures rouillées et gravé de runes vertes lumineuses, sur fond de fumées violettes.",
@@ -142,6 +250,60 @@
       "keywords": [
         "arme",
         "objet"
+      ]
+    },
+    {
+      "file": "items/robe-du-parangon-de-l-ordre-des-sibylles-1_1-og.png",
+      "title": "Robe du Parangon de l'Ordre des Sibylles",
+      "description": "Robe blanche à longs pans bordés d'or sur une étoffe bleu nuit piquée d'étoiles, sur fond cosmique.",
+      "keywords": [
+        "équipement",
+        "Sibylles"
+      ]
+    },
+    {
+      "file": "items/sandales-du-parangon-de-l-ordre-des-sibylles-1_1-og.png",
+      "title": "Sandales du Parangon de l'Ordre des Sibylles",
+      "description": "Paire de sandales hautes drapées de tissu blanc et cerclées d'or, sur fond bleu étoilé.",
+      "keywords": [
+        "équipement",
+        "Sibylles"
+      ]
+    },
+    {
+      "file": "items/sceau-du-parangon-de-l-ordre-des-lame-ether-1_1-og.png",
+      "title": "Sceau du Parangon de l'Ordre des Lame-éther",
+      "description": "Sceau de métal blanc et doré à pointes, serti d'un grand cristal bleu, sur fond sombre traversé de lumière bleue.",
+      "keywords": [
+        "équipement",
+        "Lame-éther"
+      ]
+    },
+    {
+      "file": "items/torque-du-parangon-de-l-ordre-des-lame-ether-1_1-og.png",
+      "title": "Torque du Parangon de l'Ordre des Lame-éther",
+      "description": "Torque ouvert de plaques blanches et dorées, de tissu bleu et de cristaux bleus, sur fond sombre.",
+      "keywords": [
+        "équipement",
+        "Lame-éther"
+      ]
+    },
+    {
+      "file": "items/torque-du-parangon-de-l-ordre-des-nemerites-1_1-og.png",
+      "title": "Torque du Parangon de l'Ordre des Némérites",
+      "description": "Torque ouvert à plaques blanches et dorées autour d'un losange central, sur fond sombre.",
+      "keywords": [
+        "équipement",
+        "Némérites"
+      ]
+    },
+    {
+      "file": "items/veste-du-parangon-de-l-ordre-des-nemerites-1_1-og.png",
+      "title": "Veste du Parangon de l'Ordre des Némérites",
+      "description": "Veste noire cintrée à pans blancs bordés d'or et doublure rouge, sur fond sombre éclairé d'or.",
+      "keywords": [
+        "équipement",
+        "Némérites"
       ]
     }
   ]

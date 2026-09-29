@@ -1,0 +1,20 @@
+{
+  "id": "LAMET",
+  "status": "playtest",
+  "name": "Panoplie du Parangon de l'Ordre des Lame-éther",
+  "description": "L'Ordre des Lame-éther naquit parmi les Parangons qui combattaient au premier rang avec une arme et un Sort. Ses premiers membres firent sertir des cristaux bleus dans leurs armures blanches et dorées pour reconnaître les leurs dans la mêlée. Le sceau à la poitrine ne leur était remis qu'après une bataille menée aux côtés de l'ordre.",
+  "bonuses": [
+    {
+      "pieces": 2,
+      "text": "Une fois par {{repos-court}}, vous pouvez lancer l'un de vos {{sort|Sorts}} {{memorisee|Mémorisés}} nommé « Étendue martiale » sans dépenser son {{energie}}."
+    },
+    {
+      "pieces": 4,
+      "text": "Chaque Niveau de Vitalité vous donne 1 {{pdv}} maximum supplémentaire, y compris ceux que vous possédez déjà."
+    },
+    {
+      "pieces": 6,
+      "text": "Une fois par tour, lorsque vous jouez une {{manoeuvre}} après avoir lancé un {{sort}}, ou lancez un {{sort}} après avoir joué une {{manoeuvre}}, vous pouvez ajouter 1d6 à un {{jet}} de dégâts de la Compétence jouée en second pendant ce tour."
+    }
+  ]
+}

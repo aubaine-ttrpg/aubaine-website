@@ -1,0 +1,20 @@
+{
+  "id": "SIBYL",
+  "status": "playtest",
+  "name": "Panoplie du Parangon de l'Ordre des Sibylles",
+  "description": "Dans les garnisons de Victoria, les Parangons chargés d'étudier la magie consignaient leurs observations jusque dans les marges de leurs carnets. Les Sibylles firent broder des étoiles sur leurs étoffes blanches bordées d'or, afin de retrouver leurs signes même lorsque les carnets restaient fermés. Chaque bijou reprend ce motif autour d'un cristal bleu.",
+  "bonuses": [
+    {
+      "pieces": 2,
+      "text": "Lorsque vous lancez un {{sort}} qui ne coûte aucune {{energie}} et inflige des dégâts, vous pouvez ajouter à son {{jet}} de dégâts le modificateur de la {{caracteristique}} utilisée pour son {{dd}} ou son {{attaque}}. Ce bonus ne s'ajoute qu'une fois par {{sort}}, même si plusieurs cibles subissent ses dégâts."
+    },
+    {
+      "pieces": 4,
+      "text": "Votre {{mana}} maximum augmente de 1 par tranche de 2 points de {{arcanes}}. Ce {{mana}} supplémentaire se remplit lors d'un {{repos-long}}."
+    },
+    {
+      "pieces": 6,
+      "text": "Lorsque vous obtenez une réussite critique avec une {{attaque}} provenant d'un {{sort}}, vous récupérez 1 {{energie}}."
+    }
+  ]
+}

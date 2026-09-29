@@ -1,0 +1,23 @@
+{
+  "id": "NEMER",
+  "status": "playtest",
+  "name": "Panoplie du Parangon de l'Ordre des Némérites",
+  "description": "Les premiers Némérites furent des Parangons chargés de retrouver ceux qui se croyaient à l'abri derrière les murs des cités. Ils gardèrent les couleurs blanches et or du corps, mais dissimulèrent leur insigne jusqu'au moment d'arrêter leur proie. Leur retour se reconnaissait au losange d'or porté bien en vue sur la veste, le torque et la broche.",
+  "bonuses": [
+    {
+      "pieces": 2,
+      "text": "Une fois par {{repos-court}}, vous pouvez jouer {{ELANXX-001}} ou {{PASVEL-001}} sans dépenser votre {{action-bonus}}, même si vous ne les avez ni {{apprise|apprises}} ni {{memorisee|mémorisées}}. Vous payez toujours le coût en {{energie}} de la Compétence jouée."
+    },
+    {
+      "pieces": 4,
+      "text": "Vous {{memorisee|mémorisez}} {{PRENEM-001}} sans qu'elle occupe de {{memoire}}.",
+      "grants": [
+        "PRENEM-001"
+      ]
+    },
+    {
+      "pieces": 6,
+      "text": "Une fois par {{repos-court}}, lorsque votre première {{attaque}} depuis une cachette touche une cible pour laquelle vous étiez {{cache|Caché}}, vous pouvez doubler le résultat du {{jet}} de dégâts de cette {{attaque}}."
+    }
+  ]
+}

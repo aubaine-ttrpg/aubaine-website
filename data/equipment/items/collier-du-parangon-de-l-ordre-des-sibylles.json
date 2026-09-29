@@ -1,0 +1,29 @@
+{
+  "name": "Collier du Parangon de l'Ordre des Sibylles",
+  "status": "playtest",
+  "section": "colliers",
+  "position": 3,
+  "kind": "Collier",
+  "rarity": "rare",
+  "art": "collier-du-parangon-de-l-ordre-des-sibylles-1_1-og.png",
+  "set": "SIBYL",
+  "headlines": [
+    {
+      "label": "Énergie max",
+      "value": "+1"
+    }
+  ],
+  "craft": {
+    "discipline": "arcanes",
+    "cost": 28,
+    "materials": [
+      "Métal",
+      "Gemme"
+    ],
+    "sequence": [
+      "Dextérité 14",
+      "Intelligence 16"
+    ]
+  },
+  "description": "Un collier d'or à chaînettes, drapé de tissu blanc autour d'un grand cristal bleu. De petites gemmes pendent sous la monture."
+}

@@ -1,0 +1,34 @@
+{
+  "name": "Heaume du Parangon de l'Ordre des Lame-éther",
+  "status": "playtest",
+  "section": "tetes",
+  "position": 5,
+  "kind": "Tête",
+  "rarity": "rare",
+  "art": "heaume-du-parangon-de-l-ordre-des-lame-ether-1_1-og.png",
+  "set": "LAMET",
+  "headlines": [
+    {
+      "label": "CA",
+      "value": "+1"
+    }
+  ],
+  "properties": [
+    {
+      "name": "Visière étroite.",
+      "text": "Vous subissez 1 {{desavantage}} à vos {{jet|Jets}} de {{perception}}."
+    }
+  ],
+  "craft": {
+    "discipline": "artisanat",
+    "cost": 28,
+    "materials": [
+      "Cuir",
+      "Métal"
+    ],
+    "sequence": [
+      "Dextérité 15"
+    ]
+  },
+  "description": "Un heaume blanc bordé d'or, surmonté de cornes et serti d'un cristal bleu au front. Sa visière étroite est percée de fentes verticales."
+}

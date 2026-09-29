@@ -1,0 +1,29 @@
+{
+  "name": "Bague du Parangon de l'Ordre des Némérites",
+  "status": "playtest",
+  "section": "bijoux",
+  "position": 8,
+  "kind": "Bijou",
+  "rarity": "rare",
+  "art": "bague-du-parangon-de-l-ordre-des-nemerites-1_1-og.png",
+  "set": "NEMER",
+  "properties": [
+    {
+      "name": "Trace effacée.",
+      "text": "Vos {{jet|Jets}} de {{dexterite}} + {{discretion}} pour jouer {{CACHER-001}} gagnent 1 {{avantage}}."
+    }
+  ],
+  "craft": {
+    "discipline": "arcanes",
+    "cost": 28,
+    "materials": [
+      "Métal",
+      "Gemme"
+    ],
+    "sequence": [
+      "Dextérité 14",
+      "Intelligence 16"
+    ]
+  },
+  "description": "Une bague à large chaton anguleux, faite de plaques blanches et noires serties dans l'or."
+}

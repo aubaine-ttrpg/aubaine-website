@@ -1,0 +1,14 @@
+{
+  "id": "PRENEM-001",
+  "status": "playtest",
+  "title": "Précision némérite",
+  "type": "active",
+  "tier": 2,
+  "showXp": false,
+  "domains": [],
+  "activation": "1 Action Bonus",
+  "range": "Personnelle",
+  "duration": "jusqu'à la fin du tour",
+  "energy": 1,
+  "description": "Votre {{vitesse}} devient 0 jusqu'à la fin de ce tour. Le prochain {{jet}} de {{finesse}} ou de {{visee}} que vous effectuez avant la fin du tour gagne 1 {{avantage}}."
+}

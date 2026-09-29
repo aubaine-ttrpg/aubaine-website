@@ -1,0 +1,22 @@
+{
+  "name": "Sandales du Parangon de l'Ordre des Sibylles",
+  "status": "playtest",
+  "section": "bottes",
+  "position": 3,
+  "kind": "Bottes",
+  "rarity": "rare",
+  "art": "sandales-du-parangon-de-l-ordre-des-sibylles-1_1-og.png",
+  "set": "SIBYL",
+  "craft": {
+    "discipline": "arcanes",
+    "cost": 28,
+    "materials": [
+      "Cuir"
+    ],
+    "sequence": [
+      "Dextérité 14",
+      "Intelligence 16"
+    ]
+  },
+  "description": "Des sandales montantes drapées de tissu blanc, dont les lanières et les attaches rondes sont cerclées d'or."
+}

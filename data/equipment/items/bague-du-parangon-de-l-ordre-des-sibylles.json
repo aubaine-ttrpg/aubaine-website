@@ -1,0 +1,29 @@
+{
+  "name": "Bague du Parangon de l'Ordre des Sibylles",
+  "status": "playtest",
+  "section": "bijoux",
+  "position": 11,
+  "kind": "Bijou",
+  "rarity": "rare",
+  "art": "bague-du-parangon-de-l-ordre-des-sibylles-1_1-og.png",
+  "set": "SIBYL",
+  "properties": [
+    {
+      "name": "Étude magique.",
+      "text": "Vos {{jet|Jets}} d'{{intelligence}} + {{arcanes}} pour comprendre quelque chose de magique gagnent 1 {{avantage}}."
+    }
+  ],
+  "craft": {
+    "discipline": "arcanes",
+    "cost": 28,
+    "materials": [
+      "Métal",
+      "Gemme"
+    ],
+    "sequence": [
+      "Dextérité 14",
+      "Intelligence 16"
+    ]
+  },
+  "description": "Une large bague d'or aux plaques blanches, sertie d'un cristal bleu dont le centre semble porter une étoile."
+}

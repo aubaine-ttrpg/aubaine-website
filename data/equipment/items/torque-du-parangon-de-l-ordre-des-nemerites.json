@@ -1,0 +1,29 @@
+{
+  "name": "Torque du Parangon de l'Ordre des Némérites",
+  "status": "playtest",
+  "section": "colliers",
+  "position": 2,
+  "kind": "Collier",
+  "rarity": "rare",
+  "art": "torque-du-parangon-de-l-ordre-des-nemerites-1_1-og.png",
+  "set": "NEMER",
+  "headlines": [
+    {
+      "label": "Vitesse",
+      "value": "+1,5 m"
+    }
+  ],
+  "craft": {
+    "discipline": "arcanes",
+    "cost": 28,
+    "materials": [
+      "Métal",
+      "Gemme"
+    ],
+    "sequence": [
+      "Dextérité 14",
+      "Intelligence 16"
+    ]
+  },
+  "description": "Un torque ouvert de plaques blanches et dorées, jointes par un losange à la base du cou."
+}

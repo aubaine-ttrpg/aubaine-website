@@ -1,0 +1,33 @@
+{
+  "name": "Catalyseur du Parangon de l'Ordre des Sibylles",
+  "status": "playtest",
+  "section": "bijoux",
+  "position": 10,
+  "kind": "Bijou",
+  "rarity": "rare",
+  "art": "catalyseur-du-parangon-de-l-ordre-des-sibylles-1_1-og.png",
+  "set": "SIBYL",
+  "properties": [
+    {
+      "name": "Catalyseur.",
+      "text": "Tant que cette pièce est équipée, vous pouvez utiliser vos {{sort|Sorts}}, passifs comme actifs."
+    }
+  ],
+  "craft": {
+    "discipline": "arcanes",
+    "cost": 28,
+    "materials": [
+      "Métal",
+      "Gemme"
+    ],
+    "sequence": [
+      "Dextérité 14",
+      "Intelligence 16"
+    ]
+  },
+  "grants": [
+    "TRAAZU-001",
+    "DECHIF-001"
+  ],
+  "description": "Un grand cristal bleu carré, traversé d'éclats en forme d'étoile, dans une monture blanche et dorée à quatre pointes."
+}

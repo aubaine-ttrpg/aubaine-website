@@ -1,0 +1,29 @@
+{
+  "name": "Broche du Parangon de l'Ordre des Némérites",
+  "status": "playtest",
+  "section": "bijoux",
+  "position": 9,
+  "kind": "Bijou",
+  "rarity": "rare",
+  "art": "broche-du-parangon-de-l-ordre-des-nemerites-1_1-og.png",
+  "set": "NEMER",
+  "properties": [
+    {
+      "name": "Catalyseur.",
+      "text": "Tant que cette pièce est équipée, vous pouvez utiliser vos {{sort|Sorts}}, passifs comme actifs."
+    }
+  ],
+  "craft": {
+    "discipline": "arcanes",
+    "cost": 28,
+    "materials": [
+      "Métal",
+      "Gemme"
+    ],
+    "sequence": [
+      "Dextérité 14",
+      "Intelligence 16"
+    ]
+  },
+  "description": "Une broche à pointes blanches et dorées autour d'une pierre noire taillée en losange."
+}

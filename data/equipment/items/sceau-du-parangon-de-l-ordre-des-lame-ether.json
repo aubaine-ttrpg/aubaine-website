@@ -1,0 +1,29 @@
+{
+  "name": "Sceau du Parangon de l'Ordre des Lame-éther",
+  "status": "playtest",
+  "section": "bijoux",
+  "position": 12,
+  "kind": "Bijou",
+  "rarity": "rare",
+  "art": "sceau-du-parangon-de-l-ordre-des-lame-ether-1_1-og.png",
+  "set": "LAMET",
+  "properties": [
+    {
+      "name": "Catalyseur.",
+      "text": "Tant que cette pièce est équipée, vous pouvez utiliser vos {{sort|Sorts}}, passifs comme actifs."
+    }
+  ],
+  "craft": {
+    "discipline": "arcanes",
+    "cost": 28,
+    "materials": [
+      "Métal",
+      "Gemme"
+    ],
+    "sequence": [
+      "Dextérité 14",
+      "Intelligence 16"
+    ]
+  },
+  "description": "Un sceau à pointes de métal blanc et doré, serti d'un grand cristal bleu au centre."
+}
