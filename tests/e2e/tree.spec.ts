@@ -209,14 +209,14 @@ test('a filter dims the nodes it leaves out and keeps them on the tree', async (
   const filter = page.getByRole('searchbox', { name: 'Filtrer par nom…' })
 
   await filter.fill('cri')
-  await expect(dimmed(page)).toHaveCount(13)
+  await expect(dimmed(page)).toHaveCount(12)
   await expect(page.locator('[data-plate-node]:visible')).toHaveCount(16)
-  await expect(page.getByText('3 résultats')).toBeVisible()
+  await expect(page.getByText('4 résultats')).toBeVisible()
 
   await node(page, 'CRIEFF-001').click()
   await expect(page).toHaveURL(/CRIEFF-001#arbre$/)
   await expect(filter).toHaveValue('cri')
-  await expect(dimmed(page)).toHaveCount(13)
+  await expect(dimmed(page)).toHaveCount(12)
 
   await filter.fill('')
   await expect(dimmed(page)).toHaveCount(0)

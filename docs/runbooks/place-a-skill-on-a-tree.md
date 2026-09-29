@@ -46,7 +46,7 @@ The same skill can be placed in more than one tree. That is why the layout lives
       }
     },
     {
-      "skill": "PEABRU-001",
+      "skill": "CRIEFF-001",
       "pos": {
         "x": 50,
         "y": 37.92
@@ -56,33 +56,33 @@ The same skill can be placed in more than one tree. That is why the layout lives
       ]
     },
     {
-      "skill": "MONMUS-001",
+      "skill": "CRIPRI-001",
       "pos": {
         "x": 50,
         "y": 26.14
       },
       "linked": [
-        "PEABRU-001"
+        "CRIEFF-001"
       ]
     },
     {
-      "skill": "INSDAN-001",
+      "skill": "CRICOL-001",
       "pos": {
         "x": 72.44,
         "y": 31.91
       },
       "linked": [
-        "PEABRU-001"
+        "CRIEFF-001"
       ]
     },
     {
-      "skill": "SENBET-001",
+      "skill": "CRIRAL-001",
       "pos": {
         "x": 27.56,
         "y": 31.91
       },
       "linked": [
-        "PEABRU-001"
+        "CRIEFF-001"
       ]
     },
     {
@@ -106,7 +106,7 @@ The same skill can be placed in more than one tree. That is why the layout lives
       ]
     },
     {
-      "skill": "CRIEFF-001",
+      "skill": "PEABRU-001",
       "pos": {
         "x": 65.79,
         "y": 57.25
@@ -116,27 +116,27 @@ The same skill can be placed in more than one tree. That is why the layout lives
       ]
     },
     {
-      "skill": "CRIRAL-001",
+      "skill": "MONMUS-001",
       "pos": {
         "x": 83.71,
         "y": 57.2
       },
       "linked": [
-        "CRIEFF-001"
+        "PEABRU-001"
       ]
     },
     {
-      "skill": "CRICOL-001",
+      "skill": "INSDAN-001",
       "pos": {
         "x": 74.68,
         "y": 68.25
       },
       "linked": [
-        "CRIEFF-001"
+        "PEABRU-001"
       ]
     },
     {
-      "skill": "VISINT-001",
+      "skill": "SENBET-001",
       "pos": {
         "x": 50,
         "y": 63.7
@@ -176,7 +176,7 @@ The same skill can be placed in more than one tree. That is why the layout lives
       ]
     },
     {
-      "skill": "ROMFRO-001",
+      "skill": "ESTFER-001",
       "pos": {
         "x": 34.21,
         "y": 44.37
@@ -186,13 +186,13 @@ The same skill can be placed in more than one tree. That is why the layout lives
       ]
     },
     {
-      "skill": "ESTFER-001",
+      "skill": "POITIT-001",
       "pos": {
         "x": 17.21,
         "y": 42.37
       },
       "linked": [
-        "ROMFRO-001"
+        "ESTFER-001"
       ]
     }
   ]

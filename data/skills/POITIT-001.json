@@ -1,0 +1,17 @@
+{
+  "id": "POITIT-001",
+  "title": "Poigne du titan",
+  "type": "passive",
+  "tier": 6,
+  "domains": [
+    "physical"
+  ],
+  "activation": "Passif",
+  "tags": {
+    "practice": "manoeuvre",
+    "schools": [
+      "enhancement"
+    ]
+  },
+  "description": "Vous pouvez désormais porter une arme à deux mains dans chacune de vos mains et, tant que vous êtes {{enrage}}, toutes les armes de mêlée que vous portez gagnent la propriété Légère."
+}

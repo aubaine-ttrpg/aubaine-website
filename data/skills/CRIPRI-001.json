@@ -1,0 +1,35 @@
+{
+  "id": "CRIPRI-001",
+  "title": "Cri primordial",
+  "type": "active",
+  "tier": 4,
+  "domains": [],
+  "activation": "1 Action Bonus",
+  "range": "3 m",
+  "duration": "Instantanée ou jusqu'à la fin du tour",
+  "energy": 2,
+  "tags": {
+    "practice": "shout",
+    "schools": [
+      "control"
+    ],
+    "specials": [
+      "unleashed"
+    ]
+  },
+  "description": "Vous poussez un cri brutal, « Harn » dans la langue des Jötnar, les géants disparus, et vous l'infusez d'un Domaine dont vous avez débloqué l'Arbre, parmi Feu, Eau, Terre, Vent, Foudre et Poisse, ou d'aucun Domaine.\n\n***Feu.*** Jusqu'à 2 créatures à portée gagnent 1 {{action-bonus}}, 3 m de {{deplacement|déplacement}} pour ce tour et émettent une lumière jusqu'à la fin de ce tour.\n***Eau.*** Choisissez 1 créature à portée ; si elle possède de l'eau dans son corps, vous en prenez le contrôle jusqu'à la fin de votre tour (la soigner de 1d6 {{pdv}}, faire bouger un membre…).\n***Terre.*** Jusqu'à 3 créatures à portée réduisent leurs prochains dégâts de 1d6 avant votre prochain tour et ne subissent aucun dégât de chute pendant cette durée.\n***Vent.*** Jusqu'à 3 créatures à portée peuvent se déplacer aussitôt de 3 m au plus. Ce trajet ne compte pas dans leur {{deplacement|déplacement}} et ne déclenche aucune {{ATTOPP-001}}. Une créature {{immobilise|Immobilisée}} ne bouge pas.\n***Foudre.*** Vous ciblez jusqu'à 3 objets ou créatures de métal à portée et en prenez le contrôle jusqu'à la fin de votre tour.\n***Poisse.*** Jusqu'à la fin de votre prochain tour, le sol à portée est un {{terrain-difficile}} pour les créatures de votre choix.\n***Aucun.*** Jusqu'à 3 créatures de votre choix à portée gagnent 1d6 {{pdv}} temporaires.",
+  "upgrades": [
+    {
+      "level": 2,
+      "tier": 5,
+      "title": "Kjeld",
+      "description": "Vous poussez désormais « Harn Kjeld ». La portée de {{CRIPRI-001}} passe à 9 m, et chacun de ses effets peut toucher une créature ou un objet de plus."
+    },
+    {
+      "level": 3,
+      "tier": 7,
+      "title": "Orsk",
+      "description": "Vous poussez désormais « Harn Kjeld Orsk ». Vous choisissez deux options de {{CRIPRI-001}} au lieu d'une, et il produit les deux effets."
+    }
+  ]
+}

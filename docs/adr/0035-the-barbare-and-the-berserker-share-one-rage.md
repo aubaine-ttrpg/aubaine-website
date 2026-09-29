@@ -3,6 +3,7 @@
 **Project:** Aubaine, the wiki
 **Status:** Accepted
 **Date:** 2026-09-28
+**Revised:** 2026-09-29, Cri primordial and Poigne du titan return to the Barbare (addenda in Decisions 1, 3 and 6)
 **Revised:** 2026-09-29, Rage's upgrades are renamed and the Rage tag answers to a key (addendum in Decision 2)
 **Revised:** 2026-09-29, Frénésie puts you in the Fureur state instead of « à son comble » (addendum in Decision 4)
 **Deciders:** Kori
@@ -84,6 +85,28 @@ Mix and match between trees is the game's aim, so the two needed a common ground
   fantasies indistinct at the table.
 - **Berserker now, Barbare later**: rejected because the old skills would sit in a half-built tree.
 
+### Addendum (2026-09-29): Cri primordial and Poigne du titan return
+
+The decider asked for both back. Players liked Cri primordial in playtest, and Poigne du titan is the
+Barbare's two great weapons.
+- Cri primordial (`CRIPRI-001`) and Poigne du titan (`POITIT-001`, tier 6) come back. Visage
+  intimidant and Rompu au froid are deleted.
+- The four Cris form one branch, the north one, the only branch with four slots: Cri d'effroi at its
+  root, Cri primordial at its top, Cri du colosse and Cri de ralliement beside it. The bare-skin line
+  moves to the south-east (Peau de brute, then Montagne de muscles and Instinct du danger), and Sens
+  de la bête takes the south slot. The capstone, Montagne de muscles, no longer sits at the top of
+  the plate, because the top belongs to the Cri branch.
+- Estomac de fer sits beside the heart, and Poigne du titan under it.
+- Cri primordial keeps its playtested Domaine options and drops « qui vous entendent », which the
+  Cri tag already says. The decider extended it to all six elemental Domaines: you infuse it with a
+  Domaine whose tree you have unlocked, or with none. Vent carries allies 3 m, and Poisse turns the
+  ground into Terrain difficile for the creatures you choose, since a Poisse state would need a DD
+  this Cri does not define.
+- Poigne du titan lets you carry a two-handed weapon in each hand. While you are Enragé, every melee
+  weapon you carry gains the Légère property, which opens the Action Bonus Attaque
+  (`data/books/livre-du-joueur/10-le-combat.md`). The decider wrote the text.
+- The Barbare's base price rises to 285 PX.
+
 ---
 
 ## Decision 2: one Rage, a tag and a state, shared by both hearts
@@ -158,6 +181,12 @@ Mix and match between trees is the game's aim, so the two needed a common ground
   tree meant to be simple.
 - **Every Cri in the giant tongue**: rejected by the decider. It would come back if Cris in other
   trees want the same identity.
+
+### Addendum (2026-09-29): Cri primordial speaks three words
+
+Cri primordial follows the Barbare's rule: « Harn », then « Kjeld » at Niveau 2 (tier 5), which widens
+it to 9 m and one more target per effect, then « Orsk » at Niveau 3 (tier 7), which picks two of its
+options at once.
 
 ---
 
@@ -249,6 +278,11 @@ the paragraphs read cleanly.
 
 - **Keep Critique brutal and rule critical damage**: rejected because it would add a core rule for one
   skill. It would come back with a game-wide ruling on criticals.
+
+### Addendum (2026-09-29): Poigne du titan is restored
+
+Poigne du titan returns (addendum in Decision 1). Critique brutal stays withdrawn, and of the old
+Cris only Cri du salut and Cri démoralisant stay deleted.
 
 ---
 

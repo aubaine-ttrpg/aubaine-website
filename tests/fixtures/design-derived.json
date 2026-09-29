@@ -8,8 +8,8 @@
   "barbare": {
     "domains": ["physical"],
     "prime": ["strength"],
-    "upgrades": 9,
-    "xpTotal": 265
+    "upgrades": 11,
+    "xpTotal": 285
   },
   "berserker": {
     "domains": ["blood", "physical"],
