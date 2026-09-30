@@ -40,7 +40,7 @@ const materials = defineCollection({ loader: jsonIn('materials'), schema: materi
 const environments = defineCollection({ loader: jsonIn('environments'), schema: environment })
 
 const catalogues = defineCollection({
-  loader: glob({ base: './data/equipment', pattern: ['*.json'], generateId }),
+  loader: glob({ base: './data/equipment', pattern: ['*.json', '!*.[a-z][a-z].json'], generateId }),
   schema: equipmentCatalogue,
 })
 

@@ -1,0 +1,70 @@
+{
+  "name": "Almanach",
+  "status": "playtest",
+  "section": "appareils",
+  "position": 0,
+  "kind": "Appareil",
+  "rarity": "rare",
+  "art": "almanach-1_1-og.png",
+  "price": 950000,
+  "properties": [
+    {
+      "name": "Batterie.",
+      "text": "Tant que le Catalyseur de l'Almanach est branché, vous pouvez utiliser l'appareil. Ce Catalyseur alimente exclusivement l'Almanach : il ne permet pas de lancer des {{sort|Sorts}}."
+    },
+    {
+      "name": "Codex.",
+      "text": "Lorsqu'une liaison est possible, vous pouvez consulter les informations auxquelles une source agréée vous a donné accès, comme la Guilde des Aventuriers, les Sagemeisters ou la Weitzguard."
+    },
+    {
+      "name": "Contacts.",
+      "text": "Vous pouvez communiquer votre identifiant à une autre personne possédant un Almanach et enregistrer le sien. Pour effectuer une opération entre deux Almanachs, chaque personne doit avoir enregistré l'identifiant de l'autre."
+    },
+    {
+      "name": "Oculus.",
+      "text": "Vous pouvez prendre des photos, les enregistrer et les visionner sur l'Almanach."
+    },
+    {
+      "name": "Stockage Supra-Dimensionnel (SSD).",
+      "text": "Vous pouvez consacrer 10 minutes à miniaturiser et ranger dans l'Almanach autant d'objets que vous le souhaitez, à en retirer autant, ou à faire les deux. Vous devez pouvoir manipuler chaque objet. Les objets retrouvent leur taille en sortant du SSD. Ceux qui restent dans le SSD ne comptent pas parmi ceux que vous portez et ne peuvent être ni utilisés ni équipés."
+    },
+    {
+      "name": "AlmaSnap.",
+      "text": "Lorsqu'une liaison est possible, vous pouvez envoyer des photos prises avec Oculus, échanger des messages et établir des communications vocales à longue distance avec vos Contacts."
+    },
+    {
+      "name": "Atlas.",
+      "text": "Vous pouvez récupérer par Codex les cartes auxquelles une source agréée vous donne accès, les enregistrer dans l'Almanach et y marquer des lieux ou des itinéraires."
+    },
+    {
+      "name": "Balise.",
+      "text": "Lorsqu'une liaison est possible, vous pouvez transmettre votre position à un Contact de votre choix et cesser ce partage à tout moment. Le Contact ne peut suivre votre position que pendant ce partage."
+    },
+    {
+      "name": "Carnet.",
+      "text": "Vous pouvez écrire et conserver des notes dans l'Almanach, y joindre des photos prises avec Oculus et les envoyer à vos Contacts avec AlmaSnap."
+    },
+    {
+      "name": "Crésus.",
+      "text": "En plaçant des pièces sur le Catalyseur de l'Almanach, vous faites absorber leur métal liquide. Crésus conserve leur valeur et convertit automatiquement votre solde entre bronze, argent et or. Vous pouvez en retirer des pièces. Lorsqu'une liaison est possible, vous pouvez aussi envoyer de la monnaie à vos Contacts ou en recevoir."
+    },
+    {
+      "name": "Hôtel de Vente.",
+      "text": "Lorsqu'une liaison est possible, vous pouvez accéder à un Hôtel de Vente agréé depuis l'Almanach. Les objets que vous y achetez sont directement rangés dans votre SSD."
+    }
+  ],
+  "craft": {
+    "discipline": "technologie",
+    "cost": 80,
+    "materials": [
+      "Métal",
+      "Gemme",
+      "Catalyseur"
+    ],
+    "sequence": [
+      "Dextérité 15",
+      "Intelligence 17"
+    ]
+  },
+  "description": "Écran bleu dans un cadre d'or, relié à une poignée sombre. Un cristal lumineux surmonte la poignée."
+}

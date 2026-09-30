@@ -7,16 +7,5 @@
   "rarity": "rare",
   "art": "capuchon-du-parangon-de-l-ordre-des-nemerites-1_1-og.png",
   "set": "NEMER",
-  "craft": {
-    "discipline": "artisanat",
-    "cost": 28,
-    "materials": [
-      "Cuir",
-      "Métal"
-    ],
-    "sequence": [
-      "Dextérité 15"
-    ]
-  },
   "description": "Un capuchon blanc bordé d'or et doublé d'un rouge sombre, prolongé par un col qui couvre les épaules."
 }

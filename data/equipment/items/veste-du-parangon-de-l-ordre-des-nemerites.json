@@ -13,17 +13,6 @@
       "value": "14 + Dextérité"
     }
   ],
-  "craft": {
-    "discipline": "artisanat",
-    "cost": 34,
-    "materials": [
-      "Cuir",
-      "Métal"
-    ],
-    "sequence": [
-      "Dextérité 15"
-    ]
-  },
   "grants": [
     "PASVEL-001"
   ],

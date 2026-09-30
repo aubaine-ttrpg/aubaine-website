@@ -34,20 +34,21 @@ An overlay may only carry the fields listed below, for its kind. Every one of th
 | species | `name`, `subtitle`, `movement`, `subspecies`, `roleplay` |
 | equipment item | `name`, `kind`, `prerequisite`, `headlines`, `stats`, `properties`, `craft.materials`, `craft.sequence`, `text`, `description` |
 | equipment set | `name`, `description`, `bonuses` |
-| catalogue | `name`, `subtitle`, `sections` |
+| catalogue | `name`, `subtitle`, `families`, `sections` |
 | material | `name`, `description` |
 | environment | `name`, `description` |
 | state | `name`, `description` |
 | book | `title`, `description` |
 | book page | `title` in the frontmatter, and the body |
 
-Four of these are keyed maps rather than arrays:
+Five of these are keyed maps rather than arrays:
 
 | Field | Keyed by | From `schema.ts` |
 | --- | --- | --- |
 | skill `upgrades` | the upgrade's `level`, as a string | Améliorations traduites, keyées par leur niveau sous forme de chaîne. |
 | species `subspecies` | the sub-species' `id` | Noms et présentations traduits, keyés par l'identifiant de la sous-espèce. Un nom ne se traduit que s'il est un nom commun. Each value is `{ "name": "...", "text": "..." }`, either key optional. |
 | set `bonuses` | the tier's `pieces`, as a string | each value is `{ "text": "..." }` |
+| catalogue `families` | the family's `key` | each value is the translated title |
 | catalogue `sections` | the section's `key` | each value is the translated title |
 
 Never translate a key, an id, a domain key, a characteristic key, a rarity key, a discipline key or a tag key. Those are machine values and they are shared across locales. A skill's tags are keys, so they never appear in an overlay: the English page reads each tag's `labelEn` from `data/meta/tags.json`.

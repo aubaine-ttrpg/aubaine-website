@@ -1276,9 +1276,16 @@
 }
 
 .au-item__property-name {
-  font-weight: 700;
-  font-style: italic;
   color: var(--paper-ink);
+}
+
+.au-item__property + .au-item__property {
+  margin-top: 14px;
+}
+
+.au-item__property-text,
+.au-item__property-text p {
+  display: inline;
 }
 
 .au-item__grant {

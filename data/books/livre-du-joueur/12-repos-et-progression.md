@@ -39,9 +39,11 @@ Les {{pdv}} temporaires
 
 ## Changer vos Compétences Mémorisées
 
-Les deux repos vous permettent de changer les Compétences que votre {{memoire}} tient, sauf vos deux Compétences d'Espèce, fixées à la création. C'est le seul moment où vous remaniez ce que vous emportez.
+Les deux repos vous permettent de changer les Compétences que votre {{memoire}} tient, sauf vos deux Compétences d'Espèce, fixées à la création. C'est le seul moment où vous changez vos Compétences {{memorisee|Mémorisées}}.
 
 Le {{repos-court}} est donc la vraie respiration du groupe : dix minutes suffisent pour arriver au combat suivant avec un autre jeu de Compétences, choisi d'après ce que vous avez vu du danger.
+
+> Astuce : une Compétence ou un objet qui demande 10 minutes d'utilisation trouve souvent sa place pendant un {{repos-court}}.
 
 ## Le rythme attendu
 

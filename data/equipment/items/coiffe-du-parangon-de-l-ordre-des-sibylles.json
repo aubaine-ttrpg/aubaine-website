@@ -13,17 +13,5 @@
       "text": "La portée de vos {{sort|Sorts}} dont la portée est exprimée en mètres augmente de 1,5 m."
     }
   ],
-  "craft": {
-    "discipline": "arcanes",
-    "cost": 28,
-    "materials": [
-      "Cuir",
-      "Gemme"
-    ],
-    "sequence": [
-      "Dextérité 14",
-      "Intelligence 16"
-    ]
-  },
   "description": "Une coiffe ouverte faite d'un bandeau doré et de longs pans de tissu blanc, retenus par des attaches rondes."
 }

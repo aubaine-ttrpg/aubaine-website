@@ -37,6 +37,10 @@ Jewel (x2)
 
 The GM tells you what you start with. With no armour, your {{ca}} is `12 + {{dexterite}}`, and an unarmed Strike deals `1d4 + {{force}}`: a character with nothing is never defenceless.
 
+## Carrying objects
+
+In addition to equipped pieces, you can keep a number of objects on your person equal to twice your {{force}}, with a minimum of two. A stack of identical consumables counts as one object, however many it contains.
+
 ## Finding materials
 
 What you can wear depends on the materials you bring back.
@@ -117,16 +121,6 @@ Gold coin
 : Worth 100 silver coins. The currency of anything out of the ordinary.
 
 A price is written from the largest coin to the smallest, and a coin at zero is left out. Three hundred bronze is written `3 silver`. One gold and twenty bronze is written `1 gold 20 bronze`.
-
-### Where a price comes from
-
-An item's price comes from the material it needs and its rarity:
-
-`price in silver coins = Material Value × rarity multiplier`
-
-The multiplier is 1 for a Common item and 4 for an Uncommon one. Above that, an item has no price: it comes from crafting, loot or the fiction, never over the counter.
-
-You never have to do this sum. Every entry prints its price; the formula only says where it comes from.
 
 ### Buying and selling
 

@@ -13,17 +13,5 @@
       "value": "14 + Intelligence OU Esprit OU Charisme"
     }
   ],
-  "craft": {
-    "discipline": "arcanes",
-    "cost": 34,
-    "materials": [
-      "Cuir",
-      "Gemme"
-    ],
-    "sequence": [
-      "Dextérité 14",
-      "Intelligence 16"
-    ]
-  },
   "description": "Une robe blanche à longs pans bordés d'or, ouverte sur une étoffe bleu nuit piquée d'étoiles. Trois attaches rondes ferment le devant."
 }

@@ -1,0 +1,21 @@
+{
+  "families": {
+    "armures": "Armour",
+    "armes": "Weapons",
+    "consommables": "Consumables",
+    "objets": "Objects"
+  },
+  "sections": {
+    "tetes": "Head",
+    "torse": "Torso",
+    "bottes": "Boots",
+    "colliers": "Necklaces",
+    "bijoux": "Jewels",
+    "boucliers": "Shields",
+    "armes-poing": "Weapons · Fist",
+    "armes-melee": "Weapons · Melee",
+    "armes-distance": "Weapons · Ranged",
+    "consommables": "Consumables",
+    "appareils": "Devices"
+  }
+}

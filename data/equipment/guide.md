@@ -33,6 +33,10 @@ Chaque entrée du catalogue imprime ce qui la concerne : sa valeur de tête, ses
 
 Le MJ annonce ce dont vous partez équipé. Sans armure, votre {{ca}} est `12 + Dextérité`, et une Frappe à mains nues fait `1d4 + Force`.
 
+## Les objets portés
+
+En plus des pièces équipées, vous pouvez garder sur vous deux fois votre {{force}} objets, avec un minimum de deux. Une pile de consommables identiques compte pour un objet, sans limite de quantité.
+
 ## Trouver les matériaux
 
 L'équipement s'obtient par la fabrication bien plus que par l'achat. Ce que vous pouvez porter dépend donc des matériaux que vous rapportez.
@@ -105,16 +109,6 @@ Pièce d'or
 : Vaut 100 pièces d'argent. La monnaie de ce qui sort de l'ordinaire.
 
 Un prix s'écrit de la plus grande pièce à la plus petite, et une pièce à zéro ne s'écrit pas. Trois cents bronze se disent `3 argent`.
-
-### D'où vient un prix
-
-Le prix d'un objet dérive de la matière qu'il demande et de sa rareté :
-
-`prix en pièces d'argent = Valeur de matière × multiplicateur de rareté`
-
-Le multiplicateur est de 1 pour un objet Commun et de 4 pour un objet Peu commun. Au dessus, un objet n'a pas de prix : il s'obtient par la fabrication, par le butin ou par la fiction, jamais au comptoir.
-
-Vous n'avez pas ce calcul à faire. Chaque entrée imprime son prix ; la formule dit seulement d'où il vient.
 
 ### Acheter et vendre
 

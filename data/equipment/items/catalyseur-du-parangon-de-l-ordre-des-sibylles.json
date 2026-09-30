@@ -13,18 +13,6 @@
       "text": "Tant que cette pièce est équipée, vous pouvez utiliser vos {{sort|Sorts}}, passifs comme actifs."
     }
   ],
-  "craft": {
-    "discipline": "arcanes",
-    "cost": 28,
-    "materials": [
-      "Métal",
-      "Gemme"
-    ],
-    "sequence": [
-      "Dextérité 14",
-      "Intelligence 16"
-    ]
-  },
   "grants": [
     "TRAAZU-001",
     "DECHIF-001"

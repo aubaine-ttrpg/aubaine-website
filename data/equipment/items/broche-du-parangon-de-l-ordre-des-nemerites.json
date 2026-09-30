@@ -13,17 +13,5 @@
       "text": "Tant que cette pièce est équipée, vous pouvez utiliser vos {{sort|Sorts}}, passifs comme actifs."
     }
   ],
-  "craft": {
-    "discipline": "arcanes",
-    "cost": 28,
-    "materials": [
-      "Métal",
-      "Gemme"
-    ],
-    "sequence": [
-      "Dextérité 14",
-      "Intelligence 16"
-    ]
-  },
   "description": "Une broche à pointes blanches et dorées autour d'une pierre noire taillée en losange."
 }

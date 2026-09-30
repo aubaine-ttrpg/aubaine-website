@@ -13,17 +13,5 @@
       "value": "+1,5 m"
     }
   ],
-  "craft": {
-    "discipline": "arcanes",
-    "cost": 28,
-    "materials": [
-      "Métal",
-      "Gemme"
-    ],
-    "sequence": [
-      "Dextérité 14",
-      "Intelligence 16"
-    ]
-  },
   "description": "Un torque ouvert de plaques blanches et dorées, jointes par un losange à la base du cou."
 }

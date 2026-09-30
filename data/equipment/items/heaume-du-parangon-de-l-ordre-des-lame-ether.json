@@ -19,16 +19,5 @@
       "text": "Vous subissez 1 {{desavantage}} à vos {{jet|Jets}} de {{perception}}."
     }
   ],
-  "craft": {
-    "discipline": "artisanat",
-    "cost": 28,
-    "materials": [
-      "Cuir",
-      "Métal"
-    ],
-    "sequence": [
-      "Dextérité 15"
-    ]
-  },
   "description": "Un heaume blanc bordé d'or, surmonté de cornes et serti d'un cristal bleu au front. Sa visière étroite est percée de fentes verticales."
 }

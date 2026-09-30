@@ -1215,6 +1215,7 @@ export const overlays = {
   equipmentCatalogue: localized({
     name: z.string().optional(),
     subtitle: z.string().optional(),
+    families: z.record(z.string(), z.string()).optional(),
     sections: z.record(z.string(), z.string()).optional(),
   }),
   material: localized({

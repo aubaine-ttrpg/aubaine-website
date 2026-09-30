@@ -13,17 +13,5 @@
       "text": "Vos {{jet|Jets}} de {{constitution}} + {{volonte}} pour maintenir votre {{concentration}} gagnent 1 {{avantage}}."
     }
   ],
-  "craft": {
-    "discipline": "arcanes",
-    "cost": 28,
-    "materials": [
-      "Métal",
-      "Gemme"
-    ],
-    "sequence": [
-      "Dextérité 14",
-      "Intelligence 16"
-    ]
-  },
   "description": "Un large anneau de métal blanc bordé d'or, couronné d'un cristal bleu taillé en pointe."
 }

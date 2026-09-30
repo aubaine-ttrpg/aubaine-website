@@ -33,6 +33,10 @@ Every catalogue entry prints what concerns it: its headline value, its cells, it
 
 The GM announces what you begin equipped with. With no armour your {{ca}} is `12 + Dexterity`, and an unarmed Strike deals `1d4 + Strength`.
 
+## Carried objects
+
+In addition to equipped pieces, you can keep twice your {{force}} objects on your person, with a minimum of two. A stack of identical consumables counts as one object, with no limit on its quantity.
+
 ## Finding materials
 
 Equipment is obtained by crafting far more than by buying. What you can wear therefore depends on the materials you bring back.
@@ -105,16 +109,6 @@ Gold coin
 : Worth 100 silver. The currency of what is out of the ordinary.
 
 A price is written from the largest coin to the smallest, and a coin at zero is not written. Three hundred bronze is said as `3 silver`.
-
-### Where a price comes from
-
-An object's price derives from the matter it asks for and its rarity:
-
-`price in silver = Material Value × rarity multiplier`
-
-The multiplier is 1 for a Common object and 4 for an Uncommon one. Above that an object has no price: it is obtained by crafting, by loot or by the fiction, never over a counter.
-
-You do not have that sum to do. Every entry prints its price; the formula only says where it comes from.
 
 ### Buying and selling
 

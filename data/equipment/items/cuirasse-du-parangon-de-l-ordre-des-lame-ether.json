@@ -13,16 +13,5 @@
       "value": "16 + la plus faible entre Dextérité et Force"
     }
   ],
-  "craft": {
-    "discipline": "artisanat",
-    "cost": 34,
-    "materials": [
-      "Cuir",
-      "Métal"
-    ],
-    "sequence": [
-      "Dextérité 15"
-    ]
-  },
   "description": "Des plaques blanches bordées d'or sont rivées sur du cuir sombre. Un tissu bleu passe sous le col et des cristaux bleus garnissent le torse et les épaules."
 }

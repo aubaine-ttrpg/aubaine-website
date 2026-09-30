@@ -17,6 +17,10 @@
     {
       "key": "consommables",
       "title": "Consommables"
+    },
+    {
+      "key": "objets",
+      "title": "Objets"
     }
   ],
   "sections": [
@@ -78,6 +82,11 @@
       "key": "consommables",
       "title": "Consommables",
       "family": "consommables"
+    },
+    {
+      "key": "appareils",
+      "title": "Appareils",
+      "family": "objets"
     }
   ]
 }

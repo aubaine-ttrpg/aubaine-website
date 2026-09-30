@@ -13,17 +13,5 @@
       "text": "Vos {{jet|Jets}} d'{{intelligence}} + {{arcanes}} pour comprendre quelque chose de magique gagnent 1 {{avantage}}."
     }
   ],
-  "craft": {
-    "discipline": "arcanes",
-    "cost": 28,
-    "materials": [
-      "Métal",
-      "Gemme"
-    ],
-    "sequence": [
-      "Dextérité 14",
-      "Intelligence 16"
-    ]
-  },
   "description": "Une large bague d'or aux plaques blanches, sertie d'un cristal bleu dont le centre semble porter une étoile."
 }

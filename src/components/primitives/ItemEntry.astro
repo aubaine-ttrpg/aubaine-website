@@ -193,7 +193,7 @@ const grants = (item.grants ?? []).flatMap((id) => {
   {
     (item.properties ?? []).map((property) => (
       <div class="au-item__property">
-        <span class="au-item__property-name">{property.name}</span>{' '}
+        <strong class="au-item__property-name"><em>{property.name}</em></strong>{' '}
         <RuleText source={property.text} corpus={corpus} locale={locale} class="au-item__property-text" />
       </div>
     ))

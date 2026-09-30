@@ -39,9 +39,11 @@ Temporary {{pdv}}
 
 ## Changing your Memorised Skills
 
-Both rests let you change the Skills your {{memoire}} holds, except your two Species Skills, fixed at creation. It is the only moment you rework what you carry.
+Both rests let you change the Skills your {{memoire}} holds, except your two Species Skills, fixed at creation. This is the only time you can change your {{memorisee|Memorised}} Skills.
 
 That makes the {{repos-court}} the group's real breathing space: ten minutes are enough to walk into the next fight with a different set of Skills, chosen from what you have seen of the danger.
+
+> Tip: a Skill or item that takes 10 minutes to use often fits into a {{repos-court}}.
 
 ## The expected rhythm
 

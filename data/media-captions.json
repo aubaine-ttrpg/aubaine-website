@@ -64,6 +64,24 @@
       ]
     },
     {
+      "file": "art/livre-du-joueur-3_4-og.png",
+      "title": "Tableau de quêtes sous la lune",
+      "description": "Tableau couvert d'avis et de dessins éclairé par une lanterne, dans une rue pavée sous la lune.",
+      "keywords": [
+        "livre",
+        "joueur"
+      ]
+    },
+    {
+      "file": "art/livre-du-mj-3_4-og.png",
+      "title": "Voyageur dans la cité enneigée",
+      "description": "Voyageur aux yeux bandés portant un sac et un bâton, dans une cité enneigée dominée par un château sur la montagne.",
+      "keywords": [
+        "livre",
+        "MJ"
+      ]
+    },
+    {
       "file": "art/marchand-16_9-og.png",
       "title": "Marchand au marché",
       "description": "Marchand à tête de bélier et aux vêtements bleus tendant une bourse ornée d'une pierre bleue à un client, devant un étal de fioles et une ville animée.",
@@ -106,6 +124,15 @@
       "keywords": [
         "arbre",
         "Terre"
+      ]
+    },
+    {
+      "file": "items/almanach-1_1-og.png",
+      "title": "Almanach",
+      "description": "Écran bleu à motifs de cartes dans un cadre doré, relié à une poignée sombre surmontée d'un cristal bleu, sur fond de volutes lumineuses.",
+      "keywords": [
+        "appareil",
+        "Almanach"
       ]
     },
     {

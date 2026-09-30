@@ -1,0 +1,51 @@
+{
+  "name": "Almanac",
+  "kind": "Device",
+  "properties": [
+    {
+      "name": "Battery.",
+      "text": "While the Almanac's Catalyst is connected, you can use the device. This Catalyst powers the Almanac alone: it cannot be used to cast {{sort|Spells}}."
+    },
+    {
+      "name": "Codex.",
+      "text": "When a connection is available, you can consult information that an approved source has granted you access to, such as the Adventurers' Guild, the Sagemeisters or the Weitzguard."
+    },
+    {
+      "name": "Contacts.",
+      "text": "You can give your identifier to another person with an Almanac and save theirs. For any operation between two Almanacs, each person must have saved the other's identifier."
+    },
+    {
+      "name": "Oculus.",
+      "text": "You can take photographs, save them and view them on the Almanac."
+    },
+    {
+      "name": "Supra-Dimensional Storage (SDS).",
+      "text": "You can spend 10 minutes shrinking and storing as many objects as you wish in the Almanac, taking as many out, or doing both. You must be able to handle each object. Objects return to their usual size when taken out of the SDS. Those still in the SDS do not count towards what you carry and cannot be used or equipped."
+    },
+    {
+      "name": "AlmaSnap.",
+      "text": "When a connection is available, you can send photographs taken with Oculus, exchange messages and make long-distance voice calls with your Contacts."
+    },
+    {
+      "name": "Atlas.",
+      "text": "You can retrieve maps through Codex when an approved source grants you access, save them on the Almanac and mark places or routes on them."
+    },
+    {
+      "name": "Beacon.",
+      "text": "When a connection is available, you can share your location with a Contact of your choice and stop sharing at any time. The Contact can follow your location only while you are sharing it."
+    },
+    {
+      "name": "Notebook.",
+      "text": "You can write and save notes on the Almanac, attach photographs taken with Oculus and send them to your Contacts through AlmaSnap."
+    },
+    {
+      "name": "Croesus.",
+      "text": "Place coins on the Almanac's Catalyst to have it absorb their liquid metal. Croesus preserves their value and automatically converts your balance between bronze, silver and gold. You can withdraw coins. When a connection is available, you can also send money to your Contacts or receive it from them."
+    },
+    {
+      "name": "Auction House.",
+      "text": "When a connection is available, you can access an approved Auction House through the Almanac. Items you buy there go directly into your SDS."
+    }
+  ],
+  "description": "A blue screen in a gold frame, joined to a dark handle. A glowing crystal crowns the handle."
+}

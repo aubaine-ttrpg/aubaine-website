@@ -423,6 +423,10 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
   const catalogue: EquipmentCatalogue = {
     ...catalogueEntry.data,
     ...pruned({ name: catalogueLocalized.name, subtitle: catalogueLocalized.subtitle }),
+    families: catalogueEntry.data.families.map((family) => ({
+      ...family,
+      title: catalogueLocalized.families?.[family.key] ?? family.title,
+    })),
     sections: catalogueEntry.data.sections.map((section) => ({
       ...section,
       title: catalogueLocalized.sections?.[section.key] ?? section.title,
