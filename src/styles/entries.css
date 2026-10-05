@@ -995,13 +995,17 @@
 .au-item {
   display: flex;
   flex-direction: column;
-  break-inside: avoid;
 }
 
 .au-item__id,
 .au-item__headline,
 .au-item__craft {
   break-inside: avoid;
+}
+
+.au-item__id,
+.au-item__prerequisite {
+  break-after: avoid;
 }
 
 .au-item__id {
@@ -1261,7 +1265,11 @@
   font: 400 var(--item-property) / 1.55 var(--font-body);
   color: var(--paper-body);
   text-align: justify;
-  break-inside: auto;
+}
+
+.au-item__text p,
+.au-item__property {
+  break-inside: avoid;
 }
 
 .au-item__text p,
@@ -1326,6 +1334,7 @@
   font-style: italic;
   color: var(--paper-quiet);
   break-inside: avoid;
+  break-before: avoid;
 }
 
 .au-item__desc p {

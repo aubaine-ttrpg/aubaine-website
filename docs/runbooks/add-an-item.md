@@ -17,7 +17,7 @@ The filename is the slug and the slug is the item's handle everywhere else. Lowe
 | `name` | required | The printed name. | any non empty string |
 | `status` | optional | Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable : les listes le masquent tant que le lecteur n'affiche pas les brouillons ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une Espèce, une pièce d'équipement ou une panoplie, dans cet ordre. | `draft`, `playtest`, `beta`, `balanced` |
 | `section` | required | Clé de la section du catalogue où la pièce est imprimée. | a `key` from `data/equipment/catalogue.json` |
-| `position` | required | Rang dans sa section. | integer, 0 or more |
+| `position` | required | Rang dans sa section, parmi les pièces de même rareté. | integer, 0 or more |
 | `kind` | required | Nature de l'objet, rendue avec la rareté : Armure, Arme de mêlée. | free text |
 | `rarity` | required | Clé de rareté, déclarée dans `data/meta/rarities.json`. | `common`, `uncommon`, `rare`, `very-rare`, `legendary`, `artifact` |
 | `art` | optional | Illustration au rapport 1:1, dans `data/media/items/`. Plusieurs pièces peuvent partager la même. Absente, la fiche retombe sur l'illustration 1:1 par défaut. | a filename that exists, named per [add-an-image.md](add-an-image.md) |
@@ -150,8 +150,9 @@ An item that grants a skill, `data/equipment/items/pyro-catalyseur.json`:
 
 ## What appears on the site
 
-- `/fr/equipement` and `/en/equipment`: a card in the catalogue grid, inside its section, at the rank given by `position`. The card carries the rarity badge, the price written in coins, the headline values, the stats, the properties and the craft block.
+- `/fr/equipement` and `/en/equipment`: a row in the equipment list, in name order, and its entry beside it. The entry carries the rarity badge, the price written in coins, the headline values, the stats, the properties and the craft block.
 - The section and rarity filters on that page pick up the new values on their own.
+- The equipment booklet: an entry inside its section, after every piece of a lower rarity, at the rank `position` gives among the pieces of its rarity. A panoply piece prints on its panoply's page instead.
 - `/fr/recherche` and `/en/search`: a row under the items group.
 - If the item has `grants`, the granted skill lists this item as one of the places it is obtained.
 
@@ -180,7 +181,7 @@ pnpm dev
 
 **Encaissement has a ceiling as well.** A Commun shield sets the base Encaissement of its type of shield, and a Peu commun one of the same type stays at that base. A Rare or Très rare piece may add up to a quarter of the base, rounded down, and a Légendaire or Artéfact piece up to half. The Pavois du Parangon's 20 is the Pavois's 16 plus a quarter.
 
-**`position` orders the item inside its section, and two items in the same section must not share one.** It is not a global rank.
+**`position` orders the item among the pieces of its rarity inside its section, and two items in the same section must not share one.** It is not a global rank. The booklet prints a section from Commun to Artéfact, so a Rare piece at `0` still follows every Commun piece.
 
 **`grants` points at a skill that exists.** Create `data/skills/<ID>.json` first. A granted skill is usually written with `"showXp": false`, because it is never bought.
 

@@ -1,6 +1,8 @@
 const MAX_LEAVES = 200
 
 const COLUMNS = '[data-columns]'
+const RUNNING_MARK = 'data-running'
+const RUNNING_HEAD = '[data-running-head]'
 
 type Unit = { el: Element; chain: Element[] }
 
@@ -19,6 +21,15 @@ export function unitsOf(cols: Element, wrappers: string): Unit[] {
 
   walk(cols, [])
   return units
+}
+
+export function runningHeads(pages: (string | undefined)[][]): (string | undefined)[] {
+  let inForce: string | undefined
+  return pages.map((marks) => {
+    const head = marks[0] ?? inForce
+    for (const mark of marks) inForce = mark ?? inForce
+    return head
+  })
 }
 
 export function keepOnPage(fitted: number, keepWithNext: boolean[]): number {
@@ -66,6 +77,21 @@ function refill(target: Element, units: Unit[]): void {
   }
 }
 
+function headPages(leaves: Element[], wrappers: string): void {
+  const heads = runningHeads(
+    leaves.map((leaf) => {
+      const cols = leaf.querySelector(COLUMNS)
+      if (!cols) return []
+      return unitsOf(cols, wrappers).map((unit) => unit.el.getAttribute(RUNNING_MARK) ?? undefined)
+    }),
+  )
+  leaves.forEach((leaf, at) => {
+    const head = heads[at]
+    const slot = leaf.querySelector(RUNNING_HEAD)
+    if (head !== undefined && slot) slot.textContent = head
+  })
+}
+
 function paginateLeaf(sourceLeaf: Element, wrappers: string): void {
   const cols = sourceLeaf.querySelector(COLUMNS)
   if (!cols) return
@@ -101,6 +127,8 @@ function paginateLeaf(sourceLeaf: Element, wrappers: string): void {
       leaf = next
     }
   }
+
+  headPages(leaves, wrappers)
 }
 
 export function paginate(): void {

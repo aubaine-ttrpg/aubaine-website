@@ -27,7 +27,7 @@
       "type": "integer",
       "minimum": 0,
       "maximum": 9007199254740991,
-      "description": "Rang dans sa section."
+      "description": "Rang dans sa section, parmi les pièces de même rareté."
     },
     "kind": {
       "type": "string",

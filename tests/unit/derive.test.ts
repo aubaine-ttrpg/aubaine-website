@@ -3,6 +3,7 @@ import { resolve } from 'node:path'
 import { describe, expect, it } from 'vitest'
 
 import {
+  catalogueByFamily,
   cataloguePanoplies,
   collator,
   formatNumber,
@@ -543,5 +544,95 @@ describe('panoply pages', () => {
     ]
     const [bastion] = cataloguePanoplies(rarities, [set('BASTI', 'Bastion')], items, 'fr')
     expect(bastion?.pieces.map((entry) => entry.name)).toEqual(['Heaume', 'Grèves'])
+  })
+})
+
+describe('equipment by family', () => {
+  const rarities = ['common', 'uncommon', 'rare', 'artifact'].map((key) => ({
+    key,
+    labelFr: key,
+    labelEn: key,
+  }))
+  const families = [
+    { key: 'armures', title: 'Armures' },
+    { key: 'armes', title: 'Armes' },
+    { key: 'objets', title: 'Objets' },
+  ]
+  const item = (name: string, rarity: string, position: number, set?: string): EquipmentItem => ({
+    name,
+    section: 'any',
+    position,
+    kind: 'Pièce',
+    rarity,
+    ...(set === undefined ? {} : { set }),
+    description: name,
+  })
+  const section = (key: string, family: string, items: EquipmentItem[]) => ({
+    key,
+    title: key,
+    family,
+    items,
+  })
+  const titles = (entries: ReturnType<typeof catalogueByFamily>) =>
+    entries.map((family) => [
+      family.title,
+      family.sections.map((entry) => [entry.key, entry.items.map((piece) => piece.name)]),
+    ])
+
+  it('keeps the families and sections in the order the catalogue gives them', () => {
+    const sections = [
+      section('melee', 'armes', [item('Dague', 'common', 0)]),
+      section('tetes', 'armures', [item('Capuche', 'common', 0)]),
+      section('torse', 'armures', [item('Cuirasse', 'common', 0)]),
+    ]
+    expect(titles(catalogueByFamily(rarities, families, sections))).toEqual([
+      [
+        'Armures',
+        [
+          ['tetes', ['Capuche']],
+          ['torse', ['Cuirasse']],
+        ],
+      ],
+      ['Armes', [['melee', ['Dague']]]],
+    ])
+  })
+
+  it('runs a section from Commun to Artéfact, then by position within a rarity', () => {
+    const sections = [
+      section('tetes', 'armures', [
+        item('Masque', 'artifact', 0),
+        item('Heaume', 'rare', 1),
+        item('Capuche', 'common', 2),
+        item('Coiffe', 'common', 3),
+        item('Chapeau', 'uncommon', 4),
+      ]),
+    ]
+    const [armures] = catalogueByFamily(rarities, families, sections)
+    expect(armures?.sections[0].items.map((piece) => piece.name)).toEqual([
+      'Capuche',
+      'Coiffe',
+      'Chapeau',
+      'Heaume',
+      'Masque',
+    ])
+  })
+
+  it('leaves panoply pieces to the Panoplies and drops what empties', () => {
+    const sections = [
+      section('tetes', 'armures', [
+        item('Heaume', 'rare', 0, 'BASTI'),
+        item('Capuche', 'common', 1),
+      ]),
+      section('bottes', 'armures', [item('Grèves', 'rare', 0, 'BASTI')]),
+      section('melee', 'armes', [item('Lame', 'rare', 0, 'BASTI')]),
+    ]
+    expect(titles(catalogueByFamily(rarities, families, sections))).toEqual([
+      ['Armures', [['tetes', ['Capuche']]]],
+    ])
+  })
+
+  it('refuses a piece whose rarity is not declared, even alone in its section', () => {
+    const sections = [section('tetes', 'armures', [item('Couronne', 'mythic', 0)])]
+    expect(() => catalogueByFamily(rarities, families, sections)).toThrow(/mythic/)
   })
 })

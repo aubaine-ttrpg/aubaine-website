@@ -552,7 +552,11 @@ export const equipmentItem = z
       .string()
       .regex(MACHINE_KEY)
       .describe('Clé de la section du catalogue où la pièce est imprimée.'),
-    position: z.number().int().min(0).describe('Rang dans sa section.'),
+    position: z
+      .number()
+      .int()
+      .min(0)
+      .describe('Rang dans sa section, parmi les pièces de même rareté.'),
     kind: z
       .string()
       .min(1)
@@ -754,7 +758,7 @@ export const equipmentCatalogue = z
       .array(z.object({ key: z.string().regex(MACHINE_KEY), title: z.string().min(1) }).strict())
       .min(1)
       .describe(
-        "Les grandes familles dans l'ordre de lecture. Le livret ouvre une feuille par famille, à l'intérieur de chaque rareté.",
+        "Les grandes familles dans l'ordre de lecture. Le livret les imprime à la suite, sans saut de page, et le titre de chaque page nomme la famille en cours à son sommet.",
       ),
     sections: z
       .array(

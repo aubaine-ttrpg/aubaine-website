@@ -56,7 +56,7 @@
         ],
         "additionalProperties": false
       },
-      "description": "Les grandes familles dans l'ordre de lecture. Le livret ouvre une feuille par famille, à l'intérieur de chaque rareté."
+      "description": "Les grandes familles dans l'ordre de lecture. Le livret les imprime à la suite, sans saut de page, et le titre de chaque page nomme la famille en cours à son sommet."
     },
     "sections": {
       "minItems": 1,

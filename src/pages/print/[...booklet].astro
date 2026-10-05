@@ -2,12 +2,15 @@
 import { getEntry } from 'astro:content'
 
 import codex from '../../../data/aubaine.json'
+import ItemEntry from '../../components/primitives/ItemEntry.astro'
 import Plate from '../../components/primitives/Plate.astro'
+import SetEntry from '../../components/primitives/SetEntry.astro'
 import SkillEntry from '../../components/primitives/SkillEntry.astro'
 import StateEntry from '../../components/primitives/StateEntry.astro'
 import TermEntry from '../../components/primitives/TermEntry.astro'
 import BackCover from '../../components/print/BackCover.astro'
 import CatalogueLeaf from '../../components/print/CatalogueLeaf.astro'
+import CatalogueSection from '../../components/print/CatalogueSection.astro'
 import Colophon from '../../components/print/Colophon.astro'
 import ContentsLeaf, { type ContentsRow } from '../../components/print/ContentsLeaf.astro'
 import Cover from '../../components/print/Cover.astro'
@@ -27,9 +30,8 @@ import {
 } from '../../lib/booklet/fingerprint'
 import { type BookletKind, releaseShort, releaseStamp } from '../../lib/booklet/release'
 import { corpus, label } from '../../lib/game/corpus'
-import type { CatalogueGroup, CataloguePanoply } from '../../lib/game/derive'
 import {
-  catalogueByRarity,
+  catalogueByFamily,
   cataloguePanoplies,
   treeSkillOrder,
   treeTypeLabel,
@@ -135,47 +137,17 @@ const grantedSkills = catalogue ? catalogueSkills(data) : []
 const catalogueStateList = catalogue ? catalogueStates(data) : []
 const catalogueWords = catalogue ? catalogueRuleWords(data) : []
 
-const rarityBlocks = catalogue
-  ? catalogueByRarity(data.rarities.values(), catalogue.families, data.sections, locale)
+const families = catalogue
+  ? catalogueByFamily(data.rarities.values(), catalogue.families, data.sections)
   : []
 const panoplies = catalogue
   ? cataloguePanoplies(data.rarities.values(), data.sets.values(), data.items, locale)
   : []
 
-const familyAnchor = (rarity: string, family: string): string => `bloc-${rarity}-${family}`
-
-type CatalogueLeafPlan = {
-  anchor: string | undefined
-  rarity: string
-  family: string
-  group: CatalogueGroup | undefined
-  panoply: CataloguePanoply | undefined
-}
-
+const sectionAnchor = (key: string): string => `section-${key}`
 const panoplyAnchor = (set: EquipmentSet): string => `panoplie-${set.id.toLowerCase()}`
+const [firstFamily] = families
 const [firstPanoply] = panoplies
-
-const catalogueLeaves: CatalogueLeafPlan[] = [
-  ...rarityBlocks.flatMap((block) =>
-    block.families.flatMap((family): CatalogueLeafPlan[] => {
-      const familyHead = familyAnchor(block.key, family.key)
-      return family.groups.map((group, index) => ({
-        anchor: index === 0 ? familyHead : undefined,
-        rarity: block.label,
-        family: family.title,
-        group,
-        panoply: undefined,
-      }))
-    }),
-  ),
-  ...panoplies.map((panoply) => ({
-    anchor: panoplyAnchor(panoply.set),
-    rarity: label(panoply.rarity, locale, panoply.rarity.key),
-    family: t.sets_,
-    group: undefined,
-    panoply,
-  })),
-]
 
 const guideAnchor = 'guide'
 const skillsAnchor = 'competences-accordees'
@@ -197,17 +169,15 @@ const guide = catalogue
 const contentsRows: ContentsRow[] = catalogue
   ? [
       ...(guide ? [{ anchor: guideAnchor, label: guide.title, depth: 0 as const }] : []),
-      ...rarityBlocks.flatMap((block) => [
-        {
-          anchor: familyAnchor(block.key, block.families[0]?.key ?? ''),
-          label: block.label,
-          depth: 0 as const,
-        },
-        ...block.families.map((family) => ({
-          anchor: familyAnchor(block.key, family.key),
-          label: family.title,
-          depth: 1 as const,
-        })),
+      ...families.flatMap((family) => [
+        { anchor: sectionAnchor(family.sections[0].key), label: family.title, depth: 0 as const },
+        ...(family.sections.length > 1
+          ? family.sections.map((section) => ({
+              anchor: sectionAnchor(section.key),
+              label: section.title,
+              depth: 1 as const,
+            }))
+          : []),
       ]),
       ...(firstPanoply
         ? [
@@ -348,17 +318,40 @@ const chapters = book
             </ProseLeaf>
           )}
 
-          {catalogueLeaves.map((leaf) => (
+          {firstFamily && (
+            <CatalogueLeaf heading={firstFamily.title} sub={t.items} title={shortTitle}>
+              {families.map((family) =>
+                family.sections.map((section) => (
+                  <CatalogueSection
+                    corpus={data}
+                    locale={locale}
+                    section={section}
+                    family={family.title}
+                    anchor={sectionAnchor(section.key)}
+                  />
+                )),
+              )}
+            </CatalogueLeaf>
+          )}
+
+          {panoplies.map((panoply) => (
             <CatalogueLeaf
-              corpus={data}
-              locale={locale}
-              anchor={leaf.anchor}
-              rarity={leaf.rarity}
-              family={leaf.family}
+              heading={label(panoply.rarity, locale, panoply.rarity.key)}
+              sub={t.sets_}
               title={shortTitle}
-              group={leaf.group}
-              panoply={leaf.panoply}
-            />
+            >
+              <div id={panoplyAnchor(panoply.set)}>
+                <SetEntry
+                  set={panoply.set}
+                  pieces={panoply.pieces.length}
+                  corpus={data}
+                  locale={locale}
+                />
+              </div>
+              {panoply.pieces.map((item) => (
+                <ItemEntry item={item} corpus={data} locale={locale} />
+              ))}
+            </CatalogueLeaf>
           ))}
 
           {grantedSkills.length > 0 && (

@@ -1,0 +1,26 @@
+---
+import type { Corpus } from '../../lib/game/corpus'
+import type { CatalogueSection } from '../../lib/game/derive'
+import type { Locale } from '../../lib/i18n/locales'
+import Icon from '../primitives/Icon.astro'
+import ItemEntry from '../primitives/ItemEntry.astro'
+
+type Props = {
+  corpus: Corpus
+  locale: Locale
+  section: CatalogueSection
+  family: string
+  anchor: string
+}
+
+const { corpus, locale, section, family, anchor } = Astro.props
+
+const slot = section.slot ? corpus.slots.get(section.slot) : undefined
+---
+
+<div class="au-section" id={anchor} data-running={family}>
+  {slot && <Icon name={slot.iconName} class="au-section__slot" />}
+  <span class="au-section__title">{section.title}</span>
+  <span class="au-section__rule" />
+</div>
+{section.items.map((item) => <ItemEntry item={item} corpus={corpus} locale={locale} />)}

@@ -381,12 +381,6 @@ export type CatalogueSection = {
   items: EquipmentItem[]
 }
 
-export type CatalogueGroup = {
-  section: CatalogueSection
-  lead: EquipmentItem
-  rest: EquipmentItem[]
-}
-
 export type CataloguePanoply = {
   set: EquipmentSet
   rarity: VocabularyEntry
@@ -396,45 +390,37 @@ export type CataloguePanoply = {
 export type CatalogueFamily = {
   key: string
   title: string
-  groups: CatalogueGroup[]
+  sections: [CatalogueSection, ...CatalogueSection[]]
 }
 
-export type CatalogueRarity = { key: string; label: string; families: CatalogueFamily[] }
-
-export function catalogueByRarity(
+export function catalogueByFamily(
   rarities: Iterable<VocabularyEntry>,
   families: Iterable<{ key: string; title: string }>,
   sections: Iterable<CatalogueSection>,
-  locale: Locale,
-): CatalogueRarity[] {
-  const allSections = [...sections]
-  const allFamilies = [...families]
-  const out: CatalogueRarity[] = []
-
-  for (const rarity of rarities) {
-    const blocks: CatalogueFamily[] = []
-
-    for (const family of allFamilies) {
-      const groups: CatalogueGroup[] = []
-      for (const section of allSections) {
-        if (section.family !== family.key) continue
-        const [lead, ...rest] = section.items.filter(
-          (item) => item.rarity === rarity.key && item.set === undefined,
-        )
-        if (lead) groups.push({ section, lead, rest })
-      }
-      if (groups.length > 0) blocks.push({ ...family, groups })
-    }
-
-    if (blocks.length > 0) {
-      out.push({
-        key: rarity.key,
-        label: locale === 'en' ? rarity.labelEn : rarity.labelFr,
-        families: blocks,
-      })
-    }
+): CatalogueFamily[] {
+  const rank = new Map([...rarities].map((rarity, at) => [rarity.key, at]))
+  const rankOf = (item: EquipmentItem): number => {
+    const at = rank.get(item.rarity)
+    if (at === undefined) throw new Error(`${item.name} has the undeclared rarity ${item.rarity}`)
+    return at
   }
-  return out
+  const byRarity = (items: EquipmentItem[]): EquipmentItem[] =>
+    items
+      .map((item) => ({ item, at: rankOf(item) }))
+      .sort((a, b) => a.at - b.at || a.item.position - b.item.position)
+      .map(({ item }) => item)
+  const allSections = [...sections]
+
+  return [...families].flatMap((family): CatalogueFamily[] => {
+    const [first, ...rest] = allSections
+      .filter((section) => section.family === family.key)
+      .map((section) => ({
+        ...section,
+        items: byRarity(section.items.filter((item) => item.set === undefined)),
+      }))
+      .filter((section) => section.items.length > 0)
+    return first ? [{ key: family.key, title: family.title, sections: [first, ...rest] }] : []
+  })
 }
 
 export function cataloguePanoplies(

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { keepOnPage, padCount, unitsOf } from '../../src/scripts/reflow'
+import { keepOnPage, padCount, runningHeads, unitsOf } from '../../src/scripts/reflow'
 
 type FakeNode = { name: string; selectors: string[]; children: FakeNode[] }
 
@@ -29,10 +29,10 @@ function chains(cols: FakeNode, wrappers: string): string[][] {
 const item = (name: string) =>
   node(name, ['.au-item'], [node(`${name}/id`), node(`${name}/headline`), node(`${name}/desc`)])
 
-const catalogue = node(
+const nested = node(
   'columns',
   [],
-  [node('group', ['[data-equipment-group]'], [node('section'), item('dague')]), item('rapiere')],
+  [node('group', ['[data-group]'], [node('section'), item('dague')]), item('rapiere')],
 )
 
 const prose = node('body', [], [node('h1'), node('h2'), node('p'), node('dl')])
@@ -44,7 +44,7 @@ describe('unitsOf', () => {
   })
 
   it('descends into an entry so a column may break between its parts', () => {
-    expect(names(catalogue, '[data-equipment-group], .au-item')).toEqual([
+    expect(names(nested, '[data-group], .au-item')).toEqual([
       'section',
       'dague/id',
       'dague/headline',
@@ -55,8 +55,8 @@ describe('unitsOf', () => {
     ])
   })
 
-  it('keeps a section title and the entry it leads under one group', () => {
-    expect(chains(catalogue, '[data-equipment-group], .au-item')).toEqual([
+  it('keeps every unit under the wrappers it came from', () => {
+    expect(chains(nested, '[data-group], .au-item')).toEqual([
       ['group'],
       ['group', 'dague'],
       ['group', 'dague'],
@@ -68,8 +68,8 @@ describe('unitsOf', () => {
   })
 
   it('carries a whole entry overleaf when the entry is not a wrapper', () => {
-    expect(names(catalogue, '[data-equipment-group]')).toEqual(['section', 'dague', 'rapiere'])
-    expect(chains(catalogue, '[data-equipment-group]')).toEqual([['group'], ['group'], []])
+    expect(names(nested, '[data-group]')).toEqual(['section', 'dague', 'rapiere'])
+    expect(chains(nested, '[data-group]')).toEqual([['group'], ['group'], []])
   })
 })
 
@@ -104,5 +104,30 @@ describe('padCount', () => {
 
   it('pads nothing when the count already lands on a multiple', () => {
     expect(padCount(8, 4)).toBe(0)
+  })
+})
+
+describe('runningHeads', () => {
+  it('heads a page with the mark of the unit that opens it', () => {
+    expect(
+      runningHeads([
+        ['Armures', undefined],
+        ['Armes', undefined, undefined],
+      ]),
+    ).toEqual(['Armures', 'Armes'])
+  })
+
+  it('carries the last mark over a page that opens inside a section', () => {
+    expect(
+      runningHeads([
+        ['Armures', undefined, 'Armes', undefined],
+        [undefined, 'Objets'],
+        [undefined],
+      ]),
+    ).toEqual(['Armures', 'Armes', 'Objets'])
+  })
+
+  it('leaves a page unheaded when no mark comes before it', () => {
+    expect(runningHeads([[undefined, undefined], [undefined]])).toEqual([undefined, undefined])
   })
 })
