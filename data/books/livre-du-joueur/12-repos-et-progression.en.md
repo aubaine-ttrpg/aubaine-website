@@ -37,6 +37,9 @@ A character who has not eaten or drunk enough that day recovers neither {{pdv}} 
 Temporary {{pdv}}
 : Healing does not restore them, and any left over disappear at the end of a rest.
 
+{{encaissement}}
+: A piece of equipment gets it back through {{REPARE-001}}, never through a rest. A {{brise}} piece stays broken until then.
+
 ## Changing your Memorised Skills
 
 Both rests let you change the Skills your {{memoire}} holds, except your two Species Skills, fixed at creation. This is the only time you can change your {{memorisee|Memorised}} Skills.

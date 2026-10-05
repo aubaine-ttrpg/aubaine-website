@@ -37,6 +37,9 @@ Le {{karma}}
 Les {{pdv}} temporaires
 : Un soin ne les rend pas, et ceux qui restent disparaissent à la fin d'un repos.
 
+L'{{encaissement}}
+: Une pièce d'équipement le retrouve par {{REPARE-001}}, jamais par un repos. Une pièce {{brise|Brisée}} le reste jusque-là.
+
 ## Changer vos Compétences Mémorisées
 
 Les deux repos vous permettent de changer les Compétences que votre {{memoire}} tient, sauf vos deux Compétences d'Espèce, fixées à la création. C'est le seul moment où vous changez vos Compétences {{memorisee|Mémorisées}}.

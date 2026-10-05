@@ -1,0 +1,5 @@
+{
+  "title": "Fabricate",
+  "duration": "Instantaneous",
+  "description": "You follow the recipe for a piece of equipment: the one its entry prints, or the one the GM sets for an item or a change you put to them.\n\nCommit materials that cover each Type it asks for and whose Material Values add up to its cost or more. A material counts for only one of its Types. The materials are used up as soon as you commit them.\n\nThen make the recipe's {{jet|Rolls}} in order, each with the {{caracteristique}} and {{dd}} it gives and the recipe's discipline as the {{aptitude}}. If they all succeed, the piece is made. At the first failure the work stops and the materials are lost."
+}

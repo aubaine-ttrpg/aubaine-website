@@ -1,0 +1,5 @@
+{
+  "title": "Repair",
+  "duration": "Instantaneous",
+  "description": "You restore a piece of equipment you are touching that is {{brise}} or has lost some of its {{encaissement}}.\n\nCommit materials that cover each Type in its recipe and whose Material Values add up to half its cost or more, rounded up. A material counts for only one of its Types. The materials are used up as soon as you commit them.\n\nThen make the last {{jet}} of its recipe, with the {{caracteristique}} and {{dd}} it gives and the recipe's discipline as the {{aptitude}}. On a success, the piece is no longer {{brise}} and gets all its {{encaissement}} back. On a failure, the materials are lost.\n\nFor a piece whose entry prints no recipe, the GM sets the Types, the cost and the {{jet}} of the repair."
+}

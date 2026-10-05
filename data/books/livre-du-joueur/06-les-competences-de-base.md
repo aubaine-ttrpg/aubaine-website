@@ -1,6 +1,6 @@
 ---
 title: "Les Compétences de base"
-description: "Ce que toute créature sait faire, sans PX, sans Mémoire et sans Énergie : se battre, se protéger, se cacher, aider, et improviser le reste."
+description: "Ce que toute créature sait faire, sans PX, sans Mémoire et sans Énergie : se battre, se protéger, se cacher, aider, fabriquer, réparer, et improviser le reste."
 ---
 
 Certaines Compétences n'appartiennent à personne. Toute créature les possède, du premier round de la première séance à la fin de la campagne. Elles ne coûtent pas de PX, n'occupent pas de {{memoire}}, ne demandent pas d'{{energie}}, et aucun Arbre ne les vend.
@@ -15,9 +15,11 @@ Une fiche marquée « 1 {{attaque}} » ne se joue pas seule : elle remplace l'un
 
 ## Ce qu'elles couvrent
 
-La plupart servent au combat. On y trouve de quoi frapper, de quoi se protéger et de quoi se dégager : {{ESQUIV-001}} rend plus difficile à toucher, {{DESENG-001}} permet de quitter un adversaire sans lui offrir d'{{ATTOPP-001}}, {{PREPAR-001}} garde une action en réserve pour le moment où quelque chose arrive.
+La plupart servent au combat. On y trouve de quoi frapper, de quoi se protéger et de quoi se dégager : {{ESQUIV-001}} rend plus difficile à toucher, {{LEVBOU-001}} dresse un bouclier entre vous et les coups, {{DESENG-001}} permet de quitter un adversaire sans lui offrir d'{{ATTOPP-001}}, {{PREPAR-001}} garde une action en réserve pour le moment où quelque chose arrive.
 
 D'autres servent partout. {{CACHER-001}} et {{CHERCH-001}} s'opposent l'une à l'autre, dans une ruelle comme sur un champ de bataille, et {{AIDERX-001}} donne un coup de main à un allié qui tente quelque chose que vous sauriez faire vous-même.
+
+D'autres entretiennent l'équipement : {{RECOLT-001}} rapporte des matériaux, {{FABRIQ-001}} en tire une pièce, et {{REPARE-001}} remet en état celle que les coups ont usée.
 
 ## Improviser
 

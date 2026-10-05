@@ -1,0 +1,7 @@
+{
+  "title": "Raise a Shield",
+  "activation": "1 Bonus Action",
+  "range": "Self",
+  "duration": "Until the start of your next turn",
+  "description": "You must be holding a shield in one of your hands to play this Skill. You lift it and brace behind it. While {{LEVBOU-001}} lasts, both of the following apply.\n\n***Guard.*** Your {{ca}} gains the {{ca}} bonus this shield prints.\n***Block.*** When an {{attaque}} you can see hits you, you can spend your {{reaction}} once its damage has been rolled. After any resistance or vulnerability, this shield stops as much of that damage as its {{encaissement}} allows, and you take the rest. The {{attaque|Attack's}} other effects still apply.\n\n{{LEVBOU-001}} ends early if you let go of this shield or it becomes {{brise}}."
+}

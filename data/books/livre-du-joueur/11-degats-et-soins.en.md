@@ -34,6 +34,7 @@ Neither calls for a {{jet}}: they apply to the total, once the dice are rolled. 
 1. Total the damage with anything that raises or lowers it by a fixed number, such as an {{attaque|Attack's}} {{caracteristique}} or "you take 1 less".
 2. If the Skill only deals half, on a success for instance, halve that total, rounded down.
 3. Halve the result for a resistance, or double it for a vulnerability.
+4. If you block with {{LEVBOU-001}}, take away what your shield stops.
 
 When one blow deals damage of several types, a resistance or a vulnerability only touches the share of its own type. Anything added without naming a type, such as an {{attaque|Attack's}} {{caracteristique}}, counts with the weapon's or the Skill's damage. Anything that removes a fixed number without naming a type, such as "you take 1 less", comes off the largest share.
 

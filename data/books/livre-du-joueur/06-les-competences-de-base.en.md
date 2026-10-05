@@ -1,6 +1,6 @@
 ---
 title: "Basic Skills"
-description: "What every creature can do, with no XP, no Memory and no Energy: fighting, defending, hiding, helping, and improvising the rest."
+description: "What every creature can do, with no XP, no Memory and no Energy: fighting, defending, hiding, helping, crafting, repairing, and improvising the rest."
 ---
 
 Some Skills belong to nobody. Every creature has them, from the first round of the first session to the end of the campaign. They cost no XP, take up no {{memoire}}, ask for no {{energie}}, and no Tree sells them.
@@ -15,9 +15,11 @@ An entry marked "1 {{attaque}}" is not played on its own: it replaces one of the
 
 ## What they cover
 
-Most of them serve in combat. There is something to strike with, something to defend with and something to get away with: {{ESQUIV-001}} makes you harder to hit, {{DESENG-001}} lets you leave an opponent without offering an {{ATTOPP-001}}, and {{PREPAR-001}} holds an action back for the moment something happens.
+Most of them serve in combat. There is something to strike with, something to defend with and something to get away with: {{ESQUIV-001}} makes you harder to hit, {{LEVBOU-001}} puts a shield between you and the blows, {{DESENG-001}} lets you leave an opponent without offering an {{ATTOPP-001}}, and {{PREPAR-001}} holds an action back for the moment something happens.
 
 Others serve everywhere. {{CACHER-001}} and {{CHERCH-001}} work against each other, in an alley as much as on a battlefield, and {{AIDERX-001}} gives a hand to an ally attempting something you could do yourself.
+
+Others look after your equipment: {{RECOLT-001}} brings back materials, {{FABRIQ-001}} turns them into a piece, and {{REPARE-001}} restores one the blows have worn down.
 
 ## Improvising
 

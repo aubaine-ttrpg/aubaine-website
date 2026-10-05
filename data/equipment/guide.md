@@ -1,6 +1,6 @@
 ---
 title: "Artisanat et équipement"
-description: "Les emplacements, le butin, les matériaux, la fabrication, les panoplies et la monnaie."
+description: "Les emplacements, le butin, les matériaux, la fabrication, la réparation, les panoplies et la monnaie."
 ---
 
 Une créature porte huit pièces d'équipement à la fois, une par emplacement. Tant qu'une pièce n'est pas portée, elle ne fait rien : rien ne s'applique depuis un sac.
@@ -61,7 +61,7 @@ La Valeur de matière sert deux fois : elle compte pour atteindre le coût d'une
 
 ## Fabriquer
 
-L'encadré d'une entrée nomme sa discipline, son coût, les Types qu'elle accepte et ses Jets dans l'ordre.
+L'encadré d'une entrée nomme sa discipline, son coût, les Types qu'elle accepte et ses Jets dans l'ordre. La Compétence de base {{FABRIQ-001}} suit cette recette :
 
 1. Réunissez des matériaux couvrant chacun des Types demandés.
 2. Atteignez ou dépassez le coût, toutes matières confondues. La répartition entre les Types est libre : un lingot et dix peaux font l'affaire aussi bien qu'un partage égal.
@@ -80,6 +80,25 @@ Chacune est une {{aptitude}}, et c'est elle que vous jetez. Les quatre ne se rem
 ### Sans recette
 
 Proposez l'objet ou la modification au MJ. Il part de la pièce existante la plus proche, fixe les Types, le coût et les Jets, puis la procédure ne change pas. Une création validée peut devenir une recette permanente de la campagne.
+
+## Les pièces brisées
+
+Une pièce qui prend des coups à votre place s'use. Elle imprime son {{encaissement}}, ce qu'elle peut encore arrêter avant de céder. Un bouclier en a, et il le dépense chaque fois que vous bloquez avec {{LEVBOU-001}} : chaque dégât arrêté lui retire 1 {{encaissement}}.
+
+À 0, la pièce est {{brise|Brisée}}. Elle occupe toujours son emplacement, mais plus aucune règle ne la compte comme portée ou tenue : ni sa valeur de tête, ni ses propriétés, ni les Compétences qu'elle accorde, ni les paliers de sa panoplie.
+
+La Compétence de base {{REPARE-001}} remet en état une pièce brisée ou seulement entamée. Elle reprend sa recette à moindre frais :
+
+1. Engagez des matériaux couvrant chacun des Types de la recette, pour au moins la moitié de son coût, arrondie au supérieur.
+2. Effectuez le dernier {{jet}} de la recette.
+
+Si le {{jet}} réussit, la pièce n'est plus brisée et retrouve tout son {{encaissement}}. S'il échoue, les matériaux sont perdus, comme lors d'une fabrication ratée. Pour une pièce dont l'entrée n'imprime aucune recette, le MJ fixe les Types, le coût et le {{jet}}.
+
+> [!EXAMPLE] Exemple
+>
+> La targe de Sélène n'a plus que 3 d'{{encaissement}} quand une hache touche Sélène pour 7 dégâts. Elle bloque : la targe en arrête 3 et tombe à 0, et Sélène subit les 4 autres. La targe est {{brise|Brisée}} et ne lui apporte plus rien.
+>
+> Au {{repos-court}} suivant, elle la répare. La recette de la targe coûte 4 et demande du Bois et du Métal : une Branche morte et une Ferraille, de Valeur 1 chacune, couvrent les deux Types et atteignent la moitié du coût, 2. Elle réussit ensuite le dernier {{jet}} de la recette, {{force}} + {{artisanat}} contre un {{dd}} de 12, et la targe retrouve tout son {{encaissement}}.
 
 ## Les panoplies
 

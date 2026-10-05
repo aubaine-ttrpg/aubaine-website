@@ -897,6 +897,26 @@ const RULE_TERMS: readonly RuleTerm[] = [
     },
   },
   {
+    fr: 'Encaissement',
+    en: 'Durability',
+    color: 'var(--term-res)',
+    icon: 'game-icons/shield-impact',
+    definition: {
+      fr: "Ce qu'une pièce d'équipement peut encore prendre de coups à votre place avant de céder. La pièce imprime son maximum. Chaque dégât qu'elle arrête lui retire 1 {{encaissement}}, et à 0 elle est {{brise|Brisée}}. Seul {{REPARE-001}} le fait remonter.",
+      en: 'How much punishment a piece of equipment can still take in your place before it gives way. The piece prints its maximum. Each point of damage it stops removes 1 {{encaissement}}, and at 0 it is {{brise}}. Only {{REPARE-001}} brings it back up.',
+    },
+  },
+  {
+    fr: 'Brisé',
+    en: 'Broken',
+    color: 'var(--term-dis)',
+    icon: 'game-icons/cracked-shield',
+    definition: {
+      fr: "Une pièce d'équipement fendue, faussée ou disloquée, qui ne protège plus rien. Elle occupe toujours son emplacement, mais aucune autre règle ne la compte comme portée ou tenue : rien de ce qu'elle imprime ne s'applique, et elle ne compte pas pour les paliers de sa panoplie. Elle le reste jusqu'à ce que {{REPARE-001}} la remette en état.",
+      en: "A piece of equipment split, buckled or knocked apart, that protects nothing any more. It still takes up its slot, but no other rule counts it as worn or held: nothing it prints applies, and it does not count towards its set's tiers. It stays that way until {{REPARE-001}} restores it.",
+    },
+  },
+  {
     fr: 'Banque Commune',
     en: 'Common Bank',
     color: 'var(--accent-ink)',

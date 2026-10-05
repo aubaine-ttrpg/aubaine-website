@@ -34,6 +34,7 @@ Aucune des deux ne demande de {{jet}} : elles s'appliquent au total, une fois le
 1. Totalisez les dégâts avec tout ce qui les augmente ou les réduit d'un nombre fixe, comme la {{caracteristique}} d'une {{attaque}} ou « vous en subissez 1 de moins ».
 2. Si la Compétence n'en inflige que la moitié, sur une réussite par exemple, divisez ce total par deux, arrondi à l'inférieur.
 3. Divisez le résultat par deux en cas de résistance, ou doublez-le en cas de vulnérabilité.
+4. Si vous bloquez avec {{LEVBOU-001}}, retirez ce que votre bouclier arrête.
 
 Quand un même coup inflige des dégâts de plusieurs types, une résistance ou une vulnérabilité ne touche que la part de son type. Ce qui s'ajoute sans nommer de type, comme la {{caracteristique}} d'une {{attaque}}, compte avec les dégâts de l'arme ou de la Compétence. Ce qui retire un nombre fixe sans nommer de type, comme « vous en subissez 1 de moins », se retire de la part la plus forte.
 

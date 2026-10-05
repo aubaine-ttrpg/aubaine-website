@@ -221,7 +221,7 @@ These six boxes are the only ones that are calculated. Work them out again after
 | {{vitesse}} | 9 metres, unless your Species says otherwise |
 | Initiative | `1d4 + {{dexterite}}`, rolled at the start of combat |
 
-Armour replaces the {{ca}} formula instead of adding to it. A shield and the other explicit modifiers are added afterwards.
+Armour replaces the {{ca}} formula instead of adding to it. A raised shield and the other explicit modifiers are added afterwards.
 
 ## A worked example
 

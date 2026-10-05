@@ -14,6 +14,10 @@
       "value": "+2"
     },
     {
+      "label": "Encaissement",
+      "value": "16"
+    },
+    {
       "label": "Dégâts",
       "value": "1d4 + Force"
     }

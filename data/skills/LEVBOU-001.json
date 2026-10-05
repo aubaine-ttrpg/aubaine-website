@@ -1,0 +1,20 @@
+{
+  "id": "LEVBOU-001",
+  "title": "Lever le bouclier",
+  "type": "active",
+  "tier": 1,
+  "showXp": false,
+  "domains": [
+    "physical"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "Personnel",
+  "duration": "Jusqu'au début de votre prochain tour",
+  "tags": {
+    "practice": "manoeuvre",
+    "schools": [
+      "protection"
+    ]
+  },
+  "description": "Vous devez tenir un bouclier dans l'une de vos mains pour jouer cette Compétence. Vous le levez et vous vous abritez derrière. Tant que {{LEVBOU-001}} dure, les deux effets suivants s'appliquent.\n\n***Garde.*** Votre {{ca}} gagne le bonus de {{ca}} que ce bouclier imprime.\n***Blocage.*** Lorsqu'une {{attaque}} que vous voyez vous touche, vous pouvez dépenser votre {{reaction}} une fois ses dégâts lancés. Toute résistance ou vulnérabilité appliquée, ce bouclier arrête de ces dégâts autant que son {{encaissement}} le permet, et vous subissez le reste. Les autres effets de l'{{attaque}} s'appliquent.\n\n{{LEVBOU-001}} prend fin plus tôt si vous lâchez ce bouclier ou s'il est {{brise}}."
+}

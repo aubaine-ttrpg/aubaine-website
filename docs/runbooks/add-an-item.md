@@ -176,6 +176,10 @@ pnpm dev
 
 **CA has a ceiling that rises one point every two rarities.** A Commun piece sets the base CA of its kind of armour, and a Peu commun piece of the same kind gives no more than that: the Brigandine du voleur stays at the Armure de cuir's `13 + Dextérité`. A Rare or Très rare piece may add up to 1 to that base, a Légendaire or Artéfact piece up to 2. These are ceilings, not steps every piece takes: a rarer piece can stay at the base and earn its rarity elsewhere. A slot whose Commun pieces give no CA, such as Tête or Bottes, starts from +0, so a Rare helmet gives at most `+1`. Stay under the ceiling: every attack is rolled against CA, so a point of it weighs more than any other number on an item.
 
+**A shield's headlines are `CA`, `Encaissement` and `Dégâts`, in that order.** Its CA counts only while it is raised: the basic skill `LEVBOU-001` reads the CA bonus and the Encaissement from these headlines, so a shield needs no `grants` and no property for either. A shield is also a weapon, and its `stats` carry the Jet, the range, the damage type and the hands, as a weapon's do.
+
+**Encaissement has a ceiling as well.** A Commun shield sets the base Encaissement of its type of shield, and a Peu commun one of the same type stays at that base. A Rare or Très rare piece may add up to a quarter of the base, rounded down, and a Légendaire or Artéfact piece up to half. The Pavois du Parangon's 20 is the Pavois's 16 plus a quarter.
+
 **`position` orders the item inside its section, and two items in the same section must not share one.** It is not a global rank.
 
 **`grants` points at a skill that exists.** Create `data/skills/<ID>.json` first. A granted skill is usually written with `"showXp": false`, because it is never bought.

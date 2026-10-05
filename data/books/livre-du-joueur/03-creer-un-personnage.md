@@ -221,7 +221,7 @@ Ces six cases sont les seules qui se calculent. Reprenez-les après chaque achat
 | {{vitesse}} | 9 mètres, sauf mention de votre Espèce |
 | Initiative | `1d4 + {{dexterite}}`, lancé au début du combat |
 
-Une armure remplace la formule de {{ca}} au lieu de s'y ajouter. Un bouclier et les autres modificateurs explicites s'ajoutent ensuite.
+Une armure remplace la formule de {{ca}} au lieu de s'y ajouter. Un bouclier levé et les autres modificateurs explicites s'ajoutent ensuite.
 
 ## Un exemple complet
 

@@ -1,0 +1,18 @@
+{
+  "id": "FABRIQ-001",
+  "title": "Fabriquer",
+  "type": "active",
+  "tier": 1,
+  "showXp": false,
+  "domains": [],
+  "characteristics": [
+    "any"
+  ],
+  "activation": "10 minutes",
+  "range": "Contact",
+  "duration": "Instantanée",
+  "tags": {
+    "practice": "technique"
+  },
+  "description": "Vous suivez la recette d'une pièce d'équipement : celle que son entrée imprime, ou celle que le MJ fixe pour un objet ou une modification que vous lui proposez.\n\nEngagez des matériaux qui couvrent chacun des Types qu'elle demande et dont les Valeurs de matière, additionnées, atteignent ou dépassent son coût. Un matériau ne compte que pour un seul de ses Types. Les matériaux sont consommés dès que vous les engagez.\n\nEffectuez ensuite les {{jet|Jets}} de la recette dans l'ordre, chacun avec la {{caracteristique}} et le {{dd}} qu'elle indique, et sa discipline pour {{aptitude}}. Si tous réussissent, la pièce est faite. Au premier échec, la fabrication s'arrête et les matériaux sont perdus."
+}

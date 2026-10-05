@@ -1,0 +1,18 @@
+{
+  "id": "REPARE-001",
+  "title": "Réparer",
+  "type": "active",
+  "tier": 1,
+  "showXp": false,
+  "domains": [],
+  "characteristics": [
+    "any"
+  ],
+  "activation": "10 minutes",
+  "range": "Contact",
+  "duration": "Instantanée",
+  "tags": {
+    "practice": "technique"
+  },
+  "description": "Vous remettez en état une pièce d'équipement que vous touchez, {{brise|Brisée}} ou qui a perdu de son {{encaissement}}.\n\nEngagez des matériaux qui couvrent chacun des Types de sa recette et dont les Valeurs de matière, additionnées, atteignent ou dépassent la moitié de son coût, arrondie au supérieur. Un matériau ne compte que pour un seul de ses Types. Les matériaux sont consommés dès que vous les engagez.\n\nEffectuez ensuite le dernier {{jet}} de sa recette, avec la {{caracteristique}} et le {{dd}} qu'il indique, et sa discipline pour {{aptitude}}. En cas de réussite, la pièce n'est plus {{brise|Brisée}} et retrouve tout son {{encaissement}}. En cas d'échec, les matériaux sont perdus.\n\nPour une pièce dont l'entrée n'imprime aucune recette, le MJ fixe les Types, le coût et le {{jet}} de la réparation."
+}

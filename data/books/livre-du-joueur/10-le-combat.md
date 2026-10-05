@@ -109,17 +109,23 @@ La {{ca}} est le nombre qu'une {{attaque}} doit atteindre pour vous toucher. San
 
 Une armure portée efface cette formule et impose la sienne. **Elle ne s'ajoute jamais à 12.** C'est la règle qu'on oublie le plus souvent.
 
-Une seule formule de base s'applique à la fois, celle de la pièce qui occupe l'emplacement Torse. Les boucliers et les autres modificateurs explicites s'ajoutent ensuite, par-dessus le résultat.
+Une seule formule de base s'applique à la fois, celle de la pièce qui occupe l'emplacement Torse. Un bouclier levé et les autres modificateurs explicites s'ajoutent ensuite, par-dessus le résultat.
 
 1. Prenez la formule de votre armure, ou `12 + {{dexterite}}` si vous n'en portez pas.
-2. Ajoutez le bouclier.
+2. Ajoutez le bouclier, s'il est levé.
 3. Ajoutez les autres modificateurs explicites, pièce par pièce.
 
 > [!EXAMPLE] Exemple
 >
-> Sans armure, avec une {{dexterite}} de +3, votre {{ca}} est de 15. Enfilez une armure en `14 + {{dexterite}}` et elle passe à 17, jamais à 29. Ajoutez une targe et elle monte à 18.
+> Sans armure, avec une {{dexterite}} de +3, votre {{ca}} est de 15. Enfilez une armure en `14 + {{dexterite}}` et elle passe à 17, jamais à 29. Levez une targe et elle monte à 18.
 
 Chaque armure imprime sa propre formule, et certaines plafonnent la {{dexterite}} qu'elles laissent compter ou exigent une {{force}} minimale. Lisez la pièce : elle porte ses contraintes.
+
+### Lever un bouclier
+
+Un bouclier ne protège que levé. Avec un bouclier en main, la Compétence de base {{LEVBOU-001}} le lève : jouée avec votre {{action-bonus}}, elle ajoute le bonus de {{ca}} du bouclier à la vôtre jusqu'au début de votre prochain tour, et vous laisse bloquer pendant ce temps.
+
+Bloquer coûte votre {{reaction}}, une fois lancés les dégâts d'une {{attaque}} qui vous touche. Le bouclier prend ce qu'il peut sur son {{encaissement}} et vous laisse le reste. S'il arrête tout, vous ne subissez aucun dégât. Le chapitre L'équipement dit comment un bouclier s'use, se brise et se répare.
 
 ### Précision et couvert
 

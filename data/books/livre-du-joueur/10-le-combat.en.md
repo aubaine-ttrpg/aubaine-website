@@ -109,17 +109,23 @@ Anything unusual a weapon does goes through a named property printed on it. A Fi
 
 Worn armour wipes that formula and imposes its own. **It is never added to 12.** It is the rule people forget most often.
 
-Only one base formula applies at a time, the one on the piece in the Torso slot. Shields and other explicit modifiers are added afterwards, on top of the result.
+Only one base formula applies at a time, the one on the piece in the Torso slot. A raised shield and other explicit modifiers are added afterwards, on top of the result.
 
 1. Take your armour's formula, or `12 + {{dexterite}}` if you wear none.
-2. Add the shield.
+2. Add the shield, if it is raised.
 3. Add the other explicit modifiers, piece by piece.
 
 > [!EXAMPLE] Example
 >
-> Unarmoured, with {{dexterite}} +3, your {{ca}} is 15. Put on armour at `14 + {{dexterite}}` and it becomes 17, never 29. Add a targe and it rises to 18.
+> Unarmoured, with {{dexterite}} +3, your {{ca}} is 15. Put on armour at `14 + {{dexterite}}` and it becomes 17, never 29. Raise a targe and it rises to 18.
 
 Each piece of armour prints its own formula, and some cap how much {{dexterite}} they let count or demand a minimum {{force}}. Read the piece: it carries its own limits.
+
+### Raising a shield
+
+A shield only protects you while it is raised. With a shield in hand, the basic Skill {{LEVBOU-001}} raises it: played with your {{action-bonus}}, it adds the shield's {{ca}} bonus to yours until the start of your next turn, and lets you block in the meantime.
+
+Blocking costs your {{reaction}}, once the damage of an {{attaque}} that hits you has been rolled. The shield takes what it can out of its {{encaissement}} and leaves you the rest. If it stops all of it, you take no damage. The Equipment chapter explains how a shield wears down, breaks and is repaired.
 
 ### Precision and cover
 
