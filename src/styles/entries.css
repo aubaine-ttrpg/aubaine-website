@@ -938,7 +938,7 @@
 }
 
 .au-section__title {
-  font: 600 var(--item-section) / 1 var(--font-display);
+  font: 600 var(--item-section) / 1.4 var(--font-display);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--paper-ink);
