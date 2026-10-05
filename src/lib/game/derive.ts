@@ -360,19 +360,6 @@ export function formatPrice(
     .join(' ')
 }
 
-export function setRarity(items: Iterable<EquipmentItem>, setId: string): string {
-  const worn = [...items].filter((item) => item.set === setId)
-  const first = worn[0]
-  if (!first) throw new Error(`set ${setId} is named by no piece, so it has no rarity`)
-  const odd = worn.find((item) => item.rarity !== first.rarity)
-  if (odd) {
-    throw new Error(
-      `set ${setId} mixes rarities: ${first.name} is ${first.rarity} and ${odd.name} is ${odd.rarity}. A panoply is printed under one rarity, so its pieces must share it.`,
-    )
-  }
-  return first.rarity
-}
-
 export type CatalogueSection = {
   key: string
   title: string
@@ -383,8 +370,7 @@ export type CatalogueSection = {
 
 export type CataloguePanoply = {
   set: EquipmentSet
-  rarity: VocabularyEntry
-  pieces: EquipmentItem[]
+  pieces: [EquipmentItem, ...EquipmentItem[]]
 }
 
 export type CatalogueFamily = {
@@ -424,27 +410,18 @@ export function catalogueByFamily(
 }
 
 export function cataloguePanoplies(
-  rarities: Iterable<VocabularyEntry>,
   sets: Iterable<EquipmentSet>,
   itemsInCatalogueOrder: EquipmentItem[],
   locale: Locale,
 ): CataloguePanoply[] {
-  const ranked = [...rarities]
-  const rank = new Map(ranked.map((rarity, at) => [rarity.key, at]))
   const compare = collator(locale)
   return [...sets]
-    .map((set) => {
-      const key = setRarity(itemsInCatalogueOrder, set.id)
-      const rarity = ranked.find((entry) => entry.key === key)
-      if (!rarity) throw new Error(`set ${set.id} has the undeclared rarity ${key}`)
-      const pieces = itemsInCatalogueOrder.filter((item) => item.set === set.id)
-      return { set, rarity, pieces }
+    .map((set): CataloguePanoply => {
+      const [first, ...rest] = itemsInCatalogueOrder.filter((item) => item.set === set.id)
+      if (!first) throw new Error(`set ${set.id} is named by no piece`)
+      return { set, pieces: [first, ...rest] }
     })
-    .sort(
-      (a, b) =>
-        (rank.get(a.rarity.key) ?? 0) - (rank.get(b.rarity.key) ?? 0) ||
-        compare.compare(a.set.name, b.set.name),
-    )
+    .sort((a, b) => compare.compare(a.set.name, b.set.name))
 }
 
 export type CostPill = { key: string; label: string; fg: string; bc: string; bg: string }

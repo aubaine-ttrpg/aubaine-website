@@ -63,7 +63,8 @@ A piece joins the set by naming it. `data/equipment/items/boucle-de-l-un.json`:
 ## What appears on the site
 
 - `/fr/equipement` and `/en/equipment`: under the description of every piece carrying `"set": "FAEBI"`, a block shows the set name, its description, the tiers in increasing piece order, and the list of its pieces. Each piece in that list is a reference like `{{boucle-de-l-un}}`, with its slot icon and its kind, and opens that piece's entry.
-- The equipment booklet prints one page per set after the whole equipment list, sorted by rarity, then by name: every Commun set in alphabetical order, then every Peu commun set, and so on. Each page holds the set's name, description and tiers, then its pieces.
+- The equipment booklet prints one page per set after the whole equipment list, in alphabetical order of the set's name, whatever its rarity. Each page is titled Panoplies and holds the set's name, description and tiers, then its pieces.
+- Every piece of a set carries the same `rarity`. `pnpm data:check` fails on a set that mixes two.
 - A skill named in `grants` lists the set as one of the places it is obtained.
 - The set file alone shows nothing. A set with no piece pointing at it is invisible.
 

@@ -494,11 +494,6 @@ describe('state order', () => {
 })
 
 describe('panoply pages', () => {
-  const rarities = ['common', 'uncommon', 'very-rare'].map((key) => ({
-    key,
-    labelFr: key,
-    labelEn: key,
-  }))
   const set = (id: string, name: string): EquipmentSet => ({
     id,
     name,
@@ -515,7 +510,7 @@ describe('panoply pages', () => {
     description: name,
   })
 
-  it('sorts panoplies by rarity, then alphabetically within a rarity', () => {
+  it('sorts panoplies alphabetically, whatever their rarity', () => {
     const sets = [
       set('FAEBI', 'Panoplie des Faebies'),
       set('TRAQU', 'Panoplie du Traqueur'),
@@ -528,11 +523,11 @@ describe('panoply pages', () => {
       piece('Heaume', 'BASTI', 'uncommon'),
       piece('Anneau', 'ECLAT', 'common'),
     ]
-    expect(cataloguePanoplies(rarities, sets, items, 'fr').map((entry) => entry.set.id)).toEqual([
+    expect(cataloguePanoplies(sets, items, 'fr').map((entry) => entry.set.id)).toEqual([
       'ECLAT',
+      'FAEBI',
       'BASTI',
       'TRAQU',
-      'FAEBI',
     ])
   })
 
@@ -542,8 +537,12 @@ describe('panoply pages', () => {
       piece('Dague', 'NONE', 'uncommon'),
       piece('Grèves', 'BASTI', 'uncommon'),
     ]
-    const [bastion] = cataloguePanoplies(rarities, [set('BASTI', 'Bastion')], items, 'fr')
+    const [bastion] = cataloguePanoplies([set('BASTI', 'Bastion')], items, 'fr')
     expect(bastion?.pieces.map((entry) => entry.name)).toEqual(['Heaume', 'Grèves'])
+  })
+
+  it('refuses a panoply that no piece names', () => {
+    expect(() => cataloguePanoplies([set('VIDE', 'Panoplie vide')], [], 'fr')).toThrow(/VIDE/)
   })
 })
 

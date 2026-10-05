@@ -29,7 +29,7 @@ import {
   treeStates,
 } from '../../lib/booklet/fingerprint'
 import { type BookletKind, releaseShort, releaseStamp } from '../../lib/booklet/release'
-import { corpus, label } from '../../lib/game/corpus'
+import { corpus } from '../../lib/game/corpus'
 import {
   catalogueByFamily,
   cataloguePanoplies,
@@ -140,9 +140,7 @@ const catalogueWords = catalogue ? catalogueRuleWords(data) : []
 const families = catalogue
   ? catalogueByFamily(data.rarities.values(), catalogue.families, data.sections)
   : []
-const panoplies = catalogue
-  ? cataloguePanoplies(data.rarities.values(), data.sets.values(), data.items, locale)
-  : []
+const panoplies = catalogue ? cataloguePanoplies(data.sets.values(), data.items, locale) : []
 
 const sectionAnchor = (key: string): string => `section-${key}`
 const panoplyAnchor = (set: EquipmentSet): string => `panoplie-${set.id.toLowerCase()}`
@@ -335,11 +333,7 @@ const chapters = book
           )}
 
           {panoplies.map((panoply) => (
-            <CatalogueLeaf
-              heading={label(panoply.rarity, locale, panoply.rarity.key)}
-              sub={t.sets_}
-              title={shortTitle}
-            >
+            <CatalogueLeaf heading={t.sets_} sub={t.items} title={shortTitle}>
               <div id={panoplyAnchor(panoply.set)}>
                 <SetEntry
                   set={panoply.set}

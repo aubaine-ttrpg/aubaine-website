@@ -3,6 +3,7 @@
 **Project:** Aubaine, the wiki
 **Status:** Accepted
 **Date:** 2026-10-04
+**Revised:** 2026-10-04, panoplies are alphabetical and their pages are titled Panoplies (addendum in Decision 2)
 **Deciders:** Kori
 **Scope:**
 - **Covers:**
@@ -89,3 +90,9 @@ The FR booklet of v0.2.1 (`data/media/pdf/equipement-fr-v0.2.1_90b72239_99d80ba2
 - A page can still end with part of its right column empty, when the next item cannot finish on it. Folios 9 and 10 in FR end at about 55% and 66% of the right column.
 - The section title's line box is now 1.4 instead of 1, because Cinzel's accents were clipped at the top of a column: « Armes · Mêlée » printed as MELEE. The fix was verified on a 200 dpi render of the « Têtes » heading.
 
+### Addendum (2026-10-04): Panoplies are alphabetical and titled Panoplies
+
+- `cataloguePanoplies` in `src/lib/game/derive.ts` now sorts sets by name with the locale collator, whatever their rarity. The contents list them in that order.
+- A panoply page is titled « Panoplies » over « Équipement », the same pattern as « Armures » over « Équipement ». The set card names the set just below the title, and each piece still prints its rarity on its own line.
+- The rarity no longer appears in the page title, so `setRarity`, which existed only to print it, is gone. The rule that every piece of a set shares one rarity moves to `tests/data/integrity.test.ts`. A set that no piece names still stops the print build.
+- **Rarity order, as before**: rejected by the decider. A player looks a set up by its name, which every piece prints. Four of the five sets are Rare, so sorting by rarity mostly meant Faebies came last.

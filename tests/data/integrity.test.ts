@@ -314,6 +314,15 @@ describe('cross references', () => {
     }
   })
 
+  it('keeps every piece of a panoply at one rarity', () => {
+    for (const set of fr.sets.values()) {
+      const rarities = new Set(
+        fr.items.filter((item) => item.set === set.id).map((item) => item.rarity),
+      )
+      expect(rarities.size, `set ${set.id} mixes ${[...rarities].join(', ')}`).toBeLessThan(2)
+    }
+  })
+
   it('offers and imposes only skills that exist from every species and sub-species', () => {
     for (const entry of sources.speciesEntries) {
       const named = [
