@@ -3,6 +3,8 @@
 **Project:** Aubaine, the wiki
 **Status:** Accepted
 **Date:** 2026-09-25
+**Revised:** 2026-10-06, the root names no canonical, carries the `WebSite` node, and no page points
+`x-default` at it (0040)
 **Deciders:** Kori
 **Scope:** What `https://aubaine.io/` serves, how it chooses a locale, and how it hands the reader
 to that locale's home. Amends 0005 Decision 1 and Decision 2 and 0012 Decision 3. Does not cover the
@@ -76,6 +78,13 @@ Versions this was decided against, read from `pnpm-lock.yaml`: `astro@7.3.3`, `@
   to `/fr`. That is the state the stub already had. Making the root indexable, or pointing
   `x-default` at another page, is a separate search decision that this record does not take.
 - `@media (scripting: none)` is verified in Chromium only, by the Playwright run above.
+
+### Addendum (2026-10-06): the root keeps its `noindex` and loses its canonical
+
+The root still renders the French home's head with `noindex, follow`, but it no longer names a
+canonical, and its `og:url` is `https://aubaine.io/`. It carries the site's `WebSite` node, which
+Google reads only on the domain root. No page points `x-default` at the root any more, which closes
+the caveat above. 0040 Decision 3 records both.
 
 ---
 

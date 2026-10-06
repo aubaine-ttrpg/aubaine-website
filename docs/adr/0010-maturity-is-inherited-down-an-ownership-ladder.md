@@ -4,6 +4,7 @@
 **Status:** Accepted
 **Date:** 2026-09-20
 **Revised:** 2026-09-20, a fourth value, `draft`, below `playtest`
+**Revised:** 2026-10-06, a `draft` page stays published but out of search (0040)
 **Deciders:** Kori
 **Scope:** The `status` field on a skill, a skill tree, an equipment item and a set, how a skill
 without one resolves an owner's, and what each value renders. Does not cover the contract mechanism
@@ -90,6 +91,14 @@ separates them before the label is read. Contrast was checked against `--bg2` in
 Naming: `draft` over `wip`, which was the word the change was asked in. The other three values are
 words rather than acronyms, `draft` translates cleanly to `Brouillon`, and an expansion a reader has
 to perform is a poor machine value.
+
+### Addendum (2026-10-06): a draft stays published but out of search
+
+A page whose subject resolves to `draft` now carries `noindex` and is left out of the sitemap. A tree
+page reads the tree's status, a tree node the status resolved down the ladder of Decision 2, and a
+species page the species' own. The badge and the reachable page this addendum's predecessor chose
+are unchanged. Only search engines are asked to wait until the entry reaches `playtest`. 0040
+Decision 1 records the reasoning.
 
 ---
 

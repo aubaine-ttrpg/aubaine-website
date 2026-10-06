@@ -178,13 +178,28 @@ test('the threshold keeps crawlers out and still describes the site', async ({ r
   expect(response.status()).toBe(200)
   const html = await response.text()
   expect(html).toContain('<meta name="robots" content="noindex, follow">')
+  expect(html).not.toContain('rel="canonical"')
+  expect(html).toContain('<meta property="og:url" content="https://aubaine.io/">')
   expect(html).toMatch(/<meta property="og:image" content="https:\/\/aubaine\.io\/_astro\/[^"]+">/)
   expect(html).not.toContain('http-equiv="refresh"')
   expect(html).toContain('data-threshold')
 })
 
+test('the threshold names the site for search engines', async ({ request }) => {
+  const html = await (await request.get('/')).text()
+  const match = html.match(/<script type="application\/ld\+json">(.*?)<\/script>/)
+  expect(JSON.parse(match?.[1] ?? 'null')).toEqual({
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': 'https://aubaine.io/#website',
+    name: 'Aubaine',
+    url: 'https://aubaine.io/',
+    inLanguage: ['fr-FR', 'en-GB'],
+  })
+})
+
 test('the sitemap leaves the threshold out', async ({ request }) => {
-  const sitemap = await (await request.get('/sitemap-0.xml')).text()
+  const sitemap = await (await request.get('/sitemap.xml')).text()
   expect(sitemap).not.toContain('<loc>https://aubaine.io/</loc>')
   expect(sitemap).toContain('<loc>https://aubaine.io/fr</loc>')
   expect(sitemap).toContain('<loc>https://aubaine.io/en</loc>')

@@ -10,6 +10,7 @@ import { corpus } from './corpus.ts'
 import { treeTypeLabel } from './derive.ts'
 import { policyPages } from './policies.ts'
 import { flattenText } from './richtext.ts'
+import type { ContentStatus } from './schema.ts'
 
 export const ARCHIVES_ART = 'bureau-de-archibald-16_9-og.png'
 
@@ -38,6 +39,10 @@ export type PageDescriptor = {
 }
 
 const TRANSLATED_ID = /\.[a-z]{2}$/
+
+function keptOutOfSearch(status: ContentStatus | undefined): boolean {
+  return status === 'draft'
+}
 
 export type PageRoute = { path: string; page: PageDescriptor }
 
@@ -118,6 +123,7 @@ export async function pageRoutes(): Promise<PageRoute[]> {
         title: tree.name,
         description: `${kindLabel} · ${t.plate} · ${tree.skills.length} ${t.nodes}`,
         ogArt: tree.banner,
+        noIndex: keptOutOfSearch(tree.status),
       })
       for (const placement of tree.placements) {
         pages.push({
@@ -131,6 +137,7 @@ export async function pageRoutes(): Promise<PageRoute[]> {
             160,
           ),
           ogArt: tree.banner,
+          noIndex: keptOutOfSearch(data.skillStatus.get(placement.skill.id)),
         })
       }
     }
@@ -143,6 +150,7 @@ export async function pageRoutes(): Promise<PageRoute[]> {
         title: entry.name,
         description: `${t.species} · ${entry.pool.length} ${t.entries_}`,
         ogArt: entry.banner,
+        noIndex: keptOutOfSearch(entry.status),
       })
     }
 

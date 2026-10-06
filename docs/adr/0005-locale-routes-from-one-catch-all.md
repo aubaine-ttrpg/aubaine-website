@@ -8,6 +8,8 @@
 `index.astro` (0021)
 **Revised:** 2026-09-25, the states and base actions pages give way to one rules index, and their
 slugs retire behind 301s (0023)
+**Revised:** 2026-10-06, a `noindex` page names no canonical, the sitemap is built from the page
+descriptors, and `robots.txt` stops disallowing search (0040)
 **Deciders:** Kori
 **Scope:** The URL scheme, where routes come from, and the constraint a segment must satisfy. Does
 not cover how a page is rendered (0006) or how navigation between them works (0007).
@@ -77,6 +79,15 @@ the almanach precedent in the Decision 3 addendum. The example slugs in the bull
 as the record of what Decision 1 was written against. `INDEX_KINDS` lists five indexes again, and
 `src/lib/game/indexes.ts` now reads it.
 
+### Addendum (2026-10-06): the canonical and the sitemap follow the indexing decision
+
+The self canonical URL is now on every indexable page rather than on every page. A page that is
+`noindex` (the root, search, the 404 pages, and since 0040 every draft) names no canonical, so the
+root no longer carries its canonical at `/fr`. The sitemap entry is no longer produced by
+`@astrojs/sitemap`. `src/pages/sitemap.xml.ts` derives it from the same descriptor and the same
+`alternatesFor` as the page head. That keeps this decision's claim that the two cannot disagree,
+which the plugin had stopped honouring for every localized segment.
+
 ---
 
 ## Decision 2: One catch-all, and the routes come from the data
@@ -109,6 +120,11 @@ as the record of what Decision 1 was written against. `INDEX_KINDS` lists five i
 route, so it stays outside `pageRoutes()` and the catch-all remains the only page file that renders a
 locale's content. The file list in this decision was already short of `src/pages/print/`, which 0015
 records.
+
+### Addendum (2026-10-06): the sitemap has its own page file
+
+`src/pages/sitemap.xml.ts` joins the page files. `[...path].astro` and the sitemap both read
+`builtRoutes()` in `src/components/views/registry.ts`, so the list of built pages is written once.
 
 ---
 
@@ -174,6 +190,11 @@ word that English also carries, so translating it would have produced two spelli
   without difficulty.
 - Book pagination as links means the reader can open a chapter in a new tab and a crawler can reach
   every page, neither of which a JavaScript pager allows.
+
+### Addendum (2026-10-06): search is kept out by its `noindex` alone
+
+`robots.txt` no longer disallows the search pages. A disallowed page is never fetched, so its
+`noindex` was never read. 0040 Decision 4 records the change.
 
 ---
 

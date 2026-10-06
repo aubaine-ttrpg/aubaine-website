@@ -1,16 +1,13 @@
 ---
-import { IMPLEMENTED_VIEWS } from '../components/views/registry'
+import { builtRoutes } from '../components/views/registry'
 import View from '../components/views/View.astro'
 import Base from '../layouts/Base.astro'
 import { corpus } from '../lib/game/corpus'
-import { pageRoutes } from '../lib/game/pages'
 import { socialImage } from '../lib/social-image'
 
 export async function getStaticPaths() {
-  const routes = await pageRoutes()
-  return routes
-    .filter(({ page }) => IMPLEMENTED_VIEWS.has(page.kind))
-    .map(({ path, page }) => ({ params: { path }, props: { page } }))
+  const routes = await builtRoutes()
+  return routes.map(({ path, page }) => ({ params: { path }, props: { page } }))
 }
 
 const { page } = Astro.props

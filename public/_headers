@@ -22,9 +22,11 @@
 
 /pdf/*
   Cache-Control: public, max-age=31536000, immutable
+  X-Robots-Tag: noindex
 
 /pdf-archive/*
   Cache-Control: public, max-age=31536000, immutable
+  X-Robots-Tag: noindex
 
 /*.html
   Cache-Control: public, max-age=0, s-maxage=86400, stale-while-revalidate=604800

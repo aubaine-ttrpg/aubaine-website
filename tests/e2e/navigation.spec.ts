@@ -82,11 +82,19 @@ test('an unknown url returns a real 404', async ({ page }) => {
   expect(response?.status()).toBe(404)
 })
 
-test('internal search is excluded from robots', async ({ request }) => {
-  const response = await request.get('/robots.txt')
-  const body = await response.text()
-  expect(body).toContain('Disallow: /en/search')
-  expect(body).toContain('Disallow: /fr/recherche')
+test('robots.txt lets every crawler in and names the sitemap', async ({ request }) => {
+  const body = await (await request.get('/robots.txt')).text()
+  expect(body).toContain('Allow: /')
+  expect(body).not.toContain('Disallow')
+  expect(body).toContain('Sitemap: https://aubaine.io/sitemap.xml')
+})
+
+test('internal search keeps itself out of the index', async ({ request }) => {
+  for (const path of ['/fr/recherche', '/en/search']) {
+    const html = await (await request.get(path)).text()
+    expect(html).toContain('<meta name="robots" content="noindex, follow">')
+    expect(html).not.toContain('rel="canonical"')
+  }
 })
 
 test('the language switch keeps a booklet history on the same booklet', async ({ page }) => {

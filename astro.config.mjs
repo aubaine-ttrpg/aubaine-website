@@ -1,6 +1,5 @@
 import { unified } from '@astrojs/markdown-remark'
 import react from '@astrojs/react'
-import sitemap from '@astrojs/sitemap'
 import swup from '@swup/astro'
 import { defineConfig } from 'astro/config'
 import { defListHastHandlers, remarkDefinitionList } from 'remark-definition-list'
@@ -61,10 +60,6 @@ export default defineConfig({
       updateHead: true,
       globalInstance: true,
       ignore: [/\.pdf($|\?)/, /\.mp4($|\?)/, /\.zip($|\?)/],
-    }),
-    sitemap({
-      i18n: { defaultLocale: DEFAULT_LOCALE, locales: { fr: 'fr-FR', en: 'en-GB' } },
-      filter: (page) => new URL(page).pathname !== '/' && !/\/(recherche|search)(\/|$)/.test(page),
     }),
     inlineScriptPolicy(),
   ],

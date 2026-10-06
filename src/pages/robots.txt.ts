@@ -1,16 +1,13 @@
 import type { APIRoute } from 'astro'
 
-import { LOCALES } from '../lib/i18n/locales'
-import { pathFor } from '../lib/i18n/routes'
-
 export const GET: APIRoute = ({ site }) => {
-  const disallowed = LOCALES.map((locale) => `Disallow: ${pathFor('search', locale)}`)
+  if (!site) throw new Error('robots.txt needs `site` in astro.config.mjs')
+
   const body = [
     'User-agent: *',
-    ...disallowed,
     'Allow: /',
     '',
-    `Sitemap: ${new URL('sitemap-index.xml', site ?? 'https://aubaine.io').href}`,
+    `Sitemap: ${new URL('sitemap.xml', site).href}`,
     '',
   ].join('\n')
 

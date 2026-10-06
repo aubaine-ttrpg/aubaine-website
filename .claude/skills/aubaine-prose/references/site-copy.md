@@ -48,7 +48,6 @@ editing prose there is a bug. What matters is knowing what your sentence becomes
 - A book chapter takes its own frontmatter `description`, falling back to the book's. A chapter of
   any length deserves its own.
 - A policy page takes its frontmatter `description`.
-- Only the search page and the 404 are `noIndex`.
-
-Known gap, recorded rather than fixed: the skills and equipment hubs use their eyebrow labels as
-meta descriptions, at 45 and 39 characters. They are labels doing a sentence's job.
+- The search page, the 404 and every page whose subject resolves to `draft` are `noIndex`, and the
+  sitemap lists only the rest. `docs/adr/0040-search-engines-read-the-page-descriptors.md` records
+  why.

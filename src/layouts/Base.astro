@@ -42,7 +42,8 @@ const {
 
 const t = strings(locale)
 const site = Astro.site ?? new URL('https://aubaine.io')
-const canonical = new URL(pathFor(kind, locale, params), site).href
+const canonical = noIndex ? undefined : new URL(pathFor(kind, locale, params), site).href
+const ownUrl = new URL(Astro.url.pathname, site).href
 const alternates = alternatesFor(kind, site, params)
 const image = ogImage ? new URL(ogImage, site).href : undefined
 const fullTitle = kind === 'home' ? `Aubaine · ${title}` : `${title} · Aubaine`
@@ -54,14 +55,17 @@ const PRELOAD = [
   'jetbrains-mono-400-normal-latin.woff2',
 ]
 
-const structuredData = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: 'Aubaine',
-  url: site.href,
-  inLanguage: HTML_LANG[locale],
-  description,
-}
+const website =
+  kind === 'home'
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        '@id': new URL('#website', site).href,
+        name: 'Aubaine',
+        url: site.href,
+        inLanguage: LOCALES.map((each) => HTML_LANG[each]),
+      }
+    : undefined
 ---
 
 <!doctype html>
@@ -74,7 +78,7 @@ const structuredData = {
 
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    {canonical && <link rel="canonical" href={canonical} />}
     {noIndex && <meta name="robots" content="noindex, follow" />}
 
     {
@@ -82,13 +86,12 @@ const structuredData = {
         <link rel="alternate" hreflang={HTML_LANG[alternate.locale]} href={alternate.href} />
       ))
     }
-    <link rel="alternate" hreflang="x-default" href={site.href} />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Aubaine" />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
+    <meta property="og:url" content={ownUrl} />
     {image && <meta property="og:image" content={image} />}
     <meta property="og:locale" content={OG_LOCALE[locale]} />
     {
@@ -125,7 +128,7 @@ const structuredData = {
       }
     </script>
 
-    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    {website && <script type="application/ld+json" set:html={JSON.stringify(website)} />}
   </head>
 
   <body>
