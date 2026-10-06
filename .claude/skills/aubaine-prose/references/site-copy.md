@@ -44,7 +44,10 @@ editing prose there is a bug. What matters is knowing what your sentence becomes
 - `flattenText` removes the `***` emphasis and replaces each `{{...}}` with what it prints, its
   written text or the entry's default label, then collapses whitespace. A reference inside the first
   160 characters reaches the description as a plain word, never with its braces.
-- A tree page description is composed from interface strings and a count, not from authored prose.
+- A tree page description is composed by `treeDescription` in `strings.ts` from the tree's `name`,
+  its `subtitle`, its type and the titles of its first skills. A subtitle is therefore also read in
+  search results. A species page takes `speciesDescription` the same way, from the species name and
+  the titles of the skills it offers, and an archive page takes `archiveDescription`.
 - A book chapter takes its own frontmatter `description`, falling back to the book's. A chapter of
   any length deserves its own.
 - A policy page takes its frontmatter `description`.

@@ -7,7 +7,6 @@ import { type RouteParams, segmentsFor, type ViewKind } from '../i18n/routes.ts'
 import { strings } from '../i18n/strings.ts'
 import type { Corpus } from './build.ts'
 import { corpus } from './corpus.ts'
-import { treeTypeLabel } from './derive.ts'
 import { policyPages } from './policies.ts'
 import { flattenText } from './richtext.ts'
 import type { ContentStatus } from './schema.ts'
@@ -85,11 +84,6 @@ export async function pageRoutes(): Promise<PageRoute[]> {
   for (const locale of LOCALES) {
     const data = await corpus(locale)
     const t = strings(locale)
-    const TREE_TYPE_LABELS = {
-      archetypes: t.archetypes,
-      domains: t.domains,
-      species: t.speciesIndex,
-    }
     const heads = await bookChapterHeads(locale)
 
     const pages: PageDescriptor[] = [
@@ -115,13 +109,21 @@ export async function pageRoutes(): Promise<PageRoute[]> {
     }
 
     for (const tree of data.trees) {
-      const kindLabel = treeTypeLabel(tree.treeType, TREE_TYPE_LABELS)
       pages.push({
         kind: 'tree',
         locale,
         params: { tree: tree.id },
         title: tree.name,
-        description: `${kindLabel} · ${t.plate} · ${tree.skills.length} ${t.nodes}`,
+        description: flattenText(
+          t.treeDescription({
+            name: tree.name,
+            subtitle: tree.subtitle,
+            type: tree.treeType,
+            skills: tree.skills.map((skill) => skill.title),
+          }),
+          (key) => data.terms.keys.get(key)?.title,
+          160,
+        ),
         ogArt: tree.banner,
         noIndex: keptOutOfSearch(tree.status),
       })
@@ -148,7 +150,14 @@ export async function pageRoutes(): Promise<PageRoute[]> {
         locale,
         params: { species: entry.id },
         title: entry.name,
-        description: `${t.species} · ${entry.pool.length} ${t.entries_}`,
+        description: flattenText(
+          t.speciesDescription(
+            entry.name,
+            entry.pool.map((skill) => skill.title),
+          ),
+          (key) => data.terms.keys.get(key)?.title,
+          160,
+        ),
         ogArt: entry.banner,
         noIndex: keptOutOfSearch(entry.status),
       })
@@ -181,7 +190,7 @@ export async function pageRoutes(): Promise<PageRoute[]> {
         locale,
         params: { slug },
         title: `${head.title} · ${t.archives}`,
-        description: t.archiveLead,
+        description: t.archiveDescription(head.title),
         ogArt: head.banner ?? ARCHIVES_ART,
       })
     }

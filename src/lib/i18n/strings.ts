@@ -1,4 +1,31 @@
+import type { SkillTree } from '../game/schema.ts'
 import type { Locale } from './locales.ts'
+
+export type TreeSummary = {
+  name: string
+  subtitle: string | undefined
+  type: SkillTree['treeType']
+  skills: readonly string[]
+}
+
+const NAMED_SKILLS = 3
+
+const FR_LIST = new Intl.ListFormat('fr', { type: 'conjunction' })
+const EN_LIST = new Intl.ListFormat('en-GB', { type: 'conjunction' })
+const FR_PLURAL = new Intl.PluralRules('fr')
+const EN_PLURAL = new Intl.PluralRules('en-GB')
+
+const FR_TREE_KIND: Record<SkillTree['treeType'], string> = {
+  archetype: 'd’Archétype',
+  domain: 'de Domaine',
+  species: 'd’Espèce',
+}
+
+const EN_TREE_KIND: Record<SkillTree['treeType'], string> = {
+  archetype: 'Archetype',
+  domain: 'Domain',
+  species: 'Species',
+}
 
 const fr = {
   skip: 'Aller au contenu',
@@ -226,6 +253,27 @@ const fr = {
   archivesLead:
     "Chaque version d'Aubaine et les livrets qu'elle a produits. La génération courante se télécharge livret par livret ; les précédentes tiennent dans une archive par langue.",
   archiveLead: 'Toutes les éditions imprimées de ce livret, de la plus récente à la plus ancienne.',
+  archiveDescription: (booklet: string) =>
+    `Toutes les éditions imprimées du livret ${booklet}, en PDF, de la plus récente à la plus ancienne.`,
+  treeDescription: ({ name, subtitle, type, skills }: TreeSummary) => {
+    const heading = subtitle ? `${name}. ${subtitle}.` : `${name}.`
+    const kind = FR_TREE_KIND[type]
+    if (skills.length === 0) return `${heading} Arbre ${kind} encore sans Compétence.`
+    if (FR_PLURAL.select(skills.length) === 'one') {
+      return `${heading} Arbre ${kind} d’une Compétence : ${FR_LIST.format(skills)}.`
+    }
+    if (skills.length <= NAMED_SKILLS) {
+      return `${heading} Arbre ${kind} de ${skills.length} Compétences : ${FR_LIST.format(skills)}.`
+    }
+    return `${heading} Arbre ${kind} de ${skills.length} Compétences, dont ${FR_LIST.format(skills.slice(0, NAMED_SKILLS))}.`
+  },
+  speciesDescription: (name: string, skills: readonly string[]) => {
+    if (skills.length === 0) return `${name} ne propose encore aucune Compétence.`
+    if (skills.length <= NAMED_SKILLS) {
+      return `${name}. Compétences d’Espèce : ${FR_LIST.format(skills)}.`
+    }
+    return `${name}. ${skills.length} Compétences d’Espèce, dont ${FR_LIST.format(skills.slice(0, NAMED_SKILLS))}.`
+  },
   versionHistory: 'Versions précédentes',
   currentVersion: 'Version courante',
   releasePages: 'Feuilles',
@@ -460,6 +508,27 @@ const en: UiStrings = {
   archivesLead:
     'Every version of Aubaine and the booklets it printed. The current generation downloads booklet by booklet; earlier ones travel as one archive per language.',
   archiveLead: 'Every printed edition of this booklet, newest first.',
+  archiveDescription: (booklet: string) =>
+    `Every printed edition of the ${booklet} booklet as a PDF, newest first.`,
+  treeDescription: ({ name, subtitle, type, skills }: TreeSummary) => {
+    const heading = subtitle ? `${name}. ${subtitle}.` : `${name}.`
+    const kind = EN_TREE_KIND[type]
+    if (skills.length === 0) return `${heading} ${kind} Tree with no Skill yet.`
+    if (EN_PLURAL.select(skills.length) === 'one') {
+      return `${heading} ${kind} Tree with one Skill: ${EN_LIST.format(skills)}.`
+    }
+    if (skills.length <= NAMED_SKILLS) {
+      return `${heading} ${kind} Tree with ${skills.length} Skills: ${EN_LIST.format(skills)}.`
+    }
+    return `${heading} ${kind} Tree with ${skills.length} Skills, including ${EN_LIST.format(skills.slice(0, NAMED_SKILLS))}.`
+  },
+  speciesDescription: (name: string, skills: readonly string[]) => {
+    if (skills.length === 0) return `${name} offers no Skill yet.`
+    if (skills.length <= NAMED_SKILLS) {
+      return `${name}. Species Skills: ${EN_LIST.format(skills)}.`
+    }
+    return `${name}. ${skills.length} Species Skills, including ${EN_LIST.format(skills.slice(0, NAMED_SKILLS))}.`
+  },
   versionHistory: 'Earlier versions',
   currentVersion: 'Current version',
   releasePages: 'Sheets',
