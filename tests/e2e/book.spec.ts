@@ -6,7 +6,7 @@ const OTHER_BOOK = '/fr/livres/livre-du-mj/diriger-une-partie'
 
 async function markHero(page: Page): Promise<void> {
   await page.evaluate(() => {
-    document.querySelector('main h1')?.setAttribute('data-kept', 'true')
+    document.querySelector('[data-book-name]')?.setAttribute('data-kept', 'true')
   })
 }
 
@@ -26,7 +26,7 @@ test('a chapter switch leaves the hero mounted', async ({ page }) => {
   await page.locator(`#book-nav a[href="${NEXT_CHAPTER}"]`).click()
   await expect(page).toHaveURL(NEXT_CHAPTER)
 
-  await expect(page.locator('main h1[data-kept]')).toHaveCount(1)
+  await expect(page.locator('[data-book-name][data-kept]')).toHaveCount(1)
   await expect(page.locator('h1')).toHaveCount(1)
 })
 
@@ -83,17 +83,27 @@ test('a chapter switch returns to the top of the chapter text', async ({ page })
 
 test('a chapter switch announces the chapter, not the book', async ({ page }) => {
   await page.goto(CHAPTER)
+  const before = await page.locator('#book-body [data-book-title]').textContent()
   await page.locator(`#book-nav a[href="${NEXT_CHAPTER}"]`).click()
   await expect(page).toHaveURL(NEXT_CHAPTER)
+  await expect(page.locator('#book-body [data-book-title]')).not.toHaveText(before ?? '')
 
   const chapter = (await page.locator('#book-body [data-book-title]').textContent())?.trim()
-  const book = (await page.locator('main h1').textContent())?.trim()
+  const book = (await page.locator('[data-book-name]').textContent())?.trim()
   expect(chapter).toBeTruthy()
   expect(chapter).not.toBe(book)
 
   await expect
     .poll(() => page.locator('#swup-announcer').textContent(), { timeout: 15_000 })
     .toContain(chapter ?? '')
+})
+
+test('the chapter title is the page heading', async ({ page }) => {
+  await page.goto(CHAPTER)
+  const chapter = (await page.locator('#book-body [data-book-title]').textContent())?.trim()
+  await expect(page.locator('h1')).toHaveCount(1)
+  await expect(page.locator('h1')).toHaveText(chapter ?? '')
+  await expect(page.locator('h1')).toHaveAttribute('data-book-title', '')
 })
 
 test('another book replaces the hero', async ({ page }) => {
@@ -103,7 +113,7 @@ test('another book replaces the hero', async ({ page }) => {
   await page.locator(`[data-book-footer] a[href="${OTHER_BOOK}"]`).click()
   await expect(page).toHaveURL(OTHER_BOOK)
 
-  await expect(page.locator('main h1[data-kept]')).toHaveCount(0)
+  await expect(page.locator('[data-book-name][data-kept]')).toHaveCount(0)
   await expect(page.locator('h1')).toHaveCount(1)
 })
 

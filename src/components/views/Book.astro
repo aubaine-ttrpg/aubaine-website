@@ -83,11 +83,12 @@ const versioned = hasBooklet(book.id)
       <span aria-hidden="true" style="padding:0 9px; opacity:.5">/</span>
       <a href={pathFor('books', locale)} data-book-crumb>{t.resources}</a>
     </nav>
-    <h1
+    <p
+      data-book-name
       style="margin:14px 0 0; font-family:var(--font-display); font-weight:700; font-size:clamp(38px,5.6vw,82px); line-height:.96; color:var(--art-ink)"
     >
       {book.title}
-    </h1>
+    </p>
     <p
       style="margin:16px 0 0; max-width:58ch; font-size:18px; line-height:1.6; color:var(--art-ink2)"
     >
@@ -125,12 +126,12 @@ const versioned = hasBooklet(book.id)
     </nav>
 
     <article id="book-body" class="au-reading__body">
-      <h2
+      <h1
         data-book-title
         style="margin:0 0 1.5rem; font-family:var(--font-display); font-size:clamp(28px,3.4vw,42px); font-weight:700; line-height:1.06; color:var(--ink); text-wrap:balance"
       >
         {pageTitle}
-      </h2>
+      </h1>
       <div class="au-prose">
         <Content />
       </div>
