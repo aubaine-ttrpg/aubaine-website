@@ -56,7 +56,7 @@ function describe(
 
 export function homePage(locale: Locale, data: Corpus): PageDescriptor {
   const t = strings(locale)
-  return describe(locale, 'home', t.heroTitle, t.heroLead(data.trees.length, data.species.length))
+  return describe(locale, 'home', t.homeTitle, t.heroLead(data.trees.length, data.species.length))
 }
 
 export type ChapterHead = { title: string; description?: string | undefined }

@@ -46,7 +46,7 @@ const canonical = noIndex ? undefined : new URL(pathFor(kind, locale, params), s
 const ownUrl = new URL(Astro.url.pathname, site).href
 const alternates = alternatesFor(kind, site, params)
 const image = ogImage ? new URL(ogImage, site).href : undefined
-const fullTitle = kind === 'home' ? `Aubaine · ${title}` : `${title} · Aubaine`
+const fullTitle = kind === 'home' ? title : `${title} · Aubaine`
 
 const PRELOAD = [
   'cinzel-700-normal-latin.woff2',

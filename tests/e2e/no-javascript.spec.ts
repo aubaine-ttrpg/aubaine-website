@@ -152,7 +152,7 @@ test('a bare skill tree asks for a skill and a node link opens it on its tree', 
 }) => {
   await page.goto('/fr/arbre/berserker')
   await expect(page.locator('#tree-detail')).toContainText(
-    'Choisissez une Compétence dans l’arbre pour l’afficher ici.',
+    'Choisissez une Compétence dans l’Arbre pour l’afficher ici.',
   )
   await expect(page.locator('[data-node][aria-current]')).toHaveCount(0)
 

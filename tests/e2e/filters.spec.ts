@@ -82,7 +82,7 @@ test('resetting restores every entry', async ({ page }) => {
   const total = await count.textContent()
 
   await page.getByPlaceholder('Filter by name').fill('zzzz')
-  await expect(page.locator('main').getByText('Nothing in this part of Aubaine.')).toBeVisible()
+  await expect(page.locator('main').getByText('No results.')).toBeVisible()
 
   await page.getByRole('button', { name: 'Reset' }).first().click()
   await expect(count).toHaveText(total ?? '')

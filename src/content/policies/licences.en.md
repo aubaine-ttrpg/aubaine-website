@@ -1,6 +1,6 @@
 ---
 title: "Licences"
-description: "What covers the site's code, what covers the game content, and what you are allowed to do with it."
+description: "The site's code under the MIT licence, the game content under CC BY-NC-SA 4.0, and what each lets you do."
 ---
 
 Aubaine is an open, non-commercial project. Two licences apply to it, and they do not cover the same things.
@@ -35,8 +35,8 @@ NonCommercial
 ShareAlike
 : A modified version you publish carries the same licence as the original.
 
-This summary is here to be read quickly. The full licence text is what governs.
+Where in doubt, the full licence text governs.
 
 ## What these licences do not cover
 
-The icons and the fonts the site uses come from elsewhere and keep their own terms. The credits page names each one. The flags in the language picker are claimed by nobody here.
+The icons and the fonts the site uses come from elsewhere and keep their own terms. The credits page names each one. Aubaine claims no rights over the flags in the language picker.

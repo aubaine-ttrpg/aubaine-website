@@ -83,7 +83,7 @@ test('the bare tree asks the reader to pick a skill', async ({ page }) => {
   await page.goto(TREE)
   await expect(pane(page)).toContainText('Rien à afficher pour l’instant.')
   await expect(pane(page)).toContainText(
-    'Choisissez une Compétence dans l’arbre pour l’afficher ici.',
+    'Choisissez une Compétence dans l’Arbre pour l’afficher ici.',
   )
   await expect(pane(page).locator('.au-empty__mark')).toBeVisible()
   await expect(page.locator('[data-node][aria-current]')).toHaveCount(0)

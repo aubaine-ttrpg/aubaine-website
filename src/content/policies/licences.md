@@ -1,7 +1,7 @@
 ---
 kind: "licences"
 title: "Licences"
-description: "Ce qui couvre le code du site, ce qui couvre le contenu du jeu, et ce que vous avez le droit d'en faire."
+description: "Le code du site sous licence MIT, le contenu du jeu sous CC BY-NC-SA 4.0, et ce que chacune vous permet de faire."
 ---
 
 Aubaine est un projet ouvert et non commercial. Deux licences s'y appliquent, et elles ne couvrent pas la même chose.
@@ -36,8 +36,8 @@ Pas d'utilisation commerciale
 Partage dans les mêmes conditions
 : Une version modifiée que vous publiez porte la même licence que l'originale.
 
-Ce résumé sert à lire vite. C'est le texte complet de la licence qui fait foi.
+En cas de doute, c'est le texte complet de la licence qui fait foi.
 
 ## Ce que ces licences ne couvrent pas
 
-Les icônes et les polices employées par le site viennent d'ailleurs et gardent leurs propres termes. La page des crédits les nomme une par une. Les drapeaux du sélecteur de langue ne sont revendiqués par personne ici.
+Les icônes et les polices employées par le site viennent d'ailleurs et gardent leurs propres termes. La page des crédits les nomme une par une. Aubaine ne revendique pas les drapeaux du sélecteur de langue.

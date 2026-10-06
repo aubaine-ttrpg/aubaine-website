@@ -24,11 +24,11 @@ test('no hero outside a tree page carries a cue', async ({ page }) => {
   }
 })
 
-test('the cue names the kind of tree it sits on', async ({ page }) => {
+test('the cue asks the reader to read on, in the page language', async ({ page }) => {
   await page.goto('/fr/arbre/berserker')
-  await expect(page.locator(CUE)).toContainText('Découvrez cet archétype')
-  await page.goto('/fr/arbre/feu')
-  await expect(page.locator(CUE)).toContainText('Découvrez ce domaine')
+  await expect(page.locator(CUE)).toHaveText('Lire la suite')
+  await page.goto('/en/tree/feu')
+  await expect(page.locator(CUE)).toHaveText('Read on')
 })
 
 test('the cue gives way to hero content too tall for a phone', async ({ page }) => {

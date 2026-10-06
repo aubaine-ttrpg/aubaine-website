@@ -117,6 +117,8 @@ const BANNED_PHRASES = [
   'woven destinies',
   'unknowable darkness',
   'game-changer',
+  'unleash your imagination',
+  'begin your adventure',
   "à l'ère de",
   'tirer parti',
   'sans précédent',
@@ -133,6 +135,8 @@ const BANNED_PHRASES = [
   'enveloppé de mystère',
   'secrets murmurés',
   'âges oubliés',
+  'déchaînez votre imagination',
+  'commencez votre aventure',
 ]
 
 function codePointOf(glyph: string): string {
@@ -1110,8 +1114,7 @@ describe('prose hygiene', () => {
     const out: { where: string; text: string }[] = []
     for (const locale of LOCALES) {
       for (const [key, value] of Object.entries(strings(locale))) {
-        if (typeof value !== 'string') continue
-        out.push({ where: `strings.ts ${locale}.${key}`, text: value })
+        out.push({ where: `strings.ts ${locale}.${key}`, text: String(value) })
       }
     }
     const dir = 'src/content/policies'

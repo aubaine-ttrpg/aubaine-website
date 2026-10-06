@@ -12,7 +12,7 @@ makes an omission a compile error, so there is no fallback and no partially tran
 - A lead is one or two sentences, and on a hub page it is also the meta description.
 - An error says what failed and what the reader can do next.
 - A value may be a function taking a variable. It returns a complete message; never assemble one
-  from concatenated fragments.
+  from concatenated fragments. The check reads a function's template text like any other string.
 - No version string. `tests/data/integrity.test.ts` fails on one.
 - Nothing here resolves a `{{...}}` reference, so a game term is plain text with no icon, no colour
   and no tooltip. Write its capitals correctly anyway, because the reader still reads it.

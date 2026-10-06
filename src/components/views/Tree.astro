@@ -2,13 +2,7 @@
 import { hasBooklet } from '../../lib/booklet/manifest'
 import { skillSources, treeNodeAttributes } from '../../lib/game/browse-entries'
 import type { Corpus, ResolvedTree } from '../../lib/game/corpus'
-import {
-  characteristicKey,
-  formatNumber,
-  showsXp,
-  treeTypeLabel,
-  xpOf,
-} from '../../lib/game/derive'
+import { characteristicKey, formatNumber, showsXp, xpOf } from '../../lib/game/derive'
 import { loreFor } from '../../lib/game/prose'
 import { badgedStatus } from '../../lib/game/status'
 import type { Locale } from '../../lib/i18n/locales'
@@ -47,11 +41,6 @@ const characteristic = (key: string) => {
 const primes = tree.primeCharacteristics.map((key) => ({ key, ...characteristic(key) }))
 const booklet = bookletHref('tree', tree.id, locale)
 const treeStatus = badgedStatus(tree.status)
-const scrollCue = treeTypeLabel(tree.treeType, {
-  archetypes: t.scrollCueArchetype,
-  domains: t.scrollCueDomain,
-  species: t.scrollCueSpecies,
-})
 
 const selectedSkill = selected ? tree.skills.find((skill) => skill.id === selected) : undefined
 if (selected && !selectedSkill) throw new Error(`${selected} is not placed on the ${tree.id} tree`)
@@ -85,7 +74,7 @@ const trail = lore
     bottomStops={[26, 58]}
     sideStops={[30, 62]}
     padding="0 26px 48px"
-    scrollCue={scrollCue}
+    scrollCue={t.scrollCue}
   >
     <div slot="overlay" style="position:absolute; top:26px; left:0; right:0; z-index:3; pointer-events:none">
       <div style="max-width:1560px; margin:0 auto; padding:0 26px; display:flex; justify-content:flex-end">
