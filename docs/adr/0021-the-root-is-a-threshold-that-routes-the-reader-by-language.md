@@ -5,6 +5,7 @@
 **Date:** 2026-09-25
 **Revised:** 2026-10-06, the root names no canonical, carries the `WebSite` node, and no page points
 `x-default` at it (0040)
+**Revised:** 2026-10-06, the privacy page names two stored keys (addendum in Decision 2)
 **Deciders:** Kori
 **Scope:** What `https://aubaine.io/` serves, how it chooses a locale, and how it hands the reader
 to that locale's home. Amends 0005 Decision 1 and Decision 2 and 0012 Decision 3. Does not cover the
@@ -130,6 +131,13 @@ the caveat above. 0040 Decision 3 records both.
 - **Remembering an explicit choice in `localStorage`**: would let a returning reader skip detection,
   at the cost of a second stored key and a change to the privacy page. Reopens if readers report
   being sent to the wrong language.
+
+### Addendum (2026-10-06): the privacy page names two stored keys
+
+The rationale above says the privacy page names one stored key, `aubaine.theme`. The drafts switch
+already wrote a second, `aubaine.drafts` (`setDraftsShown` in `src/scripts/drafts.ts`), so that
+sentence had stopped being true. `src/content/policies/confidentialite.md` now names both, and
+reading `navigator.languages` still stores nothing.
 
 ---
 

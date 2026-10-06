@@ -1,17 +1,17 @@
 ---
 title: "Privacy"
-description: "This site collects nothing, and the detail fits in a few lines."
+description: "This site collects no data about you and keeps only two settings in your browser."
 ---
 
-This site is a set of static pages. There is no account, no form, no database, and nothing to fill in anywhere.
+This site is a set of static pages. There is no account, no form and no database.
 
 ## What does not exist here
 
-No analytics, no advertising tracker, no cookie, no social button, no third-party script. The security policy the site sends with every page allows its own scripts only, which makes quietly adding a tracker impossible.
+No analytics, no advertising tracker, no cookie, no social button, no third-party script. The security policy sent with every page allows the site's own scripts only, so the browser refuses any script from another domain.
 
 ## What stays in your browser
 
-One setting is remembered: the light or dark theme, under the key `aubaine.theme`. Your browser writes it, it stays there, and it is sent nowhere. Clearing it is enough to forget it.
+Two settings are remembered once you change them: the light or dark theme, under the key `aubaine.theme`, and whether drafts are shown, under the key `aubaine.drafts`. They stay in your browser and are sent nowhere. Clearing the site's data removes them.
 
 ## Hosting
 
