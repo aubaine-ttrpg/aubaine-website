@@ -107,7 +107,7 @@ export async function pageRoutes(): Promise<PageRoute[]> {
       describe(locale, 'rules', t.rules, t.rulesLead),
       { ...describe(locale, 'archives', t.archives, t.archivesLead), ogArt: ARCHIVES_ART },
       { ...describe(locale, 'search', t.searchTitle, t.searchTitle), noIndex: true },
-      { ...describe(locale, 'notFound', t.errorTitle, t.errorBody), noIndex: true },
+      { ...describe(locale, 'notFound', t.notFoundTitle, t.notFoundBody), noIndex: true },
     ]
 
     for (const policy of await policyPages(locale)) {

@@ -17,9 +17,9 @@ const fr = {
   rules: 'Règles',
   states_: 'États',
   loading: 'Chargement d’Aubaine…',
-  errorTitle: 'Impossible de charger Aubaine',
-  errorBody:
-    'Les données de jeu n’ont pas répondu. Rechargez la page ; si le problème persiste, le fichier de données est absent.',
+  notFoundTitle: 'Page introuvable',
+  notFoundBody:
+    'Aucune page d’Aubaine ne se trouve à cette adresse. Repartez des Arbres ou de l’Almanach.',
   heroTitle: 'Aubaine, arbre par arbre',
   heroLead: (trees: number, species: number) =>
     `${trees} arbres de compétences, ${species} espèces, un catalogue d’équipement et les états du jeu, rendus depuis les données d’origine. Les arbres gardent la mise en page du livre.`,
@@ -252,9 +252,9 @@ const en: UiStrings = {
   rules: 'Rules',
   states_: 'States',
   loading: 'Loading Aubaine…',
-  errorTitle: 'Aubaine Failed to Load',
-  errorBody:
-    'The game data did not respond. Reload the page; if it persists, the data file is missing.',
+  notFoundTitle: 'Page Not Found',
+  notFoundBody:
+    'No page of Aubaine lives at this address. Start again from the Trees or the Almanach.',
   heroTitle: 'Aubaine, Plate by Plate',
   heroLead: (trees: number, species: number) =>
     `${trees} skill plates, ${species} species, an equipment catalogue and every state in the game, rendered from the source data. The plates keep the book’s layout.`,
