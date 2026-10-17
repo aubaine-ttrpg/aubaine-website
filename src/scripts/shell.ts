@@ -2,6 +2,7 @@ import { HTML_LANG, isLocale } from '../lib/i18n/locales'
 import { bindAtlas } from './atlas'
 import { bindBook } from './book'
 import { bindBrowse } from './browse'
+import { enableIslands } from './islands'
 import { bindLoading } from './loading'
 import { bindPlateViewer } from './plate-viewer'
 import { type SwupVisit, swupInstance, withSwup } from './swup'
@@ -324,6 +325,7 @@ function onPageView(): void {
   }
 }
 
+enableIslands()
 bindOnce()
 onPageView()
 

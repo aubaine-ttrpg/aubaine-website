@@ -13,6 +13,8 @@ plate and a same-tree selection swaps only that pane; the island dims a tree's n
 renders the empty state (0025)
 **Revised:** 2026-10-14, Decision 3 gains an addendum: the one island rule is lifted, and the Atlas
 mounts a React root from the shell (0041)
+**Revised:** 2026-10-15, Decision 3 gains an addendum: the shell defines the island runtime on every
+page, so the filter bar works after any Swup visit (0042)
 **Deciders:** Kori
 **Scope:** What runs at build time versus in the browser, how interaction that the design expressed
 as client state is expressed instead, and the cache policy that follows. Does not cover client
@@ -198,6 +200,14 @@ and unmounts it when the page leaves, because an island first reached by a Swup 
 runtime an earlier document load defined, and is never unmounted when Swup removes it. 0041
 Decision 1 records both facts. The boundary drawn above still holds: React is for animated stateful
 UI, not for content.
+
+### Addendum (2026-10-15): the island hydrates after any visit
+
+`FilterBar` stayed inert when a reader reached a list through Swup from a page without an island,
+because the runtime that hydrates it is written inline in the swapped content. The shell now
+defines that runtime on every page, and 0042 records how. Of the two reasons the addendum above
+gives for mounting the Atlas from the shell, one was wrong and the other is gone; 0041 Decision 1
+corrects both.
 
 ---
 

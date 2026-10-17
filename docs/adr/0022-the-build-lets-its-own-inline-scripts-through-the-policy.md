@@ -3,6 +3,8 @@
 **Project:** Aubaine, the wiki
 **Status:** Accepted
 **Date:** 2026-09-25
+**Revised:** 2026-10-15, Decision 1 gains an addendum: the island now hydrates through the shell even
+under the authored policy, so the spec proves enforcement by the refused inline scripts alone (0042)
 **Deciders:** Kori
 **Scope:** How `script-src` in the deployed `_headers` admits the inline scripts the build emits.
 Amends 0006 Decision 4. Does not cover `style-src`, the other headers, or the root page that
@@ -79,3 +81,12 @@ Local end to end runs missed both, because `astro preview` does not apply `_head
   fail rather than pass.
 - `astro dev` and `astro preview` send no `_headers`, as before, so only the policy spec runs pages
   under the policy locally.
+
+### Addendum (2026-10-15): the island no longer depends on the inline runtime
+
+0042 has the shell define the island runtime on every page, from `'self'`. Served the authored
+policy, `/en/trees` still refuses its inline scripts, but the island hydrates through the shell. The
+authored policy test in `tests/e2e/security-policy.spec.ts` now asserts only the refused scripts,
+all of them `script-src`, which still proves the harness enforces what it reads. The hashes stay:
+the theme bootstrap needs them, and they keep the inline island scripts Astro still writes free of
+violations.

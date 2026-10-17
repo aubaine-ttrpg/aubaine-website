@@ -4,6 +4,59 @@ async function hydrated(page: Page): Promise<void> {
   await expect(page.locator('astro-island[ssr]')).toHaveCount(0)
 }
 
+async function startWithoutIslands(page: Page, path: string): Promise<void> {
+  await page.goto(path)
+  await page.waitForFunction(() => 'swup' in window)
+  await page.evaluate(() => document.documentElement.setAttribute('data-same-document', ''))
+}
+
+async function openTreesFromHome(page: Page): Promise<void> {
+  await page.getByRole('link', { name: 'Open the Trees' }).click()
+  await expect(page).toHaveURL('/en/trees')
+}
+
+async function filterTreesByName(page: Page): Promise<void> {
+  await expect(page.locator('astro-island')).toHaveCount(1)
+  await hydrated(page)
+  await page.getByPlaceholder('Filter by name').fill('feu')
+  await expect(page.locator('[aria-live="polite"]').first()).toHaveText('1 result')
+  await expect(page.locator('html')).toHaveAttribute('data-same-document', '')
+}
+
+test('the trees filter works after a visit from the home page', async ({ page }) => {
+  await startWithoutIslands(page, '/en')
+  await openTreesFromHome(page)
+  await filterTreesByName(page)
+})
+
+test('the trees filter works after a visit that started on the Atlas', async ({ page }) => {
+  await page.addInitScript(() =>
+    window.localStorage.setItem('aubaine.atlas.settings', JSON.stringify({ quality: 'low' })),
+  )
+  await startWithoutIslands(page, '/en/atlas')
+  await page.locator('#site-header [data-nav="home"]').click()
+  await expect(page).toHaveURL('/en')
+  await openTreesFromHome(page)
+  await filterTreesByName(page)
+})
+
+test('the trees filter lets go of the page it leaves and works again on return', async ({
+  page,
+}) => {
+  await startWithoutIslands(page, '/en/trees')
+  await hydrated(page)
+  await page.evaluate(() => {
+    document.querySelector('astro-island')?.addEventListener('astro:unmount', () => {
+      document.documentElement.setAttribute('data-filter-unmounted', '')
+    })
+  })
+  await page.locator('#site-header [data-nav="home"]').click()
+  await expect(page).toHaveURL('/en')
+  await expect(page.locator('html')).toHaveAttribute('data-filter-unmounted', '')
+  await openTreesFromHome(page)
+  await filterTreesByName(page)
+})
+
 test('the trees filter narrows by name and by facet', async ({ page }) => {
   await page.goto('/en/trees')
   await hydrated(page)

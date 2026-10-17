@@ -106,12 +106,13 @@ test.describe('a system that prefers light', () => {
   })
 })
 
-test('the authored policy alone would block the theme and the islands', async ({ page }) => {
+test('the authored policy alone would block the inline scripts the build hashes', async ({
+  page,
+}) => {
   await servedUnder(page, policyIn('public/_headers'))
   await page.goto('/en/trees')
   await page.waitForLoadState('networkidle')
   const blocked = await violations(page)
   expect(blocked.length).toBeGreaterThan(0)
   expect(blocked.every((violation) => violation.startsWith('script-src'))).toBe(true)
-  await expect(page.locator('astro-island[ssr]')).toHaveCount(1)
 })

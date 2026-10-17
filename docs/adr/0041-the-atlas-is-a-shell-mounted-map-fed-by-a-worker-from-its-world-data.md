@@ -3,6 +3,8 @@
 **Project:** Aubaine, the wiki
 **Status:** Accepted
 **Date:** 2026-10-14
+**Revised:** 2026-10-15, Decision 1 gains an addendum: Swup does dispatch `astro:after-swap`, and since
+0042 an island reached by a visit hydrates; the root stays shell-mounted to start the worker early
 **Revised:** 2026-10-16, Decision 5 is reversed by 0043; Decision 1 gains an addendum: the loading
 screen gives way to the CADRAN boot (0044) and the measured sizes move; Decision 3 gains an addendum:
 `data/atlas/` holds several worlds, one of which opens
@@ -106,6 +108,19 @@ React island (0006 Decision 3). Versions this was decided against, read from `pn
 
 - The contract between `src/components/views/Atlas.astro`, `bindAtlas` and the root is a set of
   `data-atlas-*` attributes with no compile time link.
+
+### Addendum (2026-10-15): the island facts above no longer hold
+
+- The second fact of the rationale was wrong. `@swup/astro` dispatches `astro:after-swap` on every
+  `content:replace` (`@swup/astro/dist/script.js:133`), so an island that a visit removes is
+  unmounted, which `tests/e2e/filters.spec.ts` asserts.
+- The first no longer holds: 0042 has the shell define the island runtime on every page, so an
+  island reached by a Swup visit hydrates.
+- The root stays shell-mounted for one reason. `bindAtlas` posts the worker its start message on
+  `page:view`, while the UI chunk, React and three.js are still downloading
+  (`src/scripts/atlas.ts`), so decoding the world overlaps those requests. An island's code would
+  run only once its own chunk had arrived. The `client:only` alternative is rejected on that cost,
+  and reopens if measurements show the delay is negligible next to decoding the world.
 
 ### Addendum (2026-10-16): the loading screen is the CADRAN boot, and the sizes moved
 
