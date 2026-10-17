@@ -1,7 +1,12 @@
 ---
 import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
-import { ATTRIBUTION_SECTIONS, FONT_FAMILIES, ICON_SETS } from '../../lib/rights/attribution'
+import {
+  ATTRIBUTION_SECTIONS,
+  FONT_FAMILIES,
+  ICON_SETS,
+  SOUND_WORKS,
+} from '../../lib/rights/attribution'
 
 type Props = { locale: Locale }
 
@@ -66,6 +71,38 @@ const cellStyle = 'padding:11px 12px 11px 0; border-bottom:1px solid var(--line)
             <td style={cellStyle}>
               <a href={family.licence.url} rel="noopener noreferrer external license">
                 {family.licence.id}
+              </a>
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+
+  <h2 id={ATTRIBUTION_SECTIONS.sounds} style={headingStyle}>{t.creditsSounds}</h2>
+  <table style={tableStyle}>
+    <thead>
+      <tr>
+        <th scope="col" style={headStyle}>{t.creditsWork}</th>
+        <th scope="col" style={headStyle}>{t.creditsAuthor}</th>
+        <th scope="col" style={headStyle}>{t.creditsTerms}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        SOUND_WORKS.map((work) => (
+          <tr>
+            <td style={cellStyle} translate="no">
+              <a href={work.source} rel="noopener noreferrer external">
+                {work.title}
+              </a>
+            </td>
+            <td style={cellStyle} translate="no">
+              {work.author}
+            </td>
+            <td style={cellStyle}>
+              <a href={work.licence.url} rel="noopener noreferrer external license">
+                {work.licence.id}
               </a>
             </td>
           </tr>

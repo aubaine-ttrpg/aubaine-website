@@ -1,0 +1,304 @@
+{
+  "$id": "https://aubaine.io/schema/atlas-vocabularies.json",
+  "title": "Vocabulaires de l'Atlas",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "tileTypes": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "labelFr": {
+            "type": "string",
+            "minLength": 1
+          },
+          "labelEn": {
+            "type": "string",
+            "minLength": 1
+          },
+          "descriptionFr": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Ce qu'on trouve sur ce type de tuile."
+          },
+          "descriptionEn": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "key",
+          "labelFr",
+          "labelEn",
+          "descriptionFr",
+          "descriptionEn"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "rocks": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "labelFr": {
+            "type": "string",
+            "minLength": 1
+          },
+          "labelEn": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "key",
+          "labelFr",
+          "labelEn"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "settings": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "labelFr": {
+            "type": "string",
+            "minLength": 1
+          },
+          "labelEn": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "key",
+          "labelFr",
+          "labelEn"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "placeKinds": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "labelFr": {
+            "type": "string",
+            "minLength": 1
+          },
+          "labelEn": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "key",
+          "labelFr",
+          "labelEn"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "naturalKinds": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "labelFr": {
+            "type": "string",
+            "minLength": 1
+          },
+          "labelEn": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "key",
+          "labelFr",
+          "labelEn"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "landmarkKinds": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "labelFr": {
+            "type": "string",
+            "minLength": 1
+          },
+          "labelEn": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "key",
+          "labelFr",
+          "labelEn"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "routeKinds": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "labelFr": {
+            "type": "string",
+            "minLength": 1
+          },
+          "labelEn": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "key",
+          "labelFr",
+          "labelEn"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "establishmentKinds": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "labelFr": {
+            "type": "string",
+            "minLength": 1
+          },
+          "labelEn": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "key",
+          "labelFr",
+          "labelEn"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "vessels": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "labelFr": {
+            "type": "string",
+            "minLength": 1
+          },
+          "labelEn": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "key",
+          "labelFr",
+          "labelEn"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "terrains": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "labelFr": {
+            "type": "string",
+            "minLength": 1
+          },
+          "labelEn": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "key",
+          "labelFr",
+          "labelEn"
+        ],
+        "additionalProperties": false
+      },
+      "description": "Les terrains du voyage qui ne correspondent à aucun environnement de data/environments/."
+    }
+  },
+  "required": [
+    "tileTypes",
+    "rocks",
+    "settings",
+    "placeKinds",
+    "naturalKinds",
+    "landmarkKinds",
+    "routeKinds",
+    "establishmentKinds",
+    "vessels",
+    "terrains"
+  ],
+  "additionalProperties": false,
+  "description": "Les vocabulaires de l'Atlas, partagés par tous ses mondes."
+}

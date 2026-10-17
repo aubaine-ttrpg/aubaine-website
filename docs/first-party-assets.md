@@ -53,9 +53,9 @@ not plain ASCII goes into an uncompressed `iTXt`, which is UTF-8 by definition.
 | --- | --- | --- |
 | `art/`, `items/`, `skills/`, `unassigned/` | stripped, then stamped | `pnpm media:stamp` |
 | `video/` | stripped, then stamped through ffmpeg | `pnpm media:stamp` |
-| the three logo SVGs and `qr-aubaine.png` | stamped | `pnpm media:stamp` |
+| the files `OWNED_FILES` names, such as `aubaine-logo.svg` | stamped | `pnpm media:stamp` |
 | `flags/` | stripped, nothing written | `pnpm media:stamp` |
-| `fonts/`, `icons/` | untouched | nothing: they are not ours |
+| `fonts/`, `icons/`, `sounds/` | untouched | nothing: they are not ours |
 | `dist/_astro/*.webp`, `*.jpeg`, `*.png` | stamped as they are emitted | `src/lib/rights/image-service.ts` |
 | `pdf/` | stamped as each booklet is rendered | `tools/pdf/render.ts` |
 
@@ -64,8 +64,8 @@ appears under `data/media/` that none of them names. That is what keeps the clai
 grows: a new folder is a decision, not an oversight.
 
 The two flags are stripped and never stamped. A French tricolour and a Union Jack are not original
-Aubaine work, and writing `© Aubaine` onto one would be the same false claim that keeps the fonts and
-the icons out of scope.
+Aubaine work, and writing `© Aubaine` onto one would be the same false claim that keeps the fonts, the
+icons and the sounds out of scope.
 
 ## Why the foreign manifest is removed
 

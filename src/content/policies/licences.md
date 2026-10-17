@@ -40,4 +40,4 @@ En cas de doute, c'est le texte complet de la licence qui fait foi.
 
 ## Ce que ces licences ne couvrent pas
 
-Les icônes et les polices employées par le site viennent d'ailleurs et gardent leurs propres termes. La page des crédits les nomme une par une. Aubaine ne revendique pas les drapeaux du sélecteur de langue.
+Les icônes, les polices et les sons employés par le site viennent d'ailleurs et gardent leurs propres termes. La page des crédits les nomme une par une. Aubaine ne revendique pas les drapeaux du sélecteur de langue.

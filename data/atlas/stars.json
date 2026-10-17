@@ -1,0 +1,28 @@
+{
+  "primary": {
+    "temperature": 5772,
+    "illuminance": 120000,
+    "diameter": 0.533
+  },
+  "warm": {
+    "temperature": 5600,
+    "illuminance": 2392,
+    "diameter": 0.08
+  },
+  "hot": {
+    "temperature": 12000,
+    "illuminance": 9,
+    "diameter": 0.0011,
+    "tint": [
+      1,
+      0.93,
+      1.07
+    ]
+  },
+  "pair": {
+    "distance": 6,
+    "separation": 0.5,
+    "orbitYears": 9.3,
+    "mutualDays": 105
+  }
+}

@@ -75,7 +75,8 @@ Machine values are never translated. Ids, `key` fields, domain keys, characteris
 | `data/environments/` | one environment, named `<slug>.json`, with its Loot Die and its Loot Table |
 | `data/books/<book-id>/` | one book: `book.json` plus one `NN-slug.md` per chapter, each a whole page |
 | `data/meta/` | one controlled vocabulary per file. Read the directory for the current set |
-| `data/media/` | covers and banners, item pictures, icons, PDFs, fonts, flags, video |
+| `data/atlas/` | the Atlas: `vocabularies.json`, `travel.json` and `stars.json`, and one folder per world, each split by part. See `runbooks/edit-the-atlas.md` |
+| `data/media/` | covers and banners, item pictures, icons, PDFs, fonts, flags, video, sounds |
 | `data/aubaine.json` | the version string printed in the footer |
 | `data/media-captions.json` | the title, the description and the keywords a picture carries in its own bytes |
 | `data/pdf/` | `releases.json`, the register of booklet tirages, and `notes.json`, the version log |
@@ -96,7 +97,7 @@ Every picture field is optional, and none of them leaves a hole. A slot with not
 
 ## A picture carries its rights, and says what it is
 
-A file under `data/media/art/`, `data/media/items/`, `data/media/skills/` and `data/media/unassigned/`, along with the logos, the QR and the hero loop, holds its ownership in its own bytes: `Author` `Aubaine`, `Copyright` `© 2026 Aubaine. Sous licence CC BY-NC-SA 4.0.`, `Software` `Aubaine Catalyst`, `Source` `https://aubaine.io`, and an XMP packet repeating them for the software that reads XMP rather than text chunks. The same claim is written into every derivative the build emits and into every booklet `pnpm pdf` renders, so the copy a reader downloads carries what the footer prints. `pnpm media:stamp` writes it, `pnpm data:check` fails without it, and anything a generator left behind is removed in the same pass. `src/lib/rights/claim.ts` composes every one of those strings. The vocabulary is recorded in `docs/first-party-assets.md` and the decision in `docs/adr/0011-assets-carry-their-own-rights.md`.
+A file under `data/media/art/`, `data/media/items/`, `data/media/skills/` and `data/media/unassigned/`, along with the hero loop and every file `OWNED_FILES` names in `src/lib/rights/ownership.ts`, such as the logos, holds its ownership in its own bytes: `Author` `Aubaine`, `Copyright` `© 2026 Aubaine. Sous licence CC BY-NC-SA 4.0.`, `Software` `Aubaine Catalyst`, `Source` `https://aubaine.io`, and an XMP packet repeating them for the software that reads XMP rather than text chunks. The same claim is written into every derivative the build emits and into every booklet `pnpm pdf` renders, so the copy a reader downloads carries what the footer prints. `pnpm media:stamp` writes it, `pnpm data:check` fails without it, and anything a generator left behind is removed in the same pass. `src/lib/rights/claim.ts` composes every one of those strings. The vocabulary is recorded in `docs/first-party-assets.md` and the decision in `docs/adr/0011-assets-carry-their-own-rights.md`.
 
 Two fields are authored. `data/media-captions.json` maps a path under `data/media/` to a title, a description and its keywords, validated by `mediaCaptions`.
 
@@ -111,7 +112,7 @@ Two fields are authored. `data/media-captions.json` maps a path under `data/medi
 
 An entry is optional. A picture missing from the file is still stamped and simply carries no title and no description, which is what keeps adding a picture a one file job. It is a place to write a description, not a register to sign, and a description is written from the picture and from nothing else. There is no English overlay: a file has one set of bytes, both locales are served the same file, and the description is French like the rest of `data/`.
 
-`data/media/icons/` and `data/media/fonts/` are never stamped. They are third party, and their terms are recorded in `docs/third-party-assets.md`. The two flags are stripped of what they arrived with and claimed by nobody.
+`data/media/icons/`, `data/media/fonts/` and `data/media/sounds/` are never stamped. They are third party, and their terms are recorded in `docs/third-party-assets.md`. The two flags are stripped of what they arrived with and claimed by nobody.
 
 ## `schemas/` and `src/lib/game/schema.ts` are the same contract
 

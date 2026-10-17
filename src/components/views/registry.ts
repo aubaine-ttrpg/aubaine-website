@@ -6,6 +6,7 @@ const IMPLEMENTED_VIEWS = new Set<ViewKind>([
   'home',
   'books',
   'almanach',
+  'atlas',
   'skills',
   'equipment',
   'materials',

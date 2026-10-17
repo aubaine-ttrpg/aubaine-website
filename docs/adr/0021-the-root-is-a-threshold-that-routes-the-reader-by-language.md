@@ -6,6 +6,7 @@
 **Revised:** 2026-10-06, the root names no canonical, carries the `WebSite` node, and no page points
 `x-default` at it (0040)
 **Revised:** 2026-10-06, the privacy page names two stored keys (addendum in Decision 2)
+**Revised:** 2026-10-14, the privacy page names four stored keys (addendum in Decision 2, 0041)
 **Deciders:** Kori
 **Scope:** What `https://aubaine.io/` serves, how it chooses a locale, and how it hands the reader
 to that locale's home. Amends 0005 Decision 1 and Decision 2 and 0012 Decision 3. Does not cover the
@@ -138,6 +139,12 @@ The rationale above says the privacy page names one stored key, `aubaine.theme`.
 already wrote a second, `aubaine.drafts` (`setDraftsShown` in `src/scripts/drafts.ts`), so that
 sentence had stopped being true. `src/content/policies/confidentialite.md` now names both, and
 reading `navigator.languages` still stores nothing.
+
+### Addendum (2026-10-14): the privacy page names four stored keys
+
+The Atlas remembers the reader's view and quality tier under `aubaine.atlas.view` and
+`aubaine.atlas.quality`, written only when the reader changes them (0041 Decision 5). Both privacy
+pages now name the four keys. The threshold still stores nothing.
 
 ---
 

@@ -1,0 +1,241 @@
+{
+  "$id": "https://aubaine.io/schema/atlas-travel.json",
+  "title": "Règles d'itinéraire de l'Atlas",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "hoursPerDay": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 24,
+      "description": "Heures de voyage dans une journée à bord, sans équipage en quarts."
+    },
+    "crewHoursPerDay": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 24,
+      "description": "Heures de voyage dans une journée à bord, avec un équipage en quarts."
+    },
+    "terrains": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "environment": {
+            "description": "L'environnement de data/environments/ qui donne son nom au terrain.",
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "maxPace": {
+            "description": "L'allure la plus rapide possible à pied. Absente : on n'y marche pas.",
+            "type": "string",
+            "enum": [
+              "slow",
+              "normal",
+              "fast"
+            ]
+          },
+          "maxPaceWithSkis": {
+            "description": "L'allure la plus rapide possible avec des skis.",
+            "type": "string",
+            "enum": [
+              "slow",
+              "normal",
+              "fast"
+            ]
+          }
+        },
+        "required": [
+          "key"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "tileTerrains": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "enum": [
+          "deep",
+          "sea",
+          "shallows",
+          "reef",
+          "lake",
+          "beach",
+          "plains",
+          "meadow",
+          "farm",
+          "forest",
+          "taiga",
+          "jungle",
+          "swamp",
+          "desert",
+          "savanna",
+          "badlands",
+          "tundra",
+          "glacier",
+          "mountain",
+          "highland",
+          "volcanic",
+          "ether",
+          "myxo",
+          "urban"
+        ]
+      },
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*$"
+      },
+      "required": [
+        "deep",
+        "sea",
+        "shallows",
+        "reef",
+        "lake",
+        "beach",
+        "plains",
+        "meadow",
+        "farm",
+        "forest",
+        "taiga",
+        "jungle",
+        "swamp",
+        "desert",
+        "savanna",
+        "badlands",
+        "tundra",
+        "glacier",
+        "mountain",
+        "highland",
+        "volcanic",
+        "ether",
+        "myxo",
+        "urban"
+      ]
+    },
+    "undergroundTerrain": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "Le terrain de tout hex souterrain."
+    },
+    "road": {
+      "type": "object",
+      "properties": {
+        "step": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991,
+          "description": "Paliers d'allure gagnés quand une route relie deux hex."
+        },
+        "tileTypes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "deep",
+              "sea",
+              "shallows",
+              "reef",
+              "lake",
+              "beach",
+              "plains",
+              "meadow",
+              "farm",
+              "forest",
+              "taiga",
+              "jungle",
+              "swamp",
+              "desert",
+              "savanna",
+              "badlands",
+              "tundra",
+              "glacier",
+              "mountain",
+              "highland",
+              "volcanic",
+              "ether",
+              "myxo",
+              "urban"
+            ]
+          },
+          "description": "Les types de tuile qui comptent comme une route."
+        }
+      },
+      "required": [
+        "step",
+        "tileTypes"
+      ],
+      "additionalProperties": false
+    },
+    "flight": {
+      "type": "object",
+      "properties": {
+        "kmhPerMetre": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Kilomètres par heure à l'allure normale pour chaque mètre de Vitesse de vol. Les autres allures suivent le rapport de leurs distances dans le Livre du joueur."
+        }
+      },
+      "required": [
+        "kmhPerMetre"
+      ],
+      "additionalProperties": false
+    },
+    "vessels": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "enum": [
+          "sailing",
+          "galley",
+          "longship",
+          "warship",
+          "keelboat",
+          "rowboat"
+        ]
+      },
+      "additionalProperties": {
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "required": [
+        "sailing",
+        "galley",
+        "longship",
+        "warship",
+        "keelboat",
+        "rowboat"
+      ],
+      "description": "Vitesse de chaque navire, en km/h."
+    },
+    "dirigeableKmh": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Vitesse d'un dirigeable, en km/h."
+    },
+    "railKmh": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Vitesse d'un train, en km/h."
+    }
+  },
+  "required": [
+    "hoursPerDay",
+    "crewHoursPerDay",
+    "terrains",
+    "tileTerrains",
+    "undergroundTerrain",
+    "road",
+    "flight",
+    "vessels",
+    "dirigeableKmh",
+    "railKmh"
+  ],
+  "additionalProperties": false,
+  "description": "Les règles du calcul d'itinéraire, hors allures du Livre du joueur."
+}

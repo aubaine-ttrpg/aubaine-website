@@ -13,10 +13,6 @@ function policyIn(file: string): string {
 
 async function servedUnder(page: Page, policy: string): Promise<void> {
   await page.route('**/*', async (route) => {
-    if (route.request().resourceType() !== 'document') {
-      await route.continue()
-      return
-    }
     const response = await route.fetch()
     await route.fulfill({
       response,
@@ -42,6 +38,7 @@ const PAGES = [
   '/fr/livres/livre-du-joueur/comment-jouer',
   '/fr/equipement',
   '/en/species/humain',
+  '/fr/atlas',
 ]
 
 for (const path of PAGES) {
@@ -53,11 +50,33 @@ for (const path of PAGES) {
   })
 }
 
+test('the Atlas fetches and plays its sounds under the deployed policy', async ({ page }) => {
+  test.slow()
+  await servedUnder(page, policyIn('dist/_headers'))
+  await page.addInitScript(() => {
+    window.localStorage.setItem('aubaine.atlas.settings', JSON.stringify({ quality: 'low' }))
+    window.localStorage.setItem('aubaine.sound', JSON.stringify({ muted: false }))
+  })
+  const sounds: string[] = []
+  page.on('requestfinished', (request) => {
+    if (new URL(request.url()).pathname.endsWith('.mp3')) sounds.push(request.url())
+  })
+  await page.goto('/fr/atlas')
+  const root = page.locator('[data-atlas-root]')
+  await expect(root).toHaveAttribute('data-atlas-state', /^(ready|map-unavailable)$/, {
+    timeout: 90_000,
+  })
+  test.skip((await root.getAttribute('data-atlas-state')) !== 'ready', 'sound needs the map')
+  await page.getByRole('button', { name: 'Lieu', exact: true }).click()
+  await expect.poll(() => sounds.length).toBeGreaterThan(0)
+  expect(await violations(page)).toEqual([])
+})
+
 test('the threshold hands off under the deployed policy', async ({ page }) => {
   await servedUnder(page, policyIn('dist/_headers'))
   await page.goto('/')
   await expect(page).toHaveURL('/en')
-  await expect(page.locator('#site-header [data-nav]')).toHaveCount(3)
+  await expect(page.locator('#site-header [data-nav]')).toHaveCount(4)
   expect(await violations(page)).toEqual([])
 })
 

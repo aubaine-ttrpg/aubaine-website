@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-import { FONT_FAMILIES, ICON_SETS } from '../../src/lib/rights/attribution'
+import { FONT_FAMILIES, ICON_SETS, SOUND_WORKS } from '../../src/lib/rights/attribution'
 
 const PAIRS = [
   { fr: '/fr/licences', en: '/en/licences' },
@@ -59,7 +59,9 @@ test('a policy link navigates through swup and the footer survives it', async ({
   await expect(page.locator('#site-footer')).toBeVisible()
 })
 
-test('the credits page names every icon set and font family the site ships', async ({ page }) => {
+test('the credits page names every icon set, font family and sound the site ships', async ({
+  page,
+}) => {
   await page.goto('/en/credits')
 
   const attribution = page.locator('[data-attribution]')
@@ -68,6 +70,12 @@ test('the credits page names every icon set and font family the site ships', asy
   }
   for (const family of FONT_FAMILIES) {
     await expect(attribution.getByText(family.name, { exact: true })).toBeVisible()
+  }
+  for (const work of SOUND_WORKS) {
+    await expect(attribution.getByRole('link', { name: work.title, exact: true })).toHaveAttribute(
+      'href',
+      work.source,
+    )
   }
 })
 

@@ -1,0 +1,9 @@
+{
+  "places": [
+    {
+      "id": "ocean",
+      "kind": "sea",
+      "name": "Océan"
+    }
+  ]
+}

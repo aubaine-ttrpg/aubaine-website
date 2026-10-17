@@ -1,0 +1,264 @@
+{
+  "establishments": {
+    "salle-du-trone-d-azur": {
+      "name": "Azure Throne Room"
+    },
+    "archives-du-cartographe-royal": {
+      "name": "Archives of the Royal Cartographer"
+    },
+    "taverne-du-heaume-fendu": {
+      "name": "Cloven Helm Tavern",
+      "description": "The sailors' and sellswords' tavern; more hiring than drinking goes on here."
+    },
+    "capitainerie-des-voiles": {
+      "name": "Sails Harbour Office"
+    },
+    "chantier-naval-brisemer": {
+      "name": "Seabreaker Shipyard"
+    },
+    "ecuries-des-champions": {
+      "name": "Champions' Stables"
+    },
+    "maison-des-paris": {
+      "name": "House of Wagers"
+    },
+    "temple-de-la-double-etoile": {
+      "name": "Temple of the Double Star",
+      "description": "A temple to the sun and the Violet Star, the two stars of Aubaine's sky."
+    },
+    "academie-des-runistes": {
+      "name": "Academy of Runists"
+    },
+    "marche-aux-epices": {
+      "name": "Spice Market"
+    },
+    "guilde-des-marchands": {
+      "name": "Merchants' Guild"
+    },
+    "forge-royale": {
+      "name": "Royal Forge"
+    },
+    "auberge-du-pont-haut": {
+      "name": "High Bridge Inn"
+    },
+    "apothicairerie-lysandre": {
+      "name": "Lysandre Apothecary"
+    },
+    "gare-d-ether-de-ferratre": {
+      "name": "Ironhearth Ether Station"
+    },
+    "buvette-du-dernier-convoi": {
+      "name": "Last Train Bar"
+    },
+    "fonderie-hurlefer": {
+      "name": "Ironhowl Foundry"
+    },
+    "mine-ecole-de-nordhal": {
+      "name": "Nordhal Mining School"
+    },
+    "college-des-technomanciens": {
+      "name": "College of Technomancers"
+    },
+    "atelier-des-artificiers": {
+      "name": "Artificers' Workshop"
+    },
+    "halle-aux-baleiniers": {
+      "name": "Whalers' Hall"
+    },
+    "capitainerie-du-nord": {
+      "name": "North Harbour Office"
+    },
+    "palais-des-mirages": {
+      "name": "Palace of Mirages"
+    },
+    "tresor-de-l-hegemone": {
+      "name": "Treasury of the Hegemon"
+    },
+    "grand-souk-de-kheranne": {
+      "name": "Grand Souk of Kheranne"
+    },
+    "caravanserail-des-sept-puits": {
+      "name": "Seven Wells Caravanserai"
+    },
+    "temple-du-soleil-roux": {
+      "name": "Temple of the Russet Sun"
+    },
+    "bains-de-myrrhe": {
+      "name": "Myrrh Baths"
+    },
+    "observatoire-de-l-astre-violet": {
+      "name": "Observatory of the Violet Star"
+    },
+    "bibliotheque-des-sables": {
+      "name": "Library of the Sands"
+    },
+    "taverne-de-la-murene-ivre": {
+      "name": "Drunken Moray Tavern"
+    },
+    "marche-noir-des-brisants": {
+      "name": "Black Market of the Breakers"
+    },
+    "conseil-des-capitaines": {
+      "name": "Council of Captains"
+    },
+    "temple-des-noyes": {
+      "name": "Temple of the Drowned"
+    },
+    "auberge-des-bles-d-or": {
+      "name": "Golden Wheat Inn"
+    },
+    "halle-aux-grains": {
+      "name": "Grain Hall"
+    },
+    "moulin-de-la-velde": {
+      "name": "Velde Mill"
+    },
+    "forteresse-de-brumefort": {
+      "name": "Fortress of Mistfort"
+    },
+    "relais-du-col": {
+      "name": "Pass Waystation"
+    },
+    "mine-de-brumefort": {
+      "name": "Mistfort Mine"
+    },
+    "comptoir-des-fourrures": {
+      "name": "Fur Trading Post"
+    },
+    "halle-des-clans": {
+      "name": "Hall of Clans"
+    },
+    "taverne-de-l-ours-blanc": {
+      "name": "White Bear Tavern"
+    },
+    "loge-des-gardes-sylve": {
+      "name": "Sylvan Wardens' Lodge"
+    },
+    "auberge-du-gue": {
+      "name": "Ford Inn"
+    },
+    "chapelle-de-la-lune": {
+      "name": "Moon Chapel"
+    },
+    "mine-de-varn": {
+      "name": "Varn Mine"
+    },
+    "criee-de-port-ecume": {
+      "name": "Foam Port Fish Market"
+    },
+    "puits-de-myr": {
+      "name": "Well of Myr"
+    },
+    "hutte-de-la-chamane": {
+      "name": "Shaman's Hut"
+    },
+    "forge-de-cendre": {
+      "name": "Cinder Forge"
+    },
+    "palais-de-l-archonte": {
+      "name": "Palace of the Archon"
+    },
+    "sanctuaire-de-l-astre-violet": {
+      "name": "Sanctuary of the Violet Star"
+    },
+    "port-celeste": {
+      "name": "Sky Port"
+    },
+    "auberge-des-nuees": {
+      "name": "Cloudbank Inn"
+    },
+    "academie-des-vents": {
+      "name": "Academy of the Winds"
+    },
+    "bibliotheque-des-nuages": {
+      "name": "Library of the Clouds"
+    },
+    "atelier-des-cristaux": {
+      "name": "Crystal Workshop"
+    },
+    "forge-etheree": {
+      "name": "Ethereal Forge"
+    },
+    "puits-maitre": {
+      "name": "Master Shaft"
+    },
+    "fonderie-des-mineurs": {
+      "name": "Miners' Foundry"
+    },
+    "cantine-du-fond": {
+      "name": "Pit-Bottom Canteen"
+    },
+    "marche-des-ombres": {
+      "name": "Shadow Market"
+    },
+    "quai-noir": {
+      "name": "Black Quay"
+    },
+    "crypte-des-rois": {
+      "name": "Crypt of Kings"
+    },
+    "ossuaire-de-la-double-etoile": {
+      "name": "Ossuary of the Double Star"
+    },
+    "archives-scellees": {
+      "name": "Sealed Archives"
+    },
+    "champignonnieres-des-gardes-sylve": {
+      "name": "Sylvan Wardens' Mushroom Farms"
+    },
+    "source-de-seve": {
+      "name": "Spring of Sap"
+    },
+    "relais-de-la-halte": {
+      "name": "Halt Waystation"
+    },
+    "poste-des-douaniers-perdus": {
+      "name": "Post of the Lost Customs Officers"
+    },
+    "taillerie-de-cristal": {
+      "name": "Crystal Cutting Works"
+    },
+    "camp-des-prospecteurs": {
+      "name": "Prospectors' Camp"
+    },
+    "autel-du-givre": {
+      "name": "Altar of Frost"
+    },
+    "repaire-des-pillards": {
+      "name": "Raiders' Lair"
+    },
+    "grande-forge-de-dolmhir": {
+      "name": "Great Forge of Dolmhir"
+    },
+    "trone-de-pierre": {
+      "name": "Stone Throne"
+    },
+    "marche-profond": {
+      "name": "Deep Market"
+    },
+    "temple-du-marteau": {
+      "name": "Temple of the Hammer"
+    },
+    "taverne-de-la-chope-basse": {
+      "name": "Low Tankard Tavern"
+    },
+    "puits-sombres": {
+      "name": "Dark Shafts"
+    },
+    "port-des-lanternes": {
+      "name": "Port of Lanterns"
+    },
+    "sanctuaire-de-seve": {
+      "name": "Sanctuary of Sap"
+    },
+    "avant-poste-de-nordhal": {
+      "name": "Nordhal Outpost"
+    },
+    "forge-des-salamandres": {
+      "name": "Salamander Forge"
+    },
+    "temple-des-noyes-anciens": {
+      "name": "Temple of the Ancient Drowned"
+    }
+  }
+}

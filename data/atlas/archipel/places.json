@@ -1,0 +1,1004 @@
+{
+  "places": [
+    {
+      "id": "ponant",
+      "kind": "continent",
+      "name": "Le Ponant",
+      "description": "Le continent de l'ouest, des crêtes des Crocs de Varn aux falaises du Bastion. Terres de royaumes anciens, de forêts sacrées et de vallées à blé."
+    },
+    {
+      "id": "levant",
+      "kind": "continent",
+      "name": "Le Levant",
+      "description": "Le continent de l'est : taïga et fonderies au nord, sables d'ocre au sud, et entre les deux les Friches d'Éther que personne ne gouverne."
+    },
+    {
+      "id": "givrecroc",
+      "kind": "continent",
+      "name": "Givrecroc",
+      "description": "Île de glace au nord de la Mer des Brumes. Les clans y vivent du phoque, de la baleine et des tunnels creusés dans le glacier."
+    },
+    {
+      "id": "brisants",
+      "kind": "continent",
+      "name": "Archipel des Brisants",
+      "description": "Chapelet d'îles tropicales cerné de récifs. Les épaves y sont plus nombreuses que les ports."
+    },
+    {
+      "id": "braise",
+      "kind": "continent",
+      "name": "Île de Braise",
+      "description": "Île volcanique du sud-est, dominée par le Cœur-de-Braise. Ses pentes de basalte donnent le meilleur verre noir du monde connu."
+    },
+    {
+      "id": "guet",
+      "kind": "continent",
+      "name": "Île du Guet",
+      "description": "Rocher fortifié au milieu de la Mer d'Opale. Une tour de guet y surveille les passes entre les deux continents."
+    },
+    {
+      "id": "aubemont",
+      "kind": "country",
+      "parent": "ponant",
+      "name": "Royaume d'Aubemont",
+      "color": "#3d63c9",
+      "capital": "bastion",
+      "ruler": "Reine Ysolde III",
+      "government": "Monarchie",
+      "population": 1240000,
+      "description": "Royaume du Ponant gouverné depuis Le Bastion. Ses bannières bleu et or flottent de la Velde aux Mortes-Eaux."
+    },
+    {
+      "id": "ysmera",
+      "kind": "country",
+      "parent": "ponant",
+      "name": "Domaine d'Ysmera",
+      "color": "#3f9a5a",
+      "ruler": "Le Conclave des Racines",
+      "government": "Théocratie druidique",
+      "population": 86000,
+      "description": "Protectorat sylvestre autour de l'Arbre-Monde. On n'y abat aucun arbre sans l'accord des Gardes-Sylve."
+    },
+    {
+      "id": "nordhal",
+      "kind": "country",
+      "parent": "levant",
+      "name": "Confédération de Nordhal",
+      "color": "#8a96a8",
+      "capital": "ferratre",
+      "ruler": "Chancelier Oskar Vehl",
+      "government": "Confédération marchande",
+      "population": 690000,
+      "description": "Ligue de cités du nord du Levant, reliées par la Ligne d'Éther. Charbon, fer et technomancie."
+    },
+    {
+      "id": "orsalis",
+      "kind": "country",
+      "parent": "levant",
+      "name": "Hégémonie d'Orsalis",
+      "color": "#d08a2e",
+      "capital": "kheranne",
+      "ruler": "L'Hégémone Sarai",
+      "government": "Empire",
+      "population": 910000,
+      "description": "Empire marchand des sables, de Kheranne à la côte de Maëlis. Il tient les routes des caravanes et taxe l'éther qui y passe."
+    },
+    {
+      "id": "givreclans",
+      "kind": "country",
+      "parent": "givrecroc",
+      "name": "Clans de Givrecroc",
+      "color": "#9fd3e6",
+      "capital": "hivernage",
+      "ruler": "La Mère des Clans",
+      "government": "Conseil des clans",
+      "population": 24000,
+      "description": "Sept clans réunis chaque hiver dans la Halle d'Hivernage."
+    },
+    {
+      "id": "libre-port",
+      "kind": "country",
+      "parent": "brisants",
+      "name": "Libre-Port de Corsaille",
+      "color": "#c2453b",
+      "capital": "corsaille",
+      "ruler": "Conseil des Capitaines",
+      "government": "République pirate",
+      "population": 58000,
+      "description": "Cité franche des Brisants, gouvernée par un conseil de capitaines. Tout s'y vend, surtout ce qui a été volé."
+    },
+    {
+      "id": "cite-etat-aerolys",
+      "kind": "country",
+      "name": "Cité-État d'Aérolys",
+      "color": "#b48cff",
+      "capital": "cite-aerolys",
+      "ruler": "L'Archonte Célestin",
+      "government": "Archontat",
+      "population": 31000,
+      "description": "La cité qui flotte au-dessus de la Mer d'Opale, portée par des cristaux d'éther. Elle ne touche le sol que par ses dirigeables."
+    },
+    {
+      "id": "comte-bastion",
+      "kind": "region",
+      "parent": "aubemont",
+      "name": "Comté du Bastion",
+      "description": "Les terres de la couronne autour de la capitale : falaises, vergers et villas des grandes familles."
+    },
+    {
+      "id": "velde",
+      "kind": "region",
+      "parent": "aubemont",
+      "name": "Duché de Velde",
+      "description": "Le grenier du royaume, une vallée de blé et de moulins que traverse la Velde."
+    },
+    {
+      "id": "marche-de-varn",
+      "kind": "region",
+      "parent": "aubemont",
+      "name": "Marche de Varn",
+      "description": "Marche frontière des montagnes, tenue par des barons mineurs et la forteresse de Brumefort."
+    },
+    {
+      "id": "mortes",
+      "kind": "region",
+      "parent": "aubemont",
+      "name": "Baronnie des Mortes-Eaux",
+      "description": "Baronnie marécageuse que la couronne contrôle surtout sur le papier."
+    },
+    {
+      "id": "pays-de-pierrelune",
+      "kind": "region",
+      "parent": "aubemont",
+      "name": "Pays de Pierrelune",
+      "description": "Côte du sud-ouest, villages de pêcheurs et chapelles battues par les vents."
+    },
+    {
+      "id": "coeur-sylve",
+      "kind": "region",
+      "parent": "ysmera",
+      "name": "Cœur-Sylve",
+      "description": "Le sanctuaire autour de l'Arbre-Monde, interdit aux haches et aux chariots."
+    },
+    {
+      "id": "lisieres",
+      "kind": "region",
+      "parent": "ysmera",
+      "name": "Lisières d'Ysmera",
+      "description": "Les bois extérieurs du Domaine, patrouillés par les Gardes-Sylve."
+    },
+    {
+      "id": "plaine-ferratre",
+      "kind": "region",
+      "parent": "nordhal",
+      "name": "Plaine de Ferrâtre",
+      "description": "Plaine industrielle autour de la capitale, couverte de crassiers et de voies ferrées."
+    },
+    {
+      "id": "givre-bleu",
+      "kind": "region",
+      "parent": "nordhal",
+      "name": "Marches du Givre-Bleu",
+      "description": "Forêts de résineux et camps de bûcherons au nord-est."
+    },
+    {
+      "id": "hautes-echines",
+      "kind": "region",
+      "parent": "nordhal",
+      "name": "Hautes-Échines",
+      "description": "Hauts pays miniers au pied des Échines Pourpres."
+    },
+    {
+      "id": "vallee-de-kheranne",
+      "kind": "region",
+      "parent": "orsalis",
+      "name": "Vallée de Kheranne",
+      "description": "Oasis, palmeraies et canaux autour de la capitale de l'Hégémonie."
+    },
+    {
+      "id": "ocre",
+      "kind": "region",
+      "parent": "orsalis",
+      "name": "Satrapie des Sables",
+      "description": "Désert de dunes et de mesas, traversé par la Route des Caravanes et la Ligne d'Éther."
+    },
+    {
+      "id": "cote-de-maelis",
+      "kind": "region",
+      "parent": "orsalis",
+      "name": "Côte de Maëlis",
+      "description": "Côte de jungle et villages sur pilotis, riche en épices."
+    },
+    {
+      "id": "marches-pourpres",
+      "kind": "region",
+      "parent": "orsalis",
+      "name": "Marches Pourpres",
+      "description": "Frontière orientale de l'Hégémonie, face aux Friches d'Éther."
+    },
+    {
+      "id": "fjords",
+      "kind": "region",
+      "parent": "givreclans",
+      "name": "Fjords d'Hivernage",
+      "description": "Côte sud de l'île, où les fjords restent libres de glace en été."
+    },
+    {
+      "id": "cimes",
+      "kind": "region",
+      "parent": "givreclans",
+      "name": "Cimes Blanches",
+      "description": "Le cœur gelé de l'île, sous le glacier."
+    },
+    {
+      "id": "ile-corsaille",
+      "kind": "region",
+      "parent": "libre-port",
+      "name": "Île de Corsaille",
+      "description": "L'île-mère du Libre-Port, sa rade et ses criques."
+    },
+    {
+      "id": "iles-vent",
+      "kind": "region",
+      "parent": "libre-port",
+      "name": "Îles du Vent",
+      "description": "Îles jumelles battues par les alizés, repaires de contrebandiers."
+    },
+    {
+      "id": "bastion",
+      "kind": "city",
+      "parent": "comte-bastion",
+      "name": "Le Bastion",
+      "style": "aubemont",
+      "population": 186000,
+      "features": [
+        "walls"
+      ],
+      "description": "Capitale d'Aubemont, perchée sur les falaises blanches qui dominent la Mer d'Opale. La citadelle, l'arène et les aqueducs se voient depuis la mer à des lieues."
+    },
+    {
+      "id": "bastion-citadelle",
+      "kind": "quarter",
+      "parent": "bastion",
+      "name": "La Citadelle"
+    },
+    {
+      "id": "bastion-voiles",
+      "kind": "quarter",
+      "parent": "bastion",
+      "name": "Port des Voiles"
+    },
+    {
+      "id": "bastion-arene",
+      "kind": "quarter",
+      "parent": "bastion",
+      "name": "Quartier de l'Arène"
+    },
+    {
+      "id": "bastion-jardins",
+      "kind": "quarter",
+      "parent": "bastion",
+      "name": "Les Hauts-Jardins"
+    },
+    {
+      "id": "bastion-marche",
+      "kind": "quarter",
+      "parent": "bastion",
+      "name": "Le Bas-Marché"
+    },
+    {
+      "id": "bastion-aqueducs",
+      "kind": "quarter",
+      "parent": "bastion",
+      "name": "Faubourg des Aqueducs"
+    },
+    {
+      "id": "ferratre",
+      "kind": "city",
+      "parent": "plaine-ferratre",
+      "name": "Ferrâtre",
+      "style": "nordhal",
+      "population": 142000,
+      "features": [
+        "walls"
+      ],
+      "description": "Capitale de Nordhal, cité de forges et de cheminées où convergent toutes les voies de la Ligne d'Éther."
+    },
+    {
+      "id": "ferratre-gare",
+      "kind": "quarter",
+      "parent": "ferratre",
+      "name": "Gare Centrale"
+    },
+    {
+      "id": "ferratre-fonderies",
+      "kind": "quarter",
+      "parent": "ferratre",
+      "name": "Les Fonderies"
+    },
+    {
+      "id": "ferratre-techno",
+      "kind": "quarter",
+      "parent": "ferratre",
+      "name": "Cour des Technomanciens"
+    },
+    {
+      "id": "ferratre-docks",
+      "kind": "quarter",
+      "parent": "ferratre",
+      "name": "Docks Gelés"
+    },
+    {
+      "id": "kheranne",
+      "kind": "city",
+      "parent": "vallee-de-kheranne",
+      "name": "Kheranne",
+      "style": "orsalis",
+      "population": 164000,
+      "features": [
+        "walls"
+      ],
+      "description": "Capitale de l'Hégémonie, cité de coupoles et de jardins suspendus entre le désert et la mer."
+    },
+    {
+      "id": "kheranne-mirages",
+      "kind": "quarter",
+      "parent": "kheranne",
+      "name": "Palais des Mirages"
+    },
+    {
+      "id": "kheranne-souk",
+      "kind": "quarter",
+      "parent": "kheranne",
+      "name": "Grand Souk"
+    },
+    {
+      "id": "kheranne-suspendus",
+      "kind": "quarter",
+      "parent": "kheranne",
+      "name": "Jardins Suspendus"
+    },
+    {
+      "id": "kheranne-observatoire",
+      "kind": "quarter",
+      "parent": "kheranne",
+      "name": "Observatoire"
+    },
+    {
+      "id": "corsaille",
+      "kind": "city",
+      "parent": "ile-corsaille",
+      "name": "Corsaille",
+      "style": "corsaille",
+      "population": 41000,
+      "description": "Le Libre-Port : quais de bois, tavernes et pavillons de toutes les nations."
+    },
+    {
+      "id": "corsaille-port-franc",
+      "kind": "quarter",
+      "parent": "corsaille",
+      "name": "Port Franc"
+    },
+    {
+      "id": "corsaille-ville-haute",
+      "kind": "quarter",
+      "parent": "corsaille",
+      "name": "Ville Haute"
+    },
+    {
+      "id": "vellune",
+      "kind": "city",
+      "parent": "velde",
+      "name": "Vellune",
+      "style": "aubemont",
+      "population": 18000,
+      "description": "Bourg de la Velde, ses moulins et sa grande foire aux grains."
+    },
+    {
+      "id": "vellune-bourg",
+      "kind": "quarter",
+      "parent": "vellune",
+      "name": "Le Bourg"
+    },
+    {
+      "id": "vellune-moulins",
+      "kind": "quarter",
+      "parent": "vellune",
+      "name": "Les Moulins"
+    },
+    {
+      "id": "brumefort",
+      "kind": "city",
+      "parent": "marche-de-varn",
+      "name": "Brumefort",
+      "style": "mountain",
+      "population": 9500,
+      "features": [
+        "walls"
+      ],
+      "description": "Forteresse du col de Brume, qui garde le seul passage carrossable à travers les Crocs."
+    },
+    {
+      "id": "brumefort-forteresse",
+      "kind": "quarter",
+      "parent": "brumefort",
+      "name": "La Forteresse"
+    },
+    {
+      "id": "brumefort-col",
+      "kind": "quarter",
+      "parent": "brumefort",
+      "name": "Le Col"
+    },
+    {
+      "id": "hivernage",
+      "kind": "city",
+      "parent": "fjords",
+      "name": "Hivernage",
+      "style": "nordic",
+      "population": 7200,
+      "description": "Port des clans, maisons longues et chantiers de drakkars au fond du fjord."
+    },
+    {
+      "id": "hivernage-glaces",
+      "kind": "quarter",
+      "parent": "hivernage",
+      "name": "Le Port aux Glaces"
+    },
+    {
+      "id": "hivernage-halle",
+      "kind": "quarter",
+      "parent": "hivernage",
+      "name": "La Halle des Clans"
+    },
+    {
+      "id": "sombreval",
+      "kind": "village",
+      "parent": "coeur-sylve",
+      "name": "Sombreval",
+      "style": "aubemont",
+      "description": "Hameau de bûcherons à l'orée de la Sylve, dernier gîte avant l'Arbre-Monde."
+    },
+    {
+      "id": "gue",
+      "kind": "village",
+      "parent": "velde",
+      "name": "Gué-aux-Saules",
+      "style": "aubemont",
+      "description": "Village du gué de la Velde, célèbre pour son auberge et ses saules."
+    },
+    {
+      "id": "pierrelune",
+      "kind": "village",
+      "parent": "pays-de-pierrelune",
+      "name": "Pierrelune",
+      "style": "aubemont",
+      "description": "Port de pêche du sud-ouest et sa chapelle de la Lune."
+    },
+    {
+      "id": "varn",
+      "kind": "village",
+      "parent": "marche-de-varn",
+      "name": "Varn",
+      "style": "mountain",
+      "description": "Village minier accroché aux Crocs, au-dessus des galeries d'argent-lune."
+    },
+    {
+      "id": "ecume",
+      "kind": "village",
+      "parent": "plaine-ferratre",
+      "name": "Port-Écume",
+      "style": "nordhal",
+      "description": "Port de pêche de la côte ouest du Levant, terminus de la ligne secondaire."
+    },
+    {
+      "id": "myr",
+      "kind": "village",
+      "parent": "ocre",
+      "name": "Oasis de Myr",
+      "style": "orsalis",
+      "description": "Oasis du désert où s'arrêtent les caravanes, autour d'un lac couleur de jade."
+    },
+    {
+      "id": "maelis",
+      "kind": "village",
+      "parent": "cote-de-maelis",
+      "name": "Maëlis",
+      "style": "orsalis",
+      "description": "Village sur pilotis à l'embouchure de la jungle."
+    },
+    {
+      "id": "cendrelieu",
+      "kind": "village",
+      "parent": "braise",
+      "name": "Cendrelieu",
+      "style": "orsalis",
+      "description": "Hameau de verriers au pied du volcan."
+    },
+    {
+      "id": "sylve",
+      "kind": "natural",
+      "name": "La Sylve d'Ysmera",
+      "subtype": "forest",
+      "description": "La plus vieille forêt du Ponant. Ses chênes ont la taille de tours et l'Arbre-Monde pousse en son centre."
+    },
+    {
+      "id": "myxe",
+      "kind": "natural",
+      "name": "Bois de Myxe",
+      "subtype": "forest",
+      "description": "Bois de champignons géants et de mousses luminescentes. Le myxo qu'on y récolte entre dans la fabrication des catalyseurs."
+    },
+    {
+      "id": "crocs",
+      "kind": "natural",
+      "name": "Les Crocs de Varn",
+      "subtype": "range",
+      "description": "Chaîne de pics qui ferme le Ponant à l'ouest. Un seul col carrossable, gardé par Brumefort."
+    },
+    {
+      "id": "echines",
+      "kind": "natural",
+      "name": "Les Échines Pourpres",
+      "subtype": "range",
+      "description": "Montagnes aux roches violacées, saturées d'éther. Les mines de Nordhal les creusent depuis deux siècles."
+    },
+    {
+      "id": "mortes-eaux",
+      "kind": "natural",
+      "name": "Les Mortes-Eaux",
+      "subtype": "swamp",
+      "description": "Marais brumeux du sud du Ponant. Les cartes s'y trompent, les guides aussi."
+    },
+    {
+      "id": "val-velde",
+      "kind": "natural",
+      "name": "Val de Velde",
+      "subtype": "valley",
+      "features": [
+        "windmills"
+      ],
+      "description": "Vallée cultivée de blé, d'orge et de lavande, ponctuée de moulins."
+    },
+    {
+      "id": "sables",
+      "kind": "natural",
+      "name": "Les Sables d'Ocre",
+      "subtype": "desert",
+      "description": "Grand désert du sud du Levant. Les dunes y avancent de quelques pas chaque année."
+    },
+    {
+      "id": "orgues",
+      "kind": "natural",
+      "parent": "sables",
+      "name": "Les Orgues Rouges",
+      "subtype": "badlands",
+      "description": "Mesas de grès rouge sculptées par le vent. Les caravanes les contournent ; les pillards y vivent."
+    },
+    {
+      "id": "friches",
+      "kind": "natural",
+      "name": "Les Friches d'Éther",
+      "subtype": "wastes",
+      "description": "Plateau de cristaux et de failles lumineuses où l'éther affleure. Aucune nation n'y tient plus d'une saison."
+    },
+    {
+      "id": "forets-du-givre-bleu",
+      "kind": "natural",
+      "name": "Forêts du Givre-Bleu",
+      "subtype": "forest",
+      "description": "Taïga sans fin au nord du Levant, où l'on coupe le bois des traverses de la Ligne d'Éther."
+    },
+    {
+      "id": "jungle-maelis",
+      "kind": "natural",
+      "name": "Jungle de Maëlis",
+      "subtype": "jungle",
+      "description": "Jungle épaisse de la côte est, ses fleuves boueux et ses temples engloutis."
+    },
+    {
+      "id": "glacier",
+      "kind": "natural",
+      "name": "Glacier de Givrecroc",
+      "subtype": "glacier",
+      "description": "Calotte de glace qui couvre le nord de l'île. Des tunnels anciens la traversent."
+    },
+    {
+      "id": "recif",
+      "kind": "natural",
+      "name": "Récif des Brisants",
+      "subtype": "reef",
+      "description": "Barrière de corail qui a brisé plus de coques que toutes les tempêtes."
+    },
+    {
+      "id": "mont-coeur-de-braise",
+      "kind": "natural",
+      "name": "Mont Cœur-de-Braise",
+      "subtype": "volcano",
+      "description": "Volcan actif. Ses coulées descendent jusqu'à la mer les années de grande éruption."
+    },
+    {
+      "id": "miroir",
+      "kind": "natural",
+      "name": "Lac de Miroir",
+      "subtype": "lake",
+      "description": "Grand lac d'altitude où se jette la Velde. Par temps calme, on y voit les étoiles en plein jour."
+    },
+    {
+      "id": "ocean-du-ponant",
+      "kind": "sea",
+      "name": "Océan du Ponant",
+      "description": "L'océan de l'ouest, dont personne n'a trouvé l'autre rive."
+    },
+    {
+      "id": "opale",
+      "kind": "sea",
+      "name": "Mer d'Opale",
+      "description": "Mer intérieure entre Ponant et Levant, sous la cité flottante d'Aérolys."
+    },
+    {
+      "id": "brumes",
+      "kind": "sea",
+      "name": "Mer des Brumes",
+      "description": "Mer froide du nord, couverte de brouillard trois jours sur quatre."
+    },
+    {
+      "id": "corail",
+      "kind": "sea",
+      "name": "Mer de Corail",
+      "description": "Mer chaude du sud, turquoise au-dessus des récifs."
+    },
+    {
+      "id": "golfe-braise",
+      "kind": "sea",
+      "name": "Golfe de Braise",
+      "description": "Golfe aux eaux tièdes, chauffées par le volcan."
+    },
+    {
+      "id": "ocean-du-levant",
+      "kind": "sea",
+      "name": "Océan du Levant",
+      "description": "L'océan oriental, route des baleiniers de Nordhal."
+    },
+    {
+      "id": "eparses",
+      "kind": "natural",
+      "name": "Archipel des Éparses",
+      "subtype": "skyisles",
+      "description": "Îles flottantes dispersées au-dessus de la Mer d'Opale et des Crocs depuis le Grand Soulèvement."
+    },
+    {
+      "id": "clairiere",
+      "kind": "natural",
+      "parent": "sylve",
+      "name": "Clairière de l'Arbre-Monde",
+      "subtype": "glade",
+      "description": "Le cercle de racines où pèlerins et druides campent au pied de l'Arbre."
+    },
+    {
+      "id": "dedale",
+      "kind": "realm",
+      "name": "Le Dédale",
+      "description": "Réseau naturel de grottes et de galeries qui court sous l'ouest du monde connu. Les cartographes du Bastion n'en ont relevé que le tiers."
+    },
+    {
+      "id": "galeries-varn",
+      "kind": "network",
+      "parent": "dedale",
+      "name": "Galeries de Varn",
+      "description": "Les mines d'argent-lune, creusées sur trois siècles. Les puits les plus anciens sont murés."
+    },
+    {
+      "id": "filon-lune",
+      "kind": "cavern",
+      "parent": "galeries-varn",
+      "name": "Filon d'Argent-Lune"
+    },
+    {
+      "id": "puits-brumefort",
+      "kind": "cavern",
+      "parent": "galeries-varn",
+      "name": "Puits de Brumefort"
+    },
+    {
+      "id": "contrebandiers",
+      "kind": "network",
+      "parent": "dedale",
+      "name": "Grottes des Contrebandiers",
+      "description": "Grottes marines reliées à la falaise du Bastion. On y décharge ce qui ne passe pas la douane."
+    },
+    {
+      "id": "grande-grotte",
+      "kind": "cavern",
+      "parent": "contrebandiers",
+      "name": "Grande Grotte"
+    },
+    {
+      "id": "quai-noir",
+      "kind": "cavern",
+      "parent": "contrebandiers",
+      "name": "Quai Noir"
+    },
+    {
+      "id": "bas-bastion",
+      "kind": "network",
+      "parent": "dedale",
+      "name": "Le Bas-Bastion",
+      "description": "Catacombes et salles taillées sous la capitale. Les rois d'Aubemont y reposent depuis mille ans."
+    },
+    {
+      "id": "catacombes",
+      "kind": "cavern",
+      "parent": "bas-bastion",
+      "name": "Catacombes Royales"
+    },
+    {
+      "id": "crypte-rois",
+      "kind": "cavern",
+      "parent": "bas-bastion",
+      "name": "Crypte des Rois"
+    },
+    {
+      "id": "jardins-spores",
+      "kind": "cavern",
+      "parent": "dedale",
+      "name": "Jardins de Spores",
+      "description": "Cavernes de champignons géants dont les spores éclairent la roche."
+    },
+    {
+      "id": "coeur-racines",
+      "kind": "cavern",
+      "parent": "dedale",
+      "name": "Cœur des Racines",
+      "description": "Les premières racines de l'Arbre-Monde, épaisses comme des tours, traversent ici la roche."
+    },
+    {
+      "id": "dedale-tunnels",
+      "kind": "network",
+      "parent": "dedale",
+      "name": "Tunnels du Dédale",
+      "description": "Tunnels qui relient les cavernes du domaine."
+    },
+    {
+      "id": "voie-creuse",
+      "kind": "realm",
+      "name": "La Voie Creuse",
+      "description": "Tunnel antique percé sous la Mer d'Opale. Personne ne sait qui l'a creusé ; les contrebandiers l'empruntent pour éviter les douanes."
+    },
+    {
+      "id": "haltes-de-la-voie-creuse",
+      "kind": "network",
+      "parent": "voie-creuse",
+      "name": "Haltes de la Voie Creuse",
+      "description": "Les cavernes où l'on fait halte sur la Voie Creuse."
+    },
+    {
+      "id": "halte-milieu",
+      "kind": "cavern",
+      "parent": "haltes-de-la-voie-creuse",
+      "name": "Halte du Milieu"
+    },
+    {
+      "id": "grotte-ecume",
+      "kind": "cavern",
+      "parent": "haltes-de-la-voie-creuse",
+      "name": "Grotte d'Écume"
+    },
+    {
+      "id": "voie-creuse-tunnels",
+      "kind": "network",
+      "parent": "voie-creuse",
+      "name": "Tunnel de la Voie Creuse",
+      "description": "Tunnels qui relient les cavernes du domaine."
+    },
+    {
+      "id": "veines-ether",
+      "kind": "realm",
+      "name": "Les Veines d'Éther",
+      "description": "Fissures saturées d'éther sous l'est du Levant. Les prospecteurs y descendent par cordées."
+    },
+    {
+      "id": "cavernes-cristal",
+      "kind": "network",
+      "parent": "veines-ether",
+      "name": "Cavernes de Cristal",
+      "description": "Salles tapissées de cristaux d'éther qui pulsent comme un cœur."
+    },
+    {
+      "id": "salle-du-pouls",
+      "kind": "cavern",
+      "parent": "cavernes-cristal",
+      "name": "Salle du Pouls"
+    },
+    {
+      "id": "veines-pourpres",
+      "kind": "cavern",
+      "parent": "cavernes-cristal",
+      "name": "Veines Pourpres"
+    },
+    {
+      "id": "veines-ether-tunnels",
+      "kind": "network",
+      "parent": "veines-ether",
+      "name": "Fissures d'Éther",
+      "description": "Tunnels qui relient les cavernes du domaine."
+    },
+    {
+      "id": "salle-givre",
+      "kind": "cavern",
+      "name": "Salle du Givre",
+      "description": "Tunnels de glace bleue sous la calotte de Givrecroc."
+    },
+    {
+      "id": "repaire",
+      "kind": "cavern",
+      "name": "Grand Repaire",
+      "description": "Le repaire des pillards des Orgues Rouges."
+    },
+    {
+      "id": "tube-ardent",
+      "kind": "cavern",
+      "name": "Tube Ardent",
+      "description": "Tubes de lave refroidie sous l'île de Braise. Certains ne le sont pas."
+    },
+    {
+      "id": "trefonds",
+      "kind": "realm",
+      "name": "Les Tréfonds",
+      "description": "Le monde sous le monde : cavernes grandes comme des comtés, mers sans soleil et royaumes nains. Ses frontières ne suivent aucune de celles de la surface."
+    },
+    {
+      "id": "dolmhir",
+      "kind": "hold",
+      "parent": "trefonds",
+      "name": "Dolmhir",
+      "ruler": "Roi Brannoc Dolm",
+      "population": 22000,
+      "description": "Cité naine taillée dans le granite, à mille deux cents mètres sous les Crocs. Ses forges ne s'éteignent jamais."
+    },
+    {
+      "id": "grande-forge",
+      "kind": "hold-quarter",
+      "parent": "dolmhir",
+      "name": "La Grande Forge"
+    },
+    {
+      "id": "salle-rois",
+      "kind": "hold-quarter",
+      "parent": "dolmhir",
+      "name": "Salle des Rois"
+    },
+    {
+      "id": "marche-profond",
+      "kind": "hold-quarter",
+      "parent": "dolmhir",
+      "name": "Marché Profond"
+    },
+    {
+      "id": "puits-sombres",
+      "kind": "hold-quarter",
+      "parent": "dolmhir",
+      "name": "Les Puits Sombres"
+    },
+    {
+      "id": "mer-sans-soleil",
+      "kind": "cavern",
+      "parent": "trefonds",
+      "name": "Mer Sans Soleil",
+      "description": "Lac souterrain si vaste qu'on n'en voit pas l'autre rive. Des barques à lanterne le traversent en trois jours."
+    },
+    {
+      "id": "labyrinthe-de-seve",
+      "kind": "cavern",
+      "parent": "trefonds",
+      "name": "Labyrinthe de Sève",
+      "description": "Dédale de racines vivantes, plus profond que les Racines-Mères. La sève y brille comme de l'ambre."
+    },
+    {
+      "id": "abysses-de-cristal",
+      "kind": "cavern",
+      "parent": "trefonds",
+      "name": "Abysses de Cristal",
+      "description": "Gouffre de cristaux géants. L'éther des Friches en remonte goutte à goutte."
+    },
+    {
+      "id": "trefonds-tunnels",
+      "kind": "network",
+      "parent": "trefonds",
+      "name": "Grande Route Noire",
+      "description": "Tunnels qui relient les cavernes du domaine."
+    },
+    {
+      "id": "braises",
+      "kind": "realm",
+      "name": "Les Braises Profondes",
+      "description": "La chambre magmatique du Cœur-de-Braise et les forges qui en vivent."
+    },
+    {
+      "id": "chambre-braise",
+      "kind": "cavern",
+      "parent": "braises",
+      "name": "Chambre de Braise",
+      "description": "Forges salamandres bâties au bord du magma."
+    },
+    {
+      "id": "cryptes-englouties",
+      "kind": "cavern",
+      "name": "Cryptes Englouties",
+      "description": "Temples d'un peuple oublié, sous le fond de la Mer de Corail."
+    },
+    {
+      "id": "cite-aerolys",
+      "kind": "city",
+      "parent": "cite-etat-aerolys",
+      "name": "Aérolys",
+      "style": "aubemont",
+      "population": 31000,
+      "description": "Cité céleste bâtie sur un fragment de montagne arraché au sol. Ses cristaux d'éther la maintiennent à mille mètres."
+    },
+    {
+      "id": "aerolys-acropole",
+      "kind": "quarter",
+      "parent": "cite-aerolys",
+      "name": "Acropole de l'Archonte"
+    },
+    {
+      "id": "aerolys-port-celeste",
+      "kind": "quarter",
+      "parent": "cite-aerolys",
+      "name": "Port Céleste"
+    },
+    {
+      "id": "aerolys-vents",
+      "kind": "quarter",
+      "parent": "cite-aerolys",
+      "name": "Jardins des Vents"
+    },
+    {
+      "id": "aerolys-ateliers",
+      "kind": "quarter",
+      "parent": "cite-aerolys",
+      "name": "Quartier des Ateliers"
+    },
+    {
+      "id": "eparse-1-ile",
+      "kind": "natural",
+      "parent": "eparses",
+      "name": "Éparse du Héron",
+      "subtype": "skyisles",
+      "description": "Îlot flottant couvert de prairies, où nichent les hérons d'éther."
+    },
+    {
+      "id": "eparse-2-ile",
+      "kind": "natural",
+      "parent": "eparses",
+      "name": "Éparse des Cascades",
+      "subtype": "skyisles",
+      "description": "Ses sources se déversent dans le vide et retombent en pluie sur la mer."
+    },
+    {
+      "id": "eparse-3-ile",
+      "kind": "natural",
+      "parent": "eparses",
+      "name": "Éparse du Reclus",
+      "subtype": "skyisles",
+      "description": "Un ermite technomancien y vit seul avec ses automates."
+    },
+    {
+      "id": "eparse-4-ile",
+      "kind": "natural",
+      "parent": "eparses",
+      "name": "Éparse aux Chaînes",
+      "subtype": "skyisles",
+      "description": "Arrimée au fond de la mer par trois chaînes géantes que nul n'a forgées."
+    },
+    {
+      "id": "eparse-5-ile",
+      "kind": "natural",
+      "parent": "eparses",
+      "name": "Éparse de Varn",
+      "subtype": "skyisles",
+      "description": "Fragment de pic arraché aux Crocs lors du Grand Soulèvement."
+    }
+  ]
+}

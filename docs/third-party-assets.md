@@ -1,7 +1,8 @@
 # Third party assets
 
-Everything under `data/` is original Aubaine work except the icon set and the fonts. Both are
-redistributed here under their upstream licences, and those licences require the attribution below.
+Everything under `data/` is original Aubaine work except the icon set, the fonts and the sounds. All
+three are redistributed here under their upstream licences. The icon and font licences require the
+attribution below; the sounds are CC0 and are credited all the same.
 What the original work says about itself is the other half of that sentence, recorded in
 [first-party-assets.md](first-party-assets.md).
 
@@ -73,3 +74,36 @@ depend on a font the rendering machine happens to have. Before it was added, the
 back to whatever serif the host provided, which is why the inherited booklets carry Liberation Serif.
 `pdffonts` reports the embedded face as `Times-Roman`, the PostScript name Tinos declares for that
 compatibility.
+
+## Sounds
+
+The Atlas plays recordings under CC0 1.0, from BigSoundBank and from Kenney's Interface Sounds. Each
+is cut, levelled and encoded by `pnpm media:sounds` into `data/media/sounds/<name>.mp3`, and the
+Atlas imports them as hashed files under `/_astro/`, so they share the immutable cache and never
+pass through `tools/media/sync.ts`.
+
+`SOUND_WORKS` in [`src/lib/rights/attribution.ts`](../src/lib/rights/attribution.ts) names every
+work, its author as its source page gives it, that page, and its licence. One row credits Sea: Waves
+to DenisChardonnet under CC0 1.0. Each work also lists its cuts: the file it produces, the upstream
+file it is cut from, and the window, shape and filter used. Read the module for the rest.
+
+The credits page renders the same rows. `pnpm data:check` fails when a file under
+`data/media/sounds/` is credited by no work, when a credited file is missing, or when the files on
+disk differ from the sounds the Atlas plays (`ATLAS_SOUNDS` in `src/islands/atlas/sound.ts`).
+
+CC0 asks for no attribution. The works are credited because the site credits every file it did not
+make, and because the author and source of each file are what make its licence checkable.
+
+### Adding one
+
+1. Download the original from its source page into `tmp/sounds/`, under the name its cut gives as
+   `original`. BigSoundBank serves its files from a form on each page, behind a browser check, so
+   download from a browser rather than with `curl`.
+2. Copy the title and the author exactly as the source page prints them, and confirm the licence
+   there. A title or author that contains an en or em dash cannot be committed, because
+   `pnpm data:check` refuses both characters in `src/`; choose another recording.
+3. Add the work and its cut to `SOUND_WORKS`, then run `pnpm media:sounds`. The loudness, sample
+   rate and encoding of each shape are set in `tools/media/sounds.ts`, and every file leaves it with
+   its metadata removed.
+4. Make the Atlas play it, through `BEDS` or `CALLS` in `src/lib/atlas/world/soundscape.ts` or
+   `CUES` in `src/islands/atlas/sound.ts`, and listen to it on `pnpm dev` before it ships.

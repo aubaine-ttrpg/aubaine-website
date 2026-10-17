@@ -1,0 +1,206 @@
+{
+  "landmarks": [
+    {
+      "id": "arbre",
+      "kind": "worldtree",
+      "name": "L'Arbre-Monde Ysmera",
+      "place": "clairiere",
+      "tile": {
+        "column": 29,
+        "row": 28
+      },
+      "footprint": 2.6,
+      "height": 820,
+      "description": "Un arbre de huit cents mètres dont les racines couvrent sept lieues. Les druides disent qu'il pousse dans tous les mondes à la fois."
+    },
+    {
+      "id": "epave",
+      "kind": "shipwreck",
+      "name": "L'Épave du Léviathan",
+      "tile": {
+        "column": 60,
+        "row": 80
+      },
+      "footprint": 1.6,
+      "length": 240,
+      "description": "Le plus grand galion jamais construit, échoué sur le récif depuis cent ans. Les pilleurs y trouvent encore de l'or, et pire."
+    },
+    {
+      "id": "citadelle-bastion",
+      "kind": "castle",
+      "name": "Le Bastion",
+      "place": "bastion-citadelle",
+      "tile": {
+        "column": 52,
+        "row": 43
+      },
+      "footprint": 1.2,
+      "description": "La citadelle blanche qui a donné son nom à la ville. Ses tours d'ardoise bleue n'ont jamais été prises."
+    },
+    {
+      "id": "arene",
+      "kind": "arena",
+      "name": "L'Arène d'Azur",
+      "place": "bastion-arene",
+      "tile": {
+        "column": 51,
+        "row": 44
+      },
+      "footprint": 0.9,
+      "description": "Arène de quarante mille places où se disputent les Jeux de la Couronne."
+    },
+    {
+      "id": "aerolys",
+      "kind": "skycity",
+      "name": "Aérolys",
+      "place": "cite-aerolys",
+      "tile": {
+        "column": 64,
+        "row": 29
+      },
+      "altitude": 1024,
+      "description": "Cité céleste bâtie sur un fragment de montagne arraché au sol. Ses cristaux d'éther la maintiennent à mille mètres."
+    },
+    {
+      "id": "eparse-1",
+      "kind": "skyisle",
+      "name": "Éparse du Héron",
+      "place": "eparse-1-ile",
+      "tile": {
+        "column": 58,
+        "row": 34
+      },
+      "altitude": 736,
+      "features": [
+        "standing-stones"
+      ],
+      "description": "Îlot flottant couvert de prairies, où nichent les hérons d'éther."
+    },
+    {
+      "id": "eparse-2",
+      "kind": "skyisle",
+      "name": "Éparse des Cascades",
+      "place": "eparse-2-ile",
+      "tile": {
+        "column": 71,
+        "row": 23
+      },
+      "altitude": 864,
+      "description": "Ses sources se déversent dans le vide et retombent en pluie sur la mer."
+    },
+    {
+      "id": "eparse-3",
+      "kind": "skyisle",
+      "name": "Éparse du Reclus",
+      "place": "eparse-3-ile",
+      "tile": {
+        "column": 61,
+        "row": 20
+      },
+      "altitude": 1152,
+      "features": [
+        "watchtower"
+      ],
+      "description": "Un ermite technomancien y vit seul avec ses automates."
+    },
+    {
+      "id": "eparse-4",
+      "kind": "skyisle",
+      "name": "Éparse aux Chaînes",
+      "place": "eparse-4-ile",
+      "tile": {
+        "column": 75,
+        "row": 36
+      },
+      "altitude": 672,
+      "features": [
+        "chains"
+      ],
+      "description": "Arrimée au fond de la mer par trois chaînes géantes que nul n'a forgées."
+    },
+    {
+      "id": "eparse-5",
+      "kind": "skyisle",
+      "name": "Éparse de Varn",
+      "place": "eparse-5-ile",
+      "tile": {
+        "column": 18,
+        "row": 37
+      },
+      "altitude": 1088,
+      "description": "Fragment de pic arraché aux Crocs lors du Grand Soulèvement."
+    },
+    {
+      "id": "coeur-de-braise",
+      "kind": "volcano",
+      "name": "Le Cœur-de-Braise",
+      "place": "mont-coeur-de-braise",
+      "tile": {
+        "column": 119,
+        "row": 81
+      },
+      "footprint": 3.2,
+      "altitude": 2400,
+      "description": "Le volcan gronde depuis trois ans. Les verriers de Cendrelieu lisent l'avenir dans ses fumées."
+    },
+    {
+      "id": "fleche",
+      "kind": "spire",
+      "name": "La Flèche d'Éther",
+      "place": "friches",
+      "tile": {
+        "column": 97,
+        "row": 41
+      },
+      "footprint": 1.6,
+      "description": "Colonne de cristal haute comme une montagne, source de l'éther des Friches. Sa lumière se voit la nuit depuis Kheranne."
+    },
+    {
+      "id": "wyrm",
+      "kind": "bones",
+      "name": "Les Os du Wyrm",
+      "place": "sables",
+      "tile": {
+        "column": 89,
+        "row": 62
+      },
+      "footprint": 1.6,
+      "description": "Squelette d'un dragon long de trois cents mètres, à demi enseveli dans les dunes."
+    },
+    {
+      "id": "phare",
+      "kind": "lighthouse",
+      "name": "Phare de Corsaille",
+      "place": "corsaille",
+      "tile": {
+        "column": 55,
+        "row": 81
+      },
+      "footprint": 0.6,
+      "description": "Son feu tournant guide les navires entre les récifs."
+    },
+    {
+      "id": "portail",
+      "kind": "portal",
+      "name": "Portail des Anciens",
+      "place": "glacier",
+      "tile": {
+        "column": 46,
+        "row": 8
+      },
+      "footprint": 1,
+      "description": "Cercle de monolithes sous la glace. Une fois par siècle, il s'ouvre."
+    },
+    {
+      "id": "tour-du-guet",
+      "kind": "tower",
+      "name": "Tour du Guet",
+      "tile": {
+        "column": 65,
+        "row": 55
+      },
+      "footprint": 0.6,
+      "description": "Tour de signaux d'Aubemont, à mi-chemin des deux continents."
+    }
+  ]
+}

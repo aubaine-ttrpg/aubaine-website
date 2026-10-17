@@ -1,0 +1,92 @@
+{
+  "$id": "https://aubaine.io/schema/atlas-world.json",
+  "title": "Monde de l'Atlas",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Nom du monde, imprimé sur le cartouche de la carte."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "playtest",
+        "beta",
+        "balanced"
+      ],
+      "description": "Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable : les listes le masquent tant que le lecteur n'affiche pas les brouillons ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une Espèce, une pièce d'équipement ou une panoplie, dans cet ordre."
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "land",
+        "area"
+      ],
+      "description": "La catégorie de la carte dans le sélecteur : une contrée (land), une étendue que l'on parcourt, ou une zone (area), un lieu à l'échelle d'une scène : donjon, intérieur, champ de bataille."
+    },
+    "columns": {
+      "type": "integer",
+      "minimum": 2,
+      "maximum": 9007199254740991,
+      "description": "Nombre de hex par rangée."
+    },
+    "rows": {
+      "type": "integer",
+      "minimum": 2,
+      "maximum": 9007199254740991,
+      "description": "Nombre de rangées."
+    },
+    "hexKm": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Largeur d'un hex, d'un bord au bord opposé, en kilomètres."
+    },
+    "featured": {
+      "type": "object",
+      "properties": {
+        "places": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "description": "Identifiant d'un lieu, d'un lieu remarquable, d'une voie ou d'un établissement de l'Atlas."
+          },
+          "description": "Lieux proposés quand rien n'est sélectionné, dans l'ordre."
+        },
+        "landmarks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "description": "Identifiant d'un lieu, d'un lieu remarquable, d'une voie ou d'un établissement de l'Atlas."
+          },
+          "description": "Lieux remarquables proposés à leur suite, dans l'ordre."
+        }
+      },
+      "required": [
+        "places",
+        "landmarks"
+      ],
+      "additionalProperties": false
+    },
+    "emblem": {
+      "description": "L'emblème du monde, un SVG de data/media/ dessiné dans l'hexagone qui le représente. Sans emblème, le monde prend le logo d'Aubaine.",
+      "type": "string",
+      "pattern": "^[a-z0-9-]+-emblem\\.svg$"
+    }
+  },
+  "required": [
+    "name",
+    "status",
+    "kind",
+    "columns",
+    "rows",
+    "hexKm",
+    "featured"
+  ],
+  "additionalProperties": false,
+  "description": "Un monde de l'Atlas : son nom, sa maturité et sa grille."
+}

@@ -1,0 +1,233 @@
+---
+import type { AtlasProps } from '../../islands/atlas/props'
+import { atlasView } from '../../lib/game/atlas'
+import type { Corpus } from '../../lib/game/corpus'
+import { badgedStatus } from '../../lib/game/status'
+import type { Locale } from '../../lib/i18n/locales'
+import { pathFor } from '../../lib/i18n/routes'
+import { strings } from '../../lib/i18n/strings'
+import RuleText from '../primitives/RuleText.astro'
+
+type Props = { locale: Locale; corpus: Corpus }
+
+const { locale, corpus } = Astro.props
+const t = strings(locale)
+const view = await atlasView(locale)
+
+const props = {
+  locale,
+  worlds: view.worlds.map(({ key, name, kind, status, emblem, columns, rows, hexKm }) => {
+    const badge = badgedStatus(status)
+    return {
+      key,
+      name,
+      kind,
+      columns,
+      rows,
+      hexKm,
+      ...(badge ? { badge } : {}),
+      ...(emblem ? { emblem } : {}),
+    }
+  }),
+  opening: view.opening,
+  chapter: view.chapter,
+  paces: view.paces,
+  terrains: view.terrains.map(({ key, label, href }) =>
+    href ? { key, label, href } : { key, label },
+  ),
+  boot: t.atlas.boot,
+} satisfies AtlasProps
+---
+
+<section class="au-atlas au-dark" data-atlas>
+  <div
+    class="au-atlas__root"
+    data-atlas-root
+    data-atlas-state="loading"
+    data-atlas-props={JSON.stringify(props)}
+    aria-busy="true"
+  >
+    <h1 class="au-atlas__title">{t.atlas.title}</h1>
+    <noscript><p class="au-atlas__notice">{t.atlas.noScript}</p></noscript>
+  </div>
+
+  <div class="au-atlas__boot" data-atlas-boot></div>
+
+  <div class="au-atlas__failure" data-atlas-failure role="alert" hidden>
+    <p class="au-atlas__failure-title">{t.atlas.failedTitle}</p>
+    <p class="au-atlas__failure-body">{t.atlas.failedBody}</p>
+    <a class="au-atlas__reload" href={pathFor('atlas', locale)} data-no-swup>{t.atlas.reload}</a>
+  </div>
+
+  {
+    view.effects.map((effect) => (
+      <template data-atlas-pace-effect={effect.key}>
+        <RuleText source={effect.source} corpus={corpus} locale={locale} />
+      </template>
+    ))
+  }
+  <template data-atlas-travel-rule>
+    <RuleText source={view.rule} corpus={corpus} locale={locale} />
+  </template>
+</section>
+
+<style>
+  .au-atlas {
+    --atlas-title: #f6f2e6;
+    --atlas-body: #d9d3c4;
+    --atlas-rule: #5f587a;
+    --atlas-gold-light: #f6dc92;
+    --atlas-gold-line: rgba(239, 190, 4, 0.22);
+    --atlas-gold-edge: rgba(239, 190, 4, 0.24);
+    --atlas-gold-tint: rgba(239, 190, 4, 0.16);
+    --atlas-gold-ring: rgba(239, 190, 4, 0.55);
+    --atlas-panel: rgba(9, 8, 20, 0.82);
+    --atlas-panel-solid: rgba(9, 8, 20, 0.9);
+    --atlas-bar: rgba(9, 8, 20, 0.84);
+    --atlas-card: #0d0b1a;
+    --atlas-option: #120f22;
+    --atlas-line: rgba(255, 255, 255, 0.14);
+    --atlas-line-soft: rgba(255, 255, 255, 0.1);
+    --atlas-line-faint: rgba(255, 255, 255, 0.06);
+    --atlas-field-line: rgba(255, 255, 255, 0.18);
+    --atlas-hover: rgba(255, 255, 255, 0.05);
+    --atlas-shadow: 0 14px 34px rgba(0, 0, 0, 0.45);
+    --atlas-blur: blur(14px);
+    --atlas-travel: #6fe3ff;
+    --atlas-travel-ink: #dff8ff;
+    --atlas-travel-text: #9fe9ff;
+    --atlas-travel-bright: #e8fbff;
+    --atlas-travel-tint: rgba(111, 227, 255, 0.06);
+    --atlas-travel-tint-strong: rgba(111, 227, 255, 0.14);
+    --atlas-travel-line: rgba(111, 227, 255, 0.45);
+    --atlas-landmark: #b48cff;
+    --atlas-landmark-ink: #e9d4ff;
+    --atlas-under: #ffb347;
+    --atlas-under-ink: #ffd9a0;
+    --atlas-realm: #e69a3c;
+    --atlas-stratum: #a07c56;
+    --atlas-error-ink: #f1c8c2;
+    --atlas-emblem-ink: #e1c47b;
+    --atlas-emblem-ground: #101417;
+    --atlas-side: min(400px, 100% - 74px);
+    --atlas-side-room: min(496px, 100% - 14px);
+    --atlas-rail-room: 92px;
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    isolation: isolate;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .au-atlas__root {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    container: atlas / size;
+  }
+
+  .au-atlas__root :global(.au-atlas__map) {
+    position: absolute;
+    inset: 0;
+  }
+
+  .au-atlas__root :global(.au-atlas__canvas) {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    touch-action: none;
+    outline: none;
+  }
+
+  .au-atlas__title {
+    margin: 0;
+    padding: 18px 20px 6px;
+    font: 700 20px / 1.1 var(--font-display);
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--atlas-title);
+  }
+
+  .au-atlas__notice {
+    max-width: 52ch;
+    margin: 0;
+    padding: 0 20px;
+    line-height: 1.6;
+    color: var(--ink2);
+  }
+
+  .au-atlas__boot {
+    position: absolute;
+    inset: 0;
+    z-index: 40;
+    background: #020b17;
+  }
+
+  .au-atlas__boot[data-running] {
+    background: transparent;
+  }
+
+  .au-atlas__boot[hidden] {
+    display: none;
+  }
+
+  .au-atlas__failure {
+    position: absolute;
+    inset: 0;
+    z-index: 41;
+    display: grid;
+    place-content: center;
+    gap: 12px;
+    padding: 24px;
+    background: var(--bg);
+  }
+
+  .au-atlas__failure[hidden] {
+    display: none;
+  }
+
+  .au-atlas__failure p {
+    max-width: 52ch;
+    margin: 0;
+  }
+
+  .au-atlas__failure-title {
+    font: 700 24px / 1.2 var(--font-display);
+    color: var(--atlas-title);
+  }
+
+  .au-atlas__failure-body {
+    line-height: 1.6;
+    color: var(--ink2);
+  }
+
+  .au-atlas__reload {
+    justify-self: start;
+    padding: 9px 15px;
+    background: var(--gold);
+    color: var(--on-gold);
+    font: 700 14px / 1 var(--font-ui);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .au-atlas__reload:focus-visible {
+    outline: 2px solid var(--atlas-title);
+    outline-offset: 3px;
+  }
+
+  @media (scripting: none) {
+    .au-atlas__boot {
+      display: none;
+    }
+  }
+</style>

@@ -93,11 +93,68 @@
       }
     },
     {
+      "includes": ["src/scripts/**"],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "useHookAtTopLevel": "off"
+          }
+        }
+      }
+    },
+    {
       "includes": ["src/styles/base.css"],
       "linter": {
         "rules": {
           "complexity": {
             "noImportantStyles": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": [
+        "src/lib/atlas/vocabulary.ts",
+        "src/lib/atlas/contract/**",
+        "src/lib/atlas/world/**",
+        "src/lib/atlas/kernel/**",
+        "src/lib/atlas/worker/**"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "noRestrictedImports": {
+              "level": "error",
+              "options": {
+                "paths": {
+                  "three": "This module also runs in the Atlas worker, which has neither three nor the DOM: only src/lib/atlas/engine renders.",
+                  "react": "This module also runs in the Atlas worker: interface and page code stays in src/islands and src/scripts.",
+                  "react-dom": "This module also runs in the Atlas worker: interface and page code stays in src/islands and src/scripts.",
+                  "motion": "This module also runs in the Atlas worker: interface and page code stays in src/islands and src/scripts."
+                },
+                "patterns": [
+                  {
+                    "group": ["three/**"],
+                    "message": "This module also runs in the Atlas worker, which has neither three nor the DOM: only src/lib/atlas/engine renders."
+                  },
+                  {
+                    "group": ["**/engine/**", "**/islands/**", "**/scripts/**"],
+                    "message": "This module also runs in the Atlas worker: interface and page code stays in src/islands and src/scripts."
+                  }
+                ]
+              }
+            },
+            "noRestrictedGlobals": {
+              "level": "error",
+              "options": {
+                "deniedGlobals": {
+                  "document": "This module also runs in the Atlas worker, which has neither three nor the DOM: only src/lib/atlas/engine renders.",
+                  "window": "This module also runs in the Atlas worker, which has neither three nor the DOM: only src/lib/atlas/engine renders.",
+                  "localStorage": "This module also runs in the Atlas worker, which has neither three nor the DOM: only src/lib/atlas/engine renders.",
+                  "requestAnimationFrame": "This module also runs in the Atlas worker, which has neither three nor the DOM: only src/lib/atlas/engine renders."
+                }
+              }
+            }
           }
         }
       }

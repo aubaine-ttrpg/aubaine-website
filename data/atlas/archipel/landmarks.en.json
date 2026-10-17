@@ -1,0 +1,67 @@
+{
+  "landmarks": {
+    "arbre": {
+      "name": "The World Tree Ysmera",
+      "description": "An eight-hundred-metre tree whose roots cover seven leagues. The druids say it grows in every world at once."
+    },
+    "epave": {
+      "name": "The Wreck of the Leviathan",
+      "description": "The largest galleon ever built, stranded on the reef for a century. Scavengers still find gold in it, and worse."
+    },
+    "citadelle-bastion": {
+      "name": "The Bastion",
+      "description": "The white citadel that gave the city its name. Its blue-slate towers have never been taken."
+    },
+    "arene": {
+      "name": "The Azure Arena",
+      "description": "A forty-thousand-seat arena hosting the Crown Games."
+    },
+    "aerolys": {
+      "description": "A sky city built on a mountain shard torn from the ground. Its ether crystals hold it a thousand metres up."
+    },
+    "eparse-1": {
+      "name": "Heron Isle",
+      "description": "A floating islet of meadows where ether herons nest."
+    },
+    "eparse-2": {
+      "name": "Cascade Isle",
+      "description": "Its springs pour into the void and fall back as rain on the sea."
+    },
+    "eparse-3": {
+      "name": "Recluse's Isle",
+      "description": "A technomancer hermit lives here alone with his automata."
+    },
+    "eparse-4": {
+      "name": "Chained Isle",
+      "description": "Moored to the seabed by three giant chains that no one forged."
+    },
+    "eparse-5": {
+      "name": "Varn Isle",
+      "description": "A peak fragment torn from the Fangs during the Great Upheaval."
+    },
+    "coeur-de-braise": {
+      "name": "The Ember-Heart",
+      "description": "The volcano has been rumbling for three years. Cinderstead's glassblowers read the future in its smoke."
+    },
+    "fleche": {
+      "name": "The Ether Spire",
+      "description": "A crystal column as tall as a mountain, source of the Wastes' ether. Its light can be seen at night from Kheranne."
+    },
+    "wyrm": {
+      "name": "The Wyrm's Bones",
+      "description": "The skeleton of a three-hundred-metre dragon, half buried in the dunes."
+    },
+    "phare": {
+      "name": "Corsaille Lighthouse",
+      "description": "Its rotating light guides ships through the reefs."
+    },
+    "portail": {
+      "name": "Portal of the Ancients",
+      "description": "A circle of monoliths under the ice. Once a century, it opens."
+    },
+    "tour-du-guet": {
+      "name": "Watch Tower",
+      "description": "An Aubemont signal tower, halfway between the two continents."
+    }
+  }
+}

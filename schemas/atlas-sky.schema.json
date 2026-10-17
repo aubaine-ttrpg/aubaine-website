@@ -1,0 +1,93 @@
+{
+  "$id": "https://aubaine.io/schema/atlas-sky.json",
+  "title": "Îles volantes d'un monde",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "islands": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "landmark": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "description": "L'île volante, un lieu remarquable dont le hex est le centre."
+          },
+          "tiles": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "column": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Colonne du hex, comptée depuis zéro à partir de l'ouest."
+                },
+                "row": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Rangée du hex, comptée depuis zéro à partir du nord. Les rangées impaires sont décalées d'un demi-hex vers l'est."
+                },
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "deep",
+                    "sea",
+                    "shallows",
+                    "reef",
+                    "lake",
+                    "beach",
+                    "plains",
+                    "meadow",
+                    "farm",
+                    "forest",
+                    "taiga",
+                    "jungle",
+                    "swamp",
+                    "desert",
+                    "savanna",
+                    "badlands",
+                    "tundra",
+                    "glacier",
+                    "mountain",
+                    "highland",
+                    "volcanic",
+                    "ether",
+                    "myxo",
+                    "urban"
+                  ]
+                },
+                "place": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9-]*$",
+                  "description": "Le quartier ou l'île auquel le hex appartient."
+                }
+              },
+              "required": [
+                "column",
+                "row",
+                "type",
+                "place"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "landmark",
+          "tiles"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "islands"
+  ],
+  "additionalProperties": false,
+  "description": "Les îles volantes d'un monde, en hex posés au-dessus de la grille."
+}

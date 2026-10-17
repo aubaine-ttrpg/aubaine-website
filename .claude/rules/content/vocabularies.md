@@ -6,7 +6,7 @@ paths:
 
 # Vocabularies
 
-`data/meta/` holds one file per controlled vocabulary. Together they are Aubaine's taxonomy and its glossary, and every entry pairs a stable machine `key` with `labelFr` and `labelEn`. Read the directory for the current set; `domains.json` is the shape they all follow.
+`data/meta/` holds one file per controlled vocabulary. Together they are Aubaine's taxonomy and its glossary, and every entry pairs a stable machine `key` with `labelFr` and `labelEn`. Read the directory for the current set; `domains.json` is the shape they all follow. The Atlas keeps its own vocabularies in `data/atlas/vocabularies.json`, in the same entry shape (`docs/adr/0041-the-atlas-is-a-shell-mounted-map-fed-by-a-worker-from-its-world-data.md`).
 
 - These lists are the whole taxonomy. An entry may only name a key that is declared there, and `pnpm data:check` enforces it.
 - Adding, removing, or renaming a key is a product decision that changes the schema surface, not an authoring step.

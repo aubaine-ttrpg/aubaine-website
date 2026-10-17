@@ -130,6 +130,18 @@ const menus = [
         </div>
       ))
     }
+
+    <a
+      href={pathFor('atlas', locale)}
+      aria-current={section === 'atlas' ? 'page' : undefined}
+      data-nav-link
+      data-nav="atlas"
+      data-active={section === 'atlas' ? '' : undefined}
+      style="position:relative; flex:none; padding:9px 10px; font-family:var(--font-ui); font-size:14.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase"
+    >
+      <span>{t.atlas.title}</span>
+      <span aria-hidden="true" data-nav-underline></span>
+    </a>
   </nav>
 
   <form

@@ -19,6 +19,7 @@ Next to the French file, same name, with `.en` before the extension.
 | `data/environments/foret.json` | `data/environments/foret.en.json` |
 | `data/books/livre-du-joueur/book.json` | `data/books/livre-du-joueur/book.en.json` |
 | `data/books/livre-du-joueur/03-creer-un-personnage.md` | `data/books/livre-du-joueur/03-creer-un-personnage.en.md` |
+| `data/atlas/eden/places.json` | `data/atlas/eden/places.en.json` |
 
 French is the source and the fallback. The English file is an overlay: it holds only the strings that change, and every key it leaves out falls back to the French one.
 
@@ -40,8 +41,13 @@ An overlay may only carry the fields listed below, for its kind. Every one of th
 | state | `name`, `description` |
 | book | `title`, `description` |
 | book page | `title` in the frontmatter, and the body |
+| Atlas world | `name` |
+| Atlas places | `places` |
+| Atlas landmarks | `landmarks` |
+| Atlas routes | `routes` |
+| Atlas establishments | `establishments` |
 
-Five of these are keyed maps rather than arrays:
+Several of these are keyed maps rather than arrays:
 
 | Field | Keyed by | From `schema.ts` |
 | --- | --- | --- |
@@ -50,6 +56,8 @@ Five of these are keyed maps rather than arrays:
 | set `bonuses` | the tier's `pieces`, as a string | each value is `{ "text": "..." }` |
 | catalogue `families` | the family's `key` | each value is the translated title |
 | catalogue `sections` | the section's `key` | each value is the translated title |
+| Atlas `places` | the place's `id` | Noms et textes traduits, keyés par l'identifiant du lieu. Each value may carry `name`, `ruler`, `government` and `description`. |
+| Atlas `landmarks`, `routes`, `establishments` | the entry's `id` | each value may carry `name` and `description` |
 
 Never translate a key, an id, a domain key, a characteristic key, a rarity key, a discipline key or a tag key. Those are machine values and they are shared across locales. A skill's tags are keys, so they never appear in an overlay: the English page reads each tag's `labelEn` from `data/meta/tags.json`.
 

@@ -1,0 +1,26 @@
+{
+  "name": "Archipel",
+  "status": "draft",
+  "kind": "land",
+  "columns": 128,
+  "rows": 96,
+  "hexKm": 5,
+  "featured": {
+    "places": [
+      "bastion",
+      "ferratre",
+      "kheranne",
+      "corsaille",
+      "hivernage"
+    ],
+    "landmarks": [
+      "arbre",
+      "aerolys",
+      "fleche",
+      "coeur-de-braise",
+      "epave",
+      "wyrm",
+      "portail"
+    ]
+  }
+}

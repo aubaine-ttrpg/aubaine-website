@@ -27,6 +27,8 @@ test('the sitemap lists no draft, no search and no error page', async ({ request
   expect(sitemap).not.toContain('/fr/recherche')
   expect(sitemap).not.toContain('/en/search')
   expect(sitemap).not.toContain('/404')
+  expect(sitemap).not.toContain('/fr/atlas')
+  expect(sitemap).not.toContain('/en/atlas')
 })
 
 test('a page that inherits draft from its tree stays out of the index', async ({ request }) => {

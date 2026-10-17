@@ -1,0 +1,866 @@
+{
+  "establishments": [
+    {
+      "id": "salle-du-trone-d-azur",
+      "kind": "palace",
+      "name": "Salle du Trône d'Azur",
+      "place": "bastion-citadelle",
+      "tile": {
+        "column": 52,
+        "row": 43
+      }
+    },
+    {
+      "id": "archives-du-cartographe-royal",
+      "kind": "library",
+      "name": "Archives du Cartographe Royal",
+      "place": "bastion-citadelle",
+      "tile": {
+        "column": 53,
+        "row": 43
+      }
+    },
+    {
+      "id": "taverne-du-heaume-fendu",
+      "kind": "tavern",
+      "name": "Taverne du Heaume Fendu",
+      "place": "bastion-voiles",
+      "tile": {
+        "column": 52,
+        "row": 41
+      },
+      "description": "La taverne des marins et des mercenaires ; on y recrute plus qu'on n'y boit."
+    },
+    {
+      "id": "capitainerie-des-voiles",
+      "kind": "harbour",
+      "name": "Capitainerie des Voiles",
+      "place": "bastion-voiles",
+      "tile": {
+        "column": 52,
+        "row": 41
+      }
+    },
+    {
+      "id": "chantier-naval-brisemer",
+      "kind": "shipyard",
+      "name": "Chantier naval Brisemer",
+      "place": "bastion-voiles",
+      "tile": {
+        "column": 52,
+        "row": 41
+      }
+    },
+    {
+      "id": "ecuries-des-champions",
+      "kind": "stables",
+      "name": "Écuries des Champions",
+      "place": "bastion-arene",
+      "tile": {
+        "column": 51,
+        "row": 44
+      }
+    },
+    {
+      "id": "maison-des-paris",
+      "kind": "gambling",
+      "name": "Maison des Paris",
+      "place": "bastion-arene",
+      "tile": {
+        "column": 51,
+        "row": 44
+      }
+    },
+    {
+      "id": "temple-de-la-double-etoile",
+      "kind": "temple",
+      "name": "Temple de la Double-Étoile",
+      "place": "bastion-jardins",
+      "tile": {
+        "column": 54,
+        "row": 42
+      },
+      "description": "Temple dédié au soleil et à l'Astre violet, les deux étoiles du ciel d'Aubaine."
+    },
+    {
+      "id": "academie-des-runistes",
+      "kind": "academy",
+      "name": "Académie des Runistes",
+      "place": "bastion-jardins",
+      "tile": {
+        "column": 54,
+        "row": 42
+      }
+    },
+    {
+      "id": "marche-aux-epices",
+      "kind": "market",
+      "name": "Marché aux Épices",
+      "place": "bastion-marche",
+      "tile": {
+        "column": 52,
+        "row": 42
+      }
+    },
+    {
+      "id": "guilde-des-marchands",
+      "kind": "guild",
+      "name": "Guilde des Marchands",
+      "place": "bastion-marche",
+      "tile": {
+        "column": 52,
+        "row": 42
+      }
+    },
+    {
+      "id": "forge-royale",
+      "kind": "forge",
+      "name": "Forge Royale",
+      "place": "bastion-marche",
+      "tile": {
+        "column": 53,
+        "row": 42
+      }
+    },
+    {
+      "id": "auberge-du-pont-haut",
+      "kind": "inn",
+      "name": "Auberge du Pont-Haut",
+      "place": "bastion-aqueducs",
+      "tile": {
+        "column": 51,
+        "row": 43
+      }
+    },
+    {
+      "id": "apothicairerie-lysandre",
+      "kind": "apothecary",
+      "name": "Apothicairerie Lysandre",
+      "place": "bastion-aqueducs",
+      "tile": {
+        "column": 51,
+        "row": 43
+      }
+    },
+    {
+      "id": "gare-d-ether-de-ferratre",
+      "kind": "station",
+      "name": "Gare d'Éther de Ferrâtre",
+      "place": "ferratre-gare",
+      "tile": {
+        "column": 79,
+        "row": 19
+      }
+    },
+    {
+      "id": "buvette-du-dernier-convoi",
+      "kind": "tavern",
+      "name": "Buvette du Dernier Convoi",
+      "place": "ferratre-gare",
+      "tile": {
+        "column": 80,
+        "row": 19
+      }
+    },
+    {
+      "id": "fonderie-hurlefer",
+      "kind": "forge",
+      "name": "Fonderie Hurlefer",
+      "place": "ferratre-fonderies",
+      "tile": {
+        "column": 80,
+        "row": 18
+      }
+    },
+    {
+      "id": "mine-ecole-de-nordhal",
+      "kind": "academy",
+      "name": "Mine-École de Nordhal",
+      "place": "ferratre-fonderies",
+      "tile": {
+        "column": 81,
+        "row": 18
+      }
+    },
+    {
+      "id": "college-des-technomanciens",
+      "kind": "academy",
+      "name": "Collège des Technomanciens",
+      "place": "ferratre-techno",
+      "tile": {
+        "column": 80,
+        "row": 20
+      }
+    },
+    {
+      "id": "atelier-des-artificiers",
+      "kind": "workshop",
+      "name": "Atelier des Artificiers",
+      "place": "ferratre-techno",
+      "tile": {
+        "column": 80,
+        "row": 20
+      }
+    },
+    {
+      "id": "halle-aux-baleiniers",
+      "kind": "market",
+      "name": "Halle aux Baleiniers",
+      "place": "ferratre-docks",
+      "tile": {
+        "column": 81,
+        "row": 19
+      }
+    },
+    {
+      "id": "capitainerie-du-nord",
+      "kind": "harbour",
+      "name": "Capitainerie du Nord",
+      "place": "ferratre-docks",
+      "tile": {
+        "column": 81,
+        "row": 20
+      }
+    },
+    {
+      "id": "palais-des-mirages",
+      "kind": "palace",
+      "name": "Palais des Mirages",
+      "place": "kheranne-mirages",
+      "tile": {
+        "column": 77,
+        "row": 53
+      }
+    },
+    {
+      "id": "tresor-de-l-hegemone",
+      "kind": "treasury",
+      "name": "Trésor de l'Hégémone",
+      "place": "kheranne-mirages",
+      "tile": {
+        "column": 78,
+        "row": 53
+      }
+    },
+    {
+      "id": "grand-souk-de-kheranne",
+      "kind": "market",
+      "name": "Grand Souk de Kheranne",
+      "place": "kheranne-souk",
+      "tile": {
+        "column": 78,
+        "row": 54
+      }
+    },
+    {
+      "id": "caravanserail-des-sept-puits",
+      "kind": "inn",
+      "name": "Caravansérail des Sept Puits",
+      "place": "kheranne-souk",
+      "tile": {
+        "column": 79,
+        "row": 54
+      }
+    },
+    {
+      "id": "temple-du-soleil-roux",
+      "kind": "temple",
+      "name": "Temple du Soleil Roux",
+      "place": "kheranne-suspendus",
+      "tile": {
+        "column": 79,
+        "row": 52
+      }
+    },
+    {
+      "id": "bains-de-myrrhe",
+      "kind": "baths",
+      "name": "Bains de Myrrhe",
+      "place": "kheranne-suspendus",
+      "tile": {
+        "column": 79,
+        "row": 52
+      }
+    },
+    {
+      "id": "observatoire-de-l-astre-violet",
+      "kind": "academy",
+      "name": "Observatoire de l'Astre Violet",
+      "place": "kheranne-observatoire",
+      "tile": {
+        "column": 77,
+        "row": 55
+      }
+    },
+    {
+      "id": "bibliotheque-des-sables",
+      "kind": "library",
+      "name": "Bibliothèque des Sables",
+      "place": "kheranne-observatoire",
+      "tile": {
+        "column": 78,
+        "row": 55
+      }
+    },
+    {
+      "id": "taverne-de-la-murene-ivre",
+      "kind": "tavern",
+      "name": "Taverne de la Murène Ivre",
+      "place": "corsaille-port-franc",
+      "tile": {
+        "column": 55,
+        "row": 82
+      }
+    },
+    {
+      "id": "marche-noir-des-brisants",
+      "kind": "market",
+      "name": "Marché Noir des Brisants",
+      "place": "corsaille-port-franc",
+      "tile": {
+        "column": 54,
+        "row": 83
+      }
+    },
+    {
+      "id": "conseil-des-capitaines",
+      "kind": "palace",
+      "name": "Conseil des Capitaines",
+      "place": "corsaille-ville-haute",
+      "tile": {
+        "column": 53,
+        "row": 83
+      }
+    },
+    {
+      "id": "temple-des-noyes",
+      "kind": "temple",
+      "name": "Temple des Noyés",
+      "place": "corsaille-ville-haute",
+      "tile": {
+        "column": 53,
+        "row": 83
+      }
+    },
+    {
+      "id": "auberge-des-bles-d-or",
+      "kind": "inn",
+      "name": "Auberge des Blés d'Or",
+      "place": "vellune-bourg",
+      "tile": {
+        "column": 38,
+        "row": 51
+      }
+    },
+    {
+      "id": "halle-aux-grains",
+      "kind": "market",
+      "name": "Halle aux Grains",
+      "place": "vellune-bourg",
+      "tile": {
+        "column": 39,
+        "row": 51
+      }
+    },
+    {
+      "id": "moulin-de-la-velde",
+      "kind": "mill",
+      "name": "Moulin de la Velde",
+      "place": "vellune-moulins",
+      "tile": {
+        "column": 39,
+        "row": 50
+      }
+    },
+    {
+      "id": "forteresse-de-brumefort",
+      "kind": "barracks",
+      "name": "Forteresse de Brumefort",
+      "place": "brumefort-forteresse",
+      "tile": {
+        "column": 17,
+        "row": 44
+      }
+    },
+    {
+      "id": "relais-du-col",
+      "kind": "inn",
+      "name": "Relais du Col",
+      "place": "brumefort-col",
+      "tile": {
+        "column": 16,
+        "row": 45
+      }
+    },
+    {
+      "id": "mine-de-brumefort",
+      "kind": "mine",
+      "name": "Mine de Brumefort",
+      "place": "brumefort-col",
+      "tile": {
+        "column": 17,
+        "row": 45
+      }
+    },
+    {
+      "id": "comptoir-des-fourrures",
+      "kind": "market",
+      "name": "Comptoir des Fourrures",
+      "place": "hivernage-glaces",
+      "tile": {
+        "column": 54,
+        "row": 9
+      }
+    },
+    {
+      "id": "halle-des-clans",
+      "kind": "palace",
+      "name": "Halle des Clans",
+      "place": "hivernage-halle",
+      "tile": {
+        "column": 53,
+        "row": 9
+      }
+    },
+    {
+      "id": "taverne-de-l-ours-blanc",
+      "kind": "tavern",
+      "name": "Taverne de l'Ours Blanc",
+      "place": "hivernage-halle",
+      "tile": {
+        "column": 53,
+        "row": 9
+      }
+    },
+    {
+      "id": "loge-des-gardes-sylve",
+      "kind": "lodge",
+      "name": "Loge des Gardes-Sylve",
+      "place": "sombreval",
+      "tile": {
+        "column": 26,
+        "row": 36
+      }
+    },
+    {
+      "id": "auberge-du-gue",
+      "kind": "inn",
+      "name": "Auberge du Gué",
+      "place": "gue",
+      "tile": {
+        "column": 34,
+        "row": 59
+      }
+    },
+    {
+      "id": "chapelle-de-la-lune",
+      "kind": "chapel",
+      "name": "Chapelle de la Lune",
+      "place": "pierrelune",
+      "tile": {
+        "column": 12,
+        "row": 68
+      }
+    },
+    {
+      "id": "mine-de-varn",
+      "kind": "mine",
+      "name": "Mine de Varn",
+      "place": "varn",
+      "tile": {
+        "column": 14,
+        "row": 29
+      }
+    },
+    {
+      "id": "criee-de-port-ecume",
+      "kind": "fishmarket",
+      "name": "Criée de Port-Écume",
+      "place": "ecume",
+      "tile": {
+        "column": 80,
+        "row": 31
+      }
+    },
+    {
+      "id": "puits-de-myr",
+      "kind": "well",
+      "name": "Puits de Myr",
+      "place": "myr",
+      "tile": {
+        "column": 95,
+        "row": 63
+      }
+    },
+    {
+      "id": "hutte-de-la-chamane",
+      "kind": "lodge",
+      "name": "Hutte de la Chamane",
+      "place": "maelis",
+      "tile": {
+        "column": 115,
+        "row": 49
+      }
+    },
+    {
+      "id": "forge-de-cendre",
+      "kind": "forge",
+      "name": "Forge de Cendre",
+      "place": "cendrelieu",
+      "tile": {
+        "column": 116,
+        "row": 84
+      }
+    },
+    {
+      "id": "palais-de-l-archonte",
+      "kind": "palace",
+      "name": "Palais de l'Archonte",
+      "place": "aerolys-acropole",
+      "tile": {
+        "column": 64,
+        "row": 28
+      }
+    },
+    {
+      "id": "sanctuaire-de-l-astre-violet",
+      "kind": "temple",
+      "name": "Sanctuaire de l'Astre Violet",
+      "place": "aerolys-acropole",
+      "tile": {
+        "column": 64,
+        "row": 29
+      }
+    },
+    {
+      "id": "port-celeste",
+      "kind": "harbour",
+      "name": "Port Céleste",
+      "place": "aerolys-port-celeste",
+      "tile": {
+        "column": 64,
+        "row": 26
+      }
+    },
+    {
+      "id": "auberge-des-nuees",
+      "kind": "inn",
+      "name": "Auberge des Nuées",
+      "place": "aerolys-port-celeste",
+      "tile": {
+        "column": 64,
+        "row": 27
+      }
+    },
+    {
+      "id": "academie-des-vents",
+      "kind": "academy",
+      "name": "Académie des Vents",
+      "place": "aerolys-vents",
+      "tile": {
+        "column": 66,
+        "row": 28
+      }
+    },
+    {
+      "id": "bibliotheque-des-nuages",
+      "kind": "library",
+      "name": "Bibliothèque des Nuages",
+      "place": "aerolys-vents",
+      "tile": {
+        "column": 66,
+        "row": 30
+      }
+    },
+    {
+      "id": "atelier-des-cristaux",
+      "kind": "workshop",
+      "name": "Atelier des Cristaux",
+      "place": "aerolys-ateliers",
+      "tile": {
+        "column": 63,
+        "row": 30
+      }
+    },
+    {
+      "id": "forge-etheree",
+      "kind": "forge",
+      "name": "Forge Éthérée",
+      "place": "aerolys-ateliers",
+      "tile": {
+        "column": 64,
+        "row": 31
+      }
+    },
+    {
+      "id": "puits-maitre",
+      "kind": "mine",
+      "name": "Puits Maître",
+      "place": "filon-lune",
+      "tile": {
+        "column": 14,
+        "row": 26
+      }
+    },
+    {
+      "id": "fonderie-des-mineurs",
+      "kind": "forge",
+      "name": "Fonderie des Mineurs",
+      "place": "filon-lune",
+      "tile": {
+        "column": 18,
+        "row": 28
+      }
+    },
+    {
+      "id": "cantine-du-fond",
+      "kind": "inn",
+      "name": "Cantine du Fond",
+      "place": "filon-lune",
+      "tile": {
+        "column": 14,
+        "row": 30
+      }
+    },
+    {
+      "id": "marche-des-ombres",
+      "kind": "market",
+      "name": "Marché des Ombres",
+      "place": "grande-grotte",
+      "tile": {
+        "column": 51,
+        "row": 41
+      }
+    },
+    {
+      "id": "quai-noir",
+      "kind": "harbour",
+      "name": "Quai Noir",
+      "place": "grande-grotte",
+      "tile": {
+        "column": 51,
+        "row": 43
+      }
+    },
+    {
+      "id": "crypte-des-rois",
+      "kind": "crypt",
+      "name": "Crypte des Rois",
+      "place": "catacombes",
+      "tile": {
+        "column": 53,
+        "row": 38
+      }
+    },
+    {
+      "id": "ossuaire-de-la-double-etoile",
+      "kind": "temple",
+      "name": "Ossuaire de la Double-Étoile",
+      "place": "catacombes",
+      "tile": {
+        "column": 55,
+        "row": 40
+      }
+    },
+    {
+      "id": "archives-scellees",
+      "kind": "library",
+      "name": "Archives Scellées",
+      "place": "catacombes",
+      "tile": {
+        "column": 54,
+        "row": 43
+      }
+    },
+    {
+      "id": "champignonnieres-des-gardes-sylve",
+      "kind": "farm",
+      "name": "Champignonnières des Gardes-Sylve",
+      "place": "jardins-spores",
+      "tile": {
+        "column": 23,
+        "row": 55
+      }
+    },
+    {
+      "id": "source-de-seve",
+      "kind": "shrine",
+      "name": "Source de Sève",
+      "place": "coeur-racines",
+      "tile": {
+        "column": 27,
+        "row": 25
+      }
+    },
+    {
+      "id": "relais-de-la-halte",
+      "kind": "inn",
+      "name": "Relais de la Halte",
+      "place": "halte-milieu",
+      "tile": {
+        "column": 65,
+        "row": 36
+      }
+    },
+    {
+      "id": "poste-des-douaniers-perdus",
+      "kind": "outpost",
+      "name": "Poste des Douaniers Perdus",
+      "place": "halte-milieu",
+      "tile": {
+        "column": 66,
+        "row": 39
+      }
+    },
+    {
+      "id": "taillerie-de-cristal",
+      "kind": "workshop",
+      "name": "Taillerie de Cristal",
+      "place": "salle-du-pouls",
+      "tile": {
+        "column": 96,
+        "row": 38
+      }
+    },
+    {
+      "id": "camp-des-prospecteurs",
+      "kind": "outpost",
+      "name": "Camp des Prospecteurs",
+      "place": "salle-du-pouls",
+      "tile": {
+        "column": 98,
+        "row": 39
+      }
+    },
+    {
+      "id": "autel-du-givre",
+      "kind": "shrine",
+      "name": "Autel du Givre",
+      "place": "salle-givre",
+      "tile": {
+        "column": 49,
+        "row": 5
+      }
+    },
+    {
+      "id": "repaire-des-pillards",
+      "kind": "barracks",
+      "name": "Repaire des Pillards",
+      "place": "repaire",
+      "tile": {
+        "column": 101,
+        "row": 60
+      }
+    },
+    {
+      "id": "grande-forge-de-dolmhir",
+      "kind": "forge",
+      "name": "Grande Forge de Dolmhir",
+      "place": "grande-forge",
+      "tile": {
+        "column": 17,
+        "row": 40
+      }
+    },
+    {
+      "id": "trone-de-pierre",
+      "kind": "palace",
+      "name": "Trône de Pierre",
+      "place": "salle-rois",
+      "tile": {
+        "column": 15,
+        "row": 42
+      }
+    },
+    {
+      "id": "marche-profond",
+      "kind": "market",
+      "name": "Marché Profond",
+      "place": "marche-profond",
+      "tile": {
+        "column": 15,
+        "row": 39
+      }
+    },
+    {
+      "id": "temple-du-marteau",
+      "kind": "temple",
+      "name": "Temple du Marteau",
+      "place": "puits-sombres",
+      "tile": {
+        "column": 19,
+        "row": 39
+      }
+    },
+    {
+      "id": "taverne-de-la-chope-basse",
+      "kind": "tavern",
+      "name": "Taverne de la Chope Basse",
+      "place": "grande-forge",
+      "tile": {
+        "column": 19,
+        "row": 40
+      }
+    },
+    {
+      "id": "puits-sombres",
+      "kind": "mine",
+      "name": "Puits Sombres",
+      "place": "salle-rois",
+      "tile": {
+        "column": 17,
+        "row": 42
+      }
+    },
+    {
+      "id": "port-des-lanternes",
+      "kind": "harbour",
+      "name": "Port des Lanternes",
+      "place": "mer-sans-soleil",
+      "tile": {
+        "column": 31,
+        "row": 49
+      }
+    },
+    {
+      "id": "sanctuaire-de-seve",
+      "kind": "shrine",
+      "name": "Sanctuaire de Sève",
+      "place": "labyrinthe-de-seve",
+      "tile": {
+        "column": 32,
+        "row": 27
+      }
+    },
+    {
+      "id": "avant-poste-de-nordhal",
+      "kind": "outpost",
+      "name": "Avant-poste de Nordhal",
+      "place": "abysses-de-cristal",
+      "tile": {
+        "column": 90,
+        "row": 34
+      }
+    },
+    {
+      "id": "forge-des-salamandres",
+      "kind": "forge",
+      "name": "Forge des Salamandres",
+      "place": "chambre-braise",
+      "tile": {
+        "column": 116,
+        "row": 76
+      }
+    },
+    {
+      "id": "temple-des-noyes-anciens",
+      "kind": "temple",
+      "name": "Temple des Noyés Anciens",
+      "place": "cryptes-englouties",
+      "tile": {
+        "column": 63,
+        "row": 84
+      }
+    }
+  ]
+}

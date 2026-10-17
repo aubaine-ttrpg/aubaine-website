@@ -23,7 +23,8 @@ data/
   equipment/       the catalogue, one file per item, one file per set
   states/          one file per state
   books/           one folder per book: book.json plus one Markdown file per page
-  media/           art, item images, icons, flags, fonts, PDFs, video
+  atlas/           the Atlas: its vocabularies, its travel rules, and one folder per world
+  media/           art, item images, icons, flags, fonts, sounds, PDFs, video
 schemas/           the published JSON Schema contracts, generated from src/lib/game/schema.ts
 ```
 
@@ -58,16 +59,23 @@ tooltip term index. Nothing in it reaches the browser.
 with no route to register.
 
 Pages are static HTML. React is used only where the design needs real interaction: the filter bar
-and its facet modal. Skill tree nodes, book pages and browse entries are ordinary links, so every
-page works with JavaScript disabled.
+and its facet modal, and the Atlas. Skill tree nodes, book pages and browse entries are ordinary
+links, so every page works with JavaScript disabled, except the Atlas map, which says it needs it.
+
+The Atlas is the one page that ships a 3D map. `src/scripts/atlas.ts` mounts it from the shell on a
+Swup visit. A worker (`src/lib/atlas/worker/`) fetches the world's files from `data/atlas/`, derives
+the world and builds every mesh. The main thread draws them with three.js (`src/lib/atlas/engine/`),
+and the interface around the map is React (`src/islands/atlas/`). Without WebGL 2 the places and the
+travel planner still work, and three.js is never downloaded. `docs/adr/0041-the-atlas-is-a-shell-mounted-map-fed-by-a-worker-from-its-world-data.md`
+records why it is built this way.
 
 ## Licence
 
 Code is [MIT](LICENSE). Game content, everything under `data/`, is
 [CC BY-NC-SA 4.0](LICENSE-CONTENT), which is the claim the footer prints on every page. The icons
-under `data/media/icons/` and the fonts under `data/media/fonts/` are third party and carry their own
-terms, declared in `src/lib/rights/attribution.ts` and explained in
-[docs/third-party-assets.md](docs/third-party-assets.md).
+under `data/media/icons/`, the fonts under `data/media/fonts/` and the sounds under
+`data/media/sounds/` are third party and carry their own terms, declared in
+`src/lib/rights/attribution.ts` and explained in [docs/third-party-assets.md](docs/third-party-assets.md).
 
 The site says all of this in its own words too. `src/content/policies/` holds the licences page, the
 AI policy, the credits and the privacy note, in French with an English overlay, and the footer links

@@ -1,0 +1,360 @@
+{
+  "$id": "https://aubaine.io/schema/atlas-surface.json",
+  "title": "Surface d'un monde",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "height": {
+      "type": "object",
+      "properties": {
+        "legend": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[!-\\-/-~]$"
+          },
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": -4,
+            "maximum": 13
+          },
+          "description": "Ce que chaque caractère des rangées veut dire : pour la terre, le palier d'altitude de 1 à 13, chacun de 160 m ; pour un lac, le palier de sa surface ; pour la mer, la profondeur de -1, le haut-fond, à -4, l'abysse. Un caractère imprimable, jamais le point, qui marque un hex vide."
+        },
+        "rows": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Une chaîne par rangée de la grille, du nord au sud, et un caractère par hex, d'ouest en est."
+        }
+      },
+      "required": [
+        "legend",
+        "rows"
+      ],
+      "additionalProperties": false
+    },
+    "type": {
+      "type": "object",
+      "properties": {
+        "legend": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[!-\\-/-~]$"
+          },
+          "additionalProperties": {
+            "type": "string",
+            "enum": [
+              "deep",
+              "sea",
+              "shallows",
+              "reef",
+              "lake",
+              "beach",
+              "plains",
+              "meadow",
+              "farm",
+              "forest",
+              "taiga",
+              "jungle",
+              "swamp",
+              "desert",
+              "savanna",
+              "badlands",
+              "tundra",
+              "glacier",
+              "mountain",
+              "highland",
+              "volcanic",
+              "ether",
+              "myxo",
+              "urban"
+            ]
+          },
+          "description": "Ce que chaque caractère des rangées veut dire : le type de tuile, déclaré dans data/atlas/vocabularies.json. Un caractère imprimable, jamais le point, qui marque un hex vide."
+        },
+        "rows": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Une chaîne par rangée de la grille, du nord au sud, et un caractère par hex, d'ouest en est."
+        }
+      },
+      "required": [
+        "legend",
+        "rows"
+      ],
+      "additionalProperties": false
+    },
+    "landmass": {
+      "type": "object",
+      "properties": {
+        "legend": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[!-\\-/-~]$"
+          },
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "description": "Identifiant d'un lieu, d'un lieu remarquable, d'une voie ou d'un établissement de l'Atlas."
+          },
+          "description": "Ce que chaque caractère des rangées veut dire : le continent ou l'île, un lieu de data/atlas/<monde>/places.json. Un caractère imprimable, jamais le point, qui marque un hex vide."
+        },
+        "rows": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Une chaîne par rangée de la grille, du nord au sud, et un caractère par hex, d'ouest en est."
+        }
+      },
+      "required": [
+        "legend",
+        "rows"
+      ],
+      "additionalProperties": false
+    },
+    "political": {
+      "type": "object",
+      "properties": {
+        "legend": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[!-\\-/-~]$"
+          },
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "description": "Identifiant d'un lieu, d'un lieu remarquable, d'une voie ou d'un établissement de l'Atlas."
+          },
+          "description": "Ce que chaque caractère des rangées veut dire : la plus petite division politique, une région ou un pays sans région ; le pays d'une région est son parent. Un caractère imprimable, jamais le point, qui marque un hex vide."
+        },
+        "rows": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Une chaîne par rangée de la grille, du nord au sud, et un caractère par hex, d'ouest en est."
+        }
+      },
+      "required": [
+        "legend",
+        "rows"
+      ],
+      "additionalProperties": false
+    },
+    "settlement": {
+      "type": "object",
+      "properties": {
+        "legend": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[!-\\-/-~]$"
+          },
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "description": "Identifiant d'un lieu, d'un lieu remarquable, d'une voie ou d'un établissement de l'Atlas."
+          },
+          "description": "Ce que chaque caractère des rangées veut dire : le quartier, ou le village quand il n'a pas de quartier. Un caractère imprimable, jamais le point, qui marque un hex vide."
+        },
+        "rows": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Une chaîne par rangée de la grille, du nord au sud, et un caractère par hex, d'ouest en est."
+        }
+      },
+      "required": [
+        "legend",
+        "rows"
+      ],
+      "additionalProperties": false
+    },
+    "sea": {
+      "type": "object",
+      "properties": {
+        "legend": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[!-\\-/-~]$"
+          },
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "description": "Identifiant d'un lieu, d'un lieu remarquable, d'une voie ou d'un établissement de l'Atlas."
+          },
+          "description": "Ce que chaque caractère des rangées veut dire : la mer ou l'océan. Un caractère imprimable, jamais le point, qui marque un hex vide."
+        },
+        "rows": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Une chaîne par rangée de la grille, du nord au sud, et un caractère par hex, d'ouest en est."
+        }
+      },
+      "required": [
+        "legend",
+        "rows"
+      ],
+      "additionalProperties": false
+    },
+    "relief": {
+      "type": "object",
+      "properties": {
+        "legend": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[!-\\-/-~]$"
+          },
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "description": "Identifiant d'un lieu, d'un lieu remarquable, d'une voie ou d'un établissement de l'Atlas."
+          },
+          "description": "Ce que chaque caractère des rangées veut dire : le lieu naturel de relief, d'un genre parmi range, volcano. Un caractère imprimable, jamais le point, qui marque un hex vide."
+        },
+        "rows": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Une chaîne par rangée de la grille, du nord au sud, et un caractère par hex, d'ouest en est."
+        }
+      },
+      "required": [
+        "legend",
+        "rows"
+      ],
+      "additionalProperties": false
+    },
+    "cover": {
+      "type": "object",
+      "properties": {
+        "legend": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[!-\\-/-~]$"
+          },
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "description": "Identifiant d'un lieu, d'un lieu remarquable, d'une voie ou d'un établissement de l'Atlas."
+          },
+          "description": "Ce que chaque caractère des rangées veut dire : le plus petit lieu naturel d'un autre genre que range, volcano qui couvre le hex, une forêt, un désert, un lac ; ses parents le couvrent aussi. Un caractère imprimable, jamais le point, qui marque un hex vide."
+        },
+        "rows": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Une chaîne par rangée de la grille, du nord au sud, et un caractère par hex, d'ouest en est."
+        }
+      },
+      "required": [
+        "legend",
+        "rows"
+      ],
+      "additionalProperties": false
+    },
+    "caves": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "tile": {
+            "type": "object",
+            "properties": {
+              "column": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991,
+                "description": "Colonne du hex, comptée depuis zéro à partir de l'ouest."
+              },
+              "row": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991,
+                "description": "Rangée du hex, comptée depuis zéro à partir du nord. Les rangées impaires sont décalées d'un demi-hex vers l'est."
+              }
+            },
+            "required": [
+              "column",
+              "row"
+            ],
+            "additionalProperties": false,
+            "description": "Un hex de la grille du monde."
+          },
+          "edge": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5,
+            "description": "Le côté du hex où s'ouvre la grotte : 0 à l'est, puis dans le sens des aiguilles d'une montre, 1 au sud-est, jusqu'à 5 au nord-est. Il doit donner sur une falaise."
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "smugglers",
+              "mine",
+              "fungal",
+              "crystal",
+              "lava",
+              "ice",
+              "lair",
+              "sea",
+              "natural"
+            ],
+            "description": "Ce que la lueur de l'entrée laisse deviner."
+          }
+        },
+        "required": [
+          "tile",
+          "edge",
+          "kind"
+        ],
+        "additionalProperties": false
+      },
+      "description": "Les entrées de grottes taillées dans les falaises."
+    }
+  },
+  "required": [
+    "height",
+    "type",
+    "landmass",
+    "political",
+    "settlement",
+    "sea",
+    "relief",
+    "cover",
+    "caves"
+  ],
+  "additionalProperties": false,
+  "description": "La surface d'un monde, en couches d'une valeur par hex."
+}

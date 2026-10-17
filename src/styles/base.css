@@ -162,6 +162,10 @@ input {
   display: none;
 }
 
+:root:has(#swup[data-section="atlas"]) #site-footer {
+  display: none;
+}
+
 .au-badge {
   --badge-band: 5px;
   display: inline-block;

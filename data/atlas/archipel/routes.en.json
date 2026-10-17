@@ -1,0 +1,79 @@
+{
+  "routes": {
+    "voie-royale": {
+      "name": "Royal Way",
+      "description": "Aubemont's great paved road, from the capital to the Mist Pass."
+    },
+    "route-sud": {
+      "name": "South Road",
+      "description": "The road from the Velde to the southwest coast."
+    },
+    "route-caravanes": {
+      "name": "Caravan Road",
+      "description": "The Hegemony's royal track, lined with caravanserais."
+    },
+    "route-maelis": {
+      "name": "Coastal Road",
+      "description": "The coastal road between Kheranne and the jungle."
+    },
+    "pelerins": {
+      "name": "Pilgrims' Path",
+      "description": "A forest path to the World Tree. It is walked on foot, without iron or fire."
+    },
+    "piste-crocs": {
+      "name": "Fangs Track",
+      "description": "A mule track cut through the mountain to the mines of Varn."
+    },
+    "sentier-glaces": {
+      "name": "Ice Path",
+      "description": "A cairn-marked route across the glacier."
+    },
+    "piste-cratere": {
+      "name": "Crater Path",
+      "description": "An ash path up to the volcano's lips."
+    },
+    "sentier-mortes": {
+      "name": "Ferrymen's Path",
+      "description": "A log path through the Dead Waters, known only to the ferrymen."
+    },
+    "ligne-ether": {
+      "name": "Ether Line",
+      "description": "Nordhal's railway, its engines burn ether crystals."
+    },
+    "ligne-ecume": {
+      "name": "Foam Branch",
+      "description": "A branch line to the west coast."
+    },
+    "route-epices": {
+      "name": "Spice Route",
+      "description": "The sea route of pepper and refined ether."
+    },
+    "passage-opale": {
+      "name": "Opal Passage",
+      "description": "The crossing of the Opal Sea under Aérolys."
+    },
+    "route-nord": {
+      "name": "North Route",
+      "description": "The whalers' route between Nordhal and Frostfang."
+    },
+    "route-braise": {
+      "name": "Ember Route",
+      "description": "Coastal sailing to the volcanic island."
+    },
+    "river-velde": {
+      "name": "The Velde"
+    },
+    "river-orsane": {
+      "name": "The Orsane"
+    },
+    "river-fonte": {
+      "name": "The Thaw"
+    },
+    "river-pourpre": {
+      "name": "Purple River"
+    },
+    "river-cascade": {
+      "name": "The Tumble"
+    }
+  }
+}

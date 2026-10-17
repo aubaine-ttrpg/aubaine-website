@@ -1,4 +1,5 @@
 import { HTML_LANG, isLocale } from '../lib/i18n/locales'
+import { bindAtlas } from './atlas'
 import { bindBook } from './book'
 import { bindBrowse } from './browse'
 import { bindLoading } from './loading'
@@ -336,6 +337,7 @@ withSwup((swup) => {
   bindBook(swup)
   bindTree(swup)
   bindPlateViewer(swup)
+  bindAtlas(swup)
   bindBrowse(swup)
   bindLoading(swup)
   swup.hooks.on('visit:start', onVisitStart)

@@ -5,6 +5,7 @@ import type { BookletKind } from '../booklet/release.ts'
 import { DEFAULT_LOCALE, LOCALES, type Locale } from '../i18n/locales.ts'
 import { type RouteParams, segmentsFor, type ViewKind } from '../i18n/routes.ts'
 import { strings } from '../i18n/strings.ts'
+import { atlasHead } from './atlas.ts'
 import type { Corpus } from './build.ts'
 import { corpus } from './corpus.ts'
 import { policyPages } from './policies.ts'
@@ -85,11 +86,16 @@ export async function pageRoutes(): Promise<PageRoute[]> {
     const data = await corpus(locale)
     const t = strings(locale)
     const heads = await bookChapterHeads(locale)
+    const atlas = await atlasHead(locale)
 
     const pages: PageDescriptor[] = [
       homePage(locale, data),
       describe(locale, 'books', t.resources, t.hubLead),
       describe(locale, 'almanach', t.almanach, t.almanachLead),
+      {
+        ...describe(locale, 'atlas', t.atlas.title, t.atlas.lead),
+        noIndex: keptOutOfSearch(atlas.status),
+      },
       describe(locale, 'trees', t.trees, t.treesLead),
       describe(locale, 'species', t.speciesIndex, t.speciesLead),
       describe(locale, 'skills', t.spells, t.spellsLead),

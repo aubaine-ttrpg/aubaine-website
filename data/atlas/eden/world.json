@@ -1,0 +1,13 @@
+{
+  "name": "Eden",
+  "status": "draft",
+  "kind": "land",
+  "columns": 128,
+  "rows": 96,
+  "hexKm": 5,
+  "featured": {
+    "places": [],
+    "landmarks": []
+  },
+  "emblem": "atlas-eden-emblem.svg"
+}

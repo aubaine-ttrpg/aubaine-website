@@ -24,14 +24,14 @@ import {
   subspeciesSkills,
   VARIABLE_CHARACTERISTIC,
 } from '../../src/lib/game/derive'
-import { readCorpus, readSources } from '../../src/lib/game/fs-sources'
+import { readAtlasSources, readCorpus, readSources } from '../../src/lib/game/fs-sources'
 import { referenceKey } from '../../src/lib/game/richtext'
 import { overlays } from '../../src/lib/game/schema'
 import { LOCALES } from '../../src/lib/i18n/locales'
 import { pathFor, treeNodeHref } from '../../src/lib/i18n/routes'
 import { strings } from '../../src/lib/i18n/strings'
 import { PLACEHOLDER_BANNER, PLACEHOLDER_COVER, PLACEHOLDER_SQUARE } from '../../src/lib/media'
-import { FONT_FAMILIES, ICON_SETS } from '../../src/lib/rights/attribution'
+import { FONT_FAMILIES, ICON_SETS, SOUND_FILES } from '../../src/lib/rights/attribution'
 import { indexCaptions } from '../../src/lib/rights/captions'
 import { HOLDER, LICENCE, licenceClaim, pictureClaim, YEAR } from '../../src/lib/rights/claim'
 import { stampJpeg, stripJpeg } from '../../src/lib/rights/jpeg'
@@ -62,6 +62,7 @@ const root = resolve(import.meta.dirname, '../..')
 const fr = await readCorpus(root, 'fr')
 const en = await readCorpus(root, 'en')
 const sources = await readSources(root)
+const atlas = await readAtlasSources(root)
 const captions = indexCaptions(
   JSON.parse(await readFile(resolve(root, 'data/media-captions.json'), 'utf8')),
 )
@@ -162,6 +163,14 @@ function jsonStrings(
     }
   }
   return out
+}
+
+function uiStrings(value: unknown, path: string): { path: string; text: string }[] {
+  if (typeof value === 'string' || typeof value === 'function') {
+    return [{ path, text: String(value) }]
+  }
+  if (value === null || typeof value !== 'object') return []
+  return Object.entries(value).flatMap(([key, entry]) => uiStrings(entry, `${path}.${key}`))
 }
 
 function bannedPhrasePattern(phrase: string): RegExp {
@@ -975,7 +984,7 @@ describe('authoring hygiene', () => {
       }
       for (const entry of entries) {
         if (!entry.isFile()) continue
-        if (!/\.(ts|tsx|astro|css|md|mjs|json)$/.test(entry.name)) continue
+        if (!/\.(ts|tsx|astro|css|md|mjs|json|glsl)$/.test(entry.name)) continue
         const raw = await readFile(resolve(entry.parentPath, entry.name), 'utf8')
         const hit = banned.find((dash) => raw.includes(dash))
         expect(hit, `${entry.parentPath}/${entry.name} contains a banned dash`).toBeUndefined()
@@ -1109,12 +1118,32 @@ describe('authored prose markup', () => {
   })
 })
 
+function atlasText(): { where: string; text: string }[] {
+  const out: { where: string; text: string }[] = []
+  const atlasOverlays = sources.translations.filter((overlay) => overlay.id.startsWith('atlas/'))
+  for (const [where, value] of [
+    ['atlas/vocabularies', atlas.vocabularies],
+    ...atlas.worlds.flatMap((world) => [
+      [`atlas/${world.id}/places`, world.places],
+      [`atlas/${world.id}/landmarks`, world.landmarks],
+      [`atlas/${world.id}/routes`, world.routes],
+      [`atlas/${world.id}/establishments`, world.establishments],
+    ]),
+    ...atlasOverlays.map((overlay) => [overlay.id, overlay.data]),
+  ] as const) {
+    for (const { path, value: text } of jsonStrings(value, '', [])) {
+      out.push({ where: `${where} ${path}`, text })
+    }
+  }
+  return out
+}
+
 describe('prose hygiene', () => {
   async function siteCopy(): Promise<{ where: string; text: string }[]> {
     const out: { where: string; text: string }[] = []
     for (const locale of LOCALES) {
-      for (const [key, value] of Object.entries(strings(locale))) {
-        out.push({ where: `strings.ts ${locale}.${key}`, text: String(value) })
+      for (const { path, text } of uiStrings(strings(locale), locale)) {
+        out.push({ where: `strings.ts ${path}`, text })
       }
     }
     const dir = 'src/content/policies'
@@ -1127,7 +1156,12 @@ describe('prose hygiene', () => {
 
   it('writes none of the phrases the editorial rules refuse', async () => {
     const chapters = (await authoredProse()).map(({ where, text }) => ({ where, text }))
-    for (const { where, text } of [...everyRuleText, ...chapters, ...(await siteCopy())]) {
+    for (const { where, text } of [
+      ...everyRuleText,
+      ...chapters,
+      ...(await siteCopy()),
+      ...atlasText(),
+    ]) {
       for (const phrase of BANNED_PHRASES) {
         expect(
           bannedPhrasePattern(phrase).test(text),
@@ -1138,7 +1172,7 @@ describe('prose hygiene', () => {
   })
 
   it('writes no antithesis outside a book chapter', async () => {
-    for (const { where, text } of [...everyRuleText, ...(await siteCopy())]) {
+    for (const { where, text } of [...everyRuleText, ...(await siteCopy()), ...atlasText()]) {
       expect(
         ANTITHESIS.test(text),
         `${where} writes the antithesis. Outside a book chapter, write the contrast as a plain statement or as two sentences`,
@@ -1286,7 +1320,7 @@ describe('term colours', () => {
     const pick = (map: Map<string, string>) =>
       new Map([...map].filter(([name]) => name.startsWith('term-') || name.startsWith('state-')))
     return {
-      dark: pick(tokensIn(css, ':root')),
+      dark: pick(tokensIn(css, ':root,\n.au-dark')),
       light: pick(tokensIn(css, ':root[data-theme="light"],\n.au-print')),
     }
   }
@@ -1542,6 +1576,11 @@ describe('translation coverage', () => {
     for (const entry of sources.environments) known.add(`environments/${entry.id}`)
     for (const entry of sources.books) known.add(`books/${entry.id}`)
     known.add('equipment/catalogue')
+    for (const world of atlas.worlds) {
+      for (const part of ['world', 'places', 'landmarks', 'routes', 'establishments']) {
+        known.add(`atlas/${world.id}/${part}`)
+      }
+    }
 
     for (const overlay of sources.translations) {
       const target = overlay.id.replace(/\.[a-z]{2}$/, '')
@@ -1550,7 +1589,8 @@ describe('translation coverage', () => {
   })
 
   it('carries only overlay fields its kind allows', () => {
-    const kinds = [
+    type OverlaySchema = { safeParse(data: unknown): { success: boolean } }
+    const kinds: [string, OverlaySchema][] = [
       ['skills/', overlays.skill],
       ['skill-trees/', overlays.skillTree],
       ['skill-lists/', overlays.skillList],
@@ -1562,11 +1602,27 @@ describe('translation coverage', () => {
       ['materials/', overlays.material],
       ['environments/', overlays.environment],
       ['books/', overlays.book],
-    ] as const
+    ]
+    const atlasParts = new Map<string, OverlaySchema>([
+      ['world', overlays.atlasWorld],
+      ['places', overlays.atlasPlaces],
+      ['landmarks', overlays.atlasLandmarks],
+      ['routes', overlays.atlasRoutes],
+      ['establishments', overlays.atlasEstablishments],
+    ])
+    const schemaFor = (id: string): OverlaySchema | undefined => {
+      if (!id.startsWith('atlas/')) return kinds.find(([prefix]) => id.startsWith(prefix))?.[1]
+      return atlasParts.get(
+        id
+          .split('/')
+          .at(-1)
+          ?.replace(/\.[a-z]{2}$/, '') ?? '',
+      )
+    }
     for (const overlay of sources.translations) {
-      const kind = kinds.find(([prefix]) => overlay.id.startsWith(prefix))
-      expect(kind, `overlay ${overlay.id} has no known kind`).toBeDefined()
-      const parsed = kind?.[1].safeParse(overlay.data)
+      const schema = schemaFor(overlay.id)
+      expect(schema, `overlay ${overlay.id} has no known kind`).toBeDefined()
+      const parsed = schema?.safeParse(overlay.data)
       expect(parsed?.success, `overlay ${overlay.id} carries a field its kind does not allow`).toBe(
         true,
       )
@@ -1764,6 +1820,16 @@ describe('what the site credits', () => {
     }
   })
 
+  it('credits every sound on disk, and has a file for every credited sound', async () => {
+    const onDisk = (await readdir(resolve(root, 'data/media/sounds')))
+      .filter((file) => file.endsWith('.mp3'))
+      .map((file) => file.slice(0, -'.mp3'.length))
+      .sort()
+    expect(onDisk, 'src/lib/rights/attribution.ts and data/media/sounds/ disagree').toEqual(
+      [...SOUND_FILES].sort(),
+    )
+  })
+
   it('names the licence and its deed on the licences page, in both locales', async () => {
     for (const file of ['licences.md', 'licences.en.md']) {
       const body = await readFile(resolve(root, 'src/content/policies', file), 'utf8')
@@ -1774,9 +1840,8 @@ describe('what the site credits', () => {
 
   it('writes no version into a user interface string', () => {
     for (const locale of LOCALES) {
-      for (const [key, value] of Object.entries(strings(locale))) {
-        if (typeof value !== 'string') continue
-        expect(value, `${locale}.${key} carries a version that cannot follow Aubaine`).not.toMatch(
+      for (const { path, text } of uiStrings(strings(locale), locale)) {
+        expect(text, `${path} carries a version that cannot follow Aubaine`).not.toMatch(
           /\bv\d+\.\d+/i,
         )
       }

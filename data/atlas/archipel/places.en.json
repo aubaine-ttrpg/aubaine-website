@@ -1,0 +1,528 @@
+{
+  "places": {
+    "ponant": {
+      "name": "The Ponant",
+      "description": "The western continent, from the ridges of the Fangs of Varn to the cliffs of the Bastion. A land of old kingdoms, sacred forests and wheat valleys."
+    },
+    "levant": {
+      "name": "The Levant",
+      "description": "The eastern continent: taiga and foundries in the north, ochre sands in the south, and between them the Ether Wastes that nobody rules."
+    },
+    "givrecroc": {
+      "name": "Frostfang",
+      "description": "An ice island north of the Sea of Mists. Its clans live off seals, whales and the tunnels dug through the glacier."
+    },
+    "brisants": {
+      "name": "Breakers Archipelago",
+      "description": "A string of tropical islands ringed by reefs. Wrecks outnumber harbours here."
+    },
+    "braise": {
+      "name": "Ember Island",
+      "description": "A volcanic island in the southeast, dominated by the Ember-Heart. Its basalt slopes yield the finest black glass in the known world."
+    },
+    "guet": {
+      "name": "Watch Island",
+      "description": "A fortified rock in the middle of the Opal Sea. A watchtower guards the straits between the two continents."
+    },
+    "aubemont": {
+      "name": "Kingdom of Aubemont",
+      "ruler": "Queen Ysolde III",
+      "government": "Monarchy",
+      "description": "A Ponant kingdom ruled from the Bastion. Its blue-and-gold banners fly from the Velde to the Dead Waters."
+    },
+    "ysmera": {
+      "name": "Domain of Ysmera",
+      "ruler": "The Conclave of Roots",
+      "government": "Druidic theocracy",
+      "description": "A sylvan protectorate around the World Tree. No tree is felled there without the Sylvan Wardens' consent."
+    },
+    "nordhal": {
+      "name": "Confederation of Nordhal",
+      "ruler": "Chancellor Oskar Vehl",
+      "government": "Merchant confederacy",
+      "description": "A league of cities in the Levant's north, linked by the Ether Line. Coal, iron and technomancy."
+    },
+    "orsalis": {
+      "name": "Hegemony of Orsalis",
+      "ruler": "Hegemon Sarai",
+      "description": "A merchant empire of the sands, from Kheranne to the Maëlis coast. It holds the caravan roads and taxes the ether that travels them."
+    },
+    "givreclans": {
+      "name": "Clans of Frostfang",
+      "ruler": "The Mother of Clans",
+      "government": "Clan council",
+      "description": "Seven clans that gather every winter in the Hall of Wintering."
+    },
+    "libre-port": {
+      "name": "Free Port of Corsaille",
+      "ruler": "Council of Captains",
+      "government": "Pirate republic",
+      "description": "A free city of the Breakers ruled by a council of captains. Everything is for sale, especially what was stolen."
+    },
+    "cite-etat-aerolys": {
+      "name": "City-State of Aérolys",
+      "ruler": "Archon Célestin",
+      "government": "Archontate",
+      "description": "The city that floats above the Opal Sea, carried by ether crystals. It only touches the ground through its airships."
+    },
+    "comte-bastion": {
+      "name": "County of the Bastion",
+      "description": "Crown lands around the capital: cliffs, orchards and the villas of the great houses."
+    },
+    "velde": {
+      "name": "Duchy of Velde",
+      "description": "The kingdom's granary, a valley of wheat and windmills crossed by the Velde."
+    },
+    "marche-de-varn": {
+      "name": "March of Varn",
+      "description": "A mountain border march held by mining barons and the fortress of Mistfort."
+    },
+    "mortes": {
+      "name": "Barony of the Dead Waters",
+      "description": "A swampy barony the crown controls mostly on paper."
+    },
+    "pays-de-pierrelune": {
+      "name": "Moonstone Country",
+      "description": "The southwest coast, fishing villages and wind-beaten chapels."
+    },
+    "coeur-sylve": {
+      "name": "Sylvan Heart",
+      "description": "The sanctuary around the World Tree, closed to axes and wagons."
+    },
+    "lisieres": {
+      "name": "Fringes of Ysmera",
+      "description": "The Domain's outer woods, patrolled by the Sylvan Wardens."
+    },
+    "plaine-ferratre": {
+      "name": "Ironhearth Plain",
+      "description": "An industrial plain around the capital, covered with slag heaps and railways."
+    },
+    "givre-bleu": {
+      "name": "Bluefrost Marches",
+      "description": "Conifer forests and logging camps in the northeast."
+    },
+    "hautes-echines": {
+      "name": "High Spines",
+      "description": "Mining highlands at the foot of the Purple Spines."
+    },
+    "vallee-de-kheranne": {
+      "name": "Kheranne Valley",
+      "description": "Oases, palm groves and canals around the Hegemony's capital."
+    },
+    "ocre": {
+      "name": "Satrapy of the Sands",
+      "description": "A desert of dunes and mesas, crossed by the Caravan Road and the Ether Line."
+    },
+    "cote-de-maelis": {
+      "name": "Maëlis Coast",
+      "description": "A jungle coast of stilt villages, rich in spices."
+    },
+    "marches-pourpres": {
+      "name": "Purple Marches",
+      "description": "The Hegemony's eastern frontier, facing the Ether Wastes."
+    },
+    "fjords": {
+      "name": "Wintering Fjords",
+      "description": "The island's south coast, where the fjords stay free of ice in summer."
+    },
+    "cimes": {
+      "name": "White Peaks",
+      "description": "The island's frozen heart, under the glacier."
+    },
+    "ile-corsaille": {
+      "name": "Corsaille Island",
+      "description": "The Free Port's mother island, its roadstead and coves."
+    },
+    "iles-vent": {
+      "name": "Windward Islands",
+      "description": "Trade-wind islands, havens for smugglers."
+    },
+    "bastion": {
+      "name": "The Bastion",
+      "description": "Capital of Aubemont, perched on the white cliffs above the Opal Sea. Its citadel, arena and aqueducts can be seen from leagues out at sea."
+    },
+    "bastion-citadelle": {
+      "name": "The Citadel"
+    },
+    "bastion-voiles": {
+      "name": "Port of Sails"
+    },
+    "bastion-arene": {
+      "name": "Arena Quarter"
+    },
+    "bastion-jardins": {
+      "name": "The High Gardens"
+    },
+    "bastion-marche": {
+      "name": "The Lower Market"
+    },
+    "bastion-aqueducs": {
+      "name": "Aqueduct Suburb"
+    },
+    "ferratre": {
+      "name": "Ironhearth",
+      "description": "Capital of Nordhal, a city of forges and chimneys where every track of the Ether Line meets."
+    },
+    "ferratre-gare": {
+      "name": "Central Station"
+    },
+    "ferratre-fonderies": {
+      "name": "The Foundries"
+    },
+    "ferratre-techno": {
+      "name": "Technomancers' Court"
+    },
+    "ferratre-docks": {
+      "name": "Frozen Docks"
+    },
+    "kheranne": {
+      "description": "Capital of the Hegemony, a city of domes and hanging gardens between desert and sea."
+    },
+    "kheranne-mirages": {
+      "name": "Palace of Mirages"
+    },
+    "kheranne-suspendus": {
+      "name": "Hanging Gardens"
+    },
+    "kheranne-observatoire": {
+      "name": "Observatory"
+    },
+    "corsaille": {
+      "description": "The Free Port: wooden quays, taverns and flags of every nation."
+    },
+    "corsaille-port-franc": {
+      "name": "Free Harbour"
+    },
+    "corsaille-ville-haute": {
+      "name": "Upper Town"
+    },
+    "vellune": {
+      "description": "Market town of the Velde, its windmills and great grain fair."
+    },
+    "vellune-bourg": {
+      "name": "The Borough"
+    },
+    "vellune-moulins": {
+      "name": "The Mills"
+    },
+    "brumefort": {
+      "name": "Mistfort",
+      "description": "The fortress of the Mist Pass, guarding the only wagon road through the Fangs."
+    },
+    "brumefort-forteresse": {
+      "name": "The Fortress"
+    },
+    "brumefort-col": {
+      "name": "The Pass"
+    },
+    "hivernage": {
+      "name": "Wintering",
+      "description": "The clans' harbour, longhouses and longship yards at the head of the fjord."
+    },
+    "hivernage-glaces": {
+      "name": "The Ice Harbour"
+    },
+    "hivernage-halle": {
+      "name": "The Hall of Clans"
+    },
+    "sombreval": {
+      "name": "Darkvale",
+      "description": "A woodcutters' hamlet at the edge of the Sylve, the last shelter before the World Tree."
+    },
+    "gue": {
+      "name": "Willow Ford",
+      "description": "A village at the ford of the Velde, known for its inn and willows."
+    },
+    "pierrelune": {
+      "name": "Moonstone",
+      "description": "A southwestern fishing port and its Moon chapel."
+    },
+    "varn": {
+      "description": "A mining village clinging to the Fangs, above the moonsilver galleries."
+    },
+    "ecume": {
+      "name": "Foam Port",
+      "description": "A fishing port on the Levant's west coast, end of the branch line."
+    },
+    "myr": {
+      "name": "Oasis of Myr",
+      "description": "A desert oasis where caravans stop, around a jade-coloured lake."
+    },
+    "maelis": {
+      "description": "A stilt village at the mouth of the jungle."
+    },
+    "cendrelieu": {
+      "name": "Cinderstead",
+      "description": "A glassblowers' hamlet at the foot of the volcano."
+    },
+    "sylve": {
+      "name": "The Sylve of Ysmera",
+      "description": "The oldest forest of the Ponant. Its oaks are the size of towers and the World Tree grows at its centre."
+    },
+    "myxe": {
+      "name": "Myxe Wood",
+      "description": "A wood of giant mushrooms and glowing moss. The myxo harvested here goes into catalyst crafting."
+    },
+    "crocs": {
+      "name": "The Fangs of Varn",
+      "description": "A range of peaks closing the Ponant to the west. A single wagon pass, guarded by Mistfort."
+    },
+    "echines": {
+      "name": "The Purple Spines",
+      "description": "Mountains of violet-tinged rock, saturated with ether. Nordhal's mines have dug into them for two centuries."
+    },
+    "mortes-eaux": {
+      "name": "The Dead Waters",
+      "description": "Misty marshes in the south of the Ponant. Maps get it wrong, and so do guides."
+    },
+    "val-velde": {
+      "name": "Vale of Velde",
+      "description": "A cultivated valley of wheat, barley and lavender, dotted with windmills."
+    },
+    "sables": {
+      "name": "The Ochre Sands",
+      "description": "The great desert of the southern Levant. Its dunes advance a few steps every year."
+    },
+    "orgues": {
+      "name": "The Red Organs",
+      "description": "Red sandstone mesas carved by the wind. Caravans go around them; raiders live in them."
+    },
+    "friches": {
+      "name": "The Ether Wastes",
+      "description": "A plateau of crystals and glowing rifts where ether rises to the surface. No nation holds it for more than a season."
+    },
+    "forets-du-givre-bleu": {
+      "name": "Bluefrost Forests",
+      "description": "Endless taiga in the north of the Levant, where the Ether Line's sleepers are cut."
+    },
+    "jungle-maelis": {
+      "name": "Maëlis Jungle",
+      "description": "Thick jungle on the east coast, its muddy rivers and swallowed temples."
+    },
+    "glacier": {
+      "name": "Frostfang Glacier",
+      "description": "An ice cap covering the north of the island. Ancient tunnels run through it."
+    },
+    "recif": {
+      "name": "Breakers Reef",
+      "description": "A coral barrier that has broken more hulls than every storm combined."
+    },
+    "mont-coeur-de-braise": {
+      "name": "Mount Ember-Heart",
+      "description": "An active volcano. Its flows reach the sea in years of great eruptions."
+    },
+    "miroir": {
+      "name": "Mirror Lake",
+      "description": "A great highland lake fed by the Velde. On calm days, they say you can see the stars at noon."
+    },
+    "ocean-du-ponant": {
+      "name": "Ponant Ocean",
+      "description": "The western ocean, whose far shore nobody has found."
+    },
+    "opale": {
+      "name": "Opal Sea",
+      "description": "The inner sea between Ponant and Levant, under the floating city of Aérolys."
+    },
+    "brumes": {
+      "name": "Sea of Mists",
+      "description": "The cold northern sea, fogbound three days in four."
+    },
+    "corail": {
+      "name": "Coral Sea",
+      "description": "The warm southern sea, turquoise above the reefs."
+    },
+    "golfe-braise": {
+      "name": "Ember Gulf",
+      "description": "A gulf of lukewarm water, heated by the volcano."
+    },
+    "ocean-du-levant": {
+      "name": "Levant Ocean",
+      "description": "The eastern ocean, the whalers' route out of Nordhal."
+    },
+    "eparses": {
+      "name": "Scattered Isles",
+      "description": "Floating islands scattered above the Opal Sea and the Fangs since the Great Upheaval."
+    },
+    "clairiere": {
+      "name": "Glade of the World Tree",
+      "description": "The ring of roots where pilgrims and druids camp at the foot of the Tree."
+    },
+    "dedale": {
+      "name": "The Maze",
+      "description": "A natural network of caves and galleries running beneath the west of the known world. The Bastion's cartographers have charted only a third of it."
+    },
+    "galeries-varn": {
+      "name": "Varn Galleries",
+      "description": "The moonsilver mines, dug over three centuries. The oldest shafts are walled up."
+    },
+    "filon-lune": {
+      "name": "Moonsilver Lode"
+    },
+    "puits-brumefort": {
+      "name": "Mistfort Shaft"
+    },
+    "contrebandiers": {
+      "name": "Smugglers' Caves",
+      "description": "Sea caves linked to the Bastion cliffs. What cannot pass customs is unloaded here."
+    },
+    "grande-grotte": {
+      "name": "Great Cave"
+    },
+    "quai-noir": {
+      "name": "Black Quay"
+    },
+    "bas-bastion": {
+      "name": "The Lower Bastion",
+      "description": "Catacombs and carved halls beneath the capital. The kings of Aubemont have rested here for a thousand years."
+    },
+    "catacombes": {
+      "name": "Royal Catacombs"
+    },
+    "crypte-rois": {
+      "name": "Crypt of Kings"
+    },
+    "jardins-spores": {
+      "name": "Spore Gardens",
+      "description": "Caverns of giant mushrooms whose spores light up the rock."
+    },
+    "coeur-racines": {
+      "name": "Heart of the Roots",
+      "description": "The World Tree's first roots, as thick as towers, cross the rock here."
+    },
+    "dedale-tunnels": {
+      "name": "Maze Tunnels",
+      "description": "Tunnels linking the domain's caverns."
+    },
+    "voie-creuse": {
+      "name": "The Hollow Way",
+      "description": "An ancient tunnel bored beneath the Opal Sea. Nobody knows who dug it; smugglers use it to avoid customs."
+    },
+    "haltes-de-la-voie-creuse": {
+      "name": "Hollow Way Halts",
+      "description": "The caverns where travellers stop along the Hollow Way."
+    },
+    "halte-milieu": {
+      "name": "Middle Halt"
+    },
+    "grotte-ecume": {
+      "name": "Foam Cave"
+    },
+    "voie-creuse-tunnels": {
+      "name": "Hollow Way Tunnel",
+      "description": "Tunnels linking the domain's caverns."
+    },
+    "veines-ether": {
+      "name": "The Ether Veins",
+      "description": "Ether-saturated fissures beneath the eastern Levant. Prospectors descend on ropes."
+    },
+    "cavernes-cristal": {
+      "name": "Crystal Caverns",
+      "description": "Halls lined with ether crystals that pulse like a heart."
+    },
+    "salle-du-pouls": {
+      "name": "Hall of the Pulse"
+    },
+    "veines-pourpres": {
+      "name": "Purple Veins"
+    },
+    "veines-ether-tunnels": {
+      "name": "Ether Fissures",
+      "description": "Tunnels linking the domain's caverns."
+    },
+    "salle-givre": {
+      "name": "Hall of Frost",
+      "description": "Blue-ice tunnels under the Frostfang ice cap."
+    },
+    "repaire": {
+      "name": "Great Lair",
+      "description": "The lair of the Red Organs raiders."
+    },
+    "tube-ardent": {
+      "name": "Burning Tube",
+      "description": "Cooled lava tubes under Ember Island. Some are not cooled."
+    },
+    "trefonds": {
+      "name": "The Depths",
+      "description": "The world beneath the world: caverns as large as counties, sunless seas and dwarven realms. Its borders follow none of the surface's."
+    },
+    "dolmhir": {
+      "ruler": "King Brannoc Dolm",
+      "description": "A dwarven city carved in granite, twelve hundred metres beneath the Fangs. Its forges never go out."
+    },
+    "grande-forge": {
+      "name": "The Great Forge"
+    },
+    "salle-rois": {
+      "name": "Hall of Kings"
+    },
+    "marche-profond": {
+      "name": "Deep Market"
+    },
+    "puits-sombres": {
+      "name": "The Dark Shafts"
+    },
+    "mer-sans-soleil": {
+      "name": "Sunless Sea",
+      "description": "An underground lake so vast its far shore cannot be seen. Lantern boats cross it in three days."
+    },
+    "labyrinthe-de-seve": {
+      "name": "Labyrinth of Sap",
+      "description": "A maze of living roots, deeper than the Mother-Roots. The sap glows like amber."
+    },
+    "abysses-de-cristal": {
+      "name": "Crystal Abyss",
+      "description": "A chasm of giant crystals. The Wastes' ether seeps up from here drop by drop."
+    },
+    "trefonds-tunnels": {
+      "name": "Great Black Road",
+      "description": "Tunnels linking the domain's caverns."
+    },
+    "braises": {
+      "name": "The Deep Embers",
+      "description": "The Ember-Heart's magma chamber and the forges that live off it."
+    },
+    "chambre-braise": {
+      "name": "Ember Chamber",
+      "description": "Salamander forges built on the edge of the magma."
+    },
+    "cryptes-englouties": {
+      "name": "Sunken Crypts",
+      "description": "Temples of a forgotten people, beneath the floor of the Coral Sea."
+    },
+    "cite-aerolys": {
+      "description": "A sky city built on a mountain shard torn from the ground. Its ether crystals hold it a thousand metres up."
+    },
+    "aerolys-acropole": {
+      "name": "Acropolis of the Archon"
+    },
+    "aerolys-port-celeste": {
+      "name": "Sky Port"
+    },
+    "aerolys-vents": {
+      "name": "Gardens of the Winds"
+    },
+    "aerolys-ateliers": {
+      "name": "Workshop Quarter"
+    },
+    "eparse-1-ile": {
+      "name": "Heron Isle",
+      "description": "A floating islet of meadows where ether herons nest."
+    },
+    "eparse-2-ile": {
+      "name": "Cascade Isle",
+      "description": "Its springs pour into the void and fall back as rain on the sea."
+    },
+    "eparse-3-ile": {
+      "name": "Recluse's Isle",
+      "description": "A technomancer hermit lives here alone with his automata."
+    },
+    "eparse-4-ile": {
+      "name": "Chained Isle",
+      "description": "Moored to the seabed by three giant chains that no one forged."
+    },
+    "eparse-5-ile": {
+      "name": "Varn Isle",
+      "description": "A peak fragment torn from the Fangs during the Great Upheaval."
+    }
+  }
+}

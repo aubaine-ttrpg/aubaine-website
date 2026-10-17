@@ -3,6 +3,8 @@
 **Project:** Aubaine, the wiki
 **Status:** Accepted
 **Date:** 2026-09-23
+**Revised:** 2026-10-16, Decision 2 gains an addendum: `SOUND_WORKS` credits the Atlas
+sounds, CC0 recordings listed with their cuts
 **Deciders:** Kori
 **Scope:** Where the licensing, AI, credits and privacy prose lives, how third party attribution is
 stored and enforced, what the footer reaches, and the rename of the version file with its
@@ -123,6 +125,13 @@ identifier that `claim.ts` owns. And the icon and font attributions existed only
 - **Generate the credits page from the Iconify API and the Google Fonts metadata at build time**:
   authoritative at the source. Rejected because it puts a network call in the build, and the licences
   in question change on a scale of years. Reopens if the sets ever grow past what a reviewer can read.
+
+### Addendum (2026-10-16): the sounds join the table
+
+- `SOUND_WORKS` in `src/lib/rights/attribution.ts` credits the CC0 recordings the Atlas plays, one row
+  per work with its source page, its author and its cuts. The credits page renders it as a third
+  table, and `tests/data/integrity.test.ts` fails when a file under `data/media/sounds/` and the
+  table disagree. 0045 Decision 4 records why a licence that asks for no credit is credited anyway.
 
 ---
 

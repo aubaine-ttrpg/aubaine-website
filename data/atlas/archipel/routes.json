@@ -1,0 +1,261 @@
+{
+  "routes": [
+    {
+      "id": "voie-royale",
+      "kind": "road",
+      "name": "Voie Royale",
+      "start": {
+        "column": 52,
+        "row": 43
+      },
+      "steps": "233232332222332334444444333433443444443222323232232",
+      "description": "La grande route pavée d'Aubemont, de la capitale au col de Brume."
+    },
+    {
+      "id": "route-sud",
+      "kind": "road",
+      "name": "Route du Sud",
+      "start": {
+        "column": 39,
+        "row": 51
+      },
+      "steps": "2222223222222222223222323333322333333444445",
+      "description": "Route de la Velde vers la côte sud-ouest."
+    },
+    {
+      "id": "route-caravanes",
+      "kind": "road",
+      "name": "Route des Caravanes",
+      "start": {
+        "column": 77,
+        "row": 53
+      },
+      "steps": "000001010010001110001011230544343334444554444444444544444544444544455554444",
+      "description": "La piste royale de l'Hégémonie, jalonnée de caravansérails."
+    },
+    {
+      "id": "route-maelis",
+      "kind": "road",
+      "name": "Route Côtière",
+      "start": {
+        "column": 77,
+        "row": 53
+      },
+      "steps": "0000010100100555000000005500505000000505500111",
+      "description": "Route de la côte entre Kheranne et la jungle."
+    },
+    {
+      "id": "pelerins",
+      "kind": "trail",
+      "name": "Sentier des Pèlerins",
+      "start": {
+        "column": 26,
+        "row": 36
+      },
+      "steps": "55545555",
+      "description": "Sentier forestier jusqu'à l'Arbre-Monde. On le fait à pied, sans fer ni feu."
+    },
+    {
+      "id": "piste-crocs",
+      "kind": "trail",
+      "name": "Piste des Crocs",
+      "start": {
+        "column": 17,
+        "row": 44
+      },
+      "steps": "50545444543444544",
+      "description": "Sentier muletier taillé dans la montagne jusqu'aux mines de Varn."
+    },
+    {
+      "id": "sentier-glaces",
+      "kind": "trail",
+      "name": "Sentier des Glaces",
+      "start": {
+        "column": 54,
+        "row": 10
+      },
+      "steps": "3333333435",
+      "description": "Piste balisée de cairns à travers le glacier."
+    },
+    {
+      "id": "piste-cratere",
+      "kind": "trail",
+      "name": "Sentier du Cratère",
+      "start": {
+        "column": 116,
+        "row": 84
+      },
+      "steps": "000554",
+      "description": "Sentier de cendre jusqu'aux lèvres du volcan."
+    },
+    {
+      "id": "sentier-mortes",
+      "kind": "trail",
+      "name": "Sentier des Passeurs",
+      "start": {
+        "column": 34,
+        "row": 59
+      },
+      "steps": "22211111111",
+      "description": "Chemin de rondins à travers les Mortes-Eaux, connu des seuls passeurs."
+    },
+    {
+      "id": "ligne-ether",
+      "kind": "rail",
+      "name": "Ligne d'Éther",
+      "start": {
+        "column": 80,
+        "row": 19
+      },
+      "steps": "1100001101011001100111111122121233333333333323222222222223",
+      "description": "Voie ferrée de Nordhal, ses locomotives brûlent des cristaux d'éther."
+    },
+    {
+      "id": "ligne-ecume",
+      "kind": "rail",
+      "name": "Embranchement d'Écume",
+      "start": {
+        "column": 80,
+        "row": 19
+      },
+      "steps": "112222211121",
+      "description": "Ligne secondaire vers la côte ouest."
+    },
+    {
+      "id": "route-epices",
+      "kind": "sea",
+      "name": "Route des Épices",
+      "start": {
+        "column": 52,
+        "row": 43
+      },
+      "steps": "000000111111212212112212221111221222222222222255555555555555555555500550550005550505",
+      "description": "Route maritime du poivre et de l'éther raffiné."
+    },
+    {
+      "id": "passage-opale",
+      "kind": "sea",
+      "name": "Passage d'Opale",
+      "start": {
+        "column": 52,
+        "row": 43
+      },
+      "steps": "0000000005000005055555000055005505",
+      "description": "Traversée de la Mer d'Opale sous Aérolys."
+    },
+    {
+      "id": "route-nord",
+      "kind": "sea",
+      "name": "Route du Nord",
+      "start": {
+        "column": 80,
+        "row": 19
+      },
+      "steps": "3333333333343334344334433343344",
+      "description": "Route des baleiniers entre Nordhal et Givrecroc."
+    },
+    {
+      "id": "route-braise",
+      "kind": "sea",
+      "name": "Route de Braise",
+      "start": {
+        "column": 115,
+        "row": 49
+      },
+      "steps": "555500011011112221222222222222222222222222121211010054",
+      "description": "Cabotage jusqu'à l'île volcanique."
+    },
+    {
+      "id": "river-velde",
+      "kind": "river",
+      "name": "La Velde",
+      "start": {
+        "column": 18,
+        "row": 38
+      },
+      "steps": "433333333"
+    },
+    {
+      "id": "river-orsane",
+      "kind": "river",
+      "name": "L'Orsane",
+      "start": {
+        "column": 102,
+        "row": 28
+      },
+      "steps": "333333333333332233223333"
+    },
+    {
+      "id": "river-fonte",
+      "kind": "river",
+      "name": "La Fonte",
+      "start": {
+        "column": 48,
+        "row": 5
+      },
+      "steps": "3222211"
+    },
+    {
+      "id": "river-pourpre",
+      "kind": "river",
+      "name": "Rivière Pourpre",
+      "start": {
+        "column": 109,
+        "row": 32
+      },
+      "steps": "000000000"
+    },
+    {
+      "id": "river-cascade",
+      "kind": "river",
+      "name": "La Dévale",
+      "start": {
+        "column": 14,
+        "row": 57
+      },
+      "steps": "3333"
+    }
+  ],
+  "skyLanes": [
+    {
+      "from": {
+        "landmark": "aerolys"
+      },
+      "to": {
+        "place": "bastion"
+      }
+    },
+    {
+      "from": {
+        "landmark": "aerolys"
+      },
+      "to": {
+        "place": "ferratre"
+      }
+    },
+    {
+      "from": {
+        "landmark": "aerolys"
+      },
+      "to": {
+        "landmark": "eparse-2"
+      }
+    },
+    {
+      "from": {
+        "landmark": "aerolys"
+      },
+      "to": {
+        "landmark": "eparse-1"
+      }
+    },
+    {
+      "from": {
+        "landmark": "eparse-1"
+      },
+      "to": {
+        "landmark": "eparse-5"
+      }
+    }
+  ]
+}

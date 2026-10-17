@@ -13,7 +13,7 @@
     "build": "pnpm media:sync && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "check": "astro check && tsc --noEmit",
+    "check": "astro check && tsc --noEmit && tsc --noEmit -p src/lib/atlas/worker/tsconfig.json",
     "lint": "biome check .",
     "format": "biome check --write .",
     "test": "vitest run",
@@ -27,6 +27,7 @@
     "media:sync": "node tools/media/sync.ts",
     "media:stamp": "node tools/media/stamp.ts",
     "media:stamp:check": "node tools/media/stamp.ts --check",
+    "media:sounds": "node tools/media/sounds.ts",
     "pdf": "node tools/pdf/render.ts",
     "pdf:check": "node tools/pdf/render.ts --check",
     "pdf:archive": "node tools/pdf/archive.ts",
@@ -39,7 +40,8 @@
     "astro": "^7.3.3",
     "motion": "^13.4.0",
     "react": "^19.3.0",
-    "react-dom": "^19.3.0"
+    "react-dom": "^19.3.0",
+    "three": "^0.186.1"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
@@ -47,6 +49,7 @@
     "@playwright/test": "^1.63.0",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
+    "@types/three": "^0.186.0",
     "playwright-core": "1.63.0",
     "remark-definition-list": "^2.0.0",
     "sharp": "^0.35.4",

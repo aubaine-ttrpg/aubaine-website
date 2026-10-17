@@ -1,0 +1,442 @@
+{
+  "islands": [
+    {
+      "landmark": "aerolys",
+      "tiles": [
+        {
+          "column": 64,
+          "row": 26,
+          "type": "forest",
+          "place": "aerolys-port-celeste"
+        },
+        {
+          "column": 62,
+          "row": 27,
+          "type": "meadow",
+          "place": "aerolys-port-celeste"
+        },
+        {
+          "column": 63,
+          "row": 27,
+          "type": "urban",
+          "place": "aerolys-port-celeste"
+        },
+        {
+          "column": 64,
+          "row": 27,
+          "type": "urban",
+          "place": "aerolys-port-celeste"
+        },
+        {
+          "column": 65,
+          "row": 27,
+          "type": "urban",
+          "place": "aerolys-port-celeste"
+        },
+        {
+          "column": 62,
+          "row": 28,
+          "type": "meadow",
+          "place": "aerolys-port-celeste"
+        },
+        {
+          "column": 63,
+          "row": 28,
+          "type": "urban",
+          "place": "aerolys-port-celeste"
+        },
+        {
+          "column": 64,
+          "row": 28,
+          "type": "urban",
+          "place": "aerolys-acropole"
+        },
+        {
+          "column": 65,
+          "row": 28,
+          "type": "urban",
+          "place": "aerolys-acropole"
+        },
+        {
+          "column": 66,
+          "row": 28,
+          "type": "urban",
+          "place": "aerolys-vents"
+        },
+        {
+          "column": 61,
+          "row": 29,
+          "type": "forest",
+          "place": "aerolys-port-celeste"
+        },
+        {
+          "column": 62,
+          "row": 29,
+          "type": "urban",
+          "place": "aerolys-port-celeste"
+        },
+        {
+          "column": 63,
+          "row": 29,
+          "type": "urban",
+          "place": "aerolys-acropole"
+        },
+        {
+          "column": 64,
+          "row": 29,
+          "type": "urban",
+          "place": "aerolys-acropole"
+        },
+        {
+          "column": 65,
+          "row": 29,
+          "type": "urban",
+          "place": "aerolys-acropole"
+        },
+        {
+          "column": 66,
+          "row": 29,
+          "type": "urban",
+          "place": "aerolys-vents"
+        },
+        {
+          "column": 67,
+          "row": 29,
+          "type": "meadow",
+          "place": "aerolys-vents"
+        },
+        {
+          "column": 63,
+          "row": 30,
+          "type": "urban",
+          "place": "aerolys-ateliers"
+        },
+        {
+          "column": 64,
+          "row": 30,
+          "type": "urban",
+          "place": "aerolys-acropole"
+        },
+        {
+          "column": 65,
+          "row": 30,
+          "type": "urban",
+          "place": "aerolys-acropole"
+        },
+        {
+          "column": 66,
+          "row": 30,
+          "type": "urban",
+          "place": "aerolys-vents"
+        },
+        {
+          "column": 62,
+          "row": 31,
+          "type": "forest",
+          "place": "aerolys-ateliers"
+        },
+        {
+          "column": 63,
+          "row": 31,
+          "type": "urban",
+          "place": "aerolys-ateliers"
+        },
+        {
+          "column": 64,
+          "row": 31,
+          "type": "urban",
+          "place": "aerolys-ateliers"
+        },
+        {
+          "column": 65,
+          "row": 31,
+          "type": "urban",
+          "place": "aerolys-vents"
+        },
+        {
+          "column": 63,
+          "row": 32,
+          "type": "forest",
+          "place": "aerolys-ateliers"
+        },
+        {
+          "column": 64,
+          "row": 32,
+          "type": "forest",
+          "place": "aerolys-ateliers"
+        },
+        {
+          "column": 65,
+          "row": 32,
+          "type": "meadow",
+          "place": "aerolys-ateliers"
+        },
+        {
+          "column": 66,
+          "row": 32,
+          "type": "meadow",
+          "place": "aerolys-vents"
+        }
+      ]
+    },
+    {
+      "landmark": "eparse-1",
+      "tiles": [
+        {
+          "column": 56,
+          "row": 34,
+          "type": "highland",
+          "place": "eparse-1-ile"
+        },
+        {
+          "column": 57,
+          "row": 34,
+          "type": "forest",
+          "place": "eparse-1-ile"
+        },
+        {
+          "column": 58,
+          "row": 34,
+          "type": "meadow",
+          "place": "eparse-1-ile"
+        },
+        {
+          "column": 59,
+          "row": 34,
+          "type": "forest",
+          "place": "eparse-1-ile"
+        },
+        {
+          "column": 58,
+          "row": 35,
+          "type": "forest",
+          "place": "eparse-1-ile"
+        },
+        {
+          "column": 59,
+          "row": 36,
+          "type": "forest",
+          "place": "eparse-1-ile"
+        }
+      ]
+    },
+    {
+      "landmark": "eparse-2",
+      "tiles": [
+        {
+          "column": 70,
+          "row": 21,
+          "type": "forest",
+          "place": "eparse-2-ile"
+        },
+        {
+          "column": 70,
+          "row": 22,
+          "type": "forest",
+          "place": "eparse-2-ile"
+        },
+        {
+          "column": 71,
+          "row": 22,
+          "type": "forest",
+          "place": "eparse-2-ile"
+        },
+        {
+          "column": 72,
+          "row": 22,
+          "type": "highland",
+          "place": "eparse-2-ile"
+        },
+        {
+          "column": 70,
+          "row": 23,
+          "type": "forest",
+          "place": "eparse-2-ile"
+        },
+        {
+          "column": 71,
+          "row": 23,
+          "type": "forest",
+          "place": "eparse-2-ile"
+        },
+        {
+          "column": 72,
+          "row": 23,
+          "type": "meadow",
+          "place": "eparse-2-ile"
+        },
+        {
+          "column": 73,
+          "row": 23,
+          "type": "meadow",
+          "place": "eparse-2-ile"
+        },
+        {
+          "column": 72,
+          "row": 24,
+          "type": "highland",
+          "place": "eparse-2-ile"
+        }
+      ]
+    },
+    {
+      "landmark": "eparse-3",
+      "tiles": [
+        {
+          "column": 61,
+          "row": 18,
+          "type": "meadow",
+          "place": "eparse-3-ile"
+        },
+        {
+          "column": 62,
+          "row": 18,
+          "type": "forest",
+          "place": "eparse-3-ile"
+        },
+        {
+          "column": 60,
+          "row": 19,
+          "type": "forest",
+          "place": "eparse-3-ile"
+        },
+        {
+          "column": 61,
+          "row": 19,
+          "type": "highland",
+          "place": "eparse-3-ile"
+        },
+        {
+          "column": 60,
+          "row": 20,
+          "type": "forest",
+          "place": "eparse-3-ile"
+        },
+        {
+          "column": 61,
+          "row": 20,
+          "type": "forest",
+          "place": "eparse-3-ile"
+        },
+        {
+          "column": 62,
+          "row": 20,
+          "type": "forest",
+          "place": "eparse-3-ile"
+        },
+        {
+          "column": 60,
+          "row": 21,
+          "type": "highland",
+          "place": "eparse-3-ile"
+        },
+        {
+          "column": 61,
+          "row": 21,
+          "type": "meadow",
+          "place": "eparse-3-ile"
+        }
+      ]
+    },
+    {
+      "landmark": "eparse-4",
+      "tiles": [
+        {
+          "column": 74,
+          "row": 35,
+          "type": "forest",
+          "place": "eparse-4-ile"
+        },
+        {
+          "column": 75,
+          "row": 35,
+          "type": "forest",
+          "place": "eparse-4-ile"
+        },
+        {
+          "column": 74,
+          "row": 36,
+          "type": "forest",
+          "place": "eparse-4-ile"
+        },
+        {
+          "column": 75,
+          "row": 36,
+          "type": "forest",
+          "place": "eparse-4-ile"
+        },
+        {
+          "column": 76,
+          "row": 36,
+          "type": "meadow",
+          "place": "eparse-4-ile"
+        },
+        {
+          "column": 77,
+          "row": 36,
+          "type": "forest",
+          "place": "eparse-4-ile"
+        },
+        {
+          "column": 74,
+          "row": 37,
+          "type": "highland",
+          "place": "eparse-4-ile"
+        }
+      ]
+    },
+    {
+      "landmark": "eparse-5",
+      "tiles": [
+        {
+          "column": 20,
+          "row": 36,
+          "type": "forest",
+          "place": "eparse-5-ile"
+        },
+        {
+          "column": 17,
+          "row": 37,
+          "type": "forest",
+          "place": "eparse-5-ile"
+        },
+        {
+          "column": 18,
+          "row": 37,
+          "type": "forest",
+          "place": "eparse-5-ile"
+        },
+        {
+          "column": 19,
+          "row": 37,
+          "type": "meadow",
+          "place": "eparse-5-ile"
+        },
+        {
+          "column": 18,
+          "row": 38,
+          "type": "forest",
+          "place": "eparse-5-ile"
+        },
+        {
+          "column": 19,
+          "row": 38,
+          "type": "forest",
+          "place": "eparse-5-ile"
+        },
+        {
+          "column": 20,
+          "row": 38,
+          "type": "forest",
+          "place": "eparse-5-ile"
+        },
+        {
+          "column": 19,
+          "row": 39,
+          "type": "meadow",
+          "place": "eparse-5-ile"
+        }
+      ]
+    }
+  ]
+}

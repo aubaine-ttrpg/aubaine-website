@@ -3,6 +3,8 @@
 **Project:** Aubaine, the wiki
 **Status:** Accepted
 **Date:** 2026-09-22
+**Revised:** 2026-10-16, Decision 1 gains an addendum: `data/media/sounds/` is foreign
+and never opened, like the fonts and the icons
 **Deciders:** Kori
 **Scope:** How a first party file under `data/media/` declares its author and its licence in its own
 bytes, what is removed from it, and how the same claim reaches the derivatives the build emits and
@@ -92,6 +94,12 @@ descriptions existed nowhere else in the repository.
   is what sharp and exiftool look for, and the writer uses it.
 - `YEAR` in `src/lib/rights/claim.ts` is a constant. Deriving it from the clock would restamp every
   master each January, break idempotency across a year boundary and rename every booklet with it.
+
+### Addendum (2026-10-16): the sounds are foreign
+
+- `data/media/sounds/` holds third party CC0 recordings (0045 Decision 4). It is listed in
+  `FOREIGN_DIRECTORIES` in `src/lib/rights/ownership.ts`, so `pnpm media:stamp` never opens it and
+  writes no Aubaine claim into it. Its credits are in `docs/third-party-assets.md`.
 
 ---
 

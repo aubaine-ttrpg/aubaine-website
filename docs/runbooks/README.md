@@ -23,6 +23,7 @@ One job per page. Every job is done by adding or editing a file under `data/`. T
 | Start a new book, or attach a PDF | [add-a-book.md](add-a-book.md) |
 | Write a chapter inside a book | [add-a-book-page.md](add-a-book-page.md) |
 | Put an English version next to a French file | [add-a-translation.md](add-a-translation.md) |
+| Change the world map: terrain, borders, places, routes, travel rules | [edit-the-atlas.md](edit-the-atlas.md) |
 | Add a plate banner, an item picture, an icon or a PDF | [add-an-image.md](add-an-image.md) |
 
 ## Read once, before the first edit

@@ -347,6 +347,11 @@ describe('route slugs', () => {
     expect(segmentsFor('archive', 'fr', { slug: 'equipement' })).toEqual(['archives', 'equipement'])
   })
 
+  it('serves the Atlas at one slug in both locales', () => {
+    expect(pathFor('atlas', 'fr')).toBe('/fr/atlas')
+    expect(pathFor('atlas', 'en')).toBe('/en/atlas')
+  })
+
   it('never lets an archive path be read as a book chapter', () => {
     expect(bookChapterRef('/fr/archives/livre-du-joueur')).toBeUndefined()
     expect(bookChapterRef('/en/archives/livre-du-joueur')).toBeUndefined()
@@ -364,6 +369,7 @@ describe('nav sections', () => {
     expect(sectionFor('speciesEntry')).toBe('almanach')
     expect(sectionFor('skills')).toBe('almanach')
     expect(sectionFor('rules')).toBe('almanach')
+    expect(sectionFor('atlas')).toBe('atlas')
   })
 
   it('leaves search and 404 outside the navigation', () => {

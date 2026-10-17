@@ -1,4 +1,5 @@
-:root {
+:root,
+.au-dark {
   --bg: #06050d;
   --bg2: #0a0c1e;
   --bg3: #111634;

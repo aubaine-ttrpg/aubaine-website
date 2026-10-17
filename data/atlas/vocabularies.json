@@ -1,0 +1,690 @@
+{
+  "tileTypes": [
+    {
+      "key": "deep",
+      "labelFr": "Océan profond",
+      "labelEn": "Deep ocean",
+      "descriptionFr": "Eaux noires et sans fond, que seuls les grands navires traversent.",
+      "descriptionEn": "Black, bottomless water that only great ships cross."
+    },
+    {
+      "key": "sea",
+      "labelFr": "Pleine mer",
+      "labelEn": "Open sea",
+      "descriptionFr": "Pleine mer, houle régulière et vents portants.",
+      "descriptionEn": "Open sea, steady swell and fair winds."
+    },
+    {
+      "key": "shallows",
+      "labelFr": "Hauts-fonds",
+      "labelEn": "Shallows",
+      "descriptionFr": "Hauts-fonds clairs où l'on voit le sable à travers l'eau.",
+      "descriptionEn": "Clear shallows where the sand shows through the water."
+    },
+    {
+      "key": "reef",
+      "labelFr": "Récif corallien",
+      "labelEn": "Coral reef",
+      "descriptionFr": "Récif de corail coloré, piège pour les coques.",
+      "descriptionEn": "A colourful coral reef, a trap for hulls."
+    },
+    {
+      "key": "lake",
+      "labelFr": "Lac",
+      "labelEn": "Lake",
+      "descriptionFr": "Eaux douces et calmes.",
+      "descriptionEn": "Calm fresh water."
+    },
+    {
+      "key": "beach",
+      "labelFr": "Plage",
+      "labelEn": "Beach",
+      "descriptionFr": "Plage de sable, accès facile à la mer.",
+      "descriptionEn": "A sandy beach with easy access to the sea."
+    },
+    {
+      "key": "plains",
+      "labelFr": "Plaines",
+      "labelEn": "Plains",
+      "descriptionFr": "Prairie ouverte, idéale pour voyager vite.",
+      "descriptionEn": "Open grassland, ideal for fast travel."
+    },
+    {
+      "key": "meadow",
+      "labelFr": "Collines herbeuses",
+      "labelEn": "Grassy hills",
+      "descriptionFr": "Collines herbeuses et fleuries.",
+      "descriptionEn": "Grassy, flowering hills."
+    },
+    {
+      "key": "farm",
+      "labelFr": "Terres cultivées",
+      "labelEn": "Farmland",
+      "descriptionFr": "Champs, haies et fermes.",
+      "descriptionEn": "Fields, hedgerows and farms."
+    },
+    {
+      "key": "forest",
+      "labelFr": "Forêt tempérée",
+      "labelEn": "Temperate forest",
+      "descriptionFr": "Forêt de chênes et de hêtres.",
+      "descriptionEn": "A forest of oak and beech."
+    },
+    {
+      "key": "taiga",
+      "labelFr": "Taïga",
+      "labelEn": "Taiga",
+      "descriptionFr": "Forêt de résineux froide et dense.",
+      "descriptionEn": "Cold, dense conifer forest."
+    },
+    {
+      "key": "jungle",
+      "labelFr": "Jungle",
+      "labelEn": "Jungle",
+      "descriptionFr": "Jungle humide, lianes et fleuves boueux.",
+      "descriptionEn": "Humid jungle, vines and muddy rivers."
+    },
+    {
+      "key": "swamp",
+      "labelFr": "Marais",
+      "labelEn": "Swamp",
+      "descriptionFr": "Marais brumeux au sol traître.",
+      "descriptionEn": "A misty marsh with treacherous ground."
+    },
+    {
+      "key": "desert",
+      "labelFr": "Désert de dunes",
+      "labelEn": "Dune desert",
+      "descriptionFr": "Dunes mouvantes sous un soleil de plomb.",
+      "descriptionEn": "Shifting dunes under a leaden sun."
+    },
+    {
+      "key": "savanna",
+      "labelFr": "Savane",
+      "labelEn": "Savanna",
+      "descriptionFr": "Herbes hautes et acacias.",
+      "descriptionEn": "Tall grass and acacias."
+    },
+    {
+      "key": "badlands",
+      "labelFr": "Terres rouges",
+      "labelEn": "Badlands",
+      "descriptionFr": "Grès rouges ravinés et mesas.",
+      "descriptionEn": "Gullied red sandstone and mesas."
+    },
+    {
+      "key": "tundra",
+      "labelFr": "Toundra",
+      "labelEn": "Tundra",
+      "descriptionFr": "Lande froide de mousses et de lichens.",
+      "descriptionEn": "Cold moorland of moss and lichen."
+    },
+    {
+      "key": "glacier",
+      "labelFr": "Glacier",
+      "labelEn": "Glacier",
+      "descriptionFr": "Glace éternelle et crevasses.",
+      "descriptionEn": "Eternal ice and crevasses."
+    },
+    {
+      "key": "mountain",
+      "labelFr": "Montagne",
+      "labelEn": "Mountain",
+      "descriptionFr": "Pics rocheux, cols et éboulis.",
+      "descriptionEn": "Rocky peaks, passes and scree."
+    },
+    {
+      "key": "highland",
+      "labelFr": "Hauts plateaux",
+      "labelEn": "Highlands",
+      "descriptionFr": "Hauts plateaux battus par le vent.",
+      "descriptionEn": "Windswept highlands."
+    },
+    {
+      "key": "volcanic",
+      "labelFr": "Terres volcaniques",
+      "labelEn": "Volcanic land",
+      "descriptionFr": "Basalte, cendres et coulées de lave.",
+      "descriptionEn": "Basalt, ash and lava flows."
+    },
+    {
+      "key": "ether",
+      "labelFr": "Friches d'éther",
+      "labelEn": "Ether wastes",
+      "descriptionFr": "Cristaux d'éther et failles lumineuses.",
+      "descriptionEn": "Ether crystals and glowing rifts."
+    },
+    {
+      "key": "myxo",
+      "labelFr": "Bois myxoïde",
+      "labelEn": "Myxoid wood",
+      "descriptionFr": "Champignons géants et mousses luminescentes.",
+      "descriptionEn": "Giant mushrooms and glowing moss."
+    },
+    {
+      "key": "urban",
+      "labelFr": "Ville",
+      "labelEn": "Town",
+      "descriptionFr": "Rues pavées, maisons et places.",
+      "descriptionEn": "Paved streets, houses and squares."
+    }
+  ],
+  "rocks": [
+    {
+      "key": "granite",
+      "labelFr": "Granite",
+      "labelEn": "Granite"
+    },
+    {
+      "key": "limestone",
+      "labelFr": "Calcaire",
+      "labelEn": "Limestone"
+    },
+    {
+      "key": "sandstone",
+      "labelFr": "Grès",
+      "labelEn": "Sandstone"
+    },
+    {
+      "key": "basalt",
+      "labelFr": "Basalte",
+      "labelEn": "Basalt"
+    },
+    {
+      "key": "schist",
+      "labelFr": "Schiste d'éther",
+      "labelEn": "Ether schist"
+    },
+    {
+      "key": "permafrost",
+      "labelFr": "Glace fossile",
+      "labelEn": "Ancient ice"
+    },
+    {
+      "key": "marble",
+      "labelFr": "Marbre",
+      "labelEn": "Marble"
+    }
+  ],
+  "settings": [
+    {
+      "key": "rock",
+      "labelFr": "Roche massive",
+      "labelEn": "Solid rock"
+    },
+    {
+      "key": "cavern",
+      "labelFr": "Caverne",
+      "labelEn": "Cavern"
+    },
+    {
+      "key": "mine",
+      "labelFr": "Galeries minières",
+      "labelEn": "Mine galleries"
+    },
+    {
+      "key": "crystal",
+      "labelFr": "Caverne de cristal",
+      "labelEn": "Crystal cavern"
+    },
+    {
+      "key": "lava",
+      "labelFr": "Chambre de lave",
+      "labelEn": "Lava chamber"
+    },
+    {
+      "key": "ice",
+      "labelFr": "Grotte de glace",
+      "labelEn": "Ice cave"
+    },
+    {
+      "key": "fungal",
+      "labelFr": "Caverne fongique",
+      "labelEn": "Fungal cavern"
+    },
+    {
+      "key": "built",
+      "labelFr": "Salles taillées",
+      "labelEn": "Carved halls"
+    },
+    {
+      "key": "lake",
+      "labelFr": "Lac souterrain",
+      "labelEn": "Underground lake"
+    },
+    {
+      "key": "tunnel",
+      "labelFr": "Tunnel",
+      "labelEn": "Tunnel"
+    },
+    {
+      "key": "roots",
+      "labelFr": "Racines",
+      "labelEn": "Roots"
+    }
+  ],
+  "placeKinds": [
+    {
+      "key": "realm",
+      "labelFr": "Domaine souterrain",
+      "labelEn": "Underground domain"
+    },
+    {
+      "key": "network",
+      "labelFr": "Réseau",
+      "labelEn": "Network"
+    },
+    {
+      "key": "cavern",
+      "labelFr": "Caverne",
+      "labelEn": "Cavern"
+    },
+    {
+      "key": "hold",
+      "labelFr": "Cité souterraine",
+      "labelEn": "Underground city"
+    },
+    {
+      "key": "hold-quarter",
+      "labelFr": "Quartier",
+      "labelEn": "Quarter"
+    },
+    {
+      "key": "continent",
+      "labelFr": "Continent",
+      "labelEn": "Continent"
+    },
+    {
+      "key": "country",
+      "labelFr": "Pays",
+      "labelEn": "Country"
+    },
+    {
+      "key": "region",
+      "labelFr": "Région",
+      "labelEn": "Region"
+    },
+    {
+      "key": "city",
+      "labelFr": "Ville",
+      "labelEn": "City"
+    },
+    {
+      "key": "village",
+      "labelFr": "Village",
+      "labelEn": "Village"
+    },
+    {
+      "key": "quarter",
+      "labelFr": "Quartier",
+      "labelEn": "Quarter"
+    },
+    {
+      "key": "natural",
+      "labelFr": "Lieu naturel",
+      "labelEn": "Natural area"
+    },
+    {
+      "key": "sea",
+      "labelFr": "Mer",
+      "labelEn": "Sea"
+    }
+  ],
+  "naturalKinds": [
+    {
+      "key": "forest",
+      "labelFr": "Forêt",
+      "labelEn": "Forest"
+    },
+    {
+      "key": "range",
+      "labelFr": "Chaîne de montagnes",
+      "labelEn": "Mountain range"
+    },
+    {
+      "key": "swamp",
+      "labelFr": "Marais",
+      "labelEn": "Swamp"
+    },
+    {
+      "key": "valley",
+      "labelFr": "Vallée",
+      "labelEn": "Valley"
+    },
+    {
+      "key": "desert",
+      "labelFr": "Désert",
+      "labelEn": "Desert"
+    },
+    {
+      "key": "badlands",
+      "labelFr": "Terres rouges",
+      "labelEn": "Badlands"
+    },
+    {
+      "key": "wastes",
+      "labelFr": "Friches",
+      "labelEn": "Wastes"
+    },
+    {
+      "key": "jungle",
+      "labelFr": "Jungle",
+      "labelEn": "Jungle"
+    },
+    {
+      "key": "glacier",
+      "labelFr": "Glacier",
+      "labelEn": "Glacier"
+    },
+    {
+      "key": "reef",
+      "labelFr": "Récif",
+      "labelEn": "Reef"
+    },
+    {
+      "key": "volcano",
+      "labelFr": "Volcan",
+      "labelEn": "Volcano"
+    },
+    {
+      "key": "lake",
+      "labelFr": "Lac",
+      "labelEn": "Lake"
+    },
+    {
+      "key": "glade",
+      "labelFr": "Clairière",
+      "labelEn": "Glade"
+    },
+    {
+      "key": "skyisles",
+      "labelFr": "Îles volantes",
+      "labelEn": "Floating islands"
+    }
+  ],
+  "landmarkKinds": [
+    {
+      "key": "worldtree",
+      "labelFr": "Arbre-Monde",
+      "labelEn": "World Tree"
+    },
+    {
+      "key": "shipwreck",
+      "labelFr": "Épave",
+      "labelEn": "Wreck"
+    },
+    {
+      "key": "castle",
+      "labelFr": "Citadelle",
+      "labelEn": "Citadel"
+    },
+    {
+      "key": "arena",
+      "labelFr": "Arène",
+      "labelEn": "Arena"
+    },
+    {
+      "key": "skycity",
+      "labelFr": "Cité céleste",
+      "labelEn": "Sky city"
+    },
+    {
+      "key": "skyisle",
+      "labelFr": "Île volante",
+      "labelEn": "Floating island"
+    },
+    {
+      "key": "volcano",
+      "labelFr": "Volcan",
+      "labelEn": "Volcano"
+    },
+    {
+      "key": "spire",
+      "labelFr": "Flèche de cristal",
+      "labelEn": "Crystal spire"
+    },
+    {
+      "key": "bones",
+      "labelFr": "Ossements",
+      "labelEn": "Bones"
+    },
+    {
+      "key": "lighthouse",
+      "labelFr": "Phare",
+      "labelEn": "Lighthouse"
+    },
+    {
+      "key": "portal",
+      "labelFr": "Portail",
+      "labelEn": "Portal"
+    },
+    {
+      "key": "tower",
+      "labelFr": "Tour",
+      "labelEn": "Tower"
+    }
+  ],
+  "routeKinds": [
+    {
+      "key": "road",
+      "labelFr": "Route pavée",
+      "labelEn": "Paved road"
+    },
+    {
+      "key": "trail",
+      "labelFr": "Sentier pédestre",
+      "labelEn": "Footpath"
+    },
+    {
+      "key": "rail",
+      "labelFr": "Ligne d'éther",
+      "labelEn": "Ether Line"
+    },
+    {
+      "key": "sea",
+      "labelFr": "Route maritime",
+      "labelEn": "Sea lane"
+    },
+    {
+      "key": "sky",
+      "labelFr": "Voie céleste",
+      "labelEn": "Sky lane"
+    },
+    {
+      "key": "river",
+      "labelFr": "Rivière",
+      "labelEn": "River"
+    }
+  ],
+  "establishmentKinds": [
+    {
+      "key": "crypt",
+      "labelFr": "Crypte",
+      "labelEn": "Crypt"
+    },
+    {
+      "key": "farm",
+      "labelFr": "Champignonnière",
+      "labelEn": "Mushroom farm"
+    },
+    {
+      "key": "shrine",
+      "labelFr": "Sanctuaire",
+      "labelEn": "Shrine"
+    },
+    {
+      "key": "outpost",
+      "labelFr": "Avant-poste",
+      "labelEn": "Outpost"
+    },
+    {
+      "key": "palace",
+      "labelFr": "Palais",
+      "labelEn": "Palace"
+    },
+    {
+      "key": "library",
+      "labelFr": "Bibliothèque",
+      "labelEn": "Library"
+    },
+    {
+      "key": "tavern",
+      "labelFr": "Taverne",
+      "labelEn": "Tavern"
+    },
+    {
+      "key": "harbour",
+      "labelFr": "Capitainerie",
+      "labelEn": "Harbour office"
+    },
+    {
+      "key": "shipyard",
+      "labelFr": "Chantier naval",
+      "labelEn": "Shipyard"
+    },
+    {
+      "key": "stables",
+      "labelFr": "Écuries",
+      "labelEn": "Stables"
+    },
+    {
+      "key": "gambling",
+      "labelFr": "Tripot",
+      "labelEn": "Gambling den"
+    },
+    {
+      "key": "temple",
+      "labelFr": "Temple",
+      "labelEn": "Temple"
+    },
+    {
+      "key": "academy",
+      "labelFr": "Académie",
+      "labelEn": "Academy"
+    },
+    {
+      "key": "market",
+      "labelFr": "Marché",
+      "labelEn": "Market"
+    },
+    {
+      "key": "forge",
+      "labelFr": "Forge",
+      "labelEn": "Forge"
+    },
+    {
+      "key": "guild",
+      "labelFr": "Guilde",
+      "labelEn": "Guild"
+    },
+    {
+      "key": "inn",
+      "labelFr": "Auberge",
+      "labelEn": "Inn"
+    },
+    {
+      "key": "apothecary",
+      "labelFr": "Apothicaire",
+      "labelEn": "Apothecary"
+    },
+    {
+      "key": "station",
+      "labelFr": "Gare",
+      "labelEn": "Station"
+    },
+    {
+      "key": "workshop",
+      "labelFr": "Atelier",
+      "labelEn": "Workshop"
+    },
+    {
+      "key": "treasury",
+      "labelFr": "Trésor",
+      "labelEn": "Treasury"
+    },
+    {
+      "key": "baths",
+      "labelFr": "Thermes",
+      "labelEn": "Baths"
+    },
+    {
+      "key": "mill",
+      "labelFr": "Moulin",
+      "labelEn": "Mill"
+    },
+    {
+      "key": "barracks",
+      "labelFr": "Caserne",
+      "labelEn": "Barracks"
+    },
+    {
+      "key": "mine",
+      "labelFr": "Mine",
+      "labelEn": "Mine"
+    },
+    {
+      "key": "lodge",
+      "labelFr": "Loge",
+      "labelEn": "Lodge"
+    },
+    {
+      "key": "chapel",
+      "labelFr": "Chapelle",
+      "labelEn": "Chapel"
+    },
+    {
+      "key": "fishmarket",
+      "labelFr": "Criée",
+      "labelEn": "Fish market"
+    },
+    {
+      "key": "well",
+      "labelFr": "Puits",
+      "labelEn": "Well"
+    }
+  ],
+  "vessels": [
+    {
+      "key": "sailing",
+      "labelFr": "Voilier",
+      "labelEn": "Sailing Ship"
+    },
+    {
+      "key": "galley",
+      "labelFr": "Galère",
+      "labelEn": "Galley"
+    },
+    {
+      "key": "longship",
+      "labelFr": "Drakkar",
+      "labelEn": "Longship"
+    },
+    {
+      "key": "warship",
+      "labelFr": "Navire de guerre",
+      "labelEn": "Warship"
+    },
+    {
+      "key": "keelboat",
+      "labelFr": "Quillard",
+      "labelEn": "Keelboat"
+    },
+    {
+      "key": "rowboat",
+      "labelFr": "Barque",
+      "labelEn": "Rowboat"
+    }
+  ],
+  "terrains": [
+    {
+      "key": "collines",
+      "labelFr": "Collines",
+      "labelEn": "Hills"
+    },
+    {
+      "key": "eaux",
+      "labelFr": "Eaux",
+      "labelEn": "Water"
+    }
+  ]
+}

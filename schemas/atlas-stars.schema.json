@@ -1,0 +1,151 @@
+{
+  "$id": "https://aubaine.io/schema/atlas-stars.json",
+  "title": "Astres de l'Atlas",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "primary": {
+      "type": "object",
+      "properties": {
+        "temperature": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "La température effective de l'astre, en kelvins. Elle donne la couleur de sa lumière."
+        },
+        "illuminance": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "L'éclairement direct de l'astre au zénith, en lux, à sa distance de référence."
+        },
+        "diameter": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Le diamètre apparent de l'astre, en degrés."
+        }
+      },
+      "required": [
+        "temperature",
+        "illuminance",
+        "diameter"
+      ],
+      "additionalProperties": false,
+      "description": "L'astre principal, autour duquel la planète tourne à 1 UA."
+    },
+    "warm": {
+      "type": "object",
+      "properties": {
+        "temperature": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "La température effective de l'astre, en kelvins. Elle donne la couleur de sa lumière."
+        },
+        "illuminance": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "L'éclairement direct de l'astre au zénith, en lux, à sa distance de référence."
+        },
+        "diameter": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Le diamètre apparent de l'astre, en degrés."
+        }
+      },
+      "required": [
+        "temperature",
+        "illuminance",
+        "diameter"
+      ],
+      "additionalProperties": false,
+      "description": "Le compagnon chaud du couple éloigné."
+    },
+    "hot": {
+      "type": "object",
+      "properties": {
+        "temperature": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "La température effective de l'astre, en kelvins. Elle donne la couleur de sa lumière."
+        },
+        "illuminance": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "L'éclairement direct de l'astre au zénith, en lux, à sa distance de référence."
+        },
+        "diameter": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Le diamètre apparent de l'astre, en degrés."
+        },
+        "tint": {
+          "description": "Une teinte de direction artistique appliquée à sa lumière, en rouge, vert et bleu ; elle s'efface près de l'horizon.",
+          "type": "array",
+          "prefixItems": [
+            {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          ],
+          "items": false,
+          "minItems": 3,
+          "maxItems": 3
+        }
+      },
+      "required": [
+        "temperature",
+        "illuminance",
+        "diameter"
+      ],
+      "additionalProperties": false,
+      "description": "Le compagnon compact et très chaud du couple éloigné."
+    },
+    "pair": {
+      "type": "object",
+      "properties": {
+        "distance": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "La distance du barycentre du couple à l'astre principal, en UA."
+        },
+        "separation": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "La distance entre les deux compagnons, en UA."
+        },
+        "orbitYears": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "La période du couple autour de l'astre principal, en années."
+        },
+        "mutualDays": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "La période des deux compagnons l'un autour de l'autre, en jours."
+        }
+      },
+      "required": [
+        "distance",
+        "separation",
+        "orbitYears",
+        "mutualDays"
+      ],
+      "additionalProperties": false,
+      "description": "Le couple de compagnons, qui tourne loin autour de l'astre principal."
+    }
+  },
+  "required": [
+    "primary",
+    "warm",
+    "hot",
+    "pair"
+  ],
+  "additionalProperties": false,
+  "description": "Les trois astres du ciel d'Eden, partagés par tous les mondes de l'Atlas."
+}

@@ -1,0 +1,186 @@
+{
+  "$id": "https://aubaine.io/schema/atlas-underground.json",
+  "title": "Strates souterraines d'un monde",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "levels": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991,
+            "description": "La strate, 1 juste sous la surface."
+          },
+          "depth": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991,
+            "description": "Profondeur approximative, en mètres."
+          },
+          "rock": {
+            "type": "object",
+            "properties": {
+              "legend": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string",
+                  "pattern": "^[!-\\-/-~]$"
+                },
+                "additionalProperties": {
+                  "type": "string",
+                  "enum": [
+                    "granite",
+                    "limestone",
+                    "sandstone",
+                    "basalt",
+                    "schist",
+                    "permafrost",
+                    "marble"
+                  ]
+                },
+                "description": "Ce que chaque caractère des rangées veut dire : la roche. Un caractère imprimable, jamais le point, qui marque un hex vide."
+              },
+              "rows": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "description": "Une chaîne par rangée de la grille, du nord au sud, et un caractère par hex, d'ouest en est."
+              }
+            },
+            "required": [
+              "legend",
+              "rows"
+            ],
+            "additionalProperties": false
+          },
+          "setting": {
+            "type": "object",
+            "properties": {
+              "legend": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string",
+                  "pattern": "^[!-\\-/-~]$"
+                },
+                "additionalProperties": {
+                  "type": "string",
+                  "enum": [
+                    "rock",
+                    "cavern",
+                    "mine",
+                    "crystal",
+                    "lava",
+                    "ice",
+                    "fungal",
+                    "built",
+                    "lake",
+                    "tunnel",
+                    "roots"
+                  ]
+                },
+                "description": "Ce que chaque caractère des rangées veut dire : le milieu ; rock est la roche pleine. Un caractère imprimable, jamais le point, qui marque un hex vide."
+              },
+              "rows": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "description": "Une chaîne par rangée de la grille, du nord au sud, et un caractère par hex, d'ouest en est."
+              }
+            },
+            "required": [
+              "legend",
+              "rows"
+            ],
+            "additionalProperties": false
+          },
+          "floor": {
+            "type": "object",
+            "properties": {
+              "legend": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string",
+                  "pattern": "^[!-\\-/-~]$"
+                },
+                "additionalProperties": {
+                  "type": "number"
+                },
+                "description": "Ce que chaque caractère des rangées veut dire : la hauteur du sol sur la carte : 0,6 pour la roche pleine, moins pour une salle creusée. Un caractère imprimable, jamais le point, qui marque un hex vide."
+              },
+              "rows": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "description": "Une chaîne par rangée de la grille, du nord au sud, et un caractère par hex, d'ouest en est."
+              }
+            },
+            "required": [
+              "legend",
+              "rows"
+            ],
+            "additionalProperties": false
+          },
+          "place": {
+            "type": "object",
+            "properties": {
+              "legend": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string",
+                  "pattern": "^[!-\\-/-~]$"
+                },
+                "additionalProperties": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9-]*$",
+                  "description": "Identifiant d'un lieu, d'un lieu remarquable, d'une voie ou d'un établissement de l'Atlas."
+                },
+                "description": "Ce que chaque caractère des rangées veut dire : le plus petit lieu souterrain du hex. Un caractère imprimable, jamais le point, qui marque un hex vide."
+              },
+              "rows": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "description": "Une chaîne par rangée de la grille, du nord au sud, et un caractère par hex, d'ouest en est."
+              }
+            },
+            "required": [
+              "legend",
+              "rows"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "level",
+          "depth",
+          "rock",
+          "setting",
+          "floor",
+          "place"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "levels"
+  ],
+  "additionalProperties": false,
+  "description": "Les strates souterraines d'un monde, chacune avec ses couches."
+}

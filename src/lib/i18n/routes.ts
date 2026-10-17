@@ -5,6 +5,7 @@ export const VIEW_KINDS = [
   'books',
   'book',
   'almanach',
+  'atlas',
   'trees',
   'tree',
   'species',
@@ -31,6 +32,7 @@ const SEGMENT: Record<Exclude<ViewKind, 'home'>, SegmentMap> = {
   books: { fr: 'livres', en: 'books' },
   book: { fr: 'livres', en: 'books' },
   almanach: { fr: 'almanach', en: 'almanach' },
+  atlas: { fr: 'atlas', en: 'atlas' },
   trees: { fr: 'arbres', en: 'trees' },
   tree: { fr: 'arbre', en: 'tree' },
   species: { fr: 'especes', en: 'species' },
@@ -159,6 +161,7 @@ export const NAV_SECTIONS = [
       'rules',
     ],
   },
+  { id: 'atlas', kinds: ['atlas'] },
 ] as const satisfies readonly { id: string; kinds: readonly ViewKind[] }[]
 
 export type NavSection = (typeof NAV_SECTIONS)[number]['id']

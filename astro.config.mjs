@@ -64,6 +64,8 @@ export default defineConfig({
     inlineScriptPolicy(),
   ],
   vite: {
+    worker: { format: 'es' },
+    build: { chunkSizeWarningLimit: 740 },
     resolve: {
       alias: {
         '@': new URL('./src', import.meta.url).pathname,

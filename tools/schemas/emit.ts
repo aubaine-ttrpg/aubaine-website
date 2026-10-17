@@ -5,6 +5,17 @@ import { fileURLToPath } from 'node:url'
 import { z } from 'astro/zod'
 
 import {
+  atlasEstablishments,
+  atlasLandmarks,
+  atlasPlaces,
+  atlasRoutes,
+  atlasSky,
+  atlasStars,
+  atlasSurface,
+  atlasTravel,
+  atlasUnderground,
+  atlasVocabularies,
+  atlasWorld,
   book,
   environment,
   equipmentCatalogue,
@@ -39,6 +50,17 @@ const CONTRACTS = [
   { file: 'vocabulary', title: 'Vocabulaire du jeu', schema: z.object({ entries: vocabulary }) },
   { file: 'tags', title: 'Étiquettes des Compétences', schema: tagTaxonomy },
   { file: 'media-captions', title: 'Légendes des images', schema: mediaCaptions },
+  { file: 'atlas-vocabularies', title: "Vocabulaires de l'Atlas", schema: atlasVocabularies },
+  { file: 'atlas-travel', title: "Règles d'itinéraire de l'Atlas", schema: atlasTravel },
+  { file: 'atlas-stars', title: "Astres de l'Atlas", schema: atlasStars },
+  { file: 'atlas-world', title: "Monde de l'Atlas", schema: atlasWorld },
+  { file: 'atlas-surface', title: "Surface d'un monde", schema: atlasSurface },
+  { file: 'atlas-places', title: "Lieux d'un monde", schema: atlasPlaces },
+  { file: 'atlas-landmarks', title: "Lieux remarquables d'un monde", schema: atlasLandmarks },
+  { file: 'atlas-routes', title: "Voies d'un monde", schema: atlasRoutes },
+  { file: 'atlas-establishments', title: "Établissements d'un monde", schema: atlasEstablishments },
+  { file: 'atlas-sky', title: "Îles volantes d'un monde", schema: atlasSky },
+  { file: 'atlas-underground', title: "Strates souterraines d'un monde", schema: atlasUnderground },
 ] as const
 
 function serialize(title: string, id: string, schema: z.ZodType): string {

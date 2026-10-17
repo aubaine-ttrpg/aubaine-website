@@ -4,12 +4,13 @@ export const OWNED_FILES = [
   'aubaine-logo.svg',
   'aubaine-logo-light.svg',
   'aubaine-logo-void.svg',
+  'atlas-eden-emblem.svg',
   'qr-aubaine.png',
 ] as const
 
 export const STRIPPED_DIRECTORIES = ['flags'] as const
 
-export const FOREIGN_DIRECTORIES = ['fonts', 'icons'] as const
+export const FOREIGN_DIRECTORIES = ['fonts', 'icons', 'sounds'] as const
 
 export const GENERATED_DIRECTORIES = ['pdf', 'pdf-archive'] as const
 

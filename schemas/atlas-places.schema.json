@@ -1,0 +1,426 @@
+{
+  "$id": "https://aubaine.io/schema/atlas-places.json",
+  "title": "Lieux d'un monde",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "places": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "continent"
+              },
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*$",
+                "description": "Identifiant d'un lieu, d'un lieu remarquable, d'une voie ou d'un établissement de l'Atlas."
+              },
+              "parent": {
+                "description": "Le lieu qui contient celui-ci. Un hex d'un lieu appartient aussi à tous ses parents.",
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*$"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "kind",
+              "id",
+              "name"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "country"
+              },
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*$",
+                "description": "Identifiant d'un lieu, d'un lieu remarquable, d'une voie ou d'un établissement de l'Atlas."
+              },
+              "parent": {
+                "description": "Le lieu qui contient celui-ci. Un hex d'un lieu appartient aussi à tous ses parents.",
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*$"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1
+              },
+              "color": {
+                "type": "string",
+                "pattern": "^#[0-9a-f]{6}$",
+                "description": "Couleur du pays, dans la liste des lieux."
+              },
+              "capital": {
+                "description": "La ville capitale.",
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*$"
+              },
+              "ruler": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Qui gouverne."
+              },
+              "government": {
+                "description": "Le régime.",
+                "type": "string",
+                "minLength": 1
+              },
+              "population": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9007199254740991,
+                "description": "Nombre d'habitants."
+              }
+            },
+            "required": [
+              "kind",
+              "id",
+              "name",
+              "color"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "region"
+              },
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*$",
+                "description": "Identifiant d'un lieu, d'un lieu remarquable, d'une voie ou d'un établissement de l'Atlas."
+              },
+              "parent": {
+                "description": "Le lieu qui contient celui-ci. Un hex d'un lieu appartient aussi à tous ses parents.",
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*$"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "kind",
+              "id",
+              "name"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "city",
+                  "village"
+                ]
+              },
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*$",
+                "description": "Identifiant d'un lieu, d'un lieu remarquable, d'une voie ou d'un établissement de l'Atlas."
+              },
+              "parent": {
+                "description": "Le lieu qui contient celui-ci. Un hex d'un lieu appartient aussi à tous ses parents.",
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*$"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1
+              },
+              "style": {
+                "type": "string",
+                "enum": [
+                  "aubemont",
+                  "nordhal",
+                  "orsalis",
+                  "corsaille",
+                  "mountain",
+                  "nordic"
+                ],
+                "description": "Le style de ses maisons sur la carte."
+              },
+              "population": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9007199254740991,
+                "description": "Nombre d'habitants."
+              },
+              "features": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "walls"
+                  ]
+                },
+                "description": "Ce que la carte dessine autour du lieu : walls, des remparts."
+              }
+            },
+            "required": [
+              "kind",
+              "id",
+              "name",
+              "style"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "quarter"
+              },
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*$",
+                "description": "Identifiant d'un lieu, d'un lieu remarquable, d'une voie ou d'un établissement de l'Atlas."
+              },
+              "parent": {
+                "description": "Le lieu qui contient celui-ci. Un hex d'un lieu appartient aussi à tous ses parents.",
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*$"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "kind",
+              "id",
+              "name"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "natural"
+              },
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*$",
+                "description": "Identifiant d'un lieu, d'un lieu remarquable, d'une voie ou d'un établissement de l'Atlas."
+              },
+              "parent": {
+                "description": "Le lieu qui contient celui-ci. Un hex d'un lieu appartient aussi à tous ses parents.",
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*$"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1
+              },
+              "subtype": {
+                "type": "string",
+                "enum": [
+                  "forest",
+                  "range",
+                  "swamp",
+                  "valley",
+                  "desert",
+                  "badlands",
+                  "wastes",
+                  "jungle",
+                  "glacier",
+                  "reef",
+                  "volcano",
+                  "lake",
+                  "glade",
+                  "skyisles"
+                ],
+                "description": "Le genre de lieu naturel."
+              },
+              "features": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "windmills"
+                  ]
+                },
+                "description": "Ce que la carte sème sur ses champs : windmills, des moulins plus nombreux."
+              }
+            },
+            "required": [
+              "kind",
+              "id",
+              "name",
+              "subtype"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "sea"
+              },
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*$",
+                "description": "Identifiant d'un lieu, d'un lieu remarquable, d'une voie ou d'un établissement de l'Atlas."
+              },
+              "parent": {
+                "description": "Le lieu qui contient celui-ci. Un hex d'un lieu appartient aussi à tous ses parents.",
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*$"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "kind",
+              "id",
+              "name"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "realm",
+                  "network",
+                  "cavern",
+                  "hold-quarter"
+                ]
+              },
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*$",
+                "description": "Identifiant d'un lieu, d'un lieu remarquable, d'une voie ou d'un établissement de l'Atlas."
+              },
+              "parent": {
+                "description": "Le lieu qui contient celui-ci. Un hex d'un lieu appartient aussi à tous ses parents.",
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*$"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "kind",
+              "id",
+              "name"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "hold"
+              },
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*$",
+                "description": "Identifiant d'un lieu, d'un lieu remarquable, d'une voie ou d'un établissement de l'Atlas."
+              },
+              "parent": {
+                "description": "Le lieu qui contient celui-ci. Un hex d'un lieu appartient aussi à tous ses parents.",
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*$"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1
+              },
+              "ruler": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Qui gouverne."
+              },
+              "population": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9007199254740991,
+                "description": "Nombre d'habitants."
+              }
+            },
+            "required": [
+              "kind",
+              "id",
+              "name"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "places"
+  ],
+  "additionalProperties": false,
+  "description": "Tous les lieux nommés d'un monde, en surface, dans le ciel et sous terre."
+}

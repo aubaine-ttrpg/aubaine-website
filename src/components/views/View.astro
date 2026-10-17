@@ -4,6 +4,7 @@ import type { PageDescriptor } from '../../lib/game/pages'
 import { isPolicyKind } from '../../lib/i18n/routes'
 import Archive from './Archive.astro'
 import Archives from './Archives.astro'
+import Atlas from './Atlas.astro'
 import Book from './Book.astro'
 import Browse from './Browse.astro'
 import Cards from './Cards.astro'
@@ -31,6 +32,7 @@ if (kind === 'speciesEntry' && !species) throw new Error(`unknown species: ${par
 {kind === 'home' && <Home locale={locale} corpus={corpus} />}
 {kind === 'books' && <Cards locale={locale} corpus={corpus} variant="books" />}
 {kind === 'almanach' && <Cards locale={locale} corpus={corpus} variant="almanach" />}
+{kind === 'atlas' && <Atlas locale={locale} corpus={corpus} />}
 {kind === 'skills' && <Browse locale={locale} corpus={corpus} variant="skills" />}
 {kind === 'equipment' && <Browse locale={locale} corpus={corpus} variant="equipment" />}
 {kind === 'materials' && <Browse locale={locale} corpus={corpus} variant="materials" />}

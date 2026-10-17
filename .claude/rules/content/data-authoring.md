@@ -10,7 +10,7 @@ paths:
 
 ## One entity, one file
 
-- A file under `data/` describes one entity and says nothing about where it is shown.
+- A file under `data/` describes one entity and says nothing about where it is shown. An Atlas world is one entity split by part, one file per part under `data/atlas/<world>/` (`docs/adr/0041-the-atlas-is-a-shell-mounted-map-fed-by-a-worker-from-its-world-data.md`).
 - An entity belongs to a tree, a list, an item, or a set by being named there, never by declaring it about itself.
 - Relate entities by reference, through the fields the schema provides for it, such as a tree placement or `grants`. Never copy an entity's text into another entity.
 - When a rules object grants another, reference it instead of restating it.

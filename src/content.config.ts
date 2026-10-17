@@ -2,6 +2,17 @@ import { defineCollection, z } from 'astro:content'
 import { glob } from 'astro/loaders'
 
 import {
+  atlasEstablishments,
+  atlasLandmarks,
+  atlasPlaces,
+  atlasRoutes,
+  atlasSky,
+  atlasStars,
+  atlasSurface,
+  atlasTravel,
+  atlasUnderground,
+  atlasVocabularies,
+  atlasWorld,
   book,
   environment,
   equipmentCatalogue,
@@ -85,6 +96,42 @@ const policies = defineCollection({
   schema: policy,
 })
 
+const atlasFile = (pattern: string) =>
+  glob({ base: './data/atlas', pattern: [pattern], generateId })
+
+const atlasVocabularyLists = defineCollection({
+  loader: atlasFile('vocabularies.json'),
+  schema: atlasVocabularies,
+})
+const atlasTravelRules = defineCollection({ loader: atlasFile('travel.json'), schema: atlasTravel })
+const atlasStarSystem = defineCollection({ loader: atlasFile('stars.json'), schema: atlasStars })
+const atlasWorlds = defineCollection({ loader: atlasFile('*/world.json'), schema: atlasWorld })
+const atlasSurfaces = defineCollection({
+  loader: atlasFile('*/surface.json'),
+  schema: atlasSurface,
+})
+const atlasPlaceLists = defineCollection({
+  loader: atlasFile('*/places.json'),
+  schema: atlasPlaces,
+})
+const atlasLandmarkLists = defineCollection({
+  loader: atlasFile('*/landmarks.json'),
+  schema: atlasLandmarks,
+})
+const atlasRouteLists = defineCollection({
+  loader: atlasFile('*/routes.json'),
+  schema: atlasRoutes,
+})
+const atlasEstablishmentLists = defineCollection({
+  loader: atlasFile('*/establishments.json'),
+  schema: atlasEstablishments,
+})
+const atlasSkies = defineCollection({ loader: atlasFile('*/sky.json'), schema: atlasSky })
+const atlasUndergrounds = defineCollection({
+  loader: atlasFile('*/underground.json'),
+  schema: atlasUnderground,
+})
+
 const translations = defineCollection({
   loader: glob({ base: './data', pattern: TRANSLATED_JSON, generateId }),
   schema: z.record(z.string(), z.unknown()),
@@ -108,5 +155,16 @@ export const collections = {
   bookPages,
   lore,
   policies,
+  atlasVocabularyLists,
+  atlasTravelRules,
+  atlasStarSystem,
+  atlasWorlds,
+  atlasSurfaces,
+  atlasPlaceLists,
+  atlasLandmarkLists,
+  atlasRouteLists,
+  atlasEstablishmentLists,
+  atlasSkies,
+  atlasUndergrounds,
   translations,
 }

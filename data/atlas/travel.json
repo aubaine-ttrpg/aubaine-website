@@ -1,0 +1,105 @@
+{
+  "hoursPerDay": 8,
+  "crewHoursPerDay": 24,
+  "terrains": [
+    {
+      "key": "plaine",
+      "environment": "plaine",
+      "maxPace": "fast"
+    },
+    {
+      "key": "cote",
+      "environment": "cote",
+      "maxPace": "normal"
+    },
+    {
+      "key": "desert",
+      "environment": "desert",
+      "maxPace": "normal"
+    },
+    {
+      "key": "foret",
+      "environment": "foret",
+      "maxPace": "normal"
+    },
+    {
+      "key": "collines",
+      "maxPace": "normal"
+    },
+    {
+      "key": "montagne",
+      "environment": "montagne",
+      "maxPace": "slow"
+    },
+    {
+      "key": "marais",
+      "environment": "marais",
+      "maxPace": "slow"
+    },
+    {
+      "key": "neiges",
+      "environment": "neiges",
+      "maxPace": "normal",
+      "maxPaceWithSkis": "fast"
+    },
+    {
+      "key": "ville",
+      "environment": "ville",
+      "maxPace": "normal"
+    },
+    {
+      "key": "souterrain",
+      "environment": "souterrain",
+      "maxPace": "normal"
+    },
+    {
+      "key": "eaux"
+    }
+  ],
+  "tileTerrains": {
+    "deep": "eaux",
+    "sea": "eaux",
+    "shallows": "eaux",
+    "reef": "eaux",
+    "lake": "eaux",
+    "beach": "cote",
+    "plains": "plaine",
+    "meadow": "collines",
+    "farm": "plaine",
+    "forest": "foret",
+    "taiga": "foret",
+    "jungle": "foret",
+    "swamp": "marais",
+    "desert": "desert",
+    "savanna": "plaine",
+    "badlands": "desert",
+    "tundra": "neiges",
+    "glacier": "neiges",
+    "mountain": "montagne",
+    "highland": "collines",
+    "volcanic": "montagne",
+    "ether": "desert",
+    "myxo": "foret",
+    "urban": "ville"
+  },
+  "undergroundTerrain": "souterrain",
+  "road": {
+    "step": 1,
+    "tileTypes": [
+      "urban"
+    ]
+  },
+  "flight": {
+    "kmhPerMetre": 0.5
+  },
+  "vessels": {
+    "sailing": 3,
+    "galley": 6,
+    "longship": 4.5,
+    "warship": 3.75,
+    "keelboat": 1.5,
+    "rowboat": 2.25
+  },
+  "dirigeableKmh": 80,
+  "railKmh": 500
+}

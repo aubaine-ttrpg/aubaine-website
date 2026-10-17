@@ -4,6 +4,26 @@ import { z } from 'astro/zod'
 import type { Locale } from '../i18n/locales.ts'
 import { buildCorpus, type Corpus, type CorpusSources, type Entry } from './build.ts'
 import {
+  type AtlasEstablishments,
+  type AtlasLandmarks,
+  type AtlasPlaces,
+  type AtlasRoutes,
+  type AtlasSky,
+  type AtlasSurface,
+  type AtlasTravel,
+  type AtlasUnderground,
+  type AtlasVocabularies,
+  type AtlasWorld,
+  atlasEstablishments,
+  atlasLandmarks,
+  atlasPlaces,
+  atlasRoutes,
+  atlasSky,
+  atlasSurface,
+  atlasTravel,
+  atlasUnderground,
+  atlasVocabularies,
+  atlasWorld,
   book,
   environment,
   equipmentCatalogue,
@@ -144,6 +164,65 @@ export async function readSources(root: string): Promise<CorpusSources> {
     tags,
     books,
     translations,
+  }
+}
+
+export type AtlasWorldSources = {
+  id: string
+  world: AtlasWorld
+  surface: AtlasSurface
+  places: AtlasPlaces
+  landmarks: AtlasLandmarks
+  routes: AtlasRoutes
+  establishments: AtlasEstablishments
+  sky: AtlasSky
+  underground: AtlasUnderground
+}
+
+export type AtlasSources = {
+  vocabularies: AtlasVocabularies
+  travel: AtlasTravel
+  worlds: AtlasWorldSources[]
+}
+
+async function parsedFile<T>(path: string, schema: z.ZodType<T>, label: string): Promise<T> {
+  const parsed = schema.safeParse(JSON.parse(await readFile(path, 'utf8')))
+  if (parsed.success) return parsed.data
+  const issues = parsed.error.issues
+    .map((issue) => `${issue.path.join('.') || '(root)'}: ${issue.message}`)
+    .join('\n  ')
+  throw new Error(`${label} does not match its schema\n  ${issues}`)
+}
+
+export async function readAtlasSources(root: string): Promise<AtlasSources> {
+  const base = resolve(root, 'data/atlas')
+  const part = <T>(world: string, file: string, schema: z.ZodType<T>) =>
+    parsedFile(resolve(base, world, `${file}.json`), schema, `atlas/${world}/${file}`)
+  const worldIds = (await readdir(base, { withFileTypes: true }))
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)
+    .sort()
+  const worlds = await Promise.all(
+    worldIds.map(async (id) => ({
+      id,
+      world: await part(id, 'world', atlasWorld),
+      surface: await part(id, 'surface', atlasSurface),
+      places: await part(id, 'places', atlasPlaces),
+      landmarks: await part(id, 'landmarks', atlasLandmarks),
+      routes: await part(id, 'routes', atlasRoutes),
+      establishments: await part(id, 'establishments', atlasEstablishments),
+      sky: await part(id, 'sky', atlasSky),
+      underground: await part(id, 'underground', atlasUnderground),
+    })),
+  )
+  return {
+    vocabularies: await parsedFile(
+      resolve(base, 'vocabularies.json'),
+      atlasVocabularies,
+      'atlas/vocabularies',
+    ),
+    travel: await parsedFile(resolve(base, 'travel.json'), atlasTravel, 'atlas/travel'),
+    worlds,
   }
 }
 

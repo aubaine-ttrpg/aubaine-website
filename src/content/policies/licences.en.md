@@ -39,4 +39,4 @@ Where in doubt, the full licence text governs.
 
 ## What these licences do not cover
 
-The icons and the fonts the site uses come from elsewhere and keep their own terms. The credits page names each one. Aubaine claims no rights over the flags in the language picker.
+The icons, fonts and sounds the site uses come from elsewhere and keep their own terms. The credits page names each one. Aubaine claims no rights over the flags in the language picker.

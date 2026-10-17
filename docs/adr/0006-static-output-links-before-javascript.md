@@ -11,6 +11,8 @@ scripts by hash, without which the island never hydrated in production (0022)
 **Revised:** 2026-09-26, Decisions 2 and 3 gain addenda: a tree node page carries its skill beside the
 plate and a same-tree selection swaps only that pane; the island dims a tree's nodes and no longer
 renders the empty state (0025)
+**Revised:** 2026-10-14, Decision 3 gains an addendum: the one island rule is lifted, and the Atlas
+mounts a React root from the shell (0041)
 **Deciders:** Kori
 **Scope:** What runs at build time versus in the browser, how interaction that the design expressed
 as client state is expressed instead, and the cache policy that follows. Does not cover client
@@ -186,6 +188,16 @@ The island is still the only one, and it still reads its entries from the DOM. T
   island only toggles its `hidden` and wires its reset button.
 
 Tree pages now load the island too. 0025 Decision 4 records both changes.
+
+### Addendum (2026-10-14): the one island rule is lifted
+
+The owner lifted the rule that `FilterBar.tsx` is the only React component reaching the browser.
+`FilterBar` is unchanged and remains the only `client:` directive. The Atlas tab adds a second React
+tree, which is not an Astro island: `src/scripts/atlas.ts` mounts it from the shell on `page:view`
+and unmounts it when the page leaves, because an island first reached by a Swup visit depends on a
+runtime an earlier document load defined, and is never unmounted when Swup removes it. 0041
+Decision 1 records both facts. The boundary drawn above still holds: React is for animated stateful
+UI, not for content.
 
 ---
 

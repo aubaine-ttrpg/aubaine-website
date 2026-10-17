@@ -32,7 +32,7 @@ async function expectArrivedHome(page: Page, locale: 'fr' | 'en'): Promise<void>
     `https://aubaine.io/${locale}`,
   )
   await expect(page.locator('meta[name="robots"]')).toHaveCount(0)
-  await expect(page.locator('#site-header [data-nav]')).toHaveCount(3)
+  await expect(page.locator('#site-header [data-nav]')).toHaveCount(4)
   await expect(page.locator('#site-header')).toHaveAttribute('data-arriving', '')
 }
 

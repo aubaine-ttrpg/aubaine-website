@@ -1,5 +1,26 @@
 import { z } from 'astro/zod'
 
+import {
+  ALOFT_LANDMARK_KINDS,
+  BUILDING_STYLES,
+  CAVE_KINDS,
+  GROUND_LANDMARK_KINDS,
+  ISLE_FEATURES,
+  LAND_LEVELS,
+  MAP_KINDS,
+  NATURAL_FEATURES,
+  NATURAL_KINDS,
+  PACES,
+  RELIEF_KINDS,
+  ROCKS,
+  ROUTE_KINDS,
+  SETTINGS,
+  SETTLEMENT_FEATURES,
+  TILE_TYPES,
+  VESSELS,
+  WATER_DEPTHS,
+} from '../atlas/vocabulary.ts'
+import { MAX_TILES } from '../atlas/world/grid.ts'
 import { ARCHIVE_FILE, BOOKLET_KINDS, RELEASE_FILE } from '../booklet/release.ts'
 import { LOCALES } from '../i18n/locales.ts'
 import { POLICY_KINDS } from '../i18n/routes.ts'
@@ -1153,6 +1174,540 @@ export const mediaCaptions = z
     'Les légendes gravées dans les masters de data/media/. Écrit à la main, relu par pnpm media:stamp à chaque gravure.',
   )
 
+const LAYER_CHAR = /^[!-\-/-~]$/
+
+const atlasId = z
+  .string()
+  .regex(MACHINE_KEY)
+  .describe(
+    "Identifiant d'un lieu, d'un lieu remarquable, d'une voie ou d'un établissement de l'Atlas.",
+  )
+
+const atlasTile = z
+  .object({
+    column: z
+      .number()
+      .int()
+      .min(0)
+      .describe("Colonne du hex, comptée depuis zéro à partir de l'ouest."),
+    row: z
+      .number()
+      .int()
+      .min(0)
+      .describe(
+        "Rangée du hex, comptée depuis zéro à partir du nord. Les rangées impaires sont décalées d'un demi-hex vers l'est.",
+      ),
+  })
+  .strict()
+  .describe('Un hex de la grille du monde.')
+
+const atlasLayer = <V extends z.ZodType>(value: V, meaning: string) =>
+  z
+    .object({
+      legend: z
+        .record(z.string().regex(LAYER_CHAR), value)
+        .describe(
+          `Ce que chaque caractère des rangées veut dire : ${meaning}. Un caractère imprimable, jamais le point, qui marque un hex vide.`,
+        ),
+      rows: z
+        .array(z.string().min(1))
+        .min(1)
+        .describe(
+          "Une chaîne par rangée de la grille, du nord au sud, et un caractère par hex, d'ouest en est.",
+        ),
+    })
+    .strict()
+
+export const atlasWorld = z
+  .object({
+    name: z.string().min(1).describe('Nom du monde, imprimé sur le cartouche de la carte.'),
+    status: contentStatus,
+    kind: z
+      .enum(MAP_KINDS)
+      .describe(
+        "La catégorie de la carte dans le sélecteur : une contrée (land), une étendue que l'on parcourt, ou une zone (area), un lieu à l'échelle d'une scène : donjon, intérieur, champ de bataille.",
+      ),
+    columns: z.number().int().min(2).describe('Nombre de hex par rangée.'),
+    rows: z.number().int().min(2).describe('Nombre de rangées.'),
+    hexKm: z
+      .number()
+      .positive()
+      .describe("Largeur d'un hex, d'un bord au bord opposé, en kilomètres."),
+    featured: z
+      .object({
+        places: z
+          .array(atlasId)
+          .describe("Lieux proposés quand rien n'est sélectionné, dans l'ordre."),
+        landmarks: z
+          .array(atlasId)
+          .describe("Lieux remarquables proposés à leur suite, dans l'ordre."),
+      })
+      .strict(),
+    emblem: z
+      .string()
+      .regex(/^[a-z0-9-]+-emblem\.svg$/)
+      .optional()
+      .describe(
+        "L'emblème du monde, un SVG de data/media/ dessiné dans l'hexagone qui le représente. Sans emblème, le monde prend le logo d'Aubaine.",
+      ),
+  })
+  .strict()
+  .refine((world) => world.columns * world.rows <= MAX_TILES, {
+    message: `la grille compte au plus ${MAX_TILES} hex.`,
+    path: ['rows'],
+  })
+  .describe("Un monde de l'Atlas : son nom, sa maturité et sa grille.")
+
+export const atlasSurface = z
+  .object({
+    height: atlasLayer(
+      z
+        .number()
+        .int()
+        .min(Math.min(...WATER_DEPTHS))
+        .max(LAND_LEVELS.highest)
+        .refine((level) => level !== 0, { message: "le palier 0 n'existe pas." }),
+      `pour la terre, le palier d'altitude de ${LAND_LEVELS.lowest} à ${LAND_LEVELS.highest}, chacun de 160 m ; pour un lac, le palier de sa surface ; pour la mer, la profondeur de -1, le haut-fond, à ${Math.min(...WATER_DEPTHS)}, l'abysse`,
+    ),
+    type: atlasLayer(
+      z.enum(TILE_TYPES),
+      'le type de tuile, déclaré dans data/atlas/vocabularies.json',
+    ),
+    landmass: atlasLayer(
+      atlasId,
+      "le continent ou l'île, un lieu de data/atlas/<monde>/places.json",
+    ),
+    political: atlasLayer(
+      atlasId,
+      "la plus petite division politique, une région ou un pays sans région ; le pays d'une région est son parent",
+    ),
+    settlement: atlasLayer(atlasId, "le quartier, ou le village quand il n'a pas de quartier"),
+    sea: atlasLayer(atlasId, "la mer ou l'océan"),
+    relief: atlasLayer(
+      atlasId,
+      `le lieu naturel de relief, d'un genre parmi ${RELIEF_KINDS.join(', ')}`,
+    ),
+    cover: atlasLayer(
+      atlasId,
+      `le plus petit lieu naturel d'un autre genre que ${RELIEF_KINDS.join(', ')} qui couvre le hex, une forêt, un désert, un lac ; ses parents le couvrent aussi`,
+    ),
+    caves: z
+      .array(
+        z
+          .object({
+            tile: atlasTile,
+            edge: z
+              .number()
+              .int()
+              .min(0)
+              .max(5)
+              .describe(
+                "Le côté du hex où s'ouvre la grotte : 0 à l'est, puis dans le sens des aiguilles d'une montre, 1 au sud-est, jusqu'à 5 au nord-est. Il doit donner sur une falaise.",
+              ),
+            kind: z.enum(CAVE_KINDS).describe("Ce que la lueur de l'entrée laisse deviner."),
+          })
+          .strict(),
+      )
+      .describe('Les entrées de grottes taillées dans les falaises.'),
+  })
+  .strict()
+  .describe("La surface d'un monde, en couches d'une valeur par hex.")
+
+const placeBase = {
+  id: atlasId,
+  parent: atlasId
+    .optional()
+    .describe(
+      "Le lieu qui contient celui-ci. Un hex d'un lieu appartient aussi à tous ses parents.",
+    ),
+  name: z.string().min(1),
+  description: z.string().min(1).optional(),
+}
+
+const population = z.number().int().min(1).describe("Nombre d'habitants.")
+
+const mapFeatures = <const T extends readonly [string, ...string[]]>(values: T, meaning: string) =>
+  z
+    .array(z.enum(values))
+    .min(1)
+    .refine((list) => new Set(list).size === list.length, {
+      message: 'chaque élément une seule fois.',
+    })
+    .describe(meaning)
+const ruler = z.string().min(1).describe('Qui gouverne.')
+
+export const atlasPlace = z.discriminatedUnion('kind', [
+  z.object({ kind: z.literal('continent'), ...placeBase }).strict(),
+  z
+    .object({
+      kind: z.literal('country'),
+      ...placeBase,
+      color: z.string().regex(HEX).describe('Couleur du pays, dans la liste des lieux.'),
+      capital: atlasId.optional().describe('La ville capitale.'),
+      ruler: ruler.optional(),
+      government: z.string().min(1).optional().describe('Le régime.'),
+      population: population.optional(),
+    })
+    .strict(),
+  z.object({ kind: z.literal('region'), ...placeBase }).strict(),
+  z
+    .object({
+      kind: z.enum(['city', 'village']),
+      ...placeBase,
+      style: z.enum(BUILDING_STYLES).describe('Le style de ses maisons sur la carte.'),
+      population: population.optional(),
+      features: mapFeatures(
+        SETTLEMENT_FEATURES,
+        'Ce que la carte dessine autour du lieu : walls, des remparts.',
+      ).optional(),
+    })
+    .strict(),
+  z.object({ kind: z.literal('quarter'), ...placeBase }).strict(),
+  z
+    .object({
+      kind: z.literal('natural'),
+      ...placeBase,
+      subtype: z.enum(NATURAL_KINDS).describe('Le genre de lieu naturel.'),
+      features: mapFeatures(
+        NATURAL_FEATURES,
+        'Ce que la carte sème sur ses champs : windmills, des moulins plus nombreux.',
+      ).optional(),
+    })
+    .strict(),
+  z.object({ kind: z.literal('sea'), ...placeBase }).strict(),
+  z.object({ kind: z.enum(['realm', 'network', 'cavern', 'hold-quarter']), ...placeBase }).strict(),
+  z
+    .object({
+      kind: z.literal('hold'),
+      ...placeBase,
+      ruler: ruler.optional(),
+      population: population.optional(),
+    })
+    .strict(),
+])
+
+export const atlasPlaces = z
+  .object({ places: z.array(atlasPlace).min(1) })
+  .strict()
+  .describe("Tous les lieux nommés d'un monde, en surface, dans le ciel et sous terre.")
+
+const landmarkBase = {
+  id: atlasId,
+  name: z.string().min(1),
+  place: atlasId.optional().describe('Le lieu auquel il appartient.'),
+  tile: atlasTile,
+  height: z.number().int().min(1).optional().describe('Hauteur approximative, en mètres.'),
+  length: z.number().int().min(1).optional().describe('Longueur approximative, en mètres.'),
+  description: z.string().min(1).optional(),
+}
+
+export const atlasLandmarks = z
+  .object({
+    landmarks: z.array(
+      z.discriminatedUnion('kind', [
+        z
+          .object({
+            kind: z.enum(ALOFT_LANDMARK_KINDS),
+            ...landmarkBase,
+            altitude: z
+              .number()
+              .int()
+              .min(1)
+              .describe("Altitude de l'île volante, en mètres. Elle fixe sa hauteur sur la carte."),
+            features: mapFeatures(
+              ISLE_FEATURES,
+              "Ce que la carte pose sur l'île : watchtower, une tour de guet ; standing-stones, un cercle de pierres levées ; chains, les chaînes qui la retiennent au sol.",
+            ).optional(),
+          })
+          .strict(),
+        z
+          .object({
+            kind: z.enum(GROUND_LANDMARK_KINDS),
+            ...landmarkBase,
+            footprint: z
+              .number()
+              .positive()
+              .describe(
+                "Rayon de son emprise autour du hex, en rayons de hex. Un hex mesure deux rayons d'une pointe à l'autre.",
+              ),
+            altitude: z
+              .number()
+              .int()
+              .min(1)
+              .optional()
+              .describe('Altitude approximative de son sommet, en mètres.'),
+          })
+          .strict(),
+      ]),
+    ),
+  })
+  .strict()
+  .describe("Les lieux remarquables d'un monde, posés hors de la grille des hex.")
+
+const laneEnd = z.union([
+  z.object({ landmark: atlasId }).strict(),
+  z.object({ place: atlasId }).strict(),
+])
+
+export const atlasRoutes = z
+  .object({
+    routes: z.array(
+      z
+        .object({
+          id: atlasId,
+          kind: z.enum(ROUTE_KINDS),
+          name: z.string().min(1),
+          start: atlasTile.describe('Le premier hex de la voie.'),
+          steps: z
+            .string()
+            .regex(/^[0-5]+$/)
+            .describe(
+              "Le chemin, un chiffre par pas vers le hex voisin : 0 à l'est, puis dans le sens des aiguilles d'une montre, 1 au sud-est, jusqu'à 5 au nord-est.",
+            ),
+          description: z.string().min(1).optional(),
+        })
+        .strict(),
+    ),
+    skyLanes: z
+      .array(z.object({ from: laneEnd, to: laneEnd }).strict())
+      .describe(
+        "Les voies célestes des dirigeables, d'un lieu ou d'un lieu remarquable à un autre.",
+      ),
+  })
+  .strict()
+  .describe(
+    "Les routes, sentiers, lignes, routes maritimes, rivières et voies célestes d'un monde.",
+  )
+
+export const atlasEstablishments = z
+  .object({
+    establishments: z.array(
+      z
+        .object({
+          id: atlasId,
+          kind: z
+            .string()
+            .regex(MACHINE_KEY)
+            .describe("Genre d'établissement, déclaré dans data/atlas/vocabularies.json."),
+          name: z.string().min(1),
+          place: atlasId.describe("Le quartier, le village ou la caverne qui l'abrite."),
+          tile: atlasTile.describe('Le hex où il se trouve, dans ce lieu et à son niveau.'),
+          description: z.string().min(1).optional(),
+        })
+        .strict(),
+    ),
+  })
+  .strict()
+  .describe("Les établissements d'un monde : tavernes, temples, forges.")
+
+export const atlasSky = z
+  .object({
+    islands: z.array(
+      z
+        .object({
+          landmark: atlasId.describe(
+            "L'île volante, un lieu remarquable dont le hex est le centre.",
+          ),
+          tiles: z
+            .array(
+              z
+                .object({
+                  column: atlasTile.shape.column,
+                  row: atlasTile.shape.row,
+                  type: z.enum(TILE_TYPES),
+                  place: atlasId.describe("Le quartier ou l'île auquel le hex appartient."),
+                })
+                .strict(),
+            )
+            .min(1),
+        })
+        .strict(),
+    ),
+  })
+  .strict()
+  .describe("Les îles volantes d'un monde, en hex posés au-dessus de la grille.")
+
+export const atlasUnderground = z
+  .object({
+    levels: z.array(
+      z
+        .object({
+          level: z.number().int().min(1).describe('La strate, 1 juste sous la surface.'),
+          depth: z.number().int().min(1).describe('Profondeur approximative, en mètres.'),
+          rock: atlasLayer(z.enum(ROCKS), 'la roche'),
+          setting: atlasLayer(z.enum(SETTINGS), 'le milieu ; rock est la roche pleine'),
+          floor: atlasLayer(
+            z.number(),
+            'la hauteur du sol sur la carte : 0,6 pour la roche pleine, moins pour une salle creusée',
+          ),
+          place: atlasLayer(atlasId, 'le plus petit lieu souterrain du hex'),
+        })
+        .strict(),
+    ),
+  })
+  .strict()
+  .describe("Les strates souterraines d'un monde, chacune avec ses couches.")
+
+const atlasWord = {
+  key: z.string().regex(MACHINE_KEY),
+  labelFr: z.string().min(1),
+  labelEn: z.string().min(1),
+}
+const atlasWords = z.array(z.object(atlasWord).strict()).min(1)
+
+export const atlasVocabularies = z
+  .object({
+    tileTypes: z
+      .array(
+        z
+          .object({
+            ...atlasWord,
+            descriptionFr: z.string().min(1).describe("Ce qu'on trouve sur ce type de tuile."),
+            descriptionEn: z.string().min(1),
+          })
+          .strict(),
+      )
+      .min(1),
+    rocks: atlasWords,
+    settings: atlasWords,
+    placeKinds: atlasWords,
+    naturalKinds: atlasWords,
+    landmarkKinds: atlasWords,
+    routeKinds: atlasWords,
+    establishmentKinds: atlasWords,
+    vessels: atlasWords,
+    terrains: atlasWords.describe(
+      'Les terrains du voyage qui ne correspondent à aucun environnement de data/environments/.',
+    ),
+  })
+  .strict()
+  .describe("Les vocabulaires de l'Atlas, partagés par tous ses mondes.")
+
+export const atlasTravel = z
+  .object({
+    hoursPerDay: z
+      .number()
+      .int()
+      .min(1)
+      .max(24)
+      .describe('Heures de voyage dans une journée à bord, sans équipage en quarts.'),
+    crewHoursPerDay: z
+      .number()
+      .int()
+      .min(1)
+      .max(24)
+      .describe('Heures de voyage dans une journée à bord, avec un équipage en quarts.'),
+    terrains: z
+      .array(
+        z
+          .object({
+            key: z.string().regex(MACHINE_KEY),
+            environment: z
+              .string()
+              .regex(MACHINE_KEY)
+              .optional()
+              .describe("L'environnement de data/environments/ qui donne son nom au terrain."),
+            maxPace: z
+              .enum(PACES)
+              .optional()
+              .describe("L'allure la plus rapide possible à pied. Absente : on n'y marche pas."),
+            maxPaceWithSkis: z
+              .enum(PACES)
+              .optional()
+              .describe("L'allure la plus rapide possible avec des skis."),
+          })
+          .strict(),
+      )
+      .min(1),
+    tileTerrains: z.record(z.enum(TILE_TYPES), z.string().regex(MACHINE_KEY)),
+    undergroundTerrain: z
+      .string()
+      .regex(MACHINE_KEY)
+      .describe('Le terrain de tout hex souterrain.'),
+    road: z
+      .object({
+        step: z
+          .number()
+          .int()
+          .min(1)
+          .describe("Paliers d'allure gagnés quand une route relie deux hex."),
+        tileTypes: z
+          .array(z.enum(TILE_TYPES))
+          .describe('Les types de tuile qui comptent comme une route.'),
+      })
+      .strict(),
+    flight: z
+      .object({
+        kmhPerMetre: z
+          .number()
+          .positive()
+          .describe(
+            "Kilomètres par heure à l'allure normale pour chaque mètre de Vitesse de vol. Les autres allures suivent le rapport de leurs distances dans le Livre du joueur.",
+          ),
+      })
+      .strict(),
+    vessels: z
+      .record(z.enum(VESSELS), z.number().positive())
+      .describe('Vitesse de chaque navire, en km/h.'),
+    dirigeableKmh: z.number().positive().describe("Vitesse d'un dirigeable, en km/h."),
+    railKmh: z.number().positive().describe("Vitesse d'un train, en km/h."),
+  })
+  .strict()
+  .describe("Les règles du calcul d'itinéraire, hors allures du Livre du joueur.")
+
+const atlasStar = z
+  .object({
+    temperature: z
+      .number()
+      .positive()
+      .describe(
+        "La température effective de l'astre, en kelvins. Elle donne la couleur de sa lumière.",
+      ),
+    illuminance: z
+      .number()
+      .positive()
+      .describe("L'éclairement direct de l'astre au zénith, en lux, à sa distance de référence."),
+    diameter: z.number().positive().describe("Le diamètre apparent de l'astre, en degrés."),
+  })
+  .strict()
+
+export const atlasStars = z
+  .object({
+    primary: atlasStar.describe("L'astre principal, autour duquel la planète tourne à 1 UA."),
+    warm: atlasStar.describe('Le compagnon chaud du couple éloigné.'),
+    hot: atlasStar
+      .extend({
+        tint: z
+          .tuple([z.number().positive(), z.number().positive(), z.number().positive()])
+          .optional()
+          .describe(
+            "Une teinte de direction artistique appliquée à sa lumière, en rouge, vert et bleu ; elle s'efface près de l'horizon.",
+          ),
+      })
+      .strict()
+      .describe('Le compagnon compact et très chaud du couple éloigné.'),
+    pair: z
+      .object({
+        distance: z
+          .number()
+          .positive()
+          .describe("La distance du barycentre du couple à l'astre principal, en UA."),
+        separation: z.number().positive().describe('La distance entre les deux compagnons, en UA.'),
+        orbitYears: z
+          .number()
+          .positive()
+          .describe("La période du couple autour de l'astre principal, en années."),
+        mutualDays: z
+          .number()
+          .positive()
+          .describe("La période des deux compagnons l'un autour de l'autre, en jours."),
+      })
+      .strict()
+      .describe("Le couple de compagnons, qui tourne loin autour de l'astre principal."),
+  })
+  .strict()
+  .describe("Les trois astres du ciel d'Eden, partagés par tous les mondes de l'Atlas.")
+
 const localized = <T extends z.ZodRawShape>(shape: T) => z.object(shape).strict()
 
 export const overlays = {
@@ -1235,6 +1790,44 @@ export const overlays = {
     description: z.string().optional(),
   }),
   book: localized({ title: z.string().optional(), description: z.string().optional() }),
+  atlasWorld: localized({ name: z.string().optional() }),
+  atlasPlaces: localized({
+    places: z
+      .record(
+        z.string(),
+        localized({
+          name: z.string().optional(),
+          ruler: z.string().optional(),
+          government: z.string().optional(),
+          description: z.string().optional(),
+        }),
+      )
+      .describe("Noms et textes traduits, keyés par l'identifiant du lieu."),
+  }),
+  atlasLandmarks: localized({
+    landmarks: z
+      .record(
+        z.string(),
+        localized({ name: z.string().optional(), description: z.string().optional() }),
+      )
+      .describe("Noms et textes traduits, keyés par l'identifiant du lieu remarquable."),
+  }),
+  atlasRoutes: localized({
+    routes: z
+      .record(
+        z.string(),
+        localized({ name: z.string().optional(), description: z.string().optional() }),
+      )
+      .describe("Noms et textes traduits, keyés par l'identifiant de la voie."),
+  }),
+  atlasEstablishments: localized({
+    establishments: z
+      .record(
+        z.string(),
+        localized({ name: z.string().optional(), description: z.string().optional() }),
+      )
+      .describe("Noms et textes traduits, keyés par l'identifiant de l'établissement."),
+  }),
 }
 
 export type ContentStatus = z.infer<typeof contentStatus>
@@ -1262,3 +1855,14 @@ export type SkillTags = NonNullable<Skill['tags']>
 export type PdfRelease = z.infer<typeof pdfRelease>
 export type PdfNote = z.infer<typeof pdfNote>
 export type MediaCaption = z.infer<typeof mediaCaption>
+export type AtlasWorld = z.infer<typeof atlasWorld>
+export type AtlasSurface = z.infer<typeof atlasSurface>
+export type AtlasPlaces = z.infer<typeof atlasPlaces>
+export type AtlasPlace = z.infer<typeof atlasPlace>
+export type AtlasLandmarks = z.infer<typeof atlasLandmarks>
+export type AtlasRoutes = z.infer<typeof atlasRoutes>
+export type AtlasEstablishments = z.infer<typeof atlasEstablishments>
+export type AtlasSky = z.infer<typeof atlasSky>
+export type AtlasUnderground = z.infer<typeof atlasUnderground>
+export type AtlasVocabularies = z.infer<typeof atlasVocabularies>
+export type AtlasTravel = z.infer<typeof atlasTravel>

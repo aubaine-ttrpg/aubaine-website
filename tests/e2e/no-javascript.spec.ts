@@ -9,6 +9,8 @@ const ROUTES = [
   '/en/books/livre-du-joueur/creer-un-personnage',
   '/fr/livres/livre-du-mj/menace-et-rencontres',
   '/fr/almanach',
+  '/fr/atlas',
+  '/en/atlas',
   '/fr/arbres',
   '/fr/arbre/berserker',
   '/fr/arbre/barbare/RAGEXX-001',
