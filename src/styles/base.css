@@ -162,6 +162,48 @@ input {
   display: none;
 }
 
+.au-badge {
+  --badge-band: 5px;
+  display: inline-block;
+  padding: 8px 10px;
+  font: 700 13px / 1 var(--font-ui);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.au-badge--sm {
+  --badge-band: 4px;
+  padding: 6px 8px;
+  font-size: 11px;
+}
+
+.au-badge--draft {
+  color: var(--status-draft-ink);
+  border: 1px dashed var(--status-draft);
+  background: var(--bg2);
+}
+
+.au-badge--playtest {
+  --badge-stripe: repeating-linear-gradient(
+    45deg,
+    var(--on-playtest) 0 var(--badge-band),
+    transparent var(--badge-band) calc(var(--badge-band) * 2)
+  );
+  color: var(--on-playtest);
+  border: 1px solid var(--status-playtest);
+  background:
+    var(--badge-stripe) top / 100% var(--badge-band) repeat-x,
+    var(--badge-stripe) bottom / 100% var(--badge-band) repeat-x,
+    var(--status-playtest);
+}
+
+.au-badge--beta {
+  color: var(--status-beta-ink);
+  border: 1px solid var(--status-beta);
+  background: var(--bg2);
+}
+
 .au-swup-page {
   transition: opacity 0.2s var(--ease);
 }
