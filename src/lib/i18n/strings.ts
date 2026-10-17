@@ -46,7 +46,7 @@ const fr = {
   loading: 'Chargement d’Aubaine…',
   notFoundTitle: 'Page introuvable',
   notFoundBody:
-    'Aucune page d’Aubaine ne se trouve à cette adresse. Repartez des Arbres ou de l’Almanach.',
+    'Aucune page d’Aubaine ne se trouve à cette adresse. Repartez des Arbres ou du Codex.',
   homeTitle: 'Aubaine, jeu de rôle sur table',
   heroTitle: 'Aubaine',
   heroLead: (trees: number, species: number) =>
@@ -103,7 +103,7 @@ const fr = {
   other_: 'Autre',
   otherNote: 'Aucune source répertoriée pour l’instant.',
   pager: 'Navigation entre les pages',
-  almanach: 'Almanach',
+  almanach: 'Codex',
   almanachLead:
     'Les index d’Aubaine, chacun avec ses filtres : Arbres, Espèces, Compétences, équipement, matériaux et règles.',
   allIndexes: 'Tous les index',
@@ -522,7 +522,7 @@ const en: UiStrings = {
   loading: 'Loading Aubaine…',
   notFoundTitle: 'Page Not Found',
   notFoundBody:
-    'No page of Aubaine lives at this address. Start again from the Trees or the Almanach.',
+    'No page of Aubaine lives at this address. Start again from the Trees or the Codex.',
   homeTitle: 'Aubaine, a tabletop roleplaying game',
   heroTitle: 'Aubaine',
   heroLead: (trees: number, species: number) =>
@@ -580,7 +580,7 @@ const en: UiStrings = {
   other_: 'Other',
   otherNote: 'No source recorded yet.',
   pager: 'Page navigation',
-  almanach: 'Almanach',
+  almanach: 'Codex',
   almanachLead:
     'Aubaine’s indexes, each with its own filters: Trees, Species, Skills, equipment, materials and rules.',
   allIndexes: 'All indexes',
