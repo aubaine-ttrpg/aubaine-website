@@ -31,6 +31,14 @@ const service: typeof sharpService = {
     return validated
   },
 
+  async getHTMLAttributes(options, config, logger) {
+    if (sharpService.getHTMLAttributes === undefined) {
+      throw new Error('astro/assets/services/sharp has no getHTMLAttributes')
+    }
+    const attributes = await sharpService.getHTMLAttributes(options, config, logger)
+    return { ...attributes, loading: 'eager' }
+  },
+
   async transform(bytes, transform, config, logger) {
     const result = await sharpService.transform(bytes, transform, config, logger)
     if (result.format === 'svg') return result
