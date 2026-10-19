@@ -29,11 +29,10 @@ import volumeHigh from '../../../data/media/icons/mdi/volume-high.svg?raw'
 import volumeOff from '../../../data/media/icons/mdi/volume-off.svg?raw'
 import walk from '../../../data/media/icons/mdi/walk.svg?raw'
 import weatherSunset from '../../../data/media/icons/mdi/weather-sunset.svg?raw'
+import { svgPath } from '../../lib/atlas/svg-path'
 
 function pathOf(svg: string): string {
-  const path = /\sd="([^"]+)"/.exec(svg)?.[1]
-  if (!path) throw new Error('an Atlas icon file has no path')
-  return path
+  return svgPath(svg).d
 }
 
 const ICONS = {
