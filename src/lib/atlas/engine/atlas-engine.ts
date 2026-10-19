@@ -1091,7 +1091,8 @@ export class AtlasEngine {
     this.post.render(this.scene, this.camera)
     this.frameCount += 1
     const active = moving || keyed || rising || this.input.moving
-    if (!this.covered && ((active && this.frameCount % 2 === 0) || this.labelsStale)) {
+    const settling = this.wasMoving && !active
+    if (!this.covered && ((active && this.frameCount % 2 === 0) || this.labelsStale || settling)) {
       this.labels.update(this.camera, this.width, this.height, this.rig.rig.dist, this.level)
       this.labelsStale = false
     }
@@ -1106,7 +1107,7 @@ export class AtlasEngine {
         this.world.hexKm,
       )
     }
-    if (this.wasMoving && !active) this.settle()
+    if (settling) this.settle()
     this.wasMoving = active
     if (!this.shownTerrain && this.content.groups.surface.children.length > 0) {
       this.shownTerrain = true
