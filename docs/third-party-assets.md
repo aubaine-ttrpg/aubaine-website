@@ -48,8 +48,10 @@ before it can ship.
 
 Fetch it from `https://api.iconify.design/<prefix>.json?icons=<name>` and write the body into
 `data/media/icons/<prefix>/<name>.svg`. The API refuses a request without a browser-like
-`User-Agent`. Only `mdi` and `game-icons` are declared by the schema, so a third set is a contract
-change and a new licence to record here. See [runbooks/add-an-image.md](runbooks/add-an-image.md).
+`User-Agent`. The sets the schema declares are `ICON_SETS` in
+[`src/lib/rights/attribution.ts`](../src/lib/rights/attribution.ts), `game-icons` among them, so a
+new set is a contract change and a new licence to record here. See
+[runbooks/add-an-image.md](runbooks/add-an-image.md).
 
 ## Fonts
 
