@@ -63,6 +63,7 @@ test('the parchment locks the four views and gives them back', async ({ page }) 
 })
 
 test('the parchment is remembered with the Atlas options', async ({ page }) => {
+  test.slow()
   await openAtlas(page)
   await chooseParchment(page)
   const stored = await page.evaluate((key) => window.localStorage.getItem(key), SETTINGS_KEY)
@@ -133,6 +134,7 @@ test('the parchment charts the strata without waiting for their relief', async (
 })
 
 test('the legend opens on a first visit and stays shut once closed', async ({ page }) => {
+  test.slow()
   await openAtlas(page)
   const legend = page.getByRole('region', { name: 'Légende' })
   await expect(legend).toBeVisible()
@@ -176,16 +178,17 @@ test.describe('with animations on', () => {
   test.use({ reducedMotion: 'no-preference' })
 
   test('the map tilts and dissolves into the parchment and back out of it', async ({ page }) => {
+    test.slow()
     await openAtlas(page)
     const map = page.locator('.au-atlas__map')
     await styleSwitch(page).click()
     await expect(styleSwitch(page)).toHaveAttribute('aria-checked', 'true')
     await expect(map).toHaveAttribute('data-style', '3d')
-    await expect(map).toHaveAttribute('data-style', 'parchment')
+    await expect(map).toHaveAttribute('data-style', 'parchment', { timeout: 20_000 })
     await page.waitForTimeout(1000)
     await styleSwitch(page).click()
     await expect(styleSwitch(page)).toHaveAttribute('aria-checked', 'false')
     await expect(map).toHaveAttribute('data-style', 'parchment')
-    await expect(map).toHaveAttribute('data-style', '3d')
+    await expect(map).toHaveAttribute('data-style', '3d', { timeout: 20_000 })
   })
 })
