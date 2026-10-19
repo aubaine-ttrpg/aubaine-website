@@ -1,4 +1,4 @@
-import { type PerspectiveCamera, Vector3 } from 'three'
+import { type Camera, Vector3 } from 'three'
 import { SQRT3 } from '../world/grid.ts'
 
 export type Hud = { compass?: HTMLElement; scaleBar?: HTMLElement; scaleText?: HTMLElement }
@@ -23,7 +23,7 @@ export class HudView {
   }
 
   update(
-    camera: PerspectiveCamera,
+    camera: Camera,
     target: { x: number; y: number; z: number },
     yaw: number,
     width: number,

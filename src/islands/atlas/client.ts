@@ -7,6 +7,7 @@ import {
   stepDown,
   type Tier,
 } from '../../lib/atlas/contract/quality'
+import type { MapStyle } from '../../lib/atlas/contract/style'
 import type { AtlasEngine, EngineEvents } from '../../lib/atlas/engine/atlas-engine'
 import { createGrid, type Grid } from '../../lib/atlas/world/grid'
 import type { World } from '../../lib/atlas/world/model'
@@ -34,6 +35,7 @@ type EngineSetup = {
   label: string
   unexploredLabel: string
   view: View
+  style: MapStyle
   animated: boolean
   display: MapDisplay
   screen: boolean
@@ -117,6 +119,7 @@ export class AtlasClient {
         stars,
         tier: this.tier,
         view: setup.view,
+        style: setup.style,
         animated: setup.animated,
         maxSamples: gpu.maxSamples,
         screen: setup.screen,

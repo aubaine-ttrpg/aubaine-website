@@ -1,4 +1,4 @@
-import { type PerspectiveCamera, Ray, Vector2, type Vector3 } from 'three'
+import { type Camera, type Ray, Raycaster, Vector2, type Vector3 } from 'three'
 import type { View } from '../contract/camera.ts'
 import type { CameraRig } from './camera-rig.ts'
 
@@ -22,7 +22,7 @@ const VIEW_KEYS: Record<string, View> = { '1': 'top', '2': 'iso', '3': 'relief',
 
 export class MapInput {
   private readonly canvas: HTMLCanvasElement
-  private readonly camera: PerspectiveCamera
+  private readonly camera: () => Camera
   private readonly rig: CameraRig
   private readonly handlers: InputHandlers
   private readonly pointers = new Map<number, { x: number; y: number }>()
@@ -33,13 +33,13 @@ export class MapInput {
   private down: { x: number; y: number; t: number } | undefined
   private lastClick = 0
   private lastHover = 0
-  private readonly ray = new Ray()
+  private readonly raycaster = new Raycaster()
   private readonly ndc = new Vector2()
 
   constructor(
     canvas: HTMLCanvasElement,
     surface: HTMLElement,
-    camera: PerspectiveCamera,
+    camera: () => Camera,
     rig: CameraRig,
     handlers: InputHandlers,
   ) {
@@ -92,13 +92,8 @@ export class MapInput {
       ((clientX - rect.left) / rect.width) * 2 - 1,
       -((clientY - rect.top) / rect.height) * 2 + 1,
     )
-    this.ray.origin.setFromMatrixPosition(this.camera.matrixWorld)
-    this.ray.direction
-      .set(this.ndc.x, this.ndc.y, 0.5)
-      .unproject(this.camera)
-      .sub(this.ray.origin)
-      .normalize()
-    return this.ray
+    this.raycaster.setFromCamera(this.ndc, this.camera())
+    return this.raycaster.ray
   }
 
   groundAt(clientX: number, clientY: number, y: number): Vector3 | undefined {
@@ -249,7 +244,7 @@ export class MapInput {
     const key = event.key.toLowerCase()
     const view = VIEW_KEYS[key]
     if (view) {
-      this.handlers.view(view)
+      if (!this.rig.locked) this.handlers.view(view)
       return
     }
     if (key === 'escape') {

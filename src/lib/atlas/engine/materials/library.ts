@@ -14,6 +14,15 @@ import {
   Vector2,
   Vector3,
 } from 'three'
+import { ROUTE_LAYERS } from '../../contract/display.ts'
+import {
+  MAX_SKY_LANES,
+  PARCHMENT_FLAGS,
+  ROCK_WASH_START,
+  ROUTE_CHANNEL,
+  TILE_CHANNEL,
+  WASH_COUNT,
+} from '../../contract/parchment.ts'
 import type { TierSettings } from '../../contract/quality.ts'
 import {
   type BeamSpec,
@@ -26,6 +35,7 @@ import {
 import { WIND } from '../../contract/wind.ts'
 import { MIST } from '../../kernel/mist.ts'
 import { NO_TILE } from '../../world/grid.ts'
+import { PARCHMENT_INKS, WASH_ORDER } from '../parchment-palette.ts'
 import beaconRingFragment from './glsl/beacon-ring.frag?raw'
 import beamFragment from './glsl/beam.frag?raw'
 import beamVertex from './glsl/beam.vert?raw'
@@ -44,6 +54,7 @@ import laneVertex from './glsl/lane.vert?raw'
 import mistFragment from './glsl/mist.frag?raw'
 import mistVertex from './glsl/mist.vert?raw'
 import mistDepthFragment from './glsl/mist-depth.frag?raw'
+import parchmentFragment from './glsl/parchment.glsl?raw'
 import particlesFragment from './glsl/particles.frag?raw'
 import particlesVertex from './glsl/particles.vert?raw'
 import poolFragment from './glsl/pool.frag?raw'
@@ -92,6 +103,62 @@ const float = (value: number) => (Number.isInteger(value) ? `${value}.0` : Strin
 
 type Defines = Record<string, string>
 
+const PARCHMENT_LAMP = { day: 0.42, night: 0.34, under: 0.4 } as const
+const GLYPH_SIZE = 1.15
+const TERRAIN_PATTERN = { step: 0.33, rings: 2, scale: 0.82, ink: 0.45 } as const
+
+const glslColour = (hex: string) => {
+  const colour = new Color(hex)
+  return `vec3(${colour.r.toFixed(5)}, ${colour.g.toFixed(5)}, ${colour.b.toFixed(5)})`
+}
+
+function parchmentConstants(): string {
+  if (WASH_ORDER.length !== WASH_COUNT)
+    throw new RangeError(`the parchment has ${WASH_ORDER.length} washes, not ${WASH_COUNT}`)
+  return [
+    `const vec3 WASH[${WASH_COUNT}] = vec3[](${WASH_ORDER.map(glslColour).join(', ')});`,
+    `const vec3 PAPER = ${glslColour(PARCHMENT_INKS.paper)};`,
+    `const vec3 INK = ${glslColour(PARCHMENT_INKS.ink)};`,
+    `const vec3 MARK_INK = ${glslColour(PARCHMENT_INKS.mark)};`,
+    `const vec3 WATER_INK = ${glslColour(PARCHMENT_INKS.water)};`,
+    `const vec3 SKY_INK = ${glslColour(PARCHMENT_INKS.sky)};`,
+    `const vec3 MIST = ${glslColour(PARCHMENT_INKS.mist)};`,
+    `const vec3 LAMP_TINT = ${glslColour(PARCHMENT_INKS.lamp)};`,
+    '',
+  ].join('\n')
+}
+
+const PARCHMENT_DEFINES: Defines = {
+  MAX_LANES_: String(MAX_SKY_LANES),
+  ROUTE_LAYERS_: String(ROUTE_LAYERS.length),
+  CH_WASH_: String(TILE_CHANNEL.wash),
+  CH_GLYPH_: String(TILE_CHANNEL.glyph),
+  CH_FLAGS_: String(TILE_CHANNEL.flags),
+  CH_RIVER_: String(TILE_CHANNEL.river),
+  CH_ROAD_: String(ROUTE_CHANNEL.road),
+  CH_TRAIL_: String(ROUTE_CHANNEL.trail),
+  CH_RAIL_: String(ROUTE_CHANNEL.rail),
+  CH_SEA_: String(ROUTE_CHANNEL.sea),
+  FLAG_WATER_: String(PARCHMENT_FLAGS.water),
+  FLAG_ALOFT_: String(PARCHMENT_FLAGS.aloft),
+  FLAG_MARKED_: String(PARCHMENT_FLAGS.marked),
+  SHOW_ROAD_: String(ROUTE_LAYERS.indexOf('road')),
+  SHOW_TRAIL_: String(ROUTE_LAYERS.indexOf('trail')),
+  SHOW_RAIL_: String(ROUTE_LAYERS.indexOf('rail')),
+  SHOW_SEA_: String(ROUTE_LAYERS.indexOf('sea')),
+  SHOW_RIVER_: String(ROUTE_LAYERS.indexOf('river')),
+  SHOW_SKY_: String(ROUTE_LAYERS.indexOf('sky')),
+  ROCK_WASH_START_: String(ROCK_WASH_START),
+  GLYPH_SIZE_: float(GLYPH_SIZE),
+  PATTERN_STEP_: float(TERRAIN_PATTERN.step),
+  PATTERN_RINGS_: float(TERRAIN_PATTERN.rings),
+  PATTERN_SCALE_: float(TERRAIN_PATTERN.scale),
+  PATTERN_INK_: float(TERRAIN_PATTERN.ink),
+  LAMP_DAY_: float(PARCHMENT_LAMP.day),
+  LAMP_NIGHT_: float(PARCHMENT_LAMP.night),
+  LAMP_UNDER_: float(PARCHMENT_LAMP.under),
+}
+
 export class MaterialLibrary {
   readonly uniforms: SharedUniforms
   private readonly defines: Defines
@@ -100,6 +167,7 @@ export class MaterialLibrary {
     MeshStandardMaterial | MeshBasicMaterial | ShaderMaterial
   >()
   private readonly props = new Map<string, MeshStandardMaterial>()
+  private parchmentSheet: MeshStandardMaterial | undefined
   private readonly builtUniforms = new Set<Record<string, IUniform>>()
 
   constructor(
@@ -144,8 +212,54 @@ export class MaterialLibrary {
     }
   }
 
+  parchment(): MeshStandardMaterial {
+    if (this.parchmentSheet) return this.parchmentSheet
+    const material = new MeshStandardMaterial({
+      roughness: 0.93,
+      metalness: 0,
+      transparent: true,
+      depthWrite: false,
+      depthTest: false,
+    })
+    material.defines = { ...this.defines, ...PARCHMENT_DEFINES }
+    material.onBeforeCompile = (shader) => {
+      Object.assign(shader.uniforms, this.uniforms)
+      this.builtUniforms.add(shader.uniforms)
+      shader.vertexShader = editShader(shader.vertexShader, [
+        { chunk: 'common', with: 'after', code: 'varying vec3 vW;' },
+        {
+          chunk: 'project_vertex',
+          with: 'after',
+          code: 'vW = (modelMatrix * vec4(transformed, 1.0)).xyz;',
+        },
+      ])
+      shader.fragmentShader = editShader(shader.fragmentShader, [
+        {
+          chunk: 'common',
+          with: 'after',
+          code: common + parchmentConstants() + parchmentFragment,
+        },
+        {
+          chunk: 'map_fragment',
+          with: 'replace',
+          code: 'vec3 pCol; float tBump;\nparchmentShade(pCol, tBump);\ndiffuseColor.rgb = pCol;',
+        },
+        { chunk: 'normal_fragment_maps', with: 'after', code: bump },
+        {
+          chunk: 'fog_fragment',
+          with: 'replace',
+          code: 'gl_FragColor.rgb = parchmentLamp(gl_FragColor.rgb, pCol);',
+        },
+      ])
+    }
+    material.customProgramCacheKey = () => 'atlas-parchment'
+    this.parchmentSheet = material
+    return material
+  }
+
   all(): (MeshStandardMaterial | MeshBasicMaterial | ShaderMaterial)[] {
-    return [...this.pieces.values(), ...this.props.values()]
+    const sheet = this.parchmentSheet ? [this.parchmentSheet] : []
+    return [...this.pieces.values(), ...this.props.values(), ...sheet]
   }
 
   dispose(): void {
@@ -159,6 +273,7 @@ export class MaterialLibrary {
     this.builtUniforms.clear()
     this.pieces.clear()
     this.props.clear()
+    this.parchmentSheet = undefined
   }
 
   private makePiece(key: PieceMaterial): MeshStandardMaterial | MeshBasicMaterial | ShaderMaterial {
@@ -618,13 +733,14 @@ export class MaterialLibrary {
     })
   }
 
-  travelPath(): ShaderMaterial {
+  travelPath(ink: boolean): ShaderMaterial {
     return this.shader(travelPathVertex, travelPathFragment, {
       transparent: true,
       depthWrite: false,
       side: DoubleSide,
-      additive: true,
-      extra: { uColor: { value: new Color(TRAVEL) } },
+      additive: !ink,
+      defines: ink ? { TRAVEL_INK: '' } : {},
+      extra: { uColor: { value: new Color(ink ? PARCHMENT_INKS.mark : TRAVEL) } },
     })
   }
 

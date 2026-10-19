@@ -1,4 +1,5 @@
 import {
+  type Camera,
   DataTexture,
   DirectionalLight,
   FogExp2,
@@ -6,8 +7,8 @@ import {
   LinearMipmapLinearFilter,
   LinearSRGBColorSpace,
   Mesh,
-  NearestFilter,
   NoToneMapping,
+  OrthographicCamera,
   PCFShadowMap,
   PerspectiveCamera,
   type Ray,
@@ -36,6 +37,7 @@ import {
   type SceneLayer,
   type SceneTextures,
 } from '../contract/scene.ts'
+import type { MapStyle } from '../contract/style.ts'
 import { DEFAULT_HOUR, DEFAULT_SEASON, normalHour, normalSeason } from '../contract/time-of-day.ts'
 import { MIST, mistRoomCovers } from '../kernel/mist.ts'
 import { isUnexplored, unexploredMarks } from '../kernel/reveal.ts'
@@ -45,13 +47,23 @@ import type { Grid } from '../world/grid.ts'
 import type { World } from '../world/model.ts'
 import type { AtlasRef } from '../world/refs.ts'
 import { floorY, type ReliefField, ROCK_TOP, reliefField, surfaceY } from '../world/relief.ts'
+import { smoothstep } from '../world/smoothstep.ts'
 import type { StarSystem } from '../world/stars.ts'
 import type { Point, TravelResult } from '../world/travel.ts'
 import { CameraRig } from './camera-rig.ts'
-import { Daylight, type Lights, lightUnderground, undergroundFog } from './daylight.ts'
+import {
+  Daylight,
+  type GradeLevels,
+  gradeLevels,
+  gradeParchment,
+  type Lights,
+  lightUnderground,
+  undergroundFog,
+} from './daylight.ts'
 import { EffectsView } from './effects-view.ts'
 import { SkyEnvironment } from './environment.ts'
 import { FrameScheduler } from './frame-scheduler.ts'
+import { glyphAtlas } from './glyph-atlas.ts'
 import { type Hud, HudView } from './hud.ts'
 import { MapInput } from './input.ts'
 import { LabelLayer, labelSpecs } from './labels.ts'
@@ -59,10 +71,12 @@ import { MaterialLibrary } from './materials/library.ts'
 import { createUniforms, OFF_GRID, type SharedUniforms } from './materials/uniforms.ts'
 import { Beacon, type PathPoint, TravelPath } from './overlays.ts'
 import { PaceCheck } from './pace-check.ts'
+import { ParchmentView } from './parchment-view.ts'
 import { MapPicker } from './picking.ts'
 import { PostPipeline, type PostSettings, renderSize } from './post.ts'
 import { SceneContent } from './scene-content.ts'
 import { beaconHeight, focusOf, isSmall, levelOf, SelectionTextures } from './selection.ts'
+import { tileTexture } from './tile-texture.ts'
 import { VehiclesView } from './vehicles-view.ts'
 import { type ShaderProbes, shaderProbes } from './warm-up.ts'
 
@@ -91,6 +105,7 @@ export type EngineOptions = {
   stars: StarSystem
   tier: Tier
   view: View
+  style: MapStyle
   animated: boolean
   maxSamples: number
   screen: boolean
@@ -112,6 +127,10 @@ const SETTLE_MOVE = 8
 const COMPILE_PATIENCE_MS = 4000
 const RESIZE_SETTLE_MS = 150
 const OPEN_SEA_VIEW = 30
+const PAPER_FADE_SPAN = 0.75
+
+type StyleShift = { to: MapStyle; paperFrom: number; model: GradeLevels }
+const GLYPH_PIXELS: Readonly<Record<Tier, number>> = { low: 128, high: 256, ultra: 256 }
 
 function postSettings(
   settings: TierSettings,
@@ -162,8 +181,9 @@ export class AtlasEngine {
   readonly grid: Grid
   readonly field: ReliefField
   readonly canvas: HTMLCanvasElement
-  readonly camera = new PerspectiveCamera(32, 1, 0.3, 4000)
   readonly rig: CameraRig
+  private readonly perspective = new PerspectiveCamera(32, 1, 0.3, 4000)
+  private readonly parchmentCamera = new OrthographicCamera()
   private readonly container: HTMLElement
   private readonly events: EngineEvents
   private readonly renderer: WebGLRenderer
@@ -180,6 +200,7 @@ export class AtlasEngine {
   private readonly hud: HudView
   private readonly beacon: Beacon
   private readonly travel: TravelPath
+  private readonly parchment: ParchmentView
   private readonly scheduler: FrameScheduler
   private readonly lights: Lights
   private readonly key = new DirectionalLight(0xffffff, 3)
@@ -203,6 +224,12 @@ export class AtlasEngine {
   private level = 0
   private travelLevel = 0
   private display: MapDisplay
+  private style: MapStyle
+  private wantedStyle: MapStyle
+  private sheet: 'absent' | 'compiling' | 'ready'
+  private shift: StyleShift | undefined
+  private paper = 0
+  private glyphsAsked = false
   private selected: AtlasRef | undefined
   private hovered = ''
   private tooltip: HTMLElement | undefined
@@ -239,6 +266,9 @@ export class AtlasEngine {
     this.maxSamples = options.maxSamples
     this.unexploredLabel = options.unexploredLabel
     this.display = options.display
+    this.style = options.style
+    this.wantedStyle = options.style
+    this.sheet = options.style === 'parchment' ? 'ready' : 'absent'
     this.daylight = new Daylight(options.stars)
     this.field = reliefField(grid, world.surface)
     this.canvas = document.createElement('canvas')
@@ -299,7 +329,9 @@ export class AtlasEngine {
     this.addSky()
     this.beacon = new Beacon(this.materials)
     this.travel = new TravelPath(this.materials)
+    this.parchment = new ParchmentView(this.materials)
     this.scene.add(this.beacon.group, this.travel.group)
+    if (this.sheet === 'ready') this.scene.add(this.parchment.group)
     this.applyVisibility()
     this.picker = new MapPicker(world, this.field)
     this.hud = new HudView(options.locale)
@@ -316,7 +348,7 @@ export class AtlasEngine {
       grid.originZ + OPEN_SEA_VIEW,
       options.animated,
     )
-    this.input = new MapInput(this.canvas, container, this.camera, this.rig, {
+    this.input = new MapInput(this.canvas, container, () => this.camera, this.rig, {
       activity: () => this.scheduler.invalidate(),
       hover: (x, y) => this.hover(x, y),
       leave: () => this.leave(),
@@ -335,7 +367,8 @@ export class AtlasEngine {
       this.materials.skyDome(true),
       () => this.scheduler.invalidate(false),
     )
-    this.applySky()
+    if (this.style === 'parchment') this.rig.lock(false)
+    this.applyStyle()
     this.resizer = new ResizeObserver(() => this.resize())
     this.resizer.observe(container)
     const signal = this.stop.signal
@@ -378,6 +411,10 @@ export class AtlasEngine {
 
   get view(): View {
     return this.rig.view
+  }
+
+  private get camera(): Camera {
+    return this.style === 'parchment' ? this.parchmentCamera : this.perspective
   }
 
   get currentLevel(): number {
@@ -429,6 +466,25 @@ export class AtlasEngine {
     this.scheduler.invalidate()
   }
 
+  setStyle(style: MapStyle): void {
+    this.wantedStyle = style
+    if (style === 'parchment' && this.sheet !== 'ready') {
+      this.prepareSheet()
+      return
+    }
+    if (style === 'parchment') this.enterParchment()
+    else this.leaveParchment()
+    this.scheduler.invalidate()
+  }
+
+  prepareParchment(): void {
+    this.prepareSheet()
+  }
+
+  setLabel(label: string): void {
+    this.canvas.setAttribute('aria-label', label)
+  }
+
   zoom(factor: number): void {
     this.rig.zoom(factor)
     this.scheduler.invalidate()
@@ -444,20 +500,9 @@ export class AtlasEngine {
     const level = ref ? levelOf(this.world, ref) : this.level
     if (ref && level !== this.level) this.setLevel(level)
     this.selectionTextures?.write(this.world, ref, this.level)
-    this.beacon.hide()
-    if (ref) {
-      const point = focusOf(this.world, this.field, ref)
-      if (point) {
-        if (ref.kind === 'sky' || isSmall(this.world, ref)) {
-          this.beacon.show(
-            point.x,
-            beaconHeight(this.world, this.field, ref, point, this.level),
-            point.z,
-          )
-        }
-        if (focus) this.rig.flyTo(point.x, point.z, this.rig.frameDistance(point.radius))
-      }
-    }
+    this.placeBeacon()
+    const point = ref && focus ? focusOf(this.world, this.field, ref) : undefined
+    if (point) this.rig.flyTo(point.x, point.z, this.rig.frameDistance(point.radius))
     this.scheduler.invalidate()
   }
 
@@ -559,6 +604,7 @@ export class AtlasEngine {
       level,
     )
     this.beacon.hide()
+    this.parchment.setLevel(level)
     this.applyVisibility()
     this.applySky()
     this.shadowsStale = true
@@ -653,6 +699,7 @@ export class AtlasEngine {
     this.probes.dispose()
     this.beacon.dispose()
     this.travel.dispose()
+    this.parchment.dispose()
     this.effects.dispose()
     this.vehicles.dispose()
     this.content.dispose()
@@ -704,6 +751,131 @@ export class AtlasEngine {
     })
   }
 
+  private enterParchment(): void {
+    if (this.shift?.to === 'parchment' || (this.style === 'parchment' && !this.shift)) return
+    this.rig.lock()
+    if (!this.rig.tilting) {
+      this.shift = undefined
+      this.showStyle('parchment')
+      return
+    }
+    this.shift = {
+      to: 'parchment',
+      paperFrom: this.paper,
+      model: this.shift?.model ?? gradeLevels(this.lights.grade),
+    }
+    this.askGlyphs()
+    this.followShift(this.shift)
+    this.applyVisibility()
+  }
+
+  private leaveParchment(): void {
+    this.rig.unlock()
+    if (this.shift?.to === '3d' || (this.style === '3d' && !this.shift)) return
+    const paperFrom = this.paper
+    this.shift = undefined
+    this.style = '3d'
+    this.applyStyle()
+    if (!this.rig.tilting) return
+    this.shift = { to: '3d', paperFrom, model: gradeLevels(this.lights.grade) }
+    this.followShift(this.shift)
+    this.applyVisibility()
+  }
+
+  private followShift(shift: StyleShift): void {
+    const progress = this.rig.tiltProgress
+    const toParchment = shift.to === 'parchment'
+    const shape = toParchment
+      ? smoothstep(1 - PAPER_FADE_SPAN, 1, progress)
+      : smoothstep(0, PAPER_FADE_SPAN, progress)
+    const target = toParchment ? 1 : 0
+    this.paper = shift.paperFrom + (target - shift.paperFrom) * shape
+    this.parchment.setFade(this.paper)
+    this.post.setBloom(1 - this.paper)
+    this.labels.hangBelowGlyphs(this.paper)
+    this.container.dataset['style'] = this.paper < 0.5 ? '3d' : 'parchment'
+    gradeParchment(this.lights, this.level > 0, shift.model, this.paper)
+    this.labelsStale = true
+  }
+
+  private endShift(shift: StyleShift): void {
+    this.shift = undefined
+    if (shift.to === 'parchment') this.showStyle('parchment')
+    else this.applyStyle()
+  }
+
+  private showStyle(style: MapStyle): void {
+    if (style === this.style) return
+    this.style = style
+    this.applyStyle()
+  }
+
+  private applyStyle(): void {
+    const parchment = this.style === 'parchment'
+    this.paper = parchment ? 1 : 0
+    this.container.dataset['style'] = this.style
+    this.parchment.setFade(1)
+    this.post.setBloom(1 - this.paper)
+    this.labels.hangBelowGlyphs(this.paper)
+    this.travel.setInk(parchment)
+    this.applyVisibility()
+    this.applySky()
+    this.placeBeacon()
+    if (parchment) this.askGlyphs()
+    this.labelsStale = true
+  }
+
+  private prepareSheet(): void {
+    if (this.sheet !== 'absent') return
+    this.sheet = 'compiling'
+    this.scene.add(this.parchment.group)
+    this.askGlyphs()
+    const signal = this.stop.signal
+    this.renderer.compileAsync(this.parchment.group, this.parchmentCamera, this.scene).then(
+      () => {
+        if (signal.aborted) return
+        this.sheet = 'ready'
+        this.setStyle(this.wantedStyle)
+      },
+      (error: unknown) => console.error('[atlas] the parchment could not be prepared', error),
+    )
+  }
+
+  private askGlyphs(): void {
+    if (this.glyphsAsked) return
+    this.glyphsAsked = true
+    const signal = this.stop.signal
+    glyphAtlas(GLYPH_PIXELS[this.tier]).then(
+      (glyphs) => {
+        if (signal.aborted) {
+          glyphs.dispose()
+          return
+        }
+        this.parchment.setGlyphs(glyphs)
+        this.scheduler.invalidate(false)
+      },
+      (error: unknown) => console.error('[atlas] the parchment glyphs could not be drawn', error),
+    )
+  }
+
+  private placeBeacon(): void {
+    this.beacon.hide()
+    const ref = this.selected
+    if (!ref || this.style === 'parchment' || levelOf(this.world, ref) !== this.level) return
+    if (ref.kind !== 'sky' && !isSmall(this.world, ref)) return
+    const point = focusOf(this.world, this.field, ref)
+    if (!point) return
+    this.beacon.show(point.x, beaconHeight(this.world, this.field, ref, point, this.level), point.z)
+  }
+
+  private landmarkOn(tile: number): number {
+    if (tile < 0) return -1
+    for (const landmark of itemsAt(this.world.surface.landmarks, tile)) {
+      if (this.world.landmarks[landmark]?.tile === tile) return landmark
+    }
+    return -1
+  }
+
   private chooseLabel(ref: AtlasRef): void {
     if (this.picking) this.events.pick(ref)
     else this.events.select(ref, true)
@@ -740,11 +912,16 @@ export class AtlasEngine {
   private refAt(ray: Ray, landmarks: boolean): AtlasRef | undefined {
     const sky = this.picker.sky(ray, this.level)
     if (sky >= 0) return { kind: 'sky', sky }
-    if (landmarks && this.level === 0) {
+    const pickLandmark = landmarks && this.level === 0
+    if (pickLandmark && this.style === '3d') {
       const landmark = this.picker.landmark(ray, this.content.landmarks)
       if (landmark >= 0) return { kind: 'landmark', landmark }
     }
     const tile = this.picker.tile(ray, this.level, this.rig.rig.dist)
+    if (pickLandmark && this.style === 'parchment') {
+      const landmark = this.landmarkOn(tile)
+      if (landmark >= 0) return { kind: 'landmark', landmark }
+    }
     if (tile < 0) return undefined
     return this.level > 0 ? { kind: 'under', level: this.level, tile } : { kind: 'tile', tile }
   }
@@ -878,15 +1055,9 @@ export class AtlasEngine {
     height.magFilter = LinearFilter
     height.minFilter = LinearFilter
     height.needsUpdate = true
-    const tile = (data: Uint8Array) => {
-      const texture = new DataTexture(data, this.grid.columns, this.grid.rows, RGBAFormat)
-      texture.magFilter = NearestFilter
-      texture.minFilter = NearestFilter
-      texture.needsUpdate = true
-      return texture
-    }
-    for (const info of textures.tileInfo) this.tileInfo.push(tile(info))
-    const sky = tile(textures.skyInfo)
+    for (const info of textures.tileInfo) this.tileInfo.push(tileTexture(info, this.grid))
+    const sky = tileTexture(textures.skyInfo, this.grid)
+    this.parchment.receive(textures.parchment, this.grid, this.level)
     this.uniforms.uNoise.value = noise
     this.uniforms.uWaterN.value = water
     this.uniforms.uHeight.value = height
@@ -936,6 +1107,7 @@ export class AtlasEngine {
       this.level > 0
         ? lightUnderground(this.lights)
         : this.daylight.surface(this.lights, this.hour, this.season, this.display.effects.clouds)
+    if (this.style === 'parchment') gradeParchment(this.lights, this.level > 0)
     this.scene.background = this.level > 0 ? undergroundFog() : null
     this.scene.environmentIntensity = sky.environmentIntensity
     this.environment.invalidate()
@@ -948,6 +1120,7 @@ export class AtlasEngine {
     this.uniforms.uGrid.value = display.grid ? 1 : 0
     this.labels.setGroups(display.labels)
     this.content.setRoutes(display.routes)
+    this.parchment.setRoutes(display.routes)
     this.effects.setShown(display.effects)
     this.vehicles.setShown({
       ships: display.routes.sea,
@@ -958,16 +1131,18 @@ export class AtlasEngine {
   }
 
   private applyVisibility(): void {
-    const surface = this.level === 0
+    const model = this.style === '3d'
+    const surface = model && this.level === 0
     const visible: Record<SceneLayer, boolean> = {
       surface,
       sky: surface,
       routes: surface,
       effects: surface,
-      'under-1': this.level === 1,
-      'under-2': this.level === 2,
+      'under-1': model && this.level === 1,
+      'under-2': model && this.level === 2,
     }
     for (const layer of SCENE_LAYERS) this.content.groups[layer].visible = visible[layer]
+    this.parchment.shown = !model || this.shift !== undefined
     this.travel.group.visible = this.travelLevel === this.level
   }
 
@@ -978,8 +1153,8 @@ export class AtlasEngine {
     this.ratio = Math.min(window.devicePixelRatio || 1, MAX_PIXEL_RATIO)
     this.renderer.setPixelRatio(this.ratio)
     this.renderer.setSize(this.width, this.height, false)
-    this.camera.aspect = this.width / this.height
-    this.camera.updateProjectionMatrix()
+    this.perspective.aspect = this.width / this.height
+    this.perspective.updateProjectionMatrix()
     this.uniforms.uPScale.value = this.pointScale()
     this.labelsStale = true
     window.clearTimeout(this.resizeTimer)
@@ -1009,10 +1184,11 @@ export class AtlasEngine {
 
   private pointScale(): number {
     const height = renderSize(this.pixelHeight(), this.settings.renderScale)
-    return height / (2 * Math.tan((this.camera.fov * Math.PI) / 360))
+    return height / (2 * Math.tan((this.perspective.fov * Math.PI) / 360))
   }
 
   private groundY(): number {
+    if (this.style === 'parchment' || this.shift?.to === 'parchment') return 0
     const { goal } = this.rig
     return this.level > 0 ? ROCK_TOP * 0.5 : Math.max(0, surfaceY(this.field, goal.x, goal.z)) * 0.6
   }
@@ -1063,6 +1239,17 @@ export class AtlasEngine {
     this.events.settle(goal.x, goal.z)
   }
 
+  private frameModel(): void {
+    const eye = this.perspective.position
+    this.uniforms.uInMist.value = eye.y < MIST.envelope && this.mistRoom(eye.x, eye.z) ? 1 : 0
+    const top = this.rig.view === 'top'
+    const density = 0.0045 * Math.max(0.12, Math.min(1, 60 / this.rig.rig.dist)) * (top ? 0.4 : 1)
+    this.fog.density = density
+    this.uniforms.uFogDensity.value = density
+    this.uniforms.uCloudOp.value = top ? 0.55 : 1
+    this.content.frameDetail(eye, this.rig.rig.dist > OVERVIEW_REACH, this.settings.nearDetail)
+  }
+
   private frame(now: number, dt: number, animate: boolean): boolean {
     if (animate) this.time = (this.time + dt) % 3600
     this.uniforms.uTime.value = this.time
@@ -1070,20 +1257,14 @@ export class AtlasEngine {
     this.vehicles.update(this.time)
     const keyed = this.input.step(dt)
     const moving = this.covered ? false : this.rig.update(dt, this.groundY())
-    const fovChanged = this.rig.apply(this.camera)
+    const shift = this.shift
+    if (shift && this.rig.tilting) this.followShift(shift)
+    else if (shift) this.endShift(shift)
+    const fovChanged = this.rig.apply(this.perspective)
     if (fovChanged) this.uniforms.uPScale.value = this.pointScale()
-    const eye = this.camera.position
-    this.uniforms.uInMist.value = eye.y < MIST.envelope && this.mistRoom(eye.x, eye.z) ? 1 : 0
-    const top = this.rig.view === 'top'
-    const density = 0.0045 * Math.max(0.12, Math.min(1, 60 / this.rig.rig.dist)) * (top ? 0.4 : 1)
-    this.fog.density = density
-    this.uniforms.uFogDensity.value = density
-    this.uniforms.uCloudOp.value = top ? 0.55 : 1
-    this.content.frameDetail(
-      this.camera.position,
-      this.rig.rig.dist > OVERVIEW_REACH,
-      this.settings.nearDetail,
-    )
+    if (this.style === 'parchment') {
+      this.rig.applyParchment(this.parchmentCamera, this.width / this.height)
+    } else this.frameModel()
     const rising = this.content.rise(now)
     if (this.content.takeChanged()) this.shadowsStale = true
     this.updateShadows()

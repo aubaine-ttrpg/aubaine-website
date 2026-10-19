@@ -17,7 +17,7 @@ Five settings are remembered once you change them:
 - whether drafts are shown, under the key `aubaine.drafts`;
 - sound (on or muted, master volume, and the ambience, effects and interface volumes), under the key `aubaine.sound`;
 - the Atlas map view (top, 3/4, relief or free), under the key `aubaine.atlas.view`;
-- the Atlas options (display quality, screen effect, what the map shows), under the key `aubaine.atlas.settings`.
+- the Atlas options (display quality, screen effect, 3D or parchment rendering, legend open or closed, what the map shows), under the key `aubaine.atlas.settings`.
 
 They stay in your browser and are sent nowhere. Clearing the site's data removes them.
 

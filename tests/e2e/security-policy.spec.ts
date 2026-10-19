@@ -72,6 +72,32 @@ test('the Atlas fetches and plays its sounds under the deployed policy', async (
   expect(await violations(page)).toEqual([])
 })
 
+test('the Atlas draws the parchment glyphs under the deployed policy', async ({ page }) => {
+  test.slow()
+  await servedUnder(page, policyIn('dist/_headers'))
+  await page.addInitScript(() =>
+    window.localStorage.setItem(
+      'aubaine.atlas.settings',
+      JSON.stringify({ quality: 'low', style: 'parchment' }),
+    ),
+  )
+  const glyphs = page.waitForResponse((response) =>
+    new URL(response.url()).pathname.includes('parchment-glyphs'),
+  )
+  await page.goto('/fr/atlas')
+  const root = page.locator('[data-atlas-root]')
+  await expect(root).toHaveAttribute('data-atlas-state', /^(ready|map-unavailable)$/, {
+    timeout: 90_000,
+  })
+  test.skip(
+    (await root.getAttribute('data-atlas-state')) !== 'ready',
+    'the parchment needs the map',
+  )
+  expect((await glyphs).ok()).toBe(true)
+  await page.waitForLoadState('networkidle')
+  expect(await violations(page)).toEqual([])
+})
+
 test('the threshold hands off under the deployed policy', async ({ page }) => {
   await servedUnder(page, policyIn('dist/_headers'))
   await page.goto('/')

@@ -51,6 +51,7 @@ import { PlaceFinder } from './PlaceFinder'
 import { PlaceSheet } from './PlaceSheet'
 import type { AtlasProps, AtlasWorldCard } from './props'
 import { type Pane, Sidebar } from './Sidebar'
+import { StyleSwitch } from './StyleSwitch'
 import {
   type AtlasSettings,
   storedSettings,
@@ -123,7 +124,6 @@ export function AtlasApp({ client, sound, props, book, world: shown, onSwitch }:
   const [pane, setPane] = useState<Pane | undefined>(() =>
     snapshot.state === 'map-unavailable' ? 'place' : undefined,
   )
-  const [legend, setLegend] = useState(false)
   const [view, setView] = useState<View>(() => storedView() ?? DEFAULT_VIEW)
   const [level, setLevel] = useState(0)
   const [settings, setSettings] = useState<AtlasSettings>(storedSettings)
@@ -185,7 +185,9 @@ export function AtlasApp({ client, sound, props, book, world: shown, onSwitch }:
       : (outcome?.message ?? '')
   const shownResult = request ? journey?.result : undefined
   const mapShown = state !== 'map-unavailable'
-  const levelBusy = level > 0 && !readyLevels.has(level)
+  const { style, legend } = settings
+  const parchment = style === 'parchment'
+  const levelBusy = level > 0 && !readyLevels.has(level) && !parchment
   const toggles = { place: placeToggle, travel: travelToggle, options: optionsToggle }
   const badgeLabels: Record<BadgedStatus, string> = {
     draft: all.draft,
@@ -325,7 +327,7 @@ export function AtlasApp({ client, sound, props, book, world: shown, onSwitch }:
     if (ref && (engine?.discovered(ref) ?? true)) choose(ref, true, 'link')
   })
 
-  const label = t.mapLabel(shown.name)
+  const label = parchment ? t.parchmentLabel(shown.name) : t.mapLabel(shown.name)
   useEffect(() => {
     const container = map.current
     if (!container || !world) return
@@ -333,6 +335,7 @@ export function AtlasApp({ client, sound, props, book, world: shown, onSwitch }:
       label,
       unexploredLabel: t.unexplored,
       view,
+      style,
       animated,
       display: settings.display,
       screen: settings.screen,
@@ -345,7 +348,7 @@ export function AtlasApp({ client, sound, props, book, world: shown, onSwitch }:
         escape: () => onEscape(),
       },
     })
-  }, [client, world, label, t.unexplored, view, animated, hovered, settings])
+  }, [client, world, label, t.unexplored, view, style, animated, hovered, settings])
 
   useEffect(() => {
     if (!engine) return
@@ -370,6 +373,14 @@ export function AtlasApp({ client, sound, props, book, world: shown, onSwitch }:
   useEffect(() => {
     engine?.setScreenEffect(settings.screen)
   }, [engine, settings.screen])
+
+  useEffect(() => {
+    engine?.setStyle(style)
+  }, [engine, style])
+
+  useEffect(() => {
+    engine?.setLabel(label)
+  }, [engine, label])
 
   useEffect(() => {
     engine?.setSky(hour, season)
@@ -418,7 +429,7 @@ export function AtlasApp({ client, sound, props, book, world: shown, onSwitch }:
 
   return (
     <MotionConfig reducedMotion="user">
-      <div className="au-atlas-ui" data-side={pane ? 'open' : 'closed'}>
+      <div className="au-atlas-ui" data-side={pane ? 'open' : 'closed'} data-style={style}>
         <div className="au-atlas-column">
           <Cartouche
             words={t}
@@ -542,6 +553,7 @@ export function AtlasApp({ client, sound, props, book, world: shown, onSwitch }:
                     season={season}
                     onSeason={setSeason}
                     underground={level > 0}
+                    parchment={parchment}
                   />
                 ) : undefined,
               }}
@@ -549,24 +561,39 @@ export function AtlasApp({ client, sound, props, book, world: shown, onSwitch }:
             {mapShown && (
               <div className="au-atlas-dock">
                 {legend && (
-                  <LegendPanel words={t} vocabulary={gazetteer.world.vocabulary} id={legendPanel} />
+                  <LegendPanel
+                    words={t}
+                    vocabulary={gazetteer.world.vocabulary}
+                    id={legendPanel}
+                    style={style}
+                    underground={level > 0}
+                  />
                 )}
-                <ViewBar
-                  words={t}
-                  view={view}
-                  onView={(next) => engine?.setView(next)}
-                  onZoom={(factor) => engine?.zoom(factor)}
-                  onNorth={() => engine?.resetNorth()}
-                  compass={compass}
-                />
+                <div className="au-atlas-dock__bars">
+                  <StyleSwitch
+                    words={t}
+                    style={style}
+                    onPrepare={() => engine?.prepareParchment()}
+                    onStyle={(next) => updateSettings({ style: next })}
+                  />
+                  <ViewBar
+                    words={t}
+                    view={view}
+                    locked={parchment}
+                    onView={(next) => engine?.setView(next)}
+                    onZoom={(factor) => engine?.zoom(factor)}
+                    onNorth={() => engine?.resetNorth()}
+                    compass={compass}
+                  />
+                </div>
                 <div className="au-atlas-dock__row">
                   <LegendToggle
                     words={t}
                     open={legend}
                     controls={legendPanel}
-                    onToggle={setLegend}
+                    onToggle={(open) => updateSettings({ legend: open })}
                   />
-                  <p className="au-atlas-hint">{t.controls[view]}</p>
+                  <p className="au-atlas-hint">{t.controls[parchment ? 'parchment' : view]}</p>
                 </div>
               </div>
             )}

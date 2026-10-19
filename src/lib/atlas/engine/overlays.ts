@@ -8,8 +8,11 @@ import {
   type ShaderMaterial,
 } from 'three'
 import type { MaterialLibrary } from './materials/library.ts'
+import { SHEET_ORDER } from './parchment-view.ts'
 
 export type PathPoint = [number, number, number]
+
+const PATH_ORDER = 11
 
 export class Beacon {
   readonly group = new Group()
@@ -52,15 +55,19 @@ export class TravelPath {
   readonly group = new Group()
   private readonly ribbon: Mesh<BufferGeometry, ShaderMaterial>
   private readonly pins: Mesh[]
+  private readonly pinGroup = new Group()
+  private readonly glow: ShaderMaterial
+  private readonly ink: ShaderMaterial
   private readonly materials: ShaderMaterial[]
 
   constructor(library: MaterialLibrary) {
-    const path = library.travelPath()
+    this.glow = library.travelPath(false)
+    this.ink = library.travelPath(true)
     const pin = library.travelPin()
-    this.materials = [path, pin]
-    this.ribbon = new Mesh(new BufferGeometry(), path)
+    this.materials = [this.glow, this.ink, pin]
+    this.ribbon = new Mesh(new BufferGeometry(), this.glow)
     this.ribbon.frustumCulled = false
-    this.ribbon.renderOrder = 11
+    this.ribbon.renderOrder = PATH_ORDER
     this.ribbon.visible = false
     const pinGeometry = new CylinderGeometry(0.08, 0.08, 3, 16, 1, true).translate(0, 1.5, 0)
     this.pins = [0, 1].map(() => {
@@ -68,7 +75,14 @@ export class TravelPath {
       mesh.visible = false
       return mesh
     })
-    this.group.add(this.ribbon, ...this.pins)
+    this.pinGroup.add(...this.pins)
+    this.group.add(this.ribbon, this.pinGroup)
+  }
+
+  setInk(ink: boolean): void {
+    this.ribbon.material = ink ? this.ink : this.glow
+    this.ribbon.renderOrder = ink ? SHEET_ORDER + 1 : PATH_ORDER
+    this.pinGroup.visible = !ink
   }
 
   show(points: readonly PathPoint[], width: number): void {

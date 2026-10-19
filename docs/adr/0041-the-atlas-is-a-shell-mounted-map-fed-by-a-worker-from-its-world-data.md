@@ -8,6 +8,8 @@
 **Revised:** 2026-10-16, Decision 5 is reversed by 0043; Decision 1 gains an addendum: the loading
 screen gives way to the CADRAN boot (0044) and the measured sizes move; Decision 3 gains an addendum:
 `data/atlas/` holds several worlds, one of which opens
+**Revised:** 2026-10-19, Decision 1 gains an addendum: the parchment (0049) moves the sizes and the
+chunk warning limit
 **Deciders:** Kori
 **Scope:** The Atlas tab at `/fr/atlas` and `/en/atlas`: how its interactive map reaches the browser
 through Swup, where its work runs, how its world is stored and validated, where its travel rules
@@ -132,6 +134,22 @@ React island (0006 Decision 3). Versions this was decided against, read from `pn
   eleventh. The binder bundled alone is 8,979 bytes (4,007 gzipped).
 - `vite.build.chunkSizeWarningLimit` is 740 kB in `astro.config.mjs`, raised from 730 because the
   engine chunk passed 730 kB.
+
+### Addendum (2026-10-19): the parchment moves the sizes and the warning limit
+
+- Measured in `dist/_astro` after `pnpm build` on 2026-10-19, with the same method (`wc -c`, then
+  `gzip -9`), on commit `730ba91`, before the parchment work, and with the parchment:
+
+  | Chunk | Before | With the parchment |
+  | ----- | ------ | ------------------ |
+  | Engine with three.js | 742,243 (196,664) | 762,204 (202,776) |
+  | Atlas UI | 155,805 (45,258) | 164,186 (47,072) |
+  | Worker | 175,127 (63,364) | 178,522 (64,619) |
+  | Parchment glyphs, loaded only in 2D | none | 58,037 (26,161) |
+
+- The engine chunk had already passed the 740 kB warning before the parchment. With the parchment
+  shader, view and camera it is 762,204 bytes, so `vite.build.chunkSizeWarningLimit` is 770 kB.
+  The glyphs stay out of the engine chunk, as 0049 Decision 4 records.
 
 ---
 

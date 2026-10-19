@@ -65,7 +65,7 @@ export default defineConfig({
   ],
   vite: {
     worker: { format: 'es' },
-    build: { chunkSizeWarningLimit: 740 },
+    build: { chunkSizeWarningLimit: 770 },
     resolve: {
       alias: {
         '@': new URL('./src', import.meta.url).pathname,

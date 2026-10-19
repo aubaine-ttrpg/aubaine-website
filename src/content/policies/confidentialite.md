@@ -18,7 +18,7 @@ Cinq réglages sont mémorisés quand vous les changez :
 - l'affichage des brouillons, sous la clé `aubaine.drafts` ;
 - le son (activé ou coupé, volume général, volumes de l'ambiance, des effets et de l'interface), sous la clé `aubaine.sound` ;
 - la vue de la carte de l'Atlas (dessus, 3/4, relief ou libre), sous la clé `aubaine.atlas.view` ;
-- les options de l'Atlas (qualité d'affichage, effet d'écran, éléments montrés sur la carte), sous la clé `aubaine.atlas.settings`.
+- les options de l'Atlas (qualité d'affichage, effet d'écran, rendu 3D ou parchemin, légende ouverte ou fermée, éléments montrés sur la carte), sous la clé `aubaine.atlas.settings`.
 
 Ils restent dans votre navigateur et ne sont envoyés nulle part. Effacer les données du site les supprime.
 

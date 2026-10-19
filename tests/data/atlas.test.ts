@@ -1,8 +1,19 @@
+import { readFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { describe, expect, it } from 'vitest'
 
 import { ATLAS_SOUNDS } from '../../src/islands/atlas/sound'
+import {
+  CAVE_GLYPH,
+  LANDMARK_GLYPHS,
+  MAX_SKY_LANES,
+  PARCHMENT_GLYPHS,
+  SETTING_GLYPHS,
+  SETTLEMENT_GLYPHS,
+  TILE_GLYPHS,
+} from '../../src/lib/atlas/contract/parchment'
 import { OPENING_WORLD } from '../../src/lib/atlas/contract/worlds'
+import { svgPath } from '../../src/lib/atlas/svg-path'
 import {
   CAVE_KINDS,
   ESTABLISHMENT_DRESSINGS,
@@ -93,6 +104,31 @@ describe('the Atlas', () => {
     const owned: readonly string[] = OWNED_FILES
     for (const { id, world } of atlas.worlds) {
       if (world.emblem !== undefined) expect(owned, `${id} emblem`).toContain(world.emblem)
+    }
+  })
+
+  it('draws every parchment glyph from one game-icons path', async () => {
+    for (const glyph of PARCHMENT_GLYPHS) {
+      const svg = await readFile(resolve(root, `data/media/icons/game-icons/${glyph}.svg`), 'utf8')
+      expect(svgPath(svg).size, glyph).toBe(512)
+    }
+  })
+
+  it('gives every parchment glyph a hex to mark', () => {
+    const used = new Set([
+      ...Object.values(TILE_GLYPHS),
+      ...Object.values(SETTING_GLYPHS),
+      ...Object.values(LANDMARK_GLYPHS),
+      ...Object.values(SETTLEMENT_GLYPHS),
+      CAVE_GLYPH,
+    ])
+    used.delete(undefined)
+    expect([...used].sort()).toEqual([...PARCHMENT_GLYPHS].sort())
+  })
+
+  it('keeps the sky lanes of every world within what the parchment draws', () => {
+    for (const { id, routes } of atlas.worlds) {
+      expect(routes.skyLanes.length, `${id} sky lanes`).toBeLessThanOrEqual(MAX_SKY_LANES)
     }
   })
 })

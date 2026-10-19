@@ -396,7 +396,7 @@ function writeTube(writer: MeshWriter, points: readonly Vec3[], length: number):
   }
 }
 
-function laneEnd(world: World, grid: Grid, end: LaneEnd): Vec3 | undefined {
+export function laneEnd(world: World, grid: Grid, end: LaneEnd): Vec3 | undefined {
   if ('landmark' in end) {
     const landmark = world.landmarks[end.landmark]
     return landmark && [landmark.x, landmark.y + SKY_LANE.landmarkLift, landmark.z]

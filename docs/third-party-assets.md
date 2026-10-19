@@ -53,6 +53,10 @@ Fetch it from `https://api.iconify.design/<prefix>.json?icons=<name>` and write 
 new set is a contract change and a new licence to record here. See
 [runbooks/add-an-image.md](runbooks/add-an-image.md).
 
+The Atlas parchment draws game-icons paths into a canvas in the browser and uses them as a texture
+on the map; the files themselves are still the committed ones, never fetched from Iconify at run
+time. [runbooks/edit-the-atlas.md](runbooks/edit-the-atlas.md) says how to add one.
+
 ## Fonts
 
 The families under `data/media/fonts/` are fetched from Google Fonts by `tools/fonts/build.ts`, which

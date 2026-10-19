@@ -116,6 +116,22 @@ Nothing is authored for the fog of war. The Atlas reveals the sea around every l
 
 A sea as a place reveals nothing by itself. To reveal more of the ocean, give it what a reader would know it by, such as a sea lane. A hex under the fog cannot be selected, its label is hidden, and a link to it opens nothing. `src/lib/atlas/kernel/reveal.ts` holds the reach of each kind of hex.
 
+## The parchment
+
+The 2D style (« Parchemin ») is drawn from the same files; nothing is authored for it. Every hex takes the wash of its tile type, or of its setting or rock underground, and is filled with a light pattern of small copies of that type's glyph. A landmark, a city, a village, a hold or a surface cave mouth replaces the pattern of its hex with one large glyph: a landmark first, then a settlement, then a cave. Routes run from hex centre to hex centre, and the fog of war leaves the Unknown as blank paper. `docs/adr/0049-the-parchment-is-a-lit-hex-chart-the-same-engine-draws-behind-a-3d-2d-switch.md` records why.
+
+- `src/lib/atlas/contract/parchment.ts` maps every tile type, setting, landmark kind and settlement to its glyph; `forest` takes `forest`, for one. Read it for the rest.
+- `src/lib/atlas/engine/parchment-palette.ts` holds the washes and inks. The `--atlas-paper` and `--atlas-ink*` tokens in `src/components/views/Atlas.astro` must match its inks, and `pnpm test` fails when they drift.
+- The pattern's density, size and ink are `TERRAIN_PATTERN` in `src/lib/atlas/engine/materials/library.ts`.
+
+To give a type another glyph, or a new kind its glyph:
+
+1. Fetch the game-icons glyph as `docs/third-party-assets.md` describes. The file must hold a single path.
+2. Add its name to `PARCHMENT_GLYPHS` and to the table that uses it.
+3. Add its raw import to `src/lib/atlas/engine/parchment-glyphs.ts`; a missing one fails `pnpm check`.
+
+`pnpm data:check` fails on a glyph without a file, a file with several paths, or a glyph no table uses.
+
 ## The stars
 
 `stars.json` sets the light over the map. `primary` is the star the planet circles, `warm` and `hot` the far pair. Each star has a `temperature` in kelvins, which gives its colour, an `illuminance` in lux at the zenith, and an apparent `diameter` in degrees; `hot` may add a `tint`. `pair` gives the distance of the pair, the gap between its two stars, and its two periods.

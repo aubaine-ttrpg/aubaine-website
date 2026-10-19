@@ -1,4 +1,4 @@
-import type { PerspectiveCamera } from 'three'
+import type { OrthographicCamera, PerspectiveCamera } from 'three'
 import type { View } from '../contract/camera.ts'
 
 type Mode = { fov: number; min: number; max: number }
@@ -15,6 +15,8 @@ const FREE_PITCH = { low: 0.1, high: 1.55 }
 const RELIEF_PITCH = { near: 0.3, far: 0.55, span: 160 }
 const FREE_PITCH_ON_SWITCH = 1.5
 const SETTLE = 1e-3
+const TILT_SECONDS = 0.7
+const PARCHMENT_EYE = { height: 200, near: 1, far: 400 } as const
 
 export type RigState = {
   x: number
@@ -34,6 +36,12 @@ type Flight = {
   lift: number
 }
 
+type Angles = { pitch: number; yaw: number; fov: number }
+
+type Tilt = { t: number; from: Angles; to: Angles }
+
+const TILTED_KEYS: ReadonlySet<keyof RigState> = new Set(['pitch', 'yaw', 'fov'])
+
 const clamp = (value: number, low: number, high: number) => Math.max(low, Math.min(high, value))
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t
 const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2)
@@ -52,6 +60,8 @@ export class CameraRig {
   readonly rig: RigState
   readonly goal: RigState
   private viewMode: View
+  private parchment = false
+  private tilt: Tilt | undefined
   private flight: Flight | undefined
   private animated: boolean
   private readonly reach: { x: number; z: number }
@@ -68,11 +78,19 @@ export class CameraRig {
   }
 
   get view(): View {
+    return this.parchment ? 'top' : this.viewMode
+  }
+
+  get chosenView(): View {
     return this.viewMode
   }
 
+  get locked(): boolean {
+    return this.parchment
+  }
+
   get mode(): Mode {
-    return VIEW_MODES[this.viewMode]
+    return VIEW_MODES[this.view]
   }
 
   get flying(): boolean {
@@ -81,13 +99,42 @@ export class CameraRig {
 
   setView(view: View, animate = true): void {
     this.viewMode = view
+    if (this.parchment) return
     this.applyView(view)
     if (!animate) Object.assign(this.rig, this.goal)
+  }
+
+  get tilting(): boolean {
+    return this.tilt !== undefined
+  }
+
+  get tiltProgress(): number {
+    return this.tilt ? Math.min(1, this.tilt.t) : 1
+  }
+
+  lock(animate = true): void {
+    if (this.parchment) return
+    this.parchment = true
+    this.applyView('top')
+    if (animate && this.animated) {
+      this.startTilt()
+      return
+    }
+    this.snapAngles()
+  }
+
+  unlock(): void {
+    if (!this.parchment) return
+    this.parchment = false
+    this.applyView(this.viewMode)
+    if (this.animated) this.startTilt()
+    else this.snapAngles()
   }
 
   setAnimated(animated: boolean): void {
     this.animated = animated
     if (!animated && this.flight) this.land(this.flight.to)
+    if (!animated && this.tilt) this.finishTilt(this.tilt)
   }
 
   zoom(factor: number): void {
@@ -124,13 +171,13 @@ export class CameraRig {
 
   turn(yaw: number, pitch: number): void {
     this.goal.yaw += yaw
-    if (this.viewMode === 'free')
+    if (this.view === 'free')
       this.goal.pitch = clamp(this.goal.pitch + pitch, FREE_PITCH.low, FREE_PITCH.high)
   }
 
   pinch(dist: number, yaw: number): void {
     this.goal.dist = clamp(dist, this.mode.min, this.mode.max)
-    if (this.viewMode !== 'top') this.goal.yaw = yaw
+    if (this.view !== 'top') this.goal.yaw = yaw
     this.followPitch()
   }
 
@@ -173,15 +220,47 @@ export class CameraRig {
       this.followPitch()
       if (flight.t >= 1) this.flight = undefined
     }
+    const tilt = this.tilt
+    if (tilt) {
+      tilt.t += dt / TILT_SECONDS
+      const t = ease(Math.min(1, tilt.t))
+      rig.pitch = lerp(tilt.from.pitch, tilt.to.pitch, t)
+      rig.yaw = lerp(tilt.from.yaw, tilt.to.yaw, t)
+      rig.fov = lerp(tilt.from.fov, tilt.to.fov, t)
+      if (tilt.t >= 1) this.finishTilt(tilt)
+    }
     const k = 1 - Math.exp(-dt * (flight ? 14 : 9))
     goal.y = groundY
     let moving = false
     for (const key of ['x', 'y', 'z', 'dist', 'pitch', 'fov', 'yaw'] as const) {
+      if (tilt && TILTED_KEYS.has(key)) continue
       const delta = goal[key] - rig[key]
       if (Math.abs(delta) > SETTLE) moving = true
       rig[key] = this.animated ? rig[key] + delta * k : goal[key]
     }
-    return moving || this.flight !== undefined
+    return moving || this.flight !== undefined || tilt !== undefined
+  }
+
+  private startTilt(): void {
+    const { rig, goal } = this
+    this.tilt = {
+      t: 0,
+      from: { pitch: rig.pitch, yaw: rig.yaw, fov: rig.fov },
+      to: { pitch: goal.pitch, yaw: goal.yaw, fov: goal.fov },
+    }
+  }
+
+  private snapAngles(): void {
+    this.tilt = undefined
+    const { rig, goal } = this
+    rig.pitch = goal.pitch
+    rig.yaw = goal.yaw
+    rig.fov = goal.fov
+  }
+
+  private finishTilt(tilt: Tilt): void {
+    this.tilt = undefined
+    Object.assign(this.rig, tilt.to)
   }
 
   apply(camera: PerspectiveCamera): boolean {
@@ -203,6 +282,21 @@ export class CameraRig {
     return fovChanged
   }
 
+  applyParchment(camera: OrthographicCamera, aspect: number): void {
+    const { rig } = this
+    const half = rig.dist * Math.tan((rig.fov * Math.PI) / 360)
+    camera.left = -half * aspect
+    camera.right = half * aspect
+    camera.top = half
+    camera.bottom = -half
+    camera.near = PARCHMENT_EYE.near
+    camera.far = PARCHMENT_EYE.far
+    camera.position.set(rig.x, PARCHMENT_EYE.height, rig.z)
+    camera.up.set(-Math.sin(rig.yaw), 0, -Math.cos(rig.yaw))
+    camera.lookAt(rig.x, 0, rig.z)
+    camera.updateProjectionMatrix()
+  }
+
   private pitchFor(view: View, dist: number): number | undefined {
     if (view === 'top') return TOP_PITCH
     if (view === 'iso') return isoPitch(dist)
@@ -219,7 +313,7 @@ export class CameraRig {
   }
 
   private followPitch(): void {
-    const pitch = this.pitchFor(this.viewMode, this.goal.dist)
+    const pitch = this.pitchFor(this.view, this.goal.dist)
     if (pitch !== undefined) this.goal.pitch = pitch
   }
 

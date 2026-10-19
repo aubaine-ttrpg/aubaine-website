@@ -9,6 +9,8 @@
 recorded in 0046
 **Revised:** 2026-10-17, Decision 3 gains a second addendum: the field carries a haze ramp, and
 the pointer and the marks read the sea again (0047)
+**Revised:** 2026-10-19, Decision 4 gains a second addendum: the key also holds the map style and
+whether the legend is open (0049)
 **Deciders:** Kori
 **Scope:** The image of the Atlas map and what the Atlas stores: the render resolution of each tier
 and how Auto picks one, the post pipeline and its screen effect, the lighting from the setting's
@@ -275,6 +277,13 @@ sea before the fog, named « L'Inconnue ».
   site-wide `aubaine.sound`. The key now holds the quality, the screen effect and what the map shows.
 - `storedSettings` reads field by field, so a stored `sound` or `volume` is ignored and nothing is
   migrated.
+
+### Addendum (2026-10-19): the style and the legend join this key
+
+- 0049 Decision 1 adds the map style (`3d` or `parchment`) and whether the legend is open, the
+  legend defaulting to open. Both are read field by field like the rest, so an older stored value
+  opens in 3D with the legend shown.
+- The privacy pages name both under `aubaine.atlas.settings` in both locales; no key is added.
 
 ---
 

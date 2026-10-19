@@ -25,6 +25,8 @@ import sailBoat from '../../../data/media/icons/mdi/sail-boat.svg?raw'
 import swapVertical from '../../../data/media/icons/mdi/swap-vertical.svg?raw'
 import terrain from '../../../data/media/icons/mdi/terrain.svg?raw'
 import train from '../../../data/media/icons/mdi/train.svg?raw'
+import video2d from '../../../data/media/icons/mdi/video-2d.svg?raw'
+import video3d from '../../../data/media/icons/mdi/video-3d.svg?raw'
 import volumeHigh from '../../../data/media/icons/mdi/volume-high.svg?raw'
 import volumeOff from '../../../data/media/icons/mdi/volume-off.svg?raw'
 import walk from '../../../data/media/icons/mdi/walk.svg?raw'
@@ -63,6 +65,8 @@ const ICONS = {
   'swap-vertical': pathOf(swapVertical),
   terrain: pathOf(terrain),
   train: pathOf(train),
+  'video-2d': pathOf(video2d),
+  'video-3d': pathOf(video3d),
   'volume-high': pathOf(volumeHigh),
   'volume-off': pathOf(volumeOff),
   walk: pathOf(walk),

@@ -96,6 +96,11 @@ export function neighbourOf(grid: Grid, tile: number, edge: number): number {
   return grid.neighbours[tile * EDGES + edge] ?? -1
 }
 
+export function edgeBetween(grid: Grid, from: number, to: number): number {
+  for (let edge = 0; edge < EDGES; edge++) if (neighbourOf(grid, from, edge) === to) return edge
+  throw new RangeError(`tiles ${from} and ${to} are not neighbours`)
+}
+
 export function hexDistance(grid: Grid, a: number, b: number): number {
   const dq = (grid.q[a] ?? 0) - (grid.q[b] ?? 0)
   const dr = (grid.r[a] ?? 0) - (grid.r[b] ?? 0)

@@ -1,4 +1,4 @@
-import { type PerspectiveCamera, Vector3 } from 'three'
+import { type Camera, Vector3 } from 'three'
 import { LABEL_GROUP_OF, type LabelGroup, type LabelKind } from '../contract/display.ts'
 import { DEFAULT_LABEL_LIFT, LANDMARK_LABEL_LIFT, landmarkPlacement } from '../kernel/placement.ts'
 import type { PlaceRecord, World } from '../world/model.ts'
@@ -8,6 +8,15 @@ import { smoothstep } from '../world/smoothstep.ts'
 
 export const LABEL_MARKS = ['capital', 'city', 'village', 'landmark', 'hold', 'cavern'] as const
 export type LabelMark = (typeof LABEL_MARKS)[number]
+
+const GLYPH_DROP = 0.62
+const HANGING_KINDS: ReadonlySet<LabelKind> = new Set<LabelKind>([
+  'city',
+  'village',
+  'quarter',
+  'landmark',
+  'hold',
+])
 
 type Spec = {
   text: string
@@ -234,6 +243,7 @@ export class LabelLayer {
   private readonly projected = new Vector3()
   private groups: Readonly<Record<LabelGroup, boolean>>
   private measured = false
+  private hang = 0
 
   constructor(
     container: HTMLElement,
@@ -308,13 +318,11 @@ export class LabelLayer {
     this.element.hidden = !Object.values(groups).some(Boolean)
   }
 
-  update(
-    camera: PerspectiveCamera,
-    width: number,
-    height: number,
-    distance: number,
-    level: number,
-  ): void {
+  hangBelowGlyphs(amount: number): void {
+    this.hang = amount
+  }
+
+  update(camera: Camera, width: number, height: number, distance: number, level: number): void {
     if (this.element.hidden) return
     if (!this.measured) {
       for (const label of this.labels) {
@@ -337,10 +345,11 @@ export class LabelLayer {
         shown = opacity > 0.02
       }
       if (shown) {
-        this.projected.set(label.x, label.y, label.z).project(camera)
+        const hang = HANGING_KINDS.has(label.kind) ? this.hang : 0
+        this.projected.set(label.x, label.y, label.z + GLYPH_DROP * hang).project(camera)
         if (this.projected.z > 1 || this.projected.z < -1) shown = false
         sx = (this.projected.x * 0.5 + 0.5) * width
-        sy = (-this.projected.y * 0.5 + 0.5) * height
+        sy = (-this.projected.y * 0.5 + 0.5) * height + (label.height / 2) * hang
         if (sx < -MARGIN_X || sx > width + MARGIN_X || sy < -MARGIN_Y || sy > height + MARGIN_Y)
           shown = false
       }

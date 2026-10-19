@@ -44,6 +44,9 @@
   pointer-events: auto;
   touch-action: none;
   will-change: transform, opacity;
+  transition:
+    color 0.35s var(--ease),
+    text-shadow 0.35s var(--ease);
 }
 
 .au-atlas-label__mark {
@@ -191,6 +194,35 @@
   text-shadow:
     0 1px 10px rgba(20, 16, 30, 0.6),
     0 0 2px rgba(20, 16, 30, 0.5);
+}
+
+.au-atlas__map[data-style="parchment"] .au-atlas-label {
+  color: var(--atlas-ink);
+  text-shadow:
+    0 0 2px var(--atlas-paper-halo),
+    0 0 6px var(--atlas-paper-halo);
+}
+
+.au-atlas__map[data-style="parchment"] .au-atlas-label__mark {
+  display: none;
+}
+
+.au-atlas__map[data-style="parchment"] .au-atlas-label--country,
+.au-atlas__map[data-style="parchment"] .au-atlas-label--realm {
+  color: var(--atlas-ink-mark);
+}
+
+.au-atlas__map[data-style="parchment"] .au-atlas-label--sea {
+  color: var(--atlas-ink-water);
+}
+
+.au-atlas__map[data-style="parchment"] .au-atlas-label--landmark {
+  color: var(--atlas-ink-sky);
+}
+
+.au-atlas__map[data-style="parchment"] .au-atlas-label--unexplored,
+.au-atlas__map[data-style="parchment"] .au-atlas-label--quarter {
+  color: rgba(58, 42, 28, 0.72);
 }
 
 .au-atlas-tooltip {
@@ -519,6 +551,68 @@
   background: linear-gradient(90deg, #2f8aa4, #5fc0d6);
 }
 
+.au-atlas-legend__hex {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 22px;
+  background: var(--atlas-paper);
+  color: var(--atlas-ink);
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+}
+
+.au-atlas-legend__glyph {
+  width: 14px;
+  height: 14px;
+}
+
+.au-atlas-legend[data-style="parchment"] .au-atlas-legend__sample {
+  height: 10px;
+  border-radius: 2px;
+}
+
+.au-atlas-legend[data-style="parchment"] .au-atlas-legend__sample[data-route="road"] {
+  background:
+    linear-gradient(var(--atlas-ink), var(--atlas-ink)) center / 100% 3px no-repeat,
+    var(--atlas-paper);
+}
+
+.au-atlas-legend[data-style="parchment"] .au-atlas-legend__sample[data-route="trail"] {
+  background:
+    repeating-linear-gradient(90deg, var(--atlas-ink) 0 5px, transparent 5px 9px) center / 100% 2px
+    no-repeat,
+    var(--atlas-paper);
+}
+
+.au-atlas-legend[data-style="parchment"] .au-atlas-legend__sample[data-route="rail"] {
+  background:
+    linear-gradient(var(--atlas-ink), var(--atlas-ink)) center / 100% 2px no-repeat,
+    repeating-linear-gradient(90deg, var(--atlas-ink) 0 2px, transparent 2px 6px) center / 100% 7px
+    no-repeat,
+    var(--atlas-paper);
+}
+
+.au-atlas-legend[data-style="parchment"] .au-atlas-legend__sample[data-route="sea"] {
+  background:
+    repeating-linear-gradient(90deg, var(--atlas-ink-water) 0 6px, transparent 6px 10px) center /
+    100% 2px no-repeat,
+    var(--atlas-paper);
+}
+
+.au-atlas-legend[data-style="parchment"] .au-atlas-legend__sample[data-route="sky"] {
+  background:
+    repeating-linear-gradient(90deg, var(--atlas-ink-sky) 0 5px, transparent 5px 9px) center / 100%
+    3px no-repeat,
+    var(--atlas-paper);
+}
+
+.au-atlas-legend[data-style="parchment"] .au-atlas-legend__sample[data-route="river"] {
+  background:
+    linear-gradient(var(--atlas-ink-water), var(--atlas-ink-water)) center / 100% 3px no-repeat,
+    var(--atlas-paper);
+}
+
 .au-atlas-unavailable {
   position: absolute;
   left: 14px;
@@ -560,6 +654,11 @@
   letter-spacing: 0.04em;
   color: rgba(236, 232, 247, 0.72);
   text-shadow: 0 1px 4px #000;
+}
+
+.au-atlas-ui[data-style="parchment"] .au-atlas-hint {
+  color: var(--atlas-ink);
+  text-shadow: 0 0 4px var(--atlas-paper-halo);
 }
 
 @media (pointer: coarse) {
@@ -1733,6 +1832,7 @@ button.au-atlas-item:hover {
 }
 
 .au-atlas-round[aria-pressed="true"],
+.au-atlas-round[aria-checked="true"],
 .au-atlas-round[aria-expanded="true"],
 .au-atlas-round:has(:checked) {
   border-color: var(--atlas-gold-ring);
@@ -1888,6 +1988,52 @@ button.au-atlas-item:hover {
   align-items: center;
   gap: 10px;
   max-width: 100%;
+}
+
+.au-atlas-dock__bars {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+}
+
+.au-atlas-style {
+  width: 44px;
+  height: 44px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+  backdrop-filter: var(--atlas-blur);
+}
+
+.au-atlas-style:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.au-atlas-style__icon {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.au-atlas-style__icon .au-atlas-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.au-atlas-round:has(.au-atlas-radio:disabled) {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.au-atlas-round:has(.au-atlas-radio:disabled):hover {
+  border-color: var(--atlas-line);
+  color: var(--atlas-title);
+}
+
+.au-atlas-radio:disabled {
+  cursor: not-allowed;
 }
 
 .au-atlas-viewbar {

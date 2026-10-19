@@ -1,3 +1,5 @@
+import type { ParchmentTextures } from './parchment.ts'
+
 export type Bounds = [number, number, number, number, number, number]
 
 export const MAX_BLEND = 0.5
@@ -218,6 +220,7 @@ export type SceneTextures = {
   tileInfo: Uint8Array[]
   skyInfo: Uint8Array
   reveal: RevealField
+  parchment: ParchmentTextures
 }
 
 export type TerrainChunk = {

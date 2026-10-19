@@ -8,16 +8,21 @@ import {
 } from '../../lib/atlas/contract/display'
 import { isFields } from '../../lib/atlas/contract/fields'
 import { isQualityChoice, type QualityChoice } from '../../lib/atlas/contract/quality'
+import { DEFAULT_STYLE, isMapStyle, type MapStyle } from '../../lib/atlas/contract/style'
 
 export type AtlasSettings = {
   quality: QualityChoice
   screen: boolean
+  style: MapStyle
+  legend: boolean
   display: MapDisplay
 }
 
 export const DEFAULT_SETTINGS: AtlasSettings = {
   quality: 'auto',
   screen: true,
+  style: DEFAULT_STYLE,
+  legend: true,
   display: DEFAULT_DISPLAY,
 }
 
@@ -79,6 +84,8 @@ export function storedSettings(): AtlasSettings {
   return {
     quality: isQualityChoice(source['quality']) ? source['quality'] : DEFAULT_SETTINGS.quality,
     screen: flag(source['screen'], DEFAULT_SETTINGS.screen),
+    style: isMapStyle(source['style']) ? source['style'] : DEFAULT_SETTINGS.style,
+    legend: flag(source['legend'], DEFAULT_SETTINGS.legend),
     display: readDisplay(source['display']),
   }
 }

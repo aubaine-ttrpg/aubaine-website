@@ -55,6 +55,8 @@ const UNDERGROUND_TINT = new Vector3(1.04, 0.98, 0.94)
 const NIGHT_LIFT = new Vector3(0, 0.004, 0.012)
 const DAY_BLOOM_THRESHOLD = 1
 const NIGHT_BLOOM_THRESHOLD = 0.72
+const PARCHMENT_LIGHT = { target: 0.95, ambient: 0.22, lowest: 0.8, highest: 1.8 } as const
+const PARCHMENT_SATURATION = 1.1
 
 const PALETTE = {
   top: { day: srgb(0.32, 0.55, 0.9), gold: srgb(0.3, 0.38, 0.72), night: srgb(0.012, 0.018, 0.06) },
@@ -267,6 +269,44 @@ export function lightUnderground(lights: Lights): SkyLight {
   lights.bloomThreshold.value = NIGHT_BLOOM_THRESHOLD
   uniforms.uCloudSh.value = 0
   return { environmentIntensity: 0.7 / Math.PI }
+}
+
+function flatIrradiance(lights: Lights): number {
+  const { key, fills, uniforms } = lights
+  let irradiance = key.intensity * Math.max(0, uniforms.uSunDir.value.y)
+  for (const [index, fill] of fills.entries()) {
+    irradiance += fill.intensity * Math.max(0, uniforms.uFillDir.value[index]?.y ?? 0)
+  }
+  return irradiance
+}
+
+export type GradeLevels = { exposure: number; saturation: number; lift: Vector3 }
+
+export function gradeLevels(grade: GradeUniforms): GradeLevels {
+  return {
+    exposure: grade.uExpo.value,
+    saturation: grade.uSat.value,
+    lift: grade.uLift.value.clone(),
+  }
+}
+
+function parchmentExposure(lights: Lights, underground: boolean): number {
+  if (underground) return lights.grade.uExpo.value
+  const exposure =
+    PARCHMENT_LIGHT.target / (flatIrradiance(lights) / Math.PI + PARCHMENT_LIGHT.ambient)
+  return Math.min(PARCHMENT_LIGHT.highest, Math.max(PARCHMENT_LIGHT.lowest, exposure))
+}
+
+export function gradeParchment(
+  lights: Lights,
+  underground: boolean,
+  from: GradeLevels = gradeLevels(lights.grade),
+  amount = 1,
+): void {
+  const { grade } = lights
+  grade.uExpo.value = lerp(from.exposure, parchmentExposure(lights, underground), amount)
+  grade.uSat.value = lerp(from.saturation, PARCHMENT_SATURATION, amount)
+  grade.uLift.value.copy(from.lift).multiplyScalar(1 - amount)
 }
 
 export function undergroundFog(): Color {

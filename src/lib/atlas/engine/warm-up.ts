@@ -79,7 +79,8 @@ export function shaderProbes(library: MaterialLibrary): ShaderProbes {
     new InstancedMesh(plain, own(library.vehicleDecals()), 1),
     new Mesh(plain, own(library.birds())),
     new Mesh(plain, own(library.beaconRing())),
-    new Mesh(plain, own(library.travelPath())),
+    new Mesh(plain, own(library.travelPath(false))),
+    new Mesh(plain, own(library.travelPath(true))),
   )
   group.visible = false
   return {

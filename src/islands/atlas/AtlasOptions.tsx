@@ -47,6 +47,7 @@ type Props = {
   season: number
   onSeason: (season: number) => void
   underground: boolean
+  parchment: boolean
 }
 
 function clock(words: AtlasWords, hour: number): string {
@@ -95,6 +96,7 @@ function Group<K extends string>({
   keys,
   names,
   values,
+  note,
   onChange,
 }: {
   words: AtlasWords
@@ -102,6 +104,7 @@ function Group<K extends string>({
   keys: readonly K[]
   names: (key: K) => string
   values: Readonly<Record<K, boolean>>
+  note: string | undefined
   onChange: (values: Record<K, boolean>) => void
 }) {
   const [open, setOpen] = useState(false)
@@ -128,6 +131,7 @@ function Group<K extends string>({
           <AtlasIcon name="chevron-down" className="au-atlas-group__caret" />
         </button>
       </div>
+      {note && <p className="au-atlas-range__note">{note}</p>}
       <ul className="au-atlas-group__list" id={list} hidden={!open}>
         {keys.map((key) => (
           <li key={key}>
@@ -215,6 +219,7 @@ export function AtlasOptions({
   season,
   onSeason,
   underground,
+  parchment,
 }: Props) {
   const [category, setCategory] = useState<Category>('graphics')
   const tabs = useRef(new Map<Category, HTMLButtonElement>())
@@ -358,6 +363,7 @@ export function AtlasOptions({
               keys={LABEL_GROUPS}
               names={(key) => words.labelGroups[key]}
               values={display.labels}
+              note={undefined}
               onChange={(labels) => show({ labels })}
             />
             <li>
@@ -380,6 +386,7 @@ export function AtlasOptions({
               keys={ROUTE_LAYERS}
               names={(key) => word(vocabulary.routeKinds, key, 'route kind').label}
               values={display.routes}
+              note={undefined}
               onChange={(routes) => show({ routes })}
             />
             <Group
@@ -388,6 +395,7 @@ export function AtlasOptions({
               keys={EFFECT_GROUPS}
               names={(key) => words.effectGroups[key]}
               values={display.effects}
+              note={parchment ? words.effectsOnParchment : undefined}
               onChange={(effects) => show({ effects })}
             />
           </ul>

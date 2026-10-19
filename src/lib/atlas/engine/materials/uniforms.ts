@@ -1,4 +1,6 @@
 import { Color, type IUniform, type Texture, Vector2, Vector3, Vector4 } from 'three'
+import { ROUTE_LAYERS } from '../../contract/display.ts'
+import { MAX_SKY_LANES } from '../../contract/parchment.ts'
 import { HALF_SQRT3 } from '../../world/grid.ts'
 
 export const OFF_GRID = -999
@@ -43,6 +45,13 @@ export type SharedUniforms = {
   uReveal: IUniform<Texture | null>
   uRevealRect: IUniform<Vector4>
   uInMist: IUniform<number>
+  uParchment: IUniform<Texture | null>
+  uParchmentRoutes: IUniform<Texture | null>
+  uGlyphs: IUniform<Texture | null>
+  uGlyphsOn: IUniform<number>
+  uLanes: IUniform<Vector4[]>
+  uLaneCount: IUniform<number>
+  uShowRoute: IUniform<number[]>
 }
 
 export function createUniforms(originX: number, originZ: number): SharedUniforms {
@@ -84,5 +93,12 @@ export function createUniforms(originX: number, originZ: number): SharedUniforms
     uReveal: { value: null },
     uRevealRect: { value: new Vector4(0, 0, 1, 1) },
     uInMist: { value: 0 },
+    uParchment: { value: null },
+    uParchmentRoutes: { value: null },
+    uGlyphs: { value: null },
+    uGlyphsOn: { value: 0 },
+    uLanes: { value: Array.from({ length: MAX_SKY_LANES }, () => new Vector4()) },
+    uLaneCount: { value: 0 },
+    uShowRoute: { value: ROUTE_LAYERS.map(() => 1) },
   }
 }

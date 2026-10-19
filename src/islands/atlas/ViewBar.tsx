@@ -6,6 +6,7 @@ import type { AtlasWords } from './measures'
 type Props = {
   words: AtlasWords
   view: View
+  locked: boolean
   onView: (view: View) => void
   onZoom: (factor: number) => void
   onNorth: () => void
@@ -21,19 +22,23 @@ const VIEW_ICONS: Readonly<Record<View, IconName>> = {
   free: 'rotate-3d-variant',
 }
 
-export function ViewBar({ words, view, onView, onZoom, onNorth, compass }: Props) {
+export function ViewBar({ words, view, locked, onView, onZoom, onNorth, compass }: Props) {
   const label = useId()
+  const reason = useId()
   return (
     <div className="au-atlas-viewbar">
       <span className="au-atlas-hidden" id={label}>
         {words.view}
+      </span>
+      <span className="au-atlas-hidden" id={reason}>
+        {words.viewsLocked}
       </span>
       <div className="au-atlas-views" role="radiogroup" aria-labelledby={label}>
         {VIEWS.map((option, index) => (
           <label
             key={option}
             className="au-atlas-round au-atlas-views__option"
-            data-tooltip={`${index + 1} · ${words.viewHints[option]}`}
+            data-tooltip={locked ? words.viewsLocked : `${index + 1} · ${words.viewHints[option]}`}
           >
             <input
               type="radio"
@@ -41,6 +46,8 @@ export function ViewBar({ words, view, onView, onZoom, onNorth, compass }: Props
               name={label}
               value={option}
               checked={view === option}
+              disabled={locked}
+              aria-describedby={locked ? reason : undefined}
               onChange={() => onView(option)}
             />
             <AtlasIcon name={VIEW_ICONS[option]} />

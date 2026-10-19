@@ -69,6 +69,7 @@ type PresentUniforms = ScreenUniforms & {
 }
 
 const SCANLINE_STRENGTH = 0.19
+const BLOOM_STRENGTH = 0.3
 const INLINE_SHARPEN = 0.22
 const FXAA_SHARPEN = 0.12
 const BICUBIC_SHARPEN = 0.16
@@ -123,6 +124,7 @@ export class PostPipeline {
   private graded: WebGLRenderTarget | undefined
   private mips: WebGLRenderTarget[] = []
   private settings: PostSettings
+  private bloom = 1
   private stale = true
   private canvasWidth = 1
   private canvasHeight = 1
@@ -147,7 +149,7 @@ export class PostPipeline {
       ...screenUniforms,
       tScene: { value: null },
       tBloom: { value: null },
-      uBloom: { value: 0.3 },
+      uBloom: { value: BLOOM_STRENGTH },
       uExpo: { value: 1 },
       uSat: { value: 1 },
       uContrast: { value: 0.2 },
@@ -221,13 +223,18 @@ export class PostPipeline {
     this.gradeUniforms.uScreen.value = on ? 1 : 0
   }
 
+  setBloom(level: number): void {
+    this.bloom = level
+    this.gradeUniforms.uBloom.value = BLOOM_STRENGTH * level
+  }
+
   render(scene: Scene, camera: Camera): void {
     const main = this.main
     if (!main) return
     const { renderer } = this
     renderer.setRenderTarget(main)
     renderer.render(scene, camera)
-    const [first] = this.mips
+    const [first] = this.bloom > 0 ? this.mips : []
     if (first) {
       this.brightUniforms.tSrc.value = main.texture
       this.brightUniforms.uTex.value.set(0.5 / main.width, 0.5 / main.height)

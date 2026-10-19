@@ -19,6 +19,7 @@ import { buildHeightMap, type HeightMap } from '../kernel/heightmap.ts'
 import type { InstanceBatch } from '../kernel/instances.ts'
 import { landmarkSteps } from '../kernel/landmarks.ts'
 import { buildMist } from '../kernel/mist.ts'
+import { parchmentTextures } from '../kernel/parchment.ts'
 import { SurfaceProps } from '../kernel/props.ts'
 import { PrototypeShelf } from '../kernel/prototypes.ts'
 import { buildReveal } from '../kernel/reveal.ts'
@@ -208,6 +209,7 @@ export class AtlasSession {
       ...world.underground.map((level) => undergroundTileInfo(level, grid)),
     ]
     const skyInfo = emptyTileInfo(grid)
+    const parchment = parchmentTextures(world, grid)
     const revealValues = reveal.values.slice()
     const revealHaze = reveal.haze.slice()
     this.post(
@@ -233,6 +235,7 @@ export class AtlasSession {
             values: revealValues,
             haze: revealHaze,
           },
+          parchment,
         },
       },
       [
@@ -243,6 +246,9 @@ export class AtlasSession {
         skyInfo.buffer,
         revealValues.buffer,
         revealHaze.buffer,
+        ...parchment.tiles.map((tiles) => tiles.buffer),
+        parchment.routes.buffer,
+        parchment.lanes.buffer,
       ],
     )
   }
