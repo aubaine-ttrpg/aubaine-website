@@ -63,22 +63,24 @@ float glyphAt(vec2 offset, int code, float size, float flip, float pixels, vec2 
   return alpha * smoothstep(3.0, 7.0, pixels * size);
 }
 
-float glyphCover(vec2 local, int code, bool marked, vec2 qr, float pixels, vec2 gx, vec2 gy) {
+float glyphCover(vec2 local, int code, bool marked, bool scattered, vec2 qr, float pixels, vec2 gx, vec2 gy) {
   if (code <= 0 || uGlyphsOn < 0.5) return 0.0;
   if (marked) return glyphAt(local, code, GLYPH_SIZE_ * 1.12, 1.0, pixels, gx, gy);
-  float b = local.y / (INRADIUS * PATTERN_STEP_);
-  float a = local.x / PATTERN_STEP_ - 0.5 * b;
+  vec3 lattice = scattered ? PATTERN_SCATTERED_ : PATTERN_DENSE_;
+  float spacing = lattice.x;
+  float b = local.x / (INRADIUS * spacing);
+  float a = local.y / spacing - 0.5 * b;
   vec3 cube = vec3(a, b, -a - b);
   vec3 spot = floor(cube + 0.5);
   vec3 off = abs(spot - cube);
   if (off.x > off.y && off.x > off.z) spot.x = -spot.y - spot.z;
   else if (off.y > off.z) spot.y = -spot.x - spot.z;
-  if (max(max(abs(spot.x), abs(spot.y)), abs(spot.z)) > PATTERN_RINGS_) return 0.0;
-  vec2 centre = PATTERN_STEP_ * vec2(spot.x + 0.5 * spot.y, INRADIUS * spot.y);
+  if (max(max(abs(spot.x), abs(spot.y)), abs(spot.z)) > lattice.y) return 0.0;
+  vec2 centre = spacing * vec2(INRADIUS * spot.y, spot.x + 0.5 * spot.y);
   vec2 seed = qr * 1.37 + spot.xy * 0.73;
   float flip = h12(seed + 3.1) > 0.5 ? -1.0 : 1.0;
   vec2 shift = (h22(seed + 7.7) - 0.5) * 0.03;
-  float size = PATTERN_STEP_ * PATTERN_SCALE_ * (0.9 + 0.15 * h12(seed + 1.9));
+  float size = spacing * lattice.z * (0.9 + 0.15 * h12(seed + 1.9));
   return glyphAt(local - centre - shift, code, size, flip, pixels, gx, gy);
 }
 
@@ -175,7 +177,7 @@ void parchmentShade(out vec3 albedo, out float bump) {
     }
 
     bool marked = hasFlag(flags, FLAG_MARKED_);
-    float glyph = glyphCover(local, tile[CH_GLYPH_], marked, qr, pixels, gx, gy);
+    float glyph = glyphCover(local, tile[CH_GLYPH_], marked, hasFlag(flags, FLAG_SCATTERED_), qr, pixels, gx, gy);
     vec3 glyphInk = marked ? MARK_INK : mix(tint * 0.42, INK, 0.3);
     col = mix(col, glyphInk, glyph * (marked ? 0.92 : PATTERN_INK_));
     bump += glyph * (marked ? 0.01 : 0.004);

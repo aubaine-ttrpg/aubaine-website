@@ -118,11 +118,12 @@ A sea as a place reveals nothing by itself. To reveal more of the ocean, give it
 
 ## The parchment
 
-The 2D style (« Parchemin ») is drawn from the same files; nothing is authored for it. Every hex takes the wash of its tile type, or of its setting or rock underground, and is filled with a light pattern of small copies of that type's glyph. A landmark, a city, a village, a hold or a surface cave mouth replaces the pattern of its hex with one large glyph: a landmark first, then a settlement, then a cave. Routes run from hex centre to hex centre, and the fog of war leaves the Unknown as blank paper. `docs/adr/0049-the-parchment-is-a-lit-hex-chart-the-same-engine-draws-behind-a-3d-2d-switch.md` records why.
+The 2D style (« Parchemin ») is drawn from the same files; nothing is authored for it. Every hex takes the wash of its tile type, or of its setting or rock underground, and is filled with a light pattern of copies of that type's glyph, set in a hexagon pointing north like the hex itself. A landmark, a city, a village, a hold or a surface cave mouth replaces the pattern of its hex with one large glyph: a landmark first, then a settlement, then a cave. Routes run from hex centre to hex centre, and the fog of war leaves the Unknown as blank paper. `docs/adr/0049-the-parchment-is-a-lit-hex-chart-the-same-engine-draws-behind-a-3d-2d-switch.md` records why.
 
-- `src/lib/atlas/contract/parchment.ts` maps every tile type, setting, landmark kind and settlement to its glyph; `forest` takes `forest`, for one. Read it for the rest.
+- `src/lib/atlas/contract/parchment.ts` maps every landmark kind and settlement to its glyph, and every tile type and setting to a pattern: a glyph and a spread. `forest` takes a `dense` pattern of `beech`, for one. Read it for the rest.
+- A pattern's glyph is one thing that occurs many times in that terrain, such as a tree, a reed or a rock, never a scene. Its spread follows the terrain: `dense` draws 19 small copies, `scattered` 7 larger ones.
 - `src/lib/atlas/engine/parchment-palette.ts` holds the washes and inks. The `--atlas-paper` and `--atlas-ink*` tokens in `src/components/views/Atlas.astro` must match its inks, and `pnpm test` fails when they drift.
-- The pattern's density, size and ink are `TERRAIN_PATTERN` in `src/lib/atlas/engine/materials/library.ts`.
+- The spacing, rings and size of each spread are `PATTERN_LATTICES` in `src/lib/atlas/engine/materials/library.ts`, and the ink is `PATTERN_INK`.
 
 To give a type another glyph, or a new kind its glyph:
 

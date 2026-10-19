@@ -4,18 +4,18 @@ import {
   LANDMARK_GLYPHS,
   LANE_FLOATS,
   MAX_SKY_LANES,
-  NO_GLYPH,
   PARCHMENT_CHANNELS,
   PARCHMENT_FLAGS,
   type ParchmentGlyph,
   type ParchmentTextures,
   ROCK_WASH_START,
   ROUTE_CHANNEL,
-  SETTING_GLYPHS,
+  SETTING_PATTERNS,
   SETTING_WASH_START,
   SETTLEMENT_GLYPHS,
+  type TerrainPattern,
   TILE_CHANNEL,
-  TILE_GLYPHS,
+  TILE_PATTERNS,
 } from '../contract/parchment.ts'
 import { SETTINGS, TILE_TYPES } from '../vocabulary.ts'
 import { EDGES, edgeBetween, type Grid } from '../world/grid.ts'
@@ -24,7 +24,14 @@ import { laneEnd } from './routes.ts'
 
 const LAKE_SETTING = SETTINGS.indexOf('lake')
 
-const codeOf = (glyph: ParchmentGlyph | undefined) => (glyph ? glyphCode(glyph) : NO_GLYPH)
+function fillWithPattern(tiles: Uint8Array, at: number, pattern: TerrainPattern | undefined): void {
+  if (!pattern) return
+  tiles[at + TILE_CHANNEL.glyph] = glyphCode(pattern.glyph)
+  if (pattern.spread === 'scattered') {
+    tiles[at + TILE_CHANNEL.flags] =
+      (tiles[at + TILE_CHANNEL.flags] ?? 0) | PARCHMENT_FLAGS.scattered
+  }
+}
 
 function settlementGlyph(place: PlaceRecord): ParchmentGlyph | undefined {
   if (place.kind !== 'city' && place.kind !== 'village' && place.kind !== 'hold') return undefined
@@ -71,8 +78,8 @@ function surfaceTiles(world: World, grid: Grid): Uint8Array {
     if (surface.water[tile] === 1) flags |= PARCHMENT_FLAGS.water
     if ((sky.at[tile] ?? -1) >= 0) flags |= PARCHMENT_FLAGS.aloft
     tiles[at + TILE_CHANNEL.wash] = type
-    tiles[at + TILE_CHANNEL.glyph] = codeOf(TILE_GLYPHS[TILE_TYPES[type] ?? 'deep'])
     tiles[at + TILE_CHANNEL.flags] = flags
+    fillWithPattern(tiles, at, TILE_PATTERNS[TILE_TYPES[type] ?? 'deep'])
   }
   for (const cave of world.caves) mark(tiles, cave.tile, CAVE_GLYPH)
   markSettlements(tiles, world, 0)
@@ -93,8 +100,8 @@ function undergroundTiles(world: World, level: UndergroundRecord, grid: Grid): U
       continue
     }
     tiles[at + TILE_CHANNEL.wash] = SETTING_WASH_START + setting
-    tiles[at + TILE_CHANNEL.glyph] = codeOf(SETTING_GLYPHS[SETTINGS[setting] ?? 'rock'])
     if (setting === LAKE_SETTING) tiles[at + TILE_CHANNEL.flags] = PARCHMENT_FLAGS.water
+    fillWithPattern(tiles, at, SETTING_PATTERNS[SETTINGS[setting] ?? 'rock'])
   }
   markSettlements(tiles, world, level.level)
   return tiles

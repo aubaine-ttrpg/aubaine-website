@@ -11,17 +11,18 @@ import {
 export const PARCHMENT_GLYPHS = [
   'coral',
   'daisy',
-  'hills',
+  'windy-stripes',
   'peaks',
   'wheat',
-  'forest',
+  'beech',
   'pine-tree',
   'palm-tree',
-  'swamp',
-  'desert',
+  'reed',
+  'waves',
   'high-grass',
-  'falling-rocks',
+  'rock',
   'grass',
+  'snowflake-2',
   'frozen-block',
   'lava',
   'crystal-cluster',
@@ -43,10 +44,10 @@ export const PARCHMENT_GLYPHS = [
   'portal',
   'watchtower',
   'cave-entrance',
-  'mining',
+  'ore',
   'crystal-growth',
   'ancient-columns',
-  'tree-roots',
+  'root-tip',
 ] as const
 export type ParchmentGlyph = (typeof PARCHMENT_GLYPHS)[number]
 
@@ -56,45 +57,53 @@ export function glyphCode(glyph: ParchmentGlyph): number {
   return PARCHMENT_GLYPHS.indexOf(glyph) + 1
 }
 
-export const TILE_GLYPHS: Readonly<Record<TileType, ParchmentGlyph | undefined>> = {
+export const PATTERN_SPREADS = ['dense', 'scattered'] as const
+export type PatternSpread = (typeof PATTERN_SPREADS)[number]
+
+export type TerrainPattern = { glyph: ParchmentGlyph; spread: PatternSpread }
+
+const dense = (glyph: ParchmentGlyph): TerrainPattern => ({ glyph, spread: 'dense' })
+const scattered = (glyph: ParchmentGlyph): TerrainPattern => ({ glyph, spread: 'scattered' })
+
+export const TILE_PATTERNS: Readonly<Record<TileType, TerrainPattern | undefined>> = {
   deep: undefined,
   sea: undefined,
   shallows: undefined,
-  reef: 'coral',
+  reef: dense('coral'),
   lake: undefined,
   beach: undefined,
   plains: undefined,
-  meadow: 'daisy',
-  farm: 'wheat',
-  forest: 'forest',
-  taiga: 'pine-tree',
-  jungle: 'palm-tree',
-  swamp: 'swamp',
-  desert: 'desert',
-  savanna: 'high-grass',
-  badlands: 'falling-rocks',
-  tundra: 'grass',
-  glacier: 'frozen-block',
-  mountain: 'peaks',
-  highland: 'hills',
-  volcanic: 'lava',
-  ether: 'crystal-cluster',
-  myxo: 'mushrooms',
-  urban: 'house',
+  meadow: dense('daisy'),
+  farm: dense('wheat'),
+  forest: dense('beech'),
+  taiga: dense('pine-tree'),
+  jungle: dense('palm-tree'),
+  swamp: dense('reed'),
+  desert: scattered('waves'),
+  savanna: dense('high-grass'),
+  badlands: scattered('rock'),
+  tundra: scattered('grass'),
+  glacier: scattered('snowflake-2'),
+  mountain: scattered('peaks'),
+  highland: scattered('windy-stripes'),
+  volcanic: scattered('lava'),
+  ether: scattered('crystal-cluster'),
+  myxo: scattered('mushrooms'),
+  urban: dense('house'),
 }
 
-export const SETTING_GLYPHS: Readonly<Record<Setting, ParchmentGlyph | undefined>> = {
+export const SETTING_PATTERNS: Readonly<Record<Setting, TerrainPattern | undefined>> = {
   rock: undefined,
   cavern: undefined,
-  mine: 'mining',
-  crystal: 'crystal-growth',
-  lava: 'lava',
-  ice: 'frozen-block',
-  fungal: 'mushrooms',
-  built: 'ancient-columns',
+  mine: scattered('ore'),
+  crystal: dense('crystal-growth'),
+  lava: scattered('lava'),
+  ice: scattered('frozen-block'),
+  fungal: dense('mushrooms'),
+  built: dense('ancient-columns'),
   lake: undefined,
   tunnel: undefined,
-  roots: 'tree-roots',
+  roots: dense('root-tip'),
 }
 
 export const LANDMARK_GLYPHS: Readonly<Record<LandmarkKind, ParchmentGlyph>> = {
@@ -124,7 +133,7 @@ export const SETTING_WASH_START = TILE_TYPES.length
 export const ROCK_WASH_START = SETTING_WASH_START + SETTINGS.length
 export const WASH_COUNT = ROCK_WASH_START + ROCKS.length
 
-export const PARCHMENT_FLAGS = { water: 1, aloft: 2, marked: 4 } as const
+export const PARCHMENT_FLAGS = { water: 1, aloft: 2, marked: 4, scattered: 8 } as const
 
 export const MAX_SKY_LANES = 16
 export const LANE_FLOATS = 4

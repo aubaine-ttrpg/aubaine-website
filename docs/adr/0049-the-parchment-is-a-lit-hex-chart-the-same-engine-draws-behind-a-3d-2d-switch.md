@@ -3,6 +3,8 @@
 **Project:** Aubaine, the wiki
 **Status:** Accepted
 **Date:** 2026-10-19
+**Revised:** 2026-10-19, Decision 4 gains an addendum: terrain glyphs are things that repeat, each
+terrain has a spread, and the pattern takes the shape of the hex
 **Deciders:** Kori
 **Scope:** The Atlas's second style, « Parchemin » (2D): how the reader reaches it, what it stores,
 how the engine draws it, which camera it uses, how its glyphs reach the page, and how it is lit.
@@ -241,6 +243,53 @@ decisions below.
 ### Caveats
 
 - The glyph choice per type is the owner's to revise in one table.
+
+### Addendum (2026-10-19): glyphs that repeat, a spread per terrain, the shape of the hex
+
+- The owner's ruling of 2026-10-19, after seeing the desert: a terrain glyph must be one thing that
+  occurs many times in that terrain, as trees do in a forest. The desert's sun-and-cactus scene,
+  repeated, made no sense. The copies should also be as dense as the terrain, and they should sit
+  in a hexagon pointing north like the map hex, not in rows with a flat top.
+- **Glyphs.** Each change follows the type's description in `data/atlas/vocabularies.json`:
+  - desert, "shifting dunes": `waves` for the dune ripples, in place of `desert`;
+  - badlands, "gullied red sandstone and mesas": `rock`, in place of `falling-rocks`;
+  - swamp: `reed`, in place of the `swamp` scene;
+  - highlands, "windswept": `windy-stripes`, in place of `hills`, which draws hills in a filled
+    square under a sun;
+  - glacier: `snowflake-2`. `frozen-block` and its icicles stay with the ice cave;
+  - temperate forest, "oak and beech": `beech`, in place of `forest`, which draws conifers like the
+    taiga's `pine-tree`;
+  - mine galleries: `ore`, in place of `mining`, a miner at work;
+  - roots: `root-tip`, in place of `tree-roots`, a stump.
+- **Spread.** `TILE_PATTERNS` and `SETTING_PATTERNS` in `src/lib/atlas/contract/parchment.ts` give
+  each terrain a glyph and a spread, and replace `TILE_GLYPHS` and `SETTING_GLYPHS`.
+  - `dense` keeps 19 copies: 2 rings, spacing 0.33, scale 0.82. Forests, crops, flowers and houses
+    are dense.
+  - `scattered` draws 7 larger copies: 1 ring, spacing 0.6, scale 0.65, so a copy is 0.39 across
+    instead of 0.27. Dunes, rocks, peaks and giant mushrooms are scattered; the tables hold the
+    rest.
+  - Both live in `PATTERN_LATTICES` in `materials/library.ts`. The worker sets
+    `PARCHMENT_FLAGS.scattered` in the flags channel, and the shader picks the lattice from it.
+- **Shape.** `glyphCover` in `materials/glsl/parchment.glsl` turns the lattice by a quarter turn.
+  The rows of 3, 4, 5, 4 and 3 copies, a hexagon with a flat top, become columns, a hexagon pointing
+  north like the map hex. A scattered hex has a copy at each corner and one in the centre.
+- **Correction.** Each hex draws its own cluster around its centre, so the lattice does not carry
+  across a shared edge as this decision states. The gap between two clusters keeps each hex
+  readable within a field of one type.
+- `tests/unit/atlas-parchment.test.ts` asserts the glyph and the spread flag of every surface and
+  underground hex. On 2026-10-19, the built site was screenshotted at every patterned tile type of
+  the Archipel and at every patterned setting of stratum 1, with no console error or warning.
+- **Alternatives.**
+  - A dune or mesa glyph: the game-icons listing on `api.iconify.design`, searched on 2026-10-19,
+    has none. Reopens if one is published.
+  - A single cactus for the desert: rejected, since the description names dunes and no cactus.
+  - One continuous lattice across hexes of one type: rejected, since the owner asked for drawings in
+    the shape of the hex. Reopens if the hex outline is to fade inside a field.
+  - More spreads than two: not needed for the types the vocabulary describes. Reopens with a type
+    that fits neither.
+- **Caveat.** `windy-stripes` names the wind of the highlands, not their ground. The three
+  game-icons glyphs named for hills each carry more than a hill: `hills` a filled square and a sun,
+  `hill-fort` a castle, `hill-conquest` a flag.
 
 ---
 

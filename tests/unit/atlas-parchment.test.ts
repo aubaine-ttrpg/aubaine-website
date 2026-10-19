@@ -13,11 +13,11 @@ import {
   PARCHMENT_FLAGS,
   ROCK_WASH_START,
   ROUTE_CHANNEL,
-  SETTING_GLYPHS,
+  SETTING_PATTERNS,
   SETTING_WASH_START,
   SETTLEMENT_GLYPHS,
   TILE_CHANNEL,
-  TILE_GLYPHS,
+  TILE_PATTERNS,
   WASH_COUNT,
 } from '../../src/lib/atlas/contract/parchment'
 import { PARCHMENT_INKS, WASH_ORDER } from '../../src/lib/atlas/engine/parchment-palette'
@@ -139,15 +139,20 @@ describe('the parchment glyphs', () => {
     }
   })
 
-  it('patterns every other hex with the glyph of its terrain', () => {
+  it('patterns every other hex with the glyph of its terrain, as densely as its terrain', () => {
+    const spreads = new Set<string>()
     for (let tile = 0; tile < grid.size; tile++) {
       if (anchors.has(tile)) continue
       const type = TILE_TYPES[world.surface.type[tile] ?? 0] ?? 'deep'
-      const glyph = TILE_GLYPHS[type]
+      const pattern = TILE_PATTERNS[type]
       expect(byte(surface, tile, TILE_CHANNEL.glyph), `${type} ${tile}`).toBe(
-        glyph ? glyphCode(glyph) : NO_GLYPH,
+        pattern ? glyphCode(pattern.glyph) : NO_GLYPH,
       )
+      const scattered = (byte(surface, tile, TILE_CHANNEL.flags) & PARCHMENT_FLAGS.scattered) !== 0
+      expect(scattered, `${type} ${tile}`).toBe(pattern?.spread === 'scattered')
+      if (pattern) spreads.add(pattern.spread)
     }
+    expect([...spreads].sort()).toEqual(['dense', 'scattered'])
   })
 
   it('leaves the sea bare but for its reefs', () => {
@@ -212,15 +217,17 @@ describe('the parchment hexes', () => {
         const flags = byte(chart, tile, TILE_CHANNEL.flags)
         expect((flags & PARCHMENT_FLAGS.water) !== 0).toBe(name === 'lake')
         expect((flags & PARCHMENT_FLAGS.marked) !== 0).toBe(hold !== undefined)
+        const pattern = setting === 0 ? undefined : SETTING_PATTERNS[name]
         const glyph = hold
           ? hold.isCapital
             ? SETTLEMENT_GLYPHS.capital
             : SETTLEMENT_GLYPHS.city
-          : setting === 0
-            ? undefined
-            : SETTING_GLYPHS[name]
+          : pattern?.glyph
         expect(byte(chart, tile, TILE_CHANNEL.glyph), `level ${level.level} ${tile}`).toBe(
           glyph ? glyphCode(glyph) : NO_GLYPH,
+        )
+        expect((flags & PARCHMENT_FLAGS.scattered) !== 0, `level ${level.level} ${tile}`).toBe(
+          pattern?.spread === 'scattered',
         )
       }
     }

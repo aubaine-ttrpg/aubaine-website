@@ -5,9 +5,9 @@ import {
   LANDMARK_GLYPHS,
   PARCHMENT_GLYPHS,
   type ParchmentGlyph,
-  SETTING_GLYPHS,
+  SETTING_PATTERNS,
   SETTLEMENT_GLYPHS,
-  TILE_GLYPHS,
+  TILE_PATTERNS,
 } from '../../lib/atlas/contract/parchment'
 import type { MapStyle } from '../../lib/atlas/contract/style'
 import { SETTING_WASHES, TILE_WASHES } from '../../lib/atlas/engine/parchment-palette'
@@ -151,7 +151,7 @@ function ParchmentKey({
           title={words.undergroundSettings}
           paths={paths}
           entries={SETTINGS.flatMap((setting) => {
-            const glyph = SETTING_GLYPHS[setting]
+            const glyph = SETTING_PATTERNS[setting]?.glyph
             if (!glyph) return []
             return [
               {
@@ -170,7 +170,7 @@ function ParchmentKey({
           </h2>
           <ul className="au-atlas-legend__tiles" aria-labelledby={tiles}>
             {TILE_TYPES.map((type) => {
-              const glyph = TILE_GLYPHS[type]
+              const glyph = TILE_PATTERNS[type]?.glyph
               return (
                 <li key={type} className="au-atlas-legend__tile">
                   <GlyphHex wash={TILE_WASHES[type]} path={glyph && paths?.get(glyph)} />

@@ -18,6 +18,7 @@ import { ROUTE_LAYERS } from '../../contract/display.ts'
 import {
   MAX_SKY_LANES,
   PARCHMENT_FLAGS,
+  type PatternSpread,
   ROCK_WASH_START,
   ROUTE_CHANNEL,
   TILE_CHANNEL,
@@ -105,7 +106,17 @@ type Defines = Record<string, string>
 
 const PARCHMENT_LAMP = { day: 0.42, night: 0.34, under: 0.4 } as const
 const GLYPH_SIZE = 1.15
-const TERRAIN_PATTERN = { step: 0.33, rings: 2, scale: 0.82, ink: 0.45 } as const
+const PATTERN_INK = 0.45
+
+type PatternLattice = { spacing: number; rings: number; scale: number }
+
+const PATTERN_LATTICES: Readonly<Record<PatternSpread, PatternLattice>> = {
+  dense: { spacing: 0.33, rings: 2, scale: 0.82 },
+  scattered: { spacing: 0.6, rings: 1, scale: 0.65 },
+}
+
+const glslLattice = ({ spacing, rings, scale }: PatternLattice) =>
+  `vec3(${float(spacing)}, ${float(rings)}, ${float(scale)})`
 
 const glslColour = (hex: string) => {
   const colour = new Color(hex)
@@ -142,6 +153,7 @@ const PARCHMENT_DEFINES: Defines = {
   FLAG_WATER_: String(PARCHMENT_FLAGS.water),
   FLAG_ALOFT_: String(PARCHMENT_FLAGS.aloft),
   FLAG_MARKED_: String(PARCHMENT_FLAGS.marked),
+  FLAG_SCATTERED_: String(PARCHMENT_FLAGS.scattered),
   SHOW_ROAD_: String(ROUTE_LAYERS.indexOf('road')),
   SHOW_TRAIL_: String(ROUTE_LAYERS.indexOf('trail')),
   SHOW_RAIL_: String(ROUTE_LAYERS.indexOf('rail')),
@@ -150,10 +162,9 @@ const PARCHMENT_DEFINES: Defines = {
   SHOW_SKY_: String(ROUTE_LAYERS.indexOf('sky')),
   ROCK_WASH_START_: String(ROCK_WASH_START),
   GLYPH_SIZE_: float(GLYPH_SIZE),
-  PATTERN_STEP_: float(TERRAIN_PATTERN.step),
-  PATTERN_RINGS_: float(TERRAIN_PATTERN.rings),
-  PATTERN_SCALE_: float(TERRAIN_PATTERN.scale),
-  PATTERN_INK_: float(TERRAIN_PATTERN.ink),
+  PATTERN_DENSE_: glslLattice(PATTERN_LATTICES.dense),
+  PATTERN_SCATTERED_: glslLattice(PATTERN_LATTICES.scattered),
+  PATTERN_INK_: float(PATTERN_INK),
   LAMP_DAY_: float(PARCHMENT_LAMP.day),
   LAMP_NIGHT_: float(PARCHMENT_LAMP.night),
   LAMP_UNDER_: float(PARCHMENT_LAMP.under),

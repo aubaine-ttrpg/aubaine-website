@@ -8,9 +8,9 @@ import {
   LANDMARK_GLYPHS,
   MAX_SKY_LANES,
   PARCHMENT_GLYPHS,
-  SETTING_GLYPHS,
+  SETTING_PATTERNS,
   SETTLEMENT_GLYPHS,
-  TILE_GLYPHS,
+  TILE_PATTERNS,
 } from '../../src/lib/atlas/contract/parchment'
 import { OPENING_WORLD } from '../../src/lib/atlas/contract/worlds'
 import { svgPath } from '../../src/lib/atlas/svg-path'
@@ -116,8 +116,8 @@ describe('the Atlas', () => {
 
   it('gives every parchment glyph a hex to mark', () => {
     const used = new Set([
-      ...Object.values(TILE_GLYPHS),
-      ...Object.values(SETTING_GLYPHS),
+      ...Object.values(TILE_PATTERNS).map((pattern) => pattern?.glyph),
+      ...Object.values(SETTING_PATTERNS).map((pattern) => pattern?.glyph),
       ...Object.values(LANDMARK_GLYPHS),
       ...Object.values(SETTLEMENT_GLYPHS),
       CAVE_GLYPH,
