@@ -17,6 +17,8 @@ Une Compétence peut coûter des {{pdv}}. Au moment de la jouer, lancez ce coût
 
 Une Compétence, une arme ou un danger qui blesse indique ses dégâts : des dés, parfois un nombre fixe, souvent les deux. Une {{attaque}} y ajoute toujours la {{caracteristique}} employée par son {{jet}}.
 
+Quand une {{competence}} ou un effet inflige des dégâts à plusieurs créatures, un seul lancer de dés vaut pour toutes.
+
 Des dégâts peuvent porter un type, comme les dégâts Contondants, de Feu ou d'Acide. Une arme imprime le sien, et une Compétence le nomme quand ses dégâts en portent un. Le type compte quand une créature y résiste ou y est vulnérable, ou quand une règle le nomme.
 
 ## Résistance et vulnérabilité

@@ -17,6 +17,8 @@ A Skill can cost {{pdv}}. When you play it, roll that cost and lose that many {{
 
 A Skill, a weapon or a danger that wounds states its damage: dice, sometimes a fixed number, often both. An {{attaque}} always adds the {{caracteristique}} its {{jet}} used.
 
+When a {{competence}} or an effect deals damage to several creatures, roll its damage once for all of them.
+
 Damage can carry a type, such as Bludgeoning, Fire or Acid damage. A weapon prints its own, and a Skill names it when its damage carries one. The type matters when a creature resists it or is vulnerable to it, or when a rule names it.
 
 ## Resistance and vulnerability

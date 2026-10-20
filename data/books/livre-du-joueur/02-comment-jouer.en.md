@@ -83,6 +83,8 @@ An {{avantage}} and a {{desavantage}} cancel out, one for one. Count them, remov
 
 What is left has no ceiling. Three net {{avantage|Advantages}} add three dice, and you keep the best two of five.
 
+When a {{jet}} is made against several targets at once, only the {{avantage|Advantages}} and {{desavantage|Disadvantages}} that hold against all of them count.
+
 > [!EXAMPLE] Example
 >
 > You strike with 2 {{avantage|Advantages}}, because an ally helped you and your target is {{aveugle}}, and 1 {{desavantage}}, because you are lying {{a-terre}}. That leaves 1 net {{avantage}}: you roll three d12s and keep the two highest.

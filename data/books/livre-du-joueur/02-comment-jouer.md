@@ -83,6 +83,8 @@ Un {{avantage}} et un {{desavantage}} s'annulent, un pour un. Comptez-les, retir
 
 Ce qui reste n'a pas de plafond. Trois {{avantage|Avantages}} nets ajoutent trois dés, et vous gardez les deux meilleurs des cinq.
 
+Quand un {{jet}} vise plusieurs cibles à la fois, seuls comptent les {{avantage|Avantages}} et les {{desavantage|Désavantages}} qui valent contre toutes.
+
 > [!EXAMPLE] Exemple
 >
 > Vous portez un coup avec 2 {{avantage|Avantages}}, parce qu'un allié vous a aidé et que la cible est {{aveugle|Aveuglée}}, et 1 {{desavantage}}, parce que vous êtes {{a-terre|à terre}}. Il reste 1 {{avantage}} net : vous lancez trois d12 et vous gardez les deux plus hauts.
