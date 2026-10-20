@@ -31,7 +31,7 @@ C'est aussi ce qui vous donne un plancher. Sans l'{{aptitude}} qu'il faudrait, v
 
 > [!EXAMPLE] Exemple
 >
-> Le groupe doit convaincre un passeur de les faire traverser de nuit. Aldric, un colosse sans éloquence, pose sa hache sur la table et fixe le passeur sans un mot. Le MJ lui demande un {{jet}} de {{force}} + {{intimidation}}. Sa voisine préfère sortir sa bourse et négocier : pour elle, ce sera {{charisme}} + {{persuasion}}. Deux approches, deux paires, et chacune a sa chance.
+> Le groupe doit convaincre un passeur de les faire traverser de nuit. Aldric, un colosse sans éloquence, pose sa hache sur la table et fixe le passeur sans un mot. Le MJ lui demande un {{jet}} ({{force}} + {{intimidation}}). Sa voisine préfère sortir sa bourse et négocier : pour elle, ce sera {{charisme}} + {{persuasion}}. Deux approches, deux paires, et chacune a sa chance.
 
 Votre {{specialite}} entre dans la paire dès que l'action tombe dans son champ : elle y tient la place de l'{{aptitude}} et ajoute 1 {{avantage}} au {{jet}}. Une {{specialite}} « Pièges » sert à désamorcer une dalle piégée, une {{specialite}} « Cuisine » à reconnaître un poison dans un ragoût. Le chapitre Créer un personnage la présente avec le reste de l'{{ame}}.
 
@@ -42,7 +42,7 @@ Une Compétence peut imposer sa paire. Son texte la nomme alors explicitement.
 Deux façons de l'écrire, selon ce que la règle a besoin de préciser.
 
 - **Un {{jet}} de {{melee}}**, quand seule l'{{aptitude}} compte et que la {{caracteristique}} suit votre manière d'agir.
-- **Un {{jet}} de {{force}} + {{melee}}**, quand la paire entière est imposée.
+- **Un {{jet}} ({{force}} + {{melee}})**, quand la paire entière est imposée.
 
 ## Contre quoi
 
@@ -128,7 +128,7 @@ Quand une Compétence laisse sa cible résister, le {{dd}} vient de celui qui la
 
 `10 + une {{caracteristique}} + une {{aptitude}}`
 
-La Compétence nomme la paire, le {{jet}} que la cible effectue, et ce qui arrive en cas de réussite comme en cas d'échec. Ainsi : « La cible effectue un {{jet}} d'{{esprit}} + {{volonte}} contre votre {{dd}} de `10 + {{charisme}} + {{intimidation}}`. »
+La Compétence nomme la paire, le {{jet}} que la cible effectue, et ce qui arrive en cas de réussite comme en cas d'échec. Ainsi : « La cible effectue un {{jet}} ({{esprit}} + {{volonte}}) contre votre {{dd}} (10 + {{charisme}} + {{intimidation}}). »
 
 Vous n'avez donc pas ce nombre à retenir. Il se calcule au moment où la Compétence est jouée.
 

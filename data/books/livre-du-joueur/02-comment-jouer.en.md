@@ -31,7 +31,7 @@ It also gives you a floor. Without the {{aptitude}} you would want, you still ha
 
 > [!EXAMPLE] Example
 >
-> The party needs a ferryman to take them across at night. Aldric, a giant of a man with no gift for words, lays his axe on the table and stares at the ferryman in silence. The GM asks for a {{force}} + {{intimidation}} {{jet}}. His companion would rather open her purse and haggle, so for her it is {{charisme}} + {{persuasion}}. Two approaches, two pairs, and each has its chance.
+> The party needs a ferryman to take them across at night. Aldric, a giant of a man with no gift for words, lays his axe on the table and stares at the ferryman in silence. The GM asks for a {{jet}} ({{force}} + {{intimidation}}). His companion would rather open her purse and haggle, so for her it is {{charisme}} + {{persuasion}}. Two approaches, two pairs, and each has its chance.
 
 Your {{specialite}} enters the pair whenever the action falls within its field: it takes the {{aptitude|Aptitude's}} place and adds 1 {{avantage}} to the {{jet}}. A "Traps" {{specialite}} serves to disarm a trapped flagstone, a "Cooking" one to recognise poison in a stew. The Creating a character chapter presents it with the rest of the {{ame}}.
 
@@ -42,7 +42,7 @@ A Skill can set its own pair. When it does, its text names it.
 There are two ways to write it, depending on what the rule needs to pin down.
 
 - **A {{melee}} {{jet}}**, when only the {{aptitude}} matters and the {{caracteristique}} follows how you act.
-- **A {{force}} + {{melee}} {{jet}}**, when the whole pair is fixed.
+- **A {{jet}} ({{force}} + {{melee}})**, when the whole pair is fixed.
 
 ## Against what
 
@@ -128,7 +128,7 @@ When a Skill lets its target resist, the {{dd}} comes from whoever uses it:
 
 `10 + a {{caracteristique}} + an {{aptitude}}`
 
-The Skill names the pair, the {{jet}} its target makes, and what happens on a success and on a failure. For example: "The target makes a {{esprit}} + {{volonte}} {{jet}} against your {{dd}} of `10 + {{charisme}} + {{intimidation}}`."
+The Skill names the pair, the {{jet}} its target makes, and what happens on a success and on a failure. For example: "The target makes a {{jet}} ({{esprit}} + {{volonte}}) against your {{dd}} (10 + {{charisme}} + {{intimidation}})."
 
 So there is no number to remember. You work it out when the Skill is used.
 
