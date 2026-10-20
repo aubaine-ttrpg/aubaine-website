@@ -1,0 +1,6 @@
+{
+  "title": "Tribal Instinct",
+  "prerequisite": "Charon's Nnor",
+  "activation": "Passive",
+  "description": "Since childhood you have hunted the volcanic galleries of your Yurta for the beasts that shelter in the ash.\n\nThe first time you {{memorisee|memorise}} {{INSTRI-001|this Skill}}, choose an {{aptitude}} from {{survie}} and {{nature}}. While {{INSTRI-001|this Skill}} is {{memorisee}}, you have {{expertise}} in that {{aptitude}}."
+}

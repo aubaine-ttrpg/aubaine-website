@@ -1,0 +1,7 @@
+{
+  "key": "fatigue",
+  "name": "Fatigue",
+  "kind": "debuff",
+  "icon": "game-icons:despair",
+  "description": "{{fatigue}} s'accumule sur vous jusqu'à 6. Chaque {{fatigue}} que vous portez retire 1 au total de chacun de vos {{jet|Jets}}. Dès que vous en portez 6, vous mourez.\n\nVous perdez 1 {{fatigue}} lorsque vous terminez un {{repos-long}}."
+}

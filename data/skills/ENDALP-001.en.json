@@ -1,0 +1,6 @@
+{
+  "title": "Alpine Endurance",
+  "prerequisite": "Alpine Nnor",
+  "activation": "Passive",
+  "description": "Your thick, woolly fleece holds in your body heat even on the frozen peaks.\n\nYour {{sauvegarde|Saves}} against {{competence|Skills}} that deal {{degats-froid}} gain 1 {{avantage}}. You gain {{resistance-degats}} to {{degats-froid}}. You cannot gain any {{fatigue}} from extreme cold."
+}

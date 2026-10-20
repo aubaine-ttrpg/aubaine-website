@@ -1,0 +1,6 @@
+{
+  "title": "Hardy Persistence",
+  "prerequisite": "Alpine Nnor",
+  "activation": "Passive",
+  "description": "You have followed your Yurta on its long winter migrations, from one mountain pass to the next.\n\nThe first time you {{memorisee|memorise}} {{PERRUS-001|this Skill}}, choose an {{aptitude}} from {{survie}}, {{athletisme}} and {{perception}}. While {{PERRUS-001|this Skill}} is {{memorisee}}, you have {{expertise}} in that {{aptitude}}."
+}

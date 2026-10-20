@@ -1,0 +1,21 @@
+{
+  "id": "LEGCHA-001",
+  "title": "Legs de Charon",
+  "type": "passive",
+  "tier": 5,
+  "domains": [
+    "fire"
+  ],
+  "prerequisite": "Être Nnor de Charon",
+  "activation": "Passif",
+  "tags": {
+    "practices": [
+      "innate"
+    ],
+    "schools": [
+      "divination",
+      "protection"
+    ]
+  },
+  "description": "Vos yeux se sont faits à la nuit des galeries souterraines, et votre corps à la chaleur des volcans en activité.\n\nÀ 18 m ou moins de vous, vous voyez dans le noir, en l'absence de lumière, mais vous n'y distinguez pas les couleurs. Vous obtenez une {{resistance-degats}} aux {{degats-feu}}."
+}

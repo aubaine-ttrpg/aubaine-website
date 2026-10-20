@@ -1,0 +1,31 @@
+{
+  "id": "MORDRA-001",
+  "title": "Morsure du Dragonnor",
+  "type": "active",
+  "tier": 5,
+  "showXp": false,
+  "domains": [
+    "physical",
+    "fire"
+  ],
+  "characteristics": [
+    "strength"
+  ],
+  "activation": "1 Attaque",
+  "range": "Contact",
+  "duration": "Instantanée",
+  "limit": {
+    "times": 1,
+    "per": "turn"
+  },
+  "energy": 4,
+  "tags": {
+    "practices": [
+      "innate"
+    ],
+    "schools": [
+      "destruction"
+    ]
+  },
+  "description": "La chair grésille là où vous mordez, comme sous un fer tout juste sorti de la forge.\n\nVous portez une {{attaque}} ({{force}} + {{melee}}) avec vos crocs. En cas de réussite, la cible subit {{2d10 degats-perforant}} et {{1d10 degats-feu}}."
+}

@@ -1,0 +1,6 @@
+{
+  "title": "Charon's Legacy",
+  "prerequisite": "Charon's Nnor",
+  "activation": "Passive",
+  "description": "Your eyes have grown used to the night of the underground galleries, and your body to the heat of active volcanoes.\n\nWithin 18 m of you, you can see in the dark, where there is no light, but you cannot tell colours apart there. You gain {{resistance-degats}} to {{degats-feu}}."
+}

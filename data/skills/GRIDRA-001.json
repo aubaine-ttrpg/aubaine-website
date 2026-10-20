@@ -1,0 +1,30 @@
+{
+  "id": "GRIDRA-001",
+  "title": "Griffes du Dragonnor",
+  "type": "active",
+  "tier": 5,
+  "showXp": false,
+  "domains": [
+    "physical"
+  ],
+  "characteristics": [
+    "strength"
+  ],
+  "activation": "1 Attaque",
+  "range": "Contact",
+  "duration": "Instantanée",
+  "limit": {
+    "times": 1,
+    "per": "turn"
+  },
+  "energy": 3,
+  "tags": {
+    "practices": [
+      "innate"
+    ],
+    "schools": [
+      "destruction"
+    ]
+  },
+  "description": "Vos griffes ont la couleur et le grain du basalte.\n\nVous portez une {{attaque}} ({{force}} + {{melee}}) avec vos griffes contre une ou deux créatures à portée. Vous n'effectuez qu'un seul {{jet}}, que vous comparez à la {{ca}} de chacune. En cas de réussite contre une créature, elle subit {{2d6 degats-tranchant}}."
+}

@@ -1,0 +1,20 @@
+{
+  "id": "AGIMON-001",
+  "title": "Agilité montagnarde",
+  "type": "passive",
+  "tier": 5,
+  "domains": [
+    "earth"
+  ],
+  "prerequisite": "Être Nnor alpin",
+  "activation": "Passif",
+  "tags": {
+    "practices": [
+      "innate"
+    ],
+    "schools": [
+      "mobility"
+    ]
+  },
+  "description": "Affûtés comme des crampons, vos sabots mordent la roche nue.\n\nUn {{terrain-difficile|terrain difficile}} de terre ou de pierre ne vous coûte aucun {{deplacement|déplacement}} supplémentaire."
+}

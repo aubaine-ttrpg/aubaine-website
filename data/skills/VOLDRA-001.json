@@ -1,0 +1,23 @@
+{
+  "id": "VOLDRA-001",
+  "title": "Vol du Dragonnor",
+  "type": "active",
+  "tier": 5,
+  "showXp": false,
+  "domains": [
+    "physical"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "Personnel",
+  "duration": "Jusqu'à la fin de votre prochain tour",
+  "energy": 2,
+  "tags": {
+    "practices": [
+      "innate"
+    ],
+    "schools": [
+      "mobility"
+    ]
+  },
+  "description": "Comme une voile dans le vent des cimes, vos ailes se déploient et claquent.\n\nTant que {{VOLDRA-001}} dure, votre {{deplacement|déplacement}} peut vous porter dans les airs, à la verticale comme à l'horizontale, et vous restez en l'air, même à l'arrêt.\n\n{{VOLDRA-001}} prend fin plus tôt si {{FORDRA-001}} prend fin. Lorsque {{VOLDRA-001}} prend fin pendant que vous êtes en l'air, vous chutez. Lorsqu'un effet vous fait tomber {{a-terre}} pendant que vous êtes en l'air, vous chutez."
+}

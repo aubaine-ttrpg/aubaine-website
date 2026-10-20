@@ -1,0 +1,6 @@
+{
+  "title": "Dragonnor's Bite",
+  "activation": "1 Attack",
+  "duration": "Instantaneous",
+  "description": "Where you bite, flesh sizzles as though seared by a brand fresh from the forge.\n\nYou make an {{attaque}} ({{force}} + {{melee}}) with your fangs. On a success, the target takes {{2d10 degats-perforant}} and {{1d10 degats-feu}}."
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Dragonnor's Flight",
+  "activation": "1 Bonus Action",
+  "range": "Self",
+  "duration": "Until the end of your next turn",
+  "description": "Like a sail in the wind off the peaks, your wings unfurl and snap.\n\nWhile {{VOLDRA-001}} lasts, your {{deplacement|movement}} can carry you through the air, vertically as well as horizontally, and you stay in the air, even at a standstill.\n\n{{VOLDRA-001}} ends early if {{FORDRA-001}} ends. When {{VOLDRA-001}} ends while you are in the air, you fall. When an effect knocks you {{a-terre}} while you are in the air, you fall."
+}

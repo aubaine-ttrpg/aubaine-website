@@ -1,1 +1,18 @@
-{}
+{
+  "movement": "10.5 m",
+  "subspecies": {
+    "alpin": {
+      "name": "Alpine Nnor",
+      "text": "***As an Alpine Nnor***, you come from a Yurta that elects its own Saman, who answers to no Dragonnor, and where everyone takes a share of the work. Your fur is white, grey or light brown, sometimes with gold or russet highlights like the first sun on the peaks, and your eyes range from moss green to glacier blue. Your people are traders and artisans: they come down the snowy slopes to the spice and cloth fairs, where they barter hides, metals and works of art. Town dwellers are struck by their honesty in business, and by the care they take not to spoil the trails their caravans follow."
+    },
+    "charon": {
+      "name": "Charon's Nnor",
+      "text": "***As one of Charon's Nnor***, you belong to the line that stayed loyal to the Primordial Dragon of Fire. In your Yurta, the workers obey the Saman, and the Saman answers to the Dragonnor that founded the Yurta: a former Saman transformed by the Ritual of Fire in Charon's Lair, on Mount Edros. Your ink-black fleece is streaked with fine veins that glow red, your eyes have the crimson gleam of an ember, and your horns are the colour of coal. You hatched from an egg laid by your Yurta's Dragonnor, and you lay none yourself. The silence of the underground galleries is familiar to you, and it is in the shadow of the hissing volcanoes that your Yurta celebrates its devotion to Charon."
+    }
+  },
+  "roleplay": {
+    "adulthood": "Around 50 years for Charon's Nnor, a little earlier for Alpine Nnor",
+    "lifespan": "Between 700 and 800 years",
+    "height": "Between 1.70 m and 2.10 m"
+  }
+}

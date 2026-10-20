@@ -1,0 +1,15 @@
+{
+  "id": "INSTRI-001",
+  "title": "Instinct tribal",
+  "type": "passive",
+  "tier": 5,
+  "domains": [],
+  "prerequisite": "Être Nnor de Charon",
+  "activation": "Passif",
+  "tags": {
+    "practices": [
+      "teaching"
+    ]
+  },
+  "description": "Dans les galeries volcaniques de votre Yurta, vous avez chassé dès l'enfance les bêtes qui s'abritent dans la cendre.\n\nLa première fois que vous {{memorisee|mémorisez}} {{INSTRI-001|cette Compétence}}, choisissez une {{aptitude}} entre la {{survie}} et la {{nature}}. Tant que {{INSTRI-001|cette Compétence}} est {{memorisee}}, vous avez l'{{expertise}} dans cette {{aptitude}}."
+}

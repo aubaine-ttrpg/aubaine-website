@@ -1,0 +1,6 @@
+{
+  "title": "Mountain Agility",
+  "prerequisite": "Alpine Nnor",
+  "activation": "Passive",
+  "description": "Sharp as crampons, your hooves bite into bare rock.\n\n{{terrain-difficile|Difficult terrain}} of earth or stone costs you no extra {{deplacement|movement}}."
+}

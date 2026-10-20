@@ -1,0 +1,15 @@
+{
+  "id": "PERRUS-001",
+  "title": "Persistance rustique",
+  "type": "passive",
+  "tier": 5,
+  "domains": [],
+  "prerequisite": "Être Nnor alpin",
+  "activation": "Passif",
+  "tags": {
+    "practices": [
+      "teaching"
+    ]
+  },
+  "description": "Vous avez suivi votre Yurta dans ses longues migrations hivernales, de col en col.\n\nLa première fois que vous {{memorisee|mémorisez}} {{PERRUS-001|cette Compétence}}, choisissez une {{aptitude}} entre la {{survie}}, l'{{athletisme}} et la {{perception}}. Tant que {{PERRUS-001|cette Compétence}} est {{memorisee}}, vous avez l'{{expertise}} dans cette {{aptitude}}."
+}

@@ -1,0 +1,6 @@
+{
+  "title": "Dragonnor's Claws",
+  "activation": "1 Attack",
+  "duration": "Instantaneous",
+  "description": "Your claws are basalt in colour and grain.\n\nYou make an {{attaque}} ({{force}} + {{melee}}) with your claws against one or two creatures within range. You make a single {{jet}} and compare it to the {{ca}} of each. On a success against a creature, it takes {{2d6 degats-tranchant}}."
+}

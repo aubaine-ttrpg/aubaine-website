@@ -1,0 +1,29 @@
+{
+  "id": "FORDRA-001",
+  "title": "Forme draconique",
+  "type": "active",
+  "tier": 5,
+  "domains": [
+    "fire"
+  ],
+  "prerequisite": "Être Nnor de Charon",
+  "activation": "1 Action Bonus",
+  "range": "Personnel",
+  "duration": "jusqu'à 10 minutes",
+  "karma": 1,
+  "tags": {
+    "practices": [
+      "innate"
+    ],
+    "schools": [
+      "shapeshifting"
+    ]
+  },
+  "grants": [
+    "SOUDRA-001",
+    "GRIDRA-001",
+    "VOLDRA-001",
+    "MORDRA-001"
+  ],
+  "description": "Les fines veines rougeoyantes de votre toison palpitent, puis s'embrasent. Vous prenez la forme d'un dragon.\n\nVous gagnez 2 nouvelles {{caracteristique|Caractéristiques}} temporaires, {{physique-temporaire|Physique}} et {{mental-temporaire|Mental}}. Votre {{physique-temporaire|Physique}} vaut la somme de votre {{force}}, de votre {{dexterite}} et de votre {{constitution}}, et votre {{mental-temporaire|Mental}} celle de votre {{intelligence}}, de votre {{esprit}} et de votre {{charisme}}. Une {{caracteristique}} de 0 ou moins n'ajoute rien à sa somme.\n\nTant que {{FORDRA-001}} dure, votre {{physique-temporaire|Physique}} remplace votre {{force}}, votre {{dexterite}} et votre {{constitution}} partout, y compris dans le calcul de votre {{ca}}, de votre maximum de {{pdv}} et de votre Initiative. Votre {{mental-temporaire|Mental}} remplace votre {{intelligence}}, votre {{esprit}} et votre {{charisme}} partout, y compris dans le calcul de votre maximum d'{{energie}}, sauf dans celui de votre {{memoire}}. Au moment où vous jouez {{FORDRA-001}}, vos {{pdv}} actuels montent jusqu'à votre nouveau maximum de {{pdv}}.\n\nTant que {{FORDRA-001}} dure, votre {{taille}} devient {{grande}} si votre {{physique-temporaire|Physique}} vaut 4 ou moins, {{tres-grande}} s'il vaut de 5 à 8, et {{gigantesque}} s'il vaut 9 ou plus. Votre {{type-de-creature}} devient {{dragon}}. Ce que vous portez et tenez se fond en vous et n'a aucun effet jusqu'à ce que {{FORDRA-001}} prenne fin. Vous pouvez toujours parler, et lancer vos {{sort|Sorts}} comme si le Catalyseur que vous aviez équipé au moment de la jouer faisait partie de vous. Tous les {{degats}} que vous infligez deviennent des {{degats-feu}}, sauf les {{degats-contondant}}, les {{degats-perforant}} et les {{degats-tranchant}}.\n\n{{FORDRA-001}} dure jusqu'à la fin de votre prochain {{tour}} si votre {{mental-temporaire|Mental}} vaut 4 ou moins, 1 minute s'il vaut de 5 à 8, et 10 minutes s'il vaut 9 ou plus. Pendant votre {{tour}}, vous pouvez y mettre fin, ce qui ne vous coûte rien. Si vos {{pdv}} tombent à 0 pendant qu'elle dure, vous gagnez {{agonie}} comme d'ordinaire, puis {{FORDRA-001}} prend fin.\n\nLorsque {{FORDRA-001}} prend fin, vous reprenez votre forme, et chacune de vos valeurs et chacun de vos maximums reviennent à ce qu'ils étaient avant que vous la jouiez, y compris vos {{pdv}} et votre {{energie}} actuels. Si elle a pris fin parce que vos {{pdv}} sont tombés à 0, vos {{pdv}} actuels restent à 0. Le {{karma}} dépensé pour la jouer ne revient pas.\n\n*Nous conseillons d'imprimer une feuille de personnage à part pour votre forme draconique.*"
+}

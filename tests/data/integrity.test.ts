@@ -550,17 +550,22 @@ describe('rule text markup', () => {
     }
   })
 
-  it('puts a one-time setup in the first paragraph of its rule text', () => {
+  it('puts a one-time setup in the first rule paragraph, after any flavour paragraph', () => {
     for (const { where, text } of everyRuleText) {
-      text
-        .split('\n\n')
-        .slice(1)
-        .forEach((paragraph, index) => {
-          expect(
-            ONE_TIME_SETUP.test(paragraph),
-            `${where} holds its one-time setup in paragraph ${index + 2}`,
-          ).toBe(false)
-        })
+      const paragraphs = text.split('\n\n')
+      const isFlavour = (paragraph: string): boolean =>
+        !paragraph.includes('{{') && !ONE_TIME_SETUP.test(paragraph)
+      const firstRule = Math.max(
+        0,
+        paragraphs.findIndex((paragraph) => !isFlavour(paragraph)),
+      )
+      paragraphs.forEach((paragraph, index) => {
+        if (index === firstRule) return
+        expect(
+          ONE_TIME_SETUP.test(paragraph),
+          `${where} holds its one-time setup in paragraph ${index + 1}`,
+        ).toBe(false)
+      })
     }
   })
 

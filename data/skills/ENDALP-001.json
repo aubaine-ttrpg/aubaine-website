@@ -1,0 +1,20 @@
+{
+  "id": "ENDALP-001",
+  "title": "Endurance alpine",
+  "type": "passive",
+  "tier": 5,
+  "domains": [
+    "physical"
+  ],
+  "prerequisite": "Être Nnor alpin",
+  "activation": "Passif",
+  "tags": {
+    "practices": [
+      "innate"
+    ],
+    "schools": [
+      "protection"
+    ]
+  },
+  "description": "Votre toison épaisse et laineuse garde la chaleur de votre corps jusque sur les cimes gelées.\n\nVos {{sauvegarde|Sauvegardes}} contre les {{competence|Compétences}} qui infligent des {{degats-froid}} gagnent 1 {{avantage}}. Vous obtenez une {{resistance-degats}} aux {{degats-froid}}. Un froid extrême ne peut pas vous faire gagner de {{fatigue}}."
+}

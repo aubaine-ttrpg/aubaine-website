@@ -23,7 +23,7 @@ Aubaine trusts its players and its MJ to rule what a skill does not say. What a 
 
 - Activation, range, duration, and the resource costs are schema fields, and the render builds the stat line from them. Check the runbook for which fields the entity has, and never repeat one in prose.
 - A Réaction states its trigger in the first sentence of its description, never in `activation`.
-- A one-time setup, the paragraph that opens with « La première fois que vous {{memorisee|mémorisez}} cette Compétence » or « À l'achat », always comes first, before the effect it sets up. A flavour sentence may open that paragraph, never stand in a paragraph of its own ahead of it.
+- A one-time setup, the paragraph that opens with « La première fois que vous {{memorisee|mémorisez}} {{PERRUS-001|cette Compétence}} » or « À l'achat », is the first rule paragraph, before the effect it sets up. Flavour stands in its own paragraph ahead of it (owner, 2026-10-20).
 - Say each rule once. An opening that previews the options, gains or outcomes that the next lines spell out repeats them: open on the image or on the first rule, and let the meta description take whatever the opening is.
 - Write the effect in the order it resolves: trigger, then subject, then resolution, then outcome, then how it ends.
 - State the ending condition when the effect persists. A state ends when its description or the skill that applied it says so.
