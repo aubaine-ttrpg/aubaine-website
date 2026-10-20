@@ -49,8 +49,12 @@ A tooltip definition (a rule term, a Caractéristique, an Aptitude, a tag, or th
 in their place) says what the thing is in the game's own voice. It reads as the page of a
 roleplaying book, not as a specification or a usage report.
 
-- Say what the thing is, with a touch of flavour. Never reduce it to one verb (« Soin : ça
-  soigne »).
+- As short as Jet and Attaque (owner, 2026-10-20): what the thing is and what sets it apart, in
+  one sentence when one is enough. « Un {{jet}} porté contre la {{ca}} d'une cible pour la
+  toucher. » is the model. The reader hovers to resolve a sentence, mid-turn, with ADHD in mind:
+  no example, no list of cases, no sentence about what the term is not.
+- Say what the thing is in the game's voice; a word of flavour only when it costs no length.
+  Never reduce it to one verb (« Soin : ça soigne »).
 - Never list the skills or items that use it. That list grows, and the definition rots with it.
 - Never define an Aubaine term by contrast with another game (« il n'y a pas de jet de
   sauvegarde »). The comparison imports a game the reader may not know and Aubaine does not

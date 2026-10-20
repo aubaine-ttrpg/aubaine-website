@@ -39,7 +39,7 @@ its deed in both locales.
 editing prose there is a bug. What matters is knowing what your sentence becomes.
 
 - A skill node page takes `flattenText(description, 160)`. **The first 160 characters of a skill's
-  rule text are that page's meta description.** 249 of 271 descriptions are longer than that and are
+  rule text are that page's meta description.** Most descriptions are longer than that and are
   cut at the last whole word with an ellipsis, so the opening has to carry the meaning on its own, without restating the rules that follow it.
 - `flattenText` removes the `***` emphasis and replaces each `{{...}}` with what it prints, its
   written text or the entry's default label, then collapses whitespace. A reference inside the first

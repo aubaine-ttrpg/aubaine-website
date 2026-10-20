@@ -1,30 +1,8 @@
 # Editorial workflow
 
-## Any entry
-
-1. Identify the entity kind and open its runbook in `docs/runbooks/`.
-2. Read two or three siblings in the same directory. They carry the register, the terminology, and
-   the level of detail Aubaine has settled on. Take them only from entries whose resolved status
-   is `playtest`, `beta` or `balanced`. A `draft` is lorem ipsum or unverified text and is never a
-   model, however finished it looks. Resolve the status as the build does: an entry that writes
-   none inherits it from what owns it, and the `status` field in `src/lib/game/schema.ts` says
-   from what. When the directory holds no settled sibling, read the nearest settled entries of the
-   same kind elsewhere, and name the ones you used when you report.
-3. Build the field skeleton from the schema. Decide every structured value before writing a sentence.
-4. Write the mechanic until it is internally complete: trigger, subject, resolution, outcome, ending.
-5. Reference by key what the reader should reach, `{{clé}}`, or `{{clé|texte}}` for an agreement.
-6. Add flavor only where it gives the entry identity, and only where it cannot be read as a rule.
-7. Run `pnpm data:check`, then look at the page.
-
-## Rule text
-
-Precision outranks style. The reader is at a table, mid turn, deciding what happens.
-
-Confirm every trigger, cost, target, resolution step, outcome, duration, limit, and reset condition
-that the mechanic actually has, and none that it does not.
-
-Write prose only after the mechanic is complete. Prose written first tends to invent mechanics to
-justify its sentences.
+An entity file under `data/` and its rule text are written through `aubaine-content`, whose
+`.claude/skills/aubaine-content/references/writing.md` holds the procedure for any entry. Lore is
+written through `aubaine-lore`. The surfaces below are this skill's.
 
 ## Book chapters
 

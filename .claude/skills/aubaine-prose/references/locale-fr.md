@@ -22,7 +22,7 @@ That last group is the one to be careful with, because nothing validates it. `MJ
 and reuse what is there.
 
 Capitalize game terms mid sentence, as Aubaine already does. The capitals are house style; the icon
-and the colour come from a `{{...}}` reference, never from the spelling. See `keyword-rendering.md`.
+and the colour come from a `{{...}}` reference, never from the spelling. See `.claude/skills/aubaine-content/references/keyword-logic.md`.
 
 ## Typography in source
 

@@ -4,8 +4,8 @@ Species and tree lore under `data/lore/` is the one place Aubaine tells history.
 a roleplaying book tells it: full paragraphs, events in the past, and a world that reacts. A section
 of two dry sentences that states a fact and moves on is refused.
 
-Lore is not flavour, which is the one or two sentences an item carries (`flavor.md`), and the
-compact default of `house-voice.md` does not apply to it. Rule text stays tight; lore opens up.
+Lore is not flavour, which is the one or two sentences an item carries (`.claude/skills/aubaine-prose/references/flavor.md`), and the
+compact default of `.claude/skills/aubaine-prose/references/house-voice.md` does not apply to it. Rule text stays tight; lore opens up.
 
 ## Start from the owner's text
 
@@ -59,10 +59,10 @@ where and when. Emotion lives inside the lines, in ellipses and interjections (Â
 A small concrete detail that dramatises a known fact is welcome: a wool cap, a spring tournament, a
 sister at the bedside. A new fact about the world is not: a people, a place, a date, an institution,
 a cause, or a relationship between named characters. List every inference in the report so the
-owner can veto it. `claims-and-evidence.md` covers the single word that asserts canon on its own.
+owner can veto it. `.claude/skills/aubaine-prose/references/claims-and-evidence.md` covers the single word that asserts canon on its own.
 
 ## Before calling it done
 
-Run the lore checks in `ai-tells.md` over the whole page, not section by section. Read the French and
-the English as two texts written for two readers (`locale-en.md`). Then look at the page in the
+Run the checks in `lore-tells.md` over the whole page, not section by section. Read the French and
+the English as two texts written for two readers (`.claude/skills/aubaine-prose/references/locale-en.md`). Then look at the page in the
 build: the outline built from the headings, the epigraph and its caption, the name lists.

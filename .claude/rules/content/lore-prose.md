@@ -6,8 +6,9 @@ paths:
 # Lore Prose
 
 Lore is the narrative register: the history of a species or a tree, told the way a roleplaying book
-tells it. `.claude/skills/aubaine-prose/references/lore.md` holds the craft and its examples; read it
-before drafting or revising a lore file. `docs/runbooks/add-a-species.md` owns the file format.
+tells it. Write it through the `aubaine-lore` skill: `.claude/skills/aubaine-lore/references/lore.md`
+holds the craft and its examples; read it before drafting or revising a lore file.
+`docs/runbooks/add-a-species.md` owns the file format.
 
 - Start from the owner's text when there is one, and change only slips, typography and canon that
   has moved.

@@ -10,7 +10,11 @@ paths:
 
 French is the canonical authoring language. Write French first and well, then treat the English overlay as a second editorial surface rather than a gloss.
 
-Write, rewrite, translate and audit this prose through the `aubaine-prose` skill. It holds the voice, the locale conventions and the checklists; this file holds what must be true before a file is opened.
+Write, rewrite, translate and audit this prose through the skill that owns its surface. This file holds what must be true before a file is opened.
+
+- An entity file under `data/`, its rule text, its fields and its English overlay: `aubaine-content`.
+- A lore page under `data/lore/`: `aubaine-lore`.
+- A book chapter, a tooltip definition, the Banque Commune `note`, `src/lib/i18n/strings.ts`, a policy page and the titles composed from them: `aubaine-prose`, which also holds the voice, the locale conventions and the tells the other two share.
 
 ## Registers
 

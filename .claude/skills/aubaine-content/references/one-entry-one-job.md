@@ -30,7 +30,7 @@ reader to its definition; a term written without one is plain text, and the link
 The author decides every link, which is why the references are the navigation and not decoration.
 
 Reference a state by its key, `{{entrave}}`, a skill by its id, `{{TRAFEU-001}}`, and a rule term, a
-Caractéristique or an Aptitude by the key `keyword-rendering.md` gives it, wherever the reader should
+Caractéristique or an Aptitude by the key `keyword-logic.md` gives it, wherever the reader should
 reach the definition.
 
 An entry that nothing references and that references nothing is isolated. That is fine for a basic

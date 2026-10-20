@@ -48,7 +48,7 @@ These are the failure modes to watch by eye, because CI is silent on them.
 - **Whether prose is templated.** Rhythm, metronomic closers, reused scaffolds, and whether an entry
   carries a detail only it could carry are all out of reach of a check. `ai-tells.md` holds the
   method, and reading a tree's entries in a row is what actually catches it.
-- **Whether an entry is any good.** Use `style-checklist.md` and `clarity-checklist.md`.
+- **Whether an entry is any good.** Use `style-checklist.md`, and `.claude/skills/aubaine-content/references/quality.md` for rule text.
 
 ## Then look at it
 

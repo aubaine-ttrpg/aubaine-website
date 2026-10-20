@@ -4,6 +4,7 @@
 **Status:** Accepted
 **Date:** 2026-09-20
 **Revised:** 2026-09-23, the skill became `aubaine-prose` and widened past `data/` (0016)
+**Revised:** 2026-10-20, the `aubaine-content` name returns for the gameplay content skill, beside `aubaine-lore` and `aubaine-prose` (0050, addendum in Decision 1)
 **Deciders:** Kori
 **Scope:** Where editorial guidance for `data/` lives, how it is split between `.claude/rules/content/`
 and the `aubaine-content` skill, and the two positions that guidance takes which a future contributor
@@ -98,6 +99,17 @@ rewritten, and this guidance is what that rewrite will be measured against.
 - The `aubaine-content` name is left standing in the Scope line, in Decision 1 and in the Summary.
   It was accurate on 2026-09-20, and the `**Revised:**` line carries the change, the way 0002 left
   `art` in place and corrected it in its own addendum.
+
+### Addendum (2026-10-20): three skills carry the rest
+
+- The editorial corpus is now split across three skills by surface, as
+  [0050](0050-content-lore-and-prose-are-three-skills-and-a-content-run-is-six-passes.md) records:
+  `aubaine-content` for the entity files under `data/`, `aubaine-lore` for `data/lore/`, and
+  `aubaine-prose` for the rest. The name `aubaine-content` returns with that narrower scope, and the
+  references it held on 2026-09-20 are not what it holds now.
+- The split this decision draws is unchanged. A rule still earns its place by matching files, and
+  each skill still loads on demand. `.claude/rules/content/` holds ten files; `editorial-style.md`
+  now routes each surface to its skill.
 
 ---
 

@@ -23,7 +23,7 @@ Classify the entry first, because the three cases want different work.
 
 - **Sound.** Tighten the prose, add the detail it lacks, check the references by key.
 - **Overlapping.** It answers a question another entry already answers. Differentiate it or merge
-  it. See `one-entry-one-job.md`.
+  it. See `.claude/skills/aubaine-content/references/one-entry-one-job.md`.
 - **Weak.** The mechanic itself is incomplete or contradicts a field. That is a design question and
   it is reported, not rewritten into something plausible.
 

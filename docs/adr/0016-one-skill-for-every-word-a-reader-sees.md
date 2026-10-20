@@ -4,6 +4,7 @@
 **Status:** Accepted
 **Date:** 2026-09-23
 **Revised:** 2026-09-24, the tooltip definitions in `RULE_TERMS` and in `data/meta/tags.json` become prose surfaces (0020, addendum in Decision 1)
+**Revised:** 2026-10-20, Decision 1 is reversed in part by 0050: three skills share the surfaces (addendum in Decision 1)
 **Deciders:** Kori
 **Scope:** Which prose surfaces one editorial skill governs, where its craft guidance comes from, and
 which prose defects a test refuses rather than a reader. Amends 0008, whose rule and skill boundary
@@ -97,6 +98,15 @@ library that reads as though one generator made it.
   and the only one where prose is written in code rather than composed there (0020 Decision 1).
 - The definitions in `data/meta/tags.json`, `data/meta/characteristics.json` and
   `data/meta/aptitudes.json` sit under `data/` and were already in scope.
+
+### Addendum (2026-10-20): reversed in part by 0050
+
+[0050](0050-content-lore-and-prose-are-three-skills-and-a-content-run-is-six-passes.md) reverses the
+one-skill bullet, on the owner's instruction. `aubaine-content` now writes the entity files under
+`data/` and `aubaine-lore` the lore pages; `aubaine-prose` keeps the chapters, the definitions, the
+interface copy, the policies and the composed titles. The voice, the refused phrasings and the locale
+conventions stay in `aubaine-prose`, and the other two skills read them there, which is the
+duplication this decision guarded against. Decisions 2 and 3 are unchanged.
 
 ---
 

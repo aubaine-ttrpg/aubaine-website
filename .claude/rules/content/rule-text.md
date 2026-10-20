@@ -10,6 +10,8 @@ paths:
 
 Rule text is the `description` of a skill, an upgrade, or a state, and the `text` and `description` of an equipment item, an item property, or a set bonus. It defines executable behavior. Precision outranks style: what is written must execute one way, and what is not written is the MJ's to rule.
 
+Write it through the `aubaine-content` skill. `.claude/skills/aubaine-content/references/formulary.md` holds the one wording each mechanical relationship takes.
+
 ## Limitations and the table
 
 Aubaine trusts its players and its MJ to rule what a skill does not say. What a skill must say is what it can and cannot do against the rest of the game, because that is where its balance lives.

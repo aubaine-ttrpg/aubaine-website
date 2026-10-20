@@ -8,7 +8,7 @@ paths:
 
 # Keywords And Markup
 
-Aubaine renders every load-bearing mechanical noun as an icon plus a colored term, so a reader can find what a rule depends on without reading the paragraph. The author asks for that rendering with an explicit reference by key, and nothing links by its spelling. The index is built in `src/lib/game/build.ts` and applied in `src/lib/game/richtext.ts`. `docs/adr/0029-every-link-is-an-explicit-reference-by-key.md` records why.
+Aubaine renders every load-bearing mechanical noun as an icon plus a colored term, so a reader can find what a rule depends on without reading the paragraph. The author asks for that rendering with an explicit reference by key, and nothing links by its spelling. The index is built in `src/lib/game/build.ts` and applied in `src/lib/game/richtext.ts`. `docs/adr/0029-every-link-is-an-explicit-reference-by-key.md` records why. `.claude/skills/aubaine-content/references/keyword-logic.md` holds the procedure that decides whether a word takes a key, and the test that a sentence still reads as French once its labels print.
 
 ## Keyword classes and their keys
 
