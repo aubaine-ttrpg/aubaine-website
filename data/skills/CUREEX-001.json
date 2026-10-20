@@ -14,7 +14,9 @@
   "duration": "Instantanée",
   "life": "4d6",
   "tags": {
-    "practice": "spell",
+    "practices": [
+      "spell"
+    ],
     "schools": [
       "destruction"
     ],

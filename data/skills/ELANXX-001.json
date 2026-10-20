@@ -13,7 +13,9 @@
   "duration": "Instantanée",
   "energy": 1,
   "tags": {
-    "practice": "technique",
+    "practices": [
+      "technique"
+    ],
     "schools": [
       "mobility"
     ]

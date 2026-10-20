@@ -6,7 +6,9 @@
   "domains": [],
   "activation": "Passif",
   "tags": {
-    "practice": "teaching",
+    "practices": [
+      "teaching"
+    ],
     "schools": [
       "enhancement"
     ]

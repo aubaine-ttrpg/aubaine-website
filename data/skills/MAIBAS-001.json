@@ -14,7 +14,9 @@
   "duration": "Instantanée",
   "energy": 3,
   "tags": {
-    "practice": "spell",
+    "practices": [
+      "spell"
+    ],
     "schools": [
       "control",
       "enhancement"

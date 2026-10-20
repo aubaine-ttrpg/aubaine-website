@@ -11,7 +11,9 @@
   "duration": "Jusqu'à la fin de votre tour",
   "life": "1d6",
   "tags": {
-    "practice": "spell",
+    "practices": [
+      "spell"
+    ],
     "schools": [
       "healing"
     ],

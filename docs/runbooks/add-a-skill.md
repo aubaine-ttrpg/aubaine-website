@@ -58,7 +58,7 @@ Key order is the order of this table. Keep it.
   "duration": "jusqu'à 1 minute",
   "energy": 1,
   "tags": {
-    "practice": "spell",
+    "practices": ["spell"],
     "schools": [
       "protection"
     ]
@@ -107,7 +107,7 @@ Then open the tree page, choose the node and read its card in the pane.
 
 **A passive skill may not carry an energy cost above 0.** The schema rejects it: `une Compétence passive ne coûte pas d'Énergie. energy: 0 reste permis pour marquer explicitement une absence de coût.`
 
-**Tags are optional, and each one has to earn its place.** `tags` holds up to three kinds of key from `data/meta/tags.json`: one Pratique, one or two Écoles, any number of Spéciales. For each slot, ask whether this skill needs it for balance, flavour or a combo; leave it empty otherwise, and leave `tags` out entirely when nothing applies. Each École must accept the Pratique it is paired with (its `practices` list). A key that is not declared, or declared in another slot, fails `pnpm data:check`. Never invent a tag for one skill: [add-a-tag.md](add-a-tag.md) says when a new one is justified.
+**Tags are optional, and each one has to earn its place.** `tags` holds up to three kinds of key from `data/meta/tags.json`: one or two Pratiques, one or two Écoles, any number of Spéciales. Each École must accept each Pratique the skill carries. For each slot, ask whether this skill needs it for balance, flavour or a combo; leave it empty otherwise, and leave `tags` out entirely when nothing applies. Each École must accept the Pratique it is paired with (its `practices` list). A key that is not declared, or declared in another slot, fails `pnpm data:check`. Never invent a tag for one skill: [add-a-tag.md](add-a-tag.md) says when a new one is justified.
 
 **`spell` carries a rule.** A skill whose Pratique is `spell` is a Sort: it needs a Catalyseur equipped to be activated, whether it is passive or active. `shout` carries one too: a Cri only affects creatures that can hear it. Rule text that cites a tag writes « l'étiquette » followed by its French label exactly, `l'étiquette Illusion`, so the citation reaches every skill that carries it.
 

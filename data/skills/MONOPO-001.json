@@ -12,7 +12,9 @@
   "duration": "Jusqu'à ce qu'on vous la reprenne",
   "energy": 3,
   "tags": {
-    "practice": "technique",
+    "practices": [
+      "technique"
+    ],
     "schools": [
       "influence"
     ]

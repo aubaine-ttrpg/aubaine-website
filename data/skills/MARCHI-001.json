@@ -14,7 +14,9 @@
   "duration": "Jusqu'au déclenchement",
   "energy": 2,
   "tags": {
-    "practice": "spell",
+    "practices": [
+      "spell"
+    ],
     "schools": [
       "creation"
     ],

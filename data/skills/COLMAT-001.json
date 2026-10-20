@@ -16,7 +16,9 @@
   "duration": "jusqu'à 8 heures",
   "energy": 1,
   "tags": {
-    "practice": "spell",
+    "practices": [
+      "spell"
+    ],
     "schools": [
       "creation"
     ]

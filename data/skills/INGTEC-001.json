@@ -16,7 +16,9 @@
   },
   "energy": 0,
   "tags": {
-    "practice": "technique",
+    "practices": [
+      "technique"
+    ],
     "schools": [
       "enhancement"
     ]

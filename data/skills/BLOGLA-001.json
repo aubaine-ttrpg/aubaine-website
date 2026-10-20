@@ -15,7 +15,9 @@
   },
   "energy": 2,
   "tags": {
-    "practice": "spell",
+    "practices": [
+      "spell"
+    ],
     "schools": [
       "protection"
     ]

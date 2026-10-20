@@ -14,7 +14,9 @@
   "range": "Contact",
   "duration": "Instantanée",
   "tags": {
-    "practice": "manoeuvre",
+    "practices": [
+      "manoeuvre"
+    ],
     "schools": [
       "destruction"
     ],

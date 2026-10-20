@@ -16,7 +16,9 @@
   "duration": "Instantanée ou jusqu'à 1 heure",
   "energy": 1,
   "tags": {
-    "practice": "spell",
+    "practices": [
+      "spell"
+    ],
     "schools": [
       "control"
     ]

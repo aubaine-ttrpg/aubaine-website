@@ -8,7 +8,9 @@
   ],
   "activation": "Passif",
   "tags": {
-    "practice": "technique",
+    "practices": [
+      "technique"
+    ],
     "schools": [
       "protection"
     ]

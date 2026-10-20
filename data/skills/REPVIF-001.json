@@ -13,7 +13,9 @@
   "duration": "Instantanée",
   "energy": 0,
   "tags": {
-    "practice": "manoeuvre",
+    "practices": [
+      "manoeuvre"
+    ],
     "schools": [
       "mobility"
     ]

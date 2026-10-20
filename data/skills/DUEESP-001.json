@@ -12,7 +12,9 @@
   "duration": "Jusqu'à la fin du duel",
   "energy": 2,
   "tags": {
-    "practice": "technique",
+    "practices": [
+      "technique"
+    ],
     "schools": [
       "influence"
     ]

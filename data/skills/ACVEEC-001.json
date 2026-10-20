@@ -7,7 +7,9 @@
   "prerequisite": "Être Humain de la Nouvelle-Aubaine",
   "activation": "Passif",
   "tags": {
-    "practice": "technique",
+    "practices": [
+      "technique"
+    ],
     "schools": [
       "influence"
     ]

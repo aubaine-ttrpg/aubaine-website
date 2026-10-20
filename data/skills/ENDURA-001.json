@@ -10,7 +10,9 @@
   "range": "—",
   "duration": "—",
   "tags": {
-    "practice": "technique",
+    "practices": [
+      "technique"
+    ],
     "schools": [
       "protection"
     ]

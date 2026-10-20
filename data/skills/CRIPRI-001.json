@@ -9,7 +9,9 @@
   "duration": "Instantanée ou jusqu'à la fin du tour",
   "energy": 2,
   "tags": {
-    "practice": "shout",
+    "practices": [
+      "shout"
+    ],
     "schools": [
       "control"
     ],

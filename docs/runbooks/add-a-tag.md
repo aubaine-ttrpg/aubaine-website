@@ -64,7 +64,7 @@ A skill carrying it:
 
 ```json
 "tags": {
-  "practice": "spell",
+  "practices": ["spell"],
   "schools": [
     "illusion"
   ]

@@ -12,7 +12,9 @@
   "prerequisite": "Être Humain d'Al-Wahaa",
   "activation": "Passif",
   "tags": {
-    "practice": "technique",
+    "practices": [
+      "technique"
+    ],
     "schools": [
       "protection"
     ]

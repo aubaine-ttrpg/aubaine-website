@@ -13,7 +13,9 @@
   "duration": "Instantanée",
   "energy": 5,
   "tags": {
-    "practice": "technique",
+    "practices": [
+      "technique"
+    ],
     "schools": [
       "creation"
     ],

@@ -14,7 +14,9 @@
   "range": "Allonge de l'arme",
   "duration": "Instantanée",
   "tags": {
-    "practice": "manoeuvre",
+    "practices": [
+      "manoeuvre"
+    ],
     "schools": [
       "control"
     ]

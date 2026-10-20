@@ -6,6 +6,7 @@
 **Revised:** 2026-09-25, the Nécromancie École is added (addendum in Decision 5)
 **Revised:** 2026-09-26, a skill may carry two Écoles and base actions carry tags, reversed by 0026 (addenda in Decisions 3 and 5)
 **Revised:** 2026-09-26, the Enseignement and Inné Pratiques are added (addendum in Decision 5)
+**Revised:** 2026-10-20, a skill may carry two Pratiques, and Destruction and Contrôle accept Inné (addendum in Decision 3)
 **Revised:** 2026-09-28, Inné names the mind, for the Psychique powers (addendum in Decision 5)
 **Revised:** 2026-09-28, the Rage Pratique is added (addendum in Decision 5)
 **Revised:** 2026-09-29, every tag answers to a key and rule text never writes « étiquette », reversed by 0036 (addenda in Decisions 4 and 5)
@@ -142,6 +143,16 @@ pages printed the French tags.
 of this decision. The École slot is now `schools`, one or two distinct keys, each accepting the
 Pratique. The 13 base actions carry the tags they need. The skills that only change the sheet when
 bought still carry none.
+
+### Addendum (2026-10-20): a skill may carry two Pratiques
+
+- `practice` becomes `practices`, one or two distinct keys, as `schools` already is. The owner
+  asked for Coup de sabot to be « inné, maneouvre, controle »: a hoof is the body, and the blow
+  replaces an Attaque. The 284 skills that wrote `practice` now write a list of one, and print the
+  same footer.
+- The matrix reads every pair: each École a skill carries accepts each of its Pratiques
+  (`tests/data/integrity.test.ts`). Destruction and Contrôle now accept Inné, which the owner's
+  tagging of the Nnor and Dragonnor Compétences asked for on 2026-10-20.
 
 ---
 

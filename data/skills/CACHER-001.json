@@ -14,7 +14,9 @@
   "range": "Personnel",
   "duration": "Jusqu'à la fin de l'état",
   "tags": {
-    "practice": "technique",
+    "practices": [
+      "technique"
+    ],
     "schools": [
       "illusion"
     ]

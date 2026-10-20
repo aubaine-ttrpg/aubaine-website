@@ -11,7 +11,9 @@
   "duration": "jusqu'à 10 minutes",
   "energy": 2,
   "tags": {
-    "practice": "rage",
+    "practices": [
+      "rage"
+    ],
     "schools": [
       "enhancement",
       "protection"

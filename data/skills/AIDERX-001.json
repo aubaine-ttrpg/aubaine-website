@@ -9,7 +9,9 @@
   "range": "1,5 m",
   "duration": "1 round",
   "tags": {
-    "practice": "technique",
+    "practices": [
+      "technique"
+    ],
     "schools": [
       "enhancement"
     ]

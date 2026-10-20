@@ -264,10 +264,13 @@ export const skill = z
       ),
     tags: z
       .object({
-        practice: tagKey
+        practices: z
+          .array(tagKey)
+          .min(1)
+          .max(2)
           .optional()
           .describe(
-            'Pratique : la manière dont la Compétence se pratique, une clé de practices. Une au plus.',
+            'Pratiques : la ou les manières dont la Compétence se pratique, une ou deux clés de practices, sans doublon.',
           ),
         schools: z
           .array(tagKey)
@@ -275,7 +278,7 @@ export const skill = z
           .max(2)
           .optional()
           .describe(
-            "Écoles : la ou les familles d'effets de la Compétence, une ou deux clés de schools, sans doublon. Chacune doit accepter la Pratique quand elle est posée.",
+            "Écoles : la ou les familles d'effets de la Compétence, une ou deux clés de schools, sans doublon. Chacune doit accepter chaque Pratique posée.",
           ),
         specials: z
           .array(tagKey)
@@ -286,11 +289,15 @@ export const skill = z
       .strict()
       .refine(
         (value) =>
-          value.practice !== undefined ||
+          value.practices !== undefined ||
           value.schools !== undefined ||
           value.specials !== undefined,
         { message: "une Compétence sans étiquette s'écrit en omettant la clé tags." },
       )
+      .refine((value) => new Set(value.practices).size === (value.practices ?? []).length, {
+        message: 'une Pratique ne se répète pas.',
+        path: ['practices'],
+      })
       .refine((value) => new Set(value.schools).size === (value.schools ?? []).length, {
         message: 'une École ne se répète pas.',
         path: ['schools'],

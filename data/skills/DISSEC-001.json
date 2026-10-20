@@ -13,7 +13,9 @@
   "range": "Contact",
   "duration": "Instantanée",
   "tags": {
-    "practice": "technique",
+    "practices": [
+      "technique"
+    ],
     "schools": [
       "creation"
     ]

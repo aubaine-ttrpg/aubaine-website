@@ -11,7 +11,9 @@
   "duration": "Instantanée",
   "energy": 1,
   "tags": {
-    "practice": "innate",
+    "practices": [
+      "innate"
+    ],
     "schools": [
       "divination"
     ]

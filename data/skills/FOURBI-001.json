@@ -11,7 +11,9 @@
   "duration": "Jusqu'à votre prochain Repos long",
   "energy": 1,
   "tags": {
-    "practice": "technique",
+    "practices": [
+      "technique"
+    ],
     "schools": [
       "enhancement"
     ]

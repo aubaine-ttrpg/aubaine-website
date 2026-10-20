@@ -11,7 +11,9 @@
   "duration": "1 minute",
   "energy": 3,
   "tags": {
-    "practice": "manoeuvre",
+    "practices": [
+      "manoeuvre"
+    ],
     "schools": [
       "enhancement"
     ]

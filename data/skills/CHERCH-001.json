@@ -13,7 +13,9 @@
   "range": "Personnel",
   "duration": "Instantanée",
   "tags": {
-    "practice": "technique"
+    "practices": [
+      "technique"
+    ]
   },
   "description": "Vous fouillez ce qui vous entoure, ou vous cherchez ce qui se dérobe.\n\nEffectuez un {{jet}} d'{{esprit}} + {{perception}} pour ce que vos sens peuvent saisir, ou d'{{intelligence}} + {{investigation}} pour ce qu'il faut déduire. Le MJ fixe le {{dd}}.\n\nContre une créature qui porte l'état {{cache}}, votre {{jet}} est opposé au sien. En cas de réussite, elle perd l'état vis-à-vis de vous."
 }

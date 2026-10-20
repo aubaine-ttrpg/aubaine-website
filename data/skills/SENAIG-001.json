@@ -9,7 +9,9 @@
   "prerequisite": "Être Elfe",
   "activation": "Passif",
   "tags": {
-    "practice": "innate",
+    "practices": [
+      "innate"
+    ],
     "schools": [
       "divination"
     ]

@@ -118,7 +118,7 @@ export type TagSlot = { key: string; kind: TagKind }
 export function skillTags(tags: SkillTags | undefined): TagSlot[] {
   if (!tags) return []
   const slots: TagSlot[] = []
-  if (tags.practice) slots.push({ key: tags.practice, kind: 'practice' })
+  for (const key of tags.practices ?? []) slots.push({ key, kind: 'practice' })
   for (const key of tags.schools ?? []) slots.push({ key, kind: 'school' })
   for (const key of tags.specials ?? []) slots.push({ key, kind: 'special' })
   return slots

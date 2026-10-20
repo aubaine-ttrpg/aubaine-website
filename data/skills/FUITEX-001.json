@@ -11,7 +11,9 @@
   "range": "Personnel",
   "duration": "10 minutes",
   "tags": {
-    "practice": "technique",
+    "practices": [
+      "technique"
+    ],
     "schools": [
       "enhancement"
     ]

@@ -11,7 +11,9 @@
   "duration": "Jusqu'au début de votre prochain tour",
   "energy": 2,
   "tags": {
-    "practice": "manoeuvre",
+    "practices": [
+      "manoeuvre"
+    ],
     "schools": [
       "control"
     ]

@@ -12,7 +12,9 @@
   "duration": "Instantanée",
   "energy": 1,
   "tags": {
-    "practice": "spell",
+    "practices": [
+      "spell"
+    ],
     "schools": [
       "illusion"
     ]

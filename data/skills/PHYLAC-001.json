@@ -10,7 +10,9 @@
   "prerequisite": "Être Liche",
   "activation": "Passif",
   "tags": {
-    "practice": "innate",
+    "practices": [
+      "innate"
+    ],
     "schools": [
       "necromancy"
     ]

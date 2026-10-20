@@ -146,13 +146,19 @@
       "description": "Étiquettes rendues en pied d'entrée, dans l'ordre Pratique, Écoles, Spéciales, chacune avec sa définition au survol. Aucune n'est obligatoire : une Compétence ne porte que celles qui servent l'équilibre, la saveur ou les combinaisons.",
       "type": "object",
       "properties": {
-        "practice": {
-          "description": "Pratique : la manière dont la Compétence se pratique, une clé de practices. Une au plus.",
-          "type": "string",
-          "pattern": "^[a-z][a-z0-9-]*$"
+        "practices": {
+          "description": "Pratiques : la ou les manières dont la Compétence se pratique, une ou deux clés de practices, sans doublon.",
+          "minItems": 1,
+          "maxItems": 2,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "description": "Clé d'étiquette, telle qu'elle est déclarée dans data/meta/tags.json."
+          }
         },
         "schools": {
-          "description": "Écoles : la ou les familles d'effets de la Compétence, une ou deux clés de schools, sans doublon. Chacune doit accepter la Pratique quand elle est posée.",
+          "description": "Écoles : la ou les familles d'effets de la Compétence, une ou deux clés de schools, sans doublon. Chacune doit accepter chaque Pratique posée.",
           "minItems": 1,
           "maxItems": 2,
           "type": "array",

@@ -9,7 +9,9 @@
   "duration": "Instantanée",
   "energy": 0,
   "tags": {
-    "practice": "technique",
+    "practices": [
+      "technique"
+    ],
     "schools": [
       "influence"
     ]

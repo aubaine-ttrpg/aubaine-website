@@ -11,7 +11,9 @@
   "range": "Personnel",
   "duration": "Jusqu'au début de votre prochain tour",
   "tags": {
-    "practice": "manoeuvre",
+    "practices": [
+      "manoeuvre"
+    ],
     "schools": [
       "protection"
     ]

@@ -13,7 +13,9 @@
   "energy": 2,
   "evolvesFrom": "COURRO-001",
   "tags": {
-    "practice": "manoeuvre",
+    "practices": [
+      "manoeuvre"
+    ],
     "schools": [
       "destruction"
     ]

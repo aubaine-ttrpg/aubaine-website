@@ -173,15 +173,16 @@ describe('xp', () => {
 })
 
 describe('skill tags', () => {
-  it('reads the slots in card order: Pratique, each École, then each Spéciale', () => {
+  it('reads the slots in card order: each Pratique, each École, then each Spéciale', () => {
     expect(
       skillTags({
         specials: ['graft', 'lifesteal'],
         schools: ['healing', 'necromancy'],
-        practice: 'technique',
+        practices: ['technique', 'innate'],
       }),
     ).toEqual([
       { key: 'technique', kind: 'practice' },
+      { key: 'innate', kind: 'practice' },
       { key: 'healing', kind: 'school' },
       { key: 'necromancy', kind: 'school' },
       { key: 'graft', kind: 'special' },

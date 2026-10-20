@@ -12,7 +12,9 @@
   "concentration": true,
   "energy": 2,
   "tags": {
-    "practice": "spell",
+    "practices": [
+      "spell"
+    ],
     "schools": [
       "control"
     ]

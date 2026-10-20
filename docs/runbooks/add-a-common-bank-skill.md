@@ -56,7 +56,7 @@ The list file, `data/skill-lists/common-bank.json`:
   "duration": "Instantanée",
   "energy": 0,
   "tags": {
-    "practice": "manoeuvre",
+    "practices": ["manoeuvre"],
     "schools": [
       "mobility"
     ]

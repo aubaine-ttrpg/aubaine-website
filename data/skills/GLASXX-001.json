@@ -9,7 +9,9 @@
   "prerequisite": "Être Mort-vivant",
   "activation": "Passif",
   "tags": {
-    "practice": "innate",
+    "practices": [
+      "innate"
+    ],
     "schools": [
       "divination"
     ]

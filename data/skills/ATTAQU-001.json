@@ -14,7 +14,9 @@
   "range": "Allonge de l'arme",
   "duration": "Instantanée",
   "tags": {
-    "practice": "manoeuvre"
+    "practices": [
+      "manoeuvre"
+    ]
   },
   "description": "Vous portez une {{attaque}} contre une créature à portée, avec une arme équipée ou à mains nues.\n\nEffectuez le {{jet}} que l'arme indique contre la {{ca}} de la cible. En cas de réussite, elle subit les dégâts de l'arme, augmentés de la {{caracteristique}} employée par ce {{jet}}.\n\n***À mains nues.*** Le {{jet}} est {{force}} + {{melee}}, la portée 1,5 m, et les dégâts 1d4 + {{force}}."
 }

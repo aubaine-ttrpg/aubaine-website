@@ -15,7 +15,9 @@
   "duration": "Instantanée",
   "energy": 1,
   "tags": {
-    "practice": "manoeuvre",
+    "practices": [
+      "manoeuvre"
+    ],
     "schools": [
       "destruction",
       "control"

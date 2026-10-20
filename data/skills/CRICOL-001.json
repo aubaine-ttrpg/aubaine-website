@@ -12,7 +12,9 @@
   "duration": "Instantanée",
   "energy": 2,
   "tags": {
-    "practice": "shout",
+    "practices": [
+      "shout"
+    ],
     "schools": [
       "control"
     ]

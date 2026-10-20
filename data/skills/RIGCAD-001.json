@@ -14,7 +14,9 @@
   "prerequisite": "Être Revenant",
   "activation": "Passif",
   "tags": {
-    "practice": "innate",
+    "practices": [
+      "innate"
+    ],
     "schools": [
       "protection"
     ]

@@ -179,7 +179,7 @@ Rule text names a tag by its key: `une Compétence de {{vol-de-vie}}`, `un {{sor
 
 ## Tags are a closed vocabulary
 
-A skill's `tags` is an object with three optional slots, `practice` (one key), `schools` (one or two) and `specials` (one or more), filled with keys from `data/meta/tags.json`. That file holds the labels, the tooltip definitions and, on each École, the Pratiques it accepts. A skill carries only the slots it needs, and none at all is a valid answer. [runbooks/add-a-tag.md](runbooks/add-a-tag.md) owns the procedure and [adr/0020](adr/0020-skill-tags-are-three-optional-slots-and-every-hovered-word-is-defined.md) the reasons.
+A skill's `tags` is an object with three optional slots, `practices` (one or two keys), `schools` (one or two) and `specials` (one or more), filled with keys from `data/meta/tags.json`. That file holds the labels, the tooltip definitions and, on each École, the Pratiques it accepts. A skill carries only the slots it needs, and none at all is a valid answer. [runbooks/add-a-tag.md](runbooks/add-a-tag.md) owns the procedure and [adr/0020](adr/0020-skill-tags-are-three-optional-slots-and-every-hovered-word-is-defined.md) the reasons.
 
 ## Where the book chapters came from
 

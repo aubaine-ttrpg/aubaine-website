@@ -10,7 +10,9 @@
   "range": "—",
   "duration": "—",
   "tags": {
-    "practice": "spell",
+    "practices": [
+      "spell"
+    ],
     "schools": [
       "destruction"
     ]

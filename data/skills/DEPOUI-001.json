@@ -13,7 +13,9 @@
   "prerequisite": "Être Squelette",
   "activation": "Passif",
   "tags": {
-    "practice": "technique",
+    "practices": [
+      "technique"
+    ],
     "schools": [
       "illusion",
       "necromancy"

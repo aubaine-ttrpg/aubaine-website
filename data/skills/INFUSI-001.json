@@ -11,7 +11,9 @@
   "duration": "1 heure",
   "energy": 1,
   "tags": {
-    "practice": "spell",
+    "practices": [
+      "spell"
+    ],
     "schools": [
       "enhancement"
     ]

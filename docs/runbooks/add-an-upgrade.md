@@ -42,7 +42,7 @@ Upgrades are rendered by increasing level, whatever order you write them in. Wri
   "duration": "jusqu'à 10 minutes",
   "energy": 2,
   "tags": {
-    "practice": "rage",
+    "practices": ["rage"],
     "schools": [
       "enhancement",
       "protection"

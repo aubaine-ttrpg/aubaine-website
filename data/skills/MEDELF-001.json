@@ -10,7 +10,9 @@
   "prerequisite": "Être Elfe ou Drow",
   "activation": "Passif",
   "tags": {
-    "practice": "technique"
+    "practices": [
+      "technique"
+    ]
   },
   "description": "Votre {{repos-long}} ne dure que quatre heures."
 }

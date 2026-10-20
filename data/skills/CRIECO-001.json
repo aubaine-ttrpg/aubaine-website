@@ -12,7 +12,9 @@
   "energy": 1,
   "life": "1d6",
   "tags": {
-    "practice": "shout",
+    "practices": [
+      "shout"
+    ],
     "schools": [
       "protection"
     ]

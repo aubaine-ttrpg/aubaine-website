@@ -8,7 +8,9 @@
   "prerequisite": "Être Elfe, Drow, Fir Bolg ou Halfelin",
   "activation": "Passif",
   "tags": {
-    "practice": "teaching",
+    "practices": [
+      "teaching"
+    ],
     "schools": [
       "enhancement"
     ]

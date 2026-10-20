@@ -15,7 +15,9 @@
   "concentration": true,
   "energy": 3,
   "tags": {
-    "practice": "innate",
+    "practices": [
+      "innate"
+    ],
     "schools": [
       "protection"
     ]

@@ -8,7 +8,9 @@
   ],
   "activation": "Passif",
   "tags": {
-    "practice": "manoeuvre",
+    "practices": [
+      "manoeuvre"
+    ],
     "schools": [
       "destruction"
     ]

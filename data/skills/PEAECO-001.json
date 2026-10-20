@@ -11,7 +11,9 @@
   "duration": "jusqu'à 10 minutes",
   "energy": 2,
   "tags": {
-    "practice": "spell",
+    "practices": [
+      "spell"
+    ],
     "schools": [
       "protection"
     ]

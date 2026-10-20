@@ -13,7 +13,9 @@
   "duration": "1 heure",
   "energy": 0,
   "tags": {
-    "practice": "technique",
+    "practices": [
+      "technique"
+    ],
     "schools": [
       "creation"
     ]

@@ -9,7 +9,9 @@
   "prerequisite": "Être Humain du Landenheit",
   "activation": "Passif",
   "tags": {
-    "practice": "teaching",
+    "practices": [
+      "teaching"
+    ],
     "schools": [
       "enhancement"
     ]

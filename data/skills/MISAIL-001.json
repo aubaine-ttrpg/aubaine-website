@@ -11,7 +11,9 @@
   "duration": "jusqu'à 24 heures",
   "energy": 2,
   "tags": {
-    "practice": "spell",
+    "practices": [
+      "spell"
+    ],
     "schools": [
       "summoning"
     ]

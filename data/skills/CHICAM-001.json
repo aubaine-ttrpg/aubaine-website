@@ -14,7 +14,9 @@
   "duration": "Instantanée",
   "life": "2d6",
   "tags": {
-    "practice": "technique",
+    "practices": [
+      "technique"
+    ],
     "schools": [
       "healing"
     ]

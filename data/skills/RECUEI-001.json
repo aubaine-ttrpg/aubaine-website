@@ -11,7 +11,9 @@
   "duration": "Instantanée",
   "energy": 0,
   "tags": {
-    "practice": "innate",
+    "practices": [
+      "innate"
+    ],
     "schools": [
       "protection"
     ]

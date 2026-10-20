@@ -10,7 +10,9 @@
   "prerequisite": "Être Elfe ou Drow",
   "activation": "Passif",
   "tags": {
-    "practice": "technique",
+    "practices": [
+      "technique"
+    ],
     "schools": [
       "enhancement"
     ]

@@ -17,7 +17,9 @@
   "concentration": true,
   "energy": 3,
   "tags": {
-    "practice": "spell",
+    "practices": [
+      "spell"
+    ],
     "schools": [
       "influence"
     ]

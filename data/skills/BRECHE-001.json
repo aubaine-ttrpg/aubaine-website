@@ -14,7 +14,9 @@
   "duration": "Jusqu'à la fin de votre prochain tour",
   "energy": 3,
   "tags": {
-    "practice": "spell",
+    "practices": [
+      "spell"
+    ],
     "schools": [
       "destruction"
     ]

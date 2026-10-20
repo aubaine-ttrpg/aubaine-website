@@ -16,7 +16,9 @@
   "energy": 0,
   "life": "1d6",
   "tags": {
-    "practice": "manoeuvre",
+    "practices": [
+      "manoeuvre"
+    ],
     "schools": [
       "destruction"
     ]

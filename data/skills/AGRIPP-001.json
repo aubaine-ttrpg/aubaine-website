@@ -14,7 +14,9 @@
   "range": "1,5 m",
   "duration": "Tant que la prise tient",
   "tags": {
-    "practice": "manoeuvre",
+    "practices": [
+      "manoeuvre"
+    ],
     "schools": [
       "control"
     ]
