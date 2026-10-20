@@ -184,6 +184,12 @@
   color: var(--on-gold);
 }
 
+.au-cost__icon {
+  width: 10px;
+  height: 10px;
+  flex: none;
+}
+
 .au-cost--karma {
   background: #4a2d5e;
   color: #f4ead2;

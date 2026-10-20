@@ -110,9 +110,7 @@ const tags = skillTags(skill.tags).map(({ key, kind }) => {
         {
           hasCost(skill.karma) && (
             <span class="au-cost au-cost--karma">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z" />
-              </svg>
+              <Icon name={corpus.terms.keys.get('karma')?.icon ?? undefined} class="au-cost__icon" />
               {`${formatNumber(skill.karma, locale)} ${t.karma}`}
             </span>
           )
