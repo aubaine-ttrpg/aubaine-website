@@ -9,7 +9,10 @@
   "activation": "1 Réaction",
   "range": "Personnel",
   "duration": "Jusqu'à la fin de votre prochain tour",
-  "recharge": "short-rest",
+  "limit": {
+    "times": 1,
+    "per": "short-rest"
+  },
   "energy": 2,
   "tags": {
     "practice": "spell",

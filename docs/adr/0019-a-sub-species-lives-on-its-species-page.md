@@ -8,6 +8,7 @@
 **Revised:** 2026-09-24, `Sort` reads its definition from its tag and its rule covers passive Sorts (0020, addendum in Decision 4)
 **Revised:** 2026-09-25, a sub-species may impose a Compétence, each Espèce names its sub-species, and a common-noun name translates (addenda in Decisions 1 and 3)
 **Revised:** 2026-09-27, a rule term keeps one label per locale and links only where a text writes it (0029, addendum in Decision 4)
+**Revised:** 2026-10-20, `recharge` becomes `limit`, and Compétence becomes a rule term (0052, addendum in Decision 4)
 **Deciders:** Kori
 **Scope:** The `subspecies`, `roleplay` and `languages` fields on `species` in
 `src/lib/game/schema.ts`, the `languages` vocabulary in `data/meta/`, the sections of the species
@@ -296,4 +297,11 @@ the species' own skills, it is not an entry of `data/skill-lists/common-bank.jso
   decide anything.
 - `Mémorisée` lists no verb forms any more: `RULE_TERMS` holds one label per locale, and a text that
   wants the verb linked writes it, as `{{memorisee|mémorisez}}`.
+
+### Addendum (2026-10-20): `limit` replaces `recharge`, and Compétence is marked
+
+- A rest limit is now one value of `limit`, which also counts turns, combats and hours; the 12
+  skills that wrote `recharge` write `limit` and print the same line (0052 Decision 1).
+- `Compétence` becomes a rule term, reversing the 2026-09-23 point above: a word links only where a
+  text writes its key, and an entry naming itself links to its own id (0052 Decision 3).
 

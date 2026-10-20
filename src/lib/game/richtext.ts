@@ -1,5 +1,6 @@
 export const TERM_FAMILIES = [
   'rule',
+  'value',
   'characteristic',
   'aptitude',
   'tag',
@@ -17,6 +18,7 @@ export type TermRecord = {
   itemSlug?: string
   kind: string
   title: string
+  label?: string
   meta: string
   color: string
   icon: string | null
@@ -26,6 +28,17 @@ export type TermRecord = {
 
 export type TermIndex = {
   keys: Map<string, TermRecord>
+}
+
+export function termText(record: TermRecord): string {
+  return record.label ?? record.title
+}
+
+export function termLabels(index: TermIndex): LabelOf {
+  return (key) => {
+    const record = index.keys.get(key)
+    return record ? termText(record) : undefined
+  }
 }
 
 export type LabelOf = (key: string) => string | undefined
@@ -43,18 +56,31 @@ export type Paragraph = { lines: Line[] }
 const MARKUP = /\*\*\*([^*]+)\*\*\*|\*([^*]+)\*|\{\{([^}]+)\}\}/g
 const REFERENCE_KEY = /^(?:[a-z0-9]+(?:-[a-z0-9]+)*|[A-Z0-9]{6}-[0-9]{3})$/
 const REFERENCE = /\{\{([^}|]+)(?:\|([^}]+))?\}\}/g
+const AMOUNT = /^(\d+(?:d\d+)?)\s+(\S+)$/
 
 export function emptyTermIndex(): TermIndex {
   return { keys: new Map() }
 }
 
-type Reference = { key: string; shown: string | undefined }
+type Reference = { key: string; amount: string | undefined; shown: string | undefined }
+
+function keyOf(head: string): Pick<Reference, 'key' | 'amount'> | undefined {
+  const trimmed = head.trim()
+  const counted = AMOUNT.exec(trimmed)
+  const key = counted?.[2] ?? trimmed
+  if (!REFERENCE_KEY.test(key)) return undefined
+  return { key, amount: counted?.[1] }
+}
 
 function referenceOf(content: string): Reference | undefined {
   const bar = content.indexOf('|')
-  const key = (bar === -1 ? content : content.slice(0, bar)).trim()
-  if (!REFERENCE_KEY.test(key)) return undefined
-  return { key, shown: bar === -1 ? undefined : content.slice(bar + 1) }
+  const head = keyOf(bar === -1 ? content : content.slice(0, bar))
+  if (!head) return undefined
+  return { ...head, shown: bar === -1 ? undefined : content.slice(bar + 1) }
+}
+
+function counted(amount: string | undefined, text: string): string {
+  return amount === undefined ? text : `${amount} ${text}`
 }
 
 export function referenceKey(content: string): string | undefined {
@@ -62,11 +88,11 @@ export function referenceKey(content: string): string | undefined {
 }
 
 export function pinReferenceLabels(source: string, labelOf: LabelOf): string {
-  return source.replace(REFERENCE, (whole, key: string, shown: string | undefined) => {
-    const name = key.trim()
-    if (shown !== undefined || !REFERENCE_KEY.test(name)) return whole
-    const label = labelOf(name)
-    return label === undefined ? whole : `{{${name}|${label}}}`
+  return source.replace(REFERENCE, (whole, head: string, shown: string | undefined) => {
+    const reference = keyOf(head)
+    if (shown !== undefined || !reference) return whole
+    const label = labelOf(reference.key)
+    return label === undefined ? whole : `{{${head.trim()}|${label}}}`
   })
 }
 
@@ -76,7 +102,7 @@ function referenceRun(content: string, index: TermIndex): Run {
   if (reference && record) {
     return {
       kind: 'term',
-      text: reference.shown ?? record.title,
+      text: counted(reference.amount, reference.shown ?? termText(record)),
       term: record,
     }
   }
@@ -127,9 +153,10 @@ function linesOf(paragraph: string, index: TermIndex): Line[] {
 
 export function flattenText(source: string | undefined, labelOf: LabelOf, limit?: number): string {
   const value = String(source ?? '')
-    .replace(REFERENCE, (_, key: string, shown: string | undefined) => {
-      const name = key.trim()
-      return shown ?? labelOf(name) ?? name
+    .replace(REFERENCE, (_, head: string, shown: string | undefined) => {
+      const reference = keyOf(head)
+      if (!reference) return shown ?? head.trim()
+      return counted(reference.amount, shown ?? labelOf(reference.key) ?? reference.key)
     })
     .replace(/\*\*\*/g, '')
     .replace(/\*([^*]+)\*/g, '$1')

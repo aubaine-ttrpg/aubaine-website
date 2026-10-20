@@ -28,7 +28,7 @@ The filename is the id and nothing else. The id matches `^[A-Z0-9]{6}-[0-9]{3}$`
 | `range` | optional | Portée, sur la ligne de stats. | free text |
 | `duration` | optional | Durée, sur la ligne de stats. | free text |
 | `concentration` | optional | `Rendue dans la durée sous la forme « Concentration · <durée> ». Ce n'est pas une étiquette.` | `true`, `false` |
-| `recharge` | optional | Repos qui rend la Compétence une fois jouée, rendu sur la ligne de stats : « 1 fois par Repos court » pour `short-rest`, qu'un Repos long rend aussi, « 1 fois par Repos long » pour `long-rest`. Absent : la Compétence se rejoue sans attendre de repos. | `short-rest`, `long-rest` |
+| `limit` | optional | Limite d'usage, rendue sur la ligne de stats avec la flèche en boucle : « 1 fois par tour », « 2 fois par Repos long ». Jamais écrite dans la description. Absent : la Compétence se rejoue sans limite. | `{ "times": 1, "per": "turn" }`; `times` 1 to 3, `per` one of `turn`, `combat`, `hour`, `short-rest`, `long-rest` |
 | `energy` | optional | Pastille ÉNERGIE. Zéro est une valeur réelle et se distingue d'une Compétence sans coût : elle affiche « 0 énergie ». | integer 0 to 5 |
 | `karma` | optional | Pastille KARMA. Une créature en garde 3 au plus et n'en récupère à aucun repos, alors une Compétence qui en coûte pèse lourd. | integer 1 to 3 |
 | `life` | optional | Pastille PDV : un coût payé en Points de vie, en dés (1d6) ou en nombre fixe. | `"6"`, `"1d6"` |
@@ -111,7 +111,7 @@ Then open the tree page, choose the node and read its card in the pane.
 
 **`spell` carries a rule.** A skill whose Pratique is `spell` is a Sort: it needs a Catalyseur equipped to be activated, whether it is passive or active. `shout` carries one too: a Cri only affects creatures that can hear it. Rule text that cites a tag writes « l'étiquette » followed by its French label exactly, `l'étiquette Illusion`, so the citation reaches every skill that carries it.
 
-**A rest limit is `recharge`, never a sentence.** A skill that can be played once, then waits for a rest, writes `"recharge": "short-rest"` or `"recharge": "long-rest"`, and the stat line prints it. Do not restate it in the description, the way `activation`, `range` and `duration` are never restated either. A Repos long also recharges a `short-rest` skill.
+**A limit of use is `limit`, never a sentence.** A skill played at most once a turn, twice a combat or once between rests writes `"limit": { "times": 1, "per": "turn" }`, and the stat line prints it beside a looping arrow. Do not restate it in the description, the way `activation`, `range` and `duration` are never restated either. A Repos long also restores a `short-rest` limit.
 
 **A Species Skill costs 25 PX unless it says otherwise.** Write `"tier": 5`. A skill a species offers is kept for free at creation, but the others are bought later at the printed price, and 25 PX is the default a designer departs from on purpose, through the tier or `xpOverride`.
 

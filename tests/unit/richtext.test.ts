@@ -24,14 +24,44 @@ function record(title: string, family: TermRecord['family']): TermRecord {
 const energy = record('Énergie', 'rule')
 const restrained = record('Entravé', 'state')
 const fireBolt = record('Trait de feu', 'skill')
+const fireDamage: TermRecord = { ...record('Feu', 'value'), label: 'Dégâts de Feu' }
 
 const index: TermIndex = {
   keys: new Map([
     ['energie', energy],
     ['entrave', restrained],
     ['TRAFEU-001', fireBolt],
+    ['degats-feu', fireDamage],
   ]),
 }
+
+describe('a reference that counts', () => {
+  it('prints the dice inside the keyword, before its label', () => {
+    expect(parseRuns('elle subit {{1d6 degats-feu}}.', index)).toEqual([
+      { kind: 'text', text: 'elle subit ' },
+      { kind: 'term', text: '1d6 Dégâts de Feu', term: fireDamage },
+      { kind: 'text', text: '.' },
+    ])
+  })
+
+  it('puts the amount before a written text that agrees with it', () => {
+    expect(parseRuns('{{1 degats-feu|Dégât de Feu}}', index)).toEqual([
+      { kind: 'term', text: '1 Dégât de Feu', term: fireDamage },
+    ])
+  })
+
+  it('keeps the amount when the text is flattened for a tooltip', () => {
+    expect(flattenText('elle subit {{4d8 degats-feu}}.', (key) => index.keys.get(key)?.label)).toBe(
+      'elle subit 4d8 Dégâts de Feu.',
+    )
+  })
+
+  it('keeps the amount when a French label is pinned for an English page', () => {
+    expect(pinReferenceLabels('{{2d10 degats-feu}}', () => 'Dégâts de Feu')).toBe(
+      '{{2d10 degats-feu|Dégâts de Feu}}',
+    )
+  })
+})
 
 describe('references by key', () => {
   it('prints the entry label when the reference carries no text', () => {

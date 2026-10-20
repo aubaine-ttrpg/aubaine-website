@@ -213,11 +213,24 @@ export const skill = z
       .describe(
         "Rendue dans la durée sous la forme « Concentration · <durée> ». Ce n'est pas une étiquette.",
       ),
-    recharge: z
-      .enum(['short-rest', 'long-rest'])
+    limit: z
+      .object({
+        times: z
+          .number()
+          .int()
+          .min(1)
+          .max(3)
+          .describe('Combien de fois la Compétence se joue avant que sa limite ne la rende.'),
+        per: z
+          .enum(['turn', 'combat', 'hour', 'short-rest', 'long-rest'])
+          .describe(
+            "Ce qui la rend : chaque tour, chaque combat, chaque heure, un Repos court, qu'un Repos long rend aussi, ou un Repos long.",
+          ),
+      })
+      .strict()
       .optional()
       .describe(
-        "Repos qui rend la Compétence une fois jouée, rendu sur la ligne de stats : « 1 fois par Repos court » pour 'short-rest', qu'un Repos long rend aussi, « 1 fois par Repos long » pour 'long-rest'. Absent : la Compétence se rejoue sans attendre de repos.",
+        "Limite d'usage, rendue sur la ligne de stats avec la flèche en boucle : « 1 fois par tour », « 2 fois par Repos long ». Jamais écrite dans la description. Absent : la Compétence se rejoue sans limite.",
       ),
     energy: z
       .number()
@@ -957,6 +970,18 @@ export const vocabulary = z
           .min(1)
           .optional()
           .describe("Texte anglais de l'infobulle, écrit avec definitionFr."),
+        referenceFr: z
+          .string()
+          .min(1)
+          .optional()
+          .describe(
+            "Ce qu'une référence à ce type montre au joueur : « Dégâts de Feu » pour le type Feu. Le mot-clé reste le type, de la sorte Dégâts, sous la clé {{degats-feu}}. Propre à data/meta/damage-types.json.",
+          ),
+        referenceEn: z
+          .string()
+          .min(1)
+          .optional()
+          .describe('Texte anglais de la référence, écrit avec referenceFr : « Fire damage ».'),
       })
       .strict()
       .refine(
@@ -965,7 +990,11 @@ export const vocabulary = z
           message: "une définition s'écrit dans les deux langues ou pas du tout.",
           path: ['definitionEn'],
         },
-      ),
+      )
+      .refine((entry) => (entry.referenceFr === undefined) === (entry.referenceEn === undefined), {
+        message: "une référence s'écrit dans les deux langues ou pas du tout.",
+        path: ['referenceEn'],
+      }),
   )
   .min(1)
 
@@ -1847,6 +1876,7 @@ export const overlays = {
 
 export type ContentStatus = z.infer<typeof contentStatus>
 export type Skill = z.infer<typeof skill>
+export type SkillLimit = NonNullable<Skill['limit']>
 export type Upgrade = z.infer<typeof upgrade>
 export type Placement = z.infer<typeof placement>
 export type SkillTree = z.infer<typeof skillTree>

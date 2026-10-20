@@ -92,13 +92,33 @@
       "description": "Rendue dans la durée sous la forme « Concentration · <durée> ». Ce n'est pas une étiquette.",
       "type": "boolean"
     },
-    "recharge": {
-      "description": "Repos qui rend la Compétence une fois jouée, rendu sur la ligne de stats : « 1 fois par Repos court » pour 'short-rest', qu'un Repos long rend aussi, « 1 fois par Repos long » pour 'long-rest'. Absent : la Compétence se rejoue sans attendre de repos.",
-      "type": "string",
-      "enum": [
-        "short-rest",
-        "long-rest"
-      ]
+    "limit": {
+      "description": "Limite d'usage, rendue sur la ligne de stats avec la flèche en boucle : « 1 fois par tour », « 2 fois par Repos long ». Jamais écrite dans la description. Absent : la Compétence se rejoue sans limite.",
+      "type": "object",
+      "properties": {
+        "times": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3,
+          "description": "Combien de fois la Compétence se joue avant que sa limite ne la rende."
+        },
+        "per": {
+          "type": "string",
+          "enum": [
+            "turn",
+            "combat",
+            "hour",
+            "short-rest",
+            "long-rest"
+          ],
+          "description": "Ce qui la rend : chaque tour, chaque combat, chaque heure, un Repos court, qu'un Repos long rend aussi, ou un Repos long."
+        }
+      },
+      "required": [
+        "times",
+        "per"
+      ],
+      "additionalProperties": false
     },
     "energy": {
       "description": "Pastille ÉNERGIE. Zéro est une valeur réelle et se distingue d'une Compétence sans coût : elle affiche « 0 énergie ».",

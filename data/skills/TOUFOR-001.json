@@ -9,7 +9,10 @@
   "activation": "1 Action",
   "range": "Contact",
   "duration": "Instantanée ou jusqu'à la fin de votre prochain tour",
-  "recharge": "short-rest",
+  "limit": {
+    "times": 1,
+    "per": "short-rest"
+  },
   "energy": 0,
   "tags": {
     "practice": "manoeuvre",

@@ -27,7 +27,7 @@ Aubaine trusts its players and its MJ to rule what a skill does not say. What a 
 - Say each rule once. An opening that previews the options, gains or outcomes that the next lines spell out repeats them: open on the image or on the first rule, and let the meta description take whatever the opening is.
 - Write the effect in the order it resolves: trigger, then subject, then resolution, then outcome, then how it ends.
 - State the ending condition when the effect persists. A state ends when its description or the skill that applied it says so.
-- State the limit and the reset condition when a rule can be used a bounded number of times. When the reset is a rest, that is the skill's `recharge` field, not a sentence.
+- State the limit and the reset condition when a rule can be used a bounded number of times. A limit of use, per turn, combat, hour or rest, is the skill's `limit` field, not a sentence.
 - Do not hide a requirement at the end of a paragraph.
 
 ## Grammar of an effect

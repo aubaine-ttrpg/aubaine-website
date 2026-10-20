@@ -147,6 +147,7 @@ The same markup works in a skill description, an upgrade description, a state de
 | `*italique*` | italic |
 | `{{clé}}` | a link to the entry the key names, with its tooltip, printing the entry's default label |
 | `{{clé\|texte}}` | the same link, printing `texte` exactly as written |
+| `{{1d6 clé}}` | the same link, printing the amount before the label in one chip, « 1d6 Dégâts de Feu »; only before a damage type |
 | a blank line | a paragraph break |
 
 Every link is explicit. A word written without markup is plain text and never links, whatever its capitals. `texte` is plain text too, with no markup inside it.

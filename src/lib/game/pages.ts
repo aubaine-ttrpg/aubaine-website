@@ -9,7 +9,7 @@ import { atlasHead } from './atlas.ts'
 import type { Corpus } from './build.ts'
 import { corpus } from './corpus.ts'
 import { policyPages } from './policies.ts'
-import { flattenText } from './richtext.ts'
+import { flattenText, termLabels } from './richtext.ts'
 import type { ContentStatus } from './schema.ts'
 
 export const ARCHIVES_ART = 'bureau-de-archibald-16_9-og.png'
@@ -127,7 +127,7 @@ export async function pageRoutes(): Promise<PageRoute[]> {
             type: tree.treeType,
             skills: tree.skills.map((skill) => skill.title),
           }),
-          (key) => data.terms.keys.get(key)?.title,
+          termLabels(data.terms),
           160,
         ),
         ogArt: tree.banner,
@@ -139,11 +139,7 @@ export async function pageRoutes(): Promise<PageRoute[]> {
           locale,
           params: { tree: tree.id, node: placement.skill.id },
           title: `${placement.skill.title} · ${tree.name}`,
-          description: flattenText(
-            placement.skill.description,
-            (key) => data.terms.keys.get(key)?.title,
-            160,
-          ),
+          description: flattenText(placement.skill.description, termLabels(data.terms), 160),
           ogArt: tree.banner,
           noIndex: keptOutOfSearch(data.skillStatus.get(placement.skill.id)),
         })
@@ -161,7 +157,7 @@ export async function pageRoutes(): Promise<PageRoute[]> {
             entry.name,
             entry.pool.map((skill) => skill.title),
           ),
-          (key) => data.terms.keys.get(key)?.title,
+          termLabels(data.terms),
           160,
         ),
         ogArt: entry.banner,

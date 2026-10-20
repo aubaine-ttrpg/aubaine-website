@@ -270,6 +270,8 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
   const rarities = vocabularyFor('rarities')
   const disciplines = vocabularyFor('disciplines')
   const coins = vocabularyFor('coins')
+  const damageTypes = vocabularyFor('damage-types')
+  const values = { sizes, 'creature-types': creatureTypes, 'damage-types': damageTypes }
   const slots = vocabularyFor('slots')
 
   const taxonomyEntry = sources.tags.find((entry) => entry.id === 'tags')
@@ -280,6 +282,7 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
     locale: DEFAULT_LOCALE,
     characteristics,
     aptitudes,
+    values,
     tags,
     states: stateEntries.map((entry) => entry.data),
     skills: new Map(skillEntries.map((entry) => [entry.data.id, entry.data])),
@@ -580,7 +583,15 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
     })
     .sort((a, b) => a.order - b.order)
 
-  const labels = referenceLabels({ locale, characteristics, aptitudes, tags, states, skills })
+  const labels = referenceLabels({
+    locale,
+    characteristics,
+    aptitudes,
+    values,
+    tags,
+    states,
+    skills,
+  })
   const labelOf: LabelOf = (key) => labels.get(key)
   const glossary = buildGlossary({
     locale,
@@ -610,6 +621,7 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
   const terms = buildTermIndex({
     locale,
     characteristics,
+    values,
     glossary,
     trees,
     basic,
@@ -678,6 +690,7 @@ type GlossaryInput = {
 type TermInput = {
   locale: Locale
   characteristics: Map<string, VocabularyEntry>
+  values: Record<ValueVocabulary, Map<string, VocabularyEntry>>
   glossary: GlossaryTerm[]
   trees: ResolvedTree[]
   basic: SkillList & { resolved: Skill[] }
@@ -698,6 +711,7 @@ type LabelInput = {
   locale: Locale
   characteristics: Map<string, VocabularyEntry>
   aptitudes: Map<string, VocabularyEntry>
+  values: Record<ValueVocabulary, Map<string, VocabularyEntry>>
   tags: Map<string, ResolvedTag>
   states: GameState[]
   skills: Map<string, Skill>
@@ -708,11 +722,16 @@ type Grant = { skill: Skill; source: string }
 const APTITUDE_ICON = 'mdi/rhombus-outline'
 const TAG_ICON = 'mdi/tag-outline'
 
+type ValueVocabulary = 'sizes' | 'creature-types' | 'damage-types'
+
 type RuleTerm = {
   fr: string
   en: string
   color: string
   icon: string
+  key?: string
+  values?: ValueVocabulary
+  prefixValues?: true
 } & ({ definition: Record<Locale, string> } | { tag: string } | { skillList: 'bank' })
 
 const RULE_TERMS: readonly RuleTerm[] = [
@@ -744,6 +763,50 @@ const RULE_TERMS: readonly RuleTerm[] = [
     definition: {
       fr: "Un {{jet}} porté contre la {{ca}} d'une cible pour la toucher.",
       en: "A {{jet}} made against a target's {{ca}} to hit it.",
+    },
+  },
+  {
+    fr: 'Sauvegarde',
+    en: 'Save',
+    color: 'var(--term-roll)',
+    icon: 'game-icons/dodge',
+    definition: {
+      fr: 'Un {{jet}} imposé contre un {{dd}} pour résister à un effet.',
+      en: 'A {{jet}} imposed against a {{dd}} to resist an effect.',
+    },
+  },
+  {
+    fr: 'Dégâts',
+    en: 'Damage',
+    color: 'var(--term-atk)',
+    icon: 'game-icons/screen-impact',
+    values: 'damage-types',
+    prefixValues: true,
+    definition: {
+      fr: 'Le mal infligé à une créature, qui lui retire des {{pdv}}.',
+      en: 'The harm dealt to a creature, which brings its {{pdv}} down.',
+    },
+  },
+  {
+    fr: 'Résistance',
+    en: 'Resistance',
+    color: 'var(--term-adv)',
+    icon: 'game-icons/armor-upgrade',
+    key: 'resistance-degats',
+    definition: {
+      fr: "Divise par deux les {{degats}} d'un type que vous subissez.",
+      en: 'Halves the {{degats|damage}} of one type that you take.',
+    },
+  },
+  {
+    fr: 'Vulnérabilité',
+    en: 'Vulnerability',
+    color: 'var(--term-dis)',
+    icon: 'game-icons/armor-downgrade',
+    key: 'vulnerabilite-degats',
+    definition: {
+      fr: "Double les {{degats}} d'un type que vous subissez.",
+      en: 'Doubles the {{degats|damage}} of one type that you take.',
     },
   },
   {
@@ -791,6 +854,28 @@ const RULE_TERMS: readonly RuleTerm[] = [
     definition: {
       fr: "L'une des six valeurs de base d'un personnage. Elle forme la moitié de chaque {{jet}}.",
       en: "One of a character's six core scores. It makes up half of every {{jet}}.",
+    },
+  },
+  {
+    fr: 'Physique',
+    en: 'Physical',
+    color: 'var(--accent-ink)',
+    icon: 'mdi/hexagon',
+    key: 'physique-temporaire',
+    definition: {
+      fr: 'Une {{caracteristique}} temporaire que certaines {{competence|Compétences}} emploient à la place de votre {{force}}, de votre {{dexterite}} et de votre {{constitution}}.',
+      en: 'A temporary {{caracteristique}} that some {{competence|Skills}} use in place of your {{force}}, {{dexterite}} and {{constitution}}.',
+    },
+  },
+  {
+    fr: 'Mental',
+    en: 'Mental',
+    color: 'var(--accent-ink)',
+    icon: 'mdi/hexagon',
+    key: 'mental-temporaire',
+    definition: {
+      fr: 'Une {{caracteristique}} temporaire que certaines {{competence|Compétences}} emploient à la place de votre {{intelligence}}, de votre {{esprit}} et de votre {{charisme}}.',
+      en: 'A temporary {{caracteristique}} that some {{competence|Skills}} use in place of your {{intelligence}}, {{esprit}} and {{charisme}}.',
     },
   },
   {
@@ -864,6 +949,16 @@ const RULE_TERMS: readonly RuleTerm[] = [
     },
   },
   {
+    fr: 'Tour',
+    en: 'Turn',
+    color: 'var(--term-action)',
+    icon: 'game-icons/sands-of-time',
+    definition: {
+      fr: "Le moment d'un round où c'est à une créature d'agir, dans l'ordre des initiatives.",
+      en: "The moment in a round when it is one creature's time to act, in initiative order.",
+    },
+  },
+  {
     fr: 'Déplacement',
     en: 'Movement',
     color: 'var(--term-move)',
@@ -888,9 +983,21 @@ const RULE_TERMS: readonly RuleTerm[] = [
     en: 'Size',
     color: 'var(--term-move)',
     icon: 'material-symbols/people-size-increase-rounded',
+    values: 'sizes',
     definition: {
       fr: "Le gabarit d'une créature, rangé en catégories, du plus menu au plus colossal. La vôtre vient de votre Espèce.",
       en: "A creature's build, sorted into categories from the slightest to the most colossal. Yours comes from your Species.",
+    },
+  },
+  {
+    fr: 'Type de créature',
+    en: 'Creature type',
+    color: 'var(--term-move)',
+    icon: 'game-icons/beast-eye',
+    values: 'creature-types',
+    definition: {
+      fr: "La famille d'êtres dont relève une créature.",
+      en: 'The family of beings a creature belongs to.',
     },
   },
   {
@@ -899,8 +1006,8 @@ const RULE_TERMS: readonly RuleTerm[] = [
     color: 'var(--term-move)',
     icon: 'mdi/terrain',
     definition: {
-      fr: "Un terrain qui ralentit la marche, comme des gravats, une pente raide, une eau jusqu'aux genoux ou une foule serrée. Chaque mètre qu'on y parcourt coûte deux mètres de {{deplacement|déplacement}}.",
-      en: 'Terrain that slows the going, such as rubble, a steep slope, knee-deep water or a packed crowd. Each metre crossed there costs two metres of {{deplacement|movement}}.',
+      fr: 'Un terrain qui ralentit la marche : chaque {{deplacement|déplacement}} de 1,5 m que vous y faites vous en coûte le double.',
+      en: 'Terrain that slows the going: every 1.5 m you move through it costs you twice that in {{deplacement|movement}}.',
     },
   },
   {
@@ -981,10 +1088,20 @@ const RULE_TERMS: readonly RuleTerm[] = [
     },
   },
   {
+    fr: 'Compétence',
+    en: 'Skill',
+    color: 'var(--accent-ink)',
+    icon: 'mdi/square-circle',
+    definition: {
+      fr: "Une capacité de votre personnage, le plus souvent {{apprise|apprise}} avec des PX, ou {{accordee|accordée}} par l'équipement que vous portez ou par une autre {{competence}}. Une {{competence}} qui n'est pas {{accordee|accordée}} doit être {{memorisee|mémorisée}} dans la limite de votre {{memoire}} pour être jouée.",
+      en: "One of your character's abilities, most often {{apprise|learned}} with XP, or {{accordee|granted}} by the equipment you wear or by another {{competence}}. A {{competence}} that is not {{accordee|granted}} must be {{memorisee|memorised}} within your {{memoire}} to be played.",
+    },
+  },
+  {
     fr: 'Mémoire',
     en: 'Memory',
     color: 'var(--term-res)',
-    icon: 'game-icons/bookshelf',
+    icon: 'mdi/book-multiple',
     definition: {
       fr: 'Le nombre de Compétences que vous pouvez avoir {{memorisee|Mémorisées}} en même temps.',
       en: 'The number of Skills you can have {{memorisee}} at the same time.',
@@ -994,7 +1111,7 @@ const RULE_TERMS: readonly RuleTerm[] = [
     fr: 'Mémorisée',
     en: 'Memorised',
     color: 'var(--term-res)',
-    icon: 'mdi/brain',
+    icon: 'mdi/book-check',
     definition: {
       fr: "Se dit d'une Compétence que vous portez et pouvez jouer. Vous pouvez changer les vôtres pendant un repos.",
       en: 'Said of a Skill you carry and can play. You can change yours during a rest.',
@@ -1004,10 +1121,20 @@ const RULE_TERMS: readonly RuleTerm[] = [
     fr: 'Apprise',
     en: 'Learned',
     color: 'var(--term-res)',
-    icon: 'mdi/book-check',
+    icon: 'mdi/book-education',
     definition: {
       fr: "Se dit d'une Compétence que vous avez acquise, que vous l'ayez achetée ou reçue. Une Compétence {{apprise}} ne s'apprend pas une seconde fois.",
       en: 'Said of a Skill you have acquired, whether you bought it or were given it. A {{apprise}} Skill is never learned a second time.',
+    },
+  },
+  {
+    fr: 'Accordée',
+    en: 'Granted',
+    color: 'var(--term-res)',
+    icon: 'mdi/book-plus',
+    definition: {
+      fr: "Se dit d'une {{competence}} que vous tenez de votre équipement ou d'une autre {{competence}}. Vous pouvez la jouer sans l'avoir {{apprise|apprise}} ni {{memorisee|mémorisée}}, tant que vous portez cet équipement ou que l'autre {{competence}} dure.",
+      en: 'Said of a {{competence}} that comes to you from your equipment or from another {{competence}}. You can play it without having {{apprise|learned}} or {{memorisee|memorised}} it, for as long as you wear that equipment or the other {{competence}} lasts.',
     },
   },
   {
@@ -1154,7 +1281,16 @@ function ruleTermDefinition(
 }
 
 function ruleReference(rule: RuleTerm): string {
-  return slugify(rule.fr)
+  return rule.key ?? slugify(rule.fr)
+}
+
+function valueLabel(entry: VocabularyEntry, english: boolean): string {
+  return english ? (entry.referenceEn ?? entry.labelEn) : (entry.referenceFr ?? entry.labelFr)
+}
+
+function valueReference(rule: RuleTerm, entry: VocabularyEntry): string {
+  const value = slugify(entry.labelFr)
+  return rule.prefixValues ? `${ruleReference(rule)}-${value}` : value
 }
 
 function vocabularyReference(entry: VocabularyEntry): string {
@@ -1186,7 +1322,13 @@ function tagSlotLabel(tag: ResolvedTag, t: ReturnType<typeof strings>): string {
 function referenceLabels(input: LabelInput): Map<string, string> {
   const english = input.locale === 'en'
   const labels = new Map<string, string>()
-  for (const rule of RULE_TERMS) labels.set(ruleReference(rule), ruleLabel(rule, english))
+  for (const rule of RULE_TERMS) {
+    labels.set(ruleReference(rule), ruleLabel(rule, english))
+    if (!rule.values) continue
+    for (const entry of input.values[rule.values].values()) {
+      labels.set(valueReference(rule, entry), valueLabel(entry, english))
+    }
+  }
   for (const entry of input.characteristics.values()) {
     if (entry.key === VARIABLE_CHARACTERISTIC) continue
     labels.set(vocabularyReference(entry), vocabularyLabel(entry, english))
@@ -1317,6 +1459,7 @@ function buildTermIndex(input: TermInput): TermIndex {
   const {
     locale,
     characteristics,
+    values,
     glossary,
     trees,
     basic,
@@ -1343,6 +1486,30 @@ function buildTermIndex(input: TermInput): TermIndex {
       throw new Error(`two glossary entries answer to the reference {{${term.reference}}}`)
     }
     keys.set(term.reference, term.record)
+  }
+
+  for (const rule of RULE_TERMS) {
+    if (!rule.values) continue
+    const category = keys.get(ruleReference(rule))
+    if (!category) throw new Error(`rule term ${rule.fr} is missing from the glossary`)
+    for (const entry of values[rule.values].values()) {
+      const reference = valueReference(rule, entry)
+      if (keys.has(reference)) {
+        throw new Error(
+          `data/meta/${rule.values}.json ${entry.key} answers to the reference {{${reference}}}, which another entry holds`,
+        )
+      }
+      keys.set(reference, {
+        family: 'value',
+        kind: category.title,
+        title: vocabularyLabel(entry, locale === 'en'),
+        label: valueLabel(entry, locale === 'en'),
+        meta: '',
+        color: entry.color ? inkOf(entry.color) : category.color,
+        icon: entry.iconName ? iconPath(entry.iconName) : category.icon,
+        text: category.text,
+      })
+    }
   }
 
   for (const tree of trees) {

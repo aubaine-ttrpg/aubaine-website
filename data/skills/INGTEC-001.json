@@ -10,7 +10,10 @@
   "activation": "1 Action Bonus",
   "range": "Personnel",
   "duration": "jusqu'à 10 minutes",
-  "recharge": "long-rest",
+  "limit": {
+    "times": 1,
+    "per": "long-rest"
+  },
   "energy": 0,
   "tags": {
     "practice": "technique",

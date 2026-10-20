@@ -59,6 +59,16 @@
             "description": "Texte anglais de l'infobulle, écrit avec definitionFr.",
             "type": "string",
             "minLength": 1
+          },
+          "referenceFr": {
+            "description": "Ce qu'une référence à ce type montre au joueur : « Dégâts de Feu » pour le type Feu. Le mot-clé reste le type, de la sorte Dégâts, sous la clé {{degats-feu}}. Propre à data/meta/damage-types.json.",
+            "type": "string",
+            "minLength": 1
+          },
+          "referenceEn": {
+            "description": "Texte anglais de la référence, écrit avec referenceFr : « Fire damage ».",
+            "type": "string",
+            "minLength": 1
           }
         },
         "required": [

@@ -572,6 +572,16 @@ describe('rule text markup', () => {
     }
   })
 
+  it('counts dice inside a reference only before a damage type', () => {
+    for (const { where, text } of everyRuleText) {
+      for (const match of text.matchAll(REFERENCE_MARKUP)) {
+        const content = match[1] ?? ''
+        if (!/^\s*\d+(?:d\d+)?\s+\S/.test(content)) continue
+        expect(referenceKey(content)?.startsWith('degats-'), `${where} {{${content}}}`).toBe(true)
+      }
+    }
+  })
+
   it('resolves every reference a definition or a list note writes', () => {
     for (const corpus of [fr, en]) {
       const texts = [
@@ -1414,6 +1424,18 @@ describe('definitions', () => {
       const term = built.glossary.find((entry) => entry.reference === 'banque-commune')
       expect(term?.family, locale).toBe('rule')
       expect(term?.family === 'rule' ? term.definition : undefined, locale).toBe(built.bank.note)
+    }
+  })
+
+  it('writes a reference phrase on every damage type and nowhere else', () => {
+    for (const vocabulary of sources.vocabularies) {
+      for (const entry of vocabulary.data.entries) {
+        const phrased = vocabulary.id === 'damage-types'
+        expect(
+          entry.referenceFr !== undefined,
+          `meta/${vocabulary.id} ${entry.key} ${phrased ? 'needs' : 'takes no'} referenceFr`,
+        ).toBe(phrased)
+      }
     }
   })
 

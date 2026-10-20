@@ -11,7 +11,10 @@
   "activation": "10 minutes",
   "range": "Contact",
   "duration": "Instantanée",
-  "recharge": "short-rest",
+  "limit": {
+    "times": 1,
+    "per": "short-rest"
+  },
   "energy": 0,
   "tags": {
     "practice": "technique",

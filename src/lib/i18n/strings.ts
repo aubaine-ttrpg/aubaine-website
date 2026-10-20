@@ -1,4 +1,4 @@
-import type { SkillTree } from '../game/schema.ts'
+import type { SkillLimit, SkillTree } from '../game/schema.ts'
 import type { Locale } from './locales.ts'
 
 export type TreeSummary = {
@@ -14,6 +14,24 @@ const FR_LIST = new Intl.ListFormat('fr', { type: 'conjunction' })
 const EN_LIST = new Intl.ListFormat('en-GB', { type: 'conjunction' })
 const FR_PLURAL = new Intl.PluralRules('fr')
 const EN_PLURAL = new Intl.PluralRules('en-GB')
+
+const FR_LIMIT_UNIT: Record<SkillLimit['per'], string> = {
+  turn: 'tour',
+  combat: 'combat',
+  hour: 'heure',
+  'short-rest': 'Repos court',
+  'long-rest': 'Repos long',
+}
+
+const EN_LIMIT_UNIT: Record<SkillLimit['per'], string> = {
+  turn: 'turn',
+  combat: 'combat',
+  hour: 'hour',
+  'short-rest': 'Short Rest',
+  'long-rest': 'Long Rest',
+}
+
+const EN_TIMES: Record<number, string> = { 1: 'Once', 2: 'Twice' }
 
 const FR_TREE_KIND: Record<SkillTree['treeType'], string> = {
   archetype: 'd’Archétype',
@@ -147,8 +165,7 @@ const fr = {
   namesFeminine: 'Prénoms féminins',
   namesGiven: 'Prénoms',
   namesFamily: 'Noms de famille',
-  rechargeShortRest: '1 fois par Repos court',
-  rechargeLongRest: '1 fois par Repos long',
+  limit: (times: number, per: SkillLimit['per']) => `${times} fois par ${FR_LIMIT_UNIT[per]}`,
   movement: 'Vitesse',
   prerequisite: 'Prérequis',
   primeChar: 'Caractéristique dominante',
@@ -251,7 +268,7 @@ const fr = {
   craftCost: 'Coût de fabrication',
   craftMaterials: 'Matériaux',
   craftSequence: 'Séquence',
-  grants: 'Donne',
+  grants: 'Accorde',
   footerNote: (version: string) => `Données de jeu v${version}, susceptibles de changer`,
   archives: 'Archives',
   archivesLead:
@@ -634,8 +651,8 @@ const en: UiStrings = {
   namesFeminine: 'Feminine first names',
   namesGiven: 'First names',
   namesFamily: 'Family names',
-  rechargeShortRest: 'Once per Short Rest',
-  rechargeLongRest: 'Once per Long Rest',
+  limit: (times: number, per: SkillLimit['per']) =>
+    `${EN_TIMES[times] ?? `${times} times`} per ${EN_LIMIT_UNIT[per]}`,
   movement: 'Speed',
   prerequisite: 'Prerequisite',
   primeChar: 'Primary characteristic',

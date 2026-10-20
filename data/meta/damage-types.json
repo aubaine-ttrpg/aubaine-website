@@ -2,68 +2,112 @@
   "entries": [
     {
       "key": "acid",
+      "color": "#a8c43f",
       "labelFr": "Acide",
-      "labelEn": "Acid"
+      "labelEn": "Acid",
+      "referenceFr": "Dégâts d'Acide",
+      "referenceEn": "Acid damage"
     },
     {
       "key": "bludgeoning",
+      "color": "#b8b2a7",
+      "iconName": "game-icons:gooey-impact",
       "labelFr": "Contondant",
-      "labelEn": "Bludgeoning"
+      "labelEn": "Bludgeoning",
+      "referenceFr": "Dégâts Contondants",
+      "referenceEn": "Bludgeoning damage"
     },
     {
       "key": "fire",
+      "color": "#f08c3a",
+      "iconName": "game-icons:small-fire",
       "labelFr": "Feu",
-      "labelEn": "Fire"
+      "labelEn": "Fire",
+      "referenceFr": "Dégâts de Feu",
+      "referenceEn": "Fire damage"
     },
     {
       "key": "force",
+      "color": "#d0534f",
       "labelFr": "Force",
-      "labelEn": "Force"
+      "labelEn": "Force",
+      "referenceFr": "Dégâts de Force",
+      "referenceEn": "Force damage"
     },
     {
       "key": "lightning",
+      "color": "#5c8df6",
       "labelFr": "Foudre",
-      "labelEn": "Lightning"
+      "labelEn": "Lightning",
+      "referenceFr": "Dégâts de Foudre",
+      "referenceEn": "Lightning damage"
     },
     {
       "key": "cold",
+      "color": "#6fc3df",
+      "iconName": "game-icons:snowflake-1",
       "labelFr": "Froid",
-      "labelEn": "Cold"
+      "labelEn": "Cold",
+      "referenceFr": "Dégâts de Froid",
+      "referenceEn": "Cold damage"
     },
     {
       "key": "necrotic",
+      "color": "#4fa37a",
       "labelFr": "Nécrotique",
-      "labelEn": "Necrotic"
+      "labelEn": "Necrotic",
+      "referenceFr": "Dégâts Nécrotiques",
+      "referenceEn": "Necrotic damage"
     },
     {
       "key": "piercing",
+      "color": "#b8b2a7",
+      "iconName": "game-icons:fast-arrow",
       "labelFr": "Perforant",
-      "labelEn": "Piercing"
+      "labelEn": "Piercing",
+      "referenceFr": "Dégâts Perforants",
+      "referenceEn": "Piercing damage"
     },
     {
       "key": "poison",
+      "color": "#7da33b",
       "labelFr": "Poison",
-      "labelEn": "Poison"
+      "labelEn": "Poison",
+      "referenceFr": "Dégâts de Poison",
+      "referenceEn": "Poison damage"
     },
     {
       "key": "psychic",
+      "color": "#e07fd0",
       "labelFr": "Psychique",
-      "labelEn": "Psychic"
+      "labelEn": "Psychic",
+      "referenceFr": "Dégâts Psychiques",
+      "referenceEn": "Psychic damage"
     },
     {
       "key": "radiant",
+      "color": "#f2d24b",
       "labelFr": "Radiant",
-      "labelEn": "Radiant"
+      "labelEn": "Radiant",
+      "referenceFr": "Dégâts Radiants",
+      "referenceEn": "Radiant damage"
     },
     {
       "key": "thunder",
+      "color": "#9a6fd6",
       "labelFr": "Tonnerre",
-      "labelEn": "Thunder"
+      "labelEn": "Thunder",
+      "referenceFr": "Dégâts de Tonnerre",
+      "referenceEn": "Thunder damage"
     },
     {
       "key": "slashing",
+      "color": "#b8b2a7",
+      "iconName": "game-icons:quick-slash",
       "labelFr": "Tranchant",
-      "labelEn": "Slashing"
+      "labelEn": "Slashing",
+      "referenceFr": "Dégâts Tranchants",
+      "referenceEn": "Slashing damage"
     }
   ]
 }

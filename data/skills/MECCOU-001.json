@@ -9,7 +9,10 @@
   "activation": "1 Action Bonus",
   "range": "18 m",
   "duration": "Instantanée",
-  "recharge": "short-rest",
+  "limit": {
+    "times": 1,
+    "per": "short-rest"
+  },
   "energy": 2,
   "tags": {
     "practice": "spell",
