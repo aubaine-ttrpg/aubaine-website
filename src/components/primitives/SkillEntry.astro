@@ -14,6 +14,7 @@ import { badgedStatus } from '../../lib/game/status'
 import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
 import CharBadge from './CharBadge.astro'
+import Grants from './Grants.astro'
 import Icon from './Icon.astro'
 import NodeShape from './NodeShape.astro'
 import PrerequisiteStat from './PrerequisiteStat.astro'
@@ -248,6 +249,8 @@ const tags = skillTags(skill.tags).map(({ key, kind }) => {
   </div>
 
   <RuleText source={skill.description} corpus={corpus} locale={locale} class="au-skill__desc" />
+
+  <Grants ids={skill.grants ?? []} corpus={corpus} locale={locale} />
 
   {
     (skill.upgrades ?? []).map((upgrade) => (

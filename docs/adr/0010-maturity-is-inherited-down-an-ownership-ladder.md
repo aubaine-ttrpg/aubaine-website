@@ -5,6 +5,7 @@
 **Date:** 2026-09-20
 **Revised:** 2026-09-20, a fourth value, `draft`, below `playtest`
 **Revised:** 2026-10-06, a `draft` page stays published but out of search (0040)
+**Revised:** 2026-10-20, a Compétence granted by another Compétence inherits through it (0051, addendum in Decision 2)
 **Deciders:** Kori
 **Scope:** The `status` field on a skill, a skill tree, an equipment item and a set, how a skill
 without one resolves an owner's, and what each value renders. Does not cover the contract mechanism
@@ -150,6 +151,13 @@ Decision 1 records the reasoning.
 - `--status-playtest` is close to `--gold`, which already means XP, and the two badges sit side by
   side in a skill card header. The hazard stripes and the black ink are what separate them; a future
   change to either token should be checked against that pairing.
+
+### Addendum (2026-10-20): a sixth rung, the granting Compétence
+
+[0051](0051-a-competence-may-grant-competences-and-rule-text-gains-italic-and-genderless-names.md)
+lets a Compétence grant others through `grants`. A granted Compétence with no `status` of its own
+takes the status its granting Compétence resolves to, after the rungs above. The ladder and its
+least-settled rule are otherwise unchanged.
 
 ---
 

@@ -67,6 +67,22 @@ describe('references by key', () => {
   })
 })
 
+describe('emphasis', () => {
+  it('reads three asterisks as bold and one as italic', () => {
+    expect(parseRuns('***Dégâts.*** Le feu brûle. *Une feuille à part aide.*', index)).toEqual([
+      { kind: 'bold', text: 'Dégâts.' },
+      { kind: 'text', text: ' Le feu brûle. ' },
+      { kind: 'italic', text: 'Une feuille à part aide.' },
+    ])
+  })
+
+  it('flattens italic to its words', () => {
+    expect(flattenText('Le feu brûle. *Une feuille à part aide.*', () => undefined)).toBe(
+      'Le feu brûle. Une feuille à part aide.',
+    )
+  })
+})
+
 describe('paragraphs and lines', () => {
   it('starts a paragraph after a blank line', () => {
     expect(parseParagraphs('Premier.\n\nSecond.', index)).toEqual([

@@ -33,13 +33,14 @@ export type LabelOf = (key: string) => string | undefined
 export type Run =
   | { kind: 'text'; text: string }
   | { kind: 'bold'; text: string }
+  | { kind: 'italic'; text: string }
   | { kind: 'term'; text: string; term: TermRecord }
 
 export type Line = Run[]
 
 export type Paragraph = { lines: Line[] }
 
-const MARKUP = /\*\*\*([^*]+)\*\*\*|\{\{([^}]+)\}\}/g
+const MARKUP = /\*\*\*([^*]+)\*\*\*|\*([^*]+)\*|\{\{([^}]+)\}\}/g
 const REFERENCE_KEY = /^(?:[a-z0-9]+(?:-[a-z0-9]+)*|[A-Z0-9]{6}-[0-9]{3})$/
 const REFERENCE = /\{\{([^}|]+)(?:\|([^}]+))?\}\}/g
 
@@ -90,8 +91,9 @@ export function parseRuns(source: string, index: TermIndex): Run[] {
 
   while (match !== null) {
     if (match.index > cursor) out.push({ kind: 'text', text: source.slice(cursor, match.index) })
-    const [, bold, reference] = match
+    const [, bold, italic, reference] = match
     if (bold !== undefined) out.push({ kind: 'bold', text: bold })
+    else if (italic !== undefined) out.push({ kind: 'italic', text: italic })
     else if (reference !== undefined) out.push(referenceRun(reference, index))
     cursor = match.index + match[0].length
     match = MARKUP.exec(source)
@@ -130,6 +132,7 @@ export function flattenText(source: string | undefined, labelOf: LabelOf, limit?
       return shown ?? labelOf(name) ?? name
     })
     .replace(/\*\*\*/g, '')
+    .replace(/\*([^*]+)\*/g, '$1')
     .replace(/\s+/g, ' ')
     .trim()
   if (limit && value.length > limit) {

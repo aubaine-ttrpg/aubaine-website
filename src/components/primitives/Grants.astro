@@ -1,0 +1,36 @@
+---
+import type { Corpus } from '../../lib/game/corpus'
+import type { Locale } from '../../lib/i18n/locales'
+import { strings } from '../../lib/i18n/strings'
+import NodeShape from './NodeShape.astro'
+import RuleTerm from './RuleTerm.astro'
+
+type Props = { ids: string[]; corpus: Corpus; locale: Locale }
+
+const { ids, corpus, locale } = Astro.props
+const t = strings(locale)
+
+const grants = ids.flatMap((id) => {
+  const skill = corpus.skills.get(id)
+  if (!skill) return []
+  return [{ skill, term: corpus.terms.keys.get(skill.id) }]
+})
+---
+
+{
+  grants.length > 0 && (
+    <div class="au-grant">
+      <span class="au-grant__label">{t.grants}</span>
+      {grants.map(({ skill, term }) =>
+        term ? (
+          <RuleTerm term={term} text={skill.title} corpus={corpus} locale={locale} />
+        ) : (
+          <span class="au-grant__skill">
+            <NodeShape skill={skill} corpus={corpus} variant="inline" />
+            <span class="au-grant__name">{skill.title}</span>
+          </span>
+        ),
+      )}
+    </div>
+  )
+}

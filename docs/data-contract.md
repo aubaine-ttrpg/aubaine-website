@@ -12,7 +12,7 @@ The split exists for two reasons.
 
 **A skill can sit in more than one tree.** Physique and Artisan can both sell the same node, at a different place on each plate, with a different parent on each. If `pos` lived in the skill file, the second tree could not place it.
 
-**Equipment grants reference the same skill.** `data/equipment/items/pyro-catalyseur.json` writes `"grants": ["TRAFEU-001"]`, and a set tier's `grants` names a skill the same way. That is the same skill file the tree points at, not a copy. A granted skill has no placement at all, and usually carries `"showXp": false` because it is never bought.
+**Equipment grants reference the same skill.** `data/equipment/items/pyro-catalyseur.json` writes `"grants": ["TRAFEU-001"]`, and a set tier's `grants` names a skill the same way. That is the same skill file the tree points at, not a copy. A granted skill has no placement at all, and usually carries `"showXp": false` because it is never bought. A Compétence can grant others the same way, through its own `grants`: Forme draconique grants the Compétences a dragon plays, and they belong to it and to nothing else.
 
 The same logic runs through the rest of the model. `data/skill-lists/basic-skills.json` and `data/skill-lists/common-bank.json` are lists of ids, in printing order. A skill belongs to a tree, a list, an item or a set by being named there, never by declaring it about itself.
 
@@ -36,6 +36,7 @@ A skill that writes no `status` inherits one, which is what makes the field wort
 3. The species that offers it, or imposes it through one of its sub-species.
 4. An item that grants it.
 5. A set tier that grants it.
+6. A Compétence that grants it, through the status that Compétence resolves to.
 
 The order is not arbitrary. A tree or a species is where a skill lives, and an item that hands the same skill out is only a second way to obtain it, so a settled tree skill is not dragged into playtest by one new catalyst. Where two owners sit on the same rung, the less settled one wins.
 
@@ -143,6 +144,7 @@ The same markup works in a skill description, an upgrade description, a state de
 | You write | You get |
 | --- | --- |
 | `***gras***` | bold |
+| `*italique*` | italic |
 | `{{clé}}` | a link to the entry the key names, with its tooltip, printing the entry's default label |
 | `{{clé\|texte}}` | the same link, printing `texte` exactly as written |
 | a blank line | a paragraph break |

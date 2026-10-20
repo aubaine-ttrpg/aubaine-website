@@ -85,6 +85,7 @@ export type SkillOrigin = {
   bank: boolean
   items: { slug: string; name: string; section: string }[]
   sets: { id: string; name: string }[]
+  skills: { id: string; title: string }[]
 }
 
 export type ResolvedBook = Book & { hasChapters: boolean }
@@ -504,7 +505,15 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
   const origin = (id: string): SkillOrigin => {
     let found = origins.get(id)
     if (!found) {
-      found = { trees: [], species: [], basic: false, bank: false, items: [], sets: [] }
+      found = {
+        trees: [],
+        species: [],
+        basic: false,
+        bank: false,
+        items: [],
+        sets: [],
+        skills: [],
+      }
       origins.set(id, found)
     }
     return found
@@ -539,19 +548,29 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
       for (const id of bonus.grants ?? []) origin(id).sets.push({ id: set.id, name: set.name })
     }
   }
+  for (const skill of skills.values()) {
+    for (const id of skill.grants ?? [])
+      origin(id).skills.push({ id: skill.id, title: skill.title })
+  }
 
   const treeStatusById = new Map(trees.map((tree) => [tree.id, tree.status]))
   const skillStatus = new Map<string, ContentStatus>()
-  for (const skill of skills.values()) {
-    const source = origins.get(skill.id)
+  const statusOf = (id: string, seen: Set<string>): ContentStatus | undefined => {
+    if (skillStatus.has(id)) return skillStatus.get(id)
+    const skill = skills.get(id)
+    if (!skill || seen.has(id)) return undefined
+    const source = origins.get(id)
     const resolved = inheritedStatus(skill.status, [
       (source?.trees ?? []).map((tree) => treeStatusById.get(tree.id)),
       (source?.species ?? []).map((entry) => speciesById.get(entry.id)?.status),
       (source?.items ?? []).map((item) => itemsBySlug.get(item.slug)?.status),
       (source?.sets ?? []).map((set) => sets.get(set.id)?.status),
+      (source?.skills ?? []).map((granter) => statusOf(granter.id, new Set([...seen, id]))),
     ])
-    if (resolved) skillStatus.set(skill.id, resolved)
+    if (resolved) skillStatus.set(id, resolved)
+    return resolved
   }
+  for (const id of skills.keys()) statusOf(id, new Set())
 
   const books: ResolvedBook[] = bookEntries
     .map((entry) => {
@@ -582,6 +601,12 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
     const skill = skills.get(id)
     return skill ? [{ skill, source }] : []
   })
+  const skillGrants = [...skills.values()].flatMap((granter) =>
+    (granter.grants ?? []).flatMap((id) => {
+      const skill = skills.get(id)
+      return skill ? [{ skill, source: granter.title }] : []
+    }),
+  )
   const terms = buildTermIndex({
     locale,
     characteristics,
@@ -591,6 +616,7 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
     bank,
     species,
     equipmentGrants,
+    skillGrants,
     itemsBySlug,
     sections,
     rarities,
@@ -657,7 +683,8 @@ type TermInput = {
   basic: SkillList & { resolved: Skill[] }
   bank: SkillList & { resolved: Skill[] }
   species: ResolvedSpecies[]
-  equipmentGrants: EquipmentGrant[]
+  equipmentGrants: Grant[]
+  skillGrants: Grant[]
   itemsBySlug: Map<string, EquipmentItem>
   sections: ResolvedSection[]
   rarities: Map<string, VocabularyEntry>
@@ -676,7 +703,7 @@ type LabelInput = {
   skills: Map<string, Skill>
 }
 
-type EquipmentGrant = { skill: Skill; source: string }
+type Grant = { skill: Skill; source: string }
 
 const APTITUDE_ICON = 'mdi/rhombus-outline'
 const TAG_ICON = 'mdi/tag-outline'
@@ -1296,6 +1323,7 @@ function buildTermIndex(input: TermInput): TermIndex {
     bank,
     species,
     equipmentGrants,
+    skillGrants,
     itemsBySlug,
     sections,
     rarities,
@@ -1382,6 +1410,20 @@ function buildTermIndex(input: TermInput): TermIndex {
       family: 'skill',
       skillId: skill.id,
       kind: t.fromItems,
+      title: skill.title,
+      meta: `${typeLabel(skill.type, t)} · ${source}`,
+      color: 'var(--accent-ink)',
+      icon: skillIcon(skill, characteristics),
+      text: flattenText(skill.description, labelOf, 240),
+      href: `${pathFor('skills', locale)}#e-${skill.id}`,
+    })
+  }
+
+  for (const { skill, source } of skillGrants) {
+    putSkill(skill, {
+      family: 'skill',
+      skillId: skill.id,
+      kind: t.fromSkills,
       title: skill.title,
       meta: `${typeLabel(skill.type, t)} · ${source}`,
       color: 'var(--accent-ink)',

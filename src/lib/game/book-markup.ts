@@ -89,6 +89,7 @@ function runsToChildren(runs: Run[], marker: Marker): HastChild[] {
   return runs.map((run) => {
     if (run.kind === 'term') return termNode(run, marker.openLabel)
     if (run.kind === 'bold') return element('strong', {}, [text(run.text)])
+    if (run.kind === 'italic') return element('em', {}, [text(run.text)])
     return text(run.text)
   })
 }

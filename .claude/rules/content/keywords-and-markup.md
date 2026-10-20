@@ -37,7 +37,7 @@ Each of these lists has a source of truth in the repository. Read it when you ne
 
 The markup table in `docs/data-contract.md` is the reference, and `MARKUP` in `src/lib/game/richtext.ts` is what actually parses it.
 
-- `***gras***` sets bold.
+- `***gras***` sets bold, and `*italique*` sets italic. Neither may hold a `{{...}}`: the parser prints a reference inside them as literal text.
 - `{{clé}}` and `{{clé|texte}}` reference an entry, as above.
 - `[[...]]` is retired, and a skill is never referenced by its title. `pnpm data:check` fails on `[[` anywhere.
 - Rule text has no print-only markup. A tree or catalogue booklet prints every state and rule word its entries reference by key, with its definition, on its last pages.

@@ -155,10 +155,20 @@
       },
       "additionalProperties": false
     },
+    "grants": {
+      "description": "Compétences que celle-ci accorde, définies dans data/skills/ : elles ne se jouent que tant que celle-ci dure. Elles ne s'achètent pas, ne figurent dans aucune liste ni aucune Espèce, et tiennent leur statut de la Compétence qui les accorde. Absent : elle n'en accorde aucune.",
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z0-9]{6}-[0-9]{3}$",
+        "description": "Identité d'une Compétence : six caractères tirés de son titre français, ceux de sa base pour une Compétence dérivée, puis un numéro à trois chiffres, 001 sauf pour une Compétence dérivée, selon docs/runbooks/choose-a-skill-id.md. Deux Compétences ne peuvent pas la partager, même dans deux arbres différents. Elle suit le titre tant que la Compétence est un brouillon, puis ne change plus."
+      }
+    },
     "description": {
       "type": "string",
       "minLength": 1,
-      "description": "Texte de règle. Les retours à la ligne sont respectés, une ligne vide sépare deux paragraphes. Balisage : ***gras***, et {{clé}} ou {{clé|texte}} pour lier un terme de règle, une Caractéristique, une Aptitude, un état ou une Compétence par sa clé. Un mot écrit sans balise reste du texte."
+      "description": "Texte de règle. Les retours à la ligne sont respectés, une ligne vide sépare deux paragraphes. Balisage : ***gras***, *italique*, et {{clé}} ou {{clé|texte}} pour lier un terme de règle, une Caractéristique, une Aptitude, un état ou une Compétence par sa clé. Un mot écrit sans balise reste du texte."
     },
     "upgrades": {
       "description": "Améliorations imbriquées, rendues sous la carte par niveau croissant.",

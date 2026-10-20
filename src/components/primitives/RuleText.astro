@@ -24,6 +24,7 @@ const paragraphs = parseParagraphs(source, corpus.terms)
             {position > 0 && <br />}
             {line.map((run) => {
               if (run.kind === 'bold') return <strong>{run.text}</strong>
+              if (run.kind === 'italic') return <em>{run.text}</em>
               if (run.kind !== 'term') return <Fragment>{run.text}</Fragment>
               return <RuleTerm term={run.term} text={run.text} corpus={corpus} locale={locale} />
             })}

@@ -200,12 +200,30 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
                         )}
                         {sub.names && (
                           <>
-                            <dt>{t.namesMasculine}</dt>
-                            <dd>{sub.names.masculine.join(', ')}</dd>
-                            <dt>{t.namesFeminine}</dt>
-                            <dd>{sub.names.feminine.join(', ')}</dd>
-                            <dt>{t.namesFamily}</dt>
-                            <dd>{sub.names.family.join(', ')}</dd>
+                            {sub.names.masculine && (
+                              <>
+                                <dt>{t.namesMasculine}</dt>
+                                <dd>{sub.names.masculine.join(', ')}</dd>
+                              </>
+                            )}
+                            {sub.names.feminine && (
+                              <>
+                                <dt>{t.namesFeminine}</dt>
+                                <dd>{sub.names.feminine.join(', ')}</dd>
+                              </>
+                            )}
+                            {sub.names.given && (
+                              <>
+                                <dt>{t.namesGiven}</dt>
+                                <dd>{sub.names.given.join(', ')}</dd>
+                              </>
+                            )}
+                            {sub.names.family && (
+                              <>
+                                <dt>{t.namesFamily}</dt>
+                                <dd>{sub.names.family.join(', ')}</dd>
+                              </>
+                            )}
                           </>
                         )}
                       </dl>

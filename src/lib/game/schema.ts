@@ -290,11 +290,18 @@ export const skill = z
       .describe(
         "Étiquettes rendues en pied d'entrée, dans l'ordre Pratique, Écoles, Spéciales, chacune avec sa définition au survol. Aucune n'est obligatoire : une Compétence ne porte que celles qui servent l'équilibre, la saveur ou les combinaisons.",
       ),
+    grants: z
+      .array(skillId)
+      .min(1)
+      .optional()
+      .describe(
+        "Compétences que celle-ci accorde, définies dans data/skills/ : elles ne se jouent que tant que celle-ci dure. Elles ne s'achètent pas, ne figurent dans aucune liste ni aucune Espèce, et tiennent leur statut de la Compétence qui les accorde. Absent : elle n'en accorde aucune.",
+      ),
     description: z
       .string()
       .min(1)
       .describe(
-        'Texte de règle. Les retours à la ligne sont respectés, une ligne vide sépare deux paragraphes. Balisage : ***gras***, et {{clé}} ou {{clé|texte}} pour lier un terme de règle, une Caractéristique, une Aptitude, un état ou une Compétence par sa clé. Un mot écrit sans balise reste du texte.',
+        'Texte de règle. Les retours à la ligne sont respectés, une ligne vide sépare deux paragraphes. Balisage : ***gras***, *italique*, et {{clé}} ou {{clé|texte}} pour lier un terme de règle, une Caractéristique, une Aptitude, un état ou une Compétence par sa clé. Un mot écrit sans balise reste du texte.',
       ),
     upgrades: z
       .array(upgrade)
@@ -412,14 +419,22 @@ const subspecies = z
       .describe("Présentation de la sous-espèce, même balisage qu'une Compétence."),
     names: z
       .object({
-        masculine: nameList.describe('Prénoms masculins, dans leur ordre.'),
-        feminine: nameList.describe('Prénoms féminins, dans leur ordre.'),
-        family: nameList.describe('Noms de famille, dans leur ordre.'),
+        masculine: nameList.optional().describe('Prénoms masculins, dans leur ordre.'),
+        feminine: nameList.optional().describe('Prénoms féminins, dans leur ordre.'),
+        given: nameList
+          .optional()
+          .describe(
+            "Prénoms d'une sous-espèce qui ne les range pas par genre, dans leur ordre. Absent : ses prénoms sont masculins et féminins.",
+          ),
+        family: nameList.optional().describe('Noms de famille, dans leur ordre.'),
       })
       .strict()
+      .refine((names) => Object.values(names).some((list) => list !== undefined), {
+        message: "une sous-espèce sans nom s'écrit en omettant la clé names.",
+      })
       .optional()
       .describe(
-        "Les noms que porte la sous-espèce. Ils ne se traduisent pas. Absent : elle n'en déclare pas encore.",
+        "Les noms que porte la sous-espèce, chaque liste dans son ordre. Ils ne se traduisent pas. Absent : elle n'en déclare pas encore.",
       ),
     imposed: skillId
       .optional()

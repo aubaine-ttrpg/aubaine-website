@@ -39,7 +39,7 @@ import {
 import { type BadgedStatus, badgedStatus } from './status.ts'
 
 export type BrowseSource =
-  | { kind: 'tree' | 'species' | 'item'; title: string; href: string }
+  | { kind: 'tree' | 'species' | 'item' | 'skill'; title: string; href: string }
   | { kind: 'basic' | 'bank' | 'other'; title: string }
 
 export type SourceOwner = { kind: 'tree' | 'species'; id: string }
@@ -229,6 +229,13 @@ export function skillSources(
         href: `${pathFor('equipment', locale)}#e-${item.slug}`,
       }),
     ),
+    ...source.skills.map(
+      (granter): BrowseSource => ({
+        kind: 'skill',
+        title: granter.title,
+        href: `${pathFor('skills', locale)}#e-${granter.id}`,
+      }),
+    ),
   ]
   if (source.bank) sources.push({ kind: 'bank', title: corpus.bank.name })
   if (source.basic) sources.push({ kind: 'basic', title: corpus.basic.name })
@@ -286,7 +293,9 @@ export function skillBrowseEntries(
             ? bankName
             : source.basic
               ? basicName
-              : t.other_
+              : source.skills.length > 0
+                ? source.skills.map((granter) => granter.title).join(' + ')
+                : t.other_
     const xpLabel = !species && showsXp(skill) ? `${formatNumber(xpOf(skill), locale)} ${t.xp}` : ''
 
     const acquisition: FacetValue[] = []
@@ -295,6 +304,7 @@ export function skillBrowseEntries(
     if (source.bank) acquisition.push({ value: 'bank', label: bankName })
     if (source.basic) acquisition.push({ value: 'basic', label: basicName })
     if (source.items.length > 0) acquisition.push({ value: 'item', label: t.fromItems })
+    if (source.skills.length > 0) acquisition.push({ value: 'skill', label: t.fromSkills })
     if (acquisition.length === 0) acquisition.push({ value: 'other', label: t.other_ })
 
     return {

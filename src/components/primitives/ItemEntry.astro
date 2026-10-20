@@ -7,10 +7,9 @@ import type { EquipmentItem } from '../../lib/game/schema'
 import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
 import { itemImage, PLACEHOLDER_SQUARE } from '../../lib/media'
+import Grants from './Grants.astro'
 import Icon from './Icon.astro'
-import NodeShape from './NodeShape.astro'
 import PrerequisiteStat from './PrerequisiteStat.astro'
-import RuleTerm from './RuleTerm.astro'
 import RuleText from './RuleText.astro'
 import StatValue from './StatValue.astro'
 
@@ -36,12 +35,6 @@ const price = priceInCoins(item.price, coins).map((part) => {
     color: coin?.color ?? 'var(--paper-body)',
     iconName: coin?.iconName,
   }
-})
-
-const grants = (item.grants ?? []).flatMap((id) => {
-  const skill = corpus.skills.get(id)
-  if (!skill) return []
-  return [{ skill, term: corpus.terms.keys.get(skill.id) }]
 })
 ---
 
@@ -199,23 +192,7 @@ const grants = (item.grants ?? []).flatMap((id) => {
     ))
   }
 
-  {
-    grants.length > 0 && (
-      <div class="au-item__grant">
-        <span class="au-item__grant-label">{t.grants}</span>
-        {grants.map(({ skill, term }) =>
-          term ? (
-            <RuleTerm term={term} text={skill.title} corpus={corpus} locale={locale} />
-          ) : (
-            <span class="au-item__grant-skill">
-              <NodeShape skill={skill} corpus={corpus} variant="inline" />
-              <span class="au-item__grant-name">{skill.title}</span>
-            </span>
-          ),
-        )}
-      </div>
-    )
-  }
+  <Grants ids={item.grants ?? []} corpus={corpus} locale={locale} />
 
   <div class="au-item__desc">{item.description}</div>
 </div>

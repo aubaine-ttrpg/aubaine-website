@@ -87,6 +87,7 @@ const ANTITHESIS = new RegExp(
   'iu',
 )
 const ASTERISK_RUN = /\*+/g
+const EMPHASIS = /\*\*\*[^*]+\*\*\*|\*[^*]+\*/g
 const ONE_TIME_SETUP =
   /La première fois que vous \{\{memorisee\||À l'achat|The first time you \{\{memorisee\|/u
 
@@ -327,6 +328,44 @@ describe('cross references', () => {
     }
   })
 
+  it('resolves every skill a Compétence grants, never itself and never in a loop', () => {
+    const grantsOf = (id: string): string[] => fr.skills.get(id)?.grants ?? []
+    for (const skill of fr.skills.values()) {
+      for (const id of skill.grants ?? []) {
+        expect(fr.skills.has(id), `${skill.id} grants ${id}`).toBe(true)
+      }
+      const reached = new Set<string>()
+      const pending = [...grantsOf(skill.id)]
+      while (pending.length > 0) {
+        const next = pending.pop()
+        if (next === undefined || reached.has(next)) continue
+        reached.add(next)
+        pending.push(...grantsOf(next))
+      }
+      expect(reached.has(skill.id), `${skill.id} grants itself through its grants`).toBe(false)
+    }
+  })
+
+  it('keeps a skill a Compétence grants out of every list and species pool', () => {
+    const granted = new Set([...fr.skills.values()].flatMap((skill) => skill.grants ?? []))
+    for (const list of [fr.basic, fr.bank]) {
+      for (const skill of list.resolved) {
+        expect(granted.has(skill.id), `${skill.id} is granted and also in ${list.name}`).toBe(false)
+      }
+    }
+    for (const entry of fr.species) {
+      for (const skill of [
+        ...entry.offeredSkills,
+        ...entry.subspecies.flatMap((sub) => subspeciesSkills(sub)),
+      ]) {
+        expect(
+          granted.has(skill.id),
+          `${skill.id} is granted and also offered by ${entry.id}`,
+        ).toBe(false)
+      }
+    }
+  })
+
   it('keeps every piece of a panoply at one rarity', () => {
     for (const set of fr.sets.values()) {
       const rarities = new Set(
@@ -407,7 +446,7 @@ describe('cross references', () => {
   it('lists every sub-species name once within its list', () => {
     for (const entry of sources.speciesEntries) {
       for (const sub of entry.data.subspecies ?? []) {
-        for (const [list, names] of Object.entries(sub.names ?? {})) {
+        for (const [list, names = []] of Object.entries(sub.names ?? {})) {
           expect(new Set(names).size, `${entry.data.id} ${sub.id} repeats a ${list} name`).toBe(
             names.length,
           )
@@ -1180,14 +1219,18 @@ describe('prose hygiene', () => {
     }
   })
 
-  it('marks emphasis with the three asterisks the renderer parses', () => {
+  it('marks emphasis with the asterisks the renderer parses', () => {
     for (const { where, text } of everyRuleText) {
       for (const run of text.match(ASTERISK_RUN) ?? []) {
         expect(
-          run.length,
-          `${where} writes a run of ${run.length} asterisks. MARKUP in richtext.ts parses only three, so the characters reach the page`,
-        ).toBe(3)
+          [1, 3],
+          `${where} writes a run of ${run.length} asterisks. MARKUP in richtext.ts parses three for bold and one for italic, so the characters reach the page`,
+        ).toContain(run.length)
       }
+      expect(
+        text.replace(EMPHASIS, '').includes('*'),
+        `${where} leaves an asterisk unpaired, so it reaches the page`,
+      ).toBe(false)
     }
   })
 })

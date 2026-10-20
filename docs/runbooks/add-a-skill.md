@@ -34,7 +34,8 @@ The filename is the id and nothing else. The id matches `^[A-Z0-9]{6}-[0-9]{3}$`
 | `life` | optional | Pastille PDV : un coût payé en Points de vie, en dés (1d6) ou en nombre fixe. | `"6"`, `"1d6"` |
 | `evolvesFrom` | optional | `Compétence dérivée : identifiant de la base, rendu « ▲ <titre> ». Réservé aux nœuds rattachés à une base, jamais aux améliorations imbriquées.` | a skill id that exists |
 | `tags` | optional | Étiquettes rendues en pied d'entrée, dans l'ordre Pratique, Écoles, Spéciales, chacune avec sa définition au survol. Aucune n'est obligatoire : une Compétence ne porte que celles qui servent l'équilibre, la saveur ou les combinaisons. | an object with `practice` (one key), `schools` (one or two distinct keys) and `specials` (one or more keys), each optional, keys from `data/meta/tags.json`; never an empty object |
-| `description` | required | Texte de règle. Les retours à la ligne sont respectés, une ligne vide sépare deux paragraphes. Balisage : `***gras***`, et `{{clé}}` ou `{{clé\|texte}}` pour lier un terme de règle, une Caractéristique, une Aptitude, un état ou une Compétence par sa clé. Un mot écrit sans balise reste du texte. | any non empty string |
+| `grants` | optional | Compétences que celle-ci accorde, définies dans data/skills/ : elles ne se jouent que tant que celle-ci dure. Elles ne s'achètent pas, ne figurent dans aucune liste ni aucune Espèce, et tiennent leur statut de la Compétence qui les accorde. Absent : elle n'en accorde aucune. | skill ids |
+| `description` | required | Texte de règle. Les retours à la ligne sont respectés, une ligne vide sépare deux paragraphes. Balisage : `***gras***`, `*italique*`, et `{{clé}}` ou `{{clé\|texte}}` pour lier un terme de règle, une Caractéristique, une Aptitude, un état ou une Compétence par sa clé. Un mot écrit sans balise reste du texte. | any non empty string |
 | `upgrades` | optional | Améliorations imbriquées, rendues sous la carte par niveau croissant. | see [add-an-upgrade.md](add-an-upgrade.md) |
 
 Key order is the order of this table. Keep it.
@@ -118,6 +119,8 @@ Then open the tree page, choose the node and read its card in the pane.
 
 **`pos` and `linked` are not skill fields.** They belong to the tree file, because one skill can sit in more than one tree. The schema is strict and will reject them here.
 
-**Rule text markup.** `***gras***` for bold, `{{clé}}` to link an entry and print its label, `{{clé|texte}}` to link it and print `texte` as written, a blank line for a paragraph break. A skill's key is its id, `{{TRAFEU-001}}`, and a state's is its file name, `{{entrave|Entravée}}`; the table in [data-contract.md](../data-contract.md#rule-text-markup) gives the others. A word without markup never links, whatever its capitals, and a key that does not resolve fails `pnpm data:check`.
+**Rule text markup.** `***gras***` for bold, `*italique*` for italic, `{{clé}}` to link an entry and print its label, `{{clé|texte}}` to link it and print `texte` as written, a blank line for a paragraph break. A skill's key is its id, `{{TRAFEU-001}}`, and a state's is its file name, `{{entrave|Entravée}}`; the table in [data-contract.md](../data-contract.md#rule-text-markup) gives the others. A word without markup never links, whatever its capitals, and a key that does not resolve fails `pnpm data:check`.
+
+**A granted Compétence belongs to the one that grants it.** A skill named in another skill's `grants` writes `"showXp": false`, appears in no tree, list or species pool, and links to its entry in the skills index with the source « Accordée par » and the granting skill's title. It takes its status from that skill. `pnpm data:check` refuses a grant that does not resolve, a skill that grants itself through its grants, and a granted skill that a list or an Espèce also offers.
 
 **Adding the file is enough.** No index, no registry, no code change.
