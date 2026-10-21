@@ -53,6 +53,9 @@ roleplaying book, not as a specification or a usage report.
   one sentence when one is enough. « Un {{jet}} porté contre la {{ca}} d'une cible pour la
   toucher. » is the model. The reader hovers to resolve a sentence, mid-turn, with ADHD in mind:
   no example, no list of cases, no sentence about what the term is not.
+- A term that is a kind of another names it: Sauvegarde and Attaque are kinds of {{jet}} and show
+  it, and Sauvegarde shows the {{dd}} it is made against (owner, 2026-10-20: « The Jet keyword
+  should be displayed inside the the save and attack rule text same for DD »).
 - When the owner dictates the definition, write the owner's sentence as dictated. The reason the
   owner gives beside it (« since we don't count meters but rather 1,5m ») explains the sentence and
   never goes into it: « Chaque {{deplacement|déplacement}} sur un terrain difficile vous en coûte le

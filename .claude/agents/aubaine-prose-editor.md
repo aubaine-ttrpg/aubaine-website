@@ -17,7 +17,8 @@ The brief, the files and sections in scope, and the ledger so far.
 
 1. `.claude/skills/aubaine-prose/references/ai-tells.md`, completely.
 2. `.claude/skills/aubaine-prose/references/style-checklist.md`, completely.
-3. The register reference the brief names.
+3. The register reference the brief names, and for a definition
+   `.claude/skills/aubaine-prose/references/reference-voice.md` § Writing a definition.
 
 ## Procedure
 

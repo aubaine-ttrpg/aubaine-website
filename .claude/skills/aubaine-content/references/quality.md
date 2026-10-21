@@ -50,6 +50,9 @@ finding is a `note` row, and a fix that would change a mechanic is a question.
   when the two pull apart, no preview wins.
 - Every sentence reads as French once its labels print (`keyword-logic.md` § Read it as a sentence).
 - Every mechanical sentence maps to a formula in `formulary.md`, or pass 4 flagged it.
+- Every rule dated « owner » in `formulary.md`, `adhd.md`, `keyword-logic.md` and `writing.md`
+  holds. Read them there rather than from memory: they are the corrections the owner made at a
+  checkpoint, and a run that breaks one repeats a mistake already ruled on.
 - The limitation inventory from pass 1 is complete in the final text.
 
 ## Rule text that reads as generated
