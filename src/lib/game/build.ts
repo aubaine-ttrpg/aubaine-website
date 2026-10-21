@@ -1006,8 +1006,8 @@ const RULE_TERMS: readonly RuleTerm[] = [
     color: 'var(--term-move)',
     icon: 'mdi/terrain',
     definition: {
-      fr: 'Un terrain qui ralentit la marche : chaque {{deplacement|déplacement}} de 1,5 m que vous y faites vous en coûte le double.',
-      en: 'Terrain that slows the going: every 1.5 m you move through it costs you twice that in {{deplacement|movement}}.',
+      fr: 'Chaque {{deplacement|déplacement}} sur un terrain difficile vous en coûte le double.',
+      en: 'Every {{deplacement|movement}} across difficult terrain costs you double.',
     },
   },
   {

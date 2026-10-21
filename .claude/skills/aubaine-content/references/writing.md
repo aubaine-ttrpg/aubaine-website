@@ -71,6 +71,9 @@ an obligation, no stat field restated in prose. They load with the file; this pa
   (`formulary.md` § limit, § granted).
 - Every correction the owner makes at a checkpoint becomes a rule in the reference that owns it, in
   the same change, dated and quoted, so no later run repeats it.
+- When the owner dictates a sentence, write it as dictated, its typing slips fixed and nothing else.
+  The reason the owner gives beside it never goes into the text (owner, 2026-10-21: « i expecitly
+  told you that terrain difficile should be each déplacement cost double »).
 - An instruction to remove covers what it is about. « let's just remove everything else » after a
   dictated sentence removes the text that sentence replaces, never a rule the owner did not name:
   Legs de Charon lost its Feu resistance that way, and the owner asked for it back (2026-10-20).

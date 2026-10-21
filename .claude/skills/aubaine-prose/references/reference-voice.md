@@ -53,6 +53,11 @@ roleplaying book, not as a specification or a usage report.
   one sentence when one is enough. « Un {{jet}} porté contre la {{ca}} d'une cible pour la
   toucher. » is the model. The reader hovers to resolve a sentence, mid-turn, with ADHD in mind:
   no example, no list of cases, no sentence about what the term is not.
+- When the owner dictates the definition, write the owner's sentence as dictated. The reason the
+  owner gives beside it (« since we don't count meters but rather 1,5m ») explains the sentence and
+  never goes into it: « Chaque {{deplacement|déplacement}} sur un terrain difficile vous en coûte le
+  double. », never « chaque déplacement de 1,5 m », which reads as if a longer move cost nothing
+  more (owner, 2026-10-21).
 - Say what the thing is in the game's voice; a word of flavour only when it costs no length.
   Never reduce it to one verb (« Soin : ça soigne »).
 - Never list the skills or items that use it. That list grows, and the definition rots with it.
