@@ -1133,8 +1133,8 @@ const RULE_TERMS: readonly RuleTerm[] = [
     color: 'var(--term-res)',
     icon: 'mdi/book-plus',
     definition: {
-      fr: "Se dit d'une {{competence}} que vous tenez de votre équipement ou d'une autre {{competence}}. Vous pouvez la jouer sans l'avoir {{apprise|apprise}} ni {{memorisee|mémorisée}}, tant que vous portez cet équipement ou que l'autre {{competence}} dure.",
-      en: 'Said of a {{competence}} that comes to you from your equipment or from another {{competence}}. You can play it without having {{apprise|learned}} or {{memorisee|memorised}} it, for as long as you wear that equipment or the other {{competence}} lasts.',
+      fr: "Se dit d'une {{competence}} qu'un équipement vous accorde tant qu'il est équipé, ou qu'une autre {{competence}} vous accorde pour sa durée. Vous pouvez la jouer sans l'avoir {{apprise|apprise}} ni {{memorisee|mémorisée}}.",
+      en: 'Said of a {{competence}} that equipment grants you while it is equipped, or that another {{competence}} grants you for its duration. You can play it without having {{apprise|learned}} or {{memorisee|memorised}} it.',
     },
   },
   {

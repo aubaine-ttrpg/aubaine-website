@@ -242,13 +242,14 @@ write uses it. A proposal never renames a rule term or adds a key; that is a voc
 - Status: approved (owner, 2026-10-20).
 
 ### granted
-- No sentence. A Compétence another one grants is played only while the granting one lasts or
-  the item that grants it is worn, and needs no {{memorisee|mémorisation}}: the {{accordee}}
-  keyword says it once, and the entry's source line shows who grants it.
+- No sentence. A Compétence that grants others grants them for its duration, as an item grants
+  them while it is equipped, and a granted Compétence needs no {{memorisee|mémorisation}}: the
+  {{accordee}} keyword says it once, and the entry's source line shows who grants it.
 - Never: « Vous ne pouvez jouer cette Compétence que tant que {{FORDRA-001}} dure. »; « sans les
-  avoir {{memorisee|mémorisées}} » (owner, 2026-10-20).
+  avoir {{memorisee|mémorisées}} ».
 - First applied in: SOUDRA-001, GRIDRA-001, VOLDRA-001, MORDRA-001.
-- Status: approved (owner, 2026-10-20).
+- Status: approved (owner, 2026-10-21: « a skill that grants skills grants them for it's
+  duration, that way it's ok we understand, just like an item grants it when it's equiped »).
 
 ## Memorisation and purchase
 
