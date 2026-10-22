@@ -6,8 +6,6 @@ Créatures nées de la forge draconique, les Nnors sont des humanoïdes caprins 
 
 ## De la fourrure et de la robustesse
 
-![](../../media/art/placeholder-16_9-og.png)
-
 Dans les crêtes escarpées et les crevasses glacées d'Eden, les Nnors arborent une stature dominatrice : un buste large soutenu par des épaules puissantes, des membres inférieurs longs et musclés, terminés par des sabots affûtés comme des crampons. Leur pelage, épais et laineux, varie selon la lignée : certains portent une fourrure noire d'encre, tandis que d'autres exhibent des teintes allant du blanc immaculé au gris perle ou au brun terreux, favorisant un camouflage naturel. Leurs cornes massives, soulignant la ligne du front, servent à se défendre, à s'accrocher aux parois rocheuses et à affirmer la dominance sociale. Chaque muscle se dessine sous l'épaisse toison, signe d'une endurance hors du commun et d'une adaptation millénaire aux vents violents et aux températures extrêmes. Sculptée par la rudesse du climat montagnard, leur silhouette allie la force brute à une souplesse étonnante, faisant d'eux des grimpeurs nés et des adversaires redoutables.
 
 ## La Yurta avant tout
@@ -22,13 +20,17 @@ La plus grande Yurta connue, Araskha, regroupe des milliers de Nnors ; nichée s
 
 ## Le cycle du feu
 
+![](../../media/art/nnor-fresque-3_1-og.png "rupture torch")
+:caption[Fresque du cycle du feu : un Nnor, un Saman, puis un Dragonnor]
+
 Un Saman peut quitter sa Yurta pour partir en quête. Il gagne alors le mont Edros, jusqu'à l'Antre de Charon, où Charon lui permet de passer le Rituel du Feu. S'il échoue, il meurt. S'il réussit, le rituel le transforme en Dragonnor, et il ressort du mont Edros pour trouver le lieu où fonder sa propre Yurta. Tel est le cycle des Nnors.
 
 On compte parfois le Dragonnor parmi les sous-espèces des Nnors, mais les spécialistes tiennent le Dragonnor et le Nnor pour deux êtres entièrement différents. Le Dragonnor n'a ni les membres ni la taille d'un Nnor, et ses capacités diffèrent elles aussi : lui seul engendre des Nnors de Charon. Il s'autoféconde et pond les œufs dont ils éclosent. Un Nnor de Charon ne pond aucun œuf.
 
 ## Au carrefour du sauvage et de la cité
 
-![](../../media/art/placeholder-16_9-og.png)
+![](../../media/art/nnor-marchand-16_9-og.png "torn")
+:caption[Un émissaire marchand d'Araskha qui a posé son échoppe à Aïn-Dahab]
 
 Les Nnors, fidèles à leurs montagnes, éprouvent une curiosité grandissante pour les cités humaines voisines. Ceux dont la Yurta jouxte un grand marché apprennent à négocier peaux, métaux et épices, et troquent volontiers leurs objets artisanaux contre des étoffes ou des instruments de musique.
 

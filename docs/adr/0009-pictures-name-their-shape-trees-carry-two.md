@@ -4,6 +4,7 @@
 **Status:** Accepted
 **Date:** 2026-09-20
 **Revised:** 2026-09-22, Decision 1 reaches `data/media/video/` and gains a fifth state, `compressed`
+**Revised:** 2026-10-22, Decision 1 lets `data/media/art/` hold a 3:1 panorama that a lore page draws
 **Deciders:** Kori
 **Scope:** How a file under `data/media/art/` and `data/media/items/` is named, and how a tree or a
 book points at the pictures it needs. Does not cover the icon sets, which are Iconify names recorded
@@ -132,6 +133,34 @@ mp4, and `ffprobe` is not a dependency in `package.json`, so a check that shelle
 pass or fail on what the machine happens to have installed. The agreement between a video's declared
 ratio and its real pixels is therefore unverified by the suite, unlike every picture's. Reopen if a
 second video arrives, or if a media probe becomes a dependency for another reason.
+
+### Addendum (2026-10-22): a lore page may draw a 3:1 panorama
+
+The context above names three fixed shapes, and `tests/data/integrity.test.ts` held
+`data/media/art/` to two of them, `16_9` and `3_4`. A fourth now joins them there: `3_1`, for a
+panorama that a lore page draws inline. The first is `data/media/art/nnor-fresque-3_1-og.png`, a
+cave mural of the Nnor cycle under « Le cycle du feu » in `data/lore/species/nnor.md` and its
+English page. The test's list for that folder gains `3_1`; the ratio against pixels check is
+unchanged and still opens the file.
+
+No field names a panorama. `cover` stays 3:4 and `banner` stays 16:9, as Decision 2 sets them. A
+lore line is what names the file, the way the Feu and Berserker tree pages named their plates, and
+the lore picture check in the same test fails when that line points at a file that does not exist.
+
+The mural is one continuous composition, 2172 by 724, measured with `sips`, which is exactly 3:1. A
+16:9 crop at full height keeps 1287 of its 2172 pixels while the figures run across about 1540 of
+them, so any such crop loses a figure. Padding it to 16:9 instead adds 498 pixels of empty band.
+Neither keeps the picture the owner supplied.
+
+A shaped edge follows the ratio. A mask key in `PICTURE_MASKS` in `src/lib/game/book-markup.ts` has
+one file per ratio, named `data/media/masks/<key>-<rapport>.svg` or `.png`, because
+`rehypeProsePictureMasks` reads the ratio from the picture's name into `data-ratio` and
+`src/styles/prose.css` picks the file that matches. A 3:4 shape stretched over a wider picture bites
+deeper into the sides than into the top and bottom, by the ratio of the two aspect ratios: 2.4 times
+at 16:9 and 4 times at 3:1. The mural's mask, `data/media/masks/rupture-3_1.png`, was drawn by the
+owner at the same 2172 by 724, so at its full size it frames the mural pixel for pixel. Reopen if a
+second prose ratio is wanted: each new one costs a mask file per key and a line in the test, which
+is the point at which a rule by ratio family would be cheaper than a list.
 
 ---
 

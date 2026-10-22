@@ -6,8 +6,6 @@ Born of the draconic forge, the Nnor are goat-like humanoids shaped by Charon, t
 
 ## Fur and hardiness
 
-![](../../media/art/placeholder-16_9-og.png)
-
 Across the sheer ridges and frozen crevasses of Eden, the Nnor cut a commanding figure: a broad chest borne on powerful shoulders, and long, muscular legs that end in hooves as sharp as crampons. Their coat is thick and woolly, and its colour depends on the lineage. Some wear fur as black as ink, while others range from spotless white to pearl grey or earthy brown, shades that serve as natural camouflage. They use their massive horns, which follow the line of the brow, to defend themselves, to hold on to rock walls and to assert social dominance. Every muscle stands out beneath the heavy fleece, the sign of uncommon endurance and of millennia spent adapting to violent winds and extreme temperatures. Shaped by the harshness of the mountain climate, their build pairs raw strength with a surprising suppleness, which makes them born climbers and formidable opponents.
 
 ## The Yurta above all
@@ -22,13 +20,17 @@ Araskha, the largest Yurta known, is home to thousands of Nnor. Sheltered beneat
 
 ## The cycle of fire
 
+![](../../media/art/nnor-fresque-3_1-og.png "rupture torch")
+:caption[A mural of the cycle of fire: a Nnor, a Saman, then a Dragonnor]
+
 A Saman can leave their Yurta and set out on a quest. They make for Mount Edros and go on into Charon's Lair, where Charon allows them to undergo the Ritual of Fire. If they fail, they die. If they succeed, the ritual transforms them into a Dragonnor, which comes back out of Mount Edros to find the place where it will establish its own Yurta. Such is the cycle of the Nnor.
 
 The Dragonnor is sometimes counted among the subspecies of the Nnor, but specialists hold the Dragonnor and the Nnor to be two entirely different beings. A Dragonnor has neither the limbs nor the size of a Nnor, and its abilities differ too: it alone begets Charon's Nnor. It fertilises itself and lays the eggs from which they hatch. Charon's Nnor themselves lay no eggs.
 
 ## Where the wild meets the city
 
-![](../../media/art/placeholder-16_9-og.png)
+![](../../media/art/nnor-marchand-16_9-og.png "torn")
+:caption[A merchant emissary from Araskha who has set up shop in Aïn-Dahab]
 
 Faithful as they are to their mountains, the Nnor feel a growing curiosity about the human cities nearby. Those whose Yurta lies beside a great market learn to deal in hides, metals and spices, and gladly barter their handiwork for cloth or musical instruments.
 

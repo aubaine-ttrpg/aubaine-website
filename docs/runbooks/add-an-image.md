@@ -35,7 +35,7 @@ Keeping the original beside a retouched version is the point of the state part. 
 
 | Folder | Holds | Format |
 | --- | --- | --- |
-| `data/media/art/` | covers, banners, hero and social images | `.png`, `.jpg` |
+| `data/media/art/` | covers, banners, hero and social images, and 3:1 panoramas a lore page draws | `.png`, `.jpg` |
 | `data/media/items/` | item pictures | `.png`, `.jpg` |
 | `data/media/masks/` | the shapes a prose picture can be cut to | `.svg` or `.png`, named `<key>-<ratio>` after a key of `PICTURE_MASKS` in `src/lib/game/book-markup.ts`, one file per ratio so the edge keeps its size |
 | `data/media/icons/mdi/` | Iconify `mdi:` icons | `.svg`, named after the part following the colon |

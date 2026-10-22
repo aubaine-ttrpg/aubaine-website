@@ -719,7 +719,7 @@ describe('media', () => {
 
   it('names every image for the aspect ratio it actually has', async () => {
     for (const [directory, ratios] of [
-      ['data/media/art', ['16_9', '3_4']],
+      ['data/media/art', ['16_9', '3_4', '3_1']],
       ['data/media/skills', ['1_1']],
       ['data/media/items', ['1_1']],
     ] as const) {
