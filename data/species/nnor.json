@@ -2,8 +2,8 @@
   "id": "nnor",
   "status": "playtest",
   "name": "Nnor",
-  "cover": "roublard-3_4-og.png",
-  "banner": "roublard-16_9-upscaled_4.jpg",
+  "cover": "nnor-3_4-og.png",
+  "banner": "nnor-16_9-og.png",
   "movement": "10,5 m",
   "types": [
     "humanoid"
