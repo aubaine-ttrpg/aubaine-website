@@ -6,7 +6,6 @@ import type { ResolvedBook } from './build.ts'
 
 export type IndexDescriptor = {
   kind: IndexKind
-  art: string
   mark: string
   title: string
   description: string
@@ -39,15 +38,6 @@ const DESCRIPTIONS: Record<IndexKind, Record<Locale, string>> = {
   },
 }
 
-const ART: Record<IndexKind, string> = {
-  trees: 'bravado-16_9-upscaled_2.jpg',
-  species: 'ikyrio-16_9-og.png',
-  skills: 'bacchi-qui-travaille-16_9-og.png',
-  equipment: 'forge-d-izequiel-16_9-og.png',
-  materials: 'eau-16_9-upscaled_4.jpg',
-  rules: 'priest-16_9-og.png',
-}
-
 const MARK: Record<IndexKind, string> = {
   trees: '#efbe04',
   species: '#b8601e',
@@ -69,7 +59,6 @@ export function indexDescriptors(locale: Locale): IndexDescriptor[] {
   }
   return INDEX_KINDS.map((kind) => ({
     kind,
-    art: ART[kind],
     mark: MARK[kind],
     title: titles[kind],
     description: DESCRIPTIONS[kind][locale],
