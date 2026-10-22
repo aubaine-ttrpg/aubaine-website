@@ -1830,7 +1830,7 @@ describe('asset ownership', () => {
   })
 
   it('stamps a derivative without touching one pixel of it', async () => {
-    const master = resolve(mediaDir, 'items/dague-1_1-og.png')
+    const master = resolve(mediaDir, 'skills/eclat-de-pierre-1_1-og.png')
     const derivative = await sharp(master).resize(64).webp({ quality: 80 }).toBuffer()
     const stamped = stampWebp(new Uint8Array(derivative), licenceClaim())
 

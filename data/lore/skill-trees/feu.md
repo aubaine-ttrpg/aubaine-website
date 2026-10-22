@@ -1,6 +1,6 @@
 ## Origines
 
-![](../../media/art/feu-16_9-og.png)
+![](../../media/art/placeholder-16_9-og.png)
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
