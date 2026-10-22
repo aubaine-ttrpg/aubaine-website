@@ -1,6 +1,6 @@
 import { expect, type Page, test } from '@playwright/test'
 
-const PLAYTEST_NODE = { fr: '/fr/arbre/mage/GRIMOI-001', en: '/en/tree/mage/GRIMOI-001' }
+const PLAYTEST_PAGE = { fr: '/fr/espece/nnor', en: '/en/species/nnor' }
 const INHERITED_DRAFT_NODE = '/en/tree/artisan/METIER-001'
 const OWN_DRAFT_NODE = 'VOLADI-001'
 
@@ -13,9 +13,9 @@ test('the sitemap pairs every page with its translation across localized segment
 }) => {
   const sitemap = await (await request.get('/sitemap.xml')).text()
   expect(sitemap).toContain(
-    `<url><loc>https://aubaine.io${PLAYTEST_NODE.fr}</loc>` +
-      `<xhtml:link rel="alternate" hreflang="fr-FR" href="https://aubaine.io${PLAYTEST_NODE.fr}"/>` +
-      `<xhtml:link rel="alternate" hreflang="en-GB" href="https://aubaine.io${PLAYTEST_NODE.en}"/>` +
+    `<url><loc>https://aubaine.io${PLAYTEST_PAGE.fr}</loc>` +
+      `<xhtml:link rel="alternate" hreflang="fr-FR" href="https://aubaine.io${PLAYTEST_PAGE.fr}"/>` +
+      `<xhtml:link rel="alternate" hreflang="en-GB" href="https://aubaine.io${PLAYTEST_PAGE.en}"/>` +
       '</url>',
   )
 })
@@ -38,13 +38,13 @@ test('a page that inherits draft from its tree stays out of the index', async ({
 })
 
 test('a playtest page is indexable and names itself canonical', async ({ request }) => {
-  const html = await (await request.get(PLAYTEST_NODE.en)).text()
+  const html = await (await request.get(PLAYTEST_PAGE.en)).text()
   expect(html).not.toContain('name="robots"')
-  expect(html).toContain(`<link rel="canonical" href="https://aubaine.io${PLAYTEST_NODE.en}">`)
+  expect(html).toContain(`<link rel="canonical" href="https://aubaine.io${PLAYTEST_PAGE.en}">`)
 })
 
 test('no page claims a locale neutral alternate', async ({ request }) => {
-  for (const path of ['/', '/fr', '/en', PLAYTEST_NODE.fr, '/en/books', '/fr/recherche']) {
+  for (const path of ['/', '/fr', '/en', PLAYTEST_PAGE.fr, '/en/books', '/fr/recherche']) {
     const html = await (await request.get(path)).text()
     expect(html, path).not.toContain('x-default')
   }
@@ -55,8 +55,8 @@ test('only the home pages describe the website', async ({ request }) => {
     const html = await (await request.get(path)).text()
     expect(html, path).toContain('"@type":"WebSite"')
   }
-  const tree = await (await request.get(PLAYTEST_NODE.fr)).text()
-  expect(tree).not.toContain('application/ld+json')
+  const species = await (await request.get(PLAYTEST_PAGE.fr)).text()
+  expect(species).not.toContain('application/ld+json')
 })
 
 test('client navigation adds and removes the website description', async ({ page }) => {

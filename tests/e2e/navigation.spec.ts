@@ -1,21 +1,21 @@
 import { expect, test } from '@playwright/test'
 
 test('swup navigation keeps the head correct', async ({ page }) => {
-  await page.goto('/en/trees')
-  await expect(page).toHaveTitle('Skill Trees · Aubaine')
+  await page.goto('/en/species')
+  await expect(page).toHaveTitle('Species · Aubaine')
 
-  await page.getByRole('link', { name: 'Berserker' }).first().click()
-  await expect(page).toHaveURL('/en/tree/berserker')
-  await expect(page).toHaveTitle('Berserker · Aubaine')
+  await page.getByRole('link', { name: 'Nnor' }).first().click()
+  await expect(page).toHaveURL('/en/species/nnor')
+  await expect(page).toHaveTitle('Nnor · Aubaine')
 
   await expect(page.locator('link[rel=canonical]')).toHaveAttribute(
     'href',
-    'https://aubaine.io/en/tree/berserker',
+    'https://aubaine.io/en/species/nnor',
   )
   await expect(page.locator('html')).toHaveAttribute('lang', 'en-GB')
   await expect(page.locator('link[rel=alternate][hreflang="fr-FR"]')).toHaveAttribute(
     'href',
-    'https://aubaine.io/fr/arbre/berserker',
+    'https://aubaine.io/fr/espece/nnor',
   )
 })
 

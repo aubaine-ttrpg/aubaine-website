@@ -1,6 +1,6 @@
 {
   "name": "Désert",
-  "status": "playtest",
+  "status": "draft",
   "icon": "game-icons:desert",
   "die": 8,
   "description": "Dunes, regs et oasis : le vent y déterre autant qu'il enfouit.",

@@ -1,6 +1,6 @@
 {
   "name": "Forêt",
-  "status": "playtest",
+  "status": "draft",
   "icon": "game-icons:forest",
   "die": 10,
   "description": "Sous-bois, clairières et lisières : ce que l'arbre laisse tomber et ce qui pousse à son pied.",

@@ -156,10 +156,7 @@ test('choosing a node swaps only the detail pane', async ({ page }) => {
   await expect(page.locator('main h1[data-kept]')).toHaveCount(1)
   await expect(pane(page)).toBeFocused()
   expect(await page.evaluate(() => window.scrollY)).toBe(scrolled)
-  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
-    'href',
-    /\/fr\/arbre\/barbare\/TOURBI-001$/,
-  )
+  await expect(page.locator('link[rel="canonical"]')).toHaveCount(0)
   await expect(page.locator('link[rel="alternate"][hreflang="en-GB"]')).toHaveAttribute(
     'href',
     /\/en\/tree\/barbare\/TOURBI-001$/,

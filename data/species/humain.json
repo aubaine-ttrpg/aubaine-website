@@ -1,6 +1,6 @@
 {
   "id": "humain",
-  "status": "playtest",
+  "status": "draft",
   "name": "Humain",
   "types": [
     "humanoid"

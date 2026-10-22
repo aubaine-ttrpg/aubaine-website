@@ -1,6 +1,6 @@
 {
   "name": "Ruines",
-  "status": "playtest",
+  "status": "draft",
   "icon": "game-icons:broken-wall",
   "die": 10,
   "description": "Forts effondrés, temples et cités mortes, déjà fouillés mais jamais vidés.",

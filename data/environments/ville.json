@@ -1,6 +1,6 @@
 {
   "name": "Ville",
-  "status": "playtest",
+  "status": "draft",
   "icon": "game-icons:village",
   "die": 8,
   "description": "Ruelles, dépotoirs et arrière-cours, pour qui n'a pas peur de se salir les mains.",

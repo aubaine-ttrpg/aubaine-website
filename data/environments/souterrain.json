@@ -1,6 +1,6 @@
 {
   "name": "Souterrain",
-  "status": "playtest",
+  "status": "draft",
   "icon": "game-icons:cave-entrance",
   "die": 10,
   "description": "Grottes, galeries et mines abandonnées, fouillées à la lueur de sa propre lampe.",
