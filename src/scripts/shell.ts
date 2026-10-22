@@ -5,8 +5,10 @@ import { bindBrowse } from './browse'
 import { enableIslands } from './islands'
 import { bindLoading } from './loading'
 import { bindPlateViewer } from './plate-viewer'
+import { bindReliefScroll } from './relief-scroll'
 import { type SwupVisit, swupInstance, withSwup } from './swup'
 import { bindThreshold } from './threshold'
+import { bindTorchlight } from './torchlight'
 import { bindTree } from './tree'
 
 const THEME_KEY = 'aubaine.theme'
@@ -339,6 +341,8 @@ withSwup((swup) => {
   bindBook(swup)
   bindTree(swup)
   bindPlateViewer(swup)
+  bindTorchlight(swup)
+  bindReliefScroll(swup)
   bindAtlas(swup)
   bindBrowse(swup)
   bindLoading(swup)

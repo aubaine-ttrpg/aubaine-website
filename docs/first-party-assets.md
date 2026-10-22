@@ -51,7 +51,7 @@ not plain ASCII goes into an uncompressed `iTXt`, which is UTF-8 by definition.
 
 | Path | What happens | Written by |
 | --- | --- | --- |
-| `art/`, `items/`, `skills/`, `unassigned/` | stripped, then stamped | `pnpm media:stamp` |
+| `art/`, `items/`, `masks/`, `skills/`, `unassigned/` | stripped, then stamped | `pnpm media:stamp` |
 | `video/` | stripped, then stamped through ffmpeg | `pnpm media:stamp` |
 | the files `OWNED_FILES` names, such as `aubaine-logo.svg` | stamped | `pnpm media:stamp` |
 | `flags/` | stripped, nothing written | `pnpm media:stamp` |

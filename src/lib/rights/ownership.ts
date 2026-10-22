@@ -1,4 +1,4 @@
-export const OWNED_DIRECTORIES = ['art', 'items', 'skills', 'unassigned', 'video'] as const
+export const OWNED_DIRECTORIES = ['art', 'items', 'masks', 'skills', 'unassigned', 'video'] as const
 
 export const OWNED_FILES = [
   'aubaine-logo.svg',

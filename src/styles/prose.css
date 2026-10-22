@@ -82,6 +82,37 @@
   letter-spacing: 0.04em;
 }
 
+.au-prose .au-prose__picture figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+  margin-block-start: 0.4em;
+  font-family: var(--font-garamond);
+  font-size: 1.02em;
+  font-style: italic;
+  line-height: 1.5;
+  text-align: center;
+  text-wrap: balance;
+  color: var(--ink2);
+}
+
+@media screen {
+  .au-prose .au-prose__picture figcaption::after {
+    content: "";
+    block-size: 0.75em;
+    background: var(--gold);
+    -webkit-mask:
+      var(--au-caption-mark) center / auto 100% no-repeat,
+      linear-gradient(to right, transparent, #000) left center / calc(50% - 0.75em) 1px no-repeat,
+      linear-gradient(to left, transparent, #000) right center / calc(50% - 0.75em) 1px no-repeat;
+    mask:
+      var(--au-caption-mark) center / auto 100% no-repeat,
+      linear-gradient(to right, transparent, #000) left center / calc(50% - 0.75em) 1px no-repeat,
+      linear-gradient(to left, transparent, #000) right center / calc(50% - 0.75em) 1px no-repeat;
+    --au-caption-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M6 .5l4.76 2.75v5.5L6 11.5 1.24 8.75v-5.5z'/%3E%3C/svg%3E");
+  }
+}
+
 .au-prose .au-callout {
   margin-block: 1.6em 0;
   padding: 1.1em 1.4em 1.2em;
@@ -132,6 +163,112 @@
 
 .au-prose p:has(> img:only-child) {
   margin-block: 1.4em 0;
+}
+
+@media screen {
+  .au-prose img[data-mask] {
+    border: 0;
+    -webkit-mask: var(--au-picture-mask) 0 0 / 100% 100% no-repeat;
+    mask: var(--au-picture-mask) 0 0 / 100% 100% no-repeat;
+  }
+
+  .au-prose [data-mask="torn"] {
+    --au-picture-mask: url("../../data/media/masks/torn-3_4.svg");
+  }
+
+  .au-prose [data-mask="torn"][data-ratio="16_9"] {
+    --au-picture-mask: url("../../data/media/masks/torn-16_9.svg");
+  }
+
+  .au-prose [data-mask="stone"] {
+    --au-picture-mask: url("../../data/media/masks/stone-3_4.svg");
+  }
+
+  .au-prose [data-mask="stone"][data-ratio="16_9"] {
+    --au-picture-mask: url("../../data/media/masks/stone-16_9.svg");
+  }
+
+  .au-prose [data-mask="rupture"] {
+    --au-picture-mask: url("../../data/media/masks/rupture-3_1.png");
+  }
+
+  .au-prose .au-prose__relief {
+    position: relative;
+    display: block;
+  }
+
+  .au-prose .au-prose__relief[data-relief="drift"] {
+    overflow: clip;
+    -webkit-mask: var(--au-picture-mask) 0 0 / 100% 100% no-repeat;
+    mask: var(--au-picture-mask) 0 0 / 100% 100% no-repeat;
+  }
+
+  .au-prose .au-prose__relief[data-relief="drift"] img {
+    -webkit-mask: none;
+    mask: none;
+    scale: 1.14;
+    translate: calc(-6% + 12% * var(--au-view, 0.5)) calc(1.5% - 3% * var(--au-view, 0.5));
+  }
+
+  .au-prose .au-prose__relief[data-relief="lift"] {
+    filter: drop-shadow(0 3px 4px rgb(0 0 0 / 0.35));
+    transition:
+      translate 0.35s ease-out,
+      filter 0.35s ease-out;
+  }
+
+  .au-prose .au-prose__relief[data-relief="lift"]:hover {
+    translate: 0 -5px;
+    filter: drop-shadow(0 16px 18px rgb(0 0 0 / 0.5));
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .au-prose .au-prose__relief[data-relief="lift"] {
+      transition: none;
+    }
+  }
+
+  .au-prose .au-prose__relief canvas {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  .au-prose .au-prose__relief[data-lit] img {
+    opacity: 0;
+  }
+}
+
+.au-prose .au-prose__side {
+  display: flow-root;
+  margin-block-start: 1.4em;
+}
+
+.au-prose .au-prose__side > :is(p:has(> img:only-child), .au-prose__picture) {
+  float: inline-start;
+  inline-size: 38%;
+  margin-block: 0 0.8em;
+  margin-inline: 0 1.6em;
+}
+
+.au-prose .au-prose__side > :is(p:has(> img:only-child), .au-prose__picture) + * {
+  margin-block-start: 0;
+  text-box-trim: trim-start;
+  text-box-edge: cap alphabetic;
+}
+
+@media (width < 48rem) {
+  .au-prose .au-prose__side > :is(p:has(> img:only-child), .au-prose__picture) {
+    float: none;
+    inline-size: auto;
+    max-inline-size: 22rem;
+    margin-inline: 0;
+  }
+
+  .au-prose .au-prose__side > :is(p:has(> img:only-child), .au-prose__picture) + * {
+    text-box-trim: none;
+  }
 }
 
 .au-prose a {

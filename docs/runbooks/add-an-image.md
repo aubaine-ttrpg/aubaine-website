@@ -37,6 +37,7 @@ Keeping the original beside a retouched version is the point of the state part. 
 | --- | --- | --- |
 | `data/media/art/` | covers, banners, hero and social images | `.png`, `.jpg` |
 | `data/media/items/` | item pictures | `.png`, `.jpg` |
+| `data/media/masks/` | the shapes a prose picture can be cut to | `.svg` or `.png`, named `<key>-<ratio>` after a key of `PICTURE_MASKS` in `src/lib/game/book-markup.ts`, one file per ratio so the edge keeps its size |
 | `data/media/icons/mdi/` | Iconify `mdi:` icons | `.svg`, named after the part following the colon |
 | `data/media/icons/game-icons/` | Iconify `game-icons:` icons | `.svg`, same rule |
 | `data/media/pdf/` | the booklets `pnpm pdf` renders | `.pdf`, named by the release, never by hand |
@@ -52,7 +53,7 @@ Covers and banners share `data/media/art/`. The ratio in the name says which one
 
 ## Stamp it before you commit it
 
-A picture in this repository says who owns it, in its own bytes. `pnpm media:stamp` writes that claim into every file under `data/media/art/`, `data/media/items/`, `data/media/skills/` and `data/media/unassigned/`, into the logos, the QR and the hero loop, and removes whatever provenance the generator left behind. Run it after you drop a file in, before you commit.
+A picture in this repository says who owns it, in its own bytes. `pnpm media:stamp` writes that claim into every file under `data/media/art/`, `data/media/items/`, `data/media/masks/`, `data/media/skills/` and `data/media/unassigned/`, into the logos, the QR and the hero loop, and removes whatever provenance the generator left behind. Run it after you drop a file in, before you commit.
 
 ```
 pnpm media:stamp

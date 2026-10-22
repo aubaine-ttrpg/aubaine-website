@@ -7,7 +7,10 @@ import { defListHastHandlers, remarkDefinitionList } from 'remark-definition-lis
 import {
   rehypeCodexTerms,
   rehypeDropComments,
+  rehypeProsePictureCaptions,
+  rehypeProsePictureMasks,
   rehypeProseQuotes,
+  rehypeProseSidePictures,
   rehypeProseTables,
 } from './src/lib/game/book-markup.ts'
 import { DEFAULT_LOCALE, LOCALES } from './src/lib/i18n/locales.ts'
@@ -35,9 +38,12 @@ export default defineConfig({
       remarkRehype: { handlers: { ...defListHastHandlers } },
       rehypePlugins: [
         rehypeDropComments,
+        rehypeProsePictureCaptions,
         rehypeProseQuotes,
         rehypeCodexTerms(new URL('.', import.meta.url).pathname),
         rehypeProseTables,
+        rehypeProseSidePictures,
+        rehypeProsePictureMasks,
       ],
     }),
   },

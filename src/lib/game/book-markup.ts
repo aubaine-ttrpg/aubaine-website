@@ -208,22 +208,43 @@ export function rehypeCodexTerms(root: string) {
 }
 
 const SOURCE_OPEN = ':source['
-const SOURCE_CLOSE = ']'
+const CAPTION_OPEN = ':caption['
+const BRACKET_CLOSE = ']'
 
-function sourceCaption(paragraph: HastElement): HastChild[] | undefined {
-  const first = paragraph.children[0]
-  const last = paragraph.children.at(-1)
+function bracketed(children: HastChild[], open: string): HastChild[] | undefined {
+  const first = children[0]
+  const last = children.at(-1)
   if (first?.type !== 'text' || last?.type !== 'text') return undefined
-  if (!first.value.startsWith(SOURCE_OPEN) || !last.value.endsWith(SOURCE_CLOSE)) return undefined
+  const head = first.value.trimStart()
+  const tail = last.value.trimEnd()
+  if (!head.startsWith(open) || !tail.endsWith(BRACKET_CLOSE)) return undefined
   if (first === last) {
-    const value = first.value.slice(SOURCE_OPEN.length, -SOURCE_CLOSE.length)
+    const value = first.value.trim().slice(open.length, -BRACKET_CLOSE.length)
     return value.trim() ? [text(value)] : undefined
   }
   return [
-    text(first.value.slice(SOURCE_OPEN.length)),
-    ...paragraph.children.slice(1, -1),
-    text(last.value.slice(0, -SOURCE_CLOSE.length)),
+    text(head.slice(open.length)),
+    ...children.slice(1, -1),
+    text(tail.slice(0, -BRACKET_CLOSE.length)),
   ]
+}
+
+function captionedPicture(node: HastChild): HastChild {
+  if (node.type !== 'element' || node.tagName !== 'p') return node
+  const [picture, ...rest] = node.children
+  if (picture?.type !== 'element' || picture.tagName !== 'img') return node
+  const caption = bracketed(rest, CAPTION_OPEN)
+  if (!caption) return node
+  return element('figure', { className: 'au-prose__picture' }, [
+    picture,
+    element('figcaption', {}, caption),
+  ])
+}
+
+export function rehypeProsePictureCaptions() {
+  return (tree: HastRoot): void => {
+    tree.children = tree.children.map(captionedPicture)
+  }
 }
 
 export const CALLOUT_KINDS = ['principle', 'example'] as const
@@ -255,7 +276,7 @@ function quoteFigure(blockquote: HastElement): HastElement {
     (child): child is HastElement => child.type === 'element',
   )
   const last = blocks.at(-1)
-  const caption = last?.tagName === 'p' ? sourceCaption(last) : undefined
+  const caption = last?.tagName === 'p' ? bracketed(last.children, SOURCE_OPEN) : undefined
   if (!caption) return element('figure', { className: 'au-quote' }, [blockquote])
   const quote = element(
     'blockquote',
@@ -300,6 +321,114 @@ export function rehypeProseTables() {
     }
 
     wrap(tree)
+  }
+}
+
+const PORTRAIT_PICTURE = /-3_4-[a-z0-9_]+\.(?:png|jpg)$/
+
+const SECTION_HEADINGS = new Set(['h1', 'h2', 'h3', 'h4', 'h5', 'h6'])
+
+function isBlank(node: HastChild): boolean {
+  return node.type === 'text' && node.value.trim() === ''
+}
+
+function soloPicture(node: HastChild): HastElement | undefined {
+  if (node.type !== 'element') return undefined
+  const isCaptioned =
+    node.tagName === 'figure' && node.properties['className'] === 'au-prose__picture'
+  if (!isCaptioned && node.tagName !== 'p') return undefined
+  const [only, ...rest] = node.children.filter((child) => !isBlank(child))
+  if (only?.type !== 'element' || only.tagName !== 'img') return undefined
+  return isCaptioned || rest.length === 0 ? only : undefined
+}
+
+function isPortraitPicture(node: HastChild): node is HastElement {
+  const picture = soloPicture(node)
+  return picture !== undefined && PORTRAIT_PICTURE.test(String(picture.properties['src'] ?? ''))
+}
+
+function isSectionHeading(node: HastChild): boolean {
+  return node.type === 'element' && SECTION_HEADINGS.has(node.tagName)
+}
+
+export function rehypeProseSidePictures() {
+  return (tree: HastRoot): void => {
+    const next: HastChild[] = []
+    let section: HastElement | undefined
+    for (const child of tree.children) {
+      if (isSectionHeading(child)) section = undefined
+      if (isPortraitPicture(child)) {
+        section = element('div', { className: 'au-prose__side' }, [child])
+        next.push(section)
+        continue
+      }
+      if (section) section.children.push(child)
+      else next.push(child)
+    }
+    tree.children = next
+  }
+}
+
+export const PICTURE_MASKS = ['torn', 'stone', 'rupture'] as const
+
+type PictureMask = (typeof PICTURE_MASKS)[number]
+
+function isPictureMask(value: string): value is PictureMask {
+  return PICTURE_MASKS.some((mask) => mask === value)
+}
+
+export const PICTURE_RELIEFS = ['torch', 'drift', 'lift'] as const
+
+type PictureRelief = (typeof PICTURE_RELIEFS)[number]
+
+function isPictureRelief(value: string): value is PictureRelief {
+  return PICTURE_RELIEFS.some((relief) => relief === value)
+}
+
+export type PictureLook = { mask: PictureMask; relief: PictureRelief | undefined }
+
+export function pictureLook(title: string, source: string): PictureLook {
+  const [mask = '', relief, ...rest] = title.trim().split(/\s+/)
+  if (!isPictureMask(mask)) {
+    throw new Error(
+      `${source} asks for the mask "${mask}", which is none of ${PICTURE_MASKS.join(', ')}`,
+    )
+  }
+  if (rest.length > 0 || (relief !== undefined && !isPictureRelief(relief))) {
+    throw new Error(
+      `${source} asks for the relief "${[relief, ...rest].join(' ')}", which is none of ${PICTURE_RELIEFS.join(', ')}`,
+    )
+  }
+  return { mask, relief }
+}
+
+const PICTURE_RATIO = /-(\d{1,2}_\d{1,2})-[a-z0-9_]+\.(?:png|jpg)$/
+
+function maskPicture(picture: HastElement): HastElement {
+  const { title, ...properties } = picture.properties
+  if (title === undefined) return picture
+  const source = String(properties['src'])
+  const { mask, relief } = pictureLook(String(title), source)
+  const ratio = PICTURE_RATIO.exec(source)?.[1]
+  const shape = { 'data-mask': mask, ...(ratio ? { 'data-ratio': ratio } : {}) }
+  const masked: HastElement = { ...picture, properties: { ...properties, ...shape } }
+  if (relief === undefined) return masked
+  return element('span', { className: 'au-prose__relief', 'data-relief': relief, ...shape }, [
+    masked,
+  ])
+}
+
+export function rehypeProsePictureMasks() {
+  return (tree: HastRoot): void => {
+    const visit = (node: HastParent): void => {
+      node.children = node.children.map((child) => {
+        if (child.type === 'text') return child
+        visit(child)
+        return child.tagName === 'img' ? maskPicture(child) : child
+      })
+    }
+
+    visit(tree)
   }
 }
 

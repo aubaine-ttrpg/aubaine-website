@@ -6,7 +6,7 @@ import sharp from 'sharp'
 import { describe, expect, it } from 'vitest'
 
 import { latestRelease, notes, releases } from '../../src/lib/booklet/manifest'
-import { CALLOUT_KINDS } from '../../src/lib/game/book-markup'
+import { CALLOUT_KINDS, pictureLook } from '../../src/lib/game/book-markup'
 import {
   originSkills,
   ruleBrowseEntries,
@@ -1082,13 +1082,28 @@ async function authoredProse(): Promise<Prose[]> {
 }
 
 describe('authored prose markup', () => {
+  it('writes a picture caption only on the line under a picture', async () => {
+    for (const { where, text } of await authoredProse()) {
+      const lines = text.split('\n')
+      lines.forEach((line, index) => {
+        if (!line.includes(':caption[')) return
+        expect(line, `${where} line ${index + 1}`).toMatch(/^:caption\[.+]$/)
+        expect(lines[index - 1] ?? '', `${where} line ${index + 1}`).toMatch(/^!\[[^\]]*]\(.+\)$/)
+      })
+    }
+  })
+
   it('points every lore picture at art that exists', async () => {
     const art = resolve(root, 'data/media/art')
     for (const { where, path, text } of await lorePages()) {
-      for (const match of text.matchAll(/!\[[^\]]*]\(([^)]+)\)/g)) {
+      for (const match of text.matchAll(/!\[[^\]]*]\(([^)\s]+)(?:\s+"([^"]*)")?\)/g)) {
         const target = resolve(dirname(path), match[1] ?? '')
         expect(dirname(target), `${where} points outside data/media/art`).toBe(art)
         await expect(readFile(target), `${where} ${match[1]}`).resolves.toBeDefined()
+        const look = match[2]
+        if (look !== undefined) {
+          expect(() => pictureLook(look, `${where} ${match[1]}`)).not.toThrow()
+        }
       }
     }
   })

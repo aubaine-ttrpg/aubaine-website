@@ -132,6 +132,33 @@ A picture is an ordinary markdown image whose path is relative to the lore file,
 `../../media/art/<file>`, and `pnpm data:check` fails on a path that points anywhere else or at a
 file that does not exist. Name the file per [add-an-image.md](add-an-image.md).
 
+The ratio in the name sets the layout. A 16:9 picture spans the column. A 3:4 picture on a line of
+its own sits at the start of the text that follows it: that text wraps around it, then runs under
+it once it is longer than the picture, up to the next heading. On a narrow screen the picture sits
+above the text. Put it straight under the heading it illustrates.
+
+A picture of either ratio can be cut to a shape: write the shape's key as the image title, in
+quotes after the path. `PICTURE_MASKS` in `src/lib/game/book-markup.ts` lists the keys, such as
+`torn`, and `pnpm data:check` fails on any other. The shape shows on screen only; print keeps the
+rectangle.
+
+A second word after the shape adds an effect: `PICTURE_RELIEFS` in the same file lists them, such as
+`torch`, a warm light that follows the pointer across the picture's relief and stays inside it.
+Without WebGL, or without JavaScript, the picture shows as it would without the word.
+
+A caption goes on the line directly under the picture, with no blank line between them, as
+`:caption[...]`. The page prints it under the picture. `pnpm data:check` fails on a caption line
+that does not follow a picture.
+
+```markdown
+## Au carrefour du sauvage et de la cité
+
+![](../../media/art/nnor-marchand-3_4-og.png "torn")
+:caption[Un émissaire marchand d'Araskha qui a posé son échoppe à Aïn-Dahab]
+
+Les Nnors, fidèles à leurs montagnes, éprouvent une curiosité grandissante pour les cités voisines.
+```
+
 ## The English overlay
 
 `data/species/<id>.en.json` carries only the strings that change: `name`, `subtitle`, `movement`, `subspecies` and `roleplay`. `types`, `size` and `languages` are never translated: they name keys, and the reader sees the `labelEn` from `data/meta/`. A sub-species is translated by its `id`: its `text` always, and its `name` when that name is a common noun, as the Mort-vivant's Fantôme becomes Ghost. A proper noun such as Landenheit stays as it is, and `names` never has an overlay. A name that is the same in both locales needs no overlay. See [add-a-translation.md](add-a-translation.md).
