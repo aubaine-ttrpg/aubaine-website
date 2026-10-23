@@ -8,13 +8,13 @@ import { enableIslands } from './islands'
 import { bindLoading } from './loading'
 import { bindPlateViewer } from './plate-viewer'
 import { bindReliefScroll } from './relief-scroll'
-import { type SwupVisit, swupInstance, withSwup } from './swup'
+import { bindSearch } from './search'
+import { type SwupVisit, withSwup } from './swup'
 import { bindThreshold } from './threshold'
 import { bindTorchlight } from './torchlight'
 import { bindTree } from './tree'
 
 const THEME_KEY = 'aubaine.theme'
-const SEARCH_DELAY = 320
 const HEADER_CONTAINER = '#site-header'
 
 type Theme = 'dark' | 'light'
@@ -165,28 +165,6 @@ function startHeroVideo(): void {
   }
 }
 
-let searchTimer: number | undefined
-let searchNavigation = false
-
-function scheduleSearch(input: HTMLInputElement): void {
-  const form = input.closest<HTMLFormElement>('[data-search-form]')
-  const action = form?.dataset.searchAction
-  if (!action) return
-  window.clearTimeout(searchTimer)
-  const value = input.value.trim()
-  const target = value ? `${action}?q=${encodeURIComponent(value)}` : action
-  if (document.querySelector('[data-search-results]')) return
-  searchTimer = window.setTimeout(() => {
-    const swup = swupInstance()
-    if (!swup) {
-      window.location.assign(target)
-      return
-    }
-    searchNavigation = true
-    swup.navigate(target)
-  }, SEARCH_DELAY)
-}
-
 function bindOnce(): void {
   document.addEventListener(
     'pointerover',
@@ -267,13 +245,6 @@ function bindOnce(): void {
     closeAll()
   })
 
-  document.addEventListener('input', (event) => {
-    const target = event.target
-    if (target instanceof HTMLInputElement && target.matches('[data-search-input]')) {
-      scheduleSearch(target)
-    }
-  })
-
   window.addEventListener('resize', publishMetrics)
 }
 
@@ -315,8 +286,6 @@ function onVisitStart(visit: SwupVisit): void {
   if (crossesLocale(visit) && !visit.containers.includes(HEADER_CONTAINER)) {
     visit.containers = [HEADER_CONTAINER, ...visit.containers]
   }
-  if (searchNavigation && visit.a11y) visit.a11y.focus = false
-  searchNavigation = false
 
   const section = visit.trigger?.el?.closest<HTMLElement>('[data-nav]')?.dataset['nav']
   if (section !== undefined) setActiveSection(section)
@@ -327,11 +296,6 @@ function onPageView(): void {
   syncLanguageLinks()
   watchHeader()
   startHeroVideo()
-  const params = new URLSearchParams(window.location.search)
-  const query = params.get('q') ?? ''
-  for (const input of document.querySelectorAll<HTMLInputElement>('[data-search-input]')) {
-    if (input !== document.activeElement) input.value = query
-  }
 }
 
 enableIslands()
@@ -341,7 +305,6 @@ onPageView()
 withSwup((swup) => {
   swup.hooks.on('page:view', onPageView)
   swup.hooks.on('content:replace', () => {
-    window.clearTimeout(searchTimer)
     headerObserver?.disconnect()
     setActiveSection(currentSection())
   })
@@ -354,6 +317,7 @@ withSwup((swup) => {
   bindReliefScroll(swup)
   bindAtlas(swup)
   bindBrowse(swup)
+  bindSearch(swup)
   bindLoading(swup)
   swup.hooks.on('visit:start', onVisitStart)
   bindThreshold(swup)
