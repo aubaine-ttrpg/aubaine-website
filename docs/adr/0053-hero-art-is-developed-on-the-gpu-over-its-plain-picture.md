@@ -2,6 +2,10 @@
 
 **Project:** Aubaine, the wiki
 **Status:** Accepted
+**Revised:** 2026-10-23, Decision 1's portrait hero gives way to the character sheet of 0054
+**Revised:** 2026-10-23, Decision 2's engine also draws the moving stage of 0054, so it loads on
+every Species and Tree page
+**Revised:** 2026-10-23, Decision 3's portrait `sizes` gives way to the card `sizes` of 0054
 **Date:** 2026-10-23
 **Deciders:** Kori
 **Scope:** The pictures of a tree and of a species: their hero, their card, their social image and
@@ -61,6 +65,12 @@ both shapes also means generating two pictures for every tree and species. Versi
 - **Crop a 16:9 hero out of the cover at build time**: a full-width band keeps about 42 % of a
   portrait's height and loses its subject. Rejected. Reopens if a full-bleed hero is wanted back.
 - **Keep the banner for the social image alone**: still a second generation. Rejected.
+
+### Addendum (2026-10-23): the portrait gives way to a framed card
+
+- The one 3:4 cover stands. The portrait layout of `Hero.astro` is withdrawn: Species and Tree pages
+  draw `CharacterHero.astro`, where the cover is a framed card beside a column of text on a dark
+  stage, and `Hero.astro` keeps only the banner. See 0054 Decision 1.
 
 ---
 
@@ -139,6 +149,16 @@ both shapes also means generating two pictures for every tree and species. Versi
 - Once a canvas has taken over, its picture is `visibility: hidden`. A test that expects a developed
   plate's image to be visible will fail by design.
 
+### Addendum (2026-10-23): the same context draws the hero's stage
+
+- The studio also draws the moving backdrop of 0054 Decision 4, so `boot.ts` loads `studio` and
+  `stage` on every Species and Tree page outside reduced motion. The plate code, now its own chunk,
+  still loads only where a plate names an effect, and `tests/e2e/art-effect.spec.ts` checks it for
+  `plates` alone.
+- The studio canvas only grows, and each copy takes the drawn rectangle from it, so a plate and the
+  stage share it without a resize every frame. The grain test counts copies into the plate's canvas
+  instead of draw calls on the context.
+
 ---
 
 ## Decision 3: A hero asks for an image as wide as its crop
@@ -161,6 +181,11 @@ both shapes also means generating two pictures for every tree and species. Versi
 
 - **`sizes="auto"`**: the browser would measure the image itself, but only for an image loaded
   lazily, and 0048 loads every image eagerly. Rejected.
+
+### Addendum (2026-10-23): the card asks for its own width
+
+- The portrait panel's `clamp` is gone with the panel. The card of 0054 asks for its own width, at
+  both breakpoints. See 0054 Decision 5. A banner hero keeps `max(100vw, calc(<minHeight> * <ratio>))`.
 
 ---
 
