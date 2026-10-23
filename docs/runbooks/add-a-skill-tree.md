@@ -20,6 +20,7 @@ The filename is the id and the id becomes the URL. Lowercase letters, digits and
 | `id` | required | Identifiant de l'arbre, qui devient son URL. | `^[a-z][a-z0-9-]*$` |
 | `status` | optional | Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable : les listes le masquent tant que le lecteur n'affiche pas les brouillons ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une Espèce, une pièce d'équipement ou une panoplie, dans cet ordre. | `draft`, `playtest`, `beta`, `balanced` |
 | `name` | required | Titre rendu sur la planche. | any non empty string |
+| `subtitle` | optional | Devise de l'arbre, rendue en italique sous le titre sur la page et sur la couverture du livret. Absente, le titre reste seul. | any non empty string |
 | `treeType` | required | Rendu en sous-titre : Espèce, Archétype ou Domaine. | `species`, `archetype`, `domain` |
 | `size` | required | Nombre de Compétences que la planche est dessinée pour tenir. | `8` or `16` |
 | `cover` | optional | Couverture au rapport 3:4, dans `data/media/art/` : l'unique illustration de l'arbre, sur sa carte, dans son héros, sur la couverture de son livret et dans sa vignette sociale. Absente, la planche 3:4 par défaut. | a `3_4` filename that exists, named per [add-an-image.md](add-an-image.md) |
