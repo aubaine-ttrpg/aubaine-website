@@ -92,7 +92,7 @@ Two facts about a picture are otherwise impossible to recover once it is on disk
 
 `pnpm data:check` opens every picture and compares the declared ratio to the real pixels, so the name cannot drift from the image. A video's ratio is checked as a name only, for the reasons recorded in `docs/adr/0009-pictures-name-their-shape-trees-carry-two.md`.
 
-A tree and a species carry one picture, the 3:4 `cover`: their card, their hero and their social image, cut from the top of the portrait. A book and the equipment catalogue carry `cover` and `banner`: the card uses `cover` and falls back to `banner` when there is none, and the hero and the social image use `banner`.
+A tree and a species carry one picture, the 3:4 `cover`: their card, their hero and their social image, cut from the top of the portrait. A book and the equipment catalogue carry `cover` and `banner`: the card uses `cover` and falls back to `banner` when there is none, and the hero and the social image use `banner`. See `docs/adr/0053-hero-art-is-developed-on-the-gpu-over-its-plain-picture.md`.
 
 Every picture field is optional, and none of them leaves a hole. A slot with nothing named draws the default plate for its ratio, held in `src/lib/media.ts`: a 3:4 one behind a card, a 16:9 one behind a hero, a 1:1 one on a skill or an item. Naming a real picture is still the point; the default keeps a page whole until one exists.
 

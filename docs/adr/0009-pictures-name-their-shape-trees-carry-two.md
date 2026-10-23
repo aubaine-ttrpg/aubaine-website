@@ -5,6 +5,8 @@
 **Date:** 2026-09-20
 **Revised:** 2026-09-22, Decision 1 reaches `data/media/video/` and gains a fifth state, `compressed`
 **Revised:** 2026-10-22, Decision 1 lets `data/media/art/` hold a 3:1 panorama that a lore page draws
+**Revised:** 2026-10-23, Decision 2 is reversed for trees and species by 0053: they keep one 3:4
+`cover` for card, hero and social image, and lose `banner`; books keep both
 **Deciders:** Kori
 **Scope:** How a file under `data/media/art/` and `data/media/items/` is named, and how a tree or a
 book points at the pictures it needs. Does not cover the icon sets, which are Iconify names recorded
@@ -218,6 +220,15 @@ is the point at which a rule by ratio family would be cheaper than a list.
   one across a clean `dist` and `.astro` rebuild. The trap is recorded in
   `docs/runbooks/add-an-image.md`; it is a property of the content layer cache and not of this
   decision, but it bites hardest when media or icons change.
+
+### Addendum (2026-10-23): reversed for trees and species by 0053
+
+The alternative above reopened on its own condition: the hero of a tree and of a species became a
+portrait band, the 3:4 cover standing on the right of the hero and fading into the page. The owner
+also wants one generated picture per entry rather than two. So `skillTree.banner` and
+`species.banner` are withdrawn, the hero draws `cover`, and the social image is cut from the top of
+the cover. 0053 Decision 1 records the reasons. A book and the equipment catalogue keep `cover` and
+`banner` exactly as decided here.
 
 ---
 
