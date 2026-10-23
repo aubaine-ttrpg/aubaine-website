@@ -31,7 +31,7 @@ type Props = {
   name: string
   kicker: string
   art?: string | undefined
-  mark: string
+  mark?: string | undefined
   characteristics?: CoverCardCharacteristic[] | undefined
   entry: CoverCardEntry
   index: number
@@ -79,11 +79,15 @@ const {
       aria-hidden="true"
       style="position:absolute; inset:0; background:linear-gradient(0deg, var(--scrim1) 0%, var(--scrim-mid) 30%, var(--scrim2) 64%)"
     ></span>
-    <span
-      data-cover-spine="true"
-      aria-hidden="true"
-      style={`position:absolute; left:0; top:0; bottom:0; width:3px; background:${mark}; z-index:2`}
-    ></span>
+    {
+      mark && (
+        <span
+          data-cover-spine="true"
+          aria-hidden="true"
+          style={`position:absolute; left:0; top:0; bottom:0; width:3px; background:${mark}; z-index:2`}
+        />
+      )
+    }
     {
       status && (
         <span style="position:absolute; top:12px; left:14px; z-index:3">

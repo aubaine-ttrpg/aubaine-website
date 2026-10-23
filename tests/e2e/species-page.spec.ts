@@ -27,3 +27,11 @@ test('the Nnor are Humanoïdes and Bêtes, under the icon the rules give the cre
     page.locator('.au-trait', { hasText: '10,5 m' }).locator('[style*="speedometer"]'),
   ).toHaveCount(1)
 })
+
+test('species cards carry no domain spine, tree cards keep theirs', async ({ page }) => {
+  await page.goto('/fr/especes')
+  await expect(page.locator('[data-cover-card]').first()).toBeVisible()
+  await expect(page.locator('[data-cover-spine]')).toHaveCount(0)
+  await page.goto('/fr/arbres')
+  expect(await page.locator('[data-cover-spine]').count()).toBeGreaterThan(0)
+})

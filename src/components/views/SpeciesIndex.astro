@@ -1,6 +1,5 @@
 ---
 import type { Corpus } from '../../lib/game/corpus'
-import { frame } from '../../lib/game/derive'
 import type { ContentStatus } from '../../lib/game/schema'
 import { type BadgedStatus, badgedStatus } from '../../lib/game/status'
 import type { Locale } from '../../lib/i18n/locales'
@@ -17,8 +16,6 @@ type Props = { locale: Locale; corpus: Corpus }
 const { locale, corpus } = Astro.props
 const t = strings(locale)
 
-const DOMAIN_FALLBACK = '#2a2a2e'
-
 const STATUS_LABELS: Record<ContentStatus, string> = {
   draft: t.draft,
   playtest: t.playtest,
@@ -31,28 +28,23 @@ type Card = {
   name: string
   kicker: string
   art: string
-  mark: string
   entry: CoverCardEntry
   status: BadgedStatus | undefined
 }
 
-const cards: Card[] = corpus.species.map((entry) => {
-  const domains = [...new Set(entry.pool.flatMap((skill) => skill.domains))]
-  return {
-    href: pathFor('speciesEntry', locale, { species: entry.id }),
+const cards: Card[] = corpus.species.map((entry) => ({
+  href: pathFor('speciesEntry', locale, { species: entry.id }),
+  name: entry.name,
+  kicker: t.species,
+  art: entry.cover ?? entry.banner ?? PLACEHOLDER_COVER,
+  status: badgedStatus(entry.status),
+  entry: {
+    id: entry.id,
     name: entry.name,
-    kicker: t.species,
-    art: entry.cover ?? entry.banner ?? PLACEHOLDER_COVER,
-    mark: frame(domains.map((key) => corpus.domains.get(key)?.color ?? DOMAIN_FALLBACK)),
-    status: badgedStatus(entry.status),
-    entry: {
-      id: entry.id,
-      name: entry.name,
-      status: entry.status ?? 'balanced',
-      statusLabel: STATUS_LABELS[entry.status ?? 'balanced'],
-    },
-  }
-})
+    status: entry.status ?? 'balanced',
+    statusLabel: STATUS_LABELS[entry.status ?? 'balanced'],
+  },
+}))
 ---
 
 <div>
@@ -94,7 +86,6 @@ const cards: Card[] = corpus.species.map((entry) => {
             name={card.name}
             kicker={card.kicker}
             art={card.art}
-            mark={card.mark}
             entry={card.entry}
             index={index}
             locale={locale}
