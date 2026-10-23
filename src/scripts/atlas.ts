@@ -13,6 +13,7 @@ import { LoadProgress } from '../lib/atlas/contract/loading'
 import type { ToWorker } from '../lib/atlas/contract/protocol'
 import { automaticTier, type Tier } from '../lib/atlas/contract/quality'
 import type { AtlasBoot, AtlasBootCopy } from './atlas-boot'
+import { gpuReport } from './gpu'
 import { categoryGain, soundPreferences } from './sound-preferences'
 import type { SwupInstance } from './swup'
 
@@ -37,19 +38,10 @@ function probeGpu(): GpuProbe {
   const canvas = document.createElement('canvas')
   const gl = canvas.getContext('webgl2')
   if (!gl) return { kind: 'unavailable' }
-  const debug = gl.getExtension('WEBGL_debug_renderer_info')
-  const renderer = String(gl.getParameter(debug ? debug.UNMASKED_RENDERER_WEBGL : gl.RENDERER))
+  const report = gpuReport(gl)
   const maxSamples = Number(gl.getParameter(gl.MAX_SAMPLES))
   gl.getExtension('WEBGL_lose_context')?.loseContext()
-  return {
-    kind: 'webgl2',
-    maxSamples,
-    report: {
-      renderer,
-      cores: navigator.hardwareConcurrency,
-      coarsePointer: window.matchMedia('(pointer: coarse)').matches,
-    },
-  }
+  return { kind: 'webgl2', maxSamples, report }
 }
 
 async function mapSupport(gpu: GpuProbe): Promise<MapSupport> {
