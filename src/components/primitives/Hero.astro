@@ -1,4 +1,5 @@
 ---
+import { artImage } from '../../lib/media'
 import Banner from './Banner.astro'
 
 type Layout = 'banner' | 'portrait'
@@ -36,12 +37,21 @@ const {
 } = Astro.props
 
 const PORTRAIT_POSITION = '50% 24%'
+const PANEL_SPAN = 'min(100vw, 1560px)'
+
+const image = artImage(art)
+const aspect = image ? Math.round((image.width / image.height) * 10000) / 10000 : 16 / 9
+const coverWidth = `calc(${minHeight} * ${aspect})`
+const sizes =
+  layout === 'portrait'
+    ? `(min-width: 960px) clamp(calc(${PANEL_SPAN} * 0.42), ${coverWidth}, calc(${PANEL_SPAN} * 0.55)), max(100vw, ${coverWidth})`
+    : `max(100vw, ${coverWidth})`
 
 const scrims = [
   `background:linear-gradient(0deg, var(--scrim1) 0%, var(--scrim-mid) ${bottomStops[0]}%, var(--scrim2) ${bottomStops[1]}%)`,
   `background:linear-gradient(90deg, var(--scrim-side) 0%, var(--scrim-mid) ${sideStops[0]}%, var(--scrim2) ${sideStops[1]}%)`,
 ]
-const plate = { motion, seconds, settle, large, priority }
+const plate = { motion, seconds, settle, large, priority, sizes }
 ---
 
 <section

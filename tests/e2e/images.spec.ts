@@ -33,6 +33,25 @@ for (const { path, images } of PAGES_FULL_OF_IMAGES) {
   })
 }
 
+test.describe('on a portrait phone', () => {
+  test.use({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 3 })
+
+  test('a full-bleed hero fetches a file wide enough for its crop', async ({ page }) => {
+    await page.goto('/fr/arbres')
+    const hero = page.locator('section.au-hero img').first()
+    await expect.poll(() => hero.evaluate((node: HTMLImageElement) => node.complete)).toBe(true)
+    const { chosen, widest } = await hero.evaluate((node: HTMLImageElement) => {
+      const candidates = node.srcset.split(',').map((entry) => {
+        const [url = '', width = '0w'] = entry.trim().split(/\s+/)
+        return { url: new URL(url, document.baseURI).href, width: Number.parseInt(width, 10) }
+      })
+      const largest = candidates.reduce((a, b) => (b.width > a.width ? b : a))
+      return { chosen: node.currentSrc, widest: largest.url }
+    })
+    expect(chosen).toBe(widest)
+  })
+})
+
 test('a visit to the trees index loads every card plate before the reader scrolls', async ({
   page,
 }) => {

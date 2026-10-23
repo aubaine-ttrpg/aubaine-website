@@ -11,6 +11,7 @@ type Props = {
   settle?: number
   large?: boolean
   priority?: boolean
+  sizes?: string
 }
 
 const {
@@ -21,6 +22,7 @@ const {
   settle = 2.2,
   large = false,
   priority = false,
+  sizes = '100vw',
 } = Astro.props
 
 const image = artImage(art)
@@ -57,7 +59,7 @@ const style = [
       src={image}
       alt=""
       widths={[640, 960, 1280, 1672, 2400, 3344]}
-      sizes="100vw"
+      sizes={sizes}
       layout="none"
       fetchpriority={priority ? 'high' : 'auto'}
       decoding={priority ? 'sync' : 'async'}
