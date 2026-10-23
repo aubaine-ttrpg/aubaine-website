@@ -92,6 +92,11 @@ const words = SUBSPECIES_WORDS[species.subspeciesLabel]
 const SUBSPECIES_ID = SUBSPECIES_SECTIONS[species.subspeciesLabel]
 const PLAYING_ID = 'jouer'
 
+const subspeciesNamed = species.subspecies.map((sub) => ({
+  ...sub,
+  familyNames: sub.names?.family ?? species.familyNames,
+}))
+
 const languages = named(corpus.languages, species.languages ?? [])
 const roleplay = species.roleplay
 const playing = [
@@ -198,11 +203,11 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
             {hasSubspecies && (
               <section>
                 <h2 id={SUBSPECIES_ID}>{words.plural}</h2>
-                {species.subspecies.map((sub) => (
+                {subspeciesNamed.map((sub) => (
                   <article id={subspeciesAnchor(sub.id)} class="au-subspecies">
                     <h3>{sub.name}</h3>
                     <RuleText source={sub.text} corpus={corpus} locale={locale} />
-                    {(sub.imposedSkill || sub.names) && (
+                    {(sub.imposedSkill || sub.names || sub.familyNames) && (
                       <dl>
                         {sub.imposedSkill && (
                           <>
@@ -232,12 +237,12 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
                                 <dd>{sub.names.given.join(', ')}</dd>
                               </>
                             )}
-                            {sub.names.family && (
-                              <>
-                                <dt>{t.namesFamily}</dt>
-                                <dd>{sub.names.family.join(', ')}</dd>
-                              </>
-                            )}
+                          </>
+                        )}
+                        {sub.familyNames && (
+                          <>
+                            <dt>{species.familyNamesLabel ?? t.namesFamily}</dt>
+                            <dd>{sub.familyNames.join(', ')}</dd>
                           </>
                         )}
                       </dl>

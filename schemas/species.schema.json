@@ -96,6 +96,20 @@
         "subspecies"
       ]
     },
+    "familyNames": {
+      "description": "Les noms de famille que portent toutes ses sous-espèces, dans leur ordre, rendus avec ceux de chacune. Une sous-espèce qui déclare names.family remplace cette liste. Absent : chaque sous-espèce déclare les siens, ou n'en a pas. Ne s'écrit qu'avec subspecies.",
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "familyNamesLabel": {
+      "description": "L'intitulé de ses noms de famille, ceux de familyNames comme ceux de ses sous-espèces, quand le peuple ne parle pas de noms de famille : « Yurtas » pour les Nnors, qui portent le nom de leur Yurta. Absent : « Noms de famille ». Ne s'écrit qu'avec des noms de famille.",
+      "type": "string",
+      "minLength": 1
+    },
     "subspecies": {
       "description": "Les sous-espèces de l'Espèce, présentées sur sa page et jamais sur une page à elles. Le personnage en choisit une à la création. Absent : l'Espèce n'en compte aucune.",
       "minItems": 1,

@@ -677,6 +677,28 @@ describe('media', () => {
     }
   })
 
+  it('writes a name list shared by every sub-species once, on the species', () => {
+    for (const entry of fr.species) {
+      const seen = new Map<string, string>()
+      for (const sub of entry.subspecies) {
+        for (const [kind, list] of Object.entries(sub.names ?? {})) {
+          const key = `${kind}:${JSON.stringify(list)}`
+          const other = seen.get(key)
+          expect(
+            other,
+            `${entry.id}: ${sub.id} repeats the ${kind} names of ${other}`,
+          ).toBeUndefined()
+          seen.set(key, sub.id)
+        }
+        if (entry.familyNames && sub.names?.family) {
+          expect(sub.names.family, `${entry.id}: ${sub.id} repeats familyNames`).not.toEqual(
+            entry.familyNames,
+          )
+        }
+      }
+    }
+  })
+
   it('points every book at a cover, a banner and a back cover that exist', async () => {
     const art = new Set(await readdir(resolve(root, 'data/media/art')))
     for (const book of fr.books) {

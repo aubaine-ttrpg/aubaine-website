@@ -563,6 +563,18 @@ export const species = z
       .describe(
         "Le nom que l'Espèce donne à ses sous-espèces, celui que le lecteur lit en intertitre, dans le sommaire, dans la table Jouer et sur le filtre : 'regional-origins' pour « Origines régionales », 'subspecies' pour « Sous-espèces ». Absent : 'regional-origins'. Ne s'écrit qu'avec subspecies.",
       ),
+    familyNames: nameList
+      .optional()
+      .describe(
+        "Les noms de famille que portent toutes ses sous-espèces, dans leur ordre, rendus avec ceux de chacune. Une sous-espèce qui déclare names.family remplace cette liste. Absent : chaque sous-espèce déclare les siens, ou n'en a pas. Ne s'écrit qu'avec subspecies.",
+      ),
+    familyNamesLabel: z
+      .string()
+      .min(1)
+      .optional()
+      .describe(
+        "L'intitulé de ses noms de famille, ceux de familyNames comme ceux de ses sous-espèces, quand le peuple ne parle pas de noms de famille : « Yurtas » pour les Nnors, qui portent le nom de leur Yurta. Absent : « Noms de famille ». Ne s'écrit qu'avec des noms de famille.",
+      ),
     subspecies: z
       .array(subspecies)
       .min(1)
@@ -590,6 +602,21 @@ export const species = z
     message: "une Espèce sans sous-espèce n'a pas à les nommer : omettez subspeciesLabel.",
     path: ['subspeciesLabel'],
   })
+  .refine((value) => value.familyNames === undefined || value.subspecies !== undefined, {
+    message:
+      "une Espèce sans sous-espèce n'a personne à qui donner ses noms de famille : omettez familyNames.",
+    path: ['familyNames'],
+  })
+  .refine(
+    (value) =>
+      value.familyNamesLabel === undefined ||
+      value.familyNames !== undefined ||
+      (value.subspecies ?? []).some((sub) => sub.names?.family !== undefined),
+    {
+      message: "une Espèce sans nom de famille n'a pas à les intituler : omettez familyNamesLabel.",
+      path: ['familyNamesLabel'],
+    },
+  )
 
 export const skillList = z
   .object({
@@ -1785,6 +1812,7 @@ export const overlays = {
     name: z.string().optional(),
     subtitle: z.string().optional(),
     movement: z.string().optional(),
+    familyNamesLabel: z.string().optional(),
     subspecies: z
       .record(z.string(), localized({ name: z.string().optional(), text: z.string().optional() }))
       .optional()

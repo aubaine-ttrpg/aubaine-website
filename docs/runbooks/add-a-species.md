@@ -30,6 +30,8 @@ The filename is the id and the id becomes the URL. Lowercase letters, digits and
 | `languages` | optional | Langue(s) que l'Espèce parle, lit et écrit. Absent : l'Espèce n'en déclare pas encore, ou elle les tient de son origine ou de l'une de ses Espèces parentes, selon `derivedFrom`. | keys from `data/meta/languages.json` |
 | `offered` | required | Compétences d'Espèce proposées au choix, définies dans `data/skills/`. Le personnage en retient deux à la création : elles sont Mémorisées sans occuper de Mémoire, ne coûtent pas de PX et ne se changent plus ensuite. Il peut acheter les autres plus tard, au prix imprimé. Une sous-espèce ajoute les siennes à celles-ci, et peut imposer l'une des deux. `[]` : l'Espèce n'en propose encore aucune. | skill ids, or `[]` |
 | `subspeciesLabel` | optional | Le nom que l'Espèce donne à ses sous-espèces, celui que le lecteur lit en intertitre, dans le sommaire, dans la table Jouer et sur le filtre : `regional-origins` pour « Origines régionales », `subspecies` pour « Sous-espèces ». Absent : `regional-origins`. Ne s'écrit qu'avec `subspecies`. | `regional-origins` or `subspecies` |
+| `familyNames` | optional | Les noms de famille que portent toutes ses sous-espèces, dans leur ordre, rendus avec ceux de chacune. Une sous-espèce qui déclare `names.family` remplace cette liste. Absent : chaque sous-espèce déclare les siens, ou n'en a pas. Ne s'écrit qu'avec `subspecies`. | a non empty list of names in their order |
+| `familyNamesLabel` | optional | L'intitulé de ses noms de famille, ceux de `familyNames` comme ceux de ses sous-espèces, quand le peuple ne parle pas de noms de famille : « Yurtas » pour les Nnors, qui portent le nom de leur Yurta. Absent : « Noms de famille ». Ne s'écrit qu'avec des noms de famille. | any non empty string |
 | `subspecies` | optional | Les sous-espèces de l'Espèce, présentées sur sa page et jamais sur une page à elles. Le personnage en choisit une à la création. Absent : l'Espèce n'en compte aucune. | an array of sub-species, see below |
 | `subspecies[].id` | required inside a sub-species | Identifiant de la sous-espèce, unique dans son Espèce, et l'ancre de sa présentation. | `^[a-z][a-z0-9-]*$` |
 | `subspecies[].name` | required inside a sub-species | Nom rendu en intertitre. L'overlay anglais le traduit quand c'est un nom commun, comme Fantôme, et le laisse tel quel quand c'est un nom propre, comme Landenheit. | any non empty string |
@@ -161,7 +163,7 @@ Les Nnors, fidèles à leurs montagnes, éprouvent une curiosité grandissante p
 
 ## The English overlay
 
-`data/species/<id>.en.json` carries only the strings that change: `name`, `subtitle`, `movement`, `subspecies` and `roleplay`. `types`, `size` and `languages` are never translated: they name keys, and the reader sees the `labelEn` from `data/meta/`. A sub-species is translated by its `id`: its `text` always, and its `name` when that name is a common noun, as the Mort-vivant's Fantôme becomes Ghost. A proper noun such as Landenheit stays as it is, and `names` never has an overlay. A name that is the same in both locales needs no overlay. See [add-a-translation.md](add-a-translation.md).
+`data/species/<id>.en.json` carries only the strings that change: `name`, `subtitle`, `movement`, `familyNamesLabel`, `subspecies` and `roleplay`. `types`, `size` and `languages` are never translated: they name keys, and the reader sees the `labelEn` from `data/meta/`. A sub-species is translated by its `id`: its `text` always, and its `name` when that name is a common noun, as the Mort-vivant's Fantôme becomes Ghost. A proper noun such as Landenheit stays as it is, and `names` never has an overlay. A name that is the same in both locales needs no overlay. See [add-a-translation.md](add-a-translation.md).
 
 ```json
 {
@@ -223,7 +225,9 @@ Then open `/fr/especes` and click through to the new species.
 
 **Every species skill a character can buy also goes in the Banque Commune.** Add its id to `data/skill-lists/common-bank.json` as well as to `offered`. A character keeps two for free at creation, which is why the species page prints no PX, and buys the others later from the Banque Commune, which prints the price. The skill's `prerequisite` is what reserves it to the species, or to its sous-espèce or origine régionale. Two kinds stay out of it: a Compétence a sub-species imposes, which no one buys (see the trap above), and Scothan's two Compétences, which are both kept at creation and are unique to each Scothan, so they are offered by the Scothan page alone. The term index reads every species pool, so a `{{...}}` naming one still links to it there.
 
-**Name lists are copied, never translated.** `subspecies[].names` keeps each list in the order and spelling the author gave, and the English overlay cannot carry them.
+**Name lists are copied, never translated.** `subspecies[].names` and `familyNames` keep each list in the order and spelling the author gave, and the English overlay cannot carry them.
+
+**A list every sub-species shares is written once, on the species.** Two sub-species with the same family names give them through `familyNames`, as the Nnors give their Yurtas, and each sub-species page shows them. `pnpm data:check` refuses two sub-species of one species that carry the same list, and a sub-species list that repeats `familyNames`.
 
 **A species is not a planche.** It has no `placements`, no `pos`, no plate and no booklet. If a set of Compétences wants a plate, it is an Arbre, not an Espèce.
 
