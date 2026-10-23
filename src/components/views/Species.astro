@@ -5,7 +5,8 @@ import { label } from '../../lib/game/corpus'
 import {
   DEFAULT_MOVEMENT_METRES,
   formatNumber,
-  SPECIES_PLATE_ICONS,
+  SPECIES_ORIGIN_ICON,
+  SPECIES_PLATE_TERMS,
   SUBSPECIES_SECTIONS,
   subspeciesAnchor,
 } from '../../lib/game/derive'
@@ -46,22 +47,35 @@ const derived =
       ? t.sizeFromOrigins
       : undefined
 
+const termIcon = (reference: string): string => {
+  const icon = corpus.terms.keys.get(reference)?.icon
+  if (!icon)
+    throw new Error(`the species plates name the rule term {{${reference}}}, which has no icon`)
+  return icon
+}
+
 const plates = [
   ...(creatureTypes.length > 0
-    ? [{ icon: SPECIES_PLATE_ICONS.type, label: t.creatureType, value: creatureTypes.join(' · ') }]
+    ? [
+        {
+          icon: termIcon(SPECIES_PLATE_TERMS.type),
+          label: t.creatureType,
+          value: creatureTypes.join(' · '),
+        },
+      ]
     : []),
   ...(derived
-    ? [{ icon: SPECIES_PLATE_ICONS.derived, label: t.speciesOrigin, value: derived }]
+    ? [{ icon: SPECIES_ORIGIN_ICON, label: t.speciesOrigin, value: derived }]
     : [
         {
-          icon: SPECIES_PLATE_ICONS.movement,
+          icon: termIcon(SPECIES_PLATE_TERMS.movement),
           label: t.movement,
           value: species.movement ?? `${formatNumber(DEFAULT_MOVEMENT_METRES, locale)} m`,
         },
         ...(sizes.length > 0
           ? [
               {
-                icon: SPECIES_PLATE_ICONS.size,
+                icon: termIcon(SPECIES_PLATE_TERMS.size),
                 label: t.sizeCategory,
                 value: sizes.join(` ${t.or} `),
               },

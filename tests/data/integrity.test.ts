@@ -15,7 +15,8 @@ import {
 import { type Corpus, definition, label } from '../../src/lib/game/build'
 import {
   characteristicKey,
-  SPECIES_PLATE_ICONS,
+  SPECIES_ORIGIN_ICON,
+  SPECIES_PLATE_TERMS,
   SPECIES_SKILL_CHOICES,
   showsXp,
   skillTags,
@@ -653,13 +654,14 @@ describe('media', () => {
     }
   })
 
-  it('keeps every icon the species plates name on disk', async () => {
-    for (const icon of Object.values(SPECIES_PLATE_ICONS)) {
-      const [set, name] = icon.split(':')
-      await expect(
-        readFile(resolve(root, `data/media/icons/${set}/${name}.svg`)),
-      ).resolves.toBeDefined()
+  it('gives every species plate the icon of a rule term, and keeps the origin icon on disk', async () => {
+    for (const reference of Object.values(SPECIES_PLATE_TERMS)) {
+      expect(fr.terms.keys.get(reference)?.icon, `species plate {{${reference}}}`).toBeTruthy()
     }
+    const [set, name] = SPECIES_ORIGIN_ICON.split(':')
+    await expect(
+      readFile(resolve(root, `data/media/icons/${set}/${name}.svg`)),
+    ).resolves.toBeDefined()
   })
 
   it('points every species at art that exists', async () => {

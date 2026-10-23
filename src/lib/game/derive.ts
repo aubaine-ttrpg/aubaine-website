@@ -31,12 +31,13 @@ export const VARIABLE_CHARACTERISTIC = 'any'
 
 export const SPECIES_SKILL_CHOICES = 2
 
-export const SPECIES_PLATE_ICONS = {
-  type: 'mdi:shape',
-  movement: 'game-icons:walking-boot',
-  size: 'material-symbols:people-size-increase-rounded',
-  derived: 'mdi:dna',
+export const SPECIES_PLATE_TERMS = {
+  type: 'type-de-creature',
+  movement: 'vitesse',
+  size: 'taille',
 } as const
+
+export const SPECIES_ORIGIN_ICON = 'mdi:dna'
 
 export const DEFAULT_MOVEMENT_METRES = 9
 
