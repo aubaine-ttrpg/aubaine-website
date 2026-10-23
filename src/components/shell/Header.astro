@@ -158,6 +158,7 @@ const menus = [
   >
     <span
       aria-hidden="true"
+      data-search-ring
       style="flex:none; width:12px; height:12px; border:1.5px solid rgba(246,242,230,.6); border-radius:50%"></span>
     <input
       type="search"
@@ -297,6 +298,17 @@ const menus = [
 
   [data-search-form]:focus-within {
     border-color: #efbe04;
+  }
+
+  [data-search-form][data-search-pending] [data-search-ring] {
+    border-top-color: #efbe04;
+    animation: search-pending 0.7s linear infinite;
+  }
+
+  @keyframes search-pending {
+    to {
+      transform: rotate(1turn);
+    }
   }
 
   [data-theme-toggle]:hover {

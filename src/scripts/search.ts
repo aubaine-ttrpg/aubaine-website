@@ -1,8 +1,11 @@
+import { enterDelay, STAGGER_STEP } from '../components/primitives/stagger'
 import { formatNumber, slugify } from '../lib/game/derive'
 import { HTML_LANG, isLocale } from '../lib/i18n/locales'
 import type { SwupInstance, SwupVisit } from './swup'
 
 const SEARCH_DELAY = 320
+
+type Reveal = 'arrival' | 'refinement'
 
 let searchTimer: number | undefined
 let searchNavigation = false
@@ -30,7 +33,19 @@ function searchPath(input: HTMLInputElement): string | undefined {
   return query ? `${action}?q=${encodeURIComponent(query)}` : action
 }
 
-function filterRows(results: HTMLElement, query: string): number {
+function setPending(form: HTMLFormElement | null, pending: boolean): void {
+  form?.toggleAttribute('data-search-pending', pending)
+}
+
+function revealRow(row: HTMLElement, reveal: Reveal, order: number): void {
+  if (reveal === 'arrival') {
+    row.style.setProperty('--enter-delay', `${enterDelay(order, STAGGER_STEP.row)}ms`)
+    return
+  }
+  if (row.hidden) row.setAttribute('data-refined', '')
+}
+
+function filterRows(results: HTMLElement, query: string, reveal: Reveal): number {
   const terms = queryTerms(query)
   let shown = 0
   for (const group of results.querySelectorAll<HTMLElement>('[data-search-group]')) {
@@ -38,8 +53,11 @@ function filterRows(results: HTMLElement, query: string): number {
     for (const row of group.querySelectorAll<HTMLElement>('[data-search-row]')) {
       const name = row.dataset['name']
       const matched = name !== undefined && nameMatches(name, terms)
+      if (matched) {
+        revealRow(row, reveal, shown + shownInGroup)
+        shownInGroup += 1
+      }
       row.hidden = !matched
-      if (matched) shownInGroup += 1
     }
     group.hidden = shownInGroup === 0
     shown += shownInGroup
@@ -64,9 +82,9 @@ function describeResults(results: HTMLElement, query: string, shown: number): vo
   if (empty) empty.hidden = shown > 0
 }
 
-function showResults(results: HTMLElement, input: HTMLInputElement): void {
+function showResults(results: HTMLElement, input: HTMLInputElement, reveal: Reveal): void {
   const query = input.value.trim()
-  describeResults(results, query, filterRows(results, query))
+  describeResults(results, query, filterRows(results, query, reveal))
   const path = searchPath(input)
   if (path && path !== `${window.location.pathname}${window.location.search}`) {
     window.history.replaceState(window.history.state, '', path)
@@ -76,6 +94,7 @@ function showResults(results: HTMLElement, input: HTMLInputElement): void {
 function openResults(swup: SwupInstance, input: HTMLInputElement, keepFocus: boolean): void {
   const path = searchPath(input)
   if (!path) return
+  setPending(input.form, true)
   searchNavigation = keepFocus
   swup.navigate(path)
 }
@@ -86,11 +105,12 @@ function onInput(swup: SwupInstance, event: Event): void {
   window.clearTimeout(searchTimer)
   const results = resultsPage()
   if (results) {
-    showResults(results, input)
+    showResults(results, input, 'refinement')
     return
   }
-  if (!input.value.trim()) return
-  searchTimer = window.setTimeout(() => openResults(swup, input, true), SEARCH_DELAY)
+  const waiting = input.value.trim() !== ''
+  setPending(input.form, waiting)
+  if (waiting) searchTimer = window.setTimeout(() => openResults(swup, input, true), SEARCH_DELAY)
 }
 
 function onSubmit(swup: SwupInstance, event: SubmitEvent): void {
@@ -101,7 +121,7 @@ function onSubmit(swup: SwupInstance, event: SubmitEvent): void {
   event.preventDefault()
   window.clearTimeout(searchTimer)
   const results = resultsPage()
-  if (results) showResults(results, input)
+  if (results) showResults(results, input, 'refinement')
   else openResults(swup, input, false)
 }
 
@@ -113,11 +133,12 @@ function onVisitStart(visit: SwupVisit): void {
 function syncWithPage(): void {
   const input = searchField()
   if (!input) return
+  setPending(input.form, false)
   if (input !== document.activeElement) {
     input.value = new URLSearchParams(window.location.search).get('q') ?? ''
   }
   const results = resultsPage()
-  if (results) showResults(results, input)
+  if (results) showResults(results, input, 'arrival')
 }
 
 function onContentReplace(): void {

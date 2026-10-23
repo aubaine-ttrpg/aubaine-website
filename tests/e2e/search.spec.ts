@@ -16,6 +16,17 @@ function query(page: Page): string | null {
   return new URL(page.url()).searchParams.get('q')
 }
 
+function animation(row: Locator): Promise<{ name: string; delay: string; duration: string }> {
+  return row.evaluate((element) => {
+    const style = getComputedStyle(element)
+    return {
+      name: style.animationName,
+      delay: style.animationDelay,
+      duration: style.animationDuration,
+    }
+  })
+}
+
 async function markDocument(page: Page): Promise<void> {
   await page.waitForFunction(() => 'swup' in window)
   await page.evaluate(() => document.documentElement.setAttribute('data-same-document', ''))
@@ -101,4 +112,63 @@ test('clearing the field on the results page lists everything again', async ({ p
   await expect(page).toHaveURL('/en/search')
   await expect(visibleRows(page)).toHaveCount(total)
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Search')
+})
+
+test('arriving results rise one after another in the order they are listed', async ({ page }) => {
+  await page.goto('/en/search?q=arc')
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Results for arc')
+
+  const rows = visibleRows(page)
+  const first = await animation(rows.nth(0))
+  const second = await animation(rows.nth(1))
+  const third = await animation(rows.nth(2))
+  expect(first.name).toBe('au-rise')
+  expect([first.delay, second.delay, third.delay]).toEqual(['0s', '0.03s', '0.06s'])
+})
+
+test('a refinement fades in only the rows it brings back', async ({ page }) => {
+  await page.goto('/en/search?q=arc%20long')
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Results for arc long')
+  await expect(result(page, 'Arc court')).toBeHidden()
+
+  await searchField(page, 'Search Aubaine').fill('arc')
+
+  await expect(result(page, 'Arc court')).toBeVisible()
+  expect((await animation(result(page, 'Arc court'))).name).toBe('au-fade')
+  expect((await animation(result(page, 'Arc long'))).name).toBe('au-rise')
+})
+
+test('the search field shows it is working until the results arrive', async ({ page }) => {
+  await page.goto('/en/trees')
+  await page.waitForFunction(() => 'swup' in window)
+  const form = page.locator('#site-header [data-search-form]')
+
+  await searchField(page, 'Search Aubaine').pressSequentially('arc')
+  await expect(form).toHaveAttribute('data-search-pending', '')
+
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Results for arc')
+  await expect(form).not.toHaveAttribute('data-search-pending')
+})
+
+test('clearing the field before the search starts stays on the page', async ({ page }) => {
+  await page.goto('/en/trees')
+  await page.waitForFunction(() => 'swup' in window)
+  const field = searchField(page, 'Search Aubaine')
+
+  await field.fill('a')
+  await field.fill('')
+
+  await expect(page.locator('#site-header [data-search-form]')).not.toHaveAttribute(
+    'data-search-pending',
+  )
+  await page.waitForTimeout(600)
+  await expect(page).toHaveURL('/en/trees')
+})
+
+test('results appear at once when the reader prefers reduced motion', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.goto('/en/search?q=arc')
+
+  const { duration } = await animation(visibleRows(page).first())
+  expect(Number.parseFloat(duration)).toBeLessThan(0.01)
 })

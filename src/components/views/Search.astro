@@ -18,6 +18,7 @@ import type { Locale } from '../../lib/i18n/locales'
 import { pathFor, treeNodeHref } from '../../lib/i18n/routes'
 import { strings } from '../../lib/i18n/strings'
 import StatusBadge from '../primitives/StatusBadge.astro'
+import { enterDelay, STAGGER_STEP } from '../primitives/stagger'
 
 type Props = { locale: Locale; corpus: Corpus }
 
@@ -31,6 +32,7 @@ type Row = {
   status?: BadgedStatus | undefined
 }
 type Group = { title: string; rows: Row[] }
+type StagedGroup = { title: string; rows: { row: Row; delay: number }[] }
 
 const { locale, corpus } = Astro.props
 const t = strings(locale)
@@ -153,7 +155,18 @@ const groups: Group[] = [
   { title: t.rules, rows: ruleRows },
 ].filter((group) => group.rows.length > 0)
 
-const total = groups.reduce((sum, group) => sum + group.rows.length, 0)
+const staged: StagedGroup[] = []
+let total = 0
+for (const group of groups) {
+  staged.push({
+    title: group.title,
+    rows: group.rows.map((row, index) => ({
+      row,
+      delay: enterDelay(total + index, STAGGER_STEP.row),
+    })),
+  })
+  total += group.rows.length
+}
 ---
 
 <div
@@ -180,17 +193,18 @@ const total = groups.reduce((sum, group) => sum + group.rows.length, 0)
   </p>
 
   {
-    groups.map((group) => (
+    staged.map((group) => (
       <section data-search-group style="padding-bottom:30px">
         <h2 style="margin:0; padding-bottom:8px; border-bottom:1px solid var(--accent-line); font-family:var(--font-display); font-size:16px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold)">
           {group.title}
         </h2>
         <ul style="list-style:none; margin:0; padding:0">
-          {group.rows.map((row) => (
+          {group.rows.map(({ row, delay }) => (
             <li
               data-search-row
               data-name={slugify(row.title)}
-              style="border-bottom:1px solid var(--line)"
+              data-enters
+              style={`border-bottom:1px solid var(--line); --enter-delay:${delay}ms`}
             >
               <a
                 href={row.href}
@@ -218,7 +232,7 @@ const total = groups.reduce((sum, group) => sum + group.rows.length, 0)
     ))
   }
 
-  <div data-search-empty hidden style="padding:40px 0; max-width:var(--measure)">
+  <div data-search-empty data-enters hidden style="padding:40px 0; max-width:var(--measure)">
     <p style="margin:0 0 10px; font-family:var(--font-display); font-size:20px; color:var(--ink)">
       {t.emptyTitle}
     </p>
@@ -227,6 +241,10 @@ const total = groups.reduce((sum, group) => sum + group.rows.length, 0)
 </div>
 
 <style>
+  [data-search-row][data-refined] {
+    animation: au-fade 0.18s var(--ease) both;
+  }
+
   [data-search-link]:hover {
     background: var(--hover);
     padding-left: 7px;
