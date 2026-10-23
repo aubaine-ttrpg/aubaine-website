@@ -2,6 +2,7 @@ import { expect, type Page, test } from '@playwright/test'
 
 const SPECIES = '/fr/espece/nnor'
 const HERO = '[data-plate="hero"]'
+const STAGE = '[data-stage]'
 const SOFTWARE = /swiftshader|llvmpipe|softpipe|software|basic render/i
 
 async function giveFilmToTheHero(page: Page): Promise<void> {
@@ -43,6 +44,8 @@ test('without WebGL2 the hero keeps its picture and logs nothing', async ({ page
   await page.waitForTimeout(500)
   await expect(page.locator(`${HERO} > canvas`)).toHaveCount(0)
   await expect(page.locator(`${HERO} > img`)).toBeVisible()
+  await expect(page.locator(`${STAGE} > canvas`)).toHaveCount(0)
+  await expect(page.locator(STAGE)).not.toHaveAttribute('data-staged')
   expect(errors).toEqual([])
 })
 
@@ -62,5 +65,7 @@ test('a software renderer keeps the plain picture', async ({ page }) => {
   await page.waitForTimeout(500)
   await expect(page.locator(`${HERO} > canvas`)).toHaveCount(0)
   await expect(page.locator(`${HERO} > img`)).toBeVisible()
+  await expect(page.locator(`${STAGE} > canvas`)).toHaveCount(0)
+  await expect(page.locator(STAGE)).not.toHaveAttribute('data-staged')
   expect(errors).toEqual([])
 })

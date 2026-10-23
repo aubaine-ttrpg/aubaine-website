@@ -8,6 +8,7 @@ import {
   objectPosition,
   paintLevel,
   printRegion,
+  stageWindow,
 } from '../../src/lib/art-effect/cover'
 import { ART_EFFECTS, isArtEffect } from '../../src/lib/art-effect/effects'
 
@@ -155,6 +156,35 @@ describe('the copy out of the shared GPU canvas', () => {
       width: 900,
       height: 1000,
     })
+  })
+})
+
+describe('the window of the stage over its ambient picture', () => {
+  const ART = { width: 128, height: 171 }
+
+  it('matches a plain cover window when nothing bleeds', () => {
+    const box = { width: 1440, height: 830 }
+    const stage = stageWindow(box, ART, 0)
+    const plain = coverWindow(box, ART, { x: 0.5, y: 0.5 })
+    for (const axis of ['x', 'y'] as const) {
+      expect(stage.scale[axis]).toBeCloseTo(plain.scale[axis])
+      expect(stage.offset[axis]).toBeCloseTo(plain.offset[axis])
+    }
+  })
+
+  it('shows the centre of the picture at the centre of the stage', () => {
+    const window = stageWindow({ width: 1440, height: 830 }, ART, 48)
+    const centre = sourceAt(window, { x: 0.5, y: 0.5 })
+    expect(centre.x).toBeCloseTo(0.5)
+    expect(centre.y).toBeCloseTo(0.5)
+  })
+
+  it('shows less of the picture when the bleed pushes its edges out of the stage', () => {
+    const box = { width: 1440, height: 830 }
+    const bled = stageWindow(box, ART, 48)
+    const plain = stageWindow(box, ART, 0)
+    expect(bled.scale.x).toBeLessThan(plain.scale.x)
+    expect(bled.scale.y).toBeLessThan(plain.scale.y)
   })
 })
 

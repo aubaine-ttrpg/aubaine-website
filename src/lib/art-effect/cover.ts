@@ -76,3 +76,16 @@ export function frameIndex(milliseconds: number, perSecond: number): number {
 export function printRegion(drawn: Size, buffer: Size): Region {
   return { x: 0, y: buffer.height - drawn.height, width: drawn.width, height: drawn.height }
 }
+
+export function stageWindow(box: Size, natural: Size, bleed: number): CoverWindow {
+  const spread = { width: box.width + 2 * bleed, height: box.height + 2 * bleed }
+  const cover = coverWindow(spread, natural, { x: 0.5, y: 0.5 })
+  const scale = { x: box.width / spread.width, y: box.height / spread.height }
+  return {
+    scale: { x: scale.x * cover.scale.x, y: scale.y * cover.scale.y },
+    offset: {
+      x: cover.offset.x + (bleed / spread.width) * cover.scale.x,
+      y: cover.offset.y + (bleed / spread.height) * cover.scale.y,
+    },
+  }
+}

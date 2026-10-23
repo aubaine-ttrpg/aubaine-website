@@ -2,6 +2,7 @@ import {
   type Backing,
   blurLevel,
   type CoverWindow,
+  type Point,
   paintLevel,
   printRegion,
   type Size,
@@ -14,6 +15,7 @@ import {
   type EffectTier,
   PAINT_WIDEST,
   type Paint,
+  STAGE,
 } from '../../lib/art-effect/presets'
 import { automaticTier } from '../../lib/atlas/contract/quality'
 import { gpuReport } from '../gpu'
@@ -33,6 +35,7 @@ import develop from './glsl/develop.frag?raw'
 import finish from './glsl/finish.frag?raw'
 import kuwahara from './glsl/kuwahara.frag?raw'
 import printing from './glsl/print.frag?raw'
+import staging from './glsl/stage.frag?raw'
 import tensor from './glsl/tensor.frag?raw'
 import tensorBlur from './glsl/tensor-blur.frag?raw'
 
@@ -45,6 +48,16 @@ export type Exposure = {
 
 export type Print = { effect: ArtEffect; target: Target; exposure: Exposure }
 
+export type Backdrop = { target: Target }
+
+export type Scene = {
+  seconds: number
+  backing: Backing
+  cover: CoverWindow
+  blur: number
+  focus: Point
+}
+
 export type Studio = {
   readonly tier: EffectTier
   readonly limit: number
@@ -55,7 +68,9 @@ export type Studio = {
     signal: AbortSignal,
   ) => Promise<Print>
   show: (print: Print, seed: number, into: CanvasRenderingContext2D) => boolean
-  discard: (print: Print) => void
+  backdrop: (pixels: HTMLImageElement, signal: AbortSignal) => Promise<Backdrop>
+  stage: (backdrop: Backdrop, scene: Scene, into: CanvasRenderingContext2D) => boolean
+  discard: (held: Print | Backdrop) => void
 }
 
 type Painter = { tensor: Program; across: Program; orient: Program; kuwahara: Program }
@@ -133,6 +148,8 @@ function createStudio(): Studio | undefined {
   const life = new AbortController()
   const linked = new Map<ArtEffect, Promise<Programs>>()
   const ready = new Map<ArtEffect, Programs>()
+  let linkingStage: Promise<Program> | undefined
+  let stageProgram: Program | undefined
   let queue: Promise<unknown> = Promise.resolve()
 
   canvas.addEventListener(
@@ -392,7 +409,47 @@ function createStudio(): Studio | undefined {
       )
       return true
     },
-    discard: (print) => releaseTarget(gl, print.target),
+    backdrop: async (pixels, signal) => {
+      linkingStage ??= linkProgram(
+        gl,
+        { defines: [], presents: false, body: staging },
+        life.signal,
+      ).then((program) => {
+        stageProgram = program
+        return program
+      })
+      await linkingStage
+      signal.throwIfAborted()
+      return { target: upload(pixels) }
+    },
+    stage: (backdrop, scene, into) => {
+      const program = stageProgram
+      if (gl.isContextLost() || !program) return false
+      const { backing, cover, focus } = scene
+      copyOut(
+        backing,
+        () => {
+          activate(gl, program)
+          bindTexture(gl, program, 'uArt', 0, backdrop.target.texture)
+          gl.uniform2f(program.uniform('uBacking'), backing.width, backing.height)
+          gl.uniform4f(
+            program.uniform('uCover'),
+            cover.scale.x,
+            cover.scale.y,
+            cover.offset.x,
+            cover.offset.y,
+          )
+          gl.uniform1f(program.uniform('uBlur'), scene.blur)
+          gl.uniform2f(program.uniform('uFilter'), STAGE.saturate, STAGE.brightness)
+          gl.uniform1f(program.uniform('uSeconds'), scene.seconds)
+          gl.uniform2f(program.uniform('uFocus'), focus.x, focus.y)
+          draw(gl, undefined, backing.width, backing.height)
+        },
+        into,
+      )
+      return true
+    },
+    discard: (held) => releaseTarget(gl, held.target),
   }
   return studio
 }

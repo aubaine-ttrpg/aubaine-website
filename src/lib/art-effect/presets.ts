@@ -55,7 +55,14 @@ export type EffectSettings = {
   grain: Grain
 }
 
-export type EffectTier = { pixelBudget: number; paintCoarser: number; paintStrips: number }
+export type StagePace = { budget: number; perSecond: number }
+
+export type EffectTier = {
+  pixelBudget: number
+  paintCoarser: number
+  paintStrips: number
+  stage: StagePace | undefined
+}
 
 export const GRAIN_PER_SECOND = 24
 
@@ -119,7 +126,17 @@ export const EFFECT_SETTINGS: Record<ArtEffect, EffectSettings> = {
 }
 
 export const EFFECT_TIERS: Record<Tier, EffectTier> = {
-  ultra: { pixelBudget: 6_600_000, paintCoarser: 0, paintStrips: 2 },
-  high: { pixelBudget: 4_000_000, paintCoarser: 0, paintStrips: 4 },
-  low: { pixelBudget: 2_400_000, paintCoarser: 1, paintStrips: 4 },
+  ultra: {
+    pixelBudget: 6_600_000,
+    paintCoarser: 0,
+    paintStrips: 2,
+    stage: { budget: 400_000, perSecond: 30 },
+  },
+  high: {
+    pixelBudget: 4_000_000,
+    paintCoarser: 0,
+    paintStrips: 4,
+    stage: { budget: 240_000, perSecond: 24 },
+  },
+  low: { pixelBudget: 2_400_000, paintCoarser: 1, paintStrips: 4, stage: undefined },
 }

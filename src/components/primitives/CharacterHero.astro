@@ -251,12 +251,22 @@ const actions = Astro.slots.has('default') ? await Astro.slots.render('default')
     pointer-events: none;
   }
 
+  .au-character__backdrop > :global(canvas),
   .au-character__ambient,
   .au-character__shade,
   .au-character__halftone {
     position: absolute;
     inset: 0;
     display: block;
+  }
+
+  .au-character__backdrop > :global(canvas) {
+    width: 100%;
+    height: 100%;
+  }
+
+  .au-character__backdrop[data-staged] > .au-character__ambient {
+    visibility: hidden;
   }
 
   .au-character__ambient {
