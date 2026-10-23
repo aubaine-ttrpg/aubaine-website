@@ -67,6 +67,12 @@ export function paintLevel({ source, shown, widest, coarser, levels }: PaintScal
   return Math.min(levels - 1, Math.max(capped, enough) + coarser)
 }
 
-export function grainFrame(milliseconds: number, perSecond: number): number {
+export type Region = Point & Size
+
+export function frameIndex(milliseconds: number, perSecond: number): number {
   return Math.floor((milliseconds * perSecond) / 1000)
+}
+
+export function printRegion(drawn: Size, buffer: Size): Region {
+  return { x: 0, y: buffer.height - drawn.height, width: drawn.width, height: drawn.height }
 }

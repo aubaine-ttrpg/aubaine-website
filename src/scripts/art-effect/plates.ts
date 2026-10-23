@@ -1,4 +1,4 @@
-import { backingSize, coverWindow, grainFrame, objectPosition } from '../../lib/art-effect/cover'
+import { backingSize, coverWindow, frameIndex, objectPosition } from '../../lib/art-effect/cover'
 import { type ArtEffect, isArtEffect } from '../../lib/art-effect/effects'
 import { EFFECT_SETTINGS, GRAIN_PER_SECOND } from '../../lib/art-effect/presets'
 import { type Exposure, openStudio, type Print, type Studio } from './studio'
@@ -76,7 +76,7 @@ function mount(plate: HTMLElement, effect: ArtEffect, teardown: AbortController)
   const tick = (time: number): void => {
     frame = 0
     if (!animating() || !studio || !print) return
-    const next = grainFrame(time, GRAIN_PER_SECOND)
+    const next = frameIndex(time, GRAIN_PER_SECOND)
     if (next !== grain) {
       grain = next
       if (!studio.show(print, next >>> 0, surface)) return

@@ -1,4 +1,11 @@
-import { type Backing, blurLevel, type CoverWindow, paintLevel } from '../../lib/art-effect/cover'
+import {
+  type Backing,
+  blurLevel,
+  type CoverWindow,
+  paintLevel,
+  printRegion,
+  type Size,
+} from '../../lib/art-effect/cover'
 import type { ArtEffect } from '../../lib/art-effect/effects'
 import {
   EFFECT_SETTINGS,
@@ -146,6 +153,26 @@ function createStudio(): Studio | undefined {
     })
     linked.set(effect, linking)
     return linking
+  }
+
+  const copyOut = (size: Size, paint: () => void, into: CanvasRenderingContext2D): void => {
+    if (canvas.width < size.width) canvas.width = size.width
+    if (canvas.height < size.height) canvas.height = size.height
+    paint()
+    if (into.canvas.width !== size.width) into.canvas.width = size.width
+    if (into.canvas.height !== size.height) into.canvas.height = size.height
+    const region = printRegion(size, canvas)
+    into.drawImage(
+      canvas,
+      region.x,
+      region.y,
+      region.width,
+      region.height,
+      0,
+      0,
+      size.width,
+      size.height,
+    )
   }
 
   const upload = (pixels: HTMLImageElement): Target => {
@@ -345,23 +372,24 @@ function createStudio(): Studio | undefined {
       if (gl.isContextLost() || !programs) return false
       const { backing } = print.exposure
       const { amount, size, chroma, shadow, highlight } = EFFECT_SETTINGS[print.effect].grain
-      if (canvas.width !== backing.width) canvas.width = backing.width
-      if (canvas.height !== backing.height) canvas.height = backing.height
       const program = programs.print
-      activate(gl, program)
-      bindTexture(gl, program, 'uDeveloped', 0, print.target.texture)
-      gl.uniform3f(
-        program.uniform('uGrain'),
-        amount,
-        Math.max(1, size * print.exposure.devicePixel),
-        chroma,
+      copyOut(
+        backing,
+        () => {
+          activate(gl, program)
+          bindTexture(gl, program, 'uDeveloped', 0, print.target.texture)
+          gl.uniform3f(
+            program.uniform('uGrain'),
+            amount,
+            Math.max(1, size * print.exposure.devicePixel),
+            chroma,
+          )
+          gl.uniform2f(program.uniform('uGrainTone'), shadow, highlight)
+          gl.uniform1ui(program.uniform('uSeed'), seed)
+          draw(gl, undefined, backing.width, backing.height)
+        },
+        into,
       )
-      gl.uniform2f(program.uniform('uGrainTone'), shadow, highlight)
-      gl.uniform1ui(program.uniform('uSeed'), seed)
-      draw(gl, undefined, backing.width, backing.height)
-      if (into.canvas.width !== backing.width) into.canvas.width = backing.width
-      if (into.canvas.height !== backing.height) into.canvas.height = backing.height
-      into.drawImage(canvas, 0, 0)
       return true
     },
     discard: (print) => releaseTarget(gl, print.target),

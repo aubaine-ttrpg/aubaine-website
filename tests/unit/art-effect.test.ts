@@ -4,9 +4,10 @@ import {
   backingSize,
   blurLevel,
   coverWindow,
-  grainFrame,
+  frameIndex,
   objectPosition,
   paintLevel,
+  printRegion,
 } from '../../src/lib/art-effect/cover'
 import { ART_EFFECTS, isArtEffect } from '../../src/lib/art-effect/effects'
 
@@ -130,10 +131,30 @@ describe('the levels a plate samples', () => {
   })
 
   it('changes the grain twenty four times a second', () => {
-    expect(grainFrame(0, 24)).toBe(0)
-    expect(grainFrame(41, 24)).toBe(0)
-    expect(grainFrame(42, 24)).toBe(1)
-    expect(grainFrame(1000, 24)).toBe(24)
+    expect(frameIndex(0, 24)).toBe(0)
+    expect(frameIndex(41, 24)).toBe(0)
+    expect(frameIndex(42, 24)).toBe(1)
+    expect(frameIndex(1000, 24)).toBe(24)
+  })
+})
+
+describe('the copy out of the shared GPU canvas', () => {
+  it('takes the drawn rectangle from the bottom of a taller buffer', () => {
+    expect(printRegion({ width: 600, height: 400 }, { width: 900, height: 1000 })).toEqual({
+      x: 0,
+      y: 600,
+      width: 600,
+      height: 400,
+    })
+  })
+
+  it('takes the whole buffer when the drawing fills it', () => {
+    expect(printRegion({ width: 900, height: 1000 }, { width: 900, height: 1000 })).toEqual({
+      x: 0,
+      y: 0,
+      width: 900,
+      height: 1000,
+    })
   })
 })
 
