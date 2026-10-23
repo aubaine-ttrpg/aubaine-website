@@ -6,7 +6,8 @@
   "banner": "nnor-16_9-og.png",
   "movement": "10,5 m",
   "types": [
-    "humanoid"
+    "humanoid",
+    "beast"
   ],
   "size": [
     "medium"

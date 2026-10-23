@@ -530,7 +530,7 @@ export const species = z
       .min(1)
       .optional()
       .describe(
-        "Type(s) de créature de l'Espèce. La plupart sont Humanoïdes ; un peuple façonné en cumule deux, Humanoïde et Artificiel. Absent : l'Espèce n'en déclare pas encore, ou elle les tient de l'une de ses Espèces parentes.",
+        "Type(s) de créature de l'Espèce. La plupart sont Humanoïdes ; un peuple peut en cumuler deux, comme les Cindersöhls, Humanoïdes et Artificiels, ou les Nnors, Humanoïdes et Bêtes. Absent : l'Espèce n'en déclare pas encore, ou elle les tient de l'une de ses Espèces parentes.",
       ),
     size: z
       .array(sizeKey)
