@@ -97,7 +97,7 @@ The skill at `50, 50.81` holds the centre and has no `linked`, and every branch 
 ## What appears on the site
 
 - `/fr/arbres` and `/en/trees`: a new card in the tree index, with its cover, the computed domains and the skill count.
-- `/fr/arbre/<id>` and `/en/tree/<id>`: the hero, its cover standing on the right and fading into the page, with the tree name on the left, then the lore beside its sticky outline when the tree has one, then the section « Arbre de compétences » at `#arbre`, which the outline names last. The section holds the filters, then the legend over the plate with its nodes and link lines, beside a pane of the same width that asks the reader to choose a skill.
+- `/fr/arbre/<id>` and `/en/tree/<id>`: the hero, a dark stage in both themes, its cover framed as a card on the right over a backdrop drawn from the cover's own colours, with the kind of tree, the name, the descriptors, the profile hexagon when the tree has one, the primary characteristics and the booklet buttons on the left, then the lore beside its sticky outline when the tree has one, then the section « Arbre de compétences » at `#arbre`, which the outline names last. The section holds the filters, then the legend over the plate with its nodes and link lines, beside a pane of the same width that asks the reader to choose a skill.
 - `/fr/arbre/<id>/<SKILL-ID>`: the same page with that skill's card in the pane and its node circled in gold. A node on the plate links here with `#arbre`, and with JavaScript only the pane changes.
 - If `data/media/pdf/<id>.pdf` exists, a booklet download button appears in the hero. The filename must be the tree id.
 

@@ -3,6 +3,7 @@ import { bindArtEffects } from './art-effect/boot'
 import { bindAtlas } from './atlas'
 import { bindBook } from './book'
 import { bindBrowse } from './browse'
+import { bindCharacterHeroes } from './character-hero'
 import { enableIslands } from './islands'
 import { bindLoading } from './loading'
 import { bindPlateViewer } from './plate-viewer'
@@ -344,6 +345,7 @@ withSwup((swup) => {
   bindPlateViewer(swup)
   bindTorchlight(swup)
   bindArtEffects(swup)
+  bindCharacterHeroes(swup)
   bindReliefScroll(swup)
   bindAtlas(swup)
   bindBrowse(swup)

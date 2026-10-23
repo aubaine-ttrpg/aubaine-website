@@ -59,6 +59,8 @@ export type EffectTier = { pixelBudget: number; paintCoarser: number; paintStrip
 
 export const GRAIN_PER_SECOND = 24
 
+export const STAGE = { width: 128, bleed: 48, blur: 40, saturate: 1.45, brightness: 0.62 } as const
+
 export const PAINT_WIDEST = 1672
 
 export const EFFECT_SETTINGS: Record<ArtEffect, EffectSettings> = {

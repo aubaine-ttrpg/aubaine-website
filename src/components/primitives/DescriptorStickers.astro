@@ -1,0 +1,51 @@
+---
+type Props = { words: string[]; label: string }
+
+const { words, label } = Astro.props
+
+const TILTS = ['-3deg', '2deg', '-1.5deg', '2.5deg'] as const
+---
+
+<ul class="au-stickers" aria-label={label}>
+  {
+    words.map((word, order) => (
+      <li class="au-sticker" style={`--tilt:${TILTS[order % TILTS.length]}; --order:${order}`}>
+        {word}
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .au-stickers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .au-sticker {
+    padding: 9px 16px 8px;
+    rotate: var(--tilt);
+    background: var(--gold);
+    color: var(--on-gold);
+    font-family: var(--font-ui);
+    font-size: clamp(17px, 1.6vw, 22px);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    text-transform: uppercase;
+    box-shadow: 4px 5px 0 rgba(0, 0, 0, 0.62);
+    animation: au-sticker-slap 0.42s cubic-bezier(0.2, 1.45, 0.4, 1)
+      calc(0.16s + var(--order) * 0.07s) backwards;
+  }
+
+  @keyframes au-sticker-slap {
+    from {
+      transform: scale(1.45) rotate(-6deg);
+      box-shadow: 14px 18px 18px rgba(0, 0, 0, 0.35);
+    }
+  }
+</style>

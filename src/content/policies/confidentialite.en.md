@@ -1,6 +1,6 @@
 ---
 title: "Privacy"
-description: "This site collects no data about you and keeps only five settings in your browser."
+description: "This site collects no data about you and keeps only six settings in your browser."
 ---
 
 This site is a set of static pages. There is no account, no form and no database.
@@ -11,11 +11,12 @@ No analytics, no advertising tracker, no cookie, no social button, no third-part
 
 ## What stays in your browser
 
-Five settings are remembered once you change them:
+Six settings are remembered once you change them:
 
 - the light or dark theme, under the key `aubaine.theme`;
 - whether drafts are shown, under the key `aubaine.drafts`;
 - sound (on or muted, master volume, and the ambience, effects and interface volumes), under the key `aubaine.sound`;
+- whether the background animation at the top of Species and Tree pages is paused, under the key `aubaine.stage`;
 - the Atlas map view (top, 3/4, relief or free), under the key `aubaine.atlas.view`;
 - the Atlas options (display quality, screen effect, 3D or parchment rendering, legend open or closed, what the map shows), under the key `aubaine.atlas.settings`.
 

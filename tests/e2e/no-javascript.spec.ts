@@ -177,6 +177,25 @@ test('a tall hero still cues the reader below it without javascript', async ({ p
   await expect(page.locator('[data-scroll-cue]')).toBeInViewport()
 })
 
+test('a tree hero carries its whole sheet and its ambient picture without javascript', async ({
+  page,
+}) => {
+  await page.goto('/fr/arbre/marchand')
+  await expect(page.locator('[data-character] h1')).toHaveText('Marchand')
+  await expect(page.locator('[data-character] .au-sticker')).toHaveText([
+    'Achète',
+    'Vend',
+    'Échange',
+  ])
+  await expect(page.locator('[data-character] .au-rank__axis')).toHaveCount(6)
+  await expect(page.locator('[data-character] [data-plate="hero"] img')).toBeVisible()
+  expect(
+    await page
+      .locator('[data-stage] .au-character__ambient')
+      .evaluate((node) => getComputedStyle(node).backgroundImage),
+  ).toMatch(/\/_astro\/.+\.webp/)
+})
+
 test('the books hub only cards a book that leads somewhere', async ({ page }) => {
   await page.goto('/fr/livres')
   const cards = page.locator('[data-card]')

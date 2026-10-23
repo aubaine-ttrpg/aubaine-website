@@ -1,0 +1,736 @@
+---
+import { getImage } from 'astro:assets'
+
+import type { ArtEffect } from '../../lib/art-effect/effects'
+import { STAGE } from '../../lib/art-effect/presets'
+import { artKeyColour } from '../../lib/art-key-colour'
+import type { Profile } from '../../lib/game/profile'
+import type { BadgedStatus } from '../../lib/game/status'
+import type { Locale } from '../../lib/i18n/locales'
+import { strings } from '../../lib/i18n/strings'
+import { artImage, emblemUrl } from '../../lib/media'
+import Banner from './Banner.astro'
+import DescriptorStickers from './DescriptorStickers.astro'
+import Icon from './Icon.astro'
+import RankProfile from './RankProfile.astro'
+import StatusBadge from './StatusBadge.astro'
+import TraitPlates, { type Trait } from './TraitPlates.astro'
+
+type Props = {
+  locale: Locale
+  art: string
+  effect: ArtEffect | undefined
+  emblem: string | undefined
+  name: string
+  subtitle: string | undefined
+  kind: string
+  status: BadgedStatus | undefined
+  descriptors: string[]
+  traits: Trait[]
+  traitsLabel: string
+  profile?: Profile | undefined
+}
+
+const {
+  locale,
+  art,
+  effect,
+  emblem,
+  name,
+  subtitle,
+  kind,
+  status,
+  descriptors,
+  traits,
+  traitsLabel,
+  profile,
+} = Astro.props
+const t = strings(locale)
+
+const CARD_WIDE = 'clamp(300px, min(36vw, calc((92vh - 120px) * 0.75)), 560px)'
+const CARD_NARROW = 'min(calc(100vw - 32px), 520px)'
+const WIDEST_ADVANCE = 0.78
+const GHOST_SPAN = 70
+const GHOST_LARGEST = 22
+const NAME_SPAN = 100
+const NAME_LARGEST = 40
+
+const image = artImage(art)
+if (!image) throw new Error(`the hero names ${art}, which is not in data/media/art/`)
+const ambient = await getImage({ src: image, width: STAGE.width, format: 'webp', quality: 60 })
+
+const letters = Math.max(1, [...name].length)
+const fitted = (column: number, largest: number) =>
+  Math.min(largest, column / (WIDEST_ADVANCE * letters)).toFixed(2)
+const key = await artKeyColour(art)
+const stage = [
+  `--key:${key}`,
+  `--stage-art:url('${ambient.src}')`,
+  `--stage-bleed:${STAGE.bleed}px`,
+  `--stage-blur:${STAGE.blur}px`,
+  `--stage-saturate:${STAGE.saturate}`,
+  `--stage-brightness:${STAGE.brightness}`,
+  `--ghost-size:${fitted(GHOST_SPAN, GHOST_LARGEST)}cqi`,
+  `--name-fit:${fitted(NAME_SPAN, NAME_LARGEST)}cqi`,
+].join('; ')
+const sizes = `(min-width: 960px) ${CARD_WIDE}, ${CARD_NARROW}`
+const emblemSource = emblem ? emblemUrl(emblem) : undefined
+const EMBLEM_BOX = { x: 0, y: 0, width: 100, height: 100 } as const
+const actions = Astro.slots.has('default') ? await Astro.slots.render('default') : ''
+---
+
+<section
+  class="au-character au-dark"
+  data-character
+  style={`${stage}; --card-wide:${CARD_WIDE}; --card-narrow:${CARD_NARROW}`}
+>
+  <div class="au-character__backdrop" data-stage={ambient.src} aria-hidden="true">
+    <span class="au-character__ambient"></span>
+    <span class="au-character__shade"></span>
+    <span class="au-character__halftone"></span>
+  </div>
+
+  <div class="au-character__inner">
+    <p class="au-character__ghost" aria-hidden="true">{name}</p>
+
+    <div class="au-character__info">
+      <div class="au-character__eyebrow">
+        <p class="au-character__kind">
+          <svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+            <polygon points="50,4 90,27 90,73 50,96 10,73 10,27"></polygon>
+          </svg>
+          <span>{kind}</span>
+        </p>
+        <span class="au-character__rule" aria-hidden="true"></span>
+        {status && <StatusBadge status={status} locale={locale} />}
+      </div>
+      <h1 class="au-character__name">{name}</h1>
+      {subtitle && <p class="au-character__subtitle">{subtitle}</p>}
+      {
+        descriptors.length > 0 && (
+          <div class="au-character__descriptors">
+            <DescriptorStickers words={descriptors} label={t.descriptors} />
+          </div>
+        )
+      }
+      <div class:list={['au-character__sheet', { 'au-character__sheet--profiled': profile }]}>
+        {profile && <RankProfile profile={profile} locale={locale} />}
+        <div class="au-character__aside">
+          {
+            traits.length > 0 && (
+              <TraitPlates traits={traits} groupLabel={traitsLabel} />
+            )
+          }
+          {actions.trim() && <div class="au-character__actions" set:html={actions} />}
+        </div>
+      </div>
+    </div>
+
+    <div class="au-character__stage" data-tilt-card>
+      <span class="au-character__slab" aria-hidden="true"></span>
+      <div class="au-character__card">
+        <div class="au-character__plate">
+          <Banner
+            art={art}
+            objectPosition="50% 24%"
+            plate="hero"
+            effect={effect}
+            motion="zoom-drift"
+            seconds={24}
+            settle={1}
+            large
+            priority
+            sizes={sizes}
+          />
+        </div>
+        <span class="au-character__frame" aria-hidden="true"></span>
+        {
+          emblemSource && (
+            <svg
+              class="au-character__emblem"
+              viewBox={`0 0 ${EMBLEM_BOX.width} ${EMBLEM_BOX.height}`}
+              aria-hidden="true"
+              focusable="false"
+            >
+              <defs>
+                <linearGradient id="au-emblem-metal" x1="0.2" y1="0" x2="0.8" y2="1">
+                  <stop offset="0" style="stop-color:color-mix(in srgb, var(--gold) 40%, #fff)" />
+                  <stop offset="0.45" style="stop-color:var(--gold)" />
+                  <stop offset="1" style="stop-color:color-mix(in srgb, var(--gold) 62%, #08070d)" />
+                </linearGradient>
+                <mask id="au-emblem-shape" style="mask-type:alpha">
+                  <image href={emblemSource} {...EMBLEM_BOX} />
+                </mask>
+                <filter id="au-emblem-relief" x="-25%" y="-25%" width="150%" height="150%">
+                  <feMorphology in="SourceAlpha" operator="dilate" radius="2" result="wide" />
+                  <feGaussianBlur in="wide" stdDeviation="4" result="haze" />
+                  <feFlood flood-color="#06050d" flood-opacity="0.75" />
+                  <feComposite in2="haze" operator="in" result="halo" />
+                  <feOffset in="SourceAlpha" dy="-0.7" result="up" />
+                  <feFlood style="flood-color:color-mix(in srgb, var(--gold) 30%, #fff)" />
+                  <feComposite in2="up" operator="in" result="light" />
+                  <feOffset in="SourceAlpha" dy="1.1" result="down" />
+                  <feFlood flood-color="#06050d" flood-opacity="0.85" />
+                  <feComposite in2="down" operator="in" result="dark" />
+                  <feMerge>
+                    <feMergeNode in="halo" />
+                    <feMergeNode in="dark" />
+                    <feMergeNode in="light" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <g filter="url(#au-emblem-relief)">
+                <rect {...EMBLEM_BOX} fill="url(#au-emblem-metal)" mask="url(#au-emblem-shape)" />
+              </g>
+            </svg>
+          )
+        }
+        <span class="au-character__glare" aria-hidden="true"></span>
+      </div>
+    </div>
+  </div>
+
+  <button
+    type="button"
+    class="au-character__still"
+    data-stage-toggle
+    data-pause={t.stagePause}
+    data-play={t.stagePlay}
+    aria-label={t.stagePause}
+    hidden
+  >
+    <Icon name="mdi:pause" class="au-character__still-icon au-character__still-icon--pause" />
+    <Icon name="mdi:play" class="au-character__still-icon au-character__still-icon--play" />
+  </button>
+
+  <span aria-hidden="true" data-scroll-cue>
+    {t.scrollCue}
+    <svg
+      width="16"
+      height="9"
+      viewBox="0 0 16 9"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.6"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <polyline points="1,1 8,7.6 15,1"></polyline>
+    </svg>
+  </span>
+</section>
+
+<style>
+  .au-character {
+    --gold: var(--key);
+    --lean-x: 0;
+    --lean-y: 0;
+    --motion-state: running;
+    --card: var(--card-narrow);
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    overflow: clip;
+    container-type: inline-size;
+    background: var(--bg);
+    color: var(--ink);
+    border-bottom: 1px solid var(--line2);
+  }
+
+  .au-character[data-still] {
+    --motion-state: paused;
+  }
+
+  .au-character__backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: clip;
+    pointer-events: none;
+  }
+
+  .au-character__ambient,
+  .au-character__shade,
+  .au-character__halftone {
+    position: absolute;
+    inset: 0;
+    display: block;
+  }
+
+  .au-character__ambient {
+    inset: calc(var(--stage-bleed) * -1);
+    background: var(--stage-art) center / cover no-repeat;
+    filter: blur(var(--stage-blur)) saturate(var(--stage-saturate))
+      brightness(var(--stage-brightness));
+  }
+
+  .au-character__shade {
+    background:
+      radial-gradient(120% 90% at 70% 40%, transparent 30%, rgba(6, 5, 13, 0.7) 100%),
+      linear-gradient(180deg, rgba(6, 5, 13, 0.1) 0%, rgba(6, 5, 13, 0.55) 52%, var(--bg) 100%);
+  }
+
+  .au-character__halftone {
+    background-image: radial-gradient(circle, rgba(6, 5, 13, 0.6) 0 1.5px, transparent 2px);
+    background-size: 8px 8px;
+    mask-image: linear-gradient(30deg, #000 0%, rgba(0, 0, 0, 0.5) 28%, transparent 58%);
+  }
+
+  .au-character__inner {
+    position: relative;
+    flex: 1;
+    display: grid;
+    grid-template-areas:
+      'card'
+      'info';
+    justify-items: center;
+    width: 100%;
+    max-width: 1560px;
+    margin: 0 auto;
+    padding: 30px 16px 64px;
+    box-sizing: border-box;
+  }
+
+  .au-character__ghost {
+    position: absolute;
+    z-index: 0;
+    top: 10%;
+    right: -3%;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--ghost-size);
+    font-weight: 700;
+    line-height: 0.8;
+    white-space: nowrap;
+    color: transparent;
+    -webkit-text-stroke: 1.5px color-mix(in srgb, var(--gold) 34%, transparent);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 38%);
+    pointer-events: none;
+    user-select: none;
+    animation: au-character-ghost 32s ease-in-out infinite alternate;
+    animation-play-state: var(--motion-state);
+  }
+
+  .au-character__info {
+    grid-area: info;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    min-width: 0;
+    margin-top: 30px;
+    container-type: inline-size;
+  }
+
+  .au-character__eyebrow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 14px;
+    margin: 0 0 14px;
+  }
+
+  .au-character__kind {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .au-character__kind > svg {
+    flex: none;
+    width: 12px;
+    height: 13px;
+    fill: var(--gold);
+  }
+
+  .au-character__rule {
+    flex: 1 1 32px;
+    max-width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--line2), transparent);
+  }
+
+  .au-character__name {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(30px, var(--name-fit), 96px);
+    font-weight: 700;
+    line-height: 0.93;
+    color: var(--ink);
+    text-shadow:
+      0 2px 0 rgba(6, 5, 13, 0.6),
+      0 8px 36px rgba(6, 5, 13, 0.7);
+    animation: au-character-name 0.5s var(--ease) both;
+  }
+
+  .au-character__subtitle {
+    margin: 12px 0 0;
+    font-family: var(--font-garamond);
+    font-size: clamp(19px, 2.2vw, 28px);
+    font-style: italic;
+    line-height: 1.3;
+    color: var(--ink2);
+  }
+
+  .au-character__descriptors {
+    margin-top: 24px;
+  }
+
+  .au-character__sheet {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 30px 44px;
+    margin-top: 30px;
+  }
+
+  .au-character__aside {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+    min-width: 0;
+  }
+
+  .au-character__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 18px;
+  }
+
+  .au-character__sheet--profiled .au-character__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .au-character__stage {
+    grid-area: card;
+    position: relative;
+    z-index: 1;
+    width: var(--card);
+    aspect-ratio: 3 / 4;
+  }
+
+  .au-character__slab {
+    position: absolute;
+    inset: 8% -12% -5% -9%;
+    z-index: 0;
+    rotate: 5deg;
+    background:
+      radial-gradient(circle, rgba(6, 5, 13, 0.2) 0 1.3px, transparent 1.8px) 0 0 / 7px 7px,
+      var(--gold);
+    clip-path: polygon(16% 0, 100% 5%, 86% 100%, 0 94%);
+    animation: au-character-slab 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.12s backwards;
+  }
+
+  .au-character__card {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    rotate: -2deg;
+    transform: perspective(1400px) rotateY(calc(var(--lean-x) * 7deg))
+      rotateX(calc(var(--lean-y) * -7deg));
+    background: #08070d;
+    box-shadow: 14px 16px 0 rgba(6, 5, 13, 0.78);
+    transition: transform 0.6s var(--ease);
+    animation: au-character-card 0.55s var(--ease) backwards;
+  }
+
+  .au-character__plate {
+    position: absolute;
+    inset: 0;
+    overflow: clip;
+  }
+
+  .au-character__frame {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .au-character__frame::before,
+  .au-character__frame::after {
+    content: '';
+    position: absolute;
+    border: 1px solid color-mix(in srgb, var(--gold) 60%, transparent);
+  }
+
+  .au-character__frame::before {
+    inset: 10px;
+  }
+
+  .au-character__frame::after {
+    inset: 15px;
+    border-color: color-mix(in srgb, var(--gold) 28%, transparent);
+  }
+
+  .au-character__emblem {
+    position: absolute;
+    right: 4%;
+    bottom: 3.5%;
+    z-index: 2;
+    width: clamp(88px, 25%, 148px);
+    aspect-ratio: 1;
+    overflow: visible;
+    rotate: -6deg;
+    pointer-events: none;
+    animation: au-character-emblem 0.5s cubic-bezier(0.2, 1.35, 0.4, 1) 0.5s backwards;
+  }
+
+  .au-character__glare {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    background: radial-gradient(
+      circle at calc(50% + var(--lean-x) * 45%) calc(40% + var(--lean-y) * 45%),
+      rgba(255, 238, 196, 0.32),
+      rgba(255, 238, 196, 0) 48%
+    );
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+    transition: opacity 0.4s var(--ease);
+  }
+
+  .au-character__still {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    z-index: 3;
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: 1px solid var(--line2);
+    background: rgba(6, 5, 13, 0.6);
+    color: var(--ink2);
+    cursor: pointer;
+    transition:
+      color 0.2s var(--ease),
+      border-color 0.2s var(--ease);
+  }
+
+  .au-character__still[hidden] {
+    display: none;
+  }
+
+  .au-character__still:hover,
+  .au-character__still:focus-visible {
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+
+  .au-character__still :global(.au-character__still-icon) {
+    width: 18px;
+    height: 18px;
+  }
+
+  .au-character__still :global(.au-character__still-icon--play),
+  .au-character[data-still] .au-character__still :global(.au-character__still-icon--pause) {
+    display: none;
+  }
+
+  .au-character[data-still] .au-character__still :global(.au-character__still-icon--play) {
+    display: block;
+  }
+
+  [data-scroll-cue] {
+    position: sticky;
+    bottom: 20px;
+    z-index: 2;
+    align-self: center;
+    max-width: 100%;
+    margin-bottom: 20px;
+    padding: 0 26px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.3em;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--ink2);
+  }
+
+  [data-scroll-cue] > svg {
+    display: block;
+    animation: au-nudge 2.4s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+  }
+
+  @media (max-width: 639px) {
+    [data-scroll-cue] {
+      display: none;
+    }
+  }
+
+  @media (min-width: 960px) {
+    .au-character {
+      --card: var(--card-wide);
+      min-height: min(92vh, 900px);
+    }
+
+    .au-character__shade {
+      background:
+        radial-gradient(90% 110% at 78% 45%, transparent 25%, rgba(6, 5, 13, 0.62) 100%),
+        linear-gradient(
+          90deg,
+          rgba(6, 5, 13, 0.84) 0%,
+          rgba(6, 5, 13, 0.5) 42%,
+          rgba(6, 5, 13, 0.08) 100%
+        );
+    }
+
+    .au-character__inner {
+      grid-template-areas: 'info card';
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      justify-items: stretch;
+      column-gap: clamp(36px, 5cqi, 104px);
+      padding: 44px 26px 76px;
+    }
+
+    .au-character__ghost {
+      top: auto;
+      bottom: 9%;
+      right: -2%;
+    }
+
+    .au-character__info {
+      margin-top: 0;
+    }
+
+    .au-character__name {
+      font-size: clamp(30px, var(--name-fit), 132px);
+    }
+
+    .au-character__stage {
+      margin-right: clamp(8px, 3cqi, 64px);
+    }
+
+    .au-character__still {
+      right: 26px;
+      bottom: 22px;
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .au-character[data-tilting] {
+      --lean-x: var(--tilt-x, 0);
+      --lean-y: var(--tilt-y, 0);
+    }
+
+    .au-character[data-tilting] .au-character__card {
+      transition-duration: 0.14s;
+    }
+
+    .au-character[data-tilting] .au-character__glare {
+      opacity: 1;
+    }
+
+    .au-character__ghost {
+      translate: calc(var(--lean-x) * -22px) 0;
+      transition: translate 0.6s var(--ease);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .au-character__still {
+      display: none;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .au-character__emblem,
+    .au-character__ghost,
+    .au-character__halftone,
+    .au-character__slab,
+    .au-character__glare {
+      display: none;
+    }
+  }
+
+  @media print {
+    .au-character {
+      --ink: #14100a;
+      --ink2: #3a3448;
+      --gold: #7a5d10;
+      min-height: 0;
+      background: none;
+    }
+
+    .au-character__backdrop,
+    .au-character__emblem,
+    .au-character__ghost,
+    .au-character__slab,
+    .au-character__glare,
+    .au-character__still,
+    [data-scroll-cue] {
+      display: none;
+    }
+
+    .au-character__card {
+      rotate: none;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .au-character__name {
+      text-shadow: none;
+    }
+  }
+
+  @keyframes au-character-ghost {
+    from {
+      margin-right: 0;
+    }
+    to {
+      margin-right: 4cqi;
+    }
+  }
+
+  @keyframes au-character-name {
+    from {
+      translate: 0 14px;
+    }
+  }
+
+  @keyframes au-character-emblem {
+    from {
+      opacity: 0;
+      scale: 1.7;
+      rotate: -22deg;
+    }
+    40% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes au-character-slab {
+    from {
+      rotate: -2deg;
+      scale: 0.9;
+      opacity: 0;
+    }
+    35% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes au-character-card {
+    from {
+      translate: 0 22px;
+      scale: 0.965;
+      rotate: -5deg;
+    }
+  }
+</style>

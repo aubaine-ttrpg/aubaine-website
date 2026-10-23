@@ -1,0 +1,447 @@
+---
+import {
+  labelPosition,
+  labelSide,
+  type Point,
+  PROFILE_RINGS,
+  type Profile,
+  profilePoints,
+  ringPoints,
+  svgPath,
+  svgPoints,
+  TOP_RANK,
+  vertex,
+} from '../../lib/game/profile'
+import { PROFILE_AXES } from '../../lib/game/schema'
+import type { Locale } from '../../lib/i18n/locales'
+import { strings } from '../../lib/i18n/strings'
+import Icon from './Icon.astro'
+
+type Props = { profile: Profile; locale: Locale }
+
+const { profile, locale } = Astro.props
+const t = strings(locale)
+
+const CENTRE = 100
+const RADIUS = 58
+const LABEL_RADIUS = 35.5
+const VERTEX_RADIUS = 3.6
+const NOTE_ID = 'profile-note'
+const CAPTION_ID = 'profile-caption'
+
+const centred = (points: Point[]): string =>
+  svgPoints(points.map(({ x, y }) => ({ x: x + CENTRE, y: y + CENTRE })))
+
+const rings = Array.from({ length: PROFILE_RINGS }, (_, index) => ({
+  ring: index + 1,
+  points: centred(ringPoints(index + 1, RADIUS)),
+}))
+const spokes = PROFILE_AXES.map((_, index) => vertex(index, RADIUS))
+const shape = profilePoints(profile, RADIUS)
+const outline = svgPath(shape.map(({ x, y }) => ({ x: x + CENTRE, y: y + CENTRE })))
+const folded = svgPath(shape.map(() => ({ x: CENTRE, y: CENTRE })))
+const marker = svgPoints(ringPoints(PROFILE_RINGS, VERTEX_RADIUS))
+const axes = PROFILE_AXES.map((axis, index) => ({
+  axis,
+  rank: profile[axis],
+  side: labelSide(index),
+  at: labelPosition(index, LABEL_RADIUS),
+}))
+---
+
+<div class="au-rank">
+  <div class="au-rank__head">
+    <p class="au-rank__caption" id={CAPTION_ID}>{t.profile}</p>
+    <button
+      type="button"
+      class="au-rank__about"
+      popovertarget={NOTE_ID}
+      aria-label={t.profileAbout}
+      style={`anchor-name:--${NOTE_ID}`}
+    >
+      <Icon name="mdi:information-outline" class="au-rank__about-icon" />
+    </button>
+    <div
+      popover
+      id={NOTE_ID}
+      class="au-rank__note"
+      aria-labelledby={`${NOTE_ID}-title`}
+      style={`position-anchor:--${NOTE_ID}`}
+    >
+      <p class="au-rank__note-title" id={`${NOTE_ID}-title`}>{t.profile}</p>
+      <p class="au-rank__note-body">{t.profileNote}</p>
+      <button
+        type="button"
+        class="au-rank__note-close"
+        popovertarget={NOTE_ID}
+        popovertargetaction="hide"
+      >
+        {t.close}
+      </button>
+    </div>
+  </div>
+  <div class="au-rank__chart">
+    <svg
+      class="au-rank__plot"
+      viewBox="0 0 200 200"
+      aria-hidden="true"
+      focusable="false"
+      style={`--folded:path('${folded}'); --centre:${CENTRE}px ${CENTRE}px`}
+    >
+      <defs>
+        <pattern
+          id="au-rank-dots"
+          width="5"
+          height="5"
+          patternUnits="userSpaceOnUse"
+          patternTransform="rotate(30)"
+        >
+          <circle cx="2.5" cy="2.5" r="1.05"></circle>
+        </pattern>
+      </defs>
+      {
+        rings.map(({ ring, points }) => (
+          <polygon
+            class:list={['au-rank__ring', { 'au-rank__ring--top': ring === PROFILE_RINGS }]}
+            points={points}
+          />
+        ))
+      }
+      {
+        spokes.map(({ x, y }) => (
+          <line class="au-rank__spoke" x1={CENTRE} y1={CENTRE} x2={x + CENTRE} y2={y + CENTRE} />
+        ))
+      }
+      <path class="au-rank__fill au-rank__unfold" d={outline}></path>
+      <path class="au-rank__dots au-rank__unfold" d={outline}></path>
+      <path class="au-rank__edge au-rank__unfold" d={outline}></path>
+      {
+        shape.map(({ x, y }) => (
+          <polygon
+            class="au-rank__vertex"
+            points={marker}
+            style={`translate:${(x + CENTRE).toFixed(3)}px ${(y + CENTRE).toFixed(3)}px`}
+          />
+        ))
+      }
+    </svg>
+    <dl class="au-rank__axes" aria-labelledby={CAPTION_ID}>
+      {
+        axes.map(({ axis, rank, side, at }, order) => (
+          <div
+            class="au-rank__axis"
+            data-side={side}
+            style={`--x:${at.x.toFixed(2)}%; --y:${at.y.toFixed(2)}%; --order:${order}`}
+          >
+            <dt class="au-rank__label">{t.profileAxes[axis]}</dt>
+            <dd class:list={['au-rank__grade', { 'au-rank__grade--top': rank === TOP_RANK }]}>
+              <span>{rank}</span>
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</div>
+
+<style>
+  .au-rank {
+    container-type: inline-size;
+    width: min(100%, 340px);
+  }
+
+  .au-rank__head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .au-rank__caption {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .au-rank__about {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: 1px solid transparent;
+    color: var(--ink2);
+    cursor: pointer;
+    transition:
+      color 0.2s var(--ease),
+      border-color 0.2s var(--ease);
+  }
+
+  .au-rank__about:hover,
+  .au-rank__about:focus-visible {
+    color: var(--gold);
+    border-color: var(--line2);
+  }
+
+  .au-rank__about :global(.au-rank__about-icon) {
+    width: 17px;
+    height: 17px;
+  }
+
+  .au-rank__note {
+    width: min(380px, calc(100vw - 32px));
+    padding: 18px 20px 16px;
+    border: 1px solid var(--accent-line);
+    background: var(--bg2);
+    color: var(--ink);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  }
+
+  @supports (anchor-name: --a) {
+    @media (min-width: 560px) {
+      .au-rank__note {
+        inset: auto;
+        margin: 8px 0;
+        position-area: bottom span-right;
+        position-try-fallbacks: flip-block, flip-inline;
+      }
+    }
+  }
+
+  .au-rank__note-title {
+    margin: 0 0 10px;
+    font-family: var(--font-display);
+    font-size: 19px;
+    font-weight: 600;
+  }
+
+  .au-rank__note-body {
+    margin: 0 0 14px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink2);
+  }
+
+  .au-rank__note-close {
+    padding: 7px 13px;
+    border: 1px solid var(--line2);
+    color: var(--ink);
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .au-rank__note-close:hover,
+  .au-rank__note-close:focus-visible {
+    border-color: var(--gold);
+  }
+
+  .au-rank__chart {
+    position: relative;
+    aspect-ratio: 1;
+  }
+
+  .au-rank__plot {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .au-rank__ring {
+    fill: none;
+    stroke: rgba(236, 232, 247, 0.16);
+    stroke-width: 0.6;
+  }
+
+  .au-rank__ring--top {
+    stroke: var(--gold);
+    stroke-opacity: 0.7;
+    stroke-width: 1;
+  }
+
+  .au-rank__spoke {
+    stroke: rgba(236, 232, 247, 0.14);
+    stroke-width: 0.6;
+  }
+
+  .au-rank__plot {
+    --unfold: 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.3s backwards;
+  }
+
+  @supports (d: path('M0 0')) {
+    .au-rank__unfold {
+      animation: au-rank-unfold var(--unfold);
+    }
+
+    .au-rank__vertex {
+      animation: au-rank-slide var(--unfold);
+    }
+  }
+
+  .au-rank__fill {
+    fill: var(--gold);
+    fill-opacity: 0.2;
+  }
+
+  .au-rank__dots {
+    fill: url(#au-rank-dots);
+    fill-opacity: 0.75;
+  }
+
+  #au-rank-dots circle {
+    fill: var(--gold);
+  }
+
+  .au-rank__edge {
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 1.6;
+    stroke-linejoin: round;
+  }
+
+  .au-rank__vertex {
+    fill: var(--gold);
+    stroke: #08070d;
+    stroke-width: 0.8;
+  }
+
+  .au-rank__axes {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+  }
+
+  .au-rank__axis {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    translate: -50% -50%;
+  }
+
+  .au-rank__axis[data-side='top'] {
+    translate: -50% -78%;
+  }
+
+  .au-rank__axis[data-side='bottom'] {
+    flex-direction: column-reverse;
+    translate: -50% -22%;
+  }
+
+  .au-rank__axis[data-side='end'] {
+    align-items: flex-start;
+    translate: -12% -50%;
+  }
+
+  .au-rank__axis[data-side='start'] {
+    align-items: flex-end;
+    translate: -88% -50%;
+  }
+
+  .au-rank__label {
+    font-family: var(--font-ui);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    line-height: 1;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--ink2);
+  }
+
+  .au-rank__grade {
+    display: grid;
+    place-items: center;
+    min-width: 38px;
+    height: 36px;
+    margin: 0;
+    padding: 0 8px;
+    transform: skewX(-10deg);
+    background: #08070d;
+    border: 1px solid var(--gold);
+    box-shadow: 3px 3px 0 var(--gold);
+    animation: au-rank-stamp 0.4s cubic-bezier(0.2, 1.5, 0.4, 1)
+      calc(0.95s + var(--order) * 0.05s) backwards;
+  }
+
+  .au-rank__grade > span {
+    transform: skewX(10deg);
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fbf8ef;
+  }
+
+  .au-rank__grade--top {
+    background: var(--gold);
+    border-color: #08070d;
+    box-shadow: 3px 3px 0 #08070d;
+  }
+
+  .au-rank__grade--top > span {
+    color: var(--on-gold);
+  }
+
+  @container (width < 300px) {
+    .au-rank__chart {
+      aspect-ratio: auto;
+    }
+
+    .au-rank__plot {
+      position: relative;
+      display: block;
+      width: 70%;
+      margin: 0 auto 14px;
+    }
+
+    .au-rank__axes {
+      position: static;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 14px;
+    }
+
+    .au-rank__axis,
+    .au-rank__axis[data-side] {
+      position: static;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      translate: none;
+    }
+  }
+
+  @keyframes au-rank-unfold {
+    from {
+      d: var(--folded);
+    }
+  }
+
+  @keyframes au-rank-slide {
+    from {
+      translate: var(--centre);
+    }
+  }
+
+  @keyframes au-rank-stamp {
+    from {
+      transform: skewX(-10deg) scale(1.6);
+      opacity: 0;
+    }
+    to {
+      transform: skewX(-10deg) scale(1);
+      opacity: 1;
+    }
+  }
+</style>

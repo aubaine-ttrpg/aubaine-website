@@ -55,6 +55,7 @@ const moving = [
   'will-change:transform',
   'backface-visibility:hidden',
   animation ? `animation:${animation}` : '',
+  animation ? 'animation-play-state:var(--motion-state, running)' : '',
 ]
 const join = (rules: string[]): string => rules.filter(Boolean).join('; ')
 const widths = [640, 960, 1280, 1672, 2400, 3344]

@@ -55,6 +55,18 @@ export function bookletHref(kind: BookletKind, slug: string, locale: Locale): st
   return release ? releaseHref(release) : undefined
 }
 
+const EMBLEMS = import.meta.glob<string>('/data/media/emblems/*.svg', {
+  query: '?url',
+  import: 'default',
+  eager: true,
+})
+
+export function emblemUrl(file: string): string {
+  const url = EMBLEMS[`/data/media/emblems/${file}`]
+  if (url === undefined) throw new Error(`no emblem ${file} in data/media/emblems/`)
+  return url
+}
+
 const ICONS = import.meta.glob('/data/media/icons/**/*.svg')
 
 const ICON_SOURCE = import.meta.glob<string>('/data/media/icons/**/*.svg', {

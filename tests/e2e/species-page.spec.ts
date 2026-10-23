@@ -41,7 +41,7 @@ test('a species and a tree show their one 3:4 cover in the hero and in the socia
 }) => {
   for (const path of ['/fr/espece/nnor', '/fr/arbre/marchand']) {
     await page.goto(path)
-    const hero = page.locator('section.au-hero[data-layout="portrait"] img')
+    const hero = page.locator('[data-character] [data-plate="hero"] img')
     await expect(hero, path).toHaveCount(1)
     expect(await hero.getAttribute('src'), path).toMatch(/-3_4-og\./)
     expect(await page.locator('meta[property="og:image"]').getAttribute('content'), path).toMatch(

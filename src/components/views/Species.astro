@@ -17,19 +17,16 @@ import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
 import { PLACEHOLDER_COVER } from '../../lib/media'
 import BrowseList from '../primitives/BrowseList.astro'
-import Hero from '../primitives/Hero.astro'
+import CharacterHero from '../primitives/CharacterHero.astro'
 import RuleText from '../primitives/RuleText.astro'
 import SectionHead from '../primitives/SectionHead.astro'
 import SectionTrail from '../primitives/SectionTrail.astro'
-import StatusBadge from '../primitives/StatusBadge.astro'
-import TraitPlates from '../primitives/TraitPlates.astro'
 import '../../styles/prose.css'
 import '../../styles/reading.css'
 
 type Props = { locale: Locale; corpus: Corpus; species: ResolvedSpecies }
 
-const PLATE_COLOUR = '#fbf8ef'
-const PLATE_GLYPH = '#08070d'
+const PLATE_PAPER = '#efe4cc'
 
 const { locale, corpus, species } = Astro.props
 const t = strings(locale)
@@ -135,55 +132,24 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
 ---
 
 <div>
-  <Hero
+  <CharacterHero
+    locale={locale}
     art={species.cover ?? PLACEHOLDER_COVER}
-    layout="portrait"
     effect={species.artEffect}
-    motion="zoom-drift"
-    seconds={24}
-    settle={1}
-    large
-    priority
-    minHeight="min(92vh,900px)"
-    bottomStops={[26, 58]}
-    sideStops={[30, 62]}
-    padding="0 26px 48px"
-    scrollCue={t.scrollCue}
-  >
-    <TraitPlates
-      slot="plates"
-      traits={plates.map((plate) => ({
-        iconName: plate.icon,
-        color: PLATE_COLOUR,
-        label: plate.label,
-        text: plate.value,
-      }))}
-      groupLabel={t.speciesVitals}
-      glyphColor={PLATE_GLYPH}
-    />
-
-    <div style="min-width:0">
-      {
-        status && (
-          <div style="padding:0 0 16px">
-            <StatusBadge status={status} locale={locale} />
-          </div>
-        )
-      }
-      <h1
-        style="margin:0; font-family:var(--font-display); font-weight:700; font-size:clamp(46px,7.4vw,118px); line-height:.93; color:var(--hero-ink); animation:au-rise .6s var(--ease) both"
-      >
-        {species.name}
-      </h1>
-      {
-        species.subtitle && (
-          <p style="margin:14px 0 0; font-family:var(--font-garamond); font-style:italic; font-size:clamp(19px,2.2vw,30px); line-height:1.3; color:var(--hero-ink2); animation:au-rise .6s var(--ease) .06s both">
-            {species.subtitle}
-          </p>
-        )
-      }
-    </div>
-  </Hero>
+    emblem={species.emblem}
+    name={species.name}
+    subtitle={species.subtitle}
+    kind={t.species}
+    status={status}
+    descriptors={named(corpus.descriptors, species.descriptors ?? [])}
+    traits={plates.map((plate) => ({
+      iconName: plate.icon,
+      color: PLATE_PAPER,
+      label: plate.label,
+      text: plate.value,
+    }))}
+    traitsLabel={t.speciesVitals}
+  />
 
   {
     hasReading && (
