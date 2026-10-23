@@ -118,10 +118,6 @@ async function mount(wrapper: HTMLElement): Promise<void> {
   const picture = wrapper.querySelector('img')
   const mask = picture ? maskSource(picture) : undefined
   if (!picture || mask === undefined) return
-  const canvas = document.createElement('canvas')
-  canvas.setAttribute('aria-hidden', 'true')
-  const gl = canvas.getContext('webgl', { premultipliedAlpha: false })
-  if (!gl) return
 
   await picture.decode()
   const [art, cut] = await Promise.all([
@@ -129,6 +125,10 @@ async function mount(wrapper: HTMLElement): Promise<void> {
     loadImage(mask),
   ])
   if (!wrapper.isConnected) return
+  const canvas = document.createElement('canvas')
+  canvas.setAttribute('aria-hidden', 'true')
+  const gl = canvas.getContext('webgl', { premultipliedAlpha: false })
+  if (!gl) return
 
   const program = link(gl)
   gl.useProgram(program)
