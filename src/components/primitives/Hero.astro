@@ -1,4 +1,5 @@
 ---
+import type { ArtEffect } from '../../lib/art-effect/effects'
 import { artImage } from '../../lib/media'
 import Banner from './Banner.astro'
 
@@ -7,6 +8,7 @@ type Layout = 'banner' | 'portrait'
 type Props = {
   art?: string | undefined
   layout?: Layout
+  effect?: ArtEffect | undefined
   objectPosition?: string
   motion?: 'none' | 'drift' | 'zoom-drift' | 'burns'
   seconds?: number
@@ -23,6 +25,7 @@ type Props = {
 const {
   art,
   layout = 'banner',
+  effect,
   objectPosition = '50% 26%',
   motion = 'drift',
   seconds = 22,
@@ -51,7 +54,7 @@ const scrims = [
   `background:linear-gradient(0deg, var(--scrim1) 0%, var(--scrim-mid) ${bottomStops[0]}%, var(--scrim2) ${bottomStops[1]}%)`,
   `background:linear-gradient(90deg, var(--scrim-side) 0%, var(--scrim-mid) ${sideStops[0]}%, var(--scrim2) ${sideStops[1]}%)`,
 ]
-const plate = { motion, seconds, settle, large, priority, sizes }
+const plate = { motion, seconds, settle, large, priority, sizes, effect, plate: 'hero' } as const
 ---
 
 <section

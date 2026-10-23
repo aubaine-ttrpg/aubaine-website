@@ -1,4 +1,5 @@
 ---
+import type { ArtEffect } from '../../lib/art-effect/effects'
 import type { Corpus } from '../../lib/game/corpus'
 import { label } from '../../lib/game/corpus'
 import { frame } from '../../lib/game/derive'
@@ -27,6 +28,7 @@ type Card = {
   name: string
   kicker: string
   art: string
+  effect: ArtEffect | undefined
   mark: string
   characteristics: CoverCardCharacteristic[]
   entry: CoverCardEntry
@@ -57,6 +59,7 @@ const cards: Card[] = corpus.trees.map((tree) => {
     name: tree.name,
     kicker: tree.treeType === 'domain' ? t.domains : t.archetypes,
     art: tree.cover ?? PLACEHOLDER_COVER,
+    effect: tree.artEffect,
     mark: frame(tree.domains.map((key) => corpus.domains.get(key)?.color ?? DOMAIN_FALLBACK)),
     characteristics,
     status: badgedStatus(tree.status),
@@ -120,6 +123,7 @@ const cards: Card[] = corpus.trees.map((tree) => {
             name={card.name}
             kicker={card.kicker}
             art={card.art}
+            effect={card.effect}
             mark={card.mark}
             characteristics={card.characteristics}
             entry={card.entry}

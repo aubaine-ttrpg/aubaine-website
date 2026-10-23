@@ -22,6 +22,7 @@ The filename is the id and the id becomes the URL. Lowercase letters, digits and
 | `name` | required | Nom rendu en titre. | any non empty string |
 | `subtitle` | optional | Devise de l'Espèce, rendue en italique sous le titre. Absente, le titre reste seul. | any non empty string |
 | `cover` | optional | Couverture au rapport 3:4, dans `data/media/art/` : l'unique illustration de l'Espèce, sur sa carte, dans son héros et dans sa vignette sociale. Absente, la planche 3:4 par défaut. | a `3_4` filename that exists, named per [add-an-image.md](add-an-image.md) |
+| `artEffect` | optional | Effet de rendu que le navigateur applique à la couverture, sur la carte comme sur le héros : `film` pour « Pellicule », `oil` pour « Huile ». Absent : l'illustration telle quelle. | `film` or `oil` |
 | `movement` | optional | Vitesse de l'Espèce, quand elle s'écarte des 9 mètres par défaut. Absente : 9 mètres. | any non empty string |
 | `types` | optional | Type(s) de créature de l'Espèce. La plupart sont Humanoïdes ; un peuple peut en cumuler deux, comme les Cindersöhls, Humanoïdes et Artificiels, ou les Nnors, Humanoïdes et Bêtes. Absent : l'Espèce n'en déclare pas encore, ou elle les tient de l'une de ses Espèces parentes. | keys from `data/meta/creature-types.json` |
 | `size` | optional | Catégorie(s) de taille. Plusieurs valent un choix laissé au joueur à la création, jamais un cumul. Absente : l'Espèce n'en déclare pas encore, ou elle la tient de son origine. | keys from `data/meta/sizes.json` |
@@ -228,7 +229,7 @@ Then open `/fr/especes` and click through to the new species.
 
 **A list every sub-species shares is written once, on the species.** Two sub-species with the same family names give them through `familyNames`, as the Nnors give their Yurtas, and each sub-species page shows them. `pnpm data:check` refuses two sub-species of one species that carry the same list, and a sub-species list that repeats `familyNames`.
 
-**A species has one picture.** The 3:4 `cover` is its card, its hero and its social image, which is cut from the top of the portrait. There is no 16:9 banner to generate.
+**A species has one picture.** The 3:4 `cover` is its card, its hero and its social image, which is cut from the top of the portrait. There is no 16:9 banner to generate. `artEffect` changes how the browser renders that picture, never the file.
 
 **A species is not a planche.** It has no `placements`, no `pos`, no plate and no booklet. If a set of Compétences wants a plate, it is an Arbre, not an Espèce.
 

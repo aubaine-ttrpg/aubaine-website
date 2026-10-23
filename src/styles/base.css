@@ -270,13 +270,13 @@ html.is-animating .au-swup-page {
 }
 
 [data-card-art] > img,
-[data-cover-art] > img {
+[data-cover-art] > [data-plate] {
   transition: transform 0.8s var(--ease);
   transform-origin: 50% 50%;
 }
 
 [data-card]:hover [data-card-art] > img,
-[data-cover-card]:hover [data-cover-art] > img {
+[data-cover-card]:hover [data-cover-art] > [data-plate] {
   transform: scale(1.08);
 }
 

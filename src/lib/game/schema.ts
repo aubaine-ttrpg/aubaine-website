@@ -1,5 +1,6 @@
 import { z } from 'astro/zod'
 
+import { ART_EFFECTS } from '../art-effect/effects.ts'
 import {
   ALOFT_LANDMARK_KINDS,
   BUILDING_STYLES,
@@ -58,6 +59,13 @@ const sizeKey = z
 const languageKey = z
   .string()
   .describe("Clé de langue, telle qu'elle est déclarée dans data/meta/languages.json.")
+
+const artEffect = z
+  .enum(ART_EFFECTS)
+  .optional()
+  .describe(
+    "Effet de rendu que le navigateur applique à la couverture, sur la carte comme sur le héros : 'film' pour « Pellicule », 'oil' pour « Huile ». Absent : l'illustration telle quelle.",
+  )
 
 const creatureTypeKey = z
   .string()
@@ -380,6 +388,7 @@ export const skillTree = z
       .describe(
         "Couverture au rapport 3:4, dans data/media/art/ : l'unique illustration de l'arbre, sur sa carte, dans son héros, sur la couverture de son livret et dans sa vignette sociale. Absente, la planche 3:4 par défaut.",
       ),
+    artEffect,
     backCover: mediaFile
       .optional()
       .describe(
@@ -508,6 +517,7 @@ export const species = z
       .describe(
         "Couverture au rapport 3:4, dans data/media/art/ : l'unique illustration de l'Espèce, sur sa carte, dans son héros et dans sa vignette sociale. Absente, la planche 3:4 par défaut.",
       ),
+    artEffect,
     movement: z
       .string()
       .min(1)

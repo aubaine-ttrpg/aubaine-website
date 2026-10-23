@@ -1,4 +1,5 @@
 import { HTML_LANG, isLocale } from '../lib/i18n/locales'
+import { bindArtEffects } from './art-effect/boot'
 import { bindAtlas } from './atlas'
 import { bindBook } from './book'
 import { bindBrowse } from './browse'
@@ -342,6 +343,7 @@ withSwup((swup) => {
   bindTree(swup)
   bindPlateViewer(swup)
   bindTorchlight(swup)
+  bindArtEffects(swup)
   bindReliefScroll(swup)
   bindAtlas(swup)
   bindBrowse(swup)

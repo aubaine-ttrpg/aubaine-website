@@ -1,4 +1,5 @@
 ---
+import type { ArtEffect } from '../../lib/art-effect/effects'
 import type { Corpus } from '../../lib/game/corpus'
 import type { ContentStatus } from '../../lib/game/schema'
 import { type BadgedStatus, badgedStatus } from '../../lib/game/status'
@@ -28,6 +29,7 @@ type Card = {
   name: string
   kicker: string
   art: string
+  effect: ArtEffect | undefined
   entry: CoverCardEntry
   status: BadgedStatus | undefined
 }
@@ -37,6 +39,7 @@ const cards: Card[] = corpus.species.map((entry) => ({
   name: entry.name,
   kicker: t.species,
   art: entry.cover ?? PLACEHOLDER_COVER,
+  effect: entry.artEffect,
   status: badgedStatus(entry.status),
   entry: {
     id: entry.id,
@@ -86,6 +89,7 @@ const cards: Card[] = corpus.species.map((entry) => ({
             name={card.name}
             kicker={card.kicker}
             art={card.art}
+            effect={card.effect}
             entry={card.entry}
             index={index}
             locale={locale}

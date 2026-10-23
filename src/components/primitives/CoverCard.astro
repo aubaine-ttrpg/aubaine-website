@@ -1,4 +1,5 @@
 ---
+import type { ArtEffect } from '../../lib/art-effect/effects'
 import type { BadgedStatus } from '../../lib/game/status'
 import type { Locale } from '../../lib/i18n/locales'
 import Banner from './Banner.astro'
@@ -31,6 +32,7 @@ type Props = {
   name: string
   kicker: string
   art?: string | undefined
+  effect?: ArtEffect | undefined
   mark?: string | undefined
   characteristics?: CoverCardCharacteristic[] | undefined
   entry: CoverCardEntry
@@ -44,6 +46,7 @@ const {
   name,
   kicker,
   art,
+  effect,
   mark,
   characteristics = [],
   entry,
@@ -73,7 +76,7 @@ const {
     style="position:relative; display:block; aspect-ratio:3/4.3; overflow:hidden; border:1px solid var(--line2)"
   >
     <span data-cover-art="true" style="position:absolute; inset:0; display:block">
-      <Banner art={art} objectPosition="50% 32%" motion="none" />
+      <Banner art={art} objectPosition="50% 32%" motion="none" plate="card" effect={effect} />
     </span>
     <span
       aria-hidden="true"

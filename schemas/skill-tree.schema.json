@@ -56,6 +56,14 @@
       "type": "string",
       "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-\\d{1,2}_\\d{1,2}-(?:og|cleaned|upscaled_[24])\\.(?:png|jpg)$"
     },
+    "artEffect": {
+      "description": "Effet de rendu que le navigateur applique à la couverture, sur la carte comme sur le héros : 'film' pour « Pellicule », 'oil' pour « Huile ». Absent : l'illustration telle quelle.",
+      "type": "string",
+      "enum": [
+        "film",
+        "oil"
+      ]
+    },
     "backCover": {
       "description": "Quatrième de couverture au rapport 3:4, dans data/media/art/ : la planche verticale au dos du livret imprimé. Absente, le dos retombe sur la planche commune que nomme src/lib/booklet/back-cover.ts.",
       "type": "string",
