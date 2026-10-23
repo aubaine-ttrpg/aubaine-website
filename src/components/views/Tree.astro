@@ -8,7 +8,7 @@ import { badgedStatus } from '../../lib/game/status'
 import type { Locale } from '../../lib/i18n/locales'
 import { pathFor, TREE_ANCHOR, treeNodeHref } from '../../lib/i18n/routes'
 import { strings } from '../../lib/i18n/strings'
-import { bookletHref, PLACEHOLDER_BANNER } from '../../lib/media'
+import { bookletHref, PLACEHOLDER_COVER } from '../../lib/media'
 import DetailPane from '../primitives/DetailPane.astro'
 import EmptyState from '../primitives/EmptyState.astro'
 import FilterBar from '../primitives/FilterBar.astro'
@@ -63,8 +63,8 @@ const trail = lore
 
 <div>
   <Hero
-    art={tree.banner ?? PLACEHOLDER_BANNER}
-    objectPosition="52% 28%"
+    art={tree.cover ?? PLACEHOLDER_COVER}
+    layout="portrait"
     motion="zoom-drift"
     seconds={24}
     settle={1}
@@ -76,18 +76,15 @@ const trail = lore
     padding="0 26px 48px"
     scrollCue={t.scrollCue}
   >
-    <div slot="overlay" style="position:absolute; top:26px; left:0; right:0; z-index:3; pointer-events:none">
-      <div style="max-width:1560px; margin:0 auto; padding:0 26px; display:flex; justify-content:flex-end">
-        <TraitPlates
-          traits={primes.map((prime) => ({
-            iconName: prime.iconName,
-            color: prime.color,
-            label: prime.label,
-          }))}
-          groupLabel={primes.length > 1 ? t.primeChars : t.primeChar}
-        />
-      </div>
-    </div>
+    <TraitPlates
+      slot="plates"
+      traits={primes.map((prime) => ({
+        iconName: prime.iconName,
+        color: prime.color,
+        label: prime.label,
+      }))}
+      groupLabel={primes.length > 1 ? t.primeChars : t.primeChar}
+    />
 
     <div style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:26px">
       <div style="min-width:0">
@@ -99,14 +96,14 @@ const trail = lore
           )
         }
         <h1
-          style="margin:0; font-family:var(--font-display); font-weight:700; font-size:clamp(46px,7.4vw,118px); line-height:.93; color:var(--art-ink); animation:au-rise .6s var(--ease) both"
+          style="margin:0; font-family:var(--font-display); font-weight:700; font-size:clamp(46px,7.4vw,118px); line-height:.93; color:var(--hero-ink); animation:au-rise .6s var(--ease) both"
         >
           {tree.name}
         </h1>
         {
           tree.subtitle && (
             <p
-              style="margin:14px 0 0; font-family:var(--font-garamond); font-style:italic; font-size:clamp(19px,2.2vw,30px); line-height:1.3; color:var(--art-ink2); animation:au-rise .6s var(--ease) .06s both"
+              style="margin:14px 0 0; font-family:var(--font-garamond); font-style:italic; font-size:clamp(19px,2.2vw,30px); line-height:1.3; color:var(--hero-ink2); animation:au-rise .6s var(--ease) .06s both"
             >
               {tree.subtitle}
             </p>
@@ -135,7 +132,7 @@ const trail = lore
             <a
               href={pathFor('archive', locale, { slug: tree.id })}
               data-versions
-              style="display:inline-flex; align-items:center; padding:11px 16px; border:1px solid var(--accent-line); font-family:var(--font-ui); font-size:13.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--art-ink2)"
+              style="display:inline-flex; align-items:center; padding:11px 16px; border:1px solid var(--accent-line); font-family:var(--font-ui); font-size:13.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--hero-ink2)"
             >
               {t.versionHistory}
             </a>

@@ -21,8 +21,7 @@ The filename is the id and the id becomes the URL. Lowercase letters, digits and
 | `status` | optional | Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable : les listes le masquent tant que le lecteur n'affiche pas les brouillons ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une Espèce, une pièce d'équipement ou une panoplie, dans cet ordre. | `draft`, `playtest`, `beta`, `balanced` |
 | `name` | required | Nom rendu en titre. | any non empty string |
 | `subtitle` | optional | Devise de l'Espèce, rendue en italique sous le titre. Absente, le titre reste seul. | any non empty string |
-| `cover` | optional | Couverture au rapport 3:4, dans `data/media/art/`. Absente, la carte retombe sur la bannière, puis sur la planche 3:4 par défaut. | a filename that exists, named per [add-an-image.md](add-an-image.md) |
-| `banner` | optional | Bannière au rapport 16:9, dans `data/media/art/`. Absente, le héros retombe sur la planche 16:9 par défaut. | a filename that exists, named per [add-an-image.md](add-an-image.md) |
+| `cover` | optional | Couverture au rapport 3:4, dans `data/media/art/` : l'unique illustration de l'Espèce, sur sa carte, dans son héros et dans sa vignette sociale. Absente, la planche 3:4 par défaut. | a `3_4` filename that exists, named per [add-an-image.md](add-an-image.md) |
 | `movement` | optional | Vitesse de l'Espèce, quand elle s'écarte des 9 mètres par défaut. Absente : 9 mètres. | any non empty string |
 | `types` | optional | Type(s) de créature de l'Espèce. La plupart sont Humanoïdes ; un peuple peut en cumuler deux, comme les Cindersöhls, Humanoïdes et Artificiels, ou les Nnors, Humanoïdes et Bêtes. Absent : l'Espèce n'en déclare pas encore, ou elle les tient de l'une de ses Espèces parentes. | keys from `data/meta/creature-types.json` |
 | `size` | optional | Catégorie(s) de taille. Plusieurs valent un choix laissé au joueur à la création, jamais un cumul. Absente : l'Espèce n'en déclare pas encore, ou elle la tient de son origine. | keys from `data/meta/sizes.json` |
@@ -184,8 +183,8 @@ The lore is translated by a whole sibling file, `data/lore/species/<id>.en.md`, 
 
 ## What appears on the site
 
-- `/fr/especes` and `/en/species`: a new card in the species index, with the cover when the species has one and the banner otherwise, and the size of its pool.
-- `/fr/espece/<id>` and `/en/species/<id>`: the hero carrying its three plates, then the lore beside its sticky outline, then `Origines régionales` or `Sous-espèces`, as `subspeciesLabel` says, with each sub-species' presentation, its imposed Compétence and its names, then `Jouer un <nom>` with the roleplay text and a table of the roleplay facts, the languages and links to each sub-species, then the pool under `Compétences d'Espèce`. The pool is the Codex list itself: rows, a sticky detail card and the filter bar, with a facet named by the same word. The rows run the species' own skills first, then each sub-species' imposed Compétence, marked « Imposée », and its own, in the order the file declares them, alphabetical inside each group, and they print no PX.
+- `/fr/especes` and `/en/species`: a new card in the species index, with its cover, and the size of its pool.
+- `/fr/espece/<id>` and `/en/species/<id>`: the hero, its cover standing on the right and fading into the page, with the three plates above the title on the left, then the lore beside its sticky outline, then `Origines régionales` or `Sous-espèces`, as `subspeciesLabel` says, with each sub-species' presentation, its imposed Compétence and its names, then `Jouer un <nom>` with the roleplay text and a table of the roleplay facts, the languages and links to each sub-species, then the pool under `Compétences d'Espèce`. The pool is the Codex list itself: rows, a sticky detail card and the filter bar, with a facet named by the same word. The rows run the species' own skills first, then each sub-species' imposed Compétence, marked « Imposée », and its own, in the order the file declares them, alphabetical inside each group, and they print no PX.
 - `/fr/competences`: every skill the species or one of its sub-species offers or imposes gains a "Proposée par une Espèce" source, naming the sub-species when there is one, and a species facet.
 
 ## How to check it
@@ -228,6 +227,8 @@ Then open `/fr/especes` and click through to the new species.
 **Name lists are copied, never translated.** `subspecies[].names` and `familyNames` keep each list in the order and spelling the author gave, and the English overlay cannot carry them.
 
 **A list every sub-species shares is written once, on the species.** Two sub-species with the same family names give them through `familyNames`, as the Nnors give their Yurtas, and each sub-species page shows them. `pnpm data:check` refuses two sub-species of one species that carry the same list, and a sub-species list that repeats `familyNames`.
+
+**A species has one picture.** The 3:4 `cover` is its card, its hero and its social image, which is cut from the top of the portrait. There is no 16:9 banner to generate.
 
 **A species is not a planche.** It has no `placements`, no `pos`, no plate and no booklet. If a set of Compétences wants a plate, it is an Arbre, not an Espèce.
 

@@ -15,7 +15,7 @@ import type { SubspeciesLabel } from '../../lib/game/schema'
 import { badgedStatus } from '../../lib/game/status'
 import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
-import { PLACEHOLDER_BANNER } from '../../lib/media'
+import { PLACEHOLDER_COVER } from '../../lib/media'
 import BrowseList from '../primitives/BrowseList.astro'
 import Hero from '../primitives/Hero.astro'
 import RuleText from '../primitives/RuleText.astro'
@@ -136,8 +136,8 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
 
 <div>
   <Hero
-    art={species.banner ?? PLACEHOLDER_BANNER}
-    objectPosition="52% 28%"
+    art={species.cover ?? PLACEHOLDER_COVER}
+    layout="portrait"
     motion="zoom-drift"
     seconds={24}
     settle={1}
@@ -149,20 +149,17 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
     padding="0 26px 48px"
     scrollCue={t.scrollCue}
   >
-    <div slot="overlay" style="position:absolute; top:26px; left:0; right:0; z-index:3; pointer-events:none">
-      <div style="max-width:1560px; margin:0 auto; padding:0 26px; display:flex; justify-content:flex-end">
-        <TraitPlates
-          traits={plates.map((plate) => ({
-            iconName: plate.icon,
-            color: PLATE_COLOUR,
-            label: plate.label,
-            text: plate.value,
-          }))}
-          groupLabel={t.speciesVitals}
-          glyphColor={PLATE_GLYPH}
-        />
-      </div>
-    </div>
+    <TraitPlates
+      slot="plates"
+      traits={plates.map((plate) => ({
+        iconName: plate.icon,
+        color: PLATE_COLOUR,
+        label: plate.label,
+        text: plate.value,
+      }))}
+      groupLabel={t.speciesVitals}
+      glyphColor={PLATE_GLYPH}
+    />
 
     <div style="min-width:0">
       {
@@ -173,13 +170,13 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
         )
       }
       <h1
-        style="margin:0; font-family:var(--font-display); font-weight:700; font-size:clamp(46px,7.4vw,118px); line-height:.93; color:var(--art-ink); animation:au-rise .6s var(--ease) both"
+        style="margin:0; font-family:var(--font-display); font-weight:700; font-size:clamp(46px,7.4vw,118px); line-height:.93; color:var(--hero-ink); animation:au-rise .6s var(--ease) both"
       >
         {species.name}
       </h1>
       {
         species.subtitle && (
-          <p style="margin:14px 0 0; font-family:var(--font-garamond); font-style:italic; font-size:clamp(19px,2.2vw,30px); line-height:1.3; color:var(--art-ink2); animation:au-rise .6s var(--ease) .06s both">
+          <p style="margin:14px 0 0; font-family:var(--font-garamond); font-style:italic; font-size:clamp(19px,2.2vw,30px); line-height:1.3; color:var(--hero-ink2); animation:au-rise .6s var(--ease) .06s both">
             {species.subtitle}
           </p>
         )

@@ -13,6 +13,7 @@ export async function socialImage(ogArt: string | undefined): Promise<string | u
     height: 630,
     format: 'jpeg',
     fit: 'cover',
+    ...(source.height > source.width ? { position: 'top' } : {}),
   })
   return image.src
 }

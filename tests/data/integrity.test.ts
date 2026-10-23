@@ -640,16 +640,16 @@ describe('media', () => {
     expect(items.has(PLACEHOLDER_SQUARE), `items/${PLACEHOLDER_SQUARE}`).toBe(true)
   })
 
-  it('points every tree at a cover, a banner and a back cover that exist', async () => {
+  it('points every tree at a cover and a back cover that exist, both 3:4', async () => {
     const files = new Set(await readdir(resolve(root, 'data/media/art')))
     for (const tree of fr.trees) {
       for (const [field, file] of [
         ['cover', tree.cover],
-        ['banner', tree.banner],
         ['backCover', tree.backCover],
       ] as const) {
         if (!file) continue
         expect(files.has(file), `${tree.id} ${field} ${file}`).toBe(true)
+        expect(file, `${tree.id} ${field}`).toMatch(/-3_4-/)
       }
     }
   })
@@ -664,16 +664,12 @@ describe('media', () => {
     ).resolves.toBeDefined()
   })
 
-  it('points every species at art that exists', async () => {
+  it('points every species at a 3:4 cover that exists', async () => {
     const files = new Set(await readdir(resolve(root, 'data/media/art')))
     for (const entry of fr.species) {
-      for (const [field, file] of [
-        ['cover', entry.cover],
-        ['banner', entry.banner],
-      ] as const) {
-        if (!file) continue
-        expect(files.has(file), `${entry.id} ${field} ${file}`).toBe(true)
-      }
+      if (!entry.cover) continue
+      expect(files.has(entry.cover), `${entry.id} cover ${entry.cover}`).toBe(true)
+      expect(entry.cover, `${entry.id} cover`).toMatch(/-3_4-/)
     }
   })
 

@@ -52,17 +52,12 @@
       "description": "Nombre de Compétences que la planche est dessinée pour tenir."
     },
     "cover": {
-      "description": "Couverture au rapport 3:4, dans data/media/art/ : la planche verticale que porte la carte de l'arbre. Absente, la carte retombe sur la bannière, puis sur la planche 3:4 par défaut.",
-      "type": "string",
-      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-\\d{1,2}_\\d{1,2}-(?:og|cleaned|upscaled_[24])\\.(?:png|jpg)$"
-    },
-    "banner": {
-      "description": "Bannière au rapport 16:9, dans data/media/art/ : le bandeau derrière le héros et la vignette sociale. Absente, le héros retombe sur la planche 16:9 par défaut.",
+      "description": "Couverture au rapport 3:4, dans data/media/art/ : l'unique illustration de l'arbre, sur sa carte, dans son héros, sur la couverture de son livret et dans sa vignette sociale. Absente, la planche 3:4 par défaut.",
       "type": "string",
       "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-\\d{1,2}_\\d{1,2}-(?:og|cleaned|upscaled_[24])\\.(?:png|jpg)$"
     },
     "backCover": {
-      "description": "Quatrième de couverture au rapport 3:4, dans data/media/art/ : la planche verticale au dos du livret imprimé. Absente, le dos retombe sur la bannière recadrée en portrait.",
+      "description": "Quatrième de couverture au rapport 3:4, dans data/media/art/ : la planche verticale au dos du livret imprimé. Absente, le dos retombe sur la planche commune que nomme src/lib/booklet/back-cover.ts.",
       "type": "string",
       "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-\\d{1,2}_\\d{1,2}-(?:og|cleaned|upscaled_[24])\\.(?:png|jpg)$"
     },

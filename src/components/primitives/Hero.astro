@@ -1,8 +1,11 @@
 ---
 import Banner from './Banner.astro'
 
+type Layout = 'banner' | 'portrait'
+
 type Props = {
   art?: string | undefined
+  layout?: Layout
   objectPosition?: string
   motion?: 'none' | 'drift' | 'zoom-drift' | 'burns'
   seconds?: number
@@ -18,6 +21,7 @@ type Props = {
 
 const {
   art,
+  layout = 'banner',
   objectPosition = '50% 26%',
   motion = 'drift',
   seconds = 22,
@@ -30,31 +34,54 @@ const {
   padding,
   scrollCue,
 } = Astro.props
+
+const PORTRAIT_POSITION = '50% 24%'
+
+const scrims = [
+  `background:linear-gradient(0deg, var(--scrim1) 0%, var(--scrim-mid) ${bottomStops[0]}%, var(--scrim2) ${bottomStops[1]}%)`,
+  `background:linear-gradient(90deg, var(--scrim-side) 0%, var(--scrim-mid) ${sideStops[0]}%, var(--scrim2) ${sideStops[1]}%)`,
+]
+const plate = { motion, seconds, settle, large, priority }
 ---
 
 <section
-  style={`position:relative; min-height:${minHeight}; display:flex; flex-direction:column; justify-content:flex-end; overflow:clip; border-bottom:1px solid var(--line2)`}
+  class="au-hero"
+  data-layout={layout}
+  style={`--hero-min:${minHeight}; min-height:${minHeight}`}
 >
-  <Banner
-    art={art}
-    objectPosition={objectPosition}
-    motion={motion}
-    seconds={seconds}
-    settle={settle}
-    large={large}
-    priority={priority}
-  />
-  <slot name="overlay" />
-  <span
-    aria-hidden="true"
-    style={`position:absolute; inset:0; background:linear-gradient(0deg, var(--scrim1) 0%, var(--scrim-mid) ${bottomStops[0]}%, var(--scrim2) ${bottomStops[1]}%)`}
-  ></span>
-  <span
-    aria-hidden="true"
-    style={`position:absolute; inset:0; background:linear-gradient(90deg, var(--scrim-side) 0%, var(--scrim-mid) ${sideStops[0]}%, var(--scrim2) ${sideStops[1]}%)`}
-  ></span>
-  <div style={`position:relative; width:100%; max-width:1560px; margin:0 auto; padding:${padding}`}>
-    <slot />
+  {
+    layout === 'banner' && (
+      <div class="au-hero__banner">
+        <Banner art={art} objectPosition={objectPosition} {...plate} />
+        {scrims.map((scrim) => (
+          <span aria-hidden="true" class="au-hero__scrim" style={scrim} />
+        ))}
+      </div>
+    )
+  }
+  {
+    layout === 'portrait' && (
+      <div class="au-hero__portrait">
+        <Banner art={art} objectPosition={PORTRAIT_POSITION} {...plate} />
+        {scrims.map((scrim) => (
+          <span aria-hidden="true" class="au-hero__scrim au-hero__scrim--narrow" style={scrim} />
+        ))}
+      </div>
+    )
+  }
+  <div class="au-hero__stage">
+    <div class="au-hero__content" style={`padding:${padding}`}>
+      <div class="au-hero__column">
+        {
+          Astro.slots.has('plates') && (
+            <div class="au-hero__plates">
+              <slot name="plates" />
+            </div>
+          )
+        }
+        <slot />
+      </div>
+    </div>
   </div>
   {
     scrollCue && (
@@ -79,6 +106,86 @@ const {
 </section>
 
 <style>
+  .au-hero {
+    --hero-ink: var(--art-ink);
+    --hero-ink2: var(--art-ink2);
+    --hero-span: min(100vw, 1560px);
+    --hero-panel: clamp(calc(var(--hero-span) * 0.42), calc(var(--hero-min) * 0.75), calc(var(--hero-span) * 0.55));
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: clip;
+    border-bottom: 1px solid var(--line2);
+  }
+
+  .au-hero__banner,
+  .au-hero__portrait,
+  .au-hero__scrim {
+    position: absolute;
+    inset: 0;
+  }
+
+  .au-hero__portrait {
+    overflow: clip;
+  }
+
+  .au-hero__stage {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+    max-width: 1560px;
+    margin: 0 auto;
+  }
+
+  .au-hero__content {
+    width: 100%;
+  }
+
+  .au-hero__plates {
+    position: absolute;
+    top: 26px;
+    right: 26px;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  @media (min-width: 960px) {
+    .au-hero[data-layout='portrait'] {
+      --hero-ink: var(--ink);
+      --hero-ink2: var(--ink2);
+    }
+
+    .au-hero[data-layout='portrait'] .au-hero__portrait {
+      left: auto;
+      right: max(0px, calc((100% - 1560px) / 2));
+      width: var(--hero-panel);
+      mask-image: linear-gradient(90deg, transparent 0%, #000 38%);
+    }
+
+    .au-hero[data-layout='portrait'] .au-hero__scrim--narrow {
+      display: none;
+    }
+
+    .au-hero[data-layout='portrait'] .au-hero__column {
+      max-width: calc(100% - var(--hero-panel) * 0.82);
+    }
+
+    .au-hero[data-layout='portrait'] .au-hero__plates {
+      right: auto;
+      left: 26px;
+    }
+  }
+
+  @media (min-width: 1561px) {
+    .au-hero[data-layout='portrait'] .au-hero__portrait {
+      mask-image: linear-gradient(90deg, transparent 0%, #000 38%, #000 90%, transparent 100%);
+    }
+  }
+
   [data-scroll-cue] {
     position: sticky;
     bottom: 20px;
@@ -95,7 +202,7 @@ const {
     letter-spacing: 0.3em;
     text-align: center;
     text-transform: uppercase;
-    color: var(--art-ink2);
+    color: var(--hero-ink2);
   }
 
   @media (max-width: 639px) {

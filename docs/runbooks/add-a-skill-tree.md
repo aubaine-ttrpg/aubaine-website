@@ -1,6 +1,6 @@
 # Add a skill tree
 
-Produces one plate page with its banner, its lore and its nodes, a page per node where that skill opens beside the plate, plus a card in the tree index.
+Produces one plate page with its cover, its lore and its nodes, a page per node where that skill opens beside the plate, plus a card in the tree index.
 
 ## The files to create
 
@@ -22,8 +22,7 @@ The filename is the id and the id becomes the URL. Lowercase letters, digits and
 | `name` | required | Titre rendu sur la planche. | any non empty string |
 | `treeType` | required | Rendu en sous-titre : Espèce, Archétype ou Domaine. | `species`, `archetype`, `domain` |
 | `size` | required | Nombre de Compétences que la planche est dessinée pour tenir. | `8` or `16` |
-| `cover` | optional | Couverture au rapport 3:4, dans `data/media/art/`. Absente, la carte retombe sur la bannière, puis sur la planche 3:4 par défaut. | a filename that exists, named per [add-an-image.md](add-an-image.md) |
-| `banner` | optional | Bannière au rapport 16:9, dans `data/media/art/`. Absente, le héros retombe sur la planche 16:9 par défaut. | a filename that exists, named per [add-an-image.md](add-an-image.md) |
+| `cover` | optional | Couverture au rapport 3:4, dans `data/media/art/` : l'unique illustration de l'arbre, sur sa carte, dans son héros, sur la couverture de son livret et dans sa vignette sociale. Absente, la planche 3:4 par défaut. | a `3_4` filename that exists, named per [add-an-image.md](add-an-image.md) |
 | `core` | optional | Cœur de l'arbre. Absent : un nœud tient le centre. | object, see below |
 | `core.label` | required inside `core` | The word printed inside the emblem. | any non empty string |
 | `core.sublabel` | optional | The line printed under the emblem. | any non empty string |
@@ -50,7 +49,6 @@ There is no `domains` field and no `characteristics` field on a tree. Both are c
   "treeType": "archetype",
   "size": 16,
   "cover": "bacchi-qui-travaille-3_4-og.png",
-  "banner": "bacchi-qui-travaille-16_9-og.png",
   "placements": [
     {
       "skill": "GRIMOI-001",
@@ -87,8 +85,8 @@ The skill at `50, 50.81` holds the centre and has no `linked`, and every branch 
 
 ## What appears on the site
 
-- `/fr/arbres` and `/en/trees`: a new card in the tree index, with the cover when the tree has one and the banner otherwise, the computed domains and the skill count.
-- `/fr/arbre/<id>` and `/en/tree/<id>`: the hero with the banner and the tree name, then the lore beside its sticky outline when the tree has one, then the section « Arbre de compétences » at `#arbre`, which the outline names last. The section holds the filters, then the legend over the plate with its nodes and link lines, beside a pane of the same width that asks the reader to choose a skill.
+- `/fr/arbres` and `/en/trees`: a new card in the tree index, with its cover, the computed domains and the skill count.
+- `/fr/arbre/<id>` and `/en/tree/<id>`: the hero, its cover standing on the right and fading into the page, with the tree name on the left, then the lore beside its sticky outline when the tree has one, then the section « Arbre de compétences » at `#arbre`, which the outline names last. The section holds the filters, then the legend over the plate with its nodes and link lines, beside a pane of the same width that asks the reader to choose a skill.
 - `/fr/arbre/<id>/<SKILL-ID>`: the same page with that skill's card in the pane and its node circled in gold. A node on the plate links here with `#arbre`, and with JavaScript only the pane changes.
 - If `data/media/pdf/<id>.pdf` exists, a booklet download button appears in the hero. The filename must be the tree id.
 

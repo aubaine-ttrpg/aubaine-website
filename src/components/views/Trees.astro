@@ -56,7 +56,7 @@ const cards: Card[] = corpus.trees.map((tree) => {
     href: pathFor('tree', locale, { tree: tree.id }),
     name: tree.name,
     kicker: tree.treeType === 'domain' ? t.domains : t.archetypes,
-    art: tree.cover ?? tree.banner ?? PLACEHOLDER_COVER,
+    art: tree.cover ?? PLACEHOLDER_COVER,
     mark: frame(tree.domains.map((key) => corpus.domains.get(key)?.color ?? DOMAIN_FALLBACK)),
     characteristics,
     status: badgedStatus(tree.status),

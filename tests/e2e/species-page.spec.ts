@@ -35,3 +35,17 @@ test('species cards carry no domain spine, tree cards keep theirs', async ({ pag
   await page.goto('/fr/arbres')
   expect(await page.locator('[data-cover-spine]').count()).toBeGreaterThan(0)
 })
+
+test('a species and a tree show their one 3:4 cover in the hero and in the social image', async ({
+  page,
+}) => {
+  for (const path of ['/fr/espece/nnor', '/fr/arbre/marchand']) {
+    await page.goto(path)
+    const hero = page.locator('section.au-hero[data-layout="portrait"] img')
+    await expect(hero, path).toHaveCount(1)
+    expect(await hero.getAttribute('src'), path).toMatch(/-3_4-og\./)
+    expect(await page.locator('meta[property="og:image"]').getAttribute('content'), path).toMatch(
+      /-3_4-og\./,
+    )
+  }
+})

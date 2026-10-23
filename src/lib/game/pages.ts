@@ -19,7 +19,7 @@ export type BookletHead = { title: string; banner?: string | undefined }
 export function bookletHead(data: Corpus, kind: BookletKind, slug: string): BookletHead {
   if (kind === 'tree') {
     const tree = data.treesById.get(slug)
-    return tree ? { title: tree.name, banner: tree.banner } : { title: slug }
+    return { title: tree?.name ?? slug }
   }
   if (kind === 'book') {
     const book = data.books.find((entry) => entry.id === slug)
@@ -130,7 +130,7 @@ export async function pageRoutes(): Promise<PageRoute[]> {
           termLabels(data.terms),
           160,
         ),
-        ogArt: tree.banner,
+        ogArt: tree.cover,
         noIndex: keptOutOfSearch(tree.status),
       })
       for (const placement of tree.placements) {
@@ -140,7 +140,7 @@ export async function pageRoutes(): Promise<PageRoute[]> {
           params: { tree: tree.id, node: placement.skill.id },
           title: `${placement.skill.title} · ${tree.name}`,
           description: flattenText(placement.skill.description, termLabels(data.terms), 160),
-          ogArt: tree.banner,
+          ogArt: tree.cover,
           noIndex: keptOutOfSearch(data.skillStatus.get(placement.skill.id)),
         })
       }
@@ -160,7 +160,7 @@ export async function pageRoutes(): Promise<PageRoute[]> {
           termLabels(data.terms),
           160,
         ),
-        ogArt: entry.banner,
+        ogArt: entry.cover,
         noIndex: keptOutOfSearch(entry.status),
       })
     }

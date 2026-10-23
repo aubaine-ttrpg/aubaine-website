@@ -35,7 +35,6 @@ The same skill can be placed in more than one tree. That is why the layout lives
   "treeType": "archetype",
   "size": 16,
   "cover": "barbare-3_4-og.png",
-  "banner": "barbare-16_9-og.png",
   "backCover": "barbare-dos-3_4-og.png",
   "placements": [
     {

@@ -239,7 +239,7 @@ export async function treeContentHash(
     )
   }
   addRuleWords(blobs, treeRuleWords(tree, corpus))
-  await addArt(blobs, root, [tree.cover, tree.banner, tree.backCover ?? DEFAULT_PDF_BACK_COVER])
+  await addArt(blobs, root, [tree.cover, tree.backCover ?? DEFAULT_PDF_BACK_COVER])
   await addMeta(blobs, root, locale)
   return digest(blobs)
 }

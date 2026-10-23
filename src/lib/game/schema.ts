@@ -378,17 +378,12 @@ export const skillTree = z
     cover: mediaFile
       .optional()
       .describe(
-        "Couverture au rapport 3:4, dans data/media/art/ : la planche verticale que porte la carte de l'arbre. Absente, la carte retombe sur la bannière, puis sur la planche 3:4 par défaut.",
-      ),
-    banner: mediaFile
-      .optional()
-      .describe(
-        'Bannière au rapport 16:9, dans data/media/art/ : le bandeau derrière le héros et la vignette sociale. Absente, le héros retombe sur la planche 16:9 par défaut.',
+        "Couverture au rapport 3:4, dans data/media/art/ : l'unique illustration de l'arbre, sur sa carte, dans son héros, sur la couverture de son livret et dans sa vignette sociale. Absente, la planche 3:4 par défaut.",
       ),
     backCover: mediaFile
       .optional()
       .describe(
-        'Quatrième de couverture au rapport 3:4, dans data/media/art/ : la planche verticale au dos du livret imprimé. Absente, le dos retombe sur la bannière recadrée en portrait.',
+        'Quatrième de couverture au rapport 3:4, dans data/media/art/ : la planche verticale au dos du livret imprimé. Absente, le dos retombe sur la planche commune que nomme src/lib/booklet/back-cover.ts.',
       ),
     core: z
       .object({
@@ -511,12 +506,7 @@ export const species = z
     cover: mediaFile
       .optional()
       .describe(
-        "Couverture au rapport 3:4, dans data/media/art/ : la planche verticale que porte la carte de l'Espèce. Absente, la carte retombe sur la bannière, puis sur la planche 3:4 par défaut.",
-      ),
-    banner: mediaFile
-      .optional()
-      .describe(
-        'Bannière au rapport 16:9, dans data/media/art/ : le bandeau derrière le héros et la vignette sociale. Absente, le héros retombe sur la planche 16:9 par défaut.',
+        "Couverture au rapport 3:4, dans data/media/art/ : l'unique illustration de l'Espèce, sur sa carte, dans son héros et dans sa vignette sociale. Absente, la planche 3:4 par défaut.",
       ),
     movement: z
       .string()

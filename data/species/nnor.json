@@ -3,7 +3,6 @@
   "status": "playtest",
   "name": "Nnor",
   "cover": "nnor-3_4-og.png",
-  "banner": "nnor-16_9-og.png",
   "movement": "10,5 m",
   "types": [
     "humanoid",

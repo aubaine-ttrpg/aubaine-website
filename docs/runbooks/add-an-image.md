@@ -93,8 +93,8 @@ If you edit a picture's metadata by hand, `pnpm media:stamp` refuses to run rath
 
 | Where | Field | What you write |
 | --- | --- | --- |
-| `data/skill-trees/<id>.json` | `cover` | Couverture au rapport 3:4. Example: `"cover": "barbare-3_4-og.png"` |
-| `data/skill-trees/<id>.json` | `banner` | Bannière au rapport 16:9. Example: `"banner": "barbare-16_9-og.png"` |
+| `data/skill-trees/<id>.json` | `cover` | Couverture au rapport 3:4, the tree's one picture. Example: `"cover": "barbare-3_4-og.png"` |
+| `data/species/<id>.json` | `cover` | Couverture au rapport 3:4, the species' one picture. Example: `"cover": "nnor-3_4-og.png"` |
 | `data/books/<id>/book.json` | `cover`, `banner` | The same two fields, the same two ratios |
 | `data/equipment/catalogue.json` | `cover`, `banner`, `backCover` | The same fields again. `cover` and `backCover` are the two faces of the equipment booklet, `banner` is the plate behind the hero at `/fr/equipement` |
 | `data/equipment/items/<slug>.json` | `art` | Illustration au rapport 1:1. Example: `"art": "dague-1_1-og.png"` |
@@ -105,7 +105,7 @@ Several items may name the same picture, and eighteen pictures currently serve t
 
 ## A complete example
 
-`data/skill-trees/barbare.json` names both plates in its head:
+`data/skill-trees/barbare.json` names its pictures in its head:
 
 ```json
 {
@@ -116,12 +116,11 @@ Several items may name the same picture, and eighteen pictures currently serve t
   "treeType": "archetype",
   "size": 16,
   "cover": "barbare-3_4-og.png",
-  "banner": "barbare-16_9-og.png",
   "backCover": "barbare-dos-3_4-og.png",
   "placements": [
 ```
 
-`cover` is the portrait on the card at `/fr/arbres`. `banner` is the wide plate behind the hero at `/fr/arbre/barbare` and the source of the social image. The hero also shows a booklet download button, with no field naming it: `pnpm pdf` renders one booklet per tree per locale and `data/pdf/releases.json` is what the page reads.
+`cover` is the tree's one picture: the card at `/fr/arbres`, the hero at `/fr/arbre/barbare`, the front of its booklet and the source of its social image. `backCover` is the back of the booklet. The hero also shows a booklet download button, with no field naming it: `pnpm pdf` renders one booklet per tree per locale and `data/pdf/releases.json` is what the page reads.
 
 `data/states/combustion.json` names its icon:
 
@@ -159,8 +158,8 @@ Then point both halves of the hero at the new files in `src/components/views/Hom
 
 ## What appears on the site
 
-- `cover` on a tree: the portrait on the card at `/fr/arbres`. Absent, the card falls back to `banner`.
-- `banner` on a tree: the plate behind the hero on `/fr/arbre/<id>`, and the social preview for that page and its nodes.
+- `cover` on a tree: the card at `/fr/arbres`, the hero on `/fr/arbre/<id>`, the front of its booklet, and the social preview for that page and its nodes.
+- `cover` on a species: the card at `/fr/especes`, the hero on `/fr/espece/<id>` and its social preview.
 - `cover` and `banner` on a book: the card at `/fr/livres` and the hero on each chapter.
 - `cover` and `backCover` on the catalogue: the two faces of the equipment booklet. `banner`: the plate behind the hero at `/fr/equipement`.
 - `art` on an item: the picture on its card and in its detail panel at `/fr/equipement`.
@@ -169,7 +168,7 @@ Then point both halves of the hero at the new files in `src/components/views/Hom
 - a booklet in `data/media/pdf/`: the download button on the card at `/fr/livres` and in the hero of `/fr/arbre/<tree-id>`, resolved through `data/pdf/releases.json`.
 - `data/media/video/<nom>-16_9-compressed.mp4`: the loop behind the home hero, over the plate it fades in from.
 
-The social image is always cut from `banner`, never from `cover`. A 3:4 portrait letterboxed into 1200 by 630 is a bad card, so do not swap them.
+A book's and the catalogue's social image is cut from `banner`. A tree's and a species' is cut from the top of the `cover`, where the subject's head sits; Astro does not enlarge it, so a 1086 pixel cover gives a card of 1086 by 630.
 
 ## When no field names a picture
 
@@ -177,12 +176,13 @@ Nothing renders an empty frame. A slot with nothing named draws the default plat
 
 | Slot | Falls back to |
 | --- | --- |
-| a tree or book card, after `cover ?? banner` | `placeholder-3_4-og.png` for a tree, `placeholder-16_9-og.png` for a book |
+| a tree or species card and hero, when `cover` is absent | `placeholder-3_4-og.png` |
+| a book card, after `cover ?? banner` | `placeholder-16_9-og.png` |
 | a PDF back cover, when `backCover` is absent | `randome-3_4-og.png` |
-| a tree or book hero | `placeholder-16_9-og.png` |
+| a book hero | `placeholder-16_9-og.png` |
 | an item or a skill in a detail panel | `placeholder-1_1-og.png` |
 
-The social image is the exception. It is cut from `banner`, and a page with none falls back to `le-bastion-16_9-og.png` in `src/pages/[...path].astro`, the site's default social plate. A grey placeholder makes a worse preview than a real plate, and most pages with no `banner` are index pages that never had one.
+The social image is the exception. A page with no picture to cut it from falls back to `le-bastion-16_9-og.png` in `src/lib/social-image.ts`, the site's default social plate. A grey placeholder makes a worse preview than a real plate, and most pages with none are index pages that never had one.
 
 A default is not a placement. It keeps the page whole while a plate is missing, and the field is still the thing to fill.
 

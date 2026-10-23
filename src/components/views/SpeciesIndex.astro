@@ -36,7 +36,7 @@ const cards: Card[] = corpus.species.map((entry) => ({
   href: pathFor('speciesEntry', locale, { species: entry.id }),
   name: entry.name,
   kicker: t.species,
-  art: entry.cover ?? entry.banner ?? PLACEHOLDER_COVER,
+  art: entry.cover ?? PLACEHOLDER_COVER,
   status: badgedStatus(entry.status),
   entry: {
     id: entry.id,
