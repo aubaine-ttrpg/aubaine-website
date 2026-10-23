@@ -2,6 +2,12 @@
   "id": "nnor",
   "status": "playtest",
   "name": "Nnor",
+  "descriptors": [
+    "tribal",
+    "close-knit",
+    "fierce",
+    "goat"
+  ],
   "cover": "nnor-3_4-og.png",
   "movement": "10,5 m",
   "types": [

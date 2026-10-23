@@ -92,6 +92,59 @@ const contentStatus = z
     "Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable : les listes le masquent tant que le lecteur n'affiche pas les brouillons ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une Espèce, une pièce d'équipement ou une panoplie, dans cet ordre.",
   )
 
+export const PROFILE_RANKS = ['F', 'D', 'C', 'B', 'A', 'S'] as const
+
+export const PROFILE_AXES = [
+  'damage',
+  'toughness',
+  'healing',
+  'utility',
+  'freeform',
+  'roleplay',
+] as const
+
+const profileRank = z.enum(PROFILE_RANKS)
+
+const profile = z
+  .object({
+    damage: profileRank.describe("Dégâts : ce que les Compétences de l'arbre infligent."),
+    toughness: profileRank.describe(
+      "Robustesse : ce que les Compétences de l'arbre aident à encaisser.",
+    ),
+    healing: profileRank.describe("Soin : ce que les Compétences de l'arbre rendent et réparent."),
+    utility: profileRank.describe(
+      "Utilité : les problèmes que les Compétences de l'arbre résolvent sans infliger ni soigner.",
+    ),
+    freeform: profileRank.describe(
+      "Liberté : ce que les Compétences de l'arbre laissent à l'interprétation de la table.",
+    ),
+    roleplay: profileRank.describe(
+      "Roleplay : la place que les Compétences de l'arbre donnent au jeu de rôle.",
+    ),
+  })
+  .strict()
+  .optional()
+  .describe(
+    "Profil de l'arbre tel que l'équipe le lit : six axes notés de F, le plus faible, à S, le plus fort, dans l'ordre F, D, C, B, A, S, sans note globale. Il ne change aucune règle. Rendu dans le héros en hexagone. Écrit à la main, jamais calculé. Absent : le héros n'a pas de profil.",
+  )
+
+const descriptorKey = z
+  .string()
+  .regex(MACHINE_KEY)
+  .describe("Clé de descripteur, telle qu'elle est déclarée dans data/meta/descriptors.json.")
+
+const descriptors = z
+  .array(descriptorKey)
+  .min(1)
+  .max(4)
+  .refine((list) => new Set(list).size === list.length, {
+    message: 'chaque descripteur une seule fois.',
+  })
+  .optional()
+  .describe(
+    "Un à quatre mots qui caractérisent l'entrée, rendus en étiquettes dans le héros, dans l'ordre écrit. Absent : le héros n'en porte pas.",
+  )
+
 const mediaFile = z
   .string()
   .regex(MEDIA_FILE)
@@ -377,6 +430,8 @@ export const skillTree = z
       .describe(
         "Devise de l'arbre, rendue en italique sous le titre sur la page et sur la couverture du livret. Absente, le titre reste seul.",
       ),
+    descriptors,
+    profile,
     treeType: z
       .enum(['species', 'archetype', 'domain'])
       .describe('Rendu en sous-titre : Espèce, Archétype ou Domaine.'),
@@ -512,6 +567,7 @@ export const species = z
       .describe(
         "Devise de l'Espèce, rendue en italique sous le titre. Absente, le titre reste seul.",
       ),
+    descriptors,
     cover: mediaFile
       .optional()
       .describe(

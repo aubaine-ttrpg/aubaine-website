@@ -62,3 +62,33 @@ describe('the family names a species gives its sub-species', () => {
     expect(parsed.error?.issues.map((issue) => issue.path.join('.'))).toEqual(['familyNames'])
   })
 })
+
+describe('the descriptors of a species', () => {
+  it('accepts one to four distinct keys', () => {
+    expect(species.safeParse(entry({ descriptors: ['tribal'] })).success).toBe(true)
+    expect(
+      species.safeParse(entry({ descriptors: ['tribal', 'close-knit', 'fierce', 'goat'] })).success,
+    ).toBe(true)
+  })
+
+  it('refuses an empty list', () => {
+    expect(species.safeParse(entry({ descriptors: [] })).success).toBe(false)
+  })
+
+  it('refuses a fifth key', () => {
+    const five = ['tribal', 'close-knit', 'fierce', 'goat', 'loyal']
+    expect(species.safeParse(entry({ descriptors: five })).success).toBe(false)
+  })
+
+  it('refuses the same key twice', () => {
+    expect(species.safeParse(entry({ descriptors: ['tribal', 'tribal'] })).success).toBe(false)
+  })
+
+  it('refuses a key that is not a machine key', () => {
+    expect(species.safeParse(entry({ descriptors: ['Tribal'] })).success).toBe(false)
+  })
+
+  it('stays optional', () => {
+    expect(species.safeParse(entry({})).success).toBe(true)
+  })
+})

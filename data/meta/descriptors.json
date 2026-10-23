@@ -1,0 +1,39 @@
+{
+  "entries": [
+    {
+      "key": "tribal",
+      "labelFr": "Tribal",
+      "labelEn": "Tribal"
+    },
+    {
+      "key": "close-knit",
+      "labelFr": "Solidaire",
+      "labelEn": "Close-knit"
+    },
+    {
+      "key": "fierce",
+      "labelFr": "Farouche",
+      "labelEn": "Fierce"
+    },
+    {
+      "key": "goat",
+      "labelFr": "...Chèvre ?!",
+      "labelEn": "...Goat?!"
+    },
+    {
+      "key": "buys",
+      "labelFr": "Achète",
+      "labelEn": "Buys"
+    },
+    {
+      "key": "sells",
+      "labelFr": "Vend",
+      "labelEn": "Sells"
+    },
+    {
+      "key": "trades",
+      "labelFr": "Échange",
+      "labelEn": "Trades"
+    }
+  ]
+}

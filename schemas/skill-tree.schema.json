@@ -29,6 +29,104 @@
       "type": "string",
       "minLength": 1
     },
+    "descriptors": {
+      "description": "Un à quatre mots qui caractérisent l'entrée, rendus en étiquettes dans le héros, dans l'ordre écrit. Absent : le héros n'en porte pas.",
+      "minItems": 1,
+      "maxItems": 4,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*$",
+        "description": "Clé de descripteur, telle qu'elle est déclarée dans data/meta/descriptors.json."
+      }
+    },
+    "profile": {
+      "description": "Profil de l'arbre tel que l'équipe le lit : six axes notés de F, le plus faible, à S, le plus fort, dans l'ordre F, D, C, B, A, S, sans note globale. Il ne change aucune règle. Rendu dans le héros en hexagone. Écrit à la main, jamais calculé. Absent : le héros n'a pas de profil.",
+      "type": "object",
+      "properties": {
+        "damage": {
+          "type": "string",
+          "enum": [
+            "F",
+            "D",
+            "C",
+            "B",
+            "A",
+            "S"
+          ],
+          "description": "Dégâts : ce que les Compétences de l'arbre infligent."
+        },
+        "toughness": {
+          "type": "string",
+          "enum": [
+            "F",
+            "D",
+            "C",
+            "B",
+            "A",
+            "S"
+          ],
+          "description": "Robustesse : ce que les Compétences de l'arbre aident à encaisser."
+        },
+        "healing": {
+          "type": "string",
+          "enum": [
+            "F",
+            "D",
+            "C",
+            "B",
+            "A",
+            "S"
+          ],
+          "description": "Soin : ce que les Compétences de l'arbre rendent et réparent."
+        },
+        "utility": {
+          "type": "string",
+          "enum": [
+            "F",
+            "D",
+            "C",
+            "B",
+            "A",
+            "S"
+          ],
+          "description": "Utilité : les problèmes que les Compétences de l'arbre résolvent sans infliger ni soigner."
+        },
+        "freeform": {
+          "type": "string",
+          "enum": [
+            "F",
+            "D",
+            "C",
+            "B",
+            "A",
+            "S"
+          ],
+          "description": "Liberté : ce que les Compétences de l'arbre laissent à l'interprétation de la table."
+        },
+        "roleplay": {
+          "type": "string",
+          "enum": [
+            "F",
+            "D",
+            "C",
+            "B",
+            "A",
+            "S"
+          ],
+          "description": "Roleplay : la place que les Compétences de l'arbre donnent au jeu de rôle."
+        }
+      },
+      "required": [
+        "damage",
+        "toughness",
+        "healing",
+        "utility",
+        "freeform",
+        "roleplay"
+      ],
+      "additionalProperties": false
+    },
     "treeType": {
       "type": "string",
       "enum": [

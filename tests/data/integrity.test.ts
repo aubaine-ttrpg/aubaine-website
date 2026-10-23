@@ -246,6 +246,14 @@ describe('vocabulary references', () => {
     }
   })
 
+  it('uses only declared descriptor keys', () => {
+    for (const entry of [...fr.species, ...fr.trees]) {
+      for (const key of entry.descriptors ?? []) {
+        expect(fr.descriptors.has(key), `${entry.id} descriptor ${key}`).toBe(true)
+      }
+    }
+  })
+
   it('uses only declared characteristic keys', () => {
     for (const skill of fr.skills.values()) {
       for (const key of skill.characteristics ?? []) {
@@ -1476,6 +1484,18 @@ describe('definitions', () => {
           `meta/${vocabulary.id} ${entry.key} ${phrased ? 'needs' : 'takes no'} referenceFr`,
         ).toBe(phrased)
       }
+    }
+  })
+
+  it('keeps every descriptor to its two labels', () => {
+    const descriptors = sources.vocabularies.find((vocabulary) => vocabulary.id === 'descriptors')
+    expect(descriptors, 'meta/descriptors').toBeDefined()
+    for (const entry of descriptors?.data.entries ?? []) {
+      expect(Object.keys(entry).sort(), `meta/descriptors ${entry.key}`).toEqual([
+        'key',
+        'labelEn',
+        'labelFr',
+      ])
     }
   })
 

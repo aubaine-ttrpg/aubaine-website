@@ -29,6 +29,17 @@
       "type": "string",
       "minLength": 1
     },
+    "descriptors": {
+      "description": "Un à quatre mots qui caractérisent l'entrée, rendus en étiquettes dans le héros, dans l'ordre écrit. Absent : le héros n'en porte pas.",
+      "minItems": 1,
+      "maxItems": 4,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*$",
+        "description": "Clé de descripteur, telle qu'elle est déclarée dans data/meta/descriptors.json."
+      }
+    },
     "cover": {
       "description": "Couverture au rapport 3:4, dans data/media/art/ : l'unique illustration de l'Espèce, sur sa carte, dans son héros et dans sa vignette sociale. Absente, la planche 3:4 par défaut.",
       "type": "string",

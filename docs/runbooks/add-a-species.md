@@ -21,6 +21,7 @@ The filename is the id and the id becomes the URL. Lowercase letters, digits and
 | `status` | optional | Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable : les listes le masquent tant que le lecteur n'affiche pas les brouillons ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une Espèce, une pièce d'équipement ou une panoplie, dans cet ordre. | `draft`, `playtest`, `beta`, `balanced` |
 | `name` | required | Nom rendu en titre. | any non empty string |
 | `subtitle` | optional | Devise de l'Espèce, rendue en italique sous le titre. Absente, le titre reste seul. | any non empty string |
+| `descriptors` | optional | Un à quatre mots qui caractérisent l'entrée, rendus en étiquettes dans le héros, dans l'ordre écrit. Absent : le héros n'en porte pas. | 1 to 4 distinct keys from `data/meta/descriptors.json` |
 | `cover` | optional | Couverture au rapport 3:4, dans `data/media/art/` : l'unique illustration de l'Espèce, sur sa carte, dans son héros et dans sa vignette sociale. Absente, la planche 3:4 par défaut. | a `3_4` filename that exists, named per [add-an-image.md](add-an-image.md) |
 | `artEffect` | optional | Effet de rendu que le navigateur applique à la couverture, sur la carte comme sur le héros : `film` pour « Pellicule », `oil` pour « Huile ». Absent : l'illustration telle quelle. | `film` or `oil` |
 | `movement` | optional | Vitesse de l'Espèce, quand elle s'écarte des 9 mètres par défaut. Absente : 9 mètres. | any non empty string |
@@ -214,6 +215,8 @@ Then open `/fr/especes` and click through to the new species.
 **An icon set has to be credited before it can ship.** `data/media/icons/` holds one directory per Iconify prefix, and `pnpm data:check` fails when a directory is not named by `ICON_SETS` in `src/lib/rights/attribution.ts`. Adding a file to a set already declared there needs nothing else; adding a new set needs a row in that module, which the credits page then renders on its own.
 
 **There is no free text on the plates.** Every value is a key from a controlled vocabulary in `data/meta/`, so `pnpm data:check` rejects a type or a size the game has not declared.
+
+**Descriptors are keys too.** `descriptors` names one to four words from `data/meta/descriptors.json`, which holds both labels, so the overlay never repeats them. A new word is a new entry there, chosen by the owner, and `pnpm data:check` rejects a key the file does not declare.
 
 **The lore outline builds itself.** Every `##` in the lore file becomes a numbered entry in the rail beside the text, followed by `Origines régionales` or `Sous-espèces`, with each sub-species nested under it, and `Jouer un <nom>` when the species has them, and by a last entry pointing at the pool. Nothing is authored for it, and the rail only appears when there is more than one entry.
 

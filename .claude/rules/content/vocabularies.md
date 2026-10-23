@@ -19,6 +19,12 @@ paths:
 - A definition may reference other entries with `{{clé}}` and `{{clé|texte}}`, and so may a tag definition in `data/meta/tags.json`, a definition in `RULE_TERMS` and the `note` of `data/skill-lists/common-bank.json`. The Rules page renders those references as links. A tooltip, the tag hints on a skill entry and the source popover show the same text flattened: each reference prints its label or its written text, never its braces.
 - A terminology decision that does not fit the schema belongs in prose, in `docs/`, not in a data file.
 
+## Descriptors
+
+- `data/meta/descriptors.json` holds the words a species or a tree wears as stickers in its hero, `key`, `labelFr` and `labelEn` only. `pnpm data:check` refuses any other field on them.
+- An entry names one to four distinct keys in `descriptors`. A descriptor is never a keyword and is never written in rule text.
+- The words are the owner's. Adding one is a product decision, as for any vocabulary.
+
 ## Rule terms
 
 - Rule terms are a vocabulary of their own, declared in `RULE_TERMS` in `src/lib/game/build.ts` rather than in `data/meta/`. `Avantage` is one of them. Read the declaration for the current set and never work from a copy of it.

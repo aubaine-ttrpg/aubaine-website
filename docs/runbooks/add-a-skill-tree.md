@@ -21,6 +21,14 @@ The filename is the id and the id becomes the URL. Lowercase letters, digits and
 | `status` | optional | Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable : les listes le masquent tant que le lecteur n'affiche pas les brouillons ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une Espèce, une pièce d'équipement ou une panoplie, dans cet ordre. | `draft`, `playtest`, `beta`, `balanced` |
 | `name` | required | Titre rendu sur la planche. | any non empty string |
 | `subtitle` | optional | Devise de l'arbre, rendue en italique sous le titre sur la page et sur la couverture du livret. Absente, le titre reste seul. | any non empty string |
+| `descriptors` | optional | Un à quatre mots qui caractérisent l'entrée, rendus en étiquettes dans le héros, dans l'ordre écrit. Absent : le héros n'en porte pas. | 1 to 4 distinct keys from `data/meta/descriptors.json` |
+| `profile` | optional | Profil de l'arbre tel que l'équipe le lit : six axes notés de F, le plus faible, à S, le plus fort, dans l'ordre F, D, C, B, A, S, sans note globale. Il ne change aucune règle. Rendu dans le héros en hexagone. Écrit à la main, jamais calculé. Absent : le héros n'a pas de profil. | object with all six axes below |
+| `profile.damage` | required inside `profile` | Dégâts : ce que les Compétences de l'arbre infligent. | `F`, `D`, `C`, `B`, `A`, `S` |
+| `profile.toughness` | required inside `profile` | Robustesse : ce que les Compétences de l'arbre aident à encaisser. | `F`, `D`, `C`, `B`, `A`, `S` |
+| `profile.healing` | required inside `profile` | Soin : ce que les Compétences de l'arbre rendent et réparent. | `F`, `D`, `C`, `B`, `A`, `S` |
+| `profile.utility` | required inside `profile` | Utilité : les problèmes que les Compétences de l'arbre résolvent sans infliger ni soigner. | `F`, `D`, `C`, `B`, `A`, `S` |
+| `profile.freeform` | required inside `profile` | Liberté : ce que les Compétences de l'arbre laissent à l'interprétation de la table. | `F`, `D`, `C`, `B`, `A`, `S` |
+| `profile.roleplay` | required inside `profile` | Roleplay : la place que les Compétences de l'arbre donnent au jeu de rôle. | `F`, `D`, `C`, `B`, `A`, `S` |
 | `treeType` | required | Rendu en sous-titre : Espèce, Archétype ou Domaine. | `species`, `archetype`, `domain` |
 | `size` | required | Nombre de Compétences que la planche est dessinée pour tenir. | `8` or `16` |
 | `cover` | optional | Couverture au rapport 3:4, dans `data/media/art/` : l'unique illustration de l'arbre, sur sa carte, dans son héros, sur la couverture de son livret et dans sa vignette sociale. Absente, la planche 3:4 par défaut. | a `3_4` filename that exists, named per [add-an-image.md](add-an-image.md) |
@@ -106,6 +114,10 @@ Then open `/fr/arbres` and click through to the new plate.
 **A tree's `status` carries to every skill it places.** Marking one tree `playtest` badges the plate, the tree card, and all sixteen skill cards in one edit. A skill escapes it only by writing its own `status`, and `"status": "balanced"` is how a settled skill sits inside a playtest tree without a badge.
 
 **A tree's `domains` and primary characteristics are computed, never authored.** The domain badge on the plate and the characteristic banners in the hero are counted from the skills the tree places, plus `core.domains` if there is a core. If a plate shows the wrong domain, change the skills, not the tree file. The schema has no field to override it.
+
+**A profile is authored, never computed.** `profile` is the team's reading of the tree, six ranks from F to S with no overall grade, and it changes no rule. Nothing derives it from the skills, so a tree that changes its plate keeps its profile until someone rewrites it. The hero draws it as a hexagon only when all six ranks are written, which the schema requires.
+
+**Descriptors are keys from `data/meta/descriptors.json`.** That file holds both labels, so the tree file writes keys only and no overlay is needed. A new word is a new entry there, chosen by the owner.
 
 **Trailing `size` is a drawing hint, not a limit.** It says how many skills the plate is drawn to hold. The hard cap is 16 placements, from `placements`. Every tree in the repo uses `size: 16`, with 1 to 16 placements.
 

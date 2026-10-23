@@ -23,6 +23,8 @@ Two things are computed from the skills a tree places, and must never be authore
 
 The tree schema has no field for either. Change the skills if the plate shows the wrong colour.
 
+A tree's **profile** is the opposite case: six ranks from F to S that the team writes by hand, an editorial reading that changes no rule. Nothing computes it, and it does not follow the skills when the plate changes.
+
 The other derived rule: **XP is `5 × tier`**, unless `xpOverride` replaces it. Tier 10 tops out at 50 XP, so anything dearer needs an override.
 
 ## Maturity is declared once and inherited downward

@@ -2,6 +2,19 @@
   "id": "marchand",
   "status": "draft",
   "name": "Marchand",
+  "descriptors": [
+    "buys",
+    "sells",
+    "trades"
+  ],
+  "profile": {
+    "damage": "D",
+    "toughness": "F",
+    "healing": "C",
+    "utility": "S",
+    "freeform": "S",
+    "roleplay": "A"
+  },
   "treeType": "archetype",
   "size": 16,
   "cover": "nnor-marchand-3_4-og.png",

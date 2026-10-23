@@ -119,6 +119,7 @@ export type Corpus = {
   creatureTypes: Map<string, VocabularyEntry>
   sizes: Map<string, VocabularyEntry>
   languages: Map<string, VocabularyEntry>
+  descriptors: Map<string, VocabularyEntry>
   domains: Map<string, VocabularyEntry>
   characteristics: Map<string, VocabularyEntry>
   aptitudes: Map<string, VocabularyEntry>
@@ -263,6 +264,7 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
   const creatureTypes = vocabularyFor('creature-types')
   const sizes = vocabularyFor('sizes')
   const languages = vocabularyFor('languages')
+  const descriptors = vocabularyFor('descriptors')
   const domains = vocabularyFor('domains')
   const characteristics = vocabularyFor('characteristics')
   const aptitudes = vocabularyFor('aptitudes')
@@ -643,6 +645,7 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
     creatureTypes,
     sizes,
     languages,
+    descriptors,
     domains,
     characteristics,
     aptitudes,
