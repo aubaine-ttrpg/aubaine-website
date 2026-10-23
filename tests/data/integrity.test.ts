@@ -6,6 +6,7 @@ import sharp from 'sharp'
 import { describe, expect, it } from 'vitest'
 
 import { latestRelease, notes, releases } from '../../src/lib/booklet/manifest'
+import { frameEmblem } from '../../src/lib/emblem-frame'
 import { CALLOUT_KINDS, pictureLook } from '../../src/lib/game/book-markup'
 import {
   originSkills,
@@ -47,7 +48,7 @@ import {
 } from '../../src/lib/rights/ownership'
 import { pdfIsStamped } from '../../src/lib/rights/pdf'
 import { readPngText, stampPng, stripPng } from '../../src/lib/rights/png'
-import { stampSvg } from '../../src/lib/rights/svg'
+import { stampSvg, stripSvg } from '../../src/lib/rights/svg'
 import { stampWebp } from '../../src/lib/rights/webp'
 import {
   BASE_NUMBER,
@@ -678,6 +679,27 @@ describe('media', () => {
       if (!entry.cover) continue
       expect(files.has(entry.cover), `${entry.id} cover ${entry.cover}`).toBe(true)
       expect(entry.cover, `${entry.id} cover`).toMatch(/-3_4-/)
+    }
+  })
+
+  it('points every emblem at a file, and keeps no emblem nobody wears', async () => {
+    const files = (await readdir(resolve(root, 'data/media/emblems'))).filter((file) =>
+      file.endsWith('.svg'),
+    )
+    const worn = new Set<string>()
+    for (const entry of [...fr.species, ...fr.trees]) {
+      if (!entry.emblem) continue
+      expect(files, `${entry.id} emblem ${entry.emblem}`).toContain(entry.emblem)
+      worn.add(entry.emblem)
+    }
+    expect(files.filter((file) => !worn.has(file))).toEqual([])
+  })
+
+  it('frames every emblem on the shared square and margin', async () => {
+    for (const file of await readdir(resolve(root, 'data/media/emblems'))) {
+      if (!file.endsWith('.svg')) continue
+      const bare = stripSvg(await readFile(resolve(root, 'data/media/emblems', file), 'utf8'))
+      expect(frameEmblem(bare), `emblems/${file}. Run: pnpm media:emblems`).toBe(bare)
     }
   })
 

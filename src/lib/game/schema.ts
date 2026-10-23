@@ -67,6 +67,14 @@ const artEffect = z
     "Effet de rendu que le navigateur applique à la couverture, sur la carte comme sur le héros : 'film' pour « Pellicule », 'oil' pour « Huile ». Absent : l'illustration telle quelle.",
   )
 
+const emblem = z
+  .string()
+  .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*\.svg$/)
+  .optional()
+  .describe(
+    "Emblème de l'entrée, dans data/media/emblems/ : un SVG blanc sur fond transparent, fait de chemins seuls. pnpm media:emblems le ramène au cadre carré et à la marge que partagent tous les emblèmes, pnpm media:stamp lui donne ses droits. Rendu en relief, seul, en bas à droite de la carte du héros. Absent : la carte n'en porte pas.",
+  )
+
 const creatureTypeKey = z
   .string()
   .describe(
@@ -444,6 +452,7 @@ export const skillTree = z
         "Couverture au rapport 3:4, dans data/media/art/ : l'unique illustration de l'arbre, sur sa carte, dans son héros, sur la couverture de son livret et dans sa vignette sociale. Absente, la planche 3:4 par défaut.",
       ),
     artEffect,
+    emblem,
     backCover: mediaFile
       .optional()
       .describe(
@@ -574,6 +583,7 @@ export const species = z
         "Couverture au rapport 3:4, dans data/media/art/ : l'unique illustration de l'Espèce, sur sa carte, dans son héros et dans sa vignette sociale. Absente, la planche 3:4 par défaut.",
       ),
     artEffect,
+    emblem,
     movement: z
       .string()
       .min(1)

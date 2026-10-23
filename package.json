@@ -28,6 +28,7 @@
     "media:stamp": "node tools/media/stamp.ts",
     "media:stamp:check": "node tools/media/stamp.ts --check",
     "media:sounds": "node tools/media/sounds.ts",
+    "media:emblems": "node tools/media/emblems.ts",
     "pdf": "node tools/pdf/render.ts",
     "pdf:check": "node tools/pdf/render.ts --check",
     "pdf:archive": "node tools/pdf/archive.ts",

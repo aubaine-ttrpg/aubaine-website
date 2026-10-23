@@ -33,6 +33,7 @@ The filename is the id and the id becomes the URL. Lowercase letters, digits and
 | `size` | required | Nombre de Compétences que la planche est dessinée pour tenir. | `8` or `16` |
 | `cover` | optional | Couverture au rapport 3:4, dans `data/media/art/` : l'unique illustration de l'arbre, sur sa carte, dans son héros, sur la couverture de son livret et dans sa vignette sociale. Absente, la planche 3:4 par défaut. | a `3_4` filename that exists, named per [add-an-image.md](add-an-image.md) |
 | `artEffect` | optional | Effet de rendu que le navigateur applique à la couverture, sur la carte comme sur le héros : `film` pour « Pellicule », `oil` pour « Huile ». Absent : l'illustration telle quelle. | `film` or `oil` |
+| `emblem` | optional | Emblème de l'entrée, dans `data/media/emblems/` : un SVG blanc sur fond transparent, fait de chemins seuls. `pnpm media:emblems` le ramène au cadre carré et à la marge que partagent tous les emblèmes, `pnpm media:stamp` lui donne ses droits. Rendu en relief, seul, en bas à droite de la carte du héros. Absent : la carte n'en porte pas. | a `.svg` file name in `data/media/emblems/` |
 | `core` | optional | Cœur de l'arbre. Absent : un nœud tient le centre. | object, see below |
 | `core.label` | required inside `core` | The word printed inside the emblem. | any non empty string |
 | `core.sublabel` | optional | The line printed under the emblem. | any non empty string |

@@ -18,6 +18,7 @@
   "treeType": "archetype",
   "size": 16,
   "cover": "nnor-marchand-3_4-og.png",
+  "emblem": "marchand.svg",
   "placements": [
     {
       "skill": "FONCOM-001",

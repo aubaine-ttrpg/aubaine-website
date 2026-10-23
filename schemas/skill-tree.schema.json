@@ -162,6 +162,11 @@
         "oil"
       ]
     },
+    "emblem": {
+      "description": "Emblème de l'entrée, dans data/media/emblems/ : un SVG blanc sur fond transparent, fait de chemins seuls. pnpm media:emblems le ramène au cadre carré et à la marge que partagent tous les emblèmes, pnpm media:stamp lui donne ses droits. Rendu en relief, seul, en bas à droite de la carte du héros. Absent : la carte n'en porte pas.",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*\\.svg$"
+    },
     "backCover": {
       "description": "Quatrième de couverture au rapport 3:4, dans data/media/art/ : la planche verticale au dos du livret imprimé. Absente, le dos retombe sur la planche commune que nomme src/lib/booklet/back-cover.ts.",
       "type": "string",
