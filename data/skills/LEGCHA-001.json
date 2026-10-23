@@ -3,6 +3,7 @@
   "title": "Legs de Charon",
   "type": "passive",
   "tier": 5,
+  "art": "legs-de-charon-1_1-og.png",
   "domains": [
     "fire"
   ],

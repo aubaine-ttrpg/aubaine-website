@@ -3,6 +3,7 @@
   "title": "Persistance rustique",
   "type": "passive",
   "tier": 5,
+  "art": "persistance-rustique-1_1-og.png",
   "domains": [],
   "prerequisite": "Être Nnor alpin",
   "activation": "Passif",

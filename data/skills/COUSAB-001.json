@@ -3,6 +3,7 @@
   "title": "Coup de sabot",
   "type": "active",
   "tier": 5,
+  "art": "coup-de-sabot-1_1-og.png",
   "domains": [
     "physical"
   ],

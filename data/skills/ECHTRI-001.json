@@ -3,6 +3,7 @@
   "title": "Écho tribal",
   "type": "passive",
   "tier": 5,
+  "art": "echo-tribal-1_1-og.png",
   "domains": [
     "psychic"
   ],

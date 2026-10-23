@@ -3,6 +3,7 @@
   "title": "Endurance alpine",
   "type": "passive",
   "tier": 5,
+  "art": "endurance-alpine-1_1-og.png",
   "domains": [
     "physical"
   ],

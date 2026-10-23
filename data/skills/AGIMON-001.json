@@ -3,6 +3,7 @@
   "title": "Agilité montagnarde",
   "type": "passive",
   "tier": 5,
+  "art": "agilite-montagnarde-1_1-og.png",
   "domains": [
     "earth"
   ],
