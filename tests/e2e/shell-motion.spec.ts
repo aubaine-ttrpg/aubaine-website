@@ -88,6 +88,33 @@ test('clicking a nav item moves both underlines at once', async ({ page }) => {
   expect((await scales()).almanach).toBe(0)
 })
 
+test('a header menu stays open while the pointer travels to an item', async ({ page }) => {
+  await page.goto('/en/trees')
+  await page.waitForFunction(() => 'swup' in window)
+  const menu = page.getByRole('menu', { name: 'Codex' })
+
+  await page.locator('[data-nav="almanach"]').hover()
+  await expect(menu).toBeVisible()
+  const item = await menu.getByRole('menuitem', { name: 'All indexes' }).boundingBox()
+  if (!item) throw new Error('the menu item has no box')
+  await page.mouse.move(item.x + item.width / 2, item.y + item.height / 2, { steps: 10 })
+
+  await expect(menu).toBeVisible()
+})
+
+test('choosing a header menu item navigates and closes the menu', async ({ page }) => {
+  await page.goto('/en/trees')
+  await page.waitForFunction(() => 'swup' in window)
+  const menu = page.getByRole('menu', { name: 'Codex' })
+  const item = menu.getByRole('menuitem', { name: 'All indexes' })
+
+  await page.locator('[data-nav="almanach"]').hover()
+  await item.click()
+
+  await expect(page).toHaveURL('/en/almanach')
+  await expect(menu).toBeHidden()
+})
+
 test('the language links follow the page although the header is not swapped', async ({ page }) => {
   await page.goto('/en/trees')
   await markHeader(page)

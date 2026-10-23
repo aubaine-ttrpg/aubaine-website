@@ -240,6 +240,11 @@ function bindOnce(): void {
       return
     }
 
+    if (target.closest('[data-menu-item]')) {
+      closeAll()
+      return
+    }
+
     const langTrigger = target.closest<HTMLElement>('[data-lang-trigger]')
     if (langTrigger) {
       event.stopPropagation()
@@ -258,7 +263,7 @@ function bindOnce(): void {
 
   document.addEventListener('pointerdown', (event) => {
     const target = event.target
-    if (target instanceof Element && target.closest('[data-lang]')) return
+    if (target instanceof Element && target.closest('[data-lang], [data-menu-panel]')) return
     closeAll()
   })
 
