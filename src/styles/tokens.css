@@ -63,6 +63,10 @@
   --scrim-mid: rgba(6, 5, 13, 0.34);
   --scrim2: rgba(6, 5, 13, 0);
   --scrim-side: rgba(6, 5, 13, 0.52);
+  color-scheme: dark;
+}
+
+:root {
   --header-h: 64px;
   --sticky-top: 84px;
   --sticky-max: calc(100dvh - 104px);
@@ -128,8 +132,6 @@
   --leaf-h4: 10.5pt;
   --leaf-small: 9pt;
   --leaf-quote: 10.5pt;
-
-  color-scheme: dark;
 }
 
 :root[data-theme="light"] {
