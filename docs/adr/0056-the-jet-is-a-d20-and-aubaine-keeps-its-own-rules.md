@@ -3,6 +3,7 @@
 **Project:** Aubaine, the wiki
 **Status:** Accepted
 **Date:** 2026-10-24
+**Revised:** 2026-10-24, the PdV and Énergie formulas change after all, through 0057 (addendum in Decision 1)
 **Deciders:** Kori
 **Scope:**
 - **Covers:** the die of every Jet and the numbers tied to it: Avantage and Désavantage dice, the two
@@ -58,6 +59,14 @@ text is reproduced, and no chapter names another game.
 - **Expertise that doubles the Aptitude**: rejected by the decider; it would break the ruling of
   2026-09-28 that a Jet improves through Avantages, never a number. Reopens with that ruling.
 - **Initiative on a d20**: rejected by the decider; chapter 10 keeps « Le dé est petit exprès ».
+
+### Addendum (2026-10-24): the pools follow the SRD by level
+
+- The bullet « Unchanged: … the PdV, Mémoire and Énergie formulas » held for the switch to the d20
+  alone. The same day, 0057 makes each Niveau of a path an SRD level in its pool, with a cap of 20.
+  PdV becomes `3 + (5 + Constitution) × Niveau de Vitalité` and Énergie `Esprit + 3 × Niveau
+  d'Énergie`. Mémoire keeps its formula.
+- Everything else this decision kept unchanged stays so.
 
 ### Caveats
 

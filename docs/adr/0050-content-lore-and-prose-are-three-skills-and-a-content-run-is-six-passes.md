@@ -5,6 +5,7 @@
 **Date:** 2026-10-20
 **Revised:** 2026-10-20, the Sauvegarde, the pair of an Attaque and a DD written with its base extend the notation (addendum in Decision 3)
 **Revised:** 2026-10-24, on the d20 a Compétence's DD has the base 8, and the criticals gain their forms (addendum in Decision 3)
+**Revised:** 2026-10-24, the balance pass reads a measured report and gains the `measured` label (addendum in Decision 4)
 **Deciders:** Kori
 **Scope:** Which writing skill owns which reader facing surface, how a run of the content skill is
 staged across subagents and owner checkpoints, the one wording each mechanical relationship takes,
@@ -234,6 +235,17 @@ The forms are in `formulary.md` § save, § resisted-effect, § attack-vs-ca, §
 - **Leave the pass out until balance is defined**: declined by the owner on 2026-10-19.
 - **A blocking pass**: rejected. The values of chapter 03 are a starting calibration, by its own
   words in chapter 04. Reopens when playtests have settled them.
+
+### Addendum (2026-10-24): the pass reads a measured report
+
+- The run gains a Measure step before pass 5. The orchestrator runs `pnpm balance report` for the
+  entries in scope and writes `balance-tool.md` in the run folder
+  (`.claude/skills/aubaine-content/SKILL.md`). 0057 Decision 5 records the tool.
+- The pass reads that report first and labels what it gives `measured`, beside `budget-checked`,
+  `sibling-compared` and `unmeasured`. It never recomputes a number the report gives.
+- The pass still edits nothing, and stays without a shell. The rationale above no longer holds as
+  written: the repository holds a measuring tool now. What the tool cannot read, a rider, a state, a
+  trade, is still costed by hand or labelled unmeasured.
 
 ---
 
