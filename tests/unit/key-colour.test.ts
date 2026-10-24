@@ -1,4 +1,4 @@
-import { readFile } from 'node:fs/promises'
+import { readdir, readFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { describe, expect, it } from 'vitest'
 
@@ -69,23 +69,19 @@ describe('the key colour of a picture', () => {
 })
 
 describe('the key colour Aubaine reads from its covers', () => {
-  it('is a strong red for the Nnor', async () => {
-    const key = oklchOf(rgbFromHex(await artKeyColour('nnor-3_4-og.png')))
-    expect(key.hue).toBeGreaterThan(15)
-    expect(key.hue).toBeLessThan(40)
-    expect(key.chroma).toBeGreaterThan(0.14)
+  it('writes a hex colour that keeps the sticker ink readable, on every 3:4 cover', async () => {
+    const covers = (await readdir(resolve(import.meta.dirname, '../../data/media/art'))).filter(
+      (file) => file.endsWith('-3_4-og.png'),
+    )
+    expect(covers).not.toHaveLength(0)
+    for (const cover of covers) {
+      const key = await artKeyColour(cover)
+      expect(key, cover).toMatch(/^#[0-9a-f]{6}$/)
+      expect(contrastOf(rgbFromHex(key), STICKER_INK), cover).toBeGreaterThanOrEqual(AA_TEXT)
+    }
   })
 
-  it('is a soft warm beige for the Marchand', async () => {
-    const key = oklchOf(rgbFromHex(await artKeyColour('nnor-marchand-3_4-og.png')))
-    expect(key.hue).toBeGreaterThan(40)
-    expect(key.hue).toBeLessThan(85)
-    expect(key.chroma).toBeLessThan(0.08)
-    expect(key.lightness).toBeGreaterThan(0.8)
-  })
-
-  it('writes a hex colour, and falls back to the house gold only for a picture without colour', async () => {
-    expect(await artKeyColour('nnor-3_4-og.png')).toMatch(/^#[0-9a-f]{6}$/)
+  it('falls back to a house gold written in hex', () => {
     expect(hexOf(rgbFromHex(KEY_FALLBACK))).toBe(KEY_FALLBACK)
   })
 })

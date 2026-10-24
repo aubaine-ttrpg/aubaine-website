@@ -120,8 +120,9 @@ function sameValues(a: ArrayLike<number> | undefined, b: ArrayLike<number> | und
 }
 
 describe('the underground build', () => {
-  it('builds both levels in order, each on its own layer', () => {
-    expect(builds.map((build) => build.level)).toEqual([1, 2])
+  it('builds every level in order, each on its own layer', () => {
+    const levels = world.underground.map((record) => record.level)
+    expect(builds.map((build) => build.level)).toEqual([...levels].sort((a, b) => a - b))
     for (const build of builds) {
       for (const set of build.batch.sets()) expect(set.layer).toBe(`under-${build.level}`)
     }

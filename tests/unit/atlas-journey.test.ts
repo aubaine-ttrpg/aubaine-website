@@ -13,7 +13,8 @@ import {
   travelRequest,
   vesselOptions,
 } from '../../src/islands/atlas/journey'
-import { VESSELS } from '../../src/lib/atlas/vocabulary'
+import { TILE_TYPES, VESSELS } from '../../src/lib/atlas/vocabulary'
+import type { TravelRules, World } from '../../src/lib/atlas/world/model'
 import type { AtlasRef } from '../../src/lib/atlas/world/refs'
 import {
   planTravel,
@@ -29,14 +30,18 @@ const { authored, world } = loadWorld('archipel')
 const grid = authored.grid
 const paces = bookPaces()
 const t = strings('fr').atlas
-const g = createGazetteer({
-  world,
-  grid,
-  locale: 'fr',
-  words: t,
-  paces,
-  terrains: world.travel.terrains.map(({ key }) => ({ key, label: `terrain ${key}` })),
-})
+const gazetteerOf = (shown: World) =>
+  createGazetteer({
+    world: shown,
+    grid,
+    locale: 'fr',
+    words: t,
+    paces,
+    terrains: shown.travel.terrains.map(({ key }) => ({ key, label: `terrain ${key}` })),
+  })
+const g = gazetteerOf(world)
+const withTravel = (travel: Partial<TravelRules>) =>
+  gazetteerOf({ ...world, travel: { ...world.travel, ...travel } })
 const number = (value: number, digits = 0) =>
   new Intl.NumberFormat('fr-FR', { maximumFractionDigits: digits }).format(value)
 const place = (id: string): AtlasRef => ({
@@ -151,13 +156,12 @@ describe('a journey on foot', () => {
     )
   })
 
-  it('counts the days in travel days of the hours the rules give', () => {
-    expect(g.measures.duration(1.5, 12, world.travel.hoursPerDay)).toBe(
-      t.daysHours(number(1), number(4)),
-    )
-    expect(g.measures.duration(2, 16, world.travel.hoursPerDay)).toBe(t.days(number(2)))
-    expect(g.measures.duration(0.25, 2, world.travel.hoursPerDay)).toBe(t.hours(number(2)))
-    expect(g.measures.duration(0.01, 0.08, world.travel.hoursPerDay)).toBe(t.underAnHour)
+  it('counts the days in travel days of the hours a day holds', () => {
+    const hoursPerDay = 8
+    expect(g.measures.duration(1.5, 12, hoursPerDay)).toBe(t.daysHours(number(1), number(4)))
+    expect(g.measures.duration(2, 16, hoursPerDay)).toBe(t.days(number(2)))
+    expect(g.measures.duration(0.25, 2, hoursPerDay)).toBe(t.hours(number(2)))
+    expect(g.measures.duration(0.01, 0.08, hoursPerDay)).toBe(t.underAnHour)
   })
 })
 
@@ -290,8 +294,22 @@ describe('the planner options', () => {
     )
   })
 
-  it('offers skis on the terrains where they raise the pace', () => {
-    expect(skisLabel(g)).toBe(t.skis(paceName('fast'), 'terrain neiges'))
+  it('offers skis on the terrains where they raise the pace, at the fastest pace they give', () => {
+    const skiing = withTravel({
+      terrains: [
+        { key: 'open', maxPace: 'fast', maxPaceWithSkis: 'fast' },
+        { key: 'snow', maxPace: 'slow', maxPaceWithSkis: 'normal' },
+        { key: 'ice', maxPace: 'slow', maxPaceWithSkis: 'fast' },
+      ],
+    })
+    expect(skisLabel(skiing)).toBe(t.skis(paceName('fast'), 'terrain snow et terrain ice'))
+  })
+
+  it('offers no skis where they raise no pace', () => {
+    const bare = withTravel({
+      terrains: [{ key: 'open', maxPace: 'fast', maxPaceWithSkis: undefined }],
+    })
+    expect(skisLabel(bare)).toBeUndefined()
   })
 
   it('gives the hours of a crew in shifts from the rules', () => {
@@ -299,8 +317,14 @@ describe('the planner options', () => {
   })
 
   it('colours a terrain after the first tile type that has it, and the underground in amber', () => {
-    const terrain = (key: string) => world.travel.terrains.findIndex((entry) => entry.key === key)
-    expect(terrainTone(g, terrain('plaine'))).toBe('plains')
-    expect(terrainTone(g, world.travel.undergroundTerrain)).toBe('underground')
+    const [open, rough, underground, unused] = [0, 1, 2, 3]
+    const tileTerrains = new Uint8Array(TILE_TYPES.length).fill(open)
+    tileTerrains[2] = rough
+    tileTerrains[5] = rough
+    const toned = withTravel({ tileTerrains, undergroundTerrain: underground })
+    expect(terrainTone(toned, open)).toBe(TILE_TYPES[0])
+    expect(terrainTone(toned, rough)).toBe(TILE_TYPES[2])
+    expect(terrainTone(toned, underground)).toBe('underground')
+    expect(terrainTone(toned, unused)).toBeUndefined()
   })
 })

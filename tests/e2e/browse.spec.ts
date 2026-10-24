@@ -1,5 +1,9 @@
 import { expect, type Page, test } from '@playwright/test'
 
+import { pathFor } from '../../src/lib/i18n/routes'
+import { strings } from '../../src/lib/i18n/strings'
+import { corpus } from './support/corpus'
+
 async function hydrated(page: Page): Promise<void> {
   await expect(page.locator('astro-island[ssr]')).toHaveCount(0)
 }
@@ -174,16 +178,18 @@ test('a resting tooltip occupies no layout', async ({ page }) => {
 })
 
 test('the Common Bank source opens its note and closes it again', async ({ page }) => {
-  await page.goto('/en/skills#e-REPVIF-001')
+  const bank = (await corpus('en')).bank
+  const id = bank.resolved[0]?.id ?? ''
+  await page.goto(`/en/skills#e-${id}`)
   await enhanced(page)
 
-  const source = page.locator('#e-REPVIF-001').getByRole('button', { name: 'Common Bank' })
-  const note = page.locator('#note-bank-REPVIF-001')
+  const source = page.locator(`#e-${id}`).getByRole('button', { name: bank.name })
+  const note = page.locator(`#note-bank-${id}`)
   await expect(note).toBeHidden()
 
   await source.click()
   await expect(note).toBeVisible()
-  await expect(note).toContainText('Common Bank skills are independent from one another.')
+  await expect(note).not.toBeEmpty()
   await page.keyboard.press('Escape')
   await expect(note).toBeHidden()
 
@@ -193,26 +199,43 @@ test('the Common Bank source opens its note and closes it again', async ({ page 
 })
 
 test('the basic skills source opens its note', async ({ page }) => {
-  await page.goto('/en/skills#e-ATTAQU-001')
+  const basic = (await corpus('en')).basic
+  const id = basic.resolved[0]?.id ?? ''
+  await page.goto(`/en/skills#e-${id}`)
   await enhanced(page)
 
-  const source = page.locator('#e-ATTAQU-001').getByRole('button', { name: 'Basic Skills' })
-  const note = page.locator('#note-basic-ATTAQU-001')
+  const source = page.locator(`#e-${id}`).getByRole('button', { name: basic.name })
+  const note = page.locator(`#note-basic-${id}`)
   await expect(note).toBeHidden()
   await source.click()
   await expect(note).toBeVisible()
-  await expect(note).toContainText('Every creature has the basic Skills')
+  await expect(note).not.toBeEmpty()
 })
 
 test('a cross reference to a skill of the same index selects that skill', async ({ page }) => {
-  await page.goto('/fr/competences#e-ATTOPP-001')
-  await enhanced(page)
+  await page.goto('/fr/competences')
+  const reference = await page.locator('[data-detail]').evaluateAll((details) => {
+    for (const detail of details) {
+      const link = [...detail.querySelectorAll('a[href^="/fr/competences#e-"]')].find(
+        (anchor) => anchor.getAttribute('href') !== `/fr/competences#${detail.id}`,
+      )
+      if (link) return { from: detail.id, href: link.getAttribute('href') ?? '' }
+    }
+    return undefined
+  })
+  expect(reference, 'no skill names another skill of the index').toBeDefined()
+  const from = reference?.from ?? ''
+  const href = reference?.href ?? ''
+  const to = href.split('#')[1] ?? ''
 
-  await page.locator('#e-ATTOPP-001 a[href="/fr/competences#e-DESENG-001"]').click()
-  await expect(page).toHaveURL('/fr/competences#e-DESENG-001')
-  await expect(page.locator('#e-DESENG-001')).toBeVisible()
-  await expect(page.locator('#e-ATTOPP-001')).toBeHidden()
-  await expect(row(page, 'DESENG-001')).toHaveAttribute('aria-current', 'true')
+  await page.goto('about:blank')
+  await page.goto(`/fr/competences#${from}`)
+  await enhanced(page)
+  await page.locator(`#${from} a[href="${href}"]`).first().click()
+  await expect(page).toHaveURL(href)
+  await expect(page.locator(`#${to}`)).toBeVisible()
+  await expect(page.locator(`#${from}`)).toBeHidden()
+  await expect(row(page, to.replace(/^e-/, ''))).toHaveAttribute('aria-current', 'true')
 })
 
 test('selecting a rule word shows its definition', async ({ page }) => {
@@ -222,37 +245,48 @@ test('selecting a rule word shows its definition', async ({ page }) => {
   await row(page, 'rule-avantage').click()
   const detail = page.locator('#e-rule-avantage')
   await expect(detail).toBeVisible()
-  await expect(detail.locator('.au-term-entry__name')).toHaveText('Avantage')
+  const name = await page.locator('[data-entry="rule-avantage"]').getAttribute('data-name')
+  await expect(detail.locator('.au-term-entry__name')).toHaveText(name ?? '', { ignoreCase: true })
   await expect(detail.locator('.au-term-entry__desc')).toHaveText(/\S/)
 })
 
 test('a tree source opens the skill on its plate', async ({ page }) => {
-  await page.goto('/en/skills#e-RAGEXX-001')
+  const placed = [...(await corpus('en')).origins].find(([, origin]) => origin.trees.length > 0)
+  expect(placed, 'no skill sits on a tree').toBeDefined()
+  const [id = '', origin] = placed ?? []
+  const tree = origin?.trees[0]
+  const plate = `/en/tree/${tree?.id}/${id}#arbre`
+  await page.goto(`/en/skills#e-${id}`)
   await enhanced(page)
 
-  const source = page.locator('#e-RAGEXX-001').getByRole('link', { name: 'Barbare' })
-  await expect(source).toHaveAttribute('href', '/en/tree/barbare/RAGEXX-001#arbre')
+  const source = page.locator(`#e-${id}`).getByRole('link', { name: tree?.name ?? '', exact: true })
+  await expect(source).toHaveAttribute('href', plate)
   await source.click()
-  await expect(page).toHaveURL('/en/tree/barbare/RAGEXX-001#arbre')
-  await expect(page.locator('#tree-detail [data-selected-node="RAGEXX-001"]')).toBeVisible()
+  await expect(page).toHaveURL(plate)
+  await expect(page.locator(`#tree-detail [data-selected-node="${id}"]`)).toBeVisible()
   await expect(page.locator('#arbre')).toBeInViewport()
 })
 
-for (const { path, kind, name } of [
-  { path: '/en/skills#e-BOUFEU-001', kind: 'Practice', name: 'Spell' },
-  { path: '/fr/competences#e-BOUFEU-001', kind: 'Pratique', name: 'Sort' },
-]) {
-  test(`a tag opens its definition on keyboard focus at ${path}`, async ({ page }) => {
-    await page.goto(path)
+for (const locale of ['en', 'fr'] as const) {
+  test(`a tag opens its definition on keyboard focus at ${pathFor('skills', locale)}`, async ({
+    page,
+  }) => {
+    const words = await corpus(locale)
+    const skill = [...words.skills.values()].find(
+      (entry) => (entry.tags?.practices?.length ?? 0) > 0,
+    )
+    const practice = words.tags.get(skill?.tags?.practices?.[0] ?? '')
+    expect(practice, 'no skill carries a Pratique').toBeDefined()
+    await page.goto(`${pathFor('skills', locale)}#e-${skill?.id}`)
     await enhanced(page)
 
-    const tag = page.locator('#e-BOUFEU-001 .au-skill__tag').first()
+    const tag = page.locator(`#e-${skill?.id} .au-skill__tag`).first()
     const tip = tag.locator('[data-tip]')
     await expect(tip).toBeHidden()
     await tag.focus()
     await expect(tip).toBeVisible()
-    await expect(tip).toContainText(kind)
-    await expect(tip).toContainText(name)
+    await expect(tip).toContainText(strings(locale).tagPractice)
+    await expect(tip).toContainText((locale === 'fr' ? practice?.labelFr : practice?.labelEn) ?? '')
   })
 }
 
@@ -283,29 +317,42 @@ test('selecting a row never makes the panel scroll', async ({ page }) => {
 })
 
 test('a panoply piece shows its tiers and opens the other pieces', async ({ page }) => {
-  await page.goto('/fr/equipement#e-boucle-de-l-un')
+  const french = await corpus('fr')
+  const piecesOf = (set: string) =>
+    [...french.itemsBySlug].filter(([, item]) => item.set === set).map(([slug]) => slug)
+  const set = [...french.sets.values()].find((entry) => piecesOf(entry.id).length > 1)
+  expect(set, 'no panoply has two pieces').toBeDefined()
+  const [piece = '', other = ''] = piecesOf(set?.id ?? '')
+
+  await page.goto(`/fr/equipement#e-${piece}`)
   await enhanced(page)
-  const detail = page.locator('#e-boucle-de-l-un')
-  await expect(detail.locator('.au-set__rung')).toHaveCount(1)
+  const detail = page.locator(`#e-${piece}`)
+  await expect(detail.locator('.au-set__rung')).toHaveCount(set?.bonuses.length ?? 0)
   await expect(detail.locator('.au-set__member[aria-current] .au-rule')).toHaveAttribute(
     'href',
-    '/fr/equipement#e-boucle-de-l-un',
+    `/fr/equipement#e-${piece}`,
   )
 
-  await detail.locator('.au-set__member a[href$="#e-boucle-de-l-autre"]').click()
-  await expect(page).toHaveURL('/fr/equipement#e-boucle-de-l-autre')
-  await expect(page.locator('#e-boucle-de-l-autre')).toBeVisible()
-  await expect(row(page, 'boucle-de-l-autre')).toHaveAttribute('aria-current', 'true')
+  await detail.locator(`.au-set__member a[href$="#e-${other}"]`).click()
+  await expect(page).toHaveURL(`/fr/equipement#e-${other}`)
+  await expect(page.locator(`#e-${other}`)).toBeVisible()
+  await expect(row(page, other)).toHaveAttribute('aria-current', 'true')
 })
 
 test('an environment shows its Loot Table and opens the materials it gives', async ({ page }) => {
+  const environment = (await corpus('fr')).environments.get('foret')
   await page.goto('/fr/materiaux#e-foret')
   await enhanced(page)
   const forest = page.locator('#e-foret')
-  await expect(forest.locator('.au-loot tbody tr')).toHaveCount(8)
+  await expect(forest.locator('.au-loot tbody tr')).toHaveCount(environment?.loot.length ?? 0)
 
-  await forest.locator('a[href$="#e-truffe"]').click()
-  await expect(page).toHaveURL('/fr/materiaux#e-truffe')
-  await expect(row(page, 'truffe')).toHaveAttribute('aria-current', 'true')
-  await expect(page.locator('#e-truffe .au-material__place-name')).toHaveText(['Forêt'])
+  const material = forest.locator('.au-loot a[href*="#e-"]').first()
+  const href = (await material.getAttribute('href')) ?? ''
+  const slug = href.split('#e-')[1] ?? ''
+  await material.click()
+  await expect(page).toHaveURL(`/fr/materiaux#e-${slug}`)
+  await expect(row(page, slug)).toHaveAttribute('aria-current', 'true')
+  await expect(page.locator(`#e-${slug} .au-material__place-name`)).toContainText([
+    environment?.name ?? '',
+  ])
 })

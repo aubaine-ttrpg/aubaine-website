@@ -16,6 +16,7 @@ import { columnOf, rowOf } from '../../src/lib/atlas/world/grid'
 import type { World } from '../../src/lib/atlas/world/model'
 import type { AtlasRef } from '../../src/lib/atlas/world/refs'
 import { altitudeMetres, skyAltitudeMetres } from '../../src/lib/atlas/world/relief'
+import { tileMaxPace } from '../../src/lib/atlas/world/travel'
 import type { Locale } from '../../src/lib/i18n/locales'
 import { strings } from '../../src/lib/i18n/strings'
 import { bookPaces, loadWorld } from './fixtures/atlas'
@@ -37,6 +38,7 @@ function gazetteerFor(locale: Locale): { g: Gazetteer; world: World } {
 
 const { g, world } = gazetteerFor('fr')
 const t = strings('fr').atlas
+const HEX_AREA = (Math.sqrt(3) / 2) * world.hexKm ** 2
 const number = (value: number, digits = 0) =>
   new Intl.NumberFormat(LANG.fr, { maximumFractionDigits: digits }).format(value)
 const place = (id: string) => {
@@ -74,20 +76,26 @@ describe('the entry of a surface hex', () => {
   })
 
   it('gives the altitude, the area of one hex, its terrain and the pace a road allows', () => {
+    const terrain =
+      world.travel.terrains[world.travel.tileTerrains[world.surface.type[tile] ?? -1] ?? -1]
+    const pace = tileMaxPace(world, tile)
     expect(fact(sheet, t.facts.altitude)).toBe(
       `${number(altitudeMetres(world.surface.level[tile] ?? 0, undefined))} m`,
     )
-    expect(fact(sheet, t.facts.area)).toBe(`${number((Math.sqrt(3) / 2) * 25, 1)} km²`)
-    expect(fact(sheet, t.facts.terrain)).toBe('terrain ville')
-    expect(fact(sheet, t.facts.maxPace)).toBe('Rapide')
+    expect(fact(sheet, t.facts.area)).toBe(`${number(HEX_AREA, 1)} km²`)
+    expect(fact(sheet, t.facts.terrain)).toBe(`terrain ${terrain?.key}`)
+    expect(fact(sheet, t.facts.maxPace)).toBe(
+      bookPaces('fr').find((entry) => entry.key === pace)?.label,
+    )
   })
 
   it('walks the places that hold it, from the continent down to the quarter', () => {
+    const lineage = (index: number): number[] => {
+      const parent = world.places[index]?.parent ?? -1
+      return parent < 0 ? [index] : [...lineage(parent), index]
+    }
     expect(sheet.crumbs.map((crumb) => crumb.ref)).toEqual(
-      ['ponant', 'aubemont', 'comte-bastion', 'bastion', 'bastion-citadelle'].map((id) => ({
-        kind: 'place',
-        place: place(id).index,
-      })),
+      lineage(quarter.index).map((index) => ({ kind: 'place', place: index })),
     )
     expect(sheet.crumbs.some((crumb) => crumb.current)).toBe(false)
     expect(sectionNames(sheet, t.sections.member)?.[0]).toBe(quarter.name)
@@ -100,7 +108,12 @@ describe('the entry of a surface hex', () => {
         .filter((entry) => entry.tile === tile && entry.stratum === 0)
         .map((entry) => entry.name),
     )
-    expect(sectionNames(sheet, t.sections.routes)?.length).toBe(3)
+    expect([...(sectionNames(sheet, t.sections.routes) ?? [])].sort()).toEqual(
+      world.routes
+        .filter((route) => route.tiles.includes(tile))
+        .map((route) => route.name)
+        .sort(),
+    )
     const establishment = sheet.sections.find((entry) => entry.kind === 'establishments')?.items[0]
     expect(establishment?.ref).toBeUndefined()
   })
@@ -204,7 +217,7 @@ describe('the entry of a landmark', () => {
     const sheet = sheetOf({ kind: 'landmark', landmark: tree.index })
     expect(sheet.title).toBe(tree.name)
     expect(sheet.eyebrow).toBe(
-      `${t.landmark} · ${world.vocabulary.landmarkKinds['worldtree']?.label}`,
+      `${t.landmark} · ${world.vocabulary.landmarkKinds[tree.kind]?.label}`,
     )
     expect(fact(sheet, t.facts.height)).toBe(`${number(tree.height ?? 0)} m`)
     expect(fact(sheet, t.facts.altitude)).toBeTruthy()
@@ -216,7 +229,8 @@ describe('the entry of a landmark', () => {
     const sheet = sheetOf({ kind: 'landmark', landmark: city.index })
     expect(fact(sheet, t.facts.altitude)).toBe(`${number(city.altitude ?? 0)} m`)
     expect(fact(sheet, t.facts.position)).toBe(t.aloft)
-    expect(sheet.sections.map((entry) => entry.kind)).toEqual(['member'])
+    expect(sheet.sections.map((entry) => entry.kind)).not.toContain('strata')
+    expect(sheet.sections.map((entry) => entry.kind)).not.toContain('routes')
   })
 })
 
@@ -226,9 +240,7 @@ describe('the entry of a place', () => {
     const sheet = sheetOf({ kind: 'place', place: country.index })
     expect(sheet.eyebrow).toBe(world.vocabulary.placeKinds['country']?.label)
     expect(sheet.colour).toBe(country.color)
-    expect(fact(sheet, t.facts.area)).toBe(
-      `${number(country.tiles.length * (Math.sqrt(3) / 2) * 25)} km²`,
-    )
+    expect(fact(sheet, t.facts.area)).toBe(`${number(country.tiles.length * HEX_AREA)} km²`)
     expect(fact(sheet, t.facts.hexes)).toBe(number(country.tiles.length))
     expect(fact(sheet, t.facts.ruler)).toBe(country.ruler)
     expect(fact(sheet, t.facts.population)).toBe(number(country.population ?? 0))
@@ -245,7 +257,8 @@ describe('the entry of a place', () => {
   it('gives an underground city its depth first, its quarters and the places above it', () => {
     const hold = place('dolmhir')
     const sheet = sheetOf({ kind: 'place', place: hold.index })
-    expect(sheet.facts[0]).toEqual({ term: t.facts.depth, value: `≈ ${number(1200)} m` })
+    const depth = world.underground.find((entry) => entry.level === hold.stratum)?.depth
+    expect(sheet.facts[0]).toEqual({ term: t.facts.depth, value: `≈ ${number(depth ?? 0)} m` })
     expect(sectionNames(sheet, t.sections.subdivisions)).toEqual(
       hold.children.map((index) => world.places[index]?.name),
     )
@@ -319,7 +332,7 @@ describe('the names of the travel endpoints', () => {
       `${village?.name} · ${world.vocabulary.placeKinds['village']?.label}`,
     )
     expect(endpointLabel(g, { kind: 'place', place: hold.index })).toBe(
-      `${hold.name} · ${t.stratum(2)}`,
+      `${hold.name} · ${t.stratum(hold.stratum)}`,
     )
     expect(endpointLabel(g, { kind: 'landmark', landmark: tree.index })).toBe(
       `${tree.name} · ${t.landmark}`,
@@ -360,7 +373,9 @@ describe('the entries in English', () => {
   it('speaks the English vocabulary and formats numbers the British way', () => {
     const country = english.world.places.find((entry) => entry.id === 'aubemont')
     const sheet = describeRef(english.g, { kind: 'place', place: country?.index ?? -1 })
-    expect(sheet?.eyebrow).toBe('Country')
+    const kind = english.world.vocabulary.placeKinds[country?.kind ?? '']?.label
+    expect(sheet?.eyebrow).toBe(kind)
+    expect(kind).not.toBe(world.vocabulary.placeKinds[country?.kind ?? '']?.label)
     expect(sheet?.facts.find((entry) => entry.term === words.facts.population)?.value).toBe(
       new Intl.NumberFormat(LANG.en).format(country?.population ?? 0),
     )

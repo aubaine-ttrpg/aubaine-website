@@ -1907,8 +1907,10 @@ describe('asset ownership', () => {
   })
 
   it('stamps a derivative without touching one pixel of it', async () => {
-    const master = resolve(mediaDir, 'skills/eclat-de-pierre-1_1-og.png')
-    const derivative = await sharp(master).resize(64).webp({ quality: 80 }).toBuffer()
+    const master = sharp({
+      create: { width: 128, height: 128, channels: 3, background: '#80603f' },
+    })
+    const derivative = await master.resize(64).webp({ quality: 80 }).toBuffer()
     const stamped = stampWebp(new Uint8Array(derivative), licenceClaim())
 
     const before = await sharp(derivative).raw().toBuffer()

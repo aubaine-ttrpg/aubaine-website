@@ -8,7 +8,7 @@ import {
   type Listener,
   listen,
 } from '../../src/lib/atlas/world/soundscape'
-import { loadWorld } from './fixtures/atlas'
+import { loadWorld, oceanWorldFiles, worldFrom } from './fixtures/atlas'
 
 const { world } = loadWorld('archipel')
 const grid = createGrid(world.columns, world.rows)
@@ -52,7 +52,14 @@ describe('what the Atlas lets a reader hear', () => {
       at(forestAt().x, forestAt().z, { dist: 300 }),
       everywhere,
     )
-    const openSea = listen(world, grid, at(0, 200, { dist: 300 }), everywhere)
+    const ocean = worldFrom(oceanWorldFiles(16, 12))
+    const middle = ocean.authored.grid.size >> 1
+    const openSea = listen(
+      ocean.world,
+      ocean.authored.grid,
+      at(ocean.authored.grid.x[middle] ?? 0, ocean.authored.grid.z[middle] ?? 0, { dist: 300 }),
+      everywhere,
+    )
     const generic = (bed: Bed) => bed === 'sea' || bed === 'wind'
     expect(audible(forestView.beds).filter((bed) => !generic(bed))).toEqual([])
     expect(audible(openSea.beds)).toEqual(['sea', 'wind'])

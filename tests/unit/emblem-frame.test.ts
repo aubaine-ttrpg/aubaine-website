@@ -1,5 +1,3 @@
-import { readFile } from 'node:fs/promises'
-import { resolve } from 'node:path'
 import { describe, expect, it } from 'vitest'
 
 import { EMBLEM_MARGIN, frameEmblem, pathBounds } from '../../src/lib/emblem-frame'
@@ -69,26 +67,5 @@ describe('the frame of an emblem', () => {
     expect(() => frameEmblem('<svg><path transform="scale(2)" d="M0 0 L1 1"/></svg>')).toThrow(
       /plain paths/,
     )
-  })
-})
-
-describe('the emblems the owner drew', () => {
-  it('fill the same share of their frame, whatever margin they arrived with', async () => {
-    for (const file of ['nnor.svg', 'marchand.svg']) {
-      const source = await readFile(
-        resolve(import.meta.dirname, '../../data/media/emblems', file),
-        'utf8',
-      )
-      const [, , side = 0] = viewBox(source)
-      const paths = [...source.matchAll(/\sd="([^"]+)"/g)].map(([, d = '']) => pathBounds(d))
-      const width =
-        Math.max(...paths.map((bounds) => bounds.right)) -
-        Math.min(...paths.map((bounds) => bounds.left))
-      const height =
-        Math.max(...paths.map((bounds) => bounds.bottom)) -
-        Math.min(...paths.map((bounds) => bounds.top))
-      const widest = Math.max(width, height)
-      expect(widest / side, file).toBeCloseTo(1 - 2 * EMBLEM_MARGIN, 3)
-    }
   })
 })

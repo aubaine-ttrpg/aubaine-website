@@ -43,11 +43,12 @@ export function worldOverlays(folder: string, locale: Locale): WorldOverlays {
   }
 }
 
-export function loadWorld(
-  folder: string,
+export function worldFrom(
+  files: WorldFiles,
+  overlays: WorldOverlays = {},
   locale: Locale = 'fr',
 ): { authored: AuthoredWorld; world: World } {
-  const authored = decodeWorld(worldFiles(folder), worldOverlays(folder, locale))
+  const authored = decodeWorld(files, overlays)
   const world = deriveWorld(
     authored,
     decodeVocabulary(atlasFile('vocabularies.json'), locale),
@@ -55,6 +56,41 @@ export function loadWorld(
     locale,
   )
   return { authored, world }
+}
+
+export function loadWorld(
+  folder: string,
+  locale: Locale = 'fr',
+): { authored: AuthoredWorld; world: World } {
+  return worldFrom(worldFiles(folder), worldOverlays(folder, locale), locale)
+}
+
+export function oceanWorldFiles(columns: number, rows: number): WorldFiles {
+  const layer = (legend: Record<string, string | number>, cell: string) => ({
+    legend,
+    rows: Array.from({ length: rows }, () => cell.repeat(columns)),
+  })
+  const empty = layer({}, '.')
+  return {
+    world: { name: 'Océan', columns, rows, hexKm: 5, featured: { places: [], landmarks: [] } },
+    surface: {
+      height: layer({ d: -4 }, 'd'),
+      type: layer({ '#': 'deep' }, '#'),
+      landmass: empty,
+      political: empty,
+      settlement: empty,
+      sea: layer({ O: 'ocean' }, 'O'),
+      relief: empty,
+      cover: empty,
+      caves: [],
+    },
+    places: { places: [{ id: 'ocean', kind: 'sea', name: 'Océan' }] },
+    landmarks: { landmarks: [] },
+    routes: { routes: [], skyLanes: [] },
+    establishments: { establishments: [] },
+    sky: { islands: [] },
+    underground: { levels: [] },
+  }
 }
 
 export function bookPaces(locale: Locale = 'fr') {

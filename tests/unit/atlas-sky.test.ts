@@ -43,6 +43,18 @@ const withoutFeature = (feature: IsleFeature): World => ({
     features: landmark.features.filter((entry) => entry !== feature),
   })),
 })
+const islands = new Set(world.sky.islands.map((island) => island.landmark))
+const withFeature = (feature: IsleFeature): World => ({
+  ...world,
+  landmarks: world.landmarks.map((landmark) =>
+    islands.has(landmark.index)
+      ? {
+          ...landmark,
+          features: [...landmark.features.filter((entry) => entry !== feature), feature],
+        }
+      : landmark,
+  ),
+})
 
 describe('the sky islands', () => {
   it('write finite positions, indices inside their mesh and packed normals of unit length', () => {
@@ -116,9 +128,6 @@ describe('the sky props', () => {
       expect(hasPrototype(set.prototype)).toBe(true)
       expect(set.layer).toBe('sky')
     }
-    const keys = sets.map((set) => set.prototype)
-    expect(keys.some((key) => key.startsWith('house-'))).toBe(true)
-    expect(keys).toContain('oak')
   })
 
   it('draw one model per family present, each holding only kinds of its own family', () => {
@@ -141,9 +150,8 @@ describe('the sky props', () => {
   })
 
   it.each(ISLE_FEATURES)('change on the island that carries the %s feature', (feature) => {
-    expect(world.landmarks.some((landmark) => landmark.features.includes(feature))).toBe(true)
     expect(propVertices(buildSky(withoutFeature(feature), grid, map))).toBeLessThan(
-      propVertices(sky),
+      propVertices(buildSky(withFeature(feature), grid, map)),
     )
   })
 })

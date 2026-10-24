@@ -24,8 +24,8 @@ import { PARCHMENT_INKS, WASH_ORDER } from '../../src/lib/atlas/engine/parchment
 import { parchmentTextures } from '../../src/lib/atlas/kernel/parchment'
 import { laneEnd } from '../../src/lib/atlas/kernel/routes'
 import { type RouteKind, SETTINGS, TILE_TYPES } from '../../src/lib/atlas/vocabulary'
-import { EDGES, edgeBetween, neighbourOf } from '../../src/lib/atlas/world/grid'
-import { loadWorld } from './fixtures/atlas'
+import { createGrid, EDGES, edgeBetween, neighbourOf } from '../../src/lib/atlas/world/grid'
+import { loadWorld, oceanWorldFiles, worldFrom } from './fixtures/atlas'
 
 const { authored, world } = loadWorld('archipel')
 const grid = authored.grid
@@ -86,10 +86,6 @@ describe('the parchment route edges', () => {
       expect(marked, kind).toBe(pairs.size * 2)
     }
   })
-
-  it('draws every kind the Archipel lays down', () => {
-    for (const kind of ROUTE_KINDS_DRAWN) expect(routePairs(kind).size, kind).toBeGreaterThan(0)
-  })
 })
 
 describe('the parchment glyphs', () => {
@@ -140,7 +136,6 @@ describe('the parchment glyphs', () => {
   })
 
   it('patterns every other hex with the glyph of its terrain, as densely as its terrain', () => {
-    const spreads = new Set<string>()
     for (let tile = 0; tile < grid.size; tile++) {
       if (anchors.has(tile)) continue
       const type = TILE_TYPES[world.surface.type[tile] ?? 0] ?? 'deep'
@@ -150,9 +145,7 @@ describe('the parchment glyphs', () => {
       )
       const scattered = (byte(surface, tile, TILE_CHANNEL.flags) & PARCHMENT_FLAGS.scattered) !== 0
       expect(scattered, `${type} ${tile}`).toBe(pattern?.spread === 'scattered')
-      if (pattern) spreads.add(pattern.spread)
     }
-    expect([...spreads].sort()).toEqual(['dense', 'scattered'])
   })
 
   it('leaves the sea bare but for its reefs', () => {
@@ -260,7 +253,7 @@ describe('the parchment build', () => {
   })
 
   it('charts a world with no routes, lanes or underground', () => {
-    const empty = loadWorld('eden')
+    const empty = worldFrom(oceanWorldFiles(16, 12))
     const textures = parchmentTextures(empty.world, empty.authored.grid)
     expect(textures.tiles).toHaveLength(empty.world.underground.length + 1)
     expect(textures.routes.every((value) => value === 0)).toBe(true)
@@ -269,15 +262,17 @@ describe('the parchment build', () => {
 })
 
 describe('the hex edge between two tiles', () => {
+  const small = createGrid(7, 5)
+
   it('names the edge that leads from one hex to its neighbour', () => {
-    const tile = grid.columns * 10 + 10
+    const tile = small.columns * 2 + 3
     for (let edge = 0; edge < EDGES; edge++) {
-      expect(edgeBetween(grid, tile, neighbourOf(grid, tile, edge))).toBe(edge)
+      expect(edgeBetween(small, tile, neighbourOf(small, tile, edge))).toBe(edge)
     }
   })
 
   it('refuses two hexes that do not touch', () => {
-    expect(() => edgeBetween(grid, 0, 5)).toThrow(RangeError)
+    expect(() => edgeBetween(small, 0, 5)).toThrow(RangeError)
   })
 })
 

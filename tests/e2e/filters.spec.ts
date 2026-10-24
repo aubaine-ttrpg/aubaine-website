@@ -1,7 +1,51 @@
 import { expect, type Page, test } from '@playwright/test'
 
+import { resultLabel } from './support/results'
+
 async function hydrated(page: Page): Promise<void> {
   await expect(page.locator('astro-island[ssr]')).toHaveCount(0)
+}
+
+function results(page: Page) {
+  return page.locator('[aria-live="polite"]').first()
+}
+
+async function nameMatches(page: Page): Promise<{ name: string; matched: number; total: number }> {
+  const names = await page
+    .locator('[data-entry]')
+    .evaluateAll((nodes) => nodes.map((node) => node.getAttribute('data-name') ?? ''))
+  const name = names[0] ?? ''
+  return {
+    name,
+    matched: names.filter((entry) => entry.includes(name)).length,
+    total: names.length,
+  }
+}
+
+async function facetMatches(
+  page: Page,
+  group: string,
+): Promise<{ label: string; matched: number; total: number }> {
+  const labels = await page
+    .locator('[data-entry]')
+    .evaluateAll(
+      (nodes, attribute) =>
+        nodes.map((node) => (node.getAttribute(attribute) ?? '').split('|').filter(Boolean)),
+      `data-facet-${group}-labels`,
+    )
+  const label = labels.flat()[0] ?? ''
+  return {
+    label,
+    matched: labels.filter((entry) => entry.includes(label)).length,
+    total: labels.length,
+  }
+}
+
+function chip(page: Page, label: string) {
+  return page
+    .getByRole('dialog')
+    .getByRole('button')
+    .filter({ has: page.getByText(label, { exact: true }) })
 }
 
 async function startWithoutIslands(page: Page, path: string): Promise<void> {
@@ -18,8 +62,10 @@ async function openTreesFromHome(page: Page): Promise<void> {
 async function filterTreesByName(page: Page): Promise<void> {
   await expect(page.locator('astro-island')).toHaveCount(1)
   await hydrated(page)
-  await page.getByPlaceholder('Filter by name').fill('feu')
-  await expect(page.locator('[aria-live="polite"]').first()).toHaveText('1 result')
+  const { name, matched, total } = await nameMatches(page)
+  expect(matched).toBeLessThan(total)
+  await page.getByPlaceholder('Filter by name').fill(name)
+  await expect(results(page)).toHaveText(resultLabel(matched, 'en'))
   await expect(page.locator('html')).toHaveAttribute('data-same-document', '')
 }
 
@@ -60,20 +106,23 @@ test('the trees filter lets go of the page it leaves and works again on return',
 test('the trees filter narrows by name and by facet', async ({ page }) => {
   await page.goto('/en/trees')
   await hydrated(page)
-  const count = page.locator('[aria-live="polite"]').first()
-  await expect(count).toHaveText('25 results')
+  const { name, matched, total } = await nameMatches(page)
+  await expect(results(page)).toHaveText(resultLabel(total, 'en'))
 
-  await page.getByPlaceholder('Filter by name').fill('feu')
-  await expect(count).toHaveText('1 result')
+  await page.getByPlaceholder('Filter by name').fill(name)
+  await expect(results(page)).toHaveText(resultLabel(matched, 'en'))
 
   await page.getByPlaceholder('Filter by name').fill('')
-  await expect(count).toHaveText('25 results')
+  await expect(results(page)).toHaveText(resultLabel(total, 'en'))
 
   await page.getByRole('button', { name: 'Filters' }).click()
   const dialog = page.getByRole('dialog')
   await expect(dialog).toBeVisible()
-  await dialog.getByRole('button', { name: /^Psychic/ }).click()
-  await expect(count).toHaveText('5 results')
+  const domain = await facetMatches(page, 'tdom')
+  expect(domain.matched).toBeGreaterThan(0)
+  expect(domain.matched).toBeLessThan(total)
+  await chip(page, domain.label).click()
+  await expect(results(page)).toHaveText(resultLabel(domain.matched, 'en'))
 
   await page.keyboard.press('Escape')
   await expect(dialog).toBeHidden()
@@ -82,13 +131,15 @@ test('the trees filter narrows by name and by facet', async ({ page }) => {
 test('a species filters its pool by sub-species', async ({ page }) => {
   await page.goto('/en/species/humain')
   await hydrated(page)
-  const count = page.locator('[aria-live="polite"]').first()
-  await expect(count).toHaveText('11 results')
+  const origin = await facetMatches(page, 'sub')
+  await expect(results(page)).toHaveText(resultLabel(origin.total, 'en'))
+  expect(origin.matched).toBeGreaterThan(0)
+  expect(origin.matched).toBeLessThan(origin.total)
 
   await page.getByRole('button', { name: 'Filters' }).click()
   const dialog = page.getByRole('dialog')
-  await dialog.getByRole('button', { name: /^Landenheit/ }).click()
-  await expect(count).toHaveText('2 results')
+  await chip(page, origin.label).click()
+  await expect(results(page)).toHaveText(resultLabel(origin.matched, 'en'))
 
   await page.keyboard.press('Escape')
   await expect(dialog).toBeHidden()
@@ -97,15 +148,15 @@ test('a species filters its pool by sub-species', async ({ page }) => {
 test('a species names its sub-species facet after what it calls them', async ({ page }) => {
   await page.goto('/en/species/mort-vivant')
   await hydrated(page)
-  const count = page.locator('[aria-live="polite"]').first()
-  await expect(count).toHaveText('10 results')
+  const subspecies = await facetMatches(page, 'sub')
+  await expect(results(page)).toHaveText(resultLabel(subspecies.total, 'en'))
 
   await page.getByRole('button', { name: 'Filters' }).click()
   const dialog = page.getByRole('dialog')
   await expect(dialog.getByRole('group', { name: 'Subspecies' })).toBeVisible()
   await expect(dialog.getByRole('group', { name: 'Regional origin' })).toHaveCount(0)
-  await dialog.getByRole('button', { name: /^Ghost/ }).click()
-  await expect(count).toHaveText('1 result')
+  await chip(page, subspecies.label).click()
+  await expect(results(page)).toHaveText(resultLabel(subspecies.matched, 'en'))
   await page.keyboard.press('Escape')
 
   await page.goto('/en/species/humain')

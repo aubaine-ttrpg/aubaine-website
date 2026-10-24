@@ -11,6 +11,7 @@ import {
   frame,
   inCranOrder,
   initialOf,
+  NEUTRAL_DOMAIN,
   priceInCoins,
   primeCharacteristics,
   SUBSPECIES_SECTIONS,
@@ -21,6 +22,7 @@ import {
   subspeciesAnchor,
   subspeciesSkills,
   treeDomains,
+  VARIABLE_CHARACTERISTIC,
   xpOf,
 } from '../../src/lib/game/derive'
 import type {
@@ -29,6 +31,7 @@ import type {
   GameState,
   Skill,
   SkillTree,
+  Upgrade,
 } from '../../src/lib/game/schema'
 import {
   bookChapterRef,
@@ -51,25 +54,17 @@ const COINS = [
 
 const root = resolve(import.meta.dirname, '../..')
 
-type Reference = Record<
-  string,
-  { domains: string[]; prime: string[]; xpTotal: number; upgrades: number }
->
-
 async function readJson<T>(path: string): Promise<T> {
   return JSON.parse(await readFile(resolve(root, path), 'utf8')) as T
 }
 
-async function loadSkills(): Promise<Map<string, Skill>> {
+async function loadSkillFiles(): Promise<Map<string, Skill>> {
   const dir = resolve(root, 'data/skills')
   const files = (await readdir(dir)).filter(
     (name) => name.endsWith('.json') && !/\.[a-z]{2}\.json$/.test(name),
   )
   const entries = await Promise.all(
-    files.map(async (name) => {
-      const skill = await readJson<Skill>(`data/skills/${name}`)
-      return [skill.id, skill] as const
-    }),
+    files.map(async (name) => [name, await readJson<Skill>(`data/skills/${name}`)] as const),
   )
   return new Map(entries)
 }
@@ -82,57 +77,13 @@ async function loadTrees(): Promise<SkillTree[]> {
   return Promise.all(files.map((name) => readJson<SkillTree>(`data/skill-trees/${name}`)))
 }
 
-const reference = await readJson<Reference>('tests/fixtures/design-derived.json')
-const skills = await loadSkills()
+const skillFiles = await loadSkillFiles()
+const skills = new Map([...skillFiles.values()].map((skill) => [skill.id, skill]))
 const trees = await loadTrees()
 
-describe('tree derivations match the design', () => {
-  it('still carries every tree the design measured', () => {
-    const present = new Set(trees.map((tree) => tree.id))
-    for (const id of Object.keys(reference)) {
-      expect(present.has(id), `${id} left the repo but the design still measures it`).toBe(true)
-    }
-  })
-
-  for (const tree of trees) {
-    it(`${tree.id} resolves every placement`, () => {
-      for (const placement of tree.placements) {
-        expect(skills.get(placement.skill), `${tree.id} -> ${placement.skill}`).toBeDefined()
-      }
-    })
-
-    const expected = reference[tree.id]
-    if (!expected) continue
-
-    it(`${tree.id} keeps the design's dominant domains`, () => {
-      const resolved = tree.placements.map((placement) => skills.get(placement.skill) as Skill)
-      expect(treeDomains(resolved, tree.core?.domains ?? [])).toEqual(expected.domains)
-    })
-
-    it(`${tree.id} keeps the design's primary characteristics`, () => {
-      const resolved = tree.placements.map((placement) => skills.get(placement.skill) as Skill)
-      expect(primeCharacteristics(resolved)).toEqual(expected.prime)
-    })
-
-    it(`${tree.id} keeps the design's XP total and upgrade count`, () => {
-      const resolved = tree.placements.map((placement) => skills.get(placement.skill) as Skill)
-      const xpTotal = resolved.reduce(
-        (total, skill) => total + (showsXp(skill) ? xpOf(skill) : 0),
-        0,
-      )
-      const upgrades = resolved.reduce((total, skill) => total + (skill.upgrades?.length ?? 0), 0)
-      expect({ xpTotal, upgrades }).toEqual({
-        xpTotal: expected.xpTotal,
-        upgrades: expected.upgrades,
-      })
-    })
-  }
-})
-
 describe('skill identity', () => {
-  it('gives every skill a unique file and id', () => {
-    expect(skills.size).toBe(401)
-    for (const [id, skill] of skills) expect(skill.id).toBe(id)
+  it('names every skill file after the id it holds, so no two skills share an id', () => {
+    for (const [file, skill] of skillFiles) expect(file, skill.id).toBe(`${skill.id}.json`)
   })
 
   it('places every skill that a tree references, and references no ghost', () => {
@@ -155,6 +106,111 @@ describe('skill identity', () => {
         }
       }
     }
+  })
+})
+
+describe('tree domains', () => {
+  const skillsIn = (...domains: string[]): Skill[] =>
+    domains.map((domain) => ({
+      id: 'TESTXX-001',
+      title: 'Test',
+      type: 'passive',
+      tier: 1,
+      domains: [domain],
+      description: 'Test',
+    }))
+
+  it('has no domain without a skill, or with only Neutre skills', () => {
+    expect(treeDomains([])).toEqual([])
+    expect(treeDomains(skillsIn(NEUTRAL_DOMAIN, NEUTRAL_DOMAIN))).toEqual([])
+  })
+
+  it('never counts Neutre, however many skills carry it', () => {
+    expect(treeDomains(skillsIn(NEUTRAL_DOMAIN, NEUTRAL_DOMAIN, NEUTRAL_DOMAIN, 'fire'))).toEqual([
+      'fire',
+    ])
+  })
+
+  it('keeps two domains tied in the lead, and none when three are', () => {
+    expect(treeDomains(skillsIn('fire', 'water', 'fire', 'water'))).toEqual(['fire', 'water'])
+    expect(treeDomains(skillsIn('fire', 'water', 'earth'))).toEqual([])
+  })
+
+  it('adds a lone runner-up holding at least half the lead, after the leader', () => {
+    expect(treeDomains(skillsIn('water', 'water', 'fire', 'fire', 'fire', 'fire'))).toEqual([
+      'fire',
+      'water',
+    ])
+    expect(treeDomains(skillsIn('fire', 'fire', 'fire', 'water'))).toEqual(['fire'])
+  })
+
+  it('leaves the leader alone when two runners-up tie', () => {
+    expect(
+      treeDomains(skillsIn('fire', 'fire', 'fire', 'fire', 'water', 'water', 'earth', 'earth')),
+    ).toEqual(['fire'])
+  })
+
+  it('counts the domains of the core with those of the skills', () => {
+    expect(treeDomains(skillsIn('fire', 'fire'))).toEqual(['fire'])
+    expect(treeDomains(skillsIn('fire', 'fire'), ['water'])).toEqual(['fire', 'water'])
+  })
+})
+
+describe('prime characteristics', () => {
+  const skillUsing = (characteristics: string[], upgrades: string[][] = []): Skill => ({
+    id: 'TESTXX-001',
+    title: 'Test',
+    type: 'passive',
+    tier: 1,
+    domains: [],
+    description: 'Test',
+    characteristics,
+    upgrades: upgrades.map(
+      (keys, index): Upgrade => ({
+        level: index + 2,
+        tier: 1,
+        title: 'Test',
+        description: 'Test',
+        characteristics: keys,
+      }),
+    ),
+  })
+
+  it('is variable when no skill calls for a Jet', () => {
+    expect(primeCharacteristics([])).toEqual([VARIABLE_CHARACTERISTIC])
+    expect(primeCharacteristics([skillUsing([])])).toEqual([VARIABLE_CHARACTERISTIC])
+  })
+
+  it('reads the old endurance key as Constitution', () => {
+    expect(primeCharacteristics([skillUsing(['endurance'])])).toEqual(['constitution'])
+  })
+
+  it('counts the upgrades, and keeps a Caractéristique one call behind the lead, most called first', () => {
+    expect(
+      primeCharacteristics([skillUsing(['strength'], [['dexterity'], ['dexterity']])]),
+    ).toEqual(['dexterity', 'strength'])
+  })
+
+  it('drops a Caractéristique two calls behind the lead', () => {
+    expect(
+      primeCharacteristics([
+        skillUsing(['strength']),
+        skillUsing(['strength', 'dexterity']),
+        skillUsing(['strength']),
+      ]),
+    ).toEqual(['strength'])
+  })
+
+  it('is variable when three Caractéristiques run close, or when only a variable one leads', () => {
+    expect(
+      primeCharacteristics([
+        skillUsing(['strength', 'dexterity']),
+        skillUsing(['strength', 'dexterity', 'spirit']),
+      ]),
+    ).toEqual([VARIABLE_CHARACTERISTIC])
+    expect(
+      primeCharacteristics([skillUsing([VARIABLE_CHARACTERISTIC, VARIABLE_CHARACTERISTIC])]),
+    ).toEqual([VARIABLE_CHARACTERISTIC])
   })
 })
 

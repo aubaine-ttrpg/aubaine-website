@@ -1,31 +1,69 @@
 import { expect, test } from '@playwright/test'
 
-test('the Nnor head their family names as Yurtas, in both languages', async ({ page }) => {
-  await page.goto('/fr/espece/nnor')
-  await expect(page.locator('.au-subspecies dt', { hasText: 'Yurtas' })).toHaveCount(2)
-  await expect(page.locator('.au-subspecies dt', { hasText: 'Noms de famille' })).toHaveCount(0)
-  await page.goto('/en/species/nnor')
-  await expect(page.locator('.au-subspecies dt', { hasText: 'Yurtas' })).toHaveCount(2)
-  await expect(page.locator('.au-subspecies dt', { hasText: 'Family names' })).toHaveCount(0)
+import { label, type ResolvedSpecies } from '../../src/lib/game/build'
+import {
+  DEFAULT_MOVEMENT_METRES,
+  formatNumber,
+  SPECIES_PLATE_TERMS,
+} from '../../src/lib/game/derive'
+import { pathFor } from '../../src/lib/i18n/routes'
+import { strings } from '../../src/lib/i18n/strings'
+import { corpus } from './support/corpus'
+
+const familyLists = (species: ResolvedSpecies): number =>
+  species.subspecies.filter((sub) => (sub.names?.family ?? species.familyNames) !== undefined)
+    .length
+
+test('a species that names its family names heads them with that name, in both languages', async ({
+  page,
+}) => {
+  for (const locale of ['fr', 'en'] as const) {
+    const species = (await corpus(locale)).species.find((entry) => entry.familyNamesLabel)
+    const heading = species?.familyNamesLabel
+    expect(heading, 'no species names its family names').toBeDefined()
+    if (!species || !heading) return
+    expect(familyLists(species)).toBeGreaterThan(0)
+    await page.goto(pathFor('speciesEntry', locale, { species: species.id }))
+    await expect(page.locator('.au-subspecies dt', { hasText: heading })).toHaveCount(
+      familyLists(species),
+    )
+    await expect(
+      page.locator('.au-subspecies dt', { hasText: strings(locale).namesFamily }),
+    ).toHaveCount(0)
+  }
 })
 
 test('a species that names no heading keeps « Noms de famille »', async ({ page }) => {
-  await page.goto('/fr/espece/humain')
+  const species = (await corpus('fr')).species.find(
+    (entry) => !entry.familyNamesLabel && familyLists(entry) > 0,
+  )
+  expect(species, 'no species lists family names under the default heading').toBeDefined()
+  await page.goto(pathFor('speciesEntry', 'fr', { species: species?.id ?? '' }))
   await expect(
-    page.locator('.au-subspecies dt', { hasText: 'Noms de famille' }).first(),
+    page.locator('.au-subspecies dt', { hasText: strings('fr').namesFamily }).first(),
   ).toBeVisible()
 })
 
-test('the Nnor are Humanoïdes and Bêtes, under the icon the rules give the creature type', async ({
+test('a species plate shows its value under the icon of the rule term it names', async ({
   page,
 }) => {
+  const french = await corpus('fr')
+  const nnor = french.speciesById.get('nnor')
+  const t = strings('fr')
+  const plate = (name: string) =>
+    page.locator('.au-trait').filter({ has: page.locator('.au-trait__label', { hasText: name }) })
+  const icon = (reference: string) =>
+    `[style*="/icons/${(french.terms.keys.get(reference)?.icon ?? '').replace(':', '/')}.svg"]`
   await page.goto('/fr/espece/nnor')
-  const plate = page.locator('.au-trait', { hasText: 'Humanoïde · Bête' })
-  await expect(plate).toBeVisible()
-  await expect(plate.locator('[style*="beast-eye"]')).toHaveCount(1)
-  await expect(
-    page.locator('.au-trait', { hasText: '10,5 m' }).locator('[style*="speedometer"]'),
-  ).toHaveCount(1)
+
+  const types = (nnor?.types ?? []).map((key) => label(french.creatureTypes.get(key), 'fr', key))
+  expect(types.length).toBeGreaterThan(0)
+  await expect(plate(t.creatureType)).toContainText(types.join(' · '))
+  await expect(plate(t.creatureType).locator(icon(SPECIES_PLATE_TERMS.type))).toHaveCount(1)
+  await expect(plate(t.movement)).toContainText(
+    nnor?.movement ?? `${formatNumber(DEFAULT_MOVEMENT_METRES, 'fr')} m`,
+  )
+  await expect(plate(t.movement).locator(icon(SPECIES_PLATE_TERMS.movement))).toHaveCount(1)
 })
 
 test('species cards carry no domain spine, tree cards keep theirs', async ({ page }) => {

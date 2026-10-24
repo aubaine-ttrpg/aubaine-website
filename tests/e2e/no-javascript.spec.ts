@@ -1,4 +1,8 @@
-import { expect, test } from '@playwright/test'
+import { expect, type Page, test } from '@playwright/test'
+
+import { label } from '../../src/lib/game/build'
+import { strings } from '../../src/lib/i18n/strings'
+import { corpus } from './support/corpus'
 
 const ROUTES = [
   '/fr',
@@ -41,6 +45,33 @@ const ROUTES = [
   '/en/privacy',
 ]
 
+async function speciesOf(locale: 'fr' | 'en', id: string) {
+  const species = (await corpus(locale)).speciesById.get(id)
+  if (!species) throw new Error(`no species ${id}`)
+  return species
+}
+
+async function rowIds(page: Page): Promise<string[]> {
+  return page
+    .locator('[data-rows] [data-entry]')
+    .evaluateAll((rows) => rows.map((row) => row.getAttribute('data-entry') ?? ''))
+}
+
+async function expectEveryRailLinkToLand(page: Page): Promise<void> {
+  const targets = await page
+    .locator('.au-aside .au-trail a')
+    .evaluateAll((links) => links.map((link) => link.getAttribute('href') ?? ''))
+  expect(targets.length).toBeGreaterThan(0)
+  for (const target of targets) {
+    await expect(page.locator(`[id="${target.replace(/^#/, '')}"]`), target).toHaveCount(1)
+  }
+  for (const heading of await page
+    .locator('.au-reading__body .au-prose h2[id]')
+    .evaluateAll((headings) => headings.map((node) => node.id))) {
+    expect(targets, heading).toContain(`#${heading}`)
+  }
+}
+
 for (const route of ROUTES) {
   test(`${route} renders without client javascript`, async ({ page }) => {
     const response = await page.goto(route)
@@ -53,99 +84,70 @@ for (const route of ROUTES) {
 test('a species carries its lore, its regional origins and its whole pool in the markup', async ({
   page,
 }) => {
+  const french = await corpus('fr')
+  const human = await speciesOf('fr', 'humain')
   await page.goto('/fr/espece/humain')
-  await expect(page.locator('.au-trait')).toHaveCount(3)
-  await expect(page.locator('.au-trait').first()).toContainText('Humanoïde')
-  await expect(page.locator('.au-reading__body .au-prose h2')).toHaveCount(7)
-  await expect(page.locator('.au-reading__body .au-prose img')).toHaveCount(2)
-  await expect(page.locator('figure.au-quote blockquote')).toContainText('Arthur, vois ces stèles')
-  await expect(page.locator('figure.au-quote blockquote')).not.toContainText('Arsenault')
-  await expect(page.locator('figure.au-quote figcaption')).toContainText('Arsenault')
-  await expect(page.locator('.au-aside .au-trail a')).toHaveCount(12)
-  await expect(page.locator('.au-aside .au-trail .au-trail a')).toHaveText([
-    'Nouvelle-Aubaine',
-    'Landenheit',
-    'Victoria',
-    'Al-Wahaa',
-  ])
-  await expect(page.locator('[id^="origine-"]')).toHaveCount(4)
+  const plates = page.locator('.au-trait')
+  await expect(plates).not.toHaveCount(0)
+  await expect(plates.first().locator('.au-trait__label')).toHaveText(strings('fr').creatureType)
+  for (const type of human.types ?? []) {
+    await expect(plates.first()).toContainText(label(french.creatureTypes.get(type), 'fr', type))
+  }
+  await expect(page.locator('.au-reading__body .au-prose img')).not.toHaveCount(0)
+  const caption = (await page.locator('figure.au-quote figcaption').textContent())?.trim() ?? ''
+  expect(caption).not.toBe('')
+  await expect(page.locator('figure.au-quote blockquote')).not.toBeEmpty()
+  await expect(page.locator('figure.au-quote blockquote')).not.toContainText(caption)
+  await expectEveryRailLinkToLand(page)
+  const origins = human.subspecies.map((sub) => sub.name)
+  await expect(page.locator('.au-aside .au-trail .au-trail a')).toHaveText(origins)
+  await expect(page.locator('[id^="origine-"]')).toHaveCount(origins.length)
   await expect(page.locator('#origines-regionales')).toHaveText('Origines régionales')
   await expect(page.locator('#sous-especes')).toHaveCount(0)
   const playing = page.locator('#jouer').locator('xpath=..')
-  await expect(playing.locator('dd')).toContainText(['Vers 18 à 20 ans'])
-  await expect(playing).toContainText('Commun')
-  await expect(playing).toContainText('1,60 m')
-  await expect(page.locator('[data-rows] [data-entry]')).toHaveCount(11)
-  expect(
-    await page
-      .locator('[data-rows] [data-entry]')
-      .evaluateAll((rows) => rows.map((row) => row.getAttribute('data-entry'))),
-  ).toEqual([
-    'AMIXXX-001',
-    'ESPHUM-001',
-    'VOLSUR-001',
-    'ACVEEC-001',
-    'PREHER-001',
-    'FORTEC-001',
-    'INGTEC-001',
-    'DISCIP-001',
-    'VIVHOR-001',
-    'ENFDES-001',
-    'NOMADE-001',
-  ])
+  await expect(playing.locator('dd')).toContainText([human.roleplay?.adulthood ?? ''])
+  await expect(playing).toContainText(human.roleplay?.height ?? '')
+  for (const language of human.languages ?? []) {
+    await expect(playing).toContainText(label(french.languages.get(language), 'fr', language))
+  }
+  const pool = human.pool.map((skill) => skill.id)
+  expect(pool.length).toBeGreaterThan(0)
+  expect((await rowIds(page)).sort()).toEqual([...pool].sort())
   await expect(page.locator('[data-details] .au-skill__xp')).toHaveCount(0)
   await expect(page.locator('[data-detail]').first()).toBeVisible()
 })
 
 test('a species with sub-species prints each one with the skill it imposes', async ({ page }) => {
+  const undead = await speciesOf('fr', 'mort-vivant')
   await page.goto('/fr/espece/mort-vivant')
-  await expect(page.locator('.au-trait')).toHaveCount(2)
+  await expect(page.locator('.au-trait')).not.toHaveCount(0)
   await expect(page.locator('#sous-especes')).toHaveText('Sous-espèces')
   await expect(page.locator('#origines-regionales')).toHaveCount(0)
-  await expect(page.locator('[id^="origine-"]')).toHaveCount(6)
-  await expect(page.locator('.au-aside .au-trail .au-trail a')).toHaveText([
-    'Fantôme',
-    'Squelette',
-    'Revenant',
-    'Zombie',
-    'Goule',
-    'Liche',
-  ])
-  const fantome = page.locator('#origine-fantome')
-  await expect(fantome.locator('dt').first()).toHaveText('Compétence imposée')
-  await expect(fantome.locator('dd a')).toHaveAttribute('href', '#e-PASMUR-001')
-  expect(
-    await page
-      .locator('[data-rows] [data-entry]')
-      .evaluateAll((rows) => rows.map((row) => row.getAttribute('data-entry'))),
-  ).toEqual([
-    'FARPAR-001',
-    'GISANT-001',
-    'GLASXX-001',
-    'VIEAVA-001',
-    'PASMUR-001',
-    'DEPOUI-001',
-    'RIGCAD-001',
-    'TENMOR-001',
-    'FESTIN-001',
-    'PHYLAC-001',
-  ])
+  await expect(page.locator('[id^="origine-"]')).toHaveCount(undead.subspecies.length)
+  await expect(page.locator('.au-aside .au-trail .au-trail a')).toHaveText(
+    undead.subspecies.map((sub) => sub.name),
+  )
+  const imposing = undead.subspecies.filter((sub) => sub.imposedSkill)
+  expect(imposing.length).toBeGreaterThan(0)
+  for (const sub of imposing) {
+    const section = page.locator(`#origine-${sub.id}`)
+    await expect(section.locator('dt').first()).toHaveText('Compétence imposée')
+    await expect(section.locator('dd a')).toHaveAttribute('href', `#e-${sub.imposedSkill?.id}`)
+  }
+  expect((await rowIds(page)).sort()).toEqual(undead.pool.map((skill) => skill.id).sort())
 
   await page.goto('/en/species/mort-vivant')
   await expect(page.locator('#sous-especes')).toHaveText('Subspecies')
-  await expect(page.locator('.au-aside .au-trail .au-trail a')).toHaveText([
-    'Ghost',
-    'Skeleton',
-    'Revenant',
-    'Zombie',
-    'Ghoul',
-    'Lich',
-  ])
+  await expect(page.locator('.au-aside .au-trail .au-trail a')).toHaveText(
+    (await speciesOf('en', 'mort-vivant')).subspecies.map((sub) => sub.name),
+  )
 })
 
 test('a skill tree plate draws its nodes without javascript', async ({ page }) => {
   await page.goto('/fr/arbre/berserker')
-  await expect(page.locator('[data-plate-node]')).toHaveCount(16)
+  await expect(page.locator('[data-plate-node]')).toHaveCount(
+    (await corpus('fr')).treesById.get('berserker')?.placements.length ?? 0,
+  )
   await expect(page.locator('svg line')).not.toHaveCount(0)
 })
 
@@ -167,7 +169,9 @@ test('a bare skill tree asks for a skill and a node link opens it on its tree', 
     'data-node',
     'DEFERL-001',
   )
-  await expect(page.locator('line[data-lit]')).toHaveCount(1)
+  const touching = await page.locator('line[data-ends~="DEFERL-001"]').count()
+  expect(touching).toBeGreaterThan(0)
+  await expect(page.locator('line[data-lit]')).toHaveCount(touching)
   await expect(page.locator('#arbre')).toBeInViewport()
 })
 
@@ -180,13 +184,13 @@ test('a tall hero still cues the reader below it without javascript', async ({ p
 test('a tree hero carries its whole sheet and its ambient picture without javascript', async ({
   page,
 }) => {
+  const french = await corpus('fr')
+  const merchant = french.treesById.get('marchand')
   await page.goto('/fr/arbre/marchand')
-  await expect(page.locator('[data-character] h1')).toHaveText('Marchand')
-  await expect(page.locator('[data-character] .au-sticker')).toHaveText([
-    'Achète',
-    'Vend',
-    'Échange',
-  ])
+  await expect(page.locator('[data-character] h1')).toHaveText(merchant?.name ?? '')
+  await expect(page.locator('[data-character] .au-sticker')).toHaveText(
+    (merchant?.descriptors ?? []).map((key) => label(french.descriptors.get(key), 'fr', key)),
+  )
   await expect(page.locator('[data-character] .au-rank__axis')).toHaveCount(6)
   await expect(page.locator('[data-character] [data-plate="hero"] img')).toBeVisible()
   expect(
@@ -217,7 +221,10 @@ test('a chapter reaches its neighbour through the pager', async ({ page }) => {
 
 test('a browse page shows its list and a detail without javascript', async ({ page }) => {
   await page.goto('/fr/equipement')
-  await expect(page.locator('[data-entry]')).toHaveCount(41)
+  await expect(page.locator('[data-entry]')).not.toHaveCount(0)
+  await expect(page.locator('[data-entry]')).toHaveCount(
+    await page.locator('[data-detail]').count(),
+  )
   await expect(page.locator('[data-detail]').first()).toBeVisible()
 })
 
@@ -254,7 +261,7 @@ test('the equipment help opens and closes on a hash without javascript', async (
 
   await page.locator('[data-help-open]').click()
   await expect(overlay).toBeVisible()
-  await expect(overlay.locator('.au-help__title')).toHaveText('Artisanat et équipement')
+  await expect(overlay.locator('.au-help__title')).not.toBeEmpty()
 
   await overlay.locator('.au-help__close').click()
   await expect(overlay).toBeHidden()
@@ -311,23 +318,29 @@ test.describe('without javascript', () => {
   test('the tree viewer hides the zoom controls it cannot drive', async ({ page }) => {
     await page.goto('/fr/arbre/berserker')
     await expect(page.locator('[data-viewer-controls]')).toBeHidden()
-    await expect(page.locator('[data-plate-node]')).toHaveCount(16)
+    await expect(page.locator('[data-plate-node]')).toHaveCount(
+      (await corpus('fr')).treesById.get('berserker')?.placements.length ?? 0,
+    )
   })
 
   test('the Common Bank source still opens its note without javascript', async ({ page }) => {
-    await page.goto('/en/skills#e-REPVIF-001')
-    const note = page.locator('#note-bank-REPVIF-001')
+    const bank = (await corpus('en')).bank
+    const id = bank.resolved[0]?.id ?? ''
+    await page.goto(`/en/skills#e-${id}`)
+    const note = page.locator(`#note-bank-${id}`)
     await expect(note).toBeHidden()
-    await page.locator('#e-REPVIF-001').getByRole('button', { name: 'Common Bank' }).click()
+    await page.locator(`#e-${id}`).getByRole('button', { name: bank.name }).click()
     await expect(note).toBeVisible()
-    await expect(note).toContainText('Common Bank skills are independent from one another.')
+    await expect(note).not.toBeEmpty()
   })
 
   test('every draft stays listed without javascript, and no switch pretends otherwise', async ({
     page,
   }) => {
     await page.goto('/en/trees')
-    await expect(page.locator('[data-entry]').filter({ visible: true })).toHaveCount(25)
+    const entries = page.locator('[data-entry]')
+    await expect(entries).not.toHaveCount(0)
+    await expect(entries.filter({ visible: true })).toHaveCount(await entries.count())
     await expect(page.locator('[data-drafts-control]')).toBeHidden()
   })
 })
@@ -364,14 +377,23 @@ test.describe('the threshold without javascript', () => {
 })
 
 test('a species page lists the other sources as also available, never itself', async ({ page }) => {
-  await page.goto('/en/species/humain#e-DISCIP-001')
-  const onSpecies = page.locator('#e-DISCIP-001 .au-sources')
+  const english = await corpus('en')
+  const shared = [...english.origins].find(
+    ([, origin]) => origin.bank && origin.species.some((source) => source.subspecies),
+  )
+  expect(shared, 'no bank skill is also offered by a sub-species').toBeDefined()
+  const [id = '', origin] = shared ?? []
+  const source = origin?.species.find((entry) => entry.subspecies)
+  await page.goto(`/en/species/${source?.id}#e-${id}`)
+  const onSpecies = page.locator(`#e-${id} .au-sources`)
   await expect(onSpecies.locator('.au-sources__label')).toHaveText('Also available')
-  await expect(onSpecies.getByRole('button', { name: 'Common Bank' })).toBeVisible()
-  await expect(onSpecies.getByRole('link', { name: /Human/ })).toHaveCount(0)
+  await expect(onSpecies.getByRole('button', { name: english.bank.name })).toBeVisible()
+  await expect(onSpecies.getByRole('link', { name: source?.name ?? '' })).toHaveCount(0)
 
-  await page.goto('/en/skills#e-DISCIP-001')
-  const inIndex = page.locator('#e-DISCIP-001 .au-sources')
+  await page.goto(`/en/skills#e-${id}`)
+  const inIndex = page.locator(`#e-${id} .au-sources`)
   await expect(inIndex.locator('.au-sources__label')).toHaveText('Where to Get It')
-  await expect(inIndex.getByRole('link', { name: 'Human · Victoria' })).toBeVisible()
+  await expect(
+    inIndex.getByRole('link', { name: `${source?.name} · ${source?.subspecies?.name}` }),
+  ).toBeVisible()
 })

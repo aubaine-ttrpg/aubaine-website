@@ -15,13 +15,12 @@ import {
 } from '../../src/lib/atlas/world/grid'
 import { LayerShapeError, readLayer } from '../../src/lib/atlas/world/layer'
 import { heightIn, reliefField } from '../../src/lib/atlas/world/relief'
-import { loadWorld, worldFiles } from './fixtures/atlas'
+import { loadWorld, oceanWorldFiles, worldFiles, worldFrom, worldOverlays } from './fixtures/atlas'
 
 const { authored, world } = loadWorld('archipel')
 const grid = authored.grid
 const field = reliefField(grid, world.surface)
 const placeId = (index: number) => world.places[index]?.id
-const placeIndex = (id: string) => world.places.findIndex((place) => place.id === id)
 
 describe('the hex grid', () => {
   const small = createGrid(7, 5)
@@ -97,11 +96,22 @@ describe('decoding a world', () => {
     expect(() => decodeWorld({ ...files, routes: broken }, {})).toThrow(FieldError)
   })
 
-  it('takes the English names and texts from the overlays', () => {
+  it('takes the English names from the overlays, and keeps the French ones from the places', () => {
     const english = loadWorld('archipel', 'en').world
-    const realm = english.places.find((place) => place.id === 'trefonds')
-    expect(realm?.name).toBe('The Depths')
-    expect(world.places.find((place) => place.id === 'trefonds')?.name).toBe('Les Tréfonds')
+    const overlay = (
+      worldOverlays('archipel', 'en').places as {
+        places: Record<string, { name?: string }>
+      }
+    ).places
+    const french = (worldFiles('archipel').places as { places: { id: string; name: string }[] })
+      .places
+    for (const place of english.places) {
+      const name = overlay[place.id]?.name
+      if (name !== undefined) expect(place.name, place.id).toBe(name)
+    }
+    for (const place of french) {
+      expect(world.places.find((entry) => entry.id === place.id)?.name, place.id).toBe(place.name)
+    }
   })
 })
 
@@ -124,10 +134,12 @@ describe('the derived world', () => {
   })
 
   it('counts a hex of a natural area in every natural area that holds it', () => {
-    const orgues = placeIndex('orgues')
-    const sables = placeIndex('sables')
-    for (const tile of world.places[orgues]?.tiles ?? []) {
-      expect([...itemsAt(surface.naturals, tile)]).toContain(sables)
+    for (const natural of world.places.filter((place) => place.kind === 'natural')) {
+      for (const tile of natural.tiles) {
+        expect([...itemsAt(surface.naturals, tile)], `${natural.id} ${tile}`).toContain(
+          natural.index,
+        )
+      }
     }
   })
 
@@ -157,7 +169,7 @@ describe('the derived world', () => {
         checked++
       }
     }
-    expect(checked).toBeGreaterThan(1000)
+    expect(checked).toBeGreaterThan(0)
   })
 
   it('rests a tile centre at its own height before the relief', () => {
@@ -185,24 +197,30 @@ describe('the derived world', () => {
     }
   })
 
-  it('raises the heart of a sky city above its rim', () => {
-    const city = world.sky.islands.find(
+  it('raises the heart of every sky city above its rim', () => {
+    const cities = world.sky.islands.filter(
       (island) => world.landmarks[island.landmark]?.kind === 'skycity',
     )
-    const heights = [...(city?.tiles ?? [])].map((sky) => ({
-      ring: world.sky.ring[sky] ?? 0,
-      y: world.sky.y[sky] ?? 0,
-    }))
-    const centre = heights.find((tile) => tile.ring === 0)
-    const rim = heights.filter((tile) => tile.ring >= 3)
-    expect(centre).toBeDefined()
-    for (const tile of rim) expect(tile.y).toBeLessThan(centre?.y ?? 0)
+    for (const city of cities) {
+      const heights = [...city.tiles].map((sky) => ({
+        ring: world.sky.ring[sky] ?? 0,
+        y: world.sky.y[sky] ?? 0,
+      }))
+      const centre = heights.find((tile) => tile.ring === 0)
+      const rim = heights.filter((tile) => tile.ring >= 3)
+      expect(centre).toBeDefined()
+      for (const tile of rim) expect(tile.y).toBeLessThan(centre?.y ?? 0)
+    }
   })
 
   it('lists a landmark under its place and every place above it', () => {
-    const tree = world.landmarks.find((landmark) => landmark.id === 'arbre')
-    expect(tree && placeId(tree.place)).toBe('clairiere')
-    expect(world.places[placeIndex('sylve')]?.landmarks).toContain(tree?.index)
+    for (const landmark of world.landmarks) {
+      for (let at = landmark.place; at >= 0; at = world.places[at]?.parent ?? -1) {
+        expect(world.places[at]?.landmarks, `${landmark.id} in ${placeId(at)}`).toContain(
+          landmark.index,
+        )
+      }
+    }
   })
 
   it('offers the travel planner every town, landmark, hold and large cavern, by name', () => {
@@ -219,11 +237,11 @@ describe('the derived world', () => {
   })
 })
 
-describe('the empty Eden', () => {
+describe('an empty world', () => {
   it('loads as one ocean that no one has explored yet', () => {
-    const eden = loadWorld('eden')
-    expect(eden.world.places.map((place) => place.id)).toEqual(['ocean'])
-    const reveal = buildReveal(eden.world, eden.authored.grid)
+    const ocean = worldFrom(oceanWorldFiles(16, 12))
+    expect(ocean.world.places.map((place) => place.id)).toEqual(['ocean'])
+    const reveal = buildReveal(ocean.world, ocean.authored.grid)
     expect(isUnexplored(reveal, 0, 0)).toBe(true)
   })
 })

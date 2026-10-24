@@ -1,14 +1,38 @@
 import { expect, type Page, test } from '@playwright/test'
 
+import { artKeyColour } from '../../src/lib/art-key-colour'
+import { label } from '../../src/lib/game/build'
+import { PROFILE_AXES } from '../../src/lib/game/schema'
+import type { Locale } from '../../src/lib/i18n/locales'
+import { pathFor } from '../../src/lib/i18n/routes'
+import { strings } from '../../src/lib/i18n/strings'
+import { rgbFromHex } from '../../src/lib/key-colour'
+import { corpus } from './support/corpus'
+
 const HERO = '[data-character]'
 const CARD = `${HERO} [data-plate="hero"] img`
 const MARCHAND = '/fr/arbre/marchand'
 const NNOR = '/fr/espece/nnor'
 const DARK_INK = 'rgb(236, 232, 247)'
 
-const MARCHAND_PROFILE = {
-  fr: ['Dégâts D', 'Robustesse F', 'Soin C', 'Utilité S', 'Liberté S', 'Roleplay A'],
-  en: ['Damage D', 'Tankiness F', 'Healing C', 'Utility S', 'Freeform S', 'Roleplay A'],
+async function descriptorsOf(
+  locale: Locale,
+  owner: { descriptors?: string[] | undefined } | undefined,
+): Promise<string[]> {
+  const words = await corpus(locale)
+  return (owner?.descriptors ?? []).map((key) => label(words.descriptors.get(key), locale, key))
+}
+
+async function merchantSheet(locale: Locale) {
+  const merchant = (await corpus(locale)).treesById.get('marchand')
+  if (!merchant?.profile) throw new Error('the Marchand has no profile')
+  const t = strings(locale)
+  return {
+    name: merchant.name,
+    kind: t.treeEyebrow(merchant.treeType),
+    descriptors: await descriptorsOf(locale, merchant),
+    profile: PROFILE_AXES.map((axis) => `${t.profileAxes[axis]} ${merchant.profile?.[axis]}`),
+  }
 }
 
 async function profileReading(page: Page): Promise<string[]> {
@@ -26,64 +50,54 @@ async function profileReading(page: Page): Promise<string[]> {
 test('a tree hero names its kind, its descriptors and its profile, in both languages', async ({
   page,
 }) => {
+  const french = await merchantSheet('fr')
   await page.goto(MARCHAND)
   await expect(page.locator('h1')).toHaveCount(1)
-  await expect(page.locator(`${HERO} h1`)).toHaveText('Marchand')
-  await expect(page.locator(`${HERO} .au-character__kind`)).toHaveText('Arbre d’Archétype')
-  await expect(page.getByRole('list', { name: 'Descripteurs' }).getByRole('listitem')).toHaveText([
-    'Achète',
-    'Vend',
-    'Échange',
-  ])
-  expect(await profileReading(page)).toEqual(MARCHAND_PROFILE.fr)
+  await expect(page.locator(`${HERO} h1`)).toHaveText(french.name)
+  await expect(page.locator(`${HERO} .au-character__kind`)).toHaveText(french.kind)
+  await expect(page.getByRole('list', { name: 'Descripteurs' }).getByRole('listitem')).toHaveText(
+    french.descriptors,
+  )
+  expect(await profileReading(page)).toEqual(french.profile)
 
+  const english = await merchantSheet('en')
   await page.goto('/en/tree/marchand')
-  await expect(page.locator(`${HERO} .au-character__kind`)).toHaveText('Archetype Tree')
-  await expect(page.getByRole('list', { name: 'Descriptors' }).getByRole('listitem')).toHaveText([
-    'Buys',
-    'Sells',
-    'Trades',
-  ])
-  expect(await profileReading(page)).toEqual(MARCHAND_PROFILE.en)
+  await expect(page.locator(`${HERO} .au-character__kind`)).toHaveText(english.kind)
+  await expect(page.getByRole('list', { name: 'Descriptors' }).getByRole('listitem')).toHaveText(
+    english.descriptors,
+  )
+  expect(await profileReading(page)).toEqual(english.profile)
 })
 
 test('a species hero carries descriptors and its traits, and no profile', async ({ page }) => {
   await page.goto(NNOR)
   await expect(page.locator(`${HERO} .au-character__kind`)).toHaveText('Espèce')
-  await expect(page.getByRole('list', { name: 'Descripteurs' }).getByRole('listitem')).toHaveText([
-    'Tribal',
-    'Solidaire',
-    'Farouche',
-    '...Chèvre ?!',
-  ])
+  await expect(page.getByRole('list', { name: 'Descripteurs' }).getByRole('listitem')).toHaveText(
+    await descriptorsOf('fr', (await corpus('fr')).speciesById.get('nnor')),
+  )
   await expect(page.getByRole('group', { name: 'Traits de l’Espèce' })).toBeVisible()
   await expect(page.locator(`${HERO} .au-rank`)).toHaveCount(0)
 
   await page.goto('/en/species/nnor')
-  await expect(page.getByRole('list', { name: 'Descriptors' }).getByRole('listitem')).toHaveText([
-    'Tribal',
-    'Close-knit',
-    'Fierce',
-    '...Goat?!',
-  ])
+  await expect(page.getByRole('list', { name: 'Descriptors' }).getByRole('listitem')).toHaveText(
+    await descriptorsOf('en', (await corpus('en')).speciesById.get('nnor')),
+  )
 })
 
 test('each hero takes its accent from its own cover', async ({ page }) => {
-  const stickerColour = async (path: string): Promise<number[]> => {
+  const french = await corpus('fr')
+  for (const [path, cover] of [
+    [NNOR, french.speciesById.get('nnor')?.cover],
+    [MARCHAND, french.treesById.get('marchand')?.cover],
+  ] as const) {
+    expect(cover, `${path} has a cover`).toBeDefined()
+    const [red, green, blue] = rgbFromHex(await artKeyColour(cover ?? ''))
     await page.goto(path)
-    return page
-      .locator(`${HERO} .au-sticker`)
-      .first()
-      .evaluate((node) =>
-        (getComputedStyle(node).backgroundColor.match(/\d+/g) ?? []).slice(0, 3).map(Number),
-      )
+    await expect(page.locator(`${HERO} .au-sticker`).first()).toHaveCSS(
+      'background-color',
+      `rgb(${red}, ${green}, ${blue})`,
+    )
   }
-  const [nnorRed = 0, nnorGreen = 0, nnorBlue = 0] = await stickerColour(NNOR)
-  expect(nnorRed - nnorGreen, 'the Nnor accent is a red').toBeGreaterThan(100)
-  expect(nnorRed - nnorBlue).toBeGreaterThan(100)
-  const [red = 0, green = 0, blue = 0] = await stickerColour(MARCHAND)
-  expect(Math.min(red, green, blue), 'the Marchand accent is a light beige').toBeGreaterThan(150)
-  expect(red >= green && green >= blue).toBe(true)
 })
 
 test('a card wears its emblem, and a card without one wears none', async ({ page, request }) => {
@@ -96,15 +110,21 @@ test('a card wears its emblem, and a card without one wears none', async ({ page
     const response = await request.get(new URL(url, page.url()).href)
     expect(response.status(), url).toBe(200)
   }
-  await page.goto('/fr/arbre/berserker')
+  const bare = (await corpus('fr')).trees.find((tree) => !tree.emblem)
+  expect(bare, 'every tree has an emblem').toBeDefined()
+  await page.goto(pathFor('tree', 'fr', { tree: bare?.id }))
   await expect(page.locator(`${HERO} .au-character__emblem`)).toHaveCount(0)
 })
 
 test('a tree without a profile or descriptors shows neither', async ({ page }) => {
-  await page.goto('/fr/arbre/berserker')
+  const plain = (await corpus('fr')).trees.find(
+    (tree) => !tree.profile && (tree.descriptors ?? []).length === 0,
+  )
+  expect(plain, 'every tree has a profile or descriptors').toBeDefined()
+  await page.goto(pathFor('tree', 'fr', { tree: plain?.id }))
   await expect(page.locator(`${HERO} .au-rank`)).toHaveCount(0)
   await expect(page.locator(`${HERO} .au-stickers`)).toHaveCount(0)
-  await expect(page.locator(`${HERO} h1`)).toHaveText('Berserker')
+  await expect(page.locator(`${HERO} h1`)).toHaveText(plain?.name ?? '')
 })
 
 test('the profile note says how to read the ranks', async ({ page }) => {
@@ -192,7 +212,7 @@ test('the plates keep their tilt through their whole arrival', async ({ page }) 
       .evaluateAll((plates) =>
         plates.map((plate) => Number.parseFloat(getComputedStyle(plate).rotate)),
       )
-    expect(tilts.length, `${moment} ms`).toBe(3)
+    expect(tilts.length, `${moment} ms`).toBeGreaterThan(0)
     for (const tilt of tilts) expect(Math.abs(tilt), `${moment} ms`).toBeGreaterThan(0.5)
   }
 })

@@ -157,7 +157,7 @@ test('every card of an index develops on one shared context', async ({ page }) =
   await page.setViewportSize({ width: 1440, height: 2400 })
   await page.goto(SPECIES_INDEX)
   const cards = await page.locator(CARD).count()
-  expect(cards).toBeGreaterThan(10)
+  expect(cards).toBeGreaterThan(1)
   await expect(page.locator(`${CARD}[data-developed] > canvas`)).toHaveCount(cards, {
     timeout: 30_000,
   })

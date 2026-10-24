@@ -12,7 +12,13 @@ import {
 } from '../../src/lib/atlas/world/stars'
 import { atlasFile } from './fixtures/atlas'
 
-const system = decodeStars(atlasFile('stars.json'))
+const STAR_SYSTEM = {
+  primary: { temperature: 5772, illuminance: 120000, diameter: 0.533 },
+  warm: { temperature: 5600, illuminance: 2392, diameter: 0.08 },
+  hot: { temperature: 12000, illuminance: 9, diameter: 0.0011, tint: [1, 0.93, 1.07] },
+  pair: { distance: 6, separation: 0.5, orbitYears: 9.3, mutualDays: 105 },
+}
+const system = decodeStars(STAR_SYSTEM)
 const byKey = (lights: StarLight[], key: StarLight['key']) => {
   const found = lights.find((light) => light.key === key)
   if (!found) throw new Error(`no ${key} light`)
@@ -22,8 +28,9 @@ const total = (lights: StarLight[]) => lights.reduce((sum, light) => sum + light
 
 describe('the three stars of Eden', () => {
   it('reads the star file and refuses an incomplete one', () => {
-    expect(system.primary.temperature).toBe(5772)
-    expect(system.hot.tint[2]).toBeGreaterThan(1)
+    expect(() => decodeStars(atlasFile('stars.json'))).not.toThrow()
+    expect(system.primary.temperature).toBe(STAR_SYSTEM.primary.temperature)
+    expect(system.hot.tint[2]).toBe(STAR_SYSTEM.hot.tint[2])
     expect(() => decodeStars({ primary: {}, warm: {}, hot: {}, pair: {} })).toThrow(FieldError)
   })
 

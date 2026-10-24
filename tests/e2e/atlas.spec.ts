@@ -121,7 +121,16 @@ test('the planner works out a voyage between two ports', async ({ page }) => {
   await panel(page).getByLabel('Arrivée', { exact: true }).selectOption({ label: 'Corsaille' })
   await panel(page).getByRole('radio', { name: 'Navire' }).check()
   await expect(panel(page).getByText('par l’itinéraire', { exact: true })).toBeVisible()
-  await expect(panel(page).getByRole('listitem').getByText('Voilier · 3 km/h')).toBeVisible()
+  const vessel = await panel(page)
+    .getByLabel('Type de navire', { exact: true })
+    .locator('option:checked')
+    .textContent()
+  expect(vessel).toMatch(/ · .+ km\/h$/)
+  await expect(
+    panel(page)
+      .getByRole('listitem')
+      .getByText(vessel ?? ''),
+  ).toBeVisible()
   await expect(
     panel(page)
       .getByRole('status')
@@ -195,13 +204,24 @@ test('the map switcher sorts the maps by category and opens the one chosen', asy
   await expect(dialog).toBeHidden()
   await expect(opener).toBeFocused()
   await opener.click()
-  await expect(dialog.getByRole('tab', { name: 'Contrées (2)' })).toHaveAttribute(
-    'aria-selected',
-    'true',
-  )
-  await dialog.getByRole('tab', { name: 'Zones (0)' }).click()
-  await expect(dialog.getByText('Aucune carte dans cette catégorie pour l’instant.')).toBeVisible()
-  await dialog.getByRole('tab', { name: 'Contrées (2)' }).click()
+  await expect(dialog.locator('.au-atlas-map[aria-current="true"]')).toBeVisible()
+  const tabs = dialog.getByRole('tab')
+  let edenTab = -1
+  for (let index = 0; index < (await tabs.count()); index++) {
+    await tabs.nth(index).click()
+    await expect(tabs.nth(index)).toHaveAttribute('aria-selected', 'true')
+    const listed = dialog.locator('.au-atlas-map')
+    const count = await listed.count()
+    await expect(tabs.nth(index)).toHaveText(new RegExp(`\\(${count}\\)$`))
+    if (count === 0) {
+      await expect(
+        dialog.getByText('Aucune carte dans cette catégorie pour l’instant.'),
+      ).toBeVisible()
+    }
+    if ((await listed.filter({ hasText: 'Eden' }).count()) > 0) edenTab = index
+  }
+  expect(edenTab, 'no category lists Eden').toBeGreaterThanOrEqual(0)
+  await tabs.nth(edenTab).click()
   await dialog.getByRole('searchbox', { name: 'Chercher une carte' }).fill('eden')
   await expect(dialog.getByRole('button', { name: /Archipel/ })).toHaveCount(0)
   await dialog.getByRole('button', { name: /Eden/ }).click()

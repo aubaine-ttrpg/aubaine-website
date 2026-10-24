@@ -2,6 +2,8 @@ import { readdirSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { expect, type Page, test } from '@playwright/test'
 
+import { resultLabel } from './support/results'
+
 const TREE = '/fr/arbre/barbare'
 const LORE_TREE = '/fr/arbre/berserker'
 const TREE_IDS = readdirSync(resolve(import.meta.dirname, '../../data/skill-trees')).map((file) =>
@@ -143,16 +145,26 @@ test('choosing a node swaps only the detail pane', async ({ page }) => {
 
   await node(page, 'TOURBI-001').click()
   await expect(page).toHaveURL('/fr/arbre/barbare/TOURBI-001#arbre')
-  await expect(page).toHaveTitle(/^Tourbillon · Barbare/)
   await expect(pane(page).locator('[data-selected-node]')).toHaveAttribute(
     'data-selected-node',
     'TOURBI-001',
   )
+  const skill = await pane(page).locator('[data-selected-node]').getAttribute('aria-label')
+  const tree = (await page.locator('main h1').textContent())?.trim()
+  await expect.poll(async () => (await page.title()).startsWith(`${skill} · ${tree}`)).toBe(true)
   await expect(page.locator('[data-node][aria-current]')).toHaveCount(1)
   await expect(node(page, 'TOURBI-001')).toHaveAttribute('aria-current', 'page')
-  await expect(page.locator('line[data-lit]')).toHaveCount(1)
-  await expect(page.locator('line[data-lit]')).toHaveAttribute('data-ends', 'TOURBI-001 ATTTEM-001')
-  await expect(page.locator('line[data-lit]')).toHaveAttribute('data-lit', 'start')
+  const edges = await page
+    .locator('line[data-ends~="TOURBI-001"]')
+    .evaluateAll((lines) => lines.map((line) => line.getAttribute('data-ends') ?? ''))
+  expect(edges.length).toBeGreaterThan(0)
+  await expect(page.locator('line[data-lit]')).toHaveCount(edges.length)
+  for (const ends of edges) {
+    await expect(page.locator(`line[data-ends="${ends}"]`)).toHaveAttribute(
+      'data-lit',
+      ends.startsWith('TOURBI-001 ') ? 'start' : 'end',
+    )
+  }
   await expect(page.locator('main h1[data-kept]')).toHaveCount(1)
   await expect(pane(page)).toBeFocused()
   expect(await page.evaluate(() => window.scrollY)).toBe(scrolled)
@@ -204,16 +216,27 @@ test('a filter dims the nodes it leaves out and keeps them on the tree', async (
   await page.goto(`${TREE}#arbre`)
   await hydrated(page)
   const filter = page.getByRole('searchbox', { name: 'Filtrer par nom…' })
+  const nodes = await page.locator('[data-plate-node]').evaluateAll((links) =>
+    links.map((link) => ({
+      id: link.getAttribute('data-node') ?? '',
+      name: link.getAttribute('data-name') ?? '',
+    })),
+  )
+  const query = nodes[0]?.name ?? ''
+  const matched = nodes.filter((entry) => entry.name.includes(query))
+  const left = nodes.length - matched.length
+  expect(left).toBeGreaterThan(0)
 
-  await filter.fill('cri')
-  await expect(dimmed(page)).toHaveCount(12)
-  await expect(page.locator('[data-plate-node]:visible')).toHaveCount(16)
-  await expect(page.getByText('4 résultats')).toBeVisible()
+  await filter.fill(query)
+  await expect(dimmed(page)).toHaveCount(left)
+  await expect(page.locator('[data-plate-node]:visible')).toHaveCount(nodes.length)
+  await expect(page.getByText(resultLabel(matched.length, 'fr'), { exact: true })).toBeVisible()
 
-  await node(page, 'CRIEFF-001').click()
-  await expect(page).toHaveURL(/CRIEFF-001#arbre$/)
-  await expect(filter).toHaveValue('cri')
-  await expect(dimmed(page)).toHaveCount(12)
+  const chosen = matched[0]?.id ?? ''
+  await node(page, chosen).click()
+  await expect(page).toHaveURL(new RegExp(`${chosen}#arbre$`))
+  await expect(filter).toHaveValue(query)
+  await expect(dimmed(page)).toHaveCount(left)
 
   await filter.fill('')
   await expect(dimmed(page)).toHaveCount(0)
@@ -225,7 +248,7 @@ test('a filter that matches nothing offers a reset', async ({ page }) => {
   const filter = page.getByRole('searchbox', { name: 'Filtrer par nom…' })
 
   await filter.fill('zzzz')
-  await expect(dimmed(page)).toHaveCount(16)
+  await expect(dimmed(page)).toHaveCount(await page.locator('[data-plate-node]').count())
   const empty = page.locator('[data-filter-empty="filtered"]')
   await expect(empty).toBeVisible()
   await expect(empty.locator('.au-empty__mark')).toBeVisible()
