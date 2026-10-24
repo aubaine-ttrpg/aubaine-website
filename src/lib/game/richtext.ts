@@ -87,6 +87,13 @@ export function referenceKey(content: string): string | undefined {
   return referenceOf(content)?.key
 }
 
+export function references(source: string): Pick<Reference, 'key' | 'amount'>[] {
+  return [...source.matchAll(REFERENCE)].flatMap(([, head]) => {
+    const reference = head === undefined ? undefined : keyOf(head)
+    return reference ? [reference] : []
+  })
+}
+
 export function pinReferenceLabels(source: string, labelOf: LabelOf): string {
   return source.replace(REFERENCE, (whole, head: string, shown: string | undefined) => {
     const reference = keyOf(head)

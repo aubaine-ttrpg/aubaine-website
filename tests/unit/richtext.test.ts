@@ -5,6 +5,7 @@ import {
   parseParagraphs,
   parseRuns,
   pinReferenceLabels,
+  references,
   type TermIndex,
   type TermRecord,
 } from '../../src/lib/game/richtext'
@@ -94,6 +95,26 @@ describe('references by key', () => {
 
   it('leaves an unknown key as plain text', () => {
     expect(parseRuns('{{inconnu}}', index)).toEqual([{ kind: 'text', text: 'inconnu' }])
+  })
+})
+
+describe('the references a text makes', () => {
+  it('lists each key with the amount written before it', () => {
+    expect(
+      references(
+        'Elle subit {{4d8 degats-feu}}, puis {{1 degats-feu|Dégât de Feu}} et {{etourdi|Étourdie}}.',
+      ),
+    ).toEqual([
+      { key: 'degats-feu', amount: '4d8' },
+      { key: 'degats-feu', amount: '1' },
+      { key: 'etourdi', amount: undefined },
+    ])
+  })
+
+  it('skips braces that hold no key', () => {
+    expect(references('{{Pas une clé}} et {{TRAFEU-001}}')).toEqual([
+      { key: 'TRAFEU-001', amount: undefined },
+    ])
   })
 })
 

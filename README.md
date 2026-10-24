@@ -45,6 +45,7 @@ falls back to French. See [`docs/runbooks/add-a-translation.md`](docs/runbooks/a
 | `pnpm test` | Unit tests over the data layer |
 | `pnpm test:e2e` | Playwright browser tests |
 | `pnpm schemas` | Regenerate `schemas/` from the Zod contract |
+| `pnpm balance` | Measure the resource pools, the rank table, builds at equal PP and chosen entries against the SRD and DMG curves, into `tmp/balance/` |
 | `pnpm verify` | Lint, data check, type check, tests and build, in order |
 
 ## How it is put together
