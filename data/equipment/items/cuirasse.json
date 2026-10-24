@@ -9,7 +9,7 @@
   "headlines": [
     {
       "label": "CA",
-      "value": "15 + la plus faible entre Dextérité et Force"
+      "value": "14 + la plus faible entre Dextérité et Force"
     }
   ],
   "craft": {
@@ -20,8 +20,8 @@
       "Métal"
     ],
     "sequence": [
-      "Force 15",
-      "Dextérité 12"
+      "Force 10",
+      "Dextérité 10"
     ]
   },
   "description": "Plastron d'acier porté sur un gambison : le torse est couvert, les bras restent libres."

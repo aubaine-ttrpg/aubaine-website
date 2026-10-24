@@ -33,7 +33,7 @@ Vulnérabilité
 
 Aucune des deux ne demande de {{jet}} : elles s'appliquent au total, une fois les dés lancés. Quand d'autres règles modifient les mêmes dégâts, procédez dans cet ordre :
 
-1. Totalisez les dégâts avec tout ce qui les augmente ou les réduit d'un nombre fixe, comme la {{caracteristique}} d'une {{attaque}} ou « vous en subissez 1 de moins ».
+1. Totalisez les dégâts avec tout ce qui les augmente ou les réduit d'un nombre fixe, comme la {{caracteristique}} d'une {{attaque}} ou « vous en subissez 1 de moins ». Si l'{{attaque}} qui les inflige obtient une {{reussite-critique}}, doublez d'abord ses propres dégâts (les dés, la {{caracteristique}} et tout ce qui s'y ajoute), puis retirez ce qui les réduit.
 2. Si la Compétence n'en inflige que la moitié, sur une réussite par exemple, divisez ce total par deux, arrondi à l'inférieur.
 3. Divisez le résultat par deux en cas de résistance, ou doublez-le en cas de vulnérabilité.
 4. Si vous bloquez avec {{LEVBOU-001}}, retirez ce que votre bouclier arrête.
@@ -64,7 +64,7 @@ Tant que dure l'{{agonie}}, vous êtes {{a-terre}} sans pouvoir vous relever, et
 
 Tout soin qui rend au moins 1 {{pdv}} met fin à l'{{agonie}} immédiatement. Le compteur ne se retient pas : un point rendu suffit, quelle que soit sa valeur.
 
-Sans magie ni potion, une {{action}} et un {{jet}} réussi d'{{intelligence}} + {{medecine}} contre un {{dd}} de 20 rendent 1 {{pdv}}, ce qui met fin à l'état.
+Sans magie ni potion, une {{action}} et un {{jet}} ({{intelligence}} + {{medecine}}) réussi contre un {{dd}} de 10 rendent 1 {{pdv}}, ce qui met fin à l'état.
 
 Dans les deux cas, la créature reste {{a-terre}}. Se relever lui coûte la moitié de sa {{vitesse}}, à son tour, et une créature dont la {{vitesse}} est de 0 ne peut pas se relever.
 

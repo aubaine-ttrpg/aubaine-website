@@ -24,5 +24,5 @@
       "control"
     ]
   },
-  "description": "Une flamme jaillit en un point que vous voyez à portée et y éclate en un éclair blanc qui peut {{aveugle|aveugler}} les créatures alentour. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nChaque créature qui voit l'éclair et se trouve à 3 m ou moins du point où il se produit effectue un {{jet}} d'{{esprit}} + {{resistance}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}}). En cas de réussite, elle détourne le regard à temps et ne subit rien. En cas d'échec, elle est {{aveugle|Aveuglée}} jusqu'à la fin de son prochain tour."
+  "description": "Une flamme jaillit en un point que vous voyez à portée et y éclate en un éclair blanc qui peut {{aveugle|aveugler}} les créatures alentour. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nChaque créature qui voit l'éclair et se trouve à 3 m ou moins du point où il se produit effectue un {{jet}} d'{{esprit}} + {{resistance}} contre votre {{dd}} (8 + la {{caracteristique}} choisie + {{arcanes}}). En cas de réussite, elle détourne le regard à temps et ne subit rien. En cas d'échec, elle est {{aveugle|Aveuglée}} jusqu'à la fin de son prochain tour."
 }

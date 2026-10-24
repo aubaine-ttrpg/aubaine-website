@@ -33,7 +33,7 @@
       "Plante"
     ],
     "sequence": [
-      "Intelligence 14"
+      "Intelligence 10"
     ]
   },
   "text": "Vous pouvez effectuer une {{action}} pour lancer cette fiole sur une créature que vous voyez à portée. Effectuez un {{jet}} de {{dexterite}} + {{visee}} contre sa {{ca}}. En cas de réussite, elle subit ***2d6*** dégâts de Feu. Si vous avez débloqué l'Arbre {{feu}}, vous gagnez aussi 2 {{combustion}}.",

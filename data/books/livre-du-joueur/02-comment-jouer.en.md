@@ -5,7 +5,7 @@ description: "The Roll, choosing the pair, the three defences, Advantage and Dis
 
 Anything uncertain in Aubaine is settled by a {{jet}}, and a {{jet}} is always the same sum:
 
-`2d12 + a {{caracteristique}} + an {{aptitude}}`
+`1d20 + a {{caracteristique}} + an {{aptitude}}`
 
 This formula serves everywhere: an attack, a dodge, a lie and an afternoon at the forge all resolve this way. What changes from one situation to the next is the pair you use and the number you need.
 
@@ -71,23 +71,23 @@ The status quo means that whoever was trying to change the situation fails to: t
 
 ## Advantage and Disadvantage
 
-An {{avantage}} adds a d12 to the {{jet}}, and you keep the two highest dice.
+An {{avantage}} adds a d20 to the {{jet}}, and you keep the highest die.
 
-A {{desavantage}} adds a d12 to the {{jet}}, and you keep the two lowest dice.
+A {{desavantage}} adds a d20 to the {{jet}}, and you keep the lowest die.
 
-The total always uses two dice, however many you rolled.
+The total always uses a single die, however many you rolled.
 
 ### Stacking
 
 An {{avantage}} and a {{desavantage}} cancel out, one for one. Count them, remove the pairs, and apply what is left.
 
-What is left has no ceiling. Three net {{avantage|Advantages}} add three dice, and you keep the best two of five.
+What is left has no ceiling. Three net {{avantage|Advantages}} add three dice, and you keep the best of the four.
 
 When a {{jet}} is made against several targets at once, only the {{avantage|Advantages}} and {{desavantage|Disadvantages}} that hold against all of them count.
 
 > [!EXAMPLE] Example
 >
-> You strike with 2 {{avantage|Advantages}}, because an ally helped you and your target is {{aveugle}}, and 1 {{desavantage}}, because you are lying {{a-terre}}. That leaves 1 net {{avantage}}: you roll three d12s and keep the two highest.
+> You strike with 2 {{avantage|Advantages}}, because an ally helped you and your target is {{aveugle}}, and 1 {{desavantage}}, because you are lying {{a-terre}}. That leaves 1 net {{avantage}}: you roll two d20s and keep the higher.
 
 ### Expertise
 
@@ -95,42 +95,56 @@ When a {{jet}} is made against several targets at once, only the {{avantage|Adva
 
 ## Criticals
 
-Only the two dice you keep count, including for criticals.
+Only the die you keep counts, including for criticals.
 
-Two kept 12s
-: A critical success. You describe an exceptional result that fits what you were attempting.
+A kept 20
+: {{reussite-critique}}. The {{jet}} succeeds, whatever the defence.
 
-Two kept 1s
-: A critical failure. The GM adds a complication tied to what you attempted.
+A kept 1
+: {{echec-critique}}. The {{jet}} fails, whatever the total, and the GM adds a complication tied to what you attempted.
 
-A critical never makes possible what the fiction forbids. A critical success at leaping over a tower still fails; it only makes the run-up spectacular.
+What a {{reussite-critique}} does beyond succeeding depends on the kind of {{jet}}:
 
-So an {{avantage}} does two things at once: it raises your expected total, and it makes a critical more likely, in either direction.
+{{jet}}
+: You describe an exceptional result that fits what you were attempting.
+
+{{attaque}}
+: The total {{degats|damage}} doubles: the dice, the {{caracteristique}} and everything added to them. It doubles before {{resistance-degats}}, {{vulnerabilite-degats}} and what a shield stops, in the order set out in the Damage and healing chapter.
+
+{{sauvegarde}}
+: The creature suffers none of the effect, not even the share a success lets through, such as half the {{degats|damage}}.
+
+Opposed {{jet}}
+: The {{reussite-critique}} wins, whatever the total on the other side. If both sides score one, it is a tie, broken in the order given for Opposed {{jet|Rolls}}.
+
+A critical never makes possible what the fiction forbids. A {{reussite-critique}} at leaping over a tower still fails; it only makes the run-up spectacular.
+
+So an {{avantage}} does two things at once: it raises your expected total, and it makes {{reussite-critique|Critical successes}} more likely and {{echec-critique|Critical failures}} rarer. A {{desavantage}} does the opposite.
 
 ## The difficulty scale
 
 The GM sets a {{dd}} whenever no rule prints one.
 
-| Difficulty | {{dd}} |
+| Task | {{dd}} |
 | --- | ---: |
+| Very easy | 5 |
 | Easy | 10 |
-| Ordinary | 15 |
-| Moderate | 20 |
-| Hard | 25 |
-| Very hard | 30 |
-| Near impossible | 35 |
+| Medium | 15 |
+| Hard | 20 |
+| Very hard | 25 |
+| Nearly impossible | 30 |
 
-A {{dd}} in between is fine when the situation calls for it. Thirty-five is the ceiling because it is the highest total you can reach without a critical: a 12 and an 11 on the kept dice, plus a modifier of +12.
+A {{dd}} in between is fine when the situation calls for it.
 
-A trivial action needs no {{jet}}. Setting {{dd}} 5 just makes someone roll for nothing.
+A trivial action needs no {{jet}}.
 
 ### A Skill's DC
 
 When a Skill lets its target resist, the {{dd}} comes from whoever uses it:
 
-`10 + a {{caracteristique}} + an {{aptitude}}`
+`8 + a {{caracteristique}} + an {{aptitude}}`
 
-The Skill names the pair, the {{jet}} its target makes, and what happens on a success and on a failure. For example: "The target makes a {{jet}} ({{esprit}} + {{volonte}}) against your {{dd}} (10 + {{charisme}} + {{intimidation}})."
+The Skill names the pair, the {{sauvegarde}} its target makes, and what happens on a success and on a failure. For example: "The target makes a {{sauvegarde}} ({{esprit}} + {{volonte}}) against your {{dd}} (8 + {{charisme}} + {{intimidation}})."
 
 So there is no number to remember. You work it out when the Skill is used.
 

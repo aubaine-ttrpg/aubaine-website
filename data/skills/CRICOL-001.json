@@ -19,7 +19,7 @@
       "control"
     ]
   },
-  "description": "Vous tonnez « Dralk » dans la langue des Jötnar, les géants disparus, et votre voix frappe comme un bélier. Jusqu'à 3 créatures de votre choix à portée effectuent chacune un {{jet}} de {{force}} + {{athletisme}} ou de {{dexterite}} + {{acrobaties}}, à son choix, contre votre {{dd}} (10 + {{force}} + {{intimidation}}). En cas d'échec, elle tombe {{a-terre}}. En cas de réussite, elle reste debout.",
+  "description": "Vous tonnez « Dralk » dans la langue des Jötnar, les géants disparus, et votre voix frappe comme un bélier. Jusqu'à 3 créatures de votre choix à portée effectuent chacune un {{jet}} de {{force}} + {{athletisme}} ou de {{dexterite}} + {{acrobaties}}, à son choix, contre votre {{dd}} (8 + {{force}} + {{intimidation}}). En cas d'échec, elle tombe {{a-terre}}. En cas de réussite, elle reste debout.",
   "upgrades": [
     {
       "level": 2,

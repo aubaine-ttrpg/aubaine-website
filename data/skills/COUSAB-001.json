@@ -28,5 +28,5 @@
       "control"
     ]
   },
-  "description": "Vous frappez d'un coup de sabot sec, de tout le poids de votre corps.\n\nVous portez une {{attaque}} ({{force}} + {{melee}}) avec vos sabots. En cas de réussite, la cible subit {{1d4 degats-contondant}} et fait une {{sauvegarde}} ({{constitution}} + {{resistance}}) contre votre {{dd}} (10 + {{force}} + {{melee}}). En cas d'échec, elle est {{etourdi|Étourdie}} jusqu'à la fin de son prochain {{tour}}."
+  "description": "Vous frappez d'un coup de sabot sec, de tout le poids de votre corps.\n\nVous portez une {{attaque}} ({{force}} + {{melee}}) avec vos sabots. En cas de réussite, la cible subit {{1d4 degats-contondant}} et fait une {{sauvegarde}} ({{constitution}} + {{resistance}}) contre votre {{dd}} (8 + {{force}} + {{melee}}). En cas d'échec, elle est {{etourdi|Étourdie}} jusqu'à la fin de son prochain {{tour}}."
 }

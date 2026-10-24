@@ -23,9 +23,9 @@ Puis la situation a changé, et la boucle repart. Elle tourne de la même maniè
 >
 > **Joueuse de Sélène :** « Je prends de l'élan et je saute par-dessus le trou. »
 >
-> **MJ :** « L'issue est incertaine, et une chute coûterait cher. Fais un {{jet}} de {{dexterite}} + {{acrobaties}} contre un {{dd}} de 15. »
+> **MJ :** « L'issue est incertaine, et une chute coûterait cher. Fais un {{jet}} ({{dexterite}} + {{acrobaties}}) contre un {{dd}} de 10. »
 >
-> La joueuse lance deux d12 et obtient 7 et 9. Sélène a +3 en {{dexterite}} et rien en {{acrobaties}} : son total fait 19, au-dessus du {{dd}}.
+> La joueuse lance un d20 et obtient 9. Sélène a +3 en {{dexterite}} et rien en {{acrobaties}} : son total fait 12, au-dessus du {{dd}}.
 >
 > **MJ :** « Tu retombes de l'autre côté dans un grincement de cordes. Derrière toi, une planche de plus se détache et tourne longtemps avant de disparaître dans la brume. »
 
@@ -43,7 +43,7 @@ La table
 ## Ce qu'il vous faut
 
 - Une fiche de personnage.
-- Des dés : des d12 surtout, plus un d4 et quelques autres dés pour les dégâts.
+- Des dés : des d20 surtout, plus un d4 et quelques autres dés pour les dégâts.
 - De quoi écrire et effacer, parce que la fiche change en jeu.
 - Vos deux premiers Arbres, celui de votre Archétype et celui de votre Domaine, imprimés ou ouverts sur un écran.
 
@@ -52,7 +52,7 @@ Rien d'autre : les distances se comptent en mètres et s'annoncent à voix haute
 ## Aubaine en quelques mots
 
 Le {{jet}}
-: Tout ce qui est incertain se résout par la même formule, `2d12 + une {{caracteristique}} + une {{aptitude}}`. {{ATTAQU-001}}, résister à un poison, mentir à un garde ou forger une lame : seul le nombre à atteindre change.
+: Tout ce qui est incertain se résout par la même formule, `1d20 + une {{caracteristique}} + une {{aptitude}}`. {{ATTAQU-001}}, résister à un poison, mentir à un garde ou forger une lame : seul le nombre à atteindre change.
 
 La paire
 : C'est votre manière d'agir qui décide de la {{caracteristique}} et de l'{{aptitude}} employées, si bien qu'un personnage reste utile loin de ses points forts.

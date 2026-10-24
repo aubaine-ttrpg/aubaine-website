@@ -10,7 +10,7 @@
   "headlines": [
     {
       "label": "CA",
-      "value": "18"
+      "value": "16"
     }
   ],
   "properties": [
@@ -26,8 +26,8 @@
       "Métal"
     ],
     "sequence": [
-      "Force 18",
-      "Dextérité 15"
+      "Force 15",
+      "Dextérité 10"
     ]
   },
   "description": "Anneaux rivetés du col aux cuisses. Elle arrête presque tout, et se fait sentir dès la première heure de marche."

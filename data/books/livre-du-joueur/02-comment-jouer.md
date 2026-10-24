@@ -5,7 +5,7 @@ description: "Le Jet, le choix de la paire, les trois défenses, Avantage et Dé
 
 Tout ce qui est incertain dans Aubaine se résout par un {{jet}}, et un {{jet}} est toujours le même calcul :
 
-`2d12 + une {{caracteristique}} + une {{aptitude}}`
+`1d20 + une {{caracteristique}} + une {{aptitude}}`
 
 Cette formule sert partout : une attaque, une esquive, un mensonge et un travail de forge se résolvent tous ainsi. Ce qui change d'une situation à l'autre, c'est la paire employée et le nombre qu'il faut atteindre.
 
@@ -71,23 +71,23 @@ Le statu quo signifie que celui qui cherchait à changer la situation n'y parvie
 
 ## Avantage et Désavantage
 
-Un {{avantage}} ajoute un d12 au {{jet}}, et vous conservez les deux dés les plus élevés.
+Un {{avantage}} ajoute un d20 au {{jet}}, et vous conservez le dé le plus élevé.
 
-Un {{desavantage}} ajoute un d12 au {{jet}}, et vous conservez les deux dés les plus faibles.
+Un {{desavantage}} ajoute un d20 au {{jet}}, et vous conservez le dé le plus faible.
 
-Le total se calcule toujours sur deux dés, quel que soit le nombre lancé.
+Le total se calcule toujours sur un seul dé, quel que soit le nombre lancé.
 
 ### Les cumuls
 
 Un {{avantage}} et un {{desavantage}} s'annulent, un pour un. Comptez-les, retirez les paires, et appliquez ce qui reste.
 
-Ce qui reste n'a pas de plafond. Trois {{avantage|Avantages}} nets ajoutent trois dés, et vous gardez les deux meilleurs des cinq.
+Ce qui reste n'a pas de plafond. Trois {{avantage|Avantages}} nets ajoutent trois dés, et vous gardez le meilleur des quatre.
 
 Quand un {{jet}} vise plusieurs cibles à la fois, seuls comptent les {{avantage|Avantages}} et les {{desavantage|Désavantages}} qui valent contre toutes.
 
 > [!EXAMPLE] Exemple
 >
-> Vous portez un coup avec 2 {{avantage|Avantages}}, parce qu'un allié vous a aidé et que la cible est {{aveugle|Aveuglée}}, et 1 {{desavantage}}, parce que vous êtes {{a-terre|à terre}}. Il reste 1 {{avantage}} net : vous lancez trois d12 et vous gardez les deux plus hauts.
+> Vous portez un coup avec 2 {{avantage|Avantages}}, parce qu'un allié vous a aidé et que la cible est {{aveugle|Aveuglée}}, et 1 {{desavantage}}, parce que vous êtes {{a-terre|à terre}}. Il reste 1 {{avantage}} net : vous lancez deux d20 et vous gardez le plus haut.
 
 ### L'Expertise
 
@@ -95,42 +95,56 @@ Avoir l'{{expertise}} dans une {{aptitude}} vous donne 1 {{avantage}} à chaque 
 
 ## Les critiques
 
-Seuls les deux dés conservés comptent, y compris pour le critique.
+Seul le dé conservé compte, y compris pour le critique.
 
-Deux 12 conservés
-: Réussite critique. Vous décrivez un résultat exceptionnel, cohérent avec ce que vous tentiez.
+Un 20 conservé
+: {{reussite-critique}}. Le {{jet}} réussit, quelle que soit la défense.
 
-Deux 1 conservés
-: Échec critique. Le MJ ajoute une complication liée à l'action tentée.
+Un 1 conservé
+: {{echec-critique}}. Le {{jet}} échoue, quel que soit le total, et le MJ ajoute une complication liée à l'action tentée.
 
-Un critique ne rend pas possible ce que la fiction interdit. Une réussite critique pour sauter par-dessus une tour reste un échec ; elle rend seulement l'élan spectaculaire.
+Ce qu'une {{reussite-critique}} apporte en plus de la réussite dépend du {{jet}} :
 
-Un {{avantage}} change donc deux choses à la fois : il monte le total attendu, et il rend le critique plus probable, dans un sens comme dans l'autre.
+{{jet}}
+: Vous décrivez un résultat exceptionnel, cohérent avec ce que vous tentiez.
+
+{{attaque}}
+: Le total des {{degats}} double : les dés, la {{caracteristique}} et tout ce qui s'y ajoute. Il double avant la {{resistance-degats}}, la {{vulnerabilite-degats}} et ce qu'arrête un bouclier, dans l'ordre que donne le chapitre Dégâts et soins.
+
+{{sauvegarde}}
+: La créature ne subit rien de l'effet, pas même la part qu'une réussite laisse passer, comme la moitié des {{degats}}.
+
+{{jet}} opposé
+: La {{reussite-critique}} l'emporte, quel que soit le total d'en face. Si les deux camps en obtiennent une, ils sont à égalité, et l'ordre des {{jet|Jets}} opposés les départage.
+
+Un critique ne rend pas possible ce que la fiction interdit. Une {{reussite-critique}} pour sauter par-dessus une tour reste un échec ; elle rend seulement l'élan spectaculaire.
+
+Un {{avantage}} change donc deux choses à la fois : il monte le total attendu, et il rend la {{reussite-critique}} plus probable et l'{{echec-critique}} plus rare. Un {{desavantage}} fait l'inverse.
 
 ## L'échelle de difficulté
 
 Le MJ fixe un {{dd}} quand aucune règle ne l'imprime.
 
-| Difficulté | {{dd}} |
+| Tâche | {{dd}} |
 | --- | ---: |
+| Très facile | 5 |
 | Facile | 10 |
-| Ordinaire | 15 |
-| Modéré | 20 |
-| Difficile | 25 |
-| Très difficile | 30 |
-| Presque impossible | 35 |
+| Moyenne | 15 |
+| Difficile | 20 |
+| Très difficile | 25 |
+| Quasi impossible | 30 |
 
-Un {{dd}} intermédiaire est permis quand la situation le demande. Trente-cinq est le plafond parce que c'est le plus haut total non critique possible : 12 et 11 sur les dés conservés, plus un modificateur de +12.
+Un {{dd}} intermédiaire est permis quand la situation le demande.
 
-Une action triviale ne demande pas de {{jet}}. Fixer un {{dd}} de 5 revient à faire lancer pour rien.
+Une action triviale ne demande pas de {{jet}}.
 
 ### Le DD d'une Compétence
 
 Quand une Compétence laisse sa cible résister, le {{dd}} vient de celui qui la joue :
 
-`10 + une {{caracteristique}} + une {{aptitude}}`
+`8 + une {{caracteristique}} + une {{aptitude}}`
 
-La Compétence nomme la paire, le {{jet}} que la cible effectue, et ce qui arrive en cas de réussite comme en cas d'échec. Ainsi : « La cible effectue un {{jet}} ({{esprit}} + {{volonte}}) contre votre {{dd}} (10 + {{charisme}} + {{intimidation}}). »
+La Compétence nomme la paire, la {{sauvegarde}} que la cible fait, et ce qui arrive en cas de réussite comme en cas d'échec. Ainsi : « La cible fait une {{sauvegarde}} ({{esprit}} + {{volonte}}) contre votre {{dd}} (8 + {{charisme}} + {{intimidation}}). »
 
 Vous n'avez donc pas ce nombre à retenir. Il se calcule au moment où la Compétence est jouée.
 

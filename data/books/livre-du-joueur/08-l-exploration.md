@@ -84,7 +84,7 @@ Les monstres ne sont pas les seules menaces. Le monde lui-même blesse, affame e
 
 Une créature qui tombe subit 1d6 dégâts Contondants par tranche de 3 mètres de chute, jusqu'à 20d6. Si elle subit au moins 1 dégât, elle tombe {{a-terre}}.
 
-Une créature qui tombe dans l'eau ou un autre liquide peut jouer sa {{reaction}} pour effectuer un {{jet}} de {{force}} + {{athletisme}} ou de {{dexterite}} + {{acrobaties}} contre un {{dd}} de 15. En cas de réussite, elle entre dans le liquide proprement et ne subit que la moitié des dégâts.
+Une créature qui tombe dans l'eau ou un autre liquide peut jouer sa {{reaction}} pour effectuer un {{jet}} ({{force}} + {{athletisme}}) ou un {{jet}} ({{dexterite}} + {{acrobaties}}) contre un {{dd}} de 10. En cas de réussite, elle entre dans le liquide proprement et ne subit que la moitié des dégâts.
 
 ### Le souffle
 

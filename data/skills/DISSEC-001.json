@@ -20,7 +20,7 @@
       "creation"
     ]
   },
-  "description": "Une carcasse est un magasin pour qui sait où couper. Vous ouvrez proprement le cadavre d'une créature ni humanoïde ni artificielle, vaincue lors d'une rencontre significative. Un cadavre ne se dissèque qu'une fois.\n\nEffectuez un {{jet}} d'{{intelligence}} + {{medecine}} contre un {{dd}} de 15. En cas de réussite, vous recevez une Occasion de butin de plus sur cette source. En cas d'échec, vous abîmez ce que vous cherchiez et n'en tirez rien de plus.",
+  "description": "Une carcasse est un magasin pour qui sait où couper. Vous ouvrez proprement le cadavre d'une créature ni humanoïde ni artificielle, vaincue lors d'une rencontre significative. Un cadavre ne se dissèque qu'une fois.\n\nEffectuez un {{jet}} d'{{intelligence}} + {{medecine}} contre un {{dd}} de 10. En cas de réussite, vous recevez une Occasion de butin de plus sur cette source. En cas d'échec, vous abîmez ce que vous cherchiez et n'en tirez rien de plus.",
   "upgrades": [
     {
       "level": 2,

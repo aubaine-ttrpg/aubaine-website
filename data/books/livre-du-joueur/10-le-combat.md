@@ -105,19 +105,19 @@ Tout ce qu'une arme fait d'inhabituel passe par une propriété nommée, imprim�
 
 La {{ca}} est le nombre qu'une {{attaque}} doit atteindre pour vous toucher. Sans armure :
 
-`{{ca}} = 12 + {{dexterite}}`
+`{{ca}} = 10 + {{dexterite}}`
 
-Une armure portée efface cette formule et impose la sienne. **Elle ne s'ajoute jamais à 12.** C'est la règle qu'on oublie le plus souvent.
+Une armure portée efface cette formule et impose la sienne. **Elle ne s'ajoute jamais à 10.** C'est la règle qu'on oublie le plus souvent.
 
 Une seule formule de base s'applique à la fois, celle de la pièce qui occupe l'emplacement Torse. Un bouclier levé et les autres modificateurs explicites s'ajoutent ensuite, par-dessus le résultat.
 
-1. Prenez la formule de votre armure, ou `12 + {{dexterite}}` si vous n'en portez pas.
+1. Prenez la formule de votre armure, ou `10 + {{dexterite}}` si vous n'en portez pas.
 2. Ajoutez le bouclier, s'il est levé.
 3. Ajoutez les autres modificateurs explicites, pièce par pièce.
 
 > [!EXAMPLE] Exemple
 >
-> Sans armure, avec une {{dexterite}} de +3, votre {{ca}} est de 15. Enfilez une armure en `14 + {{dexterite}}` et elle passe à 17, jamais à 29. Levez une targe et elle monte à 18.
+> Sans armure, avec une {{dexterite}} de +3, votre {{ca}} est de 13. Enfilez une armure de cuir en `11 + {{dexterite}}` et elle passe à 14, jamais à 24. Levez une targe et elle monte à 15.
 
 Chaque armure imprime sa propre formule, et certaines plafonnent la {{dexterite}} qu'elles laissent compter ou exigent une {{force}} minimale. Lisez la pièce : elle porte ses contraintes.
 
@@ -153,7 +153,7 @@ Deux Compétences de base en fournissent un à tout le monde. {{ATTOPP-001}} fra
 
 Certaines Compétences durent tant que vous vous concentrez : leur durée porte la mention {{concentration}}. Vous ne maintenez qu'une Compétence de {{concentration}} à la fois, et en jouer une autre met fin à la première, même si la seconde ne se résout pas ou est annulée.
 
-Chaque fois que vous subissez des dégâts pendant que vous en maintenez une, effectuez un {{jet}} de {{constitution}} + {{volonte}} contre un {{dd}} de 15 pour maintenir votre {{concentration}}. En cas d'échec, elle prend fin.
+Chaque fois que vous subissez des dégâts pendant que vous en maintenez une, effectuez un {{jet}} ({{constitution}} + {{volonte}}) contre un {{dd}} de 10 pour maintenir votre {{concentration}}. En cas d'échec, elle prend fin.
 
 Votre {{concentration}} prend fin aussi lorsque vous gagnez {{agonie}}, lorsque vous êtes {{endormi}}, {{sonne}} ou {{enrage}}, et lorsque vous y mettez fin, ce qui ne vous coûte rien.
 

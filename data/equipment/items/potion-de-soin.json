@@ -33,7 +33,7 @@
       "Plante"
     ],
     "sequence": [
-      "Intelligence 12"
+      "Intelligence 10"
     ]
   },
   "text": "Vous pouvez effectuer une {{action-bonus}} pour boire cette potion et récupérer ***1d8*** {{pdv|Points de vie}}.",

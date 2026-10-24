@@ -79,7 +79,7 @@ Le MJ accorde un point de {{karma}} quand il le juge mérité, souvent quand un 
 
 Dépensez un point avant un {{jet}}, ou après le lancer tant que le résultat n'est pas résolu. Chaque point ajoute un {{avantage}} ou un {{desavantage}} au {{jet}} de votre choix : le vôtre, celui d'un allié, celui d'un adversaire. Plusieurs points peuvent tomber sur le même {{jet}}.
 
-Un point dépensé après le lancer ajoute son dé à ceux qui sont déjà sur la table, puis les deux dés conservés sont déterminés de nouveau sur l'ensemble. C'est ce qui permet de sauver un {{jet}} raté, et aussi d'en gâcher un réussi quand le point tombe sur un adversaire.
+Un point dépensé après le lancer ajoute son dé à ceux qui sont déjà sur la table, puis le dé conservé est déterminé de nouveau sur l'ensemble. C'est ce qui permet de sauver un {{jet}} raté, et aussi d'en gâcher un réussi quand le point tombe sur un adversaire.
 
 Certaines Compétences prennent le {{karma}} comme ressource. Elles sont rares à l'usage pour cette raison.
 
@@ -217,7 +217,7 @@ Ces six cases sont les seules qui se calculent. Reprenez-les après chaque achat
 | {{pdv}} | `20 + 2 × {{constitution}} + 5 × Niveau de Vitalité` |
 | {{memoire}} | `4 + {{intelligence}} + Niveau de {{memoire}}` |
 | {{energie}} | `8 + {{esprit}} + Niveau d'{{energie}}` |
-| {{ca}} | `12 + {{dexterite}}` sans armure, sinon la formule de l'armure |
+| {{ca}} | `10 + {{dexterite}}` sans armure, sinon la formule de l'armure |
 | {{vitesse}} | 9 mètres, sauf mention de votre Espèce |
 | Initiative | `1d4 + {{dexterite}}`, lancé au début du combat |
 
@@ -271,10 +271,10 @@ Ses 3 PP vont un par voie. Ses valeurs dérivées :
 - {{pdv}} : `20 + 2 × 2 + 5 × 1` = **29**
 - {{memoire}} : `4 + 1 + 1` = **6**
 - {{energie}} : `8 + 2 + 1` = **11**
-- {{ca}} : `12 + 3` = **15** sans armure
+- {{ca}} : `10 + 3` = **13** sans armure
 - {{vitesse}} : **9 m**
 - Initiative : `1d4 + 3`
 
 Ses 25 PX partent dans le cœur de son Arbre de Domaine et dans une Compétence bon marché qui lui est reliée. Deux Compétences à {{memorisee|mémoriser}} pour six emplacements de {{memoire}}, ses Compétences d'Espèce n'en prenant aucun : elle a de la place pour grandir avant d'avoir à choisir.
 
-Sur un {{jet}} de tir, elle lance `2d12 + 3 + 2`. Quand elle piste, sa {{specialite}} entre dans le {{jet}} et lui donne un {{avantage}} par-dessus. Et quand un danger l'attend plus loin sur la piste, son {{don}} peut lui en montrer un éclat avant qu'elle n'y arrive, si le MJ le décide.
+Sur un {{jet}} de tir, elle lance `1d20 + 3 + 2`. Quand elle piste, sa {{specialite}} entre dans le {{jet}} et lui donne un {{avantage}} par-dessus. Et quand un danger l'attend plus loin sur la piste, son {{don}} peut lui en montrer un éclat avant qu'elle n'y arrive, si le MJ le décide.

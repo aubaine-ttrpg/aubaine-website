@@ -31,7 +31,7 @@ Seven slots, eight pieces worn: the Jewel counts twice.
 
 Every catalogue entry prints what concerns it: its headline value, its cells, its named properties, its recipe and what it grants. Those numbers belong to the piece and are not repeated anywhere else.
 
-The GM announces what you begin equipped with. With no armour your {{ca}} is `12 + Dexterity`, and an unarmed Strike deals `1d4 + Strength`.
+The GM announces what you begin equipped with. With no armour your {{ca}} is `10 + Dexterity`, and an unarmed Strike deals `1d4 + Strength`.
 
 ## Carried objects
 
@@ -98,7 +98,7 @@ If the {{jet}} succeeds, the piece is no longer broken and gets all its {{encais
 >
 > Sélène's targe has only 3 {{encaissement}} left when an axe hits her for 7 damage. She blocks: the targe stops 3 and drops to 0, and Sélène takes the other 4. The targe is {{brise}} and does nothing more for her.
 >
-> At the next {{repos-court}}, she repairs it. The targe's recipe costs 4 and asks for Wood and Metal: a Dead Branch and a Scrap Iron, Value 1 each, cover both Types and reach half the cost, 2. She then passes the recipe's last {{jet}}, {{force}} + {{artisanat}} against a {{dd}} of 12, and the targe gets all its {{encaissement}} back.
+> At the next {{repos-court}}, she repairs it. The targe's recipe costs 4 and asks for Wood and Metal: a Dead Branch and a Scrap Iron, Value 1 each, cover both Types and reach half the cost, 2. She then passes the recipe's last {{jet}}, {{force}} + {{artisanat}} against a {{dd}} of 10, and the targe gets all its {{encaissement}} back.
 
 ## Equipment sets
 

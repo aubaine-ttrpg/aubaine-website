@@ -22,7 +22,7 @@
     },
     {
       "label": "DD",
-      "value": "18"
+      "value": "15"
     }
   ],
   "craft": {
@@ -33,10 +33,10 @@
       "Gemme"
     ],
     "sequence": [
-      "Dextérité 14",
-      "Intelligence 18"
+      "Dextérité 10",
+      "Intelligence 15"
     ]
   },
-  "text": "Vous pouvez effectuer une {{action}} pour jeter cette poudre sur un point que vous voyez à portée. Chaque créature dans un rayon de ***3 mètres*** effectue un {{jet}} de {{dexterite}} + {{reflexes}} contre un {{dd}} de ***18***. En cas d'échec, elle est {{entrave}}, et son {{jet}} de dégagement se fait contre ce même {{dd}}.",
+  "text": "Vous pouvez effectuer une {{action}} pour jeter cette poudre sur un point que vous voyez à portée. Chaque créature dans un rayon de ***3 mètres*** effectue un {{jet}} de {{dexterite}} + {{reflexes}} contre un {{dd}} de ***15***. En cas d'échec, elle est {{entrave}}, et son {{jet}} de dégagement se fait contre ce même {{dd}}.",
   "description": "Éclats de gemme broyés dans de la limaille. Ils cherchent le sol et s'y prennent, en emportant ce qui touche encore terre."
 }

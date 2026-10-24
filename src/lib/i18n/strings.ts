@@ -68,7 +68,7 @@ const fr = {
   homeTitle: 'Aubaine, jeu de rôle sur table',
   heroTitle: 'Aubaine',
   heroLead: (trees: number, species: number) =>
-    `Jeu de rôle sur table gratuit et ouvert, où tout ce qui est incertain se résout sur 2d12. Ses livres, ses ${trees} Arbres, ses ${species} Espèces et son équipement, à lire ou à imprimer.`,
+    `Jeu de rôle sur table gratuit et ouvert, où tout ce qui est incertain se résout sur un d20. Ses livres, ses ${trees} Arbres, ses ${species} Espèces et son équipement, à lire ou à imprimer.`,
   ctaTrees: 'Ouvrir les Arbres',
   ctaRes: 'Commencer à jouer',
   ctaPdf: 'Télécharger le PDF',
@@ -569,7 +569,7 @@ const en: UiStrings = {
   homeTitle: 'Aubaine, a tabletop roleplaying game',
   heroTitle: 'Aubaine',
   heroLead: (trees: number, species: number) =>
-    `Free, open tabletop roleplaying game: anything uncertain is settled on 2d12. Read its books, ${trees} Trees, ${species} Species and equipment here, or print them.`,
+    `Free, open tabletop roleplaying game: anything uncertain is settled on a d20. Read its books, ${trees} Trees, ${species} Species and equipment here, or print them.`,
   ctaTrees: 'Open the Trees',
   ctaRes: 'Start Playing',
   ctaPdf: 'Download the PDF',

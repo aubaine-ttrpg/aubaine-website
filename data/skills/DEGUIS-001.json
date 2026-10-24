@@ -19,5 +19,5 @@
       "illusion"
     ]
   },
-  "description": "Vous drapez une créature consentante, ou vous-même, d'une illusion qui change son apparence et sa voix.\n\nPlus le déguisement est extravagant, plus il se repère : l'observateur gagne jusqu'à 5 {{avantage|Avantages}} à son {{jet}} d'{{esprit}} + {{perception}} contre votre {{dd}} (10 + {{intelligence}} + {{tromperie}}). Faire passer un rat pour un dragon se paie ; changer la couleur d'un manteau ne se paie pas."
+  "description": "Vous drapez une créature consentante, ou vous-même, d'une illusion qui change son apparence et sa voix.\n\nPlus le déguisement est extravagant, plus il se repère : l'observateur gagne jusqu'à 5 {{avantage|Avantages}} à son {{jet}} d'{{esprit}} + {{perception}} contre votre {{dd}} (8 + {{intelligence}} + {{tromperie}}). Faire passer un rat pour un dragon se paie ; changer la couleur d'un manteau ne se paie pas."
 }

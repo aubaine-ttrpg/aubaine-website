@@ -9,7 +9,7 @@
   "headlines": [
     {
       "label": "CA",
-      "value": "13 + Intelligence OU Esprit OU Charisme"
+      "value": "11 + Intelligence OU Esprit OU Charisme"
     }
   ],
   "properties": [
@@ -30,8 +30,8 @@
       "Gemme"
     ],
     "sequence": [
-      "Dextérité 14",
-      "Intelligence 16"
+      "Dextérité 10",
+      "Intelligence 10"
     ]
   },
   "description": "Bande de gemmes cousue de l'épaule à la hanche. Chacune se ternit quand la suivante s'allume."

@@ -23,7 +23,7 @@
       "destruction"
     ]
   },
-  "description": "Vous lâchez d'un coup la charge qui vous parcourt, en arcs vers les créatures qui vous entourent. Vous ne pouvez lancer ce {{sort}} que si vous portez au moins 1 {{surtension}}. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nDépensez toute votre {{surtension}}, puis choisissez jusqu'à trois créatures que vous voyez à 3 m ou moins de vous. Chacune effectue un {{jet}} de {{dexterite}} + {{reflexes}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}}). En cas d'échec, elle subit 1d4 dégâts de Foudre par {{surtension}} dépensée. En cas de réussite, elle n'en subit que la moitié.",
+  "description": "Vous lâchez d'un coup la charge qui vous parcourt, en arcs vers les créatures qui vous entourent. Vous ne pouvez lancer ce {{sort}} que si vous portez au moins 1 {{surtension}}. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nDépensez toute votre {{surtension}}, puis choisissez jusqu'à trois créatures que vous voyez à 3 m ou moins de vous. Chacune effectue un {{jet}} de {{dexterite}} + {{reflexes}} contre votre {{dd}} (8 + la {{caracteristique}} choisie + {{arcanes}}). En cas d'échec, elle subit 1d4 dégâts de Foudre par {{surtension}} dépensée. En cas de réussite, elle n'en subit que la moitié.",
   "upgrades": [
     {
       "level": 2,

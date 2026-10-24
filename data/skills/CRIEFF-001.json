@@ -19,7 +19,7 @@
       "control"
     ]
   },
-  "description": "Vous hurlez « Hvelg » dans la langue des Jötnar, un peuple de géants aujourd'hui éteint. Jusqu'à 3 créatures de votre choix à portée effectuent chacune un {{jet}} d'{{esprit}} + {{volonte}} contre votre {{dd}} (10 + {{force}} + {{intimidation}}). En cas d'échec, ses {{attaque|Attaques}} subissent 1 {{desavantage}} jusqu'à la fin de son prochain tour. En cas de réussite, elle ne subit rien.",
+  "description": "Vous hurlez « Hvelg » dans la langue des Jötnar, un peuple de géants aujourd'hui éteint. Jusqu'à 3 créatures de votre choix à portée effectuent chacune un {{jet}} d'{{esprit}} + {{volonte}} contre votre {{dd}} (8 + {{force}} + {{intimidation}}). En cas d'échec, ses {{attaque|Attaques}} subissent 1 {{desavantage}} jusqu'à la fin de son prochain tour. En cas de réussite, elle ne subit rien.",
   "upgrades": [
     {
       "level": 2,

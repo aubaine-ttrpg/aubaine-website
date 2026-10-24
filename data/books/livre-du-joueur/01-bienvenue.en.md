@@ -23,9 +23,9 @@ Then the situation has changed, and the loop starts again. It turns the same way
 >
 > **Sélène's player:** "I take a run-up and jump the gap."
 >
-> **GM:** "The outcome is uncertain, and a fall would cost you dearly. Make a {{dexterite}} + {{acrobaties}} {{jet}} against {{dd}} 15."
+> **GM:** "The outcome is uncertain, and a fall would cost you dearly. Make a {{jet}} ({{dexterite}} + {{acrobaties}}) against a {{dd}} of 10."
 >
-> The player rolls two d12s and gets a 7 and a 9. Sélène has +3 in {{dexterite}} and nothing in {{acrobaties}}, so her total is 19, over the {{dd}}.
+> The player rolls a d20 and gets a 9. Sélène has +3 in {{dexterite}} and nothing in {{acrobaties}}, so her total is 12, over the {{dd}}.
 >
 > **GM:** "You land on the far side with a creak of rope. Behind you, another plank comes loose and tumbles for a long time before the mist swallows it."
 
@@ -43,7 +43,7 @@ The table
 ## What you need
 
 - A character sheet.
-- Dice: mostly d12s, plus a d4 and a few others for damage.
+- Dice: mostly d20s, plus a d4 and a few others for damage.
 - Something to write and erase with, because the sheet changes during play.
 - Your first two Trees, your Archetype's and your Domain's, printed or open on a screen.
 
@@ -52,7 +52,7 @@ Nothing else: distances are counted in metres and said out loud.
 ## Aubaine at a glance
 
 The {{jet}}
-: Anything uncertain resolves with the same formula, `2d12 + a {{caracteristique}} + an {{aptitude}}`. {{ATTAQU-001|Attacking}}, shrugging off a poison, lying to a guard or forging a blade: only the number you need changes.
+: Anything uncertain resolves with the same formula, `1d20 + a {{caracteristique}} + an {{aptitude}}`. {{ATTAQU-001|Attacking}}, shrugging off a poison, lying to a guard or forging a blade: only the number you need changes.
 
 The pair
 : How you act decides which {{caracteristique}} and which {{aptitude}} you use, so a character stays useful far from their strengths.

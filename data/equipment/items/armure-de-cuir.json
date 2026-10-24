@@ -9,7 +9,7 @@
   "headlines": [
     {
       "label": "CA",
-      "value": "13 + Dextérité"
+      "value": "11 + Dextérité"
     }
   ],
   "craft": {
@@ -19,7 +19,7 @@
       "Cuir"
     ],
     "sequence": [
-      "Dextérité 12"
+      "Dextérité 10"
     ]
   },
   "description": "Cuir bouilli monté sur sangles, souple aux épaules et à la taille."

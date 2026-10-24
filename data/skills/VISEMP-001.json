@@ -21,5 +21,5 @@
       "graft"
     ]
   },
-  "description": "Votre chair se remet en place à la ressemblance d'une autre créature. Choisissez une créature humanoïde de votre {{taille}} ou d'une {{taille}} inférieure, dont vous avez goûté le sang ou dont vous portez une {{GREFFE-001|greffe}}.\n\nTant que {{VISEMP-001}} dure, vous passez pour elle. Une créature qui a une raison de douter de vous peut effectuer un {{jet}} d'{{esprit}} + {{perception}} contre votre {{dd}} (10 + {{charisme}} + {{tromperie}}) pour révéler la vérité."
+  "description": "Votre chair se remet en place à la ressemblance d'une autre créature. Choisissez une créature humanoïde de votre {{taille}} ou d'une {{taille}} inférieure, dont vous avez goûté le sang ou dont vous portez une {{GREFFE-001|greffe}}.\n\nTant que {{VISEMP-001}} dure, vous passez pour elle. Une créature qui a une raison de douter de vous peut effectuer un {{jet}} d'{{esprit}} + {{perception}} contre votre {{dd}} (8 + {{charisme}} + {{tromperie}}) pour révéler la vérité."
 }

@@ -105,19 +105,19 @@ Anything unusual a weapon does goes through a named property printed on it. A Fi
 
 {{ca}} is the number an {{attaque}} has to reach to hit you. With no armour:
 
-`{{ca}} = 12 + {{dexterite}}`
+`{{ca}} = 10 + {{dexterite}}`
 
-Worn armour wipes that formula and imposes its own. **It is never added to 12.** It is the rule people forget most often.
+Worn armour wipes that formula and imposes its own. **It is never added to 10.** It is the rule people forget most often.
 
 Only one base formula applies at a time, the one on the piece in the Torso slot. A raised shield and other explicit modifiers are added afterwards, on top of the result.
 
-1. Take your armour's formula, or `12 + {{dexterite}}` if you wear none.
+1. Take your armour's formula, or `10 + {{dexterite}}` if you wear none.
 2. Add the shield, if it is raised.
 3. Add the other explicit modifiers, piece by piece.
 
 > [!EXAMPLE] Example
 >
-> Unarmoured, with {{dexterite}} +3, your {{ca}} is 15. Put on armour at `14 + {{dexterite}}` and it becomes 17, never 29. Raise a targe and it rises to 18.
+> Unarmoured, with {{dexterite}} +3, your {{ca}} is 13. Put on leather armour at `11 + {{dexterite}}` and it becomes 14, never 24. Raise a targe and it rises to 15.
 
 Each piece of armour prints its own formula, and some cap how much {{dexterite}} they let count or demand a minimum {{force}}. Read the piece: it carries its own limits.
 
@@ -153,7 +153,7 @@ Two Basic Skills give everyone one. {{ATTOPP-001}} strikes a creature that leave
 
 Some Skills last as long as you concentrate: their duration is marked {{concentration}}. You maintain only one {{concentration}} Skill at a time, and playing another ends the first, even if the second does not resolve or is cancelled.
 
-Each time you take damage while you maintain one, make a {{constitution}} + {{volonte}} {{jet}} against {{dd}} 15 to maintain your {{concentration}}. On a failure, it ends.
+Each time you take damage while you maintain one, make a {{jet}} ({{constitution}} + {{volonte}}) against a {{dd}} of 10 to maintain your {{concentration}}. On a failure, it ends.
 
 Your {{concentration}} also ends when you gain {{agonie}}, when you are {{endormi}}, {{sonne}} or {{enrage}}, and when you end it, which costs nothing.
 

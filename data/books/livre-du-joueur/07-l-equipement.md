@@ -35,7 +35,7 @@ Une main (x2)
 Bijou (x2)
 : Deux emplacements indépendants. Bague, pierre montée, talisman taillé.
 
-Le MJ annonce ce dont vous partez équipé. Sans armure, votre {{ca}} est `12 + {{dexterite}}`, et une Frappe à mains nues fait `1d4 + {{force}}` : un personnage sans rien n'est jamais sans défense.
+Le MJ annonce ce dont vous partez équipé. Sans armure, votre {{ca}} est `10 + {{dexterite}}`, et une Frappe à mains nues fait `1d4 + {{force}}` : un personnage sans rien n'est jamais sans défense.
 
 ## Emporter des objets
 
@@ -79,7 +79,7 @@ C'est le vrai coût d'une pièce chère : moins son prix que le risque de tout e
 
 > [!EXAMPLE] Exemple
 >
-> Sélène veut un arc court. Sa recette se travaille sous {{artisanat}} : elle demande les Types Bois et Cuir pour un coût de 4, puis deux {{jet|Jets}} avec {{artisanat}} pour {{aptitude}}, un de {{dexterite}} contre un {{dd}} de 12, puis un d'{{intelligence}} contre un {{dd}} de 12.
+> Sélène veut un arc court. Sa recette se travaille sous {{artisanat}} : elle demande les Types Bois et Cuir pour un coût de 4, puis deux {{jet|Jets}} avec {{artisanat}} pour {{aptitude}}, un de {{dexterite}} contre un {{dd}} de 10, puis un d'{{intelligence}} contre un {{dd}} de 10.
 >
 > Elle engage un morceau de bois de Valeur 1 pour le Bois et trois peaux de loup de Valeur 1 pour le Cuir : le coût est atteint. Elle réussit le {{jet}} de {{dexterite}}, rate celui d'{{intelligence}}, et les quatre matériaux sont perdus. Il lui faudra retourner chasser.
 
@@ -110,7 +110,7 @@ Si le {{jet}} réussit, la pièce n'est plus brisée et retrouve tout son {{enca
 >
 > La targe de Sélène n'a plus que 3 d'{{encaissement}} quand une hache touche Sélène pour 7 dégâts. Elle bloque : la targe en arrête 3 et tombe à 0, et Sélène subit les 4 autres. La targe est {{brise|Brisée}} et ne lui apporte plus rien.
 >
-> Au {{repos-court}} suivant, elle la répare. La recette de la targe coûte 4 et demande du Bois et du Métal : une Branche morte et une Ferraille, de Valeur 1 chacune, couvrent les deux Types et atteignent la moitié du coût, 2. Elle réussit ensuite le dernier {{jet}} de la recette, {{force}} + {{artisanat}} contre un {{dd}} de 12, et la targe retrouve tout son {{encaissement}}.
+> Au {{repos-court}} suivant, elle la répare. La recette de la targe coûte 4 et demande du Bois et du Métal : une Branche morte et une Ferraille, de Valeur 1 chacune, couvrent les deux Types et atteignent la moitié du coût, 2. Elle réussit ensuite le dernier {{jet}} de la recette, {{force}} + {{artisanat}} contre un {{dd}} de 10, et la targe retrouve tout son {{encaissement}}.
 
 ## Les panoplies
 

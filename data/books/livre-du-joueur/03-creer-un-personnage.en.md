@@ -79,7 +79,7 @@ The GM grants a {{karma}} point when they judge it deserved, often when one of t
 
 Spend a point before a {{jet}}, or after the throw while the result is still unresolved. Each point adds an {{avantage}} or a {{desavantage}} to the {{jet}} of your choice: yours, an ally's, an opponent's. Several points can land on the same {{jet}}.
 
-A point spent after the throw adds its die to the ones already on the table, and the two kept dice are then worked out again across the lot. That is what lets you rescue a failed {{jet}}, and equally what lets you ruin a successful one when the point lands on an opponent.
+A point spent after the throw adds its die to the ones already on the table, and the kept die is then worked out again across the lot. That is what lets you rescue a failed {{jet}}, and equally what lets you ruin a successful one when the point lands on an opponent.
 
 Some Skills take {{karma}} as their resource. That is why they are rare in play.
 
@@ -217,7 +217,7 @@ These six boxes are the only ones that are calculated. Work them out again after
 | {{pdv}} | `20 + 2 × {{constitution}} + 5 × Vitality Level` |
 | {{memoire}} | `4 + {{intelligence}} + {{memoire}} Level` |
 | {{energie}} | `8 + {{esprit}} + {{energie}} Level` |
-| {{ca}} | `12 + {{dexterite}}` unarmoured, otherwise the armour's formula |
+| {{ca}} | `10 + {{dexterite}}` unarmoured, otherwise the armour's formula |
 | {{vitesse}} | 9 metres, unless your Species says otherwise |
 | Initiative | `1d4 + {{dexterite}}`, rolled at the start of combat |
 
@@ -271,10 +271,10 @@ Her 3 PP go one to each path. Her derived values:
 - {{pdv}}: `20 + 2 × 2 + 5 × 1` = **29**
 - {{memoire}}: `4 + 1 + 1` = **6**
 - {{energie}}: `8 + 2 + 1` = **11**
-- {{ca}}: `12 + 3` = **15** unarmoured
+- {{ca}}: `10 + 3` = **13** unarmoured
 - {{vitesse}}: **9 m**
 - Initiative: `1d4 + 3`
 
 Her 25 XP go into the heart of her Domain Tree and one cheap Skill joined to it. Two Skills to {{memorisee|memorise}} against six {{memoire}} slots, since her Species Skills take none: she has room to grow before she has to choose.
 
-On a shooting {{jet}} she throws `2d12 + 3 + 2`. When she tracks, her {{specialite}} enters the {{jet}} and gives her an {{avantage}} on top. And when danger waits further down the trail, her {{don}} can show her a glimpse of it before she gets there, if the GM so decides.
+On a shooting {{jet}} she throws `1d20 + 3 + 2`. When she tracks, her {{specialite}} enters the {{jet}} and gives her an {{avantage}} on top. And when danger waits further down the trail, her {{don}} can show her a glimpse of it before she gets there, if the GM so decides.

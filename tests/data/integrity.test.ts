@@ -1237,6 +1237,63 @@ describe('authored prose markup', () => {
   })
 })
 
+const COMPETENCE_DD = /\{\{dd\}\}[^.]{0,40}?(?:\(|:\s*`?|vaut |is )(\d+) \+ /g
+const FIXED_DD = /\{\{dd\}\} (?:de|of) (?:\*\*\*)?(\d+)/g
+
+function ddBases(text: string): number[] {
+  return [...text.matchAll(COMPETENCE_DD)].map((match) => Number(match[1]))
+}
+
+function fixedDds(text: string): number[] {
+  return [...text.matchAll(FIXED_DD)].map((match) => Number(match[1]))
+}
+
+async function difficultyScale(): Promise<Set<number>> {
+  const chapter = await readFile(
+    resolve(root, 'data/books/livre-du-joueur/02-comment-jouer.md'),
+    'utf8',
+  )
+  const start = chapter.indexOf("## L'échelle de difficulté")
+  const end = chapter.indexOf('\n## ', start + 1)
+  const section = chapter.slice(start, end === -1 ? undefined : end)
+  return new Set([...section.matchAll(/^\| [^|]+ \| (\d+) \|$/gm)].map((match) => Number(match[1])))
+}
+
+describe('the d20', () => {
+  it('reads a Compétence DD and a fixed DD the way rule text writes them', () => {
+    expect(ddBases('contre votre {{dd}} (8 + {{force}} + {{melee}})')).toEqual([8])
+    expect(ddBases('Votre {{dd}} vaut 8 + la {{caracteristique}}')).toEqual([8])
+    expect(fixedDds('contre un {{dd}} de ***15***')).toEqual([15])
+  })
+
+  it('writes every Compétence DD from the base 8', async () => {
+    for (const { where, text } of [...everyRuleText, ...(await authoredProse())]) {
+      for (const base of ddBases(text)) {
+        expect(base, `${where} writes a DD from ${base}`).toBe(8)
+      }
+    }
+  })
+
+  it('sets every fixed DD on the difficulty scale of chapter 02', async () => {
+    const scale = await difficultyScale()
+    expect(scale.size).toBeGreaterThan(0)
+    for (const { where, text } of [...everyRuleText, ...(await authoredProse())]) {
+      for (const dd of fixedDds(text)) {
+        expect(scale.has(dd), `${where} sets a DD of ${dd}`).toBe(true)
+      }
+    }
+    for (const item of fr.items) {
+      for (const step of item.craft?.sequence ?? []) {
+        expect(scale.has(Number(step.split(' ').pop())), `items/${item.name} ${step}`).toBe(true)
+      }
+      for (const cell of [...(item.headlines ?? []), ...(item.stats ?? [])]) {
+        if (cell.label !== 'DD') continue
+        expect(scale.has(Number(cell.value)), `items/${item.name} DD ${cell.value}`).toBe(true)
+      }
+    }
+  })
+})
+
 function atlasText(): { where: string; text: string }[] {
   const out: { where: string; text: string }[] = []
   const atlasOverlays = sources.translations.filter((overlay) => overlay.id.startsWith('atlas/'))

@@ -24,5 +24,5 @@
       "lifesteal"
     ]
   },
-  "description": "Le sang de chaque créature blessée autour de vous s'arrache de ses plaies et vient à vous.\n\nChaque créature de votre choix que vous voyez à portée, dont les {{pdv}} sont sous leur maximum et qui a du sang, effectue un {{jet}} de {{constitution}} + {{resistance}} contre votre {{dd}} (10 + {{intelligence}} + {{arcanes}}). En cas d'échec, elle subit 6d6 dégâts Perforants et vous récupérez 1d6 {{pdv}}. En cas de réussite, elle n'en subit que la moitié."
+  "description": "Le sang de chaque créature blessée autour de vous s'arrache de ses plaies et vient à vous.\n\nChaque créature de votre choix que vous voyez à portée, dont les {{pdv}} sont sous leur maximum et qui a du sang, effectue un {{jet}} de {{constitution}} + {{resistance}} contre votre {{dd}} (8 + {{intelligence}} + {{arcanes}}). En cas d'échec, elle subit 6d6 dégâts Perforants et vous récupérez 1d6 {{pdv}}. En cas de réussite, elle n'en subit que la moitié."
 }

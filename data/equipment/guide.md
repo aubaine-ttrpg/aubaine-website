@@ -31,7 +31,7 @@ Sept emplacements, huit pièces portées : le Bijou compte double.
 
 Chaque entrée du catalogue imprime ce qui la concerne : sa valeur de tête, ses cellules, ses propriétés nommées, sa recette et ce qu'elle accorde. Ces nombres appartiennent à la pièce et ne sont repris nulle part ailleurs.
 
-Le MJ annonce ce dont vous partez équipé. Sans armure, votre {{ca}} est `12 + Dextérité`, et une Frappe à mains nues fait `1d4 + Force`.
+Le MJ annonce ce dont vous partez équipé. Sans armure, votre {{ca}} est `10 + Dextérité`, et une Frappe à mains nues fait `1d4 + Force`.
 
 ## Les objets portés
 
@@ -98,7 +98,7 @@ Si le {{jet}} réussit, la pièce n'est plus brisée et retrouve tout son {{enca
 >
 > La targe de Sélène n'a plus que 3 d'{{encaissement}} quand une hache touche Sélène pour 7 dégâts. Elle bloque : la targe en arrête 3 et tombe à 0, et Sélène subit les 4 autres. La targe est {{brise|Brisée}} et ne lui apporte plus rien.
 >
-> Au {{repos-court}} suivant, elle la répare. La recette de la targe coûte 4 et demande du Bois et du Métal : une Branche morte et une Ferraille, de Valeur 1 chacune, couvrent les deux Types et atteignent la moitié du coût, 2. Elle réussit ensuite le dernier {{jet}} de la recette, {{force}} + {{artisanat}} contre un {{dd}} de 12, et la targe retrouve tout son {{encaissement}}.
+> Au {{repos-court}} suivant, elle la répare. La recette de la targe coûte 4 et demande du Bois et du Métal : une Branche morte et une Ferraille, de Valeur 1 chacune, couvrent les deux Types et atteignent la moitié du coût, 2. Elle réussit ensuite le dernier {{jet}} de la recette, {{force}} + {{artisanat}} contre un {{dd}} de 10, et la targe retrouve tout son {{encaissement}}.
 
 ## Les panoplies
 

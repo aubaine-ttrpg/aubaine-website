@@ -35,7 +35,7 @@ One hand (x2)
 Jewel (x2)
 : Two independent slots. Ring, set stone, carved talisman.
 
-The GM tells you what you start with. With no armour, your {{ca}} is `12 + {{dexterite}}`, and an unarmed Strike deals `1d4 + {{force}}`: a character with nothing is never defenceless.
+The GM tells you what you start with. With no armour, your {{ca}} is `10 + {{dexterite}}`, and an unarmed Strike deals `1d4 + {{force}}`: a character with nothing is never defenceless.
 
 ## Carrying objects
 
@@ -79,7 +79,7 @@ That is the real cost of an expensive piece: less its price than the risk of sta
 
 > [!EXAMPLE] Example
 >
-> Sélène wants a short bow. Its recipe is worked under {{artisanat}}: it asks for the Types Wood and Leather at a cost of 4, then two {{jet|Rolls}} with {{artisanat}} as the {{aptitude}}, a {{dexterite}} {{jet}} against {{dd}} 12, then an {{intelligence}} {{jet}} against {{dd}} 12.
+> Sélène wants a short bow. Its recipe is worked under {{artisanat}}: it asks for the Types Wood and Leather at a cost of 4, then two {{jet|Rolls}} with {{artisanat}} as the {{aptitude}}, a {{dexterite}} {{jet}} against a {{dd}} of 10, then an {{intelligence}} {{jet}} against a {{dd}} of 10.
 >
 > She commits a piece of wood of Value 1 for the Wood and three wolf pelts of Value 1 for the Leather: the cost is met. She passes the {{dexterite}} {{jet}}, fails the {{intelligence}} one, and all four materials are lost. She will have to go hunting again.
 
@@ -110,7 +110,7 @@ If the {{jet}} succeeds, the piece is no longer broken and gets all its {{encais
 >
 > Sélène's targe has only 3 {{encaissement}} left when an axe hits her for 7 damage. She blocks: the targe stops 3 and drops to 0, and Sélène takes the other 4. The targe is {{brise}} and does nothing more for her.
 >
-> At the next {{repos-court}}, she repairs it. The targe's recipe costs 4 and asks for Wood and Metal: a Dead Branch and a Scrap Iron, Value 1 each, cover both Types and reach half the cost, 2. She then passes the recipe's last {{jet}}, {{force}} + {{artisanat}} against a {{dd}} of 12, and the targe gets all its {{encaissement}} back.
+> At the next {{repos-court}}, she repairs it. The targe's recipe costs 4 and asks for Wood and Metal: a Dead Branch and a Scrap Iron, Value 1 each, cover both Types and reach half the cost, 2. She then passes the recipe's last {{jet}}, {{force}} + {{artisanat}} against a {{dd}} of 10, and the targe gets all its {{encaissement}} back.
 
 ## Sets
 

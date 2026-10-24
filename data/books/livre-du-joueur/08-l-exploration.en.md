@@ -84,7 +84,7 @@ Monsters are not the only threat. The world itself wounds, starves and freezes t
 
 A creature that falls takes 1d6 Bludgeoning damage for every 3 metres it falls, up to 20d6. If it takes at least 1 damage, it lands {{a-terre}}.
 
-A creature that falls into water or another liquid can use its {{reaction}} to make a {{force}} + {{athletisme}} or {{dexterite}} + {{acrobaties}} {{jet}} against {{dd}} 15. On a success, it enters the liquid cleanly and takes only half the damage.
+A creature that falls into water or another liquid can use its {{reaction}} to make a {{jet}} ({{force}} + {{athletisme}}) or a {{jet}} ({{dexterite}} + {{acrobaties}}) against a {{dd}} of 10. On a success, it enters the liquid cleanly and takes only half the damage.
 
 ### Breath
 

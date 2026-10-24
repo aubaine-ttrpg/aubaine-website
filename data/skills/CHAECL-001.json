@@ -23,7 +23,7 @@
       "destruction"
     ]
   },
-  "description": "Un arc part de votre main vers une créature que vous voyez à portée, puis saute vers au plus trois autres créatures que vous choisissez parmi celles que vous voyez, chacune à 9 m ou moins de la précédente. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nChaque créature touchée effectue un {{jet}} de {{dexterite}} + {{reflexes}} contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}}). En cas d'échec, elle subit 6d6 dégâts de Foudre. En cas de réussite, elle n'en subit que la moitié.\n\nL'arc ne frappe jamais deux fois la même créature.",
+  "description": "Un arc part de votre main vers une créature que vous voyez à portée, puis saute vers au plus trois autres créatures que vous choisissez parmi celles que vous voyez, chacune à 9 m ou moins de la précédente. Au moment où vous lancez ce {{sort}}, choisissez sa {{caracteristique}} entre {{intelligence}}, {{esprit}} et {{charisme}}.\n\nChaque créature touchée effectue un {{jet}} de {{dexterite}} + {{reflexes}} contre votre {{dd}} (8 + la {{caracteristique}} choisie + {{arcanes}}). En cas d'échec, elle subit 6d6 dégâts de Foudre. En cas de réussite, elle n'en subit que la moitié.\n\nL'arc ne frappe jamais deux fois la même créature.",
   "upgrades": [
     {
       "level": 2,

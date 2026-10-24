@@ -744,8 +744,8 @@ const RULE_TERMS: readonly RuleTerm[] = [
     color: 'var(--term-adv)',
     icon: 'mdi/chevron-double-up',
     definition: {
-      fr: "Ajoute un d12 au {{jet}}. Gardez les deux meilleurs dés. Un {{avantage}} et un {{desavantage}} s'annulent.",
-      en: 'Adds a d12 to the {{jet}}. Keep the two highest dice. An {{avantage}} and a {{desavantage}} cancel out.',
+      fr: "Ajoute un d20 au {{jet}}. Gardez le meilleur dé. Un {{avantage}} et un {{desavantage}} s'annulent.",
+      en: 'Adds a d20 to the {{jet}}. Keep the highest die. An {{avantage}} and a {{desavantage}} cancel out.',
     },
   },
   {
@@ -754,8 +754,28 @@ const RULE_TERMS: readonly RuleTerm[] = [
     color: 'var(--term-dis)',
     icon: 'mdi/chevron-double-down',
     definition: {
-      fr: "Ajoute un d12 au {{jet}}. Gardez les deux moins bons dés. Un {{desavantage}} et un {{avantage}} s'annulent.",
-      en: 'Adds a d12 to the {{jet}}. Keep the two lowest dice. A {{desavantage}} and an {{avantage}} cancel out.',
+      fr: "Ajoute un d20 au {{jet}}. Gardez le moins bon dé. Un {{desavantage}} et un {{avantage}} s'annulent.",
+      en: 'Adds a d20 to the {{jet}}. Keep the lowest die. A {{desavantage}} and an {{avantage}} cancel out.',
+    },
+  },
+  {
+    fr: 'Réussite critique',
+    en: 'Critical success',
+    color: 'var(--term-adv)',
+    icon: 'game-icons/dice-twenty-faces-twenty',
+    definition: {
+      fr: "Un 20 sur le dé conservé d'un {{jet}}. Le {{jet}} réussit toujours, et son résultat est exceptionnel.",
+      en: 'A 20 on the kept die of a {{jet}}. The {{jet}} always succeeds, with an exceptional result.',
+    },
+  },
+  {
+    fr: 'Échec critique',
+    en: 'Critical failure',
+    color: 'var(--term-dis)',
+    icon: 'game-icons/dice-twenty-faces-one',
+    definition: {
+      fr: "Un 1 sur le dé conservé d'un {{jet}}. Le {{jet}} échoue toujours, et le MJ ajoute une complication liée à l'action tentée.",
+      en: 'A 1 on the kept die of a {{jet}}. The {{jet}} always fails, and the GM adds a complication tied to what you attempted.',
     },
   },
   {
@@ -818,8 +838,8 @@ const RULE_TERMS: readonly RuleTerm[] = [
     color: 'var(--term-roll)',
     icon: 'game-icons/rolling-dices',
     definition: {
-      fr: '2d12 + une {{caracteristique}} + une {{aptitude}}, comparé à un {{dd}}, à une {{ca}} ou à un {{jet}} opposé.',
-      en: '2d12 + one {{caracteristique}} + one {{aptitude}}, measured against a {{dd}}, an {{ca}} or an Opposed {{jet}}.',
+      fr: '1d20 + une {{caracteristique}} + une {{aptitude}}, comparé à un {{dd}}, à une {{ca}} ou à un {{jet}} opposé.',
+      en: '1d20 + one {{caracteristique}} + one {{aptitude}}, measured against a {{dd}}, an {{ca}} or an Opposed {{jet}}.',
     },
   },
   {
@@ -835,8 +855,8 @@ const RULE_TERMS: readonly RuleTerm[] = [
     color: 'var(--term-spell)',
     icon: 'game-icons/brain',
     definition: {
-      fr: "L'attention que vous demande une Compétence qui dure : elle agit tant que vous la maintenez, dans la limite de sa durée. Vous ne maintenez qu'une Compétence de {{concentration}} à la fois : en jouer une autre met fin à la première, même si la seconde ne se résout pas ou est annulée. Chaque fois que vous subissez des dégâts, effectuez un {{jet}} de {{constitution}} + {{volonte}} contre un {{dd}} de 15 : en cas d'échec, votre {{concentration}} prend fin. Elle prend fin aussi lorsque vous gagnez {{agonie}}, lorsque vous êtes {{endormi}}, {{sonne}} ou {{enrage}}, et lorsque vous y mettez fin, ce qui ne vous coûte rien.",
-      en: 'The attention a lasting Skill asks of you: it acts while you maintain it, up to its duration. You maintain only one {{concentration}} Skill at a time: playing another ends the first, even if the second does not resolve or is cancelled. Each time you take damage, make a {{jet}} of {{constitution}} + {{volonte}} against a {{dd}} of 15: on a failure, your {{concentration}} ends. It also ends when you gain {{agonie}}, when you are {{endormi}}, {{sonne}} or {{enrage}}, and when you end it, which costs nothing.',
+      fr: "L'attention que vous demande une Compétence qui dure : elle agit tant que vous la maintenez, dans la limite de sa durée. Vous ne maintenez qu'une Compétence de {{concentration}} à la fois : en jouer une autre met fin à la première, même si la seconde ne se résout pas ou est annulée. Chaque fois que vous subissez des dégâts, effectuez un {{jet}} ({{constitution}} + {{volonte}}) contre un {{dd}} de 10 : en cas d'échec, votre {{concentration}} prend fin. Elle prend fin aussi lorsque vous gagnez {{agonie}}, lorsque vous êtes {{endormi}}, {{sonne}} ou {{enrage}}, et lorsque vous y mettez fin, ce qui ne vous coûte rien.",
+      en: 'The attention a lasting Skill asks of you: it acts while you maintain it, up to its duration. You maintain only one {{concentration}} Skill at a time: playing another ends the first, even if the second does not resolve or is cancelled. Each time you take damage, make a {{jet}} ({{constitution}} + {{volonte}}) against a {{dd}} of 10: on a failure, your {{concentration}} ends. It also ends when you gain {{agonie}}, when you are {{endormi}}, {{sonne}} or {{enrage}}, and when you end it, which costs nothing.',
     },
   },
   {

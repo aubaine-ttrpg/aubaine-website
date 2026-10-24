@@ -33,7 +33,7 @@
       "Plante"
     ],
     "sequence": [
-      "Intelligence 12"
+      "Intelligence 10"
     ]
   },
   "text": "Vous pouvez effectuer une {{action}} pour briser cette fiole sur un point que vous voyez à portée. Une fumée épaisse emplit un rayon de ***3 mètres*** jusqu'au début de votre prochain tour. Toute créature qui s'y trouve gagne {{cache}} vis-à-vis de celles qui sont à l'extérieur, sans avoir à effectuer de {{jet}}.",

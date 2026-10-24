@@ -3,5 +3,5 @@
   "prerequisite": "Nnor",
   "activation": "1 Attack",
   "duration": "Instantaneous",
-  "description": "You lash out with one sharp blow of the hoof, your whole weight behind it.\n\nYou make an {{attaque}} ({{force}} + {{melee}}) with your hooves. On a success, the target takes {{1d4 degats-contondant}} and makes a {{sauvegarde}} ({{constitution}} + {{resistance}}) against your {{dd}} (10 + {{force}} + {{melee}}). On a failure, it is {{etourdi}} until the end of its next {{tour}}."
+  "description": "You lash out with one sharp blow of the hoof, your whole weight behind it.\n\nYou make an {{attaque}} ({{force}} + {{melee}}) with your hooves. On a success, the target takes {{1d4 degats-contondant}} and makes a {{sauvegarde}} ({{constitution}} + {{resistance}}) against your {{dd}} (8 + {{force}} + {{melee}}). On a failure, it is {{etourdi}} until the end of its next {{tour}}."
 }
