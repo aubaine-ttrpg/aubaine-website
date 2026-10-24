@@ -195,7 +195,7 @@ Where it disagreed and the data won:
 
 | Topic | The specification said | The data says |
 | --- | --- | --- |
-| Difficulty class | `11 + Caractéristique + Aptitude` | `10 + ...`, in forty five files and in the printed book |
+| Difficulty class | `11 + Caractéristique + Aptitude` | `10 + ...` on 2d12, in forty five files and in the printed book; `8 + ...` since the d20 of 0.3.0 |
 | `À terre` | Désavantage on every Jet | Désavantage on Attaques only |
 | Material classifier | Tags | Types |
 | Loot opportunity | one for the group | one for each character |
@@ -213,6 +213,6 @@ These are recorded, not fixed. They come from the import and the hand written ch
 
 **Every skill id was redrawn from its French title in one pass.** Ids used to be five characters and two digits, assigned by hand on import, and three of them had been renamed after collisions. They now follow [runbooks/choose-a-skill-id.md](runbooks/choose-a-skill-id.md), and [adr/0028-skill-ids-are-drawn-from-the-french-title.md](adr/0028-skill-ids-are-drawn-from-the-french-title.md) records the change. Three titles still ask for letters another skill holds, and take the next free ones: Improvisation, Marque de chair and Surcharge.
 
-**The difficulty class formula was written two ways, and is now settled at `10`.** Skill prose in `data/skills/` writes a DC as `10 + Caractéristique + Aptitude`, in forty five files, and so does the printed Livre du joueur. An earlier external design spec wrote `11 + Caractéristique + Aptitude`. The shipped data and the printed book agree, so `10` is the rule and the chapters print it. No skill file was changed. An `aubaine.io` architecture decision record had assigned the difficulty ladder to that external spec; this repository does not inherit it, because `.claude/rules/content/authority.md` makes this repository the only authority.
+**The difficulty class formula was written two ways, settled at `10`, and moved to `8` with the d20.** Skill prose in `data/skills/` wrote a DC as `10 + Caractéristique + Aptitude`, in forty five files, and so did the printed Livre du joueur. An earlier external design spec wrote `11 + Caractéristique + Aptitude`. The shipped data and the printed book agreed, so `10` was the rule on 2d12, and no skill file was changed for it. Version 0.3.0 moved every Jet to a d20 and the base to `8`, in every entry and chapter at once, as [adr/0056-the-jet-is-a-d20-and-aubaine-keeps-its-own-rules.md](adr/0056-the-jet-is-a-d20-and-aubaine-keeps-its-own-rules.md) records. An `aubaine.io` architecture decision record had assigned the difficulty ladder to that external spec; this repository does not inherit it, because `.claude/rules/content/authority.md` makes this repository the only authority.
 
 **Four Common Bank passive skills carry `energy: 0`.** `OEIEST-001`, `INSGUE-001`, `PIESUR-001` and `LANPAS-001` are passive and write `"energy": 0`. The schema allows it on purpose: `une Compétence passive ne coûte pas d'Énergie. energy: 0 reste permis pour marquer explicitement une absence de coût.` They print a `0 énergie` pill. If that is not intended, the fix is to remove the key, not to change the schema.

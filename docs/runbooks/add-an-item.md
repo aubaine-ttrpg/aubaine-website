@@ -31,7 +31,7 @@ The filename is the slug and the slug is the item's handle everywhere else. Lowe
 | `craft.discipline` | required inside `craft` | Clé déclarée dans `data/meta/disciplines.json`. | `artisanat`, `arcanes`, `technologie`, `science` |
 | `craft.cost` | required inside `craft` | Valeur de matière totale à atteindre. | integer, 1 or more |
 | `craft.materials` | required inside `craft` | Types de matière acceptés. Chacun doit être représenté. | 1 or more strings |
-| `craft.sequence` | required inside `craft` | La fabrication dans l'ordre, un Jet par étape : le nom de la Caractéristique puis son DD. Le travail physique précède le savoir. | 1 or more strings: `Dextérité 12` |
+| `craft.sequence` | required inside `craft` | La fabrication dans l'ordre, un Jet par étape : le nom de la Caractéristique puis son DD. Le travail physique précède le savoir. | 1 or more strings: `Dextérité 10` |
 | `grants` | optional | Compétences accordées par la pièce, définies dans `data/skills/`. | 1 or more skill ids that exist |
 | `text` | optional | Corps de l'entrée : ce que fait l'objet. | free text with rule markup |
 | `description` | required | Une à deux phrases, rendues en italique sous le filet de pied. | any non empty string |
@@ -95,7 +95,7 @@ The filename is the slug and the slug is the item's handle everywhere else. Lowe
       "Métal"
     ],
     "sequence": [
-      "Force 10"
+      "Force 5"
     ]
   },
   "description": "Lame de ceinture : on la garde à portée de main, on la lance au besoin."
@@ -137,8 +137,8 @@ An item that grants a skill, `data/equipment/items/pyro-catalyseur.json`:
       "Gemme"
     ],
     "sequence": [
-      "Dextérité 12",
-      "Intelligence 15"
+      "Dextérité 10",
+      "Intelligence 10"
     ]
   },
   "grants": [
@@ -175,7 +175,7 @@ pnpm dev
 
 **`headlines` names its own labels.** The template knows nothing about weapons or armour. Write `Dégâts` for a weapon, `CA` for armour, `Domaine` for a catalyst. Whatever you write in `label` is what is printed. Leave `headlines` out when the text already says everything a reader looks up, as the Masque du Métamorphe does: the card then has no band, and its row in the list leaves that column empty.
 
-**CA has a ceiling that rises one point every two rarities.** A Commun piece sets the base CA of its kind of armour, and a Peu commun piece of the same kind gives no more than that: the Brigandine du voleur stays at the Armure de cuir's `13 + Dextérité`. A Rare or Très rare piece may add up to 1 to that base, a Légendaire or Artéfact piece up to 2. These are ceilings, not steps every piece takes: a rarer piece can stay at the base and earn its rarity elsewhere. A slot whose Commun pieces give no CA, such as Tête or Bottes, starts from +0, so a Rare helmet gives at most `+1`. Stay under the ceiling: every attack is rolled against CA, so a point of it weighs more than any other number on an item.
+**CA has a ceiling that rises one point every two rarities.** A Commun piece sets the base CA of its kind of armour, and a Peu commun piece of the same kind gives no more than that: the Brigandine du voleur stays at the Armure de cuir's `11 + Dextérité`. A Rare or Très rare piece may add up to 1 to that base, a Légendaire or Artéfact piece up to 2. These are ceilings, not steps every piece takes: a rarer piece can stay at the base and earn its rarity elsewhere. A slot whose Commun pieces give no CA, such as Tête or Bottes, starts from +0, so a Rare helmet gives at most `+1`. Stay under the ceiling: every attack is rolled against CA, so a point of it weighs more than any other number on an item.
 
 **A shield's headlines are `CA`, `Encaissement` and `Dégâts`, in that order.** Its CA counts only while it is raised: the basic skill `LEVBOU-001` reads the CA bonus and the Encaissement from these headlines, so a shield needs no `grants` and no property for either. A shield is also a weapon, and its `stats` carry the Jet, the range, the damage type and the hands, as a weapon's do.
 
