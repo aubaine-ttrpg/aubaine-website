@@ -45,8 +45,21 @@ the Weitzguard are.
   possibilities dressed as history.
 - Carry a section with a person and a moment when the canon has one: Sombrecœur refusing to cover
   her antlers, Figaro under his wool cap. One such moment per section is plenty.
-- Length follows the canon covered: a few sentences per paragraph, one to three paragraphs per
-  section, and no padding to reach it.
+- Length follows the canon covered, with no padding to reach it.
+- Aerate the page. A paragraph past about 100 words splits in two at its natural turn, such as the
+  body and then the horns, or the rite and then the names it gives. The split moves no word and
+  applies to the owner's text too. The owner, 2026-10-24: « slightly aerate more the lore with
+  seccing some huge parargaphs in two ».
+- A section holds one subject, and its heading names what it tells. A cycle told in order, from
+  birth to the office and back, stays one section whatever its paragraph count. Split a long section
+  only where each half has a subject and a heading of its own. The owner, 2026-10-24, after a
+  seven-paragraph cycle was cut in two: « the paragraph titles "Cycle du feu" doesn't speak about
+  the Cycle du feu at all », then « maybe we should fuse them back ? ».
+- Each section stands alone. A reader opens any section from the outline, so its first paragraph
+  never leans on a word whose sense only an earlier section gives: name the lineage, the place or
+  the person again rather than writing « la lignée », « l'antre » or « son géniteur ». The owner,
+  2026-10-24, on a section cut from the one before it: « someone reading The Saman must read le
+  Cycle du feu, while the others are (at my knowledge) not following each other ».
 
 ## Dialogue
 
