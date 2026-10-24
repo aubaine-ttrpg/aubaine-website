@@ -26,5 +26,5 @@
       "destruction"
     ]
   },
-  "description": "Vos griffes ont la couleur et le grain du basalte.\n\nVous portez une {{attaque}} ({{force}} + {{melee}}) avec vos griffes contre une ou deux créatures à portée. Vous n'effectuez qu'un seul {{jet}}, que vous comparez à la {{ca}} de chacune. En cas de réussite contre une créature, elle subit {{2d6 degats-tranchant}}."
+  "description": "Vos griffes ont la couleur et le grain du basalte.\n\nVous portez une {{attaque}} ({{force}} + {{melee}}) avec vos griffes contre une ou deux créatures à portée. Vous n'effectuez qu'un seul {{jet}}, que vous comparez à la {{ca}} de chacune. En cas de réussite contre une créature, elle subit {{6d6 degats-tranchant}}."
 }

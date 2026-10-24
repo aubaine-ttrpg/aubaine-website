@@ -11,6 +11,10 @@
   "activation": "1 Action Bonus",
   "range": "Personnel",
   "duration": "jusqu'à 10 minutes",
+  "limit": {
+    "times": 1,
+    "per": "long-rest"
+  },
   "karma": 1,
   "tags": {
     "practices": [

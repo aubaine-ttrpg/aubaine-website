@@ -27,5 +27,5 @@
       "destruction"
     ]
   },
-  "description": "La chair grésille là où vous mordez, comme sous un fer tout juste sorti de la forge.\n\nVous portez une {{attaque}} ({{force}} + {{melee}}) avec vos crocs. En cas de réussite, la cible subit {{2d10 degats-perforant}} et {{1d10 degats-feu}}."
+  "description": "La chair grésille là où vous mordez, comme sous un fer tout juste sorti de la forge.\n\nVous portez une {{attaque}} ({{force}} + {{melee}}) avec vos crocs. En cas de réussite, la cible subit {{3d12 degats-perforant}} et {{2d8 degats-feu}}."
 }

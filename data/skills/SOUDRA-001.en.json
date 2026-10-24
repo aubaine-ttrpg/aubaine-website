@@ -2,5 +2,5 @@
   "title": "Dragonnor's Breath",
   "range": "Self",
   "duration": "Instantaneous",
-  "description": "The rumble of a hissing volcano rises in your chest.\n\nYou breathe a 4.5 m cone of flame. Each creature in the cone makes a {{sauvegarde}} ({{dexterite}} + {{reflexes}}) against your {{dd}} (8 + {{constitution}} + {{visee}}). On a failure, it takes {{4d8 degats-feu}}. On a success, it takes only half."
+  "description": "The rumble of a hissing volcano rises in your chest.\n\nYou breathe a 4.5 m cone of flame. Each creature in the cone makes a {{sauvegarde}} ({{dexterite}} + {{reflexes}}) against your {{dd}} (8 + {{constitution}} + {{visee}}). On a failure, it takes {{6d6 degats-feu}}. On a success, it takes only half."
 }

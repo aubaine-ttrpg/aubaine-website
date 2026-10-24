@@ -22,5 +22,5 @@
       "destruction"
     ]
   },
-  "description": "Un grondement de volcan siffleur monte de votre poitrine.\n\nVous soufflez des flammes dans un cône de 4,5 m. Chaque créature dans le cône fait une {{sauvegarde}} ({{dexterite}} + {{reflexes}}) contre votre {{dd}} (8 + {{constitution}} + {{visee}}). En cas d'échec, elle subit {{4d8 degats-feu}}. En cas de réussite, elle n'en subit que la moitié."
+  "description": "Un grondement de volcan siffleur monte de votre poitrine.\n\nVous soufflez des flammes dans un cône de 4,5 m. Chaque créature dans le cône fait une {{sauvegarde}} ({{dexterite}} + {{reflexes}}) contre votre {{dd}} (8 + {{constitution}} + {{visee}}). En cas d'échec, elle subit {{6d6 degats-feu}}. En cas de réussite, elle n'en subit que la moitié."
 }
