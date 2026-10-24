@@ -2,11 +2,13 @@ Born of the draconic forge, the Nnor are goat-like humanoids shaped by Charon, t
 
 > "Saman, hear my voice: the Nnor are not mere servants of my flame, but its guardians. You sow the spark of the primordial fire in every heart in Eden, freeing the peoples from the shadow and reminding all that freedom is born of passion. Go, forge your colony, and see that my fire never goes out."
 >
-> :source[Charon, addressing Saman, his emissary, after he had passed the trial of fire.]
+> :source[Charon, addressing Saman, his emissary, after he had passed the Ritual of Fire.]
 
 ## Fur and hardiness
 
-Across the sheer ridges and frozen crevasses of Eden, the Nnor cut a commanding figure: a broad chest borne on powerful shoulders, and long, muscular legs that end in hooves as sharp as crampons. Their coat is thick and woolly, and its colour depends on the lineage. Some wear fur as black as ink, while others range from spotless white to pearl grey or earthy brown, shades that serve as natural camouflage. They use their massive horns, which follow the line of the brow, to defend themselves, to hold on to rock walls and to assert social dominance. Every muscle stands out beneath the heavy fleece, the sign of uncommon endurance and of millennia spent adapting to violent winds and extreme temperatures. Shaped by the harshness of the mountain climate, their build pairs raw strength with a surprising suppleness, which makes them born climbers and formidable opponents.
+Across the sheer ridges and frozen crevasses of Eden, the Nnor cut a commanding figure: a broad chest borne on powerful shoulders, and long, muscular legs that end in hooves as sharp as crampons. Their coat is thick and woolly, and its colour depends on the lineage. Some wear fur as black as ink, while others range from spotless white to pearl grey or earthy brown, shades that serve as natural camouflage.
+
+They use their massive horns, which follow the line of the brow, to defend themselves, to hold on to rock walls and to assert social dominance. Every muscle stands out beneath the heavy fleece, the sign of uncommon endurance and of millennia spent adapting to violent winds and extreme temperatures. Shaped by the harshness of the mountain climate, their build pairs raw strength with a surprising suppleness, which makes them born climbers and formidable opponents.
 
 ## The Yurta above all
 
@@ -16,16 +18,26 @@ The Nnor have a supernatural gift: members of the same tribe seem to understand 
 
 An ancient schism gave rise to two main subspecies among the Nnor: Charon's Nnor, marked by the draconic hierarchy, and the Alpine Nnor, who live communally. In the tribes loyal to Charon, the caste is made up of workers subject to the Saman, who in turn answers to the Dragonnor, chosen by the Ritual of Fire. In the communal tribes, the members elect a single Saman democratically, without any draconic intervention, and everyone takes an equal part in the tribe's work.
 
-Araskha, the largest Yurta known, is home to thousands of Nnor. Sheltered beneath a vault of basalt, it is laid out around a great eternal hearth, from which countless galleries branch off to house forges, workshops and sacrificial altars. To break the unity of the tribe is to break the chain that binds the Nnor to the very source of their existence.
+Araskha, the largest Yurta known, lies on Mount Edros and is home to thousands of Nnor. Sheltered beneath a vault of basalt, it is laid out around a great eternal hearth, from which countless galleries branch off to house forges, workshops and sacrificial altars. To break the unity of the tribe is to break the chain that binds the Nnor to the very source of their existence.
 
 ## The cycle of fire
 
 ![](../../media/art/nnor-fresque-3_1-og.png "rupture torch")
 :caption[A mural of the cycle of fire: a Nnor, a Saman, then a Dragonnor]
 
-A Saman can leave their Yurta and set out on a quest. They make for Mount Edros and go on into Charon's Lair, where Charon allows them to undergo the Ritual of Fire. If they fail, they die. If they succeed, the ritual transforms them into a Dragonnor, which comes back out of Mount Edros to find the place where it will establish its own Yurta. Such is the cycle of the Nnor.
-
 The Dragonnor is sometimes counted among the subspecies of the Nnor, but specialists hold the Dragonnor and the Nnor to be two entirely different beings. A Dragonnor has neither the limbs nor the size of a Nnor, and its abilities differ too: it alone begets Charon's Nnor. It fertilises itself and lays the eggs from which they hatch. Charon's Nnor themselves lay no eggs.
+
+After begetting its first lineage, the Dragonnor falls into a deep torpor. Its body stays motionless while its consciousness seems to wander far beyond it. This state, often mistaken for sleep, makes up most of its existence.
+
+On hatching, the young Nnor instinctively leave their progenitor's lair and block up its entrance with stones, branches and foliage. Left to themselves, they learn to survive together.
+
+Once the lineage is mature enough, one of the Nnor hears the Dragonnor's call. Guided to the lair, they receive a fraction of its power and become a **Saman**, charged with protecting their kin and watching over their future Yurta. From then on, they alone speak with their progenitor.
+
+When the Dragonnor dies, its Saman feels an instinctive need to join Charon at Araskha, on Mount Edros, and face the **Ritual of Fire**, a mystical rite whose secret the Samans, the Dragonnors and Charon keep among themselves. A Saman can also make this journey of their own free will, provided they have first trained a successor to watch over their Yurta.
+
+The Saman reaches Charon's Lair, where Charon allows them to undergo the ritual. If they fail, they die. If they succeed, the ritual transforms them into a Dragonnor, which comes back out of Mount Edros to find the place where it will establish its own Yurta. Such is the cycle of the Nnor.
+
+For the Alpine Nnor, this cycle is far shorter. At the winter solstice, they return to their Yurta to elect their Saman or keep the one they have, at a great celebration held around a fire so mighty that Charon himself is said to have breathed it. At that time of year, many travellers below the mountains complain of avalanches, mud and other run-off: the fire seems to melt the snow.
 
 ## Where the wild meets the city
 
@@ -46,4 +58,6 @@ Their deep respect for nature shows in everything they do, even when they ventur
 
 ## Nnor names
 
-A Nnor receives a first name at birth, chosen by the Saman during a rite in which ancestral voices and draconic murmurs mingle to reveal the child's essence (a bond with fire, wind or stone). The name reflects a trait of character, a mark of honour or an elemental affinity, and it never changes for as long as the Nnor lives. Alpine Nnor, who are male or female, bear first names drawn from the forces of the mountain and of the cold, while the Nnor of the draconic line, who have no sex, receive blunter names, charged with the might of the primordial fire. To this personal name is added a family name, the name of the Yurta, inherited from the tribe and handed down from generation to generation as a constant reminder of their shared belonging. No nickname is given unless some notable deed justifies it, for every naming takes its place in the living, sacred history of the Nnor people.
+A Nnor, whether Alpine or one of Charon's, has no name until their Saman is elected. The Saman then gives a first name to those who have none, during a rite in which ancestral voices and draconic murmurs mingle to reveal each one's essence (a bond with fire, wind or stone). The name reflects a trait of character, a mark of honour or an elemental affinity, and it never changes for as long as the Nnor lives.
+
+Alpine Nnor, who are male or female, bear first names drawn from the forces of the mountain and of the cold, while the Nnor of the draconic line, who have no sex, receive blunter names, charged with the might of the primordial fire. To this personal name is added a family name, the name of the Yurta, inherited from the tribe and handed down from generation to generation as a constant reminder of their shared belonging. No nickname is given unless some notable deed justifies it, for every naming takes its place in the living, sacred history of the Nnor people.

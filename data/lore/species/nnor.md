@@ -2,11 +2,13 @@ Créatures nées de la forge draconique, les Nnors sont des humanoïdes caprins 
 
 > « Saman, écoute ma voix : les Nnors ne sont pas de simples serviteurs de ma flamme, mais ses gardiens. Vous semez l'étincelle du feu primordial dans chaque cœur d'Eden, libérant les peuples de l'ombre et rappelant à tous que la liberté naît de la passion. Va, forge ta colonie, et veille à ce que jamais mon feu ne s'éteigne. »
 >
-> :source[Charon s'adressant à Saman, son émissaire, après qu'il eut passé l'épreuve du feu.]
+> :source[Charon s'adressant à Saman, son émissaire, après qu'il eut passé le Rituel du Feu.]
 
 ## De la fourrure et de la robustesse
 
-Dans les crêtes escarpées et les crevasses glacées d'Eden, les Nnors arborent une stature dominatrice : un buste large soutenu par des épaules puissantes, des membres inférieurs longs et musclés, terminés par des sabots affûtés comme des crampons. Leur pelage, épais et laineux, varie selon la lignée : certains portent une fourrure noire d'encre, tandis que d'autres exhibent des teintes allant du blanc immaculé au gris perle ou au brun terreux, favorisant un camouflage naturel. Leurs cornes massives, soulignant la ligne du front, servent à se défendre, à s'accrocher aux parois rocheuses et à affirmer la dominance sociale. Chaque muscle se dessine sous l'épaisse toison, signe d'une endurance hors du commun et d'une adaptation millénaire aux vents violents et aux températures extrêmes. Sculptée par la rudesse du climat montagnard, leur silhouette allie la force brute à une souplesse étonnante, faisant d'eux des grimpeurs nés et des adversaires redoutables.
+Dans les crêtes escarpées et les crevasses glacées d'Eden, les Nnors arborent une stature dominatrice : un buste large soutenu par des épaules puissantes, des membres inférieurs longs et musclés, terminés par des sabots affûtés comme des crampons. Leur pelage, épais et laineux, varie selon la lignée : certains portent une fourrure noire d'encre, tandis que d'autres exhibent des teintes allant du blanc immaculé au gris perle ou au brun terreux, favorisant un camouflage naturel.
+
+Leurs cornes massives, soulignant la ligne du front, servent à se défendre, à s'accrocher aux parois rocheuses et à affirmer la dominance sociale. Chaque muscle se dessine sous l'épaisse toison, signe d'une endurance hors du commun et d'une adaptation millénaire aux vents violents et aux températures extrêmes. Sculptée par la rudesse du climat montagnard, leur silhouette allie la force brute à une souplesse étonnante, faisant d'eux des grimpeurs nés et des adversaires redoutables.
 
 ## La Yurta avant tout
 
@@ -16,16 +18,26 @@ Les Nnors possèdent un atout surnaturel : les membres d'une même tribu semblen
 
 Un antique schisme a vu naître deux sous-espèces principales chez les Nnors : les Nnors de Charon, empreints de la hiérarchie draconique, et les Nnors alpins, au mode de vie communautaire. Dans les tribus fidèles à Charon, la caste se compose d'ouvriers soumis au Saman, lui-même placé sous l'autorité du Dragonnor, élu par le Rituel du Feu. Dans les tribus communautaires, un unique Saman est élu démocratiquement par les membres, sans intervention draconique, et chacun participe à égalité aux tâches de la tribu.
 
-La plus grande Yurta connue, Araskha, regroupe des milliers de Nnors ; nichée sous une voûte de basalte, elle s'organise autour d'un grand foyer éternel dont partent d'innombrables galeries, abritant forges, ateliers et autels sacrificiels. Rompre l'unité de la tribu, c'est rompre la chaîne qui lie les Nnors à la source même de leur existence.
+La plus grande Yurta connue, Araskha, regroupe des milliers de Nnors sur le mont Edros ; nichée sous une voûte de basalte, elle s'organise autour d'un grand foyer éternel dont partent d'innombrables galeries, abritant forges, ateliers et autels sacrificiels. Rompre l'unité de la tribu, c'est rompre la chaîne qui lie les Nnors à la source même de leur existence.
 
 ## Le cycle du feu
 
 ![](../../media/art/nnor-fresque-3_1-og.png "rupture torch")
 :caption[Fresque du cycle du feu : un Nnor, un Saman, puis un Dragonnor]
 
-Un Saman peut quitter sa Yurta pour partir en quête. Il gagne alors le mont Edros, jusqu'à l'Antre de Charon, où Charon lui permet de passer le Rituel du Feu. S'il échoue, il meurt. S'il réussit, le rituel le transforme en Dragonnor, et il ressort du mont Edros pour trouver le lieu où fonder sa propre Yurta. Tel est le cycle des Nnors.
-
 On compte parfois le Dragonnor parmi les sous-espèces des Nnors, mais les spécialistes tiennent le Dragonnor et le Nnor pour deux êtres entièrement différents. Le Dragonnor n'a ni les membres ni la taille d'un Nnor, et ses capacités diffèrent elles aussi : lui seul engendre des Nnors de Charon. Il s'autoféconde et pond les œufs dont ils éclosent. Un Nnor de Charon ne pond aucun œuf.
+
+Après avoir engendré sa première lignée, le Dragonnor entre dans un état de profonde torpeur. Son corps demeure immobile, tandis que sa conscience semble errer bien au-delà de celui-ci. Cet état, souvent confondu avec le sommeil, constitue l'essentiel de son existence.
+
+À leur éclosion, les jeunes Nnors quittent instinctivement l'antre de leur géniteur et en condamnent l'entrée à l'aide de pierres, de branches et de feuillages. Livrés à eux-mêmes, ils apprennent à survivre ensemble.
+
+Une fois la lignée suffisamment mature, l'un des Nnors entend l'appel du Dragonnor. Guidé jusqu'à l'antre, il y reçoit une fraction de sa puissance et devient **Saman**, chargé de protéger les siens et de veiller sur leur future Yurta. Il demeure dès lors le seul interlocuteur de son géniteur.
+
+Lorsque le Dragonnor meurt, son Saman ressent instinctivement le besoin de rejoindre Charon à Araskha, sur le mont Edros, pour affronter le **Rituel du Feu**, un rite mystique dont les Samans, les Dragonnors et Charon gardent le secret entre eux. Un Saman peut également entreprendre ce voyage de son propre gré, à condition d'avoir préalablement formé un successeur pour veiller sur sa Yurta.
+
+Le Saman gagne l'Antre de Charon, où Charon lui permet de passer le rituel. S'il échoue, il meurt. S'il réussit, le rituel le transforme en Dragonnor, et il ressort du mont Edros pour trouver le lieu où fonder sa propre Yurta. Tel est le cycle des Nnors.
+
+Pour les Nnors alpins, ce cycle est beaucoup plus court : au solstice d'hiver, les Nnors retournent à leur Yurta pour y élire leur Saman ou reconduire celui en place, lors d'une grande célébration autour d'un feu si puissant qu'on dit que Charon lui-même l'aurait soufflé. Durant cette période, de nombreux voyageurs en aval des montagnes se plaignent d'avalanches, de boues et d'autres ruissellements : le puissant feu semble faire fondre la neige.
 
 ## Au carrefour du sauvage et de la cité
 
@@ -46,4 +58,6 @@ Leur profond respect pour la nature transparaît dans chacun de leurs gestes, m�
 
 ## Noms nnors
 
-Les Nnors reçoivent leur prénom dès la naissance, élu par le Saman au cours d'un rite où voix ancestrales et murmures draconiques se mêlent pour révéler l'essence de l'enfant (son lien au feu, au vent ou à la pierre). Ce prénom, immuable, reflète un trait de caractère, un signe d'honneur ou une affinité élémentaire et ne change jamais tout au long de la vie. Les Nnors alpins, distingués par leur sexe, portent des prénoms gravitant autour des forces de la montagne et du froid, tandis que les Nnors issus de la lignée draconique, asexués, reçoivent des noms plus directs, empreints de la puissance du feu primordial. À ce nom personnel s'ajoute un patronyme, le nom de la Yurta, hérité de la tribu et transmis de génération en génération, rappel constant de l'appartenance collective. Aucun sobriquet n'est donné sans qu'un fait marquant ne le légitime, car toute nomination s'inscrit dans l'histoire vivante et sacrée du peuple Nnor.
+Un Nnor, alpin ou de Charon, reste sans nom jusqu'à l'élection de son Saman, qui donne alors un prénom à ceux qui n'en ont pas, au cours d'un rite où voix ancestrales et murmures draconiques se mêlent pour révéler l'essence de chacun (son lien au feu, au vent ou à la pierre). Ce prénom, immuable, reflète un trait de caractère, un signe d'honneur ou une affinité élémentaire et ne change jamais tout au long de la vie.
+
+Les Nnors alpins, distingués par leur sexe, portent des prénoms gravitant autour des forces de la montagne et du froid, tandis que les Nnors issus de la lignée draconique, asexués, reçoivent des noms plus directs, empreints de la puissance du feu primordial. À ce nom personnel s'ajoute un patronyme, le nom de la Yurta, hérité de la tribu et transmis de génération en génération, rappel constant de l'appartenance collective. Aucun sobriquet n'est donné sans qu'un fait marquant ne le légitime, car toute nomination s'inscrit dans l'histoire vivante et sacrée du peuple Nnor.
