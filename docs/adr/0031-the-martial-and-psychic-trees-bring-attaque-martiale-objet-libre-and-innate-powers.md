@@ -5,6 +5,7 @@
 **Date:** 2026-09-28
 **Revised:** 2026-09-28, Decision 1 is reversed by 0033, and the Physique tree drops its stances (addendum in Decision 1)
 **Revised:** 2026-09-28, psychic powers use Esprit alone (addendum in Decision 3)
+**Revised:** 2026-10-24, the design fixture cited as evidence is retired by 0055 (addendum in Decision 3)
 **Deciders:** Kori
 **Scope:**
 - **Covers:** three choices made while rebuilding the Physique tree as the martial tree and writing the Psychique tree:
@@ -117,6 +118,12 @@ the loop as it was accepted, before that reversal.
   `DOMVEN-001` is. Like Physique, which is tied to Force and Dextérité, Psychique is tied to the
   Caractéristique that justifies it: the will behind a power of the mind is Esprit.
 - One Caractéristique now drives the DD beside one Aptitude. That sharpens the caveat above.
+
+### Addendum (2026-10-24): the design fixture is retired
+
+- `tests/fixtures/design-derived.json`, cited above, was removed by 0055. The figure was measured
+  from it on the date of the addendum above, and the history keeps the file; `primeCharacteristics`
+  in `src/lib/game/derive.ts` still derives the primary Caractéristique.
 
 ---
 

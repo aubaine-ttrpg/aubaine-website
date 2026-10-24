@@ -3,6 +3,7 @@
 **Project:** Aubaine, the wiki
 **Status:** Accepted
 **Date:** 2026-09-28
+**Revised:** 2026-10-24, the design fixture cited as evidence is retired by 0055 (addenda in Decisions 2 and 3)
 **Deciders:** Kori
 **Scope:**
 - **Covers:** three choices made while bringing the Draugar archetype to sixteen nodes and to playtest:
@@ -83,6 +84,10 @@ Its skills are the only ones in the repository that carry a `life` cost (verifie
 - **Saigner à blanc or Forme abominable as the capstone**: rejected in favour of Curée, which cashes the pay-in-blood loop rather than one bite or one transformation.
 - **Murmures cadavériques as a new node**: dropped because Festin (`FESTIN-001`) already lets a Goule taste a corpse's memory.
 
+### Addendum (2026-10-24): the design fixture is retired
+
+- `tests/fixtures/design-derived.json`, cited above for the totals, was removed by 0055. The price and the upgrade count were measured from it on the date of this record, and the history keeps the file.
+
 ---
 
 ## Decision 3: an archetype leans on one or two Caractéristiques
@@ -105,6 +110,10 @@ Its skills are the only ones in the repository that carry a `life` cost (verifie
 ### Alternatives considered
 
 - **One Caractéristique per archetype**: rejected by the decider as too rigid. A tree may still end up with one, as the Mage does with Intelligence, when that is what its skills call for.
+
+### Addendum (2026-10-24): the design fixture is retired
+
+- `tests/fixtures/design-derived.json`, cited above and in the summary, was removed by 0055. The primary Caractéristique was measured from it on the date of this record, and `primeCharacteristics` in `src/lib/game/derive.ts` still derives it.
 
 ---
 

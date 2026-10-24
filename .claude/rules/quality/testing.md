@@ -2,7 +2,7 @@
 paths:
   - "src/**/*.{ts,tsx,astro}"
   - "tests/**/*"
-  - "e2e/**/*"
+  - "data/**/*"
   - "**/*.{test,spec}.{ts,tsx}"
   - "playwright.config.*"
   - "vitest.config.*"
@@ -24,3 +24,11 @@ paths:
 - Do not mock the unit under test.
 - Make tests deterministic and independent of execution order.
 - Add a regression test for a bug fix when the behavior is reasonably testable.
+
+## Behaviour, never inventory
+
+- A test asserts what code decides. It never writes a literal that mirrors `data/`: a count of entries, a roster or order of ids, or an entry's authored text, number or status.
+- Take an expected value from the page under test, from the source of truth (`readCorpus` in `src/lib/game/fs-sources.ts`, a data file, an exported constant), or from an input the test builds itself. In Playwright, `tests/e2e/support/corpus.ts` reads the corpus and `tests/e2e/support/results.ts` writes a results label.
+- A real entry may be the page or record a test visits. When the test needs a property, such as a draft, a sub-species or a set of two pieces, pick the entry by that property from the data.
+- Check a rule over content as a loop over every entry, never as a snapshot of the entries that exist today.
+- A test that fails because content grew, shrank, was renamed or was reordered, with no rule broken, pins the inventory. Fix the test, never the content.

@@ -6,6 +6,7 @@
 **Revised:** 2026-09-20, the tree's `art` field became `cover` and `banner` (0009)
 **Revised:** 2026-09-24, `tags` leaves the upgrade tri-state and becomes a set of optional slots on the skill (0020, addendum in Decision 4)
 **Revised:** 2026-09-26, skill ids are drawn from the French title and the three renames are retired (0028, addenda in Decisions 1 and 3)
+**Revised:** 2026-10-24, uniqueness is asserted without a count of skills (0055, addendum in Decision 3)
 **Deciders:** Kori
 **Scope:** How game data is split into files under `data/`, what owns a skill's identity, and which
 authoring invariants the layout must preserve. Does not cover translation (0003), the validation
@@ -140,6 +141,11 @@ equipment catalogue, with different `tier` and `showXp` values in the two copies
 - The assertion in `tests/unit/derive.test.ts` that the caveat above describes is removed with the
   renames; the `skill ids` block of `tests/data/integrity.test.ts` checks the collision rule instead.
 - The principle of this decision stands: two different skills never share an id.
+
+### Addendum (2026-10-24): uniqueness without a count
+
+- `tests/unit/derive.test.ts` no longer asserts how many ids the corpus holds. It checks that each
+  skill file is named after the id it holds, which keeps two skills from sharing an id (0055).
 
 ---
 

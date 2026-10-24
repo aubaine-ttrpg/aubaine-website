@@ -3,6 +3,7 @@
 **Project:** Aubaine, the wiki
 **Status:** Accepted
 **Date:** 2026-10-23
+**Revised:** 2026-10-24, the key colour and emblem checks stop naming covers and files (0055, addenda in Decisions 1 and 6)
 **Deciders:** Kori
 **Scope:** The hero of the Species and Tree pages: its layout, its dark stage, its key colour, the
 descriptor stickers, the rank profile of a tree, the emblem on the card, the moving backdrop drawn on the GPU and its pause control, and
@@ -83,6 +84,13 @@ strengths as ranks from F to S, with no overall grade. Versions: `astro@7.3.3` (
   if a cover's key colour misreads the art.
 - **The mean colour of the cover**: it blends the Marchand's red cloth and its golden light into a
   peach. Rejected for the dominant hue family.
+
+### Addendum (2026-10-24): the key colour checks name no cover
+
+- `tests/unit/key-colour.test.ts` no longer holds the Nnor red and the Marchand beige to hue
+  windows. It checks that every 3:4 cover writes a hex key colour on which the dark sticker ink
+  reads at 4.5 or more (0055). `tests/e2e/character-hero.spec.ts` checks that each hero's sticker
+  takes the key colour of its own cover. The two colours above stay as measured on that date.
 
 ---
 
@@ -250,6 +258,12 @@ strengths as ranks from F to S, with no overall grade. Versions: `astro@7.3.3` (
   leaning card. Rejected.
 - **Inlining the emblem's path**: no request for the file, at the cost of the full path in every
   page. Rejected.
+
+### Addendum (2026-10-24): the frame check covers every emblem
+
+- `tests/unit/emblem-frame.test.ts` no longer checks the two files by name (0055). The check that
+  `tests/data/integrity.test.ts` runs on every emblem, that framing it again leaves it unchanged,
+  already holds each one to the same share of its frame.
 
 ---
 

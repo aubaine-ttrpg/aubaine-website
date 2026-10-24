@@ -3,6 +3,7 @@
 **Project:** Aubaine, the wiki
 **Status:** Accepted
 **Date:** 2026-09-28
+**Revised:** 2026-10-24, the design fixture cited as evidence is retired by 0055 (addendum in Decision 2)
 **Deciders:** Kori
 **Scope:**
 - **Covers:** the reversal of [0031](0031-the-martial-and-psychic-trees-bring-attaque-martiale-objet-libre-and-innate-powers.md) Decision 1, made while the Physique tree was in playtest, before any table played it:
@@ -70,6 +71,10 @@ The decider rejected the term and both states.
 ### Caveats
 
 - Without a state, the tree's burst rests on Point d'orgue, Riposte and Attaque supplémentaire. Its staying power rests on Endurance and Second souffle. Playtest will say whether that keeps pace with the casters' trees.
+
+### Addendum (2026-10-24): the design fixture is retired
+
+- `tests/fixtures/design-derived.json`, cited above for the upgrade count and the XP total, was removed by 0055. Both figures were measured from it on the date of this record, and the history keeps the file.
 
 ---
 
