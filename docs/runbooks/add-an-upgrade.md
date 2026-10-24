@@ -111,6 +111,8 @@ The schema says it plainly: `Ces trois états sont distincts et ne doivent jamai
 
 **Never write `"domains": null`.** Leave the key out. `null` is not one of the three states and `pnpm data:check` rejects it.
 
+**An upgrade that costs more Énergie buys Unités at the Rang table's rate.** Its description says what it costs on top of the base, « vous pouvez dépenser 1 {{energie}} de plus », and the whole cost, base and upgrade together, takes the Unités the Livre du MJ gives that Énergie in chapter Concevoir une Compétence.
+
 **XP is `5 × tier` unless `xpOverride` says otherwise.** Do not write both a tier and an override that agree; write the override only when the tier cannot reach the price you want.
 
 **An upgrade is not a derived skill.** If the step needs its own node, its own stat line or its own position on the plate, it is a separate skill file with `evolvesFrom` pointing at the base, not an upgrade. `evolvesFrom` is `Réservé aux nœuds rattachés à une base, jamais aux améliorations imbriquées.`

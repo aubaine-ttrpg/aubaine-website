@@ -29,7 +29,7 @@ The filename is the id and nothing else. The id matches `^[A-Z0-9]{6}-[0-9]{3}$`
 | `duration` | optional | Durée, sur la ligne de stats. | free text |
 | `concentration` | optional | `Rendue dans la durée sous la forme « Concentration · <durée> ». Ce n'est pas une étiquette.` | `true`, `false` |
 | `limit` | optional | Limite d'usage, rendue sur la ligne de stats avec la flèche en boucle : « 1 fois par tour », « 2 fois par Repos long ». Jamais écrite dans la description. Absent : la Compétence se rejoue sans limite. | `{ "times": 1, "per": "turn" }`; `times` 1 to 3, `per` one of `turn`, `combat`, `hour`, `short-rest`, `long-rest` |
-| `energy` | optional | Pastille ÉNERGIE. Zéro est une valeur réelle et se distingue d'une Compétence sans coût : elle affiche « 0 énergie ». | integer 0 to 5 |
+| `energy` | optional | Pastille ÉNERGIE, de 0 au coût du Rang le plus cher. Zéro est une valeur réelle et se distingue d'une Compétence sans coût : elle affiche « 0 énergie ». | integer 0 to 13, `MAX_ENERGY_COST` in `src/lib/game/resources.ts` |
 | `karma` | optional | Pastille KARMA. Une créature en garde 3 au plus et n'en récupère à aucun repos, alors une Compétence qui en coûte pèse lourd. | integer 1 to 3 |
 | `life` | optional | Pastille PDV : un coût payé en Points de vie, en dés (1d6) ou en nombre fixe. | `"6"`, `"1d6"` |
 | `evolvesFrom` | optional | `Compétence dérivée : identifiant de la base, rendu « ▲ <titre> ». Réservé aux nœuds rattachés à une base, jamais aux améliorations imbriquées.` | a skill id that exists |
@@ -104,6 +104,8 @@ Then open the tree page, choose the node and read its card in the pane.
 **The id is drawn from the French title, and it is unique across the whole repo.** Two skills may never share one, not even in two different trees. Never invent one: run `pnpm skill:id "<titre>"`, which also tells you when another skill already holds the letters. It follows the title while the skill is a draft and never changes after. See [choose-a-skill-id.md](choose-a-skill-id.md).
 
 **`energy: 0` is not the same as no `energy`.** `"energy": 0` prints a `0 énergie` pill, which says the skill costs nothing on purpose. Leaving the key out prints no energy pill at all, which says energy is not part of this skill. Pick the one you mean.
+
+**An active skill pays something.** Only a Compétence de base is free. An active with no `energy` or with `energy: 0` needs another payment: `life`, `karma`, an `activation` in minutes or hours, a resource it spends, or a `limit`. The Livre du MJ, chapter Concevoir une Compétence, prices each, gives the Énergie and Unités of each Rang, and gates Rang 6 and above. `pnpm balance entries --ids=<ID>` flags an active that pays nothing.
 
 **A passive skill may not carry an energy cost above 0.** The schema rejects it: `une Compétence passive ne coûte pas d'Énergie. energy: 0 reste permis pour marquer explicitement une absence de coût.`
 

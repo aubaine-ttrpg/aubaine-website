@@ -139,7 +139,7 @@ pnpm dev
 
 **The id is drawn from the French title, like any other skill's.** A bank skill carries no prefix: run `pnpm skill:id "<titre>"` and use what it prints. See [choose-a-skill-id.md](choose-a-skill-id.md).
 
-**`energy: 0` is not the same as no `energy`.** Most bank skills write `"energy": 0` on purpose, to say the skill costs nothing where a reader would expect a cost. Leaving the key out says the skill has no energy line at all. Both are legal. Mean the one you write.
+**`energy: 0` is not the same as no `energy`.** `"energy": 0` prints a `0 énergie` pill, and leaving the key out prints no energy line at all. Both are legal. On an active, either one needs another payment, as [add-a-skill.md](add-a-skill.md) says: only a Compétence de base is free.
 
 **A passive bank skill may not carry an energy cost above 0.** `"energy": 0` on a passive is allowed and is used by four bank skills today. Anything above 0 is rejected by the schema: `une Compétence passive ne coûte pas d'Énergie.`
 
