@@ -42,7 +42,7 @@ here and never re-measures. Examples are settled entries only.
 ## Writing a formula into a sentence
 
 A formula is a sentence fragment with its articles and prepositions, so that once the labels print it
-reads as French: « fait une Sauvegarde (Dextérité + Réflexes) contre votre DD (10 + Intelligence +
+reads as French: « fait une Sauvegarde (Dextérité + Réflexes) contre votre DD (8 + Intelligence +
 Arcanes) ». `keyword-logic.md` § Read it as a sentence is the test.
 
 ## Legacy forms and migration
@@ -96,41 +96,48 @@ write uses it. A proposal never renames a rule term or adds a key; that is a voc
   « Vos {{jet|Jets}} pour résister à … ».
 
 ### dd
-- FR: « contre votre {{dd}} (10 + {{charisme}} + {{intimidation}}) »
-  EN: « against your {{dd}} (10 + {{charisme}} + {{intimidation}}) »
+- FR: « contre votre {{dd}} (8 + {{charisme}} + {{intimidation}}) »
+  EN: « against your {{dd}} (8 + {{charisme}} + {{intimidation}}) »
 - When: a Compétence lets its target resist. The DD comes from the one who plays it.
-- Never: « contre un {{dd}} de `10 + …` », the chapter's legacy form; any base other than 10.
+- Never: « contre un {{dd}} de `8 + …` »; any base other than 8. The Jet is a d20 and the base is
+  8 (owner, 2026-10-24: « Save being as a base of 8 + Chara + Apt », ADR 0056); a 10 is the 2d12
+  base and is converted wherever it is met.
 - Measured 2026-10-20: 78 files, 62 settled. Examples: ACOUPH-001, APAISE-001. EN precedent:
   FARPAR-001.
 - Status: approved.
 
 ### dd-chosen
-- FR: « votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}}) »
-  EN: « your {{dd}} (10 + the chosen {{caracteristique}} + {{arcanes}}) »
+- FR: « votre {{dd}} (8 + la {{caracteristique}} choisie + {{arcanes}}) »
+  EN: « your {{dd}} (8 + the chosen {{caracteristique}} + {{arcanes}}) »
 - When: the Compétence let its player choose the Caractéristique, through `chosen-caracteristique`.
 - Measured 2026-10-20: inside `dd`. Examples: ACOUPH-001, COUTON-001.
 - Status: approved in French; English proposed.
 
 ### dd-from-attack
-- FR: « Votre {{dd}} vaut 10 + la {{caracteristique}} et l'{{aptitude}} du {{jet}} de cette {{attaque}}. »
+- FR: « Votre {{dd}} vaut 8 + la {{caracteristique}} et l'{{aptitude}} du {{jet}} de cette {{attaque}}. »
 - When: an Attaque carries a resisted rider, and the rider's DD follows a pair the entry does not
   fix, such as a weapon's.
 - Never: when the entry fixes the Attaque's pair. Then write `dd` with that pair, « contre votre
-  {{dd}} (10 + {{force}} + {{melee}}) » (owner, 2026-10-20: a DD is written with its base and its
+  {{dd}} (8 + {{force}} + {{melee}}) » (owner, 2026-10-20: a DD is written with its base and its
   pair).
 - Examples: POIORG-001.
 - Status: approved in French; English proposed.
 
 ### dd-fixed
-- FR: « contre un {{dd}} de 15 »          EN: « against a {{dd}} of 15 »
+- FR: « contre un {{dd}} de 10 »          EN: « against a {{dd}} of 10 »
 - When: the difficulty belongs to the world, not to a character.
+- The number is 5, 10, 15, 20, 25 or 30, the scale of chapter 02. When the SRD resolves the same
+  action, its value is taken (owner, 2026-10-24: « if something we do is also in SRD like save then
+  take srd value, it's that simple »); otherwise the value whose chance at +5 is closest
+  (ADR 0056 Decision 3). Never a value off the scale (owner, 2026-10-24: « Why are you sometime
+  saying DD 11 […] that makes no sense »).
 - Measured 2026-10-20: 9 files, 4 settled. Examples: CHICAM-001, DEPOUI-001.
 - Status: approved.
 
 ### resisted-effect
 - FR: « Chaque créature dans la zone fait une {{sauvegarde}} ({{dexterite}} + {{reflexes}}) contre
-  votre {{dd}} (10 + {{intelligence}} + {{arcanes}}). En cas d'échec, … En cas de réussite, … »
-  EN: « … makes a {{sauvegarde}} ({{dexterite}} + {{reflexes}}) against your {{dd}} (10 + … ). On
+  votre {{dd}} (8 + {{intelligence}} + {{arcanes}}). En cas d'échec, … En cas de réussite, … »
+  EN: « … makes a {{sauvegarde}} ({{dexterite}} + {{reflexes}}) against your {{dd}} (8 + … ). On
   a failure, … On a success, … »
 - When: anything a target may resist with a fixed shape. It states the defensive {{sauvegarde}},
   the DD formula and the effect on a failure (Livre du MJ, chapter 03 § Résister, et durer). It
@@ -148,7 +155,7 @@ write uses it. A proposal never renames a rule term or adds a key; that is a voc
 
 ### resist-open
 - FR: « Lorsqu'une créature effectue un {{jet}} pour résister à ce feu, elle effectue son {{jet}}
-  contre votre {{dd}} (10 + la {{caracteristique}} choisie + {{arcanes}}). »
+  contre votre {{dd}} (8 + la {{caracteristique}} choisie + {{arcanes}}). »
 - When: a déchaînée Compétence, whose player composes the effect when they play it. The defensive
   pair and the outcomes follow the shape the player gives, so the MJ rules them.
 - Never: in a Compétence whose effect is fixed in advance; that one uses `resisted-effect`.
@@ -188,6 +195,18 @@ write uses it. A proposal never renames a rule term or adds a key; that is a voc
 - When: a resisted damage effect halves on a success. It is part of the budget (chapter 03).
 - Measured 2026-10-20: 19 files, 18 settled. Examples: BOUFEU-001, BRECHE-001.
 - Status: approved in French; English proposed.
+
+### crit-success, crit-failure
+- FR: « obtient une {{reussite-critique}} » / « produit un {{echec-critique}} »; a Jet's own range,
+  « un dé conservé de 3 ou moins produit un {{echec-critique}} »
+  EN: « scores a {{reussite-critique}} » / « produces a {{echec-critique}} »; « a kept die of 3 or
+  less produces a {{echec-critique}} »
+- When: a rule triggers on a critical, or widens the range of one. Chapter 02 owns what each does,
+  by kind of Jet; an entry links the term and never restates it.
+- Never: « deux dés conservés », « un 20 naturel », « un critique » left bare (owner, 2026-10-24:
+  the two criticals are rule terms, ADR 0056 Decision 2).
+- First written in: FUITEX-001.
+- Status: approved (owner, 2026-10-24).
 
 ## Avantage and states
 

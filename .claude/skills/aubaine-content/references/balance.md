@@ -50,6 +50,15 @@ citing that entry as precedent.
   real choice, since a character keeps two of them.
 - **Open roleplay rules stay open (2026-09-28).** Fix their cost, duration and ending; leave what
   they mean to the MJ.
+- **The Jet is a d20, and Aubaine stays Aubaine (2026-10-24).** `1d20 + CAR + APT`; Avantages stack
+  and keep the best die; a Compétence's DD is `8 + CAR + APT`; criticals act by kind (chapter 02).
+  Owner: « we are not recreating dnd, or using SRD, we just migrating to D20 […] we keep aubaine as
+  is, av / dv everything ». `docs/adr/0056-the-jet-is-a-d20-and-aubaine-keeps-its-own-rules.md`.
+- **The SRD value first (2026-10-24).** A number for an action the SRD also resolves takes the SRD's
+  value; any other DD lands on 5, 10, 15, 20, 25 or 30 at the closest chance at +5. Owner: « if
+  something we do is also in SRD like save then take srd value, it's that simple ». Only the number
+  is taken, never the SRD mechanic around it. A finding that a fixed number differs from the SRD's
+  value for the same action cites the page in `tmp/srd/`.
 
 ## Procedure
 
