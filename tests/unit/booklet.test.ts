@@ -78,6 +78,18 @@ describe('planning an archive', () => {
     expect(plan.bundles.every((bundle) => bundle.releases.length === 1)).toBe(true)
   })
 
+  it('leaves an older printing that already sits in its archive where it is', () => {
+    const plan = planArchive([
+      printing('0.3.0', 'cccccccc', '2026-10-01T10:00:00Z'),
+      printing('0.2.1', 'aaaaaaaa', '2026-09-22T13:00:00Z', {
+        archive: archiveFile('0.2.1', 'fr'),
+      }),
+    ])
+    expect(plan.bundles).toEqual([])
+    expect(plan.stale).toEqual([])
+    expect(plan.keep.map((release) => release.version)).toEqual(['0.3.0'])
+  })
+
   it('orders versions by number rather than by printing date', () => {
     const plan = planArchive([
       printing('0.9.0', 'aaaaaaaa', '2026-01-01T00:00:00Z'),

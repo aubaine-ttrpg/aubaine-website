@@ -59,7 +59,9 @@ export function planArchive(releases: PdfRelease[]): ArchivePlan {
 
   const newest = current[0]?.version
   const keep = current.filter((release) => release.version === newest)
-  const older = current.filter((release) => release.version !== newest)
+  const older = current.filter(
+    (release) => release.version !== newest && release.archive === undefined,
+  )
 
   const bundles: ArchiveBundle[] = []
   for (const version of [...new Set(older.map((release) => release.version))]) {
