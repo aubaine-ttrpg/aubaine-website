@@ -8,9 +8,22 @@
       "styleHash": "75d62556",
       "contentHash": "a690db2e",
       "file": "artisan-en-v0.2.1_75d62556_a690db2e.pdf",
+      "archive": "aubaine-v0.2.1-en.zip",
       "bytes": 1416686,
       "pages": 8,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "artisan",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "a63de70d",
+      "file": "artisan-en-v0.3.0_5eeb14c4_a63de70d.pdf",
+      "bytes": 1416559,
+      "pages": 8,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "artisan",
@@ -20,9 +33,22 @@
       "styleHash": "75d62556",
       "contentHash": "79f99f57",
       "file": "artisan-fr-v0.2.1_75d62556_79f99f57.pdf",
+      "archive": "aubaine-v0.2.1-fr.zip",
       "bytes": 1415781,
       "pages": 8,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "artisan",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "c314daf9",
+      "file": "artisan-fr-v0.3.0_5eeb14c4_c314daf9.pdf",
+      "bytes": 1415556,
+      "pages": 8,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "barbare",
@@ -32,9 +58,22 @@
       "styleHash": "75d62556",
       "contentHash": "5bd56bfc",
       "file": "barbare-en-v0.2.1_75d62556_5bd56bfc.pdf",
+      "archive": "aubaine-v0.2.1-en.zip",
       "bytes": 1984475,
       "pages": 11,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "barbare",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "2614097e",
+      "file": "barbare-en-v0.3.0_5eeb14c4_2614097e.pdf",
+      "bytes": 1981690,
+      "pages": 11,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "barbare",
@@ -44,9 +83,22 @@
       "styleHash": "75d62556",
       "contentHash": "26684eef",
       "file": "barbare-fr-v0.2.1_75d62556_26684eef.pdf",
+      "archive": "aubaine-v0.2.1-fr.zip",
       "bytes": 1982730,
       "pages": 11,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "barbare",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "e30ce50e",
+      "file": "barbare-fr-v0.3.0_5eeb14c4_e30ce50e.pdf",
+      "bytes": 1981332,
+      "pages": 11,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "berserker",
@@ -56,9 +108,22 @@
       "styleHash": "75d62556",
       "contentHash": "84438bc6",
       "file": "berserker-en-v0.2.1_75d62556_84438bc6.pdf",
+      "archive": "aubaine-v0.2.1-en.zip",
       "bytes": 1805559,
       "pages": 9,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "berserker",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "3cbfaf8a",
+      "file": "berserker-en-v0.3.0_5eeb14c4_3cbfaf8a.pdf",
+      "bytes": 1804754,
+      "pages": 9,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "berserker",
@@ -68,9 +133,22 @@
       "styleHash": "75d62556",
       "contentHash": "7e29b57d",
       "file": "berserker-fr-v0.2.1_75d62556_7e29b57d.pdf",
+      "archive": "aubaine-v0.2.1-fr.zip",
       "bytes": 1805049,
       "pages": 9,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "berserker",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "2058af0c",
+      "file": "berserker-fr-v0.3.0_5eeb14c4_2058af0c.pdf",
+      "bytes": 1805377,
+      "pages": 9,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "courtisan",
@@ -80,9 +158,22 @@
       "styleHash": "75d62556",
       "contentHash": "cdc7ee85",
       "file": "courtisan-en-v0.2.1_75d62556_cdc7ee85.pdf",
+      "archive": "aubaine-v0.2.1-en.zip",
       "bytes": 1460324,
       "pages": 9,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "courtisan",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "c994b7ae",
+      "file": "courtisan-en-v0.3.0_5eeb14c4_c994b7ae.pdf",
+      "bytes": 1459778,
+      "pages": 9,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "courtisan",
@@ -92,9 +183,22 @@
       "styleHash": "75d62556",
       "contentHash": "990de790",
       "file": "courtisan-fr-v0.2.1_75d62556_990de790.pdf",
+      "archive": "aubaine-v0.2.1-fr.zip",
       "bytes": 1459785,
       "pages": 9,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "courtisan",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "2fcf76bb",
+      "file": "courtisan-fr-v0.3.0_5eeb14c4_2fcf76bb.pdf",
+      "bytes": 1459885,
+      "pages": 9,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "demoniste",
@@ -104,9 +208,22 @@
       "styleHash": "75d62556",
       "contentHash": "65ea29b7",
       "file": "demoniste-en-v0.2.1_75d62556_65ea29b7.pdf",
+      "archive": "aubaine-v0.2.1-en.zip",
       "bytes": 959568,
       "pages": 6,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "demoniste",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "3f57ed62",
+      "file": "demoniste-en-v0.3.0_5eeb14c4_3f57ed62.pdf",
+      "bytes": 960039,
+      "pages": 6,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "demoniste",
@@ -116,9 +233,22 @@
       "styleHash": "75d62556",
       "contentHash": "67dd7cc6",
       "file": "demoniste-fr-v0.2.1_75d62556_67dd7cc6.pdf",
+      "archive": "aubaine-v0.2.1-fr.zip",
       "bytes": 955867,
       "pages": 6,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "demoniste",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "5ddfbf64",
+      "file": "demoniste-fr-v0.3.0_5eeb14c4_5ddfbf64.pdf",
+      "bytes": 956025,
+      "pages": 6,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "draugar",
@@ -128,9 +258,22 @@
       "styleHash": "75d62556",
       "contentHash": "abdaa21a",
       "file": "draugar-en-v0.2.1_75d62556_abdaa21a.pdf",
+      "archive": "aubaine-v0.2.1-en.zip",
       "bytes": 2006889,
       "pages": 11,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "draugar",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "eae3ab44",
+      "file": "draugar-en-v0.3.0_5eeb14c4_eae3ab44.pdf",
+      "bytes": 2006605,
+      "pages": 11,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "draugar",
@@ -140,9 +283,22 @@
       "styleHash": "75d62556",
       "contentHash": "817ce616",
       "file": "draugar-fr-v0.2.1_75d62556_817ce616.pdf",
+      "archive": "aubaine-v0.2.1-fr.zip",
       "bytes": 1997828,
       "pages": 11,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "draugar",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "7efef75e",
+      "file": "draugar-fr-v0.3.0_5eeb14c4_7efef75e.pdf",
+      "bytes": 1997211,
+      "pages": 11,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "druide",
@@ -152,9 +308,22 @@
       "styleHash": "75d62556",
       "contentHash": "de87145f",
       "file": "druide-en-v0.2.1_75d62556_de87145f.pdf",
+      "archive": "aubaine-v0.2.1-en.zip",
       "bytes": 1540646,
       "pages": 9,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "druide",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "442458b9",
+      "file": "druide-en-v0.3.0_5eeb14c4_442458b9.pdf",
+      "bytes": 1540767,
+      "pages": 9,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "druide",
@@ -164,9 +333,22 @@
       "styleHash": "75d62556",
       "contentHash": "035477d3",
       "file": "druide-fr-v0.2.1_75d62556_035477d3.pdf",
+      "archive": "aubaine-v0.2.1-fr.zip",
       "bytes": 1543633,
       "pages": 9,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "druide",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "7453408c",
+      "file": "druide-fr-v0.3.0_5eeb14c4_7453408c.pdf",
+      "bytes": 1543764,
+      "pages": 9,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "eau",
@@ -176,9 +358,22 @@
       "styleHash": "75d62556",
       "contentHash": "636cda2c",
       "file": "eau-en-v0.2.1_75d62556_636cda2c.pdf",
+      "archive": "aubaine-v0.2.1-en.zip",
       "bytes": 2006636,
       "pages": 12,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "eau",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "503d69d1",
+      "file": "eau-en-v0.3.0_5eeb14c4_503d69d1.pdf",
+      "bytes": 2006755,
+      "pages": 12,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "eau",
@@ -188,9 +383,22 @@
       "styleHash": "75d62556",
       "contentHash": "ed40419c",
       "file": "eau-fr-v0.2.1_75d62556_ed40419c.pdf",
+      "archive": "aubaine-v0.2.1-fr.zip",
       "bytes": 2011878,
       "pages": 12,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "eau",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "e619962d",
+      "file": "eau-fr-v0.3.0_5eeb14c4_e619962d.pdf",
+      "bytes": 2011859,
+      "pages": 12,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "equipement",
@@ -200,9 +408,22 @@
       "styleHash": "75d62556",
       "contentHash": "07dce2c5",
       "file": "equipement-en-v0.2.1_75d62556_07dce2c5.pdf",
+      "archive": "aubaine-v0.2.1-en.zip",
       "bytes": 2975167,
       "pages": 27,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "equipement",
+      "kind": "equipment",
+      "locale": "en",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "eb45be09",
+      "file": "equipement-en-v0.3.0_5eeb14c4_eb45be09.pdf",
+      "bytes": 2977666,
+      "pages": 27,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "equipement",
@@ -212,9 +433,22 @@
       "styleHash": "75d62556",
       "contentHash": "a2eadec0",
       "file": "equipement-fr-v0.2.1_75d62556_a2eadec0.pdf",
+      "archive": "aubaine-v0.2.1-fr.zip",
       "bytes": 2964702,
       "pages": 27,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "equipement",
+      "kind": "equipment",
+      "locale": "fr",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "238bb20f",
+      "file": "equipement-fr-v0.3.0_5eeb14c4_238bb20f.pdf",
+      "bytes": 2965249,
+      "pages": 27,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "feu",
@@ -224,9 +458,22 @@
       "styleHash": "75d62556",
       "contentHash": "df6a9338",
       "file": "feu-en-v0.2.1_75d62556_df6a9338.pdf",
+      "archive": "aubaine-v0.2.1-en.zip",
       "bytes": 1990946,
       "pages": 12,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "feu",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "6ab6b039",
+      "file": "feu-en-v0.3.0_5eeb14c4_6ab6b039.pdf",
+      "bytes": 1989941,
+      "pages": 12,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "feu",
@@ -236,9 +483,22 @@
       "styleHash": "75d62556",
       "contentHash": "9d1436e6",
       "file": "feu-fr-v0.2.1_75d62556_9d1436e6.pdf",
+      "archive": "aubaine-v0.2.1-fr.zip",
       "bytes": 1994793,
       "pages": 12,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "feu",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "c3d8c0be",
+      "file": "feu-fr-v0.3.0_5eeb14c4_c3d8c0be.pdf",
+      "bytes": 1994355,
+      "pages": 12,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "foudre",
@@ -248,9 +508,22 @@
       "styleHash": "75d62556",
       "contentHash": "b7e38d93",
       "file": "foudre-en-v0.2.1_75d62556_b7e38d93.pdf",
+      "archive": "aubaine-v0.2.1-en.zip",
       "bytes": 2009985,
       "pages": 11,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "foudre",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "2bf7dc5c",
+      "file": "foudre-en-v0.3.0_5eeb14c4_2bf7dc5c.pdf",
+      "bytes": 2012987,
+      "pages": 11,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "foudre",
@@ -260,9 +533,22 @@
       "styleHash": "75d62556",
       "contentHash": "eb417962",
       "file": "foudre-fr-v0.2.1_75d62556_eb417962.pdf",
+      "archive": "aubaine-v0.2.1-fr.zip",
       "bytes": 2009581,
       "pages": 11,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "foudre",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "8a464bca",
+      "file": "foudre-fr-v0.3.0_5eeb14c4_8a464bca.pdf",
+      "bytes": 2009728,
+      "pages": 11,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "gladiateur",
@@ -272,9 +558,22 @@
       "styleHash": "75d62556",
       "contentHash": "224013bd",
       "file": "gladiateur-en-v0.2.1_75d62556_224013bd.pdf",
+      "archive": "aubaine-v0.2.1-en.zip",
       "bytes": 959487,
       "pages": 6,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "gladiateur",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "984484b0",
+      "file": "gladiateur-en-v0.3.0_5eeb14c4_984484b0.pdf",
+      "bytes": 959662,
+      "pages": 6,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "gladiateur",
@@ -284,9 +583,22 @@
       "styleHash": "75d62556",
       "contentHash": "e280d3db",
       "file": "gladiateur-fr-v0.2.1_75d62556_e280d3db.pdf",
+      "archive": "aubaine-v0.2.1-fr.zip",
       "bytes": 960370,
       "pages": 6,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "gladiateur",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "86e76369",
+      "file": "gladiateur-fr-v0.3.0_5eeb14c4_86e76369.pdf",
+      "bytes": 960600,
+      "pages": 6,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "heros",
@@ -296,9 +608,22 @@
       "styleHash": "75d62556",
       "contentHash": "2b4c4e26",
       "file": "heros-en-v0.2.1_75d62556_2b4c4e26.pdf",
+      "archive": "aubaine-v0.2.1-en.zip",
       "bytes": 910821,
       "pages": 6,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "heros",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "595c6f10",
+      "file": "heros-en-v0.3.0_5eeb14c4_595c6f10.pdf",
+      "bytes": 910856,
+      "pages": 6,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "heros",
@@ -308,9 +633,22 @@
       "styleHash": "75d62556",
       "contentHash": "ab98ab8b",
       "file": "heros-fr-v0.2.1_75d62556_ab98ab8b.pdf",
+      "archive": "aubaine-v0.2.1-fr.zip",
       "bytes": 910635,
       "pages": 6,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "heros",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "a9ffdd89",
+      "file": "heros-fr-v0.3.0_5eeb14c4_a9ffdd89.pdf",
+      "bytes": 910770,
+      "pages": 6,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "livre-du-joueur",
@@ -320,9 +658,22 @@
       "styleHash": "75d62556",
       "contentHash": "100d6c80",
       "file": "livre-du-joueur-en-v0.2.1_75d62556_100d6c80.pdf",
+      "archive": "aubaine-v0.2.1-en.zip",
       "bytes": 1971240,
       "pages": 34,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "livre-du-joueur",
+      "kind": "book",
+      "locale": "en",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "7bbe43e7",
+      "file": "livre-du-joueur-en-v0.3.0_5eeb14c4_7bbe43e7.pdf",
+      "bytes": 2008354,
+      "pages": 35,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "livre-du-joueur",
@@ -332,9 +683,22 @@
       "styleHash": "75d62556",
       "contentHash": "f01d5de5",
       "file": "livre-du-joueur-fr-v0.2.1_75d62556_f01d5de5.pdf",
+      "archive": "aubaine-v0.2.1-fr.zip",
       "bytes": 1970349,
       "pages": 37,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "livre-du-joueur",
+      "kind": "book",
+      "locale": "fr",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "57168fe1",
+      "file": "livre-du-joueur-fr-v0.3.0_5eeb14c4_57168fe1.pdf",
+      "bytes": 2011929,
+      "pages": 39,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "livre-du-mj",
@@ -344,9 +708,22 @@
       "styleHash": "75d62556",
       "contentHash": "86889f57",
       "file": "livre-du-mj-en-v0.2.1_75d62556_86889f57.pdf",
+      "archive": "aubaine-v0.2.1-en.zip",
       "bytes": 1147710,
       "pages": 10,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "livre-du-mj",
+      "kind": "book",
+      "locale": "en",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "7eeb6df8",
+      "file": "livre-du-mj-en-v0.3.0_5eeb14c4_7eeb6df8.pdf",
+      "bytes": 1228647,
+      "pages": 12,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "livre-du-mj",
@@ -356,9 +733,22 @@
       "styleHash": "75d62556",
       "contentHash": "4d2a9b62",
       "file": "livre-du-mj-fr-v0.2.1_75d62556_4d2a9b62.pdf",
+      "archive": "aubaine-v0.2.1-fr.zip",
       "bytes": 1148242,
       "pages": 11,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "livre-du-mj",
+      "kind": "book",
+      "locale": "fr",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "921b3916",
+      "file": "livre-du-mj-fr-v0.3.0_5eeb14c4_921b3916.pdf",
+      "bytes": 1230820,
+      "pages": 12,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "mage",
@@ -368,9 +758,22 @@
       "styleHash": "75d62556",
       "contentHash": "767cfcfd",
       "file": "mage-en-v0.2.1_75d62556_767cfcfd.pdf",
+      "archive": "aubaine-v0.2.1-en.zip",
       "bytes": 2040683,
       "pages": 12,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "mage",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "e95f91f4",
+      "file": "mage-en-v0.3.0_5eeb14c4_e95f91f4.pdf",
+      "bytes": 2040516,
+      "pages": 12,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "mage",
@@ -380,9 +783,22 @@
       "styleHash": "75d62556",
       "contentHash": "6cce4726",
       "file": "mage-fr-v0.2.1_75d62556_6cce4726.pdf",
+      "archive": "aubaine-v0.2.1-fr.zip",
       "bytes": 2039180,
       "pages": 12,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "mage",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "d4530fbb",
+      "file": "mage-fr-v0.3.0_5eeb14c4_d4530fbb.pdf",
+      "bytes": 2038744,
+      "pages": 12,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "marchand",
@@ -392,9 +808,22 @@
       "styleHash": "75d62556",
       "contentHash": "3255ecb4",
       "file": "marchand-en-v0.2.1_75d62556_3255ecb4.pdf",
+      "archive": "aubaine-v0.2.1-en.zip",
       "bytes": 1606340,
       "pages": 9,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "marchand",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "f61ef630",
+      "file": "marchand-en-v0.3.0_5eeb14c4_f61ef630.pdf",
+      "bytes": 1605921,
+      "pages": 9,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "marchand",
@@ -404,9 +833,22 @@
       "styleHash": "75d62556",
       "contentHash": "3ac1d691",
       "file": "marchand-fr-v0.2.1_75d62556_3ac1d691.pdf",
+      "archive": "aubaine-v0.2.1-fr.zip",
       "bytes": 1603690,
       "pages": 9,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "marchand",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "926a807e",
+      "file": "marchand-fr-v0.3.0_5eeb14c4_926a807e.pdf",
+      "bytes": 1604236,
+      "pages": 9,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "paladin",
@@ -416,9 +858,22 @@
       "styleHash": "75d62556",
       "contentHash": "4ce464de",
       "file": "paladin-en-v0.2.1_75d62556_4ce464de.pdf",
+      "archive": "aubaine-v0.2.1-en.zip",
       "bytes": 925336,
       "pages": 6,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "paladin",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "2c51a9c0",
+      "file": "paladin-en-v0.3.0_5eeb14c4_2c51a9c0.pdf",
+      "bytes": 925323,
+      "pages": 6,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "paladin",
@@ -428,9 +883,22 @@
       "styleHash": "75d62556",
       "contentHash": "18190f5e",
       "file": "paladin-fr-v0.2.1_75d62556_18190f5e.pdf",
+      "archive": "aubaine-v0.2.1-fr.zip",
       "bytes": 927359,
       "pages": 6,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "paladin",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "0a076664",
+      "file": "paladin-fr-v0.3.0_5eeb14c4_0a076664.pdf",
+      "bytes": 926424,
+      "pages": 6,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "physique",
@@ -440,9 +908,22 @@
       "styleHash": "75d62556",
       "contentHash": "303b21cd",
       "file": "physique-en-v0.2.1_75d62556_303b21cd.pdf",
+      "archive": "aubaine-v0.2.1-en.zip",
       "bytes": 1909818,
       "pages": 11,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "physique",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "bf96a891",
+      "file": "physique-en-v0.3.0_5eeb14c4_bf96a891.pdf",
+      "bytes": 1910422,
+      "pages": 11,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "physique",
@@ -452,9 +933,22 @@
       "styleHash": "75d62556",
       "contentHash": "58230965",
       "file": "physique-fr-v0.2.1_75d62556_58230965.pdf",
+      "archive": "aubaine-v0.2.1-fr.zip",
       "bytes": 1913377,
       "pages": 11,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "physique",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "06709270",
+      "file": "physique-fr-v0.3.0_5eeb14c4_06709270.pdf",
+      "bytes": 1912936,
+      "pages": 11,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "poisse",
@@ -464,9 +958,22 @@
       "styleHash": "75d62556",
       "contentHash": "60a94fee",
       "file": "poisse-en-v0.2.1_75d62556_60a94fee.pdf",
+      "archive": "aubaine-v0.2.1-en.zip",
       "bytes": 2096431,
       "pages": 12,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "poisse",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "7d1969b4",
+      "file": "poisse-en-v0.3.0_5eeb14c4_7d1969b4.pdf",
+      "bytes": 2096494,
+      "pages": 12,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "poisse",
@@ -476,9 +983,22 @@
       "styleHash": "75d62556",
       "contentHash": "d691091c",
       "file": "poisse-fr-v0.2.1_75d62556_d691091c.pdf",
+      "archive": "aubaine-v0.2.1-fr.zip",
       "bytes": 2092410,
       "pages": 12,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "poisse",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "01290c3f",
+      "file": "poisse-fr-v0.3.0_5eeb14c4_01290c3f.pdf",
+      "bytes": 2092283,
+      "pages": 12,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "prestidigitateur",
@@ -488,9 +1008,22 @@
       "styleHash": "75d62556",
       "contentHash": "d63cb8bc",
       "file": "prestidigitateur-en-v0.2.1_75d62556_d63cb8bc.pdf",
+      "archive": "aubaine-v0.2.1-en.zip",
       "bytes": 1562856,
       "pages": 8,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "prestidigitateur",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "6844011c",
+      "file": "prestidigitateur-en-v0.3.0_5eeb14c4_6844011c.pdf",
+      "bytes": 1562411,
+      "pages": 8,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "prestidigitateur",
@@ -500,9 +1033,22 @@
       "styleHash": "75d62556",
       "contentHash": "d790f2e4",
       "file": "prestidigitateur-fr-v0.2.1_75d62556_d790f2e4.pdf",
+      "archive": "aubaine-v0.2.1-fr.zip",
       "bytes": 1559863,
       "pages": 8,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "prestidigitateur",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "892ae8af",
+      "file": "prestidigitateur-fr-v0.3.0_5eeb14c4_892ae8af.pdf",
+      "bytes": 1560421,
+      "pages": 8,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "psychique",
@@ -512,9 +1058,22 @@
       "styleHash": "75d62556",
       "contentHash": "d0e59865",
       "file": "psychique-en-v0.2.1_75d62556_d0e59865.pdf",
+      "archive": "aubaine-v0.2.1-en.zip",
       "bytes": 2170345,
       "pages": 12,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "psychique",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "1b58b433",
+      "file": "psychique-en-v0.3.0_5eeb14c4_1b58b433.pdf",
+      "bytes": 2166688,
+      "pages": 12,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "psychique",
@@ -524,9 +1083,22 @@
       "styleHash": "75d62556",
       "contentHash": "f7440419",
       "file": "psychique-fr-v0.2.1_75d62556_f7440419.pdf",
+      "archive": "aubaine-v0.2.1-fr.zip",
       "bytes": 2170874,
       "pages": 12,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "psychique",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "e83b888b",
+      "file": "psychique-fr-v0.3.0_5eeb14c4_e83b888b.pdf",
+      "bytes": 2169854,
+      "pages": 12,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "roublard",
@@ -536,9 +1108,22 @@
       "styleHash": "75d62556",
       "contentHash": "f0486c2e",
       "file": "roublard-en-v0.2.1_75d62556_f0486c2e.pdf",
+      "archive": "aubaine-v0.2.1-en.zip",
       "bytes": 960526,
       "pages": 6,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "roublard",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "7c0c2210",
+      "file": "roublard-en-v0.3.0_5eeb14c4_7c0c2210.pdf",
+      "bytes": 959478,
+      "pages": 6,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "roublard",
@@ -548,9 +1133,22 @@
       "styleHash": "75d62556",
       "contentHash": "ee628bb1",
       "file": "roublard-fr-v0.2.1_75d62556_ee628bb1.pdf",
+      "archive": "aubaine-v0.2.1-fr.zip",
       "bytes": 960568,
       "pages": 6,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "roublard",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "ef8d1516",
+      "file": "roublard-fr-v0.3.0_5eeb14c4_ef8d1516.pdf",
+      "bytes": 961002,
+      "pages": 6,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "runiste",
@@ -560,9 +1158,22 @@
       "styleHash": "75d62556",
       "contentHash": "93bfa733",
       "file": "runiste-en-v0.2.1_75d62556_93bfa733.pdf",
+      "archive": "aubaine-v0.2.1-en.zip",
       "bytes": 1479025,
       "pages": 9,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "runiste",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "cbde1089",
+      "file": "runiste-en-v0.3.0_5eeb14c4_cbde1089.pdf",
+      "bytes": 1478808,
+      "pages": 9,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "runiste",
@@ -572,9 +1183,22 @@
       "styleHash": "75d62556",
       "contentHash": "cc00e356",
       "file": "runiste-fr-v0.2.1_75d62556_cc00e356.pdf",
+      "archive": "aubaine-v0.2.1-fr.zip",
       "bytes": 1484952,
       "pages": 9,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "runiste",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "2d7fee18",
+      "file": "runiste-fr-v0.3.0_5eeb14c4_2d7fee18.pdf",
+      "bytes": 1485485,
+      "pages": 9,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "tavernier",
@@ -584,9 +1208,22 @@
       "styleHash": "75d62556",
       "contentHash": "fd4ed949",
       "file": "tavernier-en-v0.2.1_75d62556_fd4ed949.pdf",
+      "archive": "aubaine-v0.2.1-en.zip",
       "bytes": 947305,
       "pages": 6,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "tavernier",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "49bbe411",
+      "file": "tavernier-en-v0.3.0_5eeb14c4_49bbe411.pdf",
+      "bytes": 946380,
+      "pages": 6,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "tavernier",
@@ -596,9 +1233,22 @@
       "styleHash": "75d62556",
       "contentHash": "1a48b073",
       "file": "tavernier-fr-v0.2.1_75d62556_1a48b073.pdf",
+      "archive": "aubaine-v0.2.1-fr.zip",
       "bytes": 947455,
       "pages": 6,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "tavernier",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "2d7c8c22",
+      "file": "tavernier-fr-v0.3.0_5eeb14c4_2d7c8c22.pdf",
+      "bytes": 947265,
+      "pages": 6,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "technomancien",
@@ -608,9 +1258,22 @@
       "styleHash": "75d62556",
       "contentHash": "483bcc97",
       "file": "technomancien-en-v0.2.1_75d62556_483bcc97.pdf",
+      "archive": "aubaine-v0.2.1-en.zip",
       "bytes": 1541673,
       "pages": 9,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "technomancien",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "d4956c8b",
+      "file": "technomancien-en-v0.3.0_5eeb14c4_d4956c8b.pdf",
+      "bytes": 1541332,
+      "pages": 9,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "technomancien",
@@ -620,9 +1283,22 @@
       "styleHash": "75d62556",
       "contentHash": "cff5a350",
       "file": "technomancien-fr-v0.2.1_75d62556_cff5a350.pdf",
+      "archive": "aubaine-v0.2.1-fr.zip",
       "bytes": 1544186,
       "pages": 9,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "technomancien",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "a60cbc5d",
+      "file": "technomancien-fr-v0.3.0_5eeb14c4_a60cbc5d.pdf",
+      "bytes": 1543553,
+      "pages": 9,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "terre",
@@ -632,9 +1308,22 @@
       "styleHash": "75d62556",
       "contentHash": "c53ff426",
       "file": "terre-en-v0.2.1_75d62556_c53ff426.pdf",
+      "archive": "aubaine-v0.2.1-en.zip",
       "bytes": 2125824,
       "pages": 12,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "terre",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "304944fd",
+      "file": "terre-en-v0.3.0_5eeb14c4_304944fd.pdf",
+      "bytes": 2125347,
+      "pages": 12,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "terre",
@@ -644,9 +1333,22 @@
       "styleHash": "75d62556",
       "contentHash": "c7175fd0",
       "file": "terre-fr-v0.2.1_75d62556_c7175fd0.pdf",
+      "archive": "aubaine-v0.2.1-fr.zip",
       "bytes": 2125095,
       "pages": 12,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "terre",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "073a4a62",
+      "file": "terre-fr-v0.3.0_5eeb14c4_073a4a62.pdf",
+      "bytes": 2124931,
+      "pages": 12,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "vent",
@@ -656,9 +1358,22 @@
       "styleHash": "75d62556",
       "contentHash": "df3a99ea",
       "file": "vent-en-v0.2.1_75d62556_df3a99ea.pdf",
+      "archive": "aubaine-v0.2.1-en.zip",
       "bytes": 2080569,
       "pages": 13,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "vent",
+      "kind": "tree",
+      "locale": "en",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "b840be5f",
+      "file": "vent-en-v0.3.0_5eeb14c4_b840be5f.pdf",
+      "bytes": 2080114,
+      "pages": 13,
+      "generatedAt": "2026-10-24T21:05:58Z"
     },
     {
       "slug": "vent",
@@ -668,9 +1383,22 @@
       "styleHash": "75d62556",
       "contentHash": "2ff7ead0",
       "file": "vent-fr-v0.2.1_75d62556_2ff7ead0.pdf",
+      "archive": "aubaine-v0.2.1-fr.zip",
       "bytes": 2079814,
       "pages": 13,
       "generatedAt": "2026-10-23T11:04:06Z"
+    },
+    {
+      "slug": "vent",
+      "kind": "tree",
+      "locale": "fr",
+      "version": "0.3.0",
+      "styleHash": "5eeb14c4",
+      "contentHash": "be9da58c",
+      "file": "vent-fr-v0.3.0_5eeb14c4_be9da58c.pdf",
+      "bytes": 2080583,
+      "pages": 13,
+      "generatedAt": "2026-10-24T21:05:58Z"
     }
   ]
 }

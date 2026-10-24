@@ -1,6 +1,12 @@
 {
   "notes": [
     {
+      "version": "0.3.0",
+      "date": "2026-10-24",
+      "fr": "Chaque Jet se lance désormais avec un d20. Les PdV, la Mémoire et l'Énergie suivent leur Niveau jusqu'à 20, et le Livre du MJ fixe le prix de chaque Compétence selon son Rang. Le tirage compte vingt-cinq livrets d'arbre, le Livre du joueur, le Livre du MJ et le catalogue d'équipement, dans les deux langues.",
+      "en": "Every Roll now uses a d20. HP, Memory and Energy follow their Level up to 20, and the Game Master Handbook prices each Skill by its Rank. The printing holds twenty-five tree booklets, the Player Handbook, the Game Master Handbook and the equipment catalogue, in both languages."
+    },
+    {
       "version": "0.2.1",
       "date": "2026-09-22",
       "fr": "Premier tirage inscrit au registre. Quinze livrets d'arbre, le Livre du joueur, le Livre du MJ et le catalogue d'équipement, rendus dans les deux langues.",
