@@ -1,8 +1,8 @@
 ---
 name: aubaine-content
 author: Kori
-version: 1.0.0
-last_updated: 2026-10-20
+version: 1.1.0
+last_updated: 2026-10-24
 license: MIT
 description: Create, migrate, revise and audit Aubaine's gameplay content under data/ (skills, upgrades, states, equipment items, sets, species and sub-species, skill lists, trees) and their English overlays. Six passes, each run by its own subagent (write, ADHD shaping, keyword logic, formulary, balance, quality), with owner checkpoints before writing and before commit. Use for any rule text, any structured mechanical field, any Compétence or species pool, and any migration of an older design into Aubaine.
 argument-hint: [entity, source file, or audit target]
@@ -45,12 +45,14 @@ files in scope, and returning ledger rows. A pass changes only what its lens nam
 | Check A | orchestrator | | nothing; `pnpm data:check`, failures routed |
 | EN | `aubaine-content-translator` | `.claude/skills/aubaine-prose/references/locale-en.md` | the `.en.json` overlays, allowlisted fields only |
 | 3e | `aubaine-content-keywords` | `references/keyword-logic.md` | the English references |
+| Measure | orchestrator | `references/balance.md` § Where the measures come from | nothing; writes `balance-tool.md` in the run folder |
 | 5 Balance | `aubaine-content-balance` | `references/balance.md` | nothing; findings only |
 | 6 Quality | `aubaine-content-quality` | `references/quality.md` | what its checklist names; the rest is a note |
 | Check B | orchestrator | | nothing; `pnpm data:check`, then `pnpm build` |
 | C1 | owner | | decides |
 
 Give each subagent the brief path, the mode, the files and fields in scope, and the ledger so far.
+Give the balance pass the tool report too.
 A writer call takes at most four entities: split a larger run into batches written in parallel, each
 on its own files.
 The writer also returns a limitation inventory per entry, which passes 2 and 6 check against.
@@ -110,11 +112,12 @@ the run touched. Report a check as passed only when it ran and passed.
 
 ## C1
 
-Give the owner the ledger grouped by file, the balance findings with their labels, the open
+Give the owner the ledger grouped by file, the balance findings with their labels and the tool
+report they cite, the open
 questions, the notes on kept wording, the real check output, the `pnpm dev` pages in both locales,
 and the skill fixes made during the run. A decision reruns only the steps it touches: the writer on
-the changed fields, passes 2 to 4, the translator and 3e, quality, the checks; balance only when a
-mechanic changed. Set a final status only when the owner asks. Commit only on « commit ».
+the changed fields, passes 2 to 4, the translator and 3e, quality, the checks; Measure and balance
+only when a mechanic changed. Set a final status only when the owner asks. Commit only on « commit ».
 
 ## When a run teaches the skill
 

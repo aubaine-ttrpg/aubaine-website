@@ -26,8 +26,9 @@ file or an owner decision.
 | Ability score increases | What does an Espèce give? | `data/books/livre-du-joueur/04-les-especes.md` § Ce qu'une Espèce apporte |
 | A skill proficiency | Which Aptitude takes the Expertise, chosen when? | `formulary.md` § expertise-grant |
 | A bonus that grows with level, a rating, a challenge value | What fixed value or redesign replaces the scaling? | none: Aubaine has no character level; owner |
+| A spell of a given level | The Rang of the same number: its Énergie, its Unités, its gate | `data/books/livre-du-mj/03-concevoir-une-competence.md` § Le Rang |
 | A saving throw against a computed DC | Which pair defends, which pair sets the DD? | `formulary.md` § resisted-effect, § dd |
-| Uses per rest, uses equal to a bonus | An Énergie cost, or a `limit`? | `balance.md` § Owner rulings; the runbook's `limit` trap |
+| Uses per rest, uses equal to a bonus | An Énergie cost, or a `limit` that pays at chapter 03's rate? | `data/books/livre-du-mj/03-concevoir-une-competence.md` § Payer une Compétence; the runbook's `limit` trap |
 | A condition | Which state, and does its Aubaine definition match the intent? | `data/states/`, read the definition, not the name |
 | Advantage on a kind of save | 1 Avantage on the Jets that resist it | `formulary.md` § avantage-gain |
 | A reroll | The reroll wording of a settled entry | CONELF-001 |
@@ -36,7 +37,7 @@ file or an owner decision.
 | Ignoring difficult terrain | The rule term and its settled wording | `formulary.md` § free-difficult-terrain |
 | Replacing an attack | An `activation` of « 1 Attaque » and the manoeuvre wording | CROSAN-001, MENDAN-001; `formulary.md` § attack-manoeuvre |
 | A spell cast through a trait | Aubaine has no spell list: a Compétence, redesigned, or nothing | owner |
-| A feature gated by level | Available on purchase, or priced higher | owner |
+| A feature gated by level | Available on purchase at 10 PX per Rang, never a level prerequisite | `balance.md` § Owner rulings, the Rang (2026-10-24) |
 | Speed, size, age, height | The species fields | `docs/runbooks/add-a-species.md` |
 | Sub-races | `subspecies`, and which word the Espèce uses for them | `naming.md` |
 
