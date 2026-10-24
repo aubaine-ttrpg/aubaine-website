@@ -1,0 +1,4 @@
+{
+  "name": "Stunned",
+  "description": "A {{sonne}} creature is out of the fight but still conscious. It is {{immobilise}}, it cannot act or take any {{reaction}}, and it speaks only with difficulty.\n\nIt fails every {{force}} and {{dexterite}} {{jet}}, and {{attaque|Attacks}} made against it gain 1 {{avantage}}.\n\nThe Skill that applies it says how long the state lasts."
+}

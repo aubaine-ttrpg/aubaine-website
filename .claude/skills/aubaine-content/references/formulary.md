@@ -229,7 +229,8 @@ write uses it. A proposal never renames a rule term or adds a key; that is a voc
 ### state-apply
 - FR: « elle est {{etourdi|Étourdie}} jusqu'à la fin de son prochain tour »; for a counted state,
   « vous gagnez 1 {{strate}} »
-  EN: « it is {{etourdi|Stunned}} until the end of its next turn »; « you gain 1 {{strate}} »
+  EN: « it is {{etourdi}} until the end of its next turn »; « you gain 1 {{strate}} ». An English
+  state name comes from its overlay: Étourdi prints « Dazed » and Sonné « Stunned » since 2026-10-24.
 - When: a Compétence applies a state. The state file defines it; the Compétence says how long it
   lasts and never explains the state again.
 - Measured 2026-10-20: a counted state is gained in 78 files, 50 settled. Examples: ANTICI-001,
