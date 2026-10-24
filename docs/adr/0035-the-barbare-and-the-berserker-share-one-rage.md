@@ -6,6 +6,7 @@
 **Revised:** 2026-09-29, Cri primordial and Poigne du titan return to the Barbare (addenda in Decisions 1, 3 and 6)
 **Revised:** 2026-09-29, Rage's upgrades are renamed and the Rage tag answers to a key (addendum in Decision 2)
 **Revised:** 2026-09-29, Frénésie puts you in the Fureur state instead of « à son comble » (addendum in Decision 4)
+**Revised:** 2026-10-24, the game-wide ruling on criticals exists, and Critique brutal stays withdrawn (addendum in Decision 6)
 **Deciders:** Kori
 **Scope:**
 - **Covers:** splitting the draft Berserker archetype into two archetype trees, and the choices that split
@@ -283,6 +284,12 @@ the paragraphs read cleanly.
 
 Poigne du titan returns (addendum in Decision 1). Critique brutal stays withdrawn, and of the old
 Cris only Cri du salut and Cri démoralisant stay deleted.
+
+### Addendum (2026-10-24): criticals have a game-wide rule
+
+The reopen condition above is met: 0056 Decision 2 makes a critical act by kind, and an Attaque's
+Réussite critique doubles its total damage. Critique brutal stays withdrawn, because the core rule
+now does more than the skill did when it doubled only the dice.
 
 ---
 

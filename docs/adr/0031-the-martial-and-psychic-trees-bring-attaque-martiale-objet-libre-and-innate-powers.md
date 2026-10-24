@@ -6,6 +6,7 @@
 **Revised:** 2026-09-28, Decision 1 is reversed by 0033, and the Physique tree drops its stances (addendum in Decision 1)
 **Revised:** 2026-09-28, psychic powers use Esprit alone (addendum in Decision 3)
 **Revised:** 2026-10-24, the design fixture cited as evidence is retired by 0055 (addendum in Decision 3)
+**Revised:** 2026-10-24, the DD base becomes 8 on the d20 of 0056 (addendum in Decision 3)
 **Deciders:** Kori
 **Scope:**
 - **Covers:** three choices made while rebuilding the Physique tree as the martial tree and writing the Psychique tree:
@@ -124,6 +125,11 @@ the loop as it was accepted, before that reversal.
 - `tests/fixtures/design-derived.json`, cited above, was removed by 0055. The figure was measured
   from it on the date of the addendum above, and the history keeps the file; `primeCharacteristics`
   in `src/lib/game/derive.ts` still derives the primary Caractéristique.
+
+### Addendum (2026-10-24): the DD base is 8
+
+- 0056 moves every Jet to a d20 and a Compétence's DD to the base 8. A resisted psychic power reads
+  its DD as 8 + Esprit + Volonté.
 
 ---
 

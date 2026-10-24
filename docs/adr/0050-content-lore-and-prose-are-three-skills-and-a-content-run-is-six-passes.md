@@ -4,6 +4,7 @@
 **Status:** Accepted
 **Date:** 2026-10-20
 **Revised:** 2026-10-20, the Sauvegarde, the pair of an Attaque and a DD written with its base extend the notation (addendum in Decision 3)
+**Revised:** 2026-10-24, on the d20 a Compétence's DD has the base 8, and the criticals gain their forms (addendum in Decision 3)
 **Deciders:** Kori
 **Scope:** Which writing skill owns which reader facing surface, how a run of the content skill is
 staged across subagents and owner checkpoints, the one wording each mechanical relationship takes,
@@ -198,6 +199,16 @@ The owner extended the notation at the Nnor run's last checkpoint:
 
 The forms are in `formulary.md` § save, § resisted-effect, § attack-vs-ca, § attack-manoeuvre and
 § dd-from-attack.
+
+### Addendum (2026-10-24): the base of a DD is 8 on the d20
+
+0056 moves every Jet to `1d20 + Caractéristique + Aptitude`.
+
+- A Compétence's DD is « {{dd}} (8 + {{X}} + {{Y}}) », the base still printed in every entry. Every
+  form above that writes the base 10 now writes 8, and `formulary.md` § dd says so.
+- The two criticals are rule terms, `{{reussite-critique}}` and `{{echec-critique}}`, and
+  `formulary.md` gives each its form.
+- Every entry is converted in the same change, so no legacy DD base remains to migrate later.
 
 ---
 
