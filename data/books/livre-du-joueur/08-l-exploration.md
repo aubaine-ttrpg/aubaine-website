@@ -100,9 +100,21 @@ Au-delà de quelques jours de privation, le MJ fixe les conséquences, selon ce 
 
 ### Le froid et la chaleur
 
-Une créature exposée sans protection à un froid ou à une chaleur extrêmes effectue, à la fin de chaque heure, un {{jet}} de {{constitution}} + {{resistance}} contre un {{dd}} de 10. En cas d'échec, elle subit 1d6 dégâts de Froid ou de Feu, selon ce qui l'accable.
+Le froid extrême commence à -18 °C, la chaleur extrême à 38 °C. Une créature qui y est exposée sans protection fait, à la fin de chaque heure, une {{sauvegarde}} ({{constitution}} + {{resistance}}) contre le {{dd}} de sa ligne dans le tableau ci-dessous. En cas d'échec, elle subit ce que cette ligne donne pour le froid ou pour la chaleur, selon ce qui l'accable.
 
-Des vêtements adaptés, un abri ou une Compétence qui protège de ces températures suppriment ce {{jet}} ou le facilitent. Le texte de la Compétence ou de la pièce le dit.
+Le MJ choisit la ligne la plus dure que la température atteint, ou celle dont l'exemple ressemble le plus au lieu. À -30 °C, c'est la ligne du {{dd}} 15.
+
+| DD | Froid | Chaleur | Par exemple | En cas d'échec |
+| --- | --- | --- | --- | --- |
+| 10 | -18 °C ou moins | 38 °C ou plus | une nuit d'hiver en plaine ou une journée de canicule | 1 {{fatigue}} |
+| 15 | -28 °C | 43 °C | un col de montagne en hiver ou un désert à midi | 1 {{fatigue}} ; {{1d6 degats-froid}} ou {{1d6 degats-feu}} |
+| 20 | -38 °C | 48 °C | une toundra au cœur de l'hiver ou un désert de sel au plus fort de l'été | 2 {{fatigue}} ; {{2d6 degats-froid}} ou {{2d6 degats-feu}} |
+| 25 | -48 °C | 53 °C | un haut sommet battu par le vent ou les abords d'une coulée de lave | 3 {{fatigue}} ; {{3d6 degats-froid}} et {{gele\|Gelée}}, ou {{3d6 degats-feu}} et {{etourdi\|Étourdie}} |
+| 30 | -58 °C | 58 °C | une banquise pendant la nuit polaire ou la gueule d'une forge | 3 {{fatigue}} ; {{5d6 degats-froid}} et {{gele\|Gelée}}, ou {{5d6 degats-feu}} et {{sonne\|Sonnée}} |
+
+Une créature que la chaleur a rendue {{etourdi|Étourdie}} ou {{sonne|Sonnée}} le reste jusqu'à ce qu'elle ait passé une heure à l'abri de cette chaleur. Une créature que le froid a rendue {{gele|Gelée}} s'en libère comme l'état le décrit, contre le {{dd}} de sa ligne.
+
+Des vêtements adaptés, un abri ou une Compétence qui protège de ces températures suppriment cette {{sauvegarde}} ou la facilitent. Le texte de la Compétence ou de la pièce le dit.
 
 ## Le butin
 

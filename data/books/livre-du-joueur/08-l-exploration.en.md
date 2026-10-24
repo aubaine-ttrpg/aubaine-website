@@ -100,9 +100,21 @@ Beyond a few days of going without, the GM sets the consequences, according to w
 
 ### Cold and heat
 
-A creature exposed without protection to extreme cold or heat makes a {{constitution}} + {{resistance}} {{jet}} against {{dd}} 10 at the end of each hour. On a failure, it takes 1d6 Cold or Fire damage, whichever is wearing it down.
+Extreme cold starts at -18 °C, extreme heat at 38 °C. At the end of each hour, a creature exposed to either without protection makes a {{sauvegarde}} ({{constitution}} + {{resistance}}) against the {{dd}} of its row in the table below. On a failure, it suffers what that row lists for cold or for heat, whichever is wearing it down.
 
-Suitable clothing, shelter or a Skill that guards against those temperatures removes the {{jet}} or makes it easier. The Skill's or the piece's text says how.
+The GM picks the harshest row the temperature reaches, or the row whose example best matches the place. At -30 °C, that is the {{dd}} 15 row.
+
+| DC | Cold | Heat | For example | On a failure |
+| --- | --- | --- | --- | --- |
+| 10 | -18 °C or colder | 38 °C or hotter | a winter night on the plains or a day in a heatwave | 1 {{fatigue}} |
+| 15 | -28 °C | 43 °C | a mountain pass in winter or a desert at noon | 1 {{fatigue}}; {{1d6 degats-froid}} or {{1d6 degats-feu}} |
+| 20 | -38 °C | 48 °C | the tundra in the depths of winter or a salt flat at the height of summer | 2 {{fatigue}}; {{2d6 degats-froid}} or {{2d6 degats-feu}} |
+| 25 | -48 °C | 53 °C | a high summit lashed by the wind or the edge of a lava flow | 3 {{fatigue}}; {{3d6 degats-froid}} and {{gele}}, or {{3d6 degats-feu}} and {{etourdi}} |
+| 30 | -58 °C | 58 °C | sea ice in the polar night or the mouth of a forge | 3 {{fatigue}}; {{5d6 degats-froid}} and {{gele}}, or {{5d6 degats-feu}} and {{sonne}} |
+
+A creature the heat has left {{etourdi}} or {{sonne}} stays that way until it has spent an hour sheltered from that heat. A creature the cold has left {{gele}} breaks free as the state describes, against the {{dd}} of its row.
+
+Suitable clothing, shelter or a Skill that guards against those temperatures removes the {{sauvegarde}} or makes it easier. The Skill's or the piece's text says how.
 
 ## Loot
 

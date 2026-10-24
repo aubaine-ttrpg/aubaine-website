@@ -4,6 +4,7 @@
 **Status:** Accepted
 **Date:** 2026-10-24
 **Revised:** 2026-10-24, the PdV and Énergie formulas change after all, through 0057 (addendum in Decision 1)
+**Revised:** 2026-10-24, extreme cold and heat become five rows from DD 10 to 30 (addendum in Decision 3)
 **Deciders:** Kori
 **Scope:**
 - **Covers:** the die of every Jet and the numbers tied to it: Avantage and Désavantage dice, the two
@@ -192,6 +193,19 @@ text is reproduced, and no chapter names another game.
 - An SRD value can be easier or harder than the 2d12 number it replaces. The Hésitante social Jet
   keeps 15 and falls from 75% to 55% at +5; first aid falls to DD 10 although Aubaine's success gives
   1 PdV and ends Agonie, more than the SRD's stabilising.
+
+### Addendum (2026-10-24): extreme cold and heat climb from DD 10 to 30
+
+- The row « Extreme cold or heat, every hour » keeps DD 10 for its first step, at the SRD's own
+  thresholds of −18 °C and 38 °C (SRD 5.2.1 FR p.206). Four steps follow at DD 15, 20, 25 and 30,
+  10 °C colder or 5 °C hotter each. Each row names the temperature and an example of where it is met
+  (`data/books/livre-du-joueur/08-l-exploration.md` § Le froid et la chaleur).
+- A failure no longer deals 1d6. It gives Fatigue from the first step, then Fatigue and damage, up
+  to 3 Fatigue, 5d6 damage and Gelé, Étourdi or Sonné. The decider: « there should be a table from
+  10 to 30 depending on how hot or how cold, and each level do more things », then « five steps,
+  last step should be 5 die instead of 4 ».
+- Fatigue is Aubaine's own state (`data/states/fatigue.json`). The SRD's levels of exhaustion do not
+  travel with the number.
 
 ---
 
