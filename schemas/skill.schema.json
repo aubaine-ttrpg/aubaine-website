@@ -121,10 +121,10 @@
       "additionalProperties": false
     },
     "energy": {
-      "description": "Pastille ÉNERGIE. Zéro est une valeur réelle et se distingue d'une Compétence sans coût : elle affiche « 0 énergie ».",
+      "description": "Pastille ÉNERGIE, de 0 au coût du Rang le plus cher. Zéro est une valeur réelle et se distingue d'une Compétence sans coût : elle affiche « 0 énergie ».",
       "type": "integer",
       "minimum": 0,
-      "maximum": 5
+      "maximum": 13
     },
     "karma": {
       "description": "Pastille KARMA. Une créature en garde 3 au plus et n'en récupère à aucun repos, alors une Compétence qui en coûte pèse lourd.",

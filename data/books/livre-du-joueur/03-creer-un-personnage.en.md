@@ -181,18 +181,22 @@ One more {{aptitude}} joins the list, and it belongs to you alone: your {{specia
 
 ## Resources
 
-Each Potential Point raises one of the three paths by one level. They are independent and each caps at level 10.
+Each Potential Point raises one of the three paths by one level. The paths are independent, and each caps at level 20.
+
+Vitality says how many blows you take, {{memoire}} how many things you know how to do, and {{energie}} how many times you act.
 
 Vitality
-: `{{pdv}} = 20 + 2 × {{constitution}} + 5 × Vitality Level`
+: `{{pdv}} = 3 + (5 + {{constitution}}) × Vitality Level`
 
 {{memoire}}
 : `{{memoire}} = 4 + {{intelligence}} + {{memoire}} Level`
 
 {{energie}}
-: `{{energie}} = 8 + {{esprit}} + {{energie}} Level`
+: `{{energie}} = {{esprit}} + 3 × {{energie}} Level`
 
-Your 3 PP go wherever you like: three paths at one level, or one path at three.
+{{constitution}} counts once per Vitality Level: Vitality left at level 0 gives 3 {{pdv}}, whatever your {{constitution}}. {{energie}} left at level 0 gives only your {{esprit}}.
+
+Your 3 PP go wherever you like: all into one path, split across two, or one into each of the three.
 
 {{memoire}} is the room you have for your Skills. A {{memorisee}} Skill takes 1 {{memoire}}, whatever its Level and its cost. Your two Species Skills are {{memorisee}} without taking up any {{memoire}}, as the Species chapter explains, and the ones your equipment grants take up nothing. Apart from your two Species Skills, you can change your {{memorisee}} Skills during a {{repos-court}} or a {{repos-long}}.
 
@@ -214,9 +218,9 @@ These six boxes are the only ones that are calculated. Work them out again after
 
 | Box | Formula |
 | --- | --- |
-| {{pdv}} | `20 + 2 × {{constitution}} + 5 × Vitality Level` |
+| {{pdv}} | `3 + (5 + {{constitution}}) × Vitality Level` |
 | {{memoire}} | `4 + {{intelligence}} + {{memoire}} Level` |
-| {{energie}} | `8 + {{esprit}} + {{energie}} Level` |
+| {{energie}} | `{{esprit}} + 3 × {{energie}} Level` |
 | {{ca}} | `10 + {{dexterite}}` unarmoured, otherwise the armour's formula |
 | {{vitesse}} | 9 metres, unless your Species says otherwise |
 | Initiative | `1d4 + {{dexterite}}`, rolled at the start of combat |
@@ -268,9 +272,9 @@ Ten MP, and the count lands exactly on 22.
 
 Her 3 PP go one to each path. Her derived values:
 
-- {{pdv}}: `20 + 2 × 2 + 5 × 1` = **29**
+- {{pdv}}: `3 + (5 + 2) × 1` = **10**
 - {{memoire}}: `4 + 1 + 1` = **6**
-- {{energie}}: `8 + 2 + 1` = **11**
+- {{energie}}: `2 + 3 × 1` = **5**
 - {{ca}}: `10 + 3` = **13** unarmoured
 - {{vitesse}}: **9 m**
 - Initiative: `1d4 + 3`

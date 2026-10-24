@@ -26,6 +26,7 @@ import { ARCHIVE_FILE, BOOKLET_KINDS, RELEASE_FILE } from '../booklet/release.ts
 import { LOCALES } from '../i18n/locales.ts'
 import { POLICY_KINDS } from '../i18n/routes.ts'
 import { ICON_NAME_PATTERN } from '../rights/attribution.ts'
+import { MAX_ENERGY_COST } from './resources.ts'
 
 const SKILL_ID = /^[A-Z0-9]{6}-[0-9]{3}$/
 const MACHINE_KEY = /^[a-z][a-z0-9-]*$/
@@ -305,10 +306,10 @@ export const skill = z
       .number()
       .int()
       .min(0)
-      .max(5)
+      .max(MAX_ENERGY_COST)
       .optional()
       .describe(
-        "Pastille ÉNERGIE. Zéro est une valeur réelle et se distingue d'une Compétence sans coût : elle affiche « 0 énergie ».",
+        "Pastille ÉNERGIE, de 0 au coût du Rang le plus cher. Zéro est une valeur réelle et se distingue d'une Compétence sans coût : elle affiche « 0 énergie ».",
       ),
     karma: z
       .number()

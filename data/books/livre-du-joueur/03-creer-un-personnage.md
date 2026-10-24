@@ -181,18 +181,22 @@ Six reviennent plus que les autres, et ce sont celles du combat : {{melee}}, {{f
 
 ## Les ressources
 
-Chaque Point de potentiel monte d'un niveau l'une des trois voies. Elles sont indépendantes, et chacune plafonne au niveau 10.
+Chaque Point de potentiel monte d'un niveau l'une des trois voies. Elles sont indépendantes, et chacune plafonne au niveau 20.
+
+La Vitalité dit combien de coups vous encaissez, la {{memoire}} combien de choses vous savez faire, et l'{{energie}} combien de fois vous agissez.
 
 Vitalité
-: `{{pdv}} = 20 + 2 × {{constitution}} + 5 × Niveau de Vitalité`
+: `{{pdv}} = 3 + (5 + {{constitution}}) × Niveau de Vitalité`
 
 {{memoire}}
 : `{{memoire}} = 4 + {{intelligence}} + Niveau de {{memoire}}`
 
 {{energie}}
-: `{{energie}} = 8 + {{esprit}} + Niveau d'{{energie}}`
+: `{{energie}} = {{esprit}} + 3 × Niveau d'{{energie}}`
 
-Vos 3 PP vont où vous voulez : trois voies d'un niveau, ou une voie de trois.
+La {{constitution}} compte une fois par Niveau de Vitalité : une Vitalité laissée au niveau 0 donne 3 {{pdv}}, quelle que soit votre {{constitution}}. Une {{energie}} laissée au niveau 0 ne donne que votre {{esprit}}.
+
+Vos 3 PP vont où vous voulez : tous dans une voie, répartis sur deux, ou un dans chacune des trois.
 
 La {{memoire}} est la place que vous avez pour vos Compétences. Une Compétence {{memorisee}} occupe 1 {{memoire}}, quels que soient son Niveau et son coût. Vos deux Compétences d'Espèce sont {{memorisee|Mémorisées}} sans occuper de {{memoire}}, comme le détaille le chapitre Les Espèces, et celles que votre équipement vous donne n'occupent rien. Hors vos deux Compétences d'Espèce, vous pouvez changer vos Compétences {{memorisee|Mémorisées}} pendant un {{repos-court}} ou un {{repos-long}}.
 
@@ -214,9 +218,9 @@ Ces six cases sont les seules qui se calculent. Reprenez-les après chaque achat
 
 | Case | Formule |
 | --- | --- |
-| {{pdv}} | `20 + 2 × {{constitution}} + 5 × Niveau de Vitalité` |
+| {{pdv}} | `3 + (5 + {{constitution}}) × Niveau de Vitalité` |
 | {{memoire}} | `4 + {{intelligence}} + Niveau de {{memoire}}` |
-| {{energie}} | `8 + {{esprit}} + Niveau d'{{energie}}` |
+| {{energie}} | `{{esprit}} + 3 × Niveau d'{{energie}}` |
 | {{ca}} | `10 + {{dexterite}}` sans armure, sinon la formule de l'armure |
 | {{vitesse}} | 9 mètres, sauf mention de votre Espèce |
 | Initiative | `1d4 + {{dexterite}}`, lancé au début du combat |
@@ -268,9 +272,9 @@ Dix PM, et le compte tombe juste à 22.
 
 Ses 3 PP vont un par voie. Ses valeurs dérivées :
 
-- {{pdv}} : `20 + 2 × 2 + 5 × 1` = **29**
+- {{pdv}} : `3 + (5 + 2) × 1` = **10**
 - {{memoire}} : `4 + 1 + 1` = **6**
-- {{energie}} : `8 + 2 + 1` = **11**
+- {{energie}} : `2 + 3 × 1` = **5**
 - {{ca}} : `10 + 3` = **13** sans armure
 - {{vitesse}} : **9 m**
 - Initiative : `1d4 + 3`

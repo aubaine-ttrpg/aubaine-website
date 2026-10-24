@@ -19,7 +19,7 @@ C'est la moitié du maximum que vous récupérez, pas la moitié de ce qui vous 
 
 > [!EXAMPLE] Exemple
 >
-> Sélène sort d'un combat à 2 {{pdv}} sur 29. Après un {{repos-court}}, elle récupère 14 {{pdv}}, la moitié de 29 arrondie à l'inférieur, et remonte à 16.
+> Sélène sort d'un combat à 2 {{pdv}} sur 10 et à 0 {{energie}} sur 5. Après un {{repos-court}}, elle récupère 5 {{pdv}}, la moitié de 10, et 2 {{energie|Énergies}}, la moitié de 5 arrondie à l'inférieur. Elle remonte à 7 {{pdv}} et 2 {{energie|Énergies}}.
 
 ## Le Repos long
 
@@ -50,7 +50,7 @@ Le {{repos-court}} est donc la vraie respiration du groupe : dix minutes suffise
 
 ## Le rythme attendu
 
-Le jeu est calibré sur cinq ou six rencontres significatives entre deux {{repos-long|Repos longs}}, avec deux {{repos-court|Repos courts}} au milieu. Sur un cycle complet, votre {{energie}} disponible avoisine donc le double de votre maximum.
+Le jeu est calibré sur quatre à six rencontres significatives entre deux {{repos-long|Repos longs}}, avec deux {{repos-court|Repos courts}} au milieu. Sur un cycle complet, votre {{energie}} disponible avoisine donc le double de votre maximum.
 
 Ce rythme est un repère de conception, que chaque table adapte. Une table qui se repose moins joue des personnages plus économes, et le MJ ajuste ce qu'il leur envoie.
 

@@ -22,14 +22,14 @@ That last gap is the measurement that matters. The rest is there to explain it.
 
 ## The builds to compare
 
-At equal Threat, run at least one build that concentrates its Energy, one versatile build that spends Memory, one enduring build that invests in Vitality, one support or control build, and one hybrid.
+At equal MP and PP, run at least one build that puts every PP into a single path, one that splits them between two paths, one that spreads them across all three, and one support or control build.
 
 The scenarios have to let varied {{caracteristique|Characteristics}} and {{aptitude|Aptitudes}} bear on the outcome. A damage exchange in an empty room tests one thing and always validates the same build.
 
 ## The series
 
 PP spread
-: Same MP and PP, different splits between Vitality, Memory and Energy.
+: Same MP and PP, different splits between Vitality, Memory and Energy: all in one path, shared between two, spread across all three.
 
 MP spread
 : Same totals, different Characteristics and Aptitudes. Check each one gets real chances to matter.
@@ -53,5 +53,8 @@ Equipment
 6. Does one ratio stay meaningful as the number of opponents changes?
 7. Does a lone opponent have enough interactions without exceeding its resource economy?
 8. Which Skills, passives, equipment or combinations regularly exceed their expected value?
+9. Does the formula `Threat = MP + PP` still give a PP its fair weight, now that each PP raises a path by one level and a major milestone grants 3 MP or 1 PP?
+10. How fast should PP arrive, when a path takes 20 to fill?
+11. How often should the GM grant {{karma}}, now that Ranks 7 to 9 spend it?
 
 Do not adjust a constant on isolated throws. It takes repeated encounters, different compositions, and complete resource cycles.

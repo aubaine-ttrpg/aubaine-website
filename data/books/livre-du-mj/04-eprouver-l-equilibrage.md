@@ -22,14 +22,14 @@ Ce dernier écart est la mesure qui compte. Le reste sert à l'expliquer.
 
 ## Les constructions à comparer
 
-À Menace égale, faites tourner au minimum une construction qui concentre son Énergie, une polyvalente qui consomme de la Mémoire, une endurante qui investit en Vitalité, une de soutien ou de contrôle, et une hybride.
+À PM et à PP égaux, faites tourner au minimum une construction qui met tous ses PP dans une seule voie, une qui les partage entre deux voies, une qui les répartit sur les trois, et une de soutien ou de contrôle.
 
 Les scénarios doivent laisser des {{caracteristique|Caractéristiques}} et des {{aptitude|Aptitudes}} variées peser sur l'issue. Un échange de dégâts dans une pièce vide ne teste qu'une chose et valide toujours la même construction.
 
 ## Les séries
 
 Répartition des PP
-: Mêmes PM et PP, répartitions différentes entre Vitalité, Mémoire et Énergie.
+: Mêmes PM et PP, répartitions différentes entre Vitalité, Mémoire et Énergie : tout dans une voie, partagé entre deux, réparti sur les trois.
 
 Répartition des PM
 : Mêmes totaux, Caractéristiques et Aptitudes différentes. Vérifiez que chacune a de vraies occasions de peser.
@@ -53,5 +53,8 @@ Composition
 6. Un même ratio reste-t-il pertinent quand le nombre d'adversaires change ?
 7. Un adversaire solitaire dispose-t-il d'assez d'interactions sans dépasser son économie de ressources ?
 8. Quelles Compétences, quels passifs, quels équipements ou quelles combinaisons dépassent régulièrement leur valeur prévue ?
+9. La formule `Menace = PM + PP` donne-t-elle encore son juste poids à un PP, maintenant que chaque PP monte une voie d'un niveau et qu'une étape majeure accorde 3 PM ou 1 PP ?
+10. À quel rythme les PP doivent-ils arriver, quand une voie en demande 20 pour se remplir ?
+11. À quelle fréquence le MJ doit-il accorder du {{karma}}, maintenant que les Rangs 7 à 9 en dépensent ?
 
 N'ajustez aucune constante sur des lancers isolés. Il faut des rencontres répétées, des compositions différentes, et des cycles de ressources complets.

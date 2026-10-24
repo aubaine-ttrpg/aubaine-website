@@ -19,7 +19,7 @@ It is half your maximum you recover, not half of what you are missing. You never
 
 > [!EXAMPLE] Example
 >
-> Sélène comes out of a fight on 2 {{pdv}} out of 29. After a {{repos-court}} she recovers 14 {{pdv}}, half of 29 rounded down, and climbs back to 16.
+> Sélène comes out of a fight on 2 {{pdv}} out of 10 and 0 {{energie}} out of 5. After a {{repos-court}} she recovers 5 {{pdv}}, half of 10, and 2 {{energie}}, half of 5 rounded down. She climbs back to 7 {{pdv}} and 2 {{energie}}.
 
 ## The Long Rest
 
@@ -50,7 +50,7 @@ That makes the {{repos-court}} the group's real breathing space: ten minutes are
 
 ## The expected rhythm
 
-The game is tuned for five or six significant encounters between two {{repos-long|Long Rests}}, with two {{repos-court|Short Rests}} in between. Over a full cycle, the {{energie}} available to you comes to about twice your maximum.
+The game is tuned for four to six significant encounters between two {{repos-long|Long Rests}}, with two {{repos-court|Short Rests}} in between. Over a full cycle, the {{energie}} available to you comes to about twice your maximum.
 
 This rhythm is a design benchmark that every table adapts. A table that rests less plays more frugal characters, and the GM adjusts what they send at them.
 
