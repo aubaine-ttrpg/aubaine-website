@@ -118,4 +118,4 @@ Suitable clothing, shelter or a Skill that guards against those temperatures rem
 
 ## Loot
 
-After a significant encounter, or on finding a source worth working, each character receives a Loot Opportunity. The Equipment chapter explains how to spend it.
+After a significant encounter, or on finding a source worth working, each character receives a {{occasion-de-butin}}. The Equipment chapter explains how to spend it.

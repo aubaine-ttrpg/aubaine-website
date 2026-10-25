@@ -87,6 +87,6 @@ MP raise your {{caracteristique|Characteristics}}, your {{aptitude|Aptitudes}} a
 
 ### Material rewards
 
-These take the form of extra Loot Opportunities, specific materials, a recipe, an item already made, or access to a rare source.
+These take the form of extra {{occasion-de-butin|Loot Opportunities}}, specific materials, a recipe, an item already made, or access to a rare source.
 
 They feed crafting without forcing equipment decided in advance on you, which leaves the choice of what you wear with the player.

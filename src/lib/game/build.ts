@@ -1074,6 +1074,36 @@ const RULE_TERMS: readonly RuleTerm[] = [
     },
   },
   {
+    fr: 'Occasion de butin',
+    en: 'Loot Opportunity',
+    color: 'var(--term-loot)',
+    icon: 'game-icons/open-treasure-chest',
+    definition: {
+      fr: "Une chance de puiser dans une source, en lançant son {{de-de-butin}} ou en tentant un prélèvement ciblé, jamais les deux. Chaque personnage en reçoit une après une rencontre significative ou la découverte d'une source exploitable.",
+      en: 'A chance to draw from a source, by rolling its {{de-de-butin}} or by attempting a targeted harvest, never both. Each character receives one after a significant encounter or on finding a source worth working.',
+    },
+  },
+  {
+    fr: 'Dé de butin',
+    en: 'Loot Die',
+    color: 'var(--term-loot)',
+    icon: 'game-icons/rolling-dice-cup',
+    definition: {
+      fr: "Le dé que vous lancez pour puiser dans une source ou un environnement. La {{table-de-butin}} qui l'accompagne dit ce que le résultat vous rapporte.",
+      en: 'The die you roll to draw from a source or an environment. The {{table-de-butin}} that comes with it says what the result brings you.',
+    },
+  },
+  {
+    fr: 'Table de butin',
+    en: 'Loot Table',
+    color: 'var(--term-loot)',
+    icon: 'game-icons/scroll-unfurled',
+    definition: {
+      fr: "Ce qu'une source ou un environnement peut donner, rangé par résultat : chaque face de son {{de-de-butin}} correspond à ce que vous en rapportez.",
+      en: 'What a source or an environment can yield, set out by result: each face of its {{de-de-butin}} is matched with what you bring back.',
+    },
+  },
+  {
     fr: 'Banque Commune',
     en: 'Common Bank',
     color: 'var(--accent-ink)',

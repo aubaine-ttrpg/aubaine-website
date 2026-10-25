@@ -87,6 +87,6 @@ Les PM font monter vos {{caracteristique|Caractéristiques}}, vos {{aptitude|Apt
 
 ### Les récompenses matérielles
 
-Elles prennent la forme d'Occasions de butin supplémentaires, de matériaux précis, d'une recette, d'un objet déjà fabriqué ou d'un accès à une source rare.
+Elles prennent la forme d'{{occasion-de-butin|Occasions de butin}} supplémentaires, de matériaux précis, d'une recette, d'un objet déjà fabriqué ou d'un accès à une source rare.
 
 Elles nourrissent la fabrication sans vous imposer un équipement décidé d'avance, ce qui laisse le choix de ce que vous portez du côté du joueur.

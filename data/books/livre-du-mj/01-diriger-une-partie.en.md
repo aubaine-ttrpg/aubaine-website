@@ -25,7 +25,7 @@ The rewards
 : XP at every significant obstacle, MP and PP by milestone. Announce which one you are granting before the players choose anything.
 
 The loot
-: The workable sources, their Loot Die and Loot Table, and the DC of a targeted harvest.
+: The workable sources, their {{de-de-butin}} and {{table-de-butin}}, and the DC of a targeted harvest.
 
 ## What you do not decide
 

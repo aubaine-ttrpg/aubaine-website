@@ -118,4 +118,4 @@ Des vêtements adaptés, un abri ou une Compétence qui protège de ces tempéra
 
 ## Le butin
 
-Après une rencontre significative ou la découverte d'une source exploitable, chaque personnage reçoit une Occasion de butin. Le chapitre L'équipement explique comment la dépenser.
+Après une rencontre significative ou la découverte d'une source exploitable, chaque personnage reçoit une {{occasion-de-butin}}. Le chapitre L'équipement explique comment la dépenser.

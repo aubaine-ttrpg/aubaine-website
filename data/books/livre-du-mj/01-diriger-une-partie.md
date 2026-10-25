@@ -25,7 +25,7 @@ Les récompenses
 : Les PX à chaque obstacle significatif, les PM et les PP par jalon. Annoncez lequel vous accordez avant que les joueurs choisissent quoi que ce soit.
 
 Le butin
-: Les sources exploitables, leur Dé de butin et leur Table de butin, et le DD d'un prélèvement ciblé.
+: Les sources exploitables, leur {{de-de-butin}} et leur {{table-de-butin}}, et le DD d'un prélèvement ciblé.
 
 ## Ce que vous ne décidez pas
 
