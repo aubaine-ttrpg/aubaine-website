@@ -9,7 +9,7 @@
   ],
   "activation": "1 Action",
   "range": "Personnel",
-  "duration": "1 round",
+  "duration": "Instantanée",
   "tags": {
     "practices": [
       "technique"
@@ -18,5 +18,5 @@
       "mobility"
     ]
   },
-  "description": "Vous rompez le contact et vous vous dégagez avec méthode.\n\nJusqu'à la fin de votre tour, votre {{deplacement|déplacement}} ne déclenche aucune {{ATTOPP-001}}."
+  "description": "Vous rompez le contact et vous vous dégagez avec méthode.\n\nVous êtes {{desengage}} jusqu'à la fin de votre {{tour}}."
 }

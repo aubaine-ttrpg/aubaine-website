@@ -1,0 +1,6 @@
+{
+  "title": "Search",
+  "range": "Self",
+  "duration": "Instantaneous",
+  "description": "You comb your surroundings, or hunt for what eludes you.\n\nMake a {{jet}} ({{esprit}} + {{perception}}) for what your senses can pick up, or ({{intelligence}} + {{investigation}}) for what has to be worked out. The GM sets the {{dd}}.\n\nAgainst a {{cache}} creature, your {{jet}} ({{esprit}} + {{perception}}) is opposed by its {{jet}} ({{dexterite}} + {{discretion}}). On a success, it is no longer {{cache}} to you."
+}

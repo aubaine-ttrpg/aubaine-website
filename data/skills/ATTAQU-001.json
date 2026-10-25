@@ -16,7 +16,10 @@
   "tags": {
     "practices": [
       "manoeuvre"
+    ],
+    "schools": [
+      "destruction"
     ]
   },
-  "description": "Vous portez une {{attaque}} contre une créature à portée, avec une arme équipée ou à mains nues.\n\nEffectuez le {{jet}} que l'arme indique contre la {{ca}} de la cible. En cas de réussite, elle subit les dégâts de l'arme, augmentés de la {{caracteristique}} employée par ce {{jet}}.\n\n***À mains nues.*** Le {{jet}} est {{force}} + {{melee}}, la portée 1,5 m, et les dégâts 1d4 + {{force}}."
+  "description": "Vous portez une {{attaque}} contre une créature à portée, avec une arme équipée ou à mains nues.\n\nLe {{jet}} de cette {{attaque}} est celui que l'arme indique. En cas de réussite, la cible subit les {{degats}} de l'arme.\n\n***À mains nues.*** Votre {{attaque}} ({{force}} + {{melee}}) vise une créature à 1,5 m ou moins de vous. En cas de réussite, la cible subit {{1d4 degats-contondant}}."
 }

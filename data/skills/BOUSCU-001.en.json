@@ -1,0 +1,7 @@
+{
+  "title": "Shove",
+  "activation": "1 Attack",
+  "range": "Weapon reach",
+  "duration": "Instantaneous",
+  "description": "Make a {{jet}} ({{force}} + {{athletisme}}) opposed by the target's {{jet}} ({{force}} + {{athletisme}}) or ({{dexterite}} + {{acrobaties}}), its choice. On a success, choose one of the two effects.\n\n***Knockdown.*** The target falls {{a-terre}}.\n***Push.*** You push the target back 1.5 m."
+}

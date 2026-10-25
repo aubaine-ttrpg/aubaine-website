@@ -1,0 +1,7 @@
+{
+  "key": "desengage",
+  "name": "Désengagé",
+  "kind": "buff",
+  "icon": "mdi:exit-run",
+  "description": "Une créature {{desengage|Désengagée}} ne déclenche aucune {{ATTOPP-001}} par son {{deplacement}}.\n\nLa {{competence}} qui l'applique indique combien de temps l'état dure."
+}

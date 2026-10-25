@@ -1,0 +1,7 @@
+{
+  "title": "Jump",
+  "activation": "1 Bonus Action",
+  "range": "Self",
+  "duration": "Instantaneous",
+  "description": "Your jump carries you horizontally up to 1.5 m per point of {{force}}, and vertically up to half that maximum. If your {{force}} is 0 or less, the horizontal maximum is 1.5 m. The distance this jump covers counts against your {{deplacement}}."
+}

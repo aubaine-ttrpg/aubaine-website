@@ -1,0 +1,6 @@
+{
+  "title": "Dodge",
+  "range": "Self",
+  "duration": "Until the start of your next turn",
+  "description": "You settle into a guard and read what your opponents mean to do.\n\nChoose one of the two effects.\n\n***Parry.*** {{attaque|Attacks}} made against you suffer 1 {{desavantage}}.\n***Sidestep.*** Your {{reflexes}}, {{resistance}} and {{volonte}} {{jet|Rolls}} gain 1 {{avantage}}.\n\nThe effect ends as soon as your {{vitesse}} drops to 0."
+}

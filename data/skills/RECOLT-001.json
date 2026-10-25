@@ -17,5 +17,5 @@
       "technique"
     ]
   },
-  "description": "Vous fouillez les environs pour ce que le terrain laisse à qui se baisse : bois mort, herbes, pierres, restes.\n\nLancez le Dé de butin de l'environnement où vous vous trouvez. Sa Table de butin donne le matériau et la quantité que vous rapportez."
+  "description": "Vous fouillez les environs pour ce que le terrain laisse à qui se baisse : bois mort, herbes, pierres, restes.\n\nLancez le {{de-de-butin}} de l'environnement où vous vous trouvez. Sa {{table-de-butin}} donne le matériau et la quantité que vous rapportez."
 }

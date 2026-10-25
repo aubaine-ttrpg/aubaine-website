@@ -1,0 +1,6 @@
+{
+  "title": "Hide",
+  "range": "Self",
+  "duration": "Until the state ends",
+  "description": "You slip from sight into cover, into shadow, or behind the back of a creature busy elsewhere.\n\nMake a {{jet}} ({{dexterite}} + {{discretion}}) opposed by the {{jet}} ({{esprit}} + {{perception}}) of each creature that could notice you. You are {{cache}} to every creature you beat; the others have spotted you."
+}

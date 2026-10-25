@@ -1,0 +1,6 @@
+{
+  "title": "Get Ready",
+  "range": "Self",
+  "duration": "Until the start of your next turn",
+  "description": "You name an observable trigger and the action you will play when it occurs: \"the moment he comes through the door, I shoot\".\n\nThe first time the trigger occurs, spend your {{reaction}} to play the action you named. You pay its costs at that moment.\n\nIf the trigger does not occur, you lose the action."
+}

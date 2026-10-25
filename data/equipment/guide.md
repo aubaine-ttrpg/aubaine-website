@@ -41,13 +41,13 @@ En plus des pièces équipées, vous pouvez garder sur vous deux fois votre {{fo
 
 L'équipement s'obtient par la fabrication bien plus que par l'achat. Ce que vous pouvez porter dépend donc des matériaux que vous rapportez.
 
-Après une rencontre significative ou la découverte d'une source exploitable, chaque personnage reçoit une Occasion de butin. Dépensez-la de l'une de ces deux façons, jamais des deux.
+Après une rencontre significative ou la découverte d'une source exploitable, chaque personnage reçoit une {{occasion-de-butin}}. Dépensez-la de l'une de ces deux façons, jamais des deux.
 
 Butin aléatoire
-: Lancez le Dé de butin de la source. Le MJ lit sa Table de butin et annonce ce que vous obtenez. Aucun {{jet}} de plus.
+: Lancez le {{de-de-butin}} de la source. Le MJ lit sa {{table-de-butin}} et annonce ce que vous obtenez. Aucun {{jet}} de plus.
 
 Prélèvement ciblé
-: Annoncez ce que vous cherchez et comment vous le récupérez. Le MJ fixe le Jet et son {{dd}}. En cas d'échec, l'Occasion est consommée sans résultat.
+: Annoncez ce que vous cherchez et comment vous le récupérez. Le MJ fixe le Jet et son {{dd}}. En cas d'échec, l'{{occasion-de-butin|Occasion}} est consommée sans résultat.
 
 Le premier choix est sûr et ne demande rien. Le second vise juste et peut ne rien donner. Une cible que la fiction ne permet pas d'extraire ne s'obtient pas sur un Jet.
 
@@ -55,17 +55,17 @@ Le premier choix est sûr et ne demande rien. Le second vise juste et peut ne ri
 
 Un matériau porte un nom, un ou plusieurs Types et une Valeur de matière. Ainsi : Peau de loup, Types Cuir et Bête, Valeur 1.
 
-Dans une même fabrication, un matériau ne compte que pour un seul de ses Types, même s'il en porte plusieurs que la recette accepte.
-
 La Valeur de matière sert deux fois : elle compte pour atteindre le coût d'une recette, et un matériau revendu rapporte sa Valeur en pièces d'argent.
 
 ## Fabriquer
 
 L'encadré d'une entrée nomme sa discipline, son coût, les Types qu'elle accepte et ses Jets dans l'ordre. La Compétence de base {{FABRIQ-001}} suit cette recette :
 
-1. Réunissez des matériaux couvrant chacun des Types demandés.
-2. Atteignez ou dépassez le coût, toutes matières confondues. La répartition entre les Types est libre : un lingot et dix peaux font l'affaire aussi bien qu'un partage égal.
+1. Réunissez autant de matériaux que vous voulez, pourvu que chacun porte au moins l'un des Types que la recette accepte.
+2. Atteignez ou dépassez le coût, toutes matières confondues. La répartition entre les Types est libre : un lingot et dix peaux font l'affaire aussi bien qu'un partage égal, et dix peaux seules aussi.
 3. Engagez les matériaux, puis effectuez les Jets dans l'ordre.
+
+Une recette peut rendre certains de ses Types obligatoires, et son encadré les signale par la mention « obligatoire ». Chacun doit être porté par au moins un des matériaux engagés, et un même matériau peut en porter plusieurs.
 
 Tous les Jets doivent réussir. Les matériaux sont consommés dès le début : si un Jet échoue, la fabrication s'arrête et ils sont perdus.
 
@@ -89,7 +89,7 @@ Une pièce qui prend des coups à votre place s'use. Elle imprime son {{encaisse
 
 La Compétence de base {{REPARE-001}} remet en état une pièce brisée ou seulement entamée. Elle reprend sa recette à moindre frais :
 
-1. Engagez des matériaux couvrant chacun des Types de la recette, pour au moins la moitié de son coût, arrondie au supérieur.
+1. Engagez des matériaux comme pour une fabrication, mais pour au moins la moitié du coût de la recette, arrondie au supérieur.
 2. Effectuez le dernier {{jet}} de la recette.
 
 Si le {{jet}} réussit, la pièce n'est plus brisée et retrouve tout son {{encaissement}}. S'il échoue, les matériaux sont perdus, comme lors d'une fabrication ratée. Pour une pièce dont l'entrée n'imprime aucune recette, le MJ fixe les Types, le coût et le {{jet}}.
@@ -98,7 +98,7 @@ Si le {{jet}} réussit, la pièce n'est plus brisée et retrouve tout son {{enca
 >
 > La targe de Sélène n'a plus que 3 d'{{encaissement}} quand une hache touche Sélène pour 7 dégâts. Elle bloque : la targe en arrête 3 et tombe à 0, et Sélène subit les 4 autres. La targe est {{brise|Brisée}} et ne lui apporte plus rien.
 >
-> Au {{repos-court}} suivant, elle la répare. La recette de la targe coûte 4 et demande du Bois et du Métal : une Branche morte et une Ferraille, de Valeur 1 chacune, couvrent les deux Types et atteignent la moitié du coût, 2. Elle réussit ensuite le dernier {{jet}} de la recette, {{force}} + {{artisanat}} contre un {{dd}} de 10, et la targe retrouve tout son {{encaissement}}.
+> Au {{repos-court}} suivant, elle la répare. La recette de la targe coûte 4 et accepte le Bois et le Métal : une Branche morte et une Ferraille, de Valeur 1 chacune, portent toutes deux un Type accepté et atteignent la moitié du coût, 2. Elle réussit ensuite le dernier {{jet}} de la recette, {{force}} + {{artisanat}} contre un {{dd}} de 10, et la targe retrouve tout son {{encaissement}}.
 
 ## Les panoplies
 

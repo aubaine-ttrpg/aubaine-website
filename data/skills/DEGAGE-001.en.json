@@ -1,0 +1,7 @@
+{
+  "title": "Break Free",
+  "activation": "Free",
+  "range": "Self",
+  "duration": "Instantaneous",
+  "description": "You can play {{DEGAGE-001|this Skill}} only if you are {{entrave}}. You can play it only on your {{tour}}.\n\nMake a {{jet}} ({{force}} + {{athletisme}}) or ({{dexterite}} + {{acrobaties}}), your choice, against the {{dd}} of whatever made you {{entrave}}. On a success, you are no longer {{entrave}}."
+}

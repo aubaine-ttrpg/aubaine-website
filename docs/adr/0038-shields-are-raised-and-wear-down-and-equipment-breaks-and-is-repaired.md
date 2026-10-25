@@ -3,6 +3,7 @@
 **Project:** Aubaine, the wiki
 **Status:** Accepted
 **Date:** 2026-10-04
+**Revised:** 2026-10-25, Fabriquer and Réparer take any material that carries one of the recipe's Types, and only required Types must be covered (addendum in Decision 3)
 **Deciders:** Kori
 **Scope:**
 - **Covers:**
@@ -137,6 +138,12 @@ The decider settled each point in this session. Draft content took no part in th
 
 - The draft Artisan tree predates both skills and was not reconciled with them. A draft is not a rule, so its skills are left as they are, Remise en état, Atelier portatif, Métier and Improvisation among them.
 - The printed booklets in `data/media/pdf/` describe the old shields until they are regenerated.
+
+### Addendum (2026-10-25): Any accepted Type covers the cost, and only required Types must appear
+
+- Materials no longer have to cover each Type of the recipe. Fabriquer and Réparer take as many materials as the player wants, as long as each carries at least one of the recipe's Types and their Valeurs reach the cost (Réparer: half of it, rounded up, unchanged).
+- « A material counts for one Type » is removed. A recipe may name required Types in `craft.required`, and each of them must be carried by at least one committed material.
+- Recorded in `0058-a-competence-may-spend-deplacement-and-a-recipe-may-require-types.md`, Decision 2, which gives the owner's ruling.
 
 ---
 

@@ -1,0 +1,23 @@
+{
+  "id": "RELEVE-001",
+  "title": "Se relever",
+  "type": "active",
+  "tier": 1,
+  "showXp": false,
+  "domains": [
+    "physical"
+  ],
+  "activation": "Gratuit",
+  "range": "Personnel",
+  "duration": "Instantanée",
+  "movement": "half",
+  "tags": {
+    "practices": [
+      "technique"
+    ],
+    "schools": [
+      "mobility"
+    ]
+  },
+  "description": "Si votre {{vitesse}} est de 0, vous ne pouvez pas jouer {{RELEVE-001|cette Compétence}}.\n\nVous n'êtes plus {{a-terre}}."
+}

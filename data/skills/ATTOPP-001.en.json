@@ -1,0 +1,7 @@
+{
+  "title": "Opportunity Attack",
+  "activation": "1 Reaction",
+  "range": "Weapon reach",
+  "duration": "Instantaneous",
+  "description": "You can play this {{reaction}} when a creature you can see leaves your melee reach using its {{deplacement}}. You make a melee {{attaque}} against it.\n\nA {{desengage}} creature triggers nothing."
+}

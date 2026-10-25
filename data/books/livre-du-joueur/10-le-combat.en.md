@@ -55,6 +55,8 @@ A {{action-bonus}}
 A {{reaction}}
 : When a rule gives you a trigger, most often outside your turn. It comes back at the start of your next turn.
 
+A Skill marked "Free" uses neither your {{action}}, nor your {{action-bonus}}, nor your {{reaction}}. It can still spend part of your {{deplacement}}, as {{RELEVE-001}} does.
+
 > [!EXAMPLE] Example
 >
 > On her turn, Sélène backs off 6 metres to get out of a wolf's reach, uses {{ATTAQU-001}} with her bow on another wolf, then slips 3 metres behind a boulder. She has used her {{deplacement}} in two parts and her {{action}}. She still has her {{action-bonus}}, which none of her Skills uses this turn, and her {{reaction}} for the wolves' turn.
@@ -71,10 +73,10 @@ Difficult terrain
 : Rubble, a steep slope, knee-deep water or a packed crowd slow you down. Every metre moved through difficult terrain costs two.
 
 Standing up
-: A creature lying {{a-terre}} stands up by spending half its {{vitesse}}, on its turn. If its {{vitesse}} is 0, it cannot stand up, and no effect stands it back up.
+: A creature lying {{a-terre}} gets back on its feet by using {{RELEVE-001}}, on its turn. If its {{vitesse}} is 0, it cannot use {{RELEVE-001}}, and no effect stands it back up.
 
 Leaving an opponent
-: Leaving the reach of a creature that can see you lets it use its {{ATTOPP-001}}, unless you used {{DESENG-001}} this turn.
+: Leaving the reach of a creature that can see you lets it use its {{ATTOPP-001}}, unless you are {{desengage}}.
 
 Your {{vitesse}} can drop to 0, and some states do exactly that. A {{vitesse}} of 0 does not stop you acting: you keep your {{action}}, your {{action-bonus}} and your {{reaction}}.
 

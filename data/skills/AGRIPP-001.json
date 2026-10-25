@@ -11,7 +11,7 @@
     "strength"
   ],
   "activation": "1 Attaque",
-  "range": "1,5 m",
+  "range": "Contact",
   "duration": "Tant que la prise tient",
   "tags": {
     "practices": [
@@ -21,5 +21,5 @@
       "control"
     ]
   },
-  "description": "Avec une main libre, effectuez un {{jet}} opposé de {{force}} + {{athletisme}} contre le {{jet}} de {{force}} + {{athletisme}} ou de {{dexterite}} + {{acrobaties}} de la cible, à son choix. En cas de réussite, elle gagne {{entrave}} tant que vous la tenez, et son {{jet}} de dégagement se fait contre votre {{dd}} (8 + {{force}} + {{athletisme}}).\n\nVous la relâchez quand vous le voulez, sans rien dépenser. La prise cède aussi dès que plus de 1,5 m vous sépare."
+  "description": "Avec une main libre, effectuez un {{jet}} ({{force}} + {{athletisme}}) opposé au {{jet}} ({{force}} + {{athletisme}}) ou ({{dexterite}} + {{acrobaties}}) de la cible, à son choix. En cas de réussite, elle est {{entrave|Entravée}} tant que vous la tenez. Lorsqu'elle joue {{DEGAGE-001}}, son {{jet}} se fait contre votre {{dd}} (8 + {{force}} + {{athletisme}}).\n\nVous pouvez relâcher la créature quand vous le voulez, sans rien dépenser. La prise cède aussi dès que la cible n'est plus à votre contact."
 }

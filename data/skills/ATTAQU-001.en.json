@@ -1,0 +1,6 @@
+{
+  "title": "Attack",
+  "range": "Weapon reach",
+  "duration": "Instantaneous",
+  "description": "You make an {{attaque}} against a creature within range, with a weapon you have equipped or with your bare hands.\n\nThis {{attaque}} uses the {{jet}} the weapon prints. On a success, the target takes the weapon's {{degats}}.\n\n***Unarmed.*** Your {{attaque}} ({{force}} + {{melee}}) targets a creature within 1.5 m of you. On a success, the target takes {{1d4 degats-contondant}}."
+}

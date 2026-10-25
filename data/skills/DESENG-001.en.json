@@ -1,0 +1,6 @@
+{
+  "title": "Disengage",
+  "range": "Self",
+  "duration": "Instantaneous",
+  "description": "You break contact and back away in good order.\n\nYou are {{desengage}} until the end of your {{tour}}."
+}

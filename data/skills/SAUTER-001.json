@@ -1,0 +1,25 @@
+{
+  "id": "SAUTER-001",
+  "title": "Sauter",
+  "type": "active",
+  "tier": 1,
+  "showXp": false,
+  "domains": [
+    "physical"
+  ],
+  "activation": "1 Action Bonus",
+  "range": "Personnel",
+  "duration": "Instantanée",
+  "movement": {
+    "atLeast": 1.5
+  },
+  "tags": {
+    "practices": [
+      "technique"
+    ],
+    "schools": [
+      "mobility"
+    ]
+  },
+  "description": "Votre saut porte en longueur jusqu'à 1,5 m par point de {{force}}, et en hauteur jusqu'à la moitié de ce maximum. Si votre {{force}} est de 0 ou moins, ce maximum est de 1,5 m. La distance que couvre ce saut compte dans votre {{deplacement}}."
+}

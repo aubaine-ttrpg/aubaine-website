@@ -45,23 +45,21 @@ In addition to equipped pieces, you can keep a number of objects on your person 
 
 What you can wear depends on the materials you bring back.
 
-After a significant encounter, or on finding a source worth working, each character receives a Loot Opportunity. Spend it in one of these two ways, never both.
+After a significant encounter, or on finding a source worth working, each character receives a {{occasion-de-butin}}. Spend it in one of these two ways, never both.
 
 Random loot
-: Roll the source's Loot Die. The GM reads its Loot Table and tells you what you get. No further {{jet}}.
+: Roll the source's {{de-de-butin}}. The GM reads its {{table-de-butin}} and tells you what you get. No further {{jet}}.
 
 Targeted harvest
-: Say what you are after and how you get it. The GM sets the {{jet}} and its {{dd}}. On a failure, the Opportunity is spent for nothing.
+: Say what you are after and how you get it. The GM sets the {{jet}} and its {{dd}}. On a failure, the {{occasion-de-butin|Opportunity}} is spent for nothing.
 
 The first choice is safe and asks nothing of you. The second aims true and may come back empty. A target the fiction does not let you extract cannot be won with a {{jet}}: you do not harvest scales from a beast that has none.
 
-The land is a source too. Once per {{repos-long}}, the basic Skill {{RECOLT-001}} has you roll the Loot Die of the environment you are in, from forest to ruins, and you bring back what its Loot Table gives. The Materials index gives every environment's table and says where each material is found.
+The land is a source too. Once per {{repos-long}}, the basic Skill {{RECOLT-001}} has you roll the {{de-de-butin}} of the environment you are in, from forest to ruins, and you bring back what its {{table-de-butin}} gives. The Materials index gives every environment's {{table-de-butin}} and says where each material is found.
 
 ## Reading a material
 
 A material has a name, one or more Types and a Material Value. For example: Wolf pelt, Types Leather and Beast, Value 1.
-
-In a single piece of crafting, a material counts for only one of its Types, even if it carries several the recipe accepts.
 
 The Material Value works twice: it counts towards a recipe's cost, and a material sold back brings in its Value in silver coins.
 
@@ -69,9 +67,11 @@ The Material Value works twice: it counts towards a recipe's cost, and a materia
 
 An entry's recipe box names its discipline, its cost, the Types it accepts and its {{jet|Rolls}} in order. The basic Skill {{FABRIQ-001}} follows that recipe:
 
-1. Gather materials that cover each of the Types asked for.
-2. Reach or exceed the cost, all materials together. How you split it between the Types is up to you: one ingot and ten pelts will do as well as an even share.
+1. Gather as many materials as you like, as long as each one carries at least one of the Types the recipe accepts.
+2. Reach or exceed the cost, all materials together. How you split it between the Types is up to you: one ingot and ten pelts will do as well as an even share, and so will ten pelts on their own.
 3. Commit the materials, then make the {{jet|Rolls}} in order.
+
+A recipe can make some of its Types required, and its box flags them with the word "required". Each of them must be carried by at least one of the committed materials, and a single material can carry several.
 
 Every {{jet}} must succeed. The materials are used up from the start: if a {{jet}} fails, the crafting stops and they are lost. The {{jet|Rolls}} read in the order they are made, and the physical work comes before the knowledge.
 
@@ -79,9 +79,9 @@ That is the real cost of an expensive piece: less its price than the risk of sta
 
 > [!EXAMPLE] Example
 >
-> Sélène wants a short bow. Its recipe is worked under {{artisanat}}: it asks for the Types Wood and Leather at a cost of 4, then two {{jet|Rolls}} with {{artisanat}} as the {{aptitude}}, a {{dexterite}} {{jet}} against a {{dd}} of 10, then an {{intelligence}} {{jet}} against a {{dd}} of 10.
+> Sélène wants a short bow. Its recipe is worked under {{artisanat}}: it accepts the Types Wood and Leather at a cost of 4, then asks for two {{jet|Rolls}} with {{artisanat}} as the {{aptitude}}, a {{dexterite}} {{jet}} against a {{dd}} of 10, then an {{intelligence}} {{jet}} against a {{dd}} of 10.
 >
-> She commits a piece of wood of Value 1 for the Wood and three wolf pelts of Value 1 for the Leather: the cost is met. She passes the {{dexterite}} {{jet}}, fails the {{intelligence}} one, and all four materials are lost. She will have to go hunting again.
+> She commits a piece of wood of Value 1 and three wolf pelts of Value 1. Each carries a Type the recipe accepts, Wood or Leather, and together they reach the cost of 4. She passes the {{dexterite}} {{jet}}, fails the {{intelligence}} one, and all four materials are lost. She will have to go hunting again.
 
 ### The four disciplines
 
@@ -101,7 +101,7 @@ At 0, the piece is {{brise}}. It still takes up its slot, but no rule counts it 
 
 The basic Skill {{REPARE-001}} restores a piece that is broken or only worn down. It goes back to the piece's recipe at a lower price:
 
-1. Commit materials covering each of the recipe's Types, for at least half its cost, rounded up.
+1. Commit materials as you would to craft the piece, but for at least half the recipe's cost, rounded up.
 2. Make the recipe's last {{jet}}.
 
 If the {{jet}} succeeds, the piece is no longer broken and gets all its {{encaissement}} back. If it fails, the materials are lost, as with a failed craft. For a piece whose entry prints no recipe, the GM sets the Types, the cost and the {{jet}}.
@@ -110,7 +110,7 @@ If the {{jet}} succeeds, the piece is no longer broken and gets all its {{encais
 >
 > Sélène's targe has only 3 {{encaissement}} left when an axe hits her for 7 damage. She blocks: the targe stops 3 and drops to 0, and Sélène takes the other 4. The targe is {{brise}} and does nothing more for her.
 >
-> At the next {{repos-court}}, she repairs it. The targe's recipe costs 4 and asks for Wood and Metal: a Dead Branch and a Scrap Iron, Value 1 each, cover both Types and reach half the cost, 2. She then passes the recipe's last {{jet}}, {{force}} + {{artisanat}} against a {{dd}} of 10, and the targe gets all its {{encaissement}} back.
+> At the next {{repos-court}}, she repairs it. The targe's recipe costs 4 and accepts Wood and Metal: a Dead Branch and a Scrap Iron, Value 1 each, both carry an accepted Type and reach half the cost, 2. She then passes the recipe's last {{jet}}, {{force}} + {{artisanat}} against a {{dd}} of 10, and the targe gets all its {{encaissement}} back.
 
 ## Sets
 

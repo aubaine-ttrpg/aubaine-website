@@ -74,6 +74,17 @@ write uses it. A proposal never renames a rule term or adds a key; that is a voc
 - Measured 2026-10-20: approved form 0. Legacy form in 112 files, 69 settled.
 - Status: approved (owner, 2026-10-19). Legacy: « un {{jet}} de X + Y », EN « a X + Y {{jet}} ».
 
+### opposed-roll
+- FR: « Effectuez un {{jet}} ({{force}} + {{athletisme}}) opposé au {{jet}} ({{force}} + {{athletisme}})
+  ou ({{dexterite}} + {{acrobaties}}) de la cible, à son choix. »
+  EN: « Make a {{jet}} ({{force}} + {{athletisme}}) opposed by the target's {{jet}} ({{force}} +
+  {{athletisme}}) or ({{dexterite}} + {{acrobaties}}), its choice. »
+- When: both sides roll and the higher total wins, the {{jet}} opposé of chapter 02. Each side's
+  pair sits in parentheses, as in `roll`. A choice of pairs follows the target's.
+- Never: « un {{jet}} opposé de {{force}} + {{athletisme}} contre le {{jet}} de … », the legacy form.
+- First written in: BOUSCU-001, AGRIPP-001, CACHER-001, CHERCH-001.
+- Status: approved (owner, 2026-10-25, with the base skills rework); English proposed.
+
 ### roll-single
 - FR: « un {{jet}} de {{melee}} »         EN: « a {{melee}} {{jet}} »
 - When: only one half of the pair matters. Usually the Aptitude, the Caractéristique following how
@@ -198,15 +209,31 @@ write uses it. A proposal never renames a rule term or adds a key; that is a voc
 
 ### crit-success, crit-failure
 - FR: « obtient une {{reussite-critique}} » / « produit un {{echec-critique}} »; a Jet's own range,
-  « un dé conservé de 3 ou moins produit un {{echec-critique}} »
-  EN: « scores a {{reussite-critique}} » / « produces a {{echec-critique}} »; « a kept die of 3 or
-  less produces a {{echec-critique}} »
+  « un résultat naturel de 3 ou moins sur le {{jet}} conservé produit un {{echec-critique}} »
+  EN: « scores a {{reussite-critique}} » / « produces a {{echec-critique}} »; « a natural result of
+  3 or less on the kept {{jet|Roll}} produces a {{echec-critique}} »
 - When: a rule triggers on a critical, or widens the range of one. Chapter 02 owns what each does,
   by kind of Jet; an entry links the term and never restates it.
 - Never: « deux dés conservés », « un 20 naturel », « un critique » left bare (owner, 2026-10-24:
-  the two criticals are rule terms, ADR 0056 Decision 2).
+  the two criticals are rule terms, ADR 0056 Decision 2); « un dé conservé de 3 ou moins », the
+  legacy range form (owner, 2026-10-25: « "un dé conservé de 3 ou moins produit un Échec critique."
+  -> "un résultat naturel de 3 ou moins sur le jet conservé produit un échéc critique" »).
 - First written in: FUITEX-001.
-- Status: approved (owner, 2026-10-24).
+- Status: approved (owner, 2026-10-24; range form 2026-10-25).
+
+### choose-one-effect
+- FR: « choisissez l'un des deux effets. », closing the rule paragraph that grants the choice, then
+  a blank line, then one `***Label.***` line per effect, each on its own line with no blank line
+  between them:
+  `En cas de réussite, choisissez l'un des deux effets.\n\n***Renversement.*** …\n***Poussée.*** …`
+  EN: « choose one of the two effects. », the same layout.
+- When: the player picks one of several named outcomes. A paragraph that only grants the choice,
+  after a flavour line, holds « Choisissez l'un des deux effets. » alone. What ends the chosen effect
+  follows in its own paragraph after the labelled lines.
+- Never: « choisissez : X, ou Y » (owner, 2026-10-25: « a : ça ou ça format which we don't use
+  anymore »); the labelled lines split by blank lines; « l'un des effets suivants ».
+- Examples: BOUSCU-001, ESQUIV-001.
+- Status: approved (owner, 2026-10-25: « esquiver should have a template similar to bousculer »).
 
 ## Avantage and states
 
@@ -232,7 +259,10 @@ write uses it. A proposal never renames a rule term or adds a key; that is a voc
   EN: « it is {{etourdi}} until the end of its next turn »; « you gain 1 {{strate}} ». An English
   state name comes from its overlay: Étourdi prints « Dazed » and Sonné « Stunned » since 2026-10-24.
 - When: a Compétence applies a state. The state file defines it; the Compétence says how long it
-  lasts and never explains the state again.
+  lasts and never explains the state again. « gagner » takes a counted state only (« vous gagnez 1
+  {{strate}} »); a state that does not stack takes « être ».
+- Never: « elle gagne {{entrave}} », « Vous gagnez {{cache}} », the legacy form for a state that
+  does not stack (owner, 2026-10-25: « Yes. »).
 - Measured 2026-10-20: a counted state is gained in 78 files, 50 settled. Examples: ANTICI-001,
   ATTTEM-001.
 - Status: approved in French; English proposed.
@@ -304,11 +334,18 @@ write uses it. A proposal never renames a rule term or adds a key; that is a voc
 ## Réactions
 
 ### reaction-trigger
-- FR: « Vous jouez cette {{reaction}} lorsque … » as the first sentence
-  EN: « You play this {{reaction}} when … »
+- FR: « Vous pouvez jouer cette {{reaction}} lorsque … » as the first sentence
+  EN: « You can play this {{reaction}} when … »
 - When: every Réaction. The trigger is never in `activation` (clarity checklist in `quality.md`).
-- Measured 2026-10-20: 24 of the 26 Réactions open this way. Examples: PARADE-001, INCREV-001.
-- Status: approved in French; English proposed.
+  A Réaction is a choice the player makes, so it takes « pouvez », never the indicative of an
+  obligation; the same holds for every option a player has (rule-text.md: `pouvez` for a permission).
+- Never: « Vous jouez cette {{reaction}} lorsque … », the legacy form (owner, 2026-10-25: « same for
+  attack d'opportinuté "Vous pouvez jouer cette réaction" there is a diff between impératifs and
+  possibility »; and on Agripper: « they players always have the choice. VOUS POUVEZ always »).
+- Measured 2026-10-20: 24 of the 26 Réactions opened with the legacy form. Examples of the approved
+  form: ATTOPP-001.
+- Status: approved (owner, 2026-10-25); entries a run does not touch keep the legacy form until a
+  migration batch.
 
 ## Sorts
 

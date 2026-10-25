@@ -58,7 +58,7 @@ The counter goes down by 1 at the end of each of your turns, but not on the turn
 
 At 0, you die.
 
-While {{agonie}} lasts, you are {{a-terre}} and cannot stand up, and you can play nothing that costs {{energie}} or {{pdv}}.
+While {{agonie}} lasts, you are {{a-terre}} and cannot play {{RELEVE-001}}, and you can play nothing that costs {{energie}} or {{pdv}}.
 
 ### Getting someone up
 
@@ -66,7 +66,7 @@ Any healing that restores at least 1 {{pdv}} ends {{agonie}} at once. The counte
 
 Without magic or a potion, an {{action}} and a successful {{jet}} ({{intelligence}} + {{medecine}}) against a {{dd}} of 10 restore 1 {{pdv}}, which ends the state.
 
-Either way, the creature stays {{a-terre}}. Standing up costs it half its {{vitesse}}, on its turn, and a creature whose {{vitesse}} is 0 cannot stand up.
+Either way, the creature stays {{a-terre}}. It gets back on its feet by playing {{RELEVE-001}}, on its turn, and a creature whose {{vitesse}} is 0 cannot play {{RELEVE-001}}.
 
 Three turns is short without being instant. An ally on the ground is a problem to solve during the fight, and it stays one even if nobody is hitting them any more.
 

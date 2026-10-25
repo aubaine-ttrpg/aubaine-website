@@ -1,0 +1,7 @@
+{
+  "title": "Stand Up",
+  "activation": "Free",
+  "range": "Self",
+  "duration": "Instantaneous",
+  "description": "If your {{vitesse}} is 0, you cannot play {{RELEVE-001|this Skill}}.\n\nYou are no longer {{a-terre}}."
+}

@@ -1,0 +1,6 @@
+{
+  "title": "Help",
+  "range": "1.5 m",
+  "duration": "Until the start of your next turn",
+  "description": "You lend a hand to an ally you can see within range.\n\nIf you have at least +2 in the {{aptitude}} their next {{jet}} uses, that {{jet}} gains 1 {{avantage}}."
+}

@@ -11,13 +11,15 @@ Ensemble, elles forment la liste de ce qu'on peut toujours tenter, avec ou sans 
 
 Elles se lisent comme celles de vos Arbres : le nom, puis ce que la Compétence demande pour être jouée, sa portée et sa durée, puis sa règle. Elles ne portent ni prix ni case à cocher, puisqu'il n'y a rien à acheter et rien à {{memorisee|mémoriser}}.
 
-Une fiche marquée « 1 {{attaque}} » ne se joue pas seule : elle remplace l'une des {{attaque|Attaques}} de l'action {{ATTAQU-001}}. C'est le cas des manœuvres comme {{BOUSCU-001}} et {{AGRIPP-001}}, qui renversent ou retiennent un adversaire au lieu de le blesser.
+Certaines dépensent une part de votre {{deplacement}}, comme {{RELEVE-001}} et {{SAUTER-001}}. Leur fiche porte une pastille marquée d'une botte : « ½ Vitesse » pour la moitié de votre {{vitesse}}, ou une distance minimale suivie du signe +, et la règle de la fiche donne alors la distance exacte.
+
+Une fiche marquée « 1 {{attaque}} » ne se joue pas seule : elle remplace l'une des {{attaque|Attaques}} de l'action {{ATTAQU-001}}. C'est le cas des manœuvres comme {{BOUSCU-001}} et {{AGRIPP-001}}, qui renversent ou retiennent un adversaire au lieu de le blesser. L'adversaire {{entrave}} joue {{DEGAGE-001}} pour se libérer.
 
 ## Ce qu'elles couvrent
 
-La plupart servent au combat. On y trouve de quoi frapper, de quoi se protéger et de quoi se dégager : {{ESQUIV-001}} rend plus difficile à toucher, {{LEVBOU-001}} dresse un bouclier entre vous et les coups, {{DESENG-001}} permet de quitter un adversaire sans lui offrir d'{{ATTOPP-001}}, {{PREPAR-001}} garde une action en réserve pour le moment où quelque chose arrive.
+La plupart servent au combat. On y trouve de quoi frapper, de quoi se protéger et de quoi se dégager : {{ESQUIV-001}} rend plus difficile à toucher, {{LEVBOU-001}} dresse un bouclier entre vous et les coups, {{DESENG-001}} permet de quitter un adversaire sans lui offrir d'{{ATTOPP-001}}, {{PREPAR-001}} garde une action en réserve pour le moment où quelque chose arrive. On y trouve aussi de quoi bouger : {{RELEVE-001}} vous remet debout quand vous êtes {{a-terre}}, {{SAUTER-001}} vous fait bondir en longueur comme en hauteur.
 
-D'autres servent partout. {{CACHER-001}} et {{CHERCH-001}} s'opposent l'une à l'autre, dans une ruelle comme sur un champ de bataille, et {{AIDERX-001}} donne un coup de main à un allié qui tente quelque chose que vous sauriez faire vous-même.
+D'autres servent partout. {{CACHER-001}} et {{CHERCH-001}} s'opposent l'une à l'autre, dans une ruelle comme sur un champ de bataille, et {{AIDERX-001}} donne un coup de main à un allié qui tente quelque chose, pourvu que vous ayez vous-même une valeur suffisante dans l'{{aptitude}} de son {{jet}}.
 
 D'autres entretiennent l'équipement : {{RECOLT-001}} rapporte des matériaux, {{FABRIQ-001}} en tire une pièce, et {{REPARE-001}} remet en état celle que les coups ont usée.
 

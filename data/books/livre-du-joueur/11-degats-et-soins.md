@@ -58,7 +58,7 @@ Le compteur descend de 1 à la fin de chacun de vos tours, mais pas pendant le t
 
 À 0, vous mourez.
 
-Tant que dure l'{{agonie}}, vous êtes {{a-terre}} sans pouvoir vous relever, et vous ne pouvez rien jouer qui coûte de l'{{energie}} ou des {{pdv}}.
+Tant que dure l'{{agonie}}, vous êtes {{a-terre}} sans pouvoir jouer {{RELEVE-001}}, et vous ne pouvez rien jouer qui coûte de l'{{energie}} ou des {{pdv}}.
 
 ### Relever quelqu'un
 
@@ -66,7 +66,7 @@ Tout soin qui rend au moins 1 {{pdv}} met fin à l'{{agonie}} immédiatement. Le
 
 Sans magie ni potion, une {{action}} et un {{jet}} ({{intelligence}} + {{medecine}}) réussi contre un {{dd}} de 10 rendent 1 {{pdv}}, ce qui met fin à l'état.
 
-Dans les deux cas, la créature reste {{a-terre}}. Se relever lui coûte la moitié de sa {{vitesse}}, à son tour, et une créature dont la {{vitesse}} est de 0 ne peut pas se relever.
+Dans les deux cas, la créature reste {{a-terre}}. Elle se remet debout en jouant {{RELEVE-001}}, à son tour, et une créature dont la {{vitesse}} est de 0 ne peut pas jouer {{RELEVE-001}}.
 
 Trois tours, c'est court sans être immédiat. Un allié à terre est un problème à résoudre pendant le combat, et il le reste même si personne ne le frappe plus.
 

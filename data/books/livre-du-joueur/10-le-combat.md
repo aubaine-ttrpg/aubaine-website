@@ -55,6 +55,8 @@ Un {{deplacement}}
 Une {{reaction}}
 : Quand une règle vous fournit un déclencheur, le plus souvent hors de votre tour. Elle revient au début de votre tour suivant.
 
+Une Compétence marquée « Gratuit » ne prend ni votre {{action}}, ni votre {{action-bonus}}, ni votre {{reaction}}. Elle peut toutefois dépenser une part de votre {{deplacement}}, comme le fait {{RELEVE-001}}.
+
 > [!EXAMPLE] Exemple
 >
 > À son tour, Sélène recule de 6 mètres pour sortir du contact d'un loup, joue {{ATTAQU-001}} avec son arc sur un autre loup, puis se glisse de 3 mètres derrière un rocher. Elle a utilisé son {{deplacement}} en deux fois et son {{action}}. Il lui reste son {{action-bonus}}, qu'aucune de ses Compétences n'utilise ce tour-ci, et sa {{reaction}} pour le tour des loups.
@@ -71,10 +73,10 @@ Terrain difficile
 : Des gravats, une pente raide, une eau jusqu'aux genoux ou une foule serrée ralentissent la marche. Chaque mètre parcouru en terrain difficile en coûte deux.
 
 Se relever
-: Une créature {{a-terre}} se relève en dépensant la moitié de sa {{vitesse}}, à son tour. Si sa {{vitesse}} est de 0, elle ne peut pas se relever, et aucun effet ne la remet debout.
+: Une créature {{a-terre}} se remet debout en jouant {{RELEVE-001}}, à son tour. Si sa {{vitesse}} est de 0, elle ne peut pas jouer {{RELEVE-001}}, et aucun effet ne la remet debout.
 
 Quitter un adversaire
-: Quitter l'allonge d'une créature qui vous voit lui permet de jouer son {{ATTOPP-001}}, sauf si vous avez joué {{DESENG-001}} ce tour-ci.
+: Quitter l'allonge d'une créature qui vous voit lui permet de jouer son {{ATTOPP-001}}, sauf si vous êtes {{desengage}}.
 
 Votre {{vitesse}} peut tomber à 0, et certains états y parviennent. Une {{vitesse}} de 0 n'empêche pas d'agir : vous gardez votre {{action}}, votre {{action-bonus}} et votre {{reaction}}.
 

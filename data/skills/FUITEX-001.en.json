@@ -1,0 +1,5 @@
+{
+  "title": "Flight",
+  "range": "Self",
+  "description": "You give up the fight and think of nothing but getting out alive.\n\nOnly player characters can play {{FUITEX-001|this Skill}}. You can play it only while you are in combat.\n\nYour {{vitesse}} is tripled, and all your {{jet|Rolls}} suffer 5 {{desavantage|Disadvantages}}. While {{FUITEX-001}} lasts, a natural result of 3 or less on the kept {{jet|Roll}} produces a {{echec-critique}}."
+}

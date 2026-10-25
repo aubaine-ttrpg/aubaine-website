@@ -9,7 +9,7 @@
   ],
   "activation": "1 Action",
   "range": "Personnel",
-  "duration": "1 round",
+  "duration": "Jusqu'à la fin de votre tour",
   "tags": {
     "practices": [
       "technique"
@@ -18,5 +18,5 @@
       "enhancement"
     ]
   },
-  "description": "Vous forcez l'allure et donnez tout votre tour au {{deplacement|déplacement}}.\n\nJusqu'à la fin de votre tour, votre {{vitesse}} est doublée."
+  "description": "Vous forcez l'allure et donnez tout votre tour au déplacement.\n\nVotre {{vitesse}} est doublée."
 }

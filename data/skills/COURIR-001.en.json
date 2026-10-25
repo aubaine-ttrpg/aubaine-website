@@ -1,0 +1,6 @@
+{
+  "title": "Run",
+  "range": "Self",
+  "duration": "Until the end of your turn",
+  "description": "You push the pace and give your whole turn over to moving.\n\nYour {{vitesse}} is doubled."
+}

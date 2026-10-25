@@ -1,0 +1,6 @@
+{
+  "title": "Grapple",
+  "activation": "1 Attack",
+  "duration": "While the hold lasts",
+  "description": "With a free hand, make a {{jet}} ({{force}} + {{athletisme}}) opposed by the target's {{jet}} ({{force}} + {{athletisme}}) or ({{dexterite}} + {{acrobaties}}), its choice. On a success, the target is {{entrave}} for as long as you hold it. When it plays {{DEGAGE-001}}, its {{jet}} is made against your {{dd}} (8 + {{force}} + {{athletisme}}).\n\nYou can let go of the creature whenever you like, without spending anything. The hold also breaks as soon as the target is no longer in contact with you."
+}

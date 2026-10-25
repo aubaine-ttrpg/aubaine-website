@@ -1,0 +1,30 @@
+{
+  "id": "DEGAGE-001",
+  "title": "Se dégager",
+  "type": "active",
+  "tier": 1,
+  "showXp": false,
+  "domains": [
+    "physical"
+  ],
+  "characteristics": [
+    "strength",
+    "dexterity"
+  ],
+  "activation": "Gratuit",
+  "range": "Personnel",
+  "duration": "Instantanée",
+  "limit": {
+    "times": 1,
+    "per": "turn"
+  },
+  "tags": {
+    "practices": [
+      "manoeuvre"
+    ],
+    "schools": [
+      "mobility"
+    ]
+  },
+  "description": "Vous ne pouvez jouer {{DEGAGE-001|cette Compétence}} que si vous êtes {{entrave}}. Vous ne pouvez la jouer que pendant votre {{tour}}.\n\nEffectuez un {{jet}} ({{force}} + {{athletisme}}) ou ({{dexterite}} + {{acrobaties}}), à votre choix, contre le {{dd}} de ce qui vous a {{entrave|entravé}}. En cas de réussite, vous n'êtes plus {{entrave}}."
+}

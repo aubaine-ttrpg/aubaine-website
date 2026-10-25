@@ -11,13 +11,15 @@ Together they make the list of what anyone can always attempt, with or without a
 
 They read like the Skills in your Trees: the name, then what the Skill takes to play, its range and its duration, then its rule. They carry no price and no box to tick, since there is nothing to buy and nothing to {{memorisee|memorise}}.
 
-An entry marked "1 {{attaque}}" is not played on its own: it replaces one of the {{attaque|Attacks}} of the {{ATTAQU-001}} action. That is the case for manoeuvres such as {{BOUSCU-001}} and {{AGRIPP-001}}, which knock down or hold an opponent instead of wounding them.
+Some, such as {{RELEVE-001}} and {{SAUTER-001}}, spend part of your {{deplacement}}. Their entries carry a pill marked with a boot: "½ Speed" for half your {{vitesse}}, or a minimum distance followed by a plus sign, in which case the entry's rule gives the exact figure.
+
+An entry marked "1 {{attaque}}" is not played on its own: it replaces one of the {{attaque|Attacks}} of the {{ATTAQU-001}} action. That is the case for manoeuvres such as {{BOUSCU-001}} and {{AGRIPP-001}}, which knock down or hold an opponent instead of wounding them. An {{entrave}} opponent gets loose with {{DEGAGE-001}}.
 
 ## What they cover
 
-Most of them serve in combat. There is something to strike with, something to defend with and something to get away with: {{ESQUIV-001}} makes you harder to hit, {{LEVBOU-001}} puts a shield between you and the blows, {{DESENG-001}} lets you leave an opponent without offering an {{ATTOPP-001}}, and {{PREPAR-001}} holds an action back for the moment something happens.
+Most of them serve in combat. There is something to strike with, something to defend with and something to get away with: {{ESQUIV-001}} makes you harder to hit, {{LEVBOU-001}} puts a shield between you and the blows, {{DESENG-001}} lets you leave an opponent without offering an {{ATTOPP-001}}, and {{PREPAR-001}} holds an action back for the moment something happens. There is also something to move with: {{RELEVE-001}} puts you back on your feet when you are {{a-terre}}, and {{SAUTER-001}} sends you leaping, across and upward.
 
-Others serve everywhere. {{CACHER-001}} and {{CHERCH-001}} work against each other, in an alley as much as on a battlefield, and {{AIDERX-001}} gives a hand to an ally attempting something you could do yourself.
+Others serve everywhere. {{CACHER-001}} and {{CHERCH-001}} work against each other, in an alley as much as on a battlefield, and {{AIDERX-001}} gives a hand to an ally attempting something, provided your own value in the {{aptitude}} of their {{jet}} is high enough.
 
 Others look after your equipment: {{RECOLT-001}} brings back materials, {{FABRIQ-001}} turns them into a piece, and {{REPARE-001}} restores one the blows have worn down.
 
