@@ -4,6 +4,7 @@
   "type": "active",
   "tier": 1,
   "showXp": false,
+  "art": "esquiver-1_1-og.png",
   "domains": [
     "physical"
   ],

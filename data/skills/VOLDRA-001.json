@@ -4,6 +4,7 @@
   "type": "active",
   "tier": 5,
   "showXp": false,
+  "art": "vol-du-dragonnor-1_1-og.png",
   "domains": [
     "physical"
   ],

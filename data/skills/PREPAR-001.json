@@ -4,6 +4,7 @@
   "type": "active",
   "tier": 1,
   "showXp": false,
+  "art": "se-preparer-1_1-og.png",
   "domains": [],
   "activation": "1 Action",
   "range": "Personnel",

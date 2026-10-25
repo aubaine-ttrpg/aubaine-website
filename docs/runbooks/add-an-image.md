@@ -37,6 +37,7 @@ Keeping the original beside a retouched version is the point of the state part. 
 | --- | --- | --- |
 | `data/media/art/` | covers, banners, hero and social images, and 3:1 panoramas a lore page draws | `.png`, `.jpg` |
 | `data/media/items/` | item pictures | `.png`, `.jpg` |
+| `data/media/skills/` | skill pictures, 1:1, named after the skill's title | `.png`, `.jpg` |
 | `data/media/masks/` | the shapes a prose picture can be cut to | `.svg` or `.png`, named `<key>-<ratio>` after a key of `PICTURE_MASKS` in `src/lib/game/book-markup.ts`, one file per ratio so the edge keeps its size |
 | `data/media/icons/mdi/` | Iconify `mdi:` icons | `.svg`, named after the part following the colon |
 | `data/media/icons/game-icons/` | Iconify `game-icons:` icons | `.svg`, same rule |
@@ -98,6 +99,7 @@ If you edit a picture's metadata by hand, `pnpm media:stamp` refuses to run rath
 | `data/books/<id>/book.json` | `cover`, `banner` | The same two fields, the same two ratios |
 | `data/equipment/catalogue.json` | `cover`, `banner`, `backCover` | The same fields again. `cover` and `backCover` are the two faces of the equipment booklet, `banner` is the plate behind the hero at `/fr/equipement` |
 | `data/equipment/items/<slug>.json` | `art` | Illustration au rapport 1:1. Example: `"art": "dague-1_1-og.png"` |
+| `data/skills/<ID>.json` | `art` | Illustration au rapport 1:1, in `data/media/skills/`. Example: `"art": "forme-draconique-1_1-og.png"` |
 | `data/states/<key>.json` | `icon` | Nom Iconify. Example: `"icon": "mdi:fire"` needs `data/media/icons/mdi/fire.svg` |
 | a booklet | no field | `pnpm pdf` renders it and registers it in `data/pdf/releases.json` |
 
@@ -163,7 +165,7 @@ Then point both halves of the hero at the new files in `src/components/views/Hom
 - `cover` and `banner` on a book: the card at `/fr/livres` and the hero on each chapter.
 - `cover` and `backCover` on the catalogue: the two faces of the equipment booklet. `banner`: the plate behind the hero at `/fr/equipement`.
 - `art` on an item: the picture on its card and in its detail panel at `/fr/equipement`.
-- a skill has no picture field. Its detail panel at `/fr/competences` draws the 1:1 default plate.
+- `art` on a skill: the picture inside its node on the plate and on its card at `/fr/competences`.
 - `icon` on a state: the glyph inside the pastille wherever a text references the state, as `{{combustion}}`, and in its detail at `/fr/regles`.
 - a booklet in `data/media/pdf/`: the download button on the card at `/fr/livres` and in the hero of `/fr/arbre/<tree-id>`, resolved through `data/pdf/releases.json`.
 - `data/media/video/<nom>-16_9-compressed.mp4`: the loop behind the home hero, over the plate it fades in from.
