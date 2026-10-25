@@ -200,6 +200,15 @@
   color: #fdeaea;
 }
 
+.au-cost--movement {
+  background: #1b5a9e;
+  color: #eef5fd;
+}
+
+.au-cost__unit {
+  text-transform: none;
+}
+
 .au-skill__meta {
   font: 700 var(--skill-meta) / 1.35 var(--font-ui);
   letter-spacing: 0.06em;

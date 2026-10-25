@@ -133,7 +133,7 @@ Every file under `data/` follows the same four rules, and `pnpm data:check` enfo
 
 **No `null`, ever.** A key you do not want is a key you leave out. Writing `"domains": null` is rejected. This matters most on an upgrade, where an absent key, `[]` and a filled array mean three different things: inherited, explicitly none, and replaced.
 
-**Fixed key order.** Write the keys in the order the schema declares them. A skill goes `id`, `status`, `title`, `type`, `tier`, `xpOverride`, `showXp`, `art`, `domains`, `characteristics`, `prerequisite`, `activation`, `range`, `duration`, `concentration`, `energy`, `karma`, `life`, `evolvesFrom`, `tags`, `description`, `upgrades`. Skipping optional keys is fine; reordering the ones you keep is not.
+**Fixed key order.** Write the keys in the order the schema declares them. A skill goes `id`, `status`, `title`, `type`, `tier`, `xpOverride`, `showXp`, `art`, `domains`, `characteristics`, `prerequisite`, `activation`, `range`, `duration`, `concentration`, `limit`, `energy`, `karma`, `life`, `movement`, `evolvesFrom`, `tags`, `grants`, `description`, `upgrades`. Skipping optional keys is fine; reordering the ones you keep is not.
 
 The practical test: the exact bytes of the file must equal `JSON.stringify(JSON.parse(file), null, 2) + "\n"`.
 

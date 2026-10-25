@@ -11,6 +11,7 @@ import {
   frame,
   inCranOrder,
   initialOf,
+  movementCostLabel,
   NEUTRAL_DOMAIN,
   priceInCoins,
   primeCharacteristics,
@@ -353,6 +354,21 @@ describe('text helpers', () => {
     ])
     expect(priceInCoins(300, COINS).map((part) => [part.key, part.amount])).toEqual([['argent', 3]])
     expect(priceInCoins(undefined, COINS)).toEqual([])
+  })
+
+  it('writes a movement cost as half the Vitesse, or as a minimum in metres with its unit apart', () => {
+    expect(movementCostLabel('half', 'fr', '½ vitesse')).toEqual({
+      amount: '½ vitesse',
+      unit: null,
+    })
+    expect(movementCostLabel({ atLeast: 1.5 }, 'fr', '½ vitesse')).toEqual({
+      amount: '1,5',
+      unit: 'm+',
+    })
+    expect(movementCostLabel({ atLeast: 4.5 }, 'en', '½ speed')).toEqual({
+      amount: '4.5',
+      unit: 'm+',
+    })
   })
 
   it('writes a price in the local coin names', () => {

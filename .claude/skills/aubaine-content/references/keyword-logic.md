@@ -78,7 +78,7 @@ agent trusting the copy will miss terms that have since been added.
 
 ## What the writer does not control
 
-Activation, range, duration, the `limit` of use, and the energy, karma, and life costs are fields. The render builds the
+Activation, range, duration, the `limit` of use, and the energy, karma, life and movement costs are fields. The render builds the
 stat line from them with its own icons. Never restate them in prose.
 
 ## Deciding whether a word takes a key

@@ -55,12 +55,13 @@ describe('measuring a Compétence', () => {
       activation: '1 Action',
       description: 'La cible subit {{2d6 degats-feu}} et {{1d4 degats-froid}}, puis 3d6 en prose.',
     }
-    for (const key of ['energy', 'karma', 'life', 'limit'] as const) delete free[key]
+    for (const key of ['energy', 'karma', 'life', 'movement', 'limit'] as const) delete free[key]
     const measure = measureSkill(corpus, free)
     expect(measure.zeroResource).toBe(true)
     expect(measure.damage.map((roll) => roll.amount)).toEqual(['2d6', '1d4'])
     expect(measure.deliveredUnits).toBeCloseTo((7 + 2.5) / UNIT_DAMAGE)
     expect(measure.unparsedDice).toEqual(['3d6'])
+    expect(measureSkill(corpus, { ...free, movement: 'half' }).zeroResource).toBe(true)
     expect(measureSkill(corpus, { ...free, energy: 2 }).zeroResource).toBe(false)
     expect(
       measureSkill(corpus, { ...free, limit: { times: 1, per: 'long-rest' } }).zeroResource,

@@ -32,6 +32,7 @@ const SKILL_ID = /^[A-Z0-9]{6}-[0-9]{3}$/
 const MACHINE_KEY = /^[a-z][a-z0-9-]*$/
 const HEX = /^#[0-9a-f]{6}$/
 const LIFE_COST = /^[1-9][0-9]*(d[1-9][0-9]*)?$/
+const MOVEMENT_STEP_METRES = 1.5
 const CHAPTER_FILE = /^[0-9]{2}-[a-z0-9-]+$/
 const MEDIA_FILE =
   /^[a-z0-9]+(?:-[a-z0-9]+)*-\d{1,2}_\d{1,2}-(?:og|cleaned|upscaled_[24])\.(?:png|jpg)$/
@@ -273,7 +274,7 @@ export const skill = z
       .string()
       .optional()
       .describe(
-        'Ce que la Compétence coûte pour être jouée : 1 Action, 1 Action Bonus, 1 Réaction, 1 Attaque pour une manœuvre qui remplace une Attaque, Passif, ou une durée. Une Réaction énonce son déclencheur en tête de sa description, jamais ici.',
+        'Ce que la Compétence coûte pour être jouée : 1 Action, 1 Action Bonus, 1 Réaction, 1 Attaque pour une manœuvre qui remplace une Attaque, Gratuit pour une Compétence active qui ne prend aucune action, Passif, ou une durée. Une Réaction énonce son déclencheur en tête de sa description, jamais ici.',
       ),
     range: z.string().optional().describe('Portée, sur la ligne de stats.'),
     duration: z.string().optional().describe('Durée, sur la ligne de stats.'),
@@ -325,6 +326,23 @@ export const skill = z
       .regex(LIFE_COST)
       .optional()
       .describe('Pastille PDV : un coût payé en Points de vie, en dés (1d6) ou en nombre fixe.'),
+    movement: z
+      .union([
+        z.literal('half'),
+        z
+          .object({
+            atLeast: z
+              .number()
+              .min(MOVEMENT_STEP_METRES)
+              .multipleOf(MOVEMENT_STEP_METRES)
+              .describe('La distance dépensée au minimum, en mètres, par pas de 1,5 m.'),
+          })
+          .strict(),
+      ])
+      .optional()
+      .describe(
+        "Pastille DÉPLACEMENT, à l'icône du terme Déplacement : la part de son déplacement que la créature dépense pour jouer la Compétence. 'half' dépense la moitié de sa Vitesse, rendue « ½ Vitesse ». { atLeast } dépense au moins cette distance, rendue « 1,5 m+ », et la description dit ce qui fixe le reste. Absent : la Compétence ne dépense aucun déplacement.",
+      ),
     evolvesFrom: z
       .string()
       .regex(SKILL_ID)

@@ -228,11 +228,16 @@ export function buildSection(points: number, profiles: readonly DayProfile[]): s
   ].join('\n')
 }
 
+function movementCost(movement: NonNullable<SkillMeasure['movement']>): string {
+  return movement === 'half' ? '½ Vitesse' : `${movement.atLeast} m+`
+}
+
 function cost(measure: SkillMeasure): string {
   const parts = [
     measure.energy === undefined ? '' : `${measure.energy} Énergie`,
     measure.karma === undefined ? '' : `${measure.karma} Karma`,
     measure.life === undefined ? '' : `${measure.life} PdV`,
+    measure.movement === undefined ? '' : `${movementCost(measure.movement)} Déplacement`,
     measure.limit === undefined ? '' : `${measure.limit.times}/${measure.limit.per}`,
   ].filter((part) => part !== '')
   return parts.length === 0 ? 'none' : parts.join(' + ')

@@ -57,6 +57,9 @@ citing that entry as precedent.
     (`docs/adr/0034-the-draugar-pays-in-blood-and-an-archetype-leans-on-one-or-two-caracteristiques.md`).
     Lever le bouclier is paid by the Action Bonus it takes every turn
     (`docs/adr/0038-shields-are-raised-and-wear-down-and-equipment-breaks-and-is-repaired.md`).
+- **A Déplacement cost is not a payment (2026-10-25).** The `movement` field spends the turn's
+  Déplacement the way an activation spends the Action, so it does not count as the payment an active
+  owes. Owner: « Yes it doesn't ».
 - **The resource rework (2026-10-24).**
   - Niveau n of a path is SRD level n in that pool, with a cap of 20 and a start at level 1 with 3 PP.
     The formulas are in `data/books/livre-du-joueur/03-creer-un-personnage.md`, and

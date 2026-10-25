@@ -3,12 +3,14 @@ import { type Corpus, definition, label } from '../../lib/game/corpus'
 import {
   formatNumber,
   hasCost,
+  MOVEMENT_TERM,
+  movementCostLabel,
   showsXp,
   skillTags,
   typeLabelFor,
   xpOf,
 } from '../../lib/game/derive'
-import { flattenText, termLabels } from '../../lib/game/richtext'
+import { flattenText, termLabels, termText } from '../../lib/game/richtext'
 import type { Skill } from '../../lib/game/schema'
 import { badgedStatus } from '../../lib/game/status'
 import type { Locale } from '../../lib/i18n/locales'
@@ -38,6 +40,10 @@ const durationLine = skill.duration
   ? (skill.concentration ? `${t.concentration} · ` : '') + skill.duration
   : undefined
 const limitLine = skill.limit ? t.limit(skill.limit.times, skill.limit.per) : undefined
+const movement = skill.movement ? movementCostLabel(skill.movement, locale, t.halfSpeed) : undefined
+const movementRecord = corpus.terms.keys.get(MOVEMENT_TERM)
+const movementIcon = movementRecord?.icon ?? undefined
+const movementTerm = movementRecord ? termText(movementRecord) : undefined
 const parent = skill.evolvesFrom
   ? (corpus.skills.get(skill.evolvesFrom)?.title ?? skill.evolvesFrom)
   : undefined
@@ -122,6 +128,19 @@ const tags = skillTags(skill.tags).map(({ key, kind }) => {
                 <path d="M12 2c3 5 6 7.6 6 11a6 6 0 0 1-12 0c0-3.4 3-6 6-11z" />
               </svg>
               {`${skill.life} ${t.life}`}
+            </span>
+          )
+        }
+        {
+          movement && (
+            <span class="au-cost au-cost--movement">
+              <span role="img" aria-label={movementTerm} title={movementTerm}>
+                <Icon name={movementIcon} class="au-cost__icon" />
+              </span>
+              <span>
+                {movement.amount}
+                {movement.unit && <span class="au-cost__unit">{` ${movement.unit}`}</span>}
+              </span>
             </span>
           )
         }

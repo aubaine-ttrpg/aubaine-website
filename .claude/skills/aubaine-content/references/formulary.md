@@ -368,6 +368,16 @@ write uses it. A proposal never renames a rule term or adds a key; that is a voc
 - Examples: PASMON-001.
 - Status: approved in French; English proposed.
 
+### movement-cost
+- No sentence. A Compétence that spends Déplacement to be played writes the `movement` field, and
+  the stat line prints it beside the boot of {{deplacement}}: `"half"` prints « ½ Vitesse » (owner, 2026-10-25: « moitié might indicate half of what you have »),
+  `{ "atLeast": 1.5 }` prints « 1,5 m+ ». With `atLeast`, the description says what sets the rest of
+  the distance and never repeats the minimum.
+- Never: « Cela vous coûte la moitié de votre {{vitesse}}. », « en dépensant une part de votre
+  {{deplacement|déplacement}} égale à … ».
+- First written in: RELEVE-001, SAUTER-001.
+- Status: approved (owner, 2026-10-25: « creates a new cost : Déplacement with the boot things »).
+
 ### range-in-prose
 - FR: « à 9 m ou moins de vous »            EN: « within 9 m of you »
 - When: a distance inside a rule. The Compétence's own range is the `range` field. The anchor

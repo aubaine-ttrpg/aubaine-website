@@ -24,7 +24,7 @@ The filename is the id and nothing else. The id matches `^[A-Z0-9]{6}-[0-9]{3}$`
 | `domains` | required | Domaine(s) réellement employé(s), choisis par Compétence et jamais repris de l'arbre. Donne la couleur de bordure. `[]` vaut Neutre ; deux Domaines donnent une bordure scindée à 135 degrés. | 0 to 2 keys from `data/meta/domains.json` |
 | `characteristics` | optional | Caractéristique(s) employée(s) par les Jets : icône(s) devant le titre. `[]` ou absent signifie que la Compétence n'appelle aucun Jet. `any` marque une Caractéristique variable selon le contexte. | keys from `data/meta/characteristics.json` |
 | `prerequisite` | optional | Condition à remplir avant d'acheter la Compétence, rendue sur la ligne de stats : une Caractéristique et son seuil, une Espèce, un nombre de Compétences d'un Domaine. Absente : la Compétence n'en demande aucune. | free text |
-| `activation` | optional | Ce que la Compétence coûte pour être jouée : 1 Action, 1 Action Bonus, 1 Réaction, 1 Attaque pour une manœuvre qui remplace une Attaque, Passif, ou une durée. Une Réaction énonce son déclencheur en tête de sa description, jamais ici. | free text |
+| `activation` | optional | Ce que la Compétence coûte pour être jouée : 1 Action, 1 Action Bonus, 1 Réaction, 1 Attaque pour une manœuvre qui remplace une Attaque, Gratuit pour une Compétence active qui ne prend aucune action, Passif, ou une durée. Une Réaction énonce son déclencheur en tête de sa description, jamais ici. | free text |
 | `range` | optional | Portée, sur la ligne de stats. | free text |
 | `duration` | optional | Durée, sur la ligne de stats. | free text |
 | `concentration` | optional | `Rendue dans la durée sous la forme « Concentration · <durée> ». Ce n'est pas une étiquette.` | `true`, `false` |
@@ -32,6 +32,7 @@ The filename is the id and nothing else. The id matches `^[A-Z0-9]{6}-[0-9]{3}$`
 | `energy` | optional | Pastille ÉNERGIE, de 0 au coût du Rang le plus cher. Zéro est une valeur réelle et se distingue d'une Compétence sans coût : elle affiche « 0 énergie ». | integer 0 to 13, `MAX_ENERGY_COST` in `src/lib/game/resources.ts` |
 | `karma` | optional | Pastille KARMA. Une créature en garde 3 au plus et n'en récupère à aucun repos, alors une Compétence qui en coûte pèse lourd. | integer 1 to 3 |
 | `life` | optional | Pastille PDV : un coût payé en Points de vie, en dés (1d6) ou en nombre fixe. | `"6"`, `"1d6"` |
+| `movement` | optional | Pastille DÉPLACEMENT, à l'icône du terme Déplacement : la part de son déplacement que la créature dépense pour jouer la Compétence. 'half' dépense la moitié de sa Vitesse, rendue « ½ Vitesse ». { atLeast } dépense au moins cette distance, rendue « 1,5 m+ », et la description dit ce qui fixe le reste. Absent : la Compétence ne dépense aucun déplacement. | `"half"`, or `{ "atLeast": 1.5 }` with a multiple of 1.5 |
 | `evolvesFrom` | optional | `Compétence dérivée : identifiant de la base, rendu « ▲ <titre> ». Réservé aux nœuds rattachés à une base, jamais aux améliorations imbriquées.` | a skill id that exists |
 | `tags` | optional | Étiquettes rendues en pied d'entrée, dans l'ordre Pratique, Écoles, Spéciales, chacune avec sa définition au survol. Aucune n'est obligatoire : une Compétence ne porte que celles qui servent l'équilibre, la saveur ou les combinaisons. | an object with `practice` (one key), `schools` (one or two distinct keys) and `specials` (one or more keys), each optional, keys from `data/meta/tags.json`; never an empty object |
 | `grants` | optional | Compétences que celle-ci accorde, définies dans data/skills/ : elles ne se jouent que tant que celle-ci dure. Elles ne s'achètent pas, ne figurent dans aucune liste ni aucune Espèce, et tiennent leur statut de la Compétence qui les accorde. Absent : elle n'en accorde aucune. | skill ids |
@@ -106,6 +107,8 @@ Then open the tree page, choose the node and read its card in the pane.
 **`energy: 0` is not the same as no `energy`.** `"energy": 0` prints a `0 énergie` pill, which says the skill costs nothing on purpose. Leaving the key out prints no energy pill at all, which says energy is not part of this skill. Pick the one you mean.
 
 **An active skill pays something.** Only a Compétence de base is free. An active with no `energy` or with `energy: 0` needs another payment: `life`, `karma`, an `activation` in minutes or hours, a resource it spends, or a `limit`. The Livre du MJ, chapter Concevoir une Compétence, prices each, gives the Énergie and Unités of each Rang, and gates Rang 6 and above. `pnpm balance entries --ids=<ID>` flags an active that pays nothing.
+
+**A movement cost is a field, and it is not a payment.** `movement` prints the boot pill and the rule text never restates it: `"half"` for half the Vitesse, `{ "atLeast": 1.5 }` when the description says what sets the rest of the distance. It spends the turn's Déplacement the way an `activation` spends the Action, so it does not count as the payment an active owes.
 
 **A passive skill may not carry an energy cost above 0.** The schema rejects it: `une Compétence passive ne coûte pas d'Énergie. energy: 0 reste permis pour marquer explicitement une absence de coût.`
 

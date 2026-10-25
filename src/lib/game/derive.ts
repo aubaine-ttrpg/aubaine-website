@@ -37,6 +37,8 @@ export const SPECIES_PLATE_TERMS = {
   size: 'taille',
 } as const
 
+export const MOVEMENT_TERM = 'deplacement'
+
 export const SPECIES_ORIGIN_ICON = 'mdi:dna'
 
 export const DEFAULT_MOVEMENT_METRES = 9
@@ -80,6 +82,19 @@ export function showsXp(skill: Pick<Skill, 'showXp'>): boolean {
 
 export function hasCost(value: number | undefined): value is number {
   return value !== undefined && value !== null
+}
+
+export type MovementCost = NonNullable<Skill['movement']>
+
+export type MovementCostLabel = { amount: string; unit: string | null }
+
+export function movementCostLabel(
+  cost: MovementCost,
+  locale: Locale,
+  halfSpeed: string,
+): MovementCostLabel {
+  if (cost === 'half') return { amount: halfSpeed, unit: null }
+  return { amount: formatNumber(cost.atLeast, locale), unit: 'm+' }
 }
 
 export function frame(colors: string[]): string {

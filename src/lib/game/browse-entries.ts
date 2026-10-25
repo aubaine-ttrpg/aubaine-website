@@ -148,6 +148,7 @@ function skillFacets(skill: Skill, corpus: Corpus, locale: Locale): Facet[] {
   if (hasCost(skill.energy)) costs.push({ value: 'energy', label: t.energy })
   if (hasCost(skill.karma)) costs.push({ value: 'karma', label: t.karma })
   if (skill.life) costs.push({ value: 'life', label: t.life })
+  if (skill.movement) costs.push({ value: 'movement', label: t.movementCost })
   if (costs.length === 0) costs.push({ value: 'free', label: t.freeCost })
 
   const characteristics = (skill.characteristics ?? []).map((key) => {

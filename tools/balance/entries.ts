@@ -50,6 +50,7 @@ export type SkillMeasure = {
   energy: number | undefined
   karma: number | undefined
   life: string | undefined
+  movement: Skill['movement']
   limit: Skill['limit']
   activation: string | undefined
   damage: DamageRoll[]
@@ -93,6 +94,7 @@ export function measureSkill(corpus: Corpus, skill: Skill): SkillMeasure {
     energy: skill.energy,
     karma: skill.karma,
     life: skill.life,
+    movement: skill.movement,
     limit: skill.limit,
     activation: skill.activation,
     damage,

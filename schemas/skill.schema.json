@@ -77,7 +77,7 @@
       "minLength": 1
     },
     "activation": {
-      "description": "Ce que la Compétence coûte pour être jouée : 1 Action, 1 Action Bonus, 1 Réaction, 1 Attaque pour une manœuvre qui remplace une Attaque, Passif, ou une durée. Une Réaction énonce son déclencheur en tête de sa description, jamais ici.",
+      "description": "Ce que la Compétence coûte pour être jouée : 1 Action, 1 Action Bonus, 1 Réaction, 1 Attaque pour une manœuvre qui remplace une Attaque, Gratuit pour une Compétence active qui ne prend aucune action, Passif, ou une durée. Une Réaction énonce son déclencheur en tête de sa description, jamais ici.",
       "type": "string"
     },
     "range": {
@@ -136,6 +136,30 @@
       "description": "Pastille PDV : un coût payé en Points de vie, en dés (1d6) ou en nombre fixe.",
       "type": "string",
       "pattern": "^[1-9][0-9]*(d[1-9][0-9]*)?$"
+    },
+    "movement": {
+      "description": "Pastille DÉPLACEMENT, à l'icône du terme Déplacement : la part de son déplacement que la créature dépense pour jouer la Compétence. 'half' dépense la moitié de sa Vitesse, rendue « ½ Vitesse ». { atLeast } dépense au moins cette distance, rendue « 1,5 m+ », et la description dit ce qui fixe le reste. Absent : la Compétence ne dépense aucun déplacement.",
+      "anyOf": [
+        {
+          "type": "string",
+          "const": "half"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "atLeast": {
+              "type": "number",
+              "minimum": 1.5,
+              "multipleOf": 1.5,
+              "description": "La distance dépensée au minimum, en mètres, par pas de 1,5 m."
+            }
+          },
+          "required": [
+            "atLeast"
+          ],
+          "additionalProperties": false
+        }
+      ]
     },
     "evolvesFrom": {
       "description": "Compétence dérivée : identifiant de la base, rendu « ▲ <titre> ». Réservé aux nœuds rattachés à une base, jamais aux améliorations imbriquées.",
