@@ -227,9 +227,10 @@ write uses it. A proposal never renames a rule term or adds a key; that is a voc
   between them:
   `En cas de réussite, choisissez l'un des deux effets.\n\n***Renversement.*** …\n***Poussée.*** …`
   EN: « choose one of the two effects. », the same layout.
-- When: the player picks one of several named outcomes. A paragraph that only grants the choice,
-  after a flavour line, holds « Choisissez l'un des deux effets. » alone. What ends the chosen effect
-  follows in its own paragraph after the labelled lines.
+- When: the player picks one of several named outcomes. The choice sentence always closes the
+  paragraph before it, the opening line included, and never stands alone (owner, 2026-10-25:
+  « Esquiver shouldn't have newline between choissisez cet effet and the sentence before it »). What
+  ends the chosen effect follows in its own paragraph after the labelled lines.
 - Never: « choisissez : X, ou Y » (owner, 2026-10-25: « a : ça ou ça format which we don't use
   anymore »); the labelled lines split by blank lines; « l'un des effets suivants ».
 - Examples: BOUSCU-001, ESQUIV-001.

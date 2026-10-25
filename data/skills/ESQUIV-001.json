@@ -19,5 +19,5 @@
       "protection"
     ]
   },
-  "description": "Vous vous mettez en garde et vous lisez les intentions d'en face.\n\nChoisissez l'un des deux effets.\n\n***Parade.*** Les {{attaque|Attaques}} faites contre vous subissent 1 {{desavantage}}.\n***Dérobade.*** Vos {{jet|Jets}} de {{reflexes}}, de {{resistance}} et de {{volonte}} gagnent 1 {{avantage}}.\n\nL'effet prend fin dès que votre {{vitesse}} tombe à 0."
+  "description": "Vous vous mettez en garde et vous lisez les intentions d'en face. Choisissez l'un des deux effets.\n\n***Parade.*** Les {{attaque|Attaques}} faites contre vous subissent 1 {{desavantage}}.\n***Dérobade.*** Vos {{jet|Jets}} de {{reflexes}}, de {{resistance}} et de {{volonte}} gagnent 1 {{avantage}}.\n\nL'effet prend fin dès que votre {{vitesse}} tombe à 0."
 }
