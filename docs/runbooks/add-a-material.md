@@ -16,7 +16,7 @@ The filename is the slug, and the slug is the material's id: lowercase, no accen
 | --- | --- | --- | --- |
 | `name` | required | Nom imprimé du matériau. | any non empty string |
 | `status` | optional | Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable : les listes le masquent tant que le lecteur n'affiche pas les brouillons ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une Espèce, une pièce d'équipement ou une panoplie, dans cet ordre. | `draft`, `playtest`, `beta`, `balanced` |
-| `types` | required | Types de matière, des clés déclarées dans data/meta/material-types.json. Dans une même fabrication, le matériau ne compte que pour l'un d'eux. | 1 or more keys from `data/meta/material-types.json` |
+| `types` | required | Types de matière, des clés déclarées dans data/meta/material-types.json. Un matériau entre dans une recette qui accepte au moins l'un d'eux. | 1 or more keys from `data/meta/material-types.json` |
 | `value` | required | Valeur de matière : ce que le matériau apporte au coût d'une recette, et ce qu'il rapporte revendu, en pièces d'argent. | integer, 1 or more |
 | `description` | required | Une phrase de saveur : l'allure du matériau, là où on le trouve. Aucune règle. | one sentence of plain text |
 

@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets'
 
 import { type Corpus, label } from '../../lib/game/corpus'
-import { formatNumber, priceInCoins } from '../../lib/game/derive'
+import { craftMaterials, formatNumber, priceInCoins } from '../../lib/game/derive'
 import type { EquipmentItem } from '../../lib/game/schema'
 import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
@@ -157,7 +157,18 @@ const price = priceInCoins(item.price, coins).map((part) => {
         <div class="au-item__craft-cols">
           <span class="au-item__craft-col">
             <span class="au-item__craft-label">{t.craftMaterials}</span>
-            <span class="au-item__craft-value">{item.craft.materials.join(', ')}</span>
+            <span class="au-item__craft-value">
+              {craftMaterials(item.craft).map((material, index) => (
+                <Fragment>
+                  {index > 0 && ', '}
+                  {material.required ? (
+                    <strong class="au-item__craft-required">{`${material.type} (${t.craftRequired})`}</strong>
+                  ) : (
+                    material.type
+                  )}
+                </Fragment>
+              ))}
+            </span>
           </span>
           <span class="au-item__craft-col">
             <span class="au-item__craft-label">{t.craftSequence}</span>

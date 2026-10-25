@@ -1390,6 +1390,17 @@ describe('materials and environments', () => {
     }
   })
 
+  it('keeps every required Type of a recipe among the Types it accepts, in both locales', () => {
+    for (const corpus of [fr, en]) {
+      for (const item of corpus.items) {
+        const accepted = new Set(item.craft?.materials)
+        for (const name of item.craft?.required ?? []) {
+          expect(accepted.has(name), `${item.name} required Type ${name}`).toBe(true)
+        }
+      }
+    }
+  })
+
   it('covers every face of each Loot Die once, in order, with materials that exist', () => {
     for (const [slug, environment] of fr.environments) {
       const faces = environment.loot.flatMap((row) => {

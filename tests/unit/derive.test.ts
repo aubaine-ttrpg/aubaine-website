@@ -6,6 +6,7 @@ import {
   catalogueByFamily,
   cataloguePanoplies,
   collator,
+  craftMaterials,
   formatNumber,
   formatPrice,
   frame,
@@ -369,6 +370,23 @@ describe('text helpers', () => {
       amount: '4.5',
       unit: 'm+',
     })
+  })
+
+  it('marks the Types a recipe requires, in the order the recipe lists them', () => {
+    const craft = {
+      discipline: 'craft',
+      cost: 4,
+      materials: ['Bois', 'Métal', 'Cuir'],
+      required: ['Métal'],
+      sequence: ['Force 10'],
+    }
+    expect(craftMaterials(craft)).toEqual([
+      { type: 'Bois', required: false },
+      { type: 'Métal', required: true },
+      { type: 'Cuir', required: false },
+    ])
+    const open = { discipline: 'craft', cost: 4, materials: ['Bois'], sequence: ['Force 10'] }
+    expect(craftMaterials(open)).toEqual([{ type: 'Bois', required: false }])
   })
 
   it('writes a price in the local coin names', () => {

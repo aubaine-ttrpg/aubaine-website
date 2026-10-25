@@ -97,6 +97,13 @@ export function movementCostLabel(
   return { amount: formatNumber(cost.atLeast, locale), unit: 'm+' }
 }
 
+export type CraftMaterial = { type: string; required: boolean }
+
+export function craftMaterials(craft: NonNullable<EquipmentItem['craft']>): CraftMaterial[] {
+  const required = new Set(craft.required)
+  return craft.materials.map((type) => ({ type, required: required.has(type) }))
+}
+
 export function frame(colors: string[]): string {
   if (colors.length === 0) return '#2a2a2e'
   if (colors.length === 1) return colors[0] as string

@@ -199,7 +199,7 @@ Where it disagreed and the data won:
 | `À terre` | Désavantage on every Jet | Désavantage on Attaques only |
 | Material classifier | Tags | Types |
 | Loot opportunity | one for the group | one for each character |
-| Craft requirement | a required value for each Type | one total `craft.cost`, spread freely across the Types |
+| Craft requirement | a required value for each Type | one total `craft.cost`, reached by any materials that carry one of the recipe's Types; only the Types in `craft.required` must each be present |
 | Rarity names | Inhabituel, Épique | `Peu commun`, `Très rare`, from `data/meta/rarities.json` |
 | Armour | light `14/15 + Dex`, heavy a fixed `20` to `22` | what each item carries, one step lower |
 

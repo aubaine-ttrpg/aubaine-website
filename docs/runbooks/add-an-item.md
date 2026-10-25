@@ -30,7 +30,8 @@ The filename is the slug and the slug is the item's handle everywhere else. Lowe
 | `craft` | optional | Absent : l'objet ne se fabrique pas. | object, see below |
 | `craft.discipline` | required inside `craft` | Clé déclarée dans `data/meta/disciplines.json`. | `artisanat`, `arcanes`, `technologie`, `science` |
 | `craft.cost` | required inside `craft` | Valeur de matière totale à atteindre. | integer, 1 or more |
-| `craft.materials` | required inside `craft` | Types de matière acceptés. Chacun doit être représenté. | 1 or more strings |
+| `craft.materials` | required inside `craft` | Types de matière acceptés : chaque matériau engagé en porte au moins un. | 1 or more strings |
+| `craft.required` | optional | Types obligatoires, pris parmi materials : chacun doit être porté par au moins un matériau engagé, et un même matériau peut en porter plusieurs. Absent : aucun Type n'est obligatoire. | 1 or more strings, each also in `craft.materials` |
 | `craft.sequence` | required inside `craft` | La fabrication dans l'ordre, un Jet par étape : le nom de la Caractéristique puis son DD. Le travail physique précède le savoir. | 1 or more strings: `Dextérité 10` |
 | `grants` | optional | Compétences accordées par la pièce, définies dans `data/skills/`. | 1 or more skill ids that exist |
 | `text` | optional | Corps de l'entrée : ce que fait l'objet. | free text with rule markup |

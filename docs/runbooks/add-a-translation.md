@@ -33,7 +33,7 @@ An overlay may only carry the fields listed below, for its kind. Every one of th
 | skill tree | `name`, `core.label`, `core.sublabel` |
 | skill list | `name`, `subtitle`, `note` |
 | species | `name`, `subtitle`, `movement`, `subspecies`, `roleplay` |
-| equipment item | `name`, `kind`, `prerequisite`, `headlines`, `stats`, `properties`, `craft.materials`, `craft.sequence`, `text`, `description` |
+| equipment item | `name`, `kind`, `prerequisite`, `headlines`, `stats`, `properties`, `craft.materials`, `craft.required`, `craft.sequence`, `text`, `description` |
 | equipment set | `name`, `description`, `bonuses` |
 | catalogue | `name`, `subtitle`, `families`, `sections` |
 | material | `name`, `description` |
@@ -126,5 +126,7 @@ Then open the `/en/` page and compare it against the `/fr/` one.
 **An overlay must target a file that exists.** Renaming or deleting a French file without doing the same to its `.en.json` makes `pnpm data:check` fail with `overlay ... targets nothing`.
 
 **The overlay holds only what changes.** Do not copy the whole French file and translate in place. Extra keys are at best ignored and at worst invalidate the overlay.
+
+**A recipe's `required` follows its `materials`.** An overlay that writes `craft.materials` in English writes `craft.required` with the same English words, or the required Types stop matching and `pnpm data:check` fails.
 
 **Never write `"key": null`.** Leave the key out. A key you leave out is exactly how you say "keep the French".

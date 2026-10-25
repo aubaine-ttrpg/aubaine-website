@@ -773,7 +773,14 @@ export const equipmentItem = z
         materials: z
           .array(z.string())
           .min(1)
-          .describe('Types de matière acceptés. Chacun doit être représenté.'),
+          .describe('Types de matière acceptés : chaque matériau engagé en porte au moins un.'),
+        required: z
+          .array(z.string())
+          .min(1)
+          .optional()
+          .describe(
+            "Types obligatoires, pris parmi materials : chacun doit être porté par au moins un matériau engagé, et un même matériau peut en porter plusieurs. Absent : aucun Type n'est obligatoire.",
+          ),
         sequence: z
           .array(z.string())
           .min(1)
@@ -782,6 +789,14 @@ export const equipmentItem = z
           ),
       })
       .strict()
+      .refine((craft) => (craft.required ?? []).every((type) => craft.materials.includes(type)), {
+        message: 'un Type obligatoire figure aussi dans materials.',
+        path: ['required'],
+      })
+      .refine((craft) => new Set(craft.required).size === (craft.required ?? []).length, {
+        message: 'un Type obligatoire ne se répète pas.',
+        path: ['required'],
+      })
       .optional()
       .describe("Absent : l'objet ne se fabrique pas."),
     grants: z
@@ -837,7 +852,7 @@ export const material = z
       .array(z.string().regex(MACHINE_KEY))
       .min(1)
       .describe(
-        "Types de matière, des clés déclarées dans data/meta/material-types.json. Dans une même fabrication, le matériau ne compte que pour l'un d'eux.",
+        "Types de matière, des clés déclarées dans data/meta/material-types.json. Un matériau entre dans une recette qui accepte au moins l'un d'eux.",
       ),
     value: z
       .number()
@@ -1925,6 +1940,7 @@ export const overlays = {
     properties: z.array(z.object({ name: z.string(), text: z.string() }).strict()).optional(),
     craft: localized({
       materials: z.array(z.string()).optional(),
+      required: z.array(z.string()).optional(),
       sequence: z.array(z.string()).optional(),
     }).optional(),
     text: z.string().optional(),

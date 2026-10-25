@@ -145,7 +145,15 @@
           "items": {
             "type": "string"
           },
-          "description": "Types de matière acceptés. Chacun doit être représenté."
+          "description": "Types de matière acceptés : chaque matériau engagé en porte au moins un."
+        },
+        "required": {
+          "description": "Types obligatoires, pris parmi materials : chacun doit être porté par au moins un matériau engagé, et un même matériau peut en porter plusieurs. Absent : aucun Type n'est obligatoire.",
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "sequence": {
           "minItems": 1,

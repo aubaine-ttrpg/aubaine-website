@@ -1265,6 +1265,11 @@
   color: var(--paper-body);
 }
 
+.au-item__craft-required {
+  font-weight: 700;
+  color: var(--paper-ink);
+}
+
 .au-item__craft-step {
   white-space: nowrap;
 }
