@@ -108,7 +108,7 @@ pnpm dev
 
 **`showXp: false`, not `xpOverride: 0`.** `tier` is required and the schema has no way to omit a price, so you hide the token instead. A basic skill costs no XP and no Memory.
 
-**A tag on a basic skill reaches everyone.** Every character has every basic skill, so a combo that cites one of its tags applies to the whole table. Judge each slot as for any other skill, by the test in [add-a-tag.md](add-a-tag.md), and fill it only when the skill needs it: `ESQUIV-001` carries Technique and Protection, `RECOLT-001` only Technique.
+**A tag on a basic skill reaches everyone.** Every character has every basic skill, so a combo that cites one of its tags applies to the whole table. Tags are here for the combo, and that holds for a basic skill too: it carries the Pratique and the École that describe it, so a combo that names them reaches it. `ESQUIV-001` carries Technique and Protection, `RECOLT-001` only Technique because no École describes gathering. A slot stays empty only when no tag describes the skill.
 
 **Leave `energy` out entirely.** A basic skill has no energy cost. Writing `"energy": 0` would print a `0 énergie` pill, which says something different: that the skill has an energy line and it reads zero.
 

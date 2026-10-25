@@ -10,7 +10,7 @@ A skill has three reserved slots, and none of them is mandatory:
 - **École**: the family its effect belongs to. One or two, and each must accept the Pratique when one is set. A second École is kept for a skill whose effect truly belongs to both families, as Dépouille belongs to Illusion and to Nécromancie.
 - **Spéciale**: a particularity that carries, or will carry, a rule. As many as needed.
 
-For each slot, ask whether this skill needs it for balance, flavour or a combo. If the answer is no, leave the slot empty; if no slot applies, leave `tags` out of the skill. A base action is judged like any other skill; a skill that only changes the character sheet when bought carries no tag. The definitions in `data/meta/tags.json` guide the choice, they do not compute it: when a rule of thumb and the skill's flavour disagree, flavour and combos win.
+Tags are here for the combo: a skill carries the Pratique and the École that describe it, so that a combo naming them reaches it. Leave a slot empty only when no tag describes the skill, never because no combo cites it yet; if no slot applies, leave `tags` out of the skill. A base action is judged like any other skill; a skill that only changes the character sheet when bought carries no tag. The definitions in `data/meta/tags.json` guide the choice, they do not compute it: when a rule of thumb and the skill's flavour disagree, flavour and combos win.
 
 ## When a new tag is justified
 

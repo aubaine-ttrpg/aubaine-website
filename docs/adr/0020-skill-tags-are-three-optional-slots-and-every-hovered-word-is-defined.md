@@ -8,6 +8,7 @@
 **Revised:** 2026-09-26, the Enseignement and Inné Pratiques are added (addendum in Decision 5)
 **Revised:** 2026-10-20, a skill may carry two Pratiques, and Destruction and Contrôle accept Inné (addendum in Decision 3)
 **Revised:** 2026-09-28, Inné names the mind, for the Psychique powers (addendum in Decision 5)
+**Revised:** 2026-10-25, tags are here for the combo: a skill carries the tags that describe it (addendum in Decision 3)
 **Revised:** 2026-09-28, the Rage Pratique is added (addendum in Decision 5)
 **Revised:** 2026-09-29, every tag answers to a key and rule text never writes « étiquette », reversed by 0036 (addenda in Decisions 4 and 5)
 **Deciders:** Kori
@@ -153,6 +154,23 @@ bought still carry none.
 - The matrix reads every pair: each École a skill carries accepts each of its Pratiques
   (`tests/data/integrity.test.ts`). Destruction and Contrôle now accept Inné, which the owner's
   tagging of the Nnor and Dragonnor Compétences asked for on 2026-10-20.
+
+### Addendum (2026-10-25): tags are here for the combo
+
+- The owner restated why the slots exist: « the real rule is not "Add tags when combo" it's "Tags
+  are here for the combo" so tags need to be here so players can combo ».
+- A skill, a base skill included, now carries the Pratique and the École that describe it, so a combo
+  that names them reaches it. A slot stays empty only when no tag in `data/meta/tags.json` describes
+  the skill, never because no combo cites it yet. The slots stay optional in the schema, and a tag
+  that does not describe the skill is still never added to fill one: the rejection of « filling
+  slots blindly » above holds.
+- Applied the same day to the base skills: Sauter and Se relever (Technique + Mobilité), Se dégager
+  (Manœuvre + Mobilité), Attaquer and Attaque d'opportunité (Destruction), Chercher (Divination),
+  Fabriquer and Réparer (Création). Improviser, Récolter and Se préparer keep what they had, because no
+  École describes them.
+- The rule now lives in `.claude/skills/aubaine-content/references/writing.md`,
+  `docs/runbooks/add-a-skill.md`, `docs/runbooks/add-a-basic-skill.md`, `docs/runbooks/add-a-tag.md`
+  and the `tags` description in `src/lib/game/schema.ts`.
 
 ---
 

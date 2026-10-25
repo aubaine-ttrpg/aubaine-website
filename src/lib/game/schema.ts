@@ -396,7 +396,7 @@ export const skill = z
       })
       .optional()
       .describe(
-        "Étiquettes rendues en pied d'entrée, dans l'ordre Pratique, Écoles, Spéciales, chacune avec sa définition au survol. Aucune n'est obligatoire : une Compétence ne porte que celles qui servent l'équilibre, la saveur ou les combinaisons.",
+        "Étiquettes rendues en pied d'entrée, dans l'ordre Pratique, Écoles, Spéciales, chacune avec sa définition au survol. Elles servent aux combinaisons : une Compétence porte celles qui la décrivent, pour qu'une combinaison qui les nomme l'atteigne. Un emplacement reste vide quand aucune ne la décrit.",
       ),
     grants: z
       .array(skillId)

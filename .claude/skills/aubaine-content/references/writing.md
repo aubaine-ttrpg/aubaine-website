@@ -63,6 +63,12 @@ an obligation, no stat field restated in prose. They load with the file; this pa
   and bite; Écho tribal), what a people teaches is Enseignement with no École (Persistance
   rustique, Instinct tribal), and a blow of the body that replaces an Attaque may carry Inné and
   Manœuvre together (Coup de sabot). An École goes on only when one fits (owner, 2026-10-20).
+- Tags are here for the combo. Every Compétence, a Compétence de base included, carries the Pratique
+  and the École that describe it, so that a combo naming them reaches it. A slot stays empty only
+  when no tag in `data/meta/tags.json` describes the skill, never because no combo cites it yet, and
+  a tag that does not describe the skill is never added to fill a slot (owner, 2026-10-25: « the
+  real rule is not "Add tags when combo" it's "Tags are here for the combo" so tags need to be here
+  so players can combo »; earlier the same day: « wtf even jump and se relever don't have tags »).
 - Light takes no keyword and no levels: a Compétence says what the creature sees in plain words,
   « vous voyez dans le noir, en l'absence de lumière », never « Lumière faible » or « Lumière
   vive » (owner, 2026-10-20: « we drop dnd's bullshit about lighting level »; the Ténèbres keyword
