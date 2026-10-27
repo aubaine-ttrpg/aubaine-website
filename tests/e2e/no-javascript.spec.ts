@@ -1,6 +1,8 @@
 import { expect, type Page, test } from '@playwright/test'
 
 import { label } from '../../src/lib/game/build'
+import { SUBSPECIES_SECTIONS } from '../../src/lib/game/derive'
+import { pathFor } from '../../src/lib/i18n/routes'
 import { strings } from '../../src/lib/i18n/strings'
 import { corpus } from './support/corpus'
 
@@ -72,6 +74,32 @@ async function expectEveryRailLinkToLand(page: Page): Promise<void> {
   }
 }
 
+async function documentPositions(page: Page, selectors: string[]): Promise<number[]> {
+  return page.evaluate((list) => {
+    const everyElement = [...document.querySelectorAll('*')]
+    return list.map((selector) => {
+      const element = document.querySelector(selector)
+      return element ? everyElement.indexOf(element) : -1
+    })
+  }, selectors)
+}
+
+async function expectInReadingOrder(page: Page, selectors: string[]): Promise<void> {
+  const positions = await documentPositions(page, selectors)
+  selectors.forEach((selector, index) => {
+    expect(positions[index], selector).toBeGreaterThanOrEqual(0)
+  })
+  expect(positions, selectors.join(' < ')).toEqual([...positions].sort((a, b) => a - b))
+}
+
+async function hrefsOf(page: Page, links: string): Promise<string[]> {
+  return page
+    .locator(links)
+    .evaluateAll((anchors) => anchors.map((anchor) => anchor.getAttribute('href') ?? ''))
+}
+
+const targetOf = (href: string): string => `[id="${href.replace(/^#/, '')}"]`
+
 for (const route of ROUTES) {
   test(`${route} renders without client javascript`, async ({ page }) => {
     const response = await page.goto(route)
@@ -99,6 +127,20 @@ test('a species carries its lore, its regional origins and its whole pool in the
   await expect(page.locator('figure.au-quote blockquote')).not.toBeEmpty()
   await expect(page.locator('figure.au-quote blockquote')).not.toContainText(caption)
   await expectEveryRailLinkToLand(page)
+  const t = strings('fr')
+  await expect(page.locator(`nav.au-aside[aria-label="${t.onThisPage}"] .au-eyebrow`)).toHaveText([
+    t.speciesPlayPart,
+    t.speciesLorePart,
+  ])
+  const lore = await hrefsOf(page, `nav.au-aside[aria-label="${t.speciesLorePart}"] .au-trail a`)
+  expect(lore.length).toBeGreaterThan(0)
+  await expectInReadingOrder(page, [
+    'figure.au-quote',
+    '#jouer',
+    '#origines-regionales',
+    '#skills',
+    ...lore.map(targetOf),
+  ])
   const origins = human.subspecies.map((sub) => sub.name)
   await expect(page.locator('.au-aside .au-trail .au-trail a')).toHaveText(origins)
   await expect(page.locator('[id^="origine-"]')).toHaveCount(origins.length)
@@ -115,6 +157,27 @@ test('a species carries its lore, its regional origins and its whole pool in the
   expect((await rowIds(page)).sort()).toEqual([...pool].sort())
   await expect(page.locator('[data-details] .au-skill__xp')).toHaveCount(0)
   await expect(page.locator('[data-detail]').first()).toBeVisible()
+})
+
+test('every species page reads its play part, then its skills, then its lore', async ({ page }) => {
+  const play = new Set(['jouer', ...Object.values(SUBSPECIES_SECTIONS)])
+  for (const species of (await corpus('fr')).species) {
+    await page.goto(pathFor('speciesEntry', 'fr', { species: species.id }))
+    const headings = await page
+      .locator('main h2[id]')
+      .evaluateAll((nodes) => nodes.map((node) => node.id))
+    const skills = headings.indexOf('skills')
+    const read = `${species.id}: ${headings.join(', ')}`
+    expect(skills, read).toBeGreaterThanOrEqual(0)
+    expect(
+      headings.slice(0, skills).every((id) => play.has(id)),
+      read,
+    ).toBe(true)
+    expect(
+      headings.slice(skills + 1).some((id) => play.has(id)),
+      read,
+    ).toBe(false)
+  }
 })
 
 test('a species with sub-species prints each one with the skill it imposes', async ({ page }) => {

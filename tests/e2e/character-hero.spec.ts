@@ -238,7 +238,10 @@ test('the hero stays a dark stage in the light theme', async ({ page }) => {
     DARK_INK,
   )
   expect(
-    await page.locator('.au-reading').evaluate((node) => getComputedStyle(node).color),
+    await page
+      .locator('.au-reading')
+      .first()
+      .evaluate((node) => getComputedStyle(node).color),
   ).not.toBe(DARK_INK)
 })
 

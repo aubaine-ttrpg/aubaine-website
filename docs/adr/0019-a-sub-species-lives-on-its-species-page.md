@@ -9,6 +9,7 @@
 **Revised:** 2026-09-25, a sub-species may impose a Compétence, each Espèce names its sub-species, and a common-noun name translates (addenda in Decisions 1 and 3)
 **Revised:** 2026-09-27, a rule term keeps one label per locale and links only where a text writes it (0029, addendum in Decision 4)
 **Revised:** 2026-10-20, `recharge` becomes `limit`, and Compétence becomes a rule term (0052, addendum in Decision 4)
+**Revised:** 2026-10-27, the `Jouer un <nom>` section moves above the sub-species and the lore's sections (0060, addendum in Decision 2)
 **Deciders:** Kori
 **Scope:** The `subspecies`, `roleplay` and `languages` fields on `species` in
 `src/lib/game/schema.ts`, the `languages` vocabulary in `data/meta/`, the sections of the species
@@ -163,6 +164,12 @@ the addendum above now holds only for the per-Espèce surfaces of peoples. Chapt
   des signes, Commun des profondeurs, Profond and Argot des voleurs.
 - `playingAs` hard codes « un ». A species whose name takes « une » needs the string changed first,
   which `docs/runbooks/add-a-species.md` records as a trap.
+
+### Addendum (2026-10-27): the Jouer table no longer sits below the lore
+
+The table is still never a plate. Its place on the page moves: the species page now shows the lore's
+opening, then `Jouer un <nom>`, then the sub-species, then the pool, and the lore's sections after
+the pool (0060 Decision 1). The section keeps its `#jouer` anchor.
 
 ---
 

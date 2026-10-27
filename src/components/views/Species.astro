@@ -108,11 +108,17 @@ const hasPlaying = roleplay?.text !== undefined || playing.length > 0 || hasSubs
 const lore = await loreFor('species', species.id, locale)
 const LoreOpening = lore?.opening?.Content
 const LoreSections = lore?.sections?.Content
-const hasReading = lore !== undefined || hasSubspecies || hasPlaying
-const trail = [
-  ...(lore?.sections?.headings ?? [])
-    .filter((heading) => heading.depth === 2)
-    .map((heading) => ({ text: heading.text, href: `#${heading.slug}` })),
+const hasPlayReading = LoreOpening !== undefined || hasPlaying
+
+function numbered<T extends object>(sections: T[]) {
+  return sections.map((section, position) => ({
+    ...section,
+    num: String(position + 1).padStart(2, '0'),
+  }))
+}
+
+const playTrail = numbered([
+  ...(hasPlaying ? [{ text: t.playingAs(species.name), href: `#${PLAYING_ID}` }] : []),
   ...(hasSubspecies
     ? [
         {
@@ -125,9 +131,17 @@ const trail = [
         },
       ]
     : []),
-  ...(hasPlaying ? [{ text: t.playingAs(species.name), href: `#${PLAYING_ID}` }] : []),
   { text: t.speciesOffer, href: '#skills' },
-].map((section, position) => ({ ...section, num: String(position + 1).padStart(2, '0') }))
+])
+const loreTrail = numbered(
+  (lore?.sections?.headings ?? [])
+    .filter((heading) => heading.depth === 2)
+    .map((heading) => ({ text: heading.text, href: `#${heading.slug}` })),
+)
+const trailParts = [
+  { label: t.speciesPlayPart, sections: playTrail },
+  { label: t.speciesLorePart, sections: loreTrail },
+].filter((part) => part.sections.length > 0)
 
 const entries = skillBrowseEntries(species.pool, corpus, locale, species)
 ---
@@ -153,18 +167,51 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
   />
 
   {
-    hasReading && (
-      <div class="au-reading">
-        {trail.length > 1 && (
+    hasPlayReading && (
+      <div class="au-reading au-species-play">
+        {playTrail.length + loreTrail.length > 1 && (
           <nav class="au-aside" aria-label={t.onThisPage}>
-            <p class="au-eyebrow">{t.onThisPage}</p>
-            <SectionTrail sections={trail} />
+            {trailParts.map((part) => (
+              <div class="au-trail-part">
+                <p class="au-eyebrow">{part.label}</p>
+                <SectionTrail sections={part.sections} label={part.label} />
+              </div>
+            ))}
           </nav>
         )}
         <div class="au-reading__body">
           <div class="au-prose">
             {LoreOpening && <LoreOpening />}
-            {LoreSections && <LoreSections />}
+
+            {hasPlaying && (
+              <section>
+                <h2 id={PLAYING_ID}>{t.playingAs(species.name)}</h2>
+                {roleplay?.text && <RuleText source={roleplay.text} corpus={corpus} locale={locale} />}
+                {(playing.length > 0 || hasSubspecies) && (
+                  <dl>
+                    {playing.map((row) => (
+                      <>
+                        <dt>{row.label}</dt>
+                        <dd>{row.value}</dd>
+                      </>
+                    ))}
+                    {hasSubspecies && (
+                      <>
+                        <dt>{words.plural}</dt>
+                        <dd>
+                          {species.subspecies.map((sub, index) => (
+                            <>
+                              {index > 0 && ', '}
+                              <a href={`#${subspeciesAnchor(sub.id)}`}>{sub.name}</a>
+                            </>
+                          ))}
+                        </dd>
+                      </>
+                    )}
+                  </dl>
+                )}
+              </section>
+            )}
 
             {hasSubspecies && (
               <section>
@@ -217,36 +264,6 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
                 ))}
               </section>
             )}
-
-            {hasPlaying && (
-              <section>
-                <h2 id={PLAYING_ID}>{t.playingAs(species.name)}</h2>
-                {roleplay?.text && <RuleText source={roleplay.text} corpus={corpus} locale={locale} />}
-                {(playing.length > 0 || hasSubspecies) && (
-                  <dl>
-                    {playing.map((row) => (
-                      <>
-                        <dt>{row.label}</dt>
-                        <dd>{row.value}</dd>
-                      </>
-                    ))}
-                    {hasSubspecies && (
-                      <>
-                        <dt>{words.plural}</dt>
-                        <dd>
-                          {species.subspecies.map((sub, index) => (
-                            <>
-                              {index > 0 && ', '}
-                              <a href={`#${subspeciesAnchor(sub.id)}`}>{sub.name}</a>
-                            </>
-                          ))}
-                        </dd>
-                      </>
-                    )}
-                  </dl>
-                )}
-              </section>
-            )}
           </div>
         </div>
       </div>
@@ -281,14 +298,41 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
       )
     }
   </section>
+
+  {
+    LoreSections && (
+      <div class="au-reading">
+        {loreTrail.length > 1 && (
+          <nav class="au-aside" aria-label={t.speciesLorePart}>
+            <p class="au-eyebrow">{t.speciesLorePart}</p>
+            <SectionTrail sections={loreTrail} />
+          </nav>
+        )}
+        <div class="au-reading__body">
+          <div class="au-prose">
+            <LoreSections />
+          </div>
+        </div>
+      </div>
+    )
+  }
 </div>
 
 <style>
   .au-reading {
-    padding-block: 40px 0;
+    padding-block-start: 40px;
+  }
+
+  .au-species-play {
+    padding-block-end: 0;
+  }
+
+  .au-trail-part + .au-trail-part {
+    margin-block-start: 22px;
   }
 
   .au-subspecies {
     scroll-margin-top: var(--sticky-top);
   }
+
 </style>

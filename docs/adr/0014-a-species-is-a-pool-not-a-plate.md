@@ -7,6 +7,7 @@
 **Revised:** 2026-09-23, Decision 5 is reversed and Decision 4 gains roleplay fields off the plates (0019)
 **Revised:** 2026-09-25, a sub-species may impose one of the two Compétences (addendum in Decision 2)
 **Revised:** 2026-09-26, an equipment item may carry a prerequisite too (addendum in Decision 7)
+**Revised:** 2026-10-27, the roleplay table moves above the lore's sections (0060, addendum in Decision 4)
 **Deciders:** Kori
 **Scope:** The `species` entity in `src/lib/game/schema.ts`, its two routes, its hero plates and lore blocks,
 the one cran of sub-species, the new `prerequisite` field on a skill, and the fact that an empty
@@ -227,6 +228,12 @@ typed `age` and `height` fields are therefore reversed, for the reason this deci
 them: they never belonged on a plate, and they no longer sit on one. The example in the rationale
 above, a Humain that is Moyenne or Petite, did not survive either: the Humain file declares Moyenne
 alone.
+
+### Addendum (2026-10-27): the roleplay table moves above the lore's sections
+
+The addendum above placed age, height and languages below the lore. They now come after the lore's
+opening and before its sections, in the « En jeu » part of the page (0060 Decision 1), still off the
+plates.
 
 ---
 

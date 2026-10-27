@@ -106,9 +106,11 @@ A Landenheit Humain chooses two out of ESPHUM-001, AMIXXX-001 and VOLSUR-001 plu
 
 ## The lore file
 
-`data/lore/species/<id>.md` carries no frontmatter. Its `##` headings become the sections of the
-sticky outline beside the text, so the file opens at the second heading level, never at the first:
-the page title is the `name` above.
+`data/lore/species/<id>.md` carries no frontmatter. Everything before its first `##` is the opening,
+such as a paragraph and an epigraph: it is the first thing the page shows under the hero, above
+`Jouer un <nom>`, so it never leans on a section. The `##` headings and what follows them are the
+sections, shown after the pool, and each heading becomes an entry of the « Histoire » outline. The
+file opens at the second heading level, never at the first: the page title is the `name` above.
 
 ```markdown
 ## Origines
@@ -187,7 +189,7 @@ The lore is translated by a whole sibling file, `data/lore/species/<id>.en.md`, 
 ## What appears on the site
 
 - `/fr/especes` and `/en/species`: a new card in the species index, with its cover, and the size of its pool.
-- `/fr/espece/<id>` and `/en/species/<id>`: the hero, a dark stage in both themes, its cover framed as a card on the right over a backdrop drawn from the cover's own colours, with « Espèce », the title, the descriptors and the three plates on the left, then the lore beside its sticky outline, then `Origines régionales` or `Sous-espèces`, as `subspeciesLabel` says, with each sub-species' presentation, its imposed Compétence and its names, then `Jouer un <nom>` with the roleplay text and a table of the roleplay facts, the languages and links to each sub-species, then the pool under `Compétences d'Espèce`. The pool is the Codex list itself: rows, a sticky detail card and the filter bar, with a facet named by the same word. The rows run the species' own skills first, then each sub-species' imposed Compétence, marked « Imposée », and its own, in the order the file declares them, alphabetical inside each group, and they print no PX.
+- `/fr/espece/<id>` and `/en/species/<id>`: the hero, a dark stage in both themes, its cover framed as a card on the right over a backdrop drawn from the cover's own colours, with « Espèce », the title, the descriptors and the three plates on the left. Then the page reads in two parts. « En jeu » comes first, beside the sticky outline of the whole page: the lore's opening, then `Jouer un <nom>` with the roleplay text and a table of the roleplay facts, the languages and links to each sub-species, then `Origines régionales` or `Sous-espèces`, as `subspeciesLabel` says, with each sub-species' presentation, its imposed Compétence and its names, then the pool under `Compétences d'Espèce`. « Histoire » follows: the lore's sections beside a sticky outline of their own. The pool is the Codex list itself: rows, a sticky detail card and the filter bar, with a facet named by the same word. The rows run the species' own skills first, then each sub-species' imposed Compétence, marked « Imposée », and its own, in the order the file declares them, alphabetical inside each group, and they print no PX.
 - `/fr/competences`: every skill the species or one of its sub-species offers or imposes gains a "Proposée par une Espèce" source, naming the sub-species when there is one, and a species facet.
 
 ## How to check it
@@ -209,7 +211,7 @@ Then open `/fr/especes` and click through to the new species.
 
 **Several sizes mean a choice, several types mean a cumulation.** `size` renders joined by `ou`, because a species that declares Moyenne and Petite lets the player pick one at creation. `types` renders joined by a middot, because a Cindersöhls is Humanoïde **and** Artificiel at once.
 
-**The plates carry gameplay, the roleplay table carries the rest.** Type, Vitesse and catégorie de taille are rules a table consults, so they stay on the three plates. Age, lifespan and height are roleplay, so they live in `roleplay` and render in the `Jouer un <nom>` table below the lore. Height is not the size category: never write one to mean the other.
+**The plates carry gameplay, the roleplay table carries the rest.** Type, Vitesse and catégorie de taille are rules a table consults, so they stay on the three plates. Age, lifespan and height are roleplay, so they live in `roleplay` and render in the `Jouer un <nom>` table. Height is not the size category: never write one to mean the other.
 
 **The `Jouer un <nom>` heading is built, not authored.** It reads « Jouer un » followed by the `name`, and "Playing … characters" in English. Every species so far takes « un ». A name that needs « une » needs `playingAs` in `src/lib/i18n/strings.ts` changed first.
 
@@ -219,7 +221,7 @@ Then open `/fr/especes` and click through to the new species.
 
 **Descriptors are keys too.** `descriptors` names one to four words from `data/meta/descriptors.json`, which holds both labels, so the overlay never repeats them. A new word is a new entry there, chosen by the owner, and `pnpm data:check` rejects a key the file does not declare.
 
-**The lore outline builds itself.** Every `##` in the lore file becomes a numbered entry in the rail beside the text, followed by `Origines régionales` or `Sous-espèces`, with each sub-species nested under it, and `Jouer un <nom>` when the species has them, and by a last entry pointing at the pool. Nothing is authored for it, and the rail only appears when there is more than one entry.
+**The outline builds itself, in two parts.** « En jeu » numbers `Jouer un <nom>`, then `Origines régionales` or `Sous-espèces` with each sub-species nested under it, when the species has them, then the pool. « Histoire » numbers every `##` of the lore file from 01 again. The outline beside the opening shows both parts, the one beside the lore shows « Histoire » alone. Nothing is authored for either, and an outline only appears when it has more than one entry.
 
 **At creation a character keeps two species skills, or none yet.** Offering one skill leaves the second unfilled, and `pnpm data:check` fails on it unless a sub-species imposes the other. The count that matters is what a character picks from: the species' `offered` alone when there is no sub-species, and the species' plus each sub-species' own otherwise. A sub-species offering nothing of its own is fine as long as its species offers two. An imposed Compétence fills one of the two, so a sub-species that imposes one needs at least one other to pick from, and an empty pool beside it is refused.
 
