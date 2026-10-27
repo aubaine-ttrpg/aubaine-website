@@ -106,10 +106,11 @@ const hasSubspecies = species.subspecies.length > 0
 const hasPlaying = roleplay?.text !== undefined || playing.length > 0 || hasSubspecies
 
 const lore = await loreFor('species', species.id, locale)
-const LoreContent = lore?.Content
-const hasReading = LoreContent !== undefined || hasSubspecies || hasPlaying
+const LoreOpening = lore?.opening?.Content
+const LoreSections = lore?.sections?.Content
+const hasReading = lore !== undefined || hasSubspecies || hasPlaying
 const trail = [
-  ...(lore?.headings ?? [])
+  ...(lore?.sections?.headings ?? [])
     .filter((heading) => heading.depth === 2)
     .map((heading) => ({ text: heading.text, href: `#${heading.slug}` })),
   ...(hasSubspecies
@@ -162,7 +163,8 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
         )}
         <div class="au-reading__body">
           <div class="au-prose">
-            {LoreContent && <LoreContent />}
+            {LoreOpening && <LoreOpening />}
+            {LoreSections && <LoreSections />}
 
             {hasSubspecies && (
               <section>

@@ -1,6 +1,6 @@
 import { defineCollection, z } from 'astro:content'
 import { glob } from 'astro/loaders'
-
+import { loreLoader } from './lib/game/lore-loader'
 import {
   atlasEstablishments,
   atlasLandmarks,
@@ -87,7 +87,7 @@ const bookPages = defineCollection({
 })
 
 const lore = defineCollection({
-  loader: glob({ base: './data/lore', pattern: ['**/*.md'], generateId }),
+  loader: loreLoader('./data/lore/'),
   schema: z.object({}).strict(),
 })
 

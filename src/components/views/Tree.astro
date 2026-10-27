@@ -49,10 +49,11 @@ const offPlate = tree.placements
   .map((placement) => placement.skill)
 
 const lore = await loreFor('skill-trees', tree.id, locale)
-const LoreContent = lore?.Content
+const LoreOpening = lore?.opening?.Content
+const LoreSections = lore?.sections?.Content
 const trail = lore
   ? [
-      ...lore.headings
+      ...(lore.sections?.headings ?? [])
         .filter((heading) => heading.depth === 2)
         .map((heading) => ({ text: heading.text, href: `#${heading.slug}` })),
       { text: t.plate, href: `#${TREE_ANCHOR}` },
@@ -104,7 +105,7 @@ const trail = lore
   </CharacterHero>
 
   {
-    LoreContent && (
+    lore && (
       <div class="au-reading">
         {trail.length > 1 && (
           <nav class="au-aside" aria-label={t.onThisPage}>
@@ -114,7 +115,8 @@ const trail = lore
         )}
         <div class="au-reading__body">
           <div class="au-prose">
-            <LoreContent />
+            {LoreOpening && <LoreOpening />}
+            {LoreSections && <LoreSections />}
           </div>
         </div>
       </div>

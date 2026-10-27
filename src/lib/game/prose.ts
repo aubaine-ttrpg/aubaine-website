@@ -1,6 +1,7 @@
 import { type CollectionEntry, getCollection, type RenderResult, render } from 'astro:content'
 
 import { DEFAULT_LOCALE, type Locale } from '../i18n/locales.ts'
+import { LORE_PARTS, type LorePart, lorePartId } from './lore-parts.ts'
 
 type ProseCollection = 'bookPages' | 'equipmentGuide' | 'lore' | 'policies'
 
@@ -17,6 +18,8 @@ export function renderProse(entry: ProseEntry): Promise<RenderResult> {
 
 export type LoreOwner = 'species' | 'skill-trees'
 
+export type Lore = Record<LorePart, RenderResult | undefined>
+
 let lorePages: Promise<Map<string, CollectionEntry<'lore'>>> | undefined
 
 function loreIndex(): Promise<Map<string, CollectionEntry<'lore'>>> {
@@ -30,10 +33,17 @@ export async function loreFor(
   owner: LoreOwner,
   id: string,
   locale: Locale,
-): Promise<RenderResult | undefined> {
+): Promise<Lore | undefined> {
   const pages = await loreIndex()
-  const canonical = pages.get(`${owner}/${id}`)
-  if (!canonical) return undefined
-  const translated = locale === DEFAULT_LOCALE ? undefined : pages.get(`${owner}/${id}.${locale}`)
-  return renderProse(translated ?? canonical)
+  const exists = (page: string): boolean =>
+    LORE_PARTS.some((part) => pages.has(lorePartId(page, part)))
+  const canonical = `${owner}/${id}`
+  if (!exists(canonical)) return undefined
+  const translated = `${canonical}.${locale}`
+  const page = locale !== DEFAULT_LOCALE && exists(translated) ? translated : canonical
+  const renderPart = (part: LorePart): Promise<RenderResult | undefined> => {
+    const entry = pages.get(lorePartId(page, part))
+    return entry ? renderProse(entry) : Promise.resolve(undefined)
+  }
+  return { opening: await renderPart('opening'), sections: await renderPart('sections') }
 }
