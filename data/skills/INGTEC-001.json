@@ -1,6 +1,6 @@
 {
   "id": "INGTEC-001",
-  "title": "Ingéniosité technique",
+  "title": "Expert en ingénierie",
   "type": "active",
   "tier": 5,
   "art": "expert-en-ingenierie-1_1-og.png",
@@ -24,5 +24,5 @@
       "enhancement"
     ]
   },
-  "description": "Votre prochain {{jet}} d'{{artisanat}}, d'{{arcanes}}, de {{technologie}} ou de {{science}} gagne 2 {{avantage|Avantages}}."
+  "description": "Vous prenez un instant pour mettre à plat le problème qui vous occupe, avec la rigueur des ingénieurs du Landenheit.\n\nVotre prochain {{jet}} d'{{artisanat}}, d'{{arcanes}}, de {{technologie}} ou de {{science}} gagne 1 {{avantage}}."
 }

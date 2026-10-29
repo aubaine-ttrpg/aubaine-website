@@ -10,10 +10,7 @@
   "tags": {
     "practices": [
       "teaching"
-    ],
-    "schools": [
-      "enhancement"
     ]
   },
-  "description": "La première fois que vous {{memorisee|mémorisez}} cette Compétence, choisissez deux {{aptitude|Aptitudes}}. Tant qu'elle est {{memorisee}}, vous avez l'{{expertise}} dans ces deux {{aptitude|Aptitudes}}."
+  "description": "Débarqués sur Eden, les humains ont dû tout y apprendre, et vite.\n\nLa première fois que vous {{memorisee|mémorisez}} {{ESPHUM-001|cette Compétence}}, choisissez deux {{aptitude|Aptitudes}}. Tant qu'elle est {{memorisee}}, vous avez l'{{expertise}} dans ces deux {{aptitude|Aptitudes}}."
 }

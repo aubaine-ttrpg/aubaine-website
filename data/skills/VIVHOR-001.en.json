@@ -2,5 +2,5 @@
   "title": "Living with Horror",
   "prerequisite": "Human from Victoria",
   "activation": "Passive",
-  "description": "Your {{jet|Rolls}} to resist the {{effraye}} state or to end it gain 2 {{avantage|Advantages}}."
+  "description": "You have seen enough horrors that your hand shakes less than most.\n\nYour {{sauvegarde|Saves}} against the {{effraye}} state gain 1 {{avantage}}."
 }

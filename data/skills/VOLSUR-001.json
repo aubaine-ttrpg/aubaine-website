@@ -5,6 +5,7 @@
   "tier": 5,
   "art": "volonte-de-survivre-1_1-og.png",
   "domains": [
+    "physical",
     "psychic"
   ],
   "prerequisite": "Être Humain",
@@ -24,5 +25,5 @@
       "healing"
     ]
   },
-  "description": "Vous mettez fin à un état néfaste qui vous affecte."
+  "description": "L'espoir est le premier outil des humains, et le dernier qu'ils lâchent.\n\nVous mettez fin à un état néfaste qui vous affecte."
 }

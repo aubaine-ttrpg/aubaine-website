@@ -5,18 +5,14 @@
   "tier": 5,
   "art": "prestance-heroique-1_1-og.png",
   "domains": [
-    "physical",
-    "psychic"
+    "physical"
   ],
   "prerequisite": "Être Humain de la Nouvelle-Aubaine",
   "activation": "Passif",
   "tags": {
     "practices": [
-      "technique"
-    ],
-    "schools": [
-      "enhancement"
+      "teaching"
     ]
   },
-  "description": "Tant que cette Compétence est {{memorisee}}, vos modificateurs de {{persuasion}} et d'{{athletisme}} augmentent de 1, jusqu'au maximum de +6."
+  "description": "L'esprit chevaleresque de la Nouvelle-Aubaine demande de savoir convaincre une cour aussi bien qu'escalader un rempart.\n\nTant que {{PREHER-001|cette Compétence}} est {{memorisee}}, vous avez l'{{expertise}} dans la {{persuasion}} et dans l'{{athletisme}}."
 }

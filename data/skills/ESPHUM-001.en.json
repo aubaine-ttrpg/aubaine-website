@@ -2,5 +2,5 @@
   "title": "The Human Spirit",
   "prerequisite": "Human",
   "activation": "Passive",
-  "description": "The first time you {{memorisee|memorise}} this Skill, choose two {{aptitude|Aptitudes}}. While it is {{memorisee}}, you have {{expertise}} in those two {{aptitude|Aptitudes}}."
+  "description": "Once ashore on Eden, humans had everything to learn, and little time to learn it.\n\nThe first time you {{memorisee|memorise}} {{ESPHUM-001|this Skill}}, choose two {{aptitude|Aptitudes}}. While it is {{memorisee}}, you have {{expertise}} in those two {{aptitude|Aptitudes}}."
 }

@@ -1069,7 +1069,10 @@ describe('uniqueness', () => {
 })
 
 describe('skill ids', () => {
-  const TITLE_BEFORE_RENAME: Record<string, string> = { 'COMBUS-001': 'Combustion' }
+  const TITLE_BEFORE_RENAME: Record<string, string> = {
+    'COMBUS-001': 'Combustion',
+    'INGTEC-001': 'Ingéniosité technique',
+  }
   const skills = [...fr.skills.values()]
   const titleUses = new Map<string, number>()
   for (const skill of skills) titleUses.set(skill.title, (titleUses.get(skill.title) ?? 0) + 1)

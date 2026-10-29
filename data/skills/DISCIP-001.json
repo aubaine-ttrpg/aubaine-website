@@ -10,10 +10,7 @@
   "tags": {
     "practices": [
       "teaching"
-    ],
-    "schools": [
-      "enhancement"
     ]
   },
-  "description": "La première fois que vous {{memorisee|mémorisez}} cette Compétence, choisissez deux {{sort|Sorts}} de la {{banque-commune}} qui coûtent 1 {{energie}} ou moins. Tant qu'elle est {{memorisee}}, ces deux {{sort|Sorts}} le sont aussi, sans avoir à être achetés et sans occuper de {{memoire}}."
+  "description": "Sur les bancs de l'académie, vous avez récité deux formules jusqu'à ce qu'elles vous viennent sans y penser.\n\nLa première fois que vous {{memorisee|mémorisez}} {{DISCIP-001|cette Compétence}}, choisissez deux {{sort|Sorts}} de la {{banque-commune}} qui coûtent 2 {{energie|Énergies}} ou moins. Tant que {{DISCIP-001|cette Compétence}} est {{memorisee}}, ces deux {{sort|Sorts}} le sont aussi, sans avoir à être achetés et sans occuper de {{memoire}}."
 }

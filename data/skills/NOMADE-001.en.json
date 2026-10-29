@@ -2,5 +2,5 @@
   "title": "Nomad",
   "prerequisite": "Human from Al-Wahaa",
   "activation": "Passive",
-  "description": "You have a perfect memory for maps and geography: you always remember the general layout of a terrain, a settlement or any other arrangement you have glimpsed, and only magical means can lead you astray.\n\nEach day, if the land offers something to live on (berries, small game, a water source), you find food and fresh water for yourself and for up to five other creatures of Small or Medium {{taille|size}}."
+  "description": "One glance at a map, and you can trace it from memory with a fingertip in the sand.\n\nYou remember every map you have seen in perfect detail. You always recall the general layout of any terrain, settlement or other arrangement you have glimpsed. Only magical means can lead you astray.\n\nEach day, if the land offers anything to live on (berries, small game, a water source), you find a day's food and fresh water for yourself and for up to five other creatures whose {{taille}} is {{petite}} or {{moyenne}}."
 }

@@ -20,5 +20,5 @@
       "protection"
     ]
   },
-  "description": "Vos {{jet|Jets}} de {{constitution}} pour résister aux températures extrêmes, froides comme chaudes, gagnent 1 {{avantage}}."
+  "description": "Le sable qui vous a vu naître brûle à midi et gèle avant l'aube.\n\nUne chaleur extrême ne peut pas vous faire gagner de {{fatigue}}. Vos {{sauvegarde|Sauvegardes}} contre un froid extrême gagnent 1 {{avantage}}."
 }

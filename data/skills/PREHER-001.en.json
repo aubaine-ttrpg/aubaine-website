@@ -2,5 +2,5 @@
   "title": "Heroic Presence",
   "prerequisite": "Human from Nouvelle-Aubaine",
   "activation": "Passive",
-  "description": "While this Skill is {{memorisee}}, your {{persuasion}} and {{athletisme}} modifiers increase by 1, to a maximum of +6."
+  "description": "The chivalry of Nouvelle-Aubaine asks as much skill in winning over a court as in scaling a rampart.\n\nWhile {{PREHER-001|this Skill}} is {{memorisee}}, you have {{expertise}} in {{persuasion}} and in {{athletisme}}."
 }

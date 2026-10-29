@@ -17,5 +17,5 @@
       "divination"
     ]
   },
-  "description": "Vous possédez une mémoire parfaite des cartes et de la géographie : vous vous souvenez toujours de la configuration générale d'un terrain, d'une agglomération ou de tout autre agencement aperçu, et seules des mesures magiques peuvent vous faire vous égarer.\n\nChaque jour, si le terrain offre de quoi vivre (baies, petit gibier, point d'eau), vous trouvez de la nourriture et de l'eau fraîche pour vous et pour jusqu'à cinq autres créatures de {{taille|taille}} Petite ou Moyenne."
+  "description": "Un coup d'œil à une carte vous suffit pour la retracer de mémoire, du bout du doigt, dans le sable.\n\nVous gardez une mémoire parfaite de toute carte que vous avez vue. Vous vous souvenez toujours de la configuration générale d'un terrain, d'une agglomération ou de tout autre agencement que vous avez aperçu. Seuls des moyens magiques peuvent vous égarer.\n\nChaque jour, si le terrain offre de quoi vivre (baies, petit gibier, point d'eau), vous trouvez assez de nourriture et d'eau fraîche pour la journée, pour vous et pour jusqu'à cinq autres créatures de {{taille}} {{petite}} ou {{moyenne}}."
 }

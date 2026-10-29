@@ -4,7 +4,9 @@
   "type": "passive",
   "tier": 5,
   "art": "j-achete-je-vends-j-echange-1_1-og.png",
-  "domains": [],
+  "domains": [
+    "psychic"
+  ],
   "prerequisite": "Être Humain de la Nouvelle-Aubaine",
   "activation": "Passif",
   "tags": {
@@ -15,5 +17,5 @@
       "influence"
     ]
   },
-  "description": "Tout ce que vous achetez à un autre Humain vous coûte 10 % de moins."
+  "description": "Vous marchandiez avant même de savoir compter.\n\nTout ce que vous achetez à un autre Humain vous coûte 20 % de moins."
 }

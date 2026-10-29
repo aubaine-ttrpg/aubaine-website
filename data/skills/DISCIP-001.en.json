@@ -1,5 +1,5 @@
 {
   "prerequisite": "Human from Victoria",
   "activation": "Passive",
-  "description": "The first time you {{memorisee|memorise}} this Skill, choose two {{sort|Spells}} from the {{banque-commune}} that cost 1 {{energie}} or less. While it is {{memorisee}}, those two {{sort|Spells}} are {{memorisee}} too, without being bought and without taking up any {{memoire}}."
+  "description": "At the academy, you recited two formulae until they came to you without a thought.\n\nThe first time you {{memorisee|memorise}} {{DISCIP-001|this Skill}}, choose two {{sort|Spells}} from the {{banque-commune}} that cost 2 {{energie}} or less. While {{DISCIP-001|this Skill}} is {{memorisee}}, so are those two {{sort|Spells}}. You do not have to buy them, and they take up no {{memoire}}."
 }
