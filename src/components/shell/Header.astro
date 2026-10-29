@@ -1,9 +1,11 @@
 ---
 import type { Corpus } from '../../lib/game/corpus'
 import { bookDot, bookLink, indexDescriptors } from '../../lib/game/indexes'
+import { kindInk } from '../../lib/game/kind-marks'
 import { LOCALE_FLAG, LOCALE_NAME, LOCALES, type Locale } from '../../lib/i18n/locales'
 import { pathFor, type RouteParams, sectionFor, type ViewKind } from '../../lib/i18n/routes'
 import { strings } from '../../lib/i18n/strings'
+import Icon from '../primitives/Icon.astro'
 import Masthead from './Masthead.astro'
 
 type Props = { locale: Locale; kind: ViewKind; params: RouteParams; corpus: Corpus }
@@ -16,14 +18,21 @@ const section = sectionFor(kind)
 const bookItems = corpus.books.flatMap((book) => {
   const link = bookLink(book, locale)
   return link
-    ? [{ title: book.title, href: link.href, dot: bookDot(book.order), download: link.download }]
+    ? [
+        {
+          title: book.title,
+          href: link.href,
+          marker: { colour: bookDot(book.order), icon: undefined },
+          download: link.download,
+        },
+      ]
     : []
 })
 
 const indexItems = indexDescriptors(locale).map((entry) => ({
   title: entry.title,
   href: pathFor(entry.kind, locale),
-  dot: entry.mark,
+  marker: { colour: kindInk(entry.kind), icon: entry.mark.icon },
   download: false,
 }))
 
@@ -118,10 +127,19 @@ const menus = [
                   download={item.download ? '' : undefined}
                   style="display:flex; gap:11px; align-items:baseline; padding:9px 11px; transition:background-color .16s var(--ease)"
                 >
-                  <span
-                    aria-hidden="true"
-                    style={`flex:none; width:6px; height:6px; margin-top:6px; background:${item.dot}`}
-                  />
+                  {item.marker.icon ? (
+                    <span
+                      aria-hidden="true"
+                      style={`flex:none; align-self:center; display:grid; color:${item.marker.colour}`}
+                    >
+                      <Icon name={item.marker.icon} class="au-menu-mark" />
+                    </span>
+                  ) : (
+                    <span
+                      aria-hidden="true"
+                      style={`flex:none; width:6px; height:6px; margin-top:6px; background:${item.marker.colour}`}
+                    />
+                  )}
                   <span style="min-width:0; flex:1">
                     <span style="display:block; font-family:var(--font-display); font-size:15.5px; font-weight:600; color:#f6f2e6">
                       {item.title}
@@ -261,6 +279,11 @@ const menus = [
 </Masthead>
 
 <style>
+  [data-menu-item] :global(.au-menu-mark) {
+    width: 18px;
+    height: 18px;
+  }
+
   :global([data-arriving]) [data-arrive] {
     animation: au-pop 0.42s var(--ease) calc(var(--arrive-order) * 60ms) both;
   }

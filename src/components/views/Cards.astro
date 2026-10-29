@@ -60,7 +60,7 @@ const indexCards = (): CardModel[] =>
   indexDescriptors(locale).map((entry, index) => ({
     title: entry.title,
     kicker: t.almanach,
-    mark: entry.mark,
+    mark: entry.mark.colour,
     art: PLACEHOLDER_BANNER,
     desc: entry.description,
     cta: t.browse_,

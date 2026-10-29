@@ -28,6 +28,7 @@ import {
   VARIABLE_CHARACTERISTIC,
 } from '../../src/lib/game/derive'
 import { readAtlasSources, readCorpus, readSources } from '../../src/lib/game/fs-sources'
+import { KIND_MARKS } from '../../src/lib/game/kind-marks'
 import { referenceKey } from '../../src/lib/game/richtext'
 import { overlays, STATE_KINDS } from '../../src/lib/game/schema'
 import { LOCALES } from '../../src/lib/i18n/locales'
@@ -737,6 +738,16 @@ describe('media', () => {
     await expect(
       readFile(resolve(root, `data/media/icons/${set}/${name}.svg`)),
     ).resolves.toBeDefined()
+  })
+
+  it('draws every kind mark from a pictogram on disk', async () => {
+    for (const [kind, mark] of Object.entries(KIND_MARKS)) {
+      const [set, name] = mark.icon.split(':')
+      await expect(
+        readFile(resolve(root, `data/media/icons/${set}/${name}.svg`)),
+        `${kind} pictogram ${mark.icon}`,
+      ).resolves.toBeDefined()
+    }
   })
 
   it('points every species at a 3:4 cover that exists', async () => {
@@ -1605,6 +1616,27 @@ describe('the term index', () => {
       for (const [key, record] of built.terms.keys) {
         if (!record.icon) continue
         expect(owned.has(record.icon), `${locale} term ${key} icon ${record.icon}`).toBe(true)
+      }
+    }
+  })
+
+  it('lets a kind pictogram mark only the words of its kind', async () => {
+    const pictograms = new Map(
+      Object.entries(KIND_MARKS).map(([kind, mark]) => [mark.icon.replace(':', '/'), kind]),
+    )
+    const kindOf = (key: string, family: string) => {
+      if (family === 'tree') return 'trees'
+      if (family === 'species') return 'species'
+      return key === 'competence' ? 'skills' : undefined
+    }
+    for (const locale of LOCALES) {
+      const built = await readCorpus(root, locale)
+      for (const [key, record] of built.terms.keys) {
+        const kind = record.icon ? pictograms.get(record.icon) : undefined
+        if (!kind) continue
+        expect(kindOf(key, record.family), `${locale} {{${key}}} wears the ${kind} pictogram`).toBe(
+          kind,
+        )
       }
     }
   })

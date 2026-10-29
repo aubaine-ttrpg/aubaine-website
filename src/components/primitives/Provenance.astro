@@ -1,6 +1,7 @@
 ---
 import type { BrowseSource } from '../../lib/game/browse-entries'
 import type { Corpus } from '../../lib/game/corpus'
+import { KIND_MARKS, kindInk } from '../../lib/game/kind-marks'
 import { flattenText, termLabels } from '../../lib/game/richtext'
 import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
@@ -18,14 +19,15 @@ type Props = {
 const { entryId, label, sources, corpus, locale } = Astro.props
 const t = strings(locale)
 
-const SOURCE_ICONS: Record<BrowseSource['kind'], string> = {
-  tree: 'mdi:family-tree',
-  species: 'mdi:dna',
-  item: 'mdi:shield-sword',
-  skill: 'mdi:square-circle',
-  basic: 'mdi:hexagon',
-  bank: 'mdi:bank',
-  other: 'mdi:information-outline',
+const GOLD = 'var(--gold)'
+const SOURCE_MARKS: Record<BrowseSource['kind'], { icon: string; colour: string }> = {
+  tree: { icon: KIND_MARKS.trees.icon, colour: kindInk('trees') },
+  species: { icon: KIND_MARKS.species.icon, colour: kindInk('species') },
+  item: { icon: KIND_MARKS.equipment.icon, colour: kindInk('equipment') },
+  skill: { icon: KIND_MARKS.skills.icon, colour: kindInk('skills') },
+  basic: { icon: 'mdi:hexagon', colour: GOLD },
+  bank: { icon: 'mdi:bank', colour: GOLD },
+  other: { icon: 'mdi:information-outline', colour: GOLD },
 }
 const NOTE_WIDTH = 400
 const labelOf = termLabels(corpus.terms)
@@ -46,8 +48,12 @@ const NOTES: Record<'basic' | 'bank' | 'other', string | undefined> = {
         {sources.map((source) => (
           <li>
             {'href' in source ? (
-              <a class="au-source" href={source.href}>
-                <Icon name={SOURCE_ICONS[source.kind]} class="au-source__icon" />
+              <a
+                class="au-source"
+                href={source.href}
+                style={`--source-ink:${SOURCE_MARKS[source.kind].colour}`}
+              >
+                <Icon name={SOURCE_MARKS[source.kind].icon} class="au-source__icon" />
                 <span>{source.title}</span>
               </a>
             ) : (
@@ -56,9 +62,9 @@ const NOTES: Record<'basic' | 'bank' | 'other', string | undefined> = {
                   type="button"
                   class="au-source"
                   popovertarget={`note-${source.kind}-${entryId}`}
-                  style={`anchor-name:--note-${source.kind}-${entryId}`}
+                  style={`anchor-name:--note-${source.kind}-${entryId}; --source-ink:${SOURCE_MARKS[source.kind].colour}`}
                 >
-                  <Icon name={SOURCE_ICONS[source.kind]} class="au-source__icon" />
+                  <Icon name={SOURCE_MARKS[source.kind].icon} class="au-source__icon" />
                   <span>{source.title}</span>
                 </button>
                 <PopoverNote
@@ -127,6 +133,6 @@ const NOTES: Record<'basic' | 'bank' | 'other', string | undefined> = {
     flex: none;
     width: 16px;
     height: 16px;
-    color: var(--gold);
+    color: var(--source-ink);
   }
 </style>

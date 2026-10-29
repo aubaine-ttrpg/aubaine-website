@@ -3,10 +3,11 @@ import { INDEX_KINDS, type IndexKind, pathFor } from '../i18n/routes.ts'
 import { strings } from '../i18n/strings.ts'
 import { bookletHref } from '../media.ts'
 import type { ResolvedBook } from './build.ts'
+import { KIND_MARKS, type KindMark } from './kind-marks.ts'
 
 export type IndexDescriptor = {
   kind: IndexKind
-  mark: string
+  mark: KindMark
   title: string
   description: string
 }
@@ -38,15 +39,6 @@ const DESCRIPTIONS: Record<IndexKind, Record<Locale, string>> = {
   },
 }
 
-const MARK: Record<IndexKind, string> = {
-  trees: '#efbe04',
-  species: '#b8601e',
-  skills: '#8a5cc4',
-  equipment: '#a84d16',
-  materials: '#4f8a2e',
-  rules: '#4f7a2e',
-}
-
 export function indexDescriptors(locale: Locale): IndexDescriptor[] {
   const t = strings(locale)
   const titles: Record<IndexKind, string> = {
@@ -59,7 +51,7 @@ export function indexDescriptors(locale: Locale): IndexDescriptor[] {
   }
   return INDEX_KINDS.map((kind) => ({
     kind,
-    mark: MARK[kind],
+    mark: KIND_MARKS[kind],
     title: titles[kind],
     description: DESCRIPTIONS[kind][locale],
   }))

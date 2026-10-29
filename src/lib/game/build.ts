@@ -8,7 +8,6 @@ import {
   inCranOrder,
   inkOf,
   primeCharacteristics,
-  SPECIES_ORIGIN_ICON,
   slugify,
   speciesPool,
   stateInk,
@@ -17,6 +16,7 @@ import {
   treeTypeLabel,
   VARIABLE_CHARACTERISTIC,
 } from './derive.ts'
+import { KIND_MARKS } from './kind-marks.ts'
 import {
   flattenText,
   type LabelOf,
@@ -1210,7 +1210,7 @@ const RULE_TERMS: readonly RuleTerm[] = [
     fr: 'Compétence',
     en: 'Skill',
     color: 'var(--accent-ink)',
-    icon: 'mdi/square-circle',
+    icon: iconPath(KIND_MARKS.skills.icon),
     definition: {
       fr: "Une capacité de votre personnage, le plus souvent {{apprise|apprise}} avec des PX, ou {{accordee|accordée}} par l'équipement que vous portez ou par une autre {{competence}}. Une {{competence}} qui n'est pas {{accordee|accordée}} doit être {{memorisee|mémorisée}} dans la limite de votre {{memoire}} pour être jouée.",
       en: "One of your character's abilities, most often {{apprise|learned}} with XP, or {{accordee|granted}} by the equipment you wear or by another {{competence}}. A {{competence}} that is not {{accordee|granted}} must be {{memorisee|memorised}} within your {{memoire}} to be played.",
@@ -1783,7 +1783,7 @@ function buildTermIndex(input: TermInput): TermIndex {
       title: tree.name,
       meta: treeTypeLabel(tree.treeType, treeTypes),
       color: domain?.color ? inkOf(domain.color) : 'var(--accent-ink)',
-      icon: 'mdi/family-tree',
+      icon: iconPath(KIND_MARKS.trees.icon),
       text: tree.subtitle ?? '',
       href: pathFor('tree', locale, { tree: tree.id }),
     })
@@ -1804,7 +1804,7 @@ function buildTermIndex(input: TermInput): TermIndex {
         .map((key) => label(values['creature-types'].get(key), locale, key))
         .join(' · '),
       color: entry.keyColour ? inkOf(entry.keyColour) : 'var(--accent-ink)',
-      icon: iconPath(SPECIES_ORIGIN_ICON),
+      icon: iconPath(KIND_MARKS.species.icon),
       text: flattenText(entry.roleplay?.text, labelOf, 240),
       href: pathFor('speciesEntry', locale, { species: entry.id }),
     })
