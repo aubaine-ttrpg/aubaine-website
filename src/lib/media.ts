@@ -1,6 +1,6 @@
 import { type ArmsFiles, armsFiles } from './art-effect/presets.ts'
 import { latestRelease } from './booklet/manifest.ts'
-import type { BookletKind } from './booklet/release.ts'
+import { type BookletKind, releaseTag } from './booklet/release.ts'
 import type { PdfRelease } from './game/schema.ts'
 import type { Locale } from './i18n/locales.ts'
 
@@ -43,12 +43,14 @@ export function pdfHref(file: string | undefined): string | undefined {
   return file ? `/pdf/${file}` : undefined
 }
 
-export function archiveHref(file: string): string {
-  return `/pdf-archive/${file}`
+const ARCHIVE_DOWNLOADS = 'https://github.com/aubaine-ttrpg/aubaine-website/releases/download'
+
+function archiveHref(version: string, archive: string): string {
+  return `${ARCHIVE_DOWNLOADS}/${releaseTag(version)}/${archive}`
 }
 
 export function releaseHref(release: PdfRelease): string {
-  return release.archive ? archiveHref(release.archive) : `/pdf/${release.file}`
+  return release.archive ? archiveHref(release.version, release.archive) : `/pdf/${release.file}`
 }
 
 export function bookletHref(kind: BookletKind, slug: string, locale: Locale): string | undefined {

@@ -6,6 +6,7 @@ import sharp from 'sharp'
 import { describe, expect, it } from 'vitest'
 import { armsFiles } from '../../src/lib/art-effect/presets'
 import { latestRelease, notes, releases } from '../../src/lib/booklet/manifest'
+import { archiveFile } from '../../src/lib/booklet/release'
 import { frameEmblem } from '../../src/lib/emblem-frame'
 import { CALLOUT_KINDS, pictureLook } from '../../src/lib/game/book-markup'
 import {
@@ -1030,6 +1031,15 @@ describe('booklet releases', () => {
     for (const release of releases()) {
       const held = release.archive ? bundled.has(release.archive) : loose.has(release.file)
       expect(held, `${release.file} is listed but neither loose nor archived`).toBe(true)
+    }
+  })
+
+  it('names each archive after its own version and locale', () => {
+    for (const release of releases()) {
+      if (release.archive === undefined) continue
+      expect(release.archive, `${release.file} points at another generation's archive`).toBe(
+        archiveFile(release.version, release.locale),
+      )
     }
   })
 

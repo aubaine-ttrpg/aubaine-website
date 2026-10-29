@@ -384,7 +384,7 @@ test('a booklet history offers every printing as a direct download', async ({ pa
     .evaluateAll((all) => all.map((link) => link.getAttribute('href')))
   for (const href of hrefs) {
     expect(href).toMatch(
-      /^\/(pdf\/berserker-fr-v[\d.]+_[0-9a-f]{8}_[0-9a-f]{8}\.pdf|pdf-archive\/aubaine-v[\d.]+-fr\.zip)$/,
+      /^(\/pdf\/berserker-fr-v[\d.]+_[0-9a-f]{8}_[0-9a-f]{8}\.pdf|https:\/\/github\.com\/aubaine-ttrpg\/aubaine-website\/releases\/download\/v([\d.]+)\/aubaine-v\2-fr\.zip)$/,
     )
   }
 })
