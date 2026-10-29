@@ -7,6 +7,7 @@
 every Species and Tree page
 **Revised:** 2026-10-23, Decision 3's portrait `sizes` gives way to the card `sizes` of 0054
 **Date:** 2026-10-23
+**Revised:** 2026-10-25, Decision 2's studio is created with alpha and lends its context to the banner, the flag and the glazes of 0059
 **Deciders:** Kori
 **Scope:** The pictures of a tree and of a species: their hero, their card, their social image and
 an optional effect the browser applies to them; the `sizes` every `Hero.astro` image asks for; how a
@@ -158,6 +159,21 @@ both shapes also means generating two pictures for every tree and species. Versi
 - The studio canvas only grows, and each copy takes the drawn rectangle from it, so a plate and the
   stage share it without a resize every frame. The grain test counts copies into the plate's canvas
   instead of draw calls on the context.
+
+
+### Addendum (2026-10-25): the studio lends its context to the banner, the flag and the glazes
+
+- The studio is created with `alpha: true` and copies into each canvas with the `copy` operator, so
+  a cloth with transparent edges can be copied out. The plates and the stage are unchanged: only
+  `glsl/print.frag` and `glsl/stage.frag` draw into the drawing buffer, and both write an alpha of 1.
+- It exposes `gl`, `lifetime`, `picture` and `compose`, which the banner, the flag and the glazed
+  painting of 0059 draw through, and `gl.ts` gains a linear data texture and a multisampled layer for
+  them. Their code stays in their own chunks; `studio` grows from 28,887 to 33,125 bytes (10,087 to
+  11,498 gzipped).
+- Every full screen pass, the plates and the stage included, now reads its triangle from attribute 0,
+  which Firefox on macOS otherwise emulates, and `gpuReport` reads `RENDERER` and asks
+  `WEBGL_debug_renderer_info` only when the value is Chromium's masked « WebKit WebGL », since Firefox
+  deprecates the extension. Both were reported by Firefox's console on a species page.
 
 ---
 

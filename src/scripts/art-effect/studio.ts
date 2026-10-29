@@ -61,6 +61,14 @@ export type Scene = {
 export type Studio = {
   readonly tier: EffectTier
   readonly limit: number
+  readonly gl: WebGL2RenderingContext
+  readonly lifetime: AbortSignal
+  picture: (pixels: TexImageSource, size: Size) => Target
+  compose: (
+    size: Size,
+    paint: (gl: WebGL2RenderingContext) => void,
+    into: CanvasRenderingContext2D,
+  ) => boolean
   develop: (
     effect: ArtEffect,
     pixels: HTMLImageElement,
@@ -80,7 +88,7 @@ type Programs = { develop: Program; finish: Program; print: Program; painter: Pa
 const SOFTWARE_RENDERER = /swiftshader|llvmpipe|softpipe|software|basic render/i
 
 const CONTEXT: WebGLContextAttributes = {
-  alpha: false,
+  alpha: true,
   antialias: false,
   depth: false,
   stencil: false,
@@ -179,6 +187,7 @@ function createStudio(): Studio | undefined {
     if (into.canvas.width !== size.width) into.canvas.width = size.width
     if (into.canvas.height !== size.height) into.canvas.height = size.height
     const region = printRegion(size, canvas)
+    into.globalCompositeOperation = 'copy'
     into.drawImage(
       canvas,
       region.x,
@@ -192,15 +201,16 @@ function createStudio(): Studio | undefined {
     )
   }
 
-  const upload = (pixels: HTMLImageElement): Target => {
-    const width = pixels.naturalWidth
-    const height = pixels.naturalHeight
+  const picture = (pixels: TexImageSource, { width, height }: Size): Target => {
     const source = createTarget(gl, 'srgb', width, height, mipLevels(width, height))
     gl.bindTexture(gl.TEXTURE_2D, source.texture)
     gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, 0, gl.RGBA, gl.UNSIGNED_BYTE, pixels)
     gl.generateMipmap(gl.TEXTURE_2D)
     return source
   }
+
+  const upload = (pixels: HTMLImageElement): Target =>
+    picture(pixels, { width: pixels.naturalWidth, height: pixels.naturalHeight })
 
   const paint = async (
     programs: Painter,
@@ -376,6 +386,14 @@ function createStudio(): Studio | undefined {
   const studio: Studio = {
     tier,
     limit,
+    gl,
+    lifetime: life.signal,
+    picture,
+    compose: (size, paint, into) => {
+      if (gl.isContextLost()) return false
+      copyOut(size, () => paint(gl), into)
+      return true
+    },
     develop: (effect, pixels, exposure, signal) => {
       const run = queue.then(() => developNow(effect, pixels, exposure, signal))
       queue = run.then(
