@@ -4,5 +4,5 @@
   "activation": "1 Bonus Action",
   "range": "Self",
   "duration": "Instantaneous",
-  "description": "Hope is the first tool humans reach for, and the last they let go of.\n\nYou end one harmful state affecting you."
+  "description": "Hope is the first tool humans reach for, and the last they let go of.\n\nYou end one {{nefaste}} state affecting you."
 }

@@ -17,5 +17,5 @@
       "influence"
     ]
   },
-  "description": "Vous marchandiez avant même de savoir compter.\n\nTout ce que vous achetez à un autre Humain vous coûte 20 % de moins."
+  "description": "Vous marchandiez avant même de savoir compter.\n\nTout ce que vous achetez à un autre {{espece-humain}} vous coûte 20 % de moins."
 }

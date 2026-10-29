@@ -17,5 +17,5 @@
       "divination"
     ]
   },
-  "description": "Au foyer de la Yurta, on se comprend sans prononcer un mot.\n\nVous pouvez communiquer par la pensée avec tout Nnor que vous connaissez à 9 m ou moins de vous. Cette communion ne transmet que des messages simples (idées, images, émotions) et ne remplace pas une langue."
+  "description": "Au foyer de la Yurta, on se comprend sans prononcer un mot.\n\nVous pouvez communiquer par la pensée avec tout {{espece-nnor}} que vous connaissez à 9 m ou moins de vous. Cette communion ne transmet que des messages simples (idées, images, émotions) et ne remplace pas une langue."
 }

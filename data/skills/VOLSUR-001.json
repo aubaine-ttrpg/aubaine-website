@@ -25,5 +25,5 @@
       "healing"
     ]
   },
-  "description": "L'espoir est le premier outil des humains, et le dernier qu'ils lâchent.\n\nVous mettez fin à un état néfaste qui vous affecte."
+  "description": "L'espoir est le premier outil des humains, et le dernier qu'ils lâchent.\n\nVous mettez fin à un état {{nefaste}} qui vous affecte."
 }
