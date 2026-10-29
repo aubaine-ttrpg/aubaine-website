@@ -13,6 +13,10 @@ export function archiveFile(version: string, locale: Locale): string {
   return `aubaine-v${version}-${locale}.zip`
 }
 
+export function releaseTag(version: string): string {
+  return `v${version}`
+}
+
 export type Release = {
   slug: string
   kind: BookletKind

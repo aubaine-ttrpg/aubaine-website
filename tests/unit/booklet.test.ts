@@ -1,9 +1,10 @@
 import { describe, expect, it } from 'vitest'
 
 import { formatBytes, formatReleaseDate } from '../../src/lib/booklet/format'
-import { ARCHIVE_FILE, archiveFile } from '../../src/lib/booklet/release'
+import { ARCHIVE_FILE, archiveFile, releaseTag } from '../../src/lib/booklet/release'
 import type { PdfRelease } from '../../src/lib/game/schema'
 import { planArchive } from '../../tools/pdf/archive'
+import { planPublish } from '../../tools/pdf/publish'
 
 const printing = (
   version: string,
@@ -97,5 +98,30 @@ describe('planning an archive', () => {
     ])
     expect(plan.keep.map((release) => release.version)).toEqual(['0.10.0'])
     expect(plan.bundles.map((bundle) => bundle.version)).toEqual(['0.9.0'])
+  })
+})
+
+describe('planning a release', () => {
+  it('gathers both languages of a generation under one tag', () => {
+    const plan = planPublish([archiveFile('0.2.1', 'fr'), archiveFile('0.2.1', 'en')], new Set())
+    expect(plan).toEqual([
+      {
+        tag: releaseTag('0.2.1'),
+        version: '0.2.1',
+        files: [archiveFile('0.2.1', 'en'), archiveFile('0.2.1', 'fr')],
+      },
+    ])
+  })
+
+  it('leaves a generation alone once its tag is published', () => {
+    const plan = planPublish(
+      [archiveFile('0.2.1', 'fr'), archiveFile('0.3.0', 'fr')],
+      new Set([releaseTag('0.2.1')]),
+    )
+    expect(plan.map((release) => release.version)).toEqual(['0.3.0'])
+  })
+
+  it('ignores a file that is not an archive', () => {
+    expect(planPublish(['.DS_Store', 'aubaine-v0.2.1.zip'], new Set())).toEqual([])
   })
 })
