@@ -16,7 +16,8 @@ The filename is the key. Lowercase, no accents, hyphens between words: `combusti
 | --- | --- | --- | --- |
 | `key` | required | Identifiant machine, employé par l'ancre de la planche et par `{{clé}}` dans un texte de règle. | `^[a-z][a-z0-9-]*$`, matching the filename |
 | `name` | required | Nom imprimé, et libellé par défaut d'une référence `{{clé}}` vers cet état. Il doit être unique. | any non empty string |
-| `kind` | required | Couleur de la pastille : ce que l'état fait à qui le porte. | `buff`, `debuff`, `neutral` |
+| `kind` | required | Ce que l'état fait à qui le porte, et la couleur de sa pastille. Clé déclarée dans data/meta/state-kinds.json, dont chaque valeur est un mot-clé : {{nefaste}}. | a key from `data/meta/state-kinds.json` |
+| `type` | optional | Famille de l'état, que d'autres Compétences peuvent viser en bloc. Clé déclarée dans data/meta/state-types.json, dont chaque valeur est un mot-clé : {{type-etat-magie}}. Absent : l'état n'appartient à aucune famille. | a key from `data/meta/state-types.json` |
 | `follows` | optional | Clé de l'état dont celui-ci est le cran suivant, comme poisse-solide après poisse-liquide. Les états se rangent par ordre alphabétique, et une chaîne de crans se range à la place de son premier cran, dans l'ordre des crans. | a state `key` from `data/states/` |
 | `icon` | required | Nom Iconify. Sans fichier correspondant dans `data/media/icons/`, l'état se rend sans icône. | `mdi:<name>` or `game-icons:<name>` |
 | `color` | optional | Encre propre de l'état, que portent son titre et chaque pastille qui le nomme, par exemple pour distinguer les crans d'une même famille. | `#rrggbb`, lowercase hex |
@@ -31,6 +32,7 @@ The filename is the key. Lowercase, no accents, hyphens between words: `combusti
   "key": "combustion",
   "name": "Combustion",
   "kind": "buff",
+  "type": "magic",
   "icon": "mdi:fire",
   "description": "{{combustion}} s'accumule sur vous jusqu'à 5.\n\nLorsque vous effectuez un {{jet}} de dégâts qui inflige des dégâts de Feu, ajoutez 1 dégât par {{combustion}} que vous portez.\n\nAu début d'un combat, vous perdez toute votre {{combustion}}."
 }
@@ -38,9 +40,13 @@ The filename is the key. Lowercase, no accents, hyphens between words: `combusti
 
 ## What appears on the site
 
-- `/fr/regles` and `/en/rules`: a row, sorted alphabetically among every rule entry and filterable by the `État` family and by its effect, whose detail shows the name and the rule text.
-- Everywhere a skill, a state, an item, a set or a chapter writes `{{combustion}}`, a coloured pastille prints the name, with a tooltip carrying the kind and the first lines of the description. `{{combustion|texte}}` prints `texte` in the same pastille.
+- `/fr/regles` and `/en/rules`: a row, sorted alphabetically among every rule entry and filterable by the `État` family, by its effect and by its type, whose detail shows the name and the rule text.
+- Everywhere a skill, a state, an item, a set or a chapter writes `{{combustion}}`, a coloured pastille prints the name, with a tooltip carrying the kind, the type when there is one, and the first lines of the description. `{{combustion|texte}}` prints `texte` in the same pastille.
 - `/fr/recherche` and `/en/search`: a row under the rules group.
+
+## Choosing the type
+
+A type is the family a Compétence can reach in one sentence: « un état de {{type-etat-magie}} » names every state of that type, whatever its kind. A state that belongs to no family stays untyped, and only a Compétence that names it, or that names its kind (« un état {{nefaste}} »), reaches it. Typing a state therefore makes it easier to end, resist or strip, and that is a balance decision for the owner. Add a type to `data/meta/state-types.json` only with the first state that needs it.
 
 ## How to check it
 

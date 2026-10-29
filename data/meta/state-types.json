@@ -1,0 +1,24 @@
+{
+  "entries": [
+    {
+      "key": "rage",
+      "labelFr": "Rage",
+      "labelEn": "Rage"
+    },
+    {
+      "key": "charm",
+      "labelFr": "Charme",
+      "labelEn": "Charm"
+    },
+    {
+      "key": "fear",
+      "labelFr": "Peur",
+      "labelEn": "Fear"
+    },
+    {
+      "key": "magic",
+      "labelFr": "Magie",
+      "labelEn": "Magic"
+    }
+  ]
+}

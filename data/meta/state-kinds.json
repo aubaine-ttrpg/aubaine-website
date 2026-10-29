@@ -1,0 +1,19 @@
+{
+  "entries": [
+    {
+      "key": "buff",
+      "labelFr": "Bénéfique",
+      "labelEn": "Buff"
+    },
+    {
+      "key": "debuff",
+      "labelFr": "Néfaste",
+      "labelEn": "Debuff"
+    },
+    {
+      "key": "neutral",
+      "labelFr": "Neutre",
+      "labelEn": "Neutral"
+    }
+  ]
+}

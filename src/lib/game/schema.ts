@@ -1054,6 +1054,8 @@ export const equipmentCatalogue = z
   })
   .strict()
 
+export const STATE_KINDS = ['buff', 'debuff', 'neutral'] as const
+
 export const state = z
   .object({
     key: z
@@ -1069,8 +1071,17 @@ export const state = z
         "Nom imprimé, et libellé par défaut d'une référence {{clé}} vers cet état. Il doit être unique.",
       ),
     kind: z
-      .enum(['buff', 'debuff', 'neutral'])
-      .describe("Couleur de la pastille : ce que l'état fait à qui le porte."),
+      .enum(STATE_KINDS)
+      .describe(
+        "Ce que l'état fait à qui le porte, et la couleur de sa pastille. Clé déclarée dans data/meta/state-kinds.json, dont chaque valeur est un mot-clé : {{nefaste}}.",
+      ),
+    type: z
+      .string()
+      .regex(MACHINE_KEY)
+      .optional()
+      .describe(
+        "Famille de l'état, que d'autres Compétences peuvent viser en bloc. Clé déclarée dans data/meta/state-types.json, dont chaque valeur est un mot-clé : {{type-etat-magie}}. Absent : l'état n'appartient à aucune famille.",
+      ),
     follows: z
       .string()
       .regex(MACHINE_KEY)

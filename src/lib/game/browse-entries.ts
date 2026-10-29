@@ -510,11 +510,6 @@ export function ruleBrowseEntries(corpus: Corpus, locale: Locale): BrowseEntry[]
     school: t.tagSchool,
     special: t.tagSpecial,
   }
-  const effectLabels: Record<GameState['kind'], string> = {
-    buff: t.buff,
-    debuff: t.debuff,
-    neutral: t.neutral,
-  }
   const typeLabels = { active: t.active, passive: t.passive, special: t.special }
   const familyFacet = (families: RuleFamily[]): Facet =>
     facet(
@@ -525,17 +520,23 @@ export function ruleBrowseEntries(corpus: Corpus, locale: Locale): BrowseEntry[]
     const id = `${term.family}-${term.key}`
     const { title, color } = term.record
     if (term.family === 'state') {
-      const effect = effectLabels[term.state.kind]
+      const { kind, type } = term.state
       return {
         ...RULE_ROW,
         id,
         entity: { kind: 'state', state: term.state },
         title,
         mark: color,
-        sub: `${familyLabels.state} · ${effect}`,
+        sub: `${familyLabels.state} · ${term.record.meta}`,
         attrs: attributesFor(id, title, [
           familyFacet(['state']),
-          facet('eff', [{ value: term.state.kind, label: effect }]),
+          facet('eff', [{ value: kind, label: label(corpus.stateKinds.get(kind), locale, kind) }]),
+          facet(
+            'styp',
+            type === undefined
+              ? []
+              : [{ value: type, label: label(corpus.stateTypes.get(type), locale, type) }],
+          ),
         ]),
       }
     }

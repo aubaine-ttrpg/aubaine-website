@@ -23,12 +23,13 @@ import {
   skillTags,
   slugify,
   speciesPool,
+  stateInk,
   subspeciesSkills,
   VARIABLE_CHARACTERISTIC,
 } from '../../src/lib/game/derive'
 import { readAtlasSources, readCorpus, readSources } from '../../src/lib/game/fs-sources'
 import { referenceKey } from '../../src/lib/game/richtext'
-import { overlays } from '../../src/lib/game/schema'
+import { overlays, STATE_KINDS } from '../../src/lib/game/schema'
 import { LOCALES } from '../../src/lib/i18n/locales'
 import { pathFor, treeNodeHref } from '../../src/lib/i18n/routes'
 import { strings } from '../../src/lib/i18n/strings'
@@ -253,6 +254,61 @@ describe('vocabulary references', () => {
       }
       for (const key of entry.languages ?? []) {
         expect(fr.languages.has(key), `${entry.id} language ${key}`).toBe(true)
+      }
+    }
+  })
+
+  it('declares every state kind in data/meta/state-kinds.json, and nothing else', () => {
+    expect([...fr.stateKinds.keys()].sort()).toEqual([...STATE_KINDS].sort())
+  })
+
+  it('uses only declared state type keys', () => {
+    for (const state of fr.states) {
+      if (state.type === undefined) continue
+      expect(fr.stateTypes.has(state.type), `${state.key} type ${state.type}`).toBe(true)
+    }
+  })
+
+  it('prints the kind of a state, and its type when it has one, in its tooltip', () => {
+    for (const corpus of [fr, en]) {
+      for (const term of corpus.glossary) {
+        if (term.family !== 'state') continue
+        const kind = label(corpus.stateKinds.get(term.state.kind), corpus.locale, '')
+        const type =
+          term.state.type && label(corpus.stateTypes.get(term.state.type), corpus.locale, '')
+        expect(term.record.meta, `${term.key} in ${corpus.locale}`).toBe(
+          type ? `${kind} · ${type}` : kind,
+        )
+      }
+    }
+  })
+
+  it('makes every state kind a keyword in the ink of its kind', () => {
+    for (const kind of STATE_KINDS) {
+      const entry = fr.stateKinds.get(kind)
+      const record = entry && fr.terms.keys.get(slugify(entry.labelFr))
+      expect(record?.family, kind).toBe('value')
+      expect(record?.color, kind).toBe(stateInk({ kind }))
+    }
+  })
+
+  it('keys every state type after its category', () => {
+    for (const entry of fr.stateTypes.values()) {
+      const record = fr.terms.keys.get(`type-etat-${slugify(entry.labelFr)}`)
+      expect(record?.family, entry.key).toBe('value')
+      expect(record?.title, entry.key).toBe(entry.labelFr)
+    }
+  })
+
+  it('makes every species a keyword that prints its name and links to its page', () => {
+    for (const corpus of [fr, en]) {
+      for (const entry of corpus.species) {
+        const record = corpus.terms.keys.get(`espece-${entry.id}`)
+        expect(record?.family, entry.id).toBe('species')
+        expect(record?.title, entry.id).toBe(entry.name)
+        expect(record?.href, entry.id).toBe(
+          pathFor('speciesEntry', corpus.locale, { species: entry.id }),
+        )
       }
     }
   })

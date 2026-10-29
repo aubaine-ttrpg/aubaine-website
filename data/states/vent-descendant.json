@@ -2,6 +2,7 @@
   "key": "vent-descendant",
   "name": "Vent descendant",
   "kind": "buff",
+  "type": "magic",
   "icon": "mdi:elevation-decline",
   "color": "#1d665d",
   "description": "{{vent-descendant}} s'accumule sur vous jusqu'à 3.\n\nAu moment où vous lancez un {{sort}} du Domaine Vent qui peut faire effectuer un {{jet}} contre votre {{dd}}, vous pouvez dépenser tout votre {{vent-descendant}}. Le {{dd}} de ce {{sort}} augmente alors de 1 par {{vent-descendant}} dépensé, jusqu'à la fin de ses effets.\n\nVous perdez tout votre {{vent-descendant}} lorsque vous gagnez {{vent-ascendant}} et lorsque vous terminez l'un de vos tours sans avoir lancé de {{sort}} du Domaine Vent pendant ce tour.\n\nAu début d'un combat, vous perdez tout votre {{vent-descendant}}."

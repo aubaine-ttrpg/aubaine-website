@@ -8,6 +8,7 @@ import {
   inCranOrder,
   inkOf,
   primeCharacteristics,
+  SPECIES_ORIGIN_ICON,
   slugify,
   speciesPool,
   stateInk,
@@ -43,7 +44,7 @@ import type {
   TagTaxonomy,
   VocabularyEntry,
 } from './schema.ts'
-import { overlays } from './schema.ts'
+import { overlays, STATE_KINDS } from './schema.ts'
 import { inheritedStatus } from './status.ts'
 
 export type ResolvedPlacement = {
@@ -119,6 +120,8 @@ export type Corpus = {
   locale: Locale
   creatureTypes: Map<string, VocabularyEntry>
   sizes: Map<string, VocabularyEntry>
+  stateKinds: Map<string, VocabularyEntry>
+  stateTypes: Map<string, VocabularyEntry>
   languages: Map<string, VocabularyEntry>
   descriptors: Map<string, VocabularyEntry>
   domains: Map<string, VocabularyEntry>
@@ -289,7 +292,15 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
   const disciplines = vocabularyFor('disciplines')
   const coins = vocabularyFor('coins')
   const damageTypes = vocabularyFor('damage-types')
-  const values = { sizes, 'creature-types': creatureTypes, 'damage-types': damageTypes }
+  const stateKinds = vocabularyFor('state-kinds')
+  const stateTypes = vocabularyFor('state-types')
+  const values = {
+    sizes,
+    'creature-types': creatureTypes,
+    'damage-types': damageTypes,
+    'state-kinds': stateKinds,
+    'state-types': stateTypes,
+  }
   const slots = vocabularyFor('slots')
 
   const taxonomyEntry = sources.tags.find((entry) => entry.id === 'tags')
@@ -304,6 +315,7 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
     tags,
     states: stateEntries.map((entry) => entry.data),
     skills: new Map(skillEntries.map((entry) => [entry.data.id, entry.data])),
+    species: speciesSources.map((entry) => entry.data),
   })
   const inherited = (text: string): string =>
     locale === DEFAULT_LOCALE ? text : pinReferenceLabels(text, (key) => sourceLabels.get(key))
@@ -615,6 +627,7 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
     tags,
     states,
     skills,
+    species,
   })
   const labelOf: LabelOf = (key) => labels.get(key)
   const glossary = buildGlossary({
@@ -623,6 +636,8 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
     aptitudes,
     tags,
     states,
+    stateKinds,
+    stateTypes,
     bank,
     labelOf,
     t,
@@ -666,6 +681,8 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
     locale,
     creatureTypes,
     sizes,
+    stateKinds,
+    stateTypes,
     languages,
     descriptors,
     domains,
@@ -707,6 +724,8 @@ type GlossaryInput = {
   aptitudes: Map<string, VocabularyEntry>
   tags: Map<string, ResolvedTag>
   states: GameState[]
+  stateKinds: Map<string, VocabularyEntry>
+  stateTypes: Map<string, VocabularyEntry>
   bank: SkillList
   labelOf: LabelOf
   t: ReturnType<typeof strings>
@@ -740,6 +759,7 @@ type LabelInput = {
   tags: Map<string, ResolvedTag>
   states: GameState[]
   skills: Map<string, Skill>
+  species: Pick<Species, 'id' | 'name'>[]
 }
 
 type Grant = { skill: Skill; source: string }
@@ -747,7 +767,7 @@ type Grant = { skill: Skill; source: string }
 const APTITUDE_ICON = 'mdi/rhombus-outline'
 const TAG_ICON = 'mdi/tag-outline'
 
-type ValueVocabulary = 'sizes' | 'creature-types' | 'damage-types'
+type ValueVocabulary = 'sizes' | 'creature-types' | 'damage-types' | 'state-kinds' | 'state-types'
 
 type RuleTerm = {
   fr: string
@@ -1043,6 +1063,30 @@ const RULE_TERMS: readonly RuleTerm[] = [
     definition: {
       fr: "La famille d'êtres dont relève une créature.",
       en: 'The family of beings a creature belongs to.',
+    },
+  },
+  {
+    fr: 'Effet',
+    en: 'Effect',
+    color: 'var(--state-neutral)',
+    icon: 'mdi/plus-minus-variant',
+    values: 'state-kinds',
+    definition: {
+      fr: "Ce qu'un état fait à la créature qui le porte, en sa faveur ou contre elle.",
+      en: 'Whether a state works for or against the creature that carries it.',
+    },
+  },
+  {
+    fr: "Type d'état",
+    en: 'State type',
+    color: 'var(--accent-ink)',
+    icon: 'mdi/shape-outline',
+    key: 'type-etat',
+    values: 'state-types',
+    prefixValues: true,
+    definition: {
+      fr: "La famille dont relève un état, s'il en a une. Une {{competence}} qui vise une famille atteint chacun de ses états, quel que soit leur {{effet}}.",
+      en: "A state's family, if it has one. A {{competence}} aimed at a family reaches each of its states, whatever their {{effet}}.",
     },
   },
   {
@@ -1363,6 +1407,22 @@ function valueLabel(entry: VocabularyEntry, english: boolean): string {
   return english ? (entry.referenceEn ?? entry.labelEn) : (entry.referenceFr ?? entry.labelFr)
 }
 
+function valueInk(rule: RuleTerm, entry: VocabularyEntry): string | undefined {
+  if (rule.values !== 'state-kinds') return entry.color ? inkOf(entry.color) : undefined
+  if (!isStateKind(entry.key)) {
+    throw new Error(`data/meta/state-kinds.json ${entry.key} is not a state kind`)
+  }
+  return stateInk({ kind: entry.key })
+}
+
+function isStateKind(key: string): key is GameState['kind'] {
+  return STATE_KINDS.some((kind) => kind === key)
+}
+
+function speciesReference(id: string): string {
+  return `espece-${id}`
+}
+
 function valueReference(rule: RuleTerm, entry: VocabularyEntry): string {
   const value = slugify(entry.labelFr)
   return rule.prefixValues ? `${ruleReference(rule)}-${value}` : value
@@ -1416,11 +1476,23 @@ function referenceLabels(input: LabelInput): Map<string, string> {
   }
   for (const state of input.states) labels.set(state.key, state.name)
   for (const skill of input.skills.values()) labels.set(skill.id, skill.title)
+  for (const entry of input.species) labels.set(speciesReference(entry.id), entry.name)
   return labels
 }
 
 function buildGlossary(input: GlossaryInput): GlossaryTerm[] {
-  const { locale, characteristics, aptitudes, tags, states, bank, labelOf, t } = input
+  const {
+    locale,
+    characteristics,
+    aptitudes,
+    tags,
+    states,
+    stateKinds,
+    stateTypes,
+    bank,
+    labelOf,
+    t,
+  } = input
   const english = locale === 'en'
   const glossary: GlossaryTerm[] = []
 
@@ -1508,8 +1580,9 @@ function buildGlossary(input: GlossaryInput): GlossaryTerm[] {
   }
 
   for (const state of states) {
-    const kindLabel =
-      state.kind === 'buff' ? t.buff : state.kind === 'debuff' ? t.debuff : t.neutral
+    const kindLabel = label(stateKinds.get(state.kind), locale, state.kind)
+    const typeLabel =
+      state.type === undefined ? undefined : label(stateTypes.get(state.type), locale, state.type)
     glossary.push({
       family: 'state',
       key: state.key,
@@ -1519,7 +1592,7 @@ function buildGlossary(input: GlossaryInput): GlossaryTerm[] {
         family: 'state',
         kind: t.states,
         title: state.name,
-        meta: kindLabel,
+        meta: typeLabel === undefined ? kindLabel : `${kindLabel} · ${typeLabel}`,
         color: stateInk(state),
         icon: iconPath(state.icon),
         text: flattenText(state.description, labelOf, 240),
@@ -1580,7 +1653,7 @@ function buildTermIndex(input: TermInput): TermIndex {
         title: vocabularyLabel(entry, locale === 'en'),
         label: valueLabel(entry, locale === 'en'),
         meta: '',
-        color: entry.color ? inkOf(entry.color) : category.color,
+        color: valueInk(rule, entry) ?? category.color,
         icon: entry.iconName ? iconPath(entry.iconName) : category.icon,
         text: category.text,
       })
@@ -1713,6 +1786,27 @@ function buildTermIndex(input: TermInput): TermIndex {
       icon: 'mdi/family-tree',
       text: tree.subtitle ?? '',
       href: pathFor('tree', locale, { tree: tree.id }),
+    })
+  }
+
+  for (const entry of species) {
+    const reference = speciesReference(entry.id)
+    if (keys.has(reference)) {
+      throw new Error(
+        `species ${entry.id} answers to the reference {{${reference}}}, which another entry holds`,
+      )
+    }
+    keys.set(reference, {
+      family: 'species',
+      kind: t.species,
+      title: entry.name,
+      meta: (entry.types ?? [])
+        .map((key) => label(values['creature-types'].get(key), locale, key))
+        .join(' · '),
+      color: entry.keyColour ? inkOf(entry.keyColour) : 'var(--accent-ink)',
+      icon: iconPath(SPECIES_ORIGIN_ICON),
+      text: flattenText(entry.roleplay?.text, labelOf, 240),
+      href: pathFor('speciesEntry', locale, { species: entry.id }),
     })
   }
 
