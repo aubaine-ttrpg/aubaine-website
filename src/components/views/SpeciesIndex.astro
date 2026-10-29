@@ -1,102 +1,52 @@
 ---
-import type { ArtEffect } from '../../lib/art-effect/effects'
+import { bookChapter } from '../../lib/game/book-chapters'
+import { speciesSheet } from '../../lib/game/character-sheet'
 import type { Corpus } from '../../lib/game/corpus'
-import type { ContentStatus } from '../../lib/game/schema'
-import { type BadgedStatus, badgedStatus } from '../../lib/game/status'
+import { speciesCards } from '../../lib/game/hub-cards'
+import { HUB_CHAPTERS, leadOrder } from '../../lib/game/hubs'
 import type { Locale } from '../../lib/i18n/locales'
-import { pathFor } from '../../lib/i18n/routes'
 import { strings } from '../../lib/i18n/strings'
-import { PLACEHOLDER_COVER } from '../../lib/media'
-import type { CoverCardEntry } from '../primitives/CoverCard.astro'
-import CoverCard from '../primitives/CoverCard.astro'
+import { selectEntries } from '../../lib/select-entries'
+import { stageSource } from '../../lib/stage-ambient'
 import FilterBar from '../primitives/FilterBar.astro'
-import Hero from '../primitives/Hero.astro'
+import SelectScreen from '../primitives/SelectScreen.astro'
 
 type Props = { locale: Locale; corpus: Corpus }
 
 const { locale, corpus } = Astro.props
 const t = strings(locale)
 
-const STATUS_LABELS: Record<ContentStatus, string> = {
-  draft: t.draft,
-  playtest: t.playtest,
-  beta: t.beta,
-  balanced: t.balanced,
+const species = new Map(corpus.species.map((entry) => [entry.id, entry]))
+const sheetOf = (id: string) => {
+  const entry = species.get(id)
+  if (!entry) throw new Error(`the species index has a card for ${id}, which is not a species`)
+  return speciesSheet(entry, corpus, locale)
 }
-
-type Card = {
-  href: string
-  name: string
-  kicker: string
-  art: string
-  effect: ArtEffect | undefined
-  entry: CoverCardEntry
-  status: BadgedStatus | undefined
-}
-
-const cards: Card[] = corpus.species.map((entry) => ({
-  href: pathFor('speciesEntry', locale, { species: entry.id }),
-  name: entry.name,
-  kicker: t.species,
-  art: entry.cover ?? PLACEHOLDER_COVER,
-  effect: entry.artEffect,
-  status: badgedStatus(entry.status),
-  entry: {
-    id: entry.id,
-    name: entry.name,
-    status: entry.status ?? 'balanced',
-    statusLabel: STATUS_LABELS[entry.status ?? 'balanced'],
-  },
-}))
+const chapter = await bookChapter(locale, HUB_CHAPTERS.species)
+const cards = await speciesCards(corpus, locale)
+const entries = await selectEntries(cards, sheetOf)
+const order = leadOrder(
+  entries.map((entry) => ({ ...entry.card, id: entry.card.facets.id })),
+  locale,
+)
+const lead = order[0]
+if (!lead) throw new Error('the species index has no species to stage')
+const leadStage = stageSource(lead.cover, lead.seal.colours)
 ---
 
-<div>
-  <Hero
-    art="ikyrio-16_9-og.png"
-    minHeight="min(80vh,760px)"
-    bottomStops={[27, 60]}
-    sideStops={[32, 64]}
-    padding="0 26px 46px"
-    motion="drift"
-    seconds={30}
-    objectPosition="50% 26%"
-  >
-    <h1
-      style="margin:0; font-family:var(--font-display); font-weight:700; font-size:clamp(44px,7vw,104px); line-height:.94; color:var(--art-ink)"
-    >
-      {t.speciesIndex}
-    </h1>
-    <p style="margin:16px 0 0; max-width:58ch; font-size:19px; line-height:1.6; color:var(--art-ink2)">
-      {t.speciesLead}
-    </p>
-  </Hero>
-
+<SelectScreen
+  locale={locale}
+  title={t.speciesIndex}
+  about={{ body: t.speciesLead, link: { href: chapter.href, label: t.hubChapter(chapter.title) } }}
+  stage={leadStage}
+  groups={[{ key: 'species', label: undefined, entries }]}
+  order={order.map((card) => card.id)}
+>
   <FilterBar
+    slot="filter"
     locale={locale}
     variant="species"
     total={cards.length}
     drafts={cards.filter((card) => card.status === 'draft').length}
   />
-
-  <section style="max-width:1560px; margin:0 auto; padding:26px 26px 78px">
-    <div
-      style="display:grid; grid-template-columns:repeat(auto-fill,minmax(248px,1fr)); gap:20px"
-    >
-      {
-        cards.map((card, index) => (
-          <CoverCard
-            href={card.href}
-            name={card.name}
-            kicker={card.kicker}
-            art={card.art}
-            effect={card.effect}
-            entry={card.entry}
-            index={index}
-            locale={locale}
-            status={card.status}
-          />
-        ))
-      }
-    </div>
-  </section>
-</div>
+</SelectScreen>

@@ -39,6 +39,12 @@ const FR_TREE_KIND: Record<SkillTree['treeType'], string> = {
   species: 'd’Espèce',
 }
 
+const FR_TREE_NOUN: Record<SkillTree['treeType'], string> = {
+  archetype: 'Archétype',
+  domain: 'Domaine',
+  species: 'Espèce',
+}
+
 const EN_TREE_KIND: Record<SkillTree['treeType'], string> = {
   archetype: 'Archetype',
   domain: 'Domain',
@@ -56,7 +62,7 @@ const fr = {
   breadcrumb: 'Fil d’Ariane',
   home: 'Accueil',
   resources: 'Livres',
-  trees: 'Arbre de compétences',
+  trees: 'Arbres de compétences',
   items: 'Équipement',
   spells: 'Compétences',
   rules: 'Règles',
@@ -145,6 +151,8 @@ const fr = {
   speciesIndex: 'Espèces',
   speciesLead:
     'Chaque personnage naît d’une Espèce. Elle lui offre un choix de Compétences, dont il garde deux à la création, et fixe sa Vitesse quand elle s’écarte de la norme.',
+  hubAbout: (title: string) => `À propos : ${title}`,
+  hubChapter: (title: string) => `Le chapitre complet : ${title}`,
   speciesEmpty: 'Cette Espèce ne propose encore aucune Compétence.',
   creatureType: 'Type de créature',
   sizeCategory: 'Taille',
@@ -174,9 +182,10 @@ const fr = {
   limit: (times: number, per: SkillLimit['per']) => `${times} fois par ${FR_LIMIT_UNIT[per]}`,
   movement: 'Vitesse',
   prerequisite: 'Prérequis',
-  primeChar: 'Caractéristique dominante',
-  primeChars: 'Caractéristiques dominantes',
+  primeChar: 'Caractéristique',
+  primeChars: 'Caractéristiques',
   treeEyebrow: (type: SkillTree['treeType']) => `Arbre ${FR_TREE_KIND[type]}`,
+  treeKindNoun: (type: SkillTree['treeType']) => FR_TREE_NOUN[type],
   profile: 'Profil',
   profileAxes: {
     damage: 'Dégâts',
@@ -187,11 +196,17 @@ const fr = {
     roleplay: 'Roleplay',
   },
   profileAbout: 'Comment lire le profil',
+  profileUnknown: 'Pas encore de rang',
   profileNote:
     'Chaque axe est classé F, D, C, B, A ou S, du plus faible au plus fort. Ce rang est purement indicatif, pour aider les joueurs à se faire une idée d’ensemble de cette fiche.',
   blazon: 'Blasonnement',
   blazonOf: (name: string) => `Lire le blasonnement : ${name}`,
   descriptors: 'Descripteurs',
+  spotlight: 'Aperçu',
+  openSheet: 'Ouvrir la fiche',
+  openSheetOf: (name: string) => `Ouvrir la fiche : ${name}`,
+  spotlightPrevious: 'Précédent',
+  spotlightNext: 'Suivant',
   stagePause: 'Mettre en pause l’animation du fond',
   stagePlay: 'Lancer l’animation du fond',
   flagPause: 'Mettre en pause l’animation du drapeau',
@@ -656,6 +671,8 @@ const en: UiStrings = {
   speciesIndex: 'Species',
   speciesLead:
     'Every character is born of a Species. It offers a choice of Skills, two of which are kept at creation, and sets their Speed when it departs from the norm.',
+  hubAbout: (title: string) => `About ${title}`,
+  hubChapter: (title: string) => `The full chapter: ${title}`,
   speciesEmpty: 'This Species offers no Skill yet.',
   creatureType: 'Creature type',
   sizeCategory: 'Size',
@@ -686,9 +703,10 @@ const en: UiStrings = {
     `${EN_TIMES[times] ?? `${times} times`} per ${EN_LIMIT_UNIT[per]}`,
   movement: 'Speed',
   prerequisite: 'Prerequisite',
-  primeChar: 'Primary characteristic',
-  primeChars: 'Primary characteristics',
+  primeChar: 'Characteristic',
+  primeChars: 'Characteristics',
   treeEyebrow: (type: SkillTree['treeType']) => `${EN_TREE_KIND[type]} Tree`,
+  treeKindNoun: (type: SkillTree['treeType']) => EN_TREE_KIND[type],
   profile: 'Profile',
   profileAxes: {
     damage: 'Damage',
@@ -699,11 +717,17 @@ const en: UiStrings = {
     roleplay: 'Roleplay',
   },
   profileAbout: 'How to read the profile',
+  profileUnknown: 'No rank yet',
   profileNote:
     'Each axis is ranked F, D, C, B, A or S, from weakest to strongest. This rank is indicative only, to help players have an overall understanding of this content.',
   blazon: 'Blazon',
   blazonOf: (name: string) => `Read the blazon: ${name}`,
   descriptors: 'Descriptors',
+  spotlight: 'Preview',
+  openSheet: 'Open the entry',
+  openSheetOf: (name: string) => `Open the entry: ${name}`,
+  spotlightPrevious: 'Previous',
+  spotlightNext: 'Next',
   stagePause: 'Pause the background animation',
   stagePlay: 'Play the background animation',
   flagPause: 'Pause the flag animation',

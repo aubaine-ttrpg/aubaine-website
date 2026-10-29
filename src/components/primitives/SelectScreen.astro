@@ -1,0 +1,276 @@
+---
+import type { Locale } from '../../lib/i18n/locales'
+import type { SelectGroup } from '../../lib/select-entries'
+import type { StageSource } from '../../lib/stage-ambient'
+import CoverCard from './CoverCard.astro'
+import Spotlight from './Spotlight.astro'
+import StageBackdrop from './StageBackdrop.astro'
+import TitlePlates, { type HubAbout } from './TitlePlates.astro'
+
+type Props = {
+  locale: Locale
+  title: string
+  about: HubAbout
+  stage: StageSource
+  groups: SelectGroup[]
+  order: string[]
+}
+
+const { locale, title, about, stage, groups, order } = Astro.props
+const entries = groups.flatMap((group) => group.entries)
+const dealt = groups.map((group, position) => ({
+  ...group,
+  start: groups.slice(0, position).reduce((sum, earlier) => sum + earlier.entries.length, 0),
+}))
+---
+
+<section
+  class="au-select au-dark"
+  data-stage-host
+  data-select
+>
+  <div class="au-select__layer">
+    <StageBackdrop source={stage} />
+  </div>
+
+  <div class="au-select__inner">
+    <div class="au-select__title">
+      <TitlePlates title={title} about={about} locale={locale} />
+    </div>
+
+    <Spotlight class="au-select__spotlight" locale={locale} entries={entries} order={order} />
+
+    <div class="au-select__filter">
+      <slot name="filter" />
+    </div>
+
+    <div class="au-select__roster">
+      {
+        dealt.map((group) => (
+          <div class="au-select__group">
+            {group.label && (
+              <h2 class="au-select__mark">
+                <svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+                  <polygon points="50,4 90,27 90,73 50,96 10,73 10,27" />
+                </svg>
+                <span>{group.label}</span>
+              </h2>
+            )}
+            <div class="au-select__grid">
+              {group.entries.map((entry, index) => (
+                <CoverCard card={entry.card} index={group.start + index} locale={locale} />
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="au-select__status" role="status" data-spotlight-status></p>
+  </div>
+</section>
+
+<style>
+  .au-select {
+    --motion-state: running;
+    --select-top: 44px;
+    position: relative;
+    isolation: isolate;
+    overflow-x: clip;
+    background: var(--bg);
+    color: var(--ink);
+    border-bottom: 1px solid var(--line2);
+  }
+
+  .au-select[data-still] {
+    --motion-state: paused;
+  }
+
+  .au-select__layer {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    margin-bottom: -100svh;
+    pointer-events: none;
+  }
+
+  .au-select__inner {
+    position: relative;
+    display: grid;
+    grid-template-areas:
+      'title'
+      'spotlight'
+      'filter'
+      'roster';
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 28px;
+    width: 100%;
+    max-width: 1560px;
+    margin: 0 auto;
+    padding: 30px 16px 84px;
+    box-sizing: border-box;
+  }
+
+  .au-select__title {
+    grid-area: title;
+    position: relative;
+    z-index: 2;
+    min-width: 0;
+  }
+
+  .au-select__inner :global(.au-select__spotlight) {
+    grid-area: spotlight;
+  }
+
+  .au-select__filter {
+    grid-area: filter;
+    position: relative;
+    z-index: 3;
+    min-width: 0;
+  }
+
+  .au-select__filter :global(.au-filterbar) {
+    max-width: none;
+    padding: 0 0 16px;
+  }
+
+  .au-select__filter :global(.au-filter-empty) {
+    padding: 34px 0;
+  }
+
+  .au-select__roster {
+    grid-area: roster;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    min-width: 0;
+  }
+
+  .au-select__group:not(:has(.au-roster:not([hidden]))) {
+    display: none;
+  }
+
+  :global(:root[data-drafts='hidden'])
+    .au-select__group:not(
+      :has(.au-roster:not([hidden]):not([data-facet-sta='draft'])),
+      :has(.au-roster[data-revealed]:not([hidden]))
+    ) {
+    display: none;
+  }
+
+  .au-select__mark {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 24px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .au-select__mark > svg {
+    flex: none;
+    width: 22px;
+    height: 25px;
+    fill: #08070d;
+    stroke: var(--gold);
+    stroke-width: 7;
+  }
+
+  .au-select__mark > span {
+    padding: 6px 11px 5px;
+    rotate: -2deg;
+    background: #08070d;
+    box-shadow: 3px 3px 0 rgba(6, 5, 13, 0.6);
+  }
+
+  .au-select__mark::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--line2), transparent);
+  }
+
+  .au-select__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 148px), 1fr));
+    gap: 26px 16px;
+  }
+
+  .au-select__grid :global(.au-roster__link) {
+    scroll-margin-top: var(--sticky-top);
+  }
+
+  .au-select__status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (min-width: 640px) {
+    .au-select__grid {
+      grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));
+      gap: 32px 20px;
+    }
+  }
+
+  @media (min-width: 1100px) and (min-height: 640px) {
+    .au-select__inner {
+      grid-template-areas:
+        'title spotlight'
+        'filter spotlight'
+        'roster spotlight';
+      grid-template-columns: minmax(0, 1fr) clamp(420px, 34vw, 540px);
+      grid-template-rows: auto auto 1fr;
+      column-gap: clamp(32px, 3.4vw, 72px);
+      padding: var(--select-top) 26px 110px;
+    }
+
+    .au-select__grid {
+      grid-template-columns: repeat(auto-fill, minmax(156px, 1fr));
+      gap: 30px 18px;
+    }
+
+    .au-select__inner :global(.au-select__spotlight) {
+      container: spotlight / size;
+      position: sticky;
+      top: var(--header-h);
+      align-self: start;
+      height: calc(100svh - var(--header-h));
+      margin-top: calc(var(--select-top) * -1);
+      overflow: hidden auto;
+      padding: 28px 14px 24px 34px;
+      box-sizing: border-box;
+    }
+  }
+
+  @media (scripting: none) {
+    .au-select {
+      --motion-state: paused;
+    }
+  }
+
+  @media print {
+    .au-select {
+      --ink: #14100a;
+      --ink2: #3a3448;
+      --gold: #7a5d10;
+      background: none;
+    }
+
+    .au-select__layer {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,254 @@
+---
+import type { CharacterSheet } from '../../lib/game/character-sheet'
+import type { EntryCard } from '../../lib/game/hub-cards'
+import type { Locale } from '../../lib/i18n/locales'
+import Banner from './Banner.astro'
+import CoverSeal from './CoverSeal.astro'
+import FramedCard from './FramedCard.astro'
+import GhostName from './GhostName.astro'
+import RankProfile from './RankProfile.astro'
+import SheetHead, { type SheetReserve } from './SheetHead.astro'
+import TraitPlates from './TraitPlates.astro'
+
+type Props = {
+  locale: Locale
+  card: EntryCard
+  sheet: CharacterSheet
+  live: boolean
+  reserve: SheetReserve
+}
+
+const { locale, card, sheet, live, reserve } = Astro.props
+
+const CARD_WIDE = 'clamp(180px, 26vw, 420px)'
+const CARD_TABLET = 'min(30vw, 300px)'
+const CARD_NARROW = 'min(52vw, 240px)'
+const WIDEST_ADVANCE = 0.78
+const GHOST_SPAN = 84
+const GHOST_LARGEST = 24
+const NAME_SPAN = 96
+const NAME_LARGEST = 30
+
+const letters = Math.max(1, [...sheet.name].length)
+const fitted = (span: number, largest: number) =>
+  Math.min(largest, span / (WIDEST_ADVANCE * letters)).toFixed(2)
+const style = [
+  `--gold:${card.keyColour}`,
+  `--ghost-size:${fitted(GHOST_SPAN, GHOST_LARGEST)}cqi`,
+  `--name-fit:${fitted(NAME_SPAN, NAME_LARGEST)}cqi`,
+  `--card-tablet:${CARD_TABLET}`,
+  `--card-narrow:${CARD_NARROW}`,
+].join('; ')
+const profiled = sheet.profile.kind !== 'none'
+const sizes = `(min-width: 1100px) and (min-height: 640px) ${CARD_WIDE}, (min-width: 640px) ${CARD_TABLET}, ${CARD_NARROW}`
+---
+
+<div class:list={['au-panel', { 'au-panel--profiled': profiled }]} style={style}>
+  <GhostName text={sheet.name} class="au-panel__ghost" />
+  <div class="au-panel__head">
+    <SheetHead
+      locale={locale}
+      sheet={{ ...sheet, kind: card.kicker }}
+      heading="preview"
+      reserve={reserve}
+    />
+  </div>
+  <div class="au-panel__stage">
+    <FramedCard
+      class="au-panel__card"
+      emblem={sheet.emblem}
+      idPrefix={`au-spot-${card.facets.id}`}
+      data-tilt-card
+      data-stage-focus
+    >
+      {
+        card.cover ? (
+          <Banner
+            art={card.cover}
+            objectPosition="50% 24%"
+            motion="zoom-drift"
+            seconds={24}
+            settle={1}
+            priority={live}
+            sizes={sizes}
+          />
+        ) : (
+          <CoverSeal name={card.name} seal={card.seal} />
+        )
+      }
+    </FramedCard>
+    {
+      profiled && (
+        <div class="au-panel__profile">
+          <RankProfile
+            profile={sheet.profile.kind === 'ranked' ? sheet.profile.ranks : undefined}
+            locale={locale}
+            explained={false}
+            size="preview"
+          />
+        </div>
+      )
+    }
+  </div>
+  {
+    sheet.traits && (
+      <div class="au-panel__traits">
+        <TraitPlates traits={sheet.traits.plates} groupLabel={sheet.traits.label} size="preview" />
+      </div>
+    )
+  }
+</div>
+
+<style>
+  .au-panel {
+    --name-largest: 64px;
+    position: relative;
+    display: grid;
+    grid-template-areas:
+      'head'
+      'card'
+      'profile'
+      'traits';
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px 18px;
+    container-type: inline-size;
+  }
+
+  .au-panel:not(.au-panel--profiled) {
+    grid-template-areas:
+      'head'
+      'card'
+      'traits';
+  }
+
+  .au-panel__ghost {
+    top: auto;
+    right: 22px;
+    bottom: 0;
+  }
+
+  .au-panel__head {
+    grid-area: head;
+    position: relative;
+    z-index: 2;
+    min-width: 0;
+    container-type: inline-size;
+  }
+
+  .au-panel__stage {
+    display: contents;
+  }
+
+  .au-panel__card {
+    grid-area: card;
+    justify-self: center;
+    z-index: 1;
+    width: var(--card-narrow);
+  }
+
+  .au-panel__card :global(.au-framed__card) {
+    box-shadow: 8px 9px 0 rgba(6, 5, 13, 0.72);
+  }
+
+  .au-panel__profile {
+    grid-area: profile;
+    justify-self: center;
+    position: relative;
+    z-index: 2;
+    width: min(calc(100% - 24px), 300px);
+  }
+
+  .au-panel__traits {
+    grid-area: traits;
+    position: relative;
+    z-index: 2;
+    min-width: 0;
+  }
+
+  .au-panel__head :global(.au-character__name) {
+    min-height: calc(var(--name-largest) * 0.93);
+    align-content: end;
+  }
+
+  .au-panel__head :global(.au-character__subtitle) {
+    font-size: clamp(16px, 1.4vw, 20px);
+  }
+
+  .au-panel__head :global(.au-character__descriptors) {
+    margin-top: 14px;
+  }
+
+  @media (min-width: 640px) {
+    .au-panel {
+      grid-template-areas:
+        'head card'
+        'profile card'
+        'traits card';
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-content: center;
+      column-gap: 40px;
+    }
+
+    .au-panel__card {
+      align-self: center;
+      width: var(--card-tablet);
+      margin-right: calc(var(--card-tablet) * 0.14);
+    }
+
+    .au-panel__profile {
+      justify-self: start;
+    }
+
+    .au-panel:not(.au-panel--profiled) {
+      grid-template-areas:
+        'head card'
+        'traits card';
+    }
+  }
+
+  @media (min-width: 1100px) and (min-height: 640px) {
+    .au-panel,
+    .au-panel:not(.au-panel--profiled) {
+      --name-largest: min(76px, 9cqh);
+      height: 100%;
+      grid-template-areas:
+        'head'
+        'stage'
+        'traits';
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: auto minmax(0, 116cqi) auto;
+      column-gap: 18px;
+    }
+
+    .au-panel__stage {
+      --spot-card: min(75cqh, 76cqw);
+      grid-area: stage;
+      position: relative;
+      display: grid;
+      place-items: center;
+      container-type: size;
+    }
+
+    .au-panel__card {
+      grid-area: auto;
+      width: var(--spot-card);
+      margin-right: 0;
+    }
+
+    .au-panel__profile {
+      grid-area: auto;
+      position: absolute;
+      left: -10px;
+      bottom: calc((100cqh - var(--spot-card) * 4 / 3) / 2);
+      z-index: 3;
+      width: calc(
+        (100cqw - var(--spot-card)) / 2 + var(--spot-card) * 0.25 + 10px -
+          max(0px, (330px - 100cqh) * 0.5)
+      );
+    }
+
+    .au-panel__traits :global(.au-traits__list) {
+      flex-wrap: nowrap;
+    }
+  }
+</style>

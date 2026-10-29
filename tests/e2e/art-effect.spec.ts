@@ -1,6 +1,8 @@
 import { expect, type Page, test } from '@playwright/test'
 
 import { EFFECT_TIERS, GRAIN_PER_SECOND } from '../../src/lib/art-effect/presets'
+import { pathFor } from '../../src/lib/i18n/routes'
+import { corpus } from './support/corpus'
 
 const SPECIES = '/fr/espece/nnor'
 const SPECIES_INDEX = '/fr/especes'
@@ -186,14 +188,19 @@ test('the effect follows a Swup visit, and comes back after leaving', async ({ p
 })
 
 test('a tree node visit keeps the developed hero', async ({ page }) => {
+  const painted = (await corpus('fr')).trees.find((tree) => tree.cover)
+  if (!painted) throw new Error('no tree has a cover to develop')
+  const treePath = pathFor('tree', 'fr', { tree: painted.id })
   await giveEffect(page, 'film', ['hero'])
-  await page.goto('/fr/arbre/barbare#arbre')
+  await page.goto(`${treePath}#arbre`)
   await expect(page.locator(`${HERO}[data-developed] > canvas`)).toHaveCount(1)
   await page.evaluate(() =>
     document.querySelector('[data-plate] > canvas')?.setAttribute('data-kept', ''),
   )
-  await page.locator('[data-plate-node][data-node="TOURBI-001"]').click()
-  await expect(page).toHaveURL('/fr/arbre/barbare/TOURBI-001#arbre')
+  const node = page.locator('[data-plate-node][data-node]').first()
+  const nodeId = await node.getAttribute('data-node')
+  await node.click()
+  await expect(page).toHaveURL(`${treePath}/${nodeId}#arbre`)
   await expect(page.locator(`${HERO} > canvas[data-kept]`)).toHaveCount(1)
 })
 
@@ -288,14 +295,15 @@ test('a tree node visit keeps the moving stage', async ({ page }) => {
 })
 
 test('cards hold their grain still', async ({ page }) => {
-  await countGl(page)
+  await countCopies(page)
   await giveEffect(page, 'film', ['card'])
   await page.goto(SPECIES_INDEX)
+  await page.locator(CARD).first().scrollIntoViewIfNeeded()
   await expect(page.locator(`${CARD}[data-developed] > canvas`).first()).toBeVisible()
   await page.waitForTimeout(1500)
-  const settled = (await gl(page)).draws
+  const settled = (await copies(page)).plate
   await page.waitForTimeout(1000)
-  expect((await gl(page)).draws - settled).toBe(0)
+  expect((await copies(page)).plate - settled).toBe(0)
 })
 
 test.describe('with reduced motion', () => {

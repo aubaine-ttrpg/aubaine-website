@@ -1,22 +1,18 @@
 ---
 import { skillBrowseEntries } from '../../lib/game/browse-entries'
+import { speciesSheet } from '../../lib/game/character-sheet'
 import type { Corpus, ResolvedSpecies } from '../../lib/game/corpus'
 import { label } from '../../lib/game/corpus'
 import {
-  DEFAULT_MOVEMENT_METRES,
   formatNumber,
   HERALDRY_PLACEMENT,
-  SPECIES_ORIGIN_ICON,
-  SPECIES_PLATE_TERMS,
   SUBSPECIES_SECTIONS,
   subspeciesAnchor,
 } from '../../lib/game/derive'
 import { loreFor } from '../../lib/game/prose'
 import type { SubspeciesLabel } from '../../lib/game/schema'
-import { badgedStatus } from '../../lib/game/status'
 import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
-import { PLACEHOLDER_COVER } from '../../lib/media'
 import BrowseList from '../primitives/BrowseList.astro'
 import CharacterHero from '../primitives/CharacterHero.astro'
 import Heraldry from '../primitives/Heraldry.astro'
@@ -28,60 +24,11 @@ import '../../styles/reading.css'
 
 type Props = { locale: Locale; corpus: Corpus; species: ResolvedSpecies }
 
-const PLATE_PAPER = '#efe4cc'
-
 const { locale, corpus, species } = Astro.props
 const t = strings(locale)
 
-const status = badgedStatus(species.status)
-const named = (map: Corpus['creatureTypes'], keys: string[]): string[] =>
+const named = (map: Corpus['languages'], keys: string[]): string[] =>
   keys.map((key) => label(map.get(key), locale, key))
-
-const creatureTypes = named(corpus.creatureTypes, species.types ?? [])
-const sizes = named(corpus.sizes, species.size ?? [])
-const derived =
-  species.derivedFrom === 'origin'
-    ? t.sizeFromOrigin
-    : species.derivedFrom === 'parents'
-      ? t.sizeFromOrigins
-      : undefined
-
-const termIcon = (reference: string): string => {
-  const icon = corpus.terms.keys.get(reference)?.icon
-  if (!icon)
-    throw new Error(`the species plates name the rule term {{${reference}}}, which has no icon`)
-  return icon
-}
-
-const plates = [
-  ...(creatureTypes.length > 0
-    ? [
-        {
-          icon: termIcon(SPECIES_PLATE_TERMS.type),
-          label: t.creatureType,
-          value: creatureTypes.join(' · '),
-        },
-      ]
-    : []),
-  ...(derived
-    ? [{ icon: SPECIES_ORIGIN_ICON, label: t.speciesOrigin, value: derived }]
-    : [
-        {
-          icon: termIcon(SPECIES_PLATE_TERMS.movement),
-          label: t.movement,
-          value: species.movement ?? `${formatNumber(DEFAULT_MOVEMENT_METRES, locale)} m`,
-        },
-        ...(sizes.length > 0
-          ? [
-              {
-                icon: termIcon(SPECIES_PLATE_TERMS.size),
-                label: t.sizeCategory,
-                value: sizes.join(` ${t.or} `),
-              },
-            ]
-          : []),
-      ]),
-]
 
 const SUBSPECIES_WORDS: Record<SubspeciesLabel, { plural: string; singular: string }> = {
   'regional-origins': { plural: t.regionalOrigins, singular: t.regionalOrigin_ },
@@ -149,25 +96,7 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
 ---
 
 <div>
-  <CharacterHero
-    locale={locale}
-    art={species.cover ?? PLACEHOLDER_COVER}
-    effect={species.artEffect}
-    emblem={species.emblem}
-    name={species.name}
-    subtitle={species.subtitle}
-    kind={t.species}
-    status={status}
-    descriptors={named(corpus.descriptors, species.descriptors ?? [])}
-    traits={plates.map((plate) => ({
-      iconName: plate.icon,
-      color: PLATE_PAPER,
-      label: plate.label,
-      text: plate.value,
-    }))}
-    traitsLabel={t.speciesVitals}
-    keyColour={species.keyColour}
-  />
+  <CharacterHero locale={locale} sheet={speciesSheet(species, corpus, locale)} />
 
   {
     hasPlayReading && (

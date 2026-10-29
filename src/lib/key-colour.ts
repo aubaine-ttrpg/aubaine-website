@@ -13,7 +13,8 @@ const LIGHTNESS_PER_CHROMA = 1.5
 
 export const KEY_FALLBACK = '#efbe04'
 export const DARK_INK = '#14100a'
-export const LIGHT_INK = '#fbf8ef'
+export const READABLE_CONTRAST = 4.5
+const LIFT_STEP = 0.005
 
 const HEX = /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i
 
@@ -82,11 +83,15 @@ export function rgbFromHex(hex: string): Rgb {
   return [channel(found[1]), channel(found[2]), channel(found[3])]
 }
 
-export function inkOn(paper: string): string {
-  const ground = rgbFromHex(paper)
-  const dark = contrastOf(ground, rgbFromHex(DARK_INK))
-  const light = contrastOf(ground, rgbFromHex(LIGHT_INK))
-  return dark >= light ? DARK_INK : LIGHT_INK
+export function readableOnNight(colour: string): string {
+  const ink = rgbFromHex(DARK_INK)
+  if (contrastOf(rgbFromHex(colour), ink) >= READABLE_CONTRAST) return colour
+  const tone = oklchOf(rgbFromHex(colour))
+  for (let lightness = tone.lightness; lightness <= 1; lightness += LIFT_STEP) {
+    const lifted = rgbOf({ ...tone, lightness })
+    if (contrastOf(lifted, ink) >= READABLE_CONTRAST) return hexOf(lifted)
+  }
+  throw new Error(`${colour} cannot be lifted to read on night`)
 }
 
 function dominantHue(coloured: Oklch[]): number {

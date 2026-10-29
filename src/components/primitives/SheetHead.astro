@@ -1,0 +1,158 @@
+---
+import type { CharacterSheet } from '../../lib/game/character-sheet'
+import type { BadgedStatus } from '../../lib/game/status'
+import type { Locale } from '../../lib/i18n/locales'
+import { strings } from '../../lib/i18n/strings'
+import DescriptorStickers from './DescriptorStickers.astro'
+import StatusBadge from './StatusBadge.astro'
+
+export type SheetReserve = {
+  status: BadgedStatus | undefined
+  subtitle: string
+  descriptors: readonly string[]
+}
+
+type Props = {
+  locale: Locale
+  sheet: CharacterSheet
+  heading: 'page' | 'preview'
+  reserve?: SheetReserve | undefined
+}
+
+const { locale, sheet, heading, reserve } = Astro.props
+const stickerSize = heading === 'page' ? 'sheet' : 'preview'
+const reservedWords = sheet.descriptors.length > 0 ? [] : (reserve?.descriptors ?? [])
+const t = strings(locale)
+const Name = heading === 'page' ? 'h1' : 'p'
+---
+
+<div class="au-character__eyebrow">
+  <p class="au-character__kind">
+    <svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+      <polygon points="50,4 90,27 90,73 50,96 10,73 10,27"></polygon>
+    </svg>
+    <span>{sheet.kind}</span>
+  </p>
+  <span class="au-character__rule" aria-hidden="true"></span>
+  {sheet.status && <StatusBadge status={sheet.status} locale={locale} />}
+  {
+    !sheet.status && reserve?.status && (
+      <span class="au-character__reserve" aria-hidden="true">
+        <StatusBadge status={reserve.status} locale={locale} />
+      </span>
+    )
+  }
+</div>
+<Name class="au-character__name">{sheet.name}</Name>
+{
+  (sheet.subtitle || reserve?.subtitle) && (
+    <div class="au-character__subtitles">
+      {sheet.subtitle && <p class="au-character__subtitle">{sheet.subtitle}</p>}
+      {reserve?.subtitle && (
+        <p class="au-character__subtitle au-character__reserve" aria-hidden="true">
+          {reserve.subtitle}
+        </p>
+      )}
+    </div>
+  )
+}
+{
+  sheet.descriptors.length > 0 && (
+    <div class="au-character__descriptors">
+      <DescriptorStickers words={sheet.descriptors} label={t.descriptors} size={stickerSize} />
+    </div>
+  )
+}
+{
+  reservedWords.length > 0 && (
+    <div class="au-character__descriptors au-character__reserve" aria-hidden="true">
+      <DescriptorStickers words={[...reservedWords]} label={t.descriptors} size={stickerSize} />
+    </div>
+  )
+}
+
+<style>
+  .au-character__eyebrow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 14px;
+    margin: 0 0 14px;
+  }
+
+  .au-character__kind {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .au-character__kind > svg {
+    flex: none;
+    width: 12px;
+    height: 13px;
+    fill: var(--gold);
+  }
+
+  .au-character__rule {
+    flex: 1 1 32px;
+    max-width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--line2), transparent);
+  }
+
+  .au-character__name {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(30px, var(--name-fit), var(--name-largest, 96px));
+    font-weight: 700;
+    line-height: 0.93;
+    color: var(--ink);
+    text-shadow:
+      0 2px 0 rgba(6, 5, 13, 0.6),
+      0 8px 36px rgba(6, 5, 13, 0.7);
+    animation: au-character-name calc(0.5s * var(--arrival, 1)) var(--ease) both;
+  }
+
+  .au-character__subtitle {
+    margin: 12px 0 0;
+    font-family: var(--font-garamond);
+    font-size: clamp(19px, 2.2vw, 28px);
+    font-style: italic;
+    line-height: 1.3;
+    color: var(--ink2);
+  }
+
+  .au-character__subtitles {
+    display: grid;
+  }
+
+  .au-character__subtitles > * {
+    grid-area: 1 / 1;
+  }
+
+  .au-character__reserve {
+    visibility: hidden;
+  }
+
+  .au-character__descriptors {
+    margin-top: 24px;
+  }
+
+  @media print {
+    .au-character__name {
+      text-shadow: none;
+    }
+  }
+
+  @keyframes au-character-name {
+    from {
+      translate: 0 14px;
+    }
+  }
+</style>

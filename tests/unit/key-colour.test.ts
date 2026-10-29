@@ -7,12 +7,11 @@ import {
   contrastOf,
   DARK_INK,
   hexOf,
-  inkOn,
   KEY_FALLBACK,
   keyColour,
-  LIGHT_INK,
   oklchOf,
   type Rgb,
+  readableOnNight,
   rgbFromHex,
   rgbOf,
 } from '../../src/lib/key-colour'
@@ -102,10 +101,20 @@ describe('the key colour Aubaine reads from its covers', () => {
   })
 })
 
-describe('the ink on a coloured plate', () => {
-  it('is dark on a light paper and light on a deep one', () => {
-    expect(inkOn('#efe4cc')).toBe(DARK_INK)
-    expect(inkOn('#2f6cae')).toBe(LIGHT_INK)
+describe('a colour lifted to read on night', () => {
+  it('keeps a colour that already reads on night', () => {
+    expect(readableOnNight('#efe4cc')).toBe('#efe4cc')
+  })
+
+  it('lifts a deep colour just enough, keeping its hue', () => {
+    const deep = '#2f6cae'
+    const lifted = readableOnNight(deep)
+    const contrast = contrastOf(rgbFromHex(lifted), rgbFromHex(DARK_INK))
+    expect(contrast).toBeGreaterThanOrEqual(AA_TEXT)
+    expect(contrast).toBeLessThan(AA_TEXT + 0.3)
+    const before = oklchOf(rgbFromHex(deep)).hue
+    const after = oklchOf(rgbFromHex(lifted)).hue
+    expect(Math.abs(((before - after + 540) % 360) - 180)).toBeLessThan(6)
   })
 
   it('reads at AA contrast on every Caractéristique colour', async () => {
@@ -116,7 +125,7 @@ describe('the ink on a coloured plate', () => {
     const entries: { key: string; color?: string }[] = JSON.parse(source).entries
     for (const { key, color } of entries) {
       if (!color) continue
-      const contrast = contrastOf(rgbFromHex(color), rgbFromHex(inkOn(color)))
+      const contrast = contrastOf(rgbFromHex(readableOnNight(color)), rgbFromHex(DARK_INK))
       expect(contrast, `${key} ${color}`).toBeGreaterThanOrEqual(AA_TEXT)
     }
   })

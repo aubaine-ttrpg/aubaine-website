@@ -1,0 +1,67 @@
+---
+import type { CharacterSheet } from '../../lib/game/character-sheet'
+import type { Locale } from '../../lib/i18n/locales'
+import RankProfile from './RankProfile.astro'
+import TraitPlates from './TraitPlates.astro'
+
+type Props = {
+  locale: Locale
+  sheet: CharacterSheet
+}
+
+const { locale, sheet } = Astro.props
+const actions = Astro.slots.has('default') ? await Astro.slots.render('default') : ''
+---
+<div
+  class:list={[
+    'au-character__sheet',
+    { 'au-character__sheet--profiled': sheet.profile.kind !== 'none' },
+  ]}
+>
+  {
+    sheet.profile.kind !== 'none' && (
+      <RankProfile
+        profile={sheet.profile.kind === 'ranked' ? sheet.profile.ranks : undefined}
+        locale={locale}
+      />
+    )
+  }
+  <div class="au-character__aside">
+    {
+      sheet.traits && (
+        <TraitPlates traits={sheet.traits.plates} groupLabel={sheet.traits.label} />
+      )
+    }
+    {actions.trim() && <div class="au-character__actions" set:html={actions} />}
+  </div>
+</div>
+
+<style>
+  .au-character__sheet {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 30px 44px;
+    margin-top: 30px;
+  }
+
+  .au-character__aside {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+    min-width: 0;
+  }
+
+  .au-character__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 18px;
+  }
+
+  .au-character__sheet--profiled .au-character__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+</style>

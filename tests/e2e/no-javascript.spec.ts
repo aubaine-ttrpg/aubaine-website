@@ -287,7 +287,7 @@ test('a tree hero carries its whole sheet and its ambient picture without javasc
   await expect(page.locator('[data-character] [data-plate="hero"] img')).toBeVisible()
   expect(
     await page
-      .locator('[data-stage] .au-character__ambient')
+      .locator('[data-stage] .au-stage__ambient')
       .evaluate((node) => getComputedStyle(node).backgroundImage),
   ).toMatch(/\/_astro\/.+\.webp/)
 })

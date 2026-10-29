@@ -1,5 +1,7 @@
 import { expect, type Locator, type Page, test } from '@playwright/test'
 
+import { strings } from '../../src/lib/i18n/strings'
+
 test.use({ viewport: { width: 1280, height: 700 } })
 
 const PAGES_FULL_OF_IMAGES = [
@@ -33,8 +35,11 @@ for (const { path, images } of PAGES_FULL_OF_IMAGES) {
   })
 }
 
-async function expectCardSharp(page: Page): Promise<void> {
-  const card = page.locator('[data-character] [data-plate="hero"] img')
+async function expectCardSharp(
+  page: Page,
+  selector = '[data-character] [data-plate="hero"] img',
+): Promise<void> {
+  const card = page.locator(selector).first()
   await expect.poll(() => card.evaluate((node: HTMLImageElement) => node.complete)).toBe(true)
   const { chosen, widest, needed } = await card.evaluate((node: HTMLImageElement) => {
     const candidates = node.srcset.split(',').map((entry) => {
@@ -60,7 +65,7 @@ test.describe('on a portrait phone', () => {
   test.use({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 3 })
 
   test('a full-bleed hero fetches a file wide enough for its crop', async ({ page }) => {
-    await page.goto('/fr/arbres')
+    await page.goto('/fr/competences')
     const hero = page.locator('section.au-hero img').first()
     await expect.poll(() => hero.evaluate((node: HTMLImageElement) => node.complete)).toBe(true)
     const { chosen, widest } = await hero.evaluate((node: HTMLImageElement) => {
@@ -78,6 +83,32 @@ test.describe('on a portrait phone', () => {
     await page.goto('/fr/arbre/marchand')
     await expectCardSharp(page)
   })
+
+  test('a roster card fetches a file wide enough for the card', async ({ page }) => {
+    await page.goto('/fr/especes')
+    await expectCardSharp(page, '[data-cover-card] [data-plate="card"] img')
+  })
+})
+
+test('a roster card asks for a file near its own width, not the page width', async ({ page }) => {
+  await page.goto('/fr/especes')
+  const card = page.locator('[data-cover-card] [data-plate="card"] img').first()
+  await expect.poll(() => card.evaluate((node: HTMLImageElement) => node.complete)).toBe(true)
+  const { chosen, smallest, needed } = await card.evaluate((node: HTMLImageElement) => {
+    const widths = node.srcset
+      .split(',')
+      .map((entry) => Number.parseInt(entry.trim().split(/\s+/)[1] ?? '0', 10))
+    const picked = node.srcset
+      .split(',')
+      .map((entry) => entry.trim().split(/\s+/))
+      .find(([url]) => new URL(url ?? '', document.baseURI).href === node.currentSrc)
+    return {
+      chosen: Number.parseInt(picked?.[1] ?? '0', 10),
+      smallest: Math.min(...widths),
+      needed: Math.ceil(node.offsetWidth * window.devicePixelRatio),
+    }
+  })
+  expect(chosen).toBeLessThanOrEqual(Math.max(smallest, needed * 2))
 })
 
 test('a visit to the trees index loads every card plate before the reader scrolls', async ({
@@ -90,7 +121,7 @@ test('a visit to the trees index loads every card plate before the reader scroll
   })
   await page.getByRole('link', { name: 'Arbres' }).first().click()
   await expect(page).toHaveURL('/fr/arbres')
-  await expect(page.getByRole('heading', { level: 1, name: /Arbre de compétences/ })).toBeVisible()
+  await expect(page.getByRole('heading', { level: 1, name: strings('fr').trees })).toBeVisible()
   await expect(page.locator('body')).toHaveAttribute('data-visit', 'client')
   await expectLoadedWithoutScrolling(page.locator('#swup img'))
 })

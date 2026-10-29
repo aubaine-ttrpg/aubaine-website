@@ -110,6 +110,7 @@ export default function FilterBar({
   const [kindOpen, setKindOpen] = useState(false)
   const closeRef = useRef<HTMLButtonElement | null>(null)
   const openerRef = useRef<HTMLButtonElement | null>(null)
+  const dialogRef = useRef<HTMLDialogElement | null>(null)
   const inputRef = useRef<HTMLInputElement | null>(null)
   const reducedMotion = useReducedMotion()
 
@@ -158,14 +159,34 @@ export default function FilterBar({
   }, [entries, visible, unmatched])
 
   useEffect(() => {
-    if (!modalOpen) return
-    closeRef.current?.focus()
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setModalOpen(false)
+    const dialog = dialogRef.current
+    if (!dialog) return
+    const onCancel = (event: Event) => {
+      event.preventDefault()
+      setModalOpen(false)
     }
-    document.addEventListener('keydown', onKey)
-    return () => document.removeEventListener('keydown', onKey)
+    const onBackdrop = (event: MouseEvent) => {
+      if (event.target === dialog) setModalOpen(false)
+    }
+    dialog.addEventListener('cancel', onCancel)
+    dialog.addEventListener('click', onBackdrop)
+    return () => {
+      dialog.removeEventListener('cancel', onCancel)
+      dialog.removeEventListener('click', onBackdrop)
+    }
+  }, [])
+
+  useEffect(() => {
+    const dialog = dialogRef.current
+    if (!modalOpen || !dialog) return
+    if (!dialog.open) dialog.showModal()
+    closeRef.current?.focus()
   }, [modalOpen])
+
+  const settleClosed = useCallback(() => {
+    dialogRef.current?.close()
+    openerRef.current?.focus()
+  }, [])
 
   const chipsFor = useCallback(
     (group: string): Chip[] => {
@@ -255,8 +276,6 @@ export default function FilterBar({
     `${new Intl.NumberFormat(locale === 'en' ? 'en-US' : 'fr-FR').format(value)} ${value === 1 ? strings.result : strings.results}`
   const hydrated = entries.length > 0
   const count = hydrated ? visible.length : total
-  const filterBc = activeCount > 0 ? 'var(--gold)' : 'var(--line)'
-  const filterBg = activeCount > 0 ? 'var(--accent-soft)' : 'var(--field)'
   const kindLabel = kinds?.find((entry) => entry.key === kind)?.label ?? strings.allTrees
 
   const populated = groups
@@ -265,19 +284,7 @@ export default function FilterBar({
 
   return (
     <>
-      <div
-        style={{
-          maxWidth: '1560px',
-          margin: '0 auto',
-          padding: '22px 26px 14px',
-          display: 'flex',
-          flexWrap: 'wrap',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '12px 20px',
-          borderBottom: '1px solid var(--line)',
-        }}
-      >
+      <div className="au-filterbar">
         <div
           style={{
             flex: kinds ? '1 1 300px' : '1 1 240px',
@@ -299,22 +306,7 @@ export default function FilterBar({
                 aria-haspopup="listbox"
                 aria-expanded={kindOpen}
                 aria-label={strings.treeKind}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '10px',
-                  padding: '10px 14px',
-                  cursor: 'pointer',
-                  fontFamily: 'var(--font-ui)',
-                  fontSize: '14.5px',
-                  fontWeight: 600,
-                  letterSpacing: '.08em',
-                  textTransform: 'uppercase',
-                  color: 'var(--ink)',
-                  border: '1px solid var(--line)',
-                  background: 'var(--field)',
-                  transition: 'border-color .2s var(--ease)',
-                }}
+                className="au-filterbar__field au-filterbar__kind"
               >
                 <span>{kindLabel}</span>
                 <span
@@ -345,9 +337,9 @@ export default function FilterBar({
                       minWidth: '190px',
                       margin: 0,
                       padding: '5px',
-                      border: '1px solid var(--accent-line)',
+                      border: '1px solid var(--gold)',
                       background: 'var(--bg2)',
-                      boxShadow: '0 18px 44px rgba(0,0,0,.45)',
+                      boxShadow: '6px 7px 0 rgba(6,5,13,.55)',
                     }}
                   >
                     {kinds.map((entry) => (
@@ -399,31 +391,12 @@ export default function FilterBar({
             placeholder={strings.filterHere}
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            style={{
-              flex: 1,
-              minWidth: 0,
-              maxWidth: kinds ? '300px' : inputMaxWidth,
-              padding: '10px 13px',
-              color: 'var(--ink)',
-              background: 'var(--field)',
-              border: '1px solid var(--line)',
-              outline: 'none',
-              fontFamily: 'var(--font-ui)',
-              fontSize: '15px',
-              transition: 'border-color .2s var(--ease)',
-            }}
+            className="au-filterbar__field au-filterbar__search"
+            style={{ maxWidth: kinds ? '300px' : inputMaxWidth }}
           />
         </div>
 
-        <div
-          style={{
-            flex: 'none',
-            display: 'flex',
-            flexWrap: 'wrap',
-            alignItems: 'center',
-            gap: '12px 14px',
-          }}
-        >
+        <div className="au-filterbar__tools">
           {drafts > 0 && (
             <label data-drafts-control="" className="au-drafts-switch">
               <input
@@ -437,17 +410,7 @@ export default function FilterBar({
               <span>{strings.hideDrafts}</span>
             </label>
           )}
-          <span
-            aria-live="polite"
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '10.5px',
-              letterSpacing: '.16em',
-              textTransform: 'uppercase',
-              color: 'var(--ink3)',
-              fontVariantNumeric: 'tabular-nums',
-            }}
-          >
+          <span aria-live="polite" className="au-filterbar__count">
             {hydrated || drafts === 0 ? (
               resultLabel(count)
             ) : (
@@ -462,22 +425,8 @@ export default function FilterBar({
             ref={openerRef}
             onClick={() => setModalOpen(true)}
             aria-haspopup="dialog"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '9px',
-              padding: '10px 15px',
-              cursor: 'pointer',
-              fontFamily: 'var(--font-ui)',
-              fontSize: '14.5px',
-              fontWeight: 600,
-              letterSpacing: '.08em',
-              textTransform: 'uppercase',
-              color: 'var(--ink)',
-              border: `1px solid ${filterBc}`,
-              background: filterBg,
-              transition: 'border-color .2s var(--ease)',
-            }}
+            className="au-filterbar__open"
+            data-active={activeCount > 0 ? '' : undefined}
           >
             <span
               aria-hidden="true"
@@ -509,322 +458,222 @@ export default function FilterBar({
               />
             </span>
             <span>{strings.filters}</span>
-            {activeCount > 0 && (
-              <span
-                style={{
-                  padding: '1px 7px',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '10px',
-                  color: 'var(--on-gold)',
-                  background: 'var(--gold)',
-                  fontVariantNumeric: 'tabular-nums',
-                }}
-              >
-                {activeCount}
-              </span>
-            )}
+            {activeCount > 0 && <span className="au-filterbar__active">{activeCount}</span>}
           </button>
         </div>
       </div>
 
-      <AnimatePresence>
-        {modalOpen && (
-          <div
-            style={{
-              position: 'fixed',
-              inset: 0,
-              zIndex: 80,
-              display: 'grid',
-              placeItems: 'center',
-              padding: '24px',
-            }}
-          >
-            <motion.button
-              type="button"
-              aria-label={strings.close}
-              onClick={() => setModalOpen(false)}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={scrimTiming}
-              style={{
-                position: 'absolute',
-                inset: 0,
-                cursor: 'default',
-                background: 'rgba(4,3,10,.72)',
-                backdropFilter: 'blur(6px)',
-              }}
-            />
-            <motion.div
-              role="dialog"
-              aria-modal="true"
-              aria-label={strings.filters}
-              initial={popFrom}
-              animate={popTo}
-              exit={popFrom}
-              transition={dialogTiming}
-              style={{
-                position: 'relative',
-                width: 'min(560px,100%)',
-                maxHeight: '82dvh',
-                overflowX: 'clip',
-                overflowY: 'auto',
-                border: '1px solid var(--accent-line)',
-                background: 'var(--bg2)',
-                boxShadow: '0 30px 80px rgba(0,0,0,.6)',
-              }}
-            >
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  gap: '16px',
-                  padding: '20px 22px 16px',
-                  borderBottom: '1px solid var(--line)',
-                }}
+      <dialog ref={dialogRef} aria-label={strings.filters} className="au-filterbar__modal">
+        <AnimatePresence onExitComplete={settleClosed}>
+          {modalOpen && (
+            <div key="modal" style={{ display: 'contents' }}>
+              <motion.div
+                aria-hidden="true"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={scrimTiming}
+                className="au-filterbar__scrim"
+              />
+              <motion.div
+                initial={popFrom}
+                animate={popTo}
+                exit={popFrom}
+                transition={dialogTiming}
+                className="au-filterbar__dialog"
               >
-                <h2
+                <div
                   style={{
-                    margin: 0,
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '21px',
-                    fontWeight: 600,
-                    color: 'var(--ink)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    gap: '16px',
+                    padding: '20px 22px 16px',
+                    borderBottom: '1px solid var(--line)',
                   }}
                 >
-                  {strings.filters}
-                </h2>
-                <button
-                  type="button"
-                  ref={closeRef}
-                  onClick={() => {
-                    setModalOpen(false)
-                    openerRef.current?.focus()
-                  }}
-                  aria-label={strings.close}
-                  style={{
-                    width: '32px',
-                    height: '32px',
-                    display: 'grid',
-                    placeItems: 'center',
-                    cursor: 'pointer',
-                    border: '1px solid var(--line)',
-                    color: 'var(--ink2)',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '15px',
-                    transition: 'border-color .2s var(--ease), color .2s var(--ease)',
-                  }}
-                >
-                  {'×'}
-                </button>
-              </div>
-
-              <div
-                style={{
-                  padding: '20px 22px 22px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '22px',
-                }}
-              >
-                <div>
-                  <label
+                  <h2 className="au-filterbar__heading">{strings.filters}</h2>
+                  <button
+                    type="button"
+                    ref={closeRef}
+                    onClick={() => setModalOpen(false)}
+                    aria-label={strings.close}
                     style={{
-                      display: 'block',
-                      marginBottom: '9px',
+                      width: '32px',
+                      height: '32px',
+                      display: 'grid',
+                      placeItems: 'center',
+                      cursor: 'pointer',
+                      border: '1px solid var(--line)',
+                      color: 'var(--ink2)',
                       fontFamily: 'var(--font-mono)',
-                      fontSize: '10px',
-                      letterSpacing: '.2em',
-                      textTransform: 'uppercase',
-                      color: 'var(--ink3)',
+                      fontSize: '15px',
+                      transition: 'border-color .2s var(--ease), color .2s var(--ease)',
                     }}
                   >
-                    {strings.byName}
-                    <input
-                      type="search"
-                      autoComplete="off"
-                      placeholder={strings.filterHere}
-                      value={query}
-                      onChange={(event) => setQuery(event.target.value)}
-                      style={{
-                        width: '100%',
-                        marginTop: '9px',
-                        padding: '11px 13px',
-                        color: 'var(--ink)',
-                        background: 'var(--field)',
-                        border: '1px solid var(--line)',
-                        outline: 'none',
-                        fontFamily: 'var(--font-ui)',
-                        fontSize: '16px',
-                        transition: 'border-color .2s var(--ease)',
-                      }}
-                    />
-                  </label>
+                    {'×'}
+                  </button>
                 </div>
 
-                {populated.map((group) => {
-                  const active = selected.get(group.key)?.size ?? 0
-                  return (
-                    <div key={group.key}>
-                      <div
+                <div
+                  style={{
+                    padding: '20px 22px 22px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '22px',
+                  }}
+                >
+                  <div>
+                    <label
+                      style={{
+                        display: 'block',
+                        marginBottom: '9px',
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '10px',
+                        letterSpacing: '.2em',
+                        textTransform: 'uppercase',
+                        color: 'var(--ink3)',
+                      }}
+                    >
+                      {strings.byName}
+                      <input
+                        type="search"
+                        autoComplete="off"
+                        placeholder={strings.filterHere}
+                        value={query}
+                        onChange={(event) => setQuery(event.target.value)}
                         style={{
-                          display: 'flex',
-                          alignItems: 'baseline',
-                          justifyContent: 'space-between',
-                          gap: '12px',
-                          margin: '0 0 10px',
+                          width: '100%',
+                          marginTop: '9px',
+                          padding: '11px 13px',
+                          color: 'var(--ink)',
+                          background: 'var(--field)',
+                          border: '1px solid var(--line)',
+                          outline: 'none',
+                          fontFamily: 'var(--font-ui)',
+                          fontSize: '16px',
+                          transition: 'border-color .2s var(--ease)',
                         }}
-                      >
-                        <p
+                      />
+                    </label>
+                  </div>
+
+                  {populated.map((group) => {
+                    const active = selected.get(group.key)?.size ?? 0
+                    return (
+                      <div key={group.key}>
+                        <div
                           style={{
-                            margin: 0,
-                            fontFamily: 'var(--font-mono)',
-                            fontSize: '10px',
-                            letterSpacing: '.2em',
-                            textTransform: 'uppercase',
-                            color: 'var(--ink3)',
+                            display: 'flex',
+                            alignItems: 'baseline',
+                            justifyContent: 'space-between',
+                            gap: '12px',
+                            margin: '0 0 10px',
                           }}
                         >
-                          {group.label}
-                        </p>
-                        {active > 0 && (
-                          <button
-                            type="button"
-                            onClick={() => clearGroup(group.key)}
-                            style={{
-                              cursor: 'pointer',
-                              fontFamily: 'var(--font-mono)',
-                              fontSize: '10px',
-                              letterSpacing: '.14em',
-                              textTransform: 'uppercase',
-                              color: 'var(--gold)',
-                            }}
-                          >
-                            {strings.clear}
-                          </button>
-                        )}
-                      </div>
-                      <fieldset
-                        style={{
-                          display: 'flex',
-                          flexWrap: 'wrap',
-                          gap: '8px',
-                          border: 'none',
-                          margin: 0,
-                          padding: 0,
-                          minInlineSize: 0,
-                        }}
-                      >
-                        <legend
-                          style={{
-                            position: 'absolute',
-                            width: '1px',
-                            height: '1px',
-                            overflow: 'hidden',
-                            clipPath: 'inset(50%)',
-                            whiteSpace: 'nowrap',
-                          }}
-                        >
-                          {group.label}
-                        </legend>
-                        {group.chips.map((chip) => {
-                          const on = selected.get(group.key)?.has(chip.value) ?? false
-                          return (
+                          <p className="au-filterbar__tape">{group.label}</p>
+                          {active > 0 && (
                             <button
-                              key={chip.value}
                               type="button"
-                              onClick={() => toggle(group.key, chip.value)}
-                              aria-pressed={on}
+                              onClick={() => clearGroup(group.key)}
                               style={{
-                                display: 'inline-flex',
-                                alignItems: 'center',
-                                gap: '8px',
-                                padding: '8px 13px',
                                 cursor: 'pointer',
-                                fontFamily: 'var(--font-ui)',
-                                fontSize: '14.5px',
-                                fontWeight: 600,
-                                letterSpacing: '.06em',
+                                fontFamily: 'var(--font-mono)',
+                                fontSize: '10px',
+                                letterSpacing: '.14em',
                                 textTransform: 'uppercase',
-                                color: on ? 'var(--ink)' : 'var(--ink2)',
-                                border: `1px solid ${on ? 'var(--accent-line)' : 'var(--line)'}`,
-                                background: on ? 'var(--accent-soft)' : 'transparent',
-                                transition:
-                                  'border-color .2s var(--ease), color .2s var(--ease), background-color .2s var(--ease)',
+                                color: 'var(--gold)',
                               }}
                             >
-                              <span>{chip.label}</span>
-                              <span
-                                style={{
-                                  fontFamily: 'var(--font-mono)',
-                                  fontSize: '10px',
-                                  opacity: 0.7,
-                                  fontVariantNumeric: 'tabular-nums',
-                                }}
-                              >
-                                {chip.count}
-                              </span>
+                              {strings.clear}
                             </button>
-                          )
-                        })}
-                      </fieldset>
-                    </div>
-                  )
-                })}
-              </div>
+                          )}
+                        </div>
+                        <fieldset
+                          style={{
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                            gap: '8px',
+                            border: 'none',
+                            margin: 0,
+                            padding: 0,
+                            minInlineSize: 0,
+                          }}
+                        >
+                          <legend
+                            style={{
+                              position: 'absolute',
+                              width: '1px',
+                              height: '1px',
+                              overflow: 'hidden',
+                              clipPath: 'inset(50%)',
+                              whiteSpace: 'nowrap',
+                            }}
+                          >
+                            {group.label}
+                          </legend>
+                          {group.chips.map((chip) => {
+                            const on = selected.get(group.key)?.has(chip.value) ?? false
+                            return (
+                              <button
+                                key={chip.value}
+                                type="button"
+                                onClick={() => toggle(group.key, chip.value)}
+                                aria-pressed={on}
+                                className="au-filterbar__chip"
+                              >
+                                <span>{chip.label}</span>
+                                <span className="au-filterbar__chip-count">{chip.count}</span>
+                              </button>
+                            )
+                          })}
+                        </fieldset>
+                      </div>
+                    )
+                  })}
+                </div>
 
-              <div
-                style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  gap: '10px',
-                  justifyContent: 'space-between',
-                  padding: '16px 22px 20px',
-                  borderTop: '1px solid var(--line)',
-                }}
-              >
-                <button
-                  type="button"
-                  onClick={reset}
+                <div
                   style={{
-                    padding: '10px 16px',
-                    cursor: 'pointer',
-                    fontFamily: 'var(--font-ui)',
-                    fontSize: '14px',
-                    fontWeight: 600,
-                    letterSpacing: '.08em',
-                    textTransform: 'uppercase',
-                    color: 'var(--ink2)',
-                    border: '1px solid var(--line)',
-                    transition: 'border-color .2s var(--ease), color .2s var(--ease)',
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    gap: '10px',
+                    justifyContent: 'space-between',
+                    padding: '16px 22px 20px',
+                    borderTop: '1px solid var(--line)',
                   }}
                 >
-                  {strings.resetFilters}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setModalOpen(false)}
-                  style={{
-                    padding: '10px 20px',
-                    cursor: 'pointer',
-                    fontFamily: 'var(--font-ui)',
-                    fontSize: '14px',
-                    fontWeight: 700,
-                    letterSpacing: '.08em',
-                    textTransform: 'uppercase',
-                    color: 'var(--on-gold)',
-                    background: 'var(--gold)',
-                    transition: 'filter .2s var(--ease)',
-                  }}
-                >
-                  {`${strings.apply} · ${count}`}
-                </button>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+                  <button
+                    type="button"
+                    onClick={reset}
+                    style={{
+                      padding: '10px 16px',
+                      cursor: 'pointer',
+                      fontFamily: 'var(--font-ui)',
+                      fontSize: '14px',
+                      fontWeight: 600,
+                      letterSpacing: '.08em',
+                      textTransform: 'uppercase',
+                      color: 'var(--ink2)',
+                      border: '1px solid var(--line)',
+                      transition: 'border-color .2s var(--ease), color .2s var(--ease)',
+                    }}
+                  >
+                    {strings.resetFilters}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setModalOpen(false)}
+                    className="au-filterbar__apply"
+                  >
+                    {`${strings.apply} · ${count}`}
+                  </button>
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
+      </dialog>
     </>
   )
 }

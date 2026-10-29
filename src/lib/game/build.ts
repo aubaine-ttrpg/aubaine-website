@@ -1779,7 +1779,7 @@ function buildTermIndex(input: TermInput): TermIndex {
     const domain = tree.domains[0] ? domains.get(tree.domains[0]) : undefined
     keys.set(tree.id, {
       family: 'tree',
-      kind: t.trees,
+      kind: t.plate,
       title: tree.name,
       meta: treeTypeLabel(tree.treeType, treeTypes),
       color: domain?.color ? inkOf(domain.color) : 'var(--accent-ink)',

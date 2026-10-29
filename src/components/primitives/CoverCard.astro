@@ -1,123 +1,264 @@
 ---
-import type { ArtEffect } from '../../lib/art-effect/effects'
-import type { BadgedStatus } from '../../lib/game/status'
+import type { EntryCard } from '../../lib/game/hub-cards'
 import type { Locale } from '../../lib/i18n/locales'
 import Banner from './Banner.astro'
 import CharacteristicHex from './CharacteristicHex.astro'
+import CoverSeal from './CoverSeal.astro'
+import FramedCard from './FramedCard.astro'
 import StatusBadge from './StatusBadge.astro'
-import { enterDelay, STAGGER_STEP } from './stagger'
 
-export type CoverCardCharacteristic = {
-  key: string
-  color: string
-  iconName: string | undefined
-  label: string
-}
+type Props = { card: EntryCard; index: number; locale: Locale }
 
-export type CoverCardEntry = {
-  id: string
-  name: string
-  status: string
-  statusLabel: string
-  kind?: string | undefined
-  kindLabel?: string | undefined
-  domains?: string | undefined
-  domainLabels?: string | undefined
-  characteristics?: string | undefined
-  characteristicLabels?: string | undefined
-}
+const { card, index, locale } = Astro.props
+const { facets, seal } = card
 
-type Props = {
-  href: string
-  name: string
-  kicker: string
-  art?: string | undefined
-  effect?: ArtEffect | undefined
-  mark?: string | undefined
-  characteristics?: CoverCardCharacteristic[] | undefined
-  entry: CoverCardEntry
-  index: number
-  locale: Locale
-  status?: BadgedStatus | undefined
-}
-
-const {
-  href,
-  name,
-  kicker,
-  art,
-  effect,
-  mark,
-  characteristics = [],
-  entry,
-  index,
-  locale,
-  status,
-} = Astro.props
+const SIZES = '(min-width: 960px) 240px, (min-width: 640px) 32vw, 46vw'
+const RESTING = ['-1.8deg', '1.2deg', '-0.8deg', '2deg', '-1.4deg', '0.7deg', '1.6deg'] as const
+const WIDEST_ADVANCE = 0.78
+const NAME_SPAN = 84
+const NAME_LARGEST = 11
+const nameFit = Math.min(
+  NAME_LARGEST,
+  NAME_SPAN / (WIDEST_ADVANCE * Math.max(1, [...card.name].length)),
+)
 ---
 
 <div
-  data-entry={entry.id}
-  data-name={entry.name.toLowerCase()}
-  data-facet-kind={entry.kind}
-  data-facet-kind-labels={entry.kindLabel}
-  data-facet-tdom={entry.domains}
-  data-facet-tdom-labels={entry.domainLabels}
-  data-facet-tchar={entry.characteristics}
-  data-facet-tchar-labels={entry.characteristicLabels}
-  data-facet-sta={entry.status}
-  data-facet-sta-labels={entry.statusLabel}
-  data-enters
-  style={`--enter-delay:${enterDelay(index, STAGGER_STEP.tree)}ms`}
+  class="au-roster au-dark"
+  data-entry={facets.id}
+  data-name={facets.name.toLowerCase()}
+  data-facet-kind={facets.kind?.values}
+  data-facet-kind-labels={facets.kind?.labels}
+  data-facet-tdom={facets.domains?.values}
+  data-facet-tdom-labels={facets.domains?.labels}
+  data-facet-tchar={facets.characteristics?.values}
+  data-facet-tchar-labels={facets.characteristics?.labels}
+  data-facet-sta={facets.status?.values}
+  data-facet-sta-labels={facets.status?.labels}
+  style={`--gold:${card.keyColour}; --order:${index}; --rest:${RESTING[index % RESTING.length]}; --name-fit:${nameFit.toFixed(2)}cqi`}
 >
   <a
+    class="au-roster__link"
     data-cover-card="true"
-    href={href}
-    style="position:relative; display:block; aspect-ratio:3/4.3; overflow:hidden; border:1px solid var(--line2)"
+    data-tilt-host
+    href={card.href}
   >
-    <span data-cover-art="true" style="position:absolute; inset:0; display:block">
-      <Banner art={art} objectPosition="50% 32%" motion="none" plate="card" effect={effect} />
-    </span>
-    <span
-      aria-hidden="true"
-      style="position:absolute; inset:0; background:linear-gradient(0deg, var(--scrim1) 0%, var(--scrim-mid) 30%, var(--scrim2) 64%)"
-    ></span>
-    {
-      mark && (
-        <span
-          data-cover-spine="true"
-          aria-hidden="true"
-          style={`position:absolute; left:0; top:0; bottom:0; width:3px; background:${mark}; z-index:2`}
-        />
-      )
-    }
-    {
-      status && (
-        <span style="position:absolute; top:12px; left:14px; z-index:3">
-          <StatusBadge status={status} locale={locale} size="sm" />
-        </span>
-      )
-    }
-    {
-      characteristics.length > 0 && (
-        <span style="position:absolute; top:12px; right:12px; z-index:3; display:flex; align-items:center; gap:6px">
-          {characteristics.map((item) => (
-            <CharacteristicHex iconName={item.iconName} color={item.color} label={item.label} />
-          ))}
-        </span>
-      )
-    }
-    <span
-      style="position:absolute; left:17px; right:17px; bottom:16px; display:flex; flex-direction:column; gap:8px"
-    >
-      <span
-        style="font-family:var(--font-mono); font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--art-eyebrow)"
-        >{kicker}</span
-      >
-      <span
-        style="font-family:var(--font-display); font-size:27px; font-weight:600; line-height:1.06; color:var(--art-ink)"
-        >{name}</span
-      >
-    </span>
+    <FramedCard size="roster" data-tilt-card>
+      <span class="au-roster__face">
+        {
+          card.cover ? (
+            <span class="au-roster__art" data-cover-art="true">
+              <Banner
+                art={card.cover}
+                objectPosition="50% 26%"
+                motion="none"
+                plate="card"
+                effect={card.effect}
+                sizes={SIZES}
+              />
+            </span>
+          ) : (
+            <CoverSeal name={card.name} seal={seal} />
+          )
+        }
+      </span>
+      <span class="au-roster__veil" aria-hidden="true"></span>
+      <span class="au-roster__scrim" aria-hidden="true"></span>
+      {
+        card.mark && (
+          <span
+            class="au-roster__spine"
+            data-cover-spine="true"
+            aria-hidden="true"
+            style={`--spine:${card.mark}`}
+          />
+        )
+      }
+      {
+        card.badge && (
+          <span
+            class:list={['au-roster__status', { 'au-roster__status--stamp': card.badge === 'draft' }]}
+          >
+            <StatusBadge status={card.badge} locale={locale} size="sm" />
+          </span>
+        )
+      }
+      {
+        card.characteristics.length > 0 && (
+          <span class="au-roster__hexes">
+            {card.characteristics.map((item) => (
+              <CharacteristicHex
+                iconName={item.iconName}
+                color={item.color}
+                label={item.label}
+                width="30px"
+                height="33px"
+                iconSize="16px"
+              />
+            ))}
+          </span>
+        )
+      }
+      <span class="au-roster__tape">
+        <span class="au-roster__kicker">{card.kicker}</span>
+        <span class="au-roster__name">{card.name}</span>
+      </span>
+    </FramedCard>
   </a>
 </div>
+
+<style>
+  .au-roster {
+    min-width: 0;
+    animation: au-roster-deal 0.5s var(--ease) calc(min(var(--order), 12) * 40ms) backwards;
+  }
+
+  .au-roster[hidden] {
+    display: none;
+  }
+
+  .au-roster__link {
+    display: block;
+    color: var(--ink);
+    text-decoration: none;
+    container-type: inline-size;
+  }
+
+  .au-roster__link > :global(.au-framed) {
+    rotate: var(--rest);
+    transition: rotate 0.34s var(--ease);
+  }
+
+  .au-roster__link:is(:hover, :focus-visible, [aria-current='true']) > :global(.au-framed) {
+    rotate: calc(var(--rest) * -0.6);
+  }
+
+  .au-roster__link:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 5px;
+  }
+
+  .au-roster__face,
+  .au-roster__art {
+    position: absolute;
+    inset: 0;
+    display: block;
+  }
+
+  .au-roster__veil {
+    position: absolute;
+    inset: 0;
+    display: none;
+    background-image: radial-gradient(circle, rgba(6, 5, 13, 0.7) 0 1.4px, transparent 1.9px);
+    background-size: 6px 6px;
+  }
+
+  .au-roster__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, #08070d 0%, rgba(8, 7, 13, 0.82) 22%, transparent 52%);
+  }
+
+  .au-roster__spine {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    width: 4px;
+    background: var(--spine);
+  }
+
+  .au-roster__status {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 3;
+  }
+
+  .au-roster__status--stamp {
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    rotate: -12deg;
+    scale: 1.45;
+    filter: drop-shadow(3px 3px 0 rgba(6, 5, 13, 0.75));
+  }
+
+  .au-roster__hexes {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .au-roster__tape {
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    bottom: 7%;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+  }
+
+  .au-roster__kicker {
+    padding: 4px 8px 3px;
+    rotate: -2.5deg;
+    background: #08070d;
+    color: color-mix(in srgb, var(--gold) 55%, #fff);
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.2em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .au-roster__name {
+    max-width: 100%;
+    font-family: var(--font-display);
+    font-size: clamp(13px, var(--name-fit), 27px);
+    font-weight: 700;
+    line-height: 1.02;
+    color: var(--ink);
+    overflow-wrap: break-word;
+    text-shadow: 0 2px 0 rgba(6, 5, 13, 0.7);
+  }
+
+  .au-roster[data-facet-sta='draft'] .au-roster__face {
+    filter: saturate(0.7) brightness(0.74);
+  }
+
+  .au-roster[data-facet-sta='draft'] .au-roster__veil {
+    display: block;
+  }
+
+  .au-roster[data-facet-sta='draft'] .au-roster__name {
+    color: var(--ink2);
+  }
+
+  @media (forced-colors: active) {
+    .au-roster__veil {
+      display: none;
+    }
+
+    .au-roster__status--stamp,
+    .au-roster__link > :global(.au-framed) {
+      rotate: none;
+    }
+  }
+
+  @keyframes au-roster-deal {
+    from {
+      translate: -18px 26px;
+      rotate: -5deg;
+      scale: 0.94;
+    }
+  }
+</style>

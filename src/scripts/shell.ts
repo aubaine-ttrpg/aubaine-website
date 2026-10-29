@@ -3,12 +3,13 @@ import { bindArtEffects } from './art-effect/boot'
 import { bindAtlas } from './atlas'
 import { bindBook } from './book'
 import { bindBrowse } from './browse'
-import { bindCharacterHeroes } from './character-hero'
 import { enableIslands } from './islands'
 import { bindLoading } from './loading'
 import { bindPlateViewer } from './plate-viewer'
 import { bindReliefScroll } from './relief-scroll'
 import { bindSearch } from './search'
+import { bindSelectScreens } from './select-screen'
+import { bindStageHosts } from './stage-host'
 import { type SwupVisit, withSwup } from './swup'
 import { bindThreshold } from './threshold'
 import { bindTorchlight } from './torchlight'
@@ -313,7 +314,8 @@ withSwup((swup) => {
   bindPlateViewer(swup)
   bindTorchlight(swup)
   bindArtEffects(swup)
-  bindCharacterHeroes(swup)
+  bindStageHosts(swup)
+  bindSelectScreens(swup)
   bindReliefScroll(swup)
   bindAtlas(swup)
   bindBrowse(swup)

@@ -7,6 +7,7 @@ import type { Locale } from '../../src/lib/i18n/locales'
 import { pathFor } from '../../src/lib/i18n/routes'
 import { strings } from '../../src/lib/i18n/strings'
 import { rgbFromHex } from '../../src/lib/key-colour'
+import { atMoment, freezeAnimations } from './support/animations'
 import { corpus } from './support/corpus'
 
 const HERO = '[data-character]'
@@ -117,7 +118,7 @@ test('a species that writes its own key colour wears it instead of its cover’s
 test('a card wears its emblem, and a card without one wears none', async ({ page, request }) => {
   for (const path of [NNOR, MARCHAND]) {
     await page.goto(path)
-    const emblem = page.locator(`${HERO} .au-character__emblem`)
+    const emblem = page.locator(`${HERO} .au-framed__emblem`)
     await expect(emblem, path).toHaveAttribute('aria-hidden', 'true')
     const url = (await emblem.locator('image').getAttribute('href')) ?? ''
     expect(url, path).toMatch(/\.svg$/)
@@ -127,18 +128,34 @@ test('a card wears its emblem, and a card without one wears none', async ({ page
   const bare = (await corpus('fr')).trees.find((tree) => !tree.emblem)
   expect(bare, 'every tree has an emblem').toBeDefined()
   await page.goto(pathFor('tree', 'fr', { tree: bare?.id }))
-  await expect(page.locator(`${HERO} .au-character__emblem`)).toHaveCount(0)
+  await expect(page.locator(`${HERO} .au-framed__emblem`)).toHaveCount(0)
 })
 
-test('a tree without a profile or descriptors shows neither', async ({ page }) => {
+test('a tree not ranked yet shows a question mark for each grade and no stickers', async ({
+  page,
+}) => {
   const plain = (await corpus('fr')).trees.find(
     (tree) => !tree.profile && (tree.descriptors ?? []).length === 0,
   )
   expect(plain, 'every tree has a profile or descriptors').toBeDefined()
   await page.goto(pathFor('tree', 'fr', { tree: plain?.id }))
-  await expect(page.locator(`${HERO} .au-rank`)).toHaveCount(0)
+  const grades = page.locator(`${HERO} .au-rank__grade`)
+  await expect(grades).toHaveCount(6)
+  for (const grade of await grades.all()) {
+    await expect(grade).toHaveText(`?${strings('fr').profileUnknown}`)
+  }
+  await expect(page.locator(`${HERO} .au-rank__edge`)).toHaveCount(0)
   await expect(page.locator(`${HERO} .au-stickers`)).toHaveCount(0)
   await expect(page.locator(`${HERO} h1`)).toHaveText(plain?.name ?? '')
+})
+
+test('a page without a cover shows its seal, never the placeholder painting', async ({ page }) => {
+  const bare = (await corpus('fr')).trees.find((tree) => !tree.cover)
+  if (!bare) throw new Error('every tree has a cover')
+  await page.goto(pathFor('tree', 'fr', { tree: bare.id }))
+  await expect(page.locator(`${HERO} .au-seal__crest text`)).toHaveText([...bare.name][0] ?? '')
+  await expect(page.locator(`${HERO} img[src*="placeholder"]`)).toHaveCount(0)
+  await expect(page.locator(`${HERO} [data-stage-field]`)).toHaveCount(1)
 })
 
 test('the profile note says how to read the ranks', async ({ page }) => {
@@ -150,29 +167,6 @@ test('the profile note says how to read the ranks', async ({ page }) => {
   await note.getByRole('button', { name: 'Fermer' }).click()
   await expect(note).toBeHidden()
 })
-
-async function freezeAnimations(page: Page): Promise<void> {
-  const devtools = await page.context().newCDPSession(page)
-  await devtools.send('Animation.enable')
-  await devtools.send('Animation.setPlaybackRate', { playbackRate: 0 })
-}
-
-async function atMoment(page: Page, milliseconds: number, animated: string): Promise<void> {
-  await expect
-    .poll(() =>
-      page.evaluate(
-        (selector) => (document.querySelector(selector)?.getAnimations().length ?? 0) > 0,
-        animated,
-      ),
-    )
-    .toBe(true)
-  await page.evaluate((time) => {
-    for (const animation of document.getAnimations()) {
-      animation.pause()
-      animation.currentTime = time
-    }
-  }, milliseconds)
-}
 
 function corners(page: Page): Promise<{ shape: number[][]; markers: number[][] }> {
   return page.evaluate(() => {
@@ -314,6 +308,7 @@ test('a Swup visit binds the hero it brings', async ({ page }) => {
   await expect(
     page.getByRole('button', { name: 'Mettre en pause l’animation du fond' }),
   ).toBeVisible()
+  await page.waitForFunction(() => window.scrollY === 0)
   await page.mouse.move(1300, 220)
   await expect(page.locator(HERO)).toHaveAttribute('data-tilting', '')
   await page.goBack()

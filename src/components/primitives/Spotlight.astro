@@ -1,0 +1,220 @@
+---
+import type { Locale } from '../../lib/i18n/locales'
+import { strings } from '../../lib/i18n/strings'
+import type { SelectEntry } from '../../lib/select-entries'
+import Icon from './Icon.astro'
+import type { SheetReserve } from './SheetHead.astro'
+import SpotlightPanel from './SpotlightPanel.astro'
+import StillToggle from './StillToggle.astro'
+
+type Props = { locale: Locale; entries: SelectEntry[]; order: string[]; class?: string }
+
+const { locale, entries, order, class: className } = Astro.props
+const t = strings(locale)
+
+function longest<T>(values: readonly T[], size: (value: T) => number, empty: T): T {
+  return values.reduce((best, value) => (size(value) > size(best) ? value : best), empty)
+}
+
+const reserve: SheetReserve = {
+  status: entries.find((entry) => entry.sheet.status)?.sheet.status,
+  subtitle: longest(
+    entries.map((entry) => entry.sheet.subtitle ?? ''),
+    (text) => text.length,
+    '',
+  ),
+  descriptors: longest(
+    entries.map((entry) => entry.sheet.descriptors),
+    (words) => words.join(' ').length,
+    [],
+  ),
+}
+
+const leadId = order[0]
+const lead = entries.find((entry) => entry.card.facets.id === leadId)
+if (!lead) throw new Error('a select screen has no lead entry to show')
+---
+
+<section
+  class:list={['au-spotlight', className]}
+  aria-label={t.spotlight}
+  data-spotlight
+  data-spotlight-order={order.join(' ')}
+  data-spotlight-current={lead.card.facets.id}
+  data-spotlight-pending={lead.card.status === 'draft' ? '' : undefined}
+  data-tilt-host
+>
+  <div class="au-spotlight__panel" data-spotlight-panel>
+    <SpotlightPanel
+      locale={locale}
+      card={lead.card}
+      sheet={lead.sheet}
+      reserve={reserve}
+      live
+    />
+  </div>
+
+  <div class="au-spotlight__controls">
+    <button
+      type="button"
+      class="au-spotlight__step"
+      data-spotlight-step="-1"
+      aria-label={t.spotlightPrevious}
+      hidden
+    >
+      <Icon name="mdi:chevron-left" class="au-spotlight__chevron" />
+    </button>
+    <a
+      class="au-spotlight__open"
+      href={lead.card.href}
+      aria-label={lead.card.open.label}
+      data-spotlight-open
+    >
+      <span data-spotlight-open-text>{lead.card.open.text}</span>
+      <span aria-hidden="true">→</span>
+    </a>
+    <button
+      type="button"
+      class="au-spotlight__step"
+      data-spotlight-step="1"
+      aria-label={t.spotlightNext}
+      hidden
+    >
+      <Icon name="mdi:chevron-right" class="au-spotlight__chevron" />
+    </button>
+    <StillToggle locale={locale} class="au-spotlight__still" />
+  </div>
+
+  {
+    entries.map((entry) => (
+      <template
+        data-spotlight-for={entry.card.facets.id}
+        data-spotlight-href={entry.card.href}
+        data-spotlight-label={entry.card.open.label}
+        data-spotlight-text={entry.card.open.text}
+        data-spotlight-name={entry.sheet.name}
+        data-spotlight-backdrop={entry.backdrop}
+        data-spotlight-art={entry.ambient ?? ''}
+        data-spotlight-colours={entry.card.seal.colours.join('|')}
+      >
+        <SpotlightPanel
+          locale={locale}
+          card={entry.card}
+          sheet={entry.sheet}
+          reserve={reserve}
+          live={false}
+        />
+      </template>
+    ))
+  }
+</section>
+
+<style>
+  .au-spotlight {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+    row-gap: 22px;
+    min-width: 0;
+  }
+
+  .au-spotlight__panel {
+    position: relative;
+    min-height: 0;
+  }
+
+  .au-spotlight__panel:empty,
+  .au-spotlight__panel:empty + .au-spotlight__controls {
+    display: none;
+  }
+
+  :global(:root[data-drafts='hidden']) [data-spotlight-pending] > :is(.au-spotlight__panel, .au-spotlight__controls) {
+    visibility: hidden;
+  }
+
+  .au-spotlight__controls {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .au-spotlight__step {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid var(--line2);
+    background: #08070d;
+    color: var(--gold);
+    cursor: pointer;
+    box-shadow: 3px 4px 0 rgba(6, 5, 13, 0.6);
+    transition:
+      border-color 0.2s var(--ease),
+      translate 0.2s var(--ease);
+  }
+
+  .au-spotlight__step[hidden] {
+    display: none;
+  }
+
+  .au-spotlight__step:hover,
+  .au-spotlight__step:focus-visible {
+    border-color: var(--gold);
+    translate: 0 -2px;
+  }
+
+  .au-spotlight__step :global(.au-spotlight__chevron) {
+    width: 26px;
+    height: 26px;
+  }
+
+  .au-spotlight__open {
+    flex: 1 1 auto;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px 11px;
+    rotate: -1.5deg;
+    background: var(--gold);
+    color: var(--on-gold);
+    font-family: var(--font-ui);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+    box-shadow: 4px 5px 0 rgba(6, 5, 13, 0.7);
+    transition:
+      translate 0.2s var(--ease),
+      box-shadow 0.2s var(--ease);
+  }
+
+  .au-spotlight__open:hover,
+  .au-spotlight__open:focus-visible {
+    translate: 0 -2px;
+    box-shadow: 6px 8px 0 rgba(6, 5, 13, 0.7);
+  }
+
+  .au-spotlight :global(.au-spotlight__still) {
+    position: static;
+  }
+
+  @media (forced-colors: active) {
+    .au-spotlight__open {
+      rotate: none;
+      box-shadow: none;
+      border: 1px solid;
+    }
+  }
+
+  @media print {
+    .au-spotlight {
+      display: none;
+    }
+  }
+</style>

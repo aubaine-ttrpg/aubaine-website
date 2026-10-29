@@ -1,138 +1,64 @@
 ---
-import type { ArtEffect } from '../../lib/art-effect/effects'
+import { bookChapter } from '../../lib/game/book-chapters'
+import { treeSheet } from '../../lib/game/character-sheet'
 import type { Corpus } from '../../lib/game/corpus'
-import { label } from '../../lib/game/corpus'
-import { frame } from '../../lib/game/derive'
-import type { ContentStatus } from '../../lib/game/schema'
-import { type BadgedStatus, badgedStatus } from '../../lib/game/status'
+import { treeCards } from '../../lib/game/hub-cards'
+import { HUB_CHAPTERS, leadOrder } from '../../lib/game/hubs'
 import type { Locale } from '../../lib/i18n/locales'
-import { pathFor } from '../../lib/i18n/routes'
 import { strings } from '../../lib/i18n/strings'
-import { PLACEHOLDER_COVER } from '../../lib/media'
-import type { CoverCardCharacteristic, CoverCardEntry } from '../primitives/CoverCard.astro'
-import CoverCard from '../primitives/CoverCard.astro'
+import { selectEntries } from '../../lib/select-entries'
+import { stageSource } from '../../lib/stage-ambient'
 import FilterBar from '../primitives/FilterBar.astro'
-import Hero from '../primitives/Hero.astro'
+import SelectScreen from '../primitives/SelectScreen.astro'
 
 type Props = { locale: Locale; corpus: Corpus }
 
 const { locale, corpus } = Astro.props
 const t = strings(locale)
 
-const CHARACTERISTIC_FALLBACK = '#8a7c5c'
-const DOMAIN_FALLBACK = '#2a2a2e'
-
-type Card = {
-  id: string
-  href: string
-  name: string
-  kicker: string
-  art: string
-  effect: ArtEffect | undefined
-  mark: string
-  characteristics: CoverCardCharacteristic[]
-  entry: CoverCardEntry
-  status: BadgedStatus | undefined
+const trees = new Map(corpus.trees.map((tree) => [tree.id, tree]))
+const sheetOf = (id: string) => {
+  const tree = trees.get(id)
+  if (!tree) throw new Error(`the trees index has a card for ${id}, which is not a tree`)
+  return treeSheet(tree, corpus, locale)
 }
-
-const STATUS_LABELS: Record<ContentStatus, string> = {
-  draft: t.draft,
-  playtest: t.playtest,
-  beta: t.beta,
-  balanced: t.balanced,
-}
-
-const cards: Card[] = corpus.trees.map((tree) => {
-  const characteristics: CoverCardCharacteristic[] = tree.primeCharacteristics.map((key) => {
-    const entry = corpus.characteristics.get(key)
-    return {
-      key,
-      color: entry?.color ?? CHARACTERISTIC_FALLBACK,
-      iconName: entry?.iconName,
-      label: label(entry, locale, key),
-    }
-  })
-  const kind = tree.treeType === 'domain' ? 'domain' : 'archetype'
-  return {
-    id: tree.id,
-    href: pathFor('tree', locale, { tree: tree.id }),
-    name: tree.name,
-    kicker: tree.treeType === 'domain' ? t.domains : t.archetypes,
-    art: tree.cover ?? PLACEHOLDER_COVER,
-    effect: tree.artEffect,
-    mark: frame(tree.domains.map((key) => corpus.domains.get(key)?.color ?? DOMAIN_FALLBACK)),
-    characteristics,
-    status: badgedStatus(tree.status),
-    entry: {
-      id: tree.id,
-      name: tree.name,
-      kind,
-      kindLabel: kind === 'domain' ? t.domains : t.archetypes,
-      status: tree.status ?? 'balanced',
-      statusLabel: STATUS_LABELS[tree.status ?? 'balanced'],
-      domains: tree.domains.join(' '),
-      domainLabels: tree.domains
-        .map((key) => label(corpus.domains.get(key), locale, key))
-        .join('|'),
-      characteristics: tree.primeCharacteristics.join(' '),
-      characteristicLabels: tree.primeCharacteristics
-        .map((key) => label(corpus.characteristics.get(key), locale, key))
-        .join('|'),
-    },
-  }
-})
+const chapter = await bookChapter(locale, HUB_CHAPTERS.trees)
+const cards = await treeCards(corpus, locale)
+const entries = await selectEntries(cards, sheetOf)
+const order = leadOrder(
+  entries.map((entry) => ({ ...entry.card, id: entry.card.facets.id })),
+  locale,
+)
+const lead = order[0]
+if (!lead) throw new Error('the trees index has no tree to stage')
+const leadStage = stageSource(lead.cover, lead.seal.colours)
+const groups = [
+  {
+    key: 'archetype',
+    label: t.archetypes,
+    entries: entries.filter((entry) => entry.card.facets.kind?.values !== 'domain'),
+  },
+  {
+    key: 'domain',
+    label: t.domains,
+    entries: entries.filter((entry) => entry.card.facets.kind?.values === 'domain'),
+  },
+]
 ---
 
-<div>
-  <Hero
-    art="bravado-16_9-upscaled_2.jpg"
-    minHeight="min(80vh,760px)"
-    bottomStops={[27, 60]}
-    sideStops={[32, 64]}
-    padding="0 26px 46px"
-    motion="drift"
-    seconds={30}
-    objectPosition="50% 26%"
-  >
-    <h1
-      style="margin:0; font-family:var(--font-display); font-weight:700; font-size:clamp(44px,7vw,104px); line-height:.94; color:var(--art-ink)"
-    >
-      {t.trees}
-    </h1>
-    <p style="margin:16px 0 0; max-width:58ch; font-size:19px; line-height:1.6; color:var(--art-ink2)">
-      {t.treesLead}
-    </p>
-  </Hero>
-
+<SelectScreen
+  locale={locale}
+  title={t.trees}
+  about={{ body: t.treesLead, link: { href: chapter.href, label: t.hubChapter(chapter.title) } }}
+  stage={leadStage}
+  groups={groups}
+  order={order.map((card) => card.id)}
+>
   <FilterBar
+    slot="filter"
     locale={locale}
     variant="trees"
     total={cards.length}
     drafts={cards.filter((card) => card.status === 'draft').length}
   />
-
-  <section style="max-width:1560px; margin:0 auto; padding:26px 26px 78px">
-    <div
-      data-tree-grid="true"
-      style="display:grid; grid-template-columns:repeat(auto-fill,minmax(248px,1fr)); gap:20px"
-    >
-      {
-        cards.map((card, index) => (
-          <CoverCard
-            href={card.href}
-            name={card.name}
-            kicker={card.kicker}
-            art={card.art}
-            effect={card.effect}
-            mark={card.mark}
-            characteristics={card.characteristics}
-            entry={card.entry}
-            index={index}
-            locale={locale}
-            status={card.status}
-          />
-        ))
-      }
-    </div>
-  </section>
-</div>
+</SelectScreen>

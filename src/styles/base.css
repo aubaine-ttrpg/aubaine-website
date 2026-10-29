@@ -216,17 +216,22 @@ html.is-animating .au-swup-page {
   opacity: 0;
 }
 
-[data-card],
-[data-cover-card] {
+[data-card] {
   transition:
     transform 0.34s var(--ease),
     box-shadow 0.34s var(--ease);
 }
 
-[data-card]:hover,
-[data-cover-card]:hover {
+[data-card]:hover {
   transform: translateY(-9px);
   box-shadow: var(--card-shadow);
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  [data-tilt-host][data-tilting] {
+    --lean-x: var(--tilt-x, 0);
+    --lean-y: var(--tilt-y, 0);
+  }
 }
 
 [data-tip] {
@@ -259,8 +264,7 @@ html.is-animating .au-swup-page {
   }
 }
 
-[data-card]:has([data-term]:hover),
-[data-cover-card]:has([data-term]:hover) {
+[data-card]:has([data-term]:hover) {
   transform: none;
 }
 
@@ -269,14 +273,12 @@ html.is-animating .au-swup-page {
   z-index: 80;
 }
 
-[data-card-art] > img,
-[data-cover-art] > [data-plate] {
+[data-card-art] > img {
   transition: transform 0.8s var(--ease);
   transform-origin: 50% 50%;
 }
 
-[data-card]:hover [data-card-art] > img,
-[data-cover-card]:hover [data-cover-art] > [data-plate] {
+[data-card]:hover [data-card-art] > img {
   transform: scale(1.08);
 }
 
@@ -287,14 +289,6 @@ html.is-animating .au-swup-page {
 
 [data-card]:hover [data-card-arrow] {
   transform: translateX(7px);
-}
-
-[data-cover-spine] {
-  transition: width 0.34s var(--ease);
-}
-
-[data-cover-card]:hover [data-cover-spine] {
-  width: 11px;
 }
 
 @media (prefers-reduced-motion: reduce) {

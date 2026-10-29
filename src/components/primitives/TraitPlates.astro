@@ -1,39 +1,33 @@
 ---
-import { inkOn } from '../../lib/key-colour'
+import type { Trait } from '../../lib/game/character-sheet'
+import { DARK_INK, readableOnNight } from '../../lib/key-colour'
 import CharacteristicHex from './CharacteristicHex.astro'
 
-export type Trait = {
-  iconName: string | undefined
-  color: string
-  label: string
-  text: string
-}
+type Props = { traits: readonly Trait[]; groupLabel: string; size?: 'sheet' | 'preview' }
 
-type Props = { traits: Trait[]; groupLabel: string }
-
-const { traits, groupLabel } = Astro.props
+const { traits, groupLabel, size = 'sheet' } = Astro.props
 
 const TILTS = ['-1.5deg', '1deg', '-2deg', '1.5deg'] as const
 ---
 
-<div class="au-traits" role="group" aria-label={groupLabel}>
+<div class:list={['au-traits', `au-traits--${size}`]} role="group" aria-label={groupLabel}>
   <dl class="au-traits__list">
     {
       traits.map((trait, order) => (
         <div
           class="au-trait"
-          style={`--paper:${trait.color}; --ink:${inkOn(trait.color)}; --tilt:${TILTS[order % TILTS.length]}; --order:${order}`}
+          style={`--paper:${readableOnNight(trait.color)}; --ink:${DARK_INK}; --tilt:${TILTS[order % TILTS.length]}; --order:${order}`}
         >
           <dt class="au-trait__label">{trait.label}</dt>
           <dd class="au-trait__value">
             <CharacteristicHex
               iconName={trait.iconName}
-              color={inkOn(trait.color)}
+              color={DARK_INK}
               label={trait.label}
-              glyphColor={trait.color}
-              width="27px"
-              height="30px"
-              iconSize="15px"
+              glyphColor={readableOnNight(trait.color)}
+              width="var(--trait-hex-width, 27px)"
+              height="var(--trait-hex-height, 30px)"
+              iconSize="var(--trait-icon, 15px)"
               filter="none"
             />
             <span class="au-trait__text">{trait.text}</span>
@@ -57,8 +51,8 @@ const TILTS = ['-1.5deg', '1deg', '-2deg', '1.5deg'] as const
     flex-direction: column;
     align-items: stretch;
     rotate: var(--tilt);
-    animation: au-trait-slap 0.42s cubic-bezier(0.2, 1.45, 0.4, 1)
-      calc(0.34s + var(--order) * 0.07s) backwards;
+    animation: au-trait-slap calc(0.42s * var(--arrival, 1)) cubic-bezier(0.2, 1.45, 0.4, 1)
+      calc((0.34s + var(--order) * 0.07s) * var(--arrival, 1)) backwards;
   }
 
   .au-trait__label {
@@ -96,6 +90,40 @@ const TILTS = ['-1.5deg', '1deg', '-2deg', '1.5deg'] as const
     letter-spacing: 0.06em;
     line-height: 1;
     text-transform: uppercase;
+  }
+
+  .au-traits--preview {
+    --trait-hex-width: 20px;
+    --trait-hex-height: 22px;
+    --trait-icon: 11px;
+  }
+
+  .au-traits--preview .au-traits__list {
+    gap: 14px 8px;
+  }
+
+  .au-traits--preview .au-trait {
+    flex: 0 1 auto;
+    min-width: 0;
+  }
+
+  .au-traits--preview .au-trait__label {
+    margin: 0 0 -6px 8px;
+    padding: 3px 6px 2px;
+    font-size: 8.5px;
+    white-space: nowrap;
+  }
+
+  .au-traits--preview .au-trait__value {
+    gap: 6px;
+    padding: 8px 10px 6px 8px;
+    box-shadow: 3px 4px 0 rgba(0, 0, 0, 0.62);
+  }
+
+  .au-traits--preview .au-trait__text {
+    font-size: clamp(12px, 3cqi, 14px);
+    letter-spacing: 0.04em;
+    line-height: 1.1;
   }
 
   @keyframes au-trait-slap {

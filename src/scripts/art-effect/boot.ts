@@ -1,7 +1,7 @@
 import type { SwupInstance } from '../swup'
 
 const PLATE = '[data-plate][data-art-effect]'
-const STAGE = '[data-stage]'
+const STAGE = '[data-stage], [data-stage-field]'
 const BANNER = '[data-drape="banner"]'
 const FLAG = '[data-drape="flag"]'
 const GLAZE = '.au-prose__frame'

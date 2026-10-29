@@ -1,0 +1,170 @@
+---
+import type { Locale } from '../../lib/i18n/locales'
+import { strings } from '../../lib/i18n/strings'
+import Icon from './Icon.astro'
+import PopoverNote from './PopoverNote.astro'
+
+export type HubAbout = { body: string; link: { href: string; label: string } }
+
+type Props = { title: string; about: HubAbout; locale: Locale }
+
+const { title, about, locale } = Astro.props
+const t = strings(locale)
+
+const NOTE_ID = 'hub-note'
+const NOTE_WIDTH = 380
+const WIDEST_ADVANCE = 0.8
+const PLATE_SPAN = 82
+const PLATE_LARGEST = 19
+const ONE_LINE_SMALLEST = 9
+const SMALL_WORD = 3
+const TILTS = ['-4deg', '2.5deg', '-2deg', '3deg'] as const
+
+const letters = (text: string) => Math.max(1, [...text].length)
+const fitted = (count: number) => Math.min(PLATE_LARGEST, PLATE_SPAN / (WIDEST_ADVANCE * count))
+const words = title.split(/\s+/).filter(Boolean)
+const longest = Math.max(
+  1,
+  ...words.filter((word) => letters(word) > SMALL_WORD).map((word) => letters(word)),
+)
+const oneLine = fitted(letters(title))
+const plateFit = oneLine >= ONE_LINE_SMALLEST ? oneLine : fitted(longest)
+const plates = words.map((word, index) => ({
+  word,
+  small: letters(word) <= SMALL_WORD && words.length > 1,
+  tilt: TILTS[index % TILTS.length],
+  order: index,
+}))
+---
+
+<div class="au-plates" style={`--plate-fit:${plateFit.toFixed(2)}cqi`}>
+  <h1 class="au-plates__title" aria-label={title}>
+    {
+      plates.map((plate, index) => (
+        <>
+          <span
+            class:list={['au-plates__plate', { 'au-plates__plate--small': plate.small }]}
+            style={`--tilt:${plate.tilt}; --order:${plate.order}`}
+          >
+            {plate.word}
+          </span>
+          {index < plates.length - 1 && ' '}
+        </>
+      ))
+    }
+    <button
+      type="button"
+      class="au-plates__about"
+      popovertarget={NOTE_ID}
+      aria-label={t.hubAbout(title)}
+      style={`anchor-name:--${NOTE_ID}`}
+    >
+      <Icon name="mdi:information-outline" class="au-plates__about-icon" />
+    </button>
+  </h1>
+  <PopoverNote
+    id={NOTE_ID}
+    title={title}
+    body={about.body}
+    locale={locale}
+    width={NOTE_WIDTH}
+    link={about.link}
+  />
+</div>
+
+<style>
+  .au-plates {
+    container-type: inline-size;
+  }
+
+  .au-plates__title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.06em 0.16em;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(min(38px, 10.5cqi), var(--plate-fit), 112px);
+    font-weight: 700;
+    line-height: 0.86;
+    text-transform: uppercase;
+  }
+
+  .au-plates__plate {
+    display: inline-block;
+    padding: 0.1em 0.2em 0.04em;
+    rotate: var(--tilt);
+    background: var(--gold);
+    color: var(--on-gold);
+    box-shadow: 0.07em 0.08em 0 rgba(6, 5, 13, 0.72);
+    animation: au-plates-slap 0.46s cubic-bezier(0.2, 1.45, 0.4, 1)
+      calc(0.08s + var(--order) * 0.09s) backwards;
+  }
+
+  .au-plates__plate:nth-child(even) {
+    background: #08070d;
+    color: var(--gold);
+    box-shadow: 0.07em 0.08em 0 color-mix(in srgb, var(--gold) 70%, transparent);
+  }
+
+  .au-plates__plate--small {
+    align-self: flex-start;
+    font-size: 0.42em;
+    padding: 0.16em 0.3em 0.1em;
+  }
+
+  .au-plates__about {
+    flex: none;
+    margin: 10px 0 0 0.1em;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    rotate: 3deg;
+    border: 1px solid var(--line2);
+    background: #08070d;
+    color: var(--gold);
+    cursor: pointer;
+    box-shadow: 3px 4px 0 rgba(6, 5, 13, 0.6);
+    transition:
+      border-color 0.2s var(--ease),
+      translate 0.2s var(--ease);
+  }
+
+  .au-plates__about:hover,
+  .au-plates__about:focus-visible {
+    border-color: var(--gold);
+    translate: 0 -2px;
+  }
+
+  .au-plates__about :global(.au-plates__about-icon) {
+    width: 24px;
+    height: 24px;
+  }
+
+  @media (forced-colors: active) {
+    .au-plates__plate,
+    .au-plates__about {
+      rotate: none;
+      box-shadow: none;
+    }
+  }
+
+  @media print {
+    .au-plates__plate {
+      rotate: none;
+      box-shadow: none;
+    }
+
+    .au-plates__about {
+      display: none;
+    }
+  }
+
+  @keyframes au-plates-slap {
+    from {
+      transform: scale(1.4) rotate(-6deg);
+    }
+  }
+</style>

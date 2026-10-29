@@ -1,15 +1,14 @@
 ---
 import { hasBooklet } from '../../lib/booklet/manifest'
 import { skillSources, treeNodeAttributes } from '../../lib/game/browse-entries'
+import { treeSheet } from '../../lib/game/character-sheet'
 import type { Corpus, ResolvedTree } from '../../lib/game/corpus'
-import { label } from '../../lib/game/corpus'
-import { characteristicKey, formatNumber, showsXp, xpOf } from '../../lib/game/derive'
+import { formatNumber, showsXp, xpOf } from '../../lib/game/derive'
 import { loreFor } from '../../lib/game/prose'
-import { badgedStatus } from '../../lib/game/status'
 import type { Locale } from '../../lib/i18n/locales'
 import { pathFor, TREE_ANCHOR, treeNodeHref } from '../../lib/i18n/routes'
 import { strings } from '../../lib/i18n/strings'
-import { bookletHref, PLACEHOLDER_COVER } from '../../lib/media'
+import { bookletHref } from '../../lib/media'
 import CharacterHero from '../primitives/CharacterHero.astro'
 import DetailPane from '../primitives/DetailPane.astro'
 import EmptyState from '../primitives/EmptyState.astro'
@@ -28,18 +27,7 @@ type Props = { locale: Locale; corpus: Corpus; tree: ResolvedTree; selected?: st
 const { locale, corpus, tree, selected } = Astro.props
 const t = strings(locale)
 
-const characteristic = (key: string) => {
-  const entry = corpus.characteristics.get(characteristicKey(key))
-  return {
-    color: entry?.color ?? '#8a7c5c',
-    iconName: entry?.iconName,
-    label: entry ? (locale === 'en' ? entry.labelEn : entry.labelFr) : key,
-  }
-}
-
-const primes = tree.primeCharacteristics.map((key) => ({ key, ...characteristic(key) }))
 const booklet = bookletHref('tree', tree.id, locale)
-const treeStatus = badgedStatus(tree.status)
 
 const selectedSkill = selected ? tree.skills.find((skill) => skill.id === selected) : undefined
 if (selected && !selectedSkill) throw new Error(`${selected} is not placed on the ${tree.id} tree`)
@@ -62,27 +50,7 @@ const trail = lore
 ---
 
 <div>
-  <CharacterHero
-    locale={locale}
-    art={tree.cover ?? PLACEHOLDER_COVER}
-    effect={tree.artEffect}
-    emblem={tree.emblem}
-    name={tree.name}
-    subtitle={tree.subtitle}
-    kind={t.treeEyebrow(tree.treeType)}
-    status={treeStatus}
-    descriptors={(tree.descriptors ?? []).map((key) =>
-      label(corpus.descriptors.get(key), locale, key),
-    )}
-    traits={primes.map((prime) => ({
-      iconName: prime.iconName,
-      color: prime.color,
-      label: t.primeChar,
-      text: prime.label,
-    }))}
-    traitsLabel={primes.length > 1 ? t.primeChars : t.primeChar}
-    profile={tree.profile}
-  >
+  <CharacterHero locale={locale} sheet={treeSheet(tree, corpus, locale)}>
     {
       booklet && (
         <a href={booklet} download data-booklet class="au-tree__booklet">

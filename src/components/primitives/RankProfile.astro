@@ -18,9 +18,14 @@ import { strings } from '../../lib/i18n/strings'
 import Icon from './Icon.astro'
 import PopoverNote from './PopoverNote.astro'
 
-type Props = { profile: Profile; locale: Locale }
+type Props = {
+  profile: Profile | undefined
+  locale: Locale
+  explained?: boolean
+  size?: 'sheet' | 'preview'
+}
 
-const { profile, locale } = Astro.props
+const { profile, locale, explained = true, size = 'sheet' } = Astro.props
 const t = strings(locale)
 
 const CENTRE = 100
@@ -39,37 +44,43 @@ const rings = Array.from({ length: PROFILE_RINGS }, (_, index) => ({
   points: centred(ringPoints(index + 1, RADIUS)),
 }))
 const spokes = PROFILE_AXES.map((_, index) => vertex(index, RADIUS))
-const shape = profilePoints(profile, RADIUS)
+const shape = profile ? profilePoints(profile, RADIUS) : []
 const outline = svgPath(shape.map(({ x, y }) => ({ x: x + CENTRE, y: y + CENTRE })))
 const folded = svgPath(shape.map(() => ({ x: CENTRE, y: CENTRE })))
 const marker = svgPoints(ringPoints(PROFILE_RINGS, VERTEX_RADIUS))
 const axes = PROFILE_AXES.map((axis, index) => ({
   axis,
-  rank: profile[axis],
+  rank: profile?.[axis],
   side: labelSide(index),
   at: labelPosition(index, LABEL_RADIUS),
 }))
 ---
 
-<div class="au-rank">
+<div class:list={['au-rank', `au-rank--${size}`]}>
   <div class="au-rank__head">
     <p class="au-rank__caption" id={CAPTION_ID}>{t.profile}</p>
-    <button
-      type="button"
-      class="au-rank__about"
-      popovertarget={NOTE_ID}
-      aria-label={t.profileAbout}
-      style={`anchor-name:--${NOTE_ID}`}
-    >
-      <Icon name="mdi:information-outline" class="au-rank__about-icon" />
-    </button>
-    <PopoverNote
-      id={NOTE_ID}
-      title={t.profile}
-      body={t.profileNote}
-      locale={locale}
-      width={NOTE_WIDTH}
-    />
+    {
+      explained && (
+        <>
+          <button
+            type="button"
+            class="au-rank__about"
+            popovertarget={NOTE_ID}
+            aria-label={t.profileAbout}
+            style={`anchor-name:--${NOTE_ID}`}
+          >
+            <Icon name="mdi:information-outline" class="au-rank__about-icon" />
+          </button>
+          <PopoverNote
+            id={NOTE_ID}
+            title={t.profile}
+            body={t.profileNote}
+            locale={locale}
+            width={NOTE_WIDTH}
+          />
+        </>
+      )
+    }
   </div>
   <div class="au-rank__chart">
     <svg
@@ -77,7 +88,7 @@ const axes = PROFILE_AXES.map((axis, index) => ({
       viewBox="0 0 200 200"
       aria-hidden="true"
       focusable="false"
-      style={`--folded:path('${folded}'); --centre:${CENTRE}px ${CENTRE}px`}
+      style={profile ? `--folded:path('${folded}'); --centre:${CENTRE}px ${CENTRE}px` : undefined}
     >
       <defs>
         <pattern
@@ -90,6 +101,7 @@ const axes = PROFILE_AXES.map((axis, index) => ({
           <circle cx="2.5" cy="2.5" r="1.05"></circle>
         </pattern>
       </defs>
+      <polygon class="au-rank__ground" points={centred(ringPoints(PROFILE_RINGS, RADIUS))} />
       {
         rings.map(({ ring, points }) => (
           <polygon
@@ -103,9 +115,15 @@ const axes = PROFILE_AXES.map((axis, index) => ({
           <line class="au-rank__spoke" x1={CENTRE} y1={CENTRE} x2={x + CENTRE} y2={y + CENTRE} />
         ))
       }
-      <path class="au-rank__fill au-rank__unfold" d={outline}></path>
-      <path class="au-rank__dots au-rank__unfold" d={outline}></path>
-      <path class="au-rank__edge au-rank__unfold" d={outline}></path>
+      {
+        profile && (
+          <>
+            <path class="au-rank__fill au-rank__unfold" d={outline}></path>
+            <path class="au-rank__dots au-rank__unfold" d={outline}></path>
+            <path class="au-rank__edge au-rank__unfold" d={outline}></path>
+          </>
+        )
+      }
       {
         shape.map(({ x, y }) => (
           <polygon
@@ -126,7 +144,14 @@ const axes = PROFILE_AXES.map((axis, index) => ({
           >
             <dt class="au-rank__label">{t.profileAxes[axis]}</dt>
             <dd class:list={['au-rank__grade', { 'au-rank__grade--top': rank === TOP_RANK }]}>
-              <span>{rank}</span>
+              {rank ? (
+                <span>{rank}</span>
+              ) : (
+                <>
+                  <span aria-hidden="true">?</span>
+                  <span class="au-rank__unknown">{t.profileUnknown}</span>
+                </>
+              )}
             </dd>
           </div>
         ))
@@ -194,6 +219,15 @@ const axes = PROFILE_AXES.map((axis, index) => ({
     overflow: visible;
   }
 
+  .au-rank__ground {
+    fill: none;
+  }
+
+  .au-rank--preview .au-rank__ground {
+    fill: #08070d;
+    fill-opacity: 0.88;
+  }
+
   .au-rank__ring {
     fill: none;
     stroke: rgba(236, 232, 247, 0.16);
@@ -212,7 +246,8 @@ const axes = PROFILE_AXES.map((axis, index) => ({
   }
 
   .au-rank__plot {
-    --unfold: 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.3s backwards;
+    --unfold: calc(0.95s * var(--arrival, 1)) cubic-bezier(0.22, 1, 0.36, 1)
+      calc(0.3s * var(--arrival, 1)) backwards;
   }
 
   @supports (d: path('M0 0')) {
@@ -310,8 +345,8 @@ const axes = PROFILE_AXES.map((axis, index) => ({
     background: #08070d;
     border: 1px solid var(--gold);
     box-shadow: 3px 3px 0 var(--gold);
-    animation: au-rank-stamp 0.4s cubic-bezier(0.2, 1.5, 0.4, 1)
-      calc(0.95s + var(--order) * 0.05s) backwards;
+    animation: au-rank-stamp calc(0.4s * var(--arrival, 1)) cubic-bezier(0.2, 1.5, 0.4, 1)
+      calc((0.95s + var(--order) * 0.05s) * var(--arrival, 1)) backwards;
   }
 
   .au-rank__grade > span {
@@ -333,27 +368,67 @@ const axes = PROFILE_AXES.map((axis, index) => ({
     color: var(--on-gold);
   }
 
+  .au-rank__unknown {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .au-rank--preview .au-rank__head {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .au-rank--preview .au-rank__axis {
+    gap: min(6px, 2cqi);
+  }
+
+  .au-rank--preview .au-rank__label {
+    padding: 3px 6px 2px;
+    background: #08070d;
+    color: color-mix(in srgb, var(--gold) 45%, #fff);
+    font-size: clamp(8px, 4cqi, 12px);
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .au-rank--preview .au-rank__grade {
+    min-width: min(38px, 12.7cqi);
+    height: min(36px, 12cqi);
+    padding: 0 min(8px, 2.7cqi);
+  }
+
+  .au-rank--preview .au-rank__grade > span {
+    font-size: min(22px, 7.4cqi);
+  }
+
   @container (width < 300px) {
-    .au-rank__chart {
+    .au-rank--sheet .au-rank__chart {
       aspect-ratio: auto;
     }
 
-    .au-rank__plot {
+    .au-rank--sheet .au-rank__plot {
       position: relative;
       display: block;
       width: 70%;
       margin: 0 auto 14px;
     }
 
-    .au-rank__axes {
+    .au-rank--sheet .au-rank__axes {
       position: static;
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px 14px;
     }
 
-    .au-rank__axis,
-    .au-rank__axis[data-side] {
+    .au-rank--sheet .au-rank__axis,
+    .au-rank--sheet .au-rank__axis[data-side] {
       position: static;
       flex-direction: row;
       justify-content: space-between;

@@ -1,0 +1,99 @@
+---
+import type { CardSeal } from '../../lib/game/seals'
+
+type Props = { name: string; seal: CardSeal }
+
+const { name, seal } = Astro.props
+const initial = [...name][0] ?? ''
+---
+
+<span class="au-seal" style={`--seal-field:${seal.field}`} aria-hidden="true">
+  <span class="au-seal__field"></span>
+  <span class="au-seal__halftone"></span>
+  <span class="au-seal__ghost">{initial}</span>
+  <span class="au-seal__mark">
+    <svg class="au-seal__crest" viewBox="0 0 100 100">
+      <polygon points="50,6 88,28 88,72 50,94 12,72 12,28" />
+      <polygon points="50,17 78.5,33.5 78.5,66.5 50,83 21.5,66.5 21.5,33.5" />
+      <text x="50" y="50">{initial}</text>
+    </svg>
+  </span>
+</span>
+
+<style>
+  .au-seal {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    overflow: clip;
+    container-type: inline-size;
+    background: #0d0b16;
+  }
+
+  .au-seal__field,
+  .au-seal__halftone {
+    position: absolute;
+    inset: 0;
+  }
+
+  .au-seal__field {
+    background:
+      linear-gradient(165deg, rgba(6, 5, 13, 0.08) 0%, rgba(6, 5, 13, 0.62) 72%, #08070d 100%),
+      var(--seal-field);
+    opacity: 0.86;
+  }
+
+  .au-seal__halftone {
+    background-image: radial-gradient(circle, rgba(6, 5, 13, 0.55) 0 1.3px, transparent 1.8px);
+    background-size: 7px 7px;
+    mask-image: linear-gradient(200deg, #000 0%, transparent 70%);
+  }
+
+  .au-seal__ghost {
+    position: absolute;
+    right: -6cqi;
+    bottom: -12cqi;
+    font-family: var(--font-display);
+    font-size: 96cqi;
+    font-weight: 700;
+    line-height: 0.8;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(244, 241, 251, 0.16);
+    user-select: none;
+  }
+
+  .au-seal__mark {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 50cqi;
+  }
+
+  .au-seal__crest {
+    position: relative;
+    width: 100%;
+    overflow: visible;
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 2.6;
+    filter: drop-shadow(5px 6px 0 rgba(6, 5, 13, 0.62));
+  }
+
+  .au-seal__crest text {
+    fill: var(--gold);
+    stroke: none;
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 700;
+    text-anchor: middle;
+    dominant-baseline: central;
+  }
+
+  @media (forced-colors: active) {
+    .au-seal__halftone,
+    .au-seal__ghost {
+      display: none;
+    }
+  }
+</style>

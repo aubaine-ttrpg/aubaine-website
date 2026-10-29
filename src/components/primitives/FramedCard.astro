@@ -1,0 +1,260 @@
+---
+import { emblemUrl } from '../../lib/media'
+
+export type FramedSize = 'hero' | 'roster'
+
+type Props = {
+  size?: FramedSize
+  emblem?: string | undefined
+  idPrefix?: string
+  class?: string
+}
+
+const { size = 'hero', emblem, idPrefix = 'au-emblem', class: className, ...rest } = Astro.props
+const emblemSource = emblem && size === 'hero' ? emblemUrl(emblem) : undefined
+const EMBLEM_BOX = { x: 0, y: 0, width: 100, height: 100 } as const
+const id = (part: string): string => `${idPrefix}-${part}`
+---
+
+<div class:list={['au-framed', `au-framed--${size}`, className]} {...rest}>
+  <span class="au-framed__slab" aria-hidden="true"></span>
+  <div class="au-framed__card">
+    <div class="au-framed__plate">
+      <slot />
+    </div>
+    <span class="au-framed__frame" aria-hidden="true"></span>
+    {
+      emblemSource && (
+        <svg
+          class="au-framed__emblem"
+          viewBox={`0 0 ${EMBLEM_BOX.width} ${EMBLEM_BOX.height}`}
+          aria-hidden="true"
+          focusable="false"
+        >
+          <defs>
+            <linearGradient id={id('metal')} x1="0.2" y1="0" x2="0.8" y2="1">
+              <stop offset="0" style="stop-color:color-mix(in srgb, var(--gold) 40%, #fff)" />
+              <stop offset="0.45" style="stop-color:var(--gold)" />
+              <stop offset="1" style="stop-color:color-mix(in srgb, var(--gold) 62%, #08070d)" />
+            </linearGradient>
+            <mask id={id('shape')} style="mask-type:alpha">
+              <image href={emblemSource} {...EMBLEM_BOX} />
+            </mask>
+            <filter id={id('relief')} x="-25%" y="-25%" width="150%" height="150%">
+              <feMorphology in="SourceAlpha" operator="dilate" radius="2" result="wide" />
+              <feGaussianBlur in="wide" stdDeviation="4" result="haze" />
+              <feFlood flood-color="#06050d" flood-opacity="0.75" />
+              <feComposite in2="haze" operator="in" result="halo" />
+              <feOffset in="SourceAlpha" dy="-0.7" result="up" />
+              <feFlood style="flood-color:color-mix(in srgb, var(--gold) 30%, #fff)" />
+              <feComposite in2="up" operator="in" result="light" />
+              <feOffset in="SourceAlpha" dy="1.1" result="down" />
+              <feFlood flood-color="#06050d" flood-opacity="0.85" />
+              <feComposite in2="down" operator="in" result="dark" />
+              <feMerge>
+                <feMergeNode in="halo" />
+                <feMergeNode in="dark" />
+                <feMergeNode in="light" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+          <g filter={`url(#${id('relief')})`}>
+            <rect {...EMBLEM_BOX} fill={`url(#${id('metal')})`} mask={`url(#${id('shape')})`} />
+          </g>
+        </svg>
+      )
+    }
+    <span class="au-framed__glare" aria-hidden="true"></span>
+  </div>
+</div>
+
+<style>
+  .au-framed {
+    position: relative;
+    aspect-ratio: 3 / 4;
+  }
+
+  .au-framed__slab {
+    position: absolute;
+    inset: 8% -12% -5% -9%;
+    z-index: 0;
+    rotate: 5deg;
+    background:
+      radial-gradient(circle, rgba(6, 5, 13, 0.2) 0 1.3px, transparent 1.8px) 0 0 / 7px 7px,
+      var(--gold);
+    clip-path: polygon(16% 0, 100% 5%, 86% 100%, 0 94%);
+    animation: au-framed-slab calc(0.75s * var(--arrival, 1)) cubic-bezier(0.22, 1, 0.36, 1)
+      calc(0.12s * var(--arrival, 1)) backwards;
+  }
+
+  .au-framed__card {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    rotate: -2deg;
+    transform: perspective(1400px) rotateY(calc(var(--lean-x, 0) * 7deg))
+      rotateX(calc(var(--lean-y, 0) * -7deg));
+    background: #08070d;
+    box-shadow: 14px 16px 0 rgba(6, 5, 13, 0.78);
+    transition: transform 0.6s var(--ease);
+    animation: au-framed-card calc(0.55s * var(--arrival, 1)) var(--ease) backwards;
+  }
+
+  .au-framed__plate {
+    position: absolute;
+    inset: 0;
+    overflow: clip;
+  }
+
+  .au-framed__frame {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .au-framed__frame::before,
+  .au-framed__frame::after {
+    content: '';
+    position: absolute;
+    border: 1px solid color-mix(in srgb, var(--gold) 60%, transparent);
+  }
+
+  .au-framed__frame::before {
+    inset: 10px;
+  }
+
+  .au-framed__frame::after {
+    inset: 15px;
+    border-color: color-mix(in srgb, var(--gold) 28%, transparent);
+  }
+
+  .au-framed__emblem {
+    position: absolute;
+    right: 4%;
+    bottom: 3.5%;
+    z-index: 2;
+    width: clamp(88px, 25%, 148px);
+    aspect-ratio: 1;
+    overflow: visible;
+    rotate: -6deg;
+    pointer-events: none;
+    animation: au-framed-emblem calc(0.5s * var(--arrival, 1)) cubic-bezier(0.2, 1.35, 0.4, 1)
+      calc(0.5s * var(--arrival, 1)) backwards;
+  }
+
+  .au-framed__glare {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    background: radial-gradient(
+      circle at calc(50% + var(--lean-x, 0) * 45%) calc(40% + var(--lean-y, 0) * 45%),
+      rgba(255, 238, 196, 0.32),
+      rgba(255, 238, 196, 0) 48%
+    );
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+    transition: opacity 0.4s var(--ease);
+  }
+
+  .au-framed--roster .au-framed__card {
+    rotate: none;
+    box-shadow: 7px 8px 0 rgba(6, 5, 13, 0.72);
+    transition:
+      transform 0.6s var(--ease),
+      translate 0.34s var(--ease);
+    animation: none;
+  }
+
+  .au-framed--roster .au-framed__frame::before {
+    inset: 7px;
+  }
+
+  .au-framed--roster .au-framed__frame::after {
+    inset: 11px;
+  }
+
+  .au-framed--roster .au-framed__slab {
+    inset: 6% -8% -4% -7%;
+    rotate: 4deg;
+    opacity: 0;
+    scale: 0.9;
+    animation: none;
+    transition:
+      opacity 0.28s var(--ease),
+      scale 0.34s var(--ease),
+      translate 0.34s var(--ease);
+  }
+
+  :global([data-tilt-host]:is(:hover, :focus-visible, [aria-current='true'])) > .au-framed--roster .au-framed__slab {
+    opacity: 1;
+    scale: 1;
+    translate: 5% 2%;
+  }
+
+  :global([data-tilt-host]:is(:hover, :focus-visible, [aria-current='true'])) > .au-framed--roster .au-framed__card {
+    translate: 0 -6px;
+  }
+
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    :global([data-tilting]) .au-framed__card {
+      transition-duration: 0.14s;
+    }
+
+    :global([data-tilting]) .au-framed__glare {
+      opacity: 1;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .au-framed__emblem,
+    .au-framed__slab,
+    .au-framed__glare {
+      display: none;
+    }
+  }
+
+  @media print {
+    .au-framed__emblem,
+    .au-framed__slab,
+    .au-framed__glare {
+      display: none;
+    }
+
+    .au-framed__card {
+      rotate: none;
+      transform: none;
+      box-shadow: none;
+    }
+  }
+
+  @keyframes au-framed-emblem {
+    from {
+      opacity: 0;
+      scale: 1.7;
+      rotate: -22deg;
+    }
+    40% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes au-framed-slab {
+    from {
+      rotate: -2deg;
+      scale: 0.9;
+      opacity: 0;
+    }
+    35% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes au-framed-card {
+    from {
+      translate: 0 22px;
+      scale: 0.965;
+      rotate: -5deg;
+    }
+  }
+</style>
