@@ -175,7 +175,7 @@ A quote is an ordinary markdown blockquote, framed on its own. When someone says
 ```markdown
 > « Arthur, vois ces stèles : tant d'hommes et d'elfes ont versé leur sang ici. »
 >
-> :source[Jacques « Le Scéllaire » Arsenault s'adressant à Arthur Gwynnor.]
+> :source[Jacques « Le Scellaire » Arsenault s'adressant à Arthur Colbert.]
 ```
 
 A picture is an ordinary markdown image whose path is relative to the lore file, so it always reads

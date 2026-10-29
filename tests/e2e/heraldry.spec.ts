@@ -202,11 +202,13 @@ test('every piece of heraldry takes over its plain picture at once, named by its
   }
 })
 
-test('the stage, the banner, the flag and the arms share one context', async ({ page }) => {
+test('the stage, the banner, the flag, the arms and the glass share one context', async ({
+  page,
+}) => {
   await count(page)
   await page.goto(speciesPath(await heraldic('fr')))
   await expect(page.locator(`${STAGE}[data-staged] > canvas`)).toHaveCount(1)
-  for (const selector of [BANNER, FLAG, ARMS]) await bringDrawn(page, selector)
+  for (const selector of [GLASS, BANNER, FLAG, ARMS]) await bringDrawn(page, selector)
   expect(await contexts(page)).toBe(1)
 })
 
@@ -304,6 +306,46 @@ test('a Swup visit leaves no drape or glass behind, and they come back with thei
   await visit(page, path)
   await bring(page, FLAG)
   await expect(page.locator(`${FLAG}[data-draped] canvas`)).toHaveCount(1)
+})
+
+test('the gilt and the glass follow the pointer, then settle', async ({ page }) => {
+  await count(page)
+  await page.goto(speciesPath(await heraldic('fr')))
+  await bring(page, GLASS)
+  const glass = page.locator(`${GLASS}[data-lit]`)
+  await expect(glass.locator('canvas')).toHaveCount(1)
+  await expect(glass.locator('img')).toHaveAttribute('alt', /.+/)
+  const box = await glass.boundingBox()
+  if (!box) throw new Error('the glazed picture has no box')
+  const gilt = (): Promise<number[]> =>
+    glass.locator('canvas').evaluate((node: HTMLCanvasElement) => {
+      const corner = Math.round(node.width * 0.03)
+      const pixels = node.getContext('2d')?.getImageData(corner, corner, corner, corner).data
+      return pixels ? [...pixels] : []
+    })
+  await page.mouse.move(box.x + box.width * 0.1, box.y + box.height * 0.1)
+  expect(await restsWithin(page, 'glass', 3000)).toBeLessThan(3000)
+  const before = (await copies(page)).glass
+  const lit = await gilt()
+  await page.mouse.move(box.x + box.width * 0.9, box.y + box.height * 0.9, { steps: 8 })
+  await expect.poll(async () => (await copies(page)).glass).toBeGreaterThan(before)
+  expect(await restsWithin(page, 'glass', 3000)).toBeLessThan(3000)
+  expect(await gilt()).not.toEqual(lit)
+})
+
+test('print keeps the plain banner, flag, arms and painting and drops the canvases', async ({
+  page,
+}) => {
+  await page.goto(speciesPath(await heraldic('fr')))
+  for (const selector of [GLASS, BANNER, FLAG, ARMS]) await bringDrawn(page, selector)
+  await page.emulateMedia({ media: 'print' })
+  for (const canvas of await page.locator('[data-drape] canvas, .au-prose__frame canvas').all()) {
+    await expect(canvas).toBeHidden()
+  }
+  await expect(page.locator(`${BANNER} .au-heraldry__plain`)).toBeVisible()
+  await expect(page.locator(`${FLAG} .au-heraldry__plain`)).toBeVisible()
+  await expect(page.locator(`${ARMS} .au-heraldry__plain`)).toBeVisible()
+  await expect(page.locator(`${GLASS} img`)).toBeVisible()
 })
 
 test('the gilt and enamel of the arms follow the pointer, then settle', async ({ page }) => {
@@ -478,5 +520,20 @@ test.describe('with reduced motion', () => {
     await page.waitForTimeout(500)
     expect((await copies(page)).arms).toBe(drawn)
     expect(await canvas.evaluate((node: HTMLCanvasElement) => node.toDataURL())).toBe(before)
+  })
+
+  test('the glass draws once and holds still under the pointer', async ({ page }) => {
+    await count(page)
+    await page.goto(speciesPath(await heraldic('fr')))
+    await bring(page, GLASS)
+    const glass = page.locator(`${GLASS}[data-lit]`)
+    await expect(glass.locator('canvas')).toHaveCount(1)
+    const box = await glass.boundingBox()
+    if (!box) throw new Error('the glazed picture has no box')
+    await page.waitForTimeout(300)
+    const drawn = (await copies(page)).glass
+    await page.mouse.move(box.x + box.width * 0.8, box.y + box.height * 0.6, { steps: 8 })
+    await page.waitForTimeout(500)
+    expect((await copies(page)).glass).toBe(drawn)
   })
 })
