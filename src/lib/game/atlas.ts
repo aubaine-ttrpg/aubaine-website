@@ -4,6 +4,7 @@ import { OPENING_WORLD } from '../atlas/contract/worlds.ts'
 import type { MapKind, Pace } from '../atlas/vocabulary.ts'
 import { DEFAULT_LOCALE, type Locale } from '../i18n/locales.ts'
 import { pathFor } from '../i18n/routes.ts'
+import { bookChapter } from './book-chapters.ts'
 import { corpus, label } from './corpus.ts'
 import { type ContentStatus, overlays } from './schema.ts'
 import { readTravelBook } from './travel-book.ts'
@@ -76,28 +77,11 @@ export async function atlasHead(locale: Locale): Promise<AtlasHead> {
   }
 }
 
-async function travelChapter(
-  locale: Locale,
-): Promise<{ title: string; body: string; href: string }> {
-  const id = `${TRAVEL_CHAPTER.book}/${TRAVEL_CHAPTER.file}`
-  const page =
-    (locale === DEFAULT_LOCALE ? undefined : await getEntry('bookPages', `${id}.${locale}`)) ??
-    (await getEntry('bookPages', id))
-  const book = (await corpus(locale)).books.find((entry) => entry.id === TRAVEL_CHAPTER.book)
-  const chapter = book?.chapters.find((entry) => entry.file === TRAVEL_CHAPTER.file)
-  if (!page?.body || !chapter) throw new Error(`the travel chapter ${id} is missing`)
-  return {
-    title: page.data.title,
-    body: page.body,
-    href: pathFor('book', locale, { book: TRAVEL_CHAPTER.book, chapter: chapter.slug }),
-  }
-}
-
 export async function atlasView(locale: Locale): Promise<AtlasView> {
   const [head, worlds, chapter, data, rules, words] = await Promise.all([
     atlasHead(locale),
     atlasWorlds(locale),
-    travelChapter(locale),
+    bookChapter(locale, TRAVEL_CHAPTER),
     corpus(locale),
     getEntry('atlasTravelRules', 'travel'),
     getEntry('atlasVocabularyLists', 'vocabularies'),
