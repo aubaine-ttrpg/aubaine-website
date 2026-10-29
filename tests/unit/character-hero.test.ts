@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { leanToward } from '../../src/scripts/character-hero'
+import { leanToward } from '../../src/scripts/tilt'
 
 const CARD = { left: 100, top: 200, width: 300, height: 400 }
 const centre = { x: 250, y: 400 }

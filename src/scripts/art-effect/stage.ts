@@ -6,7 +6,7 @@ import {
   stageWindow,
 } from '../../lib/art-effect/cover'
 import { STAGE } from '../../lib/art-effect/presets'
-import { STILL } from '../character-hero'
+import { STILL } from '../stillness'
 import { type Backdrop, openStudio, type Studio } from './studio'
 
 const STAGE_SELECTOR = '[data-stage]'
