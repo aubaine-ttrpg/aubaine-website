@@ -10,7 +10,7 @@
   "packageManager": "pnpm@9.15.9",
   "scripts": {
     "dev": "pnpm media:sync && astro dev",
-    "build": "pnpm media:sync && astro build",
+    "build": "pnpm media:sync && astro build && node tools/deploy/asset-limit.ts",
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check && tsc --noEmit && tsc --noEmit -p src/lib/atlas/worker/tsconfig.json",
