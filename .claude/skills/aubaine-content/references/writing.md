@@ -69,6 +69,16 @@ an obligation, no stat field restated in prose. They load with the file; this pa
   a tag that does not describe the skill is never added to fill a slot (owner, 2026-10-25: « the
   real rule is not "Add tags when combo" it's "Tags are here for the combo" so tags need to be here
   so players can combo »; earlier the same day: « wtf even jump and se relever don't have tags »).
+- A state carries a kind and, when it belongs to a family, a type: the family other Compétences
+  reach in one sentence, the way a dispel type works in an MMO, opened up so that any rule text can
+  name it (owner, 2026-10-27: « the goal is to mimic the status repartition of world of warcraft
+  and see if we can make it better to give more flexibilty and combos possibilities for game
+  designer »). Name the family or the kind rather than listing states: « un état de
+  {{type-etat-magie}} », « un état {{nefaste}} ». A family holds Bénéfique and Néfaste states alike,
+  so a Compétence that strips a family is counterplay against buffs too. An untyped state is
+  reached only by a Compétence that names it or its kind; typing one makes it easier to end, so it
+  is the owner's call. The types are read from `data/meta/state-types.json`, and a new one arrives
+  with the first state that needs it.
 - Light takes no keyword and no levels: a Compétence says what the creature sees in plain words,
   « vous voyez dans le noir, en l'absence de lumière », never « Lumière faible » or « Lumière
   vive » (owner, 2026-10-20: « we drop dnd's bullshit about lighting level »; the Ténèbres keyword

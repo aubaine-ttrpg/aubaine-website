@@ -19,6 +19,8 @@ Aubaine renders every load-bearing mechanical noun as an icon plus a colored ter
 - Skills, by `id`: `{{TRAFEU-001}}`. A skill placed on a tree, listed in `data/skill-lists/`, offered by a species, or granted by an item or a set bonus links to the first of those, so a skill a tree places links to its node.
 - Equipment items, by file name: `{{dague}}`. The reference shows the icon of the item's slot and links to its entry on the equipment page.
 - Skill trees, by `id`: `{{feu}}`. The reference shows the tree icon in the colour of the tree's leading Domaine and links to the tree's page.
+- Species, by `espece-` and the species `id`: `{{espece-humain}}`. The reference prints the species name, shows the species icon in its `keyColour`, and links to the species page. The prefix keeps a species apart from the creature type of the same name, as `{{mort-vivant}}`.
+- Category values, from the vocabulary each category rule term names in `values`: `{{grande}}`, `{{nefaste}}`, `{{degats-feu}}`, `{{type-etat-magie}}`. See `vocabularies.md` § Rule terms.
 - Tags, from `data/meta/tags.json`, keyed like Aptitudes by the `slugify` of `labelFr`: `{{illusion}}`, `{{vol-de-vie}}`. They share one colour and one icon. A tag a rule term reads answers to that rule term instead: `{{sort}}` reads the `spell` tag. Rule text names a tag by its key, as « un {{sort}} d'{{illusion}} » or « une {{rage}} », and never writes « étiquette »: `pnpm data:check` refuses the word in rule text.
 
 Each of these lists has a source of truth in the repository. Read it when you need the members. Do not copy a vocabulary into prose, a rule, or a comment, because the copy is what goes stale.

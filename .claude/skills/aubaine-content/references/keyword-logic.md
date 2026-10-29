@@ -18,7 +18,7 @@ links. The index is built in `src/lib/game/build.ts` and applied in `src/lib/gam
 | Class | Render | Key | List |
 | --- | --- | --- | --- |
 | Rule terms | own colour and icon | `slugify` of the French label, `{{action-bonus}}`, or the term's own `key` | `RULE_TERMS` in `src/lib/game/build.ts` |
-| Category values | their category's colour and icon, unless the entry carries its own; the category's tooltip, titled by the value | `slugify` of `labelFr`: `{{grande}}`, `{{dragon}}`; a damage type adds its kind, `{{degats-feu}}` | the vocabulary a rule term names in `values`: `data/meta/sizes.json`, `creature-types.json`, `damage-types.json` |
+| Category values | their category's colour and icon, unless the entry carries its own (a state kind takes its kind colour); the category's tooltip, titled by the value | `slugify` of `labelFr`: `{{grande}}`, `{{nefaste}}`; a category that declares `prefixValues` puts its own key first, `{{degats-feu}}`, `{{type-etat-magie}}` | the vocabulary each category in `RULE_TERMS` names in `values`, such as `data/meta/sizes.json`; read the declaration for the rest |
 | Characteristics | per term colour and icon | `slugify` of `labelFr`, `{{dexterite}}` | `data/meta/characteristics.json` |
 | Aptitudes | one shared colour and one shared icon, own definition | `slugify` of `labelFr`, `{{visee}}` | `data/meta/aptitudes.json` |
 | Tags | one shared colour and one shared icon, own definition | `slugify` of `labelFr`, `{{illusion}}` | `data/meta/tags.json` |
@@ -26,6 +26,7 @@ links. The index is built in `src/lib/game/build.ts` and applied in `src/lib/gam
 | Skills | badge, plus a tooltip carrying type, tree, and the opening of the description | the skill `id`, `{{TRAFEU-001}}` | `data/skills/` |
 | Equipment items | the icon of the item's slot | the file name, `{{dague}}` | `data/equipment/items/` |
 | Skill trees | the tree icon in the colour of its leading Domaine | the tree `id`, `{{feu}}` | `data/skill-trees/` |
+| Species | the species icon in the species' `keyColour` | `espece-` and the species `id`, `{{espece-humain}}` | `data/species/` |
 
 A Caractéristique's key comes from its French label, not from its English machine `key`: `{{dexterite}}`,
 never `{{dexterity}}`.
@@ -124,6 +125,11 @@ braced word that should not.
    - « de la taille d'une caisse » is a size in the ordinary sense. `{{taille}}` is the rule term, and
      a height in metres is never a `{{taille}}`.
    - « vous apprenez » for learning a fact stays bare. `{{apprise}}` is a Compétence you bought.
+   - « Si l'effet prend fin » is any effect and stays bare. `{{effet}}` is only a state's kind, the
+     category whose values are `{{benefique}}`, `{{nefaste}}` and `{{neutre}}`.
+   - « un Mort-vivant » that names what a creature is takes the creature type `{{mort-vivant}}`;
+     a species is `{{espece-<id>}}`, as `{{espece-humain}}`, and only where the rule means the
+     people a character can play.
 4. **Keep contrasting pairs even.** Two words listed as members of one set, as in « passifs comme
    actifs » or « X ou Y », are a pair: when one of them has no entry, both stay bare, so « passifs »
    carries no key there. An
