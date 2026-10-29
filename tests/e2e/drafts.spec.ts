@@ -13,8 +13,12 @@ function results(page: Page) {
   return page.locator('[aria-live="polite"]').first()
 }
 
-function draftsSwitch(page: Page) {
-  return page.getByRole('switch', { name: 'Drafts', exact: true })
+function hideSwitch(page: Page) {
+  return page.getByRole('switch', { name: 'Hide drafts', exact: true })
+}
+
+async function preferHidden(page: Page): Promise<void> {
+  await page.addInitScript(() => window.localStorage.setItem('aubaine.drafts', 'hidden'))
 }
 
 function visibleEntries(page: Page) {
@@ -28,25 +32,33 @@ async function entryCounts(page: Page): Promise<{ all: number; published: number
   }
 }
 
-test('drafts are hidden by default and the switch shows them', async ({ page }) => {
+test('drafts show by default and the switch hides them', async ({ page }) => {
   await page.goto('/en/species')
   await hydrated(page)
   const { all, published } = await entryCounts(page)
   expect(all, 'the species need a draft for the switch to show').toBeGreaterThan(published)
-  await expect(draftsSwitch(page)).not.toBeChecked()
-  await expect(results(page)).toHaveText(resultLabel(published, 'en'))
-  await expect(visibleEntries(page)).toHaveCount(published)
-
-  await draftsSwitch(page).click()
-  await expect(draftsSwitch(page)).toBeChecked()
+  await expect(hideSwitch(page)).not.toBeChecked()
   await expect(results(page)).toHaveText(resultLabel(all, 'en'))
   await expect(visibleEntries(page)).toHaveCount(all)
 
-  await draftsSwitch(page).click()
+  await hideSwitch(page).click()
+  await expect(hideSwitch(page)).toBeChecked()
   await expect(results(page)).toHaveText(resultLabel(published, 'en'))
+  await expect(visibleEntries(page)).toHaveCount(published)
+
+  await hideSwitch(page).click()
+  await expect(results(page)).toHaveText(resultLabel(all, 'en'))
 })
 
-test('a list made only of drafts shows an empty state', async ({ page }) => {
+test('drafts show before the filter island hydrates', async ({ page }) => {
+  await page.route(/FilterBar/, (route) => route.abort())
+  await page.goto('/en/species')
+  await expect(page.locator('astro-island[ssr]')).toHaveCount(1)
+  const { all } = await entryCounts(page)
+  await expect(visibleEntries(page)).toHaveCount(all)
+})
+
+test('a list made only of drafts shows an empty state once drafts are hidden', async ({ page }) => {
   const english = await corpus('en')
   const species = english.species.find(
     (entry) =>
@@ -56,15 +68,15 @@ test('a list made only of drafts shows an empty state', async ({ page }) => {
   expect(species, 'no species lists only drafts').toBeDefined()
   await page.goto(`/en/species/${species?.id}`)
   await hydrated(page)
+  await expect(results(page)).toHaveText(resultLabel((await entryCounts(page)).all, 'en'))
+  await expect(page.getByText('Nothing to show yet.')).toBeHidden()
+
+  await hideSwitch(page).click()
+  await expect(hideSwitch(page)).toBeChecked()
   await expect(results(page)).toHaveText(resultLabel(0, 'en'))
   await expect(page.getByText('Nothing to show yet.')).toBeVisible()
   await expect(page.locator('[data-filter-empty="unpublished"] .au-empty__mark')).toBeVisible()
   await expect(page.getByRole('button', { name: 'Reset' })).toHaveCount(0)
-
-  await draftsSwitch(page).click()
-  await expect(draftsSwitch(page)).toBeChecked()
-  await expect(results(page)).toHaveText(resultLabel((await entryCounts(page)).all, 'en'))
-  await expect(page.getByText('Nothing to show yet.')).toBeHidden()
 })
 
 test('the preference survives a reload and follows the reader to another list', async ({
@@ -72,31 +84,32 @@ test('the preference survives a reload and follows the reader to another list', 
 }) => {
   await page.goto('/en/species')
   await hydrated(page)
-  await draftsSwitch(page).click()
+  await hideSwitch(page).click()
 
   await page.reload()
   await hydrated(page)
-  await expect(draftsSwitch(page)).toBeChecked()
-  await expect(results(page)).toHaveText(resultLabel((await entryCounts(page)).all, 'en'))
+  await expect(hideSwitch(page)).toBeChecked()
+  await expect(results(page)).toHaveText(resultLabel((await entryCounts(page)).published, 'en'))
 
   await page.locator('[data-nav="almanach"]').click()
   await expect(page).toHaveURL('/en/almanach')
   await page.getByRole('link', { name: 'Skill Trees', exact: true }).click()
   await expect(page).toHaveURL('/en/trees')
   await hydrated(page)
-  await expect(draftsSwitch(page)).toBeChecked()
-  await expect(results(page)).toHaveText(resultLabel((await entryCounts(page)).all, 'en'))
+  await expect(hideSwitch(page)).toBeChecked()
+  await expect(results(page)).toHaveText(resultLabel((await entryCounts(page)).published, 'en'))
 })
 
 test('the switch answers the keyboard', async ({ page }) => {
   await page.goto('/en/species')
   await hydrated(page)
-  await draftsSwitch(page).focus()
+  await hideSwitch(page).focus()
   await page.keyboard.press('Space')
-  await expect(draftsSwitch(page)).toBeChecked()
+  await expect(hideSwitch(page)).toBeChecked()
 })
 
 test('a list of drafts leaves no stale detail on screen', async ({ page }) => {
+  await preferHidden(page)
   await page.goto('/en/equipment')
   await hydrated(page)
   const draftName = await page.evaluate(() => {
@@ -120,6 +133,7 @@ test('a link to a draft still opens it while drafts are hidden', async ({ page }
   const draft = [...(await corpus('en')).itemsBySlug].find(([, item]) => item.status === 'draft')
   expect(draft, 'no equipment piece is a draft').toBeDefined()
   const slug = draft?.[0] ?? ''
+  await preferHidden(page)
   await page.goto(`/en/equipment#e-${slug}`)
   await expect(page.locator('[data-browse]')).toHaveAttribute('data-selection', 'enhanced')
   await hydrated(page)
@@ -132,7 +146,8 @@ test('a link to a draft still opens it while drafts are hidden', async ({ page }
   await expect(results(page)).toHaveText(resultLabel(published + 1, 'en'))
 })
 
-test('drafts stay hidden before the filter island hydrates', async ({ page }) => {
+test('hidden drafts stay hidden before the filter island hydrates', async ({ page }) => {
+  await preferHidden(page)
   await page.route(/FilterBar/, (route) => route.abort())
   await page.goto('/en/species')
   await expect(page.locator('astro-island[ssr]')).toHaveCount(1)

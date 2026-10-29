@@ -121,10 +121,10 @@ const website =
       try {
         document.documentElement.setAttribute(
           'data-drafts',
-          window.localStorage.getItem('aubaine.drafts') === 'shown' ? 'shown' : 'hidden'
+          window.localStorage.getItem('aubaine.drafts') === 'hidden' ? 'hidden' : 'shown'
         )
       } catch (error) {
-        document.documentElement.setAttribute('data-drafts', 'hidden')
+        document.documentElement.setAttribute('data-drafts', 'shown')
       }
     </script>
 

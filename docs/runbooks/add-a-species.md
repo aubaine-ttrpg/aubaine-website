@@ -18,7 +18,7 @@ The filename is the id and the id becomes the URL. Lowercase letters, digits and
 | Field | Required | What it means (from `schema.ts`) | Allowed values |
 | --- | --- | --- | --- |
 | `id` | required | Identifiant de l'Espèce, qui devient son URL. | `^[a-z][a-z0-9-]*$` |
-| `status` | optional | Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable : les listes le masquent tant que le lecteur n'affiche pas les brouillons ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une Espèce, une pièce d'équipement ou une panoplie, dans cet ordre. | `draft`, `playtest`, `beta`, `balanced` |
+| `status` | optional | Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable : les listes affichent l'entrée assombrie sauf si le lecteur masque les brouillons ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une Espèce, une pièce d'équipement ou une panoplie, dans cet ordre. | `draft`, `playtest`, `beta`, `balanced` |
 | `name` | required | Nom rendu en titre. | any non empty string |
 | `subtitle` | optional | Devise de l'Espèce, rendue en italique sous le titre. Absente, le titre reste seul. | any non empty string |
 | `descriptors` | optional | Un à quatre mots qui caractérisent l'entrée, rendus en étiquettes dans le héros, dans l'ordre écrit. Absent : le héros n'en porte pas. | 1 to 4 distinct keys from `data/meta/descriptors.json` |

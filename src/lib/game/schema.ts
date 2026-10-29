@@ -111,7 +111,7 @@ export const CONTENT_STATUSES = ['draft', 'playtest', 'beta', 'balanced'] as con
 const contentStatus = z
   .enum(CONTENT_STATUSES)
   .describe(
-    "Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable : les listes le masquent tant que le lecteur n'affiche pas les brouillons ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une Espèce, une pièce d'équipement ou une panoplie, dans cet ordre.",
+    "Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable : les listes affichent l'entrée assombrie sauf si le lecteur masque les brouillons ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une Espèce, une pièce d'équipement ou une panoplie, dans cet ordre.",
   )
 
 export const PROFILE_RANKS = ['F', 'D', 'C', 'B', 'A', 'S'] as const

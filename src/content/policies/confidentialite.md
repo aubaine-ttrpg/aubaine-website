@@ -15,7 +15,7 @@ Pas de mesure d'audience, pas de traceur publicitaire, pas de cookie, pas de bou
 Six réglages sont mémorisés quand vous les changez :
 
 - le thème clair ou sombre, sous la clé `aubaine.theme` ;
-- l'affichage des brouillons, sous la clé `aubaine.drafts` ;
+- le masquage des brouillons dans les listes, sous la clé `aubaine.drafts` ;
 - le son (activé ou coupé, volume général, volumes de l'ambiance, des effets et de l'interface), sous la clé `aubaine.sound` ;
 - la mise en pause des animations sur les pages des Espèces et des Arbres (le fond en haut de page et le drapeau d'une sous-espèce), sous la clé `aubaine.stage` ;
 - la vue de la carte de l'Atlas (dessus, 3/4, relief ou libre), sous la clé `aubaine.atlas.view` ;

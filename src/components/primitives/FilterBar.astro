@@ -99,7 +99,7 @@ const islandStrings = {
   results: t.results,
   treeKind: t.treeKind,
   allTrees: t.allTrees,
-  drafts: t.drafts,
+  hideDrafts: t.hideDrafts,
 }
 ---
 
@@ -202,13 +202,13 @@ const islandStrings = {
   }
 
   .au-switch:checked,
-  :root[data-drafts='shown'] .au-switch {
+  :root[data-drafts='hidden'] .au-switch {
     border-color: var(--gold);
     background: var(--accent-soft);
   }
 
   .au-switch:checked::before,
-  :root[data-drafts='shown'] .au-switch::before {
+  :root[data-drafts='hidden'] .au-switch::before {
     transform: translateX(16px);
     background: var(--gold);
   }

@@ -15,7 +15,7 @@ The filename is the slug and the id, lowercase with hyphens and no accents: `for
 | Field | Required | What it means (from `schema.ts`) | Allowed values |
 | --- | --- | --- | --- |
 | `name` | required | Nom imprimé de l'environnement. | any non empty string |
-| `status` | optional | Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable : les listes le masquent tant que le lecteur n'affiche pas les brouillons ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une Espèce, une pièce d'équipement ou une panoplie, dans cet ordre. | `draft`, `playtest`, `beta`, `balanced` |
+| `status` | optional | Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable : les listes affichent l'entrée assombrie sauf si le lecteur masque les brouillons ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une Espèce, une pièce d'équipement ou une panoplie, dans cet ordre. | `draft`, `playtest`, `beta`, `balanced` |
 | `icon` | required | Nom Iconify de l'icône, dessinée devant le nom de l'environnement. | an `mdi:` or `game-icons:` name whose SVG is on disk |
 | `die` | required | Nombre de faces du Dé de butin de cet environnement, que lance la Compétence Récolter. | integer, 2 or more |
 | `description` | required | Une phrase : ce que l'environnement recouvre et ce qu'on y ramasse. Aucune règle. | one sentence of plain text |

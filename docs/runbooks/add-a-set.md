@@ -15,7 +15,7 @@ The filename is the set id. A set id uses five capital letters, as `FAEBI.json` 
 | Field | Required | What it means (from `schema.ts`) | Allowed values |
 | --- | --- | --- | --- |
 | `id` | required | Identifiant, celui qu'une pièce nomme dans `set`. | any non empty string, matching the filename |
-| `status` | optional | Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable : les listes le masquent tant que le lecteur n'affiche pas les brouillons ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une Espèce, une pièce d'équipement ou une panoplie, dans cet ordre. | `draft`, `playtest`, `beta`, `balanced` |
+| `status` | optional | Maturité de l'entrée, de la moins arrêtée à la plus arrêtée. 'draft' est en cours d'écriture et n'est pas encore jouable : les listes affichent l'entrée assombrie sauf si le lecteur masque les brouillons ; 'playtest', 'beta' et 'draft' portent un badge ; 'balanced' n'en porte aucun mais interrompt l'héritage. Absent : la valeur est héritée de ce qui possède l'entrée, un arbre, une Espèce, une pièce d'équipement ou une panoplie, dans cet ordre. | `draft`, `playtest`, `beta`, `balanced` |
 | `name` | required | The printed name of the set. | any non empty string |
 | `description` | required | Présentation de la panoplie, imprimée sous son nom : d'où elle vient et à quoi elle ressemble. Aucune règle n'y figure. | one to three sentences of plain text, no rule markup |
 | `bonuses` | required | Les paliers, par nombre de pièces croissant. | 1 or more tiers |

@@ -18,7 +18,7 @@ export type FilterStrings = {
   results: string
   treeKind: string
   allTrees: string
-  drafts: string
+  hideDrafts: string
 }
 
 type Props = {
@@ -101,7 +101,7 @@ export default function FilterBar({
   inputMaxWidth = '340px',
 }: Props) {
   const [entries, setEntries] = useState<Entry[]>([])
-  const [withDrafts, setWithDrafts] = useState(false)
+  const [withDrafts, setWithDrafts] = useState(true)
   const [revealed, setRevealed] = useState<Set<string>>(new Set())
   const [query, setQuery] = useState('')
   const [selected, setSelected] = useState<Map<string, Set<string>>>(new Map())
@@ -429,12 +429,12 @@ export default function FilterBar({
               <input
                 type="checkbox"
                 role="switch"
-                aria-checked={withDrafts}
+                aria-checked={!withDrafts}
                 className="au-switch"
-                checked={withDrafts}
-                onChange={(event) => showDrafts(event.target.checked)}
+                checked={!withDrafts}
+                onChange={(event) => showDrafts(!event.target.checked)}
               />
-              <span>{strings.drafts}</span>
+              <span>{strings.hideDrafts}</span>
             </label>
           )}
           <span
