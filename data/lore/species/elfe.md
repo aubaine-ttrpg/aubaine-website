@@ -2,7 +2,7 @@ Les elfes sont les héritiers des Galwariens, porteurs d'une grâce infinie et d
 
 > « Élyséa… pourquoi laisses-tu cela arriver ? Ici ? Si tu étais vraiment là, nous ne serions pas dans ce chaos : cette guerre n'aurait jamais dû éclater. Combien de vies encore doivent-elles être sacrifiées pour une cause qui a perdu tout sens ? Que faire quand tout semble se consumer ? Attendre ? Observer ? Et pendant ce temps, mes gens meurent. Où es-tu quand j'ai besoin de toi ? Je protégerai Brécelann, avec ou sans toi. »
 >
-> :source[La reine Tiar Vyrefiel s'adressant à la déesse Élyséa dans le sanctuaire de Teyrdrassil, l'Arbre-Monde, en l'an 30 après le Second Éclat, à l'aube de la guerre de Brécelann.]
+> :source[La reine Tiar Vyrefiel s'adressant à la déesse Élyséa dans le sanctuaire de Teyrdrassil, l'Arbre-Monde, quelques années après le Second Éclat, à l'aube de la guerre de Brécelann.]
 
 ## Héritage sylvestre
 
