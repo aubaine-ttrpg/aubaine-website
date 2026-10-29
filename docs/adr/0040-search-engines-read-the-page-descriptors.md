@@ -3,6 +3,7 @@
 **Project:** Aubaine, the wiki
 **Status:** Accepted
 **Date:** 2026-10-06
+**Revised:** 2026-10-29, `/pdf-archive/*` left `public/_headers` with the zips it served (0062, addendum in Decision 4)
 **Deciders:** Kori
 **Scope:**
 - **Covers:**
@@ -165,6 +166,12 @@ Versions this was decided against, read from `pnpm-lock.yaml`: `astro@7.3.3`, `@
 - A booklet PDF changes its URL at every printing, and the previous file leaves `public/pdf/` (0013).
   The owner chose on 2026-10-06 to keep PDFs out of search, so that the chapter, tree and archive
   pages rank instead of a file that will soon be gone.
+
+### Addendum (2026-10-29): the archived zips left the site
+
+- Archived zips download from GitHub Releases (0062), so `/pdf-archive/*` and its `noindex` header
+  left `public/_headers`. Only `/pdf/*` carries the header now. Whether search engines index a
+  GitHub release asset is unverified.
 
 ### Alternatives considered
 

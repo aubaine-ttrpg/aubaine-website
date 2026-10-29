@@ -3,6 +3,7 @@
 **Project:** Aubaine, the wiki
 **Status:** Accepted
 **Date:** 2026-09-22
+**Revised:** 2026-10-29, archived zips download from GitHub Releases instead of `/pdf-archive/` (0062, addendum in Decision 1)
 **Deciders:** Kori
 **Scope:** Where a booklet PDF lives once a newer one exists, the address its history is read at, and
 what a codex version has to carry before it may ship. Does not cover how a booklet is rendered, which
@@ -63,6 +64,15 @@ them version 0.2.1, before anything read it.
 - An absent `archive` key meaning loose follows the convention that
   `.claude/rules/content/data-authoring.md` already sets for every optional field, so no `null` is
   ever written.
+
+### Addendum (2026-10-29): archived zips download from GitHub Releases
+
+- An archived zip exceeds the 25 MiB per file that Workers static assets accept, so it no longer
+  ships under `/pdf-archive/`. A workflow publishes each archived generation as a GitHub Release, and
+  an archived row links the release asset. 0062 records both.
+- The three states, the zips in `data/media/pdf-archive/` and their naming are unchanged. The
+  rejected alternative below reopened only in part: the zips are published, but they stay in the
+  repository until step 3 of `tasks/AUBAINE-003.md`.
 
 ### Alternatives considered
 
