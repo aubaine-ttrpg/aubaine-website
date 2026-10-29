@@ -3,6 +3,7 @@
   "title": "Nomade",
   "type": "passive",
   "tier": 5,
+  "art": "nomade-1_1-og.png",
   "domains": [
     "psychic"
   ],

@@ -3,6 +3,7 @@
   "title": "Prestance héroïque",
   "type": "passive",
   "tier": 5,
+  "art": "prestance-heroique-1_1-og.png",
   "domains": [
     "physical",
     "psychic"

@@ -3,6 +3,7 @@
   "title": "Enfant du désert",
   "type": "passive",
   "tier": 5,
+  "art": "enfant-du-desert-1_1-og.png",
   "domains": [
     "physical"
   ],

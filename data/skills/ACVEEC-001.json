@@ -3,6 +3,7 @@
   "title": "J'achète, je vends, j'échange",
   "type": "passive",
   "tier": 5,
+  "art": "j-achete-je-vends-j-echange-1_1-og.png",
   "domains": [],
   "prerequisite": "Être Humain de la Nouvelle-Aubaine",
   "activation": "Passif",

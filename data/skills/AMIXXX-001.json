@@ -3,6 +3,7 @@
   "title": "Ami",
   "type": "active",
   "tier": 5,
+  "art": "ami-1_1-og.png",
   "domains": [
     "psychic"
   ],

@@ -3,6 +3,7 @@
   "title": "Discipulus",
   "type": "passive",
   "tier": 5,
+  "art": "discipulus-1_1-og.png",
   "domains": [],
   "prerequisite": "Être Humain de la Victoria",
   "activation": "Passif",

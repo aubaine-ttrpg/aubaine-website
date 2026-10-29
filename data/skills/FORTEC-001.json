@@ -3,6 +3,7 @@
   "title": "Formation technique",
   "type": "passive",
   "tier": 5,
+  "art": "formation-technique-1_1-og.png",
   "domains": [
     "psychic"
   ],

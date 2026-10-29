@@ -3,6 +3,7 @@
   "title": "L'esprit humain",
   "type": "passive",
   "tier": 5,
+  "art": "l-esprit-humain-1_1-og.png",
   "domains": [],
   "prerequisite": "Être Humain",
   "activation": "Passif",
