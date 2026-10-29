@@ -67,12 +67,30 @@ An epigraph or a quoted exchange closes on `> :source[...]`, naming who speaks a
 where and when. Emotion lives inside the lines, in ellipses and interjections (« … Votre Majesté »,
 « Humpf », « Huh… »), never in stage directions such as *(Un silence.)*.
 
+## Dates
+
+- Eden counts its years from the last day of the battle of Brécelann and the peace treaty between
+  elves and humans, its year 0. The data/lore/species/humain.md page tells the convention; a date
+  is written as French writes « av. J.-C. » and « apr. J.-C. »: « 238 apr. V. », « 12 av. V. ». The
+  owner, 2026-10-26: « in french it should be av. V (juste like in french av. J.-C., and apr.
+  J.-C) ».
+- A page never states the current year of the setting. The owner, 2026-10-26: « no need to state
+  the year of the setting as people can play whenever they want so no need to say "Eden en est à
+  l'an 661" ».
+
 ## What a narrative inference may add
 
 A small concrete detail that dramatises a known fact is welcome: a wool cap, a spring tournament, a
 sister at the bedside. A new fact about the world is not: a people, a place, a date, an institution,
 a cause, or a relationship between named characters. List every inference in the report so the
 owner can veto it. `.claude/skills/aubaine-prose/references/claims-and-evidence.md` covers the single word that asserts canon on its own.
+
+Keep the owner's modality. What the owner gives as a state of affairs is never hardened into a rule:
+« some organizations of the weitzguard seems to still be limited to humans such as the Oracle » is
+« jusqu'ici, seuls des humains ont été choisis », not « réservés aux humains ». The owner,
+2026-10-26: « that's the twist it's teh 6 strongest primordial magic users, altough for now only
+humans were chosen to occupy this post (see the difference between just saying Yeah everything is
+open except the oracles) ».
 
 ## Before calling it done
 

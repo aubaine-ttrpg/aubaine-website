@@ -129,6 +129,20 @@ citing that entry as precedent.
   - Owner: « if something we do is also in SRD like save then take srd value, it's that simple ».
   - Only the number is taken, never the SRD mechanic around it. A finding that a fixed number
     differs from the SRD's value for the same action cites the page in `tmp/srd/`.
+- **A Compétence d'Espèce serves from creation to the cap (2026-10-25).**
+  - Owner: « species skills are meant to be for beginning but still be accurate later just like the
+    nnor ones (exception made for the draggonnor's action simply because when fusing, the nnor player
+    gain more energy so it's okay) ».
+  - Read every Compétence d'Espèce at Niveau 1 and at Niveau 20: it matters to a new character and
+    still does at the cap, through what scales with the character (an Avantage, a DD from its
+    Caractéristique and Aptitude, a capability no number replaces).
+  - Forme draconique is the exception: its value grows with the Énergie its form gives back.
+- **Ending a state ends all of it (2026-10-26).**
+  - Owner, on VOLSUR-001 ending Agonie or Fatigue: « It only heals one negatif effect so if the agonie
+    it just disapears there is not stack, same for fatigue and thats already what's intended so no
+    changes ».
+  - « Vous mettez fin à un état » removes that one state whole, every stack included. Do not raise how
+    many stacks it ends, nor what the base rules do after it.
 - **Owner exceptions (2026-10-20).**
   - Forme draconique's substitution of Physique and Mental, and its full revert when it ends, are
     chosen against the ruling on flat numbers, and so is Fatigue's −1 per stack.

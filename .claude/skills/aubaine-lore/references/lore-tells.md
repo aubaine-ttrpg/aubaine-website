@@ -38,6 +38,20 @@ Three more show up when a history is written rather than told:
 - The brochure: « niché », « riche », « millénaire » piled on a place or a people. One concrete
   particular carries more than three adjectives.
 
+Three more show up when the owner's answers are copied into the page. An answer settles the canon
+for the writer; it is not text for the reader. The owner, 2026-10-26, on the Humain page:
+
+- The echoed answer: a sentence that exists because the owner answered a question, such as a
+  negative nobody claimed (« Al-Wahaa n'en est pas membre », when nothing suggested it was). Owner:
+  « nobody said it was ? [...] this is dumbly constraint echoing and should never happen eagain ».
+- The implied consequence: a sentence the reader already draws from the one before, such as « Les
+  rois et les reines de la Nouvelle-Aubaine sont des Colbert » after Arthur became its first king.
+  Owner: « this is useless it's already logical, royalty always passes on ».
+- The stray fact: a fact set down where it serves nothing, such as the Oracles' human-only rule
+  between two sentences on the Weitzguard. It goes in the section whose subject it governs. Owner:
+  « why not put that in the oracles instead of just putting it randomly between two snetences of the
+  weitzguard paragraph ? »
+
 ## Checks over the whole page
 
 - Read every section's last sentence in a row. If most end on a polished line, let some of them
