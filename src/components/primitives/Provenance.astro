@@ -5,6 +5,7 @@ import { flattenText, termLabels } from '../../lib/game/richtext'
 import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
 import Icon from './Icon.astro'
+import PopoverNote from './PopoverNote.astro'
 
 type Props = {
   entryId: string
@@ -26,6 +27,7 @@ const SOURCE_ICONS: Record<BrowseSource['kind'], string> = {
   bank: 'mdi:bank',
   other: 'mdi:information-outline',
 }
+const NOTE_WIDTH = 400
 const labelOf = termLabels(corpus.terms)
 const NOTES: Record<'basic' | 'bank' | 'other', string | undefined> = {
   basic: corpus.basic.note && flattenText(corpus.basic.note, labelOf),
@@ -59,27 +61,14 @@ const NOTES: Record<'basic' | 'bank' | 'other', string | undefined> = {
                   <Icon name={SOURCE_ICONS[source.kind]} class="au-source__icon" />
                   <span>{source.title}</span>
                 </button>
-                <div
-                  popover
+                <PopoverNote
                   id={`note-${source.kind}-${entryId}`}
-                  class="au-source-note"
-                  aria-labelledby={`note-${source.kind}-${entryId}-title`}
-                  style={`position-anchor:--note-${source.kind}-${entryId}`}
-                >
-                  <p class="au-source-note__kind">{label}</p>
-                  <p class="au-source-note__title" id={`note-${source.kind}-${entryId}-title`}>
-                    {source.title}
-                  </p>
-                  <p class="au-source-note__body">{NOTES[source.kind]}</p>
-                  <button
-                    type="button"
-                    class="au-source-note__close"
-                    popovertarget={`note-${source.kind}-${entryId}`}
-                    popovertargetaction="hide"
-                  >
-                    {t.close}
-                  </button>
-                </div>
+                  title={source.title}
+                  body={NOTES[source.kind]}
+                  locale={locale}
+                  width={NOTE_WIDTH}
+                  kind={label}
+                />
               </>
             )}
           </li>
@@ -139,58 +128,5 @@ const NOTES: Record<'basic' | 'bank' | 'other', string | undefined> = {
     width: 16px;
     height: 16px;
     color: var(--gold);
-  }
-  .au-source-note {
-    width: min(400px, calc(100vw - 32px));
-    padding: 18px 20px 16px;
-    border: 1px solid var(--accent-line);
-    background: var(--bg2);
-    color: var(--ink);
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
-  }
-  @supports (anchor-name: --a) {
-    @media (min-width: 560px) {
-      .au-source-note {
-        inset: auto;
-        margin: 8px 0;
-        position-area: bottom span-right;
-        position-try-fallbacks: flip-block, flip-inline;
-      }
-    }
-  }
-  .au-source-note__kind {
-    margin: 0 0 6px;
-    font-family: var(--font-mono);
-    font-size: 9.5px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
-  .au-source-note__title {
-    margin: 0 0 10px;
-    font-family: var(--font-display);
-    font-size: 19px;
-    font-weight: 600;
-  }
-  .au-source-note__body {
-    margin: 0 0 14px;
-    font-size: 15px;
-    line-height: 1.6;
-    color: var(--ink2);
-  }
-  .au-source-note__close {
-    padding: 7px 13px;
-    border: 1px solid var(--line2);
-    color: var(--ink);
-    font-family: var(--font-ui);
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-  }
-  .au-source-note__close:hover,
-  .au-source-note__close:focus-visible {
-    border-color: var(--gold);
   }
 </style>

@@ -16,6 +16,7 @@ import { PROFILE_AXES } from '../../lib/game/schema'
 import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
 import Icon from './Icon.astro'
+import PopoverNote from './PopoverNote.astro'
 
 type Props = { profile: Profile; locale: Locale }
 
@@ -27,6 +28,7 @@ const RADIUS = 58
 const LABEL_RADIUS = 35.5
 const VERTEX_RADIUS = 3.6
 const NOTE_ID = 'profile-note'
+const NOTE_WIDTH = 380
 const CAPTION_ID = 'profile-caption'
 
 const centred = (points: Point[]): string =>
@@ -61,24 +63,13 @@ const axes = PROFILE_AXES.map((axis, index) => ({
     >
       <Icon name="mdi:information-outline" class="au-rank__about-icon" />
     </button>
-    <div
-      popover
+    <PopoverNote
       id={NOTE_ID}
-      class="au-rank__note"
-      aria-labelledby={`${NOTE_ID}-title`}
-      style={`position-anchor:--${NOTE_ID}`}
-    >
-      <p class="au-rank__note-title" id={`${NOTE_ID}-title`}>{t.profile}</p>
-      <p class="au-rank__note-body">{t.profileNote}</p>
-      <button
-        type="button"
-        class="au-rank__note-close"
-        popovertarget={NOTE_ID}
-        popovertargetaction="hide"
-      >
-        {t.close}
-      </button>
-    </div>
+      title={t.profile}
+      body={t.profileNote}
+      locale={locale}
+      width={NOTE_WIDTH}
+    />
   </div>
   <div class="au-rank__chart">
     <svg
@@ -188,57 +179,6 @@ const axes = PROFILE_AXES.map((axis, index) => ({
   .au-rank__about :global(.au-rank__about-icon) {
     width: 17px;
     height: 17px;
-  }
-
-  .au-rank__note {
-    width: min(380px, calc(100vw - 32px));
-    padding: 18px 20px 16px;
-    border: 1px solid var(--accent-line);
-    background: var(--bg2);
-    color: var(--ink);
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
-  }
-
-  @supports (anchor-name: --a) {
-    @media (min-width: 560px) {
-      .au-rank__note {
-        inset: auto;
-        margin: 8px 0;
-        position-area: bottom span-right;
-        position-try-fallbacks: flip-block, flip-inline;
-      }
-    }
-  }
-
-  .au-rank__note-title {
-    margin: 0 0 10px;
-    font-family: var(--font-display);
-    font-size: 19px;
-    font-weight: 600;
-  }
-
-  .au-rank__note-body {
-    margin: 0 0 14px;
-    font-size: 15px;
-    line-height: 1.6;
-    color: var(--ink2);
-  }
-
-  .au-rank__note-close {
-    padding: 7px 13px;
-    border: 1px solid var(--line2);
-    color: var(--ink);
-    font-family: var(--font-ui);
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-  }
-
-  .au-rank__note-close:hover,
-  .au-rank__note-close:focus-visible {
-    border-color: var(--gold);
   }
 
   .au-rank__chart {
