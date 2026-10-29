@@ -1,8 +1,9 @@
 # Third party assets
 
-Everything under `data/` is original Aubaine work except the icon set, the fonts and the sounds. All
-three are redistributed here under their upstream licences. The icon and font licences require the
-attribution below; the sounds are CC0 and are credited all the same.
+Everything under `data/` is original Aubaine work except the icon set, the fonts, the sounds, the
+textures and the heraldic charges of the arms. All five are redistributed here under their upstream
+licences. The icon, font and charge licences require the attribution below; the sounds and the
+textures are CC0 and are credited all the same.
 What the original work says about itself is the other half of that sentence, recorded in
 [first-party-assets.md](first-party-assets.md).
 
@@ -38,7 +39,8 @@ work and now says so in its own bytes, which is recorded in
 [first-party-assets.md](first-party-assets.md). An icon is not, and says nothing. The two flags are
 stripped on the same grounds and claimed by nobody: a national flag is not original Aubaine work.
 
-`pnpm media:stamp` never opens `data/media/icons/` or `data/media/fonts/`. Writing an Aubaine
+`pnpm media:stamp` never opens `data/media/icons/`, `data/media/fonts/`, `data/media/sounds/`,
+`data/media/textures/` or `data/media/arms/`. Writing an Aubaine
 copyright into a Pictogrammers file or an SIL licensed font would be a false claim, and the tables in
 `src/lib/rights/ownership.ts` are what keep that true. `pnpm data:check` fails if a new directory
 appears under `data/media/` that those tables do not name, so a future set has to be classified
@@ -113,3 +115,73 @@ make, and because the author and source of each file are what make its licence c
    its metadata removed.
 4. Make the Atlas play it, through `BEDS` or `CALLS` in `src/lib/atlas/world/soundscape.ts` or
    `CUES` in `src/islands/atlas/sound.ts`, and listen to it on `pnpm dev` before it ships.
+
+## Textures
+
+The framed painting, the Colbert banner and the Landenheit flag use works from Poly Haven under CC0
+1.0: a scanned picture frame, two fabric scans, a wood scan and a room HDRI. `pnpm media:textures`
+(`tools/media/textures.ts`) makes every file under `data/media/textures/` from its original,
+downloaded into `tmp/textures/`. It decodes the HDRI into four packed levels of the room, cuts each
+fabric's displacement map into a square tile, renders the frame's glTF front on with three.js in
+Chromium (the lit frame, its gilding and its relief), and models and renders the banner's hanger (a
+pole in the wood scan, gilt finials, a twisted cord), both lit by the same room. Nothing ships
+three.js to a reader; the scripts import the files as hashed assets under `/_astro/`,
+`src/styles/prose.css` draws the lit frame as a `border-image`, and `Heraldry.astro` places the
+hanger.
+
+`TEXTURE_WORKS` in [`src/lib/rights/attribution.ts`](../src/lib/rights/attribution.ts) names every
+work, its authors as its source page gives them, that page, and its licence. Each work also lists its
+cuts: the file it produces, the upstream file it is made from, and what the cut does to it, such as
+the frame's retouch over a chip of bare gesso in one corner. One row credits Rough Linen to colormass
+and Rico Cilliers under CC0 1.0. Read the module for the rest.
+
+The credits page renders the same rows. `pnpm data:check` fails when a file under
+`data/media/textures/` is credited by no cut, or when a credited file is missing.
+
+### Adding one
+
+1. Download the original into `tmp/textures/`, under the name its cut gives as `original`.
+   `https://api.polyhaven.com/files/<asset>` lists every file of an asset and its address.
+2. Copy the title and the authors exactly as the asset page prints them, and confirm the licence
+   there.
+3. Add the work and its cut to `TEXTURE_WORKS`, then run `pnpm media:textures`. A frame's slice is
+   `FRAME` in `src/lib/art-effect/presets.ts`, and the tool refuses a bake whose moulding does not
+   measure it.
+4. Read the result on `pnpm dev` in both themes before it ships.
+
+## Heraldry
+
+The arms of a sub-species are composed in [Armoria](https://azgaar.github.io/Armoria/), by Azgaar,
+whose code is under the MIT licence; the heater shield outline and the partition lines are its own.
+Its charges come from several sources under several licences, which it records in the `<metadata>` of
+each charge file and on its License screen. The four charges of the arms of Victoria are WappenWiki
+drawings under CC BY-NC-SA 3.0, which Aubaine's CC BY-NC-SA 4.0 may carry, since 3.0 lets an
+adaptation be shared under a later version with the same elements.
+
+A composition is one SVG in `data/media/arms/`: the shield, the tinctures as the enamel fills, and
+each charge as a `<g class="charge">` that keeps the `source` and `license` Armoria gives it.
+`ARMS_WORKS` in [`src/lib/rights/attribution.ts`](../src/lib/rights/attribution.ts) names Armoria and
+every charge, and `ARMS_COMPOSITIONS` says which works each composition uses. `pnpm media:arms`
+(`tools/media/arms.ts`) bakes each composition into its maps and its still, beside it in
+`data/media/arms/`; the page imports them as hashed files, never through Astro's image pipeline,
+which would write Aubaine's claim into an adaptation of someone else's drawing.
+
+The credits page renders the Heraldry table from `ARMS_WORKS`, and says how the arms use the charges,
+as CC BY-NC-SA 3.0 asks of an adaptation. `pnpm data:check` fails when a file in `data/media/arms/` is
+credited by no composition, when a composition draws a charge it does not credit or credits one it
+does not draw, when a credited licence differs from the one the charge carries, or when a work is
+under a licence other than MIT or CC BY-NC-SA 3.0.
+
+### Adding one
+
+1. Compose the arms in Armoria, and export them as SVG, or take the recipe Armoria writes into the
+   PNG it downloads and open it with `?coa=` to export the same arms. Keep that PNG beside the
+   composition as its `source`, as `victoria-armoria.png` is kept.
+2. Check the License screen: a charge under a licence that forbids a non-commercial adaptation,
+   such as the Free Art Licence, cannot ship in a CC BY-NC-SA shield. Pick another charge.
+3. Keep the export's charges, shield clip and division clip, and write the composition as
+   `victoria.svg` is written: a `field` rect, a `division` group, a `charges` group of `<use>`, an
+   `outline` path, and the enamel colours as fills.
+4. Add the works and the composition to `ARMS_WORKS` and `ARMS_COMPOSITIONS`, run
+   `pnpm media:arms`, and read the result on `pnpm dev` in both themes before it ships.
+

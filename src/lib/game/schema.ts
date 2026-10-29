@@ -69,9 +69,21 @@ const artEffect = z
     "Effet de rendu que le navigateur applique à la couverture, sur la carte comme sur le héros : 'film' pour « Pellicule », 'oil' pour « Huile ». Absent : l'illustration telle quelle.",
   )
 
-const emblem = z
+const armsFile = z
   .string()
   .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*\.svg$/)
+  .describe(
+    "Nom de fichier d'une composition d'armoiries, dans data/media/arms/ : l'écu, ses émaux et ses meubles en SVG, cuits en relief par pnpm media:arms.",
+  )
+
+const emblemFile = z
+  .string()
+  .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*\.svg$/)
+  .describe(
+    "Nom de fichier d'un emblème, dans data/media/emblems/ : un SVG blanc sur fond transparent, fait de chemins seuls.",
+  )
+
+const emblem = emblemFile
   .optional()
   .describe(
     "Emblème de l'entrée, dans data/media/emblems/ : un SVG blanc sur fond transparent, fait de chemins seuls. pnpm media:emblems le ramène au cadre carré et à la marge que partagent tous les emblèmes, pnpm media:stamp lui donne ses droits. Rendu en relief, seul, en bas à droite de la carte du héros. Absent : la carte n'en porte pas.",
@@ -506,6 +518,73 @@ const nameList = z.array(z.string().min(1)).min(1)
 
 export const SUBSPECIES_LABELS = ['regional-origins', 'subspecies'] as const
 
+const heraldryName = z
+  .string()
+  .min(1)
+  .describe(
+    "Nom de la pièce, rendu en légende sous elle et lu comme le nom de la figure : « Bannière de la maison Colbert ». L'overlay anglais le traduit.",
+  )
+
+const heraldry = z
+  .discriminatedUnion('kind', [
+    z
+      .object({
+        kind: z
+          .literal('banner')
+          .describe(
+            'Une bannière suspendue à sa hampe, que le lecteur peut saisir et faire bouger, rendue à côté de la présentation.',
+          ),
+        name: heraldryName,
+        emblem: emblemFile.describe(
+          'Emblème brodé sur la bannière, dans data/media/emblems/, ramené au cadre commun par pnpm media:emblems.',
+        ),
+        field: z
+          .string()
+          .regex(HEX)
+          .describe('Couleur du drap de la bannière, en hexadécimal à six chiffres minuscules.'),
+        charge: z
+          .string()
+          .regex(HEX)
+          .describe(
+            "Couleur de l'emblème et des bordures de la bannière, en hexadécimal à six chiffres minuscules.",
+          ),
+      })
+      .strict(),
+    z
+      .object({
+        kind: z
+          .literal('flag')
+          .describe(
+            'Un drapeau qui flotte au vent sur toute la largeur de la présentation, au-dessus de son texte.',
+          ),
+        name: heraldryName,
+        picture: mediaFile.describe(
+          'Le drapeau à plat, au rapport 3:2, dans data/media/art/, nommé selon la convention des images.',
+        ),
+      })
+      .strict(),
+    z
+      .object({
+        kind: z
+          .literal('arms')
+          .describe(
+            "Des armoiries d'émail et d'or en relief, rendues à côté de la présentation, dont l'or prend la lumière quand le lecteur bouge le pointeur ou fait défiler la page.",
+          ),
+        name: heraldryName,
+        blazon: z
+          .string()
+          .min(1)
+          .describe(
+            "Le blasonnement des armoiries, lu dans la note qu'ouvre le bouton rond au bout du filet de la légende. L'overlay anglais le traduit.",
+          ),
+        arms: armsFile,
+      })
+      .strict(),
+  ])
+  .describe(
+    "La pièce héraldique de la sous-espèce : une bannière qu'on saisit, un drapeau qui flotte, ou des armoiries dont l'or prend la lumière. Absente : la présentation n'en porte pas.",
+  )
+
 const subspecies = z
   .object({
     id: z
@@ -524,6 +603,7 @@ const subspecies = z
       .string()
       .min(1)
       .describe("Présentation de la sous-espèce, même balisage qu'une Compétence."),
+    heraldry: heraldry.optional(),
     names: z
       .object({
         masculine: nameList.optional().describe('Prénoms masculins, dans leur ordre.'),
@@ -603,6 +683,13 @@ export const species = z
       ),
     artEffect,
     emblem,
+    keyColour: z
+      .string()
+      .regex(HEX)
+      .optional()
+      .describe(
+        "Couleur clé du héros, en hexadécimal à six chiffres minuscules, quand celle que la build lit dans la couverture ne dit pas l'Espèce : elle teinte les descripteurs, le cadre, le nom en filigrane et la dalle. Absente : la couleur clé de la couverture.",
+      ),
     movement: z
       .string()
       .min(1)
@@ -1914,10 +2001,20 @@ export const overlays = {
     movement: z.string().optional(),
     familyNamesLabel: z.string().optional(),
     subspecies: z
-      .record(z.string(), localized({ name: z.string().optional(), text: z.string().optional() }))
+      .record(
+        z.string(),
+        localized({
+          name: z.string().optional(),
+          text: z.string().optional(),
+          heraldry: localized({
+            name: z.string().optional(),
+            blazon: z.string().optional(),
+          }).optional(),
+        }),
+      )
       .optional()
       .describe(
-        "Noms et présentations traduits, keyés par l'identifiant de la sous-espèce. Un nom ne se traduit que s'il est un nom commun.",
+        "Noms, présentations, noms de pièce héraldique et blasonnements traduits, keyés par l'identifiant de la sous-espèce. Un nom ne se traduit que s'il est un nom commun.",
       ),
     roleplay: localized({
       adulthood: z.string().optional(),
@@ -2018,6 +2115,7 @@ export type Placement = z.infer<typeof placement>
 export type SkillTree = z.infer<typeof skillTree>
 export type Species = z.infer<typeof species>
 export type Subspecies = z.infer<typeof subspecies>
+export type Heraldry = z.infer<typeof heraldry>
 export type SubspeciesLabel = (typeof SUBSPECIES_LABELS)[number]
 export type SkillList = z.infer<typeof skillList>
 export type EquipmentItem = z.infer<typeof equipmentItem>

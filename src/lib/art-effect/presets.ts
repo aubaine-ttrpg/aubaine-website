@@ -1,5 +1,7 @@
 import type { Tier } from '../atlas/contract/quality'
+import type { ClothSpec } from './cloth'
 import type { ArtEffect } from './effects'
+import type { ArmsRelief, KeyLight } from './relief'
 
 type Triple = [number, number, number]
 
@@ -62,6 +64,7 @@ export type EffectTier = {
   paintCoarser: number
   paintStrips: number
   stage: StagePace | undefined
+  cloth: StagePace | undefined
 }
 
 export const GRAIN_PER_SECOND = 24
@@ -131,12 +134,191 @@ export const EFFECT_TIERS: Record<Tier, EffectTier> = {
     paintCoarser: 0,
     paintStrips: 2,
     stage: { budget: 400_000, perSecond: 30 },
+    cloth: { budget: 2_200_000, perSecond: 30 },
   },
   high: {
     pixelBudget: 4_000_000,
     paintCoarser: 0,
     paintStrips: 4,
     stage: { budget: 240_000, perSecond: 24 },
+    cloth: { budget: 1_000_000, perSecond: 24 },
   },
-  low: { pixelBudget: 2_400_000, paintCoarser: 1, paintStrips: 4, stage: undefined },
+  low: {
+    pixelBudget: 2_400_000,
+    paintCoarser: 1,
+    paintStrips: 4,
+    stage: undefined,
+    cloth: undefined,
+  },
 }
+
+export const BANNER_CLOTH: ClothSpec = {
+  stepsPerSecond: 120,
+  aspect: 0.5,
+  rest: { x: 0.06, y: 0.11, width: 0.38, height: 0.82 },
+  columns: 10,
+  rows: 21,
+  gather: 0.07,
+  gravity: 6.5,
+  damping: 2.4,
+  air: 2.2,
+  stiffness: { stretch: 1, shear: 0.6, bend: 0.12 },
+  iterations: 8,
+  depth: 0.22,
+  margin: 0.012,
+  eye: 3,
+}
+
+export const BANNER_HANGER = {
+  pole: { from: 0.04, radius: 0.0085, lift: 0.004 },
+  finial: { length: 0.0335 },
+  cord: { attach: 0.014, apex: 0.022, radius: 0.0012, twist: 0.006 },
+  ring: { radius: 0.0055, tube: 0.0011 },
+  band: 0.14,
+  width: 800,
+} as const
+
+export const FLAG = {
+  headroom: 0.045,
+  eye: 4,
+  heading: 0.055,
+  weaveTile: 0.55,
+  light: [-0.62, -0.42, 0.66],
+  roomYaw: 3.4,
+  pose: 3.4,
+  mesh: { columns: 97, rows: 65 },
+} as const
+
+export const BANNER_DESIGN = {
+  notch: 0.12,
+  trim: 0.06,
+  rule: 0.01,
+  fringe: 0.06,
+  strands: 56,
+  hem: 0.045,
+  emblem: { centre: 0.41, width: 0.9 },
+} as const
+
+function bannerHem(height: number): { bottom: number; notch: number; drop: number } {
+  const bottom = height * (1 - BANNER_DESIGN.fringe)
+  return {
+    bottom,
+    notch: bottom - height * BANNER_DESIGN.notch,
+    drop: height * BANNER_DESIGN.fringe,
+  }
+}
+
+export function bannerOutline(width: number, height: number): string {
+  const { bottom, notch } = bannerHem(height)
+  return `M0 0H${width}V${bottom}L${width / 2} ${notch}L0 ${bottom}Z`
+}
+
+export function bannerFringe(width: number, height: number): string {
+  const { bottom, notch, drop } = bannerHem(height)
+  const middle = width / 2
+  return `M0 ${bottom}L${middle} ${notch}L${width} ${bottom}V${bottom + drop}L${middle} ${notch + drop}L0 ${bottom + drop}Z`
+}
+
+export type EnvironmentLevel = { width: number; height: number; gloss: number | undefined }
+
+export const ENVIRONMENT = {
+  range: 64,
+  meanRadiance: 0.5,
+  levels: [
+    { width: 256, height: 128, gloss: undefined },
+    { width: 128, height: 64, gloss: 48 },
+    { width: 64, height: 32, gloss: 8 },
+    { width: 32, height: 16, gloss: 1 },
+  ],
+} as const satisfies { range: number; meanRadiance: number; levels: readonly EnvironmentLevel[] }
+
+export type FrameMoulding = { top: number; right: number; bottom: number; left: number }
+
+export const FRAME = {
+  width: 1600,
+  height: 1231,
+  mapsWidth: 1200,
+  slice: { top: 105, right: 105, bottom: 105, left: 105 },
+  exposure: 1.2,
+  metalness: 0.7,
+  room: { yaw: 0, pitch: 0 },
+} as const satisfies {
+  width: number
+  height: number
+  mapsWidth: number
+  slice: FrameMoulding
+  exposure: number
+  metalness: number
+  room: { yaw: number; pitch: number }
+}
+
+export type ArmsFiles = { still: string; colour: string; relief: string; finish: string }
+
+export function armsFiles(composition: string): ArmsFiles {
+  const stem = composition.replace(/\.svg$/, '')
+  return {
+    still: `${stem}.webp`,
+    colour: `${stem}-colour.avif`,
+    relief: `${stem}-relief.avif`,
+    finish: `${stem}-finish.avif`,
+  }
+}
+
+type Rgb = readonly [number, number, number]
+
+export const ARMS = {
+  crop: { x: 23, y: 23, width: 154, height: 179 },
+  width: 576,
+  mapWidth: 768,
+  supersample: 3,
+  rest: { x: 0.3, y: 0.3 },
+  sway: 0.75,
+  distance: 1.5,
+  exposure: 1.06,
+  roomYaw: Math.PI + 0.15,
+  gold: { deep: [1.0, 0.55, 0.08], pale: [1.0, 0.74, 0.27] },
+  enamelDepth: { open: 0.9, walls: 1.5 },
+  key: [-0.45, 0.6, 0.66],
+  relief: {
+    dome: 5,
+    bezel: { roll: 0.55, band: 1.6, drop: 0.5, bead: 1.15, height: 1.35, valley: 0.6, crest: 1.0 },
+    fillet: { width: 1.3, height: 0.7 },
+    enamel: { recess: 0.35, meniscus: 0.18, reach: 0.8, pooling: 1.5 },
+    charge: { volume: { height: 1.6, reach: 1.8 }, parts: { height: 0.5, reach: 0.5 } },
+    engraving: { depth: 0.35, slope: 0.2, inset: 0.2 },
+    curvature: { reach: 0.2, gain: 0.25 },
+    occlusion: { contact: { reach: 0.35, strength: 5 }, broad: { reach: 1.5, strength: 2 } },
+    shadow: { reach: 4, softness: 0.3 },
+  },
+} as const satisfies {
+  crop: { x: number; y: number; width: number; height: number }
+  width: number
+  mapWidth: number
+  supersample: number
+  rest: { x: number; y: number }
+  sway: number
+  distance: number
+  exposure: number
+  roomYaw: number
+  gold: { deep: Rgb; pale: Rgb }
+  enamelDepth: { open: number; walls: number }
+  key: KeyLight
+  relief: ArmsRelief
+}
+
+function armsSizeAt(width: number): { width: number; height: number } {
+  return { width, height: Math.round((width * ARMS.crop.height) / ARMS.crop.width) }
+}
+
+export const ARMS_SIZE = armsSizeAt(ARMS.width)
+
+export const ARMS_MAP_SIZE = armsSizeAt(ARMS.mapWidth)
+
+export const ARMS_UNIFORMS = {
+  uSway: [ARMS.sway],
+  uDistance: [ARMS.distance],
+  uExposure: [ARMS.exposure],
+  uGoldDeep: ARMS.gold.deep,
+  uGoldPale: ARMS.gold.pale,
+  uKey: ARMS.key,
+} as const satisfies Record<string, readonly number[]>

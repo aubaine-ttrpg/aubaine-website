@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest'
 
+import { FRAME } from '../../src/lib/art-effect/presets'
 import {
+  GLAZED_PICTURE,
   PICTURE_MASKS,
   PICTURE_RELIEFS,
   rehypeProsePictureMasks,
@@ -74,5 +76,39 @@ describe('prose picture masks', () => {
   it('refuses a relief that does not exist, or a third word', () => {
     expect(() => maskedPicture({ title: 'torn glow' })).toThrow(/"glow"/)
     expect(() => maskedPicture({ title: 'torn torch deep' })).toThrow(/"torch deep"/)
+  })
+
+  it('frames a glazed picture and puts it under glass, keeping its ratio and alt', () => {
+    const frame = maskedPicture({
+      title: GLAZED_PICTURE,
+      alt: 'Une toile',
+      src: '../../media/art/les-naufrages-de-la-venue-3_2-og.png',
+    })
+    expect(frame.tagName).toBe('span')
+    expect(frame.properties['className']).toBe('au-prose__frame')
+    const { slice } = FRAME
+    expect(frame.properties['style']).toContain(
+      `--au-frame-slice:${slice.top} ${slice.right} ${slice.bottom} ${slice.left}`,
+    )
+    expect(frame.properties['style']).toContain(
+      `--au-frame-share:${((100 * slice.left) / FRAME.width).toFixed(4)}`,
+    )
+    const moulding = frame.children[0]
+    if (moulding?.type !== 'element') throw new Error('the frame holds no moulding')
+    expect(moulding.properties['className']).toBe('au-prose__moulding')
+    const glass = moulding.children[0]
+    if (glass?.type !== 'element') throw new Error('the moulding holds no glass')
+    expect(glass.properties['data-relief']).toBe('glass')
+    expect(glass.properties['data-ratio']).toBe('3_2')
+    const image = glass.children[0]
+    if (image?.type !== 'element') throw new Error('the glass holds no picture')
+    expect(image.tagName).toBe('img')
+    expect(image.properties['alt']).toBe('Une toile')
+    expect(image.properties['title']).toBeUndefined()
+    expect(image.properties['data-mask']).toBeUndefined()
+  })
+
+  it('refuses a second word after glazed', () => {
+    expect(() => maskedPicture({ title: `${GLAZED_PICTURE} torch` })).toThrow(/no second word/)
   })
 })

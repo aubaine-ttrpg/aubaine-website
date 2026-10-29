@@ -4,7 +4,7 @@ import { renderProse } from '../../lib/game/prose'
 import type { Locale } from '../../lib/i18n/locales'
 import type { PolicyKind } from '../../lib/i18n/routes'
 import { strings } from '../../lib/i18n/strings'
-import { ATTRIBUTION_SECTIONS } from '../../lib/rights/attribution'
+import { creditSections } from '../../lib/rights/credits'
 import Attribution from '../primitives/Attribution.astro'
 import SectionTrail from '../primitives/SectionTrail.astro'
 import '../../styles/prose.css'
@@ -23,11 +23,7 @@ const { Content, headings } = await renderProse(page.entry)
 const outline = [
   ...headings.filter((heading) => heading.depth === 2).map(({ slug, text }) => ({ slug, text })),
   ...(kind === 'credits'
-    ? [
-        { slug: ATTRIBUTION_SECTIONS.icons, text: t.creditsIcons },
-        { slug: ATTRIBUTION_SECTIONS.fonts, text: t.creditsFonts },
-        { slug: ATTRIBUTION_SECTIONS.sounds, text: t.creditsSounds },
-      ]
+    ? creditSections(t).map((section) => ({ slug: section.id, text: section.heading }))
     : []),
 ].map((section, position) => ({
   text: section.text,

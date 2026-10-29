@@ -29,6 +29,7 @@ type Props = {
   traits: Trait[]
   traitsLabel: string
   profile?: Profile | undefined
+  keyColour?: string | undefined
 }
 
 const {
@@ -44,6 +45,7 @@ const {
   traits,
   traitsLabel,
   profile,
+  keyColour,
 } = Astro.props
 const t = strings(locale)
 
@@ -62,7 +64,7 @@ const ambient = await getImage({ src: image, width: STAGE.width, format: 'webp',
 const letters = Math.max(1, [...name].length)
 const fitted = (column: number, largest: number) =>
   Math.min(largest, column / (WIDEST_ADVANCE * letters)).toFixed(2)
-const key = await artKeyColour(art)
+const key = keyColour ?? (await artKeyColour(art))
 const stage = [
   `--key:${key}`,
   `--stage-art:url('${ambient.src}')`,

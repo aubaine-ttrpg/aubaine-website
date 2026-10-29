@@ -4,6 +4,7 @@
 **Status:** Accepted
 **Date:** 2026-10-23
 **Revised:** 2026-10-24, the key colour and emblem checks stop naming covers and files (0055, addenda in Decisions 1 and 6)
+**Revised:** 2026-10-25, a species may write its own key colour and the pause covers every moving decoration (0059, addenda in Decisions 1 and 4)
 **Deciders:** Kori
 **Scope:** The hero of the Species and Tree pages: its layout, its dark stage, its key colour, the
 descriptor stickers, the rank profile of a tree, the emblem on the card, the moving backdrop drawn on the GPU and its pause control, and
@@ -91,6 +92,13 @@ strengths as ranks from F to S, with no overall grade. Versions: `astro@7.3.3` (
   windows. It checks that every 3:4 cover writes a hex key colour on which the dark sticker ink
   reads at 4.5 or more (0055). `tests/e2e/character-hero.spec.ts` checks that each hero's sticker
   takes the key colour of its own cover. The two colours above stay as measured on that date.
+
+
+### Addendum (2026-10-25): a species may write its own key colour
+
+- The alternative « an authored colour per entry » reopens on its own condition: the Humain cover
+  reads `#eaccc8`, a pale rose, where the owner wanted azure. A species may now write `keyColour`,
+  which the hero takes before the cover's reading. See 0059 Decision 5.
 
 ---
 
@@ -199,6 +207,12 @@ strengths as ranks from F to S, with no overall grade. Versions: `astro@7.3.3` (
   240,000 pixels at 24 frames a second, that has not been seen running there.
 - Every Species and Tree page loads 11.6 kB gzipped of GPU code for a decoration. The CSS backdrop
   is the floor, and the stage is skipped under reduced motion before its code is fetched.
+
+
+### Addendum (2026-10-25): the pause covers every moving decoration
+
+- The choice under `aubaine.stage` now lives in `src/scripts/stillness.ts`, and the flag of a
+  sub-species shares it: its button and the hero's each pause both. See 0059 Decision 3.
 
 ---
 

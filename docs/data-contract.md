@@ -79,7 +79,7 @@ Machine values are never translated. Ids, `key` fields, domain keys, characteris
 | `data/books/<book-id>/` | one book: `book.json` plus one `NN-slug.md` per chapter, each a whole page |
 | `data/meta/` | one controlled vocabulary per file. Read the directory for the current set |
 | `data/atlas/` | the Atlas: `vocabularies.json`, `travel.json` and `stars.json`, and one folder per world, each split by part. See `runbooks/edit-the-atlas.md` |
-| `data/media/` | covers and banners, item pictures, icons, PDFs, fonts, flags, video, sounds |
+| `data/media/` | covers and banners, item pictures, icons, PDFs, fonts, flags, video, sounds, textures |
 | `data/aubaine.json` | the version string printed in the footer |
 | `data/media-captions.json` | the title, the description and the keywords a picture carries in its own bytes |
 | `data/pdf/` | `releases.json`, the register of booklet tirages, and `notes.json`, the version log |
@@ -94,7 +94,7 @@ Two facts about a picture are otherwise impossible to recover once it is on disk
 
 `pnpm data:check` opens every picture and compares the declared ratio to the real pixels, so the name cannot drift from the image. A video's ratio is checked as a name only, for the reasons recorded in `docs/adr/0009-pictures-name-their-shape-trees-carry-two.md`.
 
-A tree and a species carry one picture, the 3:4 `cover`: their card, their hero and their social image, cut from the top of the portrait. A book and the equipment catalogue carry `cover` and `banner`: the card uses `cover` and falls back to `banner` when there is none, and the hero and the social image use `banner`. See `docs/adr/0053-hero-art-is-developed-on-the-gpu-over-its-plain-picture.md`.
+A tree and a species carry one picture, the 3:4 `cover`: their card, their hero and their social image, cut from the top of the portrait. A species may also write its hero's `keyColour` when the colour read from the cover does not say the species, and a sub-species may fly a 3:2 flag from `data/media/art/`, hang a banner whose emblem lives in `data/media/emblems/`, or bear arms composed in `data/media/arms/` (`heraldry`). A book and the equipment catalogue carry `cover` and `banner`: the card uses `cover` and falls back to `banner` when there is none, and the hero and the social image use `banner`. See `docs/adr/0053-hero-art-is-developed-on-the-gpu-over-its-plain-picture.md`.
 
 Every picture field is optional, and none of them leaves a hole. A slot with nothing named draws the default plate for its ratio, held in `src/lib/media.ts`: a 3:4 one behind a card, a 16:9 one behind a hero, a 1:1 one on a skill or an item. Naming a real picture is still the point; the default keeps a page whole until one exists.
 
@@ -115,7 +115,7 @@ Two fields are authored. `data/media-captions.json` maps a path under `data/medi
 
 An entry is optional. A picture missing from the file is still stamped and simply carries no title and no description, which is what keeps adding a picture a one file job. It is a place to write a description, not a register to sign, and a description is written from the picture and from nothing else. There is no English overlay: a file has one set of bytes, both locales are served the same file, and the description is French like the rest of `data/`.
 
-`data/media/icons/`, `data/media/fonts/` and `data/media/sounds/` are never stamped. They are third party, and their terms are recorded in `docs/third-party-assets.md`. The two flags are stripped of what they arrived with and claimed by nobody.
+`data/media/icons/`, `data/media/fonts/`, `data/media/sounds/` and `data/media/textures/` are never stamped. They are third party, and their terms are recorded in `docs/third-party-assets.md`. The two flags are stripped of what they arrived with and claimed by nobody.
 
 ## `schemas/` and `src/lib/game/schema.ts` are the same contract
 

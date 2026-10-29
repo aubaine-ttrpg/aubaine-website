@@ -25,6 +25,7 @@ The filename is the id and the id becomes the URL. Lowercase letters, digits and
 | `cover` | optional | Couverture au rapport 3:4, dans `data/media/art/` : l'unique illustration de l'Espèce, sur sa carte, dans son héros et dans sa vignette sociale. Absente, la planche 3:4 par défaut. | a `3_4` filename that exists, named per [add-an-image.md](add-an-image.md) |
 | `artEffect` | optional | Effet de rendu que le navigateur applique à la couverture, sur la carte comme sur le héros : `film` pour « Pellicule », `oil` pour « Huile ». Absent : l'illustration telle quelle. | `film` or `oil` |
 | `emblem` | optional | Emblème de l'entrée, dans `data/media/emblems/` : un SVG blanc sur fond transparent, fait de chemins seuls. `pnpm media:emblems` le ramène au cadre carré et à la marge que partagent tous les emblèmes, `pnpm media:stamp` lui donne ses droits. Rendu en relief, seul, en bas à droite de la carte du héros. Absent : la carte n'en porte pas. | a `.svg` file name in `data/media/emblems/` |
+| `keyColour` | optional | Couleur clé du héros, en hexadécimal à six chiffres minuscules, quand celle que la build lit dans la couverture ne dit pas l'Espèce : elle teinte les descripteurs, le cadre, le nom en filigrane et la dalle. Absente : la couleur clé de la couverture. | `#` and six lowercase hex digits, on which the dark sticker ink reads at 4.5:1 or more |
 | `movement` | optional | Vitesse de l'Espèce, quand elle s'écarte des 9 mètres par défaut. Absente : 9 mètres. | any non empty string |
 | `types` | optional | Type(s) de créature de l'Espèce. La plupart sont Humanoïdes ; un peuple peut en cumuler deux, comme les Cindersöhls, Humanoïdes et Artificiels, ou les Nnors, Humanoïdes et Bêtes. Absent : l'Espèce n'en déclare pas encore, ou elle les tient de l'une de ses Espèces parentes. | keys from `data/meta/creature-types.json` |
 | `size` | optional | Catégorie(s) de taille. Plusieurs valent un choix laissé au joueur à la création, jamais un cumul. Absente : l'Espèce n'en déclare pas encore, ou elle la tient de son origine. | keys from `data/meta/sizes.json` |
@@ -38,6 +39,7 @@ The filename is the id and the id becomes the URL. Lowercase letters, digits and
 | `subspecies[].id` | required inside a sub-species | Identifiant de la sous-espèce, unique dans son Espèce, et l'ancre de sa présentation. | `^[a-z][a-z0-9-]*$` |
 | `subspecies[].name` | required inside a sub-species | Nom rendu en intertitre. L'overlay anglais le traduit quand c'est un nom commun, comme Fantôme, et le laisse tel quel quand c'est un nom propre, comme Landenheit. | any non empty string |
 | `subspecies[].text` | required inside a sub-species | Présentation de la sous-espèce, même balisage qu'une Compétence. | any non empty string |
+| `subspecies[].heraldry` | optional | La pièce héraldique de la sous-espèce : une bannière qu'on saisit, un drapeau qui flotte, ou des armoiries dont l'or prend la lumière. Absente : la présentation n'en porte pas. | `{ "kind": "banner", "name", "emblem", "field", "charge" }`, `{ "kind": "flag", "name", "picture" }` or `{ "kind": "arms", "name", "blazon", "arms" }`, see below |
 | `subspecies[].names` | optional | Les noms que porte la sous-espèce, chaque liste dans son ordre. Ils ne se traduisent pas. Absent : elle n'en déclare pas encore. | `masculine`, `feminine`, `given` and `family`, each optional and a non empty list of names in their order, at least one present. `given` holds the first names of a sub-species that does not sort them by gender |
 | `subspecies[].imposed` | optional | Compétence que la sous-espèce impose, définie dans `data/skills/` : l'une des deux Compétences d'Espèce que le personnage garde à la création, sans la choisir. Il choisit la seconde parmi celles de son Espèce et de sa sous-espèce. Elle porte la sous-espèce en Prérequis, n'appartient qu'à cette sous-espèce et ne figure dans aucun `offered`. Absente : le personnage choisit ses deux Compétences. | one skill id |
 | `subspecies[].offered` | required inside a sub-species | Compétences que la sous-espèce ajoute à celles de son Espèce, définies dans `data/skills/`. Elles portent la sous-espèce en Prérequis. `[]` : elle n'en ajoute encore aucune. | skill ids, or `[]` |
@@ -104,6 +106,48 @@ Write the keys in that order. The exact bytes of the file must equal `JSON.strin
 
 A Landenheit Humain chooses two out of ESPHUM-001, AMIXXX-001 and VOLSUR-001 plus FORTEC-001 and INGTEC-001. A skill a sub-species adds lives in that sub-species' `offered`, never in the species', and carries the sub-species as its `prerequisite`: `Être Humain du Landenheit`.
 
+## Heraldry
+
+A sub-species may carry one piece of heraldry, rendered under its heading. Its `name` is the caption
+under it and the name of the figure for a screen reader, and the English overlay translates it as
+`subspecies.<id>.heraldry.name`. Where it stands, beside the text or across the column, is
+`HERALDRY_PLACEMENT` in `src/lib/game/derive.ts`.
+
+```json
+"heraldry": {
+  "kind": "banner",
+  "name": "Bannière de la maison Colbert",
+  "emblem": "colbert.svg",
+  "field": "#1f4e9e",
+  "charge": "#d4a83a"
+}
+```
+
+- `banner` hangs from a wooden pole with gilt finials and a twisted gold cord, in a column left of
+  the presentation, its top level with the text's first line; below 30rem it stands above the text
+  instead. Its `emblem` is a white SVG in
+  `data/media/emblems/`, framed by `pnpm media:emblems` like a species emblem. `field` is the colour of
+  the velvet, `charge` the colour of the embroidered emblem, the galloon and the fringe. The reader
+  can take hold of it and swing it; it comes to rest by itself.
+- `flag` flies across the width of the reading column, above the presentation, like a lore picture,
+  with a linen heading and two grommets at its hoist and no pole. Its `picture` is the flat flag, a
+  `3_2` file in `data/media/art/`. It flies as long as it is on screen, and its button, like the
+  hero's, pauses every moving decoration of the page.
+- `arms` stand in the same column as a banner: a heater shield of translucent enamel set in gilt
+  metal, its charges sculpted in relief with their drawn lines engraved, inside a stepped bezel. `arms` names the composition in `data/media/arms/`, an SVG whose
+  tinctures are the enamels and whose charges are credited in `ARMS_WORKS`
+  (`docs/third-party-assets.md`). `pnpm media:arms` bakes it into the maps and the still the page
+  uses. `blazon` is the blazon, opened from the round button at the right end of the caption's rule;
+  the English overlay translates it as `subspecies.<id>.heraldry.blazon`. The light follows the
+  pointer, or the scroll without one, and the shield leans toward a hovering mouse like the hero's
+  card.
+
+All three draw on the shared GPU context of the hero (`src/scripts/art-effect/banners.ts`, `flags.ts`
+and `arms.ts`), with the textures credited in `docs/third-party-assets.md`. Under reduced motion each
+draws one still frame. Without JavaScript or WebGL2, on a software renderer and in print, the plain
+banner, drawn from the same outline (`bannerOutline` in `src/lib/art-effect/presets.ts`), the flat
+flag or the baked still of the arms stays; the banner and the flag also keep it on the low tier.
+
 ## The lore file
 
 `data/lore/species/<id>.md` carries no frontmatter. Everything before its first `##` is the opening,
@@ -151,6 +195,20 @@ rectangle.
 A second word after the shape adds an effect: `PICTURE_RELIEFS` in the same file lists them, such as
 `torch`, a warm light that follows the pointer across the picture's relief and stays inside it.
 Without WebGL, or without JavaScript, the picture shows as it would without the word.
+
+A painting takes `"glazed"` (`GLAZED_PICTURE`) as its only word: a scanned gilt frame around it,
+recessed behind its lip, under a pane of glass. The gilding and the faint reflection of a room in the
+glass follow the pointer, or the scroll on a touch screen. It takes no second word. Without WebGL2,
+and in print, the frame and its shadow stay still and the glass is left out. A 3:2 painting spans the
+column like a 16:9 picture.
+
+```markdown
+![Des naufragés tirent un coffre hors des vagues, au pied d'une falaise.](../../media/art/les-naufrages-de-la-venue-3_2-og.png "glazed")
+:caption[« Les Naufragés de la Venue », toile peinte en 238 apr. V.]
+```
+
+Inside a caption, set a title in guillemets, never in italics: the caption is already italic, and an
+emphasis would break it into two lines.
 
 A caption goes on the line directly under the picture, with no blank line between them, as
 `:caption[...]`. The page prints it under the picture. `pnpm data:check` fails on a caption line

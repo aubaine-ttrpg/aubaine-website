@@ -16,7 +16,7 @@ Six settings are remembered once you change them:
 - the light or dark theme, under the key `aubaine.theme`;
 - whether drafts are shown, under the key `aubaine.drafts`;
 - sound (on or muted, master volume, and the ambience, effects and interface volumes), under the key `aubaine.sound`;
-- whether the background animation at the top of Species and Tree pages is paused, under the key `aubaine.stage`;
+- whether the animations on Species and Tree pages are paused (the background at the top, and the flag of a subspecies), under the key `aubaine.stage`;
 - the Atlas map view (top, 3/4, relief or free), under the key `aubaine.atlas.view`;
 - the Atlas options (display quality, screen effect, 3D or parchment rendering, legend open or closed, what the map shows), under the key `aubaine.atlas.settings`.
 

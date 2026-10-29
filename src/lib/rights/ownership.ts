@@ -18,7 +18,7 @@ export const OWNED_FILES = [
 
 export const STRIPPED_DIRECTORIES = ['flags'] as const
 
-export const FOREIGN_DIRECTORIES = ['fonts', 'icons', 'sounds'] as const
+export const FOREIGN_DIRECTORIES = ['arms', 'fonts', 'icons', 'sounds', 'textures'] as const
 
 export const GENERATED_DIRECTORIES = ['pdf', 'pdf-archive'] as const
 

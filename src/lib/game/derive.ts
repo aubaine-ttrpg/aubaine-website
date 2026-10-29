@@ -3,6 +3,7 @@ import type {
   EquipmentItem,
   EquipmentSet,
   GameState,
+  Heraldry,
   Skill,
   SkillTags,
   SkillTree,
@@ -48,6 +49,14 @@ export const DEFAULT_SUBSPECIES_LABEL: SubspeciesLabel = 'regional-origins'
 export const SUBSPECIES_SECTIONS: Record<SubspeciesLabel, string> = {
   'regional-origins': 'origines-regionales',
   subspecies: 'sous-especes',
+}
+
+export type HeraldryPlacement = 'beside' | 'across'
+
+export const HERALDRY_PLACEMENT: Record<Heraldry['kind'], HeraldryPlacement> = {
+  banner: 'beside',
+  flag: 'across',
+  arms: 'beside',
 }
 
 export function subspeciesAnchor(id: string): string {

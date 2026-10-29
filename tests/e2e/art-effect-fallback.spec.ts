@@ -1,5 +1,7 @@
 import { expect, type Page, test } from '@playwright/test'
 
+import { corpus } from './support/corpus'
+
 const SPECIES = '/fr/espece/nnor'
 const HERO = '[data-plate="hero"]'
 const STAGE = '[data-stage]'
@@ -67,5 +69,34 @@ test('a software renderer keeps the plain picture', async ({ page }) => {
   await expect(page.locator(`${HERO} > img`)).toBeVisible()
   await expect(page.locator(`${STAGE} > canvas`)).toHaveCount(0)
   await expect(page.locator(STAGE)).not.toHaveAttribute('data-staged')
+  expect(errors).toEqual([])
+})
+
+test('without WebGL2 the heraldry and a glazed picture keep their plain forms and log nothing', async ({
+  page,
+}) => {
+  const errors = collectErrors(page)
+  await page.addInitScript(() => {
+    const original = HTMLCanvasElement.prototype.getContext
+    Object.defineProperty(HTMLCanvasElement.prototype, 'getContext', {
+      value(this: HTMLCanvasElement, kind: string, ...rest: unknown[]) {
+        return kind === 'webgl2' ? null : Reflect.apply(original, this, [kind, ...rest])
+      },
+    })
+  })
+  const species = (await corpus('fr')).species.find((entry) =>
+    entry.subspecies.some((sub) => sub.heraldry),
+  )
+  expect(species, 'no species carries heraldry').toBeDefined()
+  if (!species) return
+  await page.goto(`/fr/espece/${species.id}`)
+  for (const holder of await page.locator('[data-drape], [data-relief="glass"]').all()) {
+    await holder.scrollIntoViewIfNeeded()
+  }
+  await page.waitForLoadState('networkidle')
+  await page.waitForTimeout(500)
+  await expect(page.locator('[data-drape] canvas, [data-relief="glass"] canvas')).toHaveCount(0)
+  await expect(page.locator('[data-drape] .au-heraldry__plain').first()).toBeVisible()
+  await expect(page.locator('[data-drape-toggle]')).toBeHidden()
   expect(errors).toEqual([])
 })

@@ -1,0 +1,127 @@
+---
+import type { Locale } from '../../lib/i18n/locales'
+import { strings } from '../../lib/i18n/strings'
+
+type Props = {
+  id: string
+  title: string
+  body: string | undefined
+  locale: Locale
+  width: number
+  kind?: string
+  reach?: 'right' | 'left'
+  link?: { href: string; label: string } | undefined
+}
+
+const { id, title, body, locale, width, kind, reach = 'right', link } = Astro.props
+const t = strings(locale)
+---
+
+<div
+  popover
+  id={id}
+  class="au-note"
+  data-reach={reach}
+  aria-labelledby={`${id}-title`}
+  style={`position-anchor:--${id}; --au-note-width:${width}px`}
+>
+  {kind && <p class="au-note__kind">{kind}</p>}
+  <p class="au-note__title" id={`${id}-title`}>{title}</p>
+  <p class="au-note__body">{body}</p>
+  {
+    link && (
+      <a class="au-note__link" href={link.href}>
+        <span>{link.label}</span>
+        <span aria-hidden="true">→</span>
+      </a>
+    )
+  }
+  <button type="button" class="au-note__close" popovertarget={id} popovertargetaction="hide">
+    {t.close}
+  </button>
+</div>
+
+<style>
+  .au-note {
+    width: min(var(--au-note-width), calc(100vw - 32px));
+    padding: 18px 20px 16px;
+    border: 1px solid var(--accent-line);
+    background: var(--bg2);
+    color: var(--ink);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  }
+
+  @supports (anchor-name: --a) {
+    @media (min-width: 560px) {
+      .au-note {
+        inset: auto;
+        margin: 8px 0;
+        position-area: bottom span-right;
+        position-try-fallbacks: flip-block, flip-inline;
+      }
+
+      .au-note[data-reach='left'] {
+        position-area: bottom span-left;
+      }
+    }
+  }
+
+  .au-note__kind {
+    margin: 0 0 6px;
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .au-note__title {
+    margin: 0 0 10px;
+    font-family: var(--font-display);
+    font-size: 19px;
+    font-weight: 600;
+  }
+
+  .au-note__body {
+    margin: 0 0 14px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink2);
+  }
+
+  .au-note__link {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: -4px 0 16px;
+    color: var(--gold);
+    font-family: var(--font-ui);
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  .au-note__link:hover,
+  .au-note__link:focus-visible {
+    text-decoration-thickness: 2px;
+  }
+
+  .au-note__close {
+    padding: 7px 13px;
+    border: 1px solid var(--line2);
+    color: var(--ink);
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .au-note__close:hover,
+  .au-note__close:focus-visible {
+    border-color: var(--gold);
+  }
+</style>

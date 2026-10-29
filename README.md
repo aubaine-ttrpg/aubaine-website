@@ -74,8 +74,9 @@ records why it is built this way.
 
 Code is [MIT](LICENSE). Game content, everything under `data/`, is
 [CC BY-NC-SA 4.0](LICENSE-CONTENT), which is the claim the footer prints on every page. The icons
-under `data/media/icons/`, the fonts under `data/media/fonts/` and the sounds under
-`data/media/sounds/` are third party and carry their own terms, declared in
+under `data/media/icons/`, the fonts under `data/media/fonts/`, the sounds under
+`data/media/sounds/` and the textures under `data/media/textures/` are third party and carry their
+own terms, and the arms under `data/media/arms/` adapt third party heraldic charges, all declared in
 `src/lib/rights/attribution.ts` and explained in [docs/third-party-assets.md](docs/third-party-assets.md).
 
 The site says all of this in its own words too. `src/content/policies/` holds the licences page, the

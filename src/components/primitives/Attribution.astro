@@ -1,12 +1,8 @@
 ---
 import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
-import {
-  ATTRIBUTION_SECTIONS,
-  FONT_FAMILIES,
-  ICON_SETS,
-  SOUND_WORKS,
-} from '../../lib/rights/attribution'
+import { FONT_FAMILIES, ICON_SETS } from '../../lib/rights/attribution'
+import { creditSections } from '../../lib/rights/credits'
 
 type Props = { locale: Locale }
 
@@ -20,96 +16,118 @@ const tableStyle =
 const headStyle =
   'padding:8px 12px 8px 0; border-bottom:1px solid var(--line2); text-align:left; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); font-weight:600'
 const cellStyle = 'padding:11px 12px 11px 0; border-bottom:1px solid var(--line); color:var(--ink2)'
+
+const sections = creditSections(t)
 ---
 
 <section data-attribution>
-  <h2 id={ATTRIBUTION_SECTIONS.icons} style={headingStyle}>{t.creditsIcons}</h2>
-  <table style={tableStyle}>
-    <thead>
-      <tr>
-        <th scope="col" style={headStyle}>{t.creditsSet}</th>
-        <th scope="col" style={headStyle}>{t.creditsAuthor}</th>
-        <th scope="col" style={headStyle}>{t.creditsTerms}</th>
-      </tr>
-    </thead>
-    <tbody>
-      {
-        ICON_SETS.map((set) => (
-          <tr>
-            <td style={cellStyle}>
-              <a href={set.home} rel="noopener noreferrer external">
-                {set.name}
-              </a>
-            </td>
-            <td style={cellStyle}>{set.author}</td>
-            <td style={cellStyle}>
-              <a href={set.licence.url} rel="noopener noreferrer external license">
-                {set.licence.id}
-              </a>
-            </td>
-          </tr>
-        ))
-      }
-    </tbody>
-  </table>
-
-  <h2 id={ATTRIBUTION_SECTIONS.fonts} style={headingStyle}>{t.creditsFonts}</h2>
-  <table style={tableStyle}>
-    <thead>
-      <tr>
-        <th scope="col" style={headStyle}>{t.creditsFamily}</th>
-        <th scope="col" style={headStyle}>{t.creditsTerms}</th>
-      </tr>
-    </thead>
-    <tbody>
-      {
-        FONT_FAMILIES.map((family) => (
-          <tr>
-            <td style={cellStyle} translate="no">
-              {family.name}
-            </td>
-            <td style={cellStyle}>
-              <a href={family.licence.url} rel="noopener noreferrer external license">
-                {family.licence.id}
-              </a>
-            </td>
-          </tr>
-        ))
-      }
-    </tbody>
-  </table>
-
-  <h2 id={ATTRIBUTION_SECTIONS.sounds} style={headingStyle}>{t.creditsSounds}</h2>
-  <table style={tableStyle}>
-    <thead>
-      <tr>
-        <th scope="col" style={headStyle}>{t.creditsWork}</th>
-        <th scope="col" style={headStyle}>{t.creditsAuthor}</th>
-        <th scope="col" style={headStyle}>{t.creditsTerms}</th>
-      </tr>
-    </thead>
-    <tbody>
-      {
-        SOUND_WORKS.map((work) => (
-          <tr>
-            <td style={cellStyle} translate="no">
-              <a href={work.source} rel="noopener noreferrer external">
-                {work.title}
-              </a>
-            </td>
-            <td style={cellStyle} translate="no">
-              {work.author}
-            </td>
-            <td style={cellStyle}>
-              <a href={work.licence.url} rel="noopener noreferrer external license">
-                {work.licence.id}
-              </a>
-            </td>
-          </tr>
-        ))
-      }
-    </tbody>
-  </table>
+  {
+    sections.map((section) => (
+      <>
+        <h2 id={section.id} style={headingStyle}>
+          {section.heading}
+        </h2>
+        {section.kind === 'icons' && (
+          <table style={tableStyle}>
+            <thead>
+              <tr>
+                <th scope="col" style={headStyle}>
+                  {t.creditsSet}
+                </th>
+                <th scope="col" style={headStyle}>
+                  {t.creditsAuthor}
+                </th>
+                <th scope="col" style={headStyle}>
+                  {t.creditsTerms}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {ICON_SETS.map((set) => (
+                <tr>
+                  <td style={cellStyle}>
+                    <a href={set.home} rel="noopener noreferrer external">
+                      {set.name}
+                    </a>
+                  </td>
+                  <td style={cellStyle}>{set.author}</td>
+                  <td style={cellStyle}>
+                    <a href={set.licence.url} rel="noopener noreferrer external license">
+                      {set.licence.id}
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+        {section.kind === 'fonts' && (
+          <table style={tableStyle}>
+            <thead>
+              <tr>
+                <th scope="col" style={headStyle}>
+                  {t.creditsFamily}
+                </th>
+                <th scope="col" style={headStyle}>
+                  {t.creditsTerms}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {FONT_FAMILIES.map((family) => (
+                <tr>
+                  <td style={cellStyle} translate="no">
+                    {family.name}
+                  </td>
+                  <td style={cellStyle}>
+                    <a href={family.licence.url} rel="noopener noreferrer external license">
+                      {family.licence.id}
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+        {section.kind === 'works' && (
+          <table style={tableStyle}>
+            <thead>
+              <tr>
+                <th scope="col" style={headStyle}>
+                  {t.creditsWork}
+                </th>
+                <th scope="col" style={headStyle}>
+                  {t.creditsAuthor}
+                </th>
+                <th scope="col" style={headStyle}>
+                  {t.creditsTerms}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {section.works.map((work) => (
+                <tr>
+                  <td style={cellStyle} translate="no">
+                    <a href={work.source} rel="noopener noreferrer external">
+                      {work.title}
+                    </a>
+                  </td>
+                  <td style={cellStyle} translate="no">
+                    {work.author}
+                  </td>
+                  <td style={cellStyle}>
+                    <a href={work.licence.url} rel="noopener noreferrer external license">
+                      {work.licence.id}
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </>
+    ))
+  }
 </section>
 
 <style>

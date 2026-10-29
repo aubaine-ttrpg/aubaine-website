@@ -103,12 +103,16 @@
     background: var(--gold);
     -webkit-mask:
       var(--au-caption-mark) center / auto 100% no-repeat,
-      linear-gradient(to right, transparent, #000) left center / calc(50% - 0.75em) 1px no-repeat,
-      linear-gradient(to left, transparent, #000) right center / calc(50% - 0.75em) 1px no-repeat;
+      linear-gradient(to right, transparent, #000) left var(--au-caption-tail, 0px) top 50% /
+      calc(50% - 0.75em - var(--au-caption-tail, 0px)) 1px no-repeat,
+      linear-gradient(to left, transparent, #000) right var(--au-caption-tail, 0px) top 50% /
+      calc(50% - 0.75em - var(--au-caption-tail, 0px)) 1px no-repeat;
     mask:
       var(--au-caption-mark) center / auto 100% no-repeat,
-      linear-gradient(to right, transparent, #000) left center / calc(50% - 0.75em) 1px no-repeat,
-      linear-gradient(to left, transparent, #000) right center / calc(50% - 0.75em) 1px no-repeat;
+      linear-gradient(to right, transparent, #000) left var(--au-caption-tail, 0px) top 50% /
+      calc(50% - 0.75em - var(--au-caption-tail, 0px)) 1px no-repeat,
+      linear-gradient(to left, transparent, #000) right var(--au-caption-tail, 0px) top 50% /
+      calc(50% - 0.75em - var(--au-caption-tail, 0px)) 1px no-repeat;
     --au-caption-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M6 .5l4.76 2.75v5.5L6 11.5 1.24 8.75v-5.5z'/%3E%3C/svg%3E");
   }
 }
@@ -237,6 +241,69 @@
 
   .au-prose .au-prose__relief[data-lit] img {
     opacity: 0;
+  }
+}
+
+.au-prose .au-prose__frame {
+  container-type: inline-size;
+  position: relative;
+  display: block;
+}
+
+@media screen {
+  .au-prose .au-prose__frame > canvas {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  .au-prose .au-prose__frame[data-lit] .au-prose__moulding {
+    border-image: none;
+  }
+
+  .au-prose .au-prose__frame[data-lit] img {
+    opacity: 0;
+  }
+
+  .au-prose .au-prose__frame[data-lit] .au-prose__relief::after {
+    content: none;
+  }
+}
+
+.au-prose .au-prose__moulding {
+  display: block;
+  border: calc(var(--au-frame-share) * 1cqi) solid transparent;
+  border-image: url("../../data/media/textures/fancy-picture-frame-01.webp") var(--au-frame-slice)
+    stretch;
+  box-shadow:
+    0 1.1rem 1.5rem -0.9rem rgb(0 0 0 / 0.5),
+    0 0.2rem 0.35rem rgb(0 0 0 / 0.22);
+  print-color-adjust: exact;
+}
+
+.au-prose .au-prose__moulding .au-prose__relief {
+  position: relative;
+  display: block;
+}
+
+.au-prose .au-prose__moulding .au-prose__relief::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow:
+    inset 0.3rem 0.4rem 0.45rem -0.2rem rgb(20 12 2 / 0.6),
+    inset -0.1rem -0.1rem 0.2rem -0.1rem rgb(20 12 2 / 0.35);
+}
+
+.au-prose .au-prose__moulding img {
+  border: 0;
+}
+
+@media print {
+  .au-prose :is(.au-prose__relief, .au-prose__frame) canvas {
+    display: none;
   }
 }
 

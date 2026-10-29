@@ -52,7 +52,7 @@ Several of these are keyed maps rather than arrays:
 | Field | Keyed by | From `schema.ts` |
 | --- | --- | --- |
 | skill `upgrades` | the upgrade's `level`, as a string | Améliorations traduites, keyées par leur niveau sous forme de chaîne. |
-| species `subspecies` | the sub-species' `id` | Noms et présentations traduits, keyés par l'identifiant de la sous-espèce. Un nom ne se traduit que s'il est un nom commun. Each value is `{ "name": "...", "text": "..." }`, either key optional. |
+| species `subspecies` | the sub-species' `id` | Noms, présentations, noms de pièce héraldique et blasonnements traduits, keyés par l'identifiant de la sous-espèce. Un nom ne se traduit que s'il est un nom commun. Each value is `{ "name": "...", "text": "...", "heraldry": { "name": "...", "blazon": "..." } }`, every key optional. `heraldry.name` is the caption of the sub-species' banner, flag or arms, and only a sub-species that carries one may translate it. `heraldry.blazon` translates the blazon of arms, and only arms carry one: the build fails on an overlay that translates a key its piece does not have. |
 | set `bonuses` | the tier's `pieces`, as a string | each value is `{ "text": "..." }` |
 | catalogue `families` | the family's `key` | each value is the translated title |
 | catalogue `sections` | the section's `key` | each value is the translated title |

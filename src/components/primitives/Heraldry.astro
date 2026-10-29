@@ -1,0 +1,417 @@
+---
+import { Image } from 'astro:assets'
+
+import hangerUrl from '../../../data/media/textures/banner-hanger.webp?url'
+import {
+  ARMS_SIZE,
+  BANNER_CLOTH,
+  BANNER_DESIGN,
+  BANNER_HANGER,
+  bannerFringe,
+  bannerOutline,
+  FLAG,
+} from '../../lib/art-effect/presets'
+import type { Heraldry } from '../../lib/game/schema'
+import type { Locale } from '../../lib/i18n/locales'
+import { strings } from '../../lib/i18n/strings'
+import { armsOf, artImage, emblemUrl } from '../../lib/media'
+import Icon from './Icon.astro'
+import PictureNote from './PictureNote.astro'
+
+type Props = { locale: Locale; heraldry: Heraldry; id: string }
+
+const { locale, heraldry, id } = Astro.props
+const t = strings(locale)
+
+const BOX = 1000
+const MEASURE_REM = 48
+const percent = (value: number): string => `${(value * 100).toFixed(4)}%`
+
+const unknownKind = (piece: never): never => {
+  throw new Error(`Heraldry.astro cannot draw ${JSON.stringify(piece)}`)
+}
+if (heraldry.kind !== 'banner' && heraldry.kind !== 'flag' && heraldry.kind !== 'arms') {
+  unknownKind(heraldry)
+}
+
+const banner =
+  heraldry.kind === 'banner'
+    ? (() => {
+        const { aspect, rest } = BANNER_CLOTH
+        const cloth = {
+          x: rest.x * BOX,
+          y: rest.y * BOX,
+          width: rest.width * BOX,
+          height: rest.height * BOX,
+        }
+        const side = BANNER_DESIGN.emblem.width * cloth.width
+        return {
+          view: `0 0 ${aspect * BOX} ${BOX}`,
+          aspect,
+          emblem: emblemUrl(heraldry.emblem),
+          field: heraldry.field,
+          charge: heraldry.charge,
+          cloth,
+          outline: bannerOutline(cloth.width, cloth.height),
+          fringe: bannerFringe(cloth.width, cloth.height),
+          trim: 2 * BANNER_DESIGN.trim * cloth.width,
+          rule: 2 * (BANNER_DESIGN.trim + BANNER_DESIGN.rule) * cloth.width,
+          hem: BANNER_DESIGN.hem * cloth.height,
+          pitch: cloth.width / BANNER_DESIGN.strands,
+          mark: {
+            x: (cloth.width - side) / 2,
+            y: BANNER_DESIGN.emblem.centre * cloth.height - side / 2,
+            width: side,
+            height: side,
+          },
+          hanger: {
+            width: BANNER_HANGER.width,
+            height: Math.round((BANNER_HANGER.width * BANNER_HANGER.band) / aspect),
+          },
+        }
+      })()
+    : undefined
+
+const flag = heraldry.kind === 'flag' ? artImage(heraldry.picture) : undefined
+if (heraldry.kind === 'flag' && !flag) {
+  throw new Error(
+    `the flag ${heraldry.name} names ${heraldry.picture}, which is not in data/media/art/`,
+  )
+}
+const flagBox = flag
+  ? {
+      aspect: flag.width / flag.height / (1 + 2 * FLAG.headroom),
+      headroom: percent(FLAG.headroom / (1 + 2 * FLAG.headroom)),
+      height: percent(1 / (1 + 2 * FLAG.headroom)),
+      sizes: `(min-width: ${MEASURE_REM}rem) ${MEASURE_REM}rem, 100vw`,
+    }
+  : undefined
+const arms =
+  heraldry.kind === 'arms'
+    ? { ...armsOf(heraldry.arms), aspect: ARMS_SIZE.width / ARMS_SIZE.height }
+    : undefined
+const blazon = heraldry.kind === 'arms' ? heraldry.blazon : undefined
+
+const FOLDS = [
+  [0, 0, 0.18],
+  [0.09, 1, 0.05],
+  [0.21, 0, 0.1],
+  [0.36, 1, 0.07],
+  [0.5, 0, 0.04],
+  [0.63, 1, 0.08],
+  [0.79, 0, 0.11],
+  [0.91, 1, 0.04],
+  [1, 0, 0.2],
+] as const
+---
+
+<figure
+  class={`au-heraldry au-heraldry--${heraldry.kind} au-prose__picture`}
+  data-heraldry
+  data-noted={blazon === undefined ? undefined : ''}
+>
+  {
+    banner && (
+      <div
+        class="au-heraldry__drape"
+        data-drape="banner"
+        data-emblem={banner.emblem}
+        data-field={banner.field}
+        data-charge={banner.charge}
+        style={`--drape-aspect:${banner.aspect}`}
+        aria-hidden="true"
+      >
+        <svg class="au-heraldry__plain" viewBox={banner.view} focusable="false">
+          <defs>
+            <clipPath id={`${id}-cloth`}>
+              <path d={banner.outline} />
+            </clipPath>
+            <mask id={`${id}-mark`} style="mask-type:alpha">
+              <image href={banner.emblem} {...banner.mark} />
+            </mask>
+            <linearGradient id={`${id}-gilt`} x1="0.15" y1="0" x2="0.85" y2="1">
+              <stop offset="0" style={`stop-color:color-mix(in srgb, ${banner.charge} 68%, #fff3c4)`} />
+              <stop offset="0.4" style={`stop-color:${banner.charge}`} />
+              <stop offset="0.65" style={`stop-color:color-mix(in srgb, ${banner.charge} 74%, #7a4e0e)`} />
+              <stop offset="0.82" style={`stop-color:color-mix(in srgb, ${banner.charge} 80%, #ffe7a0)`} />
+              <stop offset="1" style={`stop-color:color-mix(in srgb, ${banner.charge} 70%, #6b4208)`} />
+            </linearGradient>
+            <linearGradient id={`${id}-folds`} x1="0" y1="0" x2="1" y2="0">
+              {FOLDS.map(([offset, light, strength]) => (
+                <stop offset={offset} stop-color={light ? '#fff' : '#000'} stop-opacity={strength} />
+              ))}
+            </linearGradient>
+            <linearGradient id={`${id}-fall`} x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#000" stop-opacity="0.28" />
+              <stop offset="0.07" stop-color="#000" stop-opacity="0" />
+              <stop offset="0.72" stop-color="#000" stop-opacity="0" />
+              <stop offset="1" stop-color="#000" stop-opacity="0.22" />
+            </linearGradient>
+            <pattern
+              id={`${id}-braid`}
+              width="7"
+              height="7"
+              patternUnits="userSpaceOnUse"
+              patternTransform="rotate(45)"
+            >
+              <rect width="2.2" height="7" fill="#2a1a04" fill-opacity="0.32" />
+            </pattern>
+            <linearGradient id={`${id}-strand`} x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" style={`stop-color:color-mix(in srgb, ${banner.charge} 70%, #6b4208)`} />
+              <stop offset="0.5" style={`stop-color:color-mix(in srgb, ${banner.charge} 80%, #fff0c0)`} />
+              <stop offset="1" style={`stop-color:color-mix(in srgb, ${banner.charge} 70%, #6b4208)`} />
+            </linearGradient>
+            <pattern
+              id={`${id}-strands`}
+              width={banner.pitch}
+              height={banner.cloth.height}
+              patternUnits="userSpaceOnUse"
+            >
+              <rect width={banner.pitch * 0.7} height={banner.cloth.height} fill={`url(#${id}-strand)`} />
+            </pattern>
+          </defs>
+          <g transform={`translate(${banner.cloth.x} ${banner.cloth.y})`}>
+            <g clip-path={`url(#${id}-cloth)`}>
+              <rect width={banner.cloth.width} height={banner.cloth.height} fill={banner.field} />
+              <rect width={banner.cloth.width} height={banner.cloth.height} fill={`url(#${id}-folds)`} />
+              <rect width={banner.cloth.width} height={banner.cloth.height} fill={`url(#${id}-fall)`} />
+              <path
+                d={banner.outline}
+                fill="none"
+                stroke="#000"
+                stroke-opacity="0.38"
+                stroke-width={banner.rule}
+              />
+              <path d={banner.outline} fill="none" stroke={`url(#${id}-gilt)`} stroke-width={banner.trim} />
+              <path d={banner.outline} fill="none" stroke={`url(#${id}-braid)`} stroke-width={banner.trim} />
+              <g transform="translate(3 5)">
+                <rect {...banner.mark} fill="#000" fill-opacity="0.35" mask={`url(#${id}-mark)`} />
+              </g>
+              <rect {...banner.mark} fill={`url(#${id}-gilt)`} mask={`url(#${id}-mark)`} />
+              <rect width={banner.cloth.width} height={banner.hem} fill="#000" fill-opacity="0.18" />
+            </g>
+            <path d={banner.fringe} fill={`url(#${id}-strands)`} />
+          </g>
+        </svg>
+        <img
+          class="au-heraldry__fixture"
+          src={hangerUrl}
+          width={banner.hanger.width}
+          height={banner.hanger.height}
+          alt=""
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    )
+  }
+  {
+    flag && flagBox && (
+      <div class="au-heraldry__stage" style={`--flag-headroom:${flagBox.headroom}`}>
+        <div
+          class="au-heraldry__drape"
+          data-drape="flag"
+          style={`--drape-aspect:${flagBox.aspect}`}
+          aria-hidden="true"
+        >
+          <Image
+            class="au-heraldry__plain"
+            src={flag}
+            alt=""
+            widths={[640, 960, 1280, flag.width]}
+            sizes={flagBox.sizes}
+            style={`top:${flagBox.headroom};height:${flagBox.height}`}
+          />
+        </div>
+        <button
+          type="button"
+          class="au-heraldry__still"
+          data-drape-toggle
+          data-pause={t.flagPause}
+          data-play={t.flagPlay}
+          aria-label={t.flagPause}
+          hidden
+        >
+          <Icon name="mdi:pause" class="au-heraldry__still-icon au-heraldry__still-icon--pause" />
+          <Icon name="mdi:play" class="au-heraldry__still-icon au-heraldry__still-icon--play" />
+        </button>
+      </div>
+    )
+  }
+  {
+    arms && (
+      <div
+        class="au-heraldry__drape"
+        data-drape="arms"
+        data-colour={arms.colour}
+        data-relief={arms.relief}
+        data-finish={arms.finish}
+        style={`--drape-aspect:${arms.aspect}`}
+        aria-hidden="true"
+      >
+        <img
+          class="au-heraldry__plain"
+          src={arms.still}
+          width={ARMS_SIZE.width}
+          height={ARMS_SIZE.height}
+          alt=""
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    )
+  }
+  <figcaption>{heraldry.name}</figcaption>
+  {
+    blazon && (
+      <PictureNote
+        id={`${id}-blazon`}
+        label={t.blazonOf(heraldry.name)}
+        title={t.blazon}
+        body={blazon}
+        locale={locale}
+      />
+    )
+  }
+</figure>
+
+<style>
+  .au-heraldry {
+    margin: 0;
+  }
+
+  .au-heraldry__stage {
+    position: relative;
+  }
+
+  .au-heraldry__drape {
+    position: relative;
+    aspect-ratio: var(--drape-aspect);
+  }
+
+  .au-heraldry__drape > :global(*) {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .au-heraldry__drape > :global(canvas) {
+    z-index: 1;
+  }
+
+  .au-heraldry__drape > .au-heraldry__fixture {
+    z-index: 2;
+    bottom: auto;
+    height: auto;
+    border: 0;
+    pointer-events: none;
+  }
+
+  .au-heraldry__drape[data-draped] > .au-heraldry__plain {
+    visibility: hidden;
+  }
+
+  .au-heraldry--banner .au-heraldry__drape,
+  .au-heraldry--arms .au-heraldry__drape {
+    filter: drop-shadow(0 0.35rem 0.5rem rgb(0 0 0 / 0.2));
+  }
+
+  .au-heraldry--arms .au-heraldry__plain {
+    border: 0;
+  }
+
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .au-heraldry--arms .au-heraldry__drape {
+      transform: perspective(600px) rotateY(calc(var(--lean-x, 0) * 7deg))
+        rotateX(calc(var(--lean-y, 0) * -7deg));
+      transition: transform 0.6s var(--ease);
+    }
+
+    .au-heraldry--arms .au-heraldry__drape[data-tilting] {
+      --lean-x: var(--tilt-x, 0);
+      --lean-y: var(--tilt-y, 0);
+      transition-duration: 0.14s;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .au-heraldry--banner .au-heraldry__drape > :global(canvas) {
+      touch-action: pan-y pinch-zoom;
+      cursor: grab;
+    }
+
+    .au-heraldry--banner .au-heraldry__drape > :global(canvas:active) {
+      cursor: grabbing;
+    }
+  }
+
+  .au-heraldry--flag {
+    margin-block: 0.9em 0;
+  }
+
+  .au-heraldry--flag .au-heraldry__plain {
+    bottom: auto;
+    border: 0;
+  }
+
+  .au-heraldry__still {
+    position: absolute;
+    right: 12px;
+    bottom: calc(var(--flag-headroom) + 12px);
+    z-index: 3;
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: 1px solid var(--line2);
+    background: rgba(6, 5, 13, 0.6);
+    color: var(--ink2);
+    cursor: pointer;
+    transition:
+      color 0.2s var(--ease),
+      border-color 0.2s var(--ease);
+  }
+
+  .au-heraldry__still[hidden] {
+    display: none;
+  }
+
+  .au-heraldry__still:hover,
+  .au-heraldry__still:focus-visible {
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+
+  .au-heraldry__still :global(.au-heraldry__still-icon) {
+    width: 18px;
+    height: 18px;
+  }
+
+  .au-heraldry__still :global(.au-heraldry__still-icon--play),
+  .au-heraldry[data-still] .au-heraldry__still :global(.au-heraldry__still-icon--pause) {
+    display: none;
+  }
+
+  .au-heraldry[data-still] .au-heraldry__still :global(.au-heraldry__still-icon--play) {
+    display: block;
+  }
+
+  @media print {
+    .au-heraldry__drape > :global(canvas),
+    .au-heraldry__still {
+      display: none;
+    }
+
+    .au-heraldry__drape[data-draped] > .au-heraldry__plain {
+      visibility: visible;
+    }
+
+    .au-heraldry--banner .au-heraldry__drape,
+    .au-heraldry--arms .au-heraldry__drape {
+      filter: none;
+    }
+  }
+</style>

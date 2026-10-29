@@ -81,6 +81,22 @@ describe('the key colour Aubaine reads from its covers', () => {
     }
   })
 
+  it('keeps the sticker ink readable on every key colour a species writes for itself', async () => {
+    const directory = resolve(import.meta.dirname, '../../data/species')
+    const files = (await readdir(directory)).filter(
+      (file) => file.endsWith('.json') && !/\.[a-z]{2}\.json$/.test(file),
+    )
+    for (const file of files) {
+      const entry: { keyColour?: string } = JSON.parse(
+        await readFile(resolve(directory, file), 'utf8'),
+      )
+      if (!entry.keyColour) continue
+      expect(contrastOf(rgbFromHex(entry.keyColour), STICKER_INK), file).toBeGreaterThanOrEqual(
+        AA_TEXT,
+      )
+    }
+  })
+
   it('falls back to a house gold written in hex', () => {
     expect(hexOf(rgbFromHex(KEY_FALLBACK))).toBe(KEY_FALLBACK)
   })

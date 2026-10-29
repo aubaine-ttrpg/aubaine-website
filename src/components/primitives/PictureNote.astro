@@ -1,0 +1,65 @@
+---
+import type { Locale } from '../../lib/i18n/locales'
+import Icon from './Icon.astro'
+import PopoverNote from './PopoverNote.astro'
+
+type Props = { id: string; label: string; title: string; body: string; locale: Locale }
+
+const { id, label, title, body, locale } = Astro.props
+const NOTE_WIDTH = 380
+---
+
+<button
+  type="button"
+  class="au-picture-note"
+  popovertarget={id}
+  aria-label={label}
+  style={`anchor-name:--${id}`}
+>
+  <Icon name="mdi:help" class="au-picture-note__icon" />
+</button>
+<PopoverNote id={id} title={title} body={body} locale={locale} width={NOTE_WIDTH} reach="left" />
+
+<style>
+  :global(.au-prose__picture[data-noted]) {
+    --au-note-button: 26px;
+    --au-caption-tail: calc(var(--au-note-button) + 6px);
+    position: relative;
+  }
+
+  .au-picture-note {
+    position: absolute;
+    inset-inline-end: 0;
+    inset-block-end: calc(0.375em - var(--au-note-button) / 2);
+    display: grid;
+    place-items: center;
+    inline-size: var(--au-note-button);
+    block-size: var(--au-note-button);
+    padding: 0;
+    border: 1px solid var(--line2);
+    border-radius: 50%;
+    font-size: 1.02em;
+    color: var(--ink2);
+    cursor: pointer;
+    transition:
+      color 0.2s var(--ease),
+      border-color 0.2s var(--ease);
+  }
+
+  .au-picture-note:hover,
+  .au-picture-note:focus-visible {
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+
+  .au-picture-note :global(.au-picture-note__icon) {
+    inline-size: 15px;
+    block-size: 15px;
+  }
+
+  @media print {
+    .au-picture-note {
+      display: none;
+    }
+  }
+</style>

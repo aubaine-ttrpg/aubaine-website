@@ -1,6 +1,7 @@
 import { readdir, readFile } from 'node:fs/promises'
 import { join, resolve } from 'node:path'
 
+import { FRAME } from '../art-effect/presets.ts'
 import { DEFAULT_LOCALE, LOCALES, type Locale } from '../i18n/locales.ts'
 import { strings } from '../i18n/strings.ts'
 import { readCorpus } from './fs-sources.ts'
@@ -385,31 +386,65 @@ function isPictureRelief(value: string): value is PictureRelief {
   return PICTURE_RELIEFS.some((relief) => relief === value)
 }
 
-export type PictureLook = { mask: PictureMask; relief: PictureRelief | undefined }
+export const GLAZED_PICTURE = 'glazed'
+
+export type PictureLook =
+  | { kind: 'masked'; mask: PictureMask; relief: PictureRelief | undefined }
+  | { kind: 'glazed' }
 
 export function pictureLook(title: string, source: string): PictureLook {
-  const [mask = '', relief, ...rest] = title.trim().split(/\s+/)
-  if (!isPictureMask(mask)) {
+  const [first = '', second, ...rest] = title.trim().split(/\s+/)
+  if (first === GLAZED_PICTURE) {
+    if (second !== undefined) {
+      throw new Error(
+        `${source} asks for "${title.trim()}", but a ${GLAZED_PICTURE} picture takes no second word`,
+      )
+    }
+    return { kind: 'glazed' }
+  }
+  if (!isPictureMask(first)) {
     throw new Error(
-      `${source} asks for the mask "${mask}", which is none of ${PICTURE_MASKS.join(', ')}`,
+      `${source} asks for the look "${first}", which is none of ${[...PICTURE_MASKS, GLAZED_PICTURE].join(', ')}`,
     )
   }
-  if (rest.length > 0 || (relief !== undefined && !isPictureRelief(relief))) {
+  if (rest.length > 0 || (second !== undefined && !isPictureRelief(second))) {
     throw new Error(
-      `${source} asks for the relief "${[relief, ...rest].join(' ')}", which is none of ${PICTURE_RELIEFS.join(', ')}`,
+      `${source} asks for the relief "${[second, ...rest].join(' ')}", which is none of ${PICTURE_RELIEFS.join(', ')}`,
     )
   }
-  return { mask, relief }
+  return { kind: 'masked', mask: first, relief: second }
 }
 
 const PICTURE_RATIO = /-(\d{1,2}_\d{1,2})-[a-z0-9_]+\.(?:png|jpg)$/
+
+const { slice } = FRAME
+const FRAME_STYLE = [
+  `--au-frame-slice:${slice.top} ${slice.right} ${slice.bottom} ${slice.left}`,
+  `--au-frame-share:${((100 * slice.left) / FRAME.width).toFixed(4)}`,
+].join(';')
+
+function glazePicture(picture: HastElement, ratio: string | undefined): HastElement {
+  const glass = element(
+    'span',
+    {
+      className: 'au-prose__relief',
+      'data-relief': 'glass',
+      ...(ratio ? { 'data-ratio': ratio } : {}),
+    },
+    [picture],
+  )
+  const moulding = element('span', { className: 'au-prose__moulding' }, [glass])
+  return element('span', { className: 'au-prose__frame', style: FRAME_STYLE }, [moulding])
+}
 
 function maskPicture(picture: HastElement): HastElement {
   const { title, ...properties } = picture.properties
   if (title === undefined) return picture
   const source = String(properties['src'])
-  const { mask, relief } = pictureLook(String(title), source)
+  const look = pictureLook(String(title), source)
   const ratio = PICTURE_RATIO.exec(source)?.[1]
+  if (look.kind === 'glazed') return glazePicture({ ...picture, properties }, ratio)
+  const { mask, relief } = look
   const shape = { 'data-mask': mask, ...(ratio ? { 'data-ratio': ratio } : {}) }
   const masked: HastElement = { ...picture, properties: { ...properties, ...shape } }
   if (relief === undefined) return masked

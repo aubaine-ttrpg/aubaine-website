@@ -31,6 +31,7 @@ import type {
   EquipmentItem,
   EquipmentSet,
   GameState,
+  Heraldry,
   Material,
   Skill,
   SkillList,
@@ -196,6 +197,21 @@ function pruned<T extends Record<string, unknown>>(value: T): Defined<T> {
   return out as Defined<T>
 }
 
+function translatedHeraldry(
+  piece: Heraldry,
+  patch: { name?: string; blazon?: string },
+  where: string,
+): Heraldry {
+  for (const key of Object.keys(patch)) {
+    if (!(key in piece)) {
+      throw new Error(
+        `the overlay of ${where} translates ${key}, which its ${piece.kind} does not carry`,
+      )
+    }
+  }
+  return { ...piece, ...patch }
+}
+
 function vocabularyMap(entries: VocabularyEntry[]): Map<string, VocabularyEntry> {
   return new Map(entries.map((entry) => [entry.key, entry]))
 }
@@ -358,7 +374,13 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
     if (subspeciesPatch && base.subspecies) {
       merged.subspecies = base.subspecies.map((sub) => {
         const item = subspeciesPatch[sub.id]
-        return item ? { ...sub, ...pruned(item) } : sub
+        if (!item) return sub
+        const { heraldry: heraldryPatch, ...words } = item
+        const heraldry =
+          heraldryPatch && sub.heraldry
+            ? translatedHeraldry(sub.heraldry, pruned(heraldryPatch), `${entry.data.id}/${sub.id}`)
+            : sub.heraldry
+        return { ...sub, ...pruned(words), ...(heraldry ? { heraldry } : {}) }
       })
     }
     if (roleplayPatch && base.roleplay) {

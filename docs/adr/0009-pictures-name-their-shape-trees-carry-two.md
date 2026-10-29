@@ -7,6 +7,7 @@
 **Revised:** 2026-10-22, Decision 1 lets `data/media/art/` hold a 3:1 panorama that a lore page draws
 **Revised:** 2026-10-23, Decision 2 is reversed for trees and species by 0053: they keep one 3:4
 `cover` for card, hero and social image, and lose `banner`; books keep both
+**Revised:** 2026-10-25, Decision 1 lets `data/media/art/` hold a 3:2 painting or flag (0059)
 **Deciders:** Kori
 **Scope:** How a file under `data/media/art/` and `data/media/items/` is named, and how a tree or a
 book points at the pictures it needs. Does not cover the icon sets, which are Iconify names recorded
@@ -163,6 +164,14 @@ at 16:9 and 4 times at 3:1. The mural's mask, `data/media/masks/rupture-3_1.png`
 owner at the same 2172 by 724, so at its full size it frames the mural pixel for pixel. Reopen if a
 second prose ratio is wanted: each new one costs a mask file per key and a line in the test, which
 is the point at which a rule by ratio family would be cheaper than a list.
+
+
+### Addendum (2026-10-25): a 3:2 painting or flag
+
+- `data/media/art/` also accepts `3_2`: a painting a lore page hangs under glass, and a flag a
+  sub-species flies. The first two are `les-naufrages-de-la-venue-3_2-og.png` and
+  `drapeau-du-landenheit-3_2-og.png`, both 1536 by 1024. The glazed look needs no mask file, so no
+  `3_2` mask exists; see 0059 Decision 4 and its caveat.
 
 ---
 

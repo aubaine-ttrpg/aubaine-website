@@ -13,7 +13,7 @@ Every picture under `data/media/art/` and `data/media/items/`, and every video u
 | Part | What it is | Values in use |
 | --- | --- | --- |
 | `<nom>` | lowercase, hyphens, no accents | `berserker`, `bibliotheque-des-oracles` |
-| `<rapport>` | the aspect ratio in lowest terms, `_` instead of `:` | `16_9` for a banner or a video, `3_4` for a cover, `1_1` for an item |
+| `<rapport>` | the aspect ratio in lowest terms, `_` instead of `:` | `16_9` for a banner or a video, `3_4` for a cover, `1_1` for an item, `3_2` for a flag or a glazed painting |
 | `<état>` | what has been done to the file since it left the generator | `og`, `cleaned`, `upscaled_2`, `upscaled_4`, and `compressed` on a video |
 | `<extension>` | `png` or `jpg` for a picture, `mp4` for a video. Nothing else is picked up | |
 
@@ -35,7 +35,7 @@ Keeping the original beside a retouched version is the point of the state part. 
 
 | Folder | Holds | Format |
 | --- | --- | --- |
-| `data/media/art/` | covers, banners, hero and social images, and 3:1 panoramas a lore page draws | `.png`, `.jpg` |
+| `data/media/art/` | covers, banners, hero and social images, 3:1 panoramas and 3:2 paintings a lore page draws, and 3:2 flags a sub-species flies | `.png`, `.jpg` |
 | `data/media/items/` | item pictures | `.png`, `.jpg` |
 | `data/media/skills/` | skill pictures, 1:1, named after the skill's title | `.png`, `.jpg` |
 | `data/media/masks/` | the shapes a prose picture can be cut to | `.svg` or `.png`, named `<key>-<ratio>` after a key of `PICTURE_MASKS` in `src/lib/game/book-markup.ts`, one file per ratio so the edge keeps its size |

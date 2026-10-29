@@ -206,6 +206,35 @@ test('a species with sub-species prints each one with the skill it imposes', asy
   )
 })
 
+test('heraldry and a glazed picture stand in their plain form without javascript', async ({
+  page,
+}) => {
+  const species = (await corpus('fr')).species.find((entry) =>
+    entry.subspecies.some((sub) => sub.heraldry),
+  )
+  expect(species, 'no species carries heraldry').toBeDefined()
+  if (!species) return
+  await page.goto(`/fr/espece/${species.id}`)
+  for (const sub of species.subspecies) {
+    if (!sub.heraldry) continue
+    const figure = page.locator(`#origine-${sub.id} figure`)
+    await expect(figure.locator('.au-heraldry__plain')).toBeVisible()
+    await expect(figure.locator('canvas')).toHaveCount(0)
+    await expect(figure.locator('figcaption')).toHaveText(sub.heraldry.name)
+    await expect(figure.locator('[data-drape-toggle]')).toBeHidden()
+  }
+  const glazed = page.locator('.au-prose__frame [data-relief="glass"] img')
+  if ((await glazed.count()) === 0) return
+  await expect(glazed.first()).toBeVisible()
+  const moulding = page.locator('.au-prose__moulding').first()
+  expect(await moulding.evaluate((node) => getComputedStyle(node).borderImageSource)).toMatch(
+    /fancy-picture-frame-01/,
+  )
+  expect(
+    await moulding.evaluate((node) => Number.parseFloat(getComputedStyle(node).borderTopWidth)),
+  ).toBeGreaterThan(0)
+})
+
 test('a skill tree plate draws its nodes without javascript', async ({ page }) => {
   await page.goto('/fr/arbre/berserker')
   await expect(page.locator('[data-plate-node]')).toHaveCount(
@@ -384,6 +413,26 @@ test.describe('without javascript', () => {
     await expect(page.locator('[data-plate-node]')).toHaveCount(
       (await corpus('fr')).treesById.get('berserker')?.placements.length ?? 0,
     )
+  })
+
+  test('a blazon still opens from its caption rule without javascript', async ({ page }) => {
+    const t = strings('en')
+    const armed = (await corpus('en')).species.flatMap((species) =>
+      species.subspecies.flatMap((sub) =>
+        sub.heraldry?.kind === 'arms' ? [{ species, sub: sub.id, arms: sub.heraldry }] : [],
+      ),
+    )[0]
+    expect(armed, 'no sub-species bears arms').toBeDefined()
+    if (!armed) return
+    await page.goto(`/en/species/${armed.species.id}`)
+    const button = page
+      .locator(`#origine-${armed.sub} figure`)
+      .getByRole('button', { name: t.blazonOf(armed.arms.name) })
+    const note = page.locator(`#${await button.getAttribute('popovertarget')}`)
+    await expect(note).toBeHidden()
+    await button.click()
+    await expect(note).toBeVisible()
+    await expect(note).toContainText(armed.arms.blazon)
   })
 
   test('the Common Bank source still opens its note without javascript', async ({ page }) => {

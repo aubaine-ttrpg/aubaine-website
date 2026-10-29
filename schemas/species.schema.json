@@ -58,6 +58,11 @@
       "type": "string",
       "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*\\.svg$"
     },
+    "keyColour": {
+      "description": "Couleur clé du héros, en hexadécimal à six chiffres minuscules, quand celle que la build lit dans la couverture ne dit pas l'Espèce : elle teinte les descripteurs, le cadre, le nom en filigrane et la dalle. Absente : la couleur clé de la couverture.",
+      "type": "string",
+      "pattern": "^#[0-9a-f]{6}$"
+    },
     "movement": {
       "description": "Vitesse de l'Espèce, quand elle s'écarte des 9 mètres par défaut. Absente : 9 mètres.",
       "type": "string",
@@ -150,6 +155,107 @@
             "type": "string",
             "minLength": 1,
             "description": "Présentation de la sous-espèce, même balisage qu'une Compétence."
+          },
+          "heraldry": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "const": "banner",
+                    "description": "Une bannière suspendue à sa hampe, que le lecteur peut saisir et faire bouger, rendue à côté de la présentation."
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Nom de la pièce, rendu en légende sous elle et lu comme le nom de la figure : « Bannière de la maison Colbert ». L'overlay anglais le traduit."
+                  },
+                  "emblem": {
+                    "type": "string",
+                    "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*\\.svg$",
+                    "description": "Emblème brodé sur la bannière, dans data/media/emblems/, ramené au cadre commun par pnpm media:emblems."
+                  },
+                  "field": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-f]{6}$",
+                    "description": "Couleur du drap de la bannière, en hexadécimal à six chiffres minuscules."
+                  },
+                  "charge": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-f]{6}$",
+                    "description": "Couleur de l'emblème et des bordures de la bannière, en hexadécimal à six chiffres minuscules."
+                  }
+                },
+                "required": [
+                  "kind",
+                  "name",
+                  "emblem",
+                  "field",
+                  "charge"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "const": "flag",
+                    "description": "Un drapeau qui flotte au vent sur toute la largeur de la présentation, au-dessus de son texte."
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Nom de la pièce, rendu en légende sous elle et lu comme le nom de la figure : « Bannière de la maison Colbert ». L'overlay anglais le traduit."
+                  },
+                  "picture": {
+                    "type": "string",
+                    "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-\\d{1,2}_\\d{1,2}-(?:og|cleaned|upscaled_[24])\\.(?:png|jpg)$",
+                    "description": "Le drapeau à plat, au rapport 3:2, dans data/media/art/, nommé selon la convention des images."
+                  }
+                },
+                "required": [
+                  "kind",
+                  "name",
+                  "picture"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "const": "arms",
+                    "description": "Des armoiries d'émail et d'or en relief, rendues à côté de la présentation, dont l'or prend la lumière quand le lecteur bouge le pointeur ou fait défiler la page."
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Nom de la pièce, rendu en légende sous elle et lu comme le nom de la figure : « Bannière de la maison Colbert ». L'overlay anglais le traduit."
+                  },
+                  "blazon": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Le blasonnement des armoiries, lu dans la note qu'ouvre le bouton rond au bout du filet de la légende. L'overlay anglais le traduit."
+                  },
+                  "arms": {
+                    "type": "string",
+                    "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*\\.svg$",
+                    "description": "Nom de fichier d'une composition d'armoiries, dans data/media/arms/ : l'écu, ses émaux et ses meubles en SVG, cuits en relief par pnpm media:arms."
+                  }
+                },
+                "required": [
+                  "kind",
+                  "name",
+                  "blazon",
+                  "arms"
+                ],
+                "additionalProperties": false
+              }
+            ],
+            "description": "La pièce héraldique de la sous-espèce : une bannière qu'on saisit, un drapeau qui flotte, ou des armoiries dont l'or prend la lumière. Absente : la présentation n'en porte pas."
           },
           "names": {
             "description": "Les noms que porte la sous-espèce, chaque liste dans son ordre. Ils ne se traduisent pas. Absent : elle n'en déclare pas encore.",

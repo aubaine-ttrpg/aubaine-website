@@ -1,9 +1,13 @@
+import { armsFiles } from '../art-effect/presets.ts'
+
 export type Licence = { id: string; url: string }
 
 export const ATTRIBUTION_SECTIONS = {
   icons: 'credits-icons',
   fonts: 'credits-fonts',
   sounds: 'credits-sounds',
+  textures: 'credits-textures',
+  arms: 'credits-arms',
 } as const
 
 const APACHE_2: Licence = {
@@ -24,6 +28,16 @@ const OFL: Licence = {
 const CC0: Licence = {
   id: 'CC0 1.0',
   url: 'https://creativecommons.org/publicdomain/zero/1.0/',
+}
+
+const MIT: Licence = {
+  id: 'MIT',
+  url: 'https://opensource.org/license/mit',
+}
+
+const CC_BY_NC_SA_3: Licence = {
+  id: 'CC BY-NC-SA 3.0',
+  url: 'https://creativecommons.org/licenses/by-nc-sa/3.0/',
 }
 
 export type IconSet = {
@@ -260,3 +274,164 @@ export const SOUND_WORKS = [
 export const SOUND_FILES: readonly string[] = SOUND_WORKS.flatMap((work) =>
   work.cuts.map((cut) => cut.file),
 )
+
+export type Retouch = {
+  x: number
+  y: number
+  width: number
+  height: number
+  from: { x: number; y: number }
+}
+
+export type FramePass = 'beauty' | 'gilt' | 'relief'
+
+export type TextureCut =
+  | { file: string; kind: 'environment'; original: string }
+  | { file: string; kind: 'relief'; original: string; size: number }
+  | { file: string; kind: 'frame'; original: string; pass: FramePass; retouch: readonly Retouch[] }
+  | { file: string; kind: 'hanger'; original: string }
+
+export type TextureWork = {
+  title: string
+  author: string
+  source: string
+  licence: Licence
+  cuts: readonly TextureCut[]
+}
+
+const POLY_HAVEN = 'https://polyhaven.com/a'
+
+const FRAME_RETOUCH: readonly Retouch[] = [
+  { x: 1566, y: 1196, width: 34, height: 35, from: { x: -38, y: 0 } },
+]
+
+export const TEXTURE_WORKS = [
+  {
+    title: 'Fancy Picture Frame 01',
+    author: 'Rob Tuytel, Rico Cilliers',
+    source: `${POLY_HAVEN}/fancy_picture_frame_01`,
+    licence: CC0,
+    cuts: (['beauty', 'gilt', 'relief'] as const).map((pass) => ({
+      file:
+        pass === 'beauty' ? 'fancy-picture-frame-01.webp' : `fancy-picture-frame-01-${pass}.avif`,
+      kind: 'frame' as const,
+      original: 'fancy_picture_frame_01/fancy_picture_frame_01_4k.gltf',
+      pass,
+      retouch: FRAME_RETOUCH,
+    })),
+  },
+  {
+    title: 'Rough Linen',
+    author: 'colormass, Rico Cilliers',
+    source: `${POLY_HAVEN}/rough_linen`,
+    licence: CC0,
+    cuts: [
+      {
+        file: 'rough-linen-relief.avif',
+        kind: 'relief',
+        original: 'rough_linen_disp_2k.png',
+        size: 1024,
+      },
+    ],
+  },
+  {
+    title: 'Velour Velvet',
+    author: 'colormass, Rico Cilliers',
+    source: `${POLY_HAVEN}/velour_velvet`,
+    licence: CC0,
+    cuts: [
+      {
+        file: 'velour-velvet-relief.avif',
+        kind: 'relief',
+        original: 'velour_velvet_disp_2k.png',
+        size: 512,
+      },
+    ],
+  },
+  {
+    title: 'Combination Room',
+    author: 'Sergej Majboroda',
+    source: `${POLY_HAVEN}/combination_room`,
+    licence: CC0,
+    cuts: [
+      { file: 'combination-room.webp', kind: 'environment', original: 'combination_room_2k.hdr' },
+    ],
+  },
+  {
+    title: 'Dark Wood',
+    author: 'Dimitrios Savva, Dario Barresi, Rico Cilliers',
+    source: `${POLY_HAVEN}/dark_wood`,
+    licence: CC0,
+    cuts: [{ file: 'banner-hanger.webp', kind: 'hanger', original: 'dark_wood' }],
+  },
+] as const satisfies readonly TextureWork[]
+
+export const TEXTURE_FILES: readonly string[] = TEXTURE_WORKS.flatMap((work) =>
+  work.cuts.map((cut) => cut.file),
+)
+
+export type ArmsWork = {
+  key: string
+  title: string
+  author: string
+  source: string
+  licence: Licence
+}
+
+const WAPPENWIKI = 'https://wappenwiki.org'
+
+export const ARMS_WORKS = [
+  {
+    key: 'armoria',
+    title: 'Armoria',
+    author: 'Azgaar',
+    source: 'https://azgaar.github.io/Armoria/',
+    licence: MIT,
+  },
+  {
+    key: 'lionRampant',
+    title: 'Lion Rampant',
+    author: 'WappenWiki',
+    source: WAPPENWIKI,
+    licence: CC_BY_NC_SA_3,
+  },
+  {
+    key: 'estoile',
+    title: 'Estoile',
+    author: 'WappenWiki',
+    source: WAPPENWIKI,
+    licence: CC_BY_NC_SA_3,
+  },
+  {
+    key: 'bookClosed',
+    title: 'Book Closed',
+    author: 'WappenWiki',
+    source: `${WAPPENWIKI}/index.php/File:Perm.svg`,
+    licence: CC_BY_NC_SA_3,
+  },
+  {
+    key: 'raven',
+    title: 'Raven',
+    author: 'WappenWiki',
+    source: WAPPENWIKI,
+    licence: CC_BY_NC_SA_3,
+  },
+] as const satisfies readonly ArmsWork[]
+
+export type ArmsWorkKey = (typeof ARMS_WORKS)[number]['key']
+
+export type ArmsComposition = { file: string; source: string; works: readonly ArmsWorkKey[] }
+
+export const ARMS_COMPOSITIONS = [
+  {
+    file: 'victoria.svg',
+    source: 'victoria-armoria.png',
+    works: ['armoria', 'lionRampant', 'estoile', 'bookClosed', 'raven'],
+  },
+] as const satisfies readonly ArmsComposition[]
+
+export const ARMS_FILES: readonly string[] = ARMS_COMPOSITIONS.flatMap((composition) => [
+  composition.source,
+  composition.file,
+  ...Object.values(armsFiles(composition.file)),
+])

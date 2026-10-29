@@ -21,6 +21,13 @@
       "id": "nouvelle-aubaine",
       "name": "Nouvelle-Aubaine",
       "text": "***En tant qu'habitant de la Nouvelle-Aubaine***, vous incarnez l'esprit chevaleresque et la diplomatie raffinée de votre peuple. Vous évoluez avec assurance tant dans les cours seigneuriales que sur les routes commerçantes, votre démarche alliant aisance et prestance. Les Aubainiens, à la fois chaleureux et fiers, font preuve d'une courtoisie légendaire, tout en demeurant vigilants face aux étrangers dont les intentions leur sont inconnues. Leur tenue mêle armure ciselée et tissus nobles, et leur regard, déterminé et bienveillant, traduit la curiosité insatiable qui les pousse à nouer des alliances durables à travers Eden.",
+      "heraldry": {
+        "kind": "banner",
+        "name": "Bannière de la maison Colbert",
+        "emblem": "colbert.svg",
+        "field": "#1f4e9e",
+        "charge": "#d4a83a"
+      },
       "names": {
         "masculine": [
           "Amaury",
@@ -172,6 +179,11 @@
       "id": "landenheit",
       "name": "Landenheit",
       "text": "***En tant que citoyen du Landenheit***, vous incarnez la rigueur mécanique et l'audace scientifique de votre Empire. Vous évoluez entre forges fumantes et ateliers d'ingénierie, où dirigeables sillonnent le ciel et trains à vapeur relient citadelles et usines. Les Landenheiter, méthodiques et déterminés, privilégient la précision à l'impulsion et placent la recherche au cœur de chaque projet, qu'il s'agisse de créer un automate ou de perfectionner un mécanisme. Leur tenue, souvent agrémentée de cuir renforcé et d'engrenages apparents, traduit l'alliance de la magie et de la machine, tandis que leur regard, curieux et calculateur, reflète l'esprit d'innovation qui fait la fierté de l'Empire.",
+      "heraldry": {
+        "kind": "flag",
+        "name": "Drapeau impérial du Landenheit",
+        "picture": "drapeau-du-landenheit-3_2-og.png"
+      },
       "names": {
         "masculine": [
           "Alaric",
@@ -284,6 +296,12 @@
       "id": "victoria",
       "name": "Victoria",
       "text": "***En tant que Victorien***, vous incarnez l'élégance mystérieuse et la soif de savoir de votre Monarchie. Vous déambulez dans les ruelles brumeuses des cités gothiques, flânant autant dans les bibliothèques occultes que dans les salons feutrés où l'on débat ardemment de philosophie et de magie. Les Victoriens, raffinés et érudits, cultivent le goût du détail (des broderies de velours aux symboles ésotériques gravés sur leurs bijoux) et voient dans chaque relique ou manuscrit ancien une clé pour percer les mystères d'Eden. Leur allure, souvent soulignée par des manteaux longs et des ornements sophistiqués, cache une détermination tranquille : explorer l'invisible, sans jamais dissiper la part d'ombre qui fascine.",
+      "heraldry": {
+        "kind": "arms",
+        "name": "Armoiries de la Victoria",
+        "blazon": "Écartelé de pourpre et de sable, à la partition horizontale ondée : au premier, un lion rampant d'or ; au deuxième, une étoile à six rais ondoyants d'or ; au troisième, un livre fermé d'or ; au quatrième, un corbeau d'or.",
+        "arms": "victoria.svg"
+      },
       "names": {
         "masculine": [
           "Arthur",

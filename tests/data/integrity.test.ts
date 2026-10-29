@@ -4,7 +4,7 @@ import { dirname, resolve } from 'node:path'
 import { parseFrontmatter } from '@astrojs/markdown-remark'
 import sharp from 'sharp'
 import { describe, expect, it } from 'vitest'
-
+import { armsFiles } from '../../src/lib/art-effect/presets'
 import { latestRelease, notes, releases } from '../../src/lib/booklet/manifest'
 import { frameEmblem } from '../../src/lib/emblem-frame'
 import { CALLOUT_KINDS, pictureLook } from '../../src/lib/game/book-markup'
@@ -33,7 +33,17 @@ import { LOCALES } from '../../src/lib/i18n/locales'
 import { pathFor, treeNodeHref } from '../../src/lib/i18n/routes'
 import { strings } from '../../src/lib/i18n/strings'
 import { PLACEHOLDER_BANNER, PLACEHOLDER_COVER, PLACEHOLDER_SQUARE } from '../../src/lib/media'
-import { FONT_FAMILIES, ICON_SETS, SOUND_FILES } from '../../src/lib/rights/attribution'
+import {
+  ARMS_COMPOSITIONS,
+  ARMS_FILES,
+  ARMS_WORKS,
+  FONT_FAMILIES,
+  ICON_SETS,
+  SOUND_FILES,
+  SOUND_WORKS,
+  TEXTURE_FILES,
+  TEXTURE_WORKS,
+} from '../../src/lib/rights/attribution'
 import { indexCaptions } from '../../src/lib/rights/captions'
 import { HOLDER, LICENCE, licenceClaim, pictureClaim, YEAR } from '../../src/lib/rights/claim'
 import { stampJpeg, stripJpeg } from '../../src/lib/rights/jpeg'
@@ -682,6 +692,18 @@ describe('media', () => {
     }
   })
 
+  it('points every flag at a 3:2 picture that exists', async () => {
+    const files = new Set(await readdir(resolve(root, 'data/media/art')))
+    for (const entry of fr.species) {
+      for (const sub of entry.subspecies) {
+        if (sub.heraldry?.kind !== 'flag') continue
+        const { picture } = sub.heraldry
+        expect(files.has(picture), `${entry.id} ${sub.id} flag ${picture}`).toBe(true)
+        expect(picture, `${entry.id} ${sub.id} flag`).toMatch(/-3_2-/)
+      }
+    }
+  })
+
   it('points every emblem at a file, and keeps no emblem nobody wears', async () => {
     const files = (await readdir(resolve(root, 'data/media/emblems'))).filter((file) =>
       file.endsWith('.svg'),
@@ -692,7 +714,87 @@ describe('media', () => {
       expect(files, `${entry.id} emblem ${entry.emblem}`).toContain(entry.emblem)
       worn.add(entry.emblem)
     }
+    for (const entry of fr.species) {
+      for (const sub of entry.subspecies) {
+        if (sub.heraldry?.kind !== 'banner') continue
+        expect(files, `${entry.id} ${sub.id} banner ${sub.heraldry.emblem}`).toContain(
+          sub.heraldry.emblem,
+        )
+        worn.add(sub.heraldry.emblem)
+      }
+    }
     expect(files.filter((file) => !worn.has(file))).toEqual([])
+  })
+
+  it('points every coat of arms at a credited composition and its bake', async () => {
+    const files = new Set(await readdir(resolve(root, 'data/media/arms')))
+    const composed = new Set<string>(ARMS_COMPOSITIONS.map((composition) => composition.file))
+    const worn = new Set<string>()
+    for (const entry of fr.species) {
+      for (const sub of entry.subspecies) {
+        if (sub.heraldry?.kind !== 'arms') continue
+        const { arms } = sub.heraldry
+        expect(
+          composed.has(arms),
+          `${entry.id} ${sub.id} arms ${arms} are credited by no composition`,
+        ).toBe(true)
+        for (const file of [arms, ...Object.values(armsFiles(arms))]) {
+          expect(
+            files.has(file),
+            `${entry.id} ${sub.id} arms need ${file}. Run: pnpm media:arms`,
+          ).toBe(true)
+        }
+        worn.add(arms)
+      }
+    }
+    expect([...composed].filter((file) => !worn.has(file))).toEqual([])
+  })
+
+  it('credits every charge a composition draws, with the licence the charge carries', async () => {
+    const works = new Map<string, (typeof ARMS_WORKS)[number]>(
+      ARMS_WORKS.map((work) => [work.key, work]),
+    )
+    const bare = (url: string): string => url.replace(/^https?:\/\//, '').replace(/\/$/, '')
+    for (const composition of ARMS_COMPOSITIONS) {
+      const svg = await readFile(resolve(root, 'data/media/arms', composition.file), 'utf8')
+      const drawn = [...svg.matchAll(/<g class="charge" id="([^"]+)"[^>]*\slicense="([^"]+)"/g)]
+      expect(drawn.length, `${composition.file} draws no charge`).toBeGreaterThan(0)
+      for (const [, key = '', licence = ''] of drawn) {
+        expect(
+          composition.works,
+          `${composition.file} draws ${key} without crediting it`,
+        ).toContain(key)
+        expect(
+          bare(works.get(key)?.licence.url ?? ''),
+          `${key} is credited under another licence`,
+        ).toBe(bare(licence))
+      }
+      const keys = new Set(drawn.map(([, key]) => key))
+      for (const key of composition.works) {
+        if (key === 'armoria') continue
+        expect(keys.has(key), `${composition.file} credits ${key}, which it does not draw`).toBe(
+          true,
+        )
+      }
+    }
+  })
+
+  it('translates the blazon of every coat of arms', () => {
+    for (const entry of fr.species) {
+      const translated = en.species.find((other) => other.id === entry.id)
+      for (const sub of entry.subspecies) {
+        if (sub.heraldry?.kind !== 'arms') continue
+        const english = translated?.subspecies.find((other) => other.id === sub.id)?.heraldry
+        expect(english?.kind, `${entry.id} ${sub.id}`).toBe('arms')
+        if (english?.kind !== 'arms') continue
+        expect(english.blazon, `${entry.id} ${sub.id} has no English blazon`).not.toBe(
+          sub.heraldry.blazon,
+        )
+        expect(english.name, `${entry.id} ${sub.id} has no English name`).not.toBe(
+          sub.heraldry.name,
+        )
+      }
+    }
   })
 
   it('frames every emblem on the shared square and margin', async () => {
@@ -769,7 +871,7 @@ describe('media', () => {
 
   it('names every image for the aspect ratio it actually has', async () => {
     for (const [directory, ratios] of [
-      ['data/media/art', ['16_9', '3_4', '3_1']],
+      ['data/media/art', ['16_9', '3_4', '3_1', '3_2']],
       ['data/media/skills', ['1_1']],
       ['data/media/items', ['1_1']],
     ] as const) {
@@ -1853,10 +1955,22 @@ describe('translation coverage', () => {
       if (!parsed.success) continue
       const target = byId.get(overlay.id.slice('species/'.length).replace(/\.[a-z]{2}$/, ''))
       const ids = new Set((target?.subspecies ?? []).map((sub) => sub.id))
-      for (const id of Object.keys(parsed.data.subspecies ?? {})) {
+      for (const [id, item] of Object.entries(parsed.data.subspecies ?? {})) {
         expect(ids.has(id), `overlay ${overlay.id} translates the unknown sub-species ${id}`).toBe(
           true,
         )
+        if (!item.heraldry) continue
+        const heraldry = target?.subspecies?.find((sub) => sub.id === id)?.heraldry
+        expect(
+          heraldry,
+          `overlay ${overlay.id} names the heraldry ${id} does not carry`,
+        ).toBeDefined()
+        for (const key of Object.keys(item.heraldry)) {
+          expect(
+            heraldry !== undefined && key in heraldry,
+            `overlay ${overlay.id} translates ${key}, which the heraldry of ${id} does not carry`,
+          ).toBe(true)
+        }
       }
     }
   })
@@ -2046,6 +2160,38 @@ describe('what the site credits', () => {
     expect(onDisk, 'src/lib/rights/attribution.ts and data/media/sounds/ disagree').toEqual(
       [...SOUND_FILES].sort(),
     )
+  })
+
+  it('credits every file of the arms on disk, and has a file for every credited one', async () => {
+    const onDisk = (await readdir(resolve(root, 'data/media/arms')))
+      .filter((file) => !file.startsWith('.'))
+      .sort()
+    expect(onDisk, 'src/lib/rights/attribution.ts and data/media/arms/ disagree').toEqual(
+      [...ARMS_FILES].sort(),
+    )
+  })
+
+  it('uses every heraldry work, under MIT or CC BY-NC-SA 3.0', () => {
+    const used = new Set<string>(ARMS_COMPOSITIONS.flatMap((composition) => composition.works))
+    for (const work of ARMS_WORKS) {
+      expect(used.has(work.key), `${work.title} is credited by no composition`).toBe(true)
+      expect(['MIT', 'CC BY-NC-SA 3.0'], `${work.title}`).toContain(work.licence.id)
+    }
+  })
+
+  it('credits every texture on disk, and has a file for every credited texture', async () => {
+    const onDisk = (await readdir(resolve(root, 'data/media/textures')))
+      .filter((file) => !file.startsWith('.'))
+      .sort()
+    expect(onDisk, 'src/lib/rights/attribution.ts and data/media/textures/ disagree').toEqual(
+      [...TEXTURE_FILES].sort(),
+    )
+  })
+
+  it('holds every sound and texture to CC0, as the credits page says', () => {
+    for (const work of [...SOUND_WORKS, ...TEXTURE_WORKS]) {
+      expect(work.licence.id, `${work.title} is not under CC0`).toMatch(/^CC0 /)
+    }
   })
 
   it('names the licence and its deed on the licences page, in both locales', async () => {

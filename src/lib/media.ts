@@ -1,3 +1,4 @@
+import { type ArmsFiles, armsFiles } from './art-effect/presets.ts'
 import { latestRelease } from './booklet/manifest.ts'
 import type { BookletKind } from './booklet/release.ts'
 import type { PdfRelease } from './game/schema.ts'
@@ -65,6 +66,29 @@ export function emblemUrl(file: string): string {
   const url = EMBLEMS[`/data/media/emblems/${file}`]
   if (url === undefined) throw new Error(`no emblem ${file} in data/media/emblems/`)
   return url
+}
+
+const ARMS_BAKES = import.meta.glob<string>('/data/media/arms/*.{webp,avif}', {
+  query: '?url&no-inline',
+  import: 'default',
+  eager: true,
+})
+
+export function armsOf(composition: string): ArmsFiles {
+  const url = (file: string): string => {
+    const found = ARMS_BAKES[`/data/media/arms/${file}`]
+    if (found === undefined) {
+      throw new Error(`no ${file} in data/media/arms/: run pnpm media:arms`)
+    }
+    return found
+  }
+  const files = armsFiles(composition)
+  return {
+    still: url(files.still),
+    colour: url(files.colour),
+    relief: url(files.relief),
+    finish: url(files.finish),
+  }
 }
 
 const ICONS = import.meta.glob('/data/media/icons/**/*.svg')
