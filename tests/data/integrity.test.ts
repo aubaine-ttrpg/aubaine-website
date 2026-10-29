@@ -1266,6 +1266,11 @@ describe('authoring hygiene', () => {
         expect(hit, `${entry.parentPath}/${entry.name} contains a banned dash`).toBeUndefined()
       }
     }
+    for (const file of ['DESIGN.md']) {
+      const raw = await readFile(resolve(root, file), 'utf8')
+      const hit = banned.find((dash) => raw.includes(dash))
+      expect(hit, `${file} contains a banned dash`).toBeUndefined()
+    }
   })
 })
 
