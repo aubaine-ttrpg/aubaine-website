@@ -1,7 +1,15 @@
 {
   "id": "humain",
-  "status": "draft",
+  "status": "balanced",
   "name": "Humain",
+  "descriptors": [
+    "diplomatic",
+    "scholarly",
+    "adventurous"
+  ],
+  "cover": "humain-3_4-og.png",
+  "emblem": "humain.svg",
+  "keyColour": "#44a8e7",
   "types": [
     "humanoid"
   ],
@@ -20,7 +28,7 @@
     {
       "id": "nouvelle-aubaine",
       "name": "Nouvelle-Aubaine",
-      "text": "***En tant qu'habitant de la Nouvelle-Aubaine***, vous incarnez l'esprit chevaleresque et la diplomatie raffinée de votre peuple. Vous évoluez avec assurance tant dans les cours seigneuriales que sur les routes commerçantes, votre démarche alliant aisance et prestance. Les Aubainiens, à la fois chaleureux et fiers, font preuve d'une courtoisie légendaire, tout en demeurant vigilants face aux étrangers dont les intentions leur sont inconnues. Leur tenue mêle armure ciselée et tissus nobles, et leur regard, déterminé et bienveillant, traduit la curiosité insatiable qui les pousse à nouer des alliances durables à travers Eden.",
+      "text": "***En tant qu'habitant de la Nouvelle-Aubaine***, vous avez grandi sous la bannière des Colbert, les rois et les reines qui règnent depuis Le Bastion, votre capitale. Vous partagez avec les vôtres le goût de la chevalerie, de l'armure ciselée et des étoffes nobles, et celui d'une diplomatie raffinée, qui se pratique aussi bien dans les cours seigneuriales que sur les routes marchandes. Chez vous, l'étranger est reçu avec une courtoisie chaleureuse et gardé à l'œil tant que ses intentions restent inconnues.",
       "heraldry": {
         "kind": "banner",
         "name": "Bannière de la maison Colbert",
@@ -178,7 +186,7 @@
     {
       "id": "landenheit",
       "name": "Landenheit",
-      "text": "***En tant que citoyen du Landenheit***, vous incarnez la rigueur mécanique et l'audace scientifique de votre Empire. Vous évoluez entre forges fumantes et ateliers d'ingénierie, où dirigeables sillonnent le ciel et trains à vapeur relient citadelles et usines. Les Landenheiter, méthodiques et déterminés, privilégient la précision à l'impulsion et placent la recherche au cœur de chaque projet, qu'il s'agisse de créer un automate ou de perfectionner un mécanisme. Leur tenue, souvent agrémentée de cuir renforcé et d'engrenages apparents, traduit l'alliance de la magie et de la machine, tandis que leur regard, curieux et calculateur, reflète l'esprit d'innovation qui fait la fierté de l'Empire.",
+      "text": "***En tant que citoyen du Landenheit***, vous venez d'un Empire où tout projet commence par une recherche, que l'on construise un automate ou que l'on perfectionne un simple mécanisme. La précision y passe avant l'élan : entre forges fumantes et ateliers d'ingénierie, on travaille avec méthode à allier la magie à la machine. Des trains à vapeur relient Eisenriese, la capitale, aux citadelles et aux usines de l'Empire, et des dirigeables sillonnent son ciel. On repère souvent un Landenheiter à sa tenue de cuir renforcé, garnie d'engrenages apparents.",
       "heraldry": {
         "kind": "flag",
         "name": "Drapeau impérial du Landenheit",
@@ -295,7 +303,7 @@
     {
       "id": "victoria",
       "name": "Victoria",
-      "text": "***En tant que Victorien***, vous incarnez l'élégance mystérieuse et la soif de savoir de votre Monarchie. Vous déambulez dans les ruelles brumeuses des cités gothiques, flânant autant dans les bibliothèques occultes que dans les salons feutrés où l'on débat ardemment de philosophie et de magie. Les Victoriens, raffinés et érudits, cultivent le goût du détail (des broderies de velours aux symboles ésotériques gravés sur leurs bijoux) et voient dans chaque relique ou manuscrit ancien une clé pour percer les mystères d'Eden. Leur allure, souvent soulignée par des manteaux longs et des ornements sophistiqués, cache une détermination tranquille : explorer l'invisible, sans jamais dissiper la part d'ombre qui fascine.",
+      "text": "***En tant que Victorien***, vous connaissez les ruelles brumeuses des cités gothiques de votre Monarchie, ses bibliothèques occultes et ses salons feutrés, où l'on débat ardemment de philosophie et de magie. Votre peuple soigne le moindre détail, des broderies de velours aux symboles ésotériques gravés sur les bijoux, et porte volontiers le manteau long. Un Victorien voit dans chaque relique et chaque manuscrit ancien une clé des mystères d'Eden, et les explore avec une détermination tranquille, sans jamais dissiper la part d'ombre qui fascine.",
       "heraldry": {
         "kind": "arms",
         "name": "Armoiries de la Victoria",
@@ -410,7 +418,7 @@
     {
       "id": "al-wahaa",
       "name": "Al-Wahaa",
-      "text": "***En tant qu'Al-Waahi***, vous incarnez la résilience et l'hospitalité du désert infini. Vous parcourez dunes et oasis, guidé par les étoiles et le souffle changeant du sirocco, tout en établissant des liens de confiance autour d'échoppes d'épices, de soies légères et de potions médicinales. Les Al-Waahi, loyaux et fiers, placent l'hospitalité au-dessus de tout : offrir le couvert et l'eau fraîche à un voyageur est un devoir sacré, ancré dans leur code moral. Ils portent des tuniques amples et des voiles protecteurs, ornés de bijoux en cuivre et de perles de verre poli, et maîtrisent l'art du troc, convaincus que le véritable trésor réside dans l'échange et la connaissance partagée. Leur regard, farouche et bienveillant, reflète la sagesse de ceux qui font fleurir la vie là où l'on ne voit que sable et pierre.",
+      "text": "***En tant qu'Al-Waahi***, vous appartenez à un peuple qui traverse le désert d'oasis en oasis, en se guidant sur les étoiles et sur le souffle changeant du sirocco. Les Al-Waahi tiennent pour un devoir sacré d'offrir le couvert et l'eau fraîche à tout voyageur. La confiance se gagne autour des échoppes d'épices, de soies légères et de potions médicinales, et bien des marchés s'y concluent par le troc, car le véritable trésor, à leurs yeux, est l'échange et le savoir partagé. Vous portez des tuniques amples et des voiles protecteurs, ornés de bijoux de cuivre et de perles de verre poli.",
       "names": {
         "masculine": [
           "Aban",

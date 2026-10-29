@@ -100,6 +100,20 @@ test('each hero takes its accent from its own cover', async ({ page }) => {
   }
 })
 
+test('a species that writes its own key colour wears it instead of its cover’s', async ({
+  page,
+}) => {
+  const species = (await corpus('fr')).species.find((entry) => entry.keyColour)
+  expect(species, 'no species writes its own key colour').toBeDefined()
+  if (!species?.keyColour) return
+  const [red, green, blue] = rgbFromHex(species.keyColour)
+  await page.goto(pathFor('speciesEntry', 'fr', { species: species.id }))
+  await expect(page.locator(`${HERO} .au-sticker`).first()).toHaveCSS(
+    'background-color',
+    `rgb(${red}, ${green}, ${blue})`,
+  )
+})
+
 test('a card wears its emblem, and a card without one wears none', async ({ page, request }) => {
   for (const path of [NNOR, MARCHAND]) {
     await page.goto(path)

@@ -2,26 +2,26 @@
   "name": "Human",
   "subspecies": {
     "nouvelle-aubaine": {
-      "text": "***As an inhabitant of Nouvelle-Aubaine***, you embody the chivalrous spirit and refined diplomacy of your people. You move as confidently through seigneurial courts as along merchant roads, your bearing combining ease and presence. The Aubainiens, warm and proud at once, show legendary courtesy while staying watchful of strangers whose intentions they do not know. Their dress blends chased armour and noble fabrics, and their gaze, determined and kind, betrays the insatiable curiosity that drives them to form lasting alliances across Eden.",
+      "text": "***As an inhabitant of Nouvelle-Aubaine***, you grew up under the banner of the House of Colbert, whose kings and queens rule from the Bastion, your capital. Like the rest of your people, you have a taste for chivalry, engraved armour and fine fabrics, and for a polished diplomacy that serves as well in a lord's court as on the merchant roads. A stranger who comes among you is met with warm courtesy, and closely watched for as long as their intentions remain unknown.",
       "heraldry": {
         "name": "Banner of the House of Colbert"
       }
     },
     "landenheit": {
-      "text": "***As a citizen of Landenheit***, you embody the mechanical rigour and scientific daring of your Empire. You move between smoking forges and engineering workshops, where airships cross the sky and steam trains link citadels and factories. The Landenheiter, methodical and determined, favour precision over impulse and put research at the heart of every project, whether building an automaton or perfecting a mechanism. Their dress, often trimmed with reinforced leather and visible gears, expresses the alliance of magic and machine, while their gaze, curious and calculating, reflects the spirit of innovation that is the pride of the Empire.",
+      "text": "***As a citizen of Landenheit***, you come from an Empire where every project begins with research, whether the task is building an automaton or refining a simple mechanism. Precision matters more than impulse there, and in smoking forges and engineering workshops people work methodically at marrying magic to the machine. Steam trains run from Eisenriese, the capital, to the Empire's citadels and factories, and airships cross its skies. A Landenheiter is often easy to spot by their reinforced leather clothes, fitted with exposed gears.",
       "heraldry": {
         "name": "Imperial flag of the Landenheit"
       }
     },
     "victoria": {
-      "text": "***As a Victorien***, you embody the mysterious elegance and the thirst for knowledge of your Monarchy. You stroll the misty lanes of gothic cities, lingering as long in occult libraries as in hushed salons where philosophy and magic are argued with passion. The Victoriens, refined and learned, cultivate an eye for detail (from velvet embroidery to the esoteric symbols engraved on their jewellery) and see in every relic or ancient manuscript a key to the mysteries of Eden. Their bearing, often set off by long coats and elaborate ornaments, hides a quiet determination: to explore the unseen, without ever dispelling the share of shadow that fascinates.",
+      "text": "***As a Victorian***, you know the misty lanes of your Monarchy's gothic cities, its occult libraries and its hushed salons, where philosophy and magic are argued with passion. Your people care about the smallest detail, from velvet embroidery to the esoteric symbols engraved on their jewellery, and are fond of long coats. A Victorian sees a key to the mysteries of Eden in every relic and every ancient manuscript, and pursues those mysteries with quiet determination, never dispelling the shadow that gives them their fascination.",
       "heraldry": {
         "name": "Arms of Victoria",
         "blazon": "Quarterly per fess wavy purpure and sable: in the first, a lion rampant Or; in the second, an estoile of six rays Or; in the third, a book closed Or; in the fourth, a raven Or."
       }
     },
     "al-wahaa": {
-      "text": "***As an Al-Waahi***, you embody the resilience and hospitality of the endless desert. You travel dunes and oases, guided by the stars and the shifting breath of the sirocco, building bonds of trust around stalls of spices, light silks and healing potions. The Al-Waahi, loyal and proud, put hospitality above all: offering food and fresh water to a traveller is a sacred duty, anchored in their moral code. They wear loose tunics and protective veils, adorned with copper jewellery and polished glass beads, and master the art of barter, convinced that true treasure lies in exchange and shared knowledge. Their gaze, fierce and kind, reflects the wisdom of those who make life bloom where others see only sand and stone."
+      "text": "***As an Al-Waahi***, you belong to a people who cross the desert from oasis to oasis, steering by the stars and by the shifting breath of the sirocco. The Al-Waahi hold it a sacred duty to offer food and fresh water to any traveller. Trust is earned around stalls of spices, light silks and medicinal potions, and many deals there are settled by barter, for in their eyes the true treasure is exchange and shared knowledge. You wear loose tunics and protective veils, adorned with copper jewellery and polished glass beads."
     }
   },
   "roleplay": {
