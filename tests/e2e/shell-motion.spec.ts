@@ -198,14 +198,14 @@ test('the language links follow the page although the header is not swapped', as
   expect(await headerSurvived(page)).toBe(true)
 })
 
-test('the swap animation is wired to real css', async ({ page }) => {
+test('a page change raises no complaint from Swup', async ({ page }) => {
   const complaints: string[] = []
   page.on('console', (message) => {
     if (message.text().includes('[swup]')) complaints.push(message.text())
   })
 
   await page.goto('/en/trees')
-  await expect(page.locator('[class*="au-swup-"]')).toHaveCount(1)
+  await page.waitForFunction(() => 'swup' in window)
 
   await page.getByRole('link', { name: 'Berserker' }).first().click()
   await expect(page).toHaveURL('/en/tree/berserker')

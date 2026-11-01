@@ -6,6 +6,7 @@ import type { Corpus } from '../lib/game/corpus'
 import { HTML_LANG, LOCALES, type Locale, OG_LOCALE } from '../lib/i18n/locales'
 import {
   alternatesFor,
+  depthFor,
   pathFor,
   type RouteParams,
   sectionFor,
@@ -17,6 +18,7 @@ import '../styles/tokens.css'
 import '../styles/base.css'
 import '../styles/plate.css'
 import '../styles/entries.css'
+import '../styles/transit.css'
 
 type Props = {
   locale: Locale
@@ -150,8 +152,8 @@ const website =
       <main id="main" style="flex:1; min-width:0; min-height:0; display:flex; flex-direction:column">
         <div
           id="swup"
-          class="au-swup-page"
           data-section={sectionFor(kind)}
+          data-depth={depthFor(kind)}
           style="flex:1; min-width:0; min-height:0; display:flex; flex-direction:column"
         >
           <slot />

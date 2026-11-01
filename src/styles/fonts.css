@@ -8,6 +8,7 @@
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-slap: cubic-bezier(0.2, 1.45, 0.4, 1);
+  --ease-travel: cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 @font-face {

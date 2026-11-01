@@ -309,8 +309,10 @@ test('a Swup visit binds the hero it brings', async ({ page }) => {
     page.getByRole('button', { name: 'Mettre en pause l’animation du fond' }),
   ).toBeVisible()
   await page.waitForFunction(() => window.scrollY === 0)
-  await page.mouse.move(1300, 220)
-  await expect(page.locator(HERO)).toHaveAttribute('data-tilting', '')
+  await expect(async () => {
+    await page.mouse.move(1300, 220)
+    await expect(page.locator(HERO)).toHaveAttribute('data-tilting', '', { timeout: 200 })
+  }).toPass()
   await page.goBack()
   await expect(page).toHaveURL('/fr/especes')
   await expect(page.getByRole('heading', { level: 1, name: 'Espèces' })).toBeVisible()

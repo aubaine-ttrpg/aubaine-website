@@ -39,6 +39,7 @@ import {
 import {
   bookChapterRef,
   CATEGORY_SEGMENT,
+  depthFor,
   NAV_SECTIONS,
   pathFor,
   sectionFor,
@@ -493,6 +494,16 @@ describe('nav sections', () => {
     expect(sectionFor('skills')).toBe('almanach')
     expect(sectionFor('rules')).toBe('almanach')
     expect(sectionFor('atlas')).toBe('atlas')
+  })
+
+  it('places a page deeper than the page that lists it, and the Atlas nowhere', () => {
+    expect(depthFor('almanach')).toBeGreaterThan(depthFor('home') ?? Number.POSITIVE_INFINITY)
+    expect(depthFor('trees')).toBeGreaterThan(depthFor('almanach') ?? Number.POSITIVE_INFINITY)
+    expect(depthFor('tree')).toBeGreaterThan(depthFor('trees') ?? Number.POSITIVE_INFINITY)
+    expect(depthFor('speciesEntry')).toBe(depthFor('tree'))
+    expect(depthFor('bookCategory')).toBeGreaterThan(depthFor('books') ?? Number.POSITIVE_INFINITY)
+    expect(depthFor('book')).toBeGreaterThan(depthFor('bookCategory') ?? Number.POSITIVE_INFINITY)
+    expect(depthFor('atlas')).toBeUndefined()
   })
 
   it('leaves search and 404 outside the navigation', () => {

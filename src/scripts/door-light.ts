@@ -122,6 +122,14 @@ function mount(menu: HTMLElement, signal: AbortSignal): void {
     { signal },
   )
 
+  const returned = doors.find(
+    (door) => door.querySelector('a')?.pathname === menu.dataset['doorsReturn'],
+  )
+  if (returned) {
+    light(returned)
+    void stageOn(returned)
+  }
+
   const warm = (): void => {
     for (const door of doors) {
       const art = door.dataset['doorArt']

@@ -1,0 +1,357 @@
+:root {
+  --transit-flight: 300ms;
+  --transit-book: 420ms;
+}
+
+html[data-transit] [data-shell-header] {
+  view-transition-name: au-header;
+}
+
+html[data-transit] [data-load-crest][data-phase] {
+  view-transition-name: au-crest;
+}
+
+::view-transition-group(au-header) {
+  z-index: 20;
+  animation: none;
+}
+
+::view-transition-group(au-crest) {
+  z-index: 30;
+  animation: none;
+}
+
+::view-transition-old(au-header),
+::view-transition-old(au-crest) {
+  display: none;
+}
+
+::view-transition-new(au-header),
+::view-transition-new(au-crest) {
+  animation: none;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  animation: au-transit-recede var(--transit-flight) var(--ease-travel) both;
+  transform-origin: 50% 40%;
+}
+
+::view-transition-new(root) {
+  animation: au-transit-appear var(--transit-flight) var(--ease-travel) both;
+}
+
+::view-transition-group(.au-flight) {
+  z-index: 10;
+  animation-duration: var(--transit-flight);
+  animation-timing-function: var(--ease-travel);
+}
+
+::view-transition-old(.au-flight) {
+  animation: au-transit-vanish 140ms linear both;
+}
+
+::view-transition-new(.au-flight) {
+  animation: au-transit-appear 140ms linear both;
+}
+
+html .au-framed__card[data-transit-flown],
+html .au-plates__plate[data-transit-flown],
+html .au-plate-door__name:has([data-transit-flown]) {
+  animation: none;
+}
+
+#swup[data-transit-returned] .au-roster,
+#swup[data-transit-returned] .au-plates__plate,
+#swup[data-transit-returned] .au-plate-door__mark,
+#swup[data-transit-returned] .au-plate-door__name,
+#swup[data-transit-returned] .au-sommaire__sheet {
+  animation: none;
+}
+
+#swup[data-transit-arrived] .au-stage[data-staged] > .au-stage__ambient {
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity 450ms ease,
+    visibility 0s linear 450ms;
+}
+
+html .au-sommaire__sheet[data-book-hidden] {
+  z-index: 4;
+  visibility: hidden;
+}
+
+html .au-sommaire__sheet[data-book-hidden] .au-sommaire__title {
+  visibility: visible;
+}
+
+html .au-sommaire__sheet[data-book-hidden] .au-plates__title {
+  view-transition-name: au-book-title;
+}
+
+html .au-sommaire__sheet[data-book-hidden] .au-plates__about {
+  view-transition-name: au-book-help;
+}
+
+html .au-book-leaf.au-book-leaf {
+  position: absolute;
+  z-index: 3;
+  margin: 0;
+  animation: none;
+  pointer-events: none;
+}
+
+html .au-book-leaf--left {
+  clip-path: inset(-120px 50% -120px -120px);
+  view-transition-name: au-book-left;
+}
+
+html .au-book-leaf--right {
+  clip-path: inset(-120px -120px -120px 50%);
+  view-transition-name: au-book-right;
+}
+
+html .au-book-leaf.au-book-leaf--back {
+  padding: 0;
+  background:
+    linear-gradient(to left, rgba(70, 50, 20, 0.3) 0, transparent 26px) 0 0 / 50% 100% no-repeat,
+    var(--door-paper);
+  z-index: 2;
+  box-shadow: none;
+  clip-path: inset(0 50% 0 0);
+  view-transition-name: au-book-back;
+}
+
+html .au-book-leaf__crest {
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  width: clamp(72px, 9vw, 128px);
+  height: auto;
+  translate: -50% -50%;
+}
+
+html .au-book-leaf__crest polygon {
+  fill: none;
+  stroke: var(--door-paper-ink);
+}
+
+::view-transition-group(au-book-left),
+::view-transition-group(au-book-right),
+::view-transition-group(au-book-back) {
+  z-index: 10;
+}
+
+::view-transition-group(au-book-back) {
+  z-index: 11;
+}
+
+::view-transition-group(au-book-title),
+::view-transition-group(au-book-help) {
+  z-index: 12;
+}
+
+::view-transition-old(au-book-left),
+::view-transition-old(au-book-right),
+::view-transition-old(au-book-back),
+::view-transition-old(au-book-title),
+::view-transition-new(au-book-title),
+::view-transition-old(au-book-help),
+::view-transition-new(au-book-help),
+::view-transition-new(au-book-left),
+::view-transition-new(au-book-right),
+::view-transition-new(au-book-back) {
+  animation: none;
+  mix-blend-mode: normal;
+  opacity: 1;
+}
+
+::view-transition-image-pair(au-book-left) {
+  animation: au-book-left var(--transit-book) both;
+  transform-origin: 50% 50%;
+}
+
+::view-transition-image-pair(au-book-right) {
+  animation: au-book-right var(--transit-book) both;
+  transform-origin: 50% 50%;
+}
+
+::view-transition-image-pair(au-book-back) {
+  animation: au-book-back var(--transit-book) both;
+  transform-origin: 50% 50%;
+}
+
+::view-transition-image-pair(au-book-title),
+::view-transition-image-pair(au-book-help) {
+  transform-origin: 18% 100%;
+}
+
+html[data-transit-book="close"]::view-transition-image-pair(au-book-left),
+html[data-transit-book="close"]::view-transition-image-pair(au-book-right),
+html[data-transit-book="close"]::view-transition-image-pair(au-book-back) {
+  animation-delay: 110ms;
+}
+
+html[data-transit-book="close"]::view-transition-image-pair(au-book-title) {
+  animation: au-book-title-leave 260ms 30ms both;
+}
+
+html[data-transit-book="close"]::view-transition-image-pair(au-book-help) {
+  animation: au-book-help-leave 190ms both;
+}
+
+html[data-transit-book="open"]::view-transition-image-pair(au-book-title) {
+  animation: au-book-title-land 320ms 265ms both;
+}
+
+html[data-transit-book="open"]::view-transition-image-pair(au-book-help) {
+  animation: au-book-help-land 220ms var(--ease-slap) 400ms both;
+}
+
+html[data-transit-book="close"]::view-transition-old(root) {
+  animation: none;
+}
+
+html[data-transit-book="close"]::view-transition-new(root) {
+  animation: au-transit-appear 200ms linear 270ms both;
+}
+
+html[data-transit-book="open"]::view-transition-image-pair(au-book-left),
+html[data-transit-book="open"]::view-transition-image-pair(au-book-right),
+html[data-transit-book="open"]::view-transition-image-pair(au-book-back) {
+  animation-direction: reverse;
+}
+
+html[data-transit-book="open"]::view-transition-old(root) {
+  animation: au-transit-vanish 200ms linear both;
+}
+
+html[data-transit-book="open"]::view-transition-new(root) {
+  animation: none;
+}
+
+@keyframes au-transit-appear {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes au-transit-vanish {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes au-transit-recede {
+  to {
+    transform: scale(0.97);
+  }
+}
+
+@keyframes au-book-title-leave {
+  0% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+  16% {
+    transform: translateY(5px) rotate(0.8deg) scale(0.985);
+    animation-timing-function: cubic-bezier(0.45, 0.02, 0.6, 0.2);
+  }
+  100% {
+    transform: translateY(-62vh) rotate(-9deg) scale(1.08);
+  }
+}
+
+@keyframes au-book-help-leave {
+  0% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0.45, 0.02, 0.6, 0.2);
+  }
+  100% {
+    transform: translateY(-62vh) rotate(-14deg) scale(1.1);
+  }
+}
+
+@keyframes au-book-title-land {
+  0% {
+    transform: translateY(-62vh) rotate(-8deg) scale(1.12);
+    animation-timing-function: cubic-bezier(0.16, 0.7, 0.3, 1);
+  }
+  62% {
+    transform: translateY(2%) rotate(0.9deg) scale(0.985);
+    animation-timing-function: ease-in-out;
+  }
+  82% {
+    transform: translateY(-1%) rotate(-0.25deg) scale(1.006);
+    animation-timing-function: ease-in-out;
+  }
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes au-book-help-land {
+  from {
+    opacity: 0;
+    transform: translateY(-14px) rotate(-10deg) scale(1.5);
+  }
+}
+
+@keyframes au-book-right {
+  0% {
+    transform: perspective(2400px) translate(0, 0) rotate(0) scale(1) rotateY(0);
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.45, 0, 0.9, 0.7);
+  }
+  34% {
+    transform: perspective(2400px) translate(0, 0) rotate(0) scale(1) rotateY(-90deg);
+    opacity: 1;
+    animation-timing-function: step-end;
+  }
+  34.5%,
+  100% {
+    transform: perspective(2400px) translate(0, 0) rotate(0) scale(1) rotateY(-90deg);
+    opacity: 0;
+  }
+}
+
+@keyframes au-book-back {
+  0%,
+  34% {
+    transform: perspective(2400px) translate(0, 0) rotate(0) scale(1) rotateY(90deg);
+    opacity: 0;
+    animation-timing-function: step-end;
+  }
+  34.5% {
+    transform: perspective(2400px) translate(0, 0) rotate(0) scale(1) rotateY(90deg);
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.1, 0.3, 0.3, 1);
+  }
+  64% {
+    transform: perspective(2400px) translate(0, 0) rotate(0) scale(1) rotateY(0);
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.5);
+  }
+  100% {
+    transform: perspective(2400px) translate(-7%, 135%) rotate(-8deg) scale(0.96) rotateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes au-book-left {
+  0%,
+  64% {
+    transform: perspective(2400px) translate(0, 0) rotate(0) scale(1) rotateY(0);
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.5);
+  }
+  100% {
+    transform: perspective(2400px) translate(-7%, 135%) rotate(-8deg) scale(0.96) rotateY(0);
+    opacity: 1;
+  }
+}

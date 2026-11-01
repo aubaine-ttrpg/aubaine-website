@@ -741,12 +741,29 @@ The sheet's scroll cue also nudges its chevron 5 px every 2.4 s; the pause does 
 **The pause** (`StillToggle.astro`): one choice for every stage, remembered under `aubaine.stage`. It is
 required wherever something moves for more than five seconds (WCAG 2.2.2).
 
+**A page change** (`docs/adr/0066-a-page-change-is-a-view-transition-where-the-choice-carries-across.md`)
+
+- The old page stays on screen until the new one is live, so no frame is empty, and the header holds still.
+- What you chose becomes the next page: a door's plates fly into its page's title plates, a card flies into
+  the sheet's card, and the rest cross-fades while the old page recedes to 0.97. A flown piece gives up its
+  own landing on that visit; the other arrivals play live.
+- The motion is paced to end about 400 ms after the click: 260 to 360 ms on `--ease-travel`, so a light page
+  flies longer and a heavy one stays on budget. Art effects start when it ends.
+- From the Livres spread, the help button leaves first, then the title plate dips, peels and flies off the
+  screen by about 290 ms. Over that, from 110 ms, the right page turns over the spine and its back lands with
+  the crest by about 380 ms, and the closed book is thrown off the screen by 530 ms. The page arrives from 270
+  ms. Coming back to Livres, the book comes up and opens by 420 ms; the plate falls from 265 ms, lands past its
+  rest and settles by 585 ms; the help button stamps on from 400 ms, by 620 ms.
+- A link answers at once (`data-pressed`), pressed paper moves 2 to 4 px and its offset shadow tightens, and
+  a card never scales. A click during the transition is kept and replayed at its point.
+- Back returns the scroll, the spotlight or lit door, and flies the piece home if it is on screen.
+
 **Waits ride the load**: a swap waits for its picture at most 250 ms and adds no hold of its own; the
 page crest shows only on a slow visit (`docs/adr/0012-the-header-outlives-the-page.md`, Decision 3).
 
 **Reduced motion**: every animation and transition collapses to 0.001 ms (`src/styles/base.css`);
-nothing leans or drifts; the stage code is never fetched and the pause button hides
-(`tests/e2e/hub-stage.spec.ts`); a swap still changes the picture and the colour.
+nothing leans or drifts; a page changes with no transition; the stage code is never fetched and the pause
+button hides (`tests/e2e/hub-stage.spec.ts`); a swap still changes the picture and the colour.
 
 ## Pictures
 

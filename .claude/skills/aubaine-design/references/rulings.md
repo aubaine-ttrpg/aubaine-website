@@ -476,6 +476,49 @@ threshold page at `/`, the header's controls popping in once the home arrives
 
 > "you can use the loading animation too, but no need to wait before moving on, be instant" (2026-09-25)
 
+**The empty screen between pages goes.** The brief of the page transitions, on hubs, indexes and sheets,
+with their hovers. It reopens the crossfade of `docs/adr/0012-the-header-outlives-the-page.md`, Decision 3.
+
+> "We are using Swup in order to create a single-page app / video game feel, except currently no transitions exists between the HUBs, indexes and indivudale pages. It's just a blank screen and then nothing else." (2026-11-01)
+
+**The page change: what you chose becomes the next page.** Among four live looks the owner picked B, The
+Pick (`docs/adr/0066-a-page-change-is-a-view-transition-where-the-choice-carries-across.md`).
+
+> "honestly, only based on your descriptions B looks like what we agreed upon so it's good for me." (2026-11-01)
+
+**A motion has to be seen.** The first timing met its numbers and showed nothing: a 300 ms flight on `--ease`
+crossed most of its travel in 94 ms. Judge a motion by how long it takes to cross, and film it
+(`measuring.md`, design:transit).
+
+> "i don't see any diff really, it seems that everything is too quick to see, maybe cuz i'm on firefox or maybe cuz my pc is lagging idk." (2026-11-01)
+
+**A draft card flies with its stamp.**
+
+> "Draft cards are perfect, it's the correct behaviour it's my bad i forgot to say it to you but you did understand, congrats." (2026-11-01)
+
+**Livres closes like a book, the title leaving first.** The closing is the owner's idea. The first build
+closed the book with the title on it, and the owner called it ugly: the title and the help button leave the
+screen first, then the book closes, and Back runs it in reverse. The crest on the closed book and its throw
+off the screen are the designer's, and the edge keeps to the 700 ms of the arrival rule.
+
+> "Maybe for Livres -> any category we can try having the book closing itself and then having the rest arriving ?" (2026-11-01)
+
+> "for the book thing maybe let's do Livres + helper on book goes out of screeen and then the book close cuz that just ugly the way you did it now and of course on back the book should do the same anim but reverse (he comes up, then opens, then title and help button descends)" (2026-11-01)
+
+**No frame nobody meant, and the title moves as paper.** Temporary pieces must paint exactly as what they
+stand for, and leave as the motion ends, so no frame can show them. The title and the help button use the
+house's paper moves (peel, fall, settle, stamp), never one plain slide. Check real painted frames with
+`pnpm design:transit --pops`: a film sought frame by frame cannot see what paints before or after the motion.
+
+> "Something werid happens on the last few frames when going back from a book category to the hub, there is like a frame that shows the aubaine logo at the end of the go back animation, it's clearly visible because it makes the whole left page white with the logo appearing altough it's only for a few ms. Fix it and make sure those kinda bugs don't happen in any other transitions or animations. also make the title + help button appearance / diseaparence smoother and matching our DA not that dumb animation we currently have that is tasteless. Professional grade work only. Make no mistakes." (2026-11-01)
+
+**The flying card replaces the sheet card's landing, on those visits only.** A direct load keeps the
+approved arrival. The owner's pick among proposals, 2026-11-01, of "Flight replaces it".
+
+**Back returns where you were.** The scroll comes back, the spotlight or the lit door returns to the entry
+left, and the card flies home if it is on screen; a fresh visit still opens on the lead. The owner's pick
+among proposals, 2026-11-01, of "Return where you were".
+
 **The profile unfolds from its centre.**
 
 > "The graph points should all begin at center and slide to the corect position creating a smooth animation" (2026-10-23)
@@ -506,5 +549,6 @@ and praised the Saison slider.
 | 2026-10-28 | show it live; the select screen approved and its review; in-game feel, web layout; hubs are not select screens; a category's page may take the select screen; nothing cut; one mark per kind; carry the references in files; other studios' pictures linked |
 | 2026-10-29 | three games; the old directions wiped; the approved pieces untouched; book categories, Ressources and the Livres menu; both Codex looks; the Espèces DNA mark; a layout is read from the code |
 | 2026-10-30 | professional grade, measured; plain beside composed; World of Warcraft out; the radial fan rejected outright; CADRAN is the Atlas boot's; the poster wall reformats an index, kept as Layout A; more references for `DESIGN.md`; B and C too plain; blurred stage light only; a door is its mark, its name and one line; the slanted doors back; category marks; no reserved colour; the sheet's arrival kept, new pieces under 700 ms |
+| 2026-11-01 | the empty screen between pages goes; B, the pick carries across; a motion has to be seen; a draft card flies; Livres closes like a book; no frame nobody meant, the title moves as paper; the flying card replaces the landing on those visits; Back returns where you were |
 | 2026-10-31 | pieces sit on the shape; B+ ships; C+ and D kept, the poster wall dropped; this skill; accepted screenshots only; highest quality, many links; the contents spread opens Livres and the plate menu the Codex; every category listed, the empty ones saying so; the archives in Livres; Books left to the designer |
 | 2026-11-01 | the help button's margin and the stage pages' print, by request |

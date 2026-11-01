@@ -53,7 +53,8 @@ export default defineConfig({
     react(),
     swup({
       theme: false,
-      animationClass: 'au-swup-',
+      animationClass: false,
+      native: true,
       containers: ['#swup', '#site-footer'],
       cache: true,
       forms: false,

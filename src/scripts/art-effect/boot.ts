@@ -56,6 +56,11 @@ function syncEffects(): void {
 }
 
 export function bindArtEffects(swup: SwupInstance): void {
-  swup.hooks.on('page:view', syncEffects)
+  swup.hooks.on('page:view', (visit) => {
+    if (!visit.animation.animate) syncEffects()
+  })
+  swup.hooks.on('visit:end', (visit) => {
+    if (visit.animation.animate) syncEffects()
+  })
   syncEffects()
 }

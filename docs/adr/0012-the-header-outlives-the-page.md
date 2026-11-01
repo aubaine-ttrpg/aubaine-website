@@ -5,6 +5,8 @@
 **Date:** 2026-09-22
 **Revised:** 2026-09-25, Decision 3 gains an addendum: a server rendered crest is adopted, and a visit
 that starts while the crest shows keeps it (0021)
+**Revised:** 2026-11-01, Decision 3 gains an addendum: the crossfade gives way to a view transition (0066);
+the crest stands
 **Deciders:** Kori
 **Scope:** Which parts of the shell Swup replaces, how the header's per-page state reaches it once it
 is no longer replaced, and what motion a navigation shows. Supersedes 0007, whose Decision 2 this
@@ -191,6 +193,14 @@ had no affordance at all for a navigation that outruns the hover preload.
   because the subject is a black hole and a cream one would not read as one.
 - The overlay markup ships on every page, about one kilobyte of inert SVG, to avoid building it in
   JavaScript on first need.
+
+### Addendum (2026-11-01): the crossfade gives way to a view transition
+
+- `.au-swup-page` and its 0.2 s fade are gone: a page change is a view transition
+  (`docs/adr/0066-a-page-change-is-a-view-transition-where-the-choice-carries-across.md`). The fade hid the
+  page for 18 to 19 frames when the next one was already ready.
+- The crest, its 400 ms threshold, its 260 ms floor and its phases are unchanged, and it paints above the
+  transition.
 
 ### Addendum (2026-09-25): a server rendered crest is adopted
 

@@ -21,6 +21,7 @@ was fetched on 2026-10-31. A component named without its folder lives in `src/co
 - [Scripts](#scripts)
 - [The WebGL stage](#the-webgl-stage)
 - [Astro, Swup and Playwright](#astro-swup-and-playwright)
+- [View transitions](#view-transitions)
 - [Browser support and Baseline](#browser-support-and-baseline)
 
 ## Measuring transformed pieces
@@ -480,6 +481,43 @@ was fetched on 2026-10-31. A component named without its folder lives in `src/co
   [toHaveScreenshot](https://playwright.dev/docs/api/class-pageassertions),
   [boundingBox](https://playwright.dev/docs/api/class-locator#locator-bounding-box),
   [browsers and channels](https://playwright.dev/docs/browsers).
+
+## View transitions
+
+Fetched on 2026-11-01. Same-document view transitions are Baseline newly available since 14 October 2025,
+with Firefox 144 the last engine ([web.dev](https://web.dev/blog/same-document-view-transitions-are-now-baseline-newly-available)).
+
+- **Old is a picture, new is live.** The old state is a static snapshot and the new state "a live capture"
+  ([spec](https://drafts.csswg.org/css-view-transitions-1/)), so CSS arrivals in the new page play inside the
+  transition. Rendering is frozen from capture until the update callback finishes, and the spec's timeout is
+  "implementation-defined": do slow work before `startViewTransition`, not in the callback
+  ([Chrome's guide](https://developer.chrome.com/docs/web-platform/view-transitions/same-document)).
+- **Names must be unique among rendered elements.** A duplicate makes `ready` reject and skips the
+  transition, while the update callback still runs ([MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/view-transition-name)).
+  Set a name on the origin before the capture, clear it in the callback, and set it on the target
+  ([Chrome's guide](https://developer.chrome.com/docs/web-platform/view-transitions/same-document)).
+- **Groups follow paint order.** "the element at the bottom of the paint stack generates the first pseudo
+  child" ([spec](https://drafts.csswg.org/css-view-transitions-1/)): an ancestor's group comes before its
+  descendants', so a named `z-index: -1` child paints over its named parent. The hosts' opaque ground makes
+  this worse, which is why Aubaine never names `#swup` or `.au-stage`.
+- **Blending.** The image pair isolates its children and blends them with `plus-lighter`, so identical pixels
+  keep their colour through a cross-fade ([spec](https://drafts.csswg.org/css-view-transitions-1/)).
+- **Hit testing.** While the root takes part, a click during the transition lands on `<html>` and nothing
+  under it can take it, even with `::view-transition { pointer-events: none }`. Chris Coyier notes the root
+  takes part by default, and a comment by Martin Trapp on
+  [the post](https://blog.master.dev/?p=10617) (August 2026) adds that named elements "are not rendered at
+  all while the View Transition is running". A real mouse click measured on Chromium 153 on 2026-11-01
+  reached `<html>` only. `src/scripts/page-transit.ts` therefore holds such a click and replays it at its
+  point when the transition ends.
+- **The last frames.** The live page repaints as soon as the transition ends, while Swup's `visit:end` comes
+  two frames later (`nextTick` in `swup/src/modules/animatePageIn.ts`), so anything added for the capture shows
+  in between unless it paints exactly like the page and leaves on the last motion's `finished`. Do not remove
+  an attribute that the `::view-transition-*` rules read before the transition has ended: the rule that takes
+  over starts an animation and holds the transition open.
+- **Swup.** `native: true` runs `startViewTransition` around `renderPage`
+  (`swup/src/modules/navigate.ts`), and `visit.animation.wait` holds the visit until the page has loaded, so
+  the callback does not wait on the network. `awaitAssets` holds the callback for new stylesheets for up to
+  3 s, so they load first.
 
 ## Browser support and Baseline
 

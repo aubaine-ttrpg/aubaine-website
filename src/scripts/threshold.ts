@@ -34,5 +34,5 @@ export function bindThreshold(swup: SwupInstance): void {
   if (!threshold) return
   swup.hooks.replace('visit:fail', replaceNatively)
   swup.hooks.once('content:replace', markArrivingHeader)
-  swup.navigate(destinationFrom(threshold), { history: 'replace' })
+  swup.navigate(destinationFrom(threshold), { history: 'replace', animate: false })
 }

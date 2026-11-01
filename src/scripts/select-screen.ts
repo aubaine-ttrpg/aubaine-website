@@ -88,18 +88,7 @@ function mount(screen: HTMLElement, signal: AbortSignal): void {
     markCurrent()
   }
 
-  const show = async (id: string, announce: boolean): Promise<void> => {
-    const template = templates.get(id)
-    if (!template) return
-    swap?.abort()
-    const attempt = new AbortController()
-    swap = attempt
-    const fragment = document.importNode(template.content, true)
-    const picture = fragment.querySelector('img')
-    if (picture && !picture.complete) {
-      await Promise.race([picture.decode().catch(() => undefined), pause(PICTURE_WAIT_MS)])
-    }
-    if (attempt.signal.aborted || signal.aborted) return
+  const put = (id: string, template: HTMLTemplateElement, fragment: DocumentFragment): void => {
     current = id
     spotlight.dataset['spotlightCurrent'] = id
     panel.style.setProperty('--arrival', SWAP_ARRIVAL)
@@ -114,6 +103,21 @@ function mount(screen: HTMLElement, signal: AbortSignal): void {
       if (art) stage.setAttribute('data-stage', art)
     }
     markCurrent()
+  }
+
+  const show = async (id: string, announce: boolean): Promise<void> => {
+    const template = templates.get(id)
+    if (!template) return
+    swap?.abort()
+    const attempt = new AbortController()
+    swap = attempt
+    const fragment = document.importNode(template.content, true)
+    const picture = fragment.querySelector('img')
+    if (picture && !picture.complete) {
+      await Promise.race([picture.decode().catch(() => undefined), pause(PICTURE_WAIT_MS)])
+    }
+    if (attempt.signal.aborted || signal.aborted) return
+    put(id, template, fragment)
     if (announce && status) status.textContent = template.dataset['spotlightName'] ?? ''
   }
 
@@ -202,6 +206,13 @@ function mount(screen: HTMLElement, signal: AbortSignal): void {
     { once: true },
   )
 
+  const returnTo = (id: string | undefined): void => {
+    const template = id ? templates.get(id) : undefined
+    if (!id || id === current || !template || !shownIds().includes(id)) return
+    put(id, template, document.importNode(template.content, true))
+  }
+
+  returnTo(screen.dataset['selectReturn'])
   settle()
   spotlight.removeAttribute('data-spotlight-pending')
 }

@@ -183,3 +183,37 @@ export type NavSection = (typeof NAV_SECTIONS)[number]['id']
 export function sectionFor(kind: ViewKind): NavSection | undefined {
   return NAV_SECTIONS.find((section) => (section.kinds as readonly ViewKind[]).includes(kind))?.id
 }
+
+const HOME_DEPTH = 0
+const HUB_DEPTH = 1
+const LIST_DEPTH = 2
+const ENTRY_DEPTH = 3
+
+const PAGE_DEPTH: Record<ViewKind, number | undefined> = {
+  home: HOME_DEPTH,
+  books: HUB_DEPTH,
+  almanach: HUB_DEPTH,
+  atlas: undefined,
+  bookCategory: LIST_DEPTH,
+  trees: LIST_DEPTH,
+  species: LIST_DEPTH,
+  skills: LIST_DEPTH,
+  equipment: LIST_DEPTH,
+  materials: LIST_DEPTH,
+  rules: LIST_DEPTH,
+  archives: LIST_DEPTH,
+  search: LIST_DEPTH,
+  licences: LIST_DEPTH,
+  aiPolicy: LIST_DEPTH,
+  credits: LIST_DEPTH,
+  privacy: LIST_DEPTH,
+  notFound: LIST_DEPTH,
+  book: ENTRY_DEPTH,
+  tree: ENTRY_DEPTH,
+  speciesEntry: ENTRY_DEPTH,
+  archive: ENTRY_DEPTH,
+}
+
+export function depthFor(kind: ViewKind): number | undefined {
+  return PAGE_DEPTH[kind]
+}

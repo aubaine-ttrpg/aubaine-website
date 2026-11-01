@@ -79,6 +79,10 @@ function settleSpin(crest: HTMLElement, duration: number): void {
   frame = requestAnimationFrame(step)
 }
 
+export function resetLoading(): void {
+  teardown()
+}
+
 function teardown(): void {
   clearTimers()
   spinning = false

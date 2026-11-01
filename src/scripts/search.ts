@@ -96,7 +96,7 @@ function openResults(swup: SwupInstance, input: HTMLInputElement, keepFocus: boo
   if (!path) return
   setPending(input.form, true)
   searchNavigation = keepFocus
-  swup.navigate(path)
+  swup.navigate(path, { animate: !keepFocus })
 }
 
 function onInput(swup: SwupInstance, event: Event): void {

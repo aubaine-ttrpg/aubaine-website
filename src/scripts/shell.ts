@@ -6,6 +6,7 @@ import { bindBrowse } from './browse'
 import { bindDoorLights } from './door-light'
 import { enableIslands } from './islands'
 import { bindLoading } from './loading'
+import { bindPageTransit } from './page-transit'
 import { bindPlateViewer } from './plate-viewer'
 import { bindReliefScroll } from './relief-scroll'
 import { bindSearch } from './search'
@@ -326,5 +327,6 @@ withSwup((swup) => {
   bindSearch(swup)
   bindLoading(swup)
   swup.hooks.on('visit:start', onVisitStart)
+  bindPageTransit(swup)
   bindThreshold(swup)
 })

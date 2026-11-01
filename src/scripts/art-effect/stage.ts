@@ -143,7 +143,7 @@ function mount(stage: HTMLElement, teardown: AbortController): void {
     frame = 0
     const layer = drawn()
     const pace = studio?.tier.stage
-    if (!visible || still() || !studio || !layer || !pace) {
+    if (!stage.isConnected || !visible || still() || !studio || !layer || !pace) {
       last = undefined
       return
     }
