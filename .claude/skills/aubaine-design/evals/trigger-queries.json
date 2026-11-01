@@ -1,0 +1,82 @@
+[
+  {
+    "query": "the codex hub feels cramped on my 13 inch macbook, the lit door name almost touches the coloured band on the right, can you fix the spacing",
+    "should_trigger": true
+  },
+  {
+    "query": "can you propose two or three layouts for the archives page that fit our DA? i want to see them live before we pick",
+    "should_trigger": true
+  },
+  {
+    "query": "on my phone the species page card gets cut on the right side at 390px, check the hero",
+    "should_trigger": true
+  },
+  {
+    "query": "make the hover on the skill tree cards feel more like persona 5, more punch when you point at one",
+    "should_trigger": true
+  },
+  {
+    "query": "once we have adventures, what should the aventures category page look like? sketch me something in the hextech spirit",
+    "should_trigger": true
+  },
+  {
+    "query": "after the refactor of FramedCard.astro, prove the select screen still renders exactly the same, pixel for pixel",
+    "should_trigger": true
+  },
+  {
+    "query": "the gold title plates look dull and muddy, can you look at the colour",
+    "should_trigger": true
+  },
+  {
+    "query": "screenshot the livres hub in english at laptop sizes and tell me if anything is cut by its frame",
+    "should_trigger": true
+  },
+  {
+    "query": "the footer looks like a different site, redo it so it belongs with the hub plates",
+    "should_trigger": true
+  },
+  {
+    "query": "would the slanted doors we kept work for the archives index? try it on the prototype page",
+    "should_trigger": true
+  },
+  {
+    "query": "rewrite the line under Matériaux on the codex hub, the english tagline reads weird",
+    "should_trigger": false
+  },
+  {
+    "query": "add a new Compétence to the Mage tree that costs 2 Énergie and inflicts Brûlure",
+    "should_trigger": false
+  },
+  {
+    "query": "write the lore page of the Draugar from my notes in tmp/draugar.md",
+    "should_trigger": false
+  },
+  {
+    "query": "record in an ADR why the book categories derive their pages from the data",
+    "should_trigger": false
+  },
+  {
+    "query": "commit the hub work with a proper gitmoji message",
+    "should_trigger": false
+  },
+  {
+    "query": "the atlas worker crashes when I switch to the relief view, fix it",
+    "should_trigger": false
+  },
+  {
+    "query": "translate the french help note of the livres hub into english",
+    "should_trigger": false
+  },
+  {
+    "query": "bump astro to the latest minor and fix whatever breaks in the build",
+    "should_trigger": false
+  },
+  {
+    "query": "the search results come back slow when I type fast, debounce the query",
+    "should_trigger": false
+  },
+  {
+    "query": "make me a landing page with a nice modern design for my other side project, a pottery shop",
+    "should_trigger": false
+  }
+]

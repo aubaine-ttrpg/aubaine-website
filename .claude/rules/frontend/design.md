@@ -4,19 +4,18 @@ paths:
   - "src/styles/**/*.css"
   - "src/scripts/art-effect/**/*"
   - "src/scripts/select-screen.ts"
+  - "src/scripts/door-light.ts"
+  - "src/pages/prototype/**/*"
 ---
 
 # Art Direction
 
-- `DESIGN.md` at the repository root owns the art direction. Read it before designing or restyling a
-  page, a card or a stage, and follow it rather than a copy of it.
-- A page that opens one entry uses the character sheet (`CharacterHero.astro`). The Arbres and Espèces
-  indexes use the select screen (`SelectScreen.astro`); the Codex hub uses the plate menu
-  (`PlateMenu.astro`) and the Livres hub its contents spread (`SommaireSpread.astro`). Do not invent
-  another header for any of them.
-- Build a new sheet from `src/lib/game/character-sheet.ts` and its pieces (`SheetHead.astro`,
-  `SheetBody.astro`, `RankProfile.astro`, `TraitPlates.astro`). Do not render an entry's kind, name,
-  stickers, profile or traits a second way; a smaller place takes a piece at its `preview` size.
-- A header never repeats what the list below it already shows.
-- Never add a picture or a video made only for one page. Pictures come from the game's own covers,
-  emblems, heraldry and icons.
+- Design work goes through the `aubaine-design` skill; its description says when to load it.
+  `DESIGN.md` at the repository root documents the look; keep it true after a change.
+- The approved pieces, such as the character sheet (`CharacterHero.astro`), are listed with their routes
+  and guard tests in `.claude/skills/aubaine-design/references/approved-pieces.md`. Read it before
+  touching a page that uses one, and never change an approved piece without the owner's request.
+- A page's layout is read from `src/components/views/View.astro`, never assumed from the kind of page.
+- Build a new sheet from `CharacterSheet` in `src/lib/game/character-sheet.ts` and the pieces
+  `CharacterHero.astro` composes, such as `SheetHead.astro`; read them for the set. Do not render a field
+  of `CharacterSheet` a second way; a smaller place takes a piece at its `preview` size.
