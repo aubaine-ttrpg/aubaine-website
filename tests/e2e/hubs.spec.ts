@@ -630,6 +630,25 @@ for (const [width, height] of FOCUS_REACHES) {
       await expect(focused).toBeFocused()
       expect(await uncovered(focused), category).toBe(true)
     }
+
+    for (const path of [
+      pathFor('almanach', 'en'),
+      pathFor('trees', 'en'),
+      pathFor('species', 'en'),
+      pathFor('bookCategory', 'en', { category: 'rules' }),
+    ]) {
+      await page.goto(path)
+      const about = page.locator('.au-plates__about')
+      await about.focus()
+      await page.keyboard.press('Tab')
+      await about.evaluate((button) => {
+        const { top } = button.getBoundingClientRect()
+        window.scrollTo({ top: window.scrollY + top - 8, behavior: 'instant' })
+      })
+      await page.keyboard.press('Shift+Tab')
+      await expect(about).toBeFocused()
+      expect(await uncovered(about), path).toBe(true)
+    }
   })
 }
 

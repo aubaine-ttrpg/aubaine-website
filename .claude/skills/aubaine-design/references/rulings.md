@@ -145,6 +145,8 @@ their lists byte for byte as they render (`approved-pieces.md` lists their files
 
 > "Please just assure me that you will not touhc the already validated skill tree index and species index and skill tree and species indivudual pages that were validated you are only reveting your Codex Hub and Book Hub. Right ?" (2026-10-29)
 
+> "you can fix those as you suggested once you are finished with all the commits" (2026-11-01, the owner's request that opened `TitlePlates.astro` and the print rules of the approved pieces: the help button's scroll margin and the stage pages' print, neither visible on screen)
+
 **The approvals.**
 
 > "Bro... you cooked so hard, i'm crying" (2026-10-27, the character sheet)
@@ -505,3 +507,4 @@ and praised the Saison slider.
 | 2026-10-29 | three games; the old directions wiped; the approved pieces untouched; book categories, Ressources and the Livres menu; both Codex looks; the Espèces DNA mark; a layout is read from the code |
 | 2026-10-30 | professional grade, measured; plain beside composed; World of Warcraft out; the radial fan rejected outright; CADRAN is the Atlas boot's; the poster wall reformats an index, kept as Layout A; more references for `DESIGN.md`; B and C too plain; blurred stage light only; a door is its mark, its name and one line; the slanted doors back; category marks; no reserved colour; the sheet's arrival kept, new pieces under 700 ms |
 | 2026-10-31 | pieces sit on the shape; B+ ships; C+ and D kept, the poster wall dropped; this skill; accepted screenshots only; highest quality, many links; the contents spread opens Livres and the plate menu the Codex; every category listed, the empty ones saying so; the archives in Livres; Books left to the designer |
+| 2026-11-01 | the help button's margin and the stage pages' print, by request |

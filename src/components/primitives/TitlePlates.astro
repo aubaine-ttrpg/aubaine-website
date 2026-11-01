@@ -119,6 +119,7 @@ const plates = platesOf(title).map((plate, index) => ({
     color: var(--gold);
     cursor: pointer;
     box-shadow: 3px 4px 0 rgba(6, 5, 13, 0.6);
+    scroll-margin-block: calc(var(--sticky-top) + 8px) 16px;
     transition:
       border-color 0.2s var(--ease),
       translate 0.2s var(--ease);

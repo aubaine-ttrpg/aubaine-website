@@ -782,7 +782,7 @@ nothing leans or drifts; the stage code is never fetched and the pause button hi
   5 px out on a roster card, house gold on the select screen's chrome; a Codex door draws it in its own
   ink, 6 px out (`PlateDoor.astro`), and a Livres entry in dark ink, 2 px out, clear of the line above it
   (`SommaireEntry.astro`). A focused card scrolls clear of the sticky header (`scroll-margin-top`), as do a
-  Livres entry, the help button of the Livres pages and an empty page's link (`scroll-margin-block`).
+  Livres entry, the help button of the title plates and an empty page's link (`scroll-margin-block`).
 - **`aria-current`** marks the card the spotlight shows.
 - **Nothing is told by colour alone**: a draft is darkened, veiled and stamped with the word; a pointed
   card flips and lifts; a kind's name sits beside its mark; a status badge writes its word.
