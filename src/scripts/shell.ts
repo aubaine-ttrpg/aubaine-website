@@ -195,6 +195,8 @@ function bindOnce(): void {
       if (menu) {
         closeAll(menu)
         setMenuOpen(menu, true)
+      } else if (target.matches(':focus-visible')) {
+        closeAll(target.closest('[data-lang]') ?? undefined)
       }
     },
     true,

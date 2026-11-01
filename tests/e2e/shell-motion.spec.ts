@@ -115,6 +115,70 @@ test('choosing a header menu item navigates and closes the menu', async ({ page 
   await expect(menu).toBeHidden()
 })
 
+for (const resting of ['away from the menu', 'where the menu opens']) {
+  test(`a header menu closes when the keyboard leaves it, the mouse resting ${resting}`, async ({
+    page,
+  }) => {
+    await page.goto('/en/trees')
+    await page.waitForFunction(() => 'swup' in window)
+    const trigger = page.locator('[data-nav="almanach"]')
+    const box = await trigger.boundingBox()
+    if (!box) throw new Error('the Codex trigger has no box')
+    if (resting === 'where the menu opens') await page.mouse.move(box.x + 20, box.y + 150)
+    else await page.mouse.move(1, 600)
+    const menu = page.getByRole('menu', { name: 'Codex' })
+    const items = menu.getByRole('menuitem')
+
+    await trigger.focus()
+    await expect(menu).toBeVisible()
+    for (let step = await items.count(); step > 0; step--) await page.keyboard.press('Tab')
+    await expect(items.last()).toBeFocused()
+    await expect(menu).toBeVisible()
+
+    await page.keyboard.press('Tab')
+    await expect(menu).toBeHidden()
+
+    await page.keyboard.press('Shift+Tab')
+    await expect(trigger).toBeFocused()
+    await expect(menu).toBeVisible()
+  })
+}
+
+test('the language menu closes when the keyboard leaves it', async ({ page }) => {
+  await page.goto('/en/trees')
+  await page.waitForFunction(() => 'swup' in window)
+  await page.mouse.move(1, 600)
+  const trigger = page.locator('[data-lang-trigger]')
+  const panel = page.locator('[data-lang-panel]')
+  const options = panel.locator('a, button')
+
+  await trigger.focus()
+  await page.keyboard.press('Enter')
+  await expect(panel).toBeVisible()
+  for (let step = await options.count(); step > 0; step--) await page.keyboard.press('Tab')
+  await expect(options.last()).toBeFocused()
+  await expect(panel).toBeVisible()
+
+  await page.keyboard.press('Tab')
+  await expect(panel).toBeHidden()
+})
+
+test('the language menu opened with the mouse stays open when a script moves focus', async ({
+  page,
+}) => {
+  await page.goto('/en/trees')
+  await page.waitForFunction(() => 'swup' in window)
+  const panel = page.locator('[data-lang-panel]')
+
+  await page.locator('[data-lang-trigger]').click()
+  await expect(panel).toBeVisible()
+  await page.evaluate(() => {
+    document.body.setAttribute('tabindex', '-1')
+    document.body.focus()
+  })
+  await expect(panel).toBeVisible()
+})
+
 test('the language links follow the page although the header is not swapped', async ({ page }) => {
   await page.goto('/en/trees')
   await markHeader(page)
