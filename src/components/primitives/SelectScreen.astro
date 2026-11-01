@@ -28,6 +28,7 @@ const dealt = groups.map((group, position) => ({
   class="au-select au-dark"
   data-stage-host
   data-select
+  data-print-paper
 >
   <div class="au-select__layer">
     <StageBackdrop source={stage} />
@@ -265,12 +266,19 @@ const dealt = groups.map((group, position) => ({
     .au-select {
       --ink: #14100a;
       --ink2: #3a3448;
-      --gold: #7a5d10;
+      --ink3: #3a3448;
+      --gold: #93701a;
+      --on-gold: #000;
       background: none;
     }
 
     .au-select__layer {
       display: none;
+    }
+
+    .au-select__mark > span {
+      background: none;
+      box-shadow: none;
     }
   }
 </style>

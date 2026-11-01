@@ -224,7 +224,7 @@ The values that define the look. Every stage is dark in both themes, so these ar
 | Seal field of a tree without a domain | `#2a2a2e` | `src/lib/game/seals.ts` |
 | Shadows | night (`#06050d`) at 60 to 78 %, or black at 45 to 62 % | the component of each piece |
 | Glare on a leaning card | `#ffeec4` at 32 %, soft-light | `FramedCard.astro` |
-| Print | inks `#14100a` and `#3a3448`, gold `#7a5d10` | the print rules of `CharacterHero.astro` and `SelectScreen.astro` |
+| Print | inks `#14100a` and `#3a3448`, gold `#93701a` with black on it | the print rules of `CharacterHero.astro`, `SelectScreen.astro` and `EmptyStage.astro` |
 
 ### The key colour
 
@@ -289,7 +289,10 @@ own colour (`.claude/rules/frontend/kind-marks.md`).
 - Every stage carries `.au-dark` (the sheet, the select screen, each roster card), which restores the dark
   tokens; only the reading below a stage follows the light theme. `tests/e2e/character-hero.spec.ts` and
   `tests/e2e/hub-stage.spec.ts` check it.
-- In print the stage drops out, the inks turn dark and gold turns `#7a5d10`.
+- In print the stage drops out and the inks turn dark. On the sheet, the select screen and an empty
+  category's page gold turns `#93701a`, which reads on white and takes black on it, with or without
+  background graphics. The Codex and Livres title plates keep house gold, and a roster card keeps its own
+  colours.
 
 ### Blue
 
@@ -797,8 +800,10 @@ nothing leans or drifts; the stage code is never fetched and the pause button hi
 - **Print**: the stage, the spotlight, the slab, the emblem, the glare and the ghost drop out; the card
   and the title plates stand straight; the inks turn dark; the title and the roster remain. The Livres
   sheet loses its paper and its fold, its numerals print in outline, each name keeps a white halo over
-  them, and an entry stays whole across a page break. The Livres contents and an empty category's page
-  print on white paper, even with the dark theme and background graphics on (`data-print-paper`).
+  them, and an entry stays whole across a page break. The select screens, the Codex, the Livres contents
+  and an empty category's page print on white paper, even with the dark theme and background graphics on
+  (`data-print-paper`). A character sheet prints on its own white ground, its words beside a 240 px card,
+  so it fits below the header of its first page; the reading below it keeps the page's theme.
 
 ## References
 

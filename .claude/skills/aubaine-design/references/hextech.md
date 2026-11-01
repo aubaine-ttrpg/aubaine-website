@@ -185,7 +185,8 @@ pieces. Primitives are under `src/components/primitives/`.
    stage's light. The faint end is thinness and transparency, never a browner gold: the owner asked for a
    more vibrant gold when a softened one read as dark and dusty
    (`docs/adr/0059-a-sub-species-may-fly-its-heraldry-as-cloth-and-a-painting-hangs-under-glass.md`,
-   Context). The dark gold `#7a5d10` is used only in print (`CharacterHero.astro`, `SelectScreen.astro`).
+   Context). The dark gold `#93701a` is used only in print (`CharacterHero.astro`, `SelectScreen.astro`,
+   `EmptyStage.astro`).
 3. **Shapes with jobs, the hexagon for the diamond.** Riot's square structures, its diamond guides the
    eye, its circle holds the items "that require a reaction": in champion select "Pick intent selections
    are displayed in the main (circular) portrait of the player", bans in "a separate square portrait"

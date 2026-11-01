@@ -235,9 +235,25 @@ const sizes = `(min-width: 960px) ${CARD_WIDE}, ${CARD_NARROW}`
     .au-character {
       --ink: #14100a;
       --ink2: #3a3448;
-      --gold: #7a5d10;
+      --ink3: #3a3448;
+      --gold: #93701a;
+      --on-gold: #000;
+      --card: 240px;
       min-height: 0;
-      background: none;
+      background: #fff;
+    }
+
+    .au-character__inner {
+      grid-template-areas: 'info card';
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+      justify-items: stretch;
+      column-gap: 24px;
+      padding: 16px;
+    }
+
+    .au-character__info {
+      margin-top: 0;
     }
 
     [data-scroll-cue] {

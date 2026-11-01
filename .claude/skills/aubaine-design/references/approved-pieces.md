@@ -619,8 +619,15 @@ Durations and delays marked "× arrival" are multiplied by `--arrival`. In the t
 
 ### Print
 
-- Both pieces turn their inks to `#14100a` and `#3a3448` and their gold to `#7a5d10`, on no background
-  (`CharacterHero.astro`, `SelectScreen.astro`).
+- Both pieces turn `--ink` to `#14100a`, `--ink2` and `--ink3` to `#3a3448`, their gold to `#93701a` and
+  `--on-gold` to black (`CharacterHero.astro`, `SelectScreen.astro`). That gold reads at 4.59:1 on white and
+  black reads at 4.57:1 on it, so a filled plate holds with background graphics on or off. White text on
+  gold does not: a browser printing without backgrounds only greys it.
+- The select screen prints on no background, with `data-print-paper` keeping the page behind it white, and
+  its group marks lose their black tape and its shadow. The sheet prints on a white ground of its own, since the reading
+  below it keeps the page's theme, and sets its words beside a 240 px card, so it fits below the header of
+  its first page (`tests/e2e/print.spec.ts`). The profile's inner rings and spokes turn
+  `rgba(20, 16, 10, .22)` to read on it.
 - Dropped: the stage, the slab, the emblem, the glare, the ghost name, the pause button, the scroll cue,
   the whole spotlight and the help button. A developed picture prints its plain image.
 - The sheet's card prints straight and without a shadow (a roster card loses its shadow but keeps its
@@ -851,8 +858,8 @@ the page that entry opens.
   Barlow Semi Condensed 600, 14 px, 0.08 em, capitals, padding 9 px and 15 px, a 1 px `--line2` border
   that turns `--gold` on hover and focus, with the entries' scroll margin.
 - **Pause.** The 38 px square, 16 px from the bottom right.
-- **Print.** The stage and the pause drop out; the words turn `#14100a`, `#3a3448` and gold `#7a5d10` on
-  no background, and `data-print-paper` keeps the page behind them white.
+- **Print.** The stage and the pause drop out; the words turn `#14100a`, `#3a3448` and gold `#93701a` with
+  black on it, on no background, and `data-print-paper` keeps the page behind them white.
 - The page is `noindex`, has no canonical link and stays out of the sitemap (`src/lib/game/pages.ts`).
 
 ### Measured at the ship of the Livres contents
@@ -1082,6 +1089,7 @@ Almanach's property « Codex. » (`data/equipment/items/almanach.json`).
 | `tests/e2e/roster.spec.ts` | every entry listed by default; a draft stamped once and still a link; no card invisible during the deal; filtering by name; the lean |
 | `tests/e2e/hub-stage.spec.ts` | one title and no picture of its own; each entry linked once in the roster and once from the spotlight; the lead in the note with its chapter; the title and its help button kept apart; the pause; Swup visits; the light theme; print; reduced motion never fetching the stage code |
 | `tests/e2e/hubs.spec.ts` | On both hubs in both languages: one door per section, each linked once; each door's page named as the door and offering a way on; each door's light equal to its page's opening picture; the header menu listing the doors in their order; the lead in the help note. In both languages: every book category's page answering with its two language alternates; one with entries carrying its canonical; an empty one showing its title, its line and the link back, carrying `noindex`, no canonical, left out of the sitemap, and printed in dark ink on white paper without its stage. On both hubs in English: the first door lit at rest and never marked current; pointing lights a door, moves the stage and leaves it lit; "a door the pointer only crosses never takes the light or the stage" (a second after a door is pointed and left before its 80 ms run out, the first door still holds `data-lit` and the stage the first door's light); "keyboard focus that leaves the doors for a button leaves no door pointed" (Shift+Tab from the first door to the help button clears `data-pointed`, and the first door keeps `data-lit`); "keyboard focus on a button of the menu clears the pointed door and its intent" (a door the pointer points loses `data-pointed` when keyboard focus lands on the help button, and its 80 ms never runs out into `data-lit`); "the keyboard lights the door it focuses at once" (with the page's clock paused, the focused door takes `data-lit` without a timer, and no other door holds it); a client visit binds the doors, and coming back binds them again in the same document. On both hubs in French: doors read in the order they are drawn. At the seven sizes and 320 × 568 in both languages: nothing cut on a Codex door, each door lit in turn from 960 px and the first door lit at rest below (plates on screen and inside the menu, the lit name clear of its band, the pictogram on screen, a missing piece counted as a problem); nothing cut on the Livres contents with each entry lit in turn (the sheet on screen; the title plates on screen and uncut by the section; every numeral, name, mark and line present, and inside the sheet and inside its link on all four sides; no name running into its mark; no entry over another; no focus ring across the line above); and the pause square clear of the sheet. In English: the help button clear of the header when the keyboard reaches it, on Livres, on an empty category, on the Codex, on both indexes and on a category with entries, at four sizes; forced colours hiding the Livres numerals; print outlining them under a white halo round each name, keeping an entry whole, on white paper under the dark theme; on both hubs, the light theme and print |
+| `tests/e2e/print.spec.ts` | Under the dark theme, with background graphics on: the select screens and the Codex on white paper with every word readable; a sheet on its white ground with every word readable and its profile's rings kept; the group marks without their tape and the filter count readable; title plates straight and readable; every sheet fitting below the header of its first A4 page |
 | `tests/e2e/drafts.spec.ts`, `tests/e2e/scroll-cue.spec.ts`, `tests/e2e/art-effect-fallback.spec.ts`, `tests/e2e/no-javascript.spec.ts`, `tests/e2e/images.spec.ts` | the drafts switch; the cue; the plain picture without WebGL2 or on a software renderer; the markup without JavaScript, the hub doors opening their pages and taking the light from the pointer and the keyboard, and "keyboard focus keeps the light while the pointer hovers another door" (one door lit, the focused one); picture widths |
 | `tests/unit/key-colour.test.ts`, `tests/unit/profile.test.ts`, `tests/unit/hubs.test.ts`, `tests/unit/character-sheet.test.ts`, `tests/unit/character-hero.test.ts`, `tests/unit/emblem-frame.test.ts` | the key colour and its lift; the profile's geometry; lead order and fields; the sheet model; the lean; emblem framing |
 

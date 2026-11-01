@@ -449,6 +449,13 @@ const axes = PROFILE_AXES.map((axis, index) => ({
     }
   }
 
+  @media print {
+    .au-rank__ring:not(.au-rank__ring--top),
+    .au-rank__spoke {
+      stroke: rgba(20, 16, 10, 0.22);
+    }
+  }
+
   @keyframes au-rank-stamp {
     from {
       transform: skewX(-10deg) scale(1.6);

@@ -592,8 +592,10 @@ for (const kind of HUB_KINDS) {
 }
 
 test('the Livres contents print on white paper under the dark theme', async ({ page }) => {
+  await page.emulateMedia({ colorScheme: 'dark' })
   await page.goto(pathFor('books', 'en'))
-  await page.emulateMedia({ media: 'print', colorScheme: 'dark' })
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
+  await page.emulateMedia({ media: 'print' })
   await expect(page.locator('html')).toHaveCSS('background-color', WHITE_PAPER)
   await expect(page.locator('[data-tip-root]')).toHaveCSS('background-color', WHITE_PAPER)
 })
