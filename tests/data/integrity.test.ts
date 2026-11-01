@@ -1298,24 +1298,30 @@ describe('authoring hygiene', () => {
   })
 
   it('keeps authored source free of en dash and em dash', async () => {
-    const dirs = ['src', 'tools', 'tests', 'docs']
+    const houseSkills = (await readdir(resolve(root, '.claude/skills'))).filter((name) =>
+      name.startsWith('aubaine-'),
+    )
+    const dirs = [
+      'src',
+      'tools',
+      'tests',
+      'docs',
+      '.claude/agents',
+      '.claude/rules',
+      ...houseSkills.map((name) => `.claude/skills/${name}`),
+    ]
     const banned = BANNED_DASHES
     for (const dir of dirs) {
-      let entries: Dirent[]
-      try {
-        entries = await readdir(resolve(root, dir), { recursive: true, withFileTypes: true })
-      } catch {
-        continue
-      }
+      const entries = await readdir(resolve(root, dir), { recursive: true, withFileTypes: true })
       for (const entry of entries) {
         if (!entry.isFile()) continue
-        if (!/\.(ts|tsx|astro|css|md|mjs|json|glsl)$/.test(entry.name)) continue
+        if (!/\.(ts|tsx|astro|css|md|mjs|json|glsl|frag|vert)$/.test(entry.name)) continue
         const raw = await readFile(resolve(entry.parentPath, entry.name), 'utf8')
         const hit = banned.find((dash) => raw.includes(dash))
         expect(hit, `${entry.parentPath}/${entry.name} contains a banned dash`).toBeUndefined()
       }
     }
-    for (const file of ['DESIGN.md']) {
+    for (const file of ['DESIGN.md', 'README.md', '.claude/CLAUDE.md']) {
       const raw = await readFile(resolve(root, file), 'utf8')
       const hit = banned.find((dash) => raw.includes(dash))
       expect(hit, `${file} contains a banned dash`).toBeUndefined()
