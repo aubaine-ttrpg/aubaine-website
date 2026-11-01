@@ -7,7 +7,7 @@
   --lit: 1;
 }
 
-[data-door]:has(a:active) {
+[data-door]:has(a:active, a[data-pressed]) {
   --lit: 1;
   --pointed: 1;
 }

@@ -127,11 +127,18 @@ const nameFit = Math.min(
 
   .au-roster__link > :global(.au-framed) {
     rotate: var(--rest);
-    transition: rotate 0.34s var(--ease);
+    transition:
+      rotate 0.34s var(--ease),
+      translate 0.2s var(--ease);
   }
 
   .au-roster__link:is(:hover, :focus-visible, [aria-current='true']) > :global(.au-framed) {
     rotate: calc(var(--rest) * -0.6);
+  }
+
+  .au-roster__link:is(:active, [data-pressed]) > :global(.au-framed) {
+    translate: 0 4px;
+    transition-duration: 0.34s, 0.05s;
   }
 
   .au-roster__link:focus-visible {

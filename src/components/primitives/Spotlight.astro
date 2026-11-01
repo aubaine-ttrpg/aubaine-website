@@ -169,6 +169,11 @@ if (!lead) throw new Error('a select screen has no lead entry to show')
     translate: 0 -2px;
   }
 
+  .au-spotlight__step:active {
+    translate: 0 1px;
+    transition-duration: 0.05s;
+  }
+
   .au-spotlight__step :global(.au-spotlight__chevron) {
     width: 26px;
     height: 26px;
@@ -200,6 +205,12 @@ if (!lead) throw new Error('a select screen has no lead entry to show')
   .au-spotlight__open:focus-visible {
     translate: 0 -2px;
     box-shadow: 6px 8px 0 rgba(6, 5, 13, 0.7);
+  }
+
+  .au-spotlight__open:is(:active, [data-pressed]) {
+    translate: 2px 3px;
+    box-shadow: 1px 1px 0 rgba(6, 5, 13, 0.7);
+    transition-duration: 0.05s;
   }
 
   .au-spotlight :global(.au-spotlight__still) {

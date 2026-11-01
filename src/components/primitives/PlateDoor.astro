@@ -76,6 +76,7 @@ const { nameId, lineId } = contract
     overflow: clip;
     pointer-events: none;
     opacity: var(--lit);
+    transition: opacity 0.18s var(--ease);
   }
 
   .au-plate-door__band {
@@ -175,6 +176,12 @@ const { nameId, lineId } = contract
   .au-plate-door__namebox {
     grid-area: name;
     min-width: 0;
+    transition: translate 0.2s var(--ease);
+  }
+
+  .au-plate-door__link:is(:active, [data-pressed]) .au-plate-door__namebox {
+    translate: 2px 3px;
+    transition-duration: 0.05s;
   }
 
   .au-plate-door__name {
@@ -307,6 +314,7 @@ const { nameId, lineId } = contract
       margin-top: calc(var(--name-px) * 0.12);
       font-size: clamp(16px, 1.25vw, 20px);
       opacity: calc(0.75 + var(--lit) * 0.25);
+      transition: opacity 0.18s var(--ease);
     }
   }
 
