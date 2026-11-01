@@ -590,6 +590,15 @@ above (all answered; none moved but the Map page). What it adds:
 - [Deadlock isn't even 'out' yet, but Valve's new game is a true monster in the making](https://www.pcgamesn.com/deadlock/valves-secret-weapon) (2026-08-09; text only): Identity kept consistent across every surface of an entry.
 - [Deadlock (video game)](https://en.wikipedia.org/wiki/Deadlock_(video_game)) (text only): The art-style history in brief, with a reception section citing the press pieces above.
 
+## Added on 2026-11-01: how a screen changes
+
+Nothing published documents how Deadlock's screens change: the [Hideout](https://deadlock.wiki/Hideout) page
+says a terminal opens a full-screen menu and shows no motion; the
+[Curiosity Shop](https://deadlock.wiki/The_Curiosity_Shop) page holds static files only; no Valve interface
+designer's portfolio was found. Nothing about Deadlock's motion may be claimed until footage is captured:
+hero select, the shop's tabs after the [29 September 2026 refresh](https://deadlock.wiki/Update:September_29,_2026)
+("Refreshed Shop UI."), a terminal opening.
+
 ## Captures still to take
 
 - The full-screen menus behind the Hideout's terminals: Select Play Mode, Watch, Learn to Play, News,

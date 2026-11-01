@@ -538,6 +538,32 @@ Pictures were viewed at their source and never copied. What it adds:
 - [Clair Obscur: Expedition 33 lead says Persona 5 is the “best game in the world” when it comes to UI and combat visuals](https://automaton-media.com/en/news/clair-obscur-expedition-33-lead-says-persona-5-is-the-best-game-in-the-world-when-it-comes-to-ui-and-combat-visuals/) (2025-05-24; text only): A director who borrowed from Persona 5 warns against surface copies.
 - [Análise da Interface do Jogo Persona 5 (Interface Analyze of Persona 5 Game)](https://pdf.blucher.com.br/designproceedings/9cidi/1.0048.pdf) (2019; text only): An exploratory study of why fans empathise with the interface (menu cosplay, reviews calling the menus part of the show); conclusion that the appeal partly comes from breaking expectations of RPG interfaces; hypothesis that the interface reads as the character's gear.
 
+## Added on 2026-11-01: how a screen changes
+
+Pictures were captured into the scratchpad, cut into contact sheets and viewed, never copied here. No maker
+gives a duration for a change of level; every number below comes from counting frames in a capture.
+
+- [Calling out menu animation (GIF, English build)](https://jiaxinwen.wordpress.com/wp-content/uploads/2017/04/2017-04-28_15-09-10.gif)
+  (viewed at 7.5 frames a second): the field never disappears. It stays on screen tinted red while one hard
+  diagonal of black and white crosses from the right in about two frames; the silhouette, then the hand,
+  then the list land one after another, settled by about 0.67 s. Pointing a command changes the help line
+  and the big numeral within a frame or two, and the pointed word jumps in with its red slab.
+- [Famitsu's photo of the 画面遷移 slide](https://www.famitsu.com/images/000/145/540/y_5a0118028d8d9.jpg)
+  (viewed; a sharper view of slide 05): one level down, the figure stays, in a new pose, with COMMAND still
+  under it, while the list takes the right of the screen. Something the reader already knows persists across
+  the change.
+- [The p5ui command post](https://www.tumblr.com/p5ui/158342869579/command-menu-main-menu) (text only, an
+  anonymous fan catalogue): rotational wipes for Skill, Item, Equip and Status, horizontal wipes for Persona,
+  Request and Calendar. A reading, not the makers' intent, and direction changes by menu, so no rule such as
+  "deeper means rightward" rests on it.
+- Sutou in [Weekly Famitsu #1449](https://personacentral.com/persona-5-interview-ui-design-sound-music/)
+  (2016-09-11, Play-Asia's translation): "it will pop up without any lag whatsoever", said of opening the
+  menu, not of a change of level.
+
+**What Aubaine takes:** the previous screen stays until the next one covers it, never an empty frame; one
+flat shape moves, not a fade; something known persists across the change. **What stays in the game:** the
+hand against the camera, glass, a different wipe for every sub-menu, long loading scenes.
+
 ## Capture inventory
 
 - **Viewed on 2026-10-30**, read from their source pages and never copied into the repository:

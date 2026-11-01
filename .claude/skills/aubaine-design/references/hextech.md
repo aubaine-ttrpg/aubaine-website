@@ -441,6 +441,31 @@ client's screens. What it adds:
 - [Samuel 'Penguin' Thompson | League of Legends Wiki](https://wiki.leagueoflegends.com/en-us/Samuel_%27Penguin%27_Thompson) (text only): Names the artist behind UI Concepts 1 to 10 and lists, among the contributions, "Level-up UI elements" and "Ranked Update borders and tierss" (sic); links an ArtStation portfolio.
 - [ArtStation portfolio of Samuel Thompson (thepenguinside)](https://www.artstation.com/thepenguinside) (text only; *browser only*): Not read.
 
+## Added on 2026-11-01: how a screen changes
+
+Riot publishes no navigation transition. Pictures were captured into the scratchpad and viewed.
+
+- [Ten-ban clip, Richard Ye's article](https://www.riotgames.com/darkroom/original/f2369435ae65dcac613b191f2869b282:7408f778b45fae02f6cda3b36f33f877/animationtech-video.mp4)
+  (viewed at 3 frames a second): the teams' columns and the top bar hold still through the whole phase; only
+  the centre changes, the bans chaining one after another, then the map replacing the centre at the end.
+- [Easing comparison](https://www.riotgames.com/darkroom/original/4863befbbd0a8ed82af0d1696937c5d7:2f88ba0bae19e00f6786d1f50e447a6d/lcu-ui-animation-comparison.gif)
+  (viewed; 30 frames, 0.9 s): the same Match Found under the labels EASE-OUT, CUSHIONED and MAGNETIC. The
+  icon lands from far larger than its size, blurred, and the words settle after it, all within about half a
+  second; only the curve differs.
+- [CLIENT CLEANUP: Next Stop, Champ Select](https://www.leagueoflegends.com/en-gb/news/dev/client-cleanup-next-stop-champ-select/)
+  (2020-09-04; fetched; Riot Cactopus, Am1t, A Huevo): "the response time for things like the 'lock in'
+  button down to under 100ms"; "remove or streamline low-value, poor-performing animations". A button's
+  response, not a page change; applying it to a link is Aubaine's translation.
+- [CLIENT CLEANUP: Champ Select & End Of Game](https://www.leagueoflegends.com/en-us/news/dev/client-cleanup-champ-select-end-of-game/)
+  (2020-10-30; fetched; Riot Aotus, Id, Am1t): "Players don't find the ceremonies around summoner spell and
+  ward skin selection that important."
+- [Senior UI Animator, a closed Riot post on Hitmarker](https://hitmarker.net/jobs/riot-games-senior-ui-animator-league-labs-703351)
+  (undated; fetched): "UI animatics, transitions, full motion user flows, in-engine UI effects". Riot designs
+  transitions as flows.
+
+**What Aubaine takes:** the shell holds still and the centre changes; acknowledge the press first; ceremony
+scales with the value of the choice. **What stays in the game:** large smoke videos.
+
 ## Screens studied
 
 ### Viewed
