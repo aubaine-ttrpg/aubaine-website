@@ -93,7 +93,8 @@ test('the preference survives a reload and follows the reader to another list', 
 
   await page.locator('[data-nav="almanach"]').click()
   await expect(page).toHaveURL('/en/almanach')
-  await page.getByRole('link', { name: 'Skill Trees', exact: true }).click()
+  await page.mouse.move(1, 600)
+  await page.locator('main').getByRole('link', { name: 'Skill Trees', exact: true }).click()
   await expect(page).toHaveURL('/en/trees')
   await hydrated(page)
   await expect(hideSwitch(page)).toBeChecked()

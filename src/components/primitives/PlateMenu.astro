@@ -1,0 +1,183 @@
+---
+import { PLATE_PAPER } from '../../lib/game/character-sheet'
+import { doorLooks, type HubDoor } from '../../lib/game/hub-doors'
+import type { Locale } from '../../lib/i18n/locales'
+import { DARK_INK } from '../../lib/key-colour'
+import { fitLetters, PLATE_PADDING, platesOf } from '../../lib/plates'
+import PlateDoor from './PlateDoor.astro'
+import StageBackdrop from './StageBackdrop.astro'
+import StillToggle from './StillToggle.astro'
+import TitlePlates, { type HubAbout } from './TitlePlates.astro'
+
+import '../../styles/doors.css'
+
+type Props = { locale: Locale; title: string; about: HubAbout; doors: readonly HubDoor[] }
+
+const { locale, title, about, doors } = Astro.props
+const [first] = doors
+if (!first) throw new Error(`the ${title} hub has no section to open`)
+
+const WRAPPING_PLATES = 3
+const SCENE_CAP = 56
+
+const rows = await doorLooks(doors)
+const wrapping = doors.filter((door) => platesOf(door.name).length >= WRAPPING_PLATES).length
+const style = [
+  `--doors:${doors.length}`,
+  `--lines:${doors.length + wrapping}`,
+  `--fit-letters:${fitLetters(
+    doors.map((door) => door.name),
+    PLATE_PADDING,
+  )}`,
+  `--door-paper:${PLATE_PAPER}`,
+  `--door-paper-ink:${DARK_INK}`,
+  `--scene-cap:${SCENE_CAP}px`,
+].join('; ')
+---
+
+<section
+  class="au-plate-menu au-dark"
+  data-stage-host
+  data-doors
+  style={style}
+>
+  <div class="au-plate-menu__layer">
+    <StageBackdrop source={first.stage} />
+  </div>
+
+  <div class="au-plate-menu__inner">
+    <div class="au-plate-menu__title">
+      <TitlePlates title={title} about={about} locale={locale} />
+    </div>
+
+    <ul class="au-plate-menu__doors">
+      {
+        rows.map(({ door, look }, index) => (
+          <PlateDoor door={door} look={look} index={index} lit={index === 0} />
+        ))
+      }
+    </ul>
+  </div>
+
+  <StillToggle locale={locale} class="au-plate-menu__still" />
+</section>
+
+<style>
+  .au-plate-menu {
+    --motion-state: running;
+    --pad: 16px;
+    --gap: clamp(14px, 1.6vw, 24px);
+    --mark-size: clamp(40px, 3.7vw, 56px);
+    --content: calc(min(100cqi, 1560px) - 2 * var(--pad));
+    --name-room: var(--content);
+    --name-floor: 30px;
+    --name-cap: 112px;
+    --fit-h: 100vmax;
+    --name-px: clamp(
+      min(var(--name-floor), calc(var(--name-room) / var(--fit-letters))),
+      min(calc(var(--name-room) / var(--fit-letters)), var(--fit-h)),
+      var(--name-cap)
+    );
+    container-type: inline-size;
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    min-height: calc(100svh - var(--header-h));
+    background: var(--bg);
+    color: var(--ink);
+    border-bottom: 1px solid var(--line2);
+  }
+
+  .au-plate-menu[data-still] {
+    --motion-state: paused;
+  }
+
+  .au-plate-menu__layer {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .au-plate-menu__inner {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1560px;
+    min-height: calc(100svh - var(--header-h));
+    margin: 0 auto;
+    padding: clamp(22px, 3.2vh, 40px) var(--pad) clamp(48px, 7vh, 80px);
+    box-sizing: border-box;
+  }
+
+  .au-plate-menu__title {
+    position: relative;
+    z-index: 2;
+    width: min(100%, 360px);
+  }
+
+  .au-plate-menu__doors {
+    margin: 0;
+    padding: clamp(14px, 2.4vh, 30px) 0 0;
+    list-style: none;
+  }
+
+  .au-plate-menu :global(.au-plate-menu__still) {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+  }
+
+  @media (width >= 640px) {
+    .au-plate-menu {
+      --pad: clamp(24px, 3vw, 48px);
+      --name-room: calc(var(--content) - var(--mark-size) - var(--gap));
+    }
+
+    .au-plate-menu__doors {
+      margin-block: auto;
+    }
+  }
+
+  @media (width >= 960px) {
+    .au-plate-menu {
+      --lit-scale: 1.16;
+      --lit-shift: 14px;
+      --name-floor: 28px;
+      --name-cap: var(--scene-cap);
+      --name-room: calc(
+        (var(--content) * 0.54 - var(--mark-size) - var(--gap) - var(--lit-shift)) /
+          var(--lit-scale)
+      );
+      --fit-h: calc(
+        (100svh - var(--header-h) - 260px - var(--doors) * 25px) /
+          (var(--lines) + var(--doors) * 0.44)
+      );
+    }
+
+    .au-plate-menu__title {
+      width: min(100%, 440px);
+    }
+
+    .au-plate-menu__doors {
+      max-width: 56%;
+    }
+  }
+
+  @media print {
+    .au-plate-menu {
+      min-height: 0;
+      background: none;
+      border-bottom: 0;
+    }
+
+    .au-plate-menu__inner {
+      min-height: 0;
+    }
+
+    .au-plate-menu__layer,
+    .au-plate-menu :global(.au-plate-menu__still) {
+      display: none;
+    }
+  }
+</style>

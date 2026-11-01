@@ -303,6 +303,75 @@ test('the books hub only cards a book that leads somewhere', async ({ page }) =>
   }
 })
 
+for (const kind of ['almanach'] as const) {
+  test(`every door of ${pathFor(kind, 'fr')} opens its page without javascript`, async ({
+    page,
+  }) => {
+    await page.goto(pathFor(kind, 'fr'))
+    const doors = await page
+      .locator('[data-door] a')
+      .evaluateAll((all) => all.map((link) => link.getAttribute('href') ?? ''))
+    expect(doors.length).toBeGreaterThan(0)
+    for (const href of doors) {
+      const response = await page.goto(href)
+      expect(response?.status(), href).toBe(200)
+      await expect(page.locator('h1')).toHaveCount(1)
+      await expect(page.locator('[data-entry] a[href]').first(), href).toBeVisible()
+    }
+  })
+}
+
+test.describe('a hub door without javascript', () => {
+  test.use({
+    javaScriptEnabled: false,
+    reducedMotion: 'reduce',
+    viewport: { width: 1512, height: 860 },
+  })
+
+  const lightOf = (page: Page, index: number): Promise<string> =>
+    page
+      .locator('[data-door]')
+      .nth(index)
+      .evaluate((door) => getComputedStyle(door).getPropertyValue('--lit').trim())
+
+  for (const kind of ['almanach'] as const) {
+    const hub = pathFor(kind, 'en')
+
+    test(`on ${hub} takes the light from the pointer and the keyboard`, async ({ page }) => {
+      await page.goto(hub)
+      const doors = page.locator('[data-door]')
+      expect(await doors.count()).toBeGreaterThan(2)
+      expect(await lightOf(page, 0)).toBe('1')
+      await doors.nth(2).locator('a').hover()
+      expect(await lightOf(page, 2)).toBe('1')
+      expect(await lightOf(page, 0)).toBe('0')
+      await page.mouse.move(2, 2)
+      await doors.nth(1).locator('a').focus()
+      await page.keyboard.press('Tab')
+      await expect(doors.nth(2).locator('a')).toBeFocused()
+      expect(await lightOf(page, 2)).toBe('1')
+      expect(await lightOf(page, 0)).toBe('0')
+    })
+
+    test(`on ${hub} keyboard focus keeps the light while the pointer hovers another door`, async ({
+      page,
+    }) => {
+      await page.goto(hub)
+      const doors = page.locator('[data-door]')
+      expect(await doors.count()).toBeGreaterThan(3)
+      await doors.nth(1).locator('a').focus()
+      await page.keyboard.press('Tab')
+      await expect(doors.nth(2).locator('a')).toBeFocused()
+      await doors.last().locator('a').hover()
+      const lights = await doors.evaluateAll((all) =>
+        all.map((door) => getComputedStyle(door).getPropertyValue('--lit').trim()),
+      )
+      expect(lights.filter((light) => light === '1')).toHaveLength(1)
+      expect(await lightOf(page, 2)).toBe('1')
+    })
+  }
+})
+
 test('a chapter reaches its neighbour through the pager', async ({ page }) => {
   await page.goto('/fr/livres/livre-du-joueur/comment-jouer')
   await expect(page.locator('#book-nav a[aria-current="page"]')).toHaveCount(1)

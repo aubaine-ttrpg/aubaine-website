@@ -21,34 +21,6 @@ export type IndexDescriptor = {
   kind: IndexKind
   mark: KindMark
   title: string
-  description: string
-}
-
-const DESCRIPTIONS: Record<IndexKind, Record<Locale, string>> = {
-  trees: {
-    fr: 'Quinze archétypes et huit domaines, chacun prêt à imprimer, avec ses compétences.',
-    en: 'Fifteen archetypes and eight domains, each with its printed plate and full skill list.',
-  },
-  species: {
-    fr: 'Les Espèces jouables, les Compétences que chacune propose et le déplacement qu’elle fixe.',
-    en: 'The playable Species, the Skills each one offers and the movement it sets.',
-  },
-  skills: {
-    fr: 'Toutes les compétences d’Aubaine, arbres, Banque Commune et Compétences de base, avec les endroits où chacune s’obtient.',
-    en: 'Every skill in Aubaine, trees, Common Bank and Basic Skills alike, with where each one can be obtained.',
-  },
-  equipment: {
-    fr: 'Protections, armes, bijoux et consommables, avec leurs stats, propriétés et fabrication.',
-    en: 'Armour, weapons, jewels and consumables, with their stats, properties and craft.',
-  },
-  materials: {
-    fr: 'Les matériaux ordinaires, leurs Types et leur Valeur, et la Table de butin de chaque environnement.',
-    en: 'Ordinary materials, their Types and Value, and the Loot Table of every environment.',
-  },
-  rules: {
-    fr: 'Mots de règle, Caractéristiques, Aptitudes, états, étiquettes et Compétences de base, avec la définition ou la règle de chacun.',
-    en: 'Rule words, Characteristics, Aptitudes, states, tags and basic Skills, each with its definition or its rule.',
-  },
 }
 
 export function indexDescriptors(locale: Locale): IndexDescriptor[] {
@@ -65,7 +37,6 @@ export function indexDescriptors(locale: Locale): IndexDescriptor[] {
     kind,
     mark: KIND_MARKS[kind],
     title: titles[kind],
-    description: DESCRIPTIONS[kind][locale],
   }))
 }
 

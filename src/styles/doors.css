@@ -1,0 +1,55 @@
+[data-door] {
+  --lit: 0;
+  --pointed: 0;
+}
+
+[data-door][data-lit] {
+  --lit: 1;
+}
+
+[data-door]:has(a:active) {
+  --lit: 1;
+  --pointed: 1;
+}
+
+[data-doors][data-live] [data-door][data-pointed] {
+  --lit: 1;
+  --pointed: 1;
+}
+
+[data-doors][data-live]:has([data-door][data-pointed]) [data-door][data-lit]:not([data-pointed]) {
+  --lit: 0;
+}
+
+[data-doors]:not([data-live]) [data-door]:has(a:focus-visible) {
+  --lit: 1;
+  --pointed: 1;
+}
+
+[data-doors]:not([data-live]):has([data-door] a:focus-visible)
+  [data-door][data-lit]:not(:has(a:focus-visible)) {
+  --lit: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  [data-doors]:not([data-live]):not(:has([data-door] a:focus-visible)) [data-door]:hover {
+    --lit: 1;
+    --pointed: 1;
+  }
+
+  [data-doors]:not([data-live]):not(:has([data-door] a:focus-visible)):has([data-door]:hover)
+    [data-door][data-lit]:not(:hover) {
+    --lit: 0;
+  }
+}
+
+[data-doors][data-stage-host] .au-stage__shade {
+  background:
+    radial-gradient(130% 120% at 50% 35%, transparent 30%, rgba(6, 5, 13, 0.62) 100%),
+    linear-gradient(
+      180deg,
+      rgba(6, 5, 13, 0.38) 0%,
+      rgba(6, 5, 13, 0.5) 60%,
+      rgba(6, 5, 13, 0.86) 100%
+    );
+}

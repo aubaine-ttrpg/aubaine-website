@@ -96,6 +96,7 @@ one.
 | 2026-10-28 | Rejected: layouts taken from game marketing sites, "i don't want the feel of a Video Game Webiste, i want the feel of those Video game". |
 | 2026-10-29 | Hub redesign dropped after the live prototypes (four Codex layouts, three Livres layouts, two homes): "nah that's shit please get rid of you work on hubs DO NOT TOUCH SKILL TREES AND SPECIES NOR THEIR LIST ONLY CODEX INDEX BOOKS INDEX". The Codex and Livres keep their original card grid; Arbres and Espèces keep their select screen. |
 | 2026-10-29 | The Espèces mark takes the DNA pictogram, `mdi:dna`, in place of the elf ear: "change it to dna please". |
+| 2026-10-31 | The Codex opens on the plate menu, in place of its card grid: "let's do B+". |
 
 ## Colors
 
@@ -110,7 +111,7 @@ one.
   keeping its hue (`readableOnNight` in `src/lib/key-colour.ts`).
 - **Kind marks.** Each kind of content (an Arbre, an Espèce, a Compétence…) has one colour and one
   pictogram, read from `KIND_MARKS` in `src/lib/game/kind-marks.ts` wherever the kind is marked: a menu,
-  a source button, a keyword, a Codex card. `kindInk` lifts the colour to read on night. An entry keeps
+  a source button, a keyword, a Codex door. `kindInk` lifts the colour to read on night. An entry keeps
   its own colour; the kind mark marks the kind.
 - **A seal paints the stage** from its colours: `fieldBackdrop` in `src/lib/game/hubs.ts` for the CSS
   stage, `paintField` in `src/scripts/stage-field.ts` for the GPU. Both dim toward night, so a seal never
@@ -132,7 +133,7 @@ one.
 | --- | --- | --- |
 | Sheet | one entry: a tree, a species | the character sheet, below |
 | Select screen | a list of entries: Arbres, Espèces | the roster and its spotlight, below |
-| Hub | sections: the Codex's indexes, the books | the original card grid (`src/components/views/Cards.astro`) |
+| Hub | sections: the Codex's indexes, the books | the plate menu for the Codex (`src/components/primitives/PlateMenu.astro`), the original card grid for the books (`src/components/views/Cards.astro`) |
 | Home | the whole site | the original banner (`src/components/views/Home.astro`) |
 
 A hub is never a select screen of its sections.
@@ -288,8 +289,8 @@ doesn't change much between things"; "the card can be really the showcase").
   the card the same size. The card is the showcase: the profile overlaps it at its own size rather than
   shrinking it. The test above checks the rows, the plates' ink and what the profile covers.
 - A tree shows a profile, pending or ranked; a species never does, because it can never have one.
-- A hub's explanation lives in the help note beside its title, with its handbook chapter, never as a
-  paragraph under the title.
+- A hub's explanation lives in the help note beside its title, with its handbook chapter when it has
+  one, never as a paragraph under the title.
 - A card without a cover shows its initial; one kind of mark for every seal.
 - On a hub a tree names only its kind, « Archétype » or « Domaine »; its own page says « Arbre
   d’Archétype ».

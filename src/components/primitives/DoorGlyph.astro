@@ -1,0 +1,62 @@
+---
+import { iconMask } from '../../lib/media'
+
+type Props = { icon: string }
+
+const { icon } = Astro.props
+---
+
+<span class="au-door-glyph" style={`--glyph:${iconMask(icon)}`} aria-hidden="true">
+  <span class="au-door-glyph__offset"></span>
+  <span class="au-door-glyph__plate"></span>
+  <span class="au-door-glyph__face"></span>
+  <span class="au-door-glyph__dots"></span>
+</span>
+
+<style>
+  .au-door-glyph {
+    position: absolute;
+    inset: 0;
+  }
+
+  .au-door-glyph__offset,
+  .au-door-glyph__plate,
+  .au-door-glyph__face,
+  .au-door-glyph__dots {
+    position: absolute;
+    inset: 0;
+    -webkit-mask: var(--glyph);
+    mask: var(--glyph);
+  }
+
+  .au-door-glyph__offset {
+    translate: 2.7% 3.1%;
+    background: #08070d;
+  }
+
+  .au-door-glyph__plate {
+    translate: -1.5% -1.2%;
+    background: var(--door-colour);
+  }
+
+  .au-door-glyph__face {
+    background: var(--door-paper);
+  }
+
+  .au-door-glyph__dots {
+    background: radial-gradient(
+        circle,
+        color-mix(in srgb, var(--door-colour) 60%, transparent) 0 1.6px,
+        transparent 2px
+      )
+      0 0 / 8px 8px;
+    -webkit-mask:
+      var(--glyph),
+      linear-gradient(135deg, transparent 55%, #000 85%);
+    -webkit-mask-composite: source-in;
+    mask:
+      var(--glyph),
+      linear-gradient(135deg, transparent 55%, #000 85%);
+    mask-composite: intersect;
+  }
+</style>

@@ -1,6 +1,7 @@
 import type { BookletKind } from '../booklet/release.ts'
 import type { BookCategory, SkillLimit, SkillTree } from '../game/schema.ts'
 import type { Locale } from './locales.ts'
+import type { IndexKind } from './routes.ts'
 
 export type TreeSummary = {
   name: string
@@ -57,6 +58,50 @@ type CategoryCopy = {
   one: string
   lead: string
   empty: string
+}
+
+type IndexCopy = { tagline: string }
+
+const FR_INDEXES: Record<IndexKind, IndexCopy> = {
+  trees: {
+    tagline: 'Archétypes et Domaines',
+  },
+  species: {
+    tagline: 'Les Espèces jouables',
+  },
+  skills: {
+    tagline: 'D’où vient chacune',
+  },
+  equipment: {
+    tagline: 'Ce qui se porte et s’emporte',
+  },
+  materials: {
+    tagline: 'Une Table de butin par environnement',
+  },
+  rules: {
+    tagline: 'Chaque mot de règle',
+  },
+}
+
+const EN_INDEXES: Record<IndexKind, IndexCopy> = {
+  trees: {
+    tagline: 'Archetypes and Domains',
+  },
+  species: {
+    tagline: 'The playable Species',
+  },
+  skills: {
+    tagline: 'Where each one comes from',
+  },
+  equipment: {
+    tagline: 'What you wear and carry',
+  },
+  materials: {
+    tagline: 'A Loot Table for every environment',
+  },
+  rules: {
+    tagline: 'Every rule word',
+  },
 }
 
 const FR_LIBRARY_GROUPS: Record<BookletKind, string> = {
@@ -211,7 +256,6 @@ const fr = {
     'Les index d’Aubaine, chacun avec ses filtres : Arbres, Espèces, Compétences, équipement, matériaux et règles.',
   allIndexes: 'Tous les index',
   entries_: 'entrées',
-  browse_: 'Consulter',
   downloadBooklet: 'Télécharger le livret',
   pages: 'Pages',
   onThisPage: 'Sur cette page',
@@ -369,6 +413,7 @@ const fr = {
   chaptersLabel: 'Chapitres',
   libraryFacts: 'Contenu',
   libraryGroups: FR_LIBRARY_GROUPS,
+  indexes: FR_INDEXES,
   readOf: (name: string) => `Lire : ${name}`,
   downloadOf: (name: string) => `Télécharger : ${name}`,
   results: 'résultats',
@@ -740,7 +785,6 @@ const en: UiStrings = {
     'Aubaine’s indexes, each with its own filters: Trees, Species, Skills, equipment, materials and rules.',
   allIndexes: 'All indexes',
   entries_: 'entries',
-  browse_: 'Browse',
   downloadBooklet: 'Download the Booklet',
   pages: 'Pages',
   onThisPage: 'On this page',
@@ -898,6 +942,7 @@ const en: UiStrings = {
   chaptersLabel: 'Chapters',
   libraryFacts: 'Contents',
   libraryGroups: EN_LIBRARY_GROUPS,
+  indexes: EN_INDEXES,
   readOf: (name: string) => `Read: ${name}`,
   downloadOf: (name: string) => `Download: ${name}`,
   results: 'results',

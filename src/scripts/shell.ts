@@ -3,6 +3,7 @@ import { bindArtEffects } from './art-effect/boot'
 import { bindAtlas } from './atlas'
 import { bindBook } from './book'
 import { bindBrowse } from './browse'
+import { bindDoorLights } from './door-light'
 import { enableIslands } from './islands'
 import { bindLoading } from './loading'
 import { bindPlateViewer } from './plate-viewer'
@@ -316,6 +317,7 @@ withSwup((swup) => {
   bindArtEffects(swup)
   bindStageHosts(swup)
   bindSelectScreens(swup)
+  bindDoorLights(swup)
   bindReliefScroll(swup)
   bindAtlas(swup)
   bindBrowse(swup)
