@@ -346,7 +346,7 @@ export function skillBrowseEntries(
 const propertyFacetName = (name: string): string =>
   name.replace(/[.]$/, '').replace(/\s*\(.*\)$/, '')
 
-export function equipmentBrowseEntries(corpus: Corpus, locale: Locale): BrowseEntry[] {
+function equipmentBrowseEntries(corpus: Corpus, locale: Locale): BrowseEntry[] {
   const slugs = new Map<EquipmentItem, string>()
   for (const [slug, item] of corpus.itemsBySlug) slugs.set(item, slug)
   const sectionTitles = new Map(corpus.sections.map((section) => [section.key, section.title]))
@@ -591,4 +591,17 @@ export function ruleBrowseEntries(corpus: Corpus, locale: Locale): BrowseEntry[]
     const right = place(b)
     return compare.compare(left.title, right.title) || left.step - right.step
   })
+}
+
+export type BrowseIndex = 'skills' | 'equipment' | 'materials' | 'rules'
+
+const INDEX_ENTRIES: Record<BrowseIndex, (corpus: Corpus, locale: Locale) => BrowseEntry[]> = {
+  skills: (corpus, locale) => skillBrowseEntries(originSkills(corpus), corpus, locale),
+  equipment: equipmentBrowseEntries,
+  materials: materialBrowseEntries,
+  rules: ruleBrowseEntries,
+}
+
+export function indexEntries(index: BrowseIndex, corpus: Corpus, locale: Locale): BrowseEntry[] {
+  return INDEX_ENTRIES[index](corpus, locale)
 }

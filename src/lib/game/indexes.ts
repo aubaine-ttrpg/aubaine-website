@@ -1,9 +1,21 @@
 import type { Locale } from '../i18n/locales.ts'
 import { INDEX_KINDS, type IndexKind, pathFor } from '../i18n/routes.ts'
 import { strings } from '../i18n/strings.ts'
-import { bookletHref } from '../media.ts'
-import type { ResolvedBook } from './build.ts'
+import { bookletHref, PLACEHOLDER_BANNER } from '../media.ts'
+import type { BrowseIndex } from './browse-entries.ts'
+import type { Corpus, ResolvedBook } from './build.ts'
 import { KIND_MARKS, type KindMark } from './kind-marks.ts'
+
+const INDEX_ART: Record<Exclude<BrowseIndex, 'equipment'>, string> = {
+  skills: 'bacchi-qui-travaille-16_9-og.png',
+  materials: 'eau-16_9-upscaled_4.jpg',
+  rules: 'priest-16_9-og.png',
+}
+
+export function indexArt(index: BrowseIndex, corpus: Corpus): string {
+  if (index === 'equipment') return corpus.catalogue.banner ?? PLACEHOLDER_BANNER
+  return INDEX_ART[index]
+}
 
 export type IndexDescriptor = {
   kind: IndexKind

@@ -2,56 +2,34 @@
 import { getEntry } from 'astro:content'
 
 import { hasBooklet } from '../../lib/booklet/manifest'
-import {
-  type BrowseEntry,
-  equipmentBrowseEntries,
-  materialBrowseEntries,
-  originSkills,
-  ruleBrowseEntries,
-  skillBrowseEntries,
-} from '../../lib/game/browse-entries'
+import { type BrowseEntry, type BrowseIndex, indexEntries } from '../../lib/game/browse-entries'
 import type { Corpus } from '../../lib/game/corpus'
+import { indexArt } from '../../lib/game/indexes'
 import { renderProse } from '../../lib/game/prose'
 import { DEFAULT_LOCALE, type Locale } from '../../lib/i18n/locales'
 import { pathFor } from '../../lib/i18n/routes'
 import { strings } from '../../lib/i18n/strings'
-import { bookletHref, PLACEHOLDER_BANNER } from '../../lib/media'
+import { bookletHref } from '../../lib/media'
 import BrowseList from '../primitives/BrowseList.astro'
 import Hero from '../primitives/Hero.astro'
 
 import '../../styles/prose.css'
 
-type Variant = 'skills' | 'equipment' | 'materials' | 'rules'
-
-type Props = { locale: Locale; corpus: Corpus; variant: Variant }
+type Props = { locale: Locale; corpus: Corpus; variant: BrowseIndex }
 
 const { locale, corpus, variant } = Astro.props
 const t = strings(locale)
 
-const VIEWS: Record<Variant, () => { entries: BrowseEntry[]; art: string; title: string }> = {
-  skills: () => ({
-    entries: skillBrowseEntries(originSkills(corpus), corpus, locale),
-    art: 'bacchi-qui-travaille-16_9-og.png',
-    title: t.spells,
-  }),
-  equipment: () => ({
-    entries: equipmentBrowseEntries(corpus, locale),
-    art: corpus.catalogue.banner ?? PLACEHOLDER_BANNER,
-    title: t.items,
-  }),
-  materials: () => ({
-    entries: materialBrowseEntries(corpus, locale),
-    art: 'eau-16_9-upscaled_4.jpg',
-    title: t.materials,
-  }),
-  rules: () => ({
-    entries: ruleBrowseEntries(corpus, locale),
-    art: 'priest-16_9-og.png',
-    title: t.rules,
-  }),
+const TITLES: Record<BrowseIndex, string> = {
+  skills: t.spells,
+  equipment: t.items,
+  materials: t.materials,
+  rules: t.rules,
 }
 
-const { entries, art: heroArt, title: heroTitle } = VIEWS[variant]()
+const entries: BrowseEntry[] = indexEntries(variant, corpus, locale)
+const heroArt = indexArt(variant, corpus)
+const heroTitle = TITLES[variant]
 
 const booklet =
   variant === 'equipment' ? bookletHref('equipment', corpus.catalogue.id, locale) : undefined
