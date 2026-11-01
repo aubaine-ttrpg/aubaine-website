@@ -3,10 +3,20 @@ import { type IndexKind, pathFor } from '../i18n/routes.ts'
 import { strings } from '../i18n/strings.ts'
 import { type StageLook, type StageSource, stageLook, stageSource } from '../stage-ambient.ts'
 import type { Corpus } from './build.ts'
-import { type EntryCard, speciesCards, treeCards } from './hub-cards.ts'
-import { leadOrder } from './hubs.ts'
+import { type EntryCard, libraryCards, speciesCards, treeCards } from './hub-cards.ts'
+import { leadFirst, leadOrder } from './hubs.ts'
 import { indexArt, indexDescriptors } from './indexes.ts'
-import { type KindMark, kindInk } from './kind-marks.ts'
+import {
+  ARCHIVES_MARK,
+  archivesInk,
+  CATEGORY_MARKS,
+  categoryInk,
+  type KindMark,
+  kindInk,
+} from './kind-marks.ts'
+import { ARCHIVES_ART, library } from './library.ts'
+import type { BookCategory } from './schema.ts'
+import { categorySeal } from './seals.ts'
 
 export type HubDoor = {
   key: string
@@ -82,4 +92,44 @@ export function codexDoors(corpus: Corpus, locale: Locale): Promise<HubDoor[]> {
       stage: await indexStage(entry.kind, corpus, locale),
     })),
   )
+}
+
+export function categoryStage(category: BookCategory, ordered: readonly EntryCard[]): StageSource {
+  const lead = ordered[0]
+  return lead
+    ? stageSource(lead.cover, lead.seal.colours)
+    : stageSource(undefined, categorySeal(category).colours)
+}
+
+function archivesDoor(locale: Locale): HubDoor {
+  const t = strings(locale)
+  return {
+    key: 'archives',
+    href: pathFor('archives', locale),
+    name: t.archives,
+    tagline: t.archivesTagline,
+    mark: ARCHIVES_MARK,
+    ink: archivesInk(),
+    stage: { kind: 'art', art: ARCHIVES_ART },
+  }
+}
+
+export async function libraryDoors(corpus: Corpus, locale: Locale): Promise<HubDoor[]> {
+  const t = strings(locale)
+  const categories = await Promise.all(
+    library(corpus, locale).map(async (section) => {
+      const { category } = section
+      const copy = t.bookCategories[category]
+      return {
+        key: category,
+        href: pathFor('bookCategory', locale, { category }),
+        name: copy.name,
+        tagline: copy.tagline,
+        mark: CATEGORY_MARKS[category],
+        ink: categoryInk(category),
+        stage: categoryStage(category, leadFirst(await libraryCards(section, corpus, locale))),
+      }
+    }),
+  )
+  return [...categories, archivesDoor(locale)]
 }

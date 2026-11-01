@@ -1,7 +1,14 @@
 import { describe, expect, it } from 'vitest'
 
 import { indexDescriptors } from '../../src/lib/game/indexes'
-import { CATEGORY_MARKS, categoryInk, KIND_MARKS, kindInk } from '../../src/lib/game/kind-marks'
+import {
+  ARCHIVES_MARK,
+  archivesInk,
+  CATEGORY_MARKS,
+  categoryInk,
+  KIND_MARKS,
+  kindInk,
+} from '../../src/lib/game/kind-marks'
 import { BOOK_CATEGORIES } from '../../src/lib/game/schema'
 import { LOCALES } from '../../src/lib/i18n/locales'
 import { INDEX_KINDS } from '../../src/lib/i18n/routes'
@@ -35,6 +42,19 @@ describe('the mark of each kind of content', () => {
       const contrast = contrastOf(rgbFromHex(categoryInk(category)), rgbFromHex(DARK_INK))
       expect(contrast, category).toBeGreaterThanOrEqual(READABLE_CONTRAST)
     }
+  })
+
+  it('gives the archives a colour and a pictogram that no other mark uses, inked to read on night', () => {
+    const others = [
+      ...INDEX_KINDS.map((kind) => KIND_MARKS[kind]),
+      ...BOOK_CATEGORIES.map((category) => CATEGORY_MARKS[category]),
+    ]
+    expect(others.map((mark) => mark.colour.toLowerCase())).not.toContain(
+      ARCHIVES_MARK.colour.toLowerCase(),
+    )
+    expect(others.map((mark) => mark.icon)).not.toContain(ARCHIVES_MARK.icon)
+    const contrast = contrastOf(rgbFromHex(archivesInk()), rgbFromHex(DARK_INK))
+    expect(contrast).toBeGreaterThanOrEqual(READABLE_CONTRAST)
   })
 
   it('hands the menu the same mark in every locale', () => {

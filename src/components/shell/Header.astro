@@ -1,7 +1,13 @@
 ---
 import type { Corpus } from '../../lib/game/corpus'
 import { indexDescriptors } from '../../lib/game/indexes'
-import { CATEGORY_MARKS, categoryInk, kindInk } from '../../lib/game/kind-marks'
+import {
+  ARCHIVES_MARK,
+  archivesInk,
+  CATEGORY_MARKS,
+  categoryInk,
+  kindInk,
+} from '../../lib/game/kind-marks'
 import { library } from '../../lib/game/library'
 import { LOCALE_FLAG, LOCALE_NAME, LOCALES, type Locale } from '../../lib/i18n/locales'
 import { pathFor, type RouteParams, sectionFor, type ViewKind } from '../../lib/i18n/routes'
@@ -16,11 +22,18 @@ const t = strings(locale)
 
 const section = sectionFor(kind)
 
-const bookItems = library(corpus, locale).map(({ category }) => ({
-  title: t.bookCategories[category].name,
-  href: pathFor('bookCategory', locale, { category }),
-  marker: { colour: categoryInk(category), icon: CATEGORY_MARKS[category].icon },
-}))
+const bookItems = [
+  ...library(corpus, locale).map(({ category }) => ({
+    title: t.bookCategories[category].name,
+    href: pathFor('bookCategory', locale, { category }),
+    marker: { colour: categoryInk(category), icon: CATEGORY_MARKS[category].icon },
+  })),
+  {
+    title: t.archives,
+    href: pathFor('archives', locale),
+    marker: { colour: archivesInk(), icon: ARCHIVES_MARK.icon },
+  },
+]
 
 const indexItems = indexDescriptors(locale).map((entry) => ({
   title: entry.title,

@@ -56,6 +56,7 @@ const EN_TREE_KIND: Record<SkillTree['treeType'], string> = {
 type CategoryCopy = {
   name: string
   one: string
+  tagline: string
   lead: string
   empty: string
 }
@@ -120,24 +121,28 @@ const FR_CATEGORIES: Record<BookCategory, CategoryCopy> = {
   rules: {
     name: 'Livres de règles',
     one: 'Livre de règles',
+    tagline: 'Apprendre à jouer, diriger une partie',
     lead: 'Les règles d’Aubaine, pour les joueurs comme pour le MJ. Chaque livre se lit en ligne, chapitre par chapitre, ou se télécharge en PDF.',
     empty: 'Aucun livre de règles pour l’instant.',
   },
   resources: {
     name: 'Ressources',
     one: 'Ressource',
+    tagline: 'Aides de jeu à imprimer',
     lead: 'Ce qui s’imprime pour la table en plus des livres de règles, comme le livret d’un Arbre ou le catalogue d’équipement.',
     empty: 'Aucune ressource pour l’instant.',
   },
   adventures: {
     name: 'Aventures',
     one: 'Aventure',
+    tagline: 'À diriger à la table',
     lead: 'Les aventures à diriger avec les règles d’Aubaine.',
     empty: 'Aucune aventure pour l’instant.',
   },
   stories: {
     name: 'Histoires',
     one: 'Histoire',
+    tagline: 'À lire',
     lead: 'Les histoires du monde d’Aubaine.',
     empty: 'Aucune histoire pour l’instant.',
   },
@@ -147,24 +152,28 @@ const EN_CATEGORIES: Record<BookCategory, CategoryCopy> = {
   rules: {
     name: 'Rulebooks',
     one: 'Rulebook',
+    tagline: 'Learn to play, run a game',
     lead: 'Aubaine’s rules, for players and GMs alike. Read each book online, chapter by chapter, or download it as a PDF.',
     empty: 'No rulebooks yet.',
   },
   resources: {
     name: 'Resources',
     one: 'Resource',
+    tagline: 'Printable play aids',
     lead: 'Printed aids that sit beside the rulebooks at the table, such as a Tree booklet or the equipment catalogue.',
     empty: 'No resources yet.',
   },
   adventures: {
     name: 'Adventures',
     one: 'Adventure',
+    tagline: 'To run at the table',
     lead: 'Adventures for a GM to run with Aubaine’s rules.',
     empty: 'No adventures yet.',
   },
   stories: {
     name: 'Stories',
     one: 'Story',
+    tagline: 'To read',
     lead: 'Stories from the world of Aubaine.',
     empty: 'No stories yet.',
   },
@@ -400,8 +409,7 @@ const fr = {
   beta: 'Bêta',
   balanced: 'Équilibré',
   clear: 'Effacer',
-  hubLead:
-    'Le Livre du joueur, pour apprendre à jouer, et le Livre du MJ, pour mener la partie et éprouver l’équilibrage.',
+  hubLead: 'Livres à lire en ligne et documents à imprimer pour jouer à Aubaine.',
   allDocs: 'Tous les livres',
   otherDocs: 'Autres livres',
   read: 'Lire',
@@ -439,6 +447,7 @@ const fr = {
   grants: 'Accorde',
   footerNote: (version: string) => `Données de jeu v${version}, susceptibles de changer`,
   archives: 'Archives',
+  archivesTagline: 'Les livrets, version par version',
   archivesLead:
     'Toutes les versions d’Aubaine et leurs livrets. Ceux de la version courante se téléchargent un par un ; ceux des versions précédentes, en une archive par langue.',
   archiveLead: 'Toutes les éditions imprimées de ce livret, de la plus récente à la plus ancienne.',
@@ -929,8 +938,7 @@ const en: UiStrings = {
   beta: 'Beta',
   balanced: 'Balanced',
   clear: 'Clear',
-  hubLead:
-    'The Player Handbook to learn the game, and the Game Master Handbook to run the table and test the balance.',
+  hubLead: 'Books to read online and PDFs to print for playing Aubaine.',
   allDocs: 'All books',
   otherDocs: 'Other books',
   read: 'Read',
@@ -966,6 +974,7 @@ const en: UiStrings = {
   grants: 'Grants',
   footerNote: (version: string) => `Game data v${version}, subject to change`,
   archives: 'Archives',
+  archivesTagline: 'The booklets, version by version',
   archivesLead:
     'Every version of Aubaine and its booklets. The current version’s booklets download one by one; earlier versions come as one archive per language.',
   archiveLead: 'Every printed edition of this booklet, newest first.',

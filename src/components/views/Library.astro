@@ -1,0 +1,19 @@
+---
+import type { Corpus } from '../../lib/game/corpus'
+import { libraryDoors } from '../../lib/game/hub-doors'
+import type { Locale } from '../../lib/i18n/locales'
+import { strings } from '../../lib/i18n/strings'
+import SommaireSpread from '../primitives/SommaireSpread.astro'
+
+type Props = { locale: Locale; corpus: Corpus }
+
+const { locale, corpus } = Astro.props
+const t = strings(locale)
+---
+
+<SommaireSpread
+  locale={locale}
+  title={t.books}
+  about={{ body: t.hubLead }}
+  doors={await libraryDoors(corpus, locale)}
+/>

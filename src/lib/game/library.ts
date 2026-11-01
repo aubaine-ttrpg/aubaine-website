@@ -35,6 +35,8 @@ export type LibrarySection = {
   items: readonly LibraryItem[]
 }
 
+export const ARCHIVES_ART = 'bureau-de-archibald-16_9-og.png'
+
 export function libraryKicker(item: LibraryItem, locale: Locale): string {
   const t = strings(locale)
   switch (item.kind) {

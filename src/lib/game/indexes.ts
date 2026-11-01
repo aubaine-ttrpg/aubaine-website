@@ -40,12 +40,6 @@ export function indexDescriptors(locale: Locale): IndexDescriptor[] {
   }))
 }
 
-export const BOOK_DOTS = ['#efbe04', '#8a5cc4', '#4f7a2e', '#2f6ea8'] as const
-
-export function bookDot(order: number): string {
-  return BOOK_DOTS[order % BOOK_DOTS.length] as string
-}
-
 export const RARITY_ORDER = [
   'common',
   'uncommon',

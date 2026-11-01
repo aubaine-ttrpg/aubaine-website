@@ -161,7 +161,7 @@ And the file is listed, in `data/books/livre-du-joueur/book.json`:
 ## What appears on the site
 
 - `/fr/livres/<book-id>/<slug>` and `/en/books/<book-id>/<slug>`. The `title` from the frontmatter is the chapter heading and the browser tab title.
-- `/fr/livres` and `/en/books`: the book card's button now reads `Lire` and points at the first chapter, if the book had no chapters before.
+- The category's page, `/fr/livres/<segment>` and `/en/books/<segment>`: the book card's button now reads `Lire` and points at the first chapter, if the book had no chapters before.
 
 ## Traps
 

@@ -12,8 +12,8 @@ paths:
   page, a card or a stage, and follow it rather than a copy of it.
 - A page that opens one entry uses the character sheet (`CharacterHero.astro`). The Arbres and Espèces
   indexes use the select screen (`SelectScreen.astro`); the Codex hub uses the plate menu
-  (`PlateMenu.astro`) and the Livres hub keeps its card grid (`Cards.astro`). Do not invent another
-  header for any of them.
+  (`PlateMenu.astro`) and the Livres hub its contents spread (`SommaireSpread.astro`). Do not invent
+  another header for any of them.
 - Build a new sheet from `src/lib/game/character-sheet.ts` and its pieces (`SheetHead.astro`,
   `SheetBody.astro`, `RankProfile.astro`, `TraitPlates.astro`). Do not render an entry's kind, name,
   stickers, profile or traits a second way; a smaller place takes a piece at its `preview` size.

@@ -97,6 +97,7 @@ one.
 | 2026-10-29 | Hub redesign dropped after the live prototypes (four Codex layouts, three Livres layouts, two homes): "nah that's shit please get rid of you work on hubs DO NOT TOUCH SKILL TREES AND SPECIES NOR THEIR LIST ONLY CODEX INDEX BOOKS INDEX". The Codex and Livres keep their original card grid; Arbres and Espèces keep their select screen. |
 | 2026-10-29 | The Espèces mark takes the DNA pictogram, `mdi:dna`, in place of the elf ear: "change it to dna please". |
 | 2026-10-31 | The Codex opens on the plate menu, in place of its card grid: "let's do B+". |
+| 2026-10-31 | Livres opens on its contents spread, in place of its card grid: "let's put C+ for books and keep b+ for codex." |
 
 ## Colors
 
@@ -133,7 +134,7 @@ one.
 | --- | --- | --- |
 | Sheet | one entry: a tree, a species | the character sheet, below |
 | Select screen | a list of entries: Arbres, Espèces | the roster and its spotlight, below |
-| Hub | sections: the Codex's indexes, the books | the plate menu for the Codex (`src/components/primitives/PlateMenu.astro`), the original card grid for the books (`src/components/views/Cards.astro`) |
+| Hub | sections: the Codex's indexes, the book categories and the archives | the plate menu for the Codex (`src/components/primitives/PlateMenu.astro`), the contents spread for Livres (`src/components/primitives/SommaireSpread.astro`) |
 | Home | the whole site | the original banner (`src/components/views/Home.astro`) |
 
 A hub is never a select screen of its sections.

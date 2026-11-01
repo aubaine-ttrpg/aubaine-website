@@ -20,10 +20,19 @@ export const CATEGORY_MARKS = {
   stories: { colour: '#b9b4d6', icon: 'game-icons:quill-ink' },
 } as const satisfies Record<BookCategory, KindMark>
 
+export const ARCHIVES_MARK = {
+  colour: '#a07c4f',
+  icon: 'game-icons:book-pile',
+} as const satisfies KindMark
+
 export function kindInk(kind: IndexKind): string {
   return readableOnNight(KIND_MARKS[kind].colour)
 }
 
 export function categoryInk(category: BookCategory): string {
   return readableOnNight(CATEGORY_MARKS[category].colour)
+}
+
+export function archivesInk(): string {
+  return readableOnNight(ARCHIVES_MARK.colour)
 }

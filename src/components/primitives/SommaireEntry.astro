@@ -1,0 +1,269 @@
+---
+import { doorContract, type HubDoor } from '../../lib/game/hub-doors'
+import type { StageLook } from '../../lib/stage-ambient'
+import Icon from './Icon.astro'
+
+type Props = { door: HubDoor; look: StageLook; index: number; numeral: string; lit: boolean }
+
+const { door, look, index, numeral, lit } = Astro.props
+
+const contract = doorContract(door, look, index, lit)
+const { nameId, lineId } = contract
+---
+
+<li
+  class="au-sommaire-entry"
+  data-door
+  data-lit={contract.lit}
+  data-door-art={contract.art}
+  data-door-backdrop={contract.backdrop}
+  data-door-colours={contract.colours}
+  style={contract.style}
+>
+  <a
+    class="au-sommaire-entry__link"
+    href={door.href}
+    aria-labelledby={nameId}
+    aria-describedby={lineId}
+  >
+    <span
+      class="au-sommaire-entry__numeral"
+      aria-hidden="true"
+      data-door-focus
+      data-stage-focus={contract.lit}
+    >
+      <span class="au-sommaire-entry__slab"></span>
+      <span class="au-sommaire-entry__figure">{numeral}</span>
+    </span>
+    <span class="au-sommaire-entry__heading">
+      <span class="au-sommaire-entry__name" id={nameId}>{door.name}</span>
+      <span class="au-sommaire-entry__leader" aria-hidden="true"></span>
+      <span class="au-sommaire-entry__mark" aria-hidden="true">
+        <svg class="au-sommaire-entry__hex" viewBox="0 0 100 100" focusable="false">
+          <polygon class="au-sommaire-entry__hex-offset" points="50,4 90,27 90,73 50,96 10,73 10,27"
+          ></polygon>
+          <polygon class="au-sommaire-entry__hex-face" points="50,4 90,27 90,73 50,96 10,73 10,27"
+          ></polygon>
+        </svg>
+        <Icon name={door.mark.icon} class="au-sommaire-entry__glyph" />
+      </span>
+    </span>
+    <span class="au-sommaire-entry__line" id={lineId}>{door.tagline}</span>
+  </a>
+</li>
+
+<style>
+  .au-sommaire-entry {
+    display: flex;
+    min-width: 0;
+  }
+
+  .au-sommaire-entry__link {
+    position: relative;
+    display: grid;
+    flex: 1;
+    grid-template-columns: var(--indent) minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-content: center;
+    row-gap: 6px;
+    min-width: 0;
+    padding: 4px 0;
+    color: var(--door-paper-ink);
+    text-decoration: none;
+    outline-offset: 2px;
+    scroll-margin-block: calc(var(--sticky-top) + 8px) 16px;
+  }
+
+  .au-sommaire-entry__link:focus-visible {
+    outline: 2px solid var(--door-paper-ink);
+  }
+
+  .au-sommaire-entry__numeral {
+    position: relative;
+    grid-row: 1;
+    grid-column: 1 / -1;
+    justify-self: start;
+    align-self: end;
+    isolation: isolate;
+    font-family: var(--font-display);
+    font-size: var(--numeral);
+    font-weight: 700;
+    line-height: 0.74;
+  }
+
+  .au-sommaire-entry__slab {
+    position: absolute;
+    inset: -10% -14% 0 -12%;
+    z-index: -1;
+    rotate: 4deg;
+    background:
+      radial-gradient(circle, rgba(6, 5, 13, 0.2) 0 1.3px, transparent 1.8px) 0 0 / 7px 7px,
+      var(--door-colour);
+    clip-path: polygon(16% 0, 100% 5%, 86% 100%, 0 94%);
+    opacity: var(--lit);
+    scale: calc(0.9 + var(--lit) * 0.1);
+    translate: calc(var(--lit) * 5%) calc(var(--lit) * 2%);
+    transition:
+      opacity 0.28s var(--ease),
+      scale 0.34s var(--ease),
+      translate 0.34s var(--ease);
+  }
+
+  .au-sommaire-entry__figure {
+    display: block;
+    min-width: calc(var(--indent) + 0.2em);
+    color: color-mix(
+      in srgb,
+      var(--door-paper) calc(var(--lit) * 100%),
+      color-mix(in srgb, var(--door-colour) 24%, var(--door-paper))
+    );
+    -webkit-text-stroke: calc(var(--lit) * 1.5px) var(--door-paper-ink);
+    text-shadow:
+      calc(var(--lit) * 4px) calc(var(--lit) * 5px) 0 rgba(0, 0, 0, calc(var(--lit) * 0.62)),
+      -1px -1px 0 rgba(90, 64, 24, calc((1 - var(--lit)) * 0.3)),
+      1px 1px 0 rgba(255, 252, 242, calc((1 - var(--lit)) * 0.9));
+    transition:
+      color 0.2s var(--ease),
+      text-shadow 0.2s var(--ease);
+  }
+
+  .au-sommaire-entry__heading {
+    position: relative;
+    z-index: 1;
+    grid-row: 1;
+    grid-column: 2;
+    align-self: end;
+    display: flex;
+    align-items: last baseline;
+    gap: 10px;
+    min-width: 0;
+    margin-bottom: -0.04em;
+  }
+
+  .au-sommaire-entry__name {
+    flex: 0 1 auto;
+    min-width: 0;
+    font-family: var(--font-display);
+    font-size: var(--name-size);
+    font-weight: 700;
+    line-height: 1;
+    text-transform: uppercase;
+    text-wrap: balance;
+    text-shadow:
+      2px 0 0 var(--door-paper),
+      -2px 0 0 var(--door-paper),
+      0 2px 0 var(--door-paper),
+      0 -2px 0 var(--door-paper),
+      2px 2px 0 var(--door-paper),
+      -2px -2px 0 var(--door-paper),
+      2px -2px 0 var(--door-paper),
+      -2px 2px 0 var(--door-paper);
+  }
+
+  .au-sommaire-entry__leader {
+    flex: 1 1 28px;
+    min-width: 28px;
+    height: 4px;
+    margin-bottom: 0.22em;
+    background: radial-gradient(circle, currentColor 0 1.1px, transparent 1.5px) 0 50% / 6px 4px
+      repeat-x;
+    opacity: calc(0.4 + var(--lit) * 0.5);
+    transition: opacity 0.2s var(--ease);
+  }
+
+  .au-sommaire-entry__mark {
+    position: relative;
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: var(--mark);
+    height: calc(var(--mark) * 1.14);
+    align-self: center;
+  }
+
+  .au-sommaire-entry__hex {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .au-sommaire-entry__hex-offset {
+    fill: var(--door-colour);
+    translate: calc(var(--lit) * 7px) calc(var(--lit) * 7px);
+    transition: translate 0.2s var(--ease);
+  }
+
+  .au-sommaire-entry__hex-face {
+    fill: color-mix(in srgb, var(--door-paper-ink) calc(var(--lit) * 100%), var(--door-colour));
+    stroke: var(--door-paper-ink);
+    stroke-width: 3;
+    transition: fill 0.2s var(--ease);
+  }
+
+  .au-sommaire-entry__mark :global(.au-sommaire-entry__glyph) {
+    position: relative;
+    width: 52%;
+    height: 52%;
+    color: color-mix(in srgb, var(--door-ink) calc(var(--lit) * 100%), var(--door-paper-ink));
+    transition: color 0.2s var(--ease);
+  }
+
+  .au-sommaire-entry__line {
+    grid-row: 2;
+    grid-column: 2;
+    font-family: var(--font-garamond);
+    font-size: clamp(16px, 1.25vw, 19px);
+    font-style: italic;
+    line-height: 1.25;
+    color: color-mix(in srgb, var(--door-paper-ink) calc(var(--lit) * 100%), #3a3448);
+    transition: color 0.2s var(--ease);
+  }
+
+  @media (max-width: 639px) {
+    .au-sommaire-entry__leader {
+      display: none;
+    }
+
+    .au-sommaire-entry__heading {
+      justify-content: space-between;
+      gap: 12px;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .au-sommaire-entry__slab {
+      display: none;
+    }
+
+    .au-sommaire-entry__figure {
+      visibility: hidden;
+    }
+
+    .au-sommaire-entry__link:focus-visible {
+      outline-color: CanvasText;
+    }
+  }
+
+  @media print {
+    .au-sommaire-entry__slab {
+      display: none;
+    }
+
+    .au-sommaire-entry__figure {
+      color: transparent;
+      -webkit-text-stroke: 1px #14100a;
+      text-shadow: none;
+    }
+
+    .au-sommaire-entry {
+      --door-paper: #fff;
+      break-inside: avoid;
+    }
+
+    .au-sommaire-entry__numeral {
+      line-height: 1;
+    }
+  }
+</style>

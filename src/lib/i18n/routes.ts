@@ -160,7 +160,7 @@ export function isPolicyKind(kind: ViewKind): kind is PolicyKind {
 
 export const NAV_SECTIONS = [
   { id: 'home', kinds: ['home'] },
-  { id: 'books', kinds: ['books', 'bookCategory', 'book'] },
+  { id: 'books', kinds: ['books', 'bookCategory', 'book', 'archives', 'archive'] },
   {
     id: 'almanach',
     kinds: [

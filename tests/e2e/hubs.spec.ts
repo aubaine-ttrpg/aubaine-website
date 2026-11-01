@@ -1,20 +1,22 @@
 import { expect, type Locator, type Page, test } from '@playwright/test'
 
 import { BOOK_CATEGORIES } from '../../src/lib/game/schema'
-import { HTML_LANG, LOCALES } from '../../src/lib/i18n/locales'
+import { HTML_LANG, LOCALES, type Locale } from '../../src/lib/i18n/locales'
 import { pathFor } from '../../src/lib/i18n/routes'
 import { strings } from '../../src/lib/i18n/strings'
 
-const HUB_KINDS = ['almanach'] as const
+const HUB_KINDS = ['books', 'almanach'] as const
 const MENU = '[data-doors]'
 const DOOR = '[data-door]'
 const DOOR_LINK = '[data-door] a'
 const STAGE_LAYER: Record<HubKind, string> = {
+  books: '.au-sommaire__layer',
   almanach: '.au-plate-menu__layer',
 }
 const DARK_STAGE = 'rgb(6, 5, 13)'
 const PRINT_INK = 'rgb(20, 16, 10)'
 const PRINT_BODY = 'rgb(58, 52, 72)'
+const TRANSPARENT = 'rgba(0, 0, 0, 0)'
 const WHITE_PAPER = 'rgb(255, 255, 255)'
 const SITE = 'https://aubaine.io'
 const FOCUS_REACHES = [
@@ -64,6 +66,13 @@ function litDoors(page: Page) {
   return page.locator(`${DOOR}[data-lit]`)
 }
 
+function hubCopy(kind: HubKind, locale: Locale): { title: string; lead: string } {
+  const t = strings(locale)
+  return kind === 'books'
+    ? { title: t.books, lead: t.hubLead }
+    : { title: t.almanach, lead: t.almanachLead }
+}
+
 function stemOf(url: string): string {
   const file = new URL(url, 'http://localhost').pathname.split('/').pop() ?? ''
   return file.split('.')[0] ?? ''
@@ -103,11 +112,15 @@ for (const locale of LOCALES) {
     test(`${hub} leads each door to a page named as the door that offers something to open`, async ({
       page,
     }) => {
+      const t = strings(locale)
       await page.goto(hub)
       for (const door of await doorsOf(page)) {
         await page.goto(door.href)
         await expect(page.locator('h1')).toHaveAccessibleName(door.name)
-        await expect(page.locator('[data-entry]').first(), door.href).toBeAttached()
+        const onward = page
+          .locator('[data-entry], [data-release-link]')
+          .or(page.locator('main').getByRole('link', { name: t.allDocs, exact: true }))
+        await expect(onward.first(), door.href).toBeAttached()
       }
     })
 
@@ -133,32 +146,25 @@ for (const locale of LOCALES) {
 
     test(`${hub} keeps its help in the note beside its title`, async ({ page }) => {
       const t = strings(locale)
+      const { title, lead } = hubCopy(kind, locale)
       await page.goto(hub)
-      await expect(page.locator(MENU).getByText(t.almanachLead)).toBeHidden()
-      await page.getByRole('button', { name: t.hubAbout(t.almanach) }).click()
-      await expect(page.locator('#hub-note')).toContainText(t.almanachLead)
+      await expect(page.locator(MENU).getByText(lead)).toBeHidden()
+      await page.getByRole('button', { name: t.hubAbout(title) }).click()
+      await expect(page.locator('#hub-note')).toContainText(lead)
     })
   }
 
-  test(`the Livres menu of ${pathFor('books', locale)} lists every category, in their order`, async ({
-    page,
-  }) => {
-    await page.goto(pathFor('books', locale))
-    const menu = await page
-      .locator('#site-header [data-menu]:has([data-nav="books"]) [role="menu"]')
-      .locator('[data-menu-item]')
-      .evaluateAll((items) => items.map((item) => item.getAttribute('href')))
-    expect(menu).toEqual([
-      pathFor('books', locale),
-      ...BOOK_CATEGORIES.map((category) => pathFor('bookCategory', locale, { category })),
-    ])
-  })
-
-  test(`every category of ${pathFor('books', locale)} has its page, and one with nothing yet says so and stays out of search`, async ({
+  test(`${pathFor('books', locale)} lists every category, and one with nothing yet says so and stays out of search`, async ({
     page,
     request,
   }) => {
     const t = strings(locale)
+    await page.goto(pathFor('books', locale))
+    const opened = (await doorsOf(page)).map((door) => door.href)
+    const categories = BOOK_CATEGORIES.map((category) =>
+      pathFor('bookCategory', locale, { category }),
+    )
+    expect(opened).toEqual([...categories, pathFor('archives', locale)])
     const sitemap = await (await request.get('/sitemap.xml')).text()
     for (const category of BOOK_CATEGORIES) {
       const path = pathFor('bookCategory', locale, { category })
@@ -407,7 +413,162 @@ for (const [width, height] of SIZES) {
       }
     }
   })
+
+  test(`nothing on the Livres contents is cut at ${width}x${height}, whichever entry is lit`, async ({
+    page,
+  }) => {
+    test.slow()
+    await page.setViewportSize({ width, height })
+    await page.emulateMedia({ reducedMotion: 'reduce' })
+    for (const locale of LOCALES) {
+      await page.mouse.move(1, 1)
+      await page.goto(pathFor('books', locale))
+      await live(page)
+      const count = await page.locator(DOOR_LINK).count()
+      for (const index of [...Array(count).keys()]) {
+        if (index > 0) {
+          await page.locator(DOOR_LINK).nth(index).hover()
+          await expect(page.locator(DOOR).nth(index)).toHaveAttribute('data-lit', '')
+        }
+        const problems = await page.evaluate(() => {
+          const found: string[] = []
+          const doc = document.documentElement
+          const viewport = doc.clientWidth
+          if (doc.scrollWidth - viewport !== 0) found.push('the page scrolls sideways')
+          const section = document.querySelector('.au-sommaire')?.getBoundingClientRect()
+          const sheet = document.querySelector('.au-sommaire__sheet')?.getBoundingClientRect()
+          if (!section || !sheet) return [...found, 'the contents has no section or no sheet']
+          const plates = document.querySelectorAll('.au-plates__plate')
+          if (plates.length === 0) found.push('the contents has no title plate')
+          for (const plate of plates) {
+            const box = plate.getBoundingClientRect()
+            if (box.left < 0 || box.right > viewport) found.push('a title plate leaves the screen')
+            if (box.top < section.top) found.push('the section cuts the top of a title plate')
+          }
+          if (sheet.left < 0 || sheet.right > viewport) found.push('the sheet leaves the screen')
+          const textOf = (words: Element): DOMRect => {
+            const range = document.createRange()
+            range.selectNodeContents(words)
+            return range.getBoundingClientRect()
+          }
+          const inside = (
+            reach: Pick<DOMRect, 'left' | 'right' | 'top' | 'bottom'>,
+            frame: DOMRect,
+          ): boolean =>
+            reach.left >= frame.left - 1 &&
+            reach.right <= frame.right + 1 &&
+            reach.top >= frame.top - 1 &&
+            reach.bottom <= frame.bottom + 1
+          const links: DOMRect[] = []
+          let above: { left: number; lineBottom: number } | undefined
+          for (const door of document.querySelectorAll<HTMLElement>('[data-door]')) {
+            const link = door.querySelector('a')
+            if (!link) return [...found, 'an entry has no link']
+            const name =
+              document.getElementById(link.getAttribute('aria-labelledby') ?? '')?.textContent ??
+              '?'
+            const area = link.getBoundingClientRect()
+            for (const piece of ['figure', 'name', 'mark', 'line']) {
+              const element = door.querySelector(`.au-sommaire-entry__${piece}`)
+              if (!element) {
+                found.push(`${name}: it has no ${piece}`)
+                continue
+              }
+              const box = element.getBoundingClientRect()
+              if (box.width === 0) found.push(`${name}: its ${piece} has no width`)
+              const run = piece === 'name' || piece === 'line' ? textOf(element) : box
+              const reach = { left: run.left, right: run.right, top: box.top, bottom: box.bottom }
+              if (!inside(reach, sheet)) found.push(`${name}: its ${piece} leaves the sheet`)
+              if (!inside(reach, area)) found.push(`${name}: its ${piece} leaves its link`)
+            }
+            const words = door.querySelector('.au-sommaire-entry__name')
+            const mark = door.querySelector('.au-sommaire-entry__mark')?.getBoundingClientRect()
+            if (words && mark && textOf(words).right > mark.left + 1)
+              found.push(`${name}: its name runs into its mark`)
+            const overlapped = links.some(
+              (other) =>
+                area.top < other.bottom - 1 &&
+                other.top < area.bottom - 1 &&
+                area.left < other.right - 1 &&
+                other.left < area.right - 1,
+            )
+            if (overlapped) found.push(`${name}: its link overlaps another entry`)
+            links.push(area)
+            const ringTop = area.top - Number.parseFloat(getComputedStyle(link).outlineOffset) - 2
+            if (above && Math.abs(above.left - area.left) <= 1 && above.lineBottom > ringTop + 1)
+              found.push(`${name}: its focus ring crosses the line above it`)
+            const line = door.querySelector('.au-sommaire-entry__line')
+            above = line ? { left: area.left, lineBottom: textOf(line).bottom } : undefined
+          }
+          return found
+        })
+        expect(problems, `books ${locale} at ${width}x${height}, entry ${index + 1} lit`).toEqual(
+          [],
+        )
+      }
+    }
+  })
+
+  test(`the pause square stays clear of the Livres contents at ${width}x${height}`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width, height })
+    for (const locale of LOCALES) {
+      await page.goto(pathFor('books', locale))
+      const pause = page.getByRole('button', { name: strings(locale).stagePause })
+      await expect(pause).toBeVisible()
+      const sheet = page.locator('.au-sommaire__sheet')
+      await sheet.evaluate((paper) =>
+        Promise.all(paper.getAnimations().map((animation) => animation.finished)),
+      )
+      const [square, paper] = await Promise.all([pause.boundingBox(), sheet.boundingBox()])
+      if (!square || !paper) throw new Error(`books ${locale} draws no pause square or no sheet`)
+      const apart =
+        square.x >= paper.x + paper.width ||
+        paper.x >= square.x + square.width ||
+        square.y >= paper.y + paper.height ||
+        paper.y >= square.y + square.height
+      expect(apart, `books ${locale} at ${width}x${height}`).toBe(true)
+    }
+  })
 }
+
+test('forced colours draw no Livres numeral under the names', async ({ page }) => {
+  await page.emulateMedia({ forcedColors: 'active' })
+  await page.goto(pathFor('books', 'en'))
+  await expect(page.locator(DOOR_LINK).first()).toBeVisible()
+  await expect(page.locator('.au-sommaire-entry__figure')).toHaveCount(
+    await page.locator(DOOR).count(),
+  )
+  const drawn = await page
+    .locator('.au-sommaire-entry__figure')
+    .evaluateAll(
+      (figures) =>
+        figures.filter((figure) => getComputedStyle(figure).visibility !== 'hidden').length,
+    )
+  expect(drawn).toBe(0)
+})
+
+test('print outlines the Livres numerals, keeps a white halo round each name and an entry whole', async ({
+  page,
+}) => {
+  await page.goto(pathFor('books', 'en'))
+  await page.emulateMedia({ media: 'print' })
+  const entries = await page.locator(DOOR).count()
+  expect(entries).toBeGreaterThan(0)
+  await expect(page.locator('.au-sommaire-entry__figure')).toHaveCount(entries)
+  await expect(page.locator('.au-sommaire-entry__name')).toHaveCount(entries)
+  for (const entry of await page.locator(DOOR).all()) {
+    await expect(entry).toHaveCSS('break-inside', 'avoid')
+  }
+  for (const figure of await page.locator('.au-sommaire-entry__figure').all()) {
+    await expect(figure).toHaveCSS('color', TRANSPARENT)
+    await expect(figure).toHaveCSS('-webkit-text-stroke-width', '1px')
+  }
+  for (const name of await page.locator('.au-sommaire-entry__name').all()) {
+    await expect(name).toHaveCSS('text-shadow', /^rgb\(255, 255, 255\) 2px 0px 0px/)
+  }
+})
 
 for (const kind of HUB_KINDS) {
   test(`the light theme keeps ${pathFor(kind, 'en')} a dark stage`, async ({ page }) => {
@@ -425,12 +586,20 @@ for (const kind of HUB_KINDS) {
     await expect(page.locator(`${MENU} h1`)).toBeVisible()
     await expect(page.locator(DOOR_LINK).first()).toBeVisible()
     await expect(page.locator(STAGE_LAYER[kind])).toBeHidden()
-    await expect(page.locator('.au-plate-door__scene').first()).toBeHidden()
+    if (kind === 'almanach')
+      await expect(page.locator('.au-plate-door__scene').first()).toBeHidden()
   })
 }
 
+test('the Livres contents print on white paper under the dark theme', async ({ page }) => {
+  await page.goto(pathFor('books', 'en'))
+  await page.emulateMedia({ media: 'print', colorScheme: 'dark' })
+  await expect(page.locator('html')).toHaveCSS('background-color', WHITE_PAPER)
+  await expect(page.locator('[data-tip-root]')).toHaveCSS('background-color', WHITE_PAPER)
+})
+
 for (const [width, height] of FOCUS_REACHES) {
-  test(`the keyboard finds the help button of an empty category clear of the header at ${width}x${height}`, async ({
+  test(`the keyboard finds the help button clear of the header at ${width}x${height}`, async ({
     page,
   }) => {
     const t = strings('en')
@@ -441,6 +610,16 @@ for (const [width, height] of FOCUS_REACHES) {
         const hit = document.elementFromPoint(box.left + box.width / 2, box.top + box.height / 2)
         return hit !== null && element.contains(hit)
       })
+
+    await page.goto(pathFor('books', 'en'))
+    await live(page)
+    const help = page.getByRole('button', { name: t.hubAbout(t.books) })
+    await page.locator(DOOR_LINK).last().focus()
+    for (let step = await page.locator(DOOR).count(); step > 0; step--) {
+      await page.keyboard.press('Shift+Tab')
+    }
+    await expect(help).toBeFocused()
+    expect(await uncovered(help), 'Livres').toBe(true)
 
     for (const category of BOOK_CATEGORIES) {
       await page.goto(pathFor('bookCategory', 'en', { category }))

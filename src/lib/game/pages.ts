@@ -9,12 +9,10 @@ import { atlasHead } from './atlas.ts'
 import type { Corpus } from './build.ts'
 import { corpus } from './corpus.ts'
 import { leadFirst } from './hubs.ts'
-import { library } from './library.ts'
+import { ARCHIVES_ART, library } from './library.ts'
 import { policyPages } from './policies.ts'
 import { flattenText, termLabels } from './richtext.ts'
 import type { ContentStatus } from './schema.ts'
-
-export const ARCHIVES_ART = 'bureau-de-archibald-16_9-og.png'
 
 export type BookletHead = { title: string; banner?: string | undefined }
 

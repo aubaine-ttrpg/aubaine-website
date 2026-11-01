@@ -93,18 +93,11 @@ export function armsOf(composition: string): ArmsFiles {
   }
 }
 
-const ICONS = import.meta.glob('/data/media/icons/**/*.svg')
-
 const ICON_SOURCE = import.meta.glob<string>('/data/media/icons/**/*.svg', {
   eager: true,
   query: '?raw',
   import: 'default',
 })
-
-export function hasIcon(name: string | null | undefined): boolean {
-  if (!name) return false
-  return `/data/media/icons/${name.replace(':', '/')}.svg` in ICONS
-}
 
 export function iconMask(name: string | null | undefined): string {
   const file = name ? name.replace(':', '/') : 'mdi/hexagon'

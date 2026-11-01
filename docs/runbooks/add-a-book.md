@@ -61,7 +61,7 @@ A download only book writes `"chapters": []`. Its PDF is the book's newest print
 
 ## What appears on the site
 
-- `/fr/livres` and `/en/books`: the Livres hub, a card for each book that has a chapter or a PDF, with the cover or the banner, the title and the description. The header's Livres menu lists the categories.
+- `/fr/livres` and `/en/books`: the Livres hub, a contents page with one entry per category, in the order of `BOOK_CATEGORIES`, then the archives. The header's Livres menu lists the same entries.
 - The category's page, `/fr/livres/<segment>` and `/en/books/<segment>`, with the segment from `CATEGORY_SEGMENT` in `src/lib/i18n/routes.ts` (such as `/fr/livres/regles`): a select screen of the category's books, books first by `order`, then the printed aids `src/lib/game/library.ts` files there. The book's card shows its cover, or its category's seal. Its button reads `Lire` and opens the first chapter when `chapters` is not empty, or `Télécharger` and downloads the PDF when it is empty. A book with neither is left off. A category that holds nothing yet still has its page: it says so with the house empty state, offers the way back to all books, and stays out of search engines and the sitemap.
 - `/fr/livres/<book-id>/<chapter-slug>` and `/en/books/<book-id>/<chapter-slug>`: the chapter's page. Both locales use the same slugs, because a slug is a machine value.
 
@@ -86,7 +86,7 @@ pnpm dev
 
 **A chapter is a whole page.** Its parts are `##` and `###` headings in its own file, not more files. A book with thirty tiny pages reads worse than one with ten real chapters, and the sidebar is for chapters while the in-page outline is for their parts.
 
-**`chapters: []` means the book is a download.** The card then links to the PDF instead. A book with neither chapters nor a PDF has nothing to serve, so it is dropped from its category's page rather than rendered as a dead card. A category left with nothing keeps its page and its menu entry, and its page says that nothing is there yet.
+**`chapters: []` means the book is a download.** The card then links to the PDF instead. A book with neither chapters nor a PDF has nothing to serve, so it is dropped from its category's page rather than rendered as a dead card. A category left with nothing keeps its page, its entry and its menu entry, and its page says that nothing is there yet.
 
 **The id is the URL, and so is the folder name.** They have to match. Changing either breaks existing links.
 

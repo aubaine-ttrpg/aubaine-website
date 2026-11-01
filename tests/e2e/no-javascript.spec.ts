@@ -292,21 +292,11 @@ test('a tree hero carries its whole sheet and its ambient picture without javasc
   ).toMatch(/\/_astro\/.+\.webp/)
 })
 
-test('the books hub only cards a book that leads somewhere', async ({ page }) => {
-  await page.goto('/fr/livres')
-  const cards = page.locator('[data-card]')
-  await expect(cards).not.toHaveCount(0)
-  for (const href of await cards
-    .locator('a[href]')
-    .evaluateAll((all) => all.map((a) => a.getAttribute('href')))) {
-    expect(href, 'a book card must not link nowhere').toBeTruthy()
-  }
-})
-
-for (const kind of ['almanach'] as const) {
+for (const kind of ['almanach', 'books'] as const) {
   test(`every door of ${pathFor(kind, 'fr')} opens its page without javascript`, async ({
     page,
   }) => {
+    const t = strings('fr')
     await page.goto(pathFor(kind, 'fr'))
     const doors = await page
       .locator('[data-door] a')
@@ -316,7 +306,10 @@ for (const kind of ['almanach'] as const) {
       const response = await page.goto(href)
       expect(response?.status(), href).toBe(200)
       await expect(page.locator('h1')).toHaveCount(1)
-      await expect(page.locator('[data-entry] a[href]').first(), href).toBeVisible()
+      const onward = page
+        .locator('[data-entry] a[href], [data-release-link]')
+        .or(page.locator('main').getByRole('link', { name: t.allDocs, exact: true }))
+      await expect(onward.first(), href).toBeVisible()
     }
   })
 }
@@ -334,7 +327,7 @@ test.describe('a hub door without javascript', () => {
       .nth(index)
       .evaluate((door) => getComputedStyle(door).getPropertyValue('--lit').trim())
 
-  for (const kind of ['almanach'] as const) {
+  for (const kind of ['almanach', 'books'] as const) {
     const hub = pathFor(kind, 'en')
 
     test(`on ${hub} takes the light from the pointer and the keyboard`, async ({ page }) => {

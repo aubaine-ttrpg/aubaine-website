@@ -484,6 +484,8 @@ describe('nav sections', () => {
     expect(sectionFor('books')).toBe('books')
     expect(sectionFor('book')).toBe('books')
     expect(sectionFor('bookCategory')).toBe('books')
+    expect(sectionFor('archives')).toBe('books')
+    expect(sectionFor('archive')).toBe('books')
     expect(sectionFor('almanach')).toBe('almanach')
     expect(sectionFor('tree')).toBe('almanach')
     expect(sectionFor('species')).toBe('almanach')
@@ -496,8 +498,6 @@ describe('nav sections', () => {
   it('leaves search and 404 outside the navigation', () => {
     expect(sectionFor('search')).toBeUndefined()
     expect(sectionFor('notFound')).toBeUndefined()
-    expect(sectionFor('archives')).toBeUndefined()
-    expect(sectionFor('archive')).toBeUndefined()
   })
 
   it('claims each kind for at most one section', () => {

@@ -33,9 +33,7 @@
   --plate-ink: #ece8f7;
   --art-ink: #f4f1fb;
   --art-ink2: #c6bfd8;
-  --art-eyebrow: #efbe04;
   --tip-shadow: rgba(0, 0, 0, 0.55);
-  --card-shadow: 0 18px 44px rgba(0, 0, 0, 0.46);
   --scroll-thumb: rgba(157, 111, 209, 0.5);
   --state-buff: #d9a63f;
   --state-debuff: #d9695c;
@@ -173,9 +171,7 @@
   --plate-ink: #2a241d;
   --art-ink: #fbf9f3;
   --art-ink2: #d9d4c7;
-  --art-eyebrow: #f0cf6a;
   --tip-shadow: rgba(20, 26, 51, 0.22);
-  --card-shadow: 0 8px 20px rgba(20, 26, 51, 0.1);
   --scroll-thumb: rgba(31, 61, 143, 0.45);
   --status-draft: #8b93b0;
   --status-draft-ink: #565f7d;

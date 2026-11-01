@@ -1,0 +1,275 @@
+---
+import { PLATE_PAPER } from '../../lib/game/character-sheet'
+import { doorLooks, type HubDoor } from '../../lib/game/hub-doors'
+import type { Locale } from '../../lib/i18n/locales'
+import { strings } from '../../lib/i18n/strings'
+import { DARK_INK } from '../../lib/key-colour'
+import { fitLetters } from '../../lib/plates'
+import SommaireEntry from './SommaireEntry.astro'
+import StageBackdrop from './StageBackdrop.astro'
+import StillToggle from './StillToggle.astro'
+import TitlePlates, { type HubAbout } from './TitlePlates.astro'
+
+import '../../styles/doors.css'
+
+type Props = { locale: Locale; title: string; about: HubAbout; doors: readonly HubDoor[] }
+
+const { locale, title, about, doors } = Astro.props
+const [first] = doors
+if (!first) throw new Error(`the ${title} hub has no section to open`)
+
+const NUMERALS = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'] as const
+const WORD_ALLOWANCE = 0.2
+
+const t = strings(locale)
+const entries = (await doorLooks(doors)).map(({ door, look }, index) => {
+  const numeral = NUMERALS[index]
+  if (!numeral) throw new Error(`the ${title} hub has more sections than its contents can number`)
+  return { door, numeral, look }
+})
+const style = [
+  `--rows:${Math.ceil(doors.length / 2)}`,
+  `--fit-word:${fitLetters(
+    doors.map((door) => door.name),
+    WORD_ALLOWANCE,
+  )}`,
+  `--door-paper:${PLATE_PAPER}`,
+  `--door-paper-ink:${DARK_INK}`,
+].join('; ')
+---
+
+<section class="au-sommaire au-dark" data-stage-host data-doors data-print-paper style={style}>
+  <div class="au-sommaire__layer">
+    <StageBackdrop source={first.stage} />
+  </div>
+
+  <div class="au-sommaire__inner">
+    <div class="au-sommaire__sheet">
+      <div class="au-sommaire__title">
+        <TitlePlates title={title} about={about} locale={locale} />
+      </div>
+      <p class="au-sommaire__head" aria-hidden="true">{t.contents}</p>
+      <ol class="au-sommaire__list" role="list">
+        {
+          entries.map(({ door, numeral, look }, index) => (
+            <SommaireEntry
+              door={door}
+              look={look}
+              index={index}
+              numeral={numeral}
+              lit={index === 0}
+            />
+          ))
+        }
+      </ol>
+    </div>
+  </div>
+
+  <StillToggle locale={locale} class="au-sommaire__still" />
+</section>
+
+<style>
+  .au-sommaire {
+    --slug: 12px;
+    --indent: 44px;
+    --mark: 34px;
+    --column: 100cqi;
+    --numeral: 96px;
+    --name-fit: calc((var(--column) - var(--indent) - var(--mark) - 24px) / var(--fit-word));
+    --name-size: min(var(--name-fit), 28px);
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    min-height: calc(100svh - var(--header-h));
+    background: var(--bg);
+    color: var(--ink);
+    border-bottom: 1px solid var(--line2);
+  }
+
+  .au-sommaire__layer {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .au-sommaire__inner {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100svh - var(--header-h));
+    padding: clamp(60px, 8vh, 72px) 16px 70px;
+    box-sizing: border-box;
+  }
+
+  .au-sommaire__sheet {
+    position: relative;
+    isolation: isolate;
+    width: min(100%, 1180px);
+    margin: auto;
+    padding: calc(var(--slug) + 64px) calc(var(--slug) + 18px) calc(var(--slug) + 24px)
+      calc(var(--slug) + 28px);
+    box-sizing: border-box;
+    background:
+      radial-gradient(130% 110% at 50% 38%, transparent 58%, rgba(70, 50, 20, 0.1) 100%),
+      linear-gradient(90deg, rgba(70, 50, 20, 0.16) 0, rgba(70, 50, 20, 0.04) 18px, transparent 40px),
+      var(--door-paper);
+    color: var(--door-paper-ink);
+    box-shadow:
+      1px 1px 0 #e1d4b6,
+      2px 2px 0 #d2c3a2,
+      8px 9px 0 rgba(6, 5, 13, 0.72);
+    animation: au-sommaire-lay 0.46s cubic-bezier(0.2, 1.3, 0.4, 1) 0.06s backwards;
+  }
+
+  .au-sommaire__title {
+    position: absolute;
+    top: 0;
+    left: calc(var(--slug) + 20px);
+    z-index: 2;
+    width: min(100% - 40px, 400px);
+    translate: 0 -46%;
+  }
+
+  .au-sommaire__head {
+    display: flex;
+    align-items: baseline;
+    margin: 0 0 calc(var(--slug) + 10px);
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(20, 16, 10, 0.22);
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--door-paper-ink);
+  }
+
+  .au-sommaire__list {
+    container-type: inline-size;
+    display: grid;
+    gap: clamp(18px, 3vh, 28px) 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .au-sommaire :global(.au-plates__about) {
+    scroll-margin-block: calc(var(--sticky-top) + 8px) 16px;
+  }
+
+  .au-sommaire :global(.au-sommaire__still) {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+  }
+
+  @media (width >= 640px) {
+    .au-sommaire {
+      --slug: 26px;
+      --indent: 96px;
+      --mark: 42px;
+      --numeral: 128px;
+      --name-fit: calc((var(--column) - var(--indent) - var(--mark) - 48px) / var(--fit-word));
+      --name-size: min(var(--name-fit), 40px);
+    }
+
+    .au-sommaire__sheet {
+      width: min(100%, 760px);
+      box-shadow:
+        2px 1px 0 #e1d4b6,
+        4px 2px 0 #d2c3a2,
+        16px 18px 0 rgba(6, 5, 13, 0.78);
+    }
+  }
+
+  @media (width >= 1100px) {
+    .au-sommaire {
+      --column: calc((100cqi - 96px) / 2);
+      --row: clamp(84px, calc((100svh - var(--header-h) - 350px) / var(--rows)), 300px);
+      --numeral: clamp(84px, calc((var(--row) - 40px) / 0.78), 240px);
+    }
+
+    .au-sommaire__sheet {
+      width: min(100%, 1180px);
+      padding: calc(var(--slug) + 56px) calc(var(--slug) + 28px) calc(var(--slug) + 26px);
+      background:
+        radial-gradient(130% 110% at 50% 38%, transparent 58%, rgba(70, 50, 20, 0.1) 100%),
+        linear-gradient(
+          to left,
+          rgba(70, 50, 20, 0.26) 0,
+          rgba(70, 50, 20, 0.1) 12px,
+          rgba(70, 50, 20, 0.03) 36px,
+          transparent 64px
+        )
+          0 0 / 50% 100% no-repeat,
+        linear-gradient(
+          to right,
+          rgba(70, 50, 20, 0.18) 0,
+          rgba(70, 50, 20, 0.06) 10px,
+          transparent 48px
+        )
+          100% 0 / 50% 100% no-repeat,
+        var(--door-paper);
+    }
+
+    .au-sommaire__sheet::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 1px;
+      background: rgba(70, 50, 20, 0.38);
+      box-shadow: 2px 0 0 rgba(255, 251, 240, 0.55);
+      pointer-events: none;
+    }
+
+    .au-sommaire__head {
+      margin-left: calc(50% + 48px);
+    }
+
+    .au-sommaire__list {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(var(--rows), minmax(var(--row), auto));
+      grid-auto-flow: column;
+      gap: 0 96px;
+    }
+  }
+
+  @media print {
+    .au-sommaire {
+      min-height: 0;
+      background: none;
+      border-bottom: 0;
+    }
+
+    .au-sommaire__inner {
+      min-height: 0;
+    }
+
+    .au-sommaire__layer {
+      display: none;
+    }
+
+    .au-sommaire__sheet {
+      background: none;
+      box-shadow: none;
+    }
+
+    .au-sommaire__sheet::before {
+      display: none;
+    }
+
+    .au-sommaire__title {
+      position: static;
+      translate: none;
+      margin-bottom: 16px;
+    }
+  }
+
+  @keyframes au-sommaire-lay {
+    from {
+      transform: translateY(14px) scale(0.985);
+    }
+  }
+</style>

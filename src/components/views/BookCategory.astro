@@ -2,15 +2,14 @@
 import { librarySheet } from '../../lib/game/character-sheet'
 import type { Corpus } from '../../lib/game/corpus'
 import { libraryCardId, libraryCards } from '../../lib/game/hub-cards'
+import { categoryStage } from '../../lib/game/hub-doors'
 import { leadFirst } from '../../lib/game/hubs'
 import { librarySection } from '../../lib/game/library'
 import type { BookCategory as Category } from '../../lib/game/schema'
-import { categorySeal } from '../../lib/game/seals'
 import type { Locale } from '../../lib/i18n/locales'
 import { pathFor } from '../../lib/i18n/routes'
 import { strings } from '../../lib/i18n/strings'
 import { type SelectGroup, selectEntries } from '../../lib/select-entries'
-import { stageSource } from '../../lib/stage-ambient'
 import EmptyStage from '../primitives/EmptyStage.astro'
 import FilterBar from '../primitives/FilterBar.astro'
 import SelectScreen from '../primitives/SelectScreen.astro'
@@ -32,10 +31,7 @@ const sheetOf = (id: string) => {
 const cards = await libraryCards(section, corpus, locale)
 const entries = await selectEntries(cards, sheetOf)
 const order = leadFirst(entries.map((entry) => ({ ...entry.card, id: entry.card.facets.id })))
-const lead = order[0]
-const stage = lead
-  ? stageSource(lead.cover, lead.seal.colours)
-  : stageSource(undefined, categorySeal(category).colours)
+const stage = categoryStage(category, order)
 
 const kinds = [...new Set(section.items.map((item) => item.kind))]
 const groups: SelectGroup[] = kinds.map((kind) => ({

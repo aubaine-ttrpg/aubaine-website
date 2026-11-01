@@ -29,7 +29,7 @@ import {
   VARIABLE_CHARACTERISTIC,
 } from '../../src/lib/game/derive'
 import { readAtlasSources, readCorpus, readSources } from '../../src/lib/game/fs-sources'
-import { CATEGORY_MARKS, KIND_MARKS } from '../../src/lib/game/kind-marks'
+import { ARCHIVES_MARK, CATEGORY_MARKS, KIND_MARKS } from '../../src/lib/game/kind-marks'
 import { referenceKey } from '../../src/lib/game/richtext'
 import { BOOK_CATEGORIES, overlays, STATE_KINDS } from '../../src/lib/game/schema'
 import { LOCALES } from '../../src/lib/i18n/locales'
@@ -750,7 +750,11 @@ describe('media', () => {
   })
 
   it('draws every kind mark from a pictogram on disk', async () => {
-    for (const [kind, mark] of [...Object.entries(KIND_MARKS), ...Object.entries(CATEGORY_MARKS)]) {
+    for (const [kind, mark] of [
+      ...Object.entries(KIND_MARKS),
+      ...Object.entries(CATEGORY_MARKS),
+      ['archives', ARCHIVES_MARK] as const,
+    ]) {
       const [set, name] = mark.icon.split(':')
       await expect(
         readFile(resolve(root, `data/media/icons/${set}/${name}.svg`)),
