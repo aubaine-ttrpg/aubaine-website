@@ -27,6 +27,7 @@
     "balance": "node tools/balance/run.ts",
     "design:audit": "node tools/design/audit.ts",
     "design:pixels": "node tools/design/pixels.ts",
+    "design:transit": "node tools/design/transit.ts",
     "media:sync": "node tools/media/sync.ts",
     "media:stamp": "node tools/media/stamp.ts",
     "media:stamp:check": "node tools/media/stamp.ts --check",

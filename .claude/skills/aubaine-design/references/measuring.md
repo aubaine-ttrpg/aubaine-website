@@ -10,6 +10,7 @@ languages, in every state a reader can reach, and put the table in the report.
 - [The sizes](#the-sizes)
 - [design:audit, nothing cut and pieces on their shape](#designaudit-nothing-cut-and-pieces-on-their-shape)
 - [design:pixels, an unchanged render](#designpixels-an-unchanged-render)
+- [design:transit, a page change frame by frame](#designtransit-a-page-change-frame-by-frame)
 - [Methods the tools rest on](#methods-the-tools-rest-on)
 - [Contrast](#contrast)
 - [Lit pieces on the GPU](#lit-pieces-on-the-gpu)
@@ -185,6 +186,30 @@ When a change touches what a booklet prints, rasterise the PDF page with both `s
 `sips` renders the first page only. Quartz draws CSS masks that Chromium prints as solid blocks, so
 nothing a booklet prints uses a CSS mask, filter or soft mask. Build the print pages with
 `AUBAINE_PRINT=1 pnpm exec astro build --outDir <scratch>`.
+
+## design:transit, a page change frame by frame
+
+`tools/design/transit.ts` clicks a real link and prints one row per edge, theme and size: when the link
+answered, when the motion started and ended, how many frames hid the page, the worst frame during the
+motion, and the groups that ran.
+
+```sh
+pnpm design:transit --base=http://localhost:4322 '--edges=/fr/almanach>/fr/arbres,/fr/arbres</fr/arbre/marchand' \
+  --themes=dark,light --sizes=1512x860,390x844 [--browser=firefox] [--cold] [--film=/path/to/dir] [--flash]
+```
+
+`FROM>TO` clicks the link to `TO` on `FROM`; `FROM<TO` goes there, then measures Back. `--film` writes a
+contact sheet per row, each frame sought with the animations paused, so its timings read over budget: time
+without it. Open the sheets with the Read tool: a table cannot show a piece that moves badly, and on
+2026-11-01 a table said 300 ms while the owner saw nothing move, because the curve had covered 90 % of the
+travel in 99 ms. A motion has to be judged by how long it takes to cross, not only by when it ends.
+`--pops` records the real painted frames on Chromium and reports a frame that nobody meant: a large area that
+jumps for one to three frames and comes back. Run it on any change to a transition. On 2026-11-01 the film
+showed a clean book while a blank page painted for three frames after the motion and once before it, because
+a film seeks only inside the motion; `--pops` and the recorded frames found both. A reading of a few patches
+can be a moving edge passing through, so open the frames before calling it a bug or clearing it.
+Exit 1 means a row hid the page, left a name, threw, showed a stray frame, or ran past 400 ms (700 ms for the
+book).
 
 ## From audit to test
 
