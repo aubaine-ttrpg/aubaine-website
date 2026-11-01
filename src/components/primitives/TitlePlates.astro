@@ -1,6 +1,7 @@
 ---
 import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
+import { letters, longestWord, platesOf, WIDEST_ADVANCE } from '../../lib/plates'
 import Icon from './Icon.astro'
 import PopoverNote from './PopoverNote.astro'
 
@@ -13,25 +14,16 @@ const t = strings(locale)
 
 const NOTE_ID = 'hub-note'
 const NOTE_WIDTH = 380
-const WIDEST_ADVANCE = 0.8
 const PLATE_SPAN = 82
 const PLATE_LARGEST = 19
 const ONE_LINE_SMALLEST = 9
-const SMALL_WORD = 3
 const TILTS = ['-4deg', '2.5deg', '-2deg', '3deg'] as const
 
-const letters = (text: string) => Math.max(1, [...text].length)
 const fitted = (count: number) => Math.min(PLATE_LARGEST, PLATE_SPAN / (WIDEST_ADVANCE * count))
-const words = title.split(/\s+/).filter(Boolean)
-const longest = Math.max(
-  1,
-  ...words.filter((word) => letters(word) > SMALL_WORD).map((word) => letters(word)),
-)
 const oneLine = fitted(letters(title))
-const plateFit = oneLine >= ONE_LINE_SMALLEST ? oneLine : fitted(longest)
-const plates = words.map((word, index) => ({
-  word,
-  small: letters(word) <= SMALL_WORD && words.length > 1,
+const plateFit = oneLine >= ONE_LINE_SMALLEST ? oneLine : fitted(longestWord(title))
+const plates = platesOf(title).map((plate, index) => ({
+  ...plate,
   tilt: TILTS[index % TILTS.length],
   order: index,
 }))
