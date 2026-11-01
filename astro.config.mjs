@@ -13,7 +13,8 @@ import {
   rehypeProseSidePictures,
   rehypeProseTables,
 } from './src/lib/game/book-markup.ts'
-import { DEFAULT_LOCALE, LOCALES } from './src/lib/i18n/locales.ts'
+import { DEFAULT_LOCALE, HTML_LANG, LOCALES } from './src/lib/i18n/locales.ts'
+import { strings } from './src/lib/i18n/strings.ts'
 import { inlineScriptPolicy } from './src/lib/security/script-policy.ts'
 
 export default defineConfig({
@@ -59,7 +60,11 @@ export default defineConfig({
       loadOnIdle: false,
       preload: { hover: true, visible: false },
       progress: false,
-      accessibility: true,
+      accessibility: {
+        announcements: Object.fromEntries(
+          LOCALES.map((locale) => [HTML_LANG[locale], strings(locale).pageAnnouncement]),
+        ),
+      },
       reloadScripts: false,
       smoothScrolling: false,
       updateBodyClass: false,

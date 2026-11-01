@@ -1,5 +1,22 @@
 import { expect, test } from '@playwright/test'
 
+import { LOCALES } from '../../src/lib/i18n/locales'
+import { pathFor } from '../../src/lib/i18n/routes'
+import { strings } from '../../src/lib/i18n/strings'
+
+for (const locale of LOCALES) {
+  test(`a client visit announces the new page in ${locale}`, async ({ page }) => {
+    const t = strings(locale)
+    await page.goto(pathFor('trees', locale))
+    await page.waitForFunction(() => 'swup' in window)
+    await page.locator('[data-nav="almanach"]').click()
+    await expect(page).toHaveURL(pathFor('almanach', locale))
+    await expect(page.locator('#swup-announcer')).toHaveText(
+      t.pageAnnouncement.visit.replace('{title}', t.almanach),
+    )
+  })
+}
+
 test('swup navigation keeps the head correct', async ({ page }) => {
   await page.goto('/en/species')
   await expect(page).toHaveTitle('Species · Aubaine')
