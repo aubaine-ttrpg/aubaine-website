@@ -1,0 +1,184 @@
+---
+import { PLATE_PAPER } from '../../lib/game/character-sheet'
+import { doorLooks, type HubDoor } from '../../lib/game/hub-doors'
+import type { Locale } from '../../lib/i18n/locales'
+import { DARK_INK } from '../../lib/key-colour'
+import { fitLetters, PLATE_PADDING } from '../../lib/plates'
+import SlantedDoor from './SlantedDoor.astro'
+import StageBackdrop from './StageBackdrop.astro'
+import StillToggle from './StillToggle.astro'
+import TitlePlates, { type HubAbout } from './TitlePlates.astro'
+
+import '../../styles/doors.css'
+
+type Props = { locale: Locale; title: string; about: HubAbout; doors: readonly HubDoor[] }
+
+const { locale, title, about, doors } = Astro.props
+const [first] = doors
+if (!first) throw new Error(`the ${title} hub has no section to open`)
+
+const ACCORDION_FROM = 4
+const OPEN_SHARE = 4.4
+
+const rows = await doorLooks(doors)
+const accordion = doors.length >= ACCORDION_FROM
+const style = [
+  `--doors:${doors.length}`,
+  `--grow:${accordion ? OPEN_SHARE : 1}`,
+  `--fit-letters:${fitLetters(
+    doors.map((door) => door.name),
+    PLATE_PADDING,
+  )}`,
+  `--door-paper:${PLATE_PAPER}`,
+  `--door-paper-ink:${DARK_INK}`,
+].join('; ')
+---
+
+<section
+  class="au-slants au-dark"
+  data-stage-host
+  data-doors
+  data-few={accordion ? undefined : ''}
+  style={style}
+>
+  <div class="au-slants__layer">
+    <StageBackdrop source={first.stage} />
+  </div>
+
+  <div class="au-slants__inner">
+    <div class="au-slants__title">
+      <TitlePlates title={title} about={about} locale={locale} />
+    </div>
+
+    <ul class="au-slants__row">
+      {
+        rows.map(({ door, look }, index) => (
+          <SlantedDoor door={door} look={look} index={index} lit={index === 0} />
+        ))
+      }
+    </ul>
+  </div>
+
+  <StillToggle locale={locale} class="au-slants__still" />
+</section>
+
+<style>
+  .au-slants {
+    --motion-state: running;
+    --pad: 16px;
+    --slant: 8deg;
+    --slant-tan: 0.1405;
+    --gap: clamp(10px, 1vw, 16px);
+    --edge: clamp(18px, 1.9vw, 30px);
+    --mark-size: clamp(40px, 3.3vw, 52px);
+    --row-h: clamp(360px, calc(100svh - var(--header-h) - 250px), 680px);
+    --lean: calc(var(--row-h) * var(--slant-tan) / 2);
+    position: relative;
+    isolation: isolate;
+    overflow-x: clip;
+    min-height: calc(100svh - var(--header-h));
+    background: var(--bg);
+    color: var(--ink);
+    border-bottom: 1px solid var(--line2);
+  }
+
+  .au-slants[data-still] {
+    --motion-state: paused;
+  }
+
+  .au-slants__layer {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .au-slants__inner {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1560px;
+    min-height: calc(100svh - var(--header-h));
+    margin: 0 auto;
+    padding: clamp(22px, 3.2vh, 40px) var(--pad) clamp(28px, 5vh, 56px);
+    box-sizing: border-box;
+  }
+
+  .au-slants__title {
+    position: relative;
+    z-index: 2;
+    width: min(100%, 360px);
+  }
+
+  .au-slants__row {
+    --share: calc((100cqw - (var(--doors) - 1) * var(--gap)) / (var(--grow) + var(--doors) - 1));
+    --open-w: calc(var(--share) * var(--grow));
+    --name-size: clamp(
+      28px,
+      min(calc((var(--open-w) - 2 * var(--edge) - 30px) / var(--fit-letters)), calc(var(--row-h) * 0.12)),
+      76px
+    );
+    --spine-room: calc(var(--row-h) - 3 * var(--edge) - var(--mark-size) * 1.08 - 8px);
+    --spine-size: clamp(
+      16px,
+      min(calc(var(--spine-room) / var(--fit-letters)), calc((var(--share) * 0.99 - 28px) / 2.1)),
+      40px
+    );
+    --band-size: clamp(24px, calc((100cqw - 150px) / var(--fit-letters)), 44px);
+    container-type: inline-size;
+    display: flex;
+    gap: var(--gap);
+    height: var(--row-h);
+    margin: auto 0;
+    padding: clamp(14px, 2.4vh, 28px) var(--lean) 0;
+    list-style: none;
+  }
+
+  .au-slants :global(.au-slants__still) {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+  }
+
+  @media (width >= 640px) {
+    .au-slants {
+      --pad: clamp(24px, 3vw, 48px);
+    }
+  }
+
+  @media (width < 960px) {
+    .au-slants {
+      --slant: 4deg;
+    }
+
+    .au-slants__row {
+      flex-direction: column;
+      height: auto;
+      gap: 14px;
+      margin: clamp(18px, 3vh, 28px) 0 0;
+      padding: 0 12px;
+    }
+  }
+
+  @media print {
+    .au-slants {
+      min-height: 0;
+      background: none;
+      border-bottom: 0;
+    }
+
+    .au-slants__inner {
+      min-height: 0;
+    }
+
+    .au-slants__layer {
+      display: none;
+    }
+
+    .au-slants__row {
+      flex-direction: column;
+      height: auto;
+      padding: 0;
+    }
+  }
+</style>

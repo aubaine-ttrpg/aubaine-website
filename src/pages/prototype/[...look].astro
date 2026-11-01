@@ -1,0 +1,186 @@
+---
+import SlantedDoors from '../../components/primitives/SlantedDoors.astro'
+import SommaireSpread from '../../components/primitives/SommaireSpread.astro'
+import Base from '../../layouts/Base.astro'
+import { corpus } from '../../lib/game/corpus'
+import { codexDoors, type HubDoor, libraryDoors } from '../../lib/game/hub-doors'
+import { LOCALES, type Locale } from '../../lib/i18n/locales'
+import { strings } from '../../lib/i18n/strings'
+
+type Hub = 'codex' | 'livres'
+type Look = 'slanted'
+type Option = { look: Look; letter: string; label: string; slug: string }
+type MarkOption = { icon: string; label: string; slug: string }
+type Review =
+  | {
+      look: 'index'
+      locale: 'fr'
+      hubs: readonly Hub[]
+      options: readonly Option[]
+      marks: readonly MarkOption[]
+    }
+  | { look: Look; hub: Hub; locale: Locale }
+  | { look: 'archives-mark'; icon: string; locale: Locale }
+
+export function getStaticPaths() {
+  if (process.env['AUBAINE_PROTOTYPE'] !== '1') return []
+  const HUBS: readonly Hub[] = ['codex', 'livres']
+  const OPTIONS: readonly Option[] = [
+    { look: 'slanted', letter: 'D', label: 'les portes côte à côte', slug: 'cote-a-cote' },
+  ]
+  const MARKS: readonly MarkOption[] = [
+    { icon: 'game-icons:book-pile', label: 'la pile de livres', slug: 'pile' },
+    { icon: 'game-icons:bookshelf', label: 'l’étagère', slug: 'etagere' },
+    { icon: 'game-icons:tied-scroll', label: 'le rouleau noué', slug: 'rouleau' },
+  ]
+  return [
+    {
+      params: { look: undefined },
+      props: {
+        look: 'index',
+        locale: 'fr',
+        hubs: HUBS,
+        options: OPTIONS,
+        marks: MARKS,
+      } satisfies Review,
+    },
+    ...LOCALES.flatMap((locale) => [
+      ...HUBS.flatMap((hub) =>
+        OPTIONS.map((option) => ({
+          params: { look: `${hub}-${option.slug}/${locale}` },
+          props: { look: option.look, hub, locale } satisfies Review,
+        })),
+      ),
+      ...MARKS.map((mark) => ({
+        params: { look: `archives-${mark.slug}/${locale}` },
+        props: { look: 'archives-mark', icon: mark.icon, locale } satisfies Review,
+      })),
+    ]),
+  ]
+}
+
+type Props = Review
+
+const review = Astro.props
+const data = await corpus(review.locale)
+const t = strings(review.locale)
+
+function withArchivesIcon(doors: readonly HubDoor[], icon: string): HubDoor[] {
+  return doors.map((door) =>
+    door.key === 'archives' ? { ...door, mark: { ...door.mark, icon } } : door,
+  )
+}
+
+const hub =
+  review.look === 'index'
+    ? undefined
+    : review.look === 'archives-mark' || review.hub === 'livres'
+      ? { kind: 'books' as const, title: t.books, about: { body: t.hubLead } }
+      : { kind: 'almanach' as const, title: t.almanach, about: { body: t.almanachLead } }
+
+const doors =
+  review.look === 'index'
+    ? []
+    : review.look === 'archives-mark'
+      ? withArchivesIcon(await libraryDoors(data, review.locale), review.icon)
+      : review.hub === 'codex'
+        ? await codexDoors(data, review.locale)
+        : await libraryDoors(data, review.locale)
+
+const HUB_NAMES: Record<Hub, string> = { codex: 'Codex', livres: 'Livres' }
+const pathOf = (hubKey: Hub, option: Option, locale: Locale) =>
+  `/prototype/${hubKey}-${option.slug}/${locale}`
+const markPath = (mark: MarkOption, locale: Locale) => `/prototype/archives-${mark.slug}/${locale}`
+---
+
+{
+  review.look === 'index' ? (
+    <html lang="fr">
+      <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="noindex" />
+        <title>Réserve et choix en attente</title>
+        <style>
+          .reserve { padding: 16px 20px 40px; color: #ece8f7; font-family: system-ui, sans-serif; }
+          .reserve h1 { margin: 0 0 4px; font-size: 20px; }
+          .reserve h2 { margin: 32px 0 6px; font-size: 18px; }
+          .reserve h3 { margin: 22px 0 10px; font-size: 16px; }
+          .reserve a { color: #efbe04; }
+          .reserve .looks { display: grid; grid-template-columns: repeat(auto-fill, 454px); gap: 14px; }
+          .reserve figure { margin: 0; }
+          .reserve figcaption { display: flex; gap: 12px; align-items: baseline; padding: 0 0 6px; font-size: 14px; }
+          .reserve .frame { overflow: hidden; width: 454px; height: 258px; border: 1px solid #333; background: #000; }
+          .reserve iframe { width: 1512px; height: 860px; border: 0; zoom: 0.3; }
+        </style>
+      </head>
+      <body class="reserve">
+        <h1>Réserve et choix en attente</h1>
+        <p>Chaque cadre montre la page vivante à 1512 × 860. Ouvrez une page pour la parcourir à pleine taille.</p>
+        <h2>Mises en page en réserve</h2>
+        <p>Gardées pour une autre page.</p>
+        {review.hubs.map((hubKey) => (
+          <section>
+            <h3>{HUB_NAMES[hubKey]}</h3>
+            <div class="looks">
+              {review.options.map((option) => (
+                <figure>
+                  <figcaption>
+                    <b>{`${option.letter}, ${option.label}`}</b>
+                    <a href={pathOf(hubKey, option, 'fr')}>FR</a>
+                    <a href={pathOf(hubKey, option, 'en')}>EN</a>
+                  </figcaption>
+                  <div class="frame">
+                    <iframe
+                      src={pathOf(hubKey, option, 'fr')}
+                      title={`${HUB_NAMES[hubKey]} ${option.letter}`}
+                    />
+                  </div>
+                </figure>
+              ))}
+            </div>
+          </section>
+        ))}
+        <section>
+          <h2>Marque des Archives, à choisir</h2>
+          <p>
+            Trois pictogrammes pour l’entrée Archives de Livres, dans la même couleur sépia. Pointez
+            l’entrée Archives pour la voir allumée. Le menu Livres de l’en-tête garde la pile de livres
+            jusqu’à votre choix.
+          </p>
+          <div class="looks">
+            {review.marks.map((mark) => (
+              <figure>
+                <figcaption>
+                  <b>{mark.label}</b>
+                  <a href={markPath(mark, 'fr')}>FR</a>
+                  <a href={markPath(mark, 'en')}>EN</a>
+                </figcaption>
+                <div class="frame">
+                  <iframe src={markPath(mark, 'fr')} title={`Archives, ${mark.label}`} />
+                </div>
+              </figure>
+            ))}
+          </div>
+        </section>
+      </body>
+    </html>
+  ) : (
+    hub && (
+      <Base
+        locale={review.locale}
+        kind={hub.kind}
+        title={hub.title}
+        description={hub.about.body}
+        corpus={data}
+        noIndex
+      >
+        {review.look === 'archives-mark' ? (
+          <SommaireSpread locale={review.locale} title={hub.title} about={hub.about} doors={doors} />
+        ) : (
+          <SlantedDoors locale={review.locale} title={hub.title} about={hub.about} doors={doors} />
+        )}
+      </Base>
+    )
+  )
+}

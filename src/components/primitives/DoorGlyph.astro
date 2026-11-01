@@ -40,7 +40,8 @@ const { icon } = Astro.props
   }
 
   .au-door-glyph__face {
-    background: var(--door-paper);
+    background: var(--glyph-face, var(--door-paper));
+    transition: background-color 0.2s var(--ease);
   }
 
   .au-door-glyph__dots {

@@ -1,0 +1,460 @@
+---
+import { doorContract, type HubDoor } from '../../lib/game/hub-doors'
+import { platesOf } from '../../lib/plates'
+import type { StageLook } from '../../lib/stage-ambient'
+import DoorGlyph from './DoorGlyph.astro'
+import Icon from './Icon.astro'
+
+type Props = { door: HubDoor; look: StageLook; index: number; lit: boolean }
+
+const { door, look, index, lit } = Astro.props
+
+const TILTS = ['-1deg', '0.8deg', '-0.6deg', '1deg'] as const
+
+const plates = platesOf(door.name).map((plate, at) => ({
+  ...plate,
+  tilt: TILTS[(index + at) % TILTS.length],
+}))
+const contract = doorContract(door, look, index, lit)
+const { nameId, lineId } = contract
+---
+
+<li
+  class="au-slant"
+  data-door
+  data-lit={contract.lit}
+  data-door-art={contract.art}
+  data-door-backdrop={contract.backdrop}
+  data-door-colours={contract.colours}
+  style={contract.style}
+>
+  <a class="au-slant__link" href={door.href} aria-labelledby={nameId} aria-describedby={lineId}>
+    <span class="au-slant__ground" aria-hidden="true"></span>
+    <span class="au-slant__light" aria-hidden="true"></span>
+    <span class="au-slant__closed" aria-hidden="true">
+      <span class="au-slant__seal">
+        <svg class="au-slant__hex" viewBox="0 0 100 100" focusable="false">
+          <polygon points="50,4 90,27 90,73 50,96 10,73 10,27"></polygon>
+        </svg>
+        <Icon name={door.mark.icon} class="au-slant__seal-glyph" />
+      </span>
+      <span class="au-slant__spine">{door.name}</span>
+    </span>
+    <span class="au-slant__open">
+      <span class="au-slant__art" aria-hidden="true">
+        <span class="au-slant__glyph">
+          <DoorGlyph icon={door.mark.icon} />
+        </span>
+      </span>
+      <span class="au-slant__title">
+        <span class="au-slant__name" id={nameId} data-door-focus data-stage-focus={contract.lit}>
+          {
+            plates.map((plate, at) => (
+              <>
+                <span
+                  class:list={['au-slant__plate', { 'au-slant__plate--small': plate.small }]}
+                  style={`--tilt:${plate.tilt}`}
+                >
+                  {plate.word}
+                </span>
+                {at < plates.length - 1 && ' '}
+              </>
+            ))
+          }
+        </span>
+        <span class="au-slant__foot">
+          <span class="au-slant__line" id={lineId}>{door.tagline}</span>
+          <span class="au-slant__go" aria-hidden="true">→</span>
+        </span>
+      </span>
+    </span>
+  </a>
+</li>
+
+<style>
+  .au-slant {
+    --open: var(--lit);
+    flex: calc(1 + (var(--grow) - 1) * var(--open)) 1 0;
+    min-width: 0;
+    translate: 0 calc(var(--open) * -8px);
+    transition:
+      flex-grow 0.36s var(--ease),
+      translate 0.36s var(--ease);
+    animation: au-slant-rise 0.46s cubic-bezier(0.2, 1.25, 0.4, 1)
+      calc(0.06s + min(var(--order), 5) * 0.04s) backwards;
+  }
+
+  :global([data-doors][data-live]) .au-slant {
+    --open: 0;
+  }
+
+  :global([data-doors][data-live]) .au-slant[data-lit] {
+    --open: 1;
+  }
+
+  .au-slant__link {
+    position: relative;
+    display: block;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: clip;
+    color: inherit;
+    text-decoration: none;
+    transform: skewX(calc(var(--slant) * -1));
+    box-shadow: calc(8px + var(--open) * 6px) calc(10px + var(--open) * 8px) 0 rgba(6, 5, 13, 0.78);
+    outline-offset: 5px;
+    transition: box-shadow 0.36s var(--ease);
+  }
+
+  .au-slant__link:focus-visible {
+    outline: 3px solid var(--door-ink);
+  }
+
+  .au-slant__ground,
+  .au-slant__light {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .au-slant__ground {
+    background:
+      radial-gradient(circle, rgba(236, 232, 247, 0.06) 0 1.1px, transparent 1.6px) 0 0 / 8px 8px,
+      color-mix(in srgb, var(--door-colour) calc(var(--pointed) * 26%), #0d0c15);
+    box-shadow:
+      inset 5px 0 0 var(--door-colour),
+      inset 0 0 0 1px rgba(236, 232, 247, 0.07);
+    transition: background-color 0.2s var(--ease);
+  }
+
+  .au-slant__light {
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--door-colour) 80%, #0d0c15) 0%,
+      color-mix(in srgb, var(--door-colour) 50%, #0d0c15) 46%,
+      #0d0c15 88%
+    );
+    box-shadow: inset 0 0 0 2px var(--door-ink);
+    opacity: var(--open);
+    transition: opacity 0.28s var(--ease);
+  }
+
+  .au-slant__light::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(6, 5, 13, 0.36) 0 2px, transparent 2.5px) 0 0 / 9px 9px;
+    -webkit-mask-image: linear-gradient(200deg, #000 0%, transparent 58%);
+    mask-image: linear-gradient(200deg, #000 0%, transparent 58%);
+  }
+
+  .au-slant__closed {
+    position: absolute;
+    inset: 0;
+    opacity: calc(1 - var(--open));
+    transition: opacity 0.2s var(--ease);
+  }
+
+  .au-slant__seal {
+    position: absolute;
+    top: var(--edge);
+    left: 50%;
+    display: grid;
+    place-items: center;
+    width: var(--mark-size);
+    height: calc(var(--mark-size) * 1.08);
+    transform: translateX(-50%) skewX(var(--slant));
+  }
+
+  .au-slant__hex {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    filter: drop-shadow(3px 4px 0 rgba(6, 5, 13, 0.6));
+  }
+
+  .au-slant__hex polygon {
+    fill: color-mix(in srgb, var(--door-ink) calc(var(--pointed) * 100%), #08070d);
+    stroke: var(--door-ink);
+    stroke-width: 4;
+    transition: fill 0.2s var(--ease);
+  }
+
+  .au-slant__seal :global(.au-slant__seal-glyph) {
+    position: relative;
+    width: 50%;
+    height: 50%;
+    color: color-mix(in srgb, var(--door-paper-ink) calc(var(--pointed) * 100%), var(--door-ink));
+    transition: color 0.2s var(--ease);
+  }
+
+  .au-slant__spine {
+    position: absolute;
+    left: 50%;
+    bottom: var(--edge);
+    max-inline-size: var(--spine-room);
+    writing-mode: vertical-rl;
+    font-family: var(--font-display);
+    font-size: var(--spine-size);
+    font-weight: 700;
+    line-height: 1.02;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    text-wrap: balance;
+    color: color-mix(in srgb, var(--ink) calc(var(--pointed) * 100%), var(--ink2));
+    transform: translateX(-50%) skewX(var(--slant)) rotate(calc(180deg + var(--slant)));
+    transition: color 0.2s var(--ease);
+  }
+
+  .au-slant__open {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: var(--open-w);
+    box-sizing: border-box;
+    padding: var(--edge) var(--edge) calc(var(--edge) * 1.1) calc(var(--edge) + 6px);
+    opacity: var(--open);
+    transition: opacity 0.28s var(--ease);
+  }
+
+  .au-slant__art {
+    flex: 1 1 0;
+    min-height: 0;
+    container-type: size;
+    display: grid;
+    place-items: center;
+  }
+
+  .au-slant__glyph {
+    --glyph-face: color-mix(in srgb, var(--door-paper) calc(var(--open) * 100%), #1d1b29);
+    position: relative;
+    display: block;
+    width: min(calc(100cqw / 1.22), calc(100cqh * 0.93));
+    aspect-ratio: 1;
+    transform: skewX(var(--slant)) rotate(calc(-4deg - (1 - var(--open)) * 8deg))
+      scale(calc(0.84 + var(--open) * 0.16));
+    transition: transform 0.42s cubic-bezier(0.2, 1.35, 0.4, 1);
+  }
+
+  .au-slant__title {
+    flex: none;
+    display: grid;
+    gap: 14px;
+    justify-items: start;
+    transform: skewX(var(--slant));
+  }
+
+  .au-slant__name {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.06em 0.16em;
+    max-width: 100%;
+    font-family: var(--font-display);
+    font-size: var(--name-size);
+    font-weight: 700;
+    line-height: 0.86;
+    text-transform: uppercase;
+  }
+
+  .au-slant__plate {
+    display: inline-block;
+    padding: 0.1em 0.2em 0.04em;
+    rotate: var(--tilt);
+    background: color-mix(in srgb, var(--door-paper) calc(var(--open) * 100%), #08070d);
+    color: color-mix(in srgb, var(--door-paper-ink) calc(var(--open) * 100%), var(--ink));
+    box-shadow: 0.06em 0.07em 0
+      color-mix(
+        in srgb,
+        rgba(6, 5, 13, 0.72) calc(var(--open) * 100%),
+        color-mix(in srgb, var(--door-ink) 70%, transparent)
+      );
+    transition:
+      background-color 0.2s var(--ease),
+      color 0.2s var(--ease),
+      box-shadow 0.2s var(--ease);
+  }
+
+  .au-slant__plate--small {
+    align-self: flex-start;
+    font-size: 0.42em;
+    padding: 0.16em 0.3em 0.1em;
+  }
+
+  .au-slant__foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 14px;
+  }
+
+  .au-slant__line {
+    font-family: var(--font-garamond);
+    font-size: clamp(18px, 1.35vw, 22px);
+    font-style: italic;
+    line-height: 1.25;
+    color: color-mix(in srgb, var(--ink) calc(var(--open) * 100%), var(--ink2));
+    text-shadow: 0 1px 2px rgba(6, 5, 13, 0.85);
+    transition: color 0.2s var(--ease);
+  }
+
+  .au-slant__go {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 34px;
+    rotate: -1.5deg;
+    background: var(--gold);
+    color: var(--on-gold);
+    font-family: var(--font-ui);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: 4px 5px 0 rgba(6, 5, 13, 0.7);
+    opacity: var(--open);
+    translate: calc(var(--pointed) * 6px) 0;
+    transition:
+      opacity 0.2s var(--ease),
+      translate 0.3s var(--ease);
+  }
+
+  :global(.au-slants[data-few]) .au-slant__closed {
+    display: none;
+  }
+
+  :global(.au-slants[data-few]) .au-slant__open {
+    width: 100%;
+    opacity: 1;
+  }
+
+  @media (width < 960px) {
+    .au-slant {
+      flex: none;
+      translate: none;
+    }
+
+    .au-slant__link {
+      height: auto;
+    }
+
+    .au-slant__closed {
+      display: none;
+    }
+
+    .au-slant__open {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 76px;
+      grid-template-areas: 'title art';
+      align-items: center;
+      gap: 14px;
+      width: auto;
+      min-height: 96px;
+      padding: 16px 18px 16px 24px;
+      opacity: 1;
+    }
+
+    .au-slant__art {
+      grid-area: art;
+      container-type: normal;
+      display: block;
+      width: 76px;
+      height: 76px;
+    }
+
+    .au-slant__glyph {
+      width: 100%;
+    }
+
+    .au-slant__title {
+      grid-area: title;
+      gap: 8px;
+    }
+
+    .au-slant__name {
+      font-size: var(--band-size);
+    }
+
+    .au-slant__go {
+      display: none;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .au-slant__link {
+      border: 2px solid CanvasText;
+    }
+
+    .au-slant__ground,
+    .au-slant__light,
+    .au-slant__art {
+      display: none;
+    }
+
+    .au-slant__plate {
+      box-shadow: none;
+    }
+
+    .au-slant__link:focus-visible {
+      outline-color: Highlight;
+    }
+  }
+
+  @media print {
+    .au-slant {
+      flex: none;
+      translate: none;
+      animation: none;
+    }
+
+    .au-slant__link {
+      height: auto;
+      overflow: visible;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .au-slant__ground,
+    .au-slant__light,
+    .au-slant__closed,
+    .au-slant__art,
+    .au-slant__go {
+      display: none;
+    }
+
+    .au-slant__open {
+      position: static;
+      width: auto;
+      padding: 6px 0;
+      opacity: 1;
+    }
+
+    .au-slant__title {
+      transform: none;
+    }
+
+    .au-slant__plate {
+      rotate: none;
+      background: none;
+      color: var(--door-paper-ink);
+      box-shadow: none;
+    }
+
+    .au-slant__line {
+      color: #3a3448;
+      text-shadow: none;
+    }
+  }
+
+  @keyframes au-slant-rise {
+    from {
+      translate: 0 36px;
+    }
+  }
+</style>
