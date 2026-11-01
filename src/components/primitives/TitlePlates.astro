@@ -89,7 +89,7 @@ const plates = platesOf(title).map((plate, index) => ({
     background: var(--gold);
     color: var(--on-gold);
     box-shadow: 0.07em 0.08em 0 rgba(6, 5, 13, 0.72);
-    animation: au-plates-slap 0.46s cubic-bezier(0.2, 1.45, 0.4, 1)
+    animation: au-plates-slap 0.46s var(--ease-slap)
       calc(0.08s + var(--order) * 0.09s) backwards;
   }
 

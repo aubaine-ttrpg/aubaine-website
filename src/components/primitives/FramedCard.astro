@@ -84,7 +84,7 @@ const id = (part: string): string => `${idPrefix}-${part}`
       radial-gradient(circle, rgba(6, 5, 13, 0.2) 0 1.3px, transparent 1.8px) 0 0 / 7px 7px,
       var(--gold);
     clip-path: polygon(16% 0, 100% 5%, 86% 100%, 0 94%);
-    animation: au-framed-slab calc(0.75s * var(--arrival, 1)) cubic-bezier(0.22, 1, 0.36, 1)
+    animation: au-framed-slab calc(0.75s * var(--arrival, 1)) var(--ease-soft)
       calc(0.12s * var(--arrival, 1)) backwards;
   }
 

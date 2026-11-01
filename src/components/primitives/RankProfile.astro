@@ -246,7 +246,7 @@ const axes = PROFILE_AXES.map((axis, index) => ({
   }
 
   .au-rank__plot {
-    --unfold: calc(0.95s * var(--arrival, 1)) cubic-bezier(0.22, 1, 0.36, 1)
+    --unfold: calc(0.95s * var(--arrival, 1)) var(--ease-soft)
       calc(0.3s * var(--arrival, 1)) backwards;
   }
 

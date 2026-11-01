@@ -51,7 +51,7 @@ const TILTS = ['-1.5deg', '1deg', '-2deg', '1.5deg'] as const
     flex-direction: column;
     align-items: stretch;
     rotate: var(--tilt);
-    animation: au-trait-slap calc(0.42s * var(--arrival, 1)) cubic-bezier(0.2, 1.45, 0.4, 1)
+    animation: au-trait-slap calc(0.42s * var(--arrival, 1)) var(--ease-slap)
       calc((0.34s + var(--order) * 0.07s) * var(--arrival, 1)) backwards;
   }
 

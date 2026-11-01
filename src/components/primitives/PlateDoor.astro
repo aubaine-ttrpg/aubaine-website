@@ -144,7 +144,7 @@ const { nameId, lineId } = contract
     place-items: center;
     width: var(--mark-size);
     height: calc(var(--mark-size) * 1.08);
-    animation: au-plate-door-strike 0.42s cubic-bezier(0.2, 1.45, 0.4, 1)
+    animation: au-plate-door-strike 0.42s var(--ease-slap)
       calc(0.08s + min(var(--order), 5) * 0.03s) backwards;
   }
 
@@ -192,7 +192,7 @@ const { nameId, lineId } = contract
     text-transform: uppercase;
     translate: 0 calc(var(--pointed) * -6px);
     transition: translate 0.34s var(--ease);
-    animation: au-plate-door-slap 0.42s cubic-bezier(0.2, 1.45, 0.4, 1)
+    animation: au-plate-door-slap 0.42s var(--ease-slap)
       calc(0.1s + min(var(--order), 5) * 0.03s) backwards;
   }
 
