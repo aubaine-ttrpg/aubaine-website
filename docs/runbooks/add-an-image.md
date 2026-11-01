@@ -174,12 +174,13 @@ A book's and the catalogue's social image is cut from `banner`. A tree's and a s
 
 ## When no field names a picture
 
-Nothing renders an empty frame. A slot with nothing named draws the default plate for its ratio; `src/lib/media.ts` names the site placeholders, and `src/lib/booklet/back-cover.ts` names the PDF back-cover fallback.
+Nothing renders an empty frame. A slot with nothing named draws a seal or the default plate for its ratio; `src/lib/media.ts` names the site placeholders, and `src/lib/booklet/back-cover.ts` names the PDF back-cover fallback.
 
 | Slot | Falls back to |
 | --- | --- |
-| a tree or species card and hero, when `cover` is absent | `placeholder-3_4-og.png` |
+| a tree or species card and hero, when `cover` is absent | its seal |
 | a book card, after `cover ?? banner` | `placeholder-16_9-og.png` |
+| a printed cover, when `cover` is absent | `placeholder-3_4-og.png` |
 | a PDF back cover, when `backCover` is absent | `randome-3_4-og.png` |
 | a book hero | `placeholder-16_9-og.png` |
 | an item or a skill in a detail panel | `placeholder-1_1-og.png` |

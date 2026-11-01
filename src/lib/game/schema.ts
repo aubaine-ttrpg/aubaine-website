@@ -1022,7 +1022,7 @@ export const equipmentCatalogue = z
     backCover: mediaFile
       .optional()
       .describe(
-        'Quatrième de couverture au rapport 3:4, dans data/media/art/ : la planche verticale au dos du livret imprimé. Absente, le dos retombe sur la planche 16:9 par défaut.',
+        'Quatrième de couverture au rapport 3:4, dans data/media/art/ : la planche verticale au dos du livret imprimé. Absente, le dos retombe sur la planche commune que nomme src/lib/booklet/back-cover.ts.',
       ),
     families: z
       .array(z.object({ key: z.string().regex(MACHINE_KEY), title: z.string().min(1) }).strict())
@@ -1139,8 +1139,11 @@ export const book = z
       .int()
       .min(0)
       .describe('Rang du livre dans le menu et sur la page des livres.'),
-    title: z.string().min(1),
-    description: z.string().min(1),
+    title: z.string().min(1).describe('Titre du livre, tel que sa carte et ses pages le portent.'),
+    description: z
+      .string()
+      .min(1)
+      .describe('Une phrase qui dit ce que le livre contient, sous son titre.'),
     cover: mediaFile
       .optional()
       .describe(
@@ -1154,7 +1157,7 @@ export const book = z
     backCover: mediaFile
       .optional()
       .describe(
-        'Quatrième de couverture au rapport 3:4, dans data/media/art/ : la planche verticale au dos du livre imprimé. Absente, le dos retombe sur la bannière recadrée en portrait.',
+        'Quatrième de couverture au rapport 3:4, dans data/media/art/ : la planche verticale au dos du livre imprimé. Absente, le dos retombe sur la planche commune que nomme src/lib/booklet/back-cover.ts.',
       ),
     chapters: z
       .array(bookChapter)

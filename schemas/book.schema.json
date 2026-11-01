@@ -17,11 +17,13 @@
     },
     "title": {
       "type": "string",
-      "minLength": 1
+      "minLength": 1,
+      "description": "Titre du livre, tel que sa carte et ses pages le portent."
     },
     "description": {
       "type": "string",
-      "minLength": 1
+      "minLength": 1,
+      "description": "Une phrase qui dit ce que le livre contient, sous son titre."
     },
     "cover": {
       "description": "Couverture au rapport 3:4, dans data/media/art/. Absente, la carte retombe sur la bannière, puis sur la planche 16:9 par défaut.",
@@ -34,7 +36,7 @@
       "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-\\d{1,2}_\\d{1,2}-(?:og|cleaned|upscaled_[24])\\.(?:png|jpg)$"
     },
     "backCover": {
-      "description": "Quatrième de couverture au rapport 3:4, dans data/media/art/ : la planche verticale au dos du livre imprimé. Absente, le dos retombe sur la bannière recadrée en portrait.",
+      "description": "Quatrième de couverture au rapport 3:4, dans data/media/art/ : la planche verticale au dos du livre imprimé. Absente, le dos retombe sur la planche commune que nomme src/lib/booklet/back-cover.ts.",
       "type": "string",
       "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-\\d{1,2}_\\d{1,2}-(?:og|cleaned|upscaled_[24])\\.(?:png|jpg)$"
     },

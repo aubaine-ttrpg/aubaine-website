@@ -96,7 +96,7 @@ Two facts about a picture are otherwise impossible to recover once it is on disk
 
 A tree and a species carry one picture, the 3:4 `cover`: their card, their hero and their social image, cut from the top of the portrait. A species may also write its hero's `keyColour` when the colour read from the cover does not say the species, and a sub-species may fly a 3:2 flag from `data/media/art/`, hang a banner whose emblem lives in `data/media/emblems/`, or bear arms composed in `data/media/arms/` (`heraldry`). A book and the equipment catalogue carry `cover` and `banner`: the card uses `cover` and falls back to `banner` when there is none, and the hero and the social image use `banner`. See `docs/adr/0053-hero-art-is-developed-on-the-gpu-over-its-plain-picture.md`.
 
-Every picture field is optional, and none of them leaves a hole. A slot with nothing named draws the default plate for its ratio, held in `src/lib/media.ts`: a 3:4 one behind a card, a 16:9 one behind a hero, a 1:1 one on a skill or an item. Naming a real picture is still the point; the default keeps a page whole until one exists.
+Every picture field is optional, and none of them leaves a hole. Where nothing is named, a tree's or a species' card and hero draw its seal, and the other slots draw the default plate for their ratio, held in `src/lib/media.ts`: a 3:4 one on a printed cover, a 16:9 one behind a book's hero or the equipment index's hero, a 1:1 one on a skill or an item. Naming a real picture is still the point; the default keeps a page whole until one exists.
 
 ## A picture carries its rights, and says what it is
 
