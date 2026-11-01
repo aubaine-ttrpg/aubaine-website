@@ -124,6 +124,7 @@ test('the language switch keeps a booklet history on the same booklet', async ({
 
 test('the footer reaches the archive and survives the swap', async ({ page }) => {
   await page.goto('/fr/arbres')
+  await expect(page.locator('[data-footer-archives]')).toHaveText(strings('fr').archives)
   await page.locator('[data-footer-archives]').click()
   await expect(page).toHaveURL('/fr/archives')
   await expect(page).toHaveTitle(/Archives · Aubaine/)

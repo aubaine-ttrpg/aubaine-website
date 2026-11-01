@@ -15,7 +15,7 @@ const t = strings(locale)
 const exploreLinks = [
   { title: t.almanach, href: pathFor('almanach', locale), archives: undefined },
   { title: t.books, href: pathFor('books', locale), archives: undefined },
-  { title: t.versionHistory, href: pathFor('archives', locale), archives: true },
+  { title: t.archives, href: pathFor('archives', locale), archives: true },
 ]
 
 const projectLinks = (await policyPages(locale)).map((policy) => ({
