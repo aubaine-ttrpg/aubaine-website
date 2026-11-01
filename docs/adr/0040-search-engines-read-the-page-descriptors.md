@@ -4,6 +4,7 @@
 **Status:** Accepted
 **Date:** 2026-10-06
 **Revised:** 2026-10-29, `/pdf-archive/*` left `public/_headers` with the zips it served (0062, addendum in Decision 4)
+**Revised:** 2026-11-01, a tree's archive page follows its tree's status (addendum in Decision 1)
 **Deciders:** Kori
 **Scope:**
 - **Covers:**
@@ -78,6 +79,14 @@ Versions this was decided against, read from `pnpm-lock.yaml`: `astro@7.3.3`, `@
 - Most English skill and tree pages carry French text. A search engine may treat them as
   duplicates of the French pages and pick the French one. That is the cost 0003 Decision 3 already
   accepts.
+
+### Addendum (2026-11-01): an archive page follows its tree
+
+The archive pages arrived after this decision and were left indexable. A tree's archive page,
+`/fr/archives/<tree-id>`, now reads `tree.status` through `bookletHead` in `src/lib/game/pages.ts`, at
+the owner's request, so it stays out of search while its tree is a draft. All 25 printed trees are drafts
+today: the built sitemap goes from 126 to 76 URLs, 50 archive pages across both locales. A book's and the
+equipment catalogue's archive pages have no status and stay indexable, as does the archives page itself.
 
 ---
 

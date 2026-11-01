@@ -62,6 +62,38 @@ test('a page that inherits draft from its tree stays out of the index', async ({
   expect(html).not.toContain('rel="canonical"')
 })
 
+test('an archive page follows its tree out of the index, and a book stays in', async ({
+  request,
+}) => {
+  const english = await corpus('en')
+  const sitemap = await (await request.get('/sitemap.xml')).text()
+  const book = english.books.find((entry) => entry.chapters.length > 0)
+  if (!book) throw new Error('the corpus needs a book with chapters')
+  const bookArchive = pathFor('archive', 'en', { slug: book.id })
+  const bookHtml = await (await request.get(bookArchive)).text()
+  expect(bookHtml).not.toContain('name="robots"')
+  expect(bookHtml).toContain(`<link rel="canonical" href="https://aubaine.io${bookArchive}">`)
+  expect(sitemap).toContain(`<loc>https://aubaine.io${bookArchive}</loc>`)
+
+  let treesWithAnArchive = 0
+  for (const tree of english.trees) {
+    const path = pathFor('archive', 'en', { slug: tree.id })
+    const response = await request.get(path)
+    if (!response.ok()) continue
+    treesWithAnArchive += 1
+    const html = await response.text()
+    if (tree.status === 'draft') {
+      expect(html, path).toContain('<meta name="robots" content="noindex, follow">')
+      expect(html, path).not.toContain('rel="canonical"')
+      expect(sitemap, path).not.toContain(`<loc>https://aubaine.io${path}</loc>`)
+    } else {
+      expect(html, path).toContain(`<link rel="canonical" href="https://aubaine.io${path}">`)
+      expect(sitemap, path).toContain(`<loc>https://aubaine.io${path}</loc>`)
+    }
+  }
+  expect(treesWithAnArchive).toBeGreaterThan(0)
+})
+
 test('a published page is indexable and names itself canonical', async ({ request }) => {
   const { publishedPage } = await indexing()
   const html = await (await request.get(publishedPage.en)).text()

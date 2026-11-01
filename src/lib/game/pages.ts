@@ -14,12 +14,16 @@ import { policyPages } from './policies.ts'
 import { flattenText, termLabels } from './richtext.ts'
 import type { ContentStatus } from './schema.ts'
 
-export type BookletHead = { title: string; banner?: string | undefined }
+export type BookletHead = {
+  title: string
+  banner?: string | undefined
+  status?: ContentStatus | undefined
+}
 
 export function bookletHead(data: Corpus, kind: BookletKind, slug: string): BookletHead {
   if (kind === 'tree') {
     const tree = data.treesById.get(slug)
-    return { title: tree?.name ?? slug }
+    return { title: tree?.name ?? slug, status: tree?.status }
   }
   if (kind === 'book') {
     const book = data.books.find((entry) => entry.id === slug)
@@ -201,6 +205,7 @@ export async function pageRoutes(): Promise<PageRoute[]> {
         title: `${head.title} · ${t.archives}`,
         description: t.archiveDescription(head.title),
         ogArt: head.banner ?? ARCHIVES_ART,
+        noIndex: keptOutOfSearch(head.status),
       })
     }
 
