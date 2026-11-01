@@ -1,8 +1,10 @@
+import type { BookCategory } from '../game/schema.ts'
 import { isLocale, LOCALES, type Locale } from './locales.ts'
 
 export const VIEW_KINDS = [
   'home',
   'books',
+  'bookCategory',
   'book',
   'almanach',
   'atlas',
@@ -30,6 +32,7 @@ type SegmentMap = Record<Locale, string>
 
 const SEGMENT: Record<Exclude<ViewKind, 'home'>, SegmentMap> = {
   books: { fr: 'livres', en: 'books' },
+  bookCategory: { fr: 'livres', en: 'books' },
   book: { fr: 'livres', en: 'books' },
   almanach: { fr: 'almanach', en: 'almanach' },
   atlas: { fr: 'atlas', en: 'atlas' },
@@ -51,7 +54,15 @@ const SEGMENT: Record<Exclude<ViewKind, 'home'>, SegmentMap> = {
   notFound: { fr: '404', en: '404' },
 }
 
+export const CATEGORY_SEGMENT: Record<BookCategory, SegmentMap> = {
+  rules: { fr: 'regles', en: 'rules' },
+  resources: { fr: 'ressources', en: 'resources' },
+  adventures: { fr: 'aventures', en: 'adventures' },
+  stories: { fr: 'histoires', en: 'stories' },
+}
+
 export type RouteParams = {
+  category?: BookCategory | undefined
   tree?: string | undefined
   node?: string | undefined
   species?: string | undefined
@@ -70,6 +81,9 @@ export function segmentsFor(kind: ViewKind, locale: Locale, params: RouteParams 
   if (kind === 'speciesEntry') {
     const tail = [params.species].filter((v): v is string => v !== undefined)
     return [head, ...tail]
+  }
+  if (kind === 'bookCategory') {
+    return params.category ? [head, CATEGORY_SEGMENT[params.category][locale]] : [head]
   }
   if (kind === 'book') {
     const tail = [params.book, params.chapter].filter((v): v is string => v !== undefined)
@@ -146,7 +160,7 @@ export function isPolicyKind(kind: ViewKind): kind is PolicyKind {
 
 export const NAV_SECTIONS = [
   { id: 'home', kinds: ['home'] },
-  { id: 'books', kinds: ['books', 'book'] },
+  { id: 'books', kinds: ['books', 'bookCategory', 'book'] },
   {
     id: 'almanach',
     kinds: [

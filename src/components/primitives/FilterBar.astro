@@ -16,6 +16,7 @@ type ListVariant =
   | 'equipment'
   | 'materials'
   | 'rules'
+  | 'library'
 
 type Props = {
   locale: Locale
@@ -46,6 +47,7 @@ const GROUPS: Record<ListVariant, FilterGroup[]> = {
     { key: 'sta', label: t.status_ },
   ],
   species: [{ key: 'sta', label: t.status_ }],
+  library: [{ key: 'sta', label: t.status_ }],
   skills: [{ key: 'acq', label: t.provenance }, ...SKILL_FACETS, STATUS_FACET],
   treeNodes: SKILL_FACETS,
   equipment: [

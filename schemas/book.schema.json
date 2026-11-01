@@ -9,11 +9,21 @@
       "pattern": "^[a-z][a-z0-9-]*$",
       "description": "Identifiant du livre, qui devient son URL."
     },
+    "category": {
+      "type": "string",
+      "enum": [
+        "rules",
+        "resources",
+        "adventures",
+        "stories"
+      ],
+      "description": "Catégorie du livre : 'rules' pour un livre de règles, 'resources' pour ce qui s'imprime et aide une partie sans être un livre de règles (fiche, recueil, aide de jeu), 'adventures' pour une aventure, 'stories' pour une histoire. Elle décide la page de catégorie qui liste le livre ; chaque catégorie a sa page et son entrée au menu Livres, même vide."
+    },
     "order": {
       "type": "integer",
       "minimum": 0,
       "maximum": 9007199254740991,
-      "description": "Rang du livre dans le menu et sur la page des livres."
+      "description": "Rang du livre parmi les livres de sa catégorie."
     },
     "title": {
       "type": "string",
@@ -26,7 +36,7 @@
       "description": "Une phrase qui dit ce que le livre contient, sous son titre."
     },
     "cover": {
-      "description": "Couverture au rapport 3:4, dans data/media/art/. Absente, la carte retombe sur la bannière, puis sur la planche 16:9 par défaut.",
+      "description": "Couverture au rapport 3:4, dans data/media/art/. Absente, sa carte sur la page de sa catégorie montre le sceau de sa catégorie.",
       "type": "string",
       "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-\\d{1,2}_\\d{1,2}-(?:og|cleaned|upscaled_[24])\\.(?:png|jpg)$"
     },
@@ -68,6 +78,7 @@
   },
   "required": [
     "id",
+    "category",
     "order",
     "title",
     "description",

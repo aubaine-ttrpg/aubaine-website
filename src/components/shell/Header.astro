@@ -1,7 +1,8 @@
 ---
 import type { Corpus } from '../../lib/game/corpus'
-import { bookDot, bookLink, indexDescriptors } from '../../lib/game/indexes'
-import { kindInk } from '../../lib/game/kind-marks'
+import { indexDescriptors } from '../../lib/game/indexes'
+import { CATEGORY_MARKS, categoryInk, kindInk } from '../../lib/game/kind-marks'
+import { library } from '../../lib/game/library'
 import { LOCALE_FLAG, LOCALE_NAME, LOCALES, type Locale } from '../../lib/i18n/locales'
 import { pathFor, type RouteParams, sectionFor, type ViewKind } from '../../lib/i18n/routes'
 import { strings } from '../../lib/i18n/strings'
@@ -15,31 +16,22 @@ const t = strings(locale)
 
 const section = sectionFor(kind)
 
-const bookItems = corpus.books.flatMap((book) => {
-  const link = bookLink(book, locale)
-  return link
-    ? [
-        {
-          title: book.title,
-          href: link.href,
-          marker: { colour: bookDot(book.order), icon: undefined },
-          download: link.download,
-        },
-      ]
-    : []
-})
+const bookItems = library(corpus, locale).map(({ category }) => ({
+  title: t.bookCategories[category].name,
+  href: pathFor('bookCategory', locale, { category }),
+  marker: { colour: categoryInk(category), icon: CATEGORY_MARKS[category].icon },
+}))
 
 const indexItems = indexDescriptors(locale).map((entry) => ({
   title: entry.title,
   href: pathFor(entry.kind, locale),
   marker: { colour: kindInk(entry.kind), icon: entry.mark.icon },
-  download: false,
 }))
 
 const menus = [
   {
     id: 'books',
-    label: t.resources,
+    label: t.books,
     href: pathFor('books', locale),
     allLabel: t.allDocs,
     width: '312px',
@@ -124,22 +116,14 @@ const menus = [
                   href={item.href}
                   role="menuitem"
                   data-menu-item
-                  download={item.download ? '' : undefined}
                   style="display:flex; gap:11px; align-items:baseline; padding:9px 11px; transition:background-color .16s var(--ease)"
                 >
-                  {item.marker.icon ? (
-                    <span
-                      aria-hidden="true"
-                      style={`flex:none; align-self:center; display:grid; color:${item.marker.colour}`}
-                    >
-                      <Icon name={item.marker.icon} class="au-menu-mark" />
-                    </span>
-                  ) : (
-                    <span
-                      aria-hidden="true"
-                      style={`flex:none; width:6px; height:6px; margin-top:6px; background:${item.marker.colour}`}
-                    />
-                  )}
+                  <span
+                    aria-hidden="true"
+                    style={`flex:none; align-self:center; display:grid; color:${item.marker.colour}`}
+                  >
+                    <Icon name={item.marker.icon} class="au-menu-mark" />
+                  </span>
                   <span style="min-width:0; flex:1">
                     <span style="display:block; font-family:var(--font-display); font-size:15.5px; font-weight:600; color:#f6f2e6">
                       {item.title}

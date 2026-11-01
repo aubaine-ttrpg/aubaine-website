@@ -29,11 +29,11 @@ import {
   VARIABLE_CHARACTERISTIC,
 } from '../../src/lib/game/derive'
 import { readAtlasSources, readCorpus, readSources } from '../../src/lib/game/fs-sources'
-import { KIND_MARKS } from '../../src/lib/game/kind-marks'
+import { CATEGORY_MARKS, KIND_MARKS } from '../../src/lib/game/kind-marks'
 import { referenceKey } from '../../src/lib/game/richtext'
-import { overlays, STATE_KINDS } from '../../src/lib/game/schema'
+import { BOOK_CATEGORIES, overlays, STATE_KINDS } from '../../src/lib/game/schema'
 import { LOCALES } from '../../src/lib/i18n/locales'
-import { pathFor, treeNodeHref } from '../../src/lib/i18n/routes'
+import { CATEGORY_SEGMENT, pathFor, treeNodeHref } from '../../src/lib/i18n/routes'
 import { strings } from '../../src/lib/i18n/strings'
 import { PLACEHOLDER_BANNER, PLACEHOLDER_COVER, PLACEHOLDER_SQUARE } from '../../src/lib/media'
 import {
@@ -194,6 +194,14 @@ function bannedPhrasePattern(phrase: string): RegExp {
     `(?<![\\p{L}])${phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\p{L}])`,
     'iu',
   )
+}
+
+function redirectMatcher(source: string): RegExp {
+  const pattern = source
+    .split('*')
+    .map((part) => part.replace(/[.+?^${}()|[\]\\]/g, '\\$&').replace(/:[A-Za-z]\w*/g, '[^/]+'))
+    .join('.*')
+  return new RegExp(`^${pattern}$`)
 }
 
 function allRuleText(corpus: Corpus = fr): { where: string; text: string }[] {
@@ -742,12 +750,39 @@ describe('media', () => {
   })
 
   it('draws every kind mark from a pictogram on disk', async () => {
-    for (const [kind, mark] of Object.entries(KIND_MARKS)) {
+    for (const [kind, mark] of [...Object.entries(KIND_MARKS), ...Object.entries(CATEGORY_MARKS)]) {
       const [set, name] = mark.icon.split(':')
       await expect(
         readFile(resolve(root, `data/media/icons/${set}/${name}.svg`)),
         `${kind} pictogram ${mark.icon}`,
       ).resolves.toBeDefined()
+    }
+  })
+
+  it('keeps every book category path free of book ids and redirect sources', async () => {
+    const redirects = (await readFile(resolve(root, 'public/_redirects'), 'utf8'))
+      .split('\n')
+      .map((line) => line.trim().split(/\s+/)[0] ?? '')
+      .filter((source) => source.startsWith('/'))
+    for (const locale of LOCALES) {
+      for (const category of BOOK_CATEGORIES) {
+        const segment = CATEGORY_SEGMENT[category][locale]
+        const path = pathFor('bookCategory', locale, { category })
+        expect(
+          fr.books.some((book) => book.id === segment),
+          `the book id ${segment} would collide with ${path}`,
+        ).toBe(false)
+        for (const source of redirects) {
+          expect(redirectMatcher(source).test(path), `${source} redirects ${path}`).toBe(false)
+        }
+      }
+    }
+  })
+
+  it('ranks each book once within its category', () => {
+    for (const category of BOOK_CATEGORIES) {
+      const ranks = fr.books.filter((book) => book.category === category).map((book) => book.order)
+      expect(new Set(ranks).size, category).toBe(ranks.length)
     }
   })
 

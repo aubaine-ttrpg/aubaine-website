@@ -24,9 +24,13 @@ function leadRank(entry: LeadCandidate): number {
   return covered ? 2 : 3
 }
 
+export function leadFirst<T extends LeadCandidate>(entries: readonly T[]): T[] {
+  return [...entries].sort((a, b) => leadRank(a) - leadRank(b))
+}
+
 export function leadOrder<T extends LeadCandidate>(entries: readonly T[], locale: string): T[] {
   const collator = new Intl.Collator(locale)
-  return [...entries].sort((a, b) => leadRank(a) - leadRank(b) || collator.compare(a.name, b.name))
+  return leadFirst([...entries].sort((a, b) => collator.compare(a.name, b.name)))
 }
 
 export function fieldBackdrop(colours: FieldColours): string {

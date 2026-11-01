@@ -67,6 +67,7 @@ if (!lead) throw new Error('a select screen has no lead entry to show')
     <a
       class="au-spotlight__open"
       href={lead.card.href}
+      download={lead.card.download ? '' : undefined}
       aria-label={lead.card.open.label}
       data-spotlight-open
     >
@@ -90,6 +91,7 @@ if (!lead) throw new Error('a select screen has no lead entry to show')
       <template
         data-spotlight-for={entry.card.facets.id}
         data-spotlight-href={entry.card.href}
+        data-spotlight-download={entry.card.download ? '' : undefined}
         data-spotlight-label={entry.card.open.label}
         data-spotlight-text={entry.card.open.text}
         data-spotlight-name={entry.sheet.name}

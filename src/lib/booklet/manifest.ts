@@ -74,6 +74,17 @@ export function hasBooklet(slug: string): boolean {
   return LOCALES.every((locale) => releasesFor(slug, locale).length > 0)
 }
 
+export type PrintedBooklet = { kind: BookletKind; slug: string }
+
+export function printedBooklets(): PrintedBooklet[] {
+  const printed = new Map<string, PrintedBooklet>()
+  for (const release of RELEASES) {
+    if (printed.has(release.slug) || !hasBooklet(release.slug)) continue
+    printed.set(release.slug, { kind: release.kind, slug: release.slug })
+  }
+  return [...printed.values()]
+}
+
 export function currentVersion(): string | undefined {
   return RELEASES[0]?.version
 }

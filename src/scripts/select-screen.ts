@@ -105,6 +105,7 @@ function mount(screen: HTMLElement, signal: AbortSignal): void {
     panel.style.setProperty('--arrival', SWAP_ARRIVAL)
     panel.replaceChildren(fragment)
     open.href = template.dataset['spotlightHref'] ?? open.href
+    open.toggleAttribute('download', template.dataset['spotlightDownload'] !== undefined)
     open.setAttribute('aria-label', template.dataset['spotlightLabel'] ?? '')
     if (openText) openText.textContent = template.dataset['spotlightText'] ?? ''
     if (stage) {

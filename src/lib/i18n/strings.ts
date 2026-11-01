@@ -1,4 +1,5 @@
-import type { SkillLimit, SkillTree } from '../game/schema.ts'
+import type { BookletKind } from '../booklet/release.ts'
+import type { BookCategory, SkillLimit, SkillTree } from '../game/schema.ts'
 import type { Locale } from './locales.ts'
 
 export type TreeSummary = {
@@ -51,6 +52,79 @@ const EN_TREE_KIND: Record<SkillTree['treeType'], string> = {
   species: 'Species',
 }
 
+type CategoryCopy = {
+  name: string
+  one: string
+  lead: string
+  empty: string
+}
+
+const FR_LIBRARY_GROUPS: Record<BookletKind, string> = {
+  book: 'Livres',
+  equipment: 'Équipement',
+  tree: 'Arbres',
+}
+
+const EN_LIBRARY_GROUPS: Record<BookletKind, string> = {
+  book: 'Books',
+  equipment: 'Equipment',
+  tree: 'Trees',
+}
+
+const FR_CATEGORIES: Record<BookCategory, CategoryCopy> = {
+  rules: {
+    name: 'Livres de règles',
+    one: 'Livre de règles',
+    lead: 'Les règles d’Aubaine, pour les joueurs comme pour le MJ. Chaque livre se lit en ligne, chapitre par chapitre, ou se télécharge en PDF.',
+    empty: 'Aucun livre de règles pour l’instant.',
+  },
+  resources: {
+    name: 'Ressources',
+    one: 'Ressource',
+    lead: 'Ce qui s’imprime pour la table en plus des livres de règles, comme le livret d’un Arbre ou le catalogue d’équipement.',
+    empty: 'Aucune ressource pour l’instant.',
+  },
+  adventures: {
+    name: 'Aventures',
+    one: 'Aventure',
+    lead: 'Les aventures à diriger avec les règles d’Aubaine.',
+    empty: 'Aucune aventure pour l’instant.',
+  },
+  stories: {
+    name: 'Histoires',
+    one: 'Histoire',
+    lead: 'Les histoires du monde d’Aubaine.',
+    empty: 'Aucune histoire pour l’instant.',
+  },
+}
+
+const EN_CATEGORIES: Record<BookCategory, CategoryCopy> = {
+  rules: {
+    name: 'Rulebooks',
+    one: 'Rulebook',
+    lead: 'Aubaine’s rules, for players and GMs alike. Read each book online, chapter by chapter, or download it as a PDF.',
+    empty: 'No rulebooks yet.',
+  },
+  resources: {
+    name: 'Resources',
+    one: 'Resource',
+    lead: 'Printed aids that sit beside the rulebooks at the table, such as a Tree booklet or the equipment catalogue.',
+    empty: 'No resources yet.',
+  },
+  adventures: {
+    name: 'Adventures',
+    one: 'Adventure',
+    lead: 'Adventures for a GM to run with Aubaine’s rules.',
+    empty: 'No adventures yet.',
+  },
+  stories: {
+    name: 'Stories',
+    one: 'Story',
+    lead: 'Stories from the world of Aubaine.',
+    empty: 'No stories yet.',
+  },
+}
+
 const fr = {
   skip: 'Aller au contenu',
   search: 'Rechercher dans Aubaine…',
@@ -61,7 +135,7 @@ const fr = {
   chooseLanguage: 'Choisissez votre langue',
   breadcrumb: 'Fil d’Ariane',
   home: 'Accueil',
-  resources: 'Livres',
+  books: 'Livres',
   trees: 'Arbres de compétences',
   items: 'Équipement',
   spells: 'Compétences',
@@ -289,6 +363,14 @@ const fr = {
   read: 'Lire',
   download: 'Télécharger',
   resEyebrowShort: 'Livre',
+  bookCategories: FR_CATEGORIES,
+  treeBooklet: 'Livret d’Arbre',
+  catalogueKicker: 'Catalogue',
+  chaptersLabel: 'Chapitres',
+  libraryFacts: 'Contenu',
+  libraryGroups: FR_LIBRARY_GROUPS,
+  readOf: (name: string) => `Lire : ${name}`,
+  downloadOf: (name: string) => `Télécharger : ${name}`,
   results: 'résultats',
   result: 'résultat',
   detail: 'Détail',
@@ -299,6 +381,7 @@ const fr = {
   emptyListTitle: 'Rien à afficher pour l’instant.',
   emptyListBody:
     'Cette liste ne contient que des brouillons. Désactivez « Masquer les brouillons » pour les voir.',
+  emptyCategoryBody: 'Les livres déjà parus sont rangés dans les autres catégories.',
   treeDetailEmpty: 'Choisissez une Compétence dans l’Arbre pour l’afficher ici.',
   searchEmpty:
     'Aucun Arbre, Compétence, objet ou règle ne porte ce nom. Essayez un mot plus court.',
@@ -580,7 +663,7 @@ const en: UiStrings = {
   chooseLanguage: 'Choose your language',
   breadcrumb: 'Breadcrumb',
   home: 'Home',
-  resources: 'Books',
+  books: 'Books',
   trees: 'Skill Trees',
   items: 'Equipment',
   spells: 'Skills',
@@ -809,6 +892,14 @@ const en: UiStrings = {
   read: 'Read',
   download: 'Download',
   resEyebrowShort: 'Book',
+  bookCategories: EN_CATEGORIES,
+  treeBooklet: 'Tree booklet',
+  catalogueKicker: 'Catalogue',
+  chaptersLabel: 'Chapters',
+  libraryFacts: 'Contents',
+  libraryGroups: EN_LIBRARY_GROUPS,
+  readOf: (name: string) => `Read: ${name}`,
+  downloadOf: (name: string) => `Download: ${name}`,
   results: 'results',
   result: 'result',
   detail: 'Detail',
@@ -818,6 +909,7 @@ const en: UiStrings = {
   hideDrafts: 'Hide drafts',
   emptyListTitle: 'Nothing to show yet.',
   emptyListBody: 'Every entry here is a draft. Turn off Hide drafts to see them.',
+  emptyCategoryBody: 'Every book published so far is listed under another category.',
   treeDetailEmpty: 'Pick a Skill on the Tree to show it here.',
   searchEmpty: 'No Tree, Skill, item or rule carries that name. Try a shorter word.',
   searchTitleFor: 'Results for',

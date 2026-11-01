@@ -1131,14 +1131,19 @@ export const bookChapter = z
     'Un chapitre est une page entière. Ses parties sont les titres markdown de son corps, pas des fichiers séparés.',
   )
 
+export const BOOK_CATEGORIES = ['rules', 'resources', 'adventures', 'stories'] as const
+
+export type BookCategory = (typeof BOOK_CATEGORIES)[number]
+
 export const book = z
   .object({
     id: z.string().regex(MACHINE_KEY).describe('Identifiant du livre, qui devient son URL.'),
-    order: z
-      .number()
-      .int()
-      .min(0)
-      .describe('Rang du livre dans le menu et sur la page des livres.'),
+    category: z
+      .enum(BOOK_CATEGORIES)
+      .describe(
+        "Catégorie du livre : 'rules' pour un livre de règles, 'resources' pour ce qui s'imprime et aide une partie sans être un livre de règles (fiche, recueil, aide de jeu), 'adventures' pour une aventure, 'stories' pour une histoire. Elle décide la page de catégorie qui liste le livre ; chaque catégorie a sa page et son entrée au menu Livres, même vide.",
+      ),
+    order: z.number().int().min(0).describe('Rang du livre parmi les livres de sa catégorie.'),
     title: z.string().min(1).describe('Titre du livre, tel que sa carte et ses pages le portent.'),
     description: z
       .string()
@@ -1147,7 +1152,7 @@ export const book = z
     cover: mediaFile
       .optional()
       .describe(
-        'Couverture au rapport 3:4, dans data/media/art/. Absente, la carte retombe sur la bannière, puis sur la planche 16:9 par défaut.',
+        'Couverture au rapport 3:4, dans data/media/art/. Absente, sa carte sur la page de sa catégorie montre le sceau de sa catégorie.',
       ),
     banner: mediaFile
       .optional()

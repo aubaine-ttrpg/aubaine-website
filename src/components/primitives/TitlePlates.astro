@@ -5,7 +5,7 @@ import { letters, longestWord, platesOf, WIDEST_ADVANCE } from '../../lib/plates
 import Icon from './Icon.astro'
 import PopoverNote from './PopoverNote.astro'
 
-export type HubAbout = { body: string; link: { href: string; label: string } }
+export type HubAbout = { body: string; link?: { href: string; label: string } | undefined }
 
 type Props = { title: string; about: HubAbout; locale: Locale }
 

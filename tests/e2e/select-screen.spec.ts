@@ -1,5 +1,6 @@
 import { expect, type Locator, type Page, test } from '@playwright/test'
 
+import { BOOK_CATEGORIES } from '../../src/lib/game/schema'
 import { LOCALES } from '../../src/lib/i18n/locales'
 import { pathFor } from '../../src/lib/i18n/routes'
 import { strings } from '../../src/lib/i18n/strings'
@@ -329,17 +330,17 @@ test.describe('on a desktop', () => {
   })
 })
 
+const SPOTLIGHT_SIZES = [
+  { width: 1512, height: 982 },
+  { width: 1366, height: 657 },
+  { width: 1024, height: 768 },
+  { width: 390, height: 844 },
+]
+
 test.describe('every entry fits its spotlight', () => {
   test.use({ reducedMotion: 'reduce' })
 
-  const sizes = [
-    { width: 1512, height: 982 },
-    { width: 1366, height: 657 },
-    { width: 1024, height: 768 },
-    { width: 390, height: 844 },
-  ]
-
-  for (const size of sizes) {
+  for (const size of SPOTLIGHT_SIZES) {
     for (const hub of LOCALES.flatMap((locale) =>
       (['trees', 'species'] as const).map((kind) => pathFor(kind, locale)),
     )) {
@@ -366,6 +367,40 @@ test.describe('every entry fits its spotlight', () => {
               await rowsOf(page, '.au-sticker'),
               `${id} epithets in one row`,
             ).toBeLessThanOrEqual(1)
+          }
+        }
+      })
+    }
+  }
+})
+
+test.describe('every item of a book category fits its spotlight', () => {
+  test.use({ reducedMotion: 'reduce' })
+
+  for (const size of SPOTLIGHT_SIZES) {
+    for (const locale of LOCALES) {
+      test(`at ${size.width}x${size.height} on every ${locale} category page`, async ({ page }) => {
+        await page.setViewportSize(size)
+        const categories = BOOK_CATEGORIES.map((category) =>
+          pathFor('bookCategory', locale, { category }),
+        )
+        for (const category of categories) {
+          await page.goto(category)
+          if ((await page.locator(CARD).count()) === 0) continue
+          await hydrated(page)
+          const ids = await page
+            .locator(CARD)
+            .evaluateAll((cards) =>
+              cards.map((card) => (card as HTMLElement).dataset['entry'] ?? ''),
+            )
+          for (const id of ids) {
+            await cardLink(page, id).focus()
+            await expect(page.locator(SPOTLIGHT)).toHaveAttribute('data-spotlight-current', id)
+            expect(await clippedPieces(page), `${category} ${id}`).toEqual([])
+            const plates = await plateInks(page)
+            expect(plates.weakest, `${category} ${id} plates read at AA`).toBeGreaterThanOrEqual(
+              4.5,
+            )
           }
         }
       })

@@ -3,7 +3,7 @@ import { getEntry } from 'astro:content'
 
 import { hasBooklet } from '../../lib/booklet/manifest'
 import type { Corpus } from '../../lib/game/corpus'
-import { type BookLink, bookLink } from '../../lib/game/indexes'
+import { bookOpening, type Opening } from '../../lib/game/library'
 import { bookChapterHeads } from '../../lib/game/pages'
 import { renderProse } from '../../lib/game/prose'
 import { DEFAULT_LOCALE, type Locale } from '../../lib/i18n/locales'
@@ -57,8 +57,8 @@ const previous = index > 0 ? pages[index - 1] : undefined
 const next = index < pages.length - 1 ? pages[index + 1] : undefined
 const others = corpus.books
   .filter((entry) => entry.id !== book.id)
-  .map((entry) => ({ text: entry.title, link: bookLink(entry, locale) }))
-  .filter((entry): entry is { text: string; link: BookLink } => entry.link !== undefined)
+  .map((entry) => ({ text: entry.title, link: bookOpening(entry, locale) }))
+  .filter((entry): entry is { text: string; link: Opening } => entry.link !== undefined)
   .map((entry) => ({ text: entry.text, href: entry.link.href, download: entry.link.download }))
 const pdf = bookletHref('book', book.id, locale)
 const versioned = hasBooklet(book.id)
@@ -81,7 +81,11 @@ const versioned = hasBooklet(book.id)
     >
       <a href={pathFor('home', locale)} data-book-crumb>{t.home}</a>
       <span aria-hidden="true" style="padding:0 9px; opacity:.5">/</span>
-      <a href={pathFor('books', locale)} data-book-crumb>{t.resources}</a>
+      <a href={pathFor('books', locale)} data-book-crumb>{t.books}</a>
+      <span aria-hidden="true" style="padding:0 9px; opacity:.5">/</span>
+      <a href={pathFor('bookCategory', locale, { category: book.category })} data-book-crumb>
+        {t.bookCategories[book.category].name}
+      </a>
     </nav>
     <p
       data-book-name

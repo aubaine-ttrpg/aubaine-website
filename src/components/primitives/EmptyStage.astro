@@ -1,0 +1,147 @@
+---
+import type { Locale } from '../../lib/i18n/locales'
+import type { StageSource } from '../../lib/stage-ambient'
+import EmptyState from './EmptyState.astro'
+import StageBackdrop from './StageBackdrop.astro'
+import StillToggle from './StillToggle.astro'
+import TitlePlates, { type HubAbout } from './TitlePlates.astro'
+
+type Props = {
+  locale: Locale
+  title: string
+  about: HubAbout
+  stage: StageSource
+  message: { title: string; body: string }
+  back: { href: string; label: string }
+}
+
+const { locale, title, about, stage, message, back } = Astro.props
+---
+
+<section class="au-empty-stage au-dark" data-stage-host data-print-paper>
+  <div class="au-empty-stage__layer">
+    <StageBackdrop source={stage} />
+  </div>
+
+  <div class="au-empty-stage__inner">
+    <div class="au-empty-stage__title">
+      <TitlePlates title={title} about={about} locale={locale} />
+    </div>
+    <div class="au-empty-stage__panel">
+      <EmptyState title={message.title} body={message.body}>
+        <a class="au-empty-stage__back" href={back.href}>{back.label}</a>
+      </EmptyState>
+    </div>
+  </div>
+
+  <StillToggle locale={locale} class="au-empty-stage__still" />
+</section>
+
+<style>
+  .au-empty-stage {
+    position: relative;
+    isolation: isolate;
+    overflow-x: clip;
+    min-height: calc(100svh - var(--header-h));
+    background: var(--bg);
+    color: var(--ink);
+    border-bottom: 1px solid var(--line2);
+  }
+
+  .au-empty-stage__layer {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .au-empty-stage__inner {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    row-gap: 28px;
+    width: 100%;
+    max-width: 1560px;
+    min-height: calc(100svh - var(--header-h));
+    margin: 0 auto;
+    padding: 30px 16px 84px;
+    box-sizing: border-box;
+  }
+
+  .au-empty-stage__title {
+    position: relative;
+    z-index: 2;
+    min-width: 0;
+  }
+
+  .au-empty-stage__panel {
+    align-self: center;
+    justify-self: center;
+    box-sizing: border-box;
+    width: min(100%, 40rem);
+    padding: 26px 24px;
+    background: var(--bg2);
+    border: 1px solid var(--line2);
+    box-shadow: 8px 9px 0 rgba(6, 5, 13, 0.72);
+  }
+
+  .au-empty-stage__back {
+    display: inline-block;
+    padding: 9px 15px;
+    border: 1px solid var(--line2);
+    font-family: var(--font-ui);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink);
+    scroll-margin-block: calc(var(--sticky-top) + 8px) 16px;
+    transition: border-color 0.2s var(--ease);
+  }
+
+  .au-empty-stage__back:hover,
+  .au-empty-stage__back:focus-visible {
+    border-color: var(--gold);
+  }
+
+  .au-empty-stage :global(.au-plates__about) {
+    scroll-margin-block: calc(var(--sticky-top) + 8px) 16px;
+  }
+
+  .au-empty-stage :global(.au-empty-stage__still) {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+  }
+
+  @media (min-width: 1100px) and (min-height: 640px) {
+    .au-empty-stage__inner {
+      padding: 44px 26px 110px;
+    }
+  }
+
+  @media print {
+    .au-empty-stage {
+      --ink: #14100a;
+      --ink2: #3a3448;
+      --ink3: #3a3448;
+      --gold: #7a5d10;
+      background: none;
+      border-bottom: 0;
+    }
+
+    .au-empty-stage,
+    .au-empty-stage__inner {
+      min-height: 0;
+    }
+
+    .au-empty-stage__layer {
+      display: none;
+    }
+
+    .au-empty-stage__panel {
+      background: none;
+      box-shadow: none;
+    }
+  }
+</style>

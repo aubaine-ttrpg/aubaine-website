@@ -2,6 +2,8 @@ import { KEY_FALLBACK, readableOnNight } from '../key-colour.ts'
 import type { Corpus, ResolvedTree } from './corpus.ts'
 import { frame } from './derive.ts'
 import type { FieldColours } from './hubs.ts'
+import { CATEGORY_MARKS } from './kind-marks.ts'
+import type { BookCategory } from './schema.ts'
 
 export type CardSeal = { field: string; colours: FieldColours }
 
@@ -21,4 +23,9 @@ export function treeSeal(tree: ResolvedTree, corpus: Corpus): CardSeal {
 
 export function treeSealKey(tree: ResolvedTree, corpus: Corpus): string {
   return readableOnNight(domainColours(tree, corpus)[0] ?? KEY_FALLBACK)
+}
+
+export function categorySeal(category: BookCategory): CardSeal {
+  const colour = CATEGORY_MARKS[category].colour
+  return { field: frame([colour]), colours: [colour] }
 }

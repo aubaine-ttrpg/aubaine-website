@@ -1,6 +1,7 @@
 ---
 import type { Corpus } from '../../lib/game/corpus'
-import { bookDot, bookLink, indexDescriptors } from '../../lib/game/indexes'
+import { bookDot, indexDescriptors } from '../../lib/game/indexes'
+import { bookOpening } from '../../lib/game/library'
 import type { Locale } from '../../lib/i18n/locales'
 import { pathFor } from '../../lib/i18n/routes'
 import { strings } from '../../lib/i18n/strings'
@@ -34,14 +35,14 @@ const HERO_ART: Record<Variant, string> = {
 }
 
 const HERO_TEXT: Record<Variant, { title: string; lead: string }> = {
-  books: { title: t.resources, lead: t.hubLead },
+  books: { title: t.books, lead: t.hubLead },
   almanach: { title: t.almanach, lead: t.almanachLead },
 }
 
 const bookCards = (): CardModel[] =>
   corpus.books
     .flatMap((book) => {
-      const link = bookLink(book, locale)
+      const link = bookOpening(book, locale)
       return link ? [{ book, link }] : []
     })
     .map(({ book, link }, index) => ({

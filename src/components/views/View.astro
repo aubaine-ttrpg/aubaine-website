@@ -6,6 +6,7 @@ import Archive from './Archive.astro'
 import Archives from './Archives.astro'
 import Atlas from './Atlas.astro'
 import Book from './Book.astro'
+import BookCategory from './BookCategory.astro'
 import Browse from './Browse.astro'
 import Cards from './Cards.astro'
 import Home from './Home.astro'
@@ -31,6 +32,11 @@ if (kind === 'speciesEntry' && !species) throw new Error(`unknown species: ${par
 
 {kind === 'home' && <Home locale={locale} corpus={corpus} />}
 {kind === 'books' && <Cards locale={locale} corpus={corpus} variant="books" />}
+{
+  kind === 'bookCategory' && params.category && (
+    <BookCategory locale={locale} corpus={corpus} category={params.category} />
+  )
+}
 {kind === 'almanach' && <Cards locale={locale} corpus={corpus} variant="almanach" />}
 {kind === 'atlas' && <Atlas locale={locale} corpus={corpus} />}
 {kind === 'skills' && <Browse locale={locale} corpus={corpus} variant="skills" />}

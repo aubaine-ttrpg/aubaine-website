@@ -5,6 +5,7 @@ const IMPLEMENTED_VIEWS = new Set<ViewKind>([
   ...POLICY_KINDS,
   'home',
   'books',
+  'bookCategory',
   'almanach',
   'atlas',
   'skills',

@@ -1,5 +1,6 @@
 {
   "id": "livre-du-joueur",
+  "category": "rules",
   "order": 0,
   "title": "Livre du joueur",
   "description": "Tout ce qu'il faut pour jouer : les trois règles d'or, le Jet, créer un personnage, les Arbres, l'équipement, l'exploration, les interactions, le combat et la progression.",

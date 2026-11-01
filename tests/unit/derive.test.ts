@@ -27,16 +27,18 @@ import {
   VARIABLE_CHARACTERISTIC,
   xpOf,
 } from '../../src/lib/game/derive'
-import type {
-  EquipmentItem,
-  EquipmentSet,
-  GameState,
-  Skill,
-  SkillTree,
-  Upgrade,
+import {
+  BOOK_CATEGORIES,
+  type EquipmentItem,
+  type EquipmentSet,
+  type GameState,
+  type Skill,
+  type SkillTree,
+  type Upgrade,
 } from '../../src/lib/game/schema'
 import {
   bookChapterRef,
+  CATEGORY_SEGMENT,
   NAV_SECTIONS,
   pathFor,
   sectionFor,
@@ -403,6 +405,7 @@ describe('route slugs', () => {
     for (const locale of ['fr', 'en'] as const) {
       for (const kind of VIEW_KINDS) {
         for (const segment of segmentsFor(kind, locale, {
+          category: 'rules',
           species: 's',
           tree: 't',
           node: 'N',
@@ -447,6 +450,32 @@ describe('route slugs', () => {
     expect(bookChapterRef('/fr/archives/livre-du-joueur')).toBeUndefined()
     expect(bookChapterRef('/en/archives/livre-du-joueur')).toBeUndefined()
   })
+
+  it('files each book category one segment under the books section', () => {
+    for (const locale of ['fr', 'en'] as const) {
+      const books = pathFor('books', locale)
+      for (const category of BOOK_CATEGORIES) {
+        expect(pathFor('bookCategory', locale, { category })).toBe(
+          `${books}/${CATEGORY_SEGMENT[category][locale]}`,
+        )
+      }
+    }
+  })
+
+  it('gives every book category its own segment in each locale', () => {
+    for (const locale of ['fr', 'en'] as const) {
+      const segments = BOOK_CATEGORIES.map((category) => CATEGORY_SEGMENT[category][locale])
+      expect(new Set(segments).size).toBe(segments.length)
+    }
+  })
+
+  it('never lets a category page be read as a book chapter', () => {
+    for (const locale of ['fr', 'en'] as const) {
+      for (const category of BOOK_CATEGORIES) {
+        expect(bookChapterRef(pathFor('bookCategory', locale, { category }))).toBeUndefined()
+      }
+    }
+  })
 })
 
 describe('nav sections', () => {
@@ -454,6 +483,7 @@ describe('nav sections', () => {
     expect(sectionFor('home')).toBe('home')
     expect(sectionFor('books')).toBe('books')
     expect(sectionFor('book')).toBe('books')
+    expect(sectionFor('bookCategory')).toBe('books')
     expect(sectionFor('almanach')).toBe('almanach')
     expect(sectionFor('tree')).toBe('almanach')
     expect(sectionFor('species')).toBe('almanach')

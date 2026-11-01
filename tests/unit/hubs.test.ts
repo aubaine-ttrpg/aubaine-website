@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { fieldBackdrop, leadOrder } from '../../src/lib/game/hubs'
+import { fieldBackdrop, leadFirst, leadOrder } from '../../src/lib/game/hubs'
 
 const entry = (name: string, status?: 'draft' | 'playtest' | 'balanced', cover?: string) => ({
   name,
@@ -46,6 +46,24 @@ describe('the order a select screen picks its lead from', () => {
   it('leaves the entries it was given in their order', () => {
     const entries = [entry('Zeta'), entry('Alpha')]
     leadOrder(entries, 'fr')
+    expect(names(entries)).toEqual(['Zeta', 'Alpha'])
+  })
+})
+
+describe('the lead of a list that keeps its authored order', () => {
+  it('puts a playable entry with a cover first and keeps equals in the order given', () => {
+    const order = leadFirst([
+      entry('Zeta'),
+      entry('Alpha'),
+      entry('Gamma', 'draft', 'g.png'),
+      entry('Beta', 'balanced', 'b.png'),
+    ])
+    expect(names(order)).toEqual(['Beta', 'Zeta', 'Alpha', 'Gamma'])
+  })
+
+  it('leaves the entries it was given in their order', () => {
+    const entries = [entry('Zeta', 'draft'), entry('Alpha')]
+    leadFirst(entries)
     expect(names(entries)).toEqual(['Zeta', 'Alpha'])
   })
 })

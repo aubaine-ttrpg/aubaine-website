@@ -162,12 +162,12 @@ Then point both halves of the hero at the new files in `src/components/views/Hom
 
 - `cover` on a tree: the card at `/fr/arbres`, the hero on `/fr/arbre/<id>`, the front of its booklet, and the social preview for that page and its nodes.
 - `cover` on a species: the card at `/fr/especes`, the hero on `/fr/espece/<id>` and its social preview.
-- `cover` and `banner` on a book: the card at `/fr/livres` and the hero on each chapter.
+- `cover` and `banner` on a book: the card at `/fr/livres` and the hero on each chapter. `cover` also: its card on its category's page, such as `/fr/livres/regles`.
 - `cover` and `backCover` on the catalogue: the two faces of the equipment booklet. `banner`: the plate behind the hero at `/fr/equipement`.
 - `art` on an item: the picture on its card and in its detail panel at `/fr/equipement`.
 - `art` on a skill: the picture inside its node on the plate and on its card at `/fr/competences`.
 - `icon` on a state: the glyph inside the pastille wherever a text references the state, as `{{combustion}}`, and in its detail at `/fr/regles`.
-- a booklet in `data/media/pdf/`: the download button on the card at `/fr/livres` and in the hero of `/fr/arbre/<tree-id>`, resolved through `data/pdf/releases.json`.
+- a booklet in `data/media/pdf/`: the download button on the card at `/fr/livres`, on its card on its category's page, such as `/fr/livres/ressources`, and in the hero of `/fr/arbre/<tree-id>`, resolved through `data/pdf/releases.json`.
 - `data/media/video/<nom>-16_9-compressed.mp4`: the loop behind the home hero, over the plate it fades in from.
 
 A book's and the catalogue's social image is cut from `banner`. A tree's and a species' is cut from the top of the `cover`, where the subject's head sits; Astro does not enlarge it, so a 1086 pixel cover gives a card of 1086 by 630.
@@ -179,7 +179,8 @@ Nothing renders an empty frame. A slot with nothing named draws a seal or the de
 | Slot | Falls back to |
 | --- | --- |
 | a tree or species card and hero, when `cover` is absent | its seal |
-| a book card, after `cover ?? banner` | `placeholder-16_9-og.png` |
+| a book card at `/fr/livres`, after `cover ?? banner` | `placeholder-16_9-og.png` |
+| a book card on its category's page, when `cover` is absent | its category's seal |
 | a printed cover, when `cover` is absent | `placeholder-3_4-og.png` |
 | a PDF back cover, when `backCover` is absent | `randome-3_4-og.png` |
 | a book hero | `placeholder-16_9-og.png` |

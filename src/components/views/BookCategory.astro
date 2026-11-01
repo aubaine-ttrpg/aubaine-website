@@ -1,0 +1,79 @@
+---
+import { librarySheet } from '../../lib/game/character-sheet'
+import type { Corpus } from '../../lib/game/corpus'
+import { libraryCardId, libraryCards } from '../../lib/game/hub-cards'
+import { leadFirst } from '../../lib/game/hubs'
+import { librarySection } from '../../lib/game/library'
+import type { BookCategory as Category } from '../../lib/game/schema'
+import { categorySeal } from '../../lib/game/seals'
+import type { Locale } from '../../lib/i18n/locales'
+import { pathFor } from '../../lib/i18n/routes'
+import { strings } from '../../lib/i18n/strings'
+import { type SelectGroup, selectEntries } from '../../lib/select-entries'
+import { stageSource } from '../../lib/stage-ambient'
+import EmptyStage from '../primitives/EmptyStage.astro'
+import FilterBar from '../primitives/FilterBar.astro'
+import SelectScreen from '../primitives/SelectScreen.astro'
+
+type Props = { locale: Locale; corpus: Corpus; category: Category }
+
+const { locale, corpus, category } = Astro.props
+const t = strings(locale)
+const copy = t.bookCategories[category]
+
+const section = librarySection(corpus, locale, category)
+
+const items = new Map(section.items.map((item) => [libraryCardId(item), item]))
+const sheetOf = (id: string) => {
+  const item = items.get(id)
+  if (!item) throw new Error(`the ${category} page has a card for ${id}, which it does not hold`)
+  return librarySheet(item, corpus, locale)
+}
+const cards = await libraryCards(section, corpus, locale)
+const entries = await selectEntries(cards, sheetOf)
+const order = leadFirst(entries.map((entry) => ({ ...entry.card, id: entry.card.facets.id })))
+const lead = order[0]
+const stage = lead
+  ? stageSource(lead.cover, lead.seal.colours)
+  : stageSource(undefined, categorySeal(category).colours)
+
+const kinds = [...new Set(section.items.map((item) => item.kind))]
+const groups: SelectGroup[] = kinds.map((kind) => ({
+  key: kind,
+  label: kinds.length > 1 ? t.libraryGroups[kind] : undefined,
+  entries: entries.filter((entry) => items.get(entry.card.facets.id)?.kind === kind),
+}))
+const statused = cards.some((card) => card.status !== undefined)
+---
+
+{
+  order.length === 0 ? (
+    <EmptyStage
+      locale={locale}
+      title={copy.name}
+      about={{ body: copy.lead }}
+      stage={stage}
+      message={{ title: copy.empty, body: t.emptyCategoryBody }}
+      back={{ href: pathFor('books', locale), label: t.allDocs }}
+    />
+  ) : (
+    <SelectScreen
+      locale={locale}
+      title={copy.name}
+      about={{ body: copy.lead }}
+      stage={stage}
+      groups={groups}
+      order={order.map((card) => card.id)}
+    >
+      {statused && (
+        <FilterBar
+          slot="filter"
+          locale={locale}
+          variant="library"
+          total={cards.length}
+          drafts={cards.filter((card) => card.status === 'draft').length}
+        />
+      )}
+    </SelectScreen>
+  )
+}

@@ -1,4 +1,5 @@
 import type { ArtEffect } from '../art-effect/effects'
+import { latestRelease } from '../booklet/manifest'
 import type { Locale } from '../i18n/locales'
 import { strings } from '../i18n/strings'
 import { type Corpus, label, type ResolvedSpecies, type ResolvedTree } from './corpus'
@@ -9,8 +10,10 @@ import {
   SPECIES_ORIGIN_ICON,
   SPECIES_PLATE_TERMS,
 } from './derive'
+import { categoryInk } from './kind-marks'
+import { type LibraryItem, libraryKicker } from './library'
 import type { Profile } from './profile'
-import { type CardSeal, SPECIES_SEAL, treeSeal, treeSealKey } from './seals'
+import { type CardSeal, categorySeal, SPECIES_SEAL, treeSeal, treeSealKey } from './seals'
 import { type BadgedStatus, badgedStatus } from './status'
 
 export type Trait = {
@@ -42,7 +45,9 @@ export type CharacterSheet = {
   keyColour: string | undefined
 }
 
-const SPECIES_PLATE_PAPER = '#efe4cc'
+export const PLATE_PAPER = '#efe4cc'
+const CHAPTERS_ICON = 'mdi:book-multiple'
+const SHEETS_ICON = 'mdi:layers-triple'
 const CHARACTERISTIC_FALLBACK = '#8a7c5c'
 
 function traitSet(label: string, traits: readonly Trait[]): TraitSet | undefined {
@@ -152,7 +157,7 @@ export function speciesSheet(
       t.speciesVitals,
       plates.map((plate) => ({
         iconName: plate.icon,
-        color: SPECIES_PLATE_PAPER,
+        color: PLATE_PAPER,
         label: plate.label,
         text: plate.value,
       })),
@@ -163,5 +168,67 @@ export function speciesSheet(
     effect: species.artEffect,
     emblem: species.emblem,
     keyColour: species.keyColour,
+  }
+}
+
+function libraryTraits(item: LibraryItem, locale: Locale): TraitSet | undefined {
+  const t = strings(locale)
+  const chapters = item.kind === 'book' ? item.book.chapters.length : 0
+  const sheets = latestRelease(item.kind, item.id, locale)?.pages
+  return traitSet(t.libraryFacts, [
+    ...(chapters > 0
+      ? [
+          {
+            iconName: CHAPTERS_ICON,
+            color: PLATE_PAPER,
+            label: t.chaptersLabel,
+            text: formatNumber(chapters, locale),
+          },
+        ]
+      : []),
+    ...(sheets !== undefined
+      ? [
+          {
+            iconName: SHEETS_ICON,
+            color: PLATE_PAPER,
+            label: t.releasePages,
+            text: formatNumber(sheets, locale),
+          },
+        ]
+      : []),
+  ])
+}
+
+export function librarySheet(item: LibraryItem, corpus: Corpus, locale: Locale): CharacterSheet {
+  const traits = libraryTraits(item, locale)
+  if (item.kind === 'tree') {
+    return {
+      name: item.name,
+      subtitle: item.tree.subtitle,
+      kind: libraryKicker(item, locale),
+      status: badgedStatus(item.tree.status),
+      descriptors: descriptorLabels(corpus, locale, item.tree.descriptors ?? []),
+      traits,
+      profile: { kind: 'none' },
+      cover: item.cover,
+      seal: treeSeal(item.tree, corpus),
+      effect: item.tree.artEffect,
+      emblem: item.tree.emblem,
+      keyColour: item.cover ? undefined : treeSealKey(item.tree, corpus),
+    }
+  }
+  return {
+    name: item.name,
+    subtitle: item.kind === 'book' ? item.book.description : item.catalogue.subtitle,
+    kind: libraryKicker(item, locale),
+    status: undefined,
+    descriptors: [],
+    traits,
+    profile: { kind: 'none' },
+    cover: item.cover,
+    seal: categorySeal(item.category),
+    effect: undefined,
+    emblem: undefined,
+    keyColour: item.cover ? undefined : categoryInk(item.category),
   }
 }

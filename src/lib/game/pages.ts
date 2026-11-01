@@ -1,6 +1,6 @@
 import { getCollection } from 'astro:content'
 
-import { hasBooklet, releases } from '../booklet/manifest.ts'
+import { printedBooklets } from '../booklet/manifest.ts'
 import type { BookletKind } from '../booklet/release.ts'
 import { DEFAULT_LOCALE, LOCALES, type Locale } from '../i18n/locales.ts'
 import { type RouteParams, segmentsFor, type ViewKind } from '../i18n/routes.ts'
@@ -8,6 +8,8 @@ import { strings } from '../i18n/strings.ts'
 import { atlasHead } from './atlas.ts'
 import type { Corpus } from './build.ts'
 import { corpus } from './corpus.ts'
+import { leadFirst } from './hubs.ts'
+import { library } from './library.ts'
 import { policyPages } from './policies.ts'
 import { flattenText, termLabels } from './richtext.ts'
 import type { ContentStatus } from './schema.ts'
@@ -90,7 +92,7 @@ export async function pageRoutes(): Promise<PageRoute[]> {
 
     const pages: PageDescriptor[] = [
       homePage(locale, data),
-      describe(locale, 'books', t.resources, t.hubLead),
+      describe(locale, 'books', t.books, t.hubLead),
       describe(locale, 'almanach', t.almanach, t.almanachLead),
       {
         ...describe(locale, 'atlas', t.atlas.title, t.atlas.lead),
@@ -109,6 +111,19 @@ export async function pageRoutes(): Promise<PageRoute[]> {
       { ...describe(locale, 'search', t.searchTitle, t.searchTitle), noIndex: true },
       { ...describe(locale, 'notFound', t.notFoundTitle, t.notFoundBody), noIndex: true },
     ]
+
+    for (const section of library(data, locale)) {
+      const copy = t.bookCategories[section.category]
+      pages.push({
+        kind: 'bookCategory',
+        locale,
+        params: { category: section.category },
+        title: copy.name,
+        description: copy.lead,
+        ogArt: leadFirst(section.items)[0]?.cover,
+        noIndex: section.items.every((item) => keptOutOfSearch(item.status)),
+      })
+    }
 
     for (const policy of await policyPages(locale)) {
       pages.push(describe(locale, policy.kind, policy.title, policy.description))
@@ -179,13 +194,7 @@ export async function pageRoutes(): Promise<PageRoute[]> {
       }
     }
 
-    const booklets = new Map<string, BookletKind>()
-    for (const release of releases()) {
-      if (release.locale !== locale || !hasBooklet(release.slug)) continue
-      if (!booklets.has(release.slug)) booklets.set(release.slug, release.kind)
-    }
-
-    for (const [slug, kind] of booklets) {
+    for (const { slug, kind } of printedBooklets()) {
       const head = bookletHead(data, kind, slug)
       pages.push({
         kind: 'archive',

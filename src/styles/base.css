@@ -291,6 +291,15 @@ html.is-animating .au-swup-page {
   transform: translateX(7px);
 }
 
+@media print {
+  html:has([data-print-paper]),
+  body:has([data-print-paper]),
+  [data-tip-root]:has([data-print-paper]) {
+    --bg: #fff;
+    background: #fff;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

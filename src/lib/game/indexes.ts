@@ -1,9 +1,9 @@
 import type { Locale } from '../i18n/locales.ts'
-import { INDEX_KINDS, type IndexKind, pathFor } from '../i18n/routes.ts'
+import { INDEX_KINDS, type IndexKind } from '../i18n/routes.ts'
 import { strings } from '../i18n/strings.ts'
-import { bookletHref, PLACEHOLDER_BANNER } from '../media.ts'
+import { PLACEHOLDER_BANNER } from '../media.ts'
 import type { BrowseIndex } from './browse-entries.ts'
-import type { Corpus, ResolvedBook } from './build.ts'
+import type { Corpus } from './build.ts'
 import { KIND_MARKS, type KindMark } from './kind-marks.ts'
 
 const INDEX_ART: Record<Exclude<BrowseIndex, 'equipment'>, string> = {
@@ -73,20 +73,6 @@ export const BOOK_DOTS = ['#efbe04', '#8a5cc4', '#4f7a2e', '#2f6ea8'] as const
 
 export function bookDot(order: number): string {
   return BOOK_DOTS[order % BOOK_DOTS.length] as string
-}
-
-export type BookLink = { href: string; download: boolean }
-
-export function bookLink(book: ResolvedBook, locale: Locale): BookLink | undefined {
-  const first = book.chapters[0]
-  if (first) {
-    return {
-      href: pathFor('book', locale, { book: book.id, chapter: first.slug }),
-      download: false,
-    }
-  }
-  const pdf = bookletHref('book', book.id, locale)
-  return pdf ? { href: pdf, download: true } : undefined
 }
 
 export const RARITY_ORDER = [
