@@ -201,12 +201,14 @@ pnpm design:transit --base=http://localhost:4322 '--edges=/fr/almanach>/fr/arbre
 `FROM>TO` clicks the link to `TO` on `FROM`; `FROM<TO` goes there, then measures Back. `--film` writes a
 contact sheet per row from the frames really painted: a screencast on Chromium, a 25 fps recording elsewhere.
 Playwright's Firefox recording breaks into tiles on these pages, so do not judge Firefox from it.
-`--real-firefox` drives the installed Firefox through geckodriver and prints frames, median, p95 and worst for the
-motion alone. **Run it before calling any motion smooth.** On 2026-11-01 a transition held 17 ms on Chromium and
-looked fine on film while Firefox, the owner's browser, ran 42 to 50 ms: "it's saccadé". Runs vary widely on this
-machine, so compare variants in pairs over several visits, and never trust a single row. To find a cost, hide one
-layer at a time with a constructed stylesheet at runtime; that found the stage's blur, its layered backgrounds,
-its gradient shade and the live roster, none of them the piece count. Open the sheets with the Read tool: a table
+`--real-firefox` drives the installed Firefox through geckodriver in a window, on the GPU, prints how it draws,
+then frames, median, p95 and worst for the motion alone. **Run it before calling any motion smooth**, and leave
+the window alone while it runs. `--headless` draws in software (`WebRender (Software)`), which overstates every
+cost: on 2026-11-01 headless Firefox ran a transition at 42 to 50 ms a frame, a stand-in for the stage was built
+to save it, and on the GPU on 2026-11-02 the same change held 13 to 14 ms with or without it, while the owner saw
+the stage drop out. Compare variants in pairs over several visits, and never trust a single row. To find a cost,
+hide one layer at a time with a constructed stylesheet at runtime, and read a slow frame's cause with Firefox's
+profiler (`Services.profiler` in the chrome context) before blaming page code. Open the sheets with the Read tool: a table
 cannot show a piece that moves badly, and on
 2026-11-01 a table said 300 ms while the owner saw nothing move, because the curve had covered 90 % of the
 travel in 99 ms. A motion has to be judged by how long it takes to cross, not only by when it ends.

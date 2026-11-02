@@ -23,7 +23,8 @@ type Trace = {
 }
 
 const USAGE = `pnpm design:transit --edges=FROM>TO,... [--themes=dark,light] [--sizes=1512x860,390x844]
-  [--browser=chromium|firefox|webkit] [--cold] [--film=DIR] [--flash] [--pops] [--real-firefox] [--base=URL]
+  [--browser=chromium|firefox|webkit] [--cold] [--film=DIR] [--flash] [--pops] [--real-firefox [--headless]]
+  [--base=URL]
 
 Clicks the link to TO on FROM and measures one page change per edge, theme and size, then Back when the
 edge is written FROM<TO. Prints one row each: the acknowledgement, the first motion and the end after the
@@ -33,9 +34,10 @@ writes a contact sheet of the frames really painted: a screencast on Chromium, a
 and WebKit. --flash records every painted frame on Chromium and counts the general and red flashes of WCAG
 2.3.1 in any second, in any patch a quarter of a 10 degree field, sliding by a quarter of a patch. --pops
 records the same frames and reports any large area that jumps for one to three frames and comes back.
---real-firefox drives the installed Firefox through geckodriver, headless, and prints the frames of the
-motion alone: count, median, p95 and worst, three visits per edge. Playwright's Firefox video breaks into
-tiles on these pages, so this reading and seeked stills are what Firefox gets.
+--real-firefox drives the installed Firefox through geckodriver in a window, on the GPU, and prints how it
+draws, then the frames of the motion alone: count, median, p95 and worst, three visits per edge. Leave the
+window alone while it runs. --headless draws in software instead, which overstates every cost. Playwright's
+Firefox video breaks into tiles on these pages, so this reading and seeked stills are what Firefox gets.
 Default --base=http://localhost:4322
 
 Exit 0 when every row meets the budget; 1 when one does not; 2 on a usage error.`
@@ -549,7 +551,11 @@ const REAL_FRAMES = `
   else [...document.querySelectorAll('a[href="' + to + '"]')].find((link) => link.checkVisibility()).click()
 `
 
-async function realFirefoxRows(edges: readonly Edge[], base: string): Promise<void> {
+async function realFirefoxRows(
+  edges: readonly Edge[],
+  base: string,
+  headless: boolean,
+): Promise<void> {
   const driver = spawn('geckodriver', ['-p', String(GECKO_PORT)], { stdio: 'ignore' })
   await pause(GECKO_START_MS)
   const call = async (method: string, path: string, body?: unknown): Promise<unknown> => {
@@ -564,7 +570,12 @@ async function realFirefoxRows(edges: readonly Edge[], base: string): Promise<vo
   try {
     const { sessionId } = (await call('POST', '/session', {
       capabilities: {
-        alwaysMatch: { browserName: 'firefox', 'moz:firefoxOptions': { args: ['-headless'] } },
+        alwaysMatch: {
+          browserName: 'firefox',
+          'moz:firefoxOptions': {
+            args: ['-remote-allow-system-access', ...(headless ? ['-headless'] : [])],
+          },
+        },
       },
     })) as { sessionId: string }
     const session = `/session/${sessionId}`
@@ -574,6 +585,14 @@ async function realFirefoxRows(edges: readonly Edge[], base: string): Promise<vo
       await call('POST', `${session}/url`, { url: base + path })
       await pause(GECKO_SETTLE_MS)
     }
+    await visit(edges[0]?.from ?? '/')
+    await call('POST', `${session}/moz/context`, { context: 'chrome' })
+    const drawing = await call('POST', `${session}/execute/sync`, {
+      script: 'return window.windowUtils.layerManagerType',
+      args: [],
+    })
+    await call('POST', `${session}/moz/context`, { context: 'content' })
+    console.log(`Firefox draws with ${String(drawing)}.\n`)
     const frames = (to: string, back: boolean): Promise<unknown> =>
       call('POST', `${session}/execute/async`, { script: REAL_FRAMES, args: [to, back] })
     console.log('| edge | frames / median / p95 / worst, per visit |\n| --- | --- |')
@@ -603,7 +622,11 @@ async function realFirefoxRows(edges: readonly Edge[], base: string): Promise<vo
 async function main(): Promise<void> {
   const edges = edgesOf(option('edges'))
   if (process.argv.includes('--real-firefox')) {
-    await realFirefoxRows(edges, option('base', 'http://localhost:4322'))
+    await realFirefoxRows(
+      edges,
+      option('base', 'http://localhost:4322'),
+      process.argv.includes('--headless'),
+    )
     return
   }
   const browserName = option('browser', 'chromium')

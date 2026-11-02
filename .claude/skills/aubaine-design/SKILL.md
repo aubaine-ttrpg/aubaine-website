@@ -57,6 +57,8 @@ argument-hint: [page or piece, and what should change]
   100-unit box drawn 34 px wide moves it 2.4 px. Measure it before you write it down.
 - `emulateMedia({ media: 'print' })` never paginates, so it cannot show a torn entry; check page breaks in a
   real `page.pdf()`, and with `printBackground: true` under the dark theme.
+- Headless Firefox draws in software (`WebRender (Software)`) and overstates every cost of a motion; judge
+  motion with `pnpm design:transit --real-firefox`, which runs Firefox in a window on the GPU.
 - Headless Chromium draws WebGL on SwiftShader, which the stage refuses; capture the living stage with
   Playwright's `channel: 'chromium'`.
 - TypeScript skips files under `.claude/`; a script this skill needs lives in `tools/design/`.
