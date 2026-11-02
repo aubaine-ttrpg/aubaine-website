@@ -744,11 +744,21 @@ required wherever something moves for more than five seconds (WCAG 2.2.2).
 **A page change** (`docs/adr/0066-a-page-change-is-a-view-transition-where-the-choice-carries-across.md`)
 
 - The old page stays on screen until the new one is live, so no frame is empty, and the header holds still.
-- What you chose becomes the next page: a door's plates fly into its page's title plates, a card flies into
-  the sheet's card, and the rest cross-fades while the old page recedes to 0.97. A flown piece gives up its
-  own landing on that visit; the other arrivals play live.
+- What you chose becomes the next page: a door's plates fly into its page's title plates, and the rest
+  cross-fades while the old page recedes to 0.97. A flown piece gives up its own landing on that visit; the
+  other arrivals play live.
 - The motion is paced to end about 400 ms after the click: 260 to 360 ms on `--ease-travel`, so a light page
   flies longer and a heavy one stays on budget. Art effects start when it ends.
+- From a select screen, the spotlight opens into the sheet: every part travels to its counterpart in 400 ms on one
+  curve, `--ease-carry`, with no overshoot, as four masses 0 to 60 ms apart (card, slab and ghost; the head;
+  stickers and profile; traits). The roster fades away, the title and help button peel and the filters lift. Then
+  the sheet's own arrivals finish it: the emblem presses on, the radar unfolds from its centre, the grades stamp.
+  Back starts the masses in the opposite order, and the roster fades in over the last 220 ms of the flight, whole
+  when the last piece lands.
+- The stage is cheap while pieces fly: a baked soft image and a flat shade stand in for its blur, gradient and
+  halftone, and the real stage fades back in 320 ms. A page change has no wedge, burst or flip: games keep those
+  for rare moments, and the shipped menus of Deadlock and the League client change page with little more than a
+  fade (`.claude/skills/aubaine-design/references/hextech.md`, `deadlock.md`).
 - From the Livres spread, the help button leaves first, then the title plate dips, peels and flies off the
   screen by about 290 ms. Over that, from 110 ms, the right page turns over the spine and its back lands with
   the crest by about 380 ms, and the closed book is thrown off the screen by 530 ms. The page arrives from 270
@@ -756,7 +766,8 @@ required wherever something moves for more than five seconds (WCAG 2.2.2).
   rest and settles by 585 ms; the help button stamps on from 400 ms, by 620 ms.
 - A link answers at once (`data-pressed`), pressed paper moves 2 to 4 px and its offset shadow tightens, and
   a card never scales. A click during the transition is kept and replayed at its point.
-- Back returns the scroll, the spotlight or lit door, and flies the piece home if it is on screen.
+- Back returns the scroll, the spotlight or lit door, and flies the piece home if it is on screen. The other
+  doors fade in over the last 220 ms of that flight.
 
 **Waits ride the load**: a swap waits for its picture at most 250 ms and adds no hold of its own; the
 page crest shows only on a slow visit (`docs/adr/0012-the-header-outlives-the-page.md`, Decision 3).

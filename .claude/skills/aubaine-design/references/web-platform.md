@@ -527,3 +527,14 @@ with Firefox 144 the last engine ([web.dev](https://web.dev/blog/same-document-v
   disagree, as on anchor positioning (§ Popovers and anchors), guard the feature with `@supports` and
   test the fallback. A design report names the Baseline status of every feature it brings in.
   [Baseline](https://web.dev/baseline).
+
+## What a view transition repaints
+
+The new page's snapshot is live: everything it paints is repainted every frame while the transition runs, and a
+named element's own snapshot is no cheaper (naming the stage, or `will-change`, gained nothing on Firefox 158).
+Measured on real Firefox, in order of cost: a large `filter: blur()`; dozens of live cards; a gradient shade
+over the viewport; a mask on a large area. A background with two layers costs far more than one image plus a
+separate flat layer. `opacity: 0` on many cards still costs a layer each, where `visibility: hidden` costs nothing.
+Old snapshots are static and cheap, so what leaves can be as busy as it likes. Bring costly pieces in late, as
+the roster on Back fades in over the last 220 ms of the flight, or stand in for them under `html[data-transit]`,
+never at rest.

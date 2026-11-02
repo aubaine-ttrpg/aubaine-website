@@ -582,9 +582,11 @@ Durations and delays marked "× arrival" are multiplied by `--arrival`. In the t
   centre. The name and the picture are visible from the first frame.
 - After the arrival: the cover's pan (24 s), the ghost's drift (32 s each way), the living stage, and the
   scroll cue's nudge (2.4 s). The pause button stops the first three.
-- A card that flies into the sheet takes the place of the sheet card's own landing, on that visit only
-  (`[data-transit-flown]`, `src/styles/transit.css`); a direct load plays the table above. Back to a list or
-  a hub deals nothing again (`#swup[data-transit-returned]`). The owner's rulings of 2026-11-01.
+- Arriving from the select screen, a part that travels gives up the arrival on the part itself, on that visit
+  only (`src/scripts/page-sheet.ts`); arrivals inside it stay live, so the emblem, the radar and the grades still
+  play. A direct load plays the table above. Back to a list or a hub deals nothing again: what stays fades in over the
+  last 220 ms of the flight (`#swup[data-transit-returned]`, `src/styles/transit.css`). The owner's rulings of
+  2026-11-01 and 2026-11-02.
 - The approved sheet's arrival runs to about 1.6 s. The owner settled on 2026-10-30 that it stays as
   approved, while new pieces keep their arrival under 700 ms.
 

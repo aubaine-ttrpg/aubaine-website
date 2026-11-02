@@ -3,6 +3,8 @@
 **Project:** Aubaine, the wiki
 **Status:** Accepted
 **Date:** 2026-11-01
+**Revised:** 2026-11-01, Decision 2 gains an addendum: the whole sheet travels to and from its list, not the
+card alone; Decision 3 gains one: motion is judged on real Firefox frames, and the stage is cheap while it runs
 **Deciders:** Kori
 **Scope:** What a reader sees between two pages, from the click to the settled page, and how Back
 returns. Replaces the crossfade of 0012 Decision 3; the crest of that decision, and 0012 Decisions 1
@@ -93,6 +95,30 @@ here is Aubaine's own.
 - **Forbidding a flight when the plates wrap differently**: tried first. It blocked Codex to Arbres, the
   owner's own example, though each plate keeps its shape. Replaced by the shape test.
 
+### Addendum (2026-11-01): the select screen opens into the sheet
+
+- The card alone read as a fade, and only one way: "only the card is shrinking, and it's only one way, it
+  should both, reversed just like the book, and all the elements should move".
+- `src/scripts/page-sheet.ts`, `src/scripts/page-score.ts`: the spotlight and the sheet are built from the same
+  pieces (0054), so each part (ghost, kind, rule, badge, name, epithet, stickers, slab, card, profile, traits)
+  travels to its counterpart. Every path takes 400 ms on one curve, `--ease-carry`, with no overshoot and no
+  rotation of its own. The parts read as four masses that start 0 to 60 ms apart: card, slab and ghost; the
+  head; stickers and profile; traits. Back starts them in the opposite order. Pieces of one kind start together,
+  because a stagger along the direction of travel made a line catch itself up.
+- The life comes after the journey, from the approved arrivals, which stay live inside a flying part: the emblem
+  presses on, the radar unfolds from its centre, the grades stamp. A part's arrival on the part itself is
+  finished, since a transform on a named element moves its target.
+- The roster leaves as a soft fade, 6 ms apart by distance from the chosen card. On Back it fades in over the last
+  220 ms of the flight (`--transit-reveal`), whole when the last piece lands; the title falls and the help button
+  stamps.
+- A part with no place on the next page fades at once rather than waiting for a swap. A part off the screen takes
+  no flight. On a touch screen the spotlight usually shows another entry, so only the tapped card flies.
+- 545 to 583 ms on Chromium, inside the 700 ms of the arrival rule.
+
+**Rejected the same day, built and withdrawn:** a flat key-colour wedge crossing the screen, a starburst on landing,
+cards flipping away, parts lifting and slapping in flight, wind-ups and overshoots on every path. The owner: "we
+aint a comic book. it's heavy, not smooth at all". Reopen only on a new request from the owner.
+
 ---
 
 ## Decision 3: Motion is paced to be seen, inside 400 ms
@@ -126,6 +152,36 @@ here is Aubaine's own.
 - The 400 ms is measured on Chromium. Without a GPU in headless mode, Playwright's Firefox 155 read 390 to
   442 ms and its WebKit 26.6 read 426 to 520 ms; real Firefox 158 read 357 to 393 ms on a card flight, with
   frames up to about 130 ms in the headless builds. Safari itself was not driven.
+
+### Addendum (2026-11-01): judged on real Firefox, with a cheap stage while it runs
+
+- The new page of a view transition is live, so what it paints is repainted every frame. On real Firefox 158,
+  headless, index to sheet ran 13 frames at a 42 to 50 ms median, while Chromium held 17 ms. Films from Chromium
+  hid it. `pnpm design:transit --real-firefox` now reads it, motion only.
+- `src/styles/transit.css`, `src/lib/stage-ambient.ts`: while the motion runs, the arriving stage's
+  `filter: blur()`, its gradient shade and its masked halftone are hidden. A 32 px image baked at build, inlined as
+  `--stage-soft`, and a flat shade stand in. The real stage fades back in 320 ms when the motion ends. Rest pixels
+  do not change, because all of it applies only under `#swup[data-transit-arrived]`.
+- The roster and the other door rows hold hidden while pieces fly on the edges where they arrive live. On Back
+  they fade in over the last 220 ms of the flight instead of after it: the owner asked to close the empty gap
+  ("let's fix the back gap then", 2026-11-02).
+- Measured after, real Firefox 158, frames over the motion, median, worst: index to sheet 21 to 26, 10 to 17 ms,
+  58 to 92 ms; Back to the list 18 to 39, 8 to 17 ms, 33 to 107 ms; Codex to an index 14 to 18, 17 ms, 58 to 83 ms;
+  Back to Codex 15 to 19, 17 to 25 ms, 33 to 59 ms; Livres 34 to 44, 8 to 9 ms, 50 to 159 ms; Back to Livres 64 to 66,
+  8 ms, 25 to 34 ms.
+
+### Caveats of this addendum
+
+- The headless readings prove no GPU path. The owner's own Firefox may differ, and their eye decides.
+- For about 400 ms the background is a coarser stand-in: mean channel difference 0.7 to 6.6 of 255 from the real
+  stage, largest 56, hidden by the fade. Accepted against a stutter that was plainly visible.
+- Each cover adds about 400 bytes of inlined image to a select page.
+- Each roster card fades as its own layer, now inside the flight. Over the motion and the 260 ms after it, on real
+  Firefox 158, headless, Back to Arbres from Marchand read 33 to 39 frames against 38 to 40 before; Back to
+  Espèces and Back to Codex read the same as before. A fade on the roster's container would cost less but would
+  also fade the parent of the landing card, so it was not taken.
+- An edge with no flight into a long list stays rough on Firefox: Codex to Compétences, 9 to 11 frames, worst 83 to
+  150 ms. Worst frames above 50 ms remain on most edges, and the target of 50 ms is not met.
 
 ---
 
