@@ -15,6 +15,8 @@ renders the empty state (0025)
 mounts a React root from the shell (0041)
 **Revised:** 2026-10-15, Decision 3 gains an addendum: the shell defines the island runtime on every
 page, so the filter bar works after any Swup visit (0042)
+**Revised:** 2026-11-02, Decision 4 gains an addendum: the site answers only over HTTPS, with a
+zone redirect and a year of HSTS (0067)
 **Deciders:** Kori
 **Scope:** What runs at build time versus in the browser, how interaction that the design expressed
 as client state is expressed instead, and the cache policy that follows. Does not cover client
@@ -245,6 +247,12 @@ corrects both.
 and Astro's island runtime. On aubaine.io the saved theme was never restored and the island in
 Decision 3 never hydrated. 0022 has the build append a SHA-256 source for each of its own inline
 scripts to `script-src` in `dist/_headers`, while `public/_headers` keeps the authored policy.
+
+### Addendum (2026-11-02): the site answers only over HTTPS
+
+On 2026-11-02 `http://aubaine.io/` served the full page with no redirect. 0067 turns on the zone's
+Always Use HTTPS and HSTS in the Cloudflare dashboard, since `_redirects` cannot match a scheme. The
+security headers in `public/_headers` stay as they are, with no `Strict-Transport-Security` line.
 
 ---
 
