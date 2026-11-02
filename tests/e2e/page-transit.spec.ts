@@ -415,28 +415,6 @@ test.describe('page changes', () => {
     })
   }
 
-  test('the blurred stage waits for the landing and comes back at rest', async ({ page }) => {
-    await open(page, LIST)
-    await page.locator(CARD_ON_ROSTER).click()
-    await expect.poll(async () => (await spied(page)).ready).toBe(true)
-    const stageState = () =>
-      page.evaluate(() => {
-        const stage = document.querySelector('.au-character .au-stage')
-        const ambient = stage?.querySelector('.au-stage__ambient')
-        if (!stage || !ambient) throw new Error('the sheet has no stage')
-        return {
-          ambient: stage.hasAttribute('data-staged')
-            ? 'staged'
-            : getComputedStyle(ambient).visibility,
-          soft: getComputedStyle(stage, '::before').visibility,
-        }
-      })
-    expect(await stageState()).toEqual({ ambient: 'hidden', soft: 'visible' })
-    await settled(page)
-    await expect.poll(async () => (await stageState()).soft).toBe('hidden')
-    expect(['visible', 'staged']).toContain((await stageState()).ambient)
-  })
-
   for (const { stays, from, via, to, staying } of [
     {
       stays: 'the roster',

@@ -7,7 +7,6 @@ export type SelectEntry = {
   sheet: CharacterSheet
   ambient: string | undefined
   backdrop: string
-  soft: string
 }
 
 export type SelectGroup = {
@@ -22,8 +21,8 @@ export async function selectEntries(
 ): Promise<SelectEntry[]> {
   return Promise.all(
     cards.map(async (card) => {
-      const look = await stageLook(stageSource(card.cover, card.seal.colours))
-      return { card, sheet: sheetOf(card.facets.id), ...look }
+      const { ambient, backdrop } = await stageLook(stageSource(card.cover, card.seal.colours))
+      return { card, sheet: sheetOf(card.facets.id), ambient, backdrop }
     }),
   )
 }

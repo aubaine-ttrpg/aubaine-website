@@ -36,7 +36,6 @@ export type DoorContract = {
   lit: '' | undefined
   art: string | undefined
   backdrop: string
-  soft: string
   colours: string | undefined
   style: string
 }
@@ -57,7 +56,6 @@ export function doorContract(
     lit: lit ? '' : undefined,
     art: look.ambient,
     backdrop: look.backdrop,
-    soft: look.soft,
     colours: door.stage.kind === 'field' ? door.stage.colours.join('|') : undefined,
     style: [`--door-ink:${door.ink}`, `--door-colour:${door.mark.colour}`, `--order:${index}`].join(
       '; ',
