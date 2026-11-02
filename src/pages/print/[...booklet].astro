@@ -225,6 +225,7 @@ const chapters = book
   <body data-page-multiple="1">
     <Cover
       art={tree ? tree.cover : (book?.cover ?? catalogue?.cover)}
+      mirrored={tree?.coverMirrored ?? false}
       title={title}
       subtitle={tree?.subtitle ?? catalogue?.subtitle}
       eyebrow={eyebrow}

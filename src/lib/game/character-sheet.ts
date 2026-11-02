@@ -39,6 +39,7 @@ export type CharacterSheet = {
   traits: TraitSet | undefined
   profile: SheetProfile
   cover: string | undefined
+  coverMirrored: boolean
   seal: CardSeal
   effect: ArtEffect | undefined
   emblem: string | undefined
@@ -90,6 +91,7 @@ export function treeSheet(tree: ResolvedTree, corpus: Corpus, locale: Locale): C
     ),
     profile: tree.profile ? { kind: 'ranked', ranks: tree.profile } : { kind: 'pending' },
     cover: tree.cover,
+    coverMirrored: tree.coverMirrored ?? false,
     seal: treeSeal(tree, corpus),
     effect: tree.artEffect,
     emblem: tree.emblem,
@@ -168,6 +170,7 @@ export function speciesSheet(
     ),
     profile: { kind: 'none' },
     cover: species.cover,
+    coverMirrored: species.coverMirrored ?? false,
     seal: SPECIES_SEAL,
     effect: species.artEffect,
     emblem: species.emblem,
@@ -215,6 +218,7 @@ export function librarySheet(item: LibraryItem, corpus: Corpus, locale: Locale):
       traits,
       profile: { kind: 'none' },
       cover: item.cover,
+      coverMirrored: item.tree.coverMirrored ?? false,
       seal: treeSeal(item.tree, corpus),
       effect: item.tree.artEffect,
       emblem: item.tree.emblem,
@@ -230,6 +234,7 @@ export function librarySheet(item: LibraryItem, corpus: Corpus, locale: Locale):
     traits,
     profile: { kind: 'none' },
     cover: item.cover,
+    coverMirrored: false,
     seal: categorySeal(item.category),
     effect: undefined,
     emblem: undefined,

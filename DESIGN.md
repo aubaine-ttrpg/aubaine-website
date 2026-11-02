@@ -789,6 +789,10 @@ button hides (`tests/e2e/hub-stage.spec.ts`); a swap still changes the picture a
 - **A seal for an entry without one**, never a placeholder painting: on its roster card, in the spotlight
   and on its own page. "the new programtically generated cover should be shown instead of the image
   placeholder" (2026-10-28).
+- **An `-og` file is the owner's original** and its pixels are never edited. An entry that wants its
+  cover facing the other way writes `coverMirrored: true`: its card, its sheet, its spotlight and its
+  booklet cover show the painting mirrored with `scale: -1 1` (`Banner.astro`, `print/Cover.astro`),
+  while the blurred stage and the social image keep it as painted.
 - **The stage** comes from the entry's painting or from its seal, blurred into colour.
 - **No picture or video made for one page.** A hub may reuse what its sections hold (covers, emblems,
   pictograms) or draw with WebGL. The Home video and the 16:9 banners of the four index pages predate

@@ -15,6 +15,7 @@ type Props = {
   sizes?: string
   plate?: 'hero' | 'card' | undefined
   effect?: ArtEffect | undefined
+  mirrored?: boolean
 }
 
 const {
@@ -28,6 +29,7 @@ const {
   sizes = '100vw',
   plate,
   effect,
+  mirrored = false,
 } = Astro.props
 
 const image = artImage(art)
@@ -52,6 +54,7 @@ const fill = [
   `object-position:${objectPosition}`,
 ]
 const moving = [
+  mirrored ? 'scale:-1 1' : '',
   'will-change:transform',
   'backface-visibility:hidden',
   animation ? `animation:${animation}` : '',

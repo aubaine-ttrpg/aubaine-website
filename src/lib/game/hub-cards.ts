@@ -41,6 +41,7 @@ export type EntryCard = {
   status: ContentStatus | undefined
   badge: BadgedStatus | undefined
   cover: string | undefined
+  coverMirrored: boolean
   effect: ArtEffect | undefined
   seal: CardSeal
   mark: string | undefined
@@ -96,6 +97,7 @@ export async function treeCards(corpus: Corpus, locale: Locale): Promise<EntryCa
         status: tree.status,
         badge: badgedStatus(tree.status),
         cover: tree.cover,
+        coverMirrored: tree.coverMirrored ?? false,
         effect: tree.artEffect,
         seal,
         mark: seal.field,
@@ -137,6 +139,7 @@ export async function speciesCards(corpus: Corpus, locale: Locale): Promise<Entr
         status: entry.status,
         badge: badgedStatus(entry.status),
         cover: entry.cover,
+        coverMirrored: entry.coverMirrored ?? false,
         effect: entry.artEffect,
         seal: SPECIES_SEAL,
         mark: undefined,
@@ -175,6 +178,7 @@ async function libraryCard(item: LibraryItem, corpus: Corpus, locale: Locale): P
       status: item.tree.status,
       badge: badgedStatus(item.tree.status),
       cover: item.cover,
+      coverMirrored: item.tree.coverMirrored ?? false,
       effect: item.tree.artEffect,
       seal,
       mark: seal.field,
@@ -197,6 +201,7 @@ async function libraryCard(item: LibraryItem, corpus: Corpus, locale: Locale): P
     status: undefined,
     badge: undefined,
     cover: item.cover,
+    coverMirrored: false,
     effect: undefined,
     seal,
     mark: seal.field,

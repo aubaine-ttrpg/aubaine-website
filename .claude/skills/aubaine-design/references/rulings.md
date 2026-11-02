@@ -91,6 +91,15 @@ How to cite).
 
 > "never delete art except if i explicitly say so, if i don't say it just move them to the unused / unassigned thing" (2026-09-25)
 
+**Never edit an `-og` file.** Its pixels are the owner's original: a change to how a picture shows is
+an option in the entry's data that the code applies, such as `coverMirrored`. Asked to flip the Mage,
+Cuisinier and Paladin covers on 2026-11-02, the agent mirrored the three PNGs; the owner stopped it,
+the files were restored from git, and the option was built instead.
+
+> "no create the option please" (2026-11-02)
+
+> "they are og they shouldn't be touched" (2026-11-02)
+
 ## The direction
 
 **Three games.** Persona 5, Deadlock and Hextech, the League of Legends client. World of Warcraft is not
@@ -607,4 +616,4 @@ and praised the Saison slider.
 | 2026-11-01 | the empty screen between pages goes; B, the pick carries across; a motion has to be seen; a draft card flies; Livres closes like a book; no frame nobody meant, the title moves as paper; the whole sheet travels, both ways; the flying card replaces the landing on those visits; Back returns where you were |
 | 2026-10-31 | pieces sit on the shape; B+ ships; C+ and D kept, the poster wall dropped; this skill; accepted screenshots only; highest quality, many links; the contents spread opens Livres and the plate menu the Codex; every category listed, the empty ones saying so; the archives in Livres; Books left to the designer |
 | 2026-11-01 | the help button's margin and the stage pages' print, by request |
-| 2026-11-02 | the carry on one curve with live arrivals on landing, approved; what stays is whole when the pieces land; approvals recorded as what was approved; the stage stays alive through a page change; the Elfe wears forest green; a tree writes its key colour and a kept reading is pinned; a Codex door name holds one line on a desktop |
+| 2026-11-02 | the carry on one curve with live arrivals on landing, approved; what stays is whole when the pieces land; approvals recorded as what was approved; the stage stays alive through a page change; the Elfe wears forest green; a tree writes its key colour and a kept reading is pinned; never edit an `-og` file, mirror a cover by option; a Codex door name holds one line on a desktop |

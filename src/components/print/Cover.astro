@@ -7,6 +7,7 @@ import Leaf from './Leaf.astro'
 
 type Props = {
   art: string | undefined
+  mirrored: boolean
   title: string
   subtitle: string | undefined
   eyebrow: string
@@ -14,7 +15,7 @@ type Props = {
   version: string
 }
 
-const { art, title, subtitle, eyebrow, kindLabel, version } = Astro.props
+const { art, mirrored, title, subtitle, eyebrow, kindLabel, version } = Astro.props
 
 const source = artImage(art) ?? artImage(PLACEHOLDER_COVER)
 const plate = source
@@ -40,7 +41,15 @@ const titleSize = TITLE_TIERS.find((tier) => title.length >= tier.from)?.classNa
 
 <Leaf class="au-cover au-cover--recto">
   <div class="au-cover__inner">
-    {plate && <img class="au-cover__art" src={plate.src} alt="" />}
+    {
+      plate && (
+        <img
+          class:list={['au-cover__art', mirrored && 'au-cover__art--mirrored']}
+          src={plate.src}
+          alt=""
+        />
+      )
+    }
     <div class="au-cover__wash au-cover__wash--recto-radial"></div>
     <div class="au-cover__wash au-cover__wash--recto-linear"></div>
     <div class="au-grain"></div>

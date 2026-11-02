@@ -71,6 +71,7 @@ const sizes = `(min-width: 1100px) and (min-height: 640px) ${CARD_WIDE}, (min-wi
             settle={1}
             priority={live}
             sizes={sizes}
+            mirrored={card.coverMirrored}
           />
         ) : (
           <CoverSeal name={card.name} seal={card.seal} />

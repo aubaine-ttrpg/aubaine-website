@@ -89,6 +89,13 @@ const emblem = emblemFile
     "Emblème de l'entrée, dans data/media/emblems/ : un SVG blanc sur fond transparent, fait de chemins seuls. pnpm media:emblems le ramène au cadre carré et à la marge que partagent tous les emblèmes, pnpm media:stamp lui donne ses droits. Rendu en relief, seul, en bas à droite de la carte du héros. Absent : la carte n'en porte pas.",
   )
 
+const coverMirrored = z
+  .literal(true)
+  .optional()
+  .describe(
+    "La couverture se montre en miroir, retournée de gauche à droite, sur sa carte, dans son héros et, pour un arbre, sur la couverture de son livret ; le fichier reste l'original. Le fond flou du héros et la vignette sociale la gardent telle qu'elle est peinte. Absent : la couverture telle qu'elle est peinte.",
+  )
+
 const keyColour = z
   .string()
   .regex(HEX)
@@ -490,6 +497,7 @@ export const skillTree = z
       .describe(
         "Couverture au rapport 3:4, dans data/media/art/ : l'unique illustration de l'arbre, sur sa carte, dans son héros, sur la couverture de son livret et dans sa vignette sociale. Absente, la planche 3:4 par défaut.",
       ),
+    coverMirrored,
     artEffect,
     emblem,
     keyColour,
@@ -690,6 +698,7 @@ export const species = z
       .describe(
         "Couverture au rapport 3:4, dans data/media/art/ : l'unique illustration de l'Espèce, sur sa carte, dans son héros et dans sa vignette sociale. Absente, la planche 3:4 par défaut.",
       ),
+    coverMirrored,
     artEffect,
     emblem,
     keyColour,

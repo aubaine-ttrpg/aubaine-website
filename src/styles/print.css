@@ -127,6 +127,10 @@
   object-position: 50% 16%;
 }
 
+.au-cover__art--mirrored {
+  scale: -1 1;
+}
+
 .au-cover__wash {
   position: absolute;
   inset: 0;

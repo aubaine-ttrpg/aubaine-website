@@ -45,6 +45,11 @@
       "type": "string",
       "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-\\d{1,2}_\\d{1,2}-(?:og|cleaned|upscaled_[24])\\.(?:png|jpg)$"
     },
+    "coverMirrored": {
+      "description": "La couverture se montre en miroir, retournée de gauche à droite, sur sa carte, dans son héros et, pour un arbre, sur la couverture de son livret ; le fichier reste l'original. Le fond flou du héros et la vignette sociale la gardent telle qu'elle est peinte. Absent : la couverture telle qu'elle est peinte.",
+      "type": "boolean",
+      "const": true
+    },
     "artEffect": {
       "description": "Effet de rendu que le navigateur applique à la couverture, sur la carte comme sur le héros : 'film' pour « Pellicule », 'oil' pour « Huile ». Absent : l'illustration telle quelle.",
       "type": "string",

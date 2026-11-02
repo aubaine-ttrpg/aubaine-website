@@ -85,19 +85,29 @@ test('a species hero carries descriptors and its traits, and no profile', async 
   )
 })
 
-type HeroEntry = { path: string; cover: string | undefined; keyColour: string | undefined }
+type HeroEntry = {
+  path: string
+  index: string
+  cover: string | undefined
+  coverMirrored: boolean
+  keyColour: string | undefined
+}
 
 async function heroEntries(): Promise<HeroEntry[]> {
   const french = await corpus('fr')
   return [
     ...french.species.map((entry) => ({
       path: pathFor('speciesEntry', 'fr', { species: entry.id }),
+      index: pathFor('species', 'fr'),
       cover: entry.cover,
+      coverMirrored: entry.coverMirrored === true,
       keyColour: entry.keyColour,
     })),
     ...french.trees.map((entry) => ({
       path: pathFor('tree', 'fr', { tree: entry.id }),
+      index: pathFor('trees', 'fr'),
       cover: entry.cover,
+      coverMirrored: entry.coverMirrored === true,
       keyColour: entry.keyColour,
     })),
   ]
@@ -127,6 +137,26 @@ test('a species or a tree that writes its own key colour wears it instead of its
   expect(written, 'no species or tree writes its own key colour').not.toHaveLength(0)
   for (const { path, keyColour } of written) {
     await expectKey(page, path, keyColour ?? '')
+  }
+})
+
+test('a cover shows mirrored on its hero and its roster card only when its entry asks for it', async ({
+  page,
+}) => {
+  const painted = (await heroEntries()).filter((entry) => entry.cover)
+  expect(
+    painted.filter((entry) => entry.coverMirrored),
+    'no entry mirrors its cover',
+  ).not.toHaveLength(0)
+  for (const { path, index, coverMirrored } of painted) {
+    const scale = coverMirrored ? '-1 1' : 'none'
+    await page.goto(path)
+    await expect(page.locator(`${HERO} [data-plate="hero"]`), path).toHaveCSS('scale', scale)
+    await page.goto(index)
+    await expect(
+      page.locator(`a[href="${path}"] [data-plate="card"]`),
+      `${index} card for ${path}`,
+    ).toHaveCSS('scale', scale)
   }
 })
 

@@ -41,6 +41,12 @@ describe('the sheet of a tree', () => {
       )
     }
   })
+
+  it('mirrors its cover only when the tree asks for it', () => {
+    for (const tree of french.trees) {
+      expect(treeSheet(tree, french, 'fr').coverMirrored).toBe(tree.coverMirrored === true)
+    }
+  })
 })
 
 describe('the sheet of a species', () => {
@@ -67,6 +73,7 @@ describe('the sheet of a species', () => {
         (species.descriptors ?? []).map((key) => label(english.descriptors.get(key), 'en', key)),
       )
       expect(sheet.keyColour).toBe(species.keyColour)
+      expect(sheet.coverMirrored).toBe(species.coverMirrored === true)
       expect(sheet.profile).toEqual({ kind: 'none' })
       expect(sheet.seal).toEqual(SPECIES_SEAL)
     }

@@ -5,6 +5,7 @@
   "treeType": "archetype",
   "size": 16,
   "cover": "cuisinier-3_4-og.png",
+  "coverMirrored": true,
   "keyColour": "#ea926d",
   "placements": []
 }
