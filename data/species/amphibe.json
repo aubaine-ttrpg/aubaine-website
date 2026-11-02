@@ -2,6 +2,7 @@
   "id": "amphibe",
   "status": "draft",
   "name": "Amphibe",
+  "cover": "amphibe-3_4-og.png",
   "types": [
     "humanoid"
   ],
