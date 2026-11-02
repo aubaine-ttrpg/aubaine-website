@@ -595,9 +595,17 @@ above (all answered; none moved but the Map page). What it adds:
 Nothing published documents how Deadlock's screens change: the [Hideout](https://deadlock.wiki/Hideout) page
 says a terminal opens a full-screen menu and shows no motion; the
 [Curiosity Shop](https://deadlock.wiki/The_Curiosity_Shop) page holds static files only; no Valve interface
-designer's portfolio was found. Nothing about Deadlock's motion may be claimed until footage is captured:
-hero select, the shop's tabs after the [29 September 2026 refresh](https://deadlock.wiki/Update:September_29,_2026)
-("Refreshed Shop UI."), a terminal opening.
+designer's portfolio was found. Footage is still not captured: hero select, the shop's tabs after the
+[29 September 2026 refresh](https://deadlock.wiki/Update:September_29,_2026) ("Refreshed Shop UI."), a terminal opening.
+
+**Shipped code, read on 2026-11-01**, from SteamDB's dump of the game's Panorama files. These are rules, not what the
+eye sees, and the build date was not checked. Searched directly:
+[`citadel_db_page_shared.css`](https://raw.githubusercontent.com/SteamDatabase/GameTracking-Deadlock/master/game/citadel/pak01_dir/panorama/styles/citadel_db_page_shared.css)
+changes a dashboard page by one rule: opacity, `pre-transform-scale2d: 0.975`, `wash-color: #63b5af` to white, `0.25s
+ease-in`. [`citadel_hud_hero_shop.css`](https://raw.githubusercontent.com/SteamDatabase/GameTracking-Deadlock/master/game/citadel/pak01_dir/panorama/styles/citadel_hud_hero_shop.css)
+swaps a list with opacity and transform in `0.21s`. Read through a fetch tool: a list is hidden at
+`translateY(-20px)`; the one overshoot found is one selected tab label, `TabSelected`, 0.2 s; the hero's scene fades in
+0.21 s once loaded. There is no wipe in what was read.
 
 ## Captures still to take
 

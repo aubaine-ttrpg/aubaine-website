@@ -560,9 +560,18 @@ gives a duration for a change of level; every number below comes from counting f
   (2016-09-11, Play-Asia's translation): "it will pop up without any lag whatsoever", said of opening the
   menu, not of a change of level.
 
-**What Aubaine takes:** the previous screen stays until the next one covers it, never an empty frame; one
-flat shape moves, not a fade; something known persists across the change. **What stays in the game:** the
-hand against the camera, glass, a different wipe for every sub-menu, long loading scenes.
+**What Aubaine takes:** the previous screen stays until the next one covers it, never an empty frame; something
+known persists across the change. **What stays in the game:** the hand against the camera, glass, a different wipe for
+every sub-menu, long loading scenes.
+
+**Corrected on 2026-11-01.** This entry also took "one flat shape moves, not a fade" from the menu opening. That
+capture does not show a page change, so the take is held until the menus are counted frame by frame, and it led to a
+wedge and a starburst the owner rejected. Battle and menu had separate designers: "There were separate designers for
+the menu and battle scene UI." ([Siliconera](https://www.siliconera.com/atlus-reveals-design-secrets-behind-persona-5s-distinctive-ui/),
+2017-11-13). Nothing from Atlus ties comic framing to a menu change, and no source shows a starburst as a transition;
+starbursts here are static ornaments. Atlus's stated rule for a level change is layout and angle:
+「下の階層に移動するときは、レイアウトやアングルを変えて、階層認識のしやすさを意識。」
+([Famitsu](https://www.famitsu.com/news/201711/13145540.html), 2017-11-13). Nobody has measured a menu page change.
 
 ## Capture inventory
 

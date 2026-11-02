@@ -466,6 +466,17 @@ Riot publishes no navigation transition. Pictures were captured into the scratch
 **What Aubaine takes:** the shell holds still and the centre changes; acknowledge the press first; ceremony
 scales with the value of the choice. **What stays in the game:** large smoke videos.
 
+**Shipped code, read on 2026-11-01.** Riot's words still give no navigation timing, but the client's own files do.
+[`rcp-fe-lol-collections.css`](https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-collections/global/default/rcp-fe-lol-collections.css),
+dumped by CommunityDragon, opens each Collection tab with `animation-duration:1s;animation-name:fadeIn`: a plain
+opacity fade, no easing declared (searched directly). Read through a fetch tool, in part: `.loot-content-wrapper` is
+`transition:opacity .5s ease`, and champion details moves small pieces (`.carousel-track{transition:.7s
+cubic-bezier(0,0,0,1)}`). No hexagon or gold wipe, parallax or shared-element carry was found in the parts read.
+Riot's force goes elsewhere: lock-in should "blow up to fill the frame" and the ready check "should feel like you're
+entering a portal" ([Crafting the Client: The Play Loop](https://www.surrenderat20.net/2016/05/red-post-collection-2016-mid-season.html),
+2016-05-04, mirrored). Richard Ye: "In many animations, only a few parts are animating at the same time."
+No footage of a page change was framed. The carry across pages is the owner's idea, not Riot's.
+
 ## Screens studied
 
 ### Viewed
