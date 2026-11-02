@@ -236,3 +236,7 @@ so the arrival and the living stage have settled; save it as JPEG, 1400 px wide,
 `sharp(png).resize({ width: 1400 }).jpeg({ quality: 80, mozjpeg: true })`, into `../assets/approved/`
 under the piece's name. Measure the file (about 65 to 150 KB) and cite it from `approved-pieces.md`; a
 capture nothing cites is not kept.
+
+An approved motion is captured as a film strip: `pnpm design:transit --film=DIR` on the approved edge, in
+French, at 1512 × 860, then the contact sheet saved as JPEG 1800 px wide, quality 80, so its 32 frames stay
+readable (about 190 KB). Name it after the change, such as `page-change-sheet-open.jpg`.

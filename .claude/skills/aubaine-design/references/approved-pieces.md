@@ -37,12 +37,12 @@ rebuilding a piece or matching it.
 
 ## Status, routes and captures
 
-| Piece | Approved | The owner's words | Built by | Routes |
+| Piece | Approved | Capture | Built by | Routes |
 | --- | --- | --- | --- | --- |
-| Character sheet | 2026-10-27 | "Bro... you cooked so hard, i'm crying" | `CharacterHero.astro`, recorded in `docs/adr/0054-the-hero-of-a-tree-or-a-species-is-a-character-sheet-on-a-living-stage.md` | `/fr/arbre/marchand`, `/fr/espece/drow`, `/en/tree/marchand`, `/en/species/drow` |
-| Select screen | 2026-10-28 | "everything you did was perfect" | `SelectScreen.astro` | `/fr/arbres`, `/fr/especes`, `/en/trees`, `/en/species` |
-| Hub plate menu | 2026-10-31 | "let's do B+" | `PlateMenu.astro` with `PlateDoor.astro`, recorded in `docs/adr/0065-the-livres-hub-opens-on-its-contents-and-lists-every-category.md` | `/fr/almanach`, `/en/almanach` |
-| Livres contents | 2026-10-31 | "let's put C+ for books and keep b+ for codex." | `SommaireSpread.astro` with `SommaireEntry.astro`, recorded in the same record | `/fr/livres`, `/en/books` |
+| Character sheet | 2026-10-27 | `sheet-tree-marchand.jpg`, `sheet-species-drow.jpg` | `CharacterHero.astro`, recorded in `docs/adr/0054-the-hero-of-a-tree-or-a-species-is-a-character-sheet-on-a-living-stage.md` | `/fr/arbre/marchand`, `/fr/espece/drow`, `/en/tree/marchand`, `/en/species/drow` |
+| Select screen | 2026-10-28 | `select-screen-arbres.jpg` | `SelectScreen.astro` | `/fr/arbres`, `/fr/especes`, `/en/trees`, `/en/species` |
+| Hub plate menu | 2026-10-31, the owner's pick of B+ | `hub-codex.jpg` | `PlateMenu.astro` with `PlateDoor.astro`, recorded in `docs/adr/0065-the-livres-hub-opens-on-its-contents-and-lists-every-category.md` | `/fr/almanach`, `/en/almanach` |
+| Livres contents | 2026-10-31, the owner's pick of C+ | `hub-livres.jpg` | `SommaireSpread.astro` with `SommaireEntry.astro`, recorded in the same record | `/fr/livres`, `/en/books` |
 
 The plate menu first opened Livres too; the contents spread took Livres the same day. The owner left the
 details of Books to the designer ("i'll let you cook for Books"): every category has its entry, empty or
@@ -65,6 +65,11 @@ accepted piece). Open one with the Read tool to see it.
 | `select-screen-arbres.jpg` | The Arbres select screen with Marchand in the spotlight: the title plates and their help button, the filter bar, the Archétypes group mark, drafts stamped « Brouillon », the profile over the card's lower-left corner, the open link taking its row. |
 | `hub-codex.jpg` | The Codex plate menu at rest: the first door lit in bone plates, the others on black paper, the lit door's band and pictogram on the right of the stage. |
 | `hub-livres.jpg` | The Livres contents at rest: the bone spread on the living stage, the four categories and the archives under the placeholder mark, the first entry lit over its slab, the pause square clear of the sheet. |
+| `page-change-sheet-open.jpg` | The page change approved on 2026-11-02, Arbres to Marchand, 32 painted frames: the roster fades, every part carries into the sheet, then the radar unfolds and the grades stamp. Values in `src/scripts/page-score.ts`. |
+| `page-change-sheet-back.jpg` | The same change on Back: the parts carry home in reverse order and the roster fades in under the last 220 ms of the flight. |
+
+The two film strips were taken on 2026-11-02 with `pnpm design:transit --film`, in French, at 1512 × 860,
+in headless Chromium, which draws the stage without WebGL; they record the motion, not the living stage.
 
 ## Reading the values
 

@@ -30,8 +30,9 @@ argument-hint: [page or piece, and what should change]
   layout, depth, shapes, components, motion, pictures and accessibility. Keep it true after a change. A
   design that breaks one of its principles needs a new decision from the owner, recorded in
   `references/rulings.md`.
-- **`references/rulings.md`** holds the owner's rulings, dated and quoted. They bind every design; one is
-  reopened only for a new reason, and lost context is not one.
+- **`references/rulings.md`** holds the owner's rulings, each dated: a correction or a rejection in the
+  owner's own words, which carry its reason; an approval as what was approved, with its values and its
+  capture. They bind every design; one is reopened only for a new reason, and lost context is not one.
 - A rule under `.claude/rules/` wins over this file; read the `frontend/` rules that apply, such as
   `frontend/accessibility.md`.
 - Colours and pictograms of kinds and book categories have one source, `KIND_MARKS` and
@@ -118,7 +119,7 @@ subagent gets the brief, the files in scope and what earlier steps found.
 
 | File | Read it |
 | --- | --- |
-| `references/rulings.md` | At intake, every time: what the owner decided, in their words |
+| `references/rulings.md` | At intake, every time: what the owner decided, rejected and approved |
 | `references/approved-pieces.md` | Before reusing, matching or touching an approved piece, and for the door contract |
 | `references/prototypes.md` | Before building a prototype, reviewing it with the owner, shipping it, or reusing a kept layout |
 | `references/measuring.md` | Before claiming that anything fits, is unchanged or reads |
@@ -138,10 +139,14 @@ Neither edits a file or runs a command: the main agent captures pictures, runs t
 
 ## Maintaining this skill
 
-- A design correction from the owner goes into `references/rulings.md`, dated and quoted, in the change
-  that applies it. Check a quote against the stored conversations with a search that tolerates typos,
-  since the owner's own spelling defeats an exact search, and count as the owner's words only what they
-  typed or picked in an answer, never a tool's output that repeats them.
+- A design correction or rejection from the owner goes into `references/rulings.md`, dated and quoted, in
+  the change that applies it. Check a quote against the stored conversations with a search that tolerates
+  typos, since the owner's own spelling defeats an exact search, and count as the owner's words only what
+  they typed or picked in an answer, never a tool's output that repeats them.
+- An approval goes into `references/rulings.md` as what was approved, never as the owner's praise: a
+  description, its values or the file that holds them, a capture in `assets/approved/` (a screenshot, or
+  for a motion a film strip from `pnpm design:transit --film`), and the date. Cite the capture from
+  `references/approved-pieces.md` (`references/measuring.md`, Capture an accepted piece).
 - After editing the description, check it against `evals/trigger-queries.json`: the queries marked
   `should_trigger` load this skill, and the near misses load another one or none.
 - `claude plugin validate .claude/skills` and `claude plugin validate .claude/agents` check the

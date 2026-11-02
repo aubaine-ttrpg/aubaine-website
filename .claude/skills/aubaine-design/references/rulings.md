@@ -1,12 +1,14 @@
 # The owner's design rulings
 
 Every ruling the owner made about how Aubaine looks, and how design work is done with them. Each one
-gives the rule and, except one undated ruling, its date; most also quote the owner's words. Quotes dated
-2026-10-16 or from 2026-10-23 on were checked against the stored conversations and are verbatim, typos
-kept; the earlier ones and the undated one come from notes written at the time. Read the sections that
+gives the rule and, except one undated ruling, its date. A correction or a rejection also quotes the
+owner's words, because they carry its reason. Quotes dated 2026-10-16 or from 2026-10-23 on were checked
+against the stored conversations and are verbatim, typos kept; the earlier ones and the undated one come
+from notes written at the time. An approval is recorded as what was approved: a description, its values
+or the file that holds them, its capture in `../assets/approved/`, and the date. Read the sections that
 touch the task before proposing anything; a ruling is not reopened without a new reason, and losing
-context is not one. When the owner corrects a design, the correction is added here, dated and quoted, in
-the same change.
+context is not one. When the owner corrects, rejects or approves a design, it is added here in the same
+change.
 
 The look itself, its values and its principles, is documented in `DESIGN.md` at the repository root;
 the values of the approved pieces are in `approved-pieces.md`.
@@ -73,6 +75,12 @@ reader.
 screenshot is not kept. The accepted pieces are captured in `../assets/approved/`.
 
 > "also other thing do not put the screenshots of rejections and such, rather just put screenshots if you want in the skill of accepted things no need to have 3412321 pictures each time i reject something" (2026-10-31)
+
+**An approval is recorded as what was approved, not as praise.** Its description, its values or the file
+that holds them, its capture (a screenshot, or a film strip for a motion) and its date. The owner's words
+are kept for corrections and rejections, where they carry the reason.
+
+> "i want to know whats the point when creating skill to put my approval sentences, it seems useless, i think i get to have screenshots or description of what i approved, but sentences ?" (2026-11-02)
 
 **Link other studios' pictures, never copy them.** Screenshots of the reference games stay out of the
 repository and are linked at their source (the owner's pick among proposals, 2026-10-28; `research.md`,
@@ -147,13 +155,10 @@ their lists byte for byte as they render (`approved-pieces.md` lists their files
 
 > "you can fix those as you suggested once you are finished with all the commits" (2026-11-01, the owner's request that opened `TitlePlates.astro` and the print rules of the approved pieces: the help button's scroll margin and the stage pages' print, neither visible on screen)
 
-**The approvals.**
-
-> "Bro... you cooked so hard, i'm crying" (2026-10-27, the character sheet)
-
-> "everything you did was perfect" (2026-10-28, the character sheet and the select screen)
-
-> "let's do B+" (2026-10-31, the hub plate menu)
+**The approvals.** The character sheet on 2026-10-27 (`../assets/approved/sheet-tree-marchand.jpg`,
+`sheet-species-drow.jpg`); the select screen on 2026-10-28, with that day's round on the sheet
+(`select-screen-arbres.jpg`); the hub plate menu, B+, and the Livres contents, C+, on 2026-10-31
+(`hub-codex.jpg`, `hub-livres.jpg`). Their values are in `approved-pieces.md`.
 
 **The select screen's shape is the owner's pick.** On 2026-10-27, among proposals, the owner chose the
 roster on the left and the spotlight on the right, the spotlight on top with ‹ › arrows on a phone, and
@@ -222,15 +227,11 @@ the owner's words).
 
 **The plate menu opens the Codex.** B+, the composed plate menu, opens the Codex in both languages
 (`approved-pieces.md`, The hub plate menu). It first opened Livres too, until the contents spread took
-Livres the same day.
-
-> "let's do B+" (2026-10-31)
+Livres the same day. The owner's pick, 2026-10-31.
 
 **The contents spread opens Livres.** C+, the Sommaire spread, opens Livres in both languages
-(`approved-pieces.md`, The Livres contents), one entry per book category and the archives last. The owner
-left the details of Books to the designer.
-
-> "let's put C+ for books and keep b+ for codex." (2026-10-31)
+(`approved-pieces.md`, The Livres contents), one entry per book category and the archives last. The
+owner's pick, 2026-10-31, keeping B+ for the Codex; they left the details of Books to the designer.
 
 > "i'll let you cook for Books. Be smart. Professional. Make no mistakes." (2026-10-31)
 
@@ -361,7 +362,7 @@ as « Proposée par une Espèce » and « Voir l’espèce » did there until 20
 
 > "just buttons… much simpler and better ui and ux" (2026-09-25)
 
-> "it's perfect, I'm tearing up" (2026-09-25, the result)
+The owner approved the result on 2026-09-25; no capture was kept.
 
 **Level up, don't strip down.** When two components doing one job differ, give the plainer one the
 richer one's treatment; the fault is the difference, not the richer one's weight. Remove an element only
@@ -482,9 +483,9 @@ with their hovers. It reopens the crossfade of `docs/adr/0012-the-header-outlive
 > "We are using Swup in order to create a single-page app / video game feel, except currently no transitions exists between the HUBs, indexes and indivudale pages. It's just a blank screen and then nothing else." (2026-11-01)
 
 **The page change: what you chose becomes the next page.** Among four live looks the owner picked B, The
-Pick (`docs/adr/0066-a-page-change-is-a-view-transition-where-the-choice-carries-across.md`).
-
-> "honestly, only based on your descriptions B looks like what we agreed upon so it's good for me." (2026-11-01)
+Pick, on 2026-11-01 (`docs/adr/0066-a-page-change-is-a-view-transition-where-the-choice-carries-across.md`).
+They picked it from the descriptions, because the looks then moved too fast to tell apart (the next
+ruling).
 
 **A motion has to be seen.** The first timing met its numbers and showed nothing: a 300 ms flight on `--ease`
 crossed most of its travel in 94 ms. Judge a motion by how long it takes to cross, and film it
@@ -492,9 +493,8 @@ crossed most of its travel in 94 ms. Judge a motion by how long it takes to cros
 
 > "i don't see any diff really, it seems that everything is too quick to see, maybe cuz i'm on firefox or maybe cuz my pc is lagging idk." (2026-11-01)
 
-**A draft card flies with its stamp.**
-
-> "Draft cards are perfect, it's the correct behaviour it's my bad i forgot to say it to you but you did understand, congrats." (2026-11-01)
+**A draft card flies with its stamp.** A draft's card travels like any other, darkened and stamped
+« Brouillon » as the roster shows it. Approved on 2026-11-01; no capture was kept.
 
 **Livres closes like a book, the title leaving first.** The closing is the owner's idea. The first build
 closed the book with the title on it, and the owner called it ugly: the title and the help button leave the
@@ -531,7 +531,9 @@ stamp), with no effect on the journey.
 
 > "this just feel sloppy to have just sliding elemnts, DEADLOCK AND PERSON 5 designs do not just slide they animate they make things livings" (2026-11-01)
 
-> "Anyway it's perfect the way it is now, congrats, it really feels great" (2026-11-02, on the carry with live arrivals)
+Approved on 2026-11-02. The values are in `src/scripts/page-score.ts`: every part travels 400 ms on
+`--ease-carry`, in four masses 0 to 60 ms apart, reversed on Back. Film strips, index to sheet and back:
+`../assets/approved/page-change-sheet-open.jpg`, `page-change-sheet-back.jpg`.
 
 **On Back, what stays is whole when the pieces land.** The roster and the other doors fade in over the last
 220 ms of the flight, not after it, so the screen never sits half empty once the pieces are home.
@@ -578,4 +580,4 @@ and praised the Saison slider.
 | 2026-11-01 | the empty screen between pages goes; B, the pick carries across; a motion has to be seen; a draft card flies; Livres closes like a book; no frame nobody meant, the title moves as paper; the whole sheet travels, both ways; the flying card replaces the landing on those visits; Back returns where you were |
 | 2026-10-31 | pieces sit on the shape; B+ ships; C+ and D kept, the poster wall dropped; this skill; accepted screenshots only; highest quality, many links; the contents spread opens Livres and the plate menu the Codex; every category listed, the empty ones saying so; the archives in Livres; Books left to the designer |
 | 2026-11-01 | the help button's margin and the stage pages' print, by request |
-| 2026-11-02 | the carry on one curve with live arrivals on landing, approved; what stays is whole when the pieces land |
+| 2026-11-02 | the carry on one curve with live arrivals on landing, approved; what stays is whole when the pieces land; approvals recorded as what was approved |

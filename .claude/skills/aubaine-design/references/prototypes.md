@@ -62,16 +62,16 @@ pictograms nobody picked then leave, as [Shipping a pick](#shipping-a-pick) asks
 3. Report the audit table, the contrast of the lines over the stage, and how the approved pages compared
    to their captures.
 4. Name what each option takes from which in-game screen (`research.md`) and what it leaves.
-5. Wait for the owner's pick. Every word of their verdict goes into `rulings.md`, dated and quoted, in
-   the same change.
+5. Wait for the owner's pick. A correction or a rejection goes into `rulings.md` dated and quoted; the
+   pick goes in as what was picked, described and dated, with its capture once it ships.
 
 ## The kept layouts
 
 On 2026-10-31 the owner picked B+ for the hubs and asked to keep two other layouts for a page that may
 need them: "let's keep D possibly for later for something else and C+ too, let's not waist them but
-rather keep them for something". Later that day C+ shipped as the Livres hub: "let's put C+ for books and
-keep b+ for codex." It left the gated page and is specified in `approved-pieces.md`, The Livres
-contents. D stays built, lit by the door contract and audited on the gated page; it is not approved for a
+rather keep them for something". Later that day the owner picked C+ for the Livres hub and kept B+ for
+the Codex. C+ left the gated page and is specified in `approved-pieces.md`, The Livres contents.
+D stays built, lit by the door contract and audited on the gated page; it is not approved for a
 live page, and shipping it is a new pick by the owner.
 
 ### D, the slanted doors
@@ -116,6 +116,6 @@ The order the hub plate menu, then the Livres contents, shipped in, on 2026-10-3
 6. **Prove it.** The live page matches the prototype to the pixel, the approved pages match their
    captures, and `pnpm verify` and the end-to-end run pass.
 7. **Record it.** An ADR through the `aubaine-adr` skill, `DESIGN.md` (its page types, layout and
-   components), `approved-pieces.md` (the spec and the guard tests), `rulings.md` (the pick, quoted), and
+   components), `approved-pieces.md` (the spec and the guard tests), `rulings.md` (the pick, described and dated), and
    the accepted capture in `../assets/approved/`.
 8. **Report** the links, the tables and what was removed, and commit only on « commit ».
