@@ -169,7 +169,7 @@ test.describe('page changes', () => {
         '::view-transition-image-pair(au-book-right)',
         '::view-transition-image-pair(au-book-left)',
         '::view-transition-image-pair(au-book-back)',
-        '::view-transition-image-pair(au-book-title)',
+        '::view-transition-image-pair(au-title)',
       ]),
     )
     await expect(page).toHaveURL('/en/books/rules')
@@ -357,15 +357,63 @@ test.describe('page changes', () => {
     expect(seen.rejected).toEqual([])
   })
 
-  test('the chosen card flies into the sheet and does not land twice', async ({ page }) => {
-    await open(page, LIST)
-    await page.locator(CARD_ON_ROSTER).click()
-    await expect.poll(async () => (await spied(page)).ready).toBe(true)
-    expect((await spied(page)).names).toEqual(['au-flight-0'])
-    const card = page.locator('.au-character .au-framed__card')
-    await expect(card).toHaveAttribute('data-transit-flown', '')
-    expect(await card.evaluate((node) => getComputedStyle(node).animationName)).toBe('none')
-  })
+  for (const list of [LIST, '/en/species']) {
+    test(`every part of a sheet travels from ${list} and back`, async ({ page }) => {
+      await open(page, list)
+      const link = page.locator('[data-entry] a').first()
+      const sheet = await link.getAttribute('href')
+      if (!sheet) throw new Error('the first entry has no page')
+      await page
+        .locator('[data-entry]')
+        .first()
+        .evaluate((entry) =>
+          Promise.all(
+            entry
+              .getAnimations({ subtree: true })
+              .filter(
+                (animation) =>
+                  animation.effect?.getTiming().iterations !== Number.POSITIVE_INFINITY,
+              )
+              .map((animation) => animation.finished),
+          ),
+        )
+      await link.hover()
+      await expect(page.locator('[data-spotlight]')).toHaveAttribute(
+        'data-spotlight-current',
+        (await page.locator('[data-entry]').first().getAttribute('data-entry')) ?? '',
+      )
+      await link.click()
+      await expect.poll(async () => (await spied(page)).ready).toBe(true)
+      const going = (await spied(page)).groups.join(' ')
+      expect(going).toContain('image-pair(au-deal-0)')
+      await expect(page).toHaveURL(sheet)
+      await settled(page)
+      const parts = ['card', 'slab', 'name', 'kind']
+      if ((await page.locator('.au-character .au-sticker').count()) > 0) parts.push('sticker')
+      if ((await page.locator('.au-character .au-trait').count()) > 0) parts.push('trait')
+      if ((await page.locator('.au-character .au-rank').count()) > 0) parts.push('profile')
+      for (const part of parts) expect(going).toContain(`group(au-sheet-${part}-0)`)
+      const flown = page.locator('.au-character .au-framed__card')
+      expect(
+        await flown.evaluate((node) =>
+          node.getAnimations().every((animation) => animation.playState !== 'running'),
+        ),
+      ).toBe(true)
+      await page.goBack()
+      await expect(page).toHaveURL(list)
+      await expect.poll(async () => (await spied(page)).calls).toBe(2)
+      await expect
+        .poll(async () => (await spied(page)).groups.join(' '))
+        .toContain('image-pair(au-title)')
+      const coming = (await spied(page)).groups.join(' ')
+      for (const part of parts) expect(coming).toContain(`group(au-sheet-${part}-0)`)
+      await settled(page)
+      const seen = await spied(page)
+      expect(seen.rejected).toEqual([])
+      expect(seen.hiddenFrames).toBe(0)
+      expect(await page.evaluate(namedElements)).toHaveLength(0)
+    })
+  }
 
   test('the blurred stage waits for the landing and comes back at rest', async ({ page }) => {
     await open(page, LIST)
@@ -387,6 +435,64 @@ test.describe('page changes', () => {
     await settled(page)
     await expect.poll(async () => (await stageState()).soft).toBe('hidden')
     expect(['visible', 'staged']).toContain((await stageState()).ambient)
+  })
+
+  for (const { stays, from, via, to, staying } of [
+    {
+      stays: 'the roster',
+      from: LIST,
+      via: CARD_ON_ROSTER,
+      to: SHEET,
+      staying: '.au-roster:not(:has([data-transit-flown]))',
+    },
+    {
+      stays: 'the other doors',
+      from: HUB,
+      via: `main a[href="${LIST}"]`,
+      to: LIST,
+      staying: '.au-plate-door:not(:has([data-transit-flown]))',
+    },
+  ]) {
+    test(`Back brings ${stays} in as the pieces land`, async ({ page }) => {
+      await open(page, from)
+      await page.locator(via).click()
+      await expect(page).toHaveURL(to)
+      await settled(page)
+      await page.evaluate((selector) => {
+        const start = document.startViewTransition.bind(document)
+        const look = () => {
+          const piece = document.querySelector(selector)
+          if (!piece) return { visibility: 'absent', opacity: 0 }
+          const style = getComputedStyle(piece)
+          return { visibility: style.visibility, opacity: Number(style.opacity) }
+        }
+        Object.defineProperty(document, 'startViewTransition', {
+          configurable: true,
+          writable: true,
+          value: (update: () => Promise<void>) => {
+            const transition = start(update)
+            void transition.ready.then(() => Object.assign(window, { __atStart: look() }))
+            void transition.finished.then(() => Object.assign(window, { __atLanding: look() }))
+            return transition
+          },
+        })
+      }, staying)
+      await page.goBack()
+      await expect(page).toHaveURL(from)
+      await expect
+        .poll(() => page.evaluate(() => Reflect.get(window, '__atLanding') ?? null))
+        .not.toBeNull()
+      const atStart = await page.evaluate(() => Reflect.get(window, '__atStart'))
+      const atLanding = await page.evaluate(() => Reflect.get(window, '__atLanding'))
+      expect(atStart.visibility).toBe('hidden')
+      expect(atLanding.visibility).toBe('visible')
+      expect(atLanding.opacity).toBeGreaterThan(0.9)
+    })
+  }
+
+  test('a direct load of a sheet plays its whole arrival', async ({ page }) => {
+    await open(page, SHEET)
+    expect(await page.locator('[data-transit-flown]').count()).toBe(0)
   })
 
   test('a door names the plates of the page it opens', async ({ page }) => {
@@ -518,7 +624,9 @@ test.describe('page changes', () => {
       'berserker',
     )
     const roster = page.locator('.au-roster').first()
-    expect(await roster.evaluate((node) => getComputedStyle(node).animationName)).toBe('none')
+    expect(await roster.evaluate((node) => getComputedStyle(node).animationName)).not.toBe(
+      'au-roster-deal',
+    )
   })
 
   test('Back to a hub lights the door the reader took', async ({ page }) => {
@@ -606,7 +714,7 @@ test.describe('page changes', () => {
       document.querySelector<HTMLElement>(selector)?.click()
     }, CARD_ON_ROSTER)
     await expect.poll(async () => (await spied(page)).ready).toBe(true)
-    expect((await spied(page)).names).toEqual([])
+    expect((await spied(page)).names).not.toContain('au-sheet-card-0')
   })
 
   test('a picture too slow to decode gives up the flight, not the page', async ({ page }) => {
@@ -618,7 +726,13 @@ test.describe('page changes', () => {
     await page.waitForFunction(() => 'swup' in window)
     await page.locator('[data-entry]:has([data-cover-art]) a').last().click()
     await expect.poll(async () => (await spied(page)).ready).toBe(true)
-    expect(await page.locator('[data-transit-flown]').count()).toBe(0)
+    expect(
+      await page.evaluate(() =>
+        document
+          .querySelector<HTMLElement>('.au-character .au-framed__card')
+          ?.style.getPropertyValue('view-transition-name'),
+      ),
+    ).toBe('')
     await settled(page)
   })
 

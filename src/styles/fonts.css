@@ -9,6 +9,7 @@
   --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-slap: cubic-bezier(0.2, 1.45, 0.4, 1);
   --ease-travel: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-carry: cubic-bezier(0.45, 0, 0.15, 1);
 }
 
 @font-face {

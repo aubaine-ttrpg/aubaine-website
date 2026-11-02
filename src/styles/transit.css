@@ -1,6 +1,7 @@
 :root {
   --transit-flight: 300ms;
   --transit-book: 420ms;
+  --transit-reveal: 220ms;
 }
 
 html[data-transit] [data-shell-header] {
@@ -59,7 +60,6 @@ html[data-transit] [data-load-crest][data-phase] {
   animation: au-transit-appear 140ms linear both;
 }
 
-html .au-framed__card[data-transit-flown],
 html .au-plates__plate[data-transit-flown],
 html .au-plate-door__name:has([data-transit-flown]) {
   animation: none;
@@ -99,6 +99,21 @@ html .au-plate-door__name:has([data-transit-flown]) {
   transition: opacity 320ms ease;
 }
 
+html[data-transit-held] #swup[data-transit-returned] .au-roster:not(:has([data-transit-flown])),
+html[data-transit-held]
+  #swup[data-transit-returned]
+  .au-plate-door:not(:has([data-transit-flown])) {
+  animation: au-transit-reveal var(--transit-reveal) var(--ease-carry)
+    calc(var(--transit-landed, var(--transit-flight)) - var(--transit-reveal)) backwards;
+}
+
+html[data-transit-held]
+  #swup[data-transit-arrived]:not([data-transit-returned])
+  .au-roster:not(:has([data-transit-flown])) {
+  visibility: hidden;
+  animation-play-state: paused;
+}
+
 html[data-transit] #swup[data-transit-arrived] .au-stage::before,
 html[data-transit] #swup[data-transit-arrived] .au-stage::after {
   visibility: visible;
@@ -132,11 +147,11 @@ html .au-sommaire__sheet[data-book-hidden] .au-sommaire__title {
 }
 
 html .au-sommaire__sheet[data-book-hidden] .au-plates__title {
-  view-transition-name: au-book-title;
+  view-transition-name: au-title;
 }
 
 html .au-sommaire__sheet[data-book-hidden] .au-plates__about {
-  view-transition-name: au-book-help;
+  view-transition-name: au-help;
 }
 
 html .au-book-leaf.au-book-leaf {
@@ -192,18 +207,20 @@ html .au-book-leaf__crest polygon {
   z-index: 11;
 }
 
-::view-transition-group(au-book-title),
-::view-transition-group(au-book-help) {
+::view-transition-group(au-title),
+::view-transition-group(au-help) {
   z-index: 12;
 }
 
 ::view-transition-old(au-book-left),
 ::view-transition-old(au-book-right),
 ::view-transition-old(au-book-back),
-::view-transition-old(au-book-title),
-::view-transition-new(au-book-title),
-::view-transition-old(au-book-help),
-::view-transition-new(au-book-help),
+::view-transition-old(au-title),
+::view-transition-new(au-title),
+::view-transition-old(au-help),
+::view-transition-new(au-help),
+::view-transition-old(au-filter),
+::view-transition-new(au-filter),
 ::view-transition-new(au-book-left),
 ::view-transition-new(au-book-right),
 ::view-transition-new(au-book-back) {
@@ -227,8 +244,8 @@ html .au-book-leaf__crest polygon {
   transform-origin: 50% 50%;
 }
 
-::view-transition-image-pair(au-book-title),
-::view-transition-image-pair(au-book-help) {
+::view-transition-image-pair(au-title),
+::view-transition-image-pair(au-help) {
   transform-origin: 18% 100%;
 }
 
@@ -238,20 +255,84 @@ html[data-transit-book="close"]::view-transition-image-pair(au-book-back) {
   animation-delay: 110ms;
 }
 
-html[data-transit-book="close"]::view-transition-image-pair(au-book-title) {
+html[data-transit-book="close"]::view-transition-image-pair(au-title),
+html[data-transit-sheet="open"]::view-transition-image-pair(au-title) {
   animation: au-book-title-leave 260ms 30ms both;
 }
 
-html[data-transit-book="close"]::view-transition-image-pair(au-book-help) {
+html[data-transit-book="close"]::view-transition-image-pair(au-help),
+html[data-transit-sheet="open"]::view-transition-image-pair(au-help) {
   animation: au-book-help-leave 190ms both;
 }
 
-html[data-transit-book="open"]::view-transition-image-pair(au-book-title) {
+html[data-transit-sheet="close"]::view-transition-image-pair(au-title) {
+  animation: au-book-title-land 320ms 150ms both;
+}
+
+html[data-transit-sheet="close"]::view-transition-image-pair(au-help) {
+  animation: au-book-help-land 220ms var(--ease-slap) 270ms both;
+}
+
+html[data-transit-book="open"]::view-transition-image-pair(au-title) {
   animation: au-book-title-land 320ms 265ms both;
 }
 
-html[data-transit-book="open"]::view-transition-image-pair(au-book-help) {
+html[data-transit-book="open"]::view-transition-image-pair(au-help) {
   animation: au-book-help-land 220ms var(--ease-slap) 400ms both;
+}
+
+@media (width >= 960px) {
+  html[data-transit-sheet] .au-character__name,
+  html[data-transit-sheet] .au-character__subtitle {
+    width: fit-content;
+  }
+}
+
+::view-transition-group(.au-part) {
+  z-index: 13;
+}
+
+::view-transition-group(.au-part-ghost) {
+  z-index: 7;
+}
+
+::view-transition-group(.au-part-slab) {
+  z-index: 8;
+}
+
+::view-transition-group(.au-part-card) {
+  z-index: 9;
+}
+
+::view-transition-group(.au-dealt) {
+  z-index: 6;
+}
+
+::view-transition-group(.au-chrome) {
+  z-index: 12;
+}
+
+::view-transition-old(.au-dealt),
+::view-transition-new(.au-dealt) {
+  animation: none;
+  mix-blend-mode: normal;
+  opacity: 1;
+}
+
+html[data-transit-sheet="open"]::view-transition-image-pair(au-filter) {
+  animation: au-sheet-filter 200ms var(--ease-travel) both;
+}
+
+html[data-transit-sheet="close"]::view-transition-image-pair(au-filter) {
+  animation: au-sheet-filter 240ms var(--ease-travel) 200ms reverse both;
+}
+
+html[data-transit-sheet]::view-transition-old(root) {
+  animation: none;
+}
+
+html[data-transit-sheet]::view-transition-new(root) {
+  animation: au-transit-appear 200ms linear 170ms both;
 }
 
 html[data-transit-book="close"]::view-transition-old(root) {
@@ -282,6 +363,13 @@ html[data-transit-book="open"]::view-transition-new(root) {
   }
 }
 
+@keyframes au-transit-reveal {
+  from {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
 @keyframes au-transit-vanish {
   to {
     opacity: 0;
@@ -291,6 +379,13 @@ html[data-transit-book="open"]::view-transition-new(root) {
 @keyframes au-transit-recede {
   to {
     transform: scale(0.97);
+  }
+}
+
+@keyframes au-sheet-filter {
+  to {
+    opacity: 0;
+    transform: translateY(-12px);
   }
 }
 
@@ -394,5 +489,19 @@ html[data-transit-book="open"]::view-transition-new(root) {
   100% {
     transform: perspective(2400px) translate(-7%, 135%) rotate(-8deg) scale(0.96) rotateY(0);
     opacity: 1;
+  }
+}
+
+@keyframes au-part-fold {
+  to {
+    opacity: 0;
+    transform: scale(0.35);
+  }
+}
+
+@keyframes au-dealt-leave {
+  to {
+    opacity: 0;
+    transform: scale(0.975);
   }
 }

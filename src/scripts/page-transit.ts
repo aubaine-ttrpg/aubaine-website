@@ -8,6 +8,16 @@ import {
   originGoingIn,
   targetsOf,
 } from './page-flight'
+import {
+  landedAt,
+  type NamedPiece,
+  type SheetScene,
+  sceneArrival,
+  sceneClosing,
+  sceneOpening,
+  scoreOf,
+  settleArrivals,
+} from './page-sheet'
 import type { SwupInstance, SwupVisit } from './swup'
 
 const PAGE = '#swup'
@@ -34,11 +44,14 @@ const warmed = new Map<string, Promise<void>>()
 
 let holders: HTMLElement[] = []
 let origin: Origin | undefined
+let scene: SheetScene | undefined
 let pressed: Element | undefined
 let heldClick: Point | undefined
 let startedAt = 0
 let latestTransition = 0
 let shownUrl = window.location.pathname + window.location.search
+let score: CSSStyleSheet | undefined
+let running: ViewTransition | undefined
 
 function pause(milliseconds: number): Promise<void> {
   return new Promise((resolve) => window.setTimeout(resolve, milliseconds))
@@ -65,24 +78,50 @@ function clearNames(): void {
   holders = []
 }
 
-function name(pieces: readonly HTMLElement[]): void {
+function name(pieces: readonly NamedPiece[]): void {
   clearNames()
-  pieces.forEach((piece, index) => {
-    piece.style.setProperty('view-transition-name', `au-flight-${index}`)
-    piece.style.setProperty('view-transition-class', FLIGHT_CLASS)
-  })
-  holders = [...pieces]
+  for (const { element, name: pieceName, classes } of pieces) {
+    element.style.setProperty('view-transition-name', pieceName)
+    element.style.setProperty('view-transition-class', classes)
+  }
+  holders = pieces.map((piece) => piece.element)
+}
+
+function flightOf(plates: readonly HTMLElement[]): NamedPiece[] {
+  return plates.map((element, index) => ({
+    element,
+    name: `au-flight-${index}`,
+    classes: FLIGHT_CLASS,
+  }))
+}
+
+function adoptScore(rules: string): void {
+  score ??= new CSSStyleSheet()
+  score.replaceSync(rules)
+  if (!document.adoptedStyleSheets.includes(score)) {
+    document.adoptedStyleSheets = [...document.adoptedStyleSheets, score]
+  }
+}
+
+function dropScore(): void {
+  if (!score) return
+  document.adoptedStyleSheets = document.adoptedStyleSheets.filter((sheet) => sheet !== score)
 }
 
 function reset(): void {
   clearNames()
+  dropScore()
   origin = undefined
+  scene = undefined
   heldClick = undefined
   pressed?.removeAttribute('data-pressed')
   pressed = undefined
   root.removeAttribute('data-transit')
   root.removeAttribute('data-transit-book')
+  root.removeAttribute('data-transit-sheet')
+  root.removeAttribute('data-transit-held')
   root.style.removeProperty('--transit-flight')
+  root.style.removeProperty('--transit-landed')
   putBookAway()
 }
 
@@ -93,10 +132,12 @@ function isTransitionMotion(animation: Animation): boolean {
   )
 }
 
-function putBookAwayWhenMotionEnds(transition: ViewTransition): void {
+function putAwayWhenMotionEnds(transition: ViewTransition): void {
   const ticket = ++latestTransition
+  running = transition
   const putAwayIfLatest = (): void => {
-    if (ticket === latestTransition) putBookAway()
+    if (ticket !== latestTransition) return
+    putBookAway()
   }
   transition.ready.then(() => {
     const motions = root.getAnimations({ subtree: true }).filter(isTransitionMotion)
@@ -111,7 +152,7 @@ function watchTransitions(): void {
     writable: true,
     value: (...args: Parameters<typeof start>): ViewTransition => {
       const transition = start(...args)
-      putBookAwayWhenMotionEnds(transition)
+      putAwayWhenMotionEnds(transition)
       return transition
     },
   })
@@ -164,10 +205,21 @@ async function prepare(visit: SwupVisit): Promise<void> {
     root.dataset['transitBook'] = 'close'
     return
   }
+  const opening = visit.history.popstate
+    ? sceneClosing(left.get(visit.to.url)?.entry, visit.from.url, next)
+    : sceneOpening(visit.trigger?.el, next)
+  if (opening) {
+    scene = opening.scene
+    root.dataset['transitSheet'] = scene.direction
+    settleArrivals(opening.pieces)
+    name(opening.pieces)
+    return
+  }
   origin = visit.history.popstate
-    ? originGoingBack(next, left.get(visit.to.url), visit.from.url)
+    ? originGoingBack(next, visit.from.url)
     : originGoingIn(visit.trigger?.el, next)
-  if (origin) name(origin.pieces)
+  if (!origin) return
+  name(flightOf(origin.pieces))
 }
 
 function markArrival(visit: SwupVisit): void {
@@ -209,6 +261,12 @@ function paceMotion(): void {
   root.style.setProperty('--transit-flight', `${Math.round(motion)}ms`)
 }
 
+function holdWhatStays(landing: readonly NamedPiece[], landed: number): void {
+  for (const { element } of landing) element.toggleAttribute('data-transit-flown', true)
+  root.style.setProperty('--transit-landed', `${landed}ms`)
+  root.toggleAttribute('data-transit-held', true)
+}
+
 async function nameArrival(visit: SwupVisit): Promise<void> {
   shownUrl = visit.to.url
   if (!visit.animation.animate) return
@@ -221,14 +279,26 @@ async function nameArrival(visit: SwupVisit): Promise<void> {
     root.dataset['transitBook'] = 'open'
     return
   }
+  if (scene) {
+    const arrival = sceneArrival(scene)
+    const card = arrival.find((piece) => piece.name === 'au-sheet-card-0')
+    const decoded = !card || (await pictureDecoded(card.element))
+    const shown = decoded
+      ? arrival
+      : arrival.filter((piece) => !/^au-sheet-(card|slab)-/.test(piece.name))
+    settleArrivals(shown)
+    adoptScore(scoreOf(scene, shown))
+    name(shown)
+    if (scene.direction === 'close') holdWhatStays(shown, landedAt(scene, shown))
+    return
+  }
+  if (root.dataset['transit'] === 'deeper') root.toggleAttribute('data-transit-held', true)
   if (!origin) return
-  const returning = visit.history.popstate ? left.get(visit.to.url)?.entry : undefined
-  const targets = targetsOf(origin, returning)
+  const targets = targetsOf(origin)
   if (!targets) return
-  const [first] = targets
-  if (first && !(await pictureDecoded(first))) return
   for (const target of targets) target.toggleAttribute('data-transit-flown', true)
-  name(targets)
+  name(flightOf(targets))
+  root.toggleAttribute('data-transit-held', true)
 }
 
 function remember(visit: SwupVisit): void {
@@ -290,6 +360,7 @@ function clickDuringVisit(swup: SwupInstance, event: MouseEvent): void {
   }
   if (event.target === root && root.hasAttribute('data-transit')) {
     heldClick = { x: event.clientX, y: event.clientY }
+    running?.skipTransition()
   }
 }
 
@@ -301,6 +372,7 @@ function replayClick(point: Point): void {
 
 function endVisit(): void {
   const held = heldClick
+  running = undefined
   reset()
   if (held) replayClick(held)
 }
