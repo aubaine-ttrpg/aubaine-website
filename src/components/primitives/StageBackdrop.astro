@@ -6,10 +6,11 @@ type Props = { source: StageSource }
 
 const { source } = Astro.props
 
-const { ambient, backdrop } = await stageLook(source)
+const { ambient, backdrop, soft } = await stageLook(source)
 const field = source.kind === 'field' ? source.colours.join('|') : undefined
 const style = [
   `--stage-art:${backdrop}`,
+  `--stage-soft:${soft}`,
   `--stage-bleed:${STAGE.bleed}px`,
   `--stage-blur:${STAGE.blur}px`,
   `--stage-saturate:${STAGE.saturate}`,

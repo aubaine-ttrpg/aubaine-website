@@ -61,6 +61,7 @@ function mount(menu: HTMLElement, signal: AbortSignal): void {
     if (art) await Promise.race([picture(art), pause(PICTURE_WAIT_MS)])
     if (ticket !== swap || signal.aborted) return
     stage.style.setProperty('--stage-art', door.dataset['doorBackdrop'] ?? '')
+    stage.style.setProperty('--stage-soft', door.dataset['doorSoft'] ?? '')
     const source = art || fieldOf(door)
     if (source) stage.setAttribute('data-stage', source)
   }

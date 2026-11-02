@@ -73,6 +73,47 @@ html .au-plate-door__name:has([data-transit-flown]) {
   animation: none;
 }
 
+#swup[data-transit-arrived] .au-stage::before,
+#swup[data-transit-arrived] .au-stage::after {
+  content: "";
+  position: absolute;
+  inset: calc(var(--stage-bleed) * -1);
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity 320ms ease,
+    visibility 0s linear 320ms;
+}
+
+#swup[data-transit-arrived] .au-stage::before {
+  background: var(--stage-soft) center / cover no-repeat;
+}
+
+#swup[data-transit-arrived] .au-stage::after {
+  background: rgb(6 5 13 / 0.5);
+}
+
+#swup[data-transit-arrived] .au-stage__ambient,
+#swup[data-transit-arrived] .au-stage__shade,
+#swup[data-transit-arrived] .au-stage__halftone {
+  transition: opacity 320ms ease;
+}
+
+html[data-transit] #swup[data-transit-arrived] .au-stage::before,
+html[data-transit] #swup[data-transit-arrived] .au-stage::after {
+  visibility: visible;
+  opacity: 1;
+  transition: none;
+}
+
+html[data-transit] #swup[data-transit-arrived] .au-stage__ambient,
+html[data-transit] #swup[data-transit-arrived] .au-stage__shade,
+html[data-transit] #swup[data-transit-arrived] .au-stage__halftone {
+  visibility: hidden;
+  opacity: 0;
+  transition: none;
+}
+
 #swup[data-transit-arrived] .au-stage[data-staged] > .au-stage__ambient {
   visibility: hidden;
   opacity: 0;

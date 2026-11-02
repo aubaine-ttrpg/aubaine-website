@@ -99,6 +99,7 @@ function mount(screen: HTMLElement, signal: AbortSignal): void {
     if (openText) openText.textContent = template.dataset['spotlightText'] ?? ''
     if (stage) {
       stage.style.setProperty('--stage-art', template.dataset['spotlightBackdrop'] ?? '')
+      stage.style.setProperty('--stage-soft', template.dataset['spotlightSoft'] ?? '')
       const art = template.dataset['spotlightArt'] || fieldOf(id, template)
       if (art) stage.setAttribute('data-stage', art)
     }
