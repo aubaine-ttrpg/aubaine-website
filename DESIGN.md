@@ -755,10 +755,11 @@ required wherever something moves for more than five seconds (WCAG 2.2.2).
   the sheet's own arrivals finish it: the emblem presses on, the radar unfolds from its centre, the grades stamp.
   Back starts the masses in the opposite order, and the roster fades in over the last 220 ms of the flight, whole
   when the last piece lands.
-- The stage is cheap while pieces fly: a baked soft image and a flat shade stand in for its blur, gradient and
-  halftone, and the real stage fades back in 320 ms. A page change has no wedge, burst or flip: games keep those
-  for rare moments, and the shipped menus of Deadlock and the League client change page with little more than a
-  fade (`.claude/skills/aubaine-design/references/hextech.md`, `deadlock.md`).
+- The living stage carries across a page change: the light keeps drifting with its halftone and shade, and when
+  the next page's painting differs it crossfades in 450 ms, as on the select screen. A page change has no
+  wedge, burst or flip: games keep those for rare moments, and the shipped menus of Deadlock and the League
+  client change page with little more than a fade (`.claude/skills/aubaine-design/references/hextech.md`,
+  `deadlock.md`).
 - From the Livres spread, the help button leaves first, then the title plate dips, peels and flies off the
   screen by about 290 ms. Over that, from 110 ms, the right page turns over the spine and its back lands with
   the crest by about 380 ms, and the closed book is thrown off the screen by 530 ms. The page arrives from 270

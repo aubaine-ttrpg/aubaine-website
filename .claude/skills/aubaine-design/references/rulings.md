@@ -519,9 +519,9 @@ house's paper moves (peel, fall, settle, stamp), never one plain slide. Check re
 
 **A page change is smooth, and Aubaine is not a comic book.** A flat wedge, a starburst, flipping cards and parts
 slapping in flight were built on 2026-11-01 and rejected the same day. The cause was two errors: battle flourishes
-read as menu language, and motion judged on Chromium while the owner uses Firefox, where it ran at about 22 frames a
-second. A page change carries pieces on one curve, and the life comes from the approved arrivals on landing. Measure
-on real Firefox (`measuring.md`). Check a reference's shipped code or footage before saying what it does.
+read as menu language, and motion judged on Chromium while the owner uses Firefox. A page change carries pieces on
+one curve, and the life comes from the approved arrivals on landing. Measure on real Firefox, on the GPU
+(`measuring.md`). Check a reference's shipped code or footage before saying what it does.
 
 > "bro wtf is this, we aint a comic book. it's heavy, not smooth at all, it's saccadé, it's shit. please refetch data you clearly don't have enough, this aint persona nor hextech nor deadlock, it's just shitty, it doesn't fit aubaine at all." (2026-11-01)
 
@@ -539,6 +539,12 @@ Approved on 2026-11-02. The values are in `src/scripts/page-score.ts`: every par
 220 ms of the flight, not after it, so the screen never sits half empty once the pieces are home.
 
 > "let's fix the back gap then" (2026-11-02, on the roster fading in only after the pieces had landed)
+
+**The stage stays alive through a page change.** The living stage, its halftone and its shade never drop out
+while pieces fly: the light keeps drifting from one page to the next, and the painting crossfades when it
+changes. The stand-in that hid them during the motion was withdrawn on 2026-11-02.
+
+> "the flares and others vfx are not loaded which mean when we arrive there is just a blurred background and nothing else and the rest (vfx, pointillé ect...) appears suddenly with no transtions. My hope is to be able to just not have them disapear and have a cool background transitions." (2026-11-02)
 
 **The flying card replaces the sheet card's landing, on those visits only.** A direct load keeps the
 approved arrival. The owner's pick among proposals, 2026-11-01, of "Flight replaces it".
@@ -580,4 +586,4 @@ and praised the Saison slider.
 | 2026-11-01 | the empty screen between pages goes; B, the pick carries across; a motion has to be seen; a draft card flies; Livres closes like a book; no frame nobody meant, the title moves as paper; the whole sheet travels, both ways; the flying card replaces the landing on those visits; Back returns where you were |
 | 2026-10-31 | pieces sit on the shape; B+ ships; C+ and D kept, the poster wall dropped; this skill; accepted screenshots only; highest quality, many links; the contents spread opens Livres and the plate menu the Codex; every category listed, the empty ones saying so; the archives in Livres; Books left to the designer |
 | 2026-11-01 | the help button's margin and the stage pages' print, by request |
-| 2026-11-02 | the carry on one curve with live arrivals on landing, approved; what stays is whole when the pieces land; approvals recorded as what was approved |
+| 2026-11-02 | the carry on one curve with live arrivals on landing, approved; what stays is whole when the pieces land; approvals recorded as what was approved; the stage stays alive through a page change |

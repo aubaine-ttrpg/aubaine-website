@@ -5,6 +5,8 @@
 **Date:** 2026-11-01
 **Revised:** 2026-11-01, Decision 2 gains an addendum: the whole sheet travels to and from its list, not the
 card alone; Decision 3 gains one: motion is judged on real Firefox frames, and the stage is cheap while it runs
+**Revised:** 2026-11-02, Decision 3 gains a second addendum: measured on the GPU, the stand-in is withdrawn and
+the living stage carries across a page change
 **Deciders:** Kori
 **Scope:** What a reader sees between two pages, from the click to the settled page, and how Back
 returns. Replaces the crossfade of 0012 Decision 3; the crest of that decision, and 0012 Decisions 1
@@ -182,6 +184,41 @@ aint a comic book. it's heavy, not smooth at all". Reopen only on a new request 
   also fade the parent of the landing card, so it was not taken.
 - An edge with no flight into a long list stays rough on Firefox: Codex to Compétences, 9 to 11 frames, worst 83 to
   150 ms. Worst frames above 50 ms remain on most edges, and the target of 50 ms is not met.
+
+### Addendum (2026-11-02): the living stage carries across, measured on the GPU
+
+- The owner found that a page change arrived on a blurred background alone, the living stage, its halftone and
+  its shade then appearing at once: "when we arrive there is just a blurred background and nothing else and the
+  rest (vfx, pointillé ect...) appears suddenly with no transtions". The stand-in of the addendum above caused it:
+  it hid those layers while pieces flew, and the first canvas then landed over the stand-in with no fade.
+- On the owner's own machine, Firefox 158 in a window, which draws with `WebRender` on the GPU, the stand-in saved
+  nothing: index to sheet, Back to the list, Codex to Arbres and Back to Codex held 13 to 14 ms a frame both with
+  the stand-in and with the whole stage, three visits each, apart from one 94 ms frame on a first visit. The costs
+  of the addendum above were Firefox's software renderer: headless Firefox draws with `WebRender (Software)`, and
+  a profile put its worst frames in the Renderer thread while the page's main thread was nearly idle.
+- `src/scripts/art-effect/stage.ts`, `src/scripts/art-effect/boot.ts`: the stand-in is withdrawn, and the new
+  page shows its whole stage while pieces fly. The living stage starts at `page:view`, after the page has set its
+  painting (`priority: 1`), instead of at `visit:end`: the stage being left hands its canvas, its painting and its
+  clock to the stage arriving, so the light keeps drifting through the change. When the painting differs, it
+  crossfades in 450 ms, as the select screen does when the reader points at another entry. Under reduced motion
+  nothing is carried. The other art effects still start at `visit:end`.
+- `pnpm design:transit --real-firefox` now drives Firefox in a window, on the GPU, and prints how it draws.
+- Measured after, Firefox 158 on the GPU, frames over the motion, three visits per edge: Codex to Arbres and
+  back, Arbres to Marchand and back, Espèces to Nnor and back, Livres to a category and back, and Codex to
+  Compétences ran at a 13 ms median, with a p95 of 13 to 14 ms except one visit at 26 ms. Worst frames were 13 to
+  40 ms, apart from one 213 ms frame on a first visit to Nnor that two later sessions did not reproduce.
+
+### Caveats of this addendum
+
+- A reader whose Firefox draws in software pays again for the blur, the halftone and the shade during the
+  motion; headless, that was the 42 to 50 ms median of the addendum above.
+- The Compétences readings of the addendum above were software drawing; on the GPU that edge held 13 to 14 ms.
+- The stage now draws during the motion: on Espèces to Nnor, 2 of 6 visits dropped one frame (40 ms) where the
+  stand-in read 26 to 27 ms.
+- Playwright's Chromium draws WebGL on SwiftShader, which the stage refuses, so the end-to-end test of the carry
+  runs on Firefox and WebKit only.
+- On headless Chromium, which draws in software, Livres to a category finished at 647 to 710 ms with the whole
+  stage showing, against 615 to 668 ms with the stand-in and the 700 ms the book is given.
 
 ---
 

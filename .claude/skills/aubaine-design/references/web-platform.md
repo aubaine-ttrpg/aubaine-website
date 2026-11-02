@@ -532,9 +532,11 @@ with Firefox 144 the last engine ([web.dev](https://web.dev/blog/same-document-v
 
 The new page's snapshot is live: everything it paints is repainted every frame while the transition runs, and a
 named element's own snapshot is no cheaper (naming the stage, or `will-change`, gained nothing on Firefox 158).
-Measured on real Firefox, in order of cost: a large `filter: blur()`; dozens of live cards; a gradient shade
-over the viewport; a mask on a large area. A background with two layers costs far more than one image plus a
-separate flat layer. `opacity: 0` on many cards still costs a layer each, where `visibility: hidden` costs nothing.
-Old snapshots are static and cheap, so what leaves can be as busy as it likes. Bring costly pieces in late, as
-the roster on Back fades in over the last 220 ms of the flight, or stand in for them under `html[data-transit]`,
-never at rest.
+What that costs depends on how the browser draws. Firefox 158 on the GPU (`WebRender`) held 13 to 14 ms a frame
+with the whole stage live, its blur, halftone and shade included (2026-11-02). Firefox drawing in software
+(`WebRender (Software)`, which is what headless Firefox does) paid, in order of cost: a large `filter: blur()`;
+dozens of live cards; a gradient shade over the viewport; a mask on a large area. A stand-in for those layers
+only helped software drawing, and the owner saw the stage drop out and pop back, so it was withdrawn. Old
+snapshots are static and cheap, so what leaves can be as busy as it likes. A live canvas can move into the next
+page before its snapshot is taken (`page:view` runs inside the transition's update), which keeps an animated
+layer alive across the change.
