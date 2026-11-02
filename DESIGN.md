@@ -317,7 +317,7 @@ Humain's authored azure `#44a8e7`, the Règles kind blue, the seals of trees in 
 | Buttons and badges | Barlow Semi Condensed | « Ouvrir la fiche » 700 at 15 px, Filtres 700 at 14.5 px, the booklet button 600 at 15 px, badges 700 at 13 px (11 px small) | 0.08 em (the booklet button 0.1 em), capitals | `#20180a` on gold or on the key; badges their own | `Spotlight.astro`, `FilterBar.astro`, `src/components/views/Tree.astro`, `src/styles/base.css` |
 | Profile axis labels | Barlow Semi Condensed 600 | 12 px; 8 to 12 px on black tapes in the spotlight | 0.12 em, capitals | `--ink2`; on the tapes, 45 % key and 55 % white | `RankProfile.astro` |
 | Subtitles | EB Garamond italic | `clamp(19px, 2.2vw, 28px)`; `clamp(16px, 1.4vw, 20px)` in the spotlight | line-height 1.3 | `#b3abc9` | `SheetHead.astro`, `SpotlightPanel.astro` |
-| Codex door name | Cinzel 700, one paper plate per word | fitted from the longest word at 0.8 em a letter, one size per hub: 30 to 112 px below 960 px; from 960 px at least 28 px and at most 56 px; the 30 and 28 px floors give way when the longest word needs less to fit its room | capitals, line-height 0.86 | at rest `--ink` (`--ink2` from 960 px) on paper night; lit `#14100a` on bone `#efe4cc` | `PlateDoor.astro`, `PlateMenu.astro` |
+| Codex door name | Cinzel 700, one paper plate per word | one size per hub: below 960 px 30 to 112 px, fitted from the longest word at 0.8 em a letter; from 960 px at most 56 px and fitted so the widest whole name holds one line; the 30 and 28 px floors give way when the fit needs less | capitals, line-height 0.86 | at rest `--ink` (`--ink2` from 960 px) on paper night; lit `#14100a` on bone `#efe4cc` | `PlateDoor.astro`, `PlateMenu.astro` |
 | Codex door line | EB Garamond italic | `clamp(18px, 1.6vw, 26px)`; `clamp(16px, 1.25vw, 20px)` from 960 px | line-height 1.25 | `--ink2`, `--ink` when lit | `PlateDoor.astro` |
 | Livres running head « Sommaire » | Cinzel 700 | 13 px | 0.12 em, capitals | `#14100a` over a rule at 22 % | `SommaireSpread.astro` |
 | Livres numeral | Cinzel 700 | 96 px; 128 px from 640 px; from 1100 px fitted to the row, `clamp(84px, (row - 40px) / 0.78, 240px)` | line-height 0.74 | at rest bone tinted with 24 % of the entry's colour; lit bone stroked 1.5 px in `#14100a` | `SommaireEntry.astro`, `SommaireSpread.astro` |
@@ -449,8 +449,9 @@ takes the picture of the page that door opens. No door carries a count.
   colour (`DoorGlyph.astro`). Below 960 px the doors stand alone on the stage.
 - **The stage** shows each section's own picture, blurred into light: the cover or seal of the page's
   lead entry, or the page's banner. No sharp painting and no picture made for the hub.
-- **The names share one size** per hub, fitted from the longest word, with the lit growth reserved, so a
-  lit name never reaches the band.
+- **The names share one size** per hub, with the lit growth reserved, so a lit name never reaches the band.
+  On a desktop every name holds one line; below 960 px the size follows the longest word and a long name
+  may wrap.
 
 **Livres.** `SommaireSpread.astro` lays the spread out and `SommaireEntry.astro` draws an entry.
 

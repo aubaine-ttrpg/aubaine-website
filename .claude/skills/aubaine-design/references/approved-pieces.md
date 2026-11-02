@@ -692,13 +692,18 @@ page that door opens.
   padding 0.1/0.2/0.04 em. At rest a plate is paper night `#08070d` with `--ink` (from 960 px `--ink2`)
   and a 0.06/0.07 em offset in the door's ink at 70% (45% from 960 px); lit, it is bone paper `#efe4cc`
   (`PLATE_PAPER`) with `#14100a` ink and a night .72 offset.
-- **One size per hub**, fitted from the longest word: `--fit-letters` is 0.8 × its letters + 0.4, and
-  the size is `clamp(min(floor, room / fit), min(room / fit, fit-h), cap)`. Below 960 px the floor is
-  30 px, the cap 112 px, and the room the content width (less the mark and a gap from 640 px). From 960 px
-  the floor is 28 px; the cap is 56 px (`--scene-cap`); the
-  room is `(content × 0.54 - mark - gap - 14px) / 1.16`, which reserves the lit growth; and fit-h is
-  `(100svh - header - 260px - doors × 25px) / (lines + doors × 0.44)`, where lines counts each door once
-  more when its name takes three plates or more. Below 960 px the height sets no limit.
+- **One size per hub**, and from 960 px every name on one line. The size is
+  `clamp(min(floor, room / fit), min(room / fit, fit-h), cap)`. Below 960 px the fit is `--fit-letters`,
+  from the longest word: 0.8 × its letters + 0.4; the floor is 30 px, the cap 112 px, and the room the
+  content width (less the mark and a gap from 640 px), so a name of several plates may wrap. From 960 px
+  the fit is `--fit-line` (`fitLine` in `src/lib/plates.ts`), the widest whole name: 0.74 em a letter, 0.4
+  em a plate, a word of three letters or fewer between others at 0.42 of the size with 0.6 em, and 0.16 em
+  between plates. The floor is 28 px; the cap is 56 px (`--scene-cap`); the room is
+  `(content × 0.54 - mark - gap - 14px) / 1.16`, which reserves the lit growth; and fit-h is
+  `(100svh - header - 260px - doors × 25px) / (doors × 1.44)`. Below 960 px the height sets no limit.
+  "Arbres de compétences" measures 14.07 em on one line against a fit of 14.57 em. Until 2026-11-02 the
+  desktop fit followed the longest word too, and from about 1440 px wide that name broke onto a second
+  line with its slab stretched to the room's width.
 - **Lit, from 960 px.** The name grows 1.16 times from its lower left over 0.24 s on
   `cubic-bezier(0.2, 1.35, 0.4, 1)` and slides 14 px right over 0.24 s on `--ease`. Pointed, it lifts
   4 px over the same 0.24 s on `--ease`; below 960 px, 6 px over 0.34 s on `--ease`.

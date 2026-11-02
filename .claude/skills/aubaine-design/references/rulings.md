@@ -225,6 +225,14 @@ the owner's words).
 
 > "Actually for hub do both show me the diff alternatives too and please reod with PROFESISONAL QUALTIY GRADE the Side by side one that were proposed by another agent earlier. the one that really feel like a Persona Menu, except it was really bad when done by the other agent, try do it better. PROFESIONNAL QUALITY GRADE" (2026-10-30)
 
+**A Codex door name holds one line on a desktop.** From 960 px wide the names are sized so the widest whole
+name fits on one line, so « Arbres de compétences » no longer breaks on a large screen with its slab stretched
+past it (`approved-pieces.md`, The hub plate menu).
+
+> "it comes back to one line when i'm on my laptop screen, and 2 lines on my big screen" (2026-11-02)
+
+> "why is the background so far ? make a decision either you rollback and have it the same disposition (in one line) or you adapt the background (i prefer having only one line)" (2026-11-02)
+
 **The plate menu opens the Codex.** B+, the composed plate menu, opens the Codex in both languages
 (`approved-pieces.md`, The hub plate menu). It first opened Livres too, until the contents spread took
 Livres the same day. The owner's pick, 2026-10-31.
@@ -586,4 +594,4 @@ and praised the Saison slider.
 | 2026-11-01 | the empty screen between pages goes; B, the pick carries across; a motion has to be seen; a draft card flies; Livres closes like a book; no frame nobody meant, the title moves as paper; the whole sheet travels, both ways; the flying card replaces the landing on those visits; Back returns where you were |
 | 2026-10-31 | pieces sit on the shape; B+ ships; C+ and D kept, the poster wall dropped; this skill; accepted screenshots only; highest quality, many links; the contents spread opens Livres and the plate menu the Codex; every category listed, the empty ones saying so; the archives in Livres; Books left to the designer |
 | 2026-11-01 | the help button's margin and the stage pages' print, by request |
-| 2026-11-02 | the carry on one curve with live arrivals on landing, approved; what stays is whole when the pieces land; approvals recorded as what was approved; the stage stays alive through a page change |
+| 2026-11-02 | the carry on one curve with live arrivals on landing, approved; what stays is whole when the pieces land; approvals recorded as what was approved; the stage stays alive through a page change; a Codex door name holds one line on a desktop |
