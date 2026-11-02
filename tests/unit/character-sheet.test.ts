@@ -31,12 +31,14 @@ describe('the sheet of a tree', () => {
     }
   })
 
-  it('wears its seal without a cover, with a key colour that reads on night', () => {
+  it('keeps an authored key colour, else wears its seal without a cover in a key that reads on night', () => {
     for (const tree of french.trees) {
       const sheet = treeSheet(tree, french, 'fr')
       expect(sheet.cover).toBe(tree.cover)
       expect(sheet.seal).toEqual(treeSeal(tree, french))
-      expect(sheet.keyColour).toBe(tree.cover ? undefined : treeSealKey(tree, french))
+      expect(sheet.keyColour).toBe(
+        tree.keyColour ?? (tree.cover ? undefined : treeSealKey(tree, french)),
+      )
     }
   })
 })

@@ -59,7 +59,7 @@
       "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*\\.svg$"
     },
     "keyColour": {
-      "description": "Couleur clé du héros, en hexadécimal à six chiffres minuscules, quand celle que la build lit dans la couverture ne dit pas l'Espèce : elle teinte les descripteurs, le cadre, le nom en filigrane et la dalle. Absente : la couleur clé de la couverture.",
+      "description": "Couleur clé de l'entrée, en hexadécimal à six chiffres minuscules, quand celle que la build lit dans la couverture ne la dit pas, ou pour la figer : elle teinte sa carte, les descripteurs, le cadre, le nom en filigrane et la dalle de son héros. Absente : la couleur clé lue dans la couverture, ou, sans couverture, celle que l'entrée tient par défaut.",
       "type": "string",
       "pattern": "^#[0-9a-f]{6}$"
     },

@@ -85,36 +85,49 @@ test('a species hero carries descriptors and its traits, and no profile', async 
   )
 })
 
-test('each hero takes its accent from its own cover', async ({ page }) => {
+type HeroEntry = { path: string; cover: string | undefined; keyColour: string | undefined }
+
+async function heroEntries(): Promise<HeroEntry[]> {
   const french = await corpus('fr')
-  for (const [path, cover] of [
-    [NNOR, french.speciesById.get('nnor')?.cover],
-    [MARCHAND, french.treesById.get('marchand')?.cover],
-  ] as const) {
-    expect(cover, `${path} has a cover`).toBeDefined()
-    const [red, green, blue] = rgbFromHex(await artKeyColour(cover ?? ''))
-    await page.goto(path)
-    await expect(page.locator(`${HERO} .au-sticker`).first()).toHaveCSS(
-      'background-color',
-      `rgb(${red}, ${green}, ${blue})`,
-    )
+  return [
+    ...french.species.map((entry) => ({
+      path: pathFor('speciesEntry', 'fr', { species: entry.id }),
+      cover: entry.cover,
+      keyColour: entry.keyColour,
+    })),
+    ...french.trees.map((entry) => ({
+      path: pathFor('tree', 'fr', { tree: entry.id }),
+      cover: entry.cover,
+      keyColour: entry.keyColour,
+    })),
+  ]
+}
+
+async function expectKey(page: Page, path: string, key: string) {
+  const [red, green, blue] = rgbFromHex(key)
+  await page.goto(path)
+  await expect(page.locator(`${HERO} .au-character__kind`), path).toHaveCSS(
+    'color',
+    `rgb(${red}, ${green}, ${blue})`,
+  )
+}
+
+test('a hero that writes no key colour takes its accent from its own cover', async ({ page }) => {
+  const read = (await heroEntries()).filter((entry) => entry.cover && !entry.keyColour)
+  test.skip(read.length === 0, 'every entry with a cover writes its own key colour')
+  for (const { path, cover } of read) {
+    await expectKey(page, path, await artKeyColour(cover ?? ''))
   }
 })
 
-test('a species that writes its own key colour wears it instead of its cover’s', async ({
+test('a species or a tree that writes its own key colour wears it instead of its cover’s', async ({
   page,
 }) => {
-  const species = (await corpus('fr')).species.find(
-    (entry) => entry.keyColour && entry.descriptors?.length,
-  )
-  expect(species, 'no species writes its own key colour').toBeDefined()
-  if (!species?.keyColour) return
-  const [red, green, blue] = rgbFromHex(species.keyColour)
-  await page.goto(pathFor('speciesEntry', 'fr', { species: species.id }))
-  await expect(page.locator(`${HERO} .au-sticker`).first()).toHaveCSS(
-    'background-color',
-    `rgb(${red}, ${green}, ${blue})`,
-  )
+  const written = (await heroEntries()).filter((entry) => entry.keyColour)
+  expect(written, 'no species or tree writes its own key colour').not.toHaveLength(0)
+  for (const { path, keyColour } of written) {
+    await expectKey(page, path, keyColour ?? '')
+  }
 })
 
 test('a card wears its emblem, and a card without one wears none', async ({ page, request }) => {

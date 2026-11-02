@@ -89,6 +89,14 @@ const emblem = emblemFile
     "Emblème de l'entrée, dans data/media/emblems/ : un SVG blanc sur fond transparent, fait de chemins seuls. pnpm media:emblems le ramène au cadre carré et à la marge que partagent tous les emblèmes, pnpm media:stamp lui donne ses droits. Rendu en relief, seul, en bas à droite de la carte du héros. Absent : la carte n'en porte pas.",
   )
 
+const keyColour = z
+  .string()
+  .regex(HEX)
+  .optional()
+  .describe(
+    "Couleur clé de l'entrée, en hexadécimal à six chiffres minuscules, quand celle que la build lit dans la couverture ne la dit pas, ou pour la figer : elle teinte sa carte, les descripteurs, le cadre, le nom en filigrane et la dalle de son héros. Absente : la couleur clé lue dans la couverture, ou, sans couverture, celle que l'entrée tient par défaut.",
+  )
+
 const creatureTypeKey = z
   .string()
   .describe(
@@ -484,6 +492,7 @@ export const skillTree = z
       ),
     artEffect,
     emblem,
+    keyColour,
     backCover: mediaFile
       .optional()
       .describe(
@@ -683,13 +692,7 @@ export const species = z
       ),
     artEffect,
     emblem,
-    keyColour: z
-      .string()
-      .regex(HEX)
-      .optional()
-      .describe(
-        "Couleur clé du héros, en hexadécimal à six chiffres minuscules, quand celle que la build lit dans la couverture ne dit pas l'Espèce : elle teinte les descripteurs, le cadre, le nom en filigrane et la dalle. Absente : la couleur clé de la couverture.",
-      ),
+    keyColour,
     movement: z
       .string()
       .min(1)

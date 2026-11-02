@@ -80,19 +80,22 @@ describe('the key colour Aubaine reads from its covers', () => {
     }
   })
 
-  it('keeps the sticker ink readable on every key colour a species writes for itself', async () => {
-    const directory = resolve(import.meta.dirname, '../../data/species')
-    const files = (await readdir(directory)).filter(
-      (file) => file.endsWith('.json') && !/\.[a-z]{2}\.json$/.test(file),
-    )
-    for (const file of files) {
-      const entry: { keyColour?: string } = JSON.parse(
-        await readFile(resolve(directory, file), 'utf8'),
+  it('keeps the sticker ink readable on every key colour a species or a tree writes for itself', async () => {
+    for (const folder of ['species', 'skill-trees']) {
+      const directory = resolve(import.meta.dirname, '../../data', folder)
+      const files = (await readdir(directory)).filter(
+        (file) => file.endsWith('.json') && !/\.[a-z]{2}\.json$/.test(file),
       )
-      if (!entry.keyColour) continue
-      expect(contrastOf(rgbFromHex(entry.keyColour), STICKER_INK), file).toBeGreaterThanOrEqual(
-        AA_TEXT,
-      )
+      for (const file of files) {
+        const entry: { keyColour?: string } = JSON.parse(
+          await readFile(resolve(directory, file), 'utf8'),
+        )
+        if (!entry.keyColour) continue
+        expect(
+          contrastOf(rgbFromHex(entry.keyColour), STICKER_INK),
+          `${folder}/${file}`,
+        ).toBeGreaterThanOrEqual(AA_TEXT)
+      }
     }
   })
 

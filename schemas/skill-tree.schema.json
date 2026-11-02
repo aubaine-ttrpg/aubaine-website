@@ -167,6 +167,11 @@
       "type": "string",
       "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*\\.svg$"
     },
+    "keyColour": {
+      "description": "Couleur clé de l'entrée, en hexadécimal à six chiffres minuscules, quand celle que la build lit dans la couverture ne la dit pas, ou pour la figer : elle teinte sa carte, les descripteurs, le cadre, le nom en filigrane et la dalle de son héros. Absente : la couleur clé lue dans la couverture, ou, sans couverture, celle que l'entrée tient par défaut.",
+      "type": "string",
+      "pattern": "^#[0-9a-f]{6}$"
+    },
     "backCover": {
       "description": "Quatrième de couverture au rapport 3:4, dans data/media/art/ : la planche verticale au dos du livret imprimé. Absente, le dos retombe sur la planche commune que nomme src/lib/booklet/back-cover.ts.",
       "type": "string",

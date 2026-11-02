@@ -59,6 +59,10 @@ function descriptorLabels(corpus: Corpus, locale: Locale, keys: readonly string[
   return keys.map((key) => label(corpus.descriptors.get(key), locale, key))
 }
 
+function treeKeyColour(tree: ResolvedTree, corpus: Corpus): string | undefined {
+  return tree.keyColour ?? (tree.cover ? undefined : treeSealKey(tree, corpus))
+}
+
 export function treeSheet(tree: ResolvedTree, corpus: Corpus, locale: Locale): CharacterSheet {
   const t = strings(locale)
   const primes = tree.primeCharacteristics.map((key) => {
@@ -89,7 +93,7 @@ export function treeSheet(tree: ResolvedTree, corpus: Corpus, locale: Locale): C
     seal: treeSeal(tree, corpus),
     effect: tree.artEffect,
     emblem: tree.emblem,
-    keyColour: tree.cover ? undefined : treeSealKey(tree, corpus),
+    keyColour: treeKeyColour(tree, corpus),
   }
 }
 
@@ -214,7 +218,7 @@ export function librarySheet(item: LibraryItem, corpus: Corpus, locale: Locale):
       seal: treeSeal(item.tree, corpus),
       effect: item.tree.artEffect,
       emblem: item.tree.emblem,
-      keyColour: item.cover ? undefined : treeSealKey(item.tree, corpus),
+      keyColour: treeKeyColour(item.tree, corpus),
     }
   }
   return {
