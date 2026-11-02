@@ -3,7 +3,7 @@ import { PLATE_PAPER } from '../../lib/game/character-sheet'
 import { doorLooks, type HubDoor } from '../../lib/game/hub-doors'
 import type { Locale } from '../../lib/i18n/locales'
 import { DARK_INK } from '../../lib/key-colour'
-import { fitLetters, PLATE_PADDING, platesOf } from '../../lib/plates'
+import { fitLetters, fitLine, PLATE_PADDING } from '../../lib/plates'
 import PlateDoor from './PlateDoor.astro'
 import StageBackdrop from './StageBackdrop.astro'
 import StillToggle from './StillToggle.astro'
@@ -17,18 +17,14 @@ const { locale, title, about, doors } = Astro.props
 const [first] = doors
 if (!first) throw new Error(`the ${title} hub has no section to open`)
 
-const WRAPPING_PLATES = 3
 const SCENE_CAP = 56
 
 const rows = await doorLooks(doors)
-const wrapping = doors.filter((door) => platesOf(door.name).length >= WRAPPING_PLATES).length
+const names = doors.map((door) => door.name)
 const style = [
   `--doors:${doors.length}`,
-  `--lines:${doors.length + wrapping}`,
-  `--fit-letters:${fitLetters(
-    doors.map((door) => door.name),
-    PLATE_PADDING,
-  )}`,
+  `--fit-letters:${fitLetters(names, PLATE_PADDING)}`,
+  `--fit-line:${fitLine(names, PLATE_PADDING)}`,
   `--door-paper:${PLATE_PAPER}`,
   `--door-paper-ink:${DARK_INK}`,
   `--scene-cap:${SCENE_CAP}px`,
@@ -74,9 +70,10 @@ const style = [
     --name-floor: 30px;
     --name-cap: 112px;
     --fit-h: 100vmax;
+    --fit: var(--fit-letters);
     --name-px: clamp(
-      min(var(--name-floor), calc(var(--name-room) / var(--fit-letters))),
-      min(calc(var(--name-room) / var(--fit-letters)), var(--fit-h)),
+      min(var(--name-floor), calc(var(--name-room) / var(--fit))),
+      min(calc(var(--name-room) / var(--fit)), var(--fit-h)),
       var(--name-cap)
     );
     container-type: inline-size;
@@ -150,10 +147,8 @@ const style = [
         (var(--content) * 0.54 - var(--mark-size) - var(--gap) - var(--lit-shift)) /
           var(--lit-scale)
       );
-      --fit-h: calc(
-        (100svh - var(--header-h) - 260px - var(--doors) * 25px) /
-          (var(--lines) + var(--doors) * 0.44)
-      );
+      --fit: var(--fit-line);
+      --fit-h: calc((100svh - var(--header-h) - 260px - var(--doors) * 25px) / (var(--doors) * 1.44));
     }
 
     .au-plate-menu__title {

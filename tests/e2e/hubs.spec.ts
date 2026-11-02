@@ -38,6 +38,13 @@ const SIZES = [
   [390, 844],
   [320, 568],
 ] as const
+const DESKTOPS = [
+  [960, 720],
+  [1440, 900],
+  [1512, 982],
+  [1920, 1080],
+  [2560, 1440],
+] as const
 
 type HubKind = (typeof HUB_KINDS)[number]
 
@@ -346,6 +353,27 @@ test('the doors are read in the order they are drawn', async ({ page }) => {
     }
   }
 })
+
+for (const [width, height] of DESKTOPS) {
+  test(`every Codex door name holds one line at ${width}x${height}`, async ({ page }) => {
+    await page.setViewportSize({ width, height })
+    await page.emulateMedia({ reducedMotion: 'reduce' })
+    for (const locale of LOCALES) {
+      await page.goto(pathFor('almanach', locale))
+      await live(page)
+      const broken = await page.evaluate(() =>
+        [...document.querySelectorAll<HTMLElement>('.au-plate-door__name')]
+          .filter((name) => {
+            const plates = [...name.querySelectorAll<HTMLElement>('.au-plate-door__plate')]
+            const tallest = Math.max(...plates.map((plate) => plate.offsetHeight))
+            return name.offsetHeight > tallest * 1.5
+          })
+          .map((name) => name.textContent?.replace(/\s+/g, ' ').trim() ?? '?'),
+      )
+      expect(broken, `almanach ${locale} at ${width}x${height}`).toEqual([])
+    }
+  })
+}
 
 for (const [width, height] of SIZES) {
   test(`nothing on a Codex door is cut at ${width}x${height}, whichever door is lit`, async ({
