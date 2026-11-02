@@ -16,6 +16,7 @@ const HOST = '[data-stage-host]'
 const FOCUS = '[data-stage-focus]'
 const STAGED = 'data-staged'
 const SOURCE = 'data-stage'
+const AMBIENT = '.au-stage__ambient'
 const LONGEST_STEP = 0.1
 const FADE_MS = 450
 const REDUCED_MOTION = '(prefers-reduced-motion: reduce)'
@@ -28,7 +29,11 @@ type Layer = {
   source: string
 }
 
-const stages = new Map<HTMLElement, AbortController>()
+type Carried = { layer: Layer; seconds: number; studio: Studio }
+
+type Mounted = { teardown: AbortController; handOver: () => Carried | undefined }
+
+const stages = new Map<HTMLElement, Mounted>()
 
 async function pixelsOf(source: string): Promise<HTMLImageElement> {
   const pixels = new Image()
@@ -56,21 +61,30 @@ function freshCanvas(): Pick<Layer, 'canvas' | 'surface'> {
   return { canvas, surface }
 }
 
-function mount(stage: HTMLElement, teardown: AbortController): void {
+function discardCarried({ layer, studio }: Carried): void {
+  layer.canvas.remove()
+  studio.discard(layer.backdrop)
+}
+
+function mount(
+  stage: HTMLElement,
+  teardown: AbortController,
+  carried: Carried | undefined,
+): () => Carried | undefined {
   const { signal } = teardown
   const host = stage.closest(HOST)
   if (!host) throw new Error('a stage sits outside its host')
   const motion = window.matchMedia(REDUCED_MOTION)
 
-  let studio: Studio | undefined
-  let shown: Layer | undefined
+  let studio: Studio | undefined = carried?.studio
+  let shown: Layer | undefined = carried?.layer
   let incoming: Layer | undefined
   let loading: AbortController | undefined
-  let visible = false
+  let visible = carried !== undefined
   let frame = 0
   let fade = 0
   let step = -1
-  let seconds = 0
+  let seconds = carried?.seconds ?? 0
   let last: number | undefined
 
   const still = (): boolean => motion.matches || host.hasAttribute(STILL)
@@ -254,12 +268,32 @@ function mount(stage: HTMLElement, teardown: AbortController): void {
     },
     { once: true },
   )
+
+  if (carried) {
+    const ambient = stage.querySelector(AMBIENT)
+    if (ambient) ambient.after(carried.layer.canvas)
+    else stage.prepend(carried.layer.canvas)
+    stage.setAttribute(STAGED, '')
+    if (!draw(carried.studio, carried.layer)) lose()
+    wake()
+  }
+
+  return () => {
+    if (incoming) settleFade(incoming)
+    if (!shown || !studio) return undefined
+    const handed = { layer: shown, seconds, studio }
+    shown = undefined
+    return handed
+  }
 }
 
 export function syncStages(): void {
-  for (const [stage, teardown] of [...stages]) {
+  const carrying = !window.matchMedia(REDUCED_MOTION).matches
+  let carried: Carried | undefined
+  for (const [stage, mounted] of [...stages]) {
     if (stage.isConnected) continue
-    teardown.abort()
+    if (carrying) carried ??= mounted.handOver()
+    mounted.teardown.abort()
     stages.delete(stage)
   }
   for (const stage of document.querySelectorAll<HTMLElement>(FIELD_SELECTOR)) {
@@ -271,13 +305,16 @@ export function syncStages(): void {
   for (const stage of document.querySelectorAll<HTMLElement>(STAGE_SELECTOR)) {
     if (stages.has(stage) || !stage.getAttribute(SOURCE)) continue
     const teardown = new AbortController()
-    stages.set(stage, teardown)
+    const handed = carried
+    carried = undefined
     teardown.signal.addEventListener('abort', () => stages.delete(stage), { once: true })
     try {
-      mount(stage, teardown)
+      stages.set(stage, { teardown, handOver: mount(stage, teardown, handed) })
     } catch (error) {
       console.error(error)
+      if (handed && !stage.contains(handed.layer.canvas)) discardCarried(handed)
       teardown.abort()
     }
   }
+  if (carried) discardCarried(carried)
 }

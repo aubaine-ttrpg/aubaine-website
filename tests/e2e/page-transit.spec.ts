@@ -5,6 +5,7 @@ const CARD_ON_ROSTER = '[data-entry="berserker"] a'
 const SHEET = '/en/tree/berserker'
 const LIST = '/en/trees'
 const HUB = '/en/almanach'
+const LIVING_STAGE_WAIT_MS = 5000
 
 type Spy = {
   calls: number
@@ -412,6 +413,68 @@ test.describe('page changes', () => {
       expect(seen.rejected).toEqual([])
       expect(seen.hiddenFrames).toBe(0)
       expect(await page.evaluate(namedElements)).toHaveLength(0)
+    })
+  }
+
+  for (const { from, via, to } of [
+    { from: LIST, via: '[data-entry="marchand"] a', to: '/en/tree/marchand' },
+    { from: HUB, via: `main a[href="${LIST}"]`, to: LIST },
+  ]) {
+    test(`the living stage carries from ${from} to ${to} and back`, async ({ page }) => {
+      await open(page, from)
+      const living = await page
+        .waitForFunction(
+          () => document.querySelector('.au-stage[data-staged] canvas') !== null,
+          undefined,
+          {
+            timeout: LIVING_STAGE_WAIT_MS,
+          },
+        )
+        .then(
+          () => true,
+          () => false,
+        )
+      test.skip(!living, 'the stage does not run on this engine without a GPU')
+      await page.evaluate(() => {
+        const start = document.startViewTransition.bind(document)
+        const seen: { carried: boolean; halftone: string; shade: string }[] = []
+        let visits = 0
+        Object.assign(window, { __stages: seen })
+        Object.defineProperty(document, 'startViewTransition', {
+          configurable: true,
+          writable: true,
+          value: (update: () => Promise<void>) => {
+            visits += 1
+            const mark = String(visits)
+            for (const canvas of document.querySelectorAll<HTMLCanvasElement>('.au-stage canvas')) {
+              canvas.dataset['carried'] = mark
+            }
+            const transition = start(update)
+            void transition.ready.then(() => {
+              const stage = document.querySelector('.au-stage[data-staged]')
+              const visibility = (selector: string) => {
+                const layer = stage?.querySelector(selector)
+                return layer ? getComputedStyle(layer).visibility : 'absent'
+              }
+              seen.push({
+                carried: stage?.querySelector(`canvas[data-carried="${mark}"]`) != null,
+                halftone: visibility('.au-stage__halftone'),
+                shade: visibility('.au-stage__shade'),
+              })
+            })
+            return transition
+          },
+        })
+      })
+      const stages = () => page.evaluate(() => Reflect.get(window, '__stages'))
+      await page.locator(via).click()
+      await expect(page).toHaveURL(to)
+      await settled(page)
+      await page.goBack()
+      await expect(page).toHaveURL(from)
+      await settled(page)
+      const kept = { carried: true, halftone: 'visible', shade: 'visible' }
+      await expect.poll(stages).toEqual([kept, kept])
     })
   }
 

@@ -26,6 +26,8 @@ export type SwupPreloadArgs = { url: string; page?: { html: string } | undefined
 
 export type SwupHandler = (visit: SwupVisit) => void | Promise<void>
 
+export type SwupHookOptions = { priority: number }
+
 export type SwupInstance = {
   options: { native: boolean }
   navigating: boolean
@@ -34,7 +36,7 @@ export type SwupInstance = {
   hooks: {
     on: {
       (name: 'page:preload', handler: (visit: SwupVisit, args: SwupPreloadArgs) => void): void
-      (name: string, handler: SwupHandler): void
+      (name: string, handler: SwupHandler, options?: SwupHookOptions): void
     }
     once: (name: string, handler: (visit: SwupVisit) => void) => void
     before: {
