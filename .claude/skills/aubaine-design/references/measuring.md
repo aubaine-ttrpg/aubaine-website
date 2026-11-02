@@ -199,8 +199,15 @@ pnpm design:transit --base=http://localhost:4322 '--edges=/fr/almanach>/fr/arbre
 ```
 
 `FROM>TO` clicks the link to `TO` on `FROM`; `FROM<TO` goes there, then measures Back. `--film` writes a
-contact sheet per row, each frame sought with the animations paused, so its timings read over budget: time
-without it. Open the sheets with the Read tool: a table cannot show a piece that moves badly, and on
+contact sheet per row from the frames really painted: a screencast on Chromium, a 25 fps recording elsewhere.
+Playwright's Firefox recording breaks into tiles on these pages, so do not judge Firefox from it.
+`--real-firefox` drives the installed Firefox through geckodriver and prints frames, median, p95 and worst for the
+motion alone. **Run it before calling any motion smooth.** On 2026-11-01 a transition held 17 ms on Chromium and
+looked fine on film while Firefox, the owner's browser, ran 42 to 50 ms: "it's saccadé". Runs vary widely on this
+machine, so compare variants in pairs over several visits, and never trust a single row. To find a cost, hide one
+layer at a time with a constructed stylesheet at runtime; that found the stage's blur, its layered backgrounds,
+its gradient shade and the live roster, none of them the piece count. Open the sheets with the Read tool: a table
+cannot show a piece that moves badly, and on
 2026-11-01 a table said 300 ms while the owner saw nothing move, because the curve had covered 90 % of the
 travel in 99 ms. A motion has to be judged by how long it takes to cross, not only by when it ends.
 `--pops` records the real painted frames on Chromium and reports a frame that nobody meant: a large area that

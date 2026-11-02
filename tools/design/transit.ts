@@ -1,5 +1,7 @@
-import { mkdir } from 'node:fs/promises'
-import { resolve } from 'node:path'
+import { execFileSync, spawn } from 'node:child_process'
+import { mkdir, mkdtemp, readdir, rm } from 'node:fs/promises'
+import { tmpdir } from 'node:os'
+import { join, resolve } from 'node:path'
 
 import { type Browser, chromium, firefox, type Page, webkit } from 'playwright-core'
 import sharp from 'sharp'
@@ -16,33 +18,39 @@ type Trace = {
   emptied: number
   worstFrame: number
   groups: string[]
+  travel: string
   namesLeft: number
 }
 
 const USAGE = `pnpm design:transit --edges=FROM>TO,... [--themes=dark,light] [--sizes=1512x860,390x844]
-  [--browser=chromium|firefox|webkit] [--cold] [--film=DIR] [--flash] [--pops] [--base=URL]
+  [--browser=chromium|firefox|webkit] [--cold] [--film=DIR] [--flash] [--pops] [--real-firefox] [--base=URL]
 
 Clicks the link to TO on FROM and measures one page change per edge, theme and size, then Back when the
 edge is written FROM<TO. Prints one row each: the acknowledgement, the first motion and the end after the
-click, the frames where the page is hidden, the worst frame during the motion, the transition's groups.
---cold disables the HTTP cache. --film writes a contact sheet of the transition, each frame sought with
-the animations paused. --flash records every painted frame on Chromium and counts the general and red
-flashes of WCAG 2.3.1 in any second, in any patch a quarter of a 10 degree field. --pops records the same
-frames and reports any patch that jumps away for one to three frames and comes back: a frame nobody meant.
+click, the frames where the page is hidden, the worst frame during the motion, how long the leading piece
+takes to cross 10 to 90 % of its travel, the transition's groups. --cold disables the HTTP cache. --film
+writes a contact sheet of the frames really painted: a screencast on Chromium, a 25 fps recording on Firefox
+and WebKit. --flash records every painted frame on Chromium and counts the general and red flashes of WCAG
+2.3.1 in any second, in any patch a quarter of a 10 degree field, sliding by a quarter of a patch. --pops
+records the same frames and reports any large area that jumps for one to three frames and comes back.
+--real-firefox drives the installed Firefox through geckodriver, headless, and prints the frames of the
+motion alone: count, median, p95 and worst, three visits per edge. Playwright's Firefox video breaks into
+tiles on these pages, so this reading and seeked stills are what Firefox gets.
 Default --base=http://localhost:4322
 
 Exit 0 when every row meets the budget; 1 when one does not; 2 on a usage error.`
 
 const BROWSERS = { chromium, firefox, webkit } as const
 type BrowserName = keyof typeof BROWSERS
-const FILM_MS = [0, 40, 80, 130, 180, 240, 290, 330, 370, 410, 450, 490, 530, 570, 620] as const
+const FILM_COLUMNS = 8
+const FILM_FRAMES = 32
 const SETTLE_MS = 2200
 const HOVER_MS = 450
 const AFTER_MS = 1300
 const FINISHED_BUDGET_MS = 400
 const BOOK_BUDGET_MS = 700
 const ACK_BUDGET_MS = 100
-const FILM_WIDTH = 400
+const FILM_WIDTH = 300
 
 class UsageError extends Error {}
 
@@ -75,6 +83,8 @@ const SPY = `
   (() => {
     const native = document.startViewTransition?.bind(document)
     if (!native) return
+    const lead = (names) =>
+      names.find((name) => name === '(au-sheet-card-0)') ?? names.find((name) => name.startsWith('(au-flight-'))
     document.startViewTransition = (update) => {
       const spy = (window.__spy ??= {})
       spy.called = performance.now()
@@ -86,9 +96,20 @@ const SPY = `
             .map((animation) => animation.effect.pseudoElement)
             .filter((name) => name && /group|image-pair/.test(name))
             .map((name) => name.replace(/::view-transition-(group|image-pair)/, '')))]
-          if (spy.freeze) {
-            for (const animation of document.getAnimations()) animation.pause()
+          const piece = lead(spy.groups)
+          if (!piece) return
+          spy.piece = piece
+          spy.path = []
+          const sample = () => {
+            if (spy.finished) return
+            const style = getComputedStyle(document.documentElement, '::view-transition-group' + piece)
+            if (style.transform !== 'none') {
+              const matrix = new DOMMatrixReadOnly(style.transform)
+              spy.path.push([performance.now(), matrix.e, matrix.f])
+            }
+            requestAnimationFrame(sample)
           }
+          sample()
         },
         (error) => { spy.rejected = String(error) },
       )
@@ -98,10 +119,28 @@ const SPY = `
   })()
 `
 
-async function arm(page: Page, freeze: boolean): Promise<void> {
-  await page.evaluate((frozen) => {
+function travelOf(path: readonly (readonly [number, number, number])[]): string {
+  const first = path[0]
+  const last = path.at(-1)
+  if (!first || !last) return '-'
+  const span = Math.hypot(last[1] - first[1], last[2] - first[2])
+  if (span < 8) return '-'
+  const along = path.map(([at, x, y]) => ({
+    at,
+    share:
+      ((x - first[1]) * (last[1] - first[1]) + (y - first[2]) * (last[2] - first[2])) / span ** 2,
+  }))
+  const from = along.find((point) => point.share >= 0.1)
+  const to = along.find((point) => point.share >= 0.9)
+  if (!from || !to) return '-'
+  const frames = along.filter((point) => point.at >= from.at && point.at <= to.at).length
+  return `${Math.round(to.at - from.at)} ms, ${frames} frames`
+}
+
+async function arm(page: Page): Promise<void> {
+  await page.evaluate(() => {
     const state = window as unknown as { __spy: Record<string, unknown>; __watching?: boolean }
-    state.__spy = { freeze: frozen, start: 0, emptied: 0, worstFrame: 0 }
+    state.__spy = { start: 0, emptied: 0, worstFrame: 0 }
     const spy = state.__spy
     let last = performance.now()
     let moving = false
@@ -136,11 +175,11 @@ async function arm(page: Page, freeze: boolean): Promise<void> {
       },
       { capture: true, once: true },
     )
-  }, freeze)
+  })
 }
 
 async function traced(page: Page): Promise<Trace> {
-  return page.evaluate(() => {
+  const { path, ...trace } = await page.evaluate(() => {
     const spy = (window as unknown as { __spy: Record<string, unknown> }).__spy
     spy['done'] = true
     const start = Number(spy['start'])
@@ -155,42 +194,36 @@ async function traced(page: Page): Promise<Trace> {
       emptied: Number(spy['emptied']),
       worstFrame: Math.round(Number(spy['worstFrame'])),
       groups: Array.isArray(spy['groups']) ? (spy['groups'] as string[]) : [],
+      path: Array.isArray(spy['path']) ? (spy['path'] as [number, number, number][]) : [],
       namesLeft: [...document.querySelectorAll<HTMLElement>('*')].filter(
         (element) => element.style.getPropertyValue('view-transition-name') !== '',
       ).length,
     }
   })
+  return { ...trace, travel: travelOf(path) }
 }
 
-async function film(page: Page, file: string): Promise<void> {
-  await page.waitForFunction(() => {
-    const spy = (window as unknown as { __spy?: { ready?: number; rejected?: string } }).__spy
-    return spy?.ready !== undefined || spy?.rejected !== undefined
-  })
-  const frames: Buffer[] = []
-  for (const moment of FILM_MS) {
-    await page.evaluate((at) => {
-      for (const animation of document.getAnimations()) animation.currentTime = at
-    }, moment)
-    frames.push(await page.screenshot({ animations: 'allow' }))
-  }
-  await page.evaluate(() => {
-    for (const animation of document.getAnimations()) animation.play()
-  })
-  const metadata = await sharp(frames[0]).metadata()
+async function contactSheet(frames: readonly Buffer[], file: string): Promise<void> {
+  const first = frames[0]
+  if (!first) return
+  const changed = frames.filter(
+    (frame, index) => !frame.equals(frames[index - 1] ?? Buffer.alloc(0)),
+  )
+  const every = Math.max(1, Math.floor(changed.length / FILM_FRAMES))
+  const chosen = changed.filter((_, index) => index % every === 0).slice(0, FILM_FRAMES)
+  const metadata = await sharp(first).metadata()
   const height = Math.round((FILM_WIDTH * (metadata.height ?? 1)) / (metadata.width ?? 1))
-  const columns = 5
-  const rows = Math.ceil(frames.length / columns)
+  const rows = Math.ceil(chosen.length / FILM_COLUMNS)
   const tiles = await Promise.all(
-    frames.map(async (frame, index) => ({
+    chosen.map(async (frame, index) => ({
       input: await sharp(frame).resize(FILM_WIDTH, height).toBuffer(),
-      left: (index % columns) * FILM_WIDTH,
-      top: Math.floor(index / columns) * height,
+      left: (index % FILM_COLUMNS) * FILM_WIDTH,
+      top: Math.floor(index / FILM_COLUMNS) * height,
     })),
   )
   await sharp({
     create: {
-      width: FILM_WIDTH * columns,
+      width: FILM_WIDTH * FILM_COLUMNS,
       height: height * rows,
       channels: 3,
       background: '#000',
@@ -199,6 +232,25 @@ async function film(page: Page, file: string): Promise<void> {
     .composite(tiles)
     .png()
     .toFile(file)
+}
+
+async function framesOfVideo(video: string): Promise<Buffer[]> {
+  const directory = await mkdtemp(join(tmpdir(), 'aubaine-transit-'))
+  try {
+    execFileSync('ffmpeg', [
+      '-v',
+      'error',
+      '-i',
+      video,
+      '-vf',
+      'fps=25',
+      join(directory, '%04d.png'),
+    ])
+    const names = (await readdir(directory)).sort()
+    return await Promise.all(names.map((name) => sharp(join(directory, name)).png().toBuffer()))
+  } finally {
+    await rm(directory, { recursive: true, force: true })
+  }
 }
 
 const GRID_WIDTH = 64
@@ -258,9 +310,11 @@ async function flashesIn(frames: readonly Frame[], viewport: Size): Promise<numb
         .toBuffer(),
     })),
   )
+  const slideDown = Math.max(1, Math.round(down / 4))
+  const slideAcross = Math.max(1, Math.round(across / 4))
   let worst = 0
-  for (let top = 0; top + down <= rows; top += down) {
-    for (let left = 0; left + across <= GRID_WIDTH; left += across) {
+  for (let top = 0; top + down <= rows; top += slideDown) {
+    for (let left = 0; left + across <= GRID_WIDTH; left += slideAcross) {
       const general: { at: number; value: number }[] = []
       const red: { at: number; value: number }[] = []
       for (const { at, pixels } of decoded) {
@@ -332,6 +386,12 @@ function describePops(pops: readonly Pop[]): string {
   return pops.map((pop) => `${pop.at} ms (${pop.cells} patches)`).join(', ')
 }
 
+function budgetOf(groups: readonly string[]): number {
+  if (groups.some((group) => /au-book|au-sheet|au-deal|au-filter/.test(group)))
+    return BOOK_BUDGET_MS
+  return FINISHED_BUDGET_MS
+}
+
 type Run = {
   browser: Browser
   base: string
@@ -346,12 +406,20 @@ type Run = {
 
 async function rowOf(run: Run): Promise<boolean> {
   const { browser, base, edge, theme, size, cold, filmDirectory, flash, pops } = run
-  const context = await browser.newContext({ viewport: size, colorScheme: theme, bypassCSP: true })
+  const chromiumEngine = browser.browserType().name() === 'chromium'
+  const videoDirectory =
+    filmDirectory && !chromiumEngine ? await mkdtemp(join(tmpdir(), 'aubaine-video-')) : undefined
+  const context = await browser.newContext({
+    viewport: size,
+    colorScheme: theme,
+    bypassCSP: true,
+    ...(videoDirectory ? { recordVideo: { dir: videoDirectory, size } } : {}),
+  })
   await context.addInitScript(SPY)
   const page = await context.newPage()
   const errors: string[] = []
   page.on('pageerror', (error) => errors.push(error.message))
-  if (cold && browser.browserType().name() === 'chromium') {
+  if (cold && chromiumEngine) {
     const session = await context.newCDPSession(page)
     await session.send('Network.setCacheDisabled', { cacheDisabled: true })
   }
@@ -362,7 +430,7 @@ async function rowOf(run: Run): Promise<boolean> {
   await link.hover({ trial: false, timeout: 4000 })
   await page.waitForTimeout(cold ? 0 : HOVER_MS)
   const frames: Frame[] = []
-  if ((flash || pops) && browser.browserType().name() === 'chromium') {
+  if ((flash || pops || filmDirectory) && chromiumEngine) {
     const session = await context.newCDPSession(page)
     session.on('Page.screencastFrame', (frame) => {
       frames.push({ at: frame.metadata.timestamp ?? 0, data: Buffer.from(frame.data, 'base64') })
@@ -372,8 +440,7 @@ async function rowOf(run: Run): Promise<boolean> {
     })
     await session.send('Page.startScreencast', { format: 'png', everyNthFrame: 1, maxWidth: 480 })
   }
-  const filmed = filmDirectory !== undefined
-  await arm(page, filmed && !edge.back)
+  await arm(page)
   const label = `${edge.from} ${edge.back ? '<' : '>'} ${edge.to}`
   const name = `${label.replace(/\W+/g, '-')}-${edge.back ? 'back-' : ''}${theme}-${size.width}`
   if (edge.back) {
@@ -387,18 +454,16 @@ async function rowOf(run: Run): Promise<boolean> {
       }
     })
     frames.length = 0
-    await page.evaluate((frozen) => {
+    await page.evaluate(() => {
       const spy = (window as unknown as { __spy: Record<string, unknown> }).__spy
-      spy['freeze'] = frozen
       spy['start'] = performance.now()
       spy['emptied'] = 0
       spy['worstFrame'] = 0
       window.history.back()
-    }, filmed)
+    })
   } else {
     await link.click({ noWaitAfter: true })
   }
-  if (filmed && filmDirectory) await film(page, resolve(filmDirectory, `${name}.png`))
   await page.waitForTimeout(AFTER_MS)
   const trace = await traced(page)
   const popped = pops
@@ -421,20 +486,126 @@ async function rowOf(run: Run): Promise<boolean> {
     trace.namesLeft === 0 &&
     errors.length === 0 &&
     trace.finished !== undefined &&
-    trace.finished <=
-      (trace.groups.some((group) => group.includes('au-book'))
-        ? BOOK_BUDGET_MS
-        : FINISHED_BUDGET_MS) &&
+    trace.finished <= budgetOf(trace.groups) &&
     (edge.back || (trace.acknowledged ?? Number.POSITIVE_INFINITY) <= ACK_BUDGET_MS)
   console.log(
-    `| ${label} | ${theme} | ${size.width}x${size.height} | ${trace.acknowledged ?? '-'} | ${trace.ready ?? '-'} | ${trace.finished ?? '-'} | ${trace.emptied} | ${trace.worstFrame} | ${flashes ?? '-'} | ${pops ? describePops(popped) : '-'} | ${trace.groups.join(' ')} | ${[trace.rejected, trace.namesLeft ? `${trace.namesLeft} names left` : '', ...errors].filter(Boolean).join('; ') || (good ? 'ok' : 'over budget')} |`,
+    `| ${label} | ${theme} | ${size.width}x${size.height} | ${trace.acknowledged ?? '-'} | ${trace.ready ?? '-'} | ${trace.finished ?? '-'} | ${trace.emptied} | ${trace.worstFrame} | ${trace.travel} | ${flashes ?? '-'} | ${pops ? describePops(popped) : '-'} | ${trace.groups.join(' ')} | ${[trace.rejected, trace.namesLeft ? `${trace.namesLeft} names left` : '', ...errors].filter(Boolean).join('; ') || (good ? 'ok' : 'over budget')} |`,
   )
+  const video = page.video()
   await context.close()
+  if (filmDirectory) {
+    const painted = video
+      ? await framesOfVideo(await video.path())
+      : frames.map((frame) => frame.data)
+    await contactSheet(painted, resolve(filmDirectory, `${name}.png`))
+  }
+  if (videoDirectory) await rm(videoDirectory, { recursive: true, force: true })
   return good
+}
+
+function pause(milliseconds: number): Promise<void> {
+  return new Promise((done) => setTimeout(done, milliseconds))
+}
+
+const GECKO_PORT = 4471
+const GECKO_START_MS = 800
+const GECKO_SETTLE_MS = 1300
+const REAL_VISITS = 3
+const REAL_WINDOW = { width: 1512, height: 940 }
+
+const REAL_FRAMES = `
+  const done = arguments[arguments.length - 1]
+  const [to, back] = arguments
+  const native = document.startViewTransition.bind(document)
+  const gaps = []
+  let measuring = false
+  let last = 0
+  const tick = (now) => {
+    if (!measuring) return
+    gaps.push(now - last)
+    last = now
+    requestAnimationFrame(tick)
+  }
+  document.startViewTransition = (update) => {
+    const transition = native(update)
+    transition.ready.then(() => {
+      measuring = true
+      last = performance.now()
+      requestAnimationFrame(tick)
+    }, () => undefined)
+    transition.finished.then(() => {
+      measuring = false
+      const sorted = [...gaps].sort((a, b) => a - b)
+      done([
+        sorted.length,
+        Math.round(sorted[sorted.length >> 1]),
+        Math.round(sorted[Math.floor(sorted.length * 0.95)]),
+        Math.round(sorted.at(-1)),
+      ])
+    })
+    return transition
+  }
+  if (back) history.back()
+  else [...document.querySelectorAll('a[href="' + to + '"]')].find((link) => link.checkVisibility()).click()
+`
+
+async function realFirefoxRows(edges: readonly Edge[], base: string): Promise<void> {
+  const driver = spawn('geckodriver', ['-p', String(GECKO_PORT)], { stdio: 'ignore' })
+  await pause(GECKO_START_MS)
+  const call = async (method: string, path: string, body?: unknown): Promise<unknown> => {
+    const response = await fetch(`http://127.0.0.1:${GECKO_PORT}${path}`, {
+      method,
+      headers: { 'content-type': 'application/json' },
+      ...(body === undefined ? {} : { body: JSON.stringify(body) }),
+    })
+    const { value } = (await response.json()) as { value: unknown }
+    return value
+  }
+  try {
+    const { sessionId } = (await call('POST', '/session', {
+      capabilities: {
+        alwaysMatch: { browserName: 'firefox', 'moz:firefoxOptions': { args: ['-headless'] } },
+      },
+    })) as { sessionId: string }
+    const session = `/session/${sessionId}`
+    await call('POST', `${session}/window/rect`, REAL_WINDOW)
+    await call('POST', `${session}/timeouts`, { script: 15000 })
+    const visit = async (path: string): Promise<void> => {
+      await call('POST', `${session}/url`, { url: base + path })
+      await pause(GECKO_SETTLE_MS)
+    }
+    const frames = (to: string, back: boolean): Promise<unknown> =>
+      call('POST', `${session}/execute/async`, { script: REAL_FRAMES, args: [to, back] })
+    console.log('| edge | frames / median / p95 / worst, per visit |\n| --- | --- |')
+    for (const edge of edges) {
+      const rows: unknown[] = []
+      for (let run = 0; run < REAL_VISITS; run++) {
+        await visit(edge.from)
+        const going = await frames(edge.to, false)
+        if (edge.back) {
+          await pause(GECKO_SETTLE_MS)
+          rows.push(await frames(edge.from, true))
+        } else {
+          rows.push(going)
+        }
+      }
+      const label = `${edge.from} ${edge.back ? '<' : '>'} ${edge.to}`
+      console.log(
+        `| ${label} | ${rows.map((row) => String(row).replaceAll(',', ' / ')).join('; ')} |`,
+      )
+    }
+    await call('DELETE', session)
+  } finally {
+    driver.kill()
+  }
 }
 
 async function main(): Promise<void> {
   const edges = edgesOf(option('edges'))
+  if (process.argv.includes('--real-firefox')) {
+    await realFirefoxRows(edges, option('base', 'http://localhost:4322'))
+    return
+  }
   const browserName = option('browser', 'chromium')
   if (!(browserName in BROWSERS)) throw new UsageError(`unknown browser ${browserName}`)
   const engine = BROWSERS[browserName as BrowserName]
@@ -451,9 +622,9 @@ async function main(): Promise<void> {
     engine === chromium ? { channel: 'chromium', args: ['--use-angle=metal', '--enable-gpu'] } : {},
   )
   console.log(
-    '| edge | theme | size | pressed ms | first motion ms | finished ms | hidden frames | worst frame in motion ms | flashes a second | stray frames | groups | verdict |',
+    '| edge | theme | size | pressed ms | first motion ms | finished ms | hidden frames | worst frame in motion ms | lead piece 10 to 90 % | flashes a second | stray frames | groups | verdict |',
   )
-  console.log('| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |')
+  console.log('| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |')
   let bad = 0
   try {
     for (const edge of edges) {
