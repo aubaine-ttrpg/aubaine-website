@@ -60,7 +60,7 @@ accepted piece). Open one with the Read tool to see it.
 
 | Capture | Shows |
 | --- | --- |
-| `sheet-tree-marchand.jpg` | The Marchand sheet, the one tree with a cover: key colour `#e8bea6`, its emblem, the profile, one trait plate, the booklet buttons. The slab and the ghost name run off the right edge, as approved. |
+| `sheet-tree-marchand.jpg` | The Marchand sheet, the one tree with a cover: key colour `#e8bea6`, its emblem, the profile, one trait plate, the booklet buttons. The slab and the ghost name run off the right edge, as approved. The Marchand writes the gold beige `#e3c28c` since 2026-11-02, at the owner's request; the capture keeps the key it was approved with. |
 | `sheet-species-drow.jpg` | The sheet of a coverless species: the violet seal, the house-gold key, three bone trait plates, no profile. |
 | `select-screen-arbres.jpg` | The Arbres select screen with Marchand in the spotlight: the title plates and their help button, the filter bar, the Archétypes group mark, drafts stamped « Brouillon », the profile over the card's lower-left corner, the open link taking its row. |
 | `hub-codex.jpg` | The Codex plate menu at rest: the first door lit in bone plates, the others on black paper, the lit door's band and pictogram on the right of the stage. |
@@ -1016,7 +1016,8 @@ nnor, slight gold / beige for marchand".
 
 The first source that applies wins:
 
-1. a `keyColour` the entry writes, species only (Humain `#44a8e7`, the Elfe `#4fa866`);
+1. a `keyColour` the entry writes, on a species or a tree since 2026-11-02 (Humain `#44a8e7`, the Mage
+   `#5379fd`; each entry's file holds its own);
 2. the reading of its cover at build time (`src/lib/art-key-colour.ts`);
 3. for a tree without a cover, its first domain colour lifted to read (`treeSealKey`);
 4. house gold `#efbe04` (`KEY_FALLBACK`): a coverless species that writes none, which at `a9b3954` is

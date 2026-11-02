@@ -10,6 +10,7 @@
   ],
   "cover": "nnor-3_4-og.png",
   "emblem": "nnor.svg",
+  "keyColour": "#e8575c",
   "movement": "10,5 m",
   "types": [
     "humanoid",

@@ -5,6 +5,7 @@
 **Date:** 2026-10-23
 **Revised:** 2026-10-24, the key colour and emblem checks stop naming covers and files (0055, addenda in Decisions 1 and 6)
 **Revised:** 2026-10-25, a species may write its own key colour and the pause covers every moving decoration (0059, addenda in Decisions 1 and 4)
+**Revised:** 2026-11-02, a tree may write its own key colour, and a reading worth keeping is pinned (addendum in Decision 1)
 **Deciders:** Kori
 **Scope:** The hero of the Species and Tree pages: its layout, its dark stage, its key colour, the
 descriptor stickers, the rank profile of a tree, the emblem on the card, the moving backdrop drawn on the GPU and its pause control, and
@@ -99,6 +100,26 @@ strengths as ranks from F to S, with no overall grade. Versions: `astro@7.3.3` (
 - The alternative « an authored colour per entry » reopens on its own condition: the Humain cover
   reads `#eaccc8`, a pale rose, where the owner wanted azure. A species may now write `keyColour`,
   which the hero takes before the cover's reading. See 0059 Decision 5.
+
+### Addendum (2026-11-02): a tree may write its own key colour
+
+- `keyColour` is one definition in `src/lib/game/schema.ts`, shared by the species and the skill tree.
+  A tree's sheet, its roster card and its Livres card take it before the cover's reading and before
+  the lifted domain colour (`treeKeyColour` in `src/lib/game/character-sheet.ts`, `keyOf` in
+  `src/lib/game/hub-cards.ts`).
+- The alternative « an authored colour per entry » reopens a second time, on the same condition and
+  on a new one: the owner pins readings worth keeping against a change of the reader. The Nnor
+  (`#e8575c`), the Amphibe (`#e7986a`), the Démoniste (`#b8c6ef`) and the Cuisinier (`#ea926d`) write
+  the colour their covers read on that date. The owner asked for an Ether blue on the Mage
+  (`#5379fd`, near the domain's `#3450ff`) and a pearl rose on the Paladin (`#fcc2d4`), and left the
+  Tavernier (`#e06c94`) and the Marchand (`#e3c28c`) to the designer.
+- Every written key reads at 4.5 or more with the dark sticker ink, the lowest being the Mage's 4.98
+  (`contrastOf` in `src/lib/key-colour.ts`); `tests/unit/key-colour.test.ts` now holds species and
+  trees to it. `tests/e2e/character-hero.spec.ts` checks the kind label rather than a sticker, since a
+  hero without descriptors has none, and loops over every species and tree by whether it writes a key.
+- A pinned key no longer follows a new cover: an entry that changes its painting changes its key by
+  hand. A species reference in rule text inks its link from the written key (0061), so the Nnor's
+  and the Amphibe's links take their colours where they took the accent ink before.
 
 ---
 

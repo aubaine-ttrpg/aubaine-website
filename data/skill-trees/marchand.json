@@ -19,6 +19,7 @@
   "size": 16,
   "cover": "nnor-marchand-3_4-og.png",
   "emblem": "marchand.svg",
+  "keyColour": "#e3c28c",
   "placements": [
     {
       "skill": "FONCOM-001",

@@ -5,6 +5,7 @@
   "treeType": "archetype",
   "size": 16,
   "cover": "tavernier-3_4-og.png",
+  "keyColour": "#e06c94",
   "placements": [
     {
       "skill": "VOLCON-001",

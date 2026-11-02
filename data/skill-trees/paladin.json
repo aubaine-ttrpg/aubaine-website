@@ -5,6 +5,7 @@
   "treeType": "archetype",
   "size": 16,
   "cover": "paladin-3_4-og.png",
+  "keyColour": "#fcc2d4",
   "placements": [
     {
       "skill": "COMREP-001",

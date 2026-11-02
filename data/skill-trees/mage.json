@@ -6,6 +6,7 @@
   "treeType": "archetype",
   "size": 16,
   "cover": "mage-3_4-og.png",
+  "keyColour": "#5379fd",
   "placements": [
     {
       "skill": "GRIMOI-001",

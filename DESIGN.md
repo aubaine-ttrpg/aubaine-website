@@ -74,7 +74,7 @@ The sources of each row are in [Principles](#principles) and in the research dos
 
 - The pointy-top hexagon of its logo, wherever a mark is drawn.
 - The logo's double hexagon as the crest of a seal, the picture of an entry without a cover.
-- One key colour per entry, read from its own painting when it has one.
+- One key colour per entry, read from its own painting when it has one, unless the entry writes its own.
 - One colour and one pictogram per kind of content and per book category (`src/lib/game/kind-marks.ts`).
 - The rank profile: six axes on pointy-top hexagon rings, graded F to S on skewed plates.
 - Descriptors and traits printed as paper, and rule text that stays readable.
@@ -230,16 +230,18 @@ The values that define the look. Every stage is dark in both themes, so these ar
 
 Each entry's accent becomes its `--gold`, taken from the first source that applies:
 
-1. An authored `keyColour`, species only. It wins over the cover: Humain wears `#44a8e7`
-   (`data/species/humain.json`) and the Elfe the forest green `#4fa866` (`data/species/elfe.json`).
-2. The cover, read at build time (`src/lib/art-key-colour.ts`): Marchand reads `#e8bea6`; the Nnor reads
-   `#e8575c` from the cover it received on 2026-10-29 (ADR 0054 records `#e85a48`, read from the
-   earlier cover).
+1. A `keyColour` the entry writes, on a species or a tree. It wins over the cover, either where the
+   reading misses the entry (Humain's azure `#44a8e7` over a cover that reads a pale rose, the Mage's
+   Ether blue `#5379fd`) or to pin a reading the owner keeps (the Nnor's `#e8575c`). Each entry's
+   file under `data/species/` or `data/skill-trees/` holds its own.
+2. The cover, read at build time (`src/lib/art-key-colour.ts`), for an entry that writes none: Feu
+   reads `#e7733e`. ADR 0054 records the Nnor's `#e85a48` and the Marchand's `#e8bea6`, read before
+   their keys were written.
 3. A tree without a cover takes its first domain colour, lifted until `#14100a` reads on it at 4.5
    (`treeSealKey` in `src/lib/game/seals.ts`).
 4. Otherwise house gold `#efbe04`: a species with neither an authored key nor a cover, and a tree with
-   neither a cover nor a domain. A coverless species without an authored key is therefore a violet seal
-   with a gold key.
+   neither an authored key, a cover nor a domain. A coverless species without an authored key is
+   therefore a violet seal with a gold key.
 
 **The reading** (`keyColour` in `src/lib/key-colour.ts`): the cover is sampled 96 px wide
 (`src/lib/art-key-colour.ts`); only pixels at OKLCH lightness 0.45 or more and chroma 0.025 or more

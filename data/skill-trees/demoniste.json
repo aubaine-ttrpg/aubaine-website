@@ -5,6 +5,7 @@
   "treeType": "archetype",
   "size": 16,
   "cover": "demoniste-3_4-og.png",
+  "keyColour": "#b8c6ef",
   "placements": [
     {
       "skill": "VOLADI-001",

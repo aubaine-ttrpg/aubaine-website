@@ -475,6 +475,14 @@ as approved (both settled 2026-10-30).
 
 > "let's have a greenish forest color for elves" (2026-11-02)
 
+**A tree writes its key colour too, and a reading worth keeping is pinned.** Trees take `keyColour` as
+species do. The Nnor, Amphibe, Démoniste and Cuisinier write the colour their covers read, as a
+safeguard against a change of the reader. The Mage takes an Ether blue (`#5379fd`, near the domain's
+`#3450ff`), the Paladin a pearl rose (`#fcc2d4`), the Tavernier the wine of its banner (`#e06c94`) and
+the Marchand a gold beige (`#e3c28c`), the last two chosen for the owner.
+
+> "let's do it so classes can give it too. let's pin Nnor's color to what it currently computes (just a safeguard. same for amphibe and démoniste. mage should have a color closor to current Ether's. Paladin a White / rose one chromatic even just like it's whole vibe. i think we can also pin cuisinirs, and i'll leave it to you to find ones for tavernier and marchand." (2026-11-02)
+
 **Shorter labels.**
 
 > "Characteristique Dominante should be reduced to characteristique" (2026-10-28)
@@ -599,4 +607,4 @@ and praised the Saison slider.
 | 2026-11-01 | the empty screen between pages goes; B, the pick carries across; a motion has to be seen; a draft card flies; Livres closes like a book; no frame nobody meant, the title moves as paper; the whole sheet travels, both ways; the flying card replaces the landing on those visits; Back returns where you were |
 | 2026-10-31 | pieces sit on the shape; B+ ships; C+ and D kept, the poster wall dropped; this skill; accepted screenshots only; highest quality, many links; the contents spread opens Livres and the plate menu the Codex; every category listed, the empty ones saying so; the archives in Livres; Books left to the designer |
 | 2026-11-01 | the help button's margin and the stage pages' print, by request |
-| 2026-11-02 | the carry on one curve with live arrivals on landing, approved; what stays is whole when the pieces land; approvals recorded as what was approved; the stage stays alive through a page change; the Elfe wears forest green; a Codex door name holds one line on a desktop |
+| 2026-11-02 | the carry on one curve with live arrivals on landing, approved; what stays is whole when the pieces land; approvals recorded as what was approved; the stage stays alive through a page change; the Elfe wears forest green; a tree writes its key colour and a kept reading is pinned; a Codex door name holds one line on a desktop |
