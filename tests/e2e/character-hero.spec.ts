@@ -104,7 +104,9 @@ test('each hero takes its accent from its own cover', async ({ page }) => {
 test('a species that writes its own key colour wears it instead of its cover’s', async ({
   page,
 }) => {
-  const species = (await corpus('fr')).species.find((entry) => entry.keyColour)
+  const species = (await corpus('fr')).species.find(
+    (entry) => entry.keyColour && entry.descriptors?.length,
+  )
   expect(species, 'no species writes its own key colour').toBeDefined()
   if (!species?.keyColour) return
   const [red, green, blue] = rgbFromHex(species.keyColour)

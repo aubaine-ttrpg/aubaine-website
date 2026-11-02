@@ -1016,7 +1016,7 @@ nnor, slight gold / beige for marchand".
 
 The first source that applies wins:
 
-1. a `keyColour` the entry writes, species only (Humain `#44a8e7`);
+1. a `keyColour` the entry writes, species only (Humain `#44a8e7`, the Elfe `#4fa866`);
 2. the reading of its cover at build time (`src/lib/art-key-colour.ts`);
 3. for a tree without a cover, its first domain colour lifted to read (`treeSealKey`);
 4. house gold `#efbe04` (`KEY_FALLBACK`): a coverless species that writes none, which at `a9b3954` is

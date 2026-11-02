@@ -2,6 +2,8 @@
   "id": "elfe",
   "status": "draft",
   "name": "Elfe",
+  "cover": "elfe-3_4-og.png",
+  "keyColour": "#4fa866",
   "types": [
     "humanoid"
   ],

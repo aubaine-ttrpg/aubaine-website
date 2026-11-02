@@ -470,6 +470,11 @@ one colour per family.
 the Règles kind blue show; the coverless species seal's violet equals the Compétences violet and stays
 as approved (both settled 2026-10-30).
 
+**The Elfe wears forest green.** Its cover reads a pale rose, as Humain's does, so the species writes the
+`keyColour` `#4fa866` (OKLCH 0.66, 0.13, hue 150), the weight of Humain's azure.
+
+> "let's have a greenish forest color for elves" (2026-11-02)
+
 **Shorter labels.**
 
 > "Characteristique Dominante should be reduced to characteristique" (2026-10-28)
@@ -594,4 +599,4 @@ and praised the Saison slider.
 | 2026-11-01 | the empty screen between pages goes; B, the pick carries across; a motion has to be seen; a draft card flies; Livres closes like a book; no frame nobody meant, the title moves as paper; the whole sheet travels, both ways; the flying card replaces the landing on those visits; Back returns where you were |
 | 2026-10-31 | pieces sit on the shape; B+ ships; C+ and D kept, the poster wall dropped; this skill; accepted screenshots only; highest quality, many links; the contents spread opens Livres and the plate menu the Codex; every category listed, the empty ones saying so; the archives in Livres; Books left to the designer |
 | 2026-11-01 | the help button's margin and the stage pages' print, by request |
-| 2026-11-02 | the carry on one curve with live arrivals on landing, approved; what stays is whole when the pieces land; approvals recorded as what was approved; the stage stays alive through a page change; a Codex door name holds one line on a desktop |
+| 2026-11-02 | the carry on one curve with live arrivals on landing, approved; what stays is whole when the pieces land; approvals recorded as what was approved; the stage stays alive through a page change; the Elfe wears forest green; a Codex door name holds one line on a desktop |

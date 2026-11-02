@@ -231,7 +231,7 @@ The values that define the look. Every stage is dark in both themes, so these ar
 Each entry's accent becomes its `--gold`, taken from the first source that applies:
 
 1. An authored `keyColour`, species only. It wins over the cover: Humain wears `#44a8e7`
-   (`data/species/humain.json`).
+   (`data/species/humain.json`) and the Elfe the forest green `#4fa866` (`data/species/elfe.json`).
 2. The cover, read at build time (`src/lib/art-key-colour.ts`): Marchand reads `#e8bea6`; the Nnor reads
    `#e8575c` from the cover it received on 2026-10-29 (ADR 0054 records `#e85a48`, read from the
    earlier cover).
