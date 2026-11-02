@@ -188,8 +188,10 @@ test('the effect follows a Swup visit, and comes back after leaving', async ({ p
 })
 
 test('a tree node visit keeps the developed hero', async ({ page }) => {
-  const painted = (await corpus('fr')).trees.find((tree) => tree.cover)
-  if (!painted) throw new Error('no tree has a cover to develop')
+  const painted = (await corpus('fr')).trees.find(
+    (tree) => tree.cover && tree.placements.some((placement) => placement.pos),
+  )
+  if (!painted) throw new Error('no tree has a cover to develop and a node to visit')
   const treePath = pathFor('tree', 'fr', { tree: painted.id })
   await giveEffect(page, 'film', ['hero'])
   await page.goto(`${treePath}#arbre`)
