@@ -4,6 +4,7 @@
   "name": "Tavernier",
   "treeType": "archetype",
   "size": 16,
+  "cover": "tavernier-3_4-og.png",
   "placements": [
     {
       "skill": "VOLCON-001",
