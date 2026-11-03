@@ -25,7 +25,7 @@ export type Trait = {
 
 export type TraitSet = { label: string; plates: readonly [Trait, ...Trait[]] }
 
-export type Descriptor = { label: string; struck: boolean }
+export type Descriptor = { effect: 'plain' | 'struck'; label: string }
 
 export type SheetProfile =
   | { kind: 'none' }
@@ -61,7 +61,7 @@ function traitSet(label: string, traits: readonly Trait[]): TraitSet | undefined
 function sheetDescriptors(corpus: Corpus, locale: Locale, keys: readonly string[]): Descriptor[] {
   return keys.map((key) => {
     const entry = corpus.descriptors.get(key)
-    return { label: label(entry, locale, key), struck: entry?.struck === true }
+    return { effect: entry?.effect ?? 'plain', label: label(entry, locale, key) }
   })
 }
 

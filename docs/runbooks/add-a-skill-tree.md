@@ -120,7 +120,7 @@ Then open `/fr/arbres` and click through to the new plate.
 
 **A profile is authored, never computed.** `profile` is the team's reading of the tree, six ranks from F to S with no overall grade, and it changes no rule. Nothing derives it from the skills, so a tree that changes its plate keeps its profile until someone rewrites it. The hero draws it as a hexagon only when all six ranks are written, which the schema requires.
 
-**Descriptors are keys from `data/meta/descriptors.json`.** That file holds both labels, so the tree file writes keys only and no overlay is needed. A new word is a new entry there, chosen by the owner, and `"struck": true` there crosses it out on its sticker.
+**Descriptors are keys from `data/meta/descriptors.json`.** That file holds both labels, so the tree file writes keys only and no overlay is needed. A new word is a new entry there, chosen by the owner, and `"effect": "struck"` there crosses it out on its sticker.
 
 **Trailing `size` is a drawing hint, not a limit.** It says how many skills the plate is drawn to hold. The hard cap is 16 placements, from `placements`. Every tree in the repo uses `size: 16`, with 1 to 16 placements.
 

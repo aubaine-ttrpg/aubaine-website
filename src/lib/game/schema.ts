@@ -1184,6 +1184,8 @@ export const book = z
   })
   .strict()
 
+export const DESCRIPTOR_EFFECTS = ['struck'] as const
+
 export const vocabulary = z
   .array(
     z
@@ -1234,11 +1236,11 @@ export const vocabulary = z
           .min(1)
           .optional()
           .describe('Texte anglais de la référence, écrit avec referenceFr : « Fire damage ».'),
-        struck: z
-          .literal(true)
+        effect: z
+          .enum(DESCRIPTOR_EFFECTS)
           .optional()
           .describe(
-            "Le mot se montre barré sur son autocollant, dans les deux langues, comme l'Elfe porte Hautain. Absent : le mot se montre tel quel. Propre à data/meta/descriptors.json.",
+            "Ce que fait le mot sur son autocollant, dans les deux langues. 'struck' : il se montre barré, comme l'Elfe porte Hautain. Absent : le mot se montre tel quel. Propre à data/meta/descriptors.json.",
           ),
       })
       .strict()

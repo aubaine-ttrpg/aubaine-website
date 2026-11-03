@@ -87,10 +87,9 @@ test('a species hero carries descriptors and its traits, and no profile', async 
 
 async function openStruckSticker(page: Page, locale: Locale): Promise<Locator> {
   const words = await corpus(locale)
-  const species = words.species.find((entry) =>
-    (entry.descriptors ?? []).some((key) => words.descriptors.get(key)?.struck),
-  )
-  const struckKey = species?.descriptors?.find((key) => words.descriptors.get(key)?.struck)
+  const struck = (key: string) => words.descriptors.get(key)?.effect === 'struck'
+  const species = words.species.find((entry) => (entry.descriptors ?? []).some(struck))
+  const struckKey = species?.descriptors?.find(struck)
   if (!species || !struckKey) throw new Error('no species carries a struck descriptor')
   const t = strings(locale)
   const word = label(words.descriptors.get(struckKey), locale, struckKey)

@@ -84,15 +84,18 @@ describe('the sheet of a species', () => {
     const [struckKey, ...plainKeys] = species?.descriptors ?? []
     if (!species || !struckKey) throw new Error('no species carries two descriptors')
     const descriptors = new Map(
-      [...english.descriptors].map(([key, { struck: _struck, ...entry }]) => [
+      [...english.descriptors].map(([key, { effect: _effect, ...entry }]) => [
         key,
-        key === struckKey ? { ...entry, struck: true as const } : entry,
+        key === struckKey ? { ...entry, effect: 'struck' as const } : entry,
       ]),
     )
     const sheet = speciesSheet(species, { ...english, descriptors }, 'en')
     expect(sheet.descriptors).toEqual([
-      { label: label(descriptors.get(struckKey), 'en', struckKey), struck: true },
-      ...plainKeys.map((key) => ({ label: label(descriptors.get(key), 'en', key), struck: false })),
+      { effect: 'struck', label: label(descriptors.get(struckKey), 'en', struckKey) },
+      ...plainKeys.map((key) => ({
+        effect: 'plain',
+        label: label(descriptors.get(key), 'en', key),
+      })),
     ])
   })
 })

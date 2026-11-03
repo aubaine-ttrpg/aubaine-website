@@ -1830,20 +1830,20 @@ describe('definitions', () => {
     }
   })
 
-  it('keeps every descriptor to its two labels and its strike', () => {
+  it('keeps every descriptor to its two labels and its effect', () => {
     const descriptors = sources.vocabularies.find((vocabulary) => vocabulary.id === 'descriptors')
     expect(descriptors, 'meta/descriptors').toBeDefined()
     for (const entry of descriptors?.data.entries ?? []) {
-      const fields = Object.keys(entry).filter((field) => field !== 'struck')
+      const fields = Object.keys(entry).filter((field) => field !== 'effect')
       expect(fields.sort(), `meta/descriptors ${entry.key}`).toEqual(['key', 'labelEn', 'labelFr'])
     }
   })
 
-  it('strikes a word through only in the descriptors', () => {
+  it('gives a sticker effect only in the descriptors', () => {
     for (const vocabulary of sources.vocabularies) {
       if (vocabulary.id === 'descriptors') continue
       for (const entry of vocabulary.data.entries) {
-        expect(entry.struck, `meta/${vocabulary.id} ${entry.key} takes no struck`).toBeUndefined()
+        expect(entry.effect, `meta/${vocabulary.id} ${entry.key} takes no effect`).toBeUndefined()
       }
     }
   })

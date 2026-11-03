@@ -17,7 +17,7 @@ const TILTS = ['-3deg', '2deg', '-1.5deg', '2.5deg'] as const
   {
     descriptors.map((descriptor, order) => (
       <li class="au-sticker" style={`--tilt:${TILTS[order % TILTS.length]}; --order:${order}`}>
-        {descriptor.struck ? (
+        {descriptor.effect === 'struck' ? (
           <>
             <s>
               <span class="au-sticker__stroke" aria-hidden="true">

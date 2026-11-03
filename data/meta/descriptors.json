@@ -64,7 +64,7 @@
       "key": "haughty",
       "labelFr": "Hautain",
       "labelEn": "Haughty",
-      "struck": true
+      "effect": "struck"
     },
     {
       "key": "sylvan",

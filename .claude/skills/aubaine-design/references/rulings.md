@@ -187,7 +187,7 @@ invisible. The nothing-cut rule governs them too (all settled 2026-10-30).
 **A descriptor sticker can cross its word out.** Asked which descriptors the Elfe wears, the owner
 answered with a word struck through. The sticker's paper, type and tilt stay as approved. Two choices
 are the designer's, not the owner's: the strike is stored on the word in `data/meta/descriptors.json`
-(`struck`), and the sticker says the struck state in words for a screen reader.
+(`effect: "struck"`), and the sticker says the struck state in words for a screen reader.
 
 > "Noble, Grâcieux, Hautain but barré,  and finally Sylvestre" (2026-11-03)
 
