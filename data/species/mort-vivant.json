@@ -2,6 +2,9 @@
   "id": "mort-vivant",
   "status": "draft",
   "name": "Mort-vivant",
+  "cover": "mort-vivant-3_4-og.png",
+  "coverMirrored": true,
+  "keyColour": "#7ad4a5",
   "types": [
     "undead"
   ],
