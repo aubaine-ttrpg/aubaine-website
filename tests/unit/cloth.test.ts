@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest'
 
 import {
   advance,
+  blow,
+  brisk,
   type Cloth,
   grab,
   letGo,
@@ -190,6 +192,155 @@ describe('a banner', () => {
     letGo(banner)
     run(banner, 3)
     expect([...banner.position].every(Number.isFinite)).toBe(true)
+  })
+})
+
+function frames(cloth: Cloth, count: number, each?: () => void): void {
+  for (let frame = 0; frame < count; frame++) {
+    advance(cloth, FRAME)
+    each?.()
+  }
+}
+
+function speedOf(cloth: Cloth): number {
+  return cloth.restless * cloth.spec.stepsPerSecond
+}
+
+function facingLeast(cloth: Cloth): number {
+  const { triangles } = cloth
+  let least = 1
+  for (let corner = 0; corner + 2 < triangles.length; corner += 3) {
+    const a = pointAt(cloth, triangles[corner] ?? 0)
+    const b = pointAt(cloth, triangles[corner + 1] ?? 0)
+    const c = pointAt(cloth, triangles[corner + 2] ?? 0)
+    const across = { x: b.x - a.x, y: b.y - a.y, z: b.z - a.z }
+    const down = { x: c.x - a.x, y: c.y - a.y, z: c.z - a.z }
+    const normal = {
+      x: across.y * down.z - across.z * down.y,
+      y: across.z * down.x - across.x * down.z,
+      z: across.x * down.y - across.y * down.x,
+    }
+    least = Math.min(least, Math.abs(normal.z) / Math.hypot(normal.x, normal.y, normal.z))
+  }
+  return least
+}
+
+function inTheWind(): Cloth {
+  const banner = weave(BANNER_CLOTH)
+  settle(banner, STILL_BUDGET_SECONDS)
+  blow(banner, true)
+  run(banner, BANNER_CLOTH.wind.rise * 2)
+  return banner
+}
+
+describe('a banner in the wind', () => {
+  it('keeps moving and never comes to rest while the wind blows', () => {
+    const banner = inTheWind()
+    const hem = bottomMiddle(banner)
+    const shown = { low: Number.POSITIVE_INFINITY, high: Number.NEGATIVE_INFINITY }
+    const depth = { low: Number.POSITIVE_INFINITY, high: Number.NEGATIVE_INFINITY }
+    let turns = 0
+    let heading = 0
+    let previous = pointAt(banner, hem).z
+    run(banner, 20, () => {
+      expect(settled(banner)).toBe(false)
+      const here = pointAt(banner, hem)
+      const seen = shownAt(banner, hem)
+      shown.low = Math.min(shown.low, seen.x)
+      shown.high = Math.max(shown.high, seen.x)
+      depth.low = Math.min(depth.low, here.z)
+      depth.high = Math.max(depth.high, here.z)
+      const direction = Math.sign(here.z - previous)
+      if (direction !== 0 && heading !== 0 && direction !== heading) turns += 1
+      if (direction !== 0) heading = direction
+      previous = here.z
+    })
+    expect(turns).toBeGreaterThanOrEqual(4)
+    expect(shown.high - shown.low).toBeGreaterThan(0.01)
+    expect(depth.high - depth.low).toBeGreaterThan(banner.spec.depth / 20)
+  })
+
+  it('moves only slightly: inside its box, facing the reader, its hem swaying a few hundredths', () => {
+    const banner = inTheWind()
+    const hem = bottomMiddle(banner)
+    const rest = shownAt(weave(BANNER_CLOTH), hem).x
+    let worst = 0
+    let sway = 0
+    let deepest = 0
+    let least = 1
+    run(banner, 30, () => {
+      expect(insideTheBox(banner)).toBe(true)
+      worst = Math.max(worst, worstStretch(banner))
+      sway = Math.max(sway, Math.abs(shownAt(banner, hem).x - rest))
+      least = Math.min(least, facingLeast(banner))
+      for (let index = 0; index < banner.count; index++) {
+        deepest = Math.max(deepest, Math.abs(pointAt(banner, index).z))
+      }
+    })
+    expect(worst).toBeLessThan(0.05)
+    expect(sway).toBeLessThan(0.05)
+    expect(deepest).toBeLessThan(banner.spec.depth / 2)
+    expect(least).toBeGreaterThan(0.8)
+  })
+
+  it('blows the same way every time, and a pause resumes where it stopped', () => {
+    const straight = weave(BANNER_CLOTH)
+    const paused = weave(BANNER_CLOTH)
+    blow(straight, true)
+    blow(paused, true)
+    frames(straight, 360)
+    frames(paused, 180)
+    advance(paused, 0)
+    frames(paused, 180)
+    expect([...paused.position]).toEqual([...straight.position])
+  })
+
+  it('gathers the wind gradually, and rests within five seconds once it drops', () => {
+    const banner = weave(BANNER_CLOTH)
+    settle(banner, STILL_BUDGET_SECONDS)
+    blow(banner, true)
+    let early = 0
+    run(banner, 0.25, () => {
+      early = Math.max(early, speedOf(banner))
+    })
+    let steady = 0
+    run(banner, BANNER_CLOTH.wind.rise * 2)
+    run(banner, 10, () => {
+      steady = Math.max(steady, speedOf(banner))
+    })
+    expect(early).toBeLessThan(steady / 2)
+    blow(banner, false)
+    expect(secondsToRest(banner, 10)).toBeLessThan(STILL_BUDGET_SECONDS)
+  })
+
+  it('rests within five seconds of a fling once the wind has stopped', () => {
+    const banner = inTheWind()
+    blow(banner, false)
+    const start = shownAt(banner, bottomMiddle(banner))
+    grab(banner, start, 0.1)
+    run(banner, 0.3, () => pull(banner, { x: start.x + 1, y: start.y - 1 }))
+    letGo(banner)
+    expect(secondsToRest(banner, 10)).toBeLessThan(STILL_BUDGET_SECONDS)
+  })
+
+  it('is brisk while held or flung, never in the breeze alone', () => {
+    const banner = inTheWind()
+    run(banner, 30, () => expect(brisk(banner)).toBe(false))
+    const start = shownAt(banner, bottomMiddle(banner))
+    grab(banner, start, 0.1)
+    expect(brisk(banner)).toBe(true)
+    run(banner, 0.3, () => pull(banner, { x: start.x + 1, y: start.y - 1 }))
+    letGo(banner)
+    advance(banner, FRAME)
+    expect(brisk(banner)).toBe(true)
+  })
+
+  it('cannot settle for a still frame while the wind blows', () => {
+    const banner = inTheWind()
+    const before = banner.seconds
+    settle(banner, 1)
+    expect(settled(banner)).toBe(false)
+    expect(banner.seconds - before).toBeCloseTo(1, 1)
   })
 })
 

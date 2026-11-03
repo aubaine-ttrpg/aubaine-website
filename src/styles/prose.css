@@ -117,6 +117,51 @@
   }
 }
 
+.au-prose .au-prose__picture:has(> .au-prose__caption-button) {
+  --au-caption-button: 26px;
+  position: relative;
+}
+
+.au-prose .au-prose__picture:has(> .au-prose__caption-button:not([hidden])) {
+  --au-caption-tail: calc(var(--au-caption-button) + 6px);
+}
+
+.au-prose .au-prose__caption-button {
+  position: absolute;
+  inset-inline-end: 0;
+  inset-block-end: calc(0.375em - var(--au-caption-button) / 2);
+  display: grid;
+  place-items: center;
+  inline-size: var(--au-caption-button);
+  block-size: var(--au-caption-button);
+  padding: 0;
+  border: 1px solid var(--line2);
+  border-radius: 50%;
+  font-size: 1.02em;
+  color: var(--ink2);
+  cursor: pointer;
+  transition:
+    color 0.2s var(--ease),
+    border-color 0.2s var(--ease);
+}
+
+.au-prose .au-prose__caption-button:hover,
+.au-prose .au-prose__caption-button:focus-visible {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+.au-prose .au-prose__caption-button > svg {
+  inline-size: 15px;
+  block-size: 15px;
+}
+
+@media print {
+  .au-prose .au-prose__caption-button {
+    display: none;
+  }
+}
+
 .au-prose .au-callout {
   margin-block: 1.6em 0;
   padding: 1.1em 1.4em 1.2em;

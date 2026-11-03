@@ -167,6 +167,24 @@ export const BANNER_CLOTH: ClothSpec = {
   depth: 0.22,
   margin: 0.012,
   eye: 3,
+  wind: {
+    speed: 0.08,
+    slip: 3.5,
+    rise: 2,
+    fall: 0.8,
+    gusts: [
+      { share: 0.4, pace: 0.29, phase: 0.4 },
+      { share: 0.25, pace: 0.53, phase: 2.1 },
+    ],
+    ripples: [
+      { share: 0.5, across: 0.6, down: 0.45, pace: 1.3, phase: 0 },
+      { share: 0.3, across: -0.9, down: 0.7, pace: 2.1, phase: 1.7 },
+    ],
+    sideways: [
+      { share: 0.5, pace: 0.9, phase: 0.3 },
+      { share: 0.3, pace: 1.7, phase: 2.2 },
+    ],
+  },
 }
 
 export const BANNER_HANGER = {

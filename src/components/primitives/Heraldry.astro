@@ -91,6 +91,11 @@ const arms =
     ? { ...armsOf(heraldry.arms), aspect: ARMS_SIZE.width / ARMS_SIZE.height }
     : undefined
 const blazon = heraldry.kind === 'arms' ? heraldry.blazon : undefined
+const stillToggle = banner
+  ? { pause: t.bannerPause, play: t.bannerPlay }
+  : flag
+    ? { pause: t.flagPause, play: t.flagPlay }
+    : undefined
 
 const FOLDS = [
   [0, 0, 0.18],
@@ -108,7 +113,6 @@ const FOLDS = [
 <figure
   class={`au-heraldry au-heraldry--${heraldry.kind} au-prose__picture`}
   data-heraldry
-  data-noted={blazon === undefined ? undefined : ''}
 >
   {
     banner && (
@@ -207,34 +211,20 @@ const FOLDS = [
   }
   {
     flag && flagBox && (
-      <div class="au-heraldry__stage" style={`--flag-headroom:${flagBox.headroom}`}>
-        <div
-          class="au-heraldry__drape"
-          data-drape="flag"
-          style={`--drape-aspect:${flagBox.aspect}`}
-          aria-hidden="true"
-        >
-          <Image
-            class="au-heraldry__plain"
-            src={flag}
-            alt=""
-            widths={[640, 960, 1280, flag.width]}
-            sizes={flagBox.sizes}
-            style={`top:${flagBox.headroom};height:${flagBox.height}`}
-          />
-        </div>
-        <button
-          type="button"
-          class="au-heraldry__still"
-          data-drape-toggle
-          data-pause={t.flagPause}
-          data-play={t.flagPlay}
-          aria-label={t.flagPause}
-          hidden
-        >
-          <Icon name="mdi:pause" class="au-heraldry__still-icon au-heraldry__still-icon--pause" />
-          <Icon name="mdi:play" class="au-heraldry__still-icon au-heraldry__still-icon--play" />
-        </button>
+      <div
+        class="au-heraldry__drape"
+        data-drape="flag"
+        style={`--drape-aspect:${flagBox.aspect}`}
+        aria-hidden="true"
+      >
+        <Image
+          class="au-heraldry__plain"
+          src={flag}
+          alt=""
+          widths={[640, 960, 1280, flag.width]}
+          sizes={flagBox.sizes}
+          style={`top:${flagBox.headroom};height:${flagBox.height}`}
+        />
       </div>
     )
   }
@@ -263,6 +253,22 @@ const FOLDS = [
   }
   <figcaption>{heraldry.name}</figcaption>
   {
+    stillToggle && (
+      <button
+        type="button"
+        class="au-heraldry__still au-prose__caption-button"
+        data-drape-toggle
+        data-pause={stillToggle.pause}
+        data-play={stillToggle.play}
+        aria-label={stillToggle.pause}
+        hidden
+      >
+        <Icon name="mdi:pause" class="au-heraldry__still-icon au-heraldry__still-icon--pause" />
+        <Icon name="mdi:play" class="au-heraldry__still-icon au-heraldry__still-icon--play" />
+      </button>
+    )
+  }
+  {
     blazon && (
       <PictureNote
         id={`${id}-blazon`}
@@ -278,10 +284,6 @@ const FOLDS = [
 <style>
   .au-heraldry {
     margin: 0;
-  }
-
-  .au-heraldry__stage {
-    position: relative;
   }
 
   .au-heraldry__drape {
@@ -356,38 +358,8 @@ const FOLDS = [
     border: 0;
   }
 
-  .au-heraldry__still {
-    position: absolute;
-    right: 12px;
-    bottom: calc(var(--flag-headroom) + 12px);
-    z-index: 3;
-    display: grid;
-    place-items: center;
-    width: 38px;
-    height: 38px;
-    padding: 0;
-    border: 1px solid var(--line2);
-    background: rgba(6, 5, 13, 0.6);
-    color: var(--ink2);
-    cursor: pointer;
-    transition:
-      color 0.2s var(--ease),
-      border-color 0.2s var(--ease);
-  }
-
   .au-heraldry__still[hidden] {
     display: none;
-  }
-
-  .au-heraldry__still:hover,
-  .au-heraldry__still:focus-visible {
-    color: var(--gold);
-    border-color: var(--gold);
-  }
-
-  .au-heraldry__still :global(.au-heraldry__still-icon) {
-    width: 18px;
-    height: 18px;
   }
 
   .au-heraldry__still :global(.au-heraldry__still-icon--play),
@@ -400,8 +372,7 @@ const FOLDS = [
   }
 
   @media print {
-    .au-heraldry__drape > :global(canvas),
-    .au-heraldry__still {
+    .au-heraldry__drape > :global(canvas) {
       display: none;
     }
 

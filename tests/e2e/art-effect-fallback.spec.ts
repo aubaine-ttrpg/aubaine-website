@@ -97,6 +97,8 @@ test('without WebGL2 the heraldry and a glazed picture keep their plain forms an
   await page.waitForTimeout(500)
   await expect(page.locator('[data-drape] canvas, [data-relief="glass"] canvas')).toHaveCount(0)
   await expect(page.locator('[data-drape] .au-heraldry__plain').first()).toBeVisible()
-  await expect(page.locator('[data-drape-toggle]')).toBeHidden()
+  for (const toggle of await page.locator('[data-drape-toggle]').all()) {
+    await expect(toggle).toBeHidden()
+  }
   expect(errors).toEqual([])
 })

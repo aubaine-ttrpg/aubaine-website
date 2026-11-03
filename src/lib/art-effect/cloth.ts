@@ -8,6 +8,20 @@ export type Rest = { x: number; y: number; width: number; height: number }
 
 export type Stiffness = { stretch: number; shear: number; bend: number }
 
+export type Swing = { share: number; pace: number; phase: number }
+
+export type Ripple = Swing & { across: number; down: number }
+
+export type Wind = {
+  speed: number
+  slip: number
+  rise: number
+  fall: number
+  gusts: readonly Swing[]
+  ripples: readonly Ripple[]
+  sideways: readonly Swing[]
+}
+
 export type ClothSpec = {
   stepsPerSecond: number
   aspect: number
@@ -23,6 +37,7 @@ export type ClothSpec = {
   depth: number
   margin: number
   eye: number
+  wind: Wind
 }
 
 type Links = { a: Uint16Array; b: Uint16Array; rest: Float32Array; stiffness: Float32Array }
@@ -40,11 +55,14 @@ export type Cloth = {
   readonly reach: Float32Array
   readonly push: Float32Array
   readonly triangles: Uint16Array
+  readonly centres: Float32Array
   seconds: number
   pending: number
   held: Hold | undefined
   restless: number
   calm: number
+  blowing: boolean
+  breeze: number
 }
 
 const LONGEST_FRAME = 0.1
@@ -52,6 +70,7 @@ export const MOST_STEPS = 8
 const SETTLE_SECONDS = 0.4
 
 const STILL_SPEED = 0.0024
+const BRISK_SPEED = 0.25
 const TETHER_SLACK = 0.02
 const HOLD_STIFFNESS = 900
 const HOLD_LIFT = 0.45
@@ -115,6 +134,23 @@ function weaveLinks(spec: ClothSpec): Links {
   }
 }
 
+function triangleCentres(spec: ClothSpec, triangles: Uint16Array): Float32Array {
+  const centres = new Float32Array((triangles.length / 3) * 2)
+  for (let corner = 0; corner + 2 < triangles.length; corner += 3) {
+    let column = 0
+    let row = 0
+    for (let side = 0; side < 3; side++) {
+      const index = value(triangles, corner + side)
+      column += index % spec.columns
+      row += Math.floor(index / spec.columns)
+    }
+    const at = (corner / 3) * 2
+    centres[at] = column / (3 * (spec.columns - 1))
+    centres[at + 1] = row / (3 * (spec.rows - 1))
+  }
+  return centres
+}
+
 export function weave(spec: ClothSpec): Cloth {
   const count = spec.columns * spec.rows
   const cell = cellSize(spec)
@@ -138,6 +174,7 @@ export function weave(spec: ClothSpec): Cloth {
       reach[index] = row * cell.y
     }
   }
+  const triangles = gridTriangles(spec)
   return {
     spec,
     count,
@@ -148,12 +185,15 @@ export function weave(spec: ClothSpec): Cloth {
     anchor,
     reach,
     push: new Float32Array(count * 3),
-    triangles: gridTriangles(spec),
+    triangles,
+    centres: triangleCentres(spec, triangles),
     seconds: 0,
     pending: 0,
     held: undefined,
     restless: 0,
     calm: 0,
+    blowing: false,
+    breeze: 0,
   }
 }
 
@@ -179,11 +219,46 @@ function addPush(cloth: Cloth, index: number, x: number, y: number, z: number): 
   cloth.push[at + 2] = value(cloth.push, at + 2) + z
 }
 
-function gatherAir(cloth: Cloth): void {
-  const { spec, triangles: corners, position, previous, push } = cloth
+type Air = { strength: number; depth: number; side: number }
+
+function swingAt(swings: readonly Swing[], seconds: number): number {
+  let sum = 0
+  for (const { share, pace, phase } of swings) sum += share * Math.sin(pace * seconds + phase)
+  return sum
+}
+
+function rippleAt(
+  ripples: readonly Ripple[],
+  across: number,
+  down: number,
+  seconds: number,
+): number {
+  let sum = 0
+  for (const ripple of ripples) {
+    const travel = 2 * Math.PI * (ripple.across * across + ripple.down * down)
+    sum += ripple.share * Math.sin(travel - ripple.pace * seconds + ripple.phase)
+  }
+  return sum
+}
+
+function airNow(cloth: Cloth): Air {
+  const { wind } = cloth.spec
+  const { breeze, seconds } = cloth
+  const strength = breeze * breeze * (3 - 2 * breeze) * wind.speed
+  return {
+    strength,
+    depth: strength * (1 + swingAt(wind.gusts, seconds)),
+    side: strength * swingAt(wind.sideways, seconds),
+  }
+}
+
+function gatherAir(cloth: Cloth, air: Air): void {
+  const { spec, triangles: corners, centres, position, previous, push } = cloth
   const restArea = (spec.rest.width * spec.rest.height) / (2 * (spec.columns - 1) * (spec.rows - 1))
   const perVelocity = spec.stepsPerSecond / 3
   const scale = spec.air / (6 * restArea)
+  const { ripples, slip } = spec.wind
+  const blowing = air.strength > 0
   for (let corner = 0; corner + 2 < corners.length; corner += 3) {
     const a = value(corners, corner) * 3
     const b = value(corners, corner + 1) * 3
@@ -226,11 +301,20 @@ function gatherAir(cloth: Cloth): void {
         value(previous, b + 2) -
         value(previous, c + 2)) *
       perVelocity
-    const across = -(nx * vx + ny * vy + nz * vz) / twice
+    const centre = (corner / 3) * 2
+    const wx = air.side
+    const wz = blowing
+      ? air.depth +
+        air.strength *
+          rippleAt(ripples, value(centres, centre), value(centres, centre + 1), cloth.seconds)
+      : 0
+    const across = (nx * (wx - vx) - ny * vy + nz * (wz - vz)) / twice
     const share = scale * across
-    const fx = nx * share
-    const fy = ny * share
-    const fz = nz * share
+    const facing = blowing ? (nx * wx + nz * wz) / (twice * twice) : 0
+    const drag = blowing ? scale * twice * slip : 0
+    const fx = nx * share + drag * (wx - nx * facing)
+    const fy = ny * share - drag * ny * facing
+    const fz = nz * share + drag * (wz - nz * facing)
     push[a] = value(push, a) + fx
     push[a + 1] = value(push, a + 1) + fy
     push[a + 2] = value(push, a + 2) + fz
@@ -413,8 +497,17 @@ function measureRest(cloth: Cloth): number {
   return most
 }
 
+function easeBreeze(cloth: Cloth): void {
+  const { rise, fall } = cloth.spec.wind
+  const h = stepSeconds(cloth.spec)
+  cloth.breeze = cloth.blowing
+    ? Math.min(1, cloth.breeze + h / rise)
+    : Math.max(0, cloth.breeze - h / fall)
+}
+
 function step(cloth: Cloth): void {
-  gatherAir(cloth)
+  easeBreeze(cloth)
+  gatherAir(cloth, airNow(cloth))
   const hold = cloth.held
   if (hold) pullHeld(cloth, hold)
   integrate(cloth)
@@ -426,7 +519,8 @@ function step(cloth: Cloth): void {
   cloth.restless = measureRest(cloth)
   const h = stepSeconds(cloth.spec)
   const speed = cloth.restless * cloth.spec.stepsPerSecond
-  cloth.calm = speed < STILL_SPEED && !hold ? cloth.calm + h : 0
+  const becalmed = !cloth.blowing && cloth.breeze === 0
+  cloth.calm = speed < STILL_SPEED && !hold && becalmed ? cloth.calm + h : 0
   cloth.seconds += h
 }
 
@@ -441,6 +535,15 @@ export function advance(cloth: Cloth, elapsed: number): number {
 
 export function settled(cloth: Cloth): boolean {
   return cloth.calm >= SETTLE_SECONDS
+}
+
+export function blow(cloth: Cloth, blowing: boolean): void {
+  cloth.blowing = blowing
+  if (blowing) cloth.calm = 0
+}
+
+export function brisk(cloth: Cloth): boolean {
+  return cloth.held !== undefined || cloth.restless * cloth.spec.stepsPerSecond > BRISK_SPEED
 }
 
 export function settle(cloth: Cloth, longest: number): void {

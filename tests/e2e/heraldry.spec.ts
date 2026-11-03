@@ -9,6 +9,7 @@ import type { Heraldry } from '../../src/lib/game/schema'
 import type { Locale } from '../../src/lib/i18n/locales'
 import { pathFor } from '../../src/lib/i18n/routes'
 import { strings } from '../../src/lib/i18n/strings'
+import { type Oklch, oklchOf, rgbFromHex } from '../../src/lib/key-colour'
 import { corpus } from './support/corpus'
 
 const SOFTWARE = /swiftshader|llvmpipe|softpipe|software|basic render/i
@@ -22,7 +23,7 @@ const TEXTURE =
   /\/(?:combination-room|rough-linen-relief|velour-velvet-relief|[a-z0-9-]+-(?:colour|relief|finish))\.[^/]*\.(?:webp|avif)$/
 const KINDS = Object.keys(HERALDRY_PLACEMENT) as Heraldry['kind'][]
 const BESIDE = KINDS.filter((kind) => HERALDRY_PLACEMENT[kind] === 'beside')
-const FLAG_MOST_PER_SECOND = Math.max(
+const CLOTH_MOST_PER_SECOND = Math.max(
   ...Object.values(EFFECT_TIERS).map((tier) => tier.cloth?.perSecond ?? 0),
 )
 const STILL_BUDGET = 5000
@@ -128,11 +129,47 @@ async function bringDrawn(page: Page, selector: string): Promise<void> {
   await expect(page.locator(drawn)).toHaveCount(1)
 }
 
-async function flagPerSecond(page: Page): Promise<number> {
-  const from = (await copies(page)).flag
+async function perSecond(page: Page, kind: 'banner' | 'flag'): Promise<number> {
+  const from = (await copies(page))[kind]
   const start = Date.now()
   await page.waitForTimeout(1000)
-  return (((await copies(page)).flag - from) * 1000) / (Date.now() - start)
+  return (((await copies(page))[kind] - from) * 1000) / (Date.now() - start)
+}
+
+async function drawsFor(
+  page: Page,
+  kind: 'banner' | 'flag',
+  milliseconds: number,
+): Promise<number> {
+  const from = (await copies(page))[kind]
+  await page.waitForTimeout(milliseconds)
+  return (await copies(page))[kind] - from
+}
+
+function bannerPixels(page: Page): Promise<string> {
+  return page
+    .locator(`${BANNER}[data-draped] canvas`)
+    .evaluate((node: HTMLCanvasElement) => node.toDataURL())
+}
+
+async function dragBanner(page: Page): Promise<void> {
+  const box = await page.locator(`${BANNER}[data-draped] canvas`).boundingBox()
+  if (!box) throw new Error('the banner canvas has no box')
+  const { rest } = BANNER_CLOTH
+  const grip = {
+    x: box.x + ((rest.x + rest.width / 2) / BANNER_CLOTH.aspect) * box.width,
+    y: box.y + (rest.y + rest.height * 0.85) * box.height,
+  }
+  await page.mouse.move(grip.x, grip.y)
+  await page.mouse.down()
+  await page.mouse.move(grip.x + box.width * 0.3, grip.y - box.height * 0.1, { steps: 12 })
+}
+
+const apart = (a: number, b: number): number => Math.abs(((a - b + 540) % 360) - 180)
+
+function middle(values: number[]): number {
+  const sorted = [...values].sort((a, b) => a - b)
+  return sorted[Math.floor(sorted.length / 2)] ?? Number.NaN
 }
 
 async function restsWithin(page: Page, kind: keyof Copies, limit: number): Promise<number> {
@@ -212,42 +249,136 @@ test('the stage, the banner, the flag, the arms and the glass share one context'
   expect(await contexts(page)).toBe(1)
 })
 
-test('a drag moves the banner, which rests within five seconds and then draws nothing', async ({
+test('the banner stirs in the wind at its pace while on screen and stops off screen', async ({
   page,
 }) => {
   await count(page)
   await page.goto(speciesPath(await heraldic('fr')))
   await bring(page, BANNER)
-  const canvas = page.locator(`${BANNER}[data-draped] canvas`)
-  await expect(canvas).toHaveCount(1)
-  expect(await restsWithin(page, 'banner', STILL_BUDGET + 2000)).toBeLessThan(STILL_BUDGET + 2000)
-  const before = await canvas.evaluate((node: HTMLCanvasElement) => node.toDataURL())
-  const box = await canvas.boundingBox()
-  if (!box) throw new Error('the banner canvas has no box')
-  const { rest } = BANNER_CLOTH
-  const grip = {
-    x: box.x + ((rest.x + rest.width / 2) / BANNER_CLOTH.aspect) * box.width,
-    y: box.y + (rest.y + rest.height * 0.85) * box.height,
-  }
-  await page.mouse.move(grip.x, grip.y)
-  await page.mouse.down()
-  await page.mouse.move(grip.x + box.width * 0.3, grip.y - box.height * 0.1, { steps: 12 })
-  expect(await canvas.evaluate((node: HTMLCanvasElement) => node.toDataURL())).not.toBe(before)
+  await expect(page.locator(`${BANNER}[data-draped] canvas`)).toHaveCount(1)
+  await expect
+    .poll(() => perSecond(page, 'banner'), { timeout: STILL_BUDGET + 2000 })
+    .toBeLessThanOrEqual(CLOTH_MOST_PER_SECOND + 2)
+  expect(await perSecond(page, 'banner')).toBeGreaterThanOrEqual(5)
+  const before = await bannerPixels(page)
+  await page.waitForTimeout(1000)
+  expect(await bannerPixels(page)).not.toBe(before)
+  await page.evaluate(() => window.scrollTo(0, 0))
+  await page.waitForTimeout(300)
+  expect(await drawsFor(page, 'banner', 1000)).toBe(0)
+})
+
+test('the banner pauses by keyboard and holds its frame, and a drag still moves it until it rests', async ({
+  page,
+}) => {
+  const t = strings('fr')
+  await count(page)
+  await page.goto(speciesPath(await heraldic('fr')))
+  await bring(page, BANNER)
+  const pause = page.getByRole('button', { name: t.bannerPause })
+  await expect(pause).toBeVisible()
+  await pause.focus()
+  await page.keyboard.press('Enter')
+  await expect(page.getByRole('button', { name: t.bannerPlay })).toBeVisible()
+  await page.waitForTimeout(200)
+  const held = await bannerPixels(page)
+  expect(await drawsFor(page, 'banner', 1000)).toBe(0)
+  expect(await bannerPixels(page)).toBe(held)
+
+  await dragBanner(page)
+  expect(await bannerPixels(page)).not.toBe(held)
   await page.mouse.up()
   expect(await restsWithin(page, 'banner', STILL_BUDGET)).toBeLessThan(STILL_BUDGET)
-  const settled = (await copies(page)).banner
-  await page.waitForTimeout(1000)
-  expect((await copies(page)).banner - settled).toBe(0)
+  expect(await drawsFor(page, 'banner', 1000)).toBe(0)
 })
+
+test('the banner, the flag and the hero share one pause, which outlives the page', async ({
+  page,
+}) => {
+  const t = strings('fr')
+  await count(page)
+  const path = speciesPath(await heraldic('fr'))
+  await page.goto(path)
+  await bring(page, BANNER)
+  await page.getByRole('button', { name: t.bannerPause }).click()
+  await bring(page, FLAG)
+  await expect(page.getByRole('button', { name: t.flagPlay })).toBeVisible()
+
+  await page.goto(path)
+  await bring(page, BANNER)
+  await expect(page.getByRole('button', { name: t.bannerPlay })).toBeVisible()
+  expect(await restsWithin(page, 'banner', STILL_BUDGET)).toBeLessThan(STILL_BUDGET)
+  expect(await drawsFor(page, 'banner', 1000)).toBe(0)
+  await page.getByRole('button', { name: t.bannerPlay }).click()
+  await expect.poll(() => drawsFor(page, 'banner', 500)).toBeGreaterThan(0)
+
+  await page.evaluate(() => window.scrollTo(0, 0))
+  await page.getByRole('button', { name: t.stagePause }).click()
+  await bring(page, BANNER)
+  await expect(page.getByRole('button', { name: t.bannerPlay })).toBeVisible()
+  await page.waitForTimeout(300)
+  expect(await drawsFor(page, 'banner', 1000)).toBe(0)
+})
+
+async function expectOnCaptionRule(page: Page, selector: string): Promise<void> {
+  const measured = await page.locator(selector).evaluate((figure) => {
+    const caption = figure.querySelector('figcaption')
+    const button = figure.querySelector('[data-drape-toggle]')
+    if (!caption || !button) return undefined
+    const rule = Number.parseFloat(getComputedStyle(caption, '::after').blockSize)
+    const probe = document.createElement('div')
+    probe.style.inlineSize = 'var(--au-caption-tail)'
+    figure.append(probe)
+    const tail = probe.getBoundingClientRect().width
+    probe.remove()
+    const captionBox = caption.getBoundingClientRect()
+    const buttonBox = button.getBoundingClientRect()
+    return {
+      ruleCentre: captionBox.bottom - rule / 2,
+      buttonCentre: buttonBox.top + buttonBox.height / 2,
+      figureRight: figure.getBoundingClientRect().right,
+      buttonRight: buttonBox.right,
+      buttonLeft: buttonBox.left,
+      ruleEnd: captionBox.right - tail,
+      size: Math.min(buttonBox.width, buttonBox.height),
+      sideways: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    }
+  })
+  if (!measured) throw new Error(`${selector} has no caption or no pause`)
+  expect(Math.abs(measured.buttonCentre - measured.ruleCentre)).toBeLessThanOrEqual(1)
+  expect(Math.abs(measured.buttonRight - measured.figureRight)).toBeLessThanOrEqual(1)
+  expect(measured.buttonLeft).toBeGreaterThan(measured.ruleEnd)
+  expect(measured.size).toBeGreaterThanOrEqual(24)
+  expect(measured.sideways).toBe(0)
+}
+
+const MOVING = [
+  { kind: 'banner', drape: BANNER, pause: strings('fr').bannerPause },
+  { kind: 'flag', drape: FLAG, pause: strings('fr').flagPause },
+] as const
+
+for (const width of [320, 768, 1440]) {
+  for (const { kind, drape, pause } of MOVING) {
+    test(`at ${width}px the ${kind}'s pause sits on its caption rule at the right end`, async ({
+      page,
+    }) => {
+      await page.setViewportSize({ width, height: 900 })
+      await page.goto(speciesPath(await heraldic('fr')))
+      await bring(page, drape)
+      await expect(page.getByRole('button', { name: pause })).toBeVisible()
+      await expectOnCaptionRule(page, `.au-heraldry--${kind}`)
+    })
+  }
+}
 
 test('the flag flies at its pace while on screen and stops off screen', async ({ page }) => {
   await count(page)
   await page.goto(speciesPath(await heraldic('fr')))
   await bring(page, FLAG)
   await expect(page.locator(`${FLAG}[data-draped] canvas`)).toHaveCount(1)
-  const pace = await flagPerSecond(page)
+  const pace = await perSecond(page, 'flag')
   expect(pace).toBeGreaterThanOrEqual(5)
-  expect(pace).toBeLessThanOrEqual(FLAG_MOST_PER_SECOND + 2)
+  expect(pace).toBeLessThanOrEqual(CLOTH_MOST_PER_SECOND + 2)
   await page.evaluate(() => window.scrollTo(0, 0))
   await page.waitForTimeout(300)
   const away = (await copies(page)).flag
@@ -296,6 +427,8 @@ test('a Swup visit leaves no drape or glass behind, and they come back with thei
   await page.goto('/fr')
   await page.waitForFunction(() => 'swup' in window)
   await visit(page, path)
+  await bring(page, BANNER)
+  await expect(page.locator(`${BANNER}[data-draped] canvas`)).toHaveCount(1)
   await bring(page, FLAG)
   await expect(page.locator(`${FLAG}[data-draped] canvas`)).toHaveCount(1)
   await visit(page, '/fr')
@@ -502,7 +635,35 @@ test.describe('with reduced motion', () => {
     await page.waitForTimeout(1000)
     expect(await copies(page)).toEqual(drawn)
     expect(await pixels()).toBe(before)
-    await expect(page.locator('[data-drape-toggle]')).toBeHidden()
+    for (const toggle of await page.locator('[data-drape-toggle]').all()) {
+      await expect(toggle).toBeHidden()
+    }
+  })
+
+  test('the banner gilt takes the hue of its charge', async ({ page }) => {
+    await page.goto(speciesPath(await heraldic('fr')))
+    await bringDrawn(page, BANNER)
+    await page.waitForTimeout(300)
+    const read = await page.locator(BANNER).evaluate((holder: HTMLElement) => {
+      const canvas = holder.querySelector('canvas')
+      const context = canvas?.getContext('2d')
+      if (!canvas || !context) return undefined
+      const data = context.getImageData(0, 0, canvas.width, canvas.height).data
+      const picks: number[] = []
+      for (let at = 0; at < data.length; at += 8) {
+        if (data[at + 3] === 255) picks.push(data[at] ?? 0, data[at + 1] ?? 0, data[at + 2] ?? 0)
+      }
+      return { charge: holder.dataset['charge'] ?? '', picks }
+    })
+    if (!read) throw new Error('the banner canvas cannot be read')
+    const charge = oklchOf(rgbFromHex(read.charge))
+    const gold: Oklch[] = []
+    for (let at = 0; at + 2 < read.picks.length; at += 3) {
+      const tone = oklchOf([read.picks[at] ?? 0, read.picks[at + 1] ?? 0, read.picks[at + 2] ?? 0])
+      if (tone.chroma >= 0.04 && apart(tone.hue, charge.hue) <= 60) gold.push(tone)
+    }
+    expect(gold.length).toBeGreaterThan(1000)
+    expect(apart(middle(gold.map((tone) => tone.hue)), charge.hue)).toBeLessThanOrEqual(6)
   })
 
   test('the arms draw once and hold still under the pointer and the scroll', async ({ page }) => {

@@ -1,5 +1,7 @@
 import {
   advance,
+  blow,
+  brisk,
   type Cloth,
   grab,
   letGo,
@@ -10,19 +12,21 @@ import {
   settled,
   weave,
 } from '../../lib/art-effect/cloth'
-import { backingSize, type Size } from '../../lib/art-effect/cover'
+import { backingSize, frameIndex, type Size } from '../../lib/art-effect/cover'
 import {
   BANNER_CLOTH,
   BANNER_DESIGN,
   bannerFringe,
   bannerOutline,
 } from '../../lib/art-effect/presets'
-import { isStill } from '../stillness'
+import { bindStillToggle, isStill, STILLNESS_CHANGED } from '../stillness'
 import { type Look, type Loom, openLoom } from './loom'
 import { openStudio, type Studio } from './studio'
 import { environmentOf, fabricOf } from './textures'
 
 const BANNER_SELECTOR = '[data-drape="banner"]'
+const FIGURE = '[data-heraldry]'
+const TOGGLE = '[data-drape-toggle]'
 const DRAPED = 'data-draped'
 const REDUCED_MOTION = '(prefers-reduced-motion: reduce)'
 const GRAB_REACH = 0.07
@@ -242,6 +246,8 @@ function arrive(cloth: Cloth): void {
 
 function mount(holder: HTMLElement, teardown: AbortController): void {
   const { signal } = teardown
+  const figure = holder.closest<HTMLElement>(FIGURE)
+  const toggle = figure?.querySelector<HTMLButtonElement>(TOGGLE) ?? undefined
   const canvas = document.createElement('canvas')
   canvas.setAttribute('aria-hidden', 'true')
   const surface = canvas.getContext('2d')
@@ -253,8 +259,10 @@ function mount(holder: HTMLElement, teardown: AbortController): void {
   let loom: Loom | undefined
   let preparing: Promise<void> | undefined
   let visible = false
+  let stirred = false
   let frame = 0
   let last: number | undefined
+  let shownFrame = -1
 
   const fail = (error: unknown): void => {
     if (!signal.aborted) console.error(error)
@@ -280,21 +288,28 @@ function mount(holder: HTMLElement, teardown: AbortController): void {
     if (!canvas.isConnected) {
       holder.append(canvas)
       holder.setAttribute(DRAPED, '')
+      if (figure && toggle && !still) bindStillToggle(figure, toggle, signal)
     }
     return true
   }
 
-  const moving = (): boolean => !still && (cloth.held !== undefined || !settled(cloth))
+  const moving = (): boolean =>
+    !still && (cloth.held !== undefined || ((stirred || !isStill()) && !settled(cloth)))
 
   const tick = (time: number): void => {
     frame = 0
-    if (!visible || !loom || !moving()) {
+    const pace = studio?.tier.cloth
+    if (!visible || !loom || !pace || !moving()) {
       last = undefined
       return
     }
-    advance(cloth, last === undefined ? 0 : (time - last) / 1000)
+    const steps = advance(cloth, last === undefined ? 0 : (time - last) / 1000)
     last = time
-    if (!draw()) return
+    const due = frameIndex(cloth.seconds * 1000, pace.perSecond)
+    if (steps > 0 && (brisk(cloth) || due !== shownFrame)) {
+      shownFrame = due
+      if (!draw()) return
+    }
     frame = window.requestAnimationFrame(tick)
   }
 
@@ -325,6 +340,7 @@ function mount(holder: HTMLElement, teardown: AbortController): void {
       signal.throwIfAborted()
       studio = from
       if (arriving && !still && !isStill()) arrive(cloth)
+      blow(cloth, !still && !isStill())
       if (draw()) resume()
     })().finally(() => {
       preparing = undefined
@@ -342,6 +358,7 @@ function mount(holder: HTMLElement, teardown: AbortController): void {
       'pointerdown',
       (event) => {
         if (event.button !== 0 || grab(cloth, local(event), GRAB_REACH) === undefined) return
+        stirred = true
         canvas.setPointerCapture(event.pointerId)
         event.preventDefault()
         resume()
@@ -364,6 +381,16 @@ function mount(holder: HTMLElement, teardown: AbortController): void {
     for (const type of ['pointerup', 'pointercancel', 'lostpointercapture'] as const) {
       canvas.addEventListener(type, drop, { signal })
     }
+    window.addEventListener(
+      STILLNESS_CHANGED,
+      () => {
+        if (!loom) return
+        if (isStill()) stirred = cloth.held !== undefined
+        blow(cloth, !isStill())
+        resume()
+      },
+      { signal },
+    )
   }
 
   const sight = new IntersectionObserver(([entry]) => {
@@ -386,6 +413,7 @@ function mount(holder: HTMLElement, teardown: AbortController): void {
       release()
       canvas.remove()
       holder.removeAttribute(DRAPED)
+      if (toggle) toggle.hidden = true
     },
     { once: true },
   )
