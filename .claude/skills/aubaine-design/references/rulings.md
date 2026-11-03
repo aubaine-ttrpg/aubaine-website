@@ -576,6 +576,18 @@ changes. The stand-in that hid them during the motion was withdrawn on 2026-11-0
 
 > "the flares and others vfx are not loaded which mean when we arrive there is just a blurred background and nothing else and the rest (vfx, pointillé ect...) appears suddenly with no transtions. My hope is to be able to just not have them disapear and have a cool background transitions." (2026-11-02)
 
+**The Codex panel slides off, uncovering the spotlight.** From the Codex to a page in Aubaine's art direction,
+the lit door's coloured band and its pictogram slide off the right edge as one piece, on the title's timing,
+and the spotlight already stands behind them, playing its own arrival as it is uncovered. Back slides the band
+in from the right while the spotlight fades on the same curve. The pages not yet redone keep the fade, and so
+does a screen 960 to 1099 px wide, where the spotlight sits under the title and the band has nothing to
+uncover. The owner's pick among three described options, 2026-11-02, of "Slides off, uncovering", committed
+after the live review on 2026-11-03. Values in `src/styles/transit.css` (`au-door-leave`, `au-door-arrive`) and
+`src/scripts/page-door.ts`; film strips `../assets/approved/page-change-codex-open.jpg`,
+`page-change-codex-back.jpg`.
+
+> "isntead of just a (beautiful but) asteless fading when entering a codex category could we have the side panel (the colored one with the icon) have the panel go right and have a real transtion not just a dumb fade, i get the fade for pages that has still not been redone but those that already have the aubaine DA should benefit from it just like the Hub -> Index already benefits from it when going from title in selection to title in page." (2026-11-02)
+
 **The flying card replaces the sheet card's landing, on those visits only.** A direct load keeps the
 approved arrival. The owner's pick among proposals, 2026-11-01, of "Flight replaces it".
 
@@ -616,4 +628,4 @@ and praised the Saison slider.
 | 2026-11-01 | the empty screen between pages goes; B, the pick carries across; a motion has to be seen; a draft card flies; Livres closes like a book; no frame nobody meant, the title moves as paper; the whole sheet travels, both ways; the flying card replaces the landing on those visits; Back returns where you were |
 | 2026-10-31 | pieces sit on the shape; B+ ships; C+ and D kept, the poster wall dropped; this skill; accepted screenshots only; highest quality, many links; the contents spread opens Livres and the plate menu the Codex; every category listed, the empty ones saying so; the archives in Livres; Books left to the designer |
 | 2026-11-01 | the help button's margin and the stage pages' print, by request |
-| 2026-11-02 | the carry on one curve with live arrivals on landing, approved; what stays is whole when the pieces land; approvals recorded as what was approved; the stage stays alive through a page change; the Elfe wears forest green; a tree writes its key colour and a kept reading is pinned; never edit an `-og` file, mirror a cover by option; a Codex door name holds one line on a desktop |
+| 2026-11-02 | the carry on one curve with live arrivals on landing, approved; what stays is whole when the pieces land; approvals recorded as what was approved; the stage stays alive through a page change; the Elfe wears forest green; a tree writes its key colour and a kept reading is pinned; never edit an `-og` file, mirror a cover by option; a Codex door name holds one line on a desktop; the Codex panel slides off, uncovering the spotlight |

@@ -7,6 +7,7 @@
 card alone; Decision 3 gains one: motion is judged on real Firefox frames, and the stage is cheap while it runs
 **Revised:** 2026-11-02, Decision 3 gains a second addendum: measured on the GPU, the stand-in is withdrawn and
 the living stage carries across a page change
+**Revised:** 2026-11-02, Decision 2 gains a second addendum: the Codex panel slides off, uncovering the spotlight
 **Deciders:** Kori
 **Scope:** What a reader sees between two pages, from the click to the settled page, and how Back
 returns. Replaces the crossfade of 0012 Decision 3; the crest of that decision, and 0012 Decisions 1
@@ -120,6 +121,37 @@ here is Aubaine's own.
 **Rejected the same day, built and withdrawn:** a flat key-colour wedge crossing the screen, a starburst on landing,
 cards flipping away, parts lifting and slapping in flight, wind-ups and overshoots on every path. The owner: "we
 aint a comic book. it's heavy, not smooth at all". Reopen only on a new request from the owner.
+
+### Addendum (2026-11-02): the Codex panel slides off, uncovering the spotlight
+
+- Codex to an index still cross-faded everything but the title, which the owner called "just a (beautiful but)
+  asteless fading". Among three described options they picked "Slides off, uncovering".
+- `src/scripts/page-door.ts`, `src/scripts/page-transit.ts`, `src/styles/transit.css`: when the page a door opens
+  has a spotlight lying right of the door's band and sharing its height, the door's scene (band and pictogram) is
+  named `au-door-scene` and its image slides off the right edge on the title's `--transit-flight` and
+  `--ease-travel`, never its group, which holds the captured position. The spotlight is named `au-spotlight`,
+  appears over 120 ms under the band and keeps its own arrival live. Back slides the band in from the right on
+  separate keyframes, since reversing one set would also reverse its easing, while the old spotlight fades on the
+  same timing so none of it stays beside the band, whose slanted edges leave the spotlight's top and bottom
+  uncovered.
+- Where the spotlight is not beside the band (960 to 1099 px wide, or under 640 px tall) or the page has none (the
+  indexes not yet redone), the named scene fades with the page, as before. A spotlight picture not decoded in 250 ms
+  is not named. The spotlight's arrival needs no correction for that wait: on Chromium, Firefox and WebKit a newly
+  inserted animation stays at 0 until the motion starts (measured on 2026-11-02), so it plays whole from there.
+- The light now stays on the door taken: `src/scripts/door-light.ts` ignores pointing and focus while a door link is
+  pressed, a pressed door darkens the other scenes, and Back remembers the door from the click itself rather than
+  from `data-lit`, which a tap or a click inside the 80 ms intent had not yet moved.
+- Measured on 2026-11-02 at 1512 × 860 and five other sizes, both languages, both ways: 0 stray and 0 hidden
+  frames, 0 to 2 flashes a second against 1 before; real Firefox on the GPU unchanged at a 13 ms median and a 14 ms
+  worst after the first visit; the hub and indexes at rest identical to their captures, `/en/species` excepted by
+  the 12 px its own captures differ by.
+
+### Caveats of this addendum
+
+- The band crosses 10 to 90 % of its travel in 165 to 184 ms, but in 133 to 150 ms going into Arbres de
+  compétences, whose heavier page leaves the paced flight 260 to 285 ms. Its title crosses in the same time. A
+  floor of 310 ms would cost up to 50 ms over the 400 ms of Decision 3; reopen if the owner finds it too quick.
+- A 1024 px tablet keeps the fade, since the spotlight sits under the title there.
 
 ---
 

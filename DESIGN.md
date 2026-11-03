@@ -719,6 +719,9 @@ A game answers every input at once and never makes the player wait for a flouris
   while it holds keyboard focus, and the stage keeps the first door's picture.
 - A pressed door lights while pressed (`:active`), with or without JavaScript; touch never moves
   `data-lit` and never swaps the stage.
+- Once a door is taken, the light stays on it until its page arrives: pointing or focusing another door
+  lights nothing, and the other doors' scenes go dark. Back lights the door taken, even one tapped or
+  clicked before its 80 ms of intent.
 - A stage swap cross-fades to the page's picture once it has decoded, waiting 250 ms at most.
 - On the Codex, from 960 px wide, a lit name grows 1.16 times from its lower left over 0.24 s on
   `cubic-bezier(0.2, 1.35, 0.4, 1)` and slides 14 px right over 0.24 s on `--ease`, a pointed name lifts
@@ -772,6 +775,12 @@ required wherever something moves for more than five seconds (WCAG 2.2.2).
   a card never scales. A click during the transition is kept and replayed at its point.
 - Back returns the scroll, the spotlight or lit door, and flies the piece home if it is on screen. The other
   doors fade in over the last 220 ms of that flight.
+- From the Codex to a select screen, from 1100 px wide and 640 px tall, the lit door's band and pictogram slide
+  off the right edge as one piece, on the title's 260 to 360 ms of `--ease-travel`. The spotlight already
+  stands behind them: it appears over 120 ms and plays its own arrival as it is uncovered. Back slides the band
+  in from the right on the same timing while the spotlight fades on the same curve, so none of it stays beside
+  the landed band. Narrower screens, where the spotlight sits under the title, and the indexes not yet redone
+  keep the cross-fade.
 
 **Waits ride the load**: a swap waits for its picture at most 250 ms and adds no hold of its own; the
 page crest shows only on a slow visit (`docs/adr/0012-the-header-outlives-the-page.md`, Decision 3).
