@@ -552,7 +552,7 @@ From the back to the front:
 | Piece | Resting angles | Where |
 | --- | --- | --- |
 | Title plates | -4°, 2.5°, -2°, 3°; the help button 3° | `TitlePlates.astro` |
-| Stickers | -3°, 2°, -1.5°, 2.5° | `DescriptorStickers.astro` |
+| Stickers | -3°, 2°, -1.5°, 2.5°; a struck one 2.5° further, never past 4° | `DescriptorStickers.astro` |
 | Trait plates | -1.5°, 1°, -2°, 1.5°; their label tape -2.5° | `TraitPlates.astro` |
 | Roster cards | -1.8°, 1.2°, -0.8°, 2°, -1.4°, 0.7°, 1.6°; turned to -0.6 times their angle when pointed | `CoverCard.astro` |
 | Tapes | the kicker -2.5°; the group label and the results tape -2° | `CoverCard.astro`, `SelectScreen.astro`, `FilterBar.astro` |
@@ -593,7 +593,9 @@ From the back to the front:
 - `SheetHead.astro` (eyebrow, name, subtitle, stickers) and `SheetBody.astro` (profile, traits, the
   actions slot).
 - `GhostName.astro`: the outlined name behind the card.
-- `DescriptorStickers.astro`: one to four key-colour stickers, at `sheet` or `preview` size.
+- `DescriptorStickers.astro`: one to four key-colour stickers, at `sheet` or `preview` size; a word its
+  vocabulary strikes takes a brush slash in the sticker's ink once the row has landed, the sticker takes
+  the hit, and a screen reader hears that the word is struck.
 - `TraitPlates.astro`: a black label tape over flat paper; a tree's Caractéristique colour lifted to
   read, bone for a species.
 - `RankProfile.astro`: six axes on hexagon rings, grades on skewed plates, « ? » on an axis not ranked
@@ -680,8 +682,9 @@ A game answers every input at once and never makes the player wait for a flouris
   `src/scripts/art-effect/stage.ts`).
 - `aria-current` moves to it. The card never scales up, no circle appears, no sound plays.
 
-**The sheet's arrival**, once per page. Every duration and delay but the cover's settle
-(`Banner.astro`) is multiplied by `--arrival`.
+**The sheet's arrival**, once per page. Every duration and delay is multiplied by `--arrival`, except the
+cover's settle (`Banner.astro`) and a struck sticker's slash and hit: they keep their durations, and the
+slash starts 0.3 s plus 0.62 s times `--arrival` in.
 
 | Starts | Lasts | Piece | Curve |
 | --- | --- | --- | --- |
@@ -689,6 +692,8 @@ A game answers every input at once and never makes the player wait for a flouris
 | 0 s | 0.55 s | the card lands from 22 px lower, at scale 0.965 and -5° | `--ease` |
 | 0.12 s | 0.75 s | the slab swings in from -2°, scale 0.9, transparent | `cubic-bezier(0.22, 1, 0.36, 1)` |
 | 0.16 s, then 0.07 s apart | 0.42 s | the stickers slap from scale 1.45 at -6° | `cubic-bezier(0.2, 1.45, 0.4, 1)` |
+| 0.92 s | 0.09 s | a struck word's brush slash is laid down from the left | `cubic-bezier(0.2, 0.6, 0.35, 1)` |
+| 0.97 s | 0.34 s | the struck sticker takes the hit (scale 1.07, 5° more, a wider shadow) and springs back, further turned | `cubic-bezier(0.15, 0.85, 0.3, 1)`, then `cubic-bezier(0.3, 1.35, 0.5, 1)` |
 | 0.3 s | 0.95 s | the profile unfolds from its centre, its path animated, its markers sliding out | `cubic-bezier(0.22, 1, 0.36, 1)` |
 | 0.34 s, then 0.07 s apart | 0.42 s | the trait plates slap from scale 1.35 at -5° | `cubic-bezier(0.2, 1.45, 0.4, 1)` |
 | 0.5 s | 0.5 s | the emblem presses on from scale 1.7 at -22°, transparent | `cubic-bezier(0.2, 1.35, 0.4, 1)` |

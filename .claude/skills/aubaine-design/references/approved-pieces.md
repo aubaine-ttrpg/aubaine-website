@@ -69,6 +69,7 @@ accepted piece). Open one with the Read tool to see it.
 | `page-change-sheet-back.jpg` | The same change on Back: the parts carry home in reverse order and the roster fades in under the last 220 ms of the flight. |
 | `page-change-codex-open.jpg` | The Codex to Arbres de compétences, shipped on 2026-11-03: the gold band and its pictogram slide off the right edge while the title flies, uncovering the spotlight as its arrival plays. |
 | `page-change-codex-back.jpg` | The same change on Back: the band slides in from the right as the spotlight fades, and the title flies home to its door. |
+| `sticker-struck-slash.jpg` | The Elfe's stickers on a direct load of the French sheet, approved on 2026-11-03: twelve seeked moments cropped to the row, since a page-wide strip draws the stickers too small to read. The slap at 0.35 s, « Hautain » plain from 0.79 to 0.92 s, the brush slash by 1.01 s, the hit at 1.03 s, the rest. Values in `DescriptorStickers.astro`. |
 
 The film strips were taken with `pnpm design:transit --film`, the sheet's on 2026-11-02 and the Codex's on
 2026-11-03, in French, at 1512 × 860, in headless Chromium, which draws the stage without WebGL; they record
@@ -252,7 +253,7 @@ halo above are that first relief. ADR 0054, Decision 6, records how emblem files
 | Status badge | Barlow Semi Condensed 700, 13 px, 0.08 em, capitals, padding 8/10 px. Draft « Brouillon »: `#9a93b0` on `--bg2`, 1 px dashed `#6f6884`. Playtest: `#14100a` on `#f7d117`, `#14100a` stripes at 45° in a 5 px band along the top and bottom. Beta: `#7fc8d6` on `--bg2`, 1 px `#4f9fb0`. A `balanced` entry shows none. | `StatusBadge.astro`, `src/styles/base.css`, `src/styles/tokens.css`, `src/lib/game/status.ts` |
 | Name | The page's `h1`. Cinzel 700, line-height 0.93, `--ink`. Size `clamp(30px, fit, largest)`, fit = min(40, 100 / (0.78 × letters)) cqi of the column, largest 132 px from 960 px and 96 px below. Shadow `0 2px 0` night .6 and `0 8px 36px` night .7. | `SheetHead.astro`, `CharacterHero.astro` |
 | Subtitle | EB Garamond italic, `clamp(19px, 2.2vw, 28px)`, line-height 1.3, `--ink2`, 12 px under the name, only where the entry has one (Berserker: « La chair à vif »). | `SheetHead.astro` |
-| Stickers | One to four words the owner picks from `data/meta/descriptors.json` (Marchand: « Achète », « Vend », « Échange »), 24 px down. Flat key paper, `--on-gold` ink, Barlow Semi Condensed 700, capitals, 0.06 em, `clamp(17px, 1.6vw, 22px)`, line-height 1, padding 9/16/8 px, 14 px apart, turned -3°, 2°, -1.5°, 2.5° in turn, shadow 4/5 black .62. | `DescriptorStickers.astro` |
+| Stickers | One to four words the owner picks from `data/meta/descriptors.json` (Marchand: « Achète », « Vend », « Échange »), 24 px down. Flat key paper, `--on-gold` ink, Barlow Semi Condensed 700, capitals, 0.06 em, `clamp(17px, 1.6vw, 22px)`, line-height 1, padding 9/16/8 px, 14 px apart, turned -3°, 2°, -1.5°, 2.5° in turn, shadow 4/5 black .62. A word whose descriptor carries `struck` (the Elfe's « Hautain ») takes a brush slash in the sticker's ink inside its `<s>`, followed by « (barré) » / "(struck through)" hidden for screen readers, and rests 2.5° further turned, never past 4°; approved on 2026-11-03 (`rulings.md`, A descriptor sticker can cross its word out). | `DescriptorStickers.astro` |
 | Body | 30 px down, the profile beside an aside of trait plates and actions; flex wrap, gaps 30/44 px; the aside is a column with 28 px gaps. | `SheetBody.astro` |
 | Profile | Trees only; see below. | `RankProfile.astro` |
 | Trait plates | See below. | `TraitPlates.astro` |
@@ -574,6 +575,8 @@ Durations and delays marked "× arrival" are multiplied by `--arrival`. In the t
 | 0 | 1 | Cover | settles (sheet 1.17 to 1.1, spotlight 1.12 to 1.06), then pans every 24 s | `cubic-bezier(.4, .02, .28, 1)` | `Banner.astro`, `src/styles/base.css` |
 | 0.12 | 0.87 | Slab | swings out from -2°, scale 0.9 and opacity 0, opaque at 35% | `cubic-bezier(0.22, 1, 0.36, 1)`, × arrival | `FramedCard.astro` |
 | 0.16 + 0.07 n | + 0.42 | Stickers | slap from scale 1.45 and -6°, with a soft 14/18/18 px shadow of black .35 that hardens | `cubic-bezier(0.2, 1.45, 0.4, 1)`, × arrival | `DescriptorStickers.astro` |
+| 0.3 + 0.62 × arrival | + 0.09 | A struck word's slash | laid down from the left: its window slides in from -100 % while the brush slides the other way, so the brush never stretches | `cubic-bezier(0.2, 0.6, 0.35, 1)` | `DescriptorStickers.astro` |
+| slash + 0.05 | + 0.34 | The struck sticker | takes the hit: at 18 %, scale 1.07, 5° more turn, 0.12 em up, shadow 8/10 black .5; then springs back to rest 2.5° further turned, never past 4°, and 0.14 em along | `cubic-bezier(0.15, 0.85, 0.3, 1)` to the peak, then `cubic-bezier(0.3, 1.35, 0.5, 1)` | `DescriptorStickers.astro` |
 | 0.3 | 1.25 | Profile | unfolds from its centre: the shape's `d` path and the vertex markers start at the centre | `cubic-bezier(0.22, 1, 0.36, 1)`, × arrival | `RankProfile.astro` |
 | 0.34 + 0.07 n | + 0.42 | Trait plates | slap from scale 1.35 and -5° | `cubic-bezier(0.2, 1.45, 0.4, 1)`, × arrival | `TraitPlates.astro` |
 | 0.5 | 1.0 | Emblem | presses on from opacity 0, scale 1.7 and -22°, opaque at 40% | `cubic-bezier(0.2, 1.35, 0.4, 1)`, × arrival | `FramedCard.astro` |
@@ -588,6 +591,9 @@ Durations and delays marked "× arrival" are multiplied by `--arrival`. In the t
   position creating a smooth animation".
 - The slab, the emblem and the six grades start invisible, and the profile's shape starts folded into its
   centre. The name and the picture are visible from the first frame.
+- A struck word shows from the first frame; its slash waits on purpose, 0.92 s into the sheet's arrival
+  and 0.52 s into a spotlight swap, and is drawn at once under reduced motion and in print
+  (`rulings.md`, A descriptor sticker can cross its word out).
 - After the arrival: the cover's pan (24 s), the ghost's drift (32 s each way), the living stage, and the
   scroll cue's nudge (2.4 s). The pause button stops the first three.
 - Arriving from the select screen, a part that travels gives up the arrival on the part itself, on that visit
@@ -1111,7 +1117,7 @@ Almanach's property « Codex. » (`data/equipment/items/almanach.json`).
 
 | Test | Holds |
 | --- | --- |
-| `tests/e2e/character-hero.spec.ts` | the reading in both languages; each sheet's key from its own cover or its written colour; the emblem; « ? » grades; the seal for a coverless page; the profile unfolding from its centre; plates keeping their tilt through the arrival; the name and picture visible from the first frame; a dark stage in the light theme; the card first and no sideways scroll at 320 and 390 px; the lean; the pause; Swup visits; print; reduced motion |
+| `tests/e2e/character-hero.spec.ts` | the reading in both languages; each sheet's key from its own cover or its written colour; the emblem; « ? » grades; the seal for a coverless page; the profile unfolding from its centre; plates keeping their tilt through the arrival; the name and picture visible from the first frame; a dark stage in the light theme; the card first and no sideways scroll at 320 and 390 px; a struck descriptor slashed once every sticker has landed, at once under reduced motion, and said in words, in both languages; the lean; the pause; Swup visits; print; reduced motion |
 | `tests/e2e/select-screen.spec.ts` | pointing and focus; the sticky spotlight; filters and drafts moving the selection; the stage swapping while paused; Swup visits; the named region and one title; print; every entry fitting its spotlight at 1512 x 982, 1366 x 657, 1024 x 768 and 390 x 844 in both languages (nothing clipped, nothing under the profile, the plates in one ink at 4.5 or more, plates and stickers in one row from 1100 px); « ? » grades and no species profile; seals with initials; the phone arrows; the filter dialog; no JavaScript; reduced motion |
 | `tests/e2e/roster.spec.ts` | every entry listed by default; a draft stamped once and still a link; no card invisible during the deal; filtering by name; the lean |
 | `tests/e2e/hub-stage.spec.ts` | one title and no picture of its own; each entry linked once in the roster and once from the spotlight; the lead in the note with its chapter; the title and its help button kept apart; the pause; Swup visits; the light theme; print; reduced motion never fetching the stage code |

@@ -1,16 +1,37 @@
 ---
-type Props = { words: string[]; label: string; size?: 'sheet' | 'preview' }
+import type { Descriptor } from '../../lib/game/character-sheet'
 
-const { words, label, size = 'sheet' } = Astro.props
+type Props = {
+  descriptors: readonly Descriptor[]
+  label: string
+  struckLabel: string
+  size?: 'sheet' | 'preview'
+}
+
+const { descriptors, label, struckLabel, size = 'sheet' } = Astro.props
 
 const TILTS = ['-3deg', '2deg', '-1.5deg', '2.5deg'] as const
 ---
 
 <ul class:list={['au-stickers', `au-stickers--${size}`]} aria-label={label}>
   {
-    words.map((word, order) => (
+    descriptors.map((descriptor, order) => (
       <li class="au-sticker" style={`--tilt:${TILTS[order % TILTS.length]}; --order:${order}`}>
-        {word}
+        {descriptor.struck ? (
+          <>
+            <s>
+              <span class="au-sticker__stroke" aria-hidden="true">
+                <svg viewBox="0 2.6 120 12.1" preserveAspectRatio="none" focusable="false">
+                  <path d="M3.2 10.3C5 10.2 9.5 9.8 14 9.4C18.5 9.1 24.7 8.5 30 8.1C35.3 7.6 41 7 46 6.6C51 6.2 55.3 6 60 5.7C64.7 5.3 69.7 4.8 74 4.5C78.3 4.2 82.2 4.1 86 3.9C89.8 3.7 95.2 3.5 97 3.4L97 6C95.2 6.1 89.8 6.5 86 6.8C82.2 7 78.3 7.2 74 7.5C69.7 7.8 64.7 8.2 60 8.6C55.3 9 51 9.2 46 9.7C41 10.1 35.3 10.8 30 11.3C24.7 11.9 18.5 12.5 14 13C9.5 13.5 5 14.1 3.2 14.3C.6 14.6 .6 10 3.2 10.3ZM92 3.7C94.1 3.6 100.7 3.3 104.4 3.2C108 3 112.4 2.9 114 2.9L119.5 2.7L114 3.2C112.4 3.3 108 3.6 104.4 3.8C100.7 4 94.1 4.5 92 4.6ZM93 4.8C94.3 4.7 98.5 4.5 100.9 4.5C103.2 4.4 106 4.3 107 4.3L110.5 4.2L107 4.5C106 4.5 103.2 4.7 100.9 4.9C98.5 5 94.3 5.3 93 5.4ZM91 5.7C92.8 5.7 98.8 5.4 102 5.2C105.3 5.1 109.2 5 110.6 4.9L115.5 4.8L110.6 5.1C109.2 5.2 105.3 5.5 102 5.7C98.8 5.9 92.8 6.2 91 6.3Z" />
+                </svg>
+              </span>
+              {descriptor.label}
+            </s>
+            <span class="au-sticker__struck"> ({struckLabel})</span>
+          </>
+        ) : (
+          descriptor.label
+        )}
       </li>
     ))
   }
@@ -38,8 +59,52 @@ const TILTS = ['-3deg', '2deg', '-1.5deg', '2.5deg'] as const
     line-height: 1;
     text-transform: uppercase;
     box-shadow: 4px 5px 0 rgba(0, 0, 0, 0.62);
-    animation: au-sticker-slap calc(0.42s * var(--arrival, 1)) var(--ease-slap)
+    --slap: au-sticker-slap calc(0.42s * var(--arrival, 1)) var(--ease-slap)
       calc((0.16s + var(--order) * 0.07s) * var(--arrival, 1)) backwards;
+    animation: var(--slap);
+  }
+
+  .au-sticker:has(.au-sticker__stroke) {
+    --strike-at: calc(0.3s + 0.62s * var(--arrival, 1));
+    rotate: clamp(-4deg, calc(var(--tilt) - 2.5deg), 4deg);
+    translate: 0.14em -0.05em;
+    animation:
+      var(--slap),
+      au-sticker-jolt 0.34s linear calc(var(--strike-at) + 0.05s) backwards;
+  }
+
+  .au-sticker s {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+  }
+
+  .au-sticker__stroke {
+    --stroke-draw: 0.09s cubic-bezier(0.2, 0.6, 0.35, 1) var(--strike-at) backwards;
+    position: absolute;
+    inset-inline-start: -0.3em;
+    inset-block-start: calc(50% - 0.3em);
+    inline-size: calc(100% + 0.75em);
+    block-size: 0.72em;
+    overflow: hidden;
+    animation: au-sticker-stroke-reveal var(--stroke-draw);
+  }
+
+  .au-sticker__stroke svg {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    fill: currentColor;
+    animation: au-sticker-stroke-stay var(--stroke-draw);
+  }
+
+  .au-sticker__struck {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 
   .au-stickers--preview {
@@ -56,6 +121,41 @@ const TILTS = ['-3deg', '2deg', '-1.5deg', '2.5deg'] as const
     from {
       transform: scale(1.45) rotate(-6deg);
       box-shadow: 14px 18px 18px rgba(0, 0, 0, 0.35);
+    }
+  }
+
+  @keyframes au-sticker-stroke-reveal {
+    from {
+      translate: -100% 0;
+    }
+  }
+
+  @keyframes au-sticker-stroke-stay {
+    from {
+      translate: 100% 0;
+    }
+  }
+
+  @media print {
+    .au-sticker__stroke,
+    .au-sticker__stroke svg {
+      animation: none;
+    }
+  }
+
+  @keyframes au-sticker-jolt {
+    from {
+      rotate: var(--tilt);
+      translate: 0 0;
+      animation-timing-function: cubic-bezier(0.15, 0.85, 0.3, 1);
+    }
+
+    18% {
+      rotate: calc(var(--tilt) - 5deg);
+      translate: 0.14em -0.12em;
+      scale: 1.07;
+      box-shadow: 8px 10px 0 rgba(0, 0, 0, 0.5);
+      animation-timing-function: cubic-bezier(0.3, 1.35, 0.5, 1);
     }
   }
 </style>

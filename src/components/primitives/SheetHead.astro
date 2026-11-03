@@ -1,5 +1,5 @@
 ---
-import type { CharacterSheet } from '../../lib/game/character-sheet'
+import type { CharacterSheet, Descriptor } from '../../lib/game/character-sheet'
 import type { BadgedStatus } from '../../lib/game/status'
 import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
@@ -9,7 +9,7 @@ import StatusBadge from './StatusBadge.astro'
 export type SheetReserve = {
   status: BadgedStatus | undefined
   subtitle: string
-  descriptors: readonly string[]
+  descriptors: readonly Descriptor[]
 }
 
 type Props = {
@@ -21,7 +21,7 @@ type Props = {
 
 const { locale, sheet, heading, reserve } = Astro.props
 const stickerSize = heading === 'page' ? 'sheet' : 'preview'
-const reservedWords = sheet.descriptors.length > 0 ? [] : (reserve?.descriptors ?? [])
+const reservedDescriptors = sheet.descriptors.length > 0 ? [] : (reserve?.descriptors ?? [])
 const t = strings(locale)
 const Name = heading === 'page' ? 'h1' : 'p'
 ---
@@ -59,14 +59,24 @@ const Name = heading === 'page' ? 'h1' : 'p'
 {
   sheet.descriptors.length > 0 && (
     <div class="au-character__descriptors">
-      <DescriptorStickers words={sheet.descriptors} label={t.descriptors} size={stickerSize} />
+      <DescriptorStickers
+        descriptors={sheet.descriptors}
+        label={t.descriptors}
+        struckLabel={t.descriptorStruck}
+        size={stickerSize}
+      />
     </div>
   )
 }
 {
-  reservedWords.length > 0 && (
+  reservedDescriptors.length > 0 && (
     <div class="au-character__descriptors au-character__reserve" aria-hidden="true">
-      <DescriptorStickers words={[...reservedWords]} label={t.descriptors} size={stickerSize} />
+      <DescriptorStickers
+        descriptors={reservedDescriptors}
+        label={t.descriptors}
+        struckLabel={t.descriptorStruck}
+        size={stickerSize}
+      />
     </div>
   )
 }

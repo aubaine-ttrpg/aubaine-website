@@ -49,6 +49,27 @@
       "key": "adventurous",
       "labelFr": "Aventureux",
       "labelEn": "Adventurous"
+    },
+    {
+      "key": "noble",
+      "labelFr": "Noble",
+      "labelEn": "Noble"
+    },
+    {
+      "key": "graceful",
+      "labelFr": "Gracieux",
+      "labelEn": "Graceful"
+    },
+    {
+      "key": "haughty",
+      "labelFr": "Hautain",
+      "labelEn": "Haughty",
+      "struck": true
+    },
+    {
+      "key": "sylvan",
+      "labelFr": "Sylvestre",
+      "labelEn": "Sylvan"
     }
   ]
 }

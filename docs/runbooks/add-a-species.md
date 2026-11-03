@@ -278,7 +278,7 @@ Then open `/fr/especes` and click through to the new species.
 
 **There is no free text on the plates.** Every value is a key from a controlled vocabulary in `data/meta/`, so `pnpm data:check` rejects a type or a size the game has not declared.
 
-**Descriptors are keys too.** `descriptors` names one to four words from `data/meta/descriptors.json`, which holds both labels, so the overlay never repeats them. A new word is a new entry there, chosen by the owner, and `pnpm data:check` rejects a key the file does not declare.
+**Descriptors are keys too.** `descriptors` names one to four words from `data/meta/descriptors.json`, which holds both labels, so the overlay never repeats them. A new word is a new entry there, chosen by the owner, and `pnpm data:check` rejects a key the file does not declare. A word the owner wants crossed out on its sticker carries `"struck": true` there, and every entry that names it shows it struck.
 
 **The outline builds itself, in two parts.** « En jeu » numbers `Jouer un <nom>`, then `Origines régionales` or `Sous-espèces` with each sub-species nested under it, when the species has them, then the pool. « Histoire » numbers every `##` of the lore file from 01 again. The outline beside the opening shows both parts, the one beside the lore shows « Histoire » alone. Nothing is authored for either, and an outline only appears when it has more than one entry.
 

@@ -1,4 +1,4 @@
-import { expect, type Page, test } from '@playwright/test'
+import { expect, type Locator, type Page, test } from '@playwright/test'
 
 import { artKeyColour } from '../../src/lib/art-key-colour'
 import { label } from '../../src/lib/game/build'
@@ -84,6 +84,74 @@ test('a species hero carries descriptors and its traits, and no profile', async 
     await descriptorsOf('en', (await corpus('en')).speciesById.get('nnor')),
   )
 })
+
+async function openStruckSticker(page: Page, locale: Locale): Promise<Locator> {
+  const words = await corpus(locale)
+  const species = words.species.find((entry) =>
+    (entry.descriptors ?? []).some((key) => words.descriptors.get(key)?.struck),
+  )
+  const struckKey = species?.descriptors?.find((key) => words.descriptors.get(key)?.struck)
+  if (!species || !struckKey) throw new Error('no species carries a struck descriptor')
+  const t = strings(locale)
+  const word = label(words.descriptors.get(struckKey), locale, struckKey)
+  await page.goto(pathFor('speciesEntry', locale, { species: species.id }))
+  const sticker = page
+    .getByRole('list', { name: t.descriptors })
+    .getByRole('listitem')
+    .filter({ hasText: word })
+  await expect(sticker.locator('s')).toHaveText(word)
+  await expect(sticker).toHaveText(`${word} (${t.descriptorStruck})`)
+  await expect(sticker.locator('.au-sticker__stroke')).toHaveAttribute('aria-hidden', 'true')
+  return sticker
+}
+
+async function strokeOverWord(sticker: Locator) {
+  return sticker.evaluate((node) => {
+    const word = node.querySelector('s')?.getBoundingClientRect()
+    const stroke = node.querySelector('.au-sticker__stroke')?.getBoundingClientRect()
+    if (!word || !stroke) throw new Error('the struck sticker has no word or no stroke')
+    return {
+      before: stroke.right <= word.left + 1,
+      across: stroke.left < word.left && stroke.right > word.right,
+    }
+  })
+}
+
+for (const locale of ['fr', 'en'] as const) {
+  test(`a struck descriptor is slashed once every sticker has landed, and says so in words (${locale})`, async ({
+    page,
+  }) => {
+    await freezeAnimations(page)
+    const sticker = await openStruckSticker(page, locale)
+    const STROKE = `${HERO} .au-sticker__stroke`
+    await atMoment(page, 0, STROKE)
+    const timing = await sticker.evaluate((node) => {
+      const landings = [...(node.parentElement?.children ?? [])].map((item) => {
+        const slap = item
+          .getAnimations()
+          .find(
+            (animation) =>
+              animation instanceof CSSAnimation &&
+              animation.animationName.startsWith('au-sticker-slap'),
+          )
+        const timing = slap?.effect?.getComputedTiming()
+        return Number(timing?.delay) + Number(timing?.duration)
+      })
+      const draw = node.querySelector('.au-sticker__stroke')?.getAnimations()[0]
+      return {
+        landed: Math.max(...landings),
+        drawn: Number(draw?.effect?.getComputedTiming().delay),
+      }
+    })
+    expect(timing.drawn).toBeGreaterThan(timing.landed)
+
+    await atMoment(page, timing.landed, STROKE)
+    expect((await strokeOverWord(sticker)).before).toBe(true)
+
+    await atMoment(page, 5000, STROKE)
+    expect((await strokeOverWord(sticker)).across).toBe(true)
+  })
+}
 
 type HeroEntry = {
   path: string
@@ -386,6 +454,11 @@ test('print keeps the card and drops the stage', async ({ page }) => {
 
 test.describe('with reduced motion', () => {
   test.use({ reducedMotion: 'reduce' })
+
+  test('a struck descriptor is slashed from the first frame', async ({ page }) => {
+    const sticker = await openStruckSticker(page, 'fr')
+    expect((await strokeOverWord(sticker)).across).toBe(true)
+  })
 
   test('the card never leans and the pause button stays out of the way', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 })

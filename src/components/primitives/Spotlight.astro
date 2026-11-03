@@ -25,7 +25,7 @@ const reserve: SheetReserve = {
   ),
   descriptors: longest(
     entries.map((entry) => entry.sheet.descriptors),
-    (words) => words.join(' ').length,
+    (descriptors) => descriptors.map((descriptor) => descriptor.label).join(' ').length,
     [],
   ),
 }

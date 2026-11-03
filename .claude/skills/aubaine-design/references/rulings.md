@@ -184,6 +184,32 @@ running past the screen's edge stay as approved. New pieces keep the arrival rul
 sheet: in CSS only, under 700 ms, with transforms and opacity, and nothing that matters starts
 invisible. The nothing-cut rule governs them too (all settled 2026-10-30).
 
+**A descriptor sticker can cross its word out.** Asked which descriptors the Elfe wears, the owner
+answered with a word struck through. The sticker's paper, type and tilt stay as approved. Two choices
+are the designer's, not the owner's: the strike is stored on the word in `data/meta/descriptors.json`
+(`struck`), and the sticker says the struck state in words for a screen reader.
+
+> "Noble, Grâcieux, Hautain but barré,  and finally Sylvestre" (2026-11-03)
+
+**The strike is the elf's gesture, and it lands.** The strike is a joke in Aubaine's décalé register: the
+elf denies being haughty, and the denial is itself haughty. A typeset `line-through` read as a deleted
+word. A smooth calligraphic stroke with a curled tail, drawn slowly, read as a logo and had no weight. The strike is a brush slash in the sticker's ink, laid down fast once the row has landed,
+and the sticker takes the hit. The word shows from the first frame while the slash waits: the owner
+approved that exception to "nothing that matters starts invisible" with the plan, and reduced motion and
+print draw the slash at once. The struck sticker alone rests further turned, never past 4°.
+
+> "i asked for hautain to be struck it's like "no no we are not hautain at all" with a slight smirk as an elf says this. but the current designed you proposed doesn't fit it at all. it just feels like literraly a descriptor that is struck, it's tastless." (2026-11-03)
+
+> 'It's too "striaght" it doesn't feel as someone strucking it at all, it just feels like a weird line with a nike ending. and it's way too slow, it's not impactful enough.' (2026-11-03)
+
+> "faster and smoother, it needs impact" (2026-11-03)
+
+Approved on 2026-11-03, picked live among three columns: the typeset strike, the slash drawn from the
+first frame, and the slash after a beat, which ships. The values are in
+`src/components/primitives/DescriptorStickers.astro`: the slash starts 0.3 s plus 0.62 s times `--arrival`
+in and is drawn in 0.09 s, and the sticker takes the hit 0.05 s later, over 0.34 s. Film strip, the French
+sheet on a direct load: `../assets/approved/sticker-struck-slash.jpg`.
+
 ## Hubs
 
 **A hub is never the select screen, nor a rearrangement of its cards.** A hub leads to sections and
@@ -625,3 +651,4 @@ and praised the Saison slider.
 | 2026-10-31 | pieces sit on the shape; B+ ships; C+ and D kept, the poster wall dropped; this skill; accepted screenshots only; highest quality, many links; the contents spread opens Livres and the plate menu the Codex; every category listed, the empty ones saying so; the archives in Livres; Books left to the designer |
 | 2026-11-01 | the help button's margin and the stage pages' print, by request |
 | 2026-11-02 | the carry on one curve with live arrivals on landing, approved; what stays is whole when the pieces land; approvals recorded as what was approved; the stage stays alive through a page change; a tree writes its key colour and a kept reading is pinned; never edit an `-og` file, mirror a cover by option; a Codex door name holds one line on a desktop; the Codex panel slides off, uncovering the spotlight |
+| 2026-11-03 | a descriptor sticker can cross its word out; the strike is the elf's gesture, and it lands; the slash after a beat, approved |

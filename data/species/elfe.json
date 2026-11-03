@@ -2,6 +2,12 @@
   "id": "elfe",
   "status": "draft",
   "name": "Elfe",
+  "descriptors": [
+    "noble",
+    "graceful",
+    "haughty",
+    "sylvan"
+  ],
   "cover": "elfe-3_4-og.png",
   "keyColour": "#4fa866",
   "types": [

@@ -25,6 +25,8 @@ export type Trait = {
 
 export type TraitSet = { label: string; plates: readonly [Trait, ...Trait[]] }
 
+export type Descriptor = { label: string; struck: boolean }
+
 export type SheetProfile =
   | { kind: 'none' }
   | { kind: 'pending' }
@@ -35,7 +37,7 @@ export type CharacterSheet = {
   subtitle: string | undefined
   kind: string
   status: BadgedStatus | undefined
-  descriptors: string[]
+  descriptors: Descriptor[]
   traits: TraitSet | undefined
   profile: SheetProfile
   cover: string | undefined
@@ -56,8 +58,11 @@ function traitSet(label: string, traits: readonly Trait[]): TraitSet | undefined
   return first ? { label, plates: [first, ...rest] } : undefined
 }
 
-function descriptorLabels(corpus: Corpus, locale: Locale, keys: readonly string[]): string[] {
-  return keys.map((key) => label(corpus.descriptors.get(key), locale, key))
+function sheetDescriptors(corpus: Corpus, locale: Locale, keys: readonly string[]): Descriptor[] {
+  return keys.map((key) => {
+    const entry = corpus.descriptors.get(key)
+    return { label: label(entry, locale, key), struck: entry?.struck === true }
+  })
 }
 
 function treeKeyColour(tree: ResolvedTree, corpus: Corpus): string | undefined {
@@ -79,7 +84,7 @@ export function treeSheet(tree: ResolvedTree, corpus: Corpus, locale: Locale): C
     subtitle: tree.subtitle,
     kind: t.treeEyebrow(tree.treeType),
     status: badgedStatus(tree.status),
-    descriptors: descriptorLabels(corpus, locale, tree.descriptors ?? []),
+    descriptors: sheetDescriptors(corpus, locale, tree.descriptors ?? []),
     traits: traitSet(
       primes.length > 1 ? t.primeChars : t.primeChar,
       primes.map((prime) => ({
@@ -158,7 +163,7 @@ export function speciesSheet(
     subtitle: species.subtitle,
     kind: t.species,
     status: badgedStatus(species.status),
-    descriptors: descriptorLabels(corpus, locale, species.descriptors ?? []),
+    descriptors: sheetDescriptors(corpus, locale, species.descriptors ?? []),
     traits: traitSet(
       t.speciesVitals,
       plates.map((plate) => ({
@@ -214,7 +219,7 @@ export function librarySheet(item: LibraryItem, corpus: Corpus, locale: Locale):
       subtitle: item.tree.subtitle,
       kind: libraryKicker(item, locale),
       status: badgedStatus(item.tree.status),
-      descriptors: descriptorLabels(corpus, locale, item.tree.descriptors ?? []),
+      descriptors: sheetDescriptors(corpus, locale, item.tree.descriptors ?? []),
       traits,
       profile: { kind: 'none' },
       cover: item.cover,

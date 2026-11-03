@@ -69,7 +69,7 @@ describe('the sheet of a species', () => {
   it('reads its descriptors in the reader language and keeps an authored key colour', () => {
     for (const species of english.species) {
       const sheet = speciesSheet(species, english, 'en')
-      expect(sheet.descriptors).toEqual(
+      expect(sheet.descriptors.map((descriptor) => descriptor.label)).toEqual(
         (species.descriptors ?? []).map((key) => label(english.descriptors.get(key), 'en', key)),
       )
       expect(sheet.keyColour).toBe(species.keyColour)
@@ -77,5 +77,22 @@ describe('the sheet of a species', () => {
       expect(sheet.profile).toEqual({ kind: 'none' })
       expect(sheet.seal).toEqual(SPECIES_SEAL)
     }
+  })
+
+  it('strikes through the one descriptor its vocabulary strikes', () => {
+    const species = english.species.find((entry) => (entry.descriptors ?? []).length > 1)
+    const [struckKey, ...plainKeys] = species?.descriptors ?? []
+    if (!species || !struckKey) throw new Error('no species carries two descriptors')
+    const descriptors = new Map(
+      [...english.descriptors].map(([key, { struck: _struck, ...entry }]) => [
+        key,
+        key === struckKey ? { ...entry, struck: true as const } : entry,
+      ]),
+    )
+    const sheet = speciesSheet(species, { ...english, descriptors }, 'en')
+    expect(sheet.descriptors).toEqual([
+      { label: label(descriptors.get(struckKey), 'en', struckKey), struck: true },
+      ...plainKeys.map((key) => ({ label: label(descriptors.get(key), 'en', key), struck: false })),
+    ])
   })
 })

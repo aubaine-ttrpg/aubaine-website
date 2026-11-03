@@ -1234,6 +1234,12 @@ export const vocabulary = z
           .min(1)
           .optional()
           .describe('Texte anglais de la référence, écrit avec referenceFr : « Fire damage ».'),
+        struck: z
+          .literal(true)
+          .optional()
+          .describe(
+            "Le mot se montre barré sur son autocollant, dans les deux langues, comme l'Elfe porte Hautain. Absent : le mot se montre tel quel. Propre à data/meta/descriptors.json.",
+          ),
       })
       .strict()
       .refine(

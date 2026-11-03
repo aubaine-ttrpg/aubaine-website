@@ -1830,15 +1830,21 @@ describe('definitions', () => {
     }
   })
 
-  it('keeps every descriptor to its two labels', () => {
+  it('keeps every descriptor to its two labels and its strike', () => {
     const descriptors = sources.vocabularies.find((vocabulary) => vocabulary.id === 'descriptors')
     expect(descriptors, 'meta/descriptors').toBeDefined()
     for (const entry of descriptors?.data.entries ?? []) {
-      expect(Object.keys(entry).sort(), `meta/descriptors ${entry.key}`).toEqual([
-        'key',
-        'labelEn',
-        'labelFr',
-      ])
+      const fields = Object.keys(entry).filter((field) => field !== 'struck')
+      expect(fields.sort(), `meta/descriptors ${entry.key}`).toEqual(['key', 'labelEn', 'labelFr'])
+    }
+  })
+
+  it('strikes a word through only in the descriptors', () => {
+    for (const vocabulary of sources.vocabularies) {
+      if (vocabulary.id === 'descriptors') continue
+      for (const entry of vocabulary.data.entries) {
+        expect(entry.struck, `meta/${vocabulary.id} ${entry.key} takes no struck`).toBeUndefined()
+      }
     }
   })
 
