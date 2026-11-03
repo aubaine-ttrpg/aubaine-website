@@ -11,7 +11,7 @@ function words(plates: Iterable<Element>): string {
   return [...plates].map((plate) => plate.textContent?.trim() ?? '').join(' ')
 }
 
-function pathOf(url: string): string {
+export function pathOf(url: string): string {
   return new URL(url, window.location.origin).pathname
 }
 
@@ -57,6 +57,17 @@ export function litDoorPath(): string | undefined {
   return link?.pathname
 }
 
+export function doorOf(trigger: Element | undefined): Element | undefined {
+  return trigger?.closest('a')?.closest(DOOR) ?? undefined
+}
+
+export function doorTo(scope: ParentNode, url: string): Element | undefined {
+  const link = [...scope.querySelectorAll(`${DOOR} a`)].find(
+    (each) => pathOf(each.getAttribute('href') ?? '') === pathOf(url),
+  )
+  return link?.closest(DOOR) ?? undefined
+}
+
 export type Origin = { words: string; pieces: HTMLElement[]; shapes: number[] }
 
 function platesFromDoor(door: Element, next: Document): Origin | undefined {
@@ -68,20 +79,17 @@ function platesFromDoor(door: Element, next: Document): Origin | undefined {
 }
 
 export function originGoingIn(trigger: Element | undefined, next: Document): Origin | undefined {
-  const door = trigger?.closest('a')?.closest(DOOR)
+  const door = doorOf(trigger)
   return door ? platesFromDoor(door, next) : undefined
 }
 
 export function originGoingBack(next: Document, leaving: string): Origin | undefined {
   const title = [...document.querySelectorAll<HTMLElement>(TITLE_PLATE)]
   if (title.length === 0 || !title.every(isOnScreen)) return undefined
-  const door = [...next.querySelectorAll<HTMLAnchorElement>(`${DOOR} a`)].find(
-    (link) => pathOf(link.getAttribute('href') ?? '') === pathOf(leaving),
-  )
+  const door = doorTo(next, leaving)
   if (!door) return undefined
   const titled = words(title)
-  const doorPlates = door.closest(DOOR)?.querySelectorAll(DOOR_PLATE)
-  if (!doorPlates || titled !== words(doorPlates)) return undefined
+  if (titled !== words(door.querySelectorAll(DOOR_PLATE))) return undefined
   return { words: titled, pieces: title, shapes: shapesOf(title) }
 }
 

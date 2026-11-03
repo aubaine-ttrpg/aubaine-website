@@ -1,3 +1,4 @@
+import { pathOf } from './page-flight'
 import { type PartKey, type SceneDirection, sceneEnd, sceneRules } from './page-score'
 
 const SPOTLIGHT = '[data-spotlight]'
@@ -32,10 +33,6 @@ export type SheetScene = {
   entry: string
   carried: ReadonlySet<string>
   leaving: readonly string[]
-}
-
-function pathOf(url: string): string {
-  return new URL(url, window.location.origin).pathname
 }
 
 function touchesScreen(element: Element): boolean {
@@ -176,12 +173,14 @@ export function sceneArrival(scene: SheetScene): NamedPiece[] {
   return sheet ? partsIn(sheet).filter((part) => scene.carried.has(part.name)) : []
 }
 
-export function settleArrivals(pieces: readonly NamedPiece[]): void {
-  for (const { element } of pieces) {
-    for (const animation of element.getAnimations()) {
-      if (animation.effect?.getTiming().iterations !== Number.POSITIVE_INFINITY) animation.finish()
-    }
+export function finishFinite(animations: Iterable<Animation>): void {
+  for (const animation of animations) {
+    if (animation.effect?.getTiming().iterations !== Number.POSITIVE_INFINITY) animation.finish()
   }
+}
+
+export function settleArrivals(pieces: readonly NamedPiece[]): void {
+  for (const { element } of pieces) finishFinite(element.getAnimations())
 }
 
 export function scoreOf(scene: SheetScene, arriving: readonly NamedPiece[]): string {
