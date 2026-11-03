@@ -96,6 +96,42 @@ html[data-transit-held]
     visibility 0s linear 450ms;
 }
 
+[data-doors]:has(a[data-pressed]) [data-door]:not(:has(a[data-pressed])) .au-plate-door__scene {
+  opacity: 0;
+}
+
+::view-transition-group(au-door-scene) {
+  z-index: 9;
+}
+
+::view-transition-group(au-spotlight) {
+  z-index: 8;
+}
+
+::view-transition-old(au-door-scene),
+::view-transition-old(au-spotlight) {
+  animation: au-transit-vanish var(--transit-flight) var(--ease-travel) both;
+}
+
+::view-transition-new(au-spotlight) {
+  animation: au-transit-appear 120ms linear both;
+}
+
+html[data-transit-door]::view-transition-old(au-door-scene),
+html[data-transit-door]::view-transition-new(au-door-scene) {
+  animation: none;
+  mix-blend-mode: normal;
+  opacity: 1;
+}
+
+html[data-transit-door="leave"]::view-transition-image-pair(au-door-scene) {
+  animation: au-door-leave var(--transit-flight) var(--ease-travel) both;
+}
+
+html[data-transit-door="return"]::view-transition-image-pair(au-door-scene) {
+  animation: au-door-arrive var(--transit-flight) var(--ease-travel) both;
+}
+
 html .au-sommaire__sheet[data-book-hidden] {
   z-index: 4;
   visibility: hidden;
@@ -338,6 +374,18 @@ html[data-transit-book="open"]::view-transition-new(root) {
 @keyframes au-transit-recede {
   to {
     transform: scale(0.97);
+  }
+}
+
+@keyframes au-door-leave {
+  to {
+    transform: translateX(var(--transit-door-away));
+  }
+}
+
+@keyframes au-door-arrive {
+  from {
+    transform: translateX(var(--transit-door-away));
   }
 }
 

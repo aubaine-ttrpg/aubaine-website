@@ -1,12 +1,20 @@
 import { resetLoading } from './loading'
 import { BOOK_ARRIVALS_WAIT_MS, isInBook, layOutBook, putBookAway } from './page-book'
 import {
+  bandLeaving,
+  bandReturning,
+  spotlightLeaving,
+  spotlightPiece,
+  spotlightUncovered,
+} from './page-door'
+import {
   currentEntry,
   doorPathOf,
   litDoorPath,
   type Origin,
   originGoingBack,
   originGoingIn,
+  pathOf,
   targetsOf,
 } from './page-flight'
 import {
@@ -53,6 +61,8 @@ let latestTransition = 0
 let shownUrl = window.location.pathname + window.location.search
 let score: CSSStyleSheet | undefined
 let running: ViewTransition | undefined
+let bandBox: DOMRect | undefined
+let spotlightBox: DOMRect | undefined
 
 function pause(milliseconds: number): Promise<void> {
   return new Promise((resolve) => window.setTimeout(resolve, milliseconds))
@@ -115,14 +125,18 @@ function reset(): void {
   origin = undefined
   scene = undefined
   heldClick = undefined
+  bandBox = undefined
+  spotlightBox = undefined
   pressed?.removeAttribute('data-pressed')
   pressed = undefined
   root.removeAttribute('data-transit')
   root.removeAttribute('data-transit-book')
   root.removeAttribute('data-transit-sheet')
   root.removeAttribute('data-transit-held')
+  root.removeAttribute('data-transit-door')
   root.style.removeProperty('--transit-flight')
   root.style.removeProperty('--transit-landed')
+  root.style.removeProperty('--transit-door-away')
   putBookAway()
 }
 
@@ -219,8 +233,26 @@ async function prepare(visit: SwupVisit): Promise<void> {
   origin = visit.history.popstate
     ? originGoingBack(next, visit.from.url)
     : originGoingIn(visit.trigger?.el, next)
-  if (!origin) return
-  name(flightOf(origin.pieces))
+  const door = visit.history.popstate
+    ? spotlightGoingBack(visit, next)
+    : bandGoingIn(visit.trigger?.el, next)
+  name([...flightOf(origin?.pieces ?? []), ...door])
+}
+
+function bandGoingIn(trigger: Element | undefined, next: Document): NamedPiece[] {
+  const leaving = bandLeaving(trigger, next)
+  if (!leaving) return []
+  bandBox = leaving.band
+  root.style.setProperty('--transit-door-away', `${leaving.away}px`)
+  return [leaving.piece]
+}
+
+function spotlightGoingBack(visit: SwupVisit, next: Document): NamedPiece[] {
+  if (left.get(visit.to.url)?.door !== pathOf(visit.from.url)) return []
+  const leaving = spotlightLeaving(next, visit.from.url)
+  if (!leaving) return []
+  spotlightBox = leaving.box
+  return [leaving.piece]
 }
 
 function markArrival(visit: SwupVisit): void {
@@ -294,12 +326,30 @@ async function nameArrival(visit: SwupVisit): Promise<void> {
     return
   }
   if (root.dataset['transit'] === 'deeper') root.toggleAttribute('data-transit-held', true)
-  if (!origin) return
-  const targets = targetsOf(origin)
-  if (!targets) return
-  for (const target of targets) target.toggleAttribute('data-transit-flown', true)
-  name(flightOf(targets))
-  root.toggleAttribute('data-transit-held', true)
+  const targets = origin ? targetsOf(origin) : undefined
+  for (const target of targets ?? []) target.toggleAttribute('data-transit-flown', true)
+  const door = visit.history.popstate ? bandGoingHome(visit) : await spotlightArriving()
+  name([...flightOf(targets ?? []), ...door])
+  if (targets) root.toggleAttribute('data-transit-held', true)
+}
+
+async function spotlightArriving(): Promise<NamedPiece[]> {
+  if (!bandBox) return []
+  const spotlight = spotlightUncovered(bandBox)
+  if (!spotlight) return []
+  root.dataset['transitDoor'] = 'leave'
+  const decoded = await pictureDecoded(spotlight)
+  paceMotion()
+  return decoded ? [spotlightPiece(spotlight)] : []
+}
+
+function bandGoingHome(visit: SwupVisit): NamedPiece[] {
+  if (!spotlightBox) return []
+  const returning = bandReturning(visit.from.url, spotlightBox)
+  if (!returning) return []
+  root.style.setProperty('--transit-door-away', `${returning.away}px`)
+  root.dataset['transitDoor'] = 'return'
+  return [returning.piece]
 }
 
 function remember(visit: SwupVisit): void {

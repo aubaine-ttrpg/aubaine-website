@@ -95,6 +95,29 @@ async function settled(page: Page): Promise<void> {
   })
 }
 
+type Pose = {
+  from: number
+  to: number
+  duration: number
+  easing: string
+  delay: number
+  end: number
+}
+
+type PanelWatch = {
+  sceneHref: string
+  sceneOpacity: number
+  sceneMoving: boolean
+  otherScenes: number
+  panel: Pose | null
+  flight: Pose | null
+  spotlightOld: Pose | null
+  spotlightNew: boolean
+  spotlightArriving: boolean
+  cardAt: number | null
+  z: { panel: number; spotlight: number; flight: number }
+}
+
 async function arrived(page: Page): Promise<void> {
   await page.waitForFunction(() =>
     (document.querySelector('#swup')?.getAnimations({ subtree: true }) ?? []).every(
@@ -105,8 +128,135 @@ async function arrived(page: Page): Promise<void> {
   )
 }
 
+async function doorsBySpotlight(page: Page): Promise<{ spotlit: string[]; plain: string[] }> {
+  const hrefs = await page
+    .locator('main [data-door] a')
+    .evaluateAll((links) => links.map((link) => link.getAttribute('href') ?? ''))
+  const spotlit: string[] = []
+  const plain: string[] = []
+  for (const href of hrefs) {
+    const html = await (await page.request.get(href)).text()
+    if (html.includes('data-spotlight')) spotlit.push(href)
+    else plain.push(href)
+  }
+  return { spotlit, plain }
+}
+
 function doorLink(page: Page, href: string) {
   return page.locator(`main [data-door] a[href="${href}"]`)
+}
+
+function panelEdge(page: Page, href: string): Promise<number> {
+  return doorLink(page, href).evaluate((link) => {
+    const scene = link.closest('[data-door]')?.querySelector('.au-plate-door__scene')
+    const lefts = [
+      ...(scene?.querySelectorAll('.au-plate-door__band, .au-plate-door__giant') ?? []),
+    ].map((piece) => piece.getBoundingClientRect().left)
+    return Math.min(...lefts)
+  })
+}
+
+async function watchPanel(page: Page): Promise<void> {
+  await page.evaluate(() => {
+    Object.assign(window, { __panel: null })
+    const root = document.documentElement
+    const finite = (animation: Animation) =>
+      animation.playState === 'running' &&
+      animation.effect?.getTiming().iterations !== Number.POSITIVE_INFINITY
+    const poseOf = (pseudo: string) => {
+      const animation = root
+        .getAnimations({ subtree: true })
+        .find(
+          (each) => each.effect instanceof KeyframeEffect && each.effect.pseudoElement === pseudo,
+        )
+      const effect = animation?.effect
+      if (!animation || !(effect instanceof KeyframeEffect)) return null
+      const timing = effect.getComputedTiming()
+      const delay = Number(timing.delay ?? 0)
+      const end = Number(timing.endTime ?? 0)
+      const was = animation.currentTime
+      animation.pause()
+      const at = (time: number) => {
+        animation.currentTime = time
+        return new DOMMatrixReadOnly(getComputedStyle(root, pseudo).transform).m41
+      }
+      const from = at(delay)
+      const to = at(end)
+      animation.currentTime = was
+      animation.play()
+      return {
+        from,
+        to,
+        duration: Number(timing.duration),
+        easing: String(effect.getKeyframes()[0]?.easing ?? ''),
+        delay,
+        end,
+      }
+    }
+    const zOf = (name: string) =>
+      Number(getComputedStyle(root, `::view-transition-group(${name})`).zIndex)
+    const start = document.startViewTransition.bind(document)
+    Object.defineProperty(document, 'startViewTransition', {
+      configurable: true,
+      writable: true,
+      value: (update: () => Promise<void>) => {
+        const scenes = [...document.querySelectorAll<HTMLElement>('.au-plate-door__scene')]
+        const named = scenes.find(
+          (scene) => scene.style.getPropertyValue('view-transition-name') === 'au-door-scene',
+        )
+        const watch: Partial<PanelWatch> = {
+          sceneHref: named?.closest('[data-door]')?.querySelector('a')?.getAttribute('href') ?? '',
+          sceneOpacity: named ? Number(getComputedStyle(named).opacity) : 0,
+          sceneMoving: named ? named.getAnimations({ subtree: true }).some(finite) : false,
+          otherScenes: Math.max(
+            0,
+            ...scenes
+              .filter((scene) => scene !== named)
+              .map((scene) => Number(getComputedStyle(scene).opacity)),
+          ),
+        }
+        Object.assign(window, { __panel: null })
+        const transition = start(update)
+        void transition.ready.then(() => {
+          const spotlight = document.querySelector('[data-spotlight]')
+          const card = spotlight?.querySelector('.au-framed__card')
+          const cardArrival = card
+            ?.getAnimations()
+            .find(
+              (animation) =>
+                animation instanceof CSSAnimation && animation.animationName === 'au-framed-card',
+            )
+          const pseudos = root
+            .getAnimations({ subtree: true })
+            .map((animation) =>
+              animation.effect instanceof KeyframeEffect ? animation.effect.pseudoElement : null,
+            )
+          Object.assign(watch, {
+            panel: poseOf('::view-transition-image-pair(au-door-scene)'),
+            flight: poseOf('::view-transition-group(au-flight-0)'),
+            spotlightOld: poseOf('::view-transition-old(au-spotlight)'),
+            spotlightNew: pseudos.includes('::view-transition-new(au-spotlight)'),
+            spotlightArriving: spotlight
+              ? spotlight.getAnimations({ subtree: true }).some(finite)
+              : false,
+            cardAt: cardArrival ? Number(cardArrival.currentTime) : null,
+            z: {
+              panel: zOf('au-door-scene'),
+              spotlight: zOf('au-spotlight'),
+              flight: zOf('au-flight-0'),
+            },
+          })
+          Object.assign(window, { __panel: watch })
+        })
+        return transition
+      },
+    })
+  })
+}
+
+async function panelOf(page: Page): Promise<PanelWatch> {
+  await expect.poll(() => page.evaluate(() => Reflect.get(window, '__panel') !== null)).toBe(true)
+  return page.evaluate((): PanelWatch => Reflect.get(window, '__panel'))
 }
 
 test.describe('page changes', () => {
@@ -555,7 +705,8 @@ test.describe('page changes', () => {
     await page.locator(`main a[href="${LIST}"]`).click()
     await expect.poll(async () => (await spied(page)).ready).toBe(true)
     const words = await page.locator('.au-plates__plate').count()
-    expect((await spied(page)).names).toHaveLength(words)
+    const flown = (await spied(page)).names.filter((name) => name.startsWith('au-flight-'))
+    expect(flown).toHaveLength(words)
   })
 
   test('a slow page keeps the old page and the pressed link until it arrives', async ({ page }) => {
@@ -971,6 +1122,180 @@ test.describe('the door taken', () => {
   })
 })
 
+test.describe('the Codex door panel', () => {
+  test.beforeEach(async ({ page }) => {
+    await spy(page)
+  })
+
+  test('a door to a select screen slides its panel off over the spotlight, and Back slides it home', async ({
+    page,
+  }) => {
+    await open(page, HUB)
+    const { spotlit } = await doorsBySpotlight(page)
+    expect(spotlit.length).toBeGreaterThan(0)
+    const width = page.viewportSize()?.width ?? 0
+    for (const href of spotlit) {
+      await arrived(page)
+      await doorLink(page, href).hover()
+      await expect(page.locator('[data-door][data-lit] a')).toHaveAttribute('href', href)
+      await arrived(page)
+      const edge = await panelEdge(page, href)
+      await watchPanel(page)
+      await doorLink(page, href).click()
+      await expect(page).toHaveURL(href)
+      const going = await panelOf(page)
+      expect(going.sceneHref).toBe(href)
+      expect(going.panel?.from).toBeCloseTo(0)
+      expect(going.panel?.to).toBeGreaterThanOrEqual(width - edge)
+      expect(going.panel?.duration).toBe(going.flight?.duration)
+      expect(going.panel?.easing).toBe(going.flight?.easing)
+      expect(going.spotlightNew).toBe(true)
+      expect(going.spotlightArriving).toBe(true)
+      expect(going.z.spotlight).toBeLessThan(going.z.panel)
+      expect(going.z.panel).toBeLessThan(going.z.flight)
+      await settled(page)
+      expect(await page.evaluate(namedElements)).toHaveLength(0)
+      await watchPanel(page)
+      await page.goBack()
+      await expect(page).toHaveURL(HUB)
+      const coming = await panelOf(page)
+      expect(coming.panel?.from).toBeGreaterThanOrEqual(width - edge)
+      expect(coming.panel?.to).toBeCloseTo(0)
+      expect(coming.panel?.duration).toBe(coming.flight?.duration)
+      expect(coming.spotlightOld?.end).toBeCloseTo(coming.panel?.end ?? 0)
+      expect(coming.spotlightOld?.easing).toBe(coming.panel?.easing)
+      await settled(page)
+      expect(await page.evaluate(namedElements)).toHaveLength(0)
+    }
+    const seen = await spied(page)
+    expect(seen.duplicates).toEqual([])
+    expect(seen.rejected).toEqual([])
+    expect(seen.hiddenFrames).toBe(0)
+  })
+
+  test('a door taken without pointing carries its own whole panel', async ({ page }) => {
+    await open(page, HUB)
+    await arrived(page)
+    const { spotlit } = await doorsBySpotlight(page)
+    const lit = await page.locator('[data-door][data-lit] a').getAttribute('href')
+    const taken = spotlit.find((href) => href !== lit)
+    test.skip(!taken, 'every door to a select screen is already lit')
+    if (!taken) return
+    await watchPanel(page)
+    await doorLink(page, taken).evaluate((link) => {
+      if (link instanceof HTMLElement) link.click()
+    })
+    await expect(page).toHaveURL(taken)
+    const going = await panelOf(page)
+    expect(going.sceneHref).toBe(taken)
+    expect(going.sceneOpacity).toBe(1)
+    expect(going.sceneMoving).toBe(false)
+    expect(going.otherScenes).toBe(0)
+    await settled(page)
+  })
+
+  test('Enter on a focused door slides its panel', async ({ page }) => {
+    await open(page, HUB)
+    await arrived(page)
+    const { spotlit } = await doorsBySpotlight(page)
+    const [href] = spotlit
+    if (!href) throw new Error('the Codex has no door to a select screen')
+    await doorLink(page, href).focus()
+    await page.keyboard.press('Enter')
+    await expect.poll(async () => (await spied(page)).ready).toBe(true)
+    expect((await spied(page)).groups).toContain('::view-transition-image-pair(au-door-scene)')
+    await settled(page)
+  })
+
+  test('a door to a page not yet redone keeps its fade', async ({ page }) => {
+    await open(page, HUB)
+    await arrived(page)
+    const { plain } = await doorsBySpotlight(page)
+    const [href] = plain
+    test.skip(!href, 'every Codex door opens a select screen')
+    if (!href) return
+    await doorLink(page, href).hover()
+    await doorLink(page, href).click()
+    await expect.poll(async () => (await spied(page)).ready).toBe(true)
+    const groups = (await spied(page)).groups.join(' ')
+    expect(groups).not.toContain('au-door-scene')
+    expect(groups).not.toContain('au-spotlight')
+    await settled(page)
+  })
+
+  test('a visit no door started moves no panel', async ({ page }) => {
+    await open(page, HUB)
+    await arrived(page)
+    const { spotlit } = await doorsBySpotlight(page)
+    const [href] = spotlit
+    if (!href) throw new Error('the Codex has no door to a select screen')
+    await page.evaluate((url) => Reflect.get(window, 'swup').navigate(url), href)
+    await expect(page).toHaveURL(href)
+    await expect.poll(async () => (await spied(page)).ready).toBe(true)
+    expect((await spied(page)).groups.join(' ')).not.toContain('au-door-scene')
+    await settled(page)
+  })
+
+  test('the stacked spotlight of a narrow desktop keeps the fade both ways', async ({ page }) => {
+    await page.setViewportSize({ width: 1024, height: 768 })
+    await open(page, HUB)
+    await arrived(page)
+    const { spotlit } = await doorsBySpotlight(page)
+    const [href] = spotlit
+    if (!href) throw new Error('the Codex has no door to a select screen')
+    await doorLink(page, href).click()
+    await expect(page).toHaveURL(href)
+    await expect.poll(async () => (await spied(page)).ready).toBe(true)
+    const going = (await spied(page)).groups.join(' ')
+    expect(going).not.toContain('image-pair(au-door-scene)')
+    expect(going).not.toContain('new(au-spotlight)')
+    await settled(page)
+    await page.goBack()
+    await expect(page).toHaveURL(HUB)
+    await expect.poll(async () => (await spied(page)).calls).toBe(2)
+    await expect.poll(async () => (await spied(page)).ready).toBe(true)
+    expect((await spied(page)).groups.join(' ')).not.toContain('image-pair(au-door-scene)')
+    await settled(page)
+  })
+
+  test('a hub below 960 px names no panel', async ({ page }) => {
+    await page.setViewportSize({ width: 900, height: 800 })
+    await open(page, HUB)
+    await arrived(page)
+    const { spotlit } = await doorsBySpotlight(page)
+    const [href] = spotlit
+    if (!href) throw new Error('the Codex has no door to a select screen')
+    await doorLink(page, href).click()
+    await expect.poll(async () => (await spied(page)).ready).toBe(true)
+    expect((await spied(page)).groups.join(' ')).not.toContain('au-door-scene')
+    await settled(page)
+  })
+
+  test('a spotlight picture that decodes late starts its arrival with the motion', async ({
+    page,
+  }) => {
+    await open(page, HUB)
+    await arrived(page)
+    const { spotlit } = await doorsBySpotlight(page)
+    const [href] = spotlit
+    if (!href) throw new Error('the Codex has no door to a select screen')
+    await page.route(/\.(avif|webp|jpe?g|png)(\?.*)?$/, async (route) => {
+      await new Promise((resolve) => setTimeout(resolve, 60))
+      await route.continue().catch(() => undefined)
+    })
+    await watchPanel(page)
+    await doorLink(page, href).evaluate((link) => {
+      if (link instanceof HTMLElement) link.click()
+    })
+    const going = await panelOf(page)
+    expect(going.spotlightNew).toBe(true)
+    expect(going.cardAt).not.toBeNull()
+    expect(going.cardAt ?? -1).toBeGreaterThanOrEqual(0)
+    expect(going.cardAt ?? Number.POSITIVE_INFINITY).toBeLessThan(50)
+    await settled(page)
+  })
+})
+
 test.describe('touch', () => {
   test.use({ hasTouch: true })
 
@@ -989,6 +1314,23 @@ test.describe('touch', () => {
     await expect(page).toHaveURL(HUB)
     await settled(page)
     await expect(page.locator('[data-door][data-lit] a')).toHaveAttribute('href', taken)
+  })
+
+  test('a tapped Codex door moves its own panel', async ({ page }) => {
+    await open(page, HUB)
+    await arrived(page)
+    const { spotlit } = await doorsBySpotlight(page)
+    const lit = await page.locator('[data-door][data-lit] a').getAttribute('href')
+    const taken = spotlit.find((href) => href !== lit)
+    test.skip(!taken, 'every door to a select screen is already lit')
+    if (!taken) return
+    await watchPanel(page)
+    await doorLink(page, taken).tap()
+    await expect(page).toHaveURL(taken)
+    const going = await panelOf(page)
+    expect(going.sceneHref).toBe(taken)
+    expect(going.otherScenes).toBe(0)
+    await settled(page)
   })
 
   test('a tap on a slow link marks it pressed at once', async ({ page }) => {
