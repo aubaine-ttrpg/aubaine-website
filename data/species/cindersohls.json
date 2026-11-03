@@ -2,6 +2,8 @@
   "id": "cindersohls",
   "status": "draft",
   "name": "Cindersöhls",
+  "cover": "cindersohls-3_4-og.png",
+  "keyColour": "#a2acb7",
   "types": [
     "humanoid",
     "construct"
