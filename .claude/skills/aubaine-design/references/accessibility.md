@@ -219,8 +219,9 @@ what the site already does. Every link was fetched on 2026-10-31; two are marked
   [NN/g, multimedia](https://www.nngroup.com/articles/guidelines-for-multimedia-on-the-web/).
 - **One pause stops everything.** Motion that starts on its own and lasts over five seconds gets a
   visible pause near it; one control stops every moving part, the choice is remembered, and the paused
-  frame reads as finished. Already, for the living stage, the cover's pan and the ghost's drift:
-  `src/scripts/stillness.ts`, `StillToggle.astro`.
+  frame reads as finished. Already, for the living stage, the cover's pan, the ghost's drift, the flag
+  and the banner's wind, which freeze in place: `src/scripts/stillness.ts`, `StillToggle.astro`,
+  `Heraldry.astro`.
   [2.2.2](https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html),
   [G4](https://www.w3.org/WAI/WCAG22/Techniques/general/G4),
   [GAG, background movement](https://gameaccessibilityguidelines.com/provide-an-option-to-turn-off-hide-background-movement/),
@@ -323,7 +324,7 @@ owner's to schedule.
 | --- | --- | --- |
 | The header's section menus use `role="menu"`, `role="menuitem"` and `aria-haspopup="menu"` on links, open on focus and on hover with no intent delay, and close on leave at once | `src/components/shell/Header.astro`, `src/scripts/shell.ts` | APG disclosure navigation; NN/g hover timing |
 | No `prefers-contrast` or `prefers-reduced-transparency` styles | `src/styles/`, the blurred header panel | Media Queries 5; Apple sufficient contrast |
-| Two pause buttons with two names flip one shared state | `src/lib/i18n/strings.ts`, `src/scripts/stillness.ts` | 3.2.4 consistent identification |
+| Three pause buttons with three names (the stage's, the flag's, the banner's) flip one shared state | `src/lib/i18n/strings.ts`, `src/scripts/stillness.ts` | 3.2.4 consistent identification |
 | The sheet's scroll cue nudges its chevron 5 px every 2.4 s without end, and the pause does not stop it; under reduced motion it is still (`src/styles/base.css`) | `CharacterHero.astro` | 2.2.2 |
 | Term tooltips open on hover and focus; their dismissal by Escape is unverified | `src/styles/base.css`, `RuleTerm.astro` | 1.4.13 |
 | French fallback passages on English pages carry no `lang="fr"` | the views that render untranslated entries | 3.1.2 |

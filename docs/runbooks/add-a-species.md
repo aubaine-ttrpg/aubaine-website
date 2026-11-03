@@ -120,7 +120,7 @@ under it and the name of the figure for a screen reader, and the English overlay
   "name": "Bannière de la maison Colbert",
   "emblem": "colbert.svg",
   "field": "#1f4e9e",
-  "charge": "#d4a83a"
+  "charge": "#efbe04"
 }
 ```
 
@@ -128,12 +128,15 @@ under it and the name of the figure for a screen reader, and the English overlay
   the presentation, its top level with the text's first line; below 30rem it stands above the text
   instead. Its `emblem` is a white SVG in
   `data/media/emblems/`, framed by `pnpm media:emblems` like a species emblem. `field` is the colour of
-  the velvet, `charge` the colour of the embroidered emblem, the galloon and the fringe. The reader
-  can take hold of it and swing it; it comes to rest by itself.
+  the velvet, `charge` the colour of the embroidered emblem, the galloon and the fringe. It stirs in a
+  light wind for as long as it is on screen, and the reader can take hold of it and swing it. The
+  round button at the right end of its caption's rule, like the flag's and the hero's, pauses every
+  moving decoration of the page.
 - `flag` flies across the width of the reading column, above the presentation, like a lore picture,
   with a linen heading and two grommets at its hoist and no pole. Its `picture` is the flat flag, a
-  `3_2` file in `data/media/art/`. It flies as long as it is on screen, and its button, like the
-  hero's, pauses every moving decoration of the page.
+  `3_2` file in `data/media/art/`. It flies as long as it is on screen, and the round button at the
+  right end of its caption's rule, like the banner's and the hero's, pauses every moving decoration of
+  the page.
 - `arms` stand in the same column as a banner: a heater shield of translucent enamel set in gilt
   metal, its charges sculpted in relief with their drawn lines engraved, inside a stepped bezel. `arms` names the composition in `data/media/arms/`, an SVG whose
   tinctures are the enamels and whose charges are credited in `ARMS_WORKS`

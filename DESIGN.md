@@ -750,6 +750,9 @@ keep their durations, and they start 0.3 s plus 0.62 s times `--arrival` in.
 - The ghost name drifts 4 cqi over 32 s, then back over the next 32 s.
 - The living stage runs at 30 frames a second on the ultra tier, 24 on high, not at all on low, and only
   while on screen.
+- A sub-species' banner stirs in a light wind and its flag flies, at the stage's pace and only while on
+  screen. Each has its own pause, a round button at the right end of its caption rule, which sets the
+  same choice.
 
 The sheet's scroll cue also nudges its chevron 5 px every 2.4 s; the pause does not stop it.
 
@@ -843,9 +846,9 @@ button hides (`tests/e2e/hub-stage.spec.ts`); a swap still changes the picture a
 - **`aria-current`** marks the card the spotlight shows.
 - **Nothing is told by colour alone**: a draft is darkened, veiled and stamped with the word; a pointed
   card flips and lifts; a kind's name sits beside its mark; a status badge writes its word.
-- **The pause button** stills the living stage, the cover's pan and the ghost's drift (WCAG 2.2.2),
-  though not the scroll cue's chevron, and is remembered from page to page; under reduced motion
-  nothing moves and it hides.
+- **The pause button** stills the living stage, the cover's pan, the ghost's drift and the heraldry's
+  wind (WCAG 2.2.2), though not the scroll cue's chevron, and is remembered from page to page; under
+  reduced motion nothing moves and it hides.
 - **Without JavaScript** every card is a link, the lead entry stays in the spotlight, the arrows and the
   pause stay hidden, and the stage is the CSS ambient.
 - **Forced colours**: slabs, the emblem, the glare, halftones, ghost names and the Livres numerals are

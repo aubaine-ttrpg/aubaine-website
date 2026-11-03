@@ -4,7 +4,7 @@
 **Status:** Proposed
 **Date:** 2026-10-26
 **Deciders:** Kori
-**Scope:** The heraldry a sub-species may carry (a banner beside its text that the reader can swing, a
+**Scope:** The heraldry a sub-species may carry (a banner beside its text that stirs in a light wind and the reader can swing, a
 flag that flies across the reading column, arms of enamel and gold beside the text), how each is drawn
 on the shared WebGL2 context of 0053 and 0054, the one preference that pauses every moving decoration,
 the `glazed` look of a lore picture, the `3_2` ratio in `data/media/art/`, a key colour a species
@@ -47,6 +47,14 @@ jewel enamel and the exact composition, with only the rim made a stepped bezel. 
 record where that ended. On 2026-10-29 the owner, having read every piece on the live pages:
 « I've checked everything on the front so it should be fine ».
 
+On 2026-11-03 the owner asked for the Colbert banner's yellow to be more vibrant, to match the art
+direction, and for a continuous wind that moves it slightly. Asked, the owner chose its pause at the
+right end of its caption rule and the gold change on the cloth only, the baked hanger keeping its
+gilt. A first build took the charge flat into the gilt and was refused as yellow paint rather than
+metal; the shading of Decision 2 stayed and only the charge changed. The owner then asked for a
+slightly stronger wind, and for the flag's pause to be the same small round button instead of the
+square over the flag. Decision 10 records where that ended.
+
 ---
 
 ## Decision 1: A sub-species may carry one piece of heraldry, a banner or arms beside its text, or a flag across the column
@@ -74,8 +82,8 @@ record where that ended. On 2026-10-29 the owner, having read every piece on the
   paragraph at 9rem. The names below stay across the full width.
 - A flag: the figure spans the reading column. Its box is the picture's own ratio plus a headroom of
   `FLAG.headroom` (4.5 %) above and below, so the fly end can ripple without touching the caption; the
-  plain picture fills the 3:2 part, flush with the column, and there is no pole. The pause button
-  sits over the flag's bottom right corner, in the style of the hero's.
+  plain picture fills the 3:2 part, flush with the column, and there is no pole. Its pause is the
+  round button at the right end of its caption rule (Decision 10).
 
 ### Rationale
 
@@ -108,8 +116,8 @@ record where that ended. On 2026-10-29 the owner, having read every piece on the
 - `src/lib/art-effect/cloth.ts` keeps the banner's position based dynamics on a 10 by 21 grid
   (`BANNER_CLOTH` in `src/lib/art-effect/presets.ts`): structural, shear and bend links, a tether per
   point to its pin, air per triangle, a damped spring on the point the reader holds, and a pleated
-  rod row. Everything the flag needed (wind, a pinned hoist) is gone. `settle` brings it to rest for a
-  still frame.
+  rod row. The pinned hoist the first build's flag needed is gone; since 2026-11-03 a light wind
+  blows through the banner (Decision 10). `settle` brings it to rest for a still frame.
 - `src/scripts/art-effect/banners.ts` and `loom.ts` draw it: the grid's positions go to an RGBA32F
   texture each frame, and a mesh four times finer reads them with Catmull-Rom splines in
   `glsl/cloth.vert`, so folds and normals are smooth. `glsl/cloth.frag` shades the field as velvet
@@ -197,18 +205,19 @@ record where that ended. On 2026-10-29 the owner, having read every piece on the
 
 - `src/scripts/stillness.ts` owns the reader's choice, still under the key `aubaine.stage`:
   `isStill`, `setStill`, which announces the change on `window`, and `bindStillToggle`. The hero's
-  button and the flag's button both drive it, and each shows the other's change. The flag's button
-  ships `hidden` and appears once the cloth has taken over.
+  button and the round buttons of the banner and the flag (Decision 10) all drive it, and each shows
+  the others' change. The heraldry's buttons ship `hidden` and appear once their cloth has taken over.
 - Under reduced motion the banner and the flag draw one still frame each, the banner settled and not
   draggable, and no pause button appears.
 
 ### Rationale
 
 - WCAG 2.2.2 asks that moving content running over five seconds can be paused; the flag flies for as
-  long as it is on screen. The banner rests within five seconds and needs no button.
-- The spec checks that the flag's button pauses by keyboard, stays paused on the next page, and that
-  the hero's button stills the flag; and that under reduced motion neither piece redraws, even when
-  dragged.
+  long as it is on screen, and since 2026-11-03 the banner stirs as long too, so it carries the same
+  pause (Decision 10).
+- The spec checks that the flag's button and the banner's pause by keyboard, stay paused on the next
+  page, and that the hero's button stills both; and that under reduced motion neither piece redraws,
+  even when dragged.
 
 ### Alternatives considered
 
@@ -521,8 +530,10 @@ record where that ended. On 2026-10-29 the owner, having read every piece on the
 
 - `src/components/primitives/PictureNote.astro` puts a round button, 26 pixels, `mdi:help` in a 1 pixel
   circle, at the right end of the gold rule under a picture's caption, as a sibling of the
-  `figcaption`. The figure carries `data-noted` and `--au-caption-tail`, which shortens both halves of
-  the rule equally so the hexagon stays centred (`src/styles/prose.css`).
+  `figcaption`. While a visible button sits on its rule, the figure takes `--au-caption-tail`, which
+  shortens both halves of the rule equally so the hexagon stays centred (`:has()` in
+  `src/styles/prose.css`). The button's look is `.au-prose__caption-button` there, which the pause of
+  Decision 10 shares.
 - The button opens a native popover, `src/components/primitives/PopoverNote.astro`, which now also
   draws the notes of `RankProfile.astro` and `Provenance.astro`: its title, its text and a close
   button. It reaches left of the button where CSS anchor positioning exists and the screen is wider
@@ -606,14 +617,101 @@ record where that ended. On 2026-10-29 the owner, having read every piece on the
 
 ---
 
+## Decision 10: The banner stirs in a light wind, and every heraldic pause is a round button on the caption rule
+
+### Decision
+
+- `data/species/humain.json` gives the Colbert banner house gold, `#efbe04` (`KEY_FALLBACK` in
+  `src/lib/key-colour.ts`), as its `charge`. The gilt of Decision 2 shades it unchanged, and the plain
+  SVG banner mixes its stops from the same value.
+- `src/lib/art-effect/cloth.ts` lets the air move. `gatherAir` takes each triangle's velocity
+  relative to the air, `v - w`, so with no wind the force is the old drag exactly. `w` is a sum of
+  sines over the triangle's rest centre (`centres`, from `weave`) and `cloth.seconds`: a slow gust on a
+  steady push toward the reader, ripples that travel across and down the cloth, and a sideways part
+  carried by an in-plane share of the wind (`slip`), since pressure alone cannot push a flat cloth
+  sideways. The values are `BANNER_CLOTH.wind` in `src/lib/art-effect/presets.ts`, `slip` 3.5 for one.
+  Nothing is random, so the same calls give the same motion.
+- `blow` turns the wind on or off. The breeze eases in over `rise` (2 s) and out over `fall` (0.8 s),
+  and `calm` counts only once it is out, so a lull never reads as rest. `brisk` is true while the
+  reader holds the cloth or a point moves faster than 0.25 a second.
+- `src/scripts/art-effect/banners.ts` steps the cloth on every animation frame and draws at
+  `tier.cloth.perSecond`, the flag's pace, unless the cloth is brisk (arriving, dragged, flung), when it
+  draws every frame. It blows from its first frame unless the reader prefers reduced motion or has
+  paused. Pausing, from any of the page's buttons, freezes the cloth where it is, as the flag does, and
+  Play continues from there. A drag while paused still moves it, and it comes to rest.
+- The banner's pause and the flag's are one button in `Heraldry.astro`, after the `figcaption`:
+  26 pixels, round, at the right end of the caption rule, with the look of Decision 8's « ? »
+  (`.au-prose__caption-button`), named `bannerPause` and `bannerPlay` or `flagPause` and `flagPlay` in
+  `src/lib/i18n/strings.ts`. The flag's 38 pixel square over its corner, and the wrapper that placed
+  it, are gone.
+
+### Rationale
+
+- The owner's requests and choices (Context).
+- Measured on a scratch copy of `cloth.ts` and `presets.ts` in Node 22.23.0 on an Apple M5, over 60 s
+  after a 6 s ramp, on a banner 384 pixels tall: the hem sways 13.0 pixels from side to side (7.4 at
+  a `slip` of 2, which the owner found too faint), the bottom moves between 0.014 and 0.100 in depth
+  against a `depth` of 0.22, nothing leaves the box, links stretch at most 2.5 %, every triangle
+  keeps the depth part of its normal above 0.85, the fastest point moves 0.059 a second, and the cloth
+  rests 2.7 s after the wind stops. Every gust, ripple and sway runs under 0.35 Hz.
+- Measured in the same Node, outside Vitest, medians of seven 60 s runs in two rounds: 0.13 to
+  0.15 ms a step in the wind against 0.13 to 0.14 ms without, about 16 to 18 ms of CPU for each second
+  the banner is on screen and moving. The work per step does not depend on the wind's values.
+- Measured with Playwright 1.63.0's Chromium (`channel: 'chromium'`) on macOS 26.3.1, 1440 by 900 at a
+  pixel ratio of 2, five runs with the banner in the wind: frame interval median 16.7 ms, p95 16.7 to
+  16.8, worst 16.8, no long animation frame; 30.1 draws a second; no draw and the same pixels while
+  paused. In Firefox 158.0.1, in a window through geckodriver, drawing with WebRender on the GPU: 30.2
+  draws a second, frame interval median 8.3 ms, p95 9.2, worst 9.3; no draw while paused.
+- The gold, read from the settled frame under reduced motion in the same Chromium, on pixels within
+  60° of the charge's OKLCH hue: median chroma 0.083 before and 0.096 after, chroma of the brightest
+  5 % 0.092 and 0.113, median hue 86.3° and 88.1°, from `#d4a83a` to `#efbe04`.
+- `tests/unit/cloth.test.ts`, « a banner in the wind », holds that it keeps moving and never rests,
+  stays slight, blows the same way every time, resumes where a pause stopped it, gathers the wind
+  gradually and rests within five seconds once it drops or after a fling, is brisk only when held or
+  flung, and gives no still frame while blowing. `tests/e2e/heraldry.spec.ts` holds the banner's pace
+  on screen and no draw off it, the pause by keyboard holding the frame while a drag still moves it,
+  one pause shared by the banner, the flag and the hero across a reload, each pause on its caption
+  rule at 320, 768 and 1440 pixels, and the gilt taking the hue of its charge.
+- Freezing rather than letting the cloth settle: the reader who pauses wants the motion to stop now,
+  and one control stops every moving part at once (`accessibility.md`, One pause stops everything).
+
+### Alternatives considered
+
+- **The gilt taking the charge flat**: the charge as the metal's reflectance, normalised so flat metal
+  showed it, highlights held at its hue. The median chroma rose to 0.146, and the owner refused it as
+  yellow paint rather than metal (`rulings.md`, Gilt is shaded metal, never flat yellow). Rejected.
+  Reopens if an illustrated, unshaded gold is asked for.
+- **The arms' deep to pale gold, or a ramp built from the charge**: rendered beside the kept gilt; the
+  first read pale and washed out, the second as copper. Rejected. Reopens with a new direction for the
+  metal.
+- **The wind dying and the cloth swinging to rest on pause**: two to three more seconds of motion
+  after the reader asked for none. Rejected.
+- **Drawing every animation frame**: a GPU render and a copy per display frame, 60 to 120 a second,
+  for motion of a few pixels a second. Rejected. Reopens if the paced breeze reads choppy.
+- **Stepping the cloth only on drawn frames**: `MOST_STEPS` and `LONGEST_FRAME` would drop time on any
+  gap over a fifteenth of a second and slow the wind. Rejected.
+- **A square pause over the cloth**: the owner chose the caption rule for the banner, then moved the
+  flag's there. Rejected.
+
+### Caveats
+
+- The motion sits beside a paragraph, which `accessibility.md` asks to keep still. It stays slow and
+  slight, and its pause sits right under it.
+- The simulation runs for as long as the banner is on screen and moving: 16 to 18 ms of CPU a second on
+  an M5. Nothing was measured on Windows, on a phone or on integrated graphics.
+- Three buttons with three names (the stage's, the flag's, the banner's) set one choice; it stays an
+  open gap in `accessibility.md` (WCAG 3.2.4).
+
+---
+
 ## Summary
 
 | Item | Role | Where |
 | --- | --- | --- |
 | `heraldry` | a banner or a flag on a sub-species | `src/lib/game/schema.ts`, `Heraldry.astro`, `Species.astro` |
-| the banner | a simulated cloth, smoothed and shaded on the GPU, under a baked hanger | `cloth.ts`, `banners.ts`, `loom.ts` |
+| the banner | a simulated cloth in a light wind, smoothed and shaded on the GPU, under a baked hanger | `cloth.ts`, `banners.ts`, `loom.ts` |
 | the flag | a wave on the GPU | `flags.ts`, `glsl/flag-wave.glsl` |
-| stillness | one pause for every moving decoration | `src/scripts/stillness.ts` |
+| stillness | one pause for every moving decoration, round on the heraldry's caption rule | `src/scripts/stillness.ts`, `Heraldry.astro` |
 | `glazed` | a scanned frame that catches the light, and glass | `book-markup.ts`, `prose.css`, `glazes.ts` |
 | `keyColour` | a species' own accent | `src/lib/game/schema.ts`, `CharacterHero.astro` |
 | textures | CC0 works and their credits | `TEXTURE_WORKS`, `tools/media/textures.ts` |
@@ -624,3 +722,4 @@ record where that ended. On 2026-10-29 the owner, having read every piece on the
 ## Open questions
 
 - A WebKit and Firefox timing of the copy out of the shared context, before this record is accepted.
+- One name for the three pauses that set one choice (WCAG 3.2.4), or keep a name per piece.

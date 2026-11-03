@@ -495,6 +495,20 @@ rim made a stepped bezel (2026-10-27, the same record, Decision 7).
 
 > "perfect could you just make the yellow / gold a little more vibrant it still had that weird dark-dusty effect." (2026-10-26)
 
+**Gilt is shaded metal, never flat yellow.** A vibrant gold comes from the charge colour, here house
+gold `#efbe04` on the Colbert banner, lit by the gilt's own shading: amber in the hollows, pale warm
+highlights, glints that lift toward white. On 2026-11-03 the owner rejected a gilt that took the charge
+flat on every pixel, one hue from shadow to highlight with the highlights held at that hue, because it
+read as yellow paint and not as metal. The banner keeps the shading of `glsl/cloth.frag` and takes the
+house gold through its `charge` alone.
+
+**The banner stirs in a light wind.** At the owner's request on 2026-11-03 the Colbert banner moves slightly
+for as long as it is on screen, and its pause sits at the right end of its caption rule, round like the
+blazon's « ? », the owner's choice over a square on the cloth. The hanger keeps its baked gilt. The same
+day the owner moved the flag's pause there too: the 38 px square laid over the flying cloth read as a big
+button in the middle of the picture, so every heraldic pause is the small round button on the caption
+rule.
+
 > "it just looks like clay, and it's blurry, it really looks like old 3D games from 1980. Please update it to be profesisonnal quality grade just like Triple A Assets matching our stylised fantasy artistic directlion. Keep it extremly well optimized." (2026-10-27, the Victoria arms)
 
 **Lit pieces: realism from light and shadow, not gloss.** Aim between glare and flat, and measure the
@@ -683,4 +697,4 @@ and praised the Saison slider.
 | 2026-10-31 | pieces sit on the shape; B+ ships; C+ and D kept, the poster wall dropped; this skill; accepted screenshots only; highest quality, many links; the contents spread opens Livres and the plate menu the Codex; every category listed, the empty ones saying so; the archives in Livres; Books left to the designer |
 | 2026-11-01 | the help button's margin and the stage pages' print, by request |
 | 2026-11-02 | the carry on one curve with live arrivals on landing, approved; what stays is whole when the pieces land; approvals recorded as what was approved; the stage stays alive through a page change; a tree writes its key colour and a kept reading is pinned; never edit an `-og` file, mirror a cover by option; a Codex door name holds one line on a desktop; the Codex panel slides off, uncovering the spotlight |
-| 2026-11-03 | a descriptor sticker can cross its word out; the strike is the elf's gesture, and it lands; the slash after a beat, approved; a descriptor sticker can hold its word back; each dot is a punch, and the word trembles; the held word, approved |
+| 2026-11-03 | a descriptor sticker can cross its word out; the strike is the elf's gesture, and it lands; the slash after a beat, approved; a descriptor sticker can hold its word back; each dot is a punch, and the word trembles; the held word, approved; gilt is shaded metal, never flat yellow; the banner stirs in a light wind |
