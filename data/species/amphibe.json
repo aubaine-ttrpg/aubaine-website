@@ -3,6 +3,7 @@
   "status": "draft",
   "name": "Amphibe",
   "cover": "amphibe-3_4-og.png",
+  "coverMirrored": true,
   "keyColour": "#e7986a",
   "types": [
     "humanoid"
