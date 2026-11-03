@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest'
 import { speciesSheet, treeSheet } from '../../src/lib/game/character-sheet'
 import { label } from '../../src/lib/game/corpus'
 import { readCorpus } from '../../src/lib/game/fs-sources'
+import { SUSPENSE_PAUSE } from '../../src/lib/game/schema'
 import { SPECIES_SEAL, treeSeal, treeSealKey } from '../../src/lib/game/seals'
 import { strings } from '../../src/lib/i18n/strings'
 
@@ -92,6 +93,28 @@ describe('the sheet of a species', () => {
     const sheet = speciesSheet(species, { ...english, descriptors }, 'en')
     expect(sheet.descriptors).toEqual([
       { effect: 'struck', label: label(descriptors.get(struckKey), 'en', struckKey) },
+      ...plainKeys.map((key) => ({
+        effect: 'plain',
+        label: label(descriptors.get(key), 'en', key),
+      })),
+    ])
+  })
+
+  it('holds a suspense descriptor on its pause before its punchline', () => {
+    const species = english.species.find((entry) => (entry.descriptors ?? []).length > 1)
+    const [heldKey, ...plainKeys] = species?.descriptors ?? []
+    if (!species || !heldKey) throw new Error('no species carries two descriptors')
+    const punchline = 'Punchline?!'
+    const held = `${SUSPENSE_PAUSE}${punchline}`
+    const descriptors = new Map(
+      [...english.descriptors].map(([key, { effect: _effect, ...entry }]) => [
+        key,
+        key === heldKey ? { ...entry, labelEn: held, effect: 'suspense' as const } : entry,
+      ]),
+    )
+    const sheet = speciesSheet(species, { ...english, descriptors }, 'en')
+    expect(sheet.descriptors).toEqual([
+      { effect: 'suspense', label: held, pause: SUSPENSE_PAUSE, punchline },
       ...plainKeys.map((key) => ({
         effect: 'plain',
         label: label(descriptors.get(key), 'en', key),

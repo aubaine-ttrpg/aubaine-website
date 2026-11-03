@@ -71,10 +71,11 @@
             "minLength": 1
           },
           "effect": {
-            "description": "Ce que fait le mot sur son autocollant, dans les deux langues. 'struck' : il se montre barré, comme l'Elfe porte Hautain. Absent : le mot se montre tel quel. Propre à data/meta/descriptors.json.",
+            "description": "Ce que fait le mot sur son autocollant, dans les deux langues. 'struck' : il se montre barré, comme l'Elfe porte Hautain. 'suspense' : ses trois points s'écrivent un à un, puis le mot tombe, comme le Nnor porte « ...Chèvre ?! » ; ses deux libellés s'ouvrent alors sur « ... ». Absent : le mot se montre tel quel. Propre à data/meta/descriptors.json.",
             "type": "string",
             "enum": [
-              "struck"
+              "struck",
+              "suspense"
             ]
           }
         },

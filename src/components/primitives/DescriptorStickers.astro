@@ -29,6 +29,10 @@ const TILTS = ['-3deg', '2deg', '-1.5deg', '2.5deg'] as const
             </s>
             <span class="au-sticker__struck"> ({struckLabel})</span>
           </>
+        ) : descriptor.effect === 'suspense' ? (
+          <>
+            <span class="au-sticker__pause">{descriptor.pause}</span><span class="au-sticker__punchline">{descriptor.punchline}</span>
+          </>
         ) : (
           descriptor.label
         )}
@@ -58,19 +62,60 @@ const TILTS = ['-3deg', '2deg', '-1.5deg', '2.5deg'] as const
     letter-spacing: 0.06em;
     line-height: 1;
     text-transform: uppercase;
-    box-shadow: 4px 5px 0 rgba(0, 0, 0, 0.62);
+    --drop-x: 4px;
+    --drop-y: 5px;
+    box-shadow: var(--drop-x) var(--drop-y) 0 rgba(0, 0, 0, 0.62);
+    --row-landed: calc(0.3s + 0.62s * var(--arrival, 1));
     --slap: au-sticker-slap calc(0.42s * var(--arrival, 1)) var(--ease-slap)
       calc((0.16s + var(--order) * 0.07s) * var(--arrival, 1)) backwards;
     animation: var(--slap);
   }
 
   .au-sticker:has(.au-sticker__stroke) {
-    --strike-at: calc(0.3s + 0.62s * var(--arrival, 1));
     rotate: clamp(-4deg, calc(var(--tilt) - 2.5deg), 4deg);
     translate: 0.14em -0.05em;
     animation:
       var(--slap),
-      au-sticker-jolt 0.34s linear calc(var(--strike-at) + 0.05s) backwards;
+      au-sticker-jolt 0.34s linear calc(var(--row-landed) + 0.05s) backwards;
+  }
+
+  .au-sticker:has(.au-sticker__punchline) {
+    --peak: 1.28;
+    --dot-step: 0.16s;
+    --punch-at: calc(var(--row-landed) + var(--dot-step) + 0.2s);
+    white-space: nowrap;
+    animation:
+      var(--slap),
+      au-sticker-wind-up 0.88s linear var(--row-landed);
+  }
+
+  @media (width < 960px) {
+    .au-sticker:has(.au-sticker__punchline) {
+      --peak: 1.18;
+    }
+  }
+
+  .au-sticker__pause {
+    position: relative;
+    display: inline-block;
+  }
+
+  .au-sticker__pause::after {
+    content: '';
+    position: absolute;
+    inset-block: 0;
+    inset-inline: calc(100% / 3) 0;
+    background: var(--gold);
+    transform-origin: right;
+    scale: 0 1;
+    animation: au-sticker-pause var(--dot-step) step-start var(--row-landed) backwards;
+  }
+
+  .au-sticker__punchline {
+    display: inline-block;
+    animation:
+      au-sticker-punchline 0.1s var(--ease-slap) var(--punch-at) backwards,
+      au-sticker-tremble 0.4s linear calc(var(--punch-at) + 0.1s);
   }
 
   .au-sticker s {
@@ -80,7 +125,7 @@ const TILTS = ['-3deg', '2deg', '-1.5deg', '2.5deg'] as const
   }
 
   .au-sticker__stroke {
-    --stroke-draw: 0.09s cubic-bezier(0.2, 0.6, 0.35, 1) var(--strike-at) backwards;
+    --stroke-draw: 0.09s cubic-bezier(0.2, 0.6, 0.35, 1) var(--row-landed) backwards;
     position: absolute;
     inset-inline-start: -0.3em;
     inset-block-start: calc(50% - 0.3em);
@@ -114,7 +159,8 @@ const TILTS = ['-3deg', '2deg', '-1.5deg', '2.5deg'] as const
   .au-stickers--preview .au-sticker {
     padding: 7px 12px 6px;
     font-size: clamp(13px, 3.2cqi, 15px);
-    box-shadow: 3px 4px 0 rgba(0, 0, 0, 0.62);
+    --drop-x: 3px;
+    --drop-y: 4px;
   }
 
   @keyframes au-sticker-slap {
@@ -136,9 +182,87 @@ const TILTS = ['-3deg', '2deg', '-1.5deg', '2.5deg'] as const
     }
   }
 
+  @keyframes au-sticker-pause {
+    from {
+      scale: 1 1;
+    }
+
+    to {
+      scale: 0.5 1;
+    }
+  }
+
+  @keyframes au-sticker-punchline {
+    from {
+      opacity: 0;
+      scale: 1.6;
+      rotate: -6deg;
+    }
+  }
+
+  @keyframes au-sticker-tremble {
+    8% {
+      translate: 0.08em -0.06em;
+      rotate: 3deg;
+    }
+
+    16% {
+      translate: -0.08em 0.05em;
+      rotate: -3deg;
+    }
+
+    25% {
+      translate: 0.07em 0.06em;
+      rotate: 2.5deg;
+    }
+
+    33% {
+      translate: -0.08em -0.05em;
+      rotate: -3deg;
+    }
+
+    41% {
+      translate: 0.08em -0.04em;
+      rotate: 2.5deg;
+    }
+
+    50% {
+      translate: -0.07em 0.06em;
+      rotate: -3deg;
+    }
+
+    58% {
+      translate: 0.07em 0.04em;
+      rotate: 2.5deg;
+    }
+
+    66% {
+      translate: -0.06em -0.05em;
+      rotate: -2deg;
+    }
+
+    75% {
+      translate: 0.04em 0.03em;
+      rotate: 1.5deg;
+    }
+
+    83% {
+      translate: -0.03em -0.02em;
+      rotate: -1deg;
+    }
+
+    91% {
+      translate: 0.01em 0.01em;
+      rotate: 0.5deg;
+    }
+  }
+
   @media print {
     .au-sticker__stroke,
-    .au-sticker__stroke svg {
+    .au-sticker__stroke svg,
+    .au-sticker:has(.au-sticker__punchline),
+    .au-sticker__pause::after,
+    .au-sticker__punchline {
       animation: none;
     }
   }
@@ -155,6 +279,37 @@ const TILTS = ['-3deg', '2deg', '-1.5deg', '2.5deg'] as const
       translate: 0.14em -0.12em;
       scale: 1.07;
       box-shadow: 8px 10px 0 rgba(0, 0, 0, 0.5);
+      animation-timing-function: cubic-bezier(0.3, 1.35, 0.5, 1);
+    }
+  }
+
+  @keyframes au-sticker-wind-up {
+    from {
+      animation-timing-function: cubic-bezier(0.2, 1.45, 0.4, 1);
+    }
+
+    8%,
+    18.2% {
+      rotate: calc(var(--tilt) - 5deg);
+      scale: 1.07;
+      box-shadow: calc(var(--drop-x) / 1.07) calc(var(--drop-y) / 1.07) 0 rgba(0, 0, 0, 0.62);
+      animation-timing-function: cubic-bezier(0.2, 1.45, 0.4, 1);
+    }
+
+    26.1%,
+    40.9% {
+      rotate: calc(var(--tilt) + 4deg);
+      scale: 1.14;
+      box-shadow: calc(var(--drop-x) / 1.14) calc(var(--drop-y) / 1.14) 0 rgba(0, 0, 0, 0.62);
+      animation-timing-function: cubic-bezier(0.2, 1.45, 0.4, 1);
+    }
+
+    47.7%,
+    81.8% {
+      rotate: calc(var(--tilt) - 3deg);
+      scale: var(--peak);
+      box-shadow: calc(var(--drop-x) / var(--peak)) calc(var(--drop-y) / var(--peak)) 0
+        rgba(0, 0, 0, 0.62);
       animation-timing-function: cubic-bezier(0.3, 1.35, 0.5, 1);
     }
   }

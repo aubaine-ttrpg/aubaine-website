@@ -13,6 +13,7 @@ import {
 import { categoryInk } from './kind-marks'
 import { type LibraryItem, libraryKicker } from './library'
 import type { Profile } from './profile'
+import { type DescriptorEffect, SUSPENSE_PAUSE } from './schema'
 import { type CardSeal, categorySeal, SPECIES_SEAL, treeSeal, treeSealKey } from './seals'
 import { type BadgedStatus, badgedStatus } from './status'
 
@@ -25,7 +26,9 @@ export type Trait = {
 
 export type TraitSet = { label: string; plates: readonly [Trait, ...Trait[]] }
 
-export type Descriptor = { effect: 'plain' | 'struck'; label: string }
+export type Descriptor =
+  | { effect: 'plain' | 'struck'; label: string }
+  | { effect: 'suspense'; label: string; pause: string; punchline: string }
 
 export type SheetProfile =
   | { kind: 'none' }
@@ -58,10 +61,22 @@ function traitSet(label: string, traits: readonly Trait[]): TraitSet | undefined
   return first ? { label, plates: [first, ...rest] } : undefined
 }
 
+function sheetDescriptor(text: string, effect: DescriptorEffect | undefined): Descriptor {
+  if (effect !== 'suspense') return { effect: effect ?? 'plain', label: text }
+  if (!text.startsWith(SUSPENSE_PAUSE))
+    throw new Error(`a suspense descriptor opens on ${SUSPENSE_PAUSE}: ${text}`)
+  return {
+    effect,
+    label: text,
+    pause: SUSPENSE_PAUSE,
+    punchline: text.slice(SUSPENSE_PAUSE.length),
+  }
+}
+
 function sheetDescriptors(corpus: Corpus, locale: Locale, keys: readonly string[]): Descriptor[] {
   return keys.map((key) => {
     const entry = corpus.descriptors.get(key)
-    return { effect: entry?.effect ?? 'plain', label: label(entry, locale, key) }
+    return sheetDescriptor(label(entry, locale, key), entry?.effect)
   })
 }
 

@@ -1184,7 +1184,15 @@ export const book = z
   })
   .strict()
 
-export const DESCRIPTOR_EFFECTS = ['struck'] as const
+export const DESCRIPTOR_EFFECTS = ['struck', 'suspense'] as const
+
+export type DescriptorEffect = (typeof DESCRIPTOR_EFFECTS)[number]
+
+export const SUSPENSE_PAUSE = '...'
+
+function opensOnSuspensePause(label: string): boolean {
+  return label.startsWith(SUSPENSE_PAUSE) && /^[^.\s]/.test(label.slice(SUSPENSE_PAUSE.length))
+}
 
 export const vocabulary = z
   .array(
@@ -1240,7 +1248,7 @@ export const vocabulary = z
           .enum(DESCRIPTOR_EFFECTS)
           .optional()
           .describe(
-            "Ce que fait le mot sur son autocollant, dans les deux langues. 'struck' : il se montre barré, comme l'Elfe porte Hautain. Absent : le mot se montre tel quel. Propre à data/meta/descriptors.json.",
+            "Ce que fait le mot sur son autocollant, dans les deux langues. 'struck' : il se montre barré, comme l'Elfe porte Hautain. 'suspense' : ses trois points s'écrivent un à un, puis le mot tombe, comme le Nnor porte « ...Chèvre ?! » ; ses deux libellés s'ouvrent alors sur « ... ». Absent : le mot se montre tel quel. Propre à data/meta/descriptors.json.",
           ),
       })
       .strict()
@@ -1254,7 +1262,15 @@ export const vocabulary = z
       .refine((entry) => (entry.referenceFr === undefined) === (entry.referenceEn === undefined), {
         message: "une référence s'écrit dans les deux langues ou pas du tout.",
         path: ['referenceEn'],
-      }),
+      })
+      .refine(
+        (entry) =>
+          entry.effect !== 'suspense' || [entry.labelFr, entry.labelEn].every(opensOnSuspensePause),
+        {
+          message: "un mot en suspens s'ouvre sur « ... » puis son mot, dans les deux langues.",
+          path: ['effect'],
+        },
+      ),
   )
   .min(1)
 

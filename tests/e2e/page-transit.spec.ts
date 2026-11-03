@@ -1,6 +1,9 @@
 import { expect, type Page, test } from '@playwright/test'
 import sharp from 'sharp'
 
+import { pathFor } from '../../src/lib/i18n/routes'
+import { corpus } from './support/corpus'
+
 const CARD_ON_ROSTER = '[data-entry="berserker"] a'
 const SHEET = '/en/tree/berserker'
 const LIST = '/en/trees'
@@ -698,6 +701,32 @@ test.describe('page changes', () => {
   test('a direct load of a sheet plays its whole arrival', async ({ page }) => {
     await open(page, SHEET)
     expect(await page.locator('[data-transit-flown]').count()).toBe(0)
+  })
+
+  test('a sticker held in suspense plays again on the sheet it is carried to', async ({ page }) => {
+    const words = await corpus('en')
+    const held = (key: string) => words.descriptors.get(key)?.effect === 'suspense'
+    const species = words.species.find((entry) => (entry.descriptors ?? []).some(held))
+    if (!species) throw new Error('no species carries a descriptor held in suspense')
+    await open(page, pathFor('species', 'en'))
+    await arrived(page)
+    const link = page.locator(`[data-entry="${species.id}"] a`)
+    await link.hover()
+    await expect(page.locator('[data-spotlight]')).toHaveAttribute(
+      'data-spotlight-current',
+      species.id,
+    )
+    await link.click()
+    await expect(page).toHaveURL(pathFor('speciesEntry', 'en', { species: species.id }))
+    const punchline = page.locator('.au-character .au-sticker__punchline')
+    expect(
+      await punchline.evaluate((node) =>
+        node.getAnimations().some((animation) => animation.playState === 'running'),
+      ),
+    ).toBe(true)
+    await settled(page)
+    await arrived(page)
+    expect(await punchline.evaluate((node) => getComputedStyle(node).opacity)).toBe('1')
   })
 
   test('a door names the plates of the page it opens', async ({ page }) => {

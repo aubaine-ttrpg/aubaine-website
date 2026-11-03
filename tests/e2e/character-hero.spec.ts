@@ -152,6 +152,131 @@ for (const locale of ['fr', 'en'] as const) {
   })
 }
 
+async function openHeldSticker(page: Page, locale: Locale): Promise<Locator> {
+  const words = await corpus(locale)
+  const held = (key: string) => words.descriptors.get(key)?.effect === 'suspense'
+  const species = words.species.find((entry) => (entry.descriptors ?? []).some(held))
+  const heldKey = species?.descriptors?.find(held)
+  if (!species || !heldKey) throw new Error('no species carries a descriptor held in suspense')
+  const word = label(words.descriptors.get(heldKey), locale, heldKey)
+  await page.goto(pathFor('speciesEntry', locale, { species: species.id }))
+  const sticker = page
+    .getByRole('list', { name: strings(locale).descriptors })
+    .getByRole('listitem')
+    .filter({ hasText: word })
+  await expect(sticker).toHaveText(word)
+  return sticker
+}
+
+async function heldState(sticker: Locator) {
+  return sticker.evaluate((node) => {
+    const pause = node.querySelector('.au-sticker__pause')
+    const punchline = node.querySelector('.au-sticker__punchline')
+    if (!pause || !punchline) throw new Error('the held sticker has no pause or no punchline')
+    const [coverWidth = '1'] = getComputedStyle(pause, '::after').scale.split(' ')
+    const hiddenDots = Math.round(Number(coverWidth === 'none' ? '1' : coverWidth) * 2)
+    return {
+      dots: (pause.textContent ?? '').length - hiddenDots,
+      wordShown: Number(getComputedStyle(punchline).opacity),
+    }
+  })
+}
+
+const PUNCH_MS = 70
+
+async function poseOf(sticker: Locator) {
+  return sticker.evaluate((node) => {
+    const style = getComputedStyle(node)
+    return {
+      scale: style.scale === 'none' ? 1 : Number(style.scale.split(' ')[0]),
+      turn: Number.parseFloat(style.rotate),
+    }
+  })
+}
+
+for (const locale of ['fr', 'en'] as const) {
+  test(`a descriptor held in suspense punches in its dots once every sticker has landed, then lands its word (${locale})`, async ({
+    page,
+  }) => {
+    await freezeAnimations(page)
+    const sticker = await openHeldSticker(page, locale)
+    const PUNCHLINE = `${HERO} .au-sticker__punchline`
+    await atMoment(page, 0, PUNCHLINE)
+    expect(await heldState(sticker)).toEqual({ dots: 1, wordShown: 0 })
+    const timing = await sticker.evaluate((node) => {
+      const endOf = (animation: Animation | undefined) => {
+        const timing = animation?.effect?.getComputedTiming()
+        return Number(timing?.delay) + Number(timing?.duration)
+      }
+      const landings = [...(node.parentElement?.children ?? [])].map((item) =>
+        endOf(
+          item
+            .getAnimations()
+            .find(
+              (animation) =>
+                animation instanceof CSSAnimation &&
+                animation.animationName.startsWith('au-sticker-slap'),
+            ),
+        ),
+      )
+      const pause = node
+        .getAnimations({ subtree: true })
+        .find(
+          (animation) =>
+            animation instanceof CSSAnimation &&
+            animation.animationName.startsWith('au-sticker-pause'),
+        )
+      const punchline = node
+        .querySelector('.au-sticker__punchline')
+        ?.getAnimations()
+        .find(
+          (animation) =>
+            animation instanceof CSSAnimation &&
+            animation.animationName.startsWith('au-sticker-punchline'),
+        )
+      return {
+        landed: Math.max(...landings),
+        secondDot: Number(pause?.effect?.getComputedTiming().delay),
+        thirdDot: endOf(pause),
+        word: Number(punchline?.effect?.getComputedTiming().delay),
+        wordDown: endOf(punchline),
+      }
+    })
+    expect(timing.secondDot).toBeGreaterThan(timing.landed)
+    expect(timing.word).toBeGreaterThan(timing.thirdDot)
+
+    await atMoment(page, timing.landed, PUNCHLINE)
+    expect(await heldState(sticker)).toEqual({ dots: 1, wordShown: 0 })
+
+    const atRest = await poseOf(sticker)
+
+    await atMoment(page, timing.secondDot + PUNCH_MS, PUNCHLINE)
+    expect(await heldState(sticker)).toEqual({ dots: 2, wordShown: 0 })
+    const firstPunch = await poseOf(sticker)
+    expect(firstPunch.scale).toBeGreaterThan(atRest.scale)
+    expect(firstPunch.turn).toBeLessThan(atRest.turn)
+
+    await atMoment(page, timing.thirdDot + PUNCH_MS, PUNCHLINE)
+    expect(await heldState(sticker)).toEqual({ dots: 3, wordShown: 0 })
+    const secondPunch = await poseOf(sticker)
+    expect(secondPunch.scale).toBeGreaterThan(firstPunch.scale)
+    expect(secondPunch.turn).toBeGreaterThan(atRest.turn)
+
+    await atMoment(page, timing.wordDown, PUNCHLINE)
+    expect(await heldState(sticker)).toEqual({ dots: 3, wordShown: 1 })
+
+    await atMoment(page, 5000, PUNCHLINE)
+    expect(await heldState(sticker)).toEqual({ dots: 3, wordShown: 1 })
+    expect(await poseOf(sticker)).toEqual(atRest)
+  })
+}
+
+test('print shows a descriptor held in suspense whole', async ({ page }) => {
+  await page.emulateMedia({ media: 'print' })
+  const sticker = await openHeldSticker(page, 'fr')
+  expect(await heldState(sticker)).toEqual({ dots: 3, wordShown: 1 })
+})
+
 type HeroEntry = {
   path: string
   index: string
@@ -457,6 +582,13 @@ test.describe('with reduced motion', () => {
   test('a struck descriptor is slashed from the first frame', async ({ page }) => {
     const sticker = await openStruckSticker(page, 'fr')
     expect((await strokeOverWord(sticker)).across).toBe(true)
+  })
+
+  test('a descriptor held in suspense shows its dots and its word from the first frame', async ({
+    page,
+  }) => {
+    const sticker = await openHeldSticker(page, 'fr')
+    expect(await heldState(sticker)).toEqual({ dots: 3, wordShown: 1 })
   })
 
   test('the card never leans and the pause button stays out of the way', async ({ page }) => {

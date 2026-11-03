@@ -21,7 +21,7 @@ paths:
 
 ## Descriptors
 
-- `data/meta/descriptors.json` holds the words a species or a tree wears as stickers in its hero, `key`, `labelFr` and `labelEn`, and an `effect` the sticker plays: `struck` crosses the word out, as the Elfe wears Hautain. `pnpm data:check` refuses any other field on them, and `effect` on any other vocabulary.
+- `data/meta/descriptors.json` holds the words a species or a tree wears as stickers in its hero, `key`, `labelFr` and `labelEn`, and an `effect` the sticker plays: `struck` crosses the word out, as the Elfe wears Hautain; `suspense` punches in its leading « ... » dot by dot before the word lands, as the Nnor wears « ...Chèvre ?! », and both its labels open on those three dots. `pnpm data:check` refuses any other field on them, and `effect` on any other vocabulary.
 - An entry names one to four distinct keys in `descriptors`. A descriptor is never a keyword and is never written in rule text.
 - The words are the owner's. Adding one is a product decision, as for any vocabulary.
 

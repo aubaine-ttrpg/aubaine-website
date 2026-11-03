@@ -210,6 +210,38 @@ first frame, and the slash after a beat, which ships. The values are in
 in and is drawn in 0.09 s, and the sticker takes the hit 0.05 s later, over 0.34 s. Film strip, the French
 sheet on a direct load: `../assets/approved/sticker-struck-slash.jpg`.
 
+**A descriptor sticker can hold its word back.** The Nnor wears « ...Chèvre ?! », and the owner asked for it
+to play out in suspense, one dot, then two, then three, then the word. The dots stay in front of the word,
+because they are the label's own. The effect is stored on the word in `data/meta/descriptors.json`
+(`effect: "suspense"`, beside `effect: "struck"`) so another word can take it, and both of its labels open
+on « ... ». The sticker keeps its whole width from the first frame, so nothing reflows. The owner granted
+two exceptions with the plan: the word starts invisible, and the sequence runs past the 700 ms of the
+arrival rule, while each motion inside it stays under. Reduced motion and print show the whole label at
+once. After a carry from the spotlight the joke plays again on the sheet, which the owner preferred to a
+sticker landing whole.
+
+**Each dot is a punch, and the word trembles.** A held beat between dots lacked impact. Each new dot is a
+punch: the sticker grows a little and swings the other way. The word lands biggest and trembles, then the
+sticker springs back to its own tilt, and the whole runs fast (0.16 s between dots, 0.2 s before the word).
+The word's peak first lasted 0.08 s, shorter than either dot's, and the payoff did not read. The owner then
+asked for the peak a little bigger and a little longer, without speeding up anything before it: it holds
+0.3 s at scale 1.28 and trembles at full strength the whole time. Below 960 px the sticker row reaches the
+16 px gutter, so the peak is 1.18 there, still bigger than the last dot's 1.14. The shadow stays the
+plate's own through every punch, at the plate's distance on screen: a shadow pushed further out and
+lightened as the sticker grew read as the sticker lifting off, and the shadow seemed to fade away.
+This sets aside "no shakes" for this word alone: the tremble lasts 0.4 s, plays once per arrival, and
+reduced motion removes it. The word trembles as one piece, so a screen reader still reads one word. Three
+looks for the word's landing (a hit, a hop, a second slap) were planned for a live pick and dropped by this
+ruling before they were built (2026-11-03).
+
+Approved on 2026-11-03, seen live in Firefox. The values are in
+`src/components/primitives/DescriptorStickers.astro`: once the row has landed (0.3 s plus 0.62 s times
+`--arrival`), the second dot punches in with the sticker at scale 1.07 and 5° back, the third 0.16 s later at
+1.14 and 4° forward, and the word 0.2 s after that, dropping in from scale 1.6 while the sticker reaches its
+peak (1.28, 1.18 below 960 px) at 3° back; the peak holds 0.3 s while the word trembles for 0.4 s, then the
+sticker springs back to its own tilt, 0.88 s after the second dot. Film strip, the French sheet on a direct
+load: `../assets/approved/sticker-suspense-punch.jpg`.
+
 ## Hubs
 
 **A hub is never the select screen, nor a rearrangement of its cards.** A hub leads to sections and
@@ -651,4 +683,4 @@ and praised the Saison slider.
 | 2026-10-31 | pieces sit on the shape; B+ ships; C+ and D kept, the poster wall dropped; this skill; accepted screenshots only; highest quality, many links; the contents spread opens Livres and the plate menu the Codex; every category listed, the empty ones saying so; the archives in Livres; Books left to the designer |
 | 2026-11-01 | the help button's margin and the stage pages' print, by request |
 | 2026-11-02 | the carry on one curve with live arrivals on landing, approved; what stays is whole when the pieces land; approvals recorded as what was approved; the stage stays alive through a page change; a tree writes its key colour and a kept reading is pinned; never edit an `-og` file, mirror a cover by option; a Codex door name holds one line on a desktop; the Codex panel slides off, uncovering the spotlight |
-| 2026-11-03 | a descriptor sticker can cross its word out; the strike is the elf's gesture, and it lands; the slash after a beat, approved |
+| 2026-11-03 | a descriptor sticker can cross its word out; the strike is the elf's gesture, and it lands; the slash after a beat, approved; a descriptor sticker can hold its word back; each dot is a punch, and the word trembles; the held word, approved |

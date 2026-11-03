@@ -211,8 +211,9 @@ what the site already does. Every link was fetched on 2026-10-31; two are marked
   [web.dev, motion](https://web.dev/learn/accessibility/motion),
   [reading list](https://matuzo.at/blog/reading-recommendations-animation-on-the-web-and-vestibular-disorders),
   [vestibular disorders](https://vestibular.org/introduction-to-vestibular-disorders/) *(browser only)*.
-- **No sudden shocks.** Arrivals stay small, short and once per visit; no shakes or bobbing; sound never
-  autoplays. [GAG, sudden movement](https://gameaccessibilityguidelines.com/avoid-any-sudden-unexpected-movement-or-events/),
+- **No sudden shocks.** Arrivals stay small, short and once per visit; no shakes or bobbing, except the
+  0.4 s tremble of a descriptor word held in suspense, which the owner asked for (`rulings.md`, Each dot is a
+  punch, and the word trembles); sound never autoplays. [GAG, sudden movement](https://gameaccessibilityguidelines.com/avoid-any-sudden-unexpected-movement-or-events/),
   [XAG 117](https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/117),
   [Primer, motion](https://primer.style/accessibility/design-guidance/motion-and-animation),
   [NN/g, multimedia](https://www.nngroup.com/articles/guidelines-for-multimedia-on-the-web/).

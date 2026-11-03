@@ -18,7 +18,8 @@
     {
       "key": "goat",
       "labelFr": "...Chèvre ?!",
-      "labelEn": "...Goat?!"
+      "labelEn": "...Goat?!",
+      "effect": "suspense"
     },
     {
       "key": "buys",
