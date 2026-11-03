@@ -3,6 +3,7 @@
   "title": "Sens aiguisés",
   "type": "passive",
   "tier": 5,
+  "art": "sens-aiguises-1_1-og.png",
   "domains": [
     "psychic"
   ],

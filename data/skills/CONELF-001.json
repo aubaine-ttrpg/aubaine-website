@@ -4,6 +4,7 @@
   "title": "Concentration elfique",
   "type": "passive",
   "tier": 5,
+  "art": "concentration-elfique-1_1-og.png",
   "domains": [
     "psychic"
   ],

@@ -4,6 +4,7 @@
   "title": "Héritage des Galwariens",
   "type": "passive",
   "tier": 5,
+  "art": "heritage-des-galwariens-1_1-og.png",
   "domains": [
     "psychic"
   ],

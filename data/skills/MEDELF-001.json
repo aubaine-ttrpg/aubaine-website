@@ -4,6 +4,7 @@
   "title": "Méditation elfique",
   "type": "passive",
   "tier": 5,
+  "art": "meditation-elfique-1_1-og.png",
   "domains": [
     "psychic"
   ],
