@@ -61,6 +61,11 @@ export function doorOf(trigger: Element | undefined): Element | undefined {
   return trigger?.closest('a')?.closest(DOOR) ?? undefined
 }
 
+export function doorPathOf(trigger: Element | undefined): string | undefined {
+  const link = doorOf(trigger)?.querySelector('a')
+  return link ? pathOf(link.getAttribute('href') ?? '') : undefined
+}
+
 export function doorTo(scope: ParentNode, url: string): Element | undefined {
   const link = [...scope.querySelectorAll(`${DOOR} a`)].find(
     (each) => pathOf(each.getAttribute('href') ?? '') === pathOf(url),

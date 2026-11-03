@@ -9,6 +9,7 @@ const LIT = 'data-lit'
 const POINTED = 'data-pointed'
 const LIVE = 'data-live'
 const STAGE_FOCUS = 'data-stage-focus'
+const PRESSED = 'a[data-pressed]'
 const INTENT_MS = 80
 const PICTURE_WAIT_MS = 250
 
@@ -75,10 +76,12 @@ function mount(menu: HTMLElement, signal: AbortSignal): void {
     return focused !== null && menu.contains(focused) && focused.matches(':focus-visible')
   }
 
+  const doorChosen = (): boolean => menu.querySelector(PRESSED) !== null
+
   menu.addEventListener(
     'pointerover',
     (event) => {
-      if (event.pointerType === 'touch' || keyboardInside()) return
+      if (event.pointerType === 'touch' || keyboardInside() || doorChosen()) return
       const door = doorOf(event.target)
       if (!door || door.hasAttribute(POINTED)) return
       point(door)
@@ -93,7 +96,7 @@ function mount(menu: HTMLElement, signal: AbortSignal): void {
   menu.addEventListener(
     'pointerout',
     (event) => {
-      if (event.pointerType === 'touch' || keyboardInside()) return
+      if (event.pointerType === 'touch' || keyboardInside() || doorChosen()) return
       if (!doorOf(event.target) || doorOf(event.relatedTarget)) return
       window.clearTimeout(intent)
       point(undefined)
@@ -103,6 +106,7 @@ function mount(menu: HTMLElement, signal: AbortSignal): void {
   menu.addEventListener(
     'focusin',
     (event) => {
+      if (doorChosen()) return
       if (!(event.target instanceof Element) || !event.target.matches(':focus-visible')) return
       window.clearTimeout(intent)
       const door = doorOf(event.target)

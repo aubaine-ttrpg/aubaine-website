@@ -2,6 +2,7 @@ import { resetLoading } from './loading'
 import { BOOK_ARRIVALS_WAIT_MS, isInBook, layOutBook, putBookAway } from './page-book'
 import {
   currentEntry,
+  doorPathOf,
   litDoorPath,
   type Origin,
   originGoingBack,
@@ -304,7 +305,10 @@ async function nameArrival(visit: SwupVisit): Promise<void> {
 function remember(visit: SwupVisit): void {
   scrolls.set(visit.from.url + (visit.from.hash ?? ''), window.scrollY)
   if (visit.history.popstate) return
-  left.set(visit.from.url, { entry: currentEntry(visit.trigger?.el), door: litDoorPath() })
+  left.set(visit.from.url, {
+    entry: currentEntry(visit.trigger?.el),
+    door: doorPathOf(visit.trigger?.el) ?? litDoorPath(),
+  })
 }
 
 function restoreScroll(visit: SwupVisit): void {

@@ -95,6 +95,20 @@ async function settled(page: Page): Promise<void> {
   })
 }
 
+async function arrived(page: Page): Promise<void> {
+  await page.waitForFunction(() =>
+    (document.querySelector('#swup')?.getAnimations({ subtree: true }) ?? []).every(
+      (animation) =>
+        animation.playState !== 'running' ||
+        animation.effect?.getTiming().iterations === Number.POSITIVE_INFINITY,
+    ),
+  )
+}
+
+function doorLink(page: Page, href: string) {
+  return page.locator(`main [data-door] a[href="${href}"]`)
+}
+
 test.describe('page changes', () => {
   test.beforeEach(async ({ page }) => {
     await spy(page)
@@ -916,8 +930,66 @@ test.describe('page changes', () => {
   })
 })
 
+test.describe('the door taken', () => {
+  test('a door taken without pointing is lit again on Back', async ({ page }) => {
+    await open(page, HUB)
+    await arrived(page)
+    const taken = await page
+      .locator('main [data-door]:not([data-lit]) a')
+      .first()
+      .getAttribute('href')
+    if (!taken) throw new Error('the Codex has no unlit door')
+    await doorLink(page, taken).evaluate((link) => {
+      if (link instanceof HTMLElement) link.click()
+    })
+    await expect(page).toHaveURL(taken)
+    await settled(page)
+    await page.goBack()
+    await expect(page).toHaveURL(HUB)
+    await settled(page)
+    await expect(page.locator('[data-door][data-lit] a')).toHaveAttribute('href', taken)
+  })
+
+  test('the chosen door keeps the light while its page loads', async ({ page }) => {
+    await open(page, HUB)
+    await arrived(page)
+    const [chosen, other] = await page
+      .locator('main [data-door] a')
+      .evaluateAll((links) => links.map((link) => link.getAttribute('href') ?? ''))
+    if (!chosen || !other) throw new Error('the Codex needs two doors')
+    await page.route(`**${chosen}`, async (route) => {
+      await new Promise((resolve) => setTimeout(resolve, 2000))
+      await route.continue()
+    })
+    await doorLink(page, chosen).hover()
+    await doorLink(page, chosen).click()
+    await doorLink(page, other).hover()
+    await page.waitForTimeout(300)
+    await expect(page.locator('[data-door][data-lit] a')).toHaveAttribute('href', chosen)
+    await expect(page).toHaveURL(chosen)
+    await settled(page)
+  })
+})
+
 test.describe('touch', () => {
   test.use({ hasTouch: true })
+
+  test('a tapped door is lit again on Back', async ({ page }) => {
+    await open(page, HUB)
+    await arrived(page)
+    const taken = await page
+      .locator('main [data-door]:not([data-lit]) a')
+      .first()
+      .getAttribute('href')
+    if (!taken) throw new Error('the Codex has no unlit door')
+    await doorLink(page, taken).tap()
+    await expect(page).toHaveURL(taken)
+    await settled(page)
+    await page.goBack()
+    await expect(page).toHaveURL(HUB)
+    await settled(page)
+    await expect(page.locator('[data-door][data-lit] a')).toHaveAttribute('href', taken)
+  })
 
   test('a tap on a slow link marks it pressed at once', async ({ page }) => {
     await open(page, LIST)
