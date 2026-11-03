@@ -8,7 +8,8 @@ from notes written at the time. An approval is recorded as what was approved: a 
 or the file that holds them, its capture in `../assets/approved/`, and the date. Read the sections that
 touch the task before proposing anything; a ruling is not reopened without a new reason, and losing
 context is not one. When the owner corrects, rejects or approves a design, it is added here in the same
-change.
+change. A value chosen for one entry, such as its key colour or its cover, is not a ruling: it lives in
+the entry's file, and its reason in the commit message. A ruling changes how later design work is done.
 
 The look itself, its values and its principles, is documented in `DESIGN.md` at the repository root;
 the values of the approved pieces are in `approved-pieces.md`.
@@ -479,11 +480,6 @@ one colour per family.
 the Règles kind blue show; the coverless species seal's violet equals the Compétences violet and stays
 as approved (both settled 2026-10-30).
 
-**The Elfe wears forest green.** Its cover reads a pale rose, as Humain's does, so the species writes the
-`keyColour` `#4fa866` (OKLCH 0.66, 0.13, hue 150), the weight of Humain's azure.
-
-> "let's have a greenish forest color for elves" (2026-11-02)
-
 **A tree writes its key colour too, and a reading worth keeping is pinned.** Trees take `keyColour` as
 species do. The Nnor, Amphibe, Démoniste and Cuisinier write the colour their covers read, as a
 safeguard against a change of the reader. The Mage takes an Ether blue (`#5379fd`, near the domain's
@@ -628,4 +624,4 @@ and praised the Saison slider.
 | 2026-11-01 | the empty screen between pages goes; B, the pick carries across; a motion has to be seen; a draft card flies; Livres closes like a book; no frame nobody meant, the title moves as paper; the whole sheet travels, both ways; the flying card replaces the landing on those visits; Back returns where you were |
 | 2026-10-31 | pieces sit on the shape; B+ ships; C+ and D kept, the poster wall dropped; this skill; accepted screenshots only; highest quality, many links; the contents spread opens Livres and the plate menu the Codex; every category listed, the empty ones saying so; the archives in Livres; Books left to the designer |
 | 2026-11-01 | the help button's margin and the stage pages' print, by request |
-| 2026-11-02 | the carry on one curve with live arrivals on landing, approved; what stays is whole when the pieces land; approvals recorded as what was approved; the stage stays alive through a page change; the Elfe wears forest green; a tree writes its key colour and a kept reading is pinned; never edit an `-og` file, mirror a cover by option; a Codex door name holds one line on a desktop; the Codex panel slides off, uncovering the spotlight |
+| 2026-11-02 | the carry on one curve with live arrivals on landing, approved; what stays is whole when the pieces land; approvals recorded as what was approved; the stage stays alive through a page change; a tree writes its key colour and a kept reading is pinned; never edit an `-og` file, mirror a cover by option; a Codex door name holds one line on a desktop; the Codex panel slides off, uncovering the spotlight |
