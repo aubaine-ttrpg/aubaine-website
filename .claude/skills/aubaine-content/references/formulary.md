@@ -69,10 +69,22 @@ write uses it. A proposal never renames a rule term or adds a key; that is a voc
 ### roll
 - FR: « un {{jet}} ({{force}} + {{melee}}) »
   EN: « a {{jet}} ({{force}} + {{melee}}) », printed « a Roll (Strength + Melee) »
-- When: the rule imposes the whole pair, Caractéristique first.
-- Never: « un {{jet}} de {{force}} + {{melee}} », the legacy form; « Jet Force Mêlée ».
+- When: the rule imposes the whole pair, Caractéristique first. A rule that improves a {{jet}}
+  another Compétence makes names its pair and what it decides: « votre {{jet}} ({{dexterite}} +
+  {{discretion}}) pour être {{cache}} gagne 1 {{avantage}} » (CACNAT-001; owner, 2026-11-03).
+- Never: « un {{jet}} de {{force}} + {{melee}} », the legacy form; « Jet Force Mêlée »; a bare
+  « votre {{jet}} » whose Jet another Compétence holds.
 - Measured 2026-10-20: approved form 0. Legacy form in 112 files, 69 settled.
 - Status: approved (owner, 2026-10-19). Legacy: « un {{jet}} de X + Y », EN « a X + Y {{jet}} ».
+
+### use-within-activation
+- FR: « vous utilisez {{CACHER-001}} dans le cadre de cette {{action-bonus}} »
+  EN: « you use {{CACHER-001}} as part of this {{action-bonus}} »
+- When: a Compétence plays another one, usually a Compétence de base, inside its own activation,
+  which replaces the activation the other one costs.
+- Never: « vous jouez {{CACHER-001}} sans dépenser d'{{action}} ».
+- First written in: CACNAT-001.
+- Status: approved (owner, 2026-11-03, who dictated it).
 
 ### opposed-roll
 - FR: « Effectuez un {{jet}} ({{force}} + {{athletisme}}) opposé au {{jet}} ({{force}} + {{athletisme}})

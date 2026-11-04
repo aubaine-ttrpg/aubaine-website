@@ -57,6 +57,14 @@ an obligation, no stat field restated in prose. They load with the file; this pa
 - Flavour opens an entry only when the brief asks for it: one or two sentences, before the first
   rule, implying nothing the rules do not state, always in a paragraph of its own (owner,
   2026-10-20). `.claude/skills/aubaine-prose/references/flavor.md` says what anchors an image.
+- Flavour holds for every character the Compétence admits. It never implies a tree, an Archétype or a
+  calling the character may not have: « méditation druidique » made every elf and drow a druid, and
+  « les académies martiales elfiques » a fighter (owner, 2026-11-03). A flavour about a people's
+  origin names the ancestor every species of the prerequisite shares: Savoir d'Élyséa is what Élyséa
+  gave the last Galwariens, not the first elves, since the Drow, the Fir Bolg and the Halfelin descend
+  from the Galwariens and not from the elves (owner, 2026-11-03).
+- A rule that changes every occurrence of a recurring thing speaks in the plural: « Vos
+  {{repos-long|Repos longs}} ne durent que quatre heures » (owner, 2026-11-03).
 - A tag names what the effect does. A transformation is « Métamorphose », never « Protection »
   because it also shields (owner, 2026-10-20); read each tag's definition in `data/meta/tags.json`
   before choosing. What the body or the blood gives is Inné (the Dragonnor's breath, claws, flight

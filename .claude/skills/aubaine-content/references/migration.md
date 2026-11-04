@@ -31,7 +31,7 @@ file or an owner decision.
 | Uses per rest, uses equal to a bonus | An Énergie cost, or a `limit` that pays at chapter 03's rate? | `data/books/livre-du-mj/03-concevoir-une-competence.md` § Payer une Compétence; the runbook's `limit` trap |
 | A condition | Which state, and does its Aubaine definition match the intent? | `data/states/`, read the definition, not the name |
 | Advantage on a kind of save | 1 Avantage on the Jets that resist it | `formulary.md` § avantage-gain |
-| A reroll | The reroll wording of a settled entry | CONELF-001 |
+| A reroll | The reroll wording of a settled entry. A reroll stays a reroll, even where one more Avantage gives the same odds (owner, 2026-11-03) | CONELF-001 |
 | Resistance to a damage type | The damage rule of chapter 11 | `formulary.md` § damage-resistance |
 | Seeing in the dark | What exactly does the creature see, in plain words, with no light levels (`writing.md` § House craft)? | `data/books/livre-du-joueur/08-l-exploration.md` § La visibilité |
 | Ignoring difficult terrain | The rule term and its settled wording | `formulary.md` § free-difficult-terrain |
