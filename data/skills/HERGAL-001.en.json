@@ -2,5 +2,5 @@
   "title": "Galwarian Heritage",
   "prerequisite": "Elf, Drow, Fir Bolg, Goblin, Halfling or Orc",
   "activation": "Passive",
-  "description": "The blood of the Galwarians, the first children of magic, makes you resistant to manipulation of the mind.\n\nYour {{jet|Rolls}} to resist the {{charme}} and {{endormi}} states gain 1 {{avantage}}."
+  "description": "The blood of the Galwarians, the first children of magic, makes you resistant to manipulation of the mind.\n\nYour {{sauvegarde|Saves}} against the {{charme}} and {{endormi}} states gain 1 {{avantage}}."
 }

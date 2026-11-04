@@ -2,5 +2,5 @@
   "title": "Elven Focus",
   "prerequisite": "Elf or Drow",
   "activation": "Passive",
-  "description": "When one of your {{dexterite}}, {{intelligence}}, {{esprit}} or {{charisme}} {{jet|Rolls}} gains at least 1 {{avantage}}, you may reroll one of its dice, once, and keep the new result."
+  "description": "Long practice of meditation and prayer has taught you to bring your whole attention to bear on a single gesture or a single thought.\n\nWhen you make a {{dexterite}}, {{intelligence}}, {{esprit}} or {{charisme}} {{jet}} with at least 1 {{avantage}}, you can reroll one of its dice once and keep the new result."
 }

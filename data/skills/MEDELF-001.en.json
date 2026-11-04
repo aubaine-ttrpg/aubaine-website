@@ -2,5 +2,5 @@
   "title": "Elven Meditation",
   "prerequisite": "Elf or Drow",
   "activation": "Passive",
-  "description": "Your {{repos-long}} lasts only four hours."
+  "description": "Deep meditation rests you as well as a full night's sleep does.\n\nYour {{repos-long|Long Rests}} last only four hours."
 }

@@ -8,6 +8,9 @@
     "earth",
     "wind"
   ],
+  "characteristics": [
+    "dexterity"
+  ],
   "prerequisite": "Être Elfe",
   "activation": "1 Action Bonus",
   "range": "Personnel",
@@ -21,5 +24,5 @@
       "illusion"
     ]
   },
-  "description": "Votre lien avec la nature vous permet de disparaître là où d'autres seraient vulnérables.\n\nSi un couvert naturel vous entoure (branchages, pluie battante, brouillard, chute de neige ou toute autre obscurité d'origine naturelle), vous devenez {{cache}} aux yeux de toutes les créatures, même en pleine lumière."
+  "description": "Les villages de votre peuple se fondent dans la végétation, et vous avez appris à en faire autant.\n\nSi un couvert naturel vous entoure (branchages, pluie battante, brouillard, chute de neige ou obscurité d'origine naturelle), vous utilisez {{CACHER-001}} dans le cadre de cette {{action-bonus}}, même en pleine lumière, et votre {{jet}} ({{dexterite}} + {{discretion}}) pour être {{cache}} gagne 1 {{avantage}}."
 }

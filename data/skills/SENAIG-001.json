@@ -17,5 +17,5 @@
       "divination"
     ]
   },
-  "description": "Les siècles de communion avec les forêts et les astres ont affiné vos perceptions.\n\nTant que cette Compétence est {{memorisee}}, vous avez l'{{expertise}} dans la {{perception}} et dans l'{{investigation}}."
+  "description": "Les siècles de communion avec les forêts ont affiné vos perceptions.\n\nTant que {{SENAIG-001|cette Compétence}} est {{memorisee}}, vous avez l'{{expertise}} dans la {{perception}} et dans l'{{investigation}}."
 }

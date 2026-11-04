@@ -18,5 +18,5 @@
       "enhancement"
     ]
   },
-  "description": "Lorsqu'un de vos {{jet|Jets}} de {{dexterite}}, d'{{intelligence}}, d'{{esprit}} ou de {{charisme}} gagne au moins 1 {{avantage}}, vous pouvez relancer l'un de ses dés, une fois, et garder le nouveau résultat."
+  "description": "À force de méditation et de prières, vous savez rassembler toute votre attention sur un seul geste ou une seule pensée.\n\nLorsque vous effectuez un {{jet}} de {{dexterite}}, d'{{intelligence}}, d'{{esprit}} ou de {{charisme}} avec au moins 1 {{avantage}}, vous pouvez relancer l'un de ses dés, une fois, et garder le nouveau résultat."
 }

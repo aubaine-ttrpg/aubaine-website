@@ -15,5 +15,5 @@
       "technique"
     ]
   },
-  "description": "Votre {{repos-long}} ne dure que quatre heures."
+  "description": "Une méditation profonde vous repose aussi bien qu'une longue nuit de sommeil.\n\nVos {{repos-long|Repos longs}} ne durent que quatre heures."
 }

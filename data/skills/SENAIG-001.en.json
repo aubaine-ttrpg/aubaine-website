@@ -2,5 +2,5 @@
   "title": "Keen Senses",
   "prerequisite": "Elf",
   "activation": "Passive",
-  "description": "Centuries of communion with the forests and the stars have sharpened your perceptions.\n\nWhile this Skill is {{memorisee}}, you have {{expertise}} in {{perception}} and in {{investigation}}."
+  "description": "Centuries of communion with the forests have sharpened your perceptions.\n\nWhile {{SENAIG-001|this Skill}} is {{memorisee}}, you have {{expertise}} in {{perception}} and in {{investigation}}."
 }
