@@ -9,6 +9,7 @@
     "sylvan"
   ],
   "cover": "elfe-3_4-og.png",
+  "emblem": "elfe.svg",
   "keyColour": "#4fa866",
   "types": [
     "humanoid"
