@@ -650,20 +650,20 @@ describe('panoply pages', () => {
 
   it('sorts panoplies alphabetically, whatever their rarity', () => {
     const sets = [
-      set('FAEBI', 'Panoplie des Faebies'),
+      set('CONTI', 'Panoplie de la Contingence'),
       set('TRAQU', 'Panoplie du Traqueur'),
       set('BASTI', 'Panoplie du Bastion'),
       set('ECLAT', "Panoplie de l'Éclat"),
     ]
     const items = [
-      piece('Boucle', 'FAEBI', 'very-rare'),
+      piece('Boucle', 'CONTI', 'very-rare'),
       piece('Capuche', 'TRAQU', 'uncommon'),
       piece('Heaume', 'BASTI', 'uncommon'),
       piece('Anneau', 'ECLAT', 'common'),
     ]
     expect(cataloguePanoplies(sets, items, 'fr').map((entry) => entry.set.id)).toEqual([
       'ECLAT',
-      'FAEBI',
+      'CONTI',
       'BASTI',
       'TRAQU',
     ])

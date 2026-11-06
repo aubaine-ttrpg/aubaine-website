@@ -10,7 +10,7 @@ The word is old Galwarian. *Scothan* meant mixed blood, crossbreed, sometimes ba
 >
 > ![](../../media/art/sombrecoeur-defiante-1_1-og.png) **Shadeheart:** "Huh… Cutting them won't make me an elf."
 >
-> :source[**Queen Tiar Vyrefiel** and her granddaughter, **Shadeheart**, at court, shortly before the founding of the Faebies.]{bottom-left echo}
+> :source[**Queen Tiar Vyrefiel** and her granddaughter, **Shadeheart**, at court, shortly before the founding of the Contingence.]{bottom-left echo}
 
 ## A bad omen
 
@@ -40,13 +40,13 @@ How a Scothan is received depends on the ancestry people see in them. An elven l
 
 Many learn to pass unnoticed. They file down their horns, tuck their tails under a cloak, shorten a family name that says too much. Figaro, born of a gnome and a tiefling, hid his horns under a wool cap for years; his neighbours took him for a bad-tempered gnome, and he took care never to set them straight. Others refuse to hide and accept the cost. More than one mother, having seen the watch search her house, begs her child to put their hat back on before going out.
 
-## The pride of the Faebies
+## The pride of the Contingence
 
-For many Scothans, everything changed the day Shadeheart refused to cover her antlers. Daughter of Princess Lyra and granddaughter of Queen Tiar Vyrefiel, she wore the antlers of her Fir Bolg line on her brow, and the queen demanded she hide them before the matrons. Her answer had gone around the court before supper. Soon afterwards she founded the Faebies.
+For many Scothans, everything changed the day Shadeheart refused to cover her antlers. Daughter of Princess Lyra and granddaughter of Queen Tiar Vyrefiel, she wore the antlers of her Fir Bolg line on her brow, and the queen demanded she hide them before the matrons. Her answer had gone around the court before supper. Soon afterwards she founded the Contingence.
 
-Faebie houses give Scothans work and a bed when the watch is after them. Their doors have been widened to let antlers through, and no one there asks a newcomer to shorten their name. The guild has not stopped at bread and a roof. It has broken up auctions where Scothans were sold, forged passes, freed prisoners and publicly denounced magistrates who held Scothans to laws no one else answered to.
+Contingence houses give Scothans work and a bed when the watch is after them. Their doors have been widened to let antlers through, and no one there asks a newcomer to shorten their name. The guild has not stopped at bread and a roof. It has broken up auctions where Scothans were sold, forged passes, freed prisoners and publicly denounced magistrates who held Scothans to laws no one else answered to.
 
-Its methods divide even its own members. A successful escape brings a captive home and, by the next morning, draws the watch to every Faebie house in the city. Several Faebies are wanted on warrants, and the families who shelter them keep those notices where the children won't find them.
+Its methods divide even its own members. A successful escape brings a captive home and, by the next morning, draws the watch to every Contingence house in the city. Several members of the Contingence are wanted on warrants, and the families who shelter them keep those notices where the children won't find them.
 
 ## The Garthae
 
@@ -58,4 +58,4 @@ The children of Charon's Nnor are the best known of them. Charon's Nnor hatch fr
 
 The Weitzguard sends its Oracles to find the Garthae and look into their births, and most of these inquiries end in an order of execution. The official doctrine fits in a few lines: every Garthae proves that a breach has opened in the natural order of Eden. What was done once can be done again, the Oracles argue, and whoever learned the method could breed impossible lineages and turn them into weapons. So they search houses for ritual objects, question the midwife, the neighbours, everyone who attended the birth, and follow the trail from town to town.
 
-The Garthae learn to live under borrowed names and to spot the inns that ask for a birth certificate. The Faebies hide a few of them. Village witches sell charms said to cloud divination, and families burn their registers, then tell anyone who will listen that the child died long ago. Now and then an Oracle comes back, years later, to check that story, and finds that the dead child has grown up and keeps a shop in the next town.
+The Garthae learn to live under borrowed names and to spot the inns that ask for a birth certificate. The Contingence hides a few of them. Village witches sell charms said to cloud divination, and families burn their registers, then tell anyone who will listen that the child died long ago. Now and then an Oracle comes back, years later, to check that story, and finds that the dead child has grown up and keeps a shop in the next town.

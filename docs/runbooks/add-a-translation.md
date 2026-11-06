@@ -13,7 +13,7 @@ Next to the French file, same name, with `.en` before the extension.
 | `data/skill-lists/common-bank.json` | `data/skill-lists/common-bank.en.json` |
 | `data/states/combustion.json` | `data/states/combustion.en.json` |
 | `data/equipment/items/dague.json` | `data/equipment/items/dague.en.json` |
-| `data/equipment/sets/FAEBI.json` | `data/equipment/sets/FAEBI.en.json` |
+| `data/equipment/sets/CONTI.json` | `data/equipment/sets/CONTI.en.json` |
 | `data/equipment/catalogue.json` | `data/equipment/catalogue.en.json` |
 | `data/materials/branche-morte.json` | `data/materials/branche-morte.en.json` |
 | `data/environments/foret.json` | `data/environments/foret.en.json` |

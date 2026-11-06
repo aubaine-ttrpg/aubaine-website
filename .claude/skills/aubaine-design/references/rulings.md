@@ -230,7 +230,7 @@ left. The owner held Tiar's turn up as the model on 2026-11-05.
 
 **A portrait's expression follows who the character is.** Pick each portrait's expression from the
 character as much as from the line. Sombrecœur, strong, independent, rebellious and the future leader of
-the Faebies, answers her grandmother haughty, then defiant with a half-smile; a furious portrait and a
+the Contingence, answers her grandmother haughty, then defiant with a half-smile; a furious portrait and a
 sorrowful one were both refused for her last line (2026-11-04).
 
 **A quote shows big quotation marks.** A single speech carries one big, stylized quotation mark, “ in both

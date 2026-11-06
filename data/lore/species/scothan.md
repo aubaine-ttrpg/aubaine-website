@@ -10,7 +10,7 @@ Le mot est un vieux mot galwarien. *Scothan* y désignait le sang-mêlé, le cro
 >
 > ![](../../media/art/sombrecoeur-defiante-1_1-og.png) **Sombrecœur :** « Huh… Les couper ne fera pas de moi une elfe. »
 >
-> :source[**La reine Tiar Vyrefiel** et sa petite-fille, **Sombrecœur**, à la cour, peu avant la fondation des Faebies.]{bottom-left echo}
+> :source[**La reine Tiar Vyrefiel** et sa petite-fille, **Sombrecœur**, à la cour, peu avant la fondation de la Contingence.]{bottom-left echo}
 
 ## Un mauvais présage
 
@@ -40,13 +40,13 @@ L'accueil qu'on réserve à un Scothan dépend de l'ascendance qu'on lui voit. U
 
 Beaucoup apprennent à passer inaperçus. Ils liment leurs cornes, serrent leur queue sous un manteau, raccourcissent un nom de famille trop parlant. Figaro, né d'un gnome et d'un tieffelin, cacha ses cornes pendant des années sous un bonnet de laine ; ses voisins le prenaient pour un gnome de mauvaise humeur, et il se garda bien de les détromper. D'autres refusent de se cacher et en acceptent le prix. Plus d'une mère, après avoir vu le guet fouiller sa maison, supplie son enfant de remettre son chapeau avant de sortir.
 
-## La fierté des Faebies
+## La fierté de la Contingence
 
-Pour beaucoup de Scothans, tout changea le jour où Sombrecœur refusa de couvrir ses bois. Fille de la princesse Lyra et petite-fille de la reine Tiar Vyrefiel, elle portait au front les bois de sa lignée Fir Bolg, et la reine exigea qu'elle les cache devant les matrones. Sa réponse avait fait le tour de la cour avant le souper. Peu après, elle fonda les Faebies.
+Pour beaucoup de Scothans, tout changea le jour où Sombrecœur refusa de couvrir ses bois. Fille de la princesse Lyra et petite-fille de la reine Tiar Vyrefiel, elle portait au front les bois de sa lignée Fir Bolg, et la reine exigea qu'elle les cache devant les matrones. Sa réponse avait fait le tour de la cour avant le souper. Peu après, elle fonda la Contingence.
 
-Les maisons des Faebies donnent du travail aux Scothans et leur ouvrent un lit quand le guet est à leurs trousses. On y a élargi les portes pour laisser passer les bois, et personne n'y demande à un nouveau venu de raccourcir son nom. La guilde ne s'en est pas tenue au toit et au pain. Elle a interrompu des ventes aux enchères de Scothans, falsifié des laissez-passer, libéré des prisonniers et dénoncé en place publique les magistrats qui leur appliquaient d'autres lois qu'aux autres.
+Les maisons de la Contingence donnent du travail aux Scothans et leur ouvrent un lit quand le guet est à leurs trousses. On y a élargi les portes pour laisser passer les bois, et personne n'y demande à un nouveau venu de raccourcir son nom. La guilde ne s'en est pas tenue au toit et au pain. Elle a interrompu des ventes aux enchères de Scothans, falsifié des laissez-passer, libéré des prisonniers et dénoncé en place publique les magistrats qui leur appliquaient d'autres lois qu'aux autres.
 
-Ses méthodes divisent jusqu'à ses propres membres. Une évasion réussie ramène un captif chez les siens et attire, dès le lendemain, le guet devant chaque maison faebie de la ville. Plusieurs Faebies sont visés par des mandats, et les familles qui les abritent rangent ces avis de recherche là où les enfants ne les trouveront pas.
+Ses méthodes divisent jusqu'à ses propres membres. Une évasion réussie ramène un captif chez les siens et attire, dès le lendemain, le guet devant chaque maison de la Contingence en ville. Plusieurs membres de la Contingence sont visés par des mandats, et les familles qui les abritent rangent ces avis de recherche là où les enfants ne les trouveront pas.
 
 ## Les Garthae
 
@@ -58,4 +58,4 @@ Les enfants des Nnors de Charon sont les plus connus d'entre eux. Les Nnors de C
 
 La Weitzguard envoie ses Oracles retrouver les Garthae et enquêter sur leur naissance, et la plupart de ces enquêtes s'achèvent par un ordre de mise à mort. La doctrine officielle tient en quelques lignes : chaque Garthae prouve qu'une brèche s'est ouverte dans l'ordre naturel d'Eden. Ce qui a été fait une fois peut être refait, soutiennent les Oracles, et celui qui aurait appris la méthode pourrait engendrer des lignées impossibles pour en faire des armes. Ils fouillent donc les maisons à la recherche d'objets rituels, interrogent la sage-femme, les voisins, tous ceux qui ont assisté à la naissance, et suivent la piste de ville en ville.
 
-Les Garthae apprennent à vivre sous des noms d'emprunt et à reconnaître les auberges qui exigent un acte de naissance. Les Faebies en cachent quelques-uns. Des sorcières de village vendent des charmes censés brouiller la divination, et des familles brûlent leurs registres avant de raconter à qui veut l'entendre que l'enfant est mort depuis longtemps. Il arrive qu'un Oracle revienne, des années plus tard, vérifier cette histoire, et découvre que l'enfant mort a grandi et tient boutique dans la ville voisine.
+Les Garthae apprennent à vivre sous des noms d'emprunt et à reconnaître les auberges qui exigent un acte de naissance. La Contingence en cache quelques-uns. Des sorcières de village vendent des charmes censés brouiller la divination, et des familles brûlent leurs registres avant de raconter à qui veut l'entendre que l'enfant est mort depuis longtemps. Il arrive qu'un Oracle revienne, des années plus tard, vérifier cette histoire, et découvre que l'enfant mort a grandi et tient boutique dans la ville voisine.

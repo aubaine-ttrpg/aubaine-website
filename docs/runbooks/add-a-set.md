@@ -8,7 +8,7 @@ Produces a set block on every piece that belongs to it, listing the tiered bonus
 data/equipment/sets/<ID>.json
 ```
 
-The filename is the set id. A set id uses five capital letters, as `FAEBI.json` does. The id inside the file must match the filename, and it is what each piece writes in its `set` field.
+The filename is the set id. A set id uses five capital letters, as `CONTI.json` does. The id inside the file must match the filename, and it is what each piece writes in its `set` field.
 
 ## The fields
 
@@ -25,14 +25,14 @@ The filename is the set id. A set id uses five capital letters, as `FAEBI.json` 
 
 ## A complete example
 
-`data/equipment/sets/FAEBI.json`:
+`data/equipment/sets/CONTI.json`:
 
 ```json
 {
-  "id": "FAEBI",
+  "id": "CONTI",
   "status": "playtest",
-  "name": "Panoplie des Faebies",
-  "description": "Odran Sansligne, joaillier faebie né d'un halfelin et d'une gnome, tailla la première paire, celle que Sombrecœur portait le jour où elle refusa de couvrir ses bois. Depuis, chaque maison faebie garde une paire sous clé. Elle la remet au Scothan de son choix, le soir où il franchit pour la première fois ses portes élargies.",
+  "name": "Panoplie de la Contingence",
+  "description": "Odran Sansligne, joaillier de la Contingence né d'un halfelin et d'une gnome, tailla la première paire, celle que Sombrecœur portait le jour où elle refusa de couvrir ses bois. Depuis, chaque maison de la Contingence garde une paire sous clé. Elle la remet au Scothan de son choix, le soir où il franchit pour la première fois ses portes élargies.",
   "bonuses": [
     {
       "pieces": 2,
@@ -53,16 +53,16 @@ A piece joins the set by naming it. `data/equipment/items/boucle-de-l-un.json`:
   "kind": "Bijou",
   "rarity": "very-rare",
   "art": "boucle-de-l-un-1_1-og.png",
-  "set": "FAEBI",
+  "set": "CONTI",
   "prerequisite": "Être Scothan",
   "text": "Tant que cette pièce est équipée, {{CHAIRX-001}} ne réduit plus vos {{pdv}} maximum : chaque point de {{constitution}}, chaque Niveau de Vitalité et toute autre source de {{pdv}} maximum vous en donne autant qu'à un autre personnage.",
-  "description": "Cristal bleu taillé en pointe, serti d'or au bout d'un crochet ouvert. Les joailliers faebies ne la taillent jamais seule et ne la confient qu'à un Scothan."
+  "description": "Cristal bleu taillé en pointe, serti d'or au bout d'un crochet ouvert. Les joailliers de la Contingence ne la taillent jamais seule et ne la confient qu'à un Scothan."
 }
 ```
 
 ## What appears on the site
 
-- `/fr/equipement` and `/en/equipment`: under the description of every piece carrying `"set": "FAEBI"`, a block shows the set name, its description, the tiers in increasing piece order, and the list of its pieces. Each piece in that list is a reference like `{{boucle-de-l-un}}`, with its slot icon and its kind, and opens that piece's entry.
+- `/fr/equipement` and `/en/equipment`: under the description of every piece carrying `"set": "CONTI"`, a block shows the set name, its description, the tiers in increasing piece order, and the list of its pieces. Each piece in that list is a reference like `{{boucle-de-l-un}}`, with its slot icon and its kind, and opens that piece's entry.
 - The equipment booklet prints one page per set after the whole equipment list, in alphabetical order of the set's name, whatever its rarity. Each page is titled Panoplies and holds the set's name, description and tiers, then its pieces.
 - Every piece of a set carries the same `rarity`. `pnpm data:check` fails on a set that mixes two.
 - A skill named in `grants` lists the set as one of the places it is obtained.
