@@ -1,10 +1,9 @@
 # The owner's design rulings
 
 Every ruling the owner made about how Aubaine looks, and how design work is done with them. Each one
-gives the rule and, except one undated ruling, its date. A correction or a rejection also quotes the
-owner's words, because they carry its reason. Quotes dated 2026-10-16 or from 2026-10-23 on were checked
-against the stored conversations and are verbatim, typos kept; the earlier ones and the undated one come
-from notes written at the time. An approval is recorded as what was approved: a description, its values
+gives the rule, its reason and, except one undated ruling, its date, written in this file's own words. The
+owner's messages are never quoted here: the owner ruled on 2026-11-03 that quoting them is useless. Entries
+recorded before that date keep the quotes they were written with; do not add new ones. An approval is recorded as what was approved: a description, its values
 or the file that holds them, its capture in `../assets/approved/`, and the date. Read the sections that
 touch the task before proposing anything; a ruling is not reopened without a new reason, and losing
 context is not one. When the owner corrects, rejects or approves a design, it is added here in the same

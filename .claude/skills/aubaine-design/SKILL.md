@@ -141,10 +141,9 @@ Neither edits a file or runs a command: the main agent captures pictures, runs t
 
 ## Maintaining this skill
 
-- A design correction or rejection from the owner goes into `references/rulings.md`, dated and quoted, in
-  the change that applies it. Check a quote against the stored conversations with a search that tolerates
-  typos, since the owner's own spelling defeats an exact search, and count as the owner's words only what
-  they typed or picked in an answer, never a tool's output that repeats them.
+- A design correction or rejection from the owner goes into `references/rulings.md`, dated, in the change
+  that applies it, written as the rule and its reason in this skill's own words. Never quote the owner's
+  messages there or anywhere in this skill; the owner ruled on 2026-11-03 that quoting them is useless.
 - An approval goes into `references/rulings.md` as what was approved, never as the owner's praise: a
   description, its values or the file that holds them, a capture in `assets/approved/` (a screenshot, or
   for a motion a film strip from `pnpm design:transit --film`), and the date. Cite the capture from
