@@ -124,8 +124,8 @@ The framed painting, the Colbert banner and the Landenheit flag use works from P
 downloaded into `tmp/textures/`. It decodes the HDRI into four packed levels of the room, cuts each
 fabric's displacement map into a square tile, renders the frame's glTF front on with three.js in
 Chromium (the lit frame, its gilding and its relief), and models and renders the banner's hanger (a
-pole in the wood scan, gilt finials, a twisted cord), both lit by the same room. Nothing ships
-three.js to a reader; the scripts import the files as hashed assets under `/_astro/`,
+pole in the wood scan, gilt finials, a twisted cord), both lit by the same room. None of these
+textures ships three.js to a reader; the scripts import the files as hashed assets under `/_astro/`,
 `src/styles/prose.css` draws the lit frame as a `border-image`, and `Heraldry.astro` places the
 hanger.
 

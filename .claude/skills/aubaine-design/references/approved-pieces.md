@@ -1233,8 +1233,10 @@ and from the owner's choice. **None is chosen yet.** Candidates already in the d
 | The books and booklets themselves | `data/books/`, `data/equipment/catalogue.json`, the tree booklets |
 | The heraldry drawn for the Humain sub-species: the Colbert banner (Nouvelle-Aubaine), the imperial flag of the Landenheit, the arms of the Victoria | `data/species/humain.json`, `data/media/emblems/colbert.svg`, `data/media/art/drapeau-du-landenheit-3_2-og.png`, `data/media/arms/` |
 
-Open: whether the Almanach (`data/equipment/items/almanach.json`) may serve as such an object without its
-CADRAN screen.
+The Almanach (`data/equipment/items/almanach.json`) serves as one since 2026-11-06: on the Humans' page
+it shows the Bibliothèque des Oracles in the lore, in the default style, starting without its CADRAN
+screen (`rulings.md`, The direction;
+`docs/adr/0069-a-lore-picture-may-play-on-an-almanach.md`).
 
 ## CADRAN
 
@@ -1242,7 +1244,9 @@ CADRAN, the Almanach's navy screen with its grid, HUD corners and gold frame, is
 direction (`src/scripts/atlas-boot.ts`,
 `docs/adr/0044-the-cadran-boot-is-the-atlas-loader-and-its-bar-follows-the-real-load.md`) and never
 dresses a site page (`rulings.md`, The direction). « Codex » stays the indexes' name, after the
-Almanach's property « Codex. » (`data/equipment/items/almanach.json`).
+Almanach's property « Codex. » (`data/equipment/items/almanach.json`). The one exception is an
+almanach's own tube, which may flash the lit emblem when a reader switches it on (`rulings.md`, The
+direction).
 
 ## Guard tests
 

@@ -141,6 +141,15 @@ status lines dress the Atlas loader only, never a site page.
 
 > "the clearly Aubaine DA (and not CADRAN DA, that are different)" (2026-10-30)
 
+**An almanach may flash CADRAN in its own tube, when a reader switches it on (2026-11-06).** The
+almanach is the device itself, so its tube is the one place outside the Atlas loader where CADRAN
+shows, and only briefly: when the page turns an almanach on, as it loads or as the almanach first nears
+the screen, the picture fades in with no CADRAN; when a reader switches it on, by the crystal or the
+power button, it may play the flash and the lit emblem (the `fast` boot), never the whole boot.
+CADRAN still dresses no page around it. `ALMANACH_PAGE_BOOT` and `ALMANACH_CRYSTAL_BOOTS` in
+`src/lib/art-effect/almanach-look.ts` hold the rule
+(`docs/adr/0069-a-lore-picture-may-play-on-an-almanach.md`, Decision 4).
+
 **Borrow nothing.** A reference game may inspire a style or a layout when the owner asks; never a
 name, a label, a joke or a mechanic.
 
@@ -556,6 +565,23 @@ a second shape, and never offer post-processing as the cure for generated-art sm
 heraldry, pictograms, or WebGL drawn from them. The Home video and the index pages' 16:9 banners predate
 the rule; on 2026-10-28 the owner chose to change the index pages in a later batch.
 
+**A page may give its almanach a style of its own (2026-11-06).** The almanach is WebGL drawn from the
+game's own device, so it may show a page's picture. A people may have its own style in
+`data/almanachs/`, designed in the Dev Hub; a page that names none takes the default.
+
+**The Humans take the default almanach, and a picture fills the tube (2026-11-07).** The owner set the
+default in the Dev Hub: the gold case and the painted steel at gloss 0.5, a black leather grip at gloss
+0, the painted cyan crystal with no magic, the light strips following the picture (`ALMANACH_STYLE` in
+`src/lib/art-effect/almanach-look.ts`). The Humans are the default people, so they take it; the royal
+azure start picked the day before is gone. A picture fills the tube unless it asks to be shown whole
+(`ALMANACH_FIT`).
+
+**An almanach's buttons sit on its caption's line, like a banner's pause (2026-11-07).** The power and
+zoom buttons stay, since a keyboard or screen-reader reader cannot reach the crystal or the screen, but
+in prose they are the round caption buttons at the end of the gold line, never a row of plates under
+the almanach (`src/styles/almanach.css`, sharing the look of `.au-prose__caption-button` in
+`src/styles/prose.css`).
+
 > "HUBs should'nt have a picture / video for them anymore. just like specie and skill tree we will either reuse the covers or something like that, something built using threejs / webgl or icons but not something only for them" (2026-10-27)
 
 **A seal for an entry without a cover, its initial at the centre of the logo's hexagons.**
@@ -793,3 +819,5 @@ and praised the Saison slider.
 | 2026-11-02 | the carry on one curve with live arrivals on landing, approved; what stays is whole when the pieces land; approvals recorded as what was approved; the stage stays alive through a page change; a tree writes its key colour and a kept reading is pinned; never edit an `-og` file, mirror a cover by option; a Codex door name holds one line on a desktop; the Codex panel slides off, uncovering the spotlight |
 | 2026-11-03 | a descriptor sticker can cross its word out; the strike is the elf's gesture, and it lands; the slash after a beat, approved; a descriptor sticker can hold its word back; each dot is a punch, and the word trembles; the held word, approved; gilt is shaded metal, never flat yellow; the banner stirs in a light wind |
 | 2026-11-04 | take the screens' shapes (with 2026-11-03); stand to the reference, a dialogue names its speaker, each dialogue piece its own backing, text turns with its tag, punctuation clears a dark plate (all 2026-11-03, restored); the quote and the dialogue are game pieces; the layered look is the direction; a title says who and where, on any corner, the box redrawn per corner; a quote shows big quotation marks; the people a title names are black nameplates; each quote takes the background that suits its mood; the lore quote and dialogue, approved; a dialogue can show its speakers' portraits, the bust picked; in a dialogue each side has its own box, the point picked (2026-11-05), both slopes halved (2026-11-06); a portrait anchors its box; a portrait's expression follows who the character is |
+| 2026-11-06 | an almanach may flash CADRAN in its own tube on a reader's switch-on; a page may give its almanach a style, the Humans' royal azure picked as a start |
+| 2026-11-07 | the Humans take the default almanach, set in the Dev Hub; a picture fills the tube; an almanach's buttons sit on its caption's line |

@@ -217,6 +217,18 @@ column like a 16:9 picture.
 :caption[« Les Naufragés de la Venue », toile peinte en 238 apr. V.]
 ```
 
+A wide picture takes `"almanach"` (`ALMANACH_PICTURE`): the picture fills the tube of the default
+almanach, with its power and zoom buttons at the end of the caption's line. Add the name of a style in `data/almanachs/`
+after the word to dress the almanach in that style instead. A portrait is refused, and
+`pnpm data:check` fails on a style that does not exist. Design and save a style in the Dev Hub's
+Almanach page under `pnpm dev`. Without WebGL2 on a graphics card, without JavaScript, and in print,
+the picture shows plain.
+
+```markdown
+![Une immense bibliothèque gothique aux bannières bleues, ses rayonnages sur plusieurs étages autour d'une sphère armillaire suspendue au-dessus d'un livre ouvert.](../../media/art/bibliotheque-des-oracles-16_9-og.png "almanach")
+:caption[La bibliothèque de l'Académie des Oracles]
+```
+
 Inside a caption, set a title in guillemets, never in italics: the caption is already italic, and an
 emphasis would break it into two lines.
 

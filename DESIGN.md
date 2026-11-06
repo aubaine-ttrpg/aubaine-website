@@ -85,7 +85,9 @@ The sources of each row are in [Principles](#principles) and in the research dos
 frame and its status lines, belongs to the Atlas boot
 (`docs/adr/0044-the-cadran-boot-is-the-atlas-loader-and-its-bar-follows-the-real-load.md`,
 `src/scripts/atlas-boot.ts`, whose own status lines include « EN ATTENTE DE LIAISON » and « CARTES
-PRÊTES »). It dresses no site page (2026-10-30).
+PRÊTES »). It dresses no site page (2026-10-30). Inside an almanach's own tube, the flash and the lit
+emblem may play when a reader switches it on, never when the page turns it on and never the whole boot
+(2026-11-06, `docs/adr/0069-a-lore-picture-may-play-on-an-almanach.md`, Decision 4).
 
 ### Principles
 
@@ -669,6 +671,13 @@ From the back to the front:
   dialogue turn's optional portrait, a bust in front of its box, one size for every turn. A dialogue's boxes
   climb half as steeply as a speech's. The right-hand speaker has a box of her own, its far end a point
   aimed at the other speaker.
+- The almanach (`src/components/primitives/Almanach.astro`, or a lore picture titled
+  `"almanach"`, optionally followed by a style name): the scanned device shows the picture on its tube,
+  filling it, in the default style (`ALMANACH_STYLE`) or a saved one from `data/almanachs/`, with its
+  power and zoom buttons as round buttons at the end of its caption's line, like a banner's pause
+  button, or under it in the plate look without a caption
+  (`src/styles/almanach.css`). Without WebGL2 on a graphics card, without JavaScript and in print, the
+  picture shows plain. Styles are designed in the Dev Hub under `astro dev` (0070).
 
 **Measuring**
 
@@ -844,8 +853,8 @@ button hides (`tests/e2e/hub-stage.spec.ts`); a swap still changes the picture a
   still Proposed. The card's emblem is the approved exception (ADR 0054, Decision 6).
 - **Torn, stone and rupture masks** (`data/media/masks/`) are for lore pictures only.
 - **One WebGL context**: the live pieces share `src/scripts/art-effect/studio.ts`; the torchlight on lore
-  pictures (`src/scripts/torchlight.ts`) still opens its own. Outside the Atlas, three.js only bakes
-  (`tools/media/textures.ts`).
+  pictures (`src/scripts/torchlight.ts`) still opens its own, and the almanachs of a page share one of
+  theirs. Outside the Atlas and the almanach, three.js only bakes (`tools/media/textures.ts`; 0069).
 - **A picture no field names** waits in `data/media/unassigned/` (`docs/runbooks/add-an-image.md`).
 
 ## Accessibility
