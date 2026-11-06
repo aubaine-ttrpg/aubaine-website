@@ -2,6 +2,10 @@
   "id": "scothan",
   "status": "draft",
   "name": "Scothan",
+  "cover": "sombrecoeur-3_4-og.png",
+  "coverMirrored": true,
+  "emblem": "contingence.svg",
+  "keyColour": "#a97bce",
   "derivedFrom": "parents",
   "offered": [
     "CHAIRX-001",
