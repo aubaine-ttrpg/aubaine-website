@@ -18,7 +18,7 @@ import {
   STAGE,
 } from '../../lib/art-effect/presets'
 import { automaticTier } from '../../lib/atlas/contract/quality'
-import { gpuReport } from '../gpu'
+import { gpuReport, rendersInSoftware } from '../gpu'
 import {
   activate,
   bindTexture,
@@ -85,8 +85,6 @@ type Painter = { tensor: Program; across: Program; orient: Program; kuwahara: Pr
 
 type Programs = { develop: Program; finish: Program; print: Program; painter: Painter | undefined }
 
-const SOFTWARE_RENDERER = /swiftshader|llvmpipe|softpipe|software|basic render/i
-
 const CONTEXT: WebGLContextAttributes = {
   alpha: true,
   antialias: false,
@@ -147,7 +145,7 @@ function createStudio(): Studio | undefined {
   const gl = canvas.getContext('webgl2', CONTEXT)
   if (!gl) return undefined
   const report = gpuReport(gl)
-  if (SOFTWARE_RENDERER.test(report.renderer)) {
+  if (rendersInSoftware(report)) {
     gl.getExtension('WEBGL_lose_context')?.loseContext()
     return undefined
   }

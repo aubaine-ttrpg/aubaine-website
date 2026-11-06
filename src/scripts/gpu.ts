@@ -16,3 +16,9 @@ export function gpuReport(gl: WebGL2RenderingContext): GpuReport {
     coarsePointer: window.matchMedia('(pointer: coarse)').matches,
   }
 }
+
+const SOFTWARE_RENDERER = /swiftshader|llvmpipe|softpipe|software|basic render/i
+
+export function rendersInSoftware(report: GpuReport): boolean {
+  return SOFTWARE_RENDERER.test(report.renderer)
+}
