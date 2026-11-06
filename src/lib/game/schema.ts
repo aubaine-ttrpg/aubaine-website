@@ -1,5 +1,10 @@
 import { z } from 'astro/zod'
 
+import {
+  ALMANACH_CRYSTAL_BOOTS,
+  ALMANACH_FINISHES,
+  ALMANACH_MAGICS,
+} from '../art-effect/almanach-look.ts'
 import { ART_EFFECTS } from '../art-effect/effects.ts'
 import {
   ALOFT_LANDMARK_KINDS,
@@ -2161,6 +2166,65 @@ export const overlays = {
       .describe("Noms et textes traduits, keyés par l'identifiant de l'établissement."),
   }),
 }
+
+const almanachGloss = z.number().min(0).max(1)
+const almanachColour = z.string().regex(HEX_COLOUR)
+const almanachFinish = z.union([z.enum(ALMANACH_FINISHES), almanachColour])
+const almanachPart = z.union([z.literal('painted'), almanachFinish])
+
+export const almanachStyle = z
+  .object({
+    metal: almanachFinish.describe(
+      'Le boîtier : une finition nommée (un métal, un bois ou un cuir) ou une couleur hexadécimale, qui donne un métal peint de cette couleur.',
+    ),
+    trim: almanachPart.describe(
+      "Les pièces d'acier (les coins, les boulons, la charnière) : « painted » garde l'acier du modèle, sinon une finition nommée ou une couleur hexadécimale.",
+    ),
+    grip: almanachPart.describe(
+      'La poignée en spirale : « painted » garde la poignée du modèle, sinon une finition nommée ou une couleur hexadécimale.',
+    ),
+    gem: z
+      .union([z.literal('painted'), almanachColour])
+      .describe(
+        'La couleur du cristal catalyseur et de sa lueur : « painted » garde le cyan du modèle, sinon une couleur hexadécimale.',
+      ),
+    magic: z
+      .union([z.literal('none'), z.enum(ALMANACH_MAGICS)])
+      .describe(
+        "L'élément qui vit dans le cristal : « none », une clé de data/meta/domains.json, ou « nature ».",
+      ),
+    light: z
+      .union([z.literal('picture'), almanachColour])
+      .describe(
+        "Les bandes lumineuses autour de l'écran : « picture » suit la couleur de l'image affichée, sinon une couleur hexadécimale fixe.",
+      ),
+    gloss: almanachGloss.describe(
+      'Le brillant de toutes les pièces, de 0 (mat) à 1 (le brillant propre du matériau). 0,35 donne un satiné.',
+    ),
+    metalGloss: almanachGloss
+      .optional()
+      .describe('Le brillant du boîtier seul. Sans lui, celui de gloss.'),
+    trimGloss: almanachGloss
+      .optional()
+      .describe("Le brillant des pièces d'acier seules. Sans lui, celui de gloss."),
+    gripGloss: almanachGloss
+      .optional()
+      .describe('Le brillant de la poignée seule. Sans lui, celui de gloss.'),
+    crystalBoot: z
+      .enum(ALMANACH_CRYSTAL_BOOTS)
+      .describe(
+        "Le démarrage joué quand un lecteur allume l'almanach : « instant », ou « fast » (un flash, puis l'emblème CADRAN allumé).",
+      ),
+    battery: z
+      .union([z.literal(false), z.literal('device'), z.number().int().min(0).max(100)])
+      .describe(
+        "La jauge de batterie de l'écran de démarrage : false pour aucune, un niveau de 0 à 100, ou « device » pour la batterie de l'appareil du lecteur.",
+      ),
+  })
+  .strict()
+  .describe(
+    "Le style d'un almanach : son boîtier, son cristal, sa magie et son démarrage. Le nom du fichier est le nom du style, qu'une page donne à son almanach.",
+  )
 
 export type ContentStatus = z.infer<typeof contentStatus>
 export type Skill = z.infer<typeof skill>

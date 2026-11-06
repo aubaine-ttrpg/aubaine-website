@@ -89,7 +89,8 @@ async function count(page: Page): Promise<void> {
     Object.defineProperty(HTMLCanvasElement.prototype, 'getContext', {
       value(this: HTMLCanvasElement, kind: string, ...rest: unknown[]) {
         const context: unknown = Reflect.apply(open, this, [kind, ...rest])
-        if (kind === 'webgl2' && context) counted.glContexts += 1
+        const almanach = this.hasAttribute('data-almanach-stage')
+        if (kind === 'webgl2' && context && !almanach) counted.glContexts += 1
         return context
       },
     })

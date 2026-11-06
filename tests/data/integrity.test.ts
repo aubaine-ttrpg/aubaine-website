@@ -4,6 +4,7 @@ import { dirname, resolve } from 'node:path'
 import { parseFrontmatter } from '@astrojs/markdown-remark'
 import sharp from 'sharp'
 import { describe, expect, it } from 'vitest'
+import { almanachStyleOf } from '../../src/lib/art-effect/almanach-look'
 import { armsFiles } from '../../src/lib/art-effect/presets'
 import { latestRelease, notes, releases } from '../../src/lib/booklet/manifest'
 import { archiveFile } from '../../src/lib/booklet/release'
@@ -31,12 +32,14 @@ import {
 import { readAtlasSources, readCorpus, readSources } from '../../src/lib/game/fs-sources'
 import { ARCHIVES_MARK, CATEGORY_MARKS, KIND_MARKS } from '../../src/lib/game/kind-marks'
 import { referenceKey } from '../../src/lib/game/richtext'
-import { BOOK_CATEGORIES, overlays, STATE_KINDS } from '../../src/lib/game/schema'
+import { almanachStyle, BOOK_CATEGORIES, overlays, STATE_KINDS } from '../../src/lib/game/schema'
 import { LOCALES } from '../../src/lib/i18n/locales'
 import { CATEGORY_SEGMENT, pathFor, treeNodeHref } from '../../src/lib/i18n/routes'
 import { strings } from '../../src/lib/i18n/strings'
 import { PLACEHOLDER_BANNER, PLACEHOLDER_COVER, PLACEHOLDER_SQUARE } from '../../src/lib/media'
 import {
+  ALMANACH_MATERIAL_FILES,
+  ALMANACH_MATERIAL_WORKS,
   ARMS_COMPOSITIONS,
   ARMS_FILES,
   ARMS_WORKS,
@@ -1390,6 +1393,21 @@ describe('authored prose markup', () => {
     }
   })
 
+  it('names a saved almanach style in every almanach picture', async () => {
+    const saved = new Set(
+      (await readdir(resolve(root, 'data/almanachs')).catch(() => [])).map((file) =>
+        file.replace(/\.json$/, ''),
+      ),
+    )
+    for (const { where, text } of await authoredProse()) {
+      for (const match of text.matchAll(/!\[[^\]]*]\(([^)\s]+)\s+"([^"]*)"\)/g)) {
+        const look = pictureLook(match[2] ?? '', `${where} ${match[1]}`)
+        if (look.kind !== 'almanach' || look.style === undefined) continue
+        expect(saved.has(look.style), `${where} names the almanach style ${look.style}`).toBe(true)
+      }
+    }
+  })
+
   it('writes every link in authored prose as a reference by key that resolves', async () => {
     const built = { fr, en }
     for (const { where, text, locale } of await authoredProse()) {
@@ -2363,8 +2381,18 @@ describe('what the site credits', () => {
     )
   })
 
+  it('credits every almanach material on disk, and has a file for every credited one', async () => {
+    const onDisk = (await readdir(resolve(root, 'data/media/almanach-materials')))
+      .filter((file) => !file.startsWith('.'))
+      .sort()
+    expect(
+      onDisk,
+      'src/lib/rights/attribution.ts and data/media/almanach-materials/ disagree',
+    ).toEqual([...ALMANACH_MATERIAL_FILES].sort())
+  })
+
   it('holds every sound and texture to CC0, as the credits page says', () => {
-    for (const work of [...SOUND_WORKS, ...TEXTURE_WORKS]) {
+    for (const work of [...SOUND_WORKS, ...TEXTURE_WORKS, ...ALMANACH_MATERIAL_WORKS]) {
       expect(work.licence.id, `${work.title} is not under CC0`).toMatch(/^CC0 /)
     }
   })
@@ -2384,6 +2412,19 @@ describe('what the site credits', () => {
           /\bv\d+\.\d+/i,
         )
       }
+    }
+  })
+})
+
+describe('almanach styles', () => {
+  it('keeps every saved style valid for the contract and for the page script', async () => {
+    const files = (await readdir(resolve(root, 'data/almanachs')).catch(() => [])).filter((file) =>
+      file.endsWith('.json'),
+    )
+    for (const file of files) {
+      const raw: unknown = JSON.parse(await readFile(resolve(root, 'data/almanachs', file), 'utf8'))
+      expect(almanachStyle.safeParse(raw).success, `${file} breaks the contract`).toBe(true)
+      expect(almanachStyleOf(raw), `${file} is refused by the page script`).toBeDefined()
     }
   })
 })

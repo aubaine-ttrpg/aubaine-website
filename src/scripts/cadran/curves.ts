@@ -12,6 +12,10 @@ export function bell(time: number, from: number, peak: number, to: number): numb
   return time < peak ? ramp(time, from, peak) : 1 - ramp(time, peak, to)
 }
 
+export function easeIn(progress: number): number {
+  return progress ** 3
+}
+
 export function easeOut(progress: number): number {
   return 1 - (1 - progress) ** 3
 }

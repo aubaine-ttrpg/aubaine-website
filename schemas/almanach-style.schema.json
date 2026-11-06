@@ -1,0 +1,239 @@
+{
+  "$id": "https://aubaine.io/schema/almanach-style.json",
+  "title": "Style d'almanach",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "metal": {
+      "anyOf": [
+        {
+          "type": "string",
+          "enum": [
+            "or",
+            "laiton",
+            "bronze",
+            "cuivre",
+            "or-rose",
+            "rose",
+            "argent",
+            "fer",
+            "vert-de-gris",
+            "noyer",
+            "chene",
+            "acajou",
+            "ebene",
+            "palissandre",
+            "merisier",
+            "cuir",
+            "cuir-noir",
+            "cuir-bordeaux",
+            "cuir-vieilli"
+          ]
+        },
+        {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        }
+      ],
+      "description": "Le boîtier : une finition nommée (un métal, un bois ou un cuir) ou une couleur hexadécimale, qui donne un métal peint de cette couleur."
+    },
+    "trim": {
+      "anyOf": [
+        {
+          "type": "string",
+          "const": "painted"
+        },
+        {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "or",
+                "laiton",
+                "bronze",
+                "cuivre",
+                "or-rose",
+                "rose",
+                "argent",
+                "fer",
+                "vert-de-gris",
+                "noyer",
+                "chene",
+                "acajou",
+                "ebene",
+                "palissandre",
+                "merisier",
+                "cuir",
+                "cuir-noir",
+                "cuir-bordeaux",
+                "cuir-vieilli"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "^#[0-9a-f]{6}$"
+            }
+          ]
+        }
+      ],
+      "description": "Les pièces d'acier (les coins, les boulons, la charnière) : « painted » garde l'acier du modèle, sinon une finition nommée ou une couleur hexadécimale."
+    },
+    "grip": {
+      "anyOf": [
+        {
+          "type": "string",
+          "const": "painted"
+        },
+        {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "or",
+                "laiton",
+                "bronze",
+                "cuivre",
+                "or-rose",
+                "rose",
+                "argent",
+                "fer",
+                "vert-de-gris",
+                "noyer",
+                "chene",
+                "acajou",
+                "ebene",
+                "palissandre",
+                "merisier",
+                "cuir",
+                "cuir-noir",
+                "cuir-bordeaux",
+                "cuir-vieilli"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "^#[0-9a-f]{6}$"
+            }
+          ]
+        }
+      ],
+      "description": "La poignée en spirale : « painted » garde la poignée du modèle, sinon une finition nommée ou une couleur hexadécimale."
+    },
+    "gem": {
+      "anyOf": [
+        {
+          "type": "string",
+          "const": "painted"
+        },
+        {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        }
+      ],
+      "description": "La couleur du cristal catalyseur et de sa lueur : « painted » garde le cyan du modèle, sinon une couleur hexadécimale."
+    },
+    "magic": {
+      "anyOf": [
+        {
+          "type": "string",
+          "const": "none"
+        },
+        {
+          "type": "string",
+          "enum": [
+            "fire",
+            "water",
+            "wind",
+            "earth",
+            "thunder",
+            "slime",
+            "light",
+            "void",
+            "blood",
+            "necrotic",
+            "ether",
+            "psychic",
+            "nature"
+          ]
+        }
+      ],
+      "description": "L'élément qui vit dans le cristal : « none », une clé de data/meta/domains.json, ou « nature »."
+    },
+    "light": {
+      "anyOf": [
+        {
+          "type": "string",
+          "const": "picture"
+        },
+        {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        }
+      ],
+      "description": "Les bandes lumineuses autour de l'écran : « picture » suit la couleur de l'image affichée, sinon une couleur hexadécimale fixe."
+    },
+    "gloss": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Le brillant de toutes les pièces, de 0 (mat) à 1 (le brillant propre du matériau). 0,35 donne un satiné."
+    },
+    "metalGloss": {
+      "description": "Le brillant du boîtier seul. Sans lui, celui de gloss.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "trimGloss": {
+      "description": "Le brillant des pièces d'acier seules. Sans lui, celui de gloss.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "gripGloss": {
+      "description": "Le brillant de la poignée seule. Sans lui, celui de gloss.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "crystalBoot": {
+      "type": "string",
+      "enum": [
+        "instant",
+        "fast"
+      ],
+      "description": "Le démarrage joué quand un lecteur allume l'almanach : « instant », ou « fast » (un flash, puis l'emblème CADRAN allumé)."
+    },
+    "battery": {
+      "anyOf": [
+        {
+          "type": "boolean",
+          "const": false
+        },
+        {
+          "type": "string",
+          "const": "device"
+        },
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        }
+      ],
+      "description": "La jauge de batterie de l'écran de démarrage : false pour aucune, un niveau de 0 à 100, ou « device » pour la batterie de l'appareil du lecteur."
+    }
+  },
+  "required": [
+    "metal",
+    "trim",
+    "grip",
+    "gem",
+    "magic",
+    "light",
+    "gloss",
+    "crystalBoot",
+    "battery"
+  ],
+  "additionalProperties": false,
+  "description": "Le style d'un almanach : son boîtier, son cristal, sa magie et son démarrage. Le nom du fichier est le nom du style, qu'une page donne à son almanach."
+}

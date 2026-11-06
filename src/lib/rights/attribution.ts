@@ -370,6 +370,112 @@ export const TEXTURE_FILES: readonly string[] = TEXTURE_WORKS.flatMap((work) =>
   work.cuts.map((cut) => cut.file),
 )
 
+export type AlmanachMaterialWork = {
+  title: string
+  author: string
+  source: string
+  licence: Licence
+  files: readonly string[]
+}
+
+const AMBIENT_CG = 'https://ambientcg.com/view?id='
+const AMBIENT_CG_AUTHOR = 'ambientCG'
+
+function finishFiles(finish: string): readonly string[] {
+  return [`${finish}-color.avif`, `${finish}-surface.avif`]
+}
+
+export const ALMANACH_MATERIAL_WORKS = [
+  {
+    title: 'Wood 066',
+    author: AMBIENT_CG_AUTHOR,
+    source: `${AMBIENT_CG}Wood066`,
+    licence: CC0,
+    files: finishFiles('noyer'),
+  },
+  {
+    title: 'Wood 058',
+    author: AMBIENT_CG_AUTHOR,
+    source: `${AMBIENT_CG}Wood058`,
+    licence: CC0,
+    files: finishFiles('chene'),
+  },
+  {
+    title: 'Wood 009',
+    author: AMBIENT_CG_AUTHOR,
+    source: `${AMBIENT_CG}Wood009`,
+    licence: CC0,
+    files: finishFiles('acajou'),
+  },
+  {
+    title: 'Wood 067',
+    author: AMBIENT_CG_AUTHOR,
+    source: `${AMBIENT_CG}Wood067`,
+    licence: CC0,
+    files: finishFiles('ebene'),
+  },
+  {
+    title: 'Rosewood Veneer1',
+    author: 'Jenelle van Heerden',
+    source: `${POLY_HAVEN}/rosewood_veneer1`,
+    licence: CC0,
+    files: finishFiles('palissandre'),
+  },
+  {
+    title: 'Lacquered Cherry Wood',
+    author: 'Jenelle van Heerden, Rico Cilliers',
+    source: `${POLY_HAVEN}/lacquered_cherry_wood`,
+    licence: CC0,
+    files: finishFiles('merisier'),
+  },
+  {
+    title: 'Leather 023',
+    author: AMBIENT_CG_AUTHOR,
+    source: `${AMBIENT_CG}Leather023`,
+    licence: CC0,
+    files: finishFiles('cuir'),
+  },
+  {
+    title: 'Leather 026',
+    author: AMBIENT_CG_AUTHOR,
+    source: `${AMBIENT_CG}Leather026`,
+    licence: CC0,
+    files: finishFiles('cuir-noir'),
+  },
+  {
+    title: 'Leather 037',
+    author: AMBIENT_CG_AUTHOR,
+    source: `${AMBIENT_CG}Leather037`,
+    licence: CC0,
+    files: finishFiles('cuir-bordeaux'),
+  },
+  {
+    title: 'Leather 033 A',
+    author: AMBIENT_CG_AUTHOR,
+    source: `${AMBIENT_CG}Leather033A`,
+    licence: CC0,
+    files: finishFiles('cuir-vieilli'),
+  },
+  {
+    title: 'Studio Kontrast 03',
+    author: 'Grzegorz Wronkowski',
+    source: `${POLY_HAVEN}/studio_kontrast_03`,
+    licence: CC0,
+    files: ['almanach-environment.hdr'],
+  },
+  {
+    title: 'Particle Pack',
+    author: 'Kenney',
+    source: 'https://kenney.nl/assets/particle-pack',
+    licence: CC0,
+    files: ['almanach-magic.avif'],
+  },
+] as const satisfies readonly AlmanachMaterialWork[]
+
+export const ALMANACH_MATERIAL_FILES: readonly string[] = ALMANACH_MATERIAL_WORKS.flatMap(
+  (work) => work.files,
+)
+
 export type ArmsWork = {
   key: string
   title: string

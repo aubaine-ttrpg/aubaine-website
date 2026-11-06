@@ -1,0 +1,71 @@
+---
+import { Image } from 'astro:assets'
+
+import {
+  ALMANACH_FIT,
+  ALMANACH_STYLE,
+  type AlmanachFit,
+  type AlmanachStyle,
+  almanachStyleOf,
+} from '../../lib/art-effect/almanach-look'
+import { almanachStyle } from '../../lib/art-effect/almanach-styles'
+import { artImage } from '../../lib/media'
+import '../../styles/almanach.css'
+
+type Picture = {
+  art: string
+  alt: string
+  fit?: AlmanachFit
+  focus?: readonly [number, number]
+}
+
+type Settings = { readonly [Field in keyof AlmanachStyle]?: AlmanachStyle[Field] }
+type NoSettings = { readonly [Field in keyof AlmanachStyle]?: never }
+
+type Props = {
+  pictures: readonly Picture[]
+  caption?: string | undefined
+} & (({ style: string } & NoSettings) | ({ style?: never } & Settings))
+
+const { pictures, caption, style, ...settings } = Astro.props
+
+if (style !== undefined && almanachStyle(style) === undefined) {
+  throw new Error(`no almanach style is named ${style} in data/almanachs`)
+}
+const customised = Object.keys(settings).length > 0
+const resolved = customised ? almanachStyleOf({ ...ALMANACH_STYLE, ...settings }) : undefined
+if (customised && resolved === undefined) {
+  throw new Error(`these almanach settings are invalid: ${JSON.stringify(settings)}`)
+}
+
+const shown = pictures.map((picture) => {
+  const image = artImage(picture.art)
+  if (!image) throw new Error(`${picture.art} is not a picture in data/media/art`)
+  return { ...picture, image }
+})
+---
+
+<figure class="au-almanach">
+  <div
+    class="au-almanach__stage"
+    data-almanach
+    data-almanach-style={style}
+    data-almanach-settings={resolved ? JSON.stringify(resolved) : undefined}
+  >
+    {
+      shown.map(({ image, alt, fit, focus }) => (
+        <Image
+          src={image}
+          alt={alt}
+          widths={[960, 1440]}
+          sizes="(min-width: 60rem) 56rem, 100vw"
+          decoding="async"
+          data-almanach-picture
+          data-fit={fit ?? ALMANACH_FIT}
+          data-focus={focus ? focus.join(' ') : undefined}
+        />
+      ))
+    }
+  </div>
+  {caption && <figcaption class="au-almanach__caption">{caption}</figcaption>}
+</figure>

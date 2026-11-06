@@ -1,6 +1,7 @@
 import { readdir, readFile } from 'node:fs/promises'
 import { join, resolve } from 'node:path'
 
+import { ALMANACH_FIT, ALMANACH_STYLE_ID, isPortraitSource } from '../art-effect/almanach-look.ts'
 import { FRAME } from '../art-effect/presets.ts'
 import { DEFAULT_LOCALE, LOCALES, type Locale } from '../i18n/locales.ts'
 import { strings } from '../i18n/strings.ts'
@@ -535,8 +536,6 @@ export function rehypeProseTables() {
   }
 }
 
-const PORTRAIT_PICTURE = /-3_4-[a-z0-9_]+\.(?:png|jpg)$/
-
 const SECTION_HEADINGS = new Set(['h1', 'h2', 'h3', 'h4', 'h5', 'h6'])
 
 function isBlank(node: HastChild): boolean {
@@ -555,7 +554,7 @@ function soloPicture(node: HastChild): HastElement | undefined {
 
 function isPortraitPicture(node: HastChild): node is HastElement {
   const picture = soloPicture(node)
-  return picture !== undefined && PORTRAIT_PICTURE.test(String(picture.properties['src'] ?? ''))
+  return picture !== undefined && isPortraitSource(String(picture.properties['src'] ?? ''))
 }
 
 function isSectionHeading(node: HastChild): boolean {
@@ -598,9 +597,31 @@ function isPictureRelief(value: string): value is PictureRelief {
 
 export const GLAZED_PICTURE = 'glazed'
 
+export const ALMANACH_PICTURE = 'almanach'
+
 export type PictureLook =
   | { kind: 'masked'; mask: PictureMask; relief: PictureRelief | undefined }
   | { kind: 'glazed' }
+  | { kind: 'almanach'; style: string | undefined }
+
+function almanachLook(
+  title: string,
+  source: string,
+  style: string | undefined,
+  rest: readonly string[],
+): PictureLook {
+  if (rest.length > 0 || (style !== undefined && !ALMANACH_STYLE_ID.test(style))) {
+    throw new Error(
+      `${source} asks for "${title.trim()}", but an ${ALMANACH_PICTURE} picture takes at most one word after it, the name of an almanach style`,
+    )
+  }
+  if (isPortraitSource(source)) {
+    throw new Error(
+      `${source} is a portrait, which the wide tube of an ${ALMANACH_PICTURE} would crop to a strip`,
+    )
+  }
+  return { kind: 'almanach', style }
+}
 
 export function pictureLook(title: string, source: string): PictureLook {
   const [first = '', second, ...rest] = title.trim().split(/\s+/)
@@ -612,9 +633,10 @@ export function pictureLook(title: string, source: string): PictureLook {
     }
     return { kind: 'glazed' }
   }
+  if (first === ALMANACH_PICTURE) return almanachLook(title, source, second, rest)
   if (!isPictureMask(first)) {
     throw new Error(
-      `${source} asks for the look "${first}", which is none of ${[...PICTURE_MASKS, GLAZED_PICTURE].join(', ')}`,
+      `${source} asks for the look "${first}", which is none of ${[...PICTURE_MASKS, GLAZED_PICTURE, ALMANACH_PICTURE].join(', ')}`,
     )
   }
   if (rest.length > 0 || (second !== undefined && !isPictureRelief(second))) {
@@ -647,13 +669,44 @@ function glazePicture(picture: HastElement, ratio: string | undefined): HastElem
   return element('span', { className: 'au-prose__frame', style: FRAME_STYLE }, [moulding])
 }
 
+function almanachPicture(picture: HastElement, style: string | undefined): HastElement {
+  const shown = {
+    ...picture,
+    properties: { ...picture.properties, 'data-almanach-picture': '', 'data-fit': ALMANACH_FIT },
+  }
+  return element(
+    'span',
+    {
+      className: 'au-almanach__stage',
+      'data-almanach': '',
+      ...(style === undefined ? {} : { 'data-almanach-style': style }),
+    },
+    [shown],
+  )
+}
+
 function maskPicture(picture: HastElement): HastElement {
   const { title, ...properties } = picture.properties
   if (title === undefined) return picture
   const source = String(properties['src'])
   const look = pictureLook(String(title), source)
   const ratio = PICTURE_RATIO.exec(source)?.[1]
-  if (look.kind === 'glazed') return glazePicture({ ...picture, properties }, ratio)
+  switch (look.kind) {
+    case 'glazed':
+      return glazePicture({ ...picture, properties }, ratio)
+    case 'almanach':
+      return almanachPicture({ ...picture, properties }, look.style)
+    case 'masked':
+      return maskedPicture({ ...picture, properties }, look, ratio)
+  }
+}
+
+function maskedPicture(
+  picture: HastElement,
+  look: Extract<PictureLook, { kind: 'masked' }>,
+  ratio: string | undefined,
+): HastElement {
+  const { properties } = picture
   const { mask, relief } = look
   const shape = { 'data-mask': mask, ...(ratio ? { 'data-ratio': ratio } : {}) }
   const masked: HastElement = { ...picture, properties: { ...properties, ...shape } }

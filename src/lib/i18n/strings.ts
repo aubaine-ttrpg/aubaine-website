@@ -12,6 +12,10 @@ export type TreeSummary = {
 
 const NAMED_SKILLS = 3
 
+function almanachChannel(index: number): string {
+  return `CH ${String(index + 1).padStart(2, '0')}`
+}
+
 const FR_LIST = new Intl.ListFormat('fr', { type: 'conjunction' })
 const EN_LIST = new Intl.ListFormat('en-GB', { type: 'conjunction' })
 const FR_PLURAL = new Intl.PluralRules('fr')
@@ -707,6 +711,21 @@ const fr = {
     },
     fullChapter: (title: string) => `Le chapitre complet : ${title}`,
   },
+  almanachDevice: {
+    label: 'Almanach',
+    powerOn: 'Allumer l’almanach',
+    powerOff: 'Éteindre l’almanach',
+    previous: 'Image précédente',
+    next: 'Image suivante',
+    dark: 'Almanach éteint',
+    showing: (index: number, count: number, alt: string) =>
+      `Image ${index + 1} sur ${count} : ${alt}`,
+    channel: almanachChannel,
+    play: 'LECTURE',
+    zoomIn: 'Agrandir l’image',
+    zoomOut: 'Revoir l’image entière',
+    zoom: 'ZOOM ×2',
+  },
 }
 
 export type UiStrings = typeof fr
@@ -1235,6 +1254,21 @@ const en: UiStrings = {
         'The Ether Line does not pass near one of the places, or does not join them. Choose another means of travel.',
     },
     fullChapter: (title: string) => `The full chapter: ${title}`,
+  },
+  almanachDevice: {
+    label: 'Almanac',
+    powerOn: 'Turn the almanac on',
+    powerOff: 'Turn the almanac off',
+    previous: 'Previous picture',
+    next: 'Next picture',
+    dark: 'Almanac off',
+    showing: (index: number, count: number, alt: string) =>
+      `Picture ${index + 1} of ${count}: ${alt}`,
+    channel: almanachChannel,
+    play: 'PLAY',
+    zoomIn: 'Zoom in on the picture',
+    zoomOut: 'See the whole picture',
+    zoom: 'ZOOM ×2',
   },
 }
 

@@ -1,5 +1,6 @@
 import type { UiStrings } from '../i18n/strings'
 import {
+  ALMANACH_MATERIAL_WORKS,
   ARMS_WORKS,
   ATTRIBUTION_SECTIONS,
   type Licence,
@@ -29,7 +30,7 @@ export function creditSections(t: UiStrings): readonly CreditSection[] {
       kind: 'works',
       id: ATTRIBUTION_SECTIONS.textures,
       heading: t.creditsTextures,
-      works: TEXTURE_WORKS,
+      works: [...TEXTURE_WORKS, ...ALMANACH_MATERIAL_WORKS],
     },
     { kind: 'works', id: ATTRIBUTION_SECTIONS.arms, heading: t.creditsArms, works: ARMS_WORKS },
   ]

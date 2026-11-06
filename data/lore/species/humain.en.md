@@ -37,7 +37,7 @@ Parangons combine the duties of a city militia, the rigour of a special police f
 
 ## The Oracles
 
-![A vast gothic library hung with blue banners, its shelves rising over several floors around an armillary sphere floating above an open book.](../../media/art/bibliotheque-des-oracles-16_9-og.png)
+![A vast gothic library hung with blue banners, its shelves rising over several floors around an armillary sphere floating above an open book.](../../media/art/bibliotheque-des-oracles-16_9-og.png "almanach")
 :caption[The library of the Oracles' Academy]
 
 The Oracles are the six most powerful known practitioners of primordial magic, and each of them is the strongest in their element. So far, only humans have been chosen to hold that rank. Sitting together as the **Assemblée des Oracles**, they regulate the teaching and use of magic in every academy.

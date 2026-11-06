@@ -37,7 +37,7 @@ Les Parangons mêlent les missions d'une milice citadine, la rigueur d'une polic
 
 ## Les Oracles
 
-![Une immense bibliothèque gothique aux bannières bleues, ses rayonnages sur plusieurs étages autour d'une sphère armillaire suspendue au-dessus d'un livre ouvert.](../../media/art/bibliotheque-des-oracles-16_9-og.png)
+![Une immense bibliothèque gothique aux bannières bleues, ses rayonnages sur plusieurs étages autour d'une sphère armillaire suspendue au-dessus d'un livre ouvert.](../../media/art/bibliotheque-des-oracles-16_9-og.png "almanach")
 :caption[La bibliothèque de l'Académie des Oracles]
 
 Les Oracles sont les six plus puissants pratiquants de la magie primordiale que l'on connaisse, et chacun d'eux est le plus fort dans son élément. Jusqu'ici, seuls des humains ont été choisis pour occuper ce rang. Réunis en **Assemblée des Oracles**, ils règlent l'enseignement et l'usage de la magie dans toutes les académies.

@@ -747,6 +747,11 @@
   position: absolute;
   inset-inline-end: 0;
   inset-block-end: calc(0.375em - var(--au-caption-button) / 2);
+  font-size: 1.02em;
+}
+
+.au-prose .au-prose__caption-button,
+.au-prose .au-prose__picture > .au-almanach__controls > .au-almanach__button {
   display: grid;
   place-items: center;
   inline-size: var(--au-caption-button);
@@ -754,7 +759,6 @@
   padding: 0;
   border: 1px solid var(--line2);
   border-radius: 50%;
-  font-size: 1.02em;
   color: var(--ink2);
   cursor: pointer;
   transition:
@@ -763,12 +767,15 @@
 }
 
 .au-prose .au-prose__caption-button:hover,
-.au-prose .au-prose__caption-button:focus-visible {
+.au-prose .au-prose__caption-button:focus-visible,
+.au-prose .au-prose__picture > .au-almanach__controls > .au-almanach__button:hover,
+.au-prose .au-prose__picture > .au-almanach__controls > .au-almanach__button:focus-visible {
   color: var(--gold);
   border-color: var(--gold);
 }
 
-.au-prose .au-prose__caption-button > svg {
+.au-prose .au-prose__caption-button > svg,
+.au-prose .au-prose__picture > .au-almanach__controls > .au-almanach__button > svg {
   inline-size: 15px;
   block-size: 15px;
 }

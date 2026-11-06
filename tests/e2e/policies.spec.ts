@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 import {
+  ALMANACH_MATERIAL_WORKS,
   ARMS_WORKS,
   FONT_FAMILIES,
   ICON_SETS,
@@ -77,7 +78,12 @@ test('the credits page names every icon set, font family, sound and texture the 
   for (const family of FONT_FAMILIES) {
     await expect(attribution.getByText(family.name, { exact: true })).toBeVisible()
   }
-  for (const work of [...SOUND_WORKS, ...TEXTURE_WORKS, ...ARMS_WORKS]) {
+  for (const work of [
+    ...SOUND_WORKS,
+    ...TEXTURE_WORKS,
+    ...ALMANACH_MATERIAL_WORKS,
+    ...ARMS_WORKS,
+  ]) {
     await expect(attribution.getByRole('link', { name: work.title, exact: true })).toHaveAttribute(
       'href',
       work.source,

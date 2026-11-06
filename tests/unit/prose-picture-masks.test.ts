@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import { FRAME } from '../../src/lib/art-effect/presets'
 import {
+  ALMANACH_PICTURE,
   GLAZED_PICTURE,
   PICTURE_MASKS,
   PICTURE_RELIEFS,
@@ -110,5 +111,50 @@ describe('prose picture masks', () => {
 
   it('refuses a second word after glazed', () => {
     expect(() => maskedPicture({ title: `${GLAZED_PICTURE} torch` })).toThrow(/no second word/)
+  })
+
+  it('stands a picture in an almanach of the named style, keeping its alt', () => {
+    const stage = maskedPicture({
+      title: `${ALMANACH_PICTURE} humain`,
+      alt: 'Une bibliothèque',
+      src: '../../media/art/bibliotheque-des-oracles-16_9-og.png',
+    })
+    expect(stage.tagName).toBe('span')
+    expect(stage.properties['className']).toBe('au-almanach__stage')
+    expect(stage.properties['data-almanach']).toBe('')
+    expect(stage.properties['data-almanach-style']).toBe('humain')
+    const image = stage.children[0]
+    if (image?.type !== 'element') throw new Error('the almanach holds no picture')
+    expect(image.tagName).toBe('img')
+    expect(image.properties['alt']).toBe('Une bibliothèque')
+    expect(image.properties['data-almanach-picture']).toBe('')
+    expect(image.properties['data-fit']).toBe('cover')
+    expect(image.properties['title']).toBeUndefined()
+  })
+
+  it('stands a picture in the default almanach when the word names no style', () => {
+    const stage = maskedPicture({
+      title: ALMANACH_PICTURE,
+      src: '../../media/art/bibliotheque-des-oracles-16_9-og.png',
+    })
+    expect(stage.properties['data-almanach']).toBe('')
+    expect(stage.properties['data-almanach-style']).toBeUndefined()
+    const image = stage.children[0]
+    if (image?.type !== 'element') throw new Error('the almanach holds no picture')
+    expect(image.properties['data-fit']).toBe('cover')
+  })
+
+  it('refuses an almanach with a second name, or with a malformed one', () => {
+    const wide = '../../media/art/bibliotheque-des-oracles-16_9-og.png'
+    expect(() => maskedPicture({ title: `${ALMANACH_PICTURE} humain elfe`, src: wide })).toThrow(
+      /name of an almanach style/,
+    )
+    expect(() => maskedPicture({ title: `${ALMANACH_PICTURE} Humain`, src: wide })).toThrow(
+      /name of an almanach style/,
+    )
+  })
+
+  it('refuses an almanach around a portrait, which the tube cannot show whole', () => {
+    expect(() => maskedPicture({ title: `${ALMANACH_PICTURE} humain` })).toThrow(/portrait/)
   })
 })

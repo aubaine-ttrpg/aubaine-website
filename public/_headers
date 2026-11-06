@@ -20,6 +20,9 @@
 /video/*
   Cache-Control: public, max-age=31536000, immutable
 
+/almanach/*
+  Cache-Control: public, max-age=31536000, immutable
+
 /pdf/*
   Cache-Control: public, max-age=31536000, immutable
   X-Robots-Tag: noindex

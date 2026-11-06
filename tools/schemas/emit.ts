@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url'
 import { z } from 'astro/zod'
 
 import {
+  almanachStyle,
   atlasEstablishments,
   atlasLandmarks,
   atlasPlaces,
@@ -61,6 +62,7 @@ const CONTRACTS = [
   { file: 'atlas-establishments', title: "Établissements d'un monde", schema: atlasEstablishments },
   { file: 'atlas-sky', title: "Îles volantes d'un monde", schema: atlasSky },
   { file: 'atlas-underground', title: "Strates souterraines d'un monde", schema: atlasUnderground },
+  { file: 'almanach-style', title: "Style d'almanach", schema: almanachStyle },
 ] as const
 
 function serialize(title: string, id: string, schema: z.ZodType): string {
