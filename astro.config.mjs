@@ -4,6 +4,7 @@ import swup from '@swup/astro'
 import { defineConfig } from 'astro/config'
 import { defListHastHandlers, remarkDefinitionList } from 'remark-definition-list'
 
+import { devHub } from './src/dev/integration.ts'
 import {
   rehypeCodexTerms,
   rehypeDropComments,
@@ -74,6 +75,7 @@ export default defineConfig({
       ignore: [/\.pdf($|\?)/, /\.mp4($|\?)/, /\.zip($|\?)/],
     }),
     inlineScriptPolicy(),
+    devHub(),
   ],
   vite: {
     worker: { format: 'es' },

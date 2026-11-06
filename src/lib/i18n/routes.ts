@@ -24,6 +24,7 @@ export const VIEW_KINDS = [
   'privacy',
   'search',
   'notFound',
+  'dev',
 ] as const
 
 export type ViewKind = (typeof VIEW_KINDS)[number]
@@ -52,6 +53,7 @@ const SEGMENT: Record<Exclude<ViewKind, 'home'>, SegmentMap> = {
   privacy: { fr: 'confidentialite', en: 'privacy' },
   search: { fr: 'recherche', en: 'search' },
   notFound: { fr: '404', en: '404' },
+  dev: { fr: 'dev', en: 'dev' },
 }
 
 export const CATEGORY_SEGMENT: Record<BookCategory, SegmentMap> = {
@@ -69,6 +71,7 @@ export type RouteParams = {
   book?: string | undefined
   chapter?: string | undefined
   slug?: string | undefined
+  tool?: string | undefined
 }
 
 export function segmentsFor(kind: ViewKind, locale: Locale, params: RouteParams = {}): string[] {
@@ -91,6 +94,10 @@ export function segmentsFor(kind: ViewKind, locale: Locale, params: RouteParams 
   }
   if (kind === 'archive') {
     const tail = [params.slug].filter((v): v is string => v !== undefined)
+    return [head, ...tail]
+  }
+  if (kind === 'dev') {
+    const tail = [params.tool].filter((v): v is string => v !== undefined)
     return [head, ...tail]
   }
   return [head]
@@ -208,6 +215,7 @@ const PAGE_DEPTH: Record<ViewKind, number | undefined> = {
   credits: LIST_DEPTH,
   privacy: LIST_DEPTH,
   notFound: LIST_DEPTH,
+  dev: LIST_DEPTH,
   book: ENTRY_DEPTH,
   tree: ENTRY_DEPTH,
   speciesEntry: ENTRY_DEPTH,

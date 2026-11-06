@@ -200,3 +200,12 @@ test('without WebGL2 the lore keeps its picture and logs nothing', async ({ page
   await expect(page.locator(`${HOST} > img[data-almanach-picture]`)).toBeVisible()
   expect(errors).toEqual([])
 })
+
+test('the build carries no Dev Hub', async ({ page }) => {
+  await page.goto('/fr')
+  await expect(page.locator('#site-header [data-dev-hub]')).toHaveCount(0)
+  const response = await page.goto('/fr/dev')
+  expect(response?.status()).toBe(404)
+  const built = await readdir(resolve(root, 'dist'), { recursive: true })
+  expect(built.filter((path) => /(^|\/)dev(\/|$)|AlmanachWorkbench|dev-hub/.test(path))).toEqual([])
+})

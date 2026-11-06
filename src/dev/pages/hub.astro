@@ -1,0 +1,46 @@
+---
+import Base from '../../layouts/Base.astro'
+import { corpus } from '../../lib/game/corpus'
+import { LOCALES, type Locale } from '../../lib/i18n/locales'
+import { pathFor } from '../../lib/i18n/routes'
+import { DEV_HUB } from '../copy'
+import '../dev-hub.css'
+
+export function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { locale }, props: { locale } }))
+}
+
+type Props = { locale: Locale }
+
+const { locale } = Astro.props
+const data = await corpus(locale)
+---
+
+<Base
+  locale={locale}
+  kind="dev"
+  title={DEV_HUB.title}
+  description={DEV_HUB.description}
+  corpus={data}
+  noIndex
+>
+  <div class="au-dev" lang="fr">
+    <header class="au-dev__head">
+      <p class="au-dev__tape">{DEV_HUB.tape}</p>
+      <h1 class="au-dev__title">{DEV_HUB.title}</h1>
+      <p class="au-dev__lede">{DEV_HUB.lede}</p>
+    </header>
+    <ul class="au-dev__tools">
+      {
+        DEV_HUB.tools.map((entry) => (
+          <li>
+            <a class="au-dev__tool" href={pathFor('dev', locale, { tool: entry.tool })}>
+              <strong>{entry.name}</strong>
+              <span>{entry.line}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Base>

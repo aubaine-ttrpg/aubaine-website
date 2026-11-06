@@ -31,6 +31,12 @@ export function artImage(file: string | undefined): ImageMetadata | undefined {
   return pick(ART, 'art', file)
 }
 
+export function artFiles(): readonly string[] {
+  return Object.keys(ART)
+    .map((path) => path.slice('/data/media/art/'.length))
+    .sort()
+}
+
 export function itemImage(file: string | undefined): ImageMetadata | undefined {
   return pick(ITEMS, 'items', file)
 }

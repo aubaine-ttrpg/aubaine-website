@@ -1,0 +1,103 @@
+---
+import { getImage } from 'astro:assets'
+
+import captions from '../../../data/media-captions.json'
+import Almanach from '../../components/primitives/Almanach.astro'
+import Base from '../../layouts/Base.astro'
+import { ALMANACH_MAGICS } from '../../lib/art-effect/almanach-look'
+import { almanachStyle, almanachStyleIds } from '../../lib/art-effect/almanach-styles'
+import { corpus } from '../../lib/game/corpus'
+import { LOCALES, type Locale } from '../../lib/i18n/locales'
+import { pathFor } from '../../lib/i18n/routes'
+import { artFiles, artImage } from '../../lib/media'
+import { indexCaptions } from '../../lib/rights/captions'
+import AlmanachWorkbench, { type WorkbenchArt, type WorkbenchMagic } from '../AlmanachWorkbench'
+import { WORKBENCH } from '../copy'
+import '../dev-hub.css'
+
+export function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { locale }, props: { locale } }))
+}
+
+type Props = { locale: Locale }
+
+const { locale } = Astro.props
+const data = await corpus(locale)
+const captionOf = indexCaptions(captions)
+
+function altOf(file: string): string {
+  return (
+    captionOf.get(`art/${file}`)?.description ??
+    file.replace(/-\d+_\d+-[a-z0-9_]+\.(?:png|jpg)$/, '').replaceAll('-', ' ')
+  )
+}
+
+const arts: WorkbenchArt[] = await Promise.all(
+  artFiles().map(async (file) => {
+    const image = artImage(file)
+    if (!image) throw new Error(`${file} is listed but cannot be loaded`)
+    const [thumb, full] = await Promise.all([
+      getImage({ src: image, width: 240, format: 'webp' }),
+      getImage({ src: image, width: 1440, format: 'webp' }),
+    ])
+    return { file, alt: altOf(file), thumb: thumb.src, full: full.src }
+  }),
+)
+
+const magics: WorkbenchMagic[] = ALMANACH_MAGICS.map((magic) => {
+  const name = magic === 'nature' ? WORKBENCH.nature : data.domains.get(magic)?.labelFr
+  if (!name) throw new Error(`the magic ${magic} is not a key of data/meta/domains.json`)
+  return { magic, name }
+})
+
+const styles = Object.fromEntries(
+  almanachStyleIds().flatMap((id) => {
+    const style = almanachStyle(id)
+    return style ? [[id, style] as const] : []
+  }),
+)
+
+const sample = arts[0]
+---
+
+<Base
+  locale={locale}
+  kind="dev"
+  params={{ tool: 'almanach' }}
+  title={WORKBENCH.title}
+  description={WORKBENCH.description}
+  corpus={data}
+  noIndex
+>
+  <div class="au-dev" lang="fr">
+    <header class="au-dev__head">
+      <p class="au-dev__tape">{WORKBENCH.tape}</p>
+      <h1 class="au-dev__title">{WORKBENCH.title}</h1>
+      <p class="au-dev__lede">{WORKBENCH.lede}</p>
+    </header>
+
+    <AlmanachWorkbench client:idle arts={arts} styles={styles} magics={magics} />
+
+    {
+      sample && Object.keys(styles).length > 0 && (
+        <section class="au-dev-gallery" aria-labelledby="au-dev-gallery">
+          <h2 id="au-dev-gallery">{WORKBENCH.gallery}</h2>
+          <p class="au-dev-hint">{WORKBENCH.galleryHint}</p>
+          <div class="au-dev-gallery__grid">
+            {Object.keys(styles).map((id) => (
+              <div class="au-dev-gallery__item">
+                <Almanach style={id} pictures={[{ art: sample.file, alt: sample.alt }]} />
+                <p class="au-dev-gallery__name">
+                  <code>{id}</code>
+                  <a href={`${pathFor('dev', locale, { tool: 'almanach' })}?almanach=${id}`}>
+                    {WORKBENCH.openInEditor}
+                  </a>
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )
+    }
+  </div>
+</Base>
