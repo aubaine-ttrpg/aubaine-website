@@ -1,5 +1,5 @@
 import type { ArtEffect } from '../art-effect/effects'
-import { artKeyColour } from '../art-key-colour'
+import { keyOf } from '../art-key-colour'
 import type { Locale } from '../i18n/locales'
 import { pathFor } from '../i18n/routes'
 import { strings } from '../i18n/strings'
@@ -50,11 +50,6 @@ export type EntryCard = {
 }
 
 const CHARACTERISTIC_FALLBACK = '#8a7c5c'
-
-function keyOf(cover: string | undefined, authored: string | undefined, fallback: string) {
-  if (authored) return Promise.resolve(authored)
-  return cover ? artKeyColour(cover) : Promise.resolve(fallback)
-}
 
 function statusLabelsOf(locale: Locale): Record<ContentStatus, string> {
   const t = strings(locale)

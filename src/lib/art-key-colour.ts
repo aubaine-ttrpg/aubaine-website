@@ -27,3 +27,12 @@ export function artKeyColour(file: string): Promise<string> {
   known.set(file, read)
   return read
 }
+
+export function keyOf(
+  cover: string | undefined,
+  authored: string | undefined,
+  fallback: string = KEY_FALLBACK,
+): Promise<string> {
+  if (authored) return Promise.resolve(authored)
+  return cover ? artKeyColour(cover) : Promise.resolve(fallback)
+}
