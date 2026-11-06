@@ -4,5 +4,5 @@
   "activation": "1 Bonus Action",
   "range": "Self",
   "duration": "Instantaneous",
-  "description": "Your people's villages melt into the greenery, and you have learned to do the same.\n\nIf natural cover surrounds you (branches, driving rain, fog, falling snow or natural darkness), you use {{CACHER-001}} as part of this {{action-bonus}}, even in full light, and your {{jet}} ({{dexterite}} + {{discretion}}) to become {{cache}} gains 1 {{avantage}}."
+  "description": "Your people's villages melt into the greenery, and you have learned to do the same.\n\nIf natural cover surrounds you (branches, driving rain, fog, falling snow or natural darkness), you use {{CACHER-001}} as part of {{CACNAT-001|this Skill}}, even in full light, and your {{jet}} ({{dexterite}} + {{discretion}}) to become {{cache}} gains 1 {{avantage}}."
 }
