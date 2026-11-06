@@ -978,7 +978,7 @@ describe('media', () => {
 
   it('names every image for the aspect ratio it actually has', async () => {
     for (const [directory, ratios] of [
-      ['data/media/art', ['16_9', '3_4', '3_1', '3_2']],
+      ['data/media/art', ['16_9', '3_4', '3_1', '3_2', '1_1']],
       ['data/media/skills', ['1_1']],
       ['data/media/items', ['1_1']],
     ] as const) {
@@ -1431,7 +1431,7 @@ describe('authored prose markup', () => {
       lines.forEach((line, index) => {
         if (!line.includes(':source[')) return
         expect(
-          /^> :source\[.+\]$/.test(line),
+          /^> :source\[.+\](?:\{[^{}]+\})?$/.test(line),
           `${where} writes :source[ outside a blockquote line of its own`,
         ).toBe(true)
         expect(
@@ -1439,6 +1439,24 @@ describe('authored prose markup', () => {
           `${where} continues the blockquote after its :source[`,
         ).toBe(false)
       })
+    }
+  })
+
+  it('stages each quote the same way in both languages', async () => {
+    const stagings = (text: string): string[] =>
+      text
+        .split('\n')
+        .filter((line) => line.startsWith('> :source['))
+        .map((line) => /\](\{[^{}]+\})?$/.exec(line)?.[1] ?? '')
+    const pages = await authoredProse()
+    const french = new Map(
+      pages.filter((page) => page.locale === 'fr').map((page) => [page.path, page.text]),
+    )
+    for (const page of pages) {
+      if (page.locale !== 'en') continue
+      const original = french.get(page.path.replace(/\.en\.md$/, '.md'))
+      if (original === undefined) continue
+      expect(stagings(page.text), page.where).toEqual(stagings(original))
     }
   })
 

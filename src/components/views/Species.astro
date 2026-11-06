@@ -1,4 +1,5 @@
 ---
+import { keyOf } from '../../lib/art-key-colour'
 import { skillBrowseEntries } from '../../lib/game/browse-entries'
 import { speciesSheet } from '../../lib/game/character-sheet'
 import type { Corpus, ResolvedSpecies } from '../../lib/game/corpus'
@@ -13,6 +14,7 @@ import { loreFor } from '../../lib/game/prose'
 import type { SubspeciesLabel } from '../../lib/game/schema'
 import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
+import { readingKeys } from '../../lib/key-colour'
 import BrowseList from '../primitives/BrowseList.astro'
 import CharacterHero from '../primitives/CharacterHero.astro'
 import Heraldry from '../primitives/Heraldry.astro'
@@ -58,6 +60,7 @@ const lore = await loreFor('species', species.id, locale)
 const LoreOpening = lore?.opening?.Content
 const LoreSections = lore?.sections?.Content
 const hasPlayReading = LoreOpening !== undefined || hasPlaying
+const keys = readingKeys(await keyOf(species.cover, species.keyColour))
 
 function numbered<T extends object>(sections: T[]) {
   return sections.map((section, position) => ({
@@ -112,7 +115,7 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
           </nav>
         )}
         <div class="au-reading__body">
-          <div class="au-prose">
+          <div class="au-prose" style={keys}>
             {LoreOpening && <LoreOpening />}
 
             {hasPlaying && (
@@ -263,7 +266,7 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
           </nav>
         )}
         <div class="au-reading__body">
-          <div class="au-prose">
+          <div class="au-prose" style={keys}>
             <LoreSections />
           </div>
         </div>

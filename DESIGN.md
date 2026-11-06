@@ -45,7 +45,7 @@ stage, one Roman numeral per entry, and the lit numeral cut in paper over a slab
 
 ### The approved pieces
 
-Four pieces carry the direction; the others follow them.
+Five pieces carry the direction; the others follow them.
 
 | Piece | Code | Routes | Approved |
 | --- | --- | --- | --- |
@@ -53,11 +53,13 @@ Four pieces carry the direction; the others follow them.
 | The select screen, which opens the Arbres and Espèces lists | `src/components/primitives/SelectScreen.astro`, with `TitlePlates.astro`, `FilterBar.astro`, `CoverCard.astro`, `Spotlight.astro`, `SpotlightPanel.astro` and `src/scripts/select-screen.ts` | `/fr/arbres`, `/fr/especes`, `/en/trees`, `/en/species` | 2026-10-28 |
 | The plate menu, which opens the Codex hub | `src/components/primitives/PlateMenu.astro`, with `PlateDoor.astro`, `DoorGlyph.astro`, `src/styles/doors.css` and `src/scripts/door-light.ts` | `/fr/almanach`, `/en/almanach` | 2026-10-31 |
 | The contents spread, which opens the Livres hub | `src/components/primitives/SommaireSpread.astro`, with `SommaireEntry.astro`, `src/styles/doors.css` and `src/scripts/door-light.ts` | `/fr/livres`, `/en/books` | 2026-10-31 |
+| The quote and the dialogue of a lore page | `rehypeProseQuotes` in `src/lib/game/book-markup.ts` and `src/styles/prose.css` | every species page whose lore holds a quote, such as `/fr/espece/humain` and `/fr/espece/scothan` | 2026-11-04 |
 
 - The sheet and the select screen are approved as they stand at commit `a9b3954` (2026-10-29), and the
   pages that use them still render identically. `tests/e2e/character-hero.spec.ts`,
-  `tests/e2e/select-screen.spec.ts` and `tests/e2e/hubs.spec.ts` guard the four.
-- Screenshots of the four are in `.claude/skills/aubaine-design/assets/approved/`.
+  `tests/e2e/select-screen.spec.ts` and `tests/e2e/hubs.spec.ts` guard the first four,
+  `tests/e2e/lore-quote.spec.ts` the quote.
+- Screenshots of the five are in `.claude/skills/aubaine-design/assets/approved/`.
 
 ### Three games, three layers
 
@@ -189,6 +191,8 @@ Each principle names its source.
     ([Kotaku, 2024](https://kotaku.com/-metaphor-refantazio-persona-5-menu-ui-hashino-1851667088)).
     Persona 5's Confidant screen sets its descriptions level, in a plain face on black panels.
 12. **Intensity follows the place.** Choice screens and hubs carry the show; reading pages stay calm.
+    The quote and the dialogue of a lore page are the one exception the owner made: game pieces inside
+    the reading, drawn from Persona 5's dialogue box (`docs/adr/0068-a-lore-quote-is-a-staged-game-dialogue-box.md`).
     *Source:* on Persona 5 Royal's interface at school and in the subway, "In these places, everything
     is tuned out to look muted and drab.", while in its dungeons "everything features high-contrast,
     kinetic energy"
@@ -261,6 +265,11 @@ species), status badges, and the select screen's chrome, which stays house gold:
 Filtres, « Ouvrir la fiche », the step chevrons, the help glyph, the group marks and the results tape.
 Rules and quiet borders are line gold everywhere, never the key.
 
+**The reading column takes it too.** `Species.astro` and `Tree.astro` set `--key` and `--key-paper` on
+their reading columns (`readingKeys` in `src/lib/key-colour.ts`): a lore quote's background, its big
+quotation mark, its nameplates' edge and its second speaker's tag take the entry's key; elsewhere a quote
+takes house gold.
+
 ### Seals
 
 A seal is the picture of an entry without a cover (`CoverSeal.astro`, `src/lib/game/seals.ts`).
@@ -291,6 +300,8 @@ own colour (`.claude/rules/frontend/kind-marks.md`).
 - Every stage carries `.au-dark` (the sheet, the select screen, each roster card), which restores the dark
   tokens; only the reading below a stage follows the light theme. `tests/e2e/character-hero.spec.ts` and
   `tests/e2e/hub-stage.spec.ts` check it.
+- A lore quote's boxes are night and its title bone in both themes; print and forced colours show it as a
+  plain quote with its guillemets.
 - In print the stage drops out and the inks turn dark. On the sheet, the select screen and an empty
   category's page gold turns `#93701a`, which reads on white and takes black on it, with or without
   background graphics. The Codex and Livres title plates keep house gold, and a roster card keeps its own
@@ -648,6 +659,16 @@ From the back to the front:
 - `src/components/views/BookCategory.astro` and `src/lib/game/library.ts`: the Livres category pages;
   `EmptyStage.astro`: the page of a category with nothing yet, around `EmptyState.astro`.
 - Built only on the gated prototype page: `SlantedDoors.astro` with `SlantedDoor.astro`.
+
+**Reading**
+
+- `rehypeProseQuotes` in `src/lib/game/book-markup.ts`: a blockquote becomes a speech or a dialogue, its
+  source line the title, staged at a corner from `TITLE_CORNERS` on a background from `QUOTE_BACKINGS`.
+- `src/styles/prose.css`: the night dialogue box with its bone contour, the bone title with its black
+  nameplates, the big “ at the free corner, the name tags, the slab or the echoed box behind, and a
+  dialogue turn's optional portrait, a bust in front of its box, one size for every turn. A dialogue's boxes
+  climb half as steeply as a speech's. The right-hand speaker has a box of her own, its far end a point
+  aimed at the other speaker.
 
 **Measuring**
 

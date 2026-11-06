@@ -174,13 +174,19 @@ Un bloc sans image. Les tableaux, les listes et les listes de définitions march
 c'est du markdown ordinaire.
 ```
 
-A quote is an ordinary markdown blockquote, framed on its own. When someone says it, close the blockquote with a last line `> :source[...]`: the page prints that line as the attribution, under the quote and outside it.
+A quote is an ordinary markdown blockquote, drawn as a dialogue box. When someone says it, close the blockquote with a last line `> :source[...]`: the page prints that line as the quote's title, outside the box. Write every person the line names in bold: each prints on a black nameplate.
+
+Two words in braces after the closing bracket stage the quote: the corner its title takes, then the background behind the box. `TITLE_CORNERS` and `QUOTE_BACKINGS` in `src/lib/game/book-markup.ts` list them, such as `bottom-right` and `echo`; without braces the title takes the top left and the box the slab, `tranche`. Any other word stops the build. The English line stages its quote with the same words, and `pnpm data:check` fails when the two differ.
 
 ```markdown
 > « Arthur, vois ces stèles : tant d'hommes et d'elfes ont versé leur sang ici. »
 >
-> :source[Jacques « Le Scellaire » Arsenault s'adressant à Arthur Colbert.]
+> :source[**Jacques « Le Scellaire » Arsenault** s'adressant à **Arthur Colbert**.]{top-left tranche}
 ```
+
+A blockquote whose paragraphs open on a bold speaker and a colon, `**Tiar :** « … »`, with two turns or more, is a dialogue: one box per turn, the speaker's name on a tag across its edge.
+
+A turn may open on its speaker's portrait, a 1:1 picture in `data/media/art/` written before the name: `> ![](../../media/art/tiar-vyrefiel-severe-1_1-og.png) **Tiar :** « … »`. It stands beside the box, mirrored for the second speaker so the two face each other. A turn without one keeps the plain box. Pick each expression for the character as much as for the line.
 
 A picture is an ordinary markdown image whose path is relative to the lore file, so it always reads
 `../../media/art/<file>`, and `pnpm data:check` fails on a path that points anywhere else or at a

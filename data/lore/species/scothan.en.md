@@ -2,15 +2,15 @@ Scothans are the children of two peoples. Fir Bolg antlers rise above an elven b
 
 The word is old Galwarian. *Scothan* meant mixed blood, crossbreed, sometimes bastard, and everyone still picks the translation that suits them. For centuries it was thrown in their faces at court, in the market and at the foot of the registers. Today's Scothans claim it, and now they are the ones who say it first.
 
-> **Tiar:** "Before the matrons, you will cover those antlers. They are hideous."
+> ![](../../media/art/tiar-vyrefiel-severe-1_1-og.png) **Tiar:** "Before the matrons, you will cover those antlers. They are hideous."
 >
-> **Shadeheart:** "My mother never asked me to cover them… Your Majesty."
+> ![](../../media/art/sombrecoeur-hautaine-1_1-og.png) **Shadeheart:** "My mother never asked me to cover them… Your Majesty."
 >
-> **Tiar:** "Hmph. Your mother never asked anything of you, and it shows. Cover them, or have them cut."
+> ![](../../media/art/tiar-vyrefiel-agacee-1_1-og.png) **Tiar:** "Hmph. Your mother never asked anything of you, and it shows. Cover them, or have them cut."
 >
-> **Shadeheart:** "Huh… Cutting them won't make me an elf."
+> ![](../../media/art/sombrecoeur-defiante-1_1-og.png) **Shadeheart:** "Huh… Cutting them won't make me an elf."
 >
-> :source[Queen Tiar Vyrefiel and her granddaughter, Shadeheart.]
+> :source[**Queen Tiar Vyrefiel** and her granddaughter, **Shadeheart**, at court, shortly before the founding of the Faebies.]{bottom-left echo}
 
 ## A bad omen
 

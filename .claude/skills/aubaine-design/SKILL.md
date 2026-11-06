@@ -66,7 +66,8 @@ argument-hint: [page or piece, and what should change]
 ## The approved pieces
 
 The character sheet (`CharacterHero.astro`), the select screen (`SelectScreen.astro`), the Codex plate
-menu (`PlateMenu.astro`) and the Livres contents (`SommaireSpread.astro`) are approved; `references/approved-pieces.md` lists their files, routes and
+menu (`PlateMenu.astro`), the Livres contents (`SommaireSpread.astro`) and the lore quote and dialogue
+(`rehypeProseQuotes`, `src/styles/prose.css`) are approved; `references/approved-pieces.md` lists their files, routes and
 guard tests, and `assets/approved/` shows them. They set the direction: build new pieces from their
 vocabulary and reuse their components, but never copy one to change it, and never touch them unless the
 owner asks. Before and after any change near them, compare their renders (`references/measuring.md`).

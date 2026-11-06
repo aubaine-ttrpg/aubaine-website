@@ -573,6 +573,42 @@ starbursts here are static ornaments. Atlus's stated rule for a level change is 
 「下の階層に移動するときは、レイアウトやアングルを変えて、階層認識のしやすさを意識。」
 ([Famitsu](https://www.famitsu.com/news/201711/13145540.html), 2017-11-13). Nobody has measured a menu page change.
 
+## Added on 2026-11-04: dialogue, narration and notices
+
+For the lore quote, the dialogue and the tip. Viewed on 2026-11-04 from copies captured into an earlier
+session's scratchpad: the Steam pictures at 1920 × 1080, RPGFan's Royal gallery at 700 × 394. Royal
+numbers are written `P5R ss-NNN`, apart from Persona 5's own gallery above (P5 099 is the fusion list).
+Tilts are estimates from pixel positions; the Japanese glosses are the researcher's translations.
+
+| Screen | Pictures | What it shows |
+| --- | --- | --- |
+| Story dialogue box, English build | [Steam P5R #0](https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1687950/ss_663171dc3afce8fe987e57e8659f91b69faa39bc.1920x1080.jpg), [#2](https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1687950/ss_ddcc016b8e5c434ccbd1a89c0157ce73acf905ae.1920x1080.jpg), [#3](https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1687950/ss_c665872b4c5cb3a4e4fd3a4abde97ee60fe51e33.1920x1080.jpg) | A black irregular four-sided box, its top edge rising about 6°, a white outline about 7 px with a thin black line outside. The name on a white parallelogram outlined in black, across the box's top-left edge, turned 13 to 17°, one letter (not always the first) inverted. The words level, left-aligned, in a heavy sans. Between turns the box keeps its place and shape; only the tag, the portrait and a white wedge out of the box's right end change. |
+| A higher voice in the same box | [P5R ss-079](https://www.rpgfan.com/wp-content/uploads/2020/06/Persona-5-Royal-ss-079.jpg), [P5R ss-105](https://www.rpgfan.com/wp-content/uploads/2020/06/Persona-5-Royal-ss-105.jpg) | A Persona's vow and a head priest's proverb get no special frame: the ordinary box and tag, no portrait, the white wedge out of the right end. An unnamed speaker's tag carries a role (柔和な顔の住職, "the gentle-faced head priest"). |
+| Velvet Room warden's line | [P5R ss-020](https://www.rpgfan.com/wp-content/uploads/2020/06/Persona-5-Royal-ss-020.jpg) | One slanted red plate lower right: the speaker's name small on top, one short line under it, both left-aligned. |
+| Narration bar | [P5R ss-019](https://www.rpgfan.com/wp-content/uploads/2020/06/Persona-5-Royal-ss-019.jpg) | A long black bar rising about 5°, a thin white outline, a notched left end, white text. |
+| Titled notice | [P5R ss-099](https://www.rpgfan.com/wp-content/uploads/2020/06/Persona-5-Royal-ss-099.jpg) | A small title tier (宣戦布告) over one sentence on a black bar with a white outline; the key term in light blue. |
+| Navigator balloon | [P5R ss-100](https://www.rpgfan.com/wp-content/uploads/2020/06/Persona-5-Royal-ss-100.jpg) | Upper right, a short helper line in its own balloon with the navigator's portrait in a frame cut by the screen's corner; a narration bar on the left. |
+
+Not found as stills: the backlog (Log) screen, the Confidant « I am thou » text, the awakening contract,
+tutorial windows. No maker quote on dialogue boxes or tutorials was found.
+
+Viewed again on 2026-11-04 at full size, for how Persona 5 layers a plate over a coloured shape:
+
+| Screen | Pictures | What it shows |
+| --- | --- | --- |
+| Velvet Room services | [P5 098](https://www.rpgfan.com/wp-content/uploads/2020/10/Persona-5-Screenshot-098.jpg) | The pointed service sits on a red slab far larger than its words, a sheared four-sided shape turned about 30° against them: the slab crosses its item, it does not frame it. Words white with a thick black contour. Igor's line on a stepped grey plate outlined in black, the name tier stepped above the line tier, both one outlined shape. |
+| Confidant | [the student blog's figure](https://mechanicsofmagic.com/wp-content/uploads/2022/04/cff88b3c293e4b48bfe3a138a8f9ae57.jpeg) | Panels stacked with offsets: the white name plate over the black description panel, the black panel's white outline offset from it; grey diagonal bands crossing the red ground behind every panel; descriptions level in a white sans. |
+| Story box, a shadow speaking | [Steam P5R #3](https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1687950/ss_c665872b4c5cb3a4e4fd3a4abde97ee60fe51e33.1920x1080.jpg) | The box rises to the right with its thick white contour; the name tag at its low left end, a spike and a zigzag tail to the portrait; a large white wedge out of the right end, also rising right. Every shape on the screen leans the same way. |
+
+**What Aubaine takes:** one rising direction for every plate and box, with only the coloured shape behind
+crossing it; a coloured shape that crosses its item rather than framing it; a thick light contour with a
+thin dark line outside; plates stacked with offsets.
+
+**What Aubaine takes:** one box shape for every speaker, the name on a small plate across the box's
+top-left edge, the words level in a box whose edges slope; a title tier over a sentence; a key term in its
+own colour; since 2026-11-04 the speaker's bust beside the box, in front of its edge. **What stays in the game:** tags past 4°, inverted letters, zigzag tails,
+the controls' words.
+
 ## Capture inventory
 
 - **Viewed on 2026-10-30**, read from their source pages and never copied into the repository:

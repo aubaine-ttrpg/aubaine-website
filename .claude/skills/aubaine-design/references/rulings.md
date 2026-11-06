@@ -146,6 +146,97 @@ name, a label, a joke or a mechanic.
 
 > "Goat not G.O.A.T as G.O.A.T is a great pun but is already used by Deadlock, we don't still ideas here" (2026-10-23)
 
+**Take the screens' shapes, not only their type and colour.** A direction drawn from the three games
+carries their plates, panels, tags, bands and offsets. A proposal that keeps their type and colour on a
+plain ground, or puts text in a plain box, is rejected: on 2026-11-03 a paper slip, an open epigraph and a
+margin column were refused for the lore quote, and on 2026-11-04 night boxes without a background, titled
+or tagged, and lines on strips were judged ugly.
+
+**Stand to the reference.** Every direction names the in-game screen it comes from, keeps that screen's
+structure (its shapes, their order and their overlaps), and says what it leaves in the game and why
+(2026-11-03).
+
+**The quote and the dialogue are game pieces.** On 2026-11-04 the owner asked for the lore quote and the
+dialogue to be redesigned with Persona 5's in-game interface as their main source, inside Aubaine's art
+direction. That request sets principle 12 of `DESIGN.md` (reading pages stay calm) aside for these two
+pieces only; they still read first. The structure of a dialogue is the owner's: a title, then one dialogue
+box per turn, each naming its speaker on a small box, as a game's dialogue box does. The handbook's tip,
+asked for in the same message, was dropped later that day; its `[!TIP]` callout stays without a look of
+its own.
+
+**The layered look is the direction.** The round of 2026-11-03 drew each piece on a key-colour halftone
+background, a single speech on one panel and each dialogue turn on its own echoed backing. On 2026-11-04
+the owner rejected that round as bad UI, then, after a plainer rebuild, asked to redo its look better:
+the background and the echoed shapes came close to aesthetic, but the execution followed neither
+Aubaine's art direction nor Persona 5's interface and felt off.
+
+**A dialogue names its speaker on the box.** A spoken turn is a dialogue box with the speaker's name on
+its edge, as a game's dialogue box carries its name tag (2026-11-03).
+
+**Each piece of a dialogue carries its own backing; a single speech keeps its one panel.** A run of
+plates does not sit on one long coloured panel: the title and each box take their own key halftone
+backing. A single speech keeps one panel; giving it the dialogue's backings was refused (2026-11-03).
+
+**Text turns with the tag it is printed on.** A name, a title or an attribution on a turned plate turns
+with it; the said words stay level inside their box (2026-11-03).
+
+**Punctuation clears a dark plate.** A comma or a full stop beside a black name plate keeps room from it,
+so dark on dark never swallows it (2026-11-03).
+
+**A title says who and where.** A single speech takes its source line as a title, which names the scene
+and the characters, rather than a name tag on its box (2026-11-04, after seeing both live). The title of
+a quote or a dialogue can sit at any of the four corners. On 2026-11-03 the owner had picked, for a single
+speech, the same plate on every corner with only the box's edges and the panel redrawn per corner; on
+2026-11-04, after seeing that beside a box that keeps one shape on every corner, they kept the box
+redrawn per corner and dropped the fixed one.
+
+**The people a title names are black nameplates.** Every person a source line names, the speaker, whom
+they address, a god or a figure the scene turns on, prints on a black plate in bone Cinzel capitals with
+an edge in the entry's key colour, inside the bone title. The owner asked for it back on 2026-11-04,
+after seeing the round's title with its names only set in a heavier weight: the plates of the round of
+2026-11-03 had read as the characters of the scene. A name takes its plate by being bold in the source
+line, and every person named there is bold.
+
+**Each quote takes the background that suits its mood.** The two backgrounds stay: the slab of the
+character sheet crossing the box (Tranche) and the box's own silhouette repeated behind it (Écho). Each
+source line chooses one, with its corner, rather than one look for every quote (2026-11-04).
+
+**A dialogue can show its speakers' portraits.** A turn may open on its speaker's portrait, as Persona 5's
+story screen shows the speaker beside the dialogue box; a turn without one keeps the plain box. Of the two
+designs shown live on 2026-11-04, the owner picked the bust beside its box over a framed portrait set into
+the box's corner. Three corrections shaped it that day: the bust stands in front of the box, and the words
+and the name tag keep a clear gap from it, so it never covers text; every bust of a dialogue is the same
+size, the boxes growing to fit it as the game's box keeps one size from line to line; the boxes sit closer
+together than the first draft left them.
+
+**In a dialogue each side has its own box.** Aubaine's dialogue sets each speaker on a side of their
+own, which Persona 5 never does: its speaker stays on the left and its box never moves. So the
+right-hand speaker gets a box of her own design, never the left-hand box flipped or turned: a mirror and
+then a half turn were both refused on 2026-11-04 as odd and ugly, and the half turn also looked too big
+beside the other. Picked on 2026-11-05 between two live options, the right-hand box ends in a point
+aimed at the other speaker (« Pointe »); a long slanted end (« Biais ») was the other. Where an Aubaine
+piece already departs from its reference, Aubaine's own logic decides what follows, not the reference
+(2026-11-04). Her words start at the low point while the box's top edge climbs away from them, so the
+empty room falls at the start of her text, where Tiar's falls at the end of his. On 2026-11-06, among four
+live options, the owner picked halving that slope (« Pente douce »); her first line following the slope,
+a top edge rising to her tag, and a level top were the others. The same day the left-hand box took the
+same gentle slope, so both sides of a dialogue climb alike.
+
+**A portrait anchors its box.** The bust stands centered over the end of its box and hides it: the
+box's end sits low and passes behind the face, so no corner shows through the hair or the antlers, and
+the box's foot runs into the bust's foot, so the bust stands on it rather than floating. Each box's
+background reaches out on the side away from its portrait, the echo of the right-hand box toward the
+left. The owner held Tiar's turn up as the model on 2026-11-05.
+
+**A portrait's expression follows who the character is.** Pick each portrait's expression from the
+character as much as from the line. Sombrecœur, strong, independent, rebellious and the future leader of
+the Faebies, answers her grandmother haughty, then defiant with a half-smile; a furious portrait and a
+sorrowful one were both refused for her last line (2026-11-04).
+
+**A quote shows big quotation marks.** A single speech carries one big, stylized quotation mark, “ in both
+languages; the text keeps its own marks, hidden on screen behind it. Inside dialogue boxes the turns'
+quotation marks are hidden on screen too, since the name tag already marks the speech (2026-11-04).
+
 ## The approved pieces
 
 **They are the reference: inspire, never copy.** The character sheet and the select screen are the only
@@ -167,7 +258,11 @@ their lists byte for byte as they render (`approved-pieces.md` lists their files
 **The approvals.** The character sheet on 2026-10-27 (`../assets/approved/sheet-tree-marchand.jpg`,
 `sheet-species-drow.jpg`); the select screen on 2026-10-28, with that day's round on the sheet
 (`select-screen-arbres.jpg`); the hub plate menu, B+, and the Livres contents, C+, on 2026-10-31
-(`hub-codex.jpg`, `hub-livres.jpg`). Their values are in `approved-pieces.md`.
+(`hub-codex.jpg`, `hub-livres.jpg`); the lore quote and dialogue on 2026-11-04, the round « La scène »
+with the box redrawn per corner, both backgrounds and the black nameplates
+(`lore-quote-humain.jpg`, `lore-quote-mort-vivant.jpg`), and the same day the dialogue's portraits, the
+bust beside each box (`lore-dialogue-scothan.jpg`). Their values are in
+`approved-pieces.md`.
 
 **The select screen's shape is the owner's pick.** On 2026-10-27, among proposals, the owner chose the
 roster on the left and the spotlight on the right, the spotlight on top with ‹ › arrows on a phone, and
@@ -697,3 +792,4 @@ and praised the Saison slider.
 | 2026-11-01 | the help button's margin and the stage pages' print, by request |
 | 2026-11-02 | the carry on one curve with live arrivals on landing, approved; what stays is whole when the pieces land; approvals recorded as what was approved; the stage stays alive through a page change; a tree writes its key colour and a kept reading is pinned; never edit an `-og` file, mirror a cover by option; a Codex door name holds one line on a desktop; the Codex panel slides off, uncovering the spotlight |
 | 2026-11-03 | a descriptor sticker can cross its word out; the strike is the elf's gesture, and it lands; the slash after a beat, approved; a descriptor sticker can hold its word back; each dot is a punch, and the word trembles; the held word, approved; gilt is shaded metal, never flat yellow; the banner stirs in a light wind |
+| 2026-11-04 | take the screens' shapes (with 2026-11-03); stand to the reference, a dialogue names its speaker, each dialogue piece its own backing, text turns with its tag, punctuation clears a dark plate (all 2026-11-03, restored); the quote and the dialogue are game pieces; the layered look is the direction; a title says who and where, on any corner, the box redrawn per corner; a quote shows big quotation marks; the people a title names are black nameplates; each quote takes the background that suits its mood; the lore quote and dialogue, approved; a dialogue can show its speakers' portraits, the bust picked; in a dialogue each side has its own box, the point picked (2026-11-05), both slopes halved (2026-11-06); a portrait anchors its box; a portrait's expression follows who the character is |

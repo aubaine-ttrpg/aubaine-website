@@ -94,6 +94,10 @@ export function readableOnNight(colour: string): string {
   throw new Error(`${colour} cannot be lifted to read on night`)
 }
 
+export function readingKeys(key: string): string {
+  return `--key:${key}; --key-paper:${readableOnNight(key)}`
+}
+
 function dominantHue(coloured: Oklch[]): number {
   const counts = new Array<number>(BINS).fill(0)
   for (const { hue } of coloured) {

@@ -1,13 +1,16 @@
 ---
+import { keyOf } from '../../lib/art-key-colour'
 import { hasBooklet } from '../../lib/booklet/manifest'
 import { skillSources, treeNodeAttributes } from '../../lib/game/browse-entries'
 import { treeSheet } from '../../lib/game/character-sheet'
 import type { Corpus, ResolvedTree } from '../../lib/game/corpus'
 import { formatNumber, showsXp, xpOf } from '../../lib/game/derive'
 import { loreFor } from '../../lib/game/prose'
+import { treeSealKey } from '../../lib/game/seals'
 import type { Locale } from '../../lib/i18n/locales'
 import { pathFor, TREE_ANCHOR, treeNodeHref } from '../../lib/i18n/routes'
 import { strings } from '../../lib/i18n/strings'
+import { readingKeys } from '../../lib/key-colour'
 import { bookletHref } from '../../lib/media'
 import CharacterHero from '../primitives/CharacterHero.astro'
 import DetailPane from '../primitives/DetailPane.astro'
@@ -39,6 +42,7 @@ const offPlate = tree.placements
 const lore = await loreFor('skill-trees', tree.id, locale)
 const LoreOpening = lore?.opening?.Content
 const LoreSections = lore?.sections?.Content
+const keys = readingKeys(await keyOf(tree.cover, tree.keyColour, treeSealKey(tree, corpus)))
 const trail = lore
   ? [
       ...(lore.sections?.headings ?? [])
@@ -82,7 +86,7 @@ const trail = lore
           </nav>
         )}
         <div class="au-reading__body">
-          <div class="au-prose">
+          <div class="au-prose" style={keys}>
             {LoreOpening && <LoreOpening />}
             {LoreSections && <LoreSections />}
           </div>

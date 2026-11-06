@@ -64,7 +64,11 @@ the Weitzguard are.
 ## Dialogue
 
 An epigraph or a quoted exchange closes on `> :source[...]`, naming who speaks and, when it matters,
-where and when. Emotion lives inside the lines, in ellipses and interjections (« … Votre Majesté »,
+where and when. Every person that line names is bold, the speaker, whom they address, a god the scene
+turns on: each prints on a nameplate. The words in braces after it, its title's corner and its
+background, are staged as `docs/runbooks/add-a-species.md` says, the same in both languages. A turn
+may open on its speaker's portrait, as the same runbook shows; its expression follows who the character
+is as much as the line. Emotion lives inside the lines, in ellipses and interjections (« … Votre Majesté »,
 « Humpf », « Huh… »), never in stage directions such as *(Un silence.)*.
 
 ## Dates

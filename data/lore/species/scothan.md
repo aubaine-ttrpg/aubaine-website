@@ -2,15 +2,15 @@ Les Scothans sont les enfants de deux peuples. Des bois de Fir Bolg poussent au-
 
 Le mot est un vieux mot galwarien. *Scothan* y désignait le sang-mêlé, le croisé, parfois le bâtard, et chacun choisit encore la traduction qui l'arrange. Pendant des siècles, on le leur a jeté au visage dans les cours, sur les marchés et au pied des registres. Les Scothans d'aujourd'hui le revendiquent, et ce sont eux, désormais, qui le prononcent les premiers.
 
-> **Tiar :** « Devant les matrones, tu couvriras ces bois. Ils sont hideux. »
+> ![](../../media/art/tiar-vyrefiel-severe-1_1-og.png) **Tiar :** « Devant les matrones, tu couvriras ces bois. Ils sont hideux. »
 >
-> **Sombrecœur :** « Ma mère ne m'a jamais demandé de les couvrir… Votre Majesté. »
+> ![](../../media/art/sombrecoeur-hautaine-1_1-og.png) **Sombrecœur :** « Ma mère ne m'a jamais demandé de les couvrir… Votre Majesté. »
 >
-> **Tiar :** « Humpf. Ta mère ne t'a jamais rien demandé, cela se voit. Couvre-les, ou fais-les couper. »
+> ![](../../media/art/tiar-vyrefiel-agacee-1_1-og.png) **Tiar :** « Humpf. Ta mère ne t'a jamais rien demandé, cela se voit. Couvre-les, ou fais-les couper. »
 >
-> **Sombrecœur :** « Huh… Les couper ne fera pas de moi une elfe. »
+> ![](../../media/art/sombrecoeur-defiante-1_1-og.png) **Sombrecœur :** « Huh… Les couper ne fera pas de moi une elfe. »
 >
-> :source[La reine Tiar Vyrefiel et sa petite-fille, Sombrecœur.]
+> :source[**La reine Tiar Vyrefiel** et sa petite-fille, **Sombrecœur**, à la cour, peu avant la fondation des Faebies.]{bottom-left echo}
 
 ## Un mauvais présage
 

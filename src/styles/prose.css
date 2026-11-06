@@ -73,13 +73,630 @@
   line-height: 1.6;
 }
 
-.au-prose .au-quote blockquote > :first-child {
+.au-prose .au-quote blockquote > :is(:first-child, .au-quote__box + *) {
   margin-block-start: 0;
 }
 
 .au-prose .au-quote figcaption {
   margin-block-start: 0.9em;
   letter-spacing: 0.04em;
+}
+
+.au-prose .au-quote figcaption:where(:first-child) {
+  margin-block: 0 0.9em;
+}
+
+.au-prose .au-quote__portrait {
+  display: none;
+}
+
+@media screen and (forced-colors: none) {
+  .au-prose .au-quote {
+    --quote-night: #08070d;
+    --quote-bone: #efe4cc;
+    --quote-ink: #14100a;
+    --quote-shade: rgba(6, 5, 13, 0.72);
+    --quote-dots:
+      radial-gradient(circle, rgba(6, 5, 13, 0.2) 0 1.3px, transparent 1.8px) 0 0 / 7px 7px;
+    --quote-key: var(--key, #efbe04);
+    --quote-key-paper: var(--key-paper, #efbe04);
+    --quote-lean: 9px;
+    --quote-foot: 6px;
+    --quote-rise: clamp(14px, 5.5cqi, 40px);
+    --quote-title-align: flex-start;
+    --quote-title-above: 1;
+    --quote-title-overlap: calc(var(--quote-rise) + 0.55em);
+    --quote-title-room: 7.6em;
+    --quote-mark-start: auto;
+    --quote-mark-end: 0.16em;
+    --quote-words-top: calc(var(--quote-rise) + 1.95em);
+    --quote-words-bottom: 1.2em;
+    --quote-reach-top: 22px;
+    --quote-reach-end: 14px;
+    --quote-reach-bottom: 14px;
+    --quote-reach-start: 22px;
+    --quote-box-shape: polygon(
+      0 var(--quote-rise),
+      calc(100% - var(--quote-lean)) 0,
+      100% calc(100% - 3px),
+      var(--quote-foot) 100%
+    );
+    position: relative;
+    isolation: isolate;
+    container-type: inline-size;
+    display: flex;
+    flex-direction: column;
+    margin-block: 2.9em 2.7em;
+    padding: 0;
+    border: 0;
+    background: none;
+  }
+
+  .au-prose .au-quote[data-title-corner="top-right"] {
+    --quote-title-align: flex-end;
+    --quote-mark-start: 0.12em;
+    --quote-mark-end: auto;
+    --quote-reach-start: 14px;
+    --quote-reach-end: 22px;
+    --quote-box-shape: polygon(
+      var(--quote-lean) 0,
+      100% var(--quote-rise),
+      calc(100% - var(--quote-foot)) 100%,
+      0 calc(100% - 3px)
+    );
+  }
+
+  .au-prose .au-quote[data-title-corner="bottom-left"] {
+    --quote-title-above: 0;
+    --quote-title-room: 2.4em;
+    --quote-mark-start: 0.12em;
+    --quote-mark-end: auto;
+    --quote-words-top: calc(var(--quote-rise) + 1.15em);
+    --quote-words-bottom: calc(var(--quote-rise) + 2.5em);
+    --quote-reach-top: 14px;
+    --quote-reach-bottom: 22px;
+    --quote-box-shape: polygon(
+      0 calc(var(--quote-rise) / 3),
+      calc(100% - var(--quote-lean)) 0,
+      100% 100%,
+      var(--quote-foot) calc(100% - var(--quote-rise))
+    );
+  }
+
+  .au-prose .au-quote[data-title-corner="bottom-right"] {
+    --quote-title-align: flex-end;
+    --quote-title-above: 0;
+    --quote-title-room: 2.4em;
+    --quote-mark-start: 0.12em;
+    --quote-mark-end: auto;
+    --quote-words-top: calc(var(--quote-rise) + 1.15em);
+    --quote-words-bottom: calc(var(--quote-rise) + 2.5em);
+    --quote-reach-top: 14px;
+    --quote-reach-end: 22px;
+    --quote-reach-bottom: 22px;
+    --quote-reach-start: 14px;
+    --quote-box-shape: polygon(
+      0 calc(var(--quote-rise) / 3),
+      calc(100% - var(--quote-lean)) 0,
+      100% calc(100% - var(--quote-rise)),
+      var(--quote-foot) 100%
+    );
+  }
+
+  .au-prose .au-quote .au-quote__mark,
+  .au-prose .au-quote[data-quote="dialogue"] .au-quote__colon {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .au-prose .au-quote figcaption {
+    --ink: #141a33;
+    --ink2: #414868;
+    --accent-ink: #1f3d8f;
+    --gold: #14100a;
+    --state-buff: #92651d;
+    --state-debuff: #8d2f26;
+    --state-neutral: #4a5a72;
+    --term-adv: #3f7d3a;
+    --term-dis: #a33b30;
+    --term-atk: #5a4632;
+    --term-roll: #2f5f96;
+    --term-move: #8a4f18;
+    --term-res: #5b3f94;
+    --term-apt: #2f6f66;
+    --term-passive: #3f7d3a;
+    --term-action: #a33b30;
+    --term-bonus: #846a0a;
+    --term-reaction: #5b3f94;
+    --term-spell: #8f2f86;
+    --term-tag: #4b5a6e;
+    --term-loot: #6e4429;
+    color-scheme: light;
+    align-self: var(--quote-title-align);
+    position: relative;
+    max-inline-size: min(calc(100% - var(--quote-title-room)), 34em);
+    margin-block: calc((1 - var(--quote-title-above)) * -1 * var(--quote-title-overlap))
+      calc(var(--quote-title-above) * -1 * var(--quote-title-overlap));
+    margin-inline: 1em;
+    padding: 0.42em 0.95em 0.48em;
+    font-family: var(--font-garamond);
+    font-size: 0.95em;
+    font-style: italic;
+    line-height: 1.42;
+    letter-spacing: 0;
+    color: var(--quote-ink);
+    rotate: -2deg;
+  }
+
+  .au-prose .au-quote figcaption::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--quote-bone);
+    box-shadow:
+      0 0 0 2px var(--quote-night),
+      4px 5px 0 2px var(--quote-shade);
+  }
+
+  .au-prose .au-quote figcaption strong {
+    display: inline-block;
+    margin-inline: 0.1em 0.24em;
+    padding: 0.16em 0.44em 0.1em;
+    font-family: var(--font-display);
+    font-size: 0.86em;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: 0.04em;
+    overflow-wrap: anywhere;
+    color: var(--quote-bone);
+    background: var(--quote-night);
+    box-shadow: 2px 2px 0 var(--quote-key);
+  }
+
+  .au-prose .au-quote figcaption :focus-visible {
+    outline-color: var(--quote-ink);
+  }
+
+  .au-prose .au-quote blockquote {
+    position: relative;
+    margin: 0;
+    font-family: var(--font-garamond);
+    font-size: 1.06em;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.55;
+  }
+
+  .au-prose .au-quote blockquote > p {
+    margin: 0;
+  }
+
+  .au-prose .au-quote blockquote > p + p {
+    margin-block-start: 0.8em;
+  }
+
+  .au-prose .au-quote[data-quote="speech"] blockquote,
+  .au-prose .au-quote[data-quote="dialogue"] p[data-speaker] {
+    --bg2: #0a0c1e;
+    --line: rgba(169, 141, 214, 0.18);
+    --accent-line: rgba(157, 111, 209, 0.5);
+    --ink: #ece8f7;
+    --ink2: #b3abc9;
+    --ink3: #8b83a3;
+    --gold: #efbe04;
+    --on-gold: #20180a;
+    --accent-ink: #c9a8f0;
+    --tip-shadow: rgba(0, 0, 0, 0.55);
+    --state-buff: #d9a63f;
+    --state-debuff: #d9695c;
+    --state-neutral: #8fa3c4;
+    --term-adv: #6faa63;
+    --term-dis: #d9695c;
+    --term-atk: #c2ab85;
+    --term-roll: #7fa8d9;
+    --term-move: #cf8f4e;
+    --term-res: #a98ad4;
+    --term-apt: #6fb3a8;
+    --term-passive: #6faa63;
+    --term-action: #d9695c;
+    --term-bonus: #e0b93a;
+    --term-reaction: #a98ad4;
+    --term-spell: #d98ad0;
+    --term-tag: #a3b1c2;
+    --term-loot: #b0805f;
+    color-scheme: dark;
+  }
+
+  .au-prose .au-quote__box {
+    position: absolute;
+    inset: -1.5px;
+    z-index: -1;
+    background: var(--quote-night);
+    clip-path: var(--quote-box-shape);
+  }
+
+  .au-prose .au-quote__box::before,
+  .au-prose .au-quote__box::after {
+    content: "";
+    position: absolute;
+    clip-path: var(--quote-box-shape);
+  }
+
+  .au-prose .au-quote__box::before {
+    inset: 1.5px;
+    background: var(--quote-bone);
+  }
+
+  .au-prose .au-quote__box::after {
+    inset: 5.5px;
+    background: var(--quote-night);
+  }
+
+  .au-prose .au-quote[data-quote="speech"] {
+    padding: var(--quote-reach-top) var(--quote-reach-end) var(--quote-reach-bottom)
+      var(--quote-reach-start);
+  }
+
+  .au-prose .au-quote[data-quote="speech"] blockquote {
+    padding: var(--quote-words-top) calc(1.55em + var(--quote-lean)) var(--quote-words-bottom) 1.6em;
+    color: var(--quote-bone);
+  }
+
+  .au-prose .au-quote[data-quote="speech"] blockquote > p {
+    max-inline-size: 66ch;
+  }
+
+  .au-prose .au-quote[data-quote="speech"] blockquote::after {
+    content: "\201C" / "";
+    position: absolute;
+    inset-block-start: -0.3em;
+    inset-inline: var(--quote-mark-start) var(--quote-mark-end);
+    z-index: 1;
+    font-family: var(--font-epic);
+    font-size: 8.2em;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--quote-key);
+    -webkit-text-stroke: 7px var(--quote-night);
+    paint-order: stroke fill;
+    text-shadow: 6px 7px 0 var(--quote-shade);
+    rotate: -5deg;
+    pointer-events: none;
+  }
+
+  .au-prose .au-quote[data-quote="dialogue"] blockquote {
+    display: flex;
+    flex-direction: column;
+    gap: 2.3em;
+  }
+
+  .au-prose .au-quote[data-quote="dialogue"] blockquote > p + p {
+    margin: 0;
+  }
+
+  .au-prose .au-quote[data-quote="dialogue"] p[data-speaker] {
+    --quote-box-shape: polygon(
+      0 var(--quote-rise),
+      calc(100% - var(--quote-lean)) calc(var(--quote-rise) / 2),
+      100% calc(100% - 3px),
+      var(--quote-foot) 100%
+    );
+    position: relative;
+    inline-size: 88%;
+    align-self: flex-start;
+    padding: calc(var(--quote-rise) + 1.2em) calc(1.4em + var(--quote-lean)) 1.15em 1.45em;
+    color: var(--quote-bone);
+  }
+
+  .au-prose
+    .au-quote[data-quote="dialogue"]
+    p:is([data-speaker="1"], [data-speaker="3"], [data-speaker="5"], [data-speaker="7"]) {
+    --quote-box-shape: polygon(
+      24px calc(var(--quote-rise) / 2),
+      100% var(--quote-rise),
+      calc(100% - var(--quote-foot)) 100%,
+      24px calc(100% - 3px),
+      0 calc(50% + var(--quote-rise) / 4)
+    );
+    align-self: flex-end;
+    padding-inline: calc(1.2em + 24px) 1.45em;
+  }
+
+  .au-prose .au-quote[data-quote="dialogue"] blockquote > p:not([data-speaker]) {
+    inline-size: 100%;
+    padding-inline: 1.45em;
+    font-style: italic;
+    color: var(--ink2);
+  }
+
+  .au-prose .au-quote[data-quote="dialogue"] p[data-speaker] > strong {
+    position: relative;
+    z-index: 1;
+    isolation: isolate;
+    display: block;
+    inline-size: fit-content;
+    max-inline-size: calc(100% - 1.5em);
+    margin-block: -2.66em 0.4em;
+    margin-inline-start: -0.2em;
+    padding: 0.34em 0.95em 0.28em 0.8em;
+    font-family: var(--font-display);
+    font-size: 0.72em;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.22;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+    color: var(--quote-ink);
+    rotate: -4deg;
+    transform-origin: 0 100%;
+  }
+
+  .au-prose .au-quote[data-quote="dialogue"] p[data-speaker] > strong::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--quote-bone);
+    box-shadow:
+      0 0 0 2px var(--quote-night),
+      3px 4px 0 2px var(--quote-shade);
+    transform: skewX(-10deg);
+  }
+
+  .au-prose
+    .au-quote[data-quote="dialogue"]
+    p:is([data-speaker="1"], [data-speaker="3"], [data-speaker="5"], [data-speaker="7"])
+    > strong {
+    margin-inline: auto -0.2em;
+  }
+
+  .au-prose
+    .au-quote[data-quote="dialogue"]
+    p:is([data-speaker="1"], [data-speaker="3"], [data-speaker="5"], [data-speaker="7"])
+    > strong::before {
+    background: var(--quote-key-paper);
+  }
+
+  .au-prose .au-quote[data-quote="dialogue"] p:is([data-speaker="2"], [data-speaker="6"]) > strong {
+    color: var(--quote-bone);
+  }
+
+  .au-prose
+    .au-quote[data-quote="dialogue"]
+    p:is([data-speaker="2"], [data-speaker="6"])
+    > strong::before {
+    background: var(--quote-night);
+    box-shadow:
+      0 0 0 2px var(--quote-bone),
+      3px 4px 0 2px var(--quote-shade);
+  }
+
+  .au-prose .au-quote[data-quote="dialogue"] figcaption {
+    max-inline-size: min(calc(100% - 2.4em), 34em);
+    margin-block: calc((1 - var(--quote-title-above)) * 2.2em)
+      calc(var(--quote-title-above) * 2.1em);
+  }
+
+  .au-prose .au-quote[data-backing="tranche"][data-quote="speech"]::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -4;
+    background: var(--quote-dots), var(--quote-key);
+    clip-path: polygon(30px 0, 100% 14px, calc(100% - 26px) 100%, 0 calc(100% - 12px));
+    rotate: 2.6deg;
+  }
+
+  .au-prose .au-quote[data-backing="tranche"][data-quote="speech"] blockquote::before,
+  .au-prose .au-quote[data-backing="tranche"][data-quote="dialogue"] p[data-speaker]::after {
+    content: "";
+    position: absolute;
+    inset: -1.5px;
+    z-index: -2;
+    background: var(--quote-shade);
+    clip-path: var(--quote-box-shape);
+    translate: 7px 8px;
+  }
+
+  .au-prose .au-quote[data-backing="tranche"][data-quote="dialogue"] p[data-speaker]::before {
+    content: "";
+    position: absolute;
+    inset: 10px -16px -14px -12px;
+    z-index: -3;
+    background: var(--quote-dots), var(--quote-key);
+    clip-path: polygon(26px 0, 100% 10px, calc(100% - 22px) 100%, 0 calc(100% - 9px));
+    rotate: 3.4deg;
+  }
+
+  .au-prose .au-quote[data-backing="tranche"][data-quote="dialogue"] figcaption::before {
+    content: "";
+    position: absolute;
+    inset: 6px -14px -10px -10px;
+    z-index: -2;
+    background: var(--quote-dots), var(--quote-key);
+    clip-path: polygon(16px 0, 100% 6px, calc(100% - 14px) 100%, 0 calc(100% - 5px));
+    rotate: 5deg;
+  }
+
+  .au-prose .au-quote[data-backing="echo"][data-quote="speech"] blockquote::before,
+  .au-prose .au-quote[data-backing="echo"][data-quote="dialogue"] p[data-speaker]::before {
+    content: "";
+    position: absolute;
+    inset: -1.5px;
+    z-index: -3;
+    background: var(--quote-dots), var(--quote-key);
+    clip-path: var(--quote-box-shape);
+    translate: 11px 13px;
+    rotate: 1.6deg;
+  }
+
+  .au-prose
+    .au-quote[data-backing="echo"][data-quote="dialogue"]
+    p:is([data-speaker="1"], [data-speaker="3"], [data-speaker="5"], [data-speaker="7"])::before {
+    translate: -11px 13px;
+    rotate: -1.6deg;
+  }
+
+  .au-prose .au-quote[data-backing="echo"][data-quote="dialogue"] figcaption::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background: var(--quote-dots), var(--quote-key);
+    translate: 7px 8px;
+    rotate: 2deg;
+  }
+
+  .au-prose .au-quote .au-quote__portrait {
+    display: block;
+  }
+
+  .au-prose .au-quote .au-quote__portrait img {
+    display: block;
+    inline-size: 100%;
+    max-inline-size: none;
+    block-size: 100%;
+    margin: 0;
+    border: 0;
+    object-fit: contain;
+    object-position: 100% 100%;
+  }
+
+  .au-prose
+    .au-quote[data-quote="dialogue"]
+    p:is([data-speaker="1"], [data-speaker="3"], [data-speaker="5"], [data-speaker="7"])
+    > .au-quote__portrait
+    img {
+    scale: -1 1;
+  }
+
+  .au-prose .au-quote[data-quote="dialogue"]:has(.au-quote__portrait) blockquote {
+    gap: 1.5em;
+  }
+
+  .au-prose .au-quote[data-quote="dialogue"] p[data-speaker]:has(> .au-quote__portrait) {
+    --quote-bust: clamp(104px, 22cqi, 168px);
+    --quote-bust-in: calc(var(--quote-bust) * 0.36);
+    --quote-bust-rise: 1.6em;
+    min-block-size: calc(var(--quote-bust) - var(--quote-bust-rise));
+    margin-block-start: calc(var(--quote-bust-rise) + 0.5em);
+    margin-inline: calc(var(--quote-bust) - var(--quote-bust-in)) 0;
+    inline-size: calc(88% - var(--quote-bust) + var(--quote-bust-in));
+    padding-inline-start: calc(var(--quote-bust-in) + 0.9em);
+  }
+
+  .au-prose
+    .au-quote[data-quote="dialogue"]
+    p:is([data-speaker="1"], [data-speaker="3"], [data-speaker="5"], [data-speaker="7"]):has(
+      > .au-quote__portrait
+    ) {
+    margin-inline: 0 calc(var(--quote-bust) - var(--quote-bust-in));
+    padding-inline: calc(1.2em + 24px) calc(var(--quote-bust-in) + 0.9em);
+  }
+
+  .au-prose .au-quote[data-quote="dialogue"] p[data-speaker] > .au-quote__portrait {
+    position: absolute;
+    inset-block-end: 0;
+    inset-inline-start: calc(var(--quote-bust-in) - var(--quote-bust));
+    z-index: 1;
+    inline-size: var(--quote-bust);
+    block-size: var(--quote-bust);
+    filter: drop-shadow(5px 6px 0 var(--quote-shade));
+  }
+
+  .au-prose
+    .au-quote[data-quote="dialogue"]
+    p:is([data-speaker="1"], [data-speaker="3"], [data-speaker="5"], [data-speaker="7"])
+    > .au-quote__portrait {
+    inset-inline: auto calc(var(--quote-bust-in) - var(--quote-bust));
+  }
+}
+
+@media screen and (forced-colors: none) and (width < 40rem) {
+  .au-prose .au-quote blockquote {
+    font-size: 1.02em;
+  }
+
+  .au-prose .au-quote figcaption {
+    rotate: -1deg;
+    max-inline-size: calc(100% - var(--quote-title-room) * 0.72 - 1.2em);
+    margin-inline: 0.6em;
+  }
+
+  .au-prose .au-quote[data-quote="dialogue"] figcaption {
+    max-inline-size: calc(100% - 1.2em);
+  }
+
+  .au-prose .au-quote[data-quote="speech"] blockquote {
+    padding-inline: 1.15em calc(1.2em + var(--quote-lean));
+  }
+
+  .au-prose .au-quote[data-quote="dialogue"] p[data-speaker] {
+    inline-size: calc(100% - 14px);
+    padding-inline: 1.15em calc(1.1em + var(--quote-lean));
+  }
+
+  .au-prose
+    .au-quote[data-quote="dialogue"]
+    p:is([data-speaker="1"], [data-speaker="3"], [data-speaker="5"], [data-speaker="7"]) {
+    padding-inline: calc(1em + 24px) 1.15em;
+  }
+
+  .au-prose .au-quote[data-quote="speech"] blockquote::after {
+    font-size: 6.4em;
+    -webkit-text-stroke-width: 6px;
+  }
+
+  .au-prose .au-quote[data-quote="dialogue"] p[data-speaker]:has(> .au-quote__portrait) {
+    --quote-bust: 80px;
+    min-block-size: 0;
+    margin-block-start: calc(var(--quote-bust) * 0.72 + 4px);
+    margin-inline: 0;
+    inline-size: calc(100% - 14px);
+    padding-block-start: calc(var(--quote-rise) + 1.7em);
+    padding-inline: 1.15em calc(1.1em + var(--quote-lean));
+  }
+
+  .au-prose
+    .au-quote[data-quote="dialogue"]
+    p:is([data-speaker="1"], [data-speaker="3"], [data-speaker="5"], [data-speaker="7"]):has(
+      > .au-quote__portrait
+    ) {
+    padding-inline: calc(1em + 24px) 1.15em;
+  }
+
+  .au-prose .au-quote[data-quote="dialogue"] p[data-speaker] > .au-quote__portrait {
+    inset-block: calc(var(--quote-bust) * -0.72) auto;
+    inset-inline: 4px auto;
+  }
+
+  .au-prose
+    .au-quote[data-quote="dialogue"]
+    p:is([data-speaker="1"], [data-speaker="3"], [data-speaker="5"], [data-speaker="7"])
+    > .au-quote__portrait {
+    inset-inline: auto 4px;
+  }
+
+  .au-prose .au-quote[data-quote="dialogue"] p[data-speaker]:has(> .au-quote__portrait) > strong {
+    margin-inline-start: calc(var(--quote-bust) + 8px);
+  }
+
+  .au-prose
+    .au-quote[data-quote="dialogue"]
+    p:is([data-speaker="1"], [data-speaker="3"], [data-speaker="5"], [data-speaker="7"]):has(
+      > .au-quote__portrait
+    )
+    > strong {
+    margin-inline: auto calc(var(--quote-bust) + 8px);
+  }
 }
 
 .au-prose .au-prose__picture figcaption {

@@ -2,7 +2,7 @@ Créatures nées de la forge draconique, les Nnors sont des humanoïdes caprins 
 
 > « Saman, écoute ma voix : les Nnors ne sont pas de simples serviteurs de ma flamme, mais ses gardiens. Vous semez l'étincelle du feu primordial dans chaque cœur d'Eden, libérant les peuples de l'ombre et rappelant à tous que la liberté naît de la passion. Va, forge ta colonie, et veille à ce que jamais mon feu ne s'éteigne. »
 >
-> :source[Charon s'adressant à Saman, son émissaire, après qu'il eut passé le Rituel du Feu.]
+> :source[**Charon** s'adressant à **Saman**, son émissaire, après qu'il eut passé le Rituel du Feu.]{top-right tranche}
 
 ## De la fourrure et de la robustesse
 

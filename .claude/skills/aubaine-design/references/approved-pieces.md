@@ -1,8 +1,8 @@
 # The approved pieces
 
-The owner has approved four pieces of the site: the character sheet that opens a tree or a species
-page, the select screen of the Arbres and Espèces indexes, the plate menu that opens the Codex hub, and
-the contents spread that opens the Livres hub. They set the direction: inspire from them, never copy them (`rulings.md`, The approved
+The owner has approved five pieces of the site: the character sheet that opens a tree or a species
+page, the select screen of the Arbres and Espèces indexes, the plate menu that opens the Codex hub, the
+contents spread that opens the Livres hub, and the quote and dialogue of a lore page. They set the direction: inspire from them, never copy them (`rulings.md`, The approved
 pieces). This file is their rebuild spec, value by value, followed by the contract every hub door
 shares and what only Aubaine has. `DESIGN.md` documents the look for a reader; this file is for
 rebuilding a piece or matching it.
@@ -17,6 +17,7 @@ rebuilding a piece or matching it.
 - [The arrival](#the-arrival) and [fallbacks](#fallbacks)
 - [The hub plate menu](#the-hub-plate-menu), [the Livres contents](#the-livres-contents) and
   [the door contract](#the-door-contract)
+- [The lore quote and dialogue](#the-lore-quote-and-dialogue)
 - [What only Aubaine has](#what-only-aubaine-has)
 - [Pictures](#pictures), [objects of Aubaine's world](#objects-of-aubaines-world) and [CADRAN](#cadran)
 - [Guard tests](#guard-tests) and [records that disagree with the code](#records-that-disagree-with-the-code)
@@ -43,6 +44,7 @@ rebuilding a piece or matching it.
 | Select screen | 2026-10-28 | `select-screen-arbres.jpg` | `SelectScreen.astro` | `/fr/arbres`, `/fr/especes`, `/en/trees`, `/en/species` |
 | Hub plate menu | 2026-10-31, the owner's pick of B+ | `hub-codex.jpg` | `PlateMenu.astro` with `PlateDoor.astro`, recorded in `docs/adr/0065-the-livres-hub-opens-on-its-contents-and-lists-every-category.md` | `/fr/almanach`, `/en/almanach` |
 | Livres contents | 2026-10-31, the owner's pick of C+ | `hub-livres.jpg` | `SommaireSpread.astro` with `SommaireEntry.astro`, recorded in the same record | `/fr/livres`, `/en/books` |
+| Lore quote and dialogue | 2026-11-04, the owner's pick of « La scène » | `lore-quote-humain.jpg`, `lore-quote-mort-vivant.jpg`, `lore-dialogue-scothan.jpg` | `rehypeProseQuotes` in `src/lib/game/book-markup.ts` and `src/styles/prose.css`, recorded in `docs/adr/0068-a-lore-quote-is-a-staged-game-dialogue-box.md` | every species page whose lore holds a quote, such as `/fr/espece/humain`, `/fr/espece/scothan`, `/en/species/humain`, `/en/species/scothan` |
 
 The plate menu first opened Livres too; the contents spread took Livres the same day. The owner left the
 details of Books to the designer ("i'll let you cook for Books"): every category has its entry, empty or
@@ -70,6 +72,9 @@ accepted piece). Open one with the Read tool to see it.
 | `page-change-codex-open.jpg` | The Codex to Arbres de compétences, shipped on 2026-11-03: the gold band and its pictogram slide off the right edge while the title flies, uncovering the spotlight as its arrival plays. |
 | `page-change-codex-back.jpg` | The same change on Back: the band slides in from the right as the spotlight fades, and the title flies home to its door. |
 | `sticker-struck-slash.jpg` | The Elfe's stickers on a direct load of the French sheet, approved on 2026-11-03: twelve seeked moments cropped to the row, since a page-wide strip draws the stickers too small to read. The slap at 0.35 s, « Hautain » plain from 0.79 to 0.92 s, the brush slash by 1.01 s, the hit at 1.03 s, the rest. Values in `DescriptorStickers.astro`. |
+| `lore-quote-humain.jpg` | The Humain's quote on 2026-11-04: its title at the top left with Jacques « Le Scellaire » Arsenault and Arthur Colbert on black nameplates, the big quotation mark at the free top corner, the words in the night box, the azure slab of the Tranche crossing behind it. |
+| `lore-quote-mort-vivant.jpg` | The Mort-vivant's quote: its title at the bottom right, the box's foot lifted under it, the mark at the top left, the box's silhouette echoed in green halftone (Écho). |
+| `lore-dialogue-scothan.jpg` | The Scothan dialogue with its portraits, aligned to its foot: one box per turn, each echoed in gold halftone, Tiar's on the left under a bone tag with her bust in front of the box's left edge (stern, then irritated), Sombrecœur's on the right in her own pointed boxes under a gold tag, her bust mirrored to face Tiar (haughty, then defiant), and the title at the bottom left with its gold echo, naming the court and the Faebies. |
 | `sticker-suspense-punch.jpg` | The Nnor's stickers on a direct load of the French sheet, approved on 2026-11-03: thirteen seeked moments cropped to the row. « . » alone at 0.79 s, « .. » punched in at 0.92 s, « ... » at 1.08 s, the word at its peak from 1.34 to 1.64 s while it trembles, the spring back by 1.8 s, the rest. Values in `DescriptorStickers.astro`. |
 
 The film strips were taken with `pnpm design:transit --film`, the sheet's on 2026-11-02 and the Codex's on
@@ -940,6 +945,124 @@ contract: the plate menu, the Livres contents, and the kept layout D (`prototype
   and tears a menu down with an `AbortController` once it leaves the page.
 - **Never.** No door is marked `aria-current`: a lit door is a preview, not the current page.
 
+## The lore quote and dialogue
+
+A Markdown blockquote in a lore page, a book chapter or a policy, its last line a `:source[...]` or not.
+`rehypeProseQuotes` in `src/lib/game/book-markup.ts` writes the markup; `src/styles/prose.css` draws it
+under `@media screen and (forced-colors: none)`. Its colours are the same in both themes. It comes from
+Persona 5's dialogue box, its name tag and the Velvet Room's slab crossing its item (`persona-5.md`).
+
+### The markup
+
+- A blockquote with more than one turn, a paragraph that opens on a bold label ending in a colon, is a
+  dialogue (`data-quote="dialogue"`); any other is a speech (`data-quote="speech"`).
+- The source line becomes the title, a `figcaption`. Words in braces after its closing bracket stage the
+  quote: a corner from `TITLE_CORNERS`, then a background from `QUOTE_BACKINGS`, as
+  `:source[...]{bottom-right echo}`. They default to `top-left` and `tranche`, land on the figure as
+  `data-title-corner` and `data-backing`, and any other word stops the build with the file's name. A title
+  at a top corner comes before the quote in the document, one at a bottom corner after it.
+- One empty `span.au-quote__box`, hidden from screen readers, draws each box: the speech's blockquote,
+  each turn. The outer guillemets of a speech and of each turn, with their spaces, sit in
+  `span.au-quote__mark`. A turn's label splits into `au-quote__name` and `au-quote__colon`, and the turn
+  takes `data-speaker`, its speaker's place in order of first appearance.
+
+### The box
+
+- Night `#08070d`, cut by a polygon whose top edge rises `--quote-rise`, `clamp(14px, 5.5cqi, 40px)` of
+  the figure's width, whose right edge leans in 9 px and whose foot steps in 6 px. The box span draws a
+  1.5 px night ring, a 4 px bone `#efe4cc` ring and the night fill.
+- A speech redraws the edge under its title: at the top left `polygon(0 rise, calc(100% - 9px) 0, 100%
+  calc(100% - 3px), 6px 100%)`, mirrored at the top right; at the bottom corners the top keeps a third of
+  the rise and the foot rises by the rise on the title's side. A dialogue's left-hand turns take the
+  top-left shape with its far end at half the rise, `polygon(0 rise, calc(100% - 9px) calc(rise / 2), 100%
+  calc(100% - 3px), 6px 100%)` (« Pente douce », 2026-11-06); its right-hand turns take a box of their own
+  (The dialogue).
+- The words: EB Garamond 500 upright at 1.06em (1.02em under 40rem), line height 1.55, bone, at most 66ch,
+  1.6em from the start and 1.55em plus the lean from the end. The night tokens sit on the box alone.
+
+### The title
+
+- A bone plate with a 2 px night outline and a hard 4 / 5 px shadow, turned -2° (-1° under 40rem) with its
+  text, in EB Garamond italic at 0.95em, at most 34em wide. On a speech it overlaps the box's corner by the
+  rise plus 0.55em and the box keeps the words clear of it; it leaves 7.6em for the mark at a top corner
+  and 2.4em at a bottom one. On a dialogue it stands 2.1em above the first turn or 2.2em below the last.
+- The people it names stand on black nameplates: bone Cinzel 700 at 0.86em, tracked 0.04em, a 2 px edge in
+  the key colour to the lower right, 0.24em clear of the punctuation that follows.
+
+### The mark
+
+- One “, Tinos 700 at 8.2em (6.4em under 40rem), in the key colour with a 7 px night stroke and a hard
+  6 / 7 px shadow, turned -5°, over the box's top edge at the top corner the title leaves free. Screen
+  readers skip it; the speech's own guillemets are hidden on screen behind it.
+
+### The dialogue
+
+- One box per turn, 88 % of the column (all of it less 14 px under 40rem), 2.3em apart. The first speaker
+  and every other one from there stand at the start, the others at the end.
+- The name tag is the turn's label: Cinzel 700 capitals at 0.72em on a parallelogram skewed -10°, a 2 px
+  night outline and a hard 3 / 4 px shadow, turned -4°, across the box's top edge. The first speaker's tag
+  is bone, the second's key paper (`readableOnNight`), the third's night with a bone outline. Its colon and
+  the turn's guillemets are hidden on screen.
+- The right-hand speaker's box is her own, never the left-hand one flipped or turned (« Pointe »):
+  `polygon(24px calc(rise / 2), 100% rise, calc(100% - 6px) 100%, 24px calc(100% - 3px), 0 calc(50% +
+  rise / 4))`, its end at the speaker low and hidden behind her bust, its foot meeting the bust's foot, and
+  its far end a point aimed at the other speaker; its top edge climbs only half the rise (« Pente douce »),
+  as the left-hand box's does, so little room is left empty above the start of her words, which begin
+  1.2em past the point. The tags keep their -4° and -10° and the
+  slab its 3.4°. Its echo reaches out toward the far side, 11 px left and 13 px down, turned -1.6°, as the
+  left-hand echo reaches toward its own far side.
+- Narration between turns stays level, italic, in the page's ink, with no box.
+
+### The backgrounds
+
+- Tranche: a speech stands on one slab of the key colour under 1.3 px dots on a 7 px grid at
+  rgba(6, 5, 13, 0.2), `polygon(30px 0, 100% 14px, calc(100% - 26px) 100%, 0 calc(100% - 12px))` turned
+  2.6°, and its box casts a hard 7 / 8 px shadow. Each turn has its own slab, turned 3.4°, and a dialogue's
+  title a small one turned 5°.
+- Écho: the box's silhouette repeated in the same halftone, 11 / 13 px off and turned 1.6°, in place of the
+  shadow; a dialogue's title echoes 7 / 8 px off, turned 2°.
+- The key colour: `--key` and `--key-paper` on the reading column, from `readingKeys` in
+  `src/lib/key-colour.ts` over `keyOf`, in `Species.astro` and `Tree.astro`; house gold `#efbe04` anywhere
+  else.
+
+### The portraits
+
+- A dialogue turn that opens on a picture takes it as its speaker's portrait, wrapped in
+  `span.au-quote__portrait` before the box; the markup asks for 168, 336 and 504 px candidates at the
+  sizes `(width < 40rem) 80px, 168px`. A turn without one keeps the plain box. The pictures are 1:1 and
+  live in `data/media/art/`.
+- The bust, `clamp(104px, 22cqi, 168px)` square, stands in front of the box on its speaker's side, its foot on
+  the box's foot, 36 % of it over the box, with a hard 5 / 6 px shadow; the second speaker's is mirrored to
+  face the first. The words and the tag start 0.9em past it.
+- Every bust of a dialogue keeps one size: a portrait turn's box is at least the bust less 1.6em tall, so
+  the bust rises 1.6em above it at most. A dialogue with portraits sets its turns 1.5em apart instead of
+  2.3em, and a portrait turn adds 2.1em above itself for the bust.
+- Under 40rem the bust, 80 px, rises above the box's top corner on its side, the box takes the column, and
+  the tag moves past the bust.
+- Print and forced colours leave the portraits out.
+
+### Fallbacks of the quote
+
+- Forced colours and print keep the plain quote: the gold rule, the title above or below as the document
+  orders it, the names in bold, the guillemets and the colons back.
+
+### Measured at the ship of the quote
+
+On 2026-11-04, over every species page whose lore holds a quote (four speeches and a dialogue), with each
+quote moved through the four corners and both backgrounds, in both languages, at 1512, 1366, 1024, 820,
+390 and 320 px, with and without the text spacing of WCAG 1.4.12: 960 states, no sideways scroll; every
+line at least 10.7 px inside its box's contour, the title 19.6 px, a name tag 6 px and the mark 3.5 px clear
+of the words. `pnpm design:audit` over 80 states (the seven sizes and 320 × 568): 0 problems, every
+nameplate at least 6.8 px inside its title. Contrast: the words and the nameplates 15.9 to 1, the title
+15 to 1, the second speaker's tag 10.9 to 1. The approved pages matched their captures.
+
+The portraits, the same day, over the Scothan dialogue in both languages, both backgrounds, at 1512, 1366,
+1024, 820, 390 and 320 px, with and without the text spacing of WCAG 1.4.12: 48 states, 0 problems; every
+bust at least 7.2 px from any other turn, measured against the real slanted shape of each turn's box and
+background, and 17.4 px from its own words and tag; on a desktop 72 px between two boxes, 88 px on a phone.
+The live page reads the same distances as the picked prototype did. With both boxes' slopes halved on
+2026-11-06, the same sweep read the same: 48 states, 0 problems, 7.2 px and 17.4 px.
+
 ## What only Aubaine has
 
 ### The logo and its crest
@@ -1131,6 +1254,7 @@ Almanach's property « Codex. » (`data/equipment/items/almanach.json`).
 | `tests/e2e/hub-stage.spec.ts` | one title and no picture of its own; each entry linked once in the roster and once from the spotlight; the lead in the note with its chapter; the title and its help button kept apart; the pause; Swup visits; the light theme; print; reduced motion never fetching the stage code |
 | `tests/e2e/hubs.spec.ts` | On both hubs in both languages: one door per section, each linked once; each door's page named as the door and offering a way on; each door's light equal to its page's opening picture; the header menu listing the doors in their order; the lead in the help note. In both languages: every book category's page answering with its two language alternates; one with entries carrying its canonical; an empty one showing its title, its line and the link back, carrying `noindex`, no canonical, left out of the sitemap, and printed in dark ink on white paper without its stage. On both hubs in English: the first door lit at rest and never marked current; pointing lights a door, moves the stage and leaves it lit; "a door the pointer only crosses never takes the light or the stage" (a second after a door is pointed and left before its 80 ms run out, the first door still holds `data-lit` and the stage the first door's light); "keyboard focus that leaves the doors for a button leaves no door pointed" (Shift+Tab from the first door to the help button clears `data-pointed`, and the first door keeps `data-lit`); "keyboard focus on a button of the menu clears the pointed door and its intent" (a door the pointer points loses `data-pointed` when keyboard focus lands on the help button, and its 80 ms never runs out into `data-lit`); "the keyboard lights the door it focuses at once" (with the page's clock paused, the focused door takes `data-lit` without a timer, and no other door holds it); a client visit binds the doors, and coming back binds them again in the same document. On both hubs in French: doors read in the order they are drawn. At the seven sizes and 320 × 568 in both languages: nothing cut on a Codex door, each door lit in turn from 960 px and the first door lit at rest below (plates on screen and inside the menu, the lit name clear of its band, the pictogram on screen, a missing piece counted as a problem); nothing cut on the Livres contents with each entry lit in turn (the sheet on screen; the title plates on screen and uncut by the section; every numeral, name, mark and line present, and inside the sheet and inside its link on all four sides; no name running into its mark; no entry over another; no focus ring across the line above); and the pause square clear of the sheet. In English: the help button clear of the header when the keyboard reaches it, on Livres, on an empty category, on the Codex, on both indexes and on a category with entries, at four sizes; forced colours hiding the Livres numerals; print outlining them under a white halo round each name, keeping an entry whole, on white paper under the dark theme; on both hubs, the light theme and print |
 | `tests/e2e/page-transit.spec.ts`, `tests/unit/page-door.test.ts` | The Codex panel: every door to a select screen slides its band past the right edge on the title's timing over the spotlight, and Back slides it home while the spotlight fades on the same curve; a door taken without pointing, by Enter or by a tap carries its own whole band with every other scene dark; a door to an index not yet redone, a visit no door started, 1024 × 768 and below 960 px keep the fade; a spotlight picture that decodes late starts its arrival with the motion; the door taken keeps the light while its page loads and is lit again on Back. A sticker held in suspense plays again on the sheet it is carried to, and ends whole |
+| `tests/e2e/lore-quote.spec.ts`, `tests/unit/prose-quotes.test.ts` | On every species page whose lore holds a quote, in both languages, at 1512 × 860, 390 × 844 and 320 × 568: no sideways scroll; the quote, its title and its name tags on screen; every line inside its box's polygon, as the browser reports it, clear of the contour; the title, the name tags and the quotation mark over no line, and the mark and the tags clear of the title. Each title at the corner its source line names. Print and forced colours showing the plain quote with its marks back. Every portrait on screen, over no line, tag, title or other turn, every bust of a dialogue one size, and none in print or forced colours. The markup: speech or dialogue, speakers by name, the marks and boxes, every corner and background read, an unknown word refused with the file's name, the title before or after the quote by its corner |
 | `tests/e2e/print.spec.ts` | Under the dark theme, with background graphics on: the select screens and the Codex on white paper with every word readable; a sheet on its white ground with every word readable and its profile's rings kept; the group marks without their tape and the filter count readable; title plates straight and readable; every sheet fitting below the header of its first A4 page |
 | `tests/e2e/drafts.spec.ts`, `tests/e2e/scroll-cue.spec.ts`, `tests/e2e/art-effect-fallback.spec.ts`, `tests/e2e/no-javascript.spec.ts`, `tests/e2e/images.spec.ts` | the drafts switch; the cue; the plain picture without WebGL2 or on a software renderer; the markup without JavaScript, the hub doors opening their pages and taking the light from the pointer and the keyboard, and "keyboard focus keeps the light while the pointer hovers another door" (one door lit, the focused one); picture widths |
 | `tests/unit/key-colour.test.ts`, `tests/unit/profile.test.ts`, `tests/unit/hubs.test.ts`, `tests/unit/character-sheet.test.ts`, `tests/unit/character-hero.test.ts`, `tests/unit/emblem-frame.test.ts` | the key colour and its lift; the profile's geometry; lead order and fields; the sheet model; the lean; emblem framing |

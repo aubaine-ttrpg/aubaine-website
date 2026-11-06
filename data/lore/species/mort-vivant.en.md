@@ -4,7 +4,7 @@ Every one of them had a first life: a trade, a family and, often enough, a grave
 
 > "Colpe took Bruford from me last night. The Devil thinks he has robbed me of my finest warrior… Ha! He has just handed me a better one. I will saw him, enchant him, let the necrosis take him to the last finger, until nothing in him hesitates. Let him rise, and let him destroy whatever I show him."
 >
-> :source[The archives of Theodore, the Mad Roy, the day after Bruford's death.]
+> :source[The archives of **Theodore, the Mad Roy**, the day after the death of **Bruford**.]{bottom-right echo}
 
 ## The last farewell
 

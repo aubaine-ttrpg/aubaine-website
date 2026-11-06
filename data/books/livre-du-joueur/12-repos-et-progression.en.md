@@ -46,7 +46,9 @@ Both rests let you change the Skills your {{memoire}} holds, except your two Spe
 
 That makes the {{repos-court}} the group's real breathing space: ten minutes are enough to walk into the next fight with a different set of Skills, chosen from what you have seen of the danger.
 
-> Tip: a Skill or item that takes 10 minutes to use often fits into a {{repos-court}}.
+> [!TIP] Tip
+>
+> A Skill or item that takes 10 minutes to use often fits into a {{repos-court}}.
 
 ## The expected rhythm
 

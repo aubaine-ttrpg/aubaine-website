@@ -2,7 +2,7 @@ Born of the draconic forge, the Nnor are goat-like humanoids shaped by Charon, t
 
 > "Saman, hear my voice: the Nnor are not mere servants of my flame, but its guardians. You sow the spark of the primordial fire in every heart in Eden, freeing the peoples from the shadow and reminding all that freedom is born of passion. Go, forge your colony, and see that my fire never goes out."
 >
-> :source[Charon, addressing Saman, his emissary, after he had passed the Ritual of Fire.]
+> :source[**Charon**, addressing **Saman**, his emissary, after he had passed the Ritual of Fire.]{top-right tranche}
 
 ## Fur and hardiness
 

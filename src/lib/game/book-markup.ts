@@ -11,7 +11,7 @@ type HastText = { type: 'text'; value: string }
 type HastElement = {
   type: 'element'
   tagName: string
-  properties: Record<string, string | number>
+  properties: Record<string, string | number | number[]>
   children: HastChild[]
 }
 type HastChild = HastElement | HastText
@@ -29,7 +29,7 @@ const OPAQUE = new Set(['pre', 'a', 'script', 'style', 'h1', 'h2', 'h3', 'h4', '
 
 function element(
   tagName: string,
-  properties: Record<string, string | number>,
+  properties: HastElement['properties'],
   children: HastChild[],
 ): HastElement {
   return { type: 'element', tagName, properties, children }
@@ -248,7 +248,7 @@ export function rehypeProsePictureCaptions() {
   }
 }
 
-export const CALLOUT_KINDS = ['principle', 'example'] as const
+export const CALLOUT_KINDS = ['principle', 'example', 'tip'] as const
 
 type CalloutKind = (typeof CALLOUT_KINDS)[number]
 
@@ -272,29 +272,239 @@ function calloutNote(blockquote: HastElement): HastElement | undefined {
   ])
 }
 
-function quoteFigure(blockquote: HastElement): HastElement {
+const SPEAKER_COLON = /\s*:\s*$/
+const OPENING_MARK = /^[«“"][\s\u00a0\u202f]*/
+const CLOSING_MARK = /[\s\u00a0\u202f]*[»”"]$/
+const MARK_CLASS = 'au-quote__mark'
+const BOX_CLASS = 'au-quote__box'
+const PORTRAIT_CLASS = 'au-quote__portrait'
+const PORTRAIT_WIDTHS = [168, 336, 504]
+const PORTRAIT_SIZES = '(width < 40rem) 80px, 168px'
+
+export const TITLE_CORNERS = ['top-left', 'top-right', 'bottom-left', 'bottom-right'] as const
+
+type TitleCorner = (typeof TITLE_CORNERS)[number]
+
+function isTitleCorner(value: string): value is TitleCorner {
+  return TITLE_CORNERS.some((corner) => corner === value)
+}
+
+export const QUOTE_BACKINGS = ['tranche', 'echo'] as const
+
+type QuoteBacking = (typeof QUOTE_BACKINGS)[number]
+
+function isQuoteBacking(value: string): value is QuoteBacking {
+  return QUOTE_BACKINGS.some((backing) => backing === value)
+}
+
+type Staging = { corner: TitleCorner; backing: QuoteBacking }
+
+const DEFAULT_STAGING: Staging = { corner: 'top-left', backing: 'tranche' }
+
+const NAMED_STAGING = /\]\{([^{}]*)\}$/
+
+type Speaker = { label: HastElement; colon: string }
+
+function plainText(node: HastChild): string {
+  return node.type === 'text' ? node.value : node.children.map(plainText).join('')
+}
+
+function isPortrait(child: HastChild): child is HastElement {
+  return child.type === 'element' && child.tagName === 'img'
+}
+
+function speakerOf(paragraph: HastElement): Speaker | undefined {
+  const label = paragraph.children.find((child) => !isBlank(child) && !isPortrait(child))
+  if (label?.type !== 'element' || label.tagName !== 'strong') return undefined
+  const last = label.children.at(-1)
+  const colon = last?.type === 'text' ? SPEAKER_COLON.exec(last.value)?.[0] : undefined
+  return colon ? { label, colon } : undefined
+}
+
+function nameOf({ label, colon }: Speaker): string {
+  return plainText(label).slice(0, -colon.length).trim()
+}
+
+function tagSpeaker({ label, colon }: Speaker): void {
+  const last = label.children.at(-1)
+  if (last?.type !== 'text') throw new Error('a speaker label lost the colon it was read with')
+  const name = [...label.children.slice(0, -1), text(last.value.slice(0, -colon.length))]
+  label.children = [
+    element('span', { className: 'au-quote__name' }, name),
+    element('span', { className: 'au-quote__colon' }, [text(colon)]),
+  ]
+}
+
+function markEdge(nodes: HastChild[], edge: 'first' | 'last', pattern: RegExp): HastChild[] {
+  const at = edge === 'first' ? nodes.findIndex((node) => !isBlank(node)) : nodes.length - 1
+  const node = nodes[at]
+  if (node === undefined) return nodes
+  if (node.type === 'element') {
+    if (node.tagName === 'strong' || node.properties['className'] === BOX_CLASS) return nodes
+    const children = markEdge(node.children, edge, pattern)
+    if (children === node.children) return nodes
+    return nodes.with(at, { ...node, children })
+  }
+  const value = edge === 'first' ? node.value.trimStart() : node.value.trimEnd()
+  const found = pattern.exec(value)?.[0]
+  if (!found) return nodes
+  const mark = element('span', { className: MARK_CLASS }, [text(found)])
+  if (edge === 'first') {
+    const lead = node.value.slice(0, node.value.length - value.length)
+    const parts = [text(lead), mark, text(value.slice(found.length))]
+    return nodes.toSpliced(at, 1, ...parts.filter((part) => part.type !== 'text' || part.value))
+  }
+  const trail = node.value.slice(value.length)
+  const parts = [text(value.slice(0, -found.length)), mark, text(trail)]
+  return nodes.toSpliced(at, 1, ...parts.filter((part) => part.type !== 'text' || part.value))
+}
+
+function opened(paragraph: HastElement, speaker: Speaker | undefined): HastElement {
+  if (!speaker)
+    return { ...paragraph, children: markEdge(paragraph.children, 'first', OPENING_MARK) }
+  const at = paragraph.children.indexOf(speaker.label)
+  const head = paragraph.children.slice(0, at + 1)
+  const tail = markEdge(paragraph.children.slice(at + 1), 'first', OPENING_MARK)
+  return { ...paragraph, children: [...head, ...tail] }
+}
+
+function closed(paragraph: HastElement): HastElement {
+  return { ...paragraph, children: markEdge(paragraph.children, 'last', CLOSING_MARK) }
+}
+
+function boxed(children: HastChild[]): HastChild[] {
+  return [element('span', { className: BOX_CLASS, 'aria-hidden': 'true' }, []), ...children]
+}
+
+function portrayed(children: HastChild[]): HastChild[] {
+  const at = children.findIndex((child) => !isBlank(child))
+  const portrait = children[at]
+  if (portrait === undefined || !isPortrait(portrait)) return boxed(children)
+  const sized = {
+    ...portrait,
+    properties: { ...portrait.properties, widths: PORTRAIT_WIDTHS, sizes: PORTRAIT_SIZES },
+  }
+  return [
+    element('span', { className: PORTRAIT_CLASS }, [sized]),
+    ...boxed(children.toSpliced(at, 1)),
+  ]
+}
+
+function isParagraph(child: HastChild): child is HastElement {
+  return child.type === 'element' && child.tagName === 'p'
+}
+
+function dialogueOf(blocks: HastChild[]): HastChild[] {
+  const speakers = new Map<string, number>()
+  return blocks.map((child) => {
+    if (!isParagraph(child)) return child
+    const speaker = speakerOf(child)
+    if (!speaker) return child
+    const name = nameOf(speaker)
+    const index = speakers.get(name) ?? speakers.size
+    speakers.set(name, index)
+    const turn = closed(opened(child, speaker))
+    tagSpeaker(speaker)
+    return {
+      ...turn,
+      properties: { ...turn.properties, 'data-speaker': index },
+      children: portrayed(turn.children),
+    }
+  })
+}
+
+function speechOf(blocks: HastChild[]): HastChild[] {
+  const paragraphs = blocks.filter(isParagraph)
+  const first = paragraphs[0]
+  const last = paragraphs.at(-1)
+  return boxed(
+    blocks.map((child) => {
+      if (!isParagraph(child)) return child
+      const speaker = speakerOf(child)
+      const line = child === first ? opened(child, speaker) : child
+      const marked = child === last ? closed(line) : line
+      if (!speaker) return marked
+      tagSpeaker(speaker)
+      return { ...marked, properties: { ...marked.properties, 'data-speaker': 0 } }
+    }),
+  )
+}
+
+function isTurn(child: HastChild): boolean {
+  return isParagraph(child) && speakerOf(child) !== undefined
+}
+
+function stagingOf(words: string, source: string): Staging {
+  const [corner = '', backing, ...rest] = words.trim().split(/\s+/)
+  if (!isTitleCorner(corner)) {
+    throw new Error(
+      `${source} places a quote's title at "${corner}", which is none of ${TITLE_CORNERS.join(', ')}`,
+    )
+  }
+  if (rest.length > 0 || (backing !== undefined && !isQuoteBacking(backing))) {
+    throw new Error(
+      `${source} backs a quote with "${[backing, ...rest].join(' ')}", which is none of ${QUOTE_BACKINGS.join(', ')}`,
+    )
+  }
+  return { corner, backing: backing ?? DEFAULT_STAGING.backing }
+}
+
+function stagedLine(
+  paragraph: HastElement,
+  source: string,
+): { staging: Staging | undefined; children: HastChild[] } {
+  const last = paragraph.children.at(-1)
+  const named = last?.type === 'text' ? NAMED_STAGING.exec(last.value.trimEnd()) : null
+  if (!named || last?.type !== 'text') return { staging: undefined, children: paragraph.children }
+  const value = last.value.trimEnd()
+  const kept = text(value.slice(0, value.length - named[0].length) + BRACKET_CLOSE)
+  return {
+    staging: stagingOf(named[1] ?? '', source),
+    children: [...paragraph.children.slice(0, -1), kept],
+  }
+}
+
+function isTitleBelow({ corner }: Staging): boolean {
+  return corner === 'bottom-left' || corner === 'bottom-right'
+}
+
+function quoteFigure(blockquote: HastElement, source: string): HastElement {
   const blocks = blockquote.children.filter(
     (child): child is HastElement => child.type === 'element',
   )
   const last = blocks.at(-1)
-  const caption = last?.tagName === 'p' ? bracketed(last.children, SOURCE_OPEN) : undefined
-  if (!caption) return element('figure', { className: 'au-quote' }, [blockquote])
-  const quote = element(
-    'blockquote',
-    blockquote.properties,
-    blockquote.children.filter((child) => child !== last),
-  )
-  return element('figure', { className: 'au-quote' }, [quote, element('figcaption', {}, caption)])
+  const staged = last?.tagName === 'p' ? stagedLine(last, source) : undefined
+  const caption = staged ? bracketed(staged.children, SOURCE_OPEN) : undefined
+  if (staged?.staging && !caption) {
+    throw new Error(
+      `${source} places a title at "${staged.staging.corner}" on a line that is no source`,
+    )
+  }
+  const staging = staged?.staging ?? DEFAULT_STAGING
+  const spoken = blockquote.children.filter((child) => !caption || child !== last)
+  const dialogue = spoken.filter(isTurn).length > 1
+  const children = dialogue ? dialogueOf(spoken) : speechOf(spoken)
+  const figure = {
+    className: 'au-quote',
+    'data-quote': dialogue ? 'dialogue' : 'speech',
+    'data-backing': staging.backing,
+    ...(caption ? { 'data-title-corner': staging.corner } : {}),
+  }
+  const quote = element('blockquote', blockquote.properties, children)
+  if (!caption) return element('figure', figure, [quote])
+  const title = element('figcaption', {}, caption)
+  return element('figure', figure, isTitleBelow(staging) ? [quote, title] : [title, quote])
 }
 
 export function rehypeProseQuotes() {
-  return (tree: HastRoot): void => {
+  return (tree: HastRoot, file?: { path?: string; history?: string[] }): void => {
+    const source = file?.path ?? file?.history?.[0] ?? 'a prose file'
     const wrap = (node: HastParent): void => {
       node.children = node.children.map((child) => {
         if (child.type === 'text') return child
         wrap(child)
         if (child.tagName !== 'blockquote') return child
-        return calloutNote(child) ?? quoteFigure(child)
+        return calloutNote(child) ?? quoteFigure(child, source)
       })
     }
 

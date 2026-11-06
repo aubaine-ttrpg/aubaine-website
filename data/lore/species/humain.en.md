@@ -2,7 +2,7 @@ Humans are artisans of hope and action, a people of boundless creativity and an 
 
 > "Arthur, look at these steles: so many men and elves have shed their blood here. How many more lives must be sacrificed before we understand that victory by the sword does not forge peace? If humanity wants to endure in these lands, it must raise the word before arms, use its ingenuity to build bridges rather than ramparts, and set diplomacy at the heart of its designs. The Bastion must embody that design: a home of reconciliation where this senseless slaughter finally ends."
 >
-> :source[Jacques "Le Scellaire" Arsenault, addressing Arthur Colbert at the dawn of the great battle of Brécelann.]
+> :source[**Jacques "Le Scellaire" Arsenault**, addressing **Arthur Colbert** at the dawn of the great battle of Brécelann.]{top-left tranche}
 
 ## The Coming
 

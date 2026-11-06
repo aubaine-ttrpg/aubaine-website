@@ -46,7 +46,9 @@ Les deux repos vous permettent de changer les Compétences que votre {{memoire}}
 
 Le {{repos-court}} est donc la vraie respiration du groupe : dix minutes suffisent pour arriver au combat suivant avec un autre jeu de Compétences, choisi d'après ce que vous avez vu du danger.
 
-> Astuce : une Compétence ou un objet qui demande 10 minutes d'utilisation trouve souvent sa place pendant un {{repos-court}}.
+> [!TIP] Astuce
+>
+> Une Compétence ou un objet qui demande 10 minutes d'utilisation trouve souvent sa place pendant un {{repos-court}}.
 
 ## Le rythme attendu
 

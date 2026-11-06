@@ -2,7 +2,7 @@ Elves are the heirs of the Galwarians, bearers of an endless grace and of an anc
 
 > "Élyséa… why do you let this happen? Here? If you were truly there, we would not be in this chaos: this war should never have broken out. How many more lives must be sacrificed for a cause that has lost all meaning? What do we do when everything seems to be burning away? Wait? Watch? And all the while, my people die. Where are you when I need you? I will protect Brécelann, with or without you."
 >
-> :source[Queen Tiar Vyrefiel, addressing the goddess Élyséa in the sanctuary of Teyrdrassil, the World-Tree, a few years after the Second Radiance, at the dawn of the war of Brécelann.]
+> :source[**Queen Tiar Vyrefiel**, addressing the goddess **Élyséa** in the sanctuary of Teyrdrassil, the World-Tree, a few years after the Second Radiance, at the dawn of the war of Brécelann.]{bottom-right echo}
 
 ## A sylvan heritage
 

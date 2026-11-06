@@ -2,7 +2,7 @@ Les humains sont des artisans de l'espoir et de l'action, peuple d'une créativi
 
 > « Arthur, vois ces stèles : tant d'hommes et d'elfes ont versé leur sang ici. Combien de vies faudra-t-il encore sacrifier avant que nous comprenions que la victoire à l'épée ne forge pas la paix ? Si l'humanité veut durer sur ces terres, elle doit brandir la parole avant les armes, utiliser son ingéniosité pour bâtir des ponts plutôt que des remparts, et placer la diplomatie au cœur de ses desseins. Le Bastion doit incarner ce dessein : un foyer de réconciliation où cesse enfin ce massacre insensé. »
 >
-> :source[Jacques « Le Scellaire » Arsenault s'adressant à Arthur Colbert à l'aube de la grande bataille de Brécelann.]
+> :source[**Jacques « Le Scellaire » Arsenault** s'adressant à **Arthur Colbert** à l'aube de la grande bataille de Brécelann.]{top-left tranche}
 
 ## La Venue
 

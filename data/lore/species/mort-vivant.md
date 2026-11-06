@@ -4,7 +4,7 @@ Chacun a eu une première vie, avec un métier, une famille et, bien souvent, un
 
 > « Colpe m'a pris Bruford cette nuit. Le Diable croit m'avoir volé mon meilleur guerrier… Ha ! Il vient de m'en donner un meilleur. Je le scierai, je l'enchanterai, je laisserai la nécrose le gagner jusqu'au dernier doigt, et il ne restera rien en lui qui hésite. Qu'il se relève, et qu'il détruise tout ce que je lui montrerai. »
 >
-> :source[Les archives de Theodore, le Roy Fou, au lendemain de la mort de Bruford.]
+> :source[Les archives de **Theodore, le Roy Fou**, au lendemain de la mort de **Bruford**.]{bottom-right echo}
 
 ## Le dernier adieu
 
