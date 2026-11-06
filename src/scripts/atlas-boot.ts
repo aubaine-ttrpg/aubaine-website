@@ -1,3 +1,34 @@
+import { bell, clamp01, easeInOut, easeOut, easeOutBack, hash, ramp, TAU } from './cadran/curves'
+import {
+  CADRAN_EMBLEM_AT,
+  CADRAN_SWITCH_AT,
+  COMPLETE_TRACE,
+  type EmblemFrame,
+  emblemTimeline,
+  paintEmblem,
+} from './cadran/emblem'
+import { CADRAN_INK, css, hex, mix, type Rgb } from './cadran/ink'
+import {
+  buildShapes,
+  circle,
+  paintShape,
+  type Shape,
+  type ShapeSpec,
+  stagger,
+} from './cadran/shapes'
+import {
+  chime,
+  createLimiter,
+  degauss,
+  hiss,
+  ignite,
+  noiseBuffer,
+  ping,
+  powerThunk,
+  staticBurst,
+  tone,
+} from './cadran/sound'
+
 export type AtlasBootOutcome = 'completed' | 'skipped' | 'failed' | 'cancelled'
 
 export type AtlasBootProgress = {
@@ -23,18 +54,7 @@ export type AtlasBoot = {
 type Motion = 'full' | 'calm'
 type LinkState = 'pending' | 'linked' | 'failed'
 type SyncState = 'running' | 'waiting' | 'granted' | 'failed'
-type EmblemGroup =
-  | 'c'
-  | 'arcs'
-  | 'outerTicks'
-  | 'rings'
-  | 'ringTicks'
-  | 'rose'
-  | 'north'
-  | 'hub'
-  | 'book'
 type GlyphGroup = 'ring' | 'marks' | 'cross' | 'globe' | 'route'
-type Rgb = readonly [number, number, number]
 
 export type AtlasBootCopy = {
   readonly label: string
@@ -50,7 +70,6 @@ export type AtlasBootCopy = {
 }
 
 const ROUTE_DOT_COUNT = 10
-const TAU = Math.PI * 2
 const FONT_TIMEOUT = 2500
 const MAX_PIXELS = 2_400_000
 const FILL_RATE = 1
@@ -70,22 +89,10 @@ const FONT_FACES = [
   '700 24px "Barlow Semi Condensed"',
 ] as const
 
-function hex(value: string): Rgb {
-  const digits = value.replace('#', '')
-  return [
-    Number.parseInt(digits.slice(0, 2), 16),
-    Number.parseInt(digits.slice(2, 4), 16),
-    Number.parseInt(digits.slice(4, 6), 16),
-  ]
-}
-
 const INK = {
-  white: hex('#ffffff'),
-  beam: hex('#a8f1ff'),
-  cyan: hex('#5fd4ff'),
+  ...CADRAN_INK,
   ice: hex('#e6f8ff'),
   brass: hex('#c99b52'),
-  gold: hex('#f1d199'),
   amber: hex('#ffb04a'),
   screenCore: hex('#0d3b5e'),
   screenMid: hex('#072540'),
@@ -94,48 +101,6 @@ const INK = {
   wordMid: hex('#e0b46a'),
   wordBottom: hex('#a8793a'),
 } as const
-
-function css(color: Rgb, alpha = 1): string {
-  return `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${alpha})`
-}
-
-function mix(from: Rgb, to: Rgb, amount: number): Rgb {
-  return [
-    Math.round(from[0] + (to[0] - from[0]) * amount),
-    Math.round(from[1] + (to[1] - from[1]) * amount),
-    Math.round(from[2] + (to[2] - from[2]) * amount),
-  ]
-}
-
-function clamp01(value: number): number {
-  return value < 0 ? 0 : value > 1 ? 1 : value
-}
-
-function ramp(time: number, from: number, to: number): number {
-  return clamp01((time - from) / (to - from))
-}
-
-function bell(time: number, from: number, peak: number, to: number): number {
-  return time < peak ? ramp(time, from, peak) : 1 - ramp(time, peak, to)
-}
-
-function easeOut(progress: number): number {
-  return 1 - (1 - progress) ** 3
-}
-
-function easeInOut(progress: number): number {
-  return progress < 0.5 ? 4 * progress ** 3 : 1 - (-2 * progress + 2) ** 3 / 2
-}
-
-function easeOutBack(progress: number): number {
-  const overshoot = 1.6
-  return 1 + (overshoot + 1) * (progress - 1) ** 3 + overshoot * (progress - 1) ** 2
-}
-
-function hash(seed: number): number {
-  const value = Math.sin(seed * 127.1 + 311.7) * 43758.5453
-  return value - Math.floor(value)
-}
 
 function fraction(value: number): number {
   return value - Math.floor(value)
@@ -161,15 +126,6 @@ type Signal = {
   readonly tear: number
   readonly fade: number
   readonly hum: number
-}
-
-type EmblemFrame = {
-  readonly alpha: number
-  readonly trace: Readonly<Record<EmblemGroup, number>>
-  readonly ignite: number
-  readonly needle: number
-  readonly halo: number
-  readonly pulse: number
 }
 
 type AppFrame = {
@@ -227,18 +183,6 @@ function cue(at: number, sound: Sound, length = 0): Cue {
   return { at, sound, length }
 }
 
-const COMPLETE_TRACE: Readonly<Record<EmblemGroup, number>> = {
-  c: 1,
-  arcs: 1,
-  outerTicks: 1,
-  rings: 1,
-  ringTicks: 1,
-  rose: 1,
-  north: 1,
-  hub: 1,
-  book: 1,
-}
-
 function syncState(failed: boolean, waiting: boolean, granted: boolean): SyncState {
   if (failed) return 'failed'
   if (waiting) return 'waiting'
@@ -249,11 +193,6 @@ function stampOf(sync: SyncState, time: number, grantedAt: number, failedAt: num
   if (sync === 'granted') return ramp(time, grantedAt, grantedAt + 0.15)
   if (sync === 'failed') return ramp(time, failedAt, failedAt + 0.15)
   return 0
-}
-
-function needleAngle(elapsed: number): number {
-  if (elapsed < 0) return -0.56
-  return -0.56 * Math.exp(-3.2 * elapsed) * Math.cos(9 * elapsed)
 }
 
 function cueSets(build: (link: LinkState) => Cue[]): (link: LinkState) => readonly Cue[] {
@@ -267,8 +206,8 @@ function cueSets(build: (link: LinkState) => Cue[]): (link: LinkState) => readon
 
 function fullPlan(copy: AtlasBootCopy, logo: boolean): Plan {
   const title = copy.title
-  const emblemAt = 0.9
-  const switchAt = emblemAt + 2.05
+  const emblemAt = CADRAN_EMBLEM_AT
+  const switchAt = CADRAN_SWITCH_AT
   const holdAt = switchAt + 1.89
   const grantedAt = switchAt + 1.99
   const revealAt = switchAt + 2.59
@@ -301,7 +240,6 @@ function fullPlan(copy: AtlasBootCopy, logo: boolean): Plan {
     const revealing = ramp(t, revealAt, end)
     const revealGlow = bell(t, revealAt - 0.05, revealAt + 0.12, end)
     const brandOut = ramp(t, switchAt + 0.08, switchAt + 0.22)
-    const emblem = (from: number, to: number): number => ramp(t, emblemAt + from, emblemAt + to)
     const app = (from: number, to: number): number => ramp(t, switchAt + from, switchAt + to)
     const sync = syncState(failed, waiting, t >= grantedAt)
 
@@ -337,24 +275,7 @@ function fullPlan(copy: AtlasBootCopy, logo: boolean): Plan {
       },
       hud: easeOut(ramp(t, 0.9, 1.3)),
       catalyst: ramp(t, 1, 2),
-      emblem: {
-        alpha: logo && t >= emblemAt ? 1 - brandOut : 0,
-        trace: {
-          c: easeInOut(emblem(0, 0.55)),
-          arcs: emblem(0.18, 0.65),
-          outerTicks: emblem(0.25, 0.8),
-          rings: emblem(0.35, 0.92),
-          ringTicks: emblem(0.6, 1.02),
-          rose: emblem(0.7, 1.28),
-          north: emblem(1.02, 1.2),
-          hub: emblem(1.12, 1.3),
-          book: emblem(0.92, 1.45),
-        },
-        ignite: easeOut(emblem(1.35, 1.75)),
-        needle: needleAngle(t - emblemAt - 0.7),
-        halo: emblem(1.35, 1.9),
-        pulse: emblem(1.4, 2.25),
-      },
+      emblem: { alpha: logo && t >= emblemAt ? 1 - brandOut : 0, ...emblemTimeline(t) },
       app: {
         alpha: app(0.14, 0.26),
         glyph: app(0.19, 0.79),
@@ -455,375 +376,9 @@ function createPlan(motion: Motion, copy: AtlasBootCopy, logo: boolean): Plan {
   return motion === 'full' ? fullPlan(copy, logo) : calmPlan(copy)
 }
 
-type Subpath = {
-  readonly points: Float32Array
-  readonly marks: Float32Array
-  readonly length: number
-}
-
-type Outline = { readonly subpaths: readonly Subpath[]; readonly length: number }
-
-function at(values: Float32Array, index: number): number {
-  return values[index] ?? 0
-}
-
-function measure(coordinates: readonly number[]): Subpath {
-  const points = Float32Array.from(coordinates)
-  const marks = new Float32Array(points.length / 2)
-  let length = 0
-  for (let index = 1; index < marks.length; index += 1) {
-    length += Math.hypot(
-      at(points, index * 2) - at(points, index * 2 - 2),
-      at(points, index * 2 + 1) - at(points, index * 2 - 1),
-    )
-    marks[index] = length
-  }
-  return { points, marks, length }
-}
-
-function appendArc(
-  out: number[],
-  from: readonly [number, number],
-  radii: readonly [number, number],
-  rotation: number,
-  large: boolean,
-  sweep: boolean,
-  to: readonly [number, number],
-): void {
-  const [x1, y1] = from
-  const [x2, y2] = to
-  let rx = Math.abs(radii[0])
-  let ry = Math.abs(radii[1])
-  if (rx === 0 || ry === 0) {
-    out.push(x2, y2)
-    return
-  }
-  const phi = (rotation * Math.PI) / 180
-  const cos = Math.cos(phi)
-  const sin = Math.sin(phi)
-  const dx = (x1 - x2) / 2
-  const dy = (y1 - y2) / 2
-  const xp = cos * dx + sin * dy
-  const yp = -sin * dx + cos * dy
-  const lambda = (xp * xp) / (rx * rx) + (yp * yp) / (ry * ry)
-  if (lambda > 1) {
-    rx *= Math.sqrt(lambda)
-    ry *= Math.sqrt(lambda)
-  }
-  const numerator = rx * rx * ry * ry - rx * rx * yp * yp - ry * ry * xp * xp
-  const denominator = rx * rx * yp * yp + ry * ry * xp * xp
-  const factor = (large === sweep ? -1 : 1) * Math.sqrt(Math.max(0, numerator / denominator))
-  const cxp = (factor * rx * yp) / ry
-  const cyp = (-factor * ry * xp) / rx
-  const cx = cos * cxp - sin * cyp + (x1 + x2) / 2
-  const cy = sin * cxp + cos * cyp + (y1 + y2) / 2
-  const start = Math.atan2((yp - cyp) / ry, (xp - cxp) / rx)
-  let delta = Math.atan2((-yp - cyp) / ry, (-xp - cxp) / rx) - start
-  if (sweep && delta < 0) delta += TAU
-  if (!sweep && delta > 0) delta -= TAU
-  const steps = Math.max(8, Math.ceil((Math.abs(delta) * Math.max(rx, ry)) / 2))
-  for (let step = 1; step <= steps; step += 1) {
-    const angle = start + (delta * step) / steps
-    const ex = rx * Math.cos(angle)
-    const ey = ry * Math.sin(angle)
-    out.push(cx + cos * ex - sin * ey, cy + sin * ex + cos * ey)
-  }
-}
-
-function appendCubic(out: number[], controls: readonly number[]): void {
-  const [x0 = 0, y0 = 0, x1 = 0, y1 = 0, x2 = 0, y2 = 0, x3 = 0, y3 = 0] = controls
-  const span =
-    Math.hypot(x1 - x0, y1 - y0) + Math.hypot(x2 - x1, y2 - y1) + Math.hypot(x3 - x2, y3 - y2)
-  const steps = Math.max(8, Math.ceil(span / 2))
-  for (let step = 1; step <= steps; step += 1) {
-    const t = step / steps
-    const u = 1 - t
-    out.push(
-      u * u * u * x0 + 3 * u * u * t * x1 + 3 * u * t * t * x2 + t * t * t * x3,
-      u * u * u * y0 + 3 * u * u * t * y1 + 3 * u * t * t * y2 + t * t * t * y3,
-    )
-  }
-}
-
-const PATH_TOKEN = /[A-Za-z]|-?(?:\d+\.?\d*|\.\d+)(?:e[-+]?\d+)?/g
-
-function outlineOf(data: string): Outline {
-  const tokens = data.match(PATH_TOKEN) ?? []
-  const subpaths: Subpath[] = []
-  let current: number[] = []
-  let cursor = 0
-  let command = ''
-  let x = 0
-  let y = 0
-  let startX = 0
-  let startY = 0
-
-  const read = (): number => {
-    const token = tokens[cursor]
-    cursor += 1
-    if (token === undefined) throw new Error(`Path data ends early: ${data}`)
-    const value = Number(token)
-    if (Number.isNaN(value)) throw new Error(`Expected a number in path data: ${data}`)
-    return value
-  }
-  const flush = (): void => {
-    if (current.length >= 4) subpaths.push(measure(current))
-    current = []
-  }
-
-  while (cursor < tokens.length) {
-    const token = tokens[cursor] ?? ''
-    if (/^[A-Za-z]$/.test(token)) {
-      command = token
-      cursor += 1
-    }
-    switch (command) {
-      case 'M':
-        flush()
-        x = read()
-        y = read()
-        startX = x
-        startY = y
-        current.push(x, y)
-        command = 'L'
-        break
-      case 'L':
-        x = read()
-        y = read()
-        current.push(x, y)
-        break
-      case 'A': {
-        const radii = [read(), read()] as const
-        const rotation = read()
-        const large = read() !== 0
-        const sweep = read() !== 0
-        const to = [read(), read()] as const
-        appendArc(current, [x, y], radii, rotation, large, sweep, to)
-        x = to[0]
-        y = to[1]
-        break
-      }
-      case 'C': {
-        const controls = [x, y, read(), read(), read(), read(), read(), read()]
-        appendCubic(current, controls)
-        x = controls[6] ?? x
-        y = controls[7] ?? y
-        break
-      }
-      case 'Z':
-        current.push(startX, startY)
-        x = startX
-        y = startY
-        flush()
-        current = [x, y]
-        command = ''
-        break
-      default:
-        throw new Error(`Unsupported path command "${command}" in ${data}`)
-    }
-  }
-  flush()
-  return { subpaths, length: subpaths.reduce((sum, subpath) => sum + subpath.length, 0) }
-}
-
-type ShapeSpec<G extends string> = {
-  readonly group: G
-  readonly d: string
-  readonly fill: string | null
-  readonly stroke: string | null
-  readonly width: number
-  readonly opacity: number
-  readonly round: boolean
-  readonly turns: boolean
-}
-
-type Shape<G extends string> = {
-  readonly group: G
-  readonly index: number
-  readonly count: number
-  readonly path: Path2D
-  readonly outline: Outline
-  readonly fill: Rgb | null
-  readonly stroke: Rgb | null
-  readonly width: number
-  readonly opacity: number
-  readonly round: boolean
-  readonly turns: boolean
-}
-
-function circle(cx: number, cy: number, r: number): string {
-  return `M ${cx},${cy - r} A ${r},${r} 0 1 1 ${cx},${cy + r} A ${r},${r} 0 1 1 ${cx},${cy - r}`
-}
-
 function polar(radius: number, degrees: number): string {
   const angle = (degrees * Math.PI) / 180
   return `${(radius * Math.cos(angle)).toFixed(2)},${(radius * Math.sin(angle)).toFixed(2)}`
-}
-
-function buildShapes<G extends string>(specs: readonly ShapeSpec<G>[]): Shape<G>[] {
-  const totals = new Map<G, number>()
-  for (const spec of specs) totals.set(spec.group, (totals.get(spec.group) ?? 0) + 1)
-  const seen = new Map<G, number>()
-  return specs.map((spec) => {
-    const index = seen.get(spec.group) ?? 0
-    seen.set(spec.group, index + 1)
-    return {
-      group: spec.group,
-      index,
-      count: totals.get(spec.group) ?? 1,
-      path: new Path2D(spec.d),
-      outline: outlineOf(spec.d),
-      fill: spec.fill === null ? null : hex(spec.fill),
-      stroke: spec.stroke === null ? null : hex(spec.stroke),
-      width: spec.width,
-      opacity: spec.opacity,
-      round: spec.round,
-      turns: spec.turns,
-    }
-  })
-}
-
-type Paint = {
-  readonly fill: string | null
-  readonly stroke: string | null
-  readonly width: number
-  readonly opacity: number
-  readonly round: boolean
-}
-
-const EMBLEM_PAINT = {
-  shell: { fill: '#0A2B3B', stroke: '#C99B52', width: 5, opacity: 1, round: true },
-  arcBright: { fill: null, stroke: '#F1D199', width: 2.8, opacity: 0.85, round: false },
-  arcDim: { fill: null, stroke: '#C99B52', width: 2, opacity: 0.55, round: false },
-  tickMajor: { fill: null, stroke: '#F1D199', width: 2.5, opacity: 0.8, round: false },
-  tickMinor: { fill: null, stroke: '#F1D199', width: 1.3, opacity: 0.8, round: false },
-  ringOuter: { fill: null, stroke: '#C99B52', width: 4, opacity: 1, round: false },
-  ringFine: { fill: null, stroke: '#F1D199', width: 1.4, opacity: 0.7, round: false },
-  ringInner: { fill: null, stroke: '#C99B52', width: 3, opacity: 1, round: false },
-  ringFaint: { fill: null, stroke: '#C99B52', width: 1.4, opacity: 0.7, round: false },
-  dialMajor: { fill: null, stroke: '#C99B52', width: 1.9, opacity: 1, round: false },
-  dialMinor: { fill: null, stroke: '#C99B52', width: 1, opacity: 1, round: false },
-  roseDiagonal: { fill: '#123A4D', stroke: '#C99B52', width: 2.5, opacity: 1, round: false },
-  rosePoint: { fill: '#0A2B3B', stroke: '#C99B52', width: 3.2, opacity: 1, round: true },
-  roseLight: { fill: '#F1D199', stroke: null, width: 0, opacity: 0.91, round: false },
-  north: { fill: '#C99B52', stroke: '#F1D199', width: 2, opacity: 1, round: false },
-  hubOuter: { fill: '#0A2B3B', stroke: '#C99B52', width: 8, opacity: 1, round: false },
-  hubInner: { fill: '#123A4D', stroke: '#F1D199', width: 5, opacity: 1, round: false },
-  stud: { fill: '#0A2B3B', stroke: '#C99B52', width: 3, opacity: 1, round: false },
-  bookCover: { fill: '#0A2B3B', stroke: '#C99B52', width: 6, opacity: 1, round: true },
-  bookPages: { fill: '#123A4D', stroke: '#F1D199', width: 4, opacity: 1, round: true },
-  bookLines: { fill: null, stroke: '#F1D199', width: 2.5, opacity: 0.85, round: false },
-  bookSpine: { fill: null, stroke: '#C99B52', width: 4, opacity: 1, round: false },
-  bookClasp: { fill: '#0A2B3B', stroke: '#C99B52', width: 3, opacity: 1, round: false },
-} as const satisfies Readonly<Record<string, Paint>>
-
-type EmblemPaint = keyof typeof EMBLEM_PAINT
-
-const EMBLEM: readonly (readonly [EmblemGroup, EmblemPaint, string])[] = [
-  [
-    'c',
-    'shell',
-    'M 480.97,141.55 A 220,220 0 1 0 468.25,432.82 L 436.60,402.26 A 176,176 0 1 1 446.78,169.24 Z',
-  ],
-  ['arcs', 'arcBright', 'M467.81,147.59 A 206,206 0 1 0 455.66,425.66'],
-  ['arcs', 'arcDim', 'M454.02,159.16 A 188,188 0 1 0 442.94,412.94'],
-  ['outerTicks', 'tickMajor', 'M 436.62,134.34 L 445.80,123.78'],
-  ['outerTicks', 'tickMinor', 'M 414.92,112.09 L 419.69,104.45'],
-  ['outerTicks', 'tickMinor', 'M 387.36,97.74 L 390.88,89.46'],
-  ['outerTicks', 'tickMajor', 'M 356.69,92.73 L 360.08,79.15'],
-  ['outerTicks', 'tickMinor', 'M 327.26,82.75 L 328.04,73.79'],
-  ['outerTicks', 'tickMinor', 'M 296.19,82.48 L 295.56,73.50'],
-  ['outerTicks', 'tickMajor', 'M 266.58,91.95 L 263.44,78.31'],
-  ['outerTicks', 'tickMinor', 'M 235.83,96.42 L 232.46,88.07'],
-  ['outerTicks', 'tickMinor', 'M 208.02,110.28 L 203.39,102.57'],
-  ['outerTicks', 'tickMajor', 'M 185.94,132.15 L 176.94,121.43'],
-  ['outerTicks', 'tickMinor', 'M 160.57,150.10 L 153.78,144.20'],
-  ['outerTicks', 'tickMinor', 'M 142.09,175.08 L 134.45,170.31'],
-  ['outerTicks', 'tickMajor', 'M 132.34,204.59 L 119.46,199.12'],
-  ['outerTicks', 'tickMinor', 'M 117.88,232.10 L 109.15,229.92'],
-  ['outerTicks', 'tickMinor', 'M 112.75,262.74 L 103.79,261.96'],
-  ['outerTicks', 'tickMajor', 'M 117.47,293.46 L 103.50,294.44'],
-  ['outerTicks', 'tickMinor', 'M 117.07,324.54 L 108.31,326.56'],
-  ['outerTicks', 'tickMinor', 'M 126.42,354.17 L 118.07,357.54'],
-  ['outerTicks', 'tickMajor', 'M 144.57,379.40 L 132.57,386.61'],
-  ['outerTicks', 'tickMinor', 'M 158.32,407.27 L 151.43,413.06'],
-  ['outerTicks', 'tickMinor', 'M 180.10,429.43 L 174.20,436.22'],
-  ['outerTicks', 'tickMajor', 'M 207.73,443.67 L 200.31,455.55'],
-  ['outerTicks', 'tickMinor', 'M 232.64,462.26 L 229.12,470.54'],
-  ['outerTicks', 'tickMinor', 'M 262.10,472.12 L 259.92,480.85'],
-  ['outerTicks', 'tickMajor', 'M 293.18,472.27 L 291.96,486.21'],
-  ['outerTicks', 'tickMinor', 'M 323.81,477.52 L 324.44,486.50'],
-  ['outerTicks', 'tickMinor', 'M 354.54,472.93 L 356.56,481.69'],
-  ['outerTicks', 'tickMajor', 'M 382.30,458.95 L 387.54,471.93'],
-  ['outerTicks', 'tickMinor', 'M 411.98,449.72 L 416.61,457.43'],
-  ['rings', 'ringOuter', circle(310, 280, 146)],
-  ['rings', 'ringFine', circle(310, 280, 133)],
-  ['rings', 'ringInner', circle(310, 280, 111)],
-  ['rings', 'ringFaint', circle(310, 280, 99)],
-  ['ringTicks', 'dialMajor', 'M441.00,280.00 L454.00,280.00'],
-  ['ringTicks', 'dialMinor', 'M442.33,315.46 L449.09,317.27'],
-  ['ringTicks', 'dialMinor', 'M428.65,348.50 L434.71,352.00'],
-  ['ringTicks', 'dialMajor', 'M402.63,372.63 L411.82,381.82'],
-  ['ringTicks', 'dialMinor', 'M378.50,398.65 L382.00,404.71'],
-  ['ringTicks', 'dialMinor', 'M345.46,412.33 L347.27,419.09'],
-  ['ringTicks', 'dialMajor', 'M310.00,411.00 L310.00,424.00'],
-  ['ringTicks', 'dialMinor', 'M274.54,412.33 L272.73,419.09'],
-  ['ringTicks', 'dialMinor', 'M241.50,398.65 L238.00,404.71'],
-  ['ringTicks', 'dialMajor', 'M217.37,372.63 L208.18,381.82'],
-  ['ringTicks', 'dialMinor', 'M191.35,348.50 L185.29,352.00'],
-  ['ringTicks', 'dialMinor', 'M177.67,315.46 L170.91,317.27'],
-  ['ringTicks', 'dialMajor', 'M179.00,280.00 L166.00,280.00'],
-  ['ringTicks', 'dialMinor', 'M177.67,244.54 L170.91,242.73'],
-  ['ringTicks', 'dialMinor', 'M191.35,211.50 L185.29,208.00'],
-  ['ringTicks', 'dialMajor', 'M217.37,187.37 L208.18,178.18'],
-  ['ringTicks', 'dialMinor', 'M241.50,161.35 L238.00,155.29'],
-  ['ringTicks', 'dialMinor', 'M274.54,147.67 L272.73,140.91'],
-  ['ringTicks', 'dialMajor', 'M310.00,149.00 L310.00,136.00'],
-  ['ringTicks', 'dialMinor', 'M345.46,147.67 L347.27,140.91'],
-  ['ringTicks', 'dialMinor', 'M378.50,161.35 L382.00,155.29'],
-  ['ringTicks', 'dialMajor', 'M402.63,187.37 L411.82,178.18'],
-  ['ringTicks', 'dialMinor', 'M428.65,211.50 L434.71,208.00'],
-  ['ringTicks', 'dialMinor', 'M442.33,244.54 L449.09,242.73'],
-  ['rose', 'roseDiagonal', 'M 297.27,267.27 L 395.56,194.44 L 322.73,292.73 L 310.00,280.00 Z'],
-  ['rose', 'roseDiagonal', 'M 322.73,267.27 L 395.56,365.56 L 297.27,292.73 L 310.00,280.00 Z'],
-  ['rose', 'roseDiagonal', 'M 322.73,292.73 L 224.44,365.56 L 297.27,267.27 L 310.00,280.00 Z'],
-  ['rose', 'roseDiagonal', 'M 297.27,292.73 L 224.44,194.44 L 322.73,267.27 L 310.00,280.00 Z'],
-  ['rose', 'rosePoint', 'M 310.00,256.00 L 487.00,280.00 L 310.00,304.00 L 326.00,280.00 Z'],
-  ['rose', 'roseLight', 'M 310.00,280.00 L 310.00,256.00 L 487.00,280.00 Z'],
-  ['rose', 'rosePoint', 'M 334.00,280.00 L 310.00,457.00 L 286.00,280.00 L 310.00,296.00 Z'],
-  ['rose', 'roseLight', 'M 310.00,280.00 L 334.00,280.00 L 310.00,457.00 Z'],
-  ['rose', 'rosePoint', 'M 310.00,304.00 L 133.00,280.00 L 310.00,256.00 L 294.00,280.00 Z'],
-  ['rose', 'roseLight', 'M 310.00,280.00 L 310.00,304.00 L 133.00,280.00 Z'],
-  ['rose', 'rosePoint', 'M 286.00,280.00 L 310.00,103.00 L 334.00,280.00 L 310.00,264.00 Z'],
-  ['rose', 'roseLight', 'M 310.00,280.00 L 286.00,280.00 L 310.00,103.00 Z'],
-  ['north', 'north', 'M310,28 L297,72 L310,59 L323,72 Z'],
-  ['hub', 'hubOuter', circle(310, 280, 33)],
-  ['hub', 'hubInner', circle(310, 280, 17)],
-  ['rose', 'stud', circle(310, 101, 8.2)],
-  ['rose', 'stud', circle(489, 280, 8.2)],
-  ['rose', 'stud', circle(131, 280, 8.2)],
-  [
-    'book',
-    'bookCover',
-    'M310 508 C265 479 211 463 142 469 L167 441 C222 435 277 459 310 489 C343 459 398 435 453 441 L478 469 C409 463 355 479 310 508 Z',
-  ],
-  [
-    'book',
-    'bookPages',
-    'M310 511 C263 483 205 481 139 482 C201 491 266 510 310 536 C354 510 419 491 481 482 C415 481 357 483 310 511 Z',
-  ],
-  ['book', 'bookLines', 'M310 506 C260 467 227 462 173 457 M310 506 C360 467 393 462 447 457'],
-  ['book', 'bookSpine', 'M310 491 L310 535'],
-  ['book', 'bookClasp', 'M310 539 L299 558 L310 577 L321 558 Z'],
-]
-
-function emblemSpecs(): ShapeSpec<EmblemGroup>[] {
-  return EMBLEM.map(([group, paint, d]) => ({
-    group,
-    d,
-    ...EMBLEM_PAINT[paint],
-    turns: group === 'rose',
-  }))
 }
 
 function glyphSpecs(): ShapeSpec<GlyphGroup>[] {
@@ -907,28 +462,11 @@ function glyphSpecs(): ShapeSpec<GlyphGroup>[] {
   return specs
 }
 
-type Artwork = {
-  readonly emblem: readonly Shape<EmblemGroup>[]
-  readonly glyph: readonly Shape<GlyphGroup>[]
-}
+let glyphCache: readonly Shape<GlyphGroup>[] | undefined
 
-let artworkCache: Artwork | null = null
-
-function artwork(): Artwork {
-  artworkCache ??= { emblem: buildShapes(emblemSpecs()), glyph: buildShapes(glyphSpecs()) }
-  return artworkCache
-}
-
-const EMBLEM_STAGGER: Readonly<Record<EmblemGroup, number>> = {
-  c: 1,
-  arcs: 0.8,
-  outerTicks: 0.2,
-  rings: 0.55,
-  ringTicks: 0.22,
-  rose: 0.4,
-  north: 1,
-  hub: 0.7,
-  book: 0.45,
+function glyphShapes(): readonly Shape<GlyphGroup>[] {
+  glyphCache ??= buildShapes(glyphSpecs())
+  return glyphCache
 }
 
 const GLYPH_TIMING: Readonly<Record<GlyphGroup, readonly [number, number, number]>> = {
@@ -937,13 +475,6 @@ const GLYPH_TIMING: Readonly<Record<GlyphGroup, readonly [number, number, number
   cross: [0.35, 0.75, 0.5],
   globe: [0.3, 0.8, 0.45],
   route: [0.65, 1, 0.55],
-}
-
-function stagger(progress: number, index: number, count: number, window: number): number {
-  if (progress >= 1) return 1
-  if (count <= 1 || window >= 1) return progress
-  const start = (index / (count - 1)) * (1 - window)
-  return clamp01((progress - start) / window)
 }
 
 type Metrics = {
@@ -1011,89 +542,6 @@ function ignition(progress: number, seed: number, clock: number): number {
   if (progress >= 1) return 1
   const lit = hash(seed * 17.31 + Math.floor(clock * 40)) > 0.35 ? 1 : 0.15
   return Math.min(1, progress * 1.6) * lit
-}
-
-function paintHead(context: CanvasRenderingContext2D, x: number, y: number, radius: number): void {
-  const gradient = context.createRadialGradient(x, y, 0, x, y, radius)
-  gradient.addColorStop(0, css(INK.white, 1))
-  gradient.addColorStop(0.35, css(INK.beam, 0.85))
-  gradient.addColorStop(1, css(INK.beam, 0))
-  context.fillStyle = gradient
-  context.beginPath()
-  context.arc(x, y, radius, 0, TAU)
-  context.fill()
-}
-
-function strokePart(
-  context: CanvasRenderingContext2D,
-  outline: Outline,
-  amount: number,
-): readonly [number, number] | null {
-  let remaining = amount
-  let headX = 0
-  let headY = 0
-  let moved = false
-  context.beginPath()
-  for (const subpath of outline.subpaths) {
-    if (remaining <= 0) break
-    const { points, marks } = subpath
-    context.moveTo(at(points, 0), at(points, 1))
-    headX = at(points, 0)
-    headY = at(points, 1)
-    moved = true
-    for (let index = 1; index < marks.length; index += 1) {
-      const reach = at(marks, index)
-      const x = at(points, index * 2)
-      const y = at(points, index * 2 + 1)
-      if (reach <= remaining) {
-        context.lineTo(x, y)
-        headX = x
-        headY = y
-        continue
-      }
-      const before = at(marks, index - 1)
-      const share = reach > before ? (remaining - before) / (reach - before) : 0
-      const px = at(points, index * 2 - 2)
-      const py = at(points, index * 2 - 1)
-      headX = px + (x - px) * share
-      headY = py + (y - py) * share
-      context.lineTo(headX, headY)
-      break
-    }
-    remaining -= subpath.length
-  }
-  context.stroke()
-  return moved ? [headX, headY] : null
-}
-
-function paintShape<G extends string>(
-  context: CanvasRenderingContext2D,
-  shape: Shape<G>,
-  progress: number,
-  ignite: number,
-): void {
-  const base = context.globalAlpha
-  if (shape.fill && ignite > 0) {
-    context.globalAlpha = base * shape.opacity * ignite
-    context.fillStyle = css(shape.fill)
-    context.fill(shape.path)
-  }
-  if (shape.stroke && progress > 0) {
-    context.globalAlpha = base * shape.opacity
-    context.strokeStyle = css(mix(INK.beam, shape.stroke, ignite))
-    context.lineWidth = shape.width
-    context.lineJoin = shape.round ? 'round' : 'miter'
-    if (progress >= 1) {
-      context.stroke(shape.path)
-    } else {
-      const head = strokePart(context, shape.outline, progress * shape.outline.length)
-      if (head && shape.outline.length > 40) {
-        context.globalAlpha = base
-        paintHead(context, head[0], head[1], 7 + shape.width)
-      }
-    }
-  }
-  context.globalAlpha = base
 }
 
 function paintBackdrop(target: Surface, metrics: Metrics): void {
@@ -1186,61 +634,12 @@ function emblemScale(metrics: Metrics): number {
   return Math.min((height * 0.62) / 600, (width * (portrait ? 0.78 : 0.46)) / 620)
 }
 
-function paintBrand(
-  context: CanvasRenderingContext2D,
-  metrics: Metrics,
-  frame: Frame,
-  shapes: readonly Shape<EmblemGroup>[],
-): void {
-  const { emblem } = frame
-  if (emblem.alpha <= 0) return
-  const scale = emblemScale(metrics)
-  const cx = metrics.width / 2
-  const cy = metrics.height / 2
-  const hubY = cy - 20 * scale
-
-  context.save()
-  context.globalAlpha = emblem.alpha
-  if (emblem.halo > 0) {
-    const halo = context.createRadialGradient(cx, hubY, 0, cx, hubY, 340 * scale)
-    halo.addColorStop(0, css(INK.cyan, 0.22 * emblem.halo))
-    halo.addColorStop(0.55, css(INK.cyan, 0.07 * emblem.halo))
-    halo.addColorStop(1, css(INK.cyan, 0))
-    context.fillStyle = halo
-    context.fillRect(cx - 340 * scale, hubY - 340 * scale, 680 * scale, 680 * scale)
-  }
-  if (emblem.pulse > 0 && emblem.pulse < 1) {
-    context.strokeStyle = css(INK.gold, 0.55 * (1 - emblem.pulse))
-    context.lineWidth = 3 * scale
-    context.beginPath()
-    context.arc(cx, hubY, (160 + 300 * easeOut(emblem.pulse)) * scale, 0, TAU)
-    context.stroke()
-  }
-
-  context.translate(cx, cy)
-  context.scale(scale, scale)
-  context.translate(-310, -300)
-  context.lineCap = 'butt'
-  for (const shape of shapes) {
-    const progress = stagger(
-      emblem.trace[shape.group],
-      shape.index,
-      shape.count,
-      EMBLEM_STAGGER[shape.group],
-    )
-    if (progress <= 0 && emblem.ignite <= 0) continue
-    if (shape.turns && emblem.needle !== 0) {
-      context.save()
-      context.translate(310, 280)
-      context.rotate(emblem.needle)
-      context.translate(-310, -280)
-      paintShape(context, shape, progress, emblem.ignite)
-      context.restore()
-    } else {
-      paintShape(context, shape, progress, emblem.ignite)
-    }
-  }
-  context.restore()
+function paintBrand(context: CanvasRenderingContext2D, metrics: Metrics, frame: Frame): void {
+  paintEmblem(
+    context,
+    { cx: metrics.width / 2, cy: metrics.height / 2, scale: emblemScale(metrics), thinnest: 0 },
+    frame.emblem,
+  )
 }
 
 type Point = readonly [number, number]
@@ -1571,7 +970,11 @@ function paintApp(
 
 type Painter = { paint(frame: Frame, metrics: Metrics): void }
 
-function createPainter(content: Surface, copy: AtlasBootCopy, art: Artwork): Painter {
+function createPainter(
+  content: Surface,
+  copy: AtlasBootCopy,
+  glyphs: readonly Shape<GlyphGroup>[],
+): Painter {
   return {
     paint(frame, metrics) {
       const context = content.context
@@ -1582,8 +985,8 @@ function createPainter(content: Surface, copy: AtlasBootCopy, art: Artwork): Pai
       context.textBaseline = 'alphabetic'
       context.textAlign = 'left'
       paintHud(context, metrics, frame, copy)
-      paintBrand(context, metrics, frame, art.emblem)
-      paintApp(context, metrics, frame, copy, art.glyph)
+      paintBrand(context, metrics, frame)
+      paintApp(context, metrics, frame, copy, glyphs)
     },
   }
 }
@@ -1939,96 +1342,17 @@ function createFlatOutput(canvas: HTMLCanvasElement): Output {
   }
 }
 
-type Envelope = { readonly peak: number; readonly attack: number; readonly decay: number }
-type Band = {
-  readonly type: BiquadFilterType
-  readonly from: number
-  readonly to: number
-  readonly q: number
-}
 type Mixer = {
   readonly context: BaseAudioContext
   readonly input: GainNode
   readonly noise: AudioBuffer
 }
 
-function noiseBuffer(context: BaseAudioContext): AudioBuffer {
-  const buffer = context.createBuffer(1, context.sampleRate * 2, context.sampleRate)
-  const data = buffer.getChannelData(0)
-  let state = 0x2545f491
-  for (let index = 0; index < data.length; index += 1) {
-    state ^= state << 13
-    state ^= state >>> 17
-    state ^= state << 5
-    data[index] = ((state >>> 0) / 4294967296) * 2 - 1
-  }
-  return buffer
-}
-
 function createMixer(context: BaseAudioContext): Mixer {
   const input = context.createGain()
   input.gain.value = 0.8
-  const limiter = context.createDynamicsCompressor()
-  limiter.threshold.value = -12
-  limiter.knee.value = 8
-  limiter.ratio.value = 4
-  limiter.attack.value = 0.004
-  limiter.release.value = 0.18
-  input.connect(limiter).connect(context.destination)
+  input.connect(createLimiter(context)).connect(context.destination)
   return { context, input, noise: noiseBuffer(context) }
-}
-
-function envelope(gain: AudioParam, when: number, shape: Envelope): number {
-  const stop = when + shape.attack + shape.decay
-  gain.setValueAtTime(0.0001, when)
-  gain.exponentialRampToValueAtTime(shape.peak, when + shape.attack)
-  gain.exponentialRampToValueAtTime(0.0001, stop)
-  return stop
-}
-
-function tone(
-  mixer: Mixer,
-  destination: AudioNode,
-  wave: OscillatorType,
-  frequencies: readonly [number, number],
-  when: number,
-  shape: Envelope,
-): void {
-  const { context } = mixer
-  const oscillator = context.createOscillator()
-  oscillator.type = wave
-  oscillator.frequency.setValueAtTime(frequencies[0], when)
-  const gain = context.createGain()
-  const stop = envelope(gain.gain, when, shape)
-  if (frequencies[1] !== frequencies[0]) {
-    oscillator.frequency.exponentialRampToValueAtTime(frequencies[1], stop)
-  }
-  oscillator.connect(gain).connect(destination)
-  oscillator.start(when)
-  oscillator.stop(stop + 0.02)
-}
-
-function hiss(
-  mixer: Mixer,
-  destination: AudioNode,
-  band: Band,
-  when: number,
-  shape: Envelope,
-): void {
-  const { context } = mixer
-  const source = context.createBufferSource()
-  source.buffer = mixer.noise
-  source.loop = true
-  const filter = context.createBiquadFilter()
-  filter.type = band.type
-  filter.Q.value = band.q
-  filter.frequency.setValueAtTime(band.from, when)
-  const gain = context.createGain()
-  const stop = envelope(gain.gain, when, shape)
-  if (band.to !== band.from) filter.frequency.exponentialRampToValueAtTime(band.to, stop)
-  source.connect(filter).connect(gain).connect(destination)
-  source.start(when, (when * 0.37) % 1.9)
-  source.stop(stop + 0.02)
 }
 
 function lowpass(mixer: Mixer, frequency: number): BiquadFilterNode {
@@ -2037,33 +1361,6 @@ function lowpass(mixer: Mixer, frequency: number): BiquadFilterNode {
   filter.frequency.value = frequency
   filter.connect(mixer.input)
   return filter
-}
-
-function degauss(mixer: Mixer, when: number): void {
-  const { context } = mixer
-  const saw = context.createOscillator()
-  saw.type = 'sawtooth'
-  saw.frequency.setValueAtTime(58, when)
-  saw.frequency.linearRampToValueAtTime(50, when + 0.9)
-  const filter = context.createBiquadFilter()
-  filter.type = 'lowpass'
-  filter.Q.value = 6
-  filter.frequency.setValueAtTime(420, when)
-  filter.frequency.exponentialRampToValueAtTime(180, when + 0.9)
-  const body = context.createGain()
-  envelope(body.gain, when, { peak: 0.22, attack: 0.06, decay: 0.85 })
-  const tremolo = context.createGain()
-  tremolo.gain.value = 0.6
-  const wobble = context.createOscillator()
-  wobble.frequency.value = 11
-  const depth = context.createGain()
-  depth.gain.value = 0.4
-  wobble.connect(depth).connect(tremolo.gain)
-  saw.connect(filter).connect(body).connect(tremolo).connect(mixer.input)
-  saw.start(when)
-  wobble.start(when)
-  saw.stop(when + 0.95)
-  wobble.stop(when + 0.95)
 }
 
 function hum(mixer: Mixer, when: number, length: number): void {
@@ -2098,38 +1395,14 @@ function hum(mixer: Mixer, when: number, length: number): void {
   vibrato.stop(when + duration + 0.02)
 }
 
-function staticBurst(mixer: Mixer, when: number): void {
-  const gate = mixer.context.createGain()
-  const pattern = [1, 0.25, 0.9, 0.1, 0.75, 0.3, 1, 0.15, 0.6] as const
-  pattern.forEach((level, index) => {
-    gate.gain.setValueAtTime(level, when + index * 0.028)
-  })
-  gate.connect(mixer.input)
-  hiss(mixer, gate, { type: 'bandpass', from: 2200, to: 1600, q: 0.45 }, when, {
-    peak: 0.13,
-    attack: 0.008,
-    decay: 0.24,
-  })
-}
-
 function playSound(mixer: Mixer, entry: Cue, when: number): void {
   const out = mixer.input
   switch (entry.sound) {
     case 'power':
-      tone(mixer, out, 'sine', [140, 42], when, { peak: 0.5, attack: 0.004, decay: 0.45 })
-      hiss(mixer, out, { type: 'bandpass', from: 1400, to: 900, q: 0.8 }, when, {
-        peak: 0.16,
-        attack: 0.003,
-        decay: 0.32,
-      })
-      hiss(mixer, out, { type: 'highpass', from: 4200, to: 4200, q: 0.5 }, when + 0.02, {
-        peak: 0.05,
-        attack: 0.03,
-        decay: 1.1,
-      })
+      powerThunk(mixer, out, when)
       return
     case 'degauss':
-      degauss(mixer, when)
+      degauss(mixer, out, when)
       return
     case 'tick':
       hiss(mixer, out, { type: 'bandpass', from: 3400, to: 3400, q: 1.4 }, when, {
@@ -2143,37 +1416,16 @@ function playSound(mixer: Mixer, entry: Cue, when: number): void {
       hum(mixer, when, entry.length)
       return
     case 'ignite':
-      tone(mixer, out, 'sine', [220, 440], when, { peak: 0.07, attack: 0.12, decay: 0.55 })
-      tone(mixer, out, 'triangle', [330, 330], when, { peak: 0.035, attack: 0.15, decay: 0.7 })
-      hiss(mixer, out, { type: 'highpass', from: 6000, to: 6000, q: 0.7 }, when, {
-        peak: 0.025,
-        attack: 0.05,
-        decay: 0.6,
-      })
+      ignite(mixer, out, when)
       return
     case 'chime':
-      for (const [frequency, delay] of [
-        [659.26, 0],
-        [987.77, 0.11],
-      ] as const) {
-        tone(mixer, out, 'sine', [frequency, frequency], when + delay, {
-          peak: 0.09,
-          attack: 0.005,
-          decay: 1.7,
-        })
-        tone(mixer, out, 'sine', [frequency * 2.01, frequency * 2.01], when + delay, {
-          peak: 0.022,
-          attack: 0.005,
-          decay: 0.9,
-        })
-      }
+      chime(mixer, out, when)
       return
     case 'static':
-      staticBurst(mixer, when)
+      staticBurst(mixer, out, when)
       return
     case 'ping':
-      tone(mixer, out, 'sine', [783.99, 783.99], when, { peak: 0.08, attack: 0.004, decay: 1.1 })
-      tone(mixer, out, 'sine', [1567.98, 1567.98], when, { peak: 0.02, attack: 0.004, decay: 0.5 })
+      ping(mixer, out, when)
       return
     case 'granted': {
       const filter = lowpass(mixer, 2600)
@@ -2290,7 +1542,7 @@ export function mountAtlasBoot(host: HTMLElement, options: AtlasBootOptions): At
   const { copy } = options
   const logo = options.logo !== false
   const plan = createPlan(resolveMotion(), copy, logo)
-  const art = artwork()
+  const glyphs = glyphShapes()
 
   const { canvas, output } = createScreen()
   canvas.setAttribute('role', 'img')
@@ -2308,7 +1560,7 @@ export function mountAtlasBoot(host: HTMLElement, options: AtlasBootOptions): At
   const content = createSurface()
   const scene = createSurface()
   const chain = [createSurface(), createSurface(), createSurface(), createSurface()] as const
-  const painter = createPainter(content, copy, art)
+  const painter = createPainter(content, copy, glyphs)
   const voice = options.volume === undefined ? null : createVoice(options.volume)
 
   let metrics: Metrics | null = null
