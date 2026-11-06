@@ -23,6 +23,7 @@ import {
 } from '../atlas/vocabulary.ts'
 import { MAX_TILES } from '../atlas/world/grid.ts'
 import { ARCHIVE_FILE, BOOKLET_KINDS, RELEASE_FILE } from '../booklet/release.ts'
+import { HEX_COLOUR } from '../hex-colour.ts'
 import { LOCALES } from '../i18n/locales.ts'
 import { POLICY_KINDS } from '../i18n/routes.ts'
 import { ICON_NAME_PATTERN } from '../rights/attribution.ts'
@@ -30,7 +31,6 @@ import { MAX_ENERGY_COST } from './resources.ts'
 
 const SKILL_ID = /^[A-Z0-9]{6}-[0-9]{3}$/
 const MACHINE_KEY = /^[a-z][a-z0-9-]*$/
-const HEX = /^#[0-9a-f]{6}$/
 const LIFE_COST = /^[1-9][0-9]*(d[1-9][0-9]*)?$/
 const MOVEMENT_STEP_METRES = 1.5
 const CHAPTER_FILE = /^[0-9]{2}-[a-z0-9-]+$/
@@ -98,7 +98,7 @@ const coverMirrored = z
 
 const keyColour = z
   .string()
-  .regex(HEX)
+  .regex(HEX_COLOUR)
   .optional()
   .describe(
     "Couleur clé de l'entrée, en hexadécimal à six chiffres minuscules, quand celle que la build lit dans la couverture ne la dit pas, ou pour la figer : elle teinte sa carte, les descripteurs, le cadre, le nom en filigrane et la dalle de son héros. Absente : la couleur clé lue dans la couverture, ou, sans couverture, celle que l'entrée tient par défaut.",
@@ -557,11 +557,11 @@ const heraldry = z
         ),
         field: z
           .string()
-          .regex(HEX)
+          .regex(HEX_COLOUR)
           .describe('Couleur du drap de la bannière, en hexadécimal à six chiffres minuscules.'),
         charge: z
           .string()
-          .regex(HEX)
+          .regex(HEX_COLOUR)
           .describe(
             "Couleur de l'emblème et des bordures de la bannière, en hexadécimal à six chiffres minuscules.",
           ),
@@ -1109,7 +1109,7 @@ export const state = z
       ),
     color: z
       .string()
-      .regex(HEX)
+      .regex(HEX_COLOUR)
       .optional()
       .describe(
         "Encre propre de l'état, que portent son titre et chaque pastille qui le nomme, par exemple pour distinguer les crans d'une même famille.",
@@ -1199,7 +1199,7 @@ export const vocabulary = z
     z
       .object({
         key: z.string().regex(MACHINE_KEY),
-        color: z.string().regex(HEX).optional(),
+        color: z.string().regex(HEX_COLOUR).optional(),
         iconName: z.string().regex(ICON_NAME_PATTERN).optional(),
         shapeKey: z.enum(['circle', 'square', 'concave']).optional(),
         bronzeValue: z
@@ -1662,7 +1662,7 @@ export const atlasPlace = z.discriminatedUnion('kind', [
     .object({
       kind: z.literal('country'),
       ...placeBase,
-      color: z.string().regex(HEX).describe('Couleur du pays, dans la liste des lieux.'),
+      color: z.string().regex(HEX_COLOUR).describe('Couleur du pays, dans la liste des lieux.'),
       capital: atlasId.optional().describe('La ville capitale.'),
       ruler: ruler.optional(),
       government: z.string().min(1).optional().describe('Le régime.'),
