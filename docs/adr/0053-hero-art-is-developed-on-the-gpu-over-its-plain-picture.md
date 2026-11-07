@@ -8,6 +8,7 @@ every Species and Tree page
 **Revised:** 2026-10-23, Decision 3's portrait `sizes` gives way to the card `sizes` of 0054
 **Date:** 2026-10-23
 **Revised:** 2026-10-25, Decision 2's studio is created with alpha and lends its context to the banner, the flag and the glazes of 0059
+**Revised:** 2026-11-07, Decision 2's studio remembers that the browser draws on its graphics card, so the lit pieces of 0071 hide their plain picture until drawn
 **Deciders:** Kori
 **Scope:** The pictures of a tree and of a species: their hero, their card, their social image and
 an optional effect the browser applies to them; the `sizes` every `Hero.astro` image asks for; how a
@@ -174,6 +175,13 @@ both shapes also means generating two pictures for every tree and species. Versi
   which Firefox on macOS otherwise emulates, and `gpuReport` reads `RENDERER` and asks
   `WEBGL_debug_renderer_info` only when the value is Chromium's masked « WebKit WebGL », since Firefox
   deprecates the extension. Both were reported by Firefox's console on a species page.
+
+### Addendum (2026-11-07): the studio remembers the graphics card
+
+- When the studio opens on a graphics card it stores `aubaine.gpu`, and it removes the key when it is
+  refused. 0071 reads it to hide the plain picture of a banner, a flag, a coat of arms, a glazed
+  painting or an almanach until the piece is drawn, and builds those pieces two screens ahead. The
+  plates and the stage are unchanged: their picture still shows until the canvas takes over.
 
 ---
 

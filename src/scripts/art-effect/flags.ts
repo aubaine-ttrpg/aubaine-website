@@ -2,6 +2,7 @@ import { backingSize, frameIndex, type Size } from '../../lib/art-effect/cover'
 import { gridCorners, gridTriangles } from '../../lib/art-effect/mesh'
 import { FLAG } from '../../lib/art-effect/presets'
 import { bindStillToggle, isStill, STILLNESS_CHANGED } from '../stillness'
+import { prepareOnApproach, stayPlain } from './approach'
 import {
   activate,
   bindTexture,
@@ -174,6 +175,7 @@ function mount(holder: HTMLElement, teardown: AbortController): void {
     const backing = backingSize(box, window.devicePixelRatio, 1, pace.budget, from.studio.limit)
     if (!from.studio.compose(backing, (gl) => paint(from, backing, gl), surface)) {
       release()
+      if (!canvas.isConnected) stayPlain(holder)
       return false
     }
     if (!canvas.isConnected) {
@@ -250,6 +252,7 @@ function mount(holder: HTMLElement, teardown: AbortController): void {
   })
   sight.observe(holder)
   resize.observe(holder)
+  prepareOnApproach(holder, prepare, signal)
   window.addEventListener(STILLNESS_CHANGED, resume, { signal })
 
   signal.addEventListener(
@@ -277,7 +280,14 @@ export function syncFlags(): void {
     if (flags.has(holder)) continue
     const teardown = new AbortController()
     flags.set(holder, teardown)
-    teardown.signal.addEventListener('abort', () => flags.delete(holder), { once: true })
+    teardown.signal.addEventListener(
+      'abort',
+      () => {
+        flags.delete(holder)
+        stayPlain(holder)
+      },
+      { once: true },
+    )
     try {
       mount(holder, teardown)
     } catch (error) {

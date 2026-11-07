@@ -20,6 +20,7 @@ import {
   bannerOutline,
 } from '../../lib/art-effect/presets'
 import { bindStillToggle, isStill, STILLNESS_CHANGED } from '../stillness'
+import { prepareOnApproach, stayPlain } from './approach'
 import { type Look, type Loom, openLoom } from './loom'
 import { openStudio, type Studio } from './studio'
 import { environmentOf, fabricOf } from './textures'
@@ -283,6 +284,7 @@ function mount(holder: HTMLElement, teardown: AbortController): void {
     const backing = backingSize(box, window.devicePixelRatio, 1, pace.budget, studio.limit)
     if (!loom.draw(backing, surface)) {
       release()
+      if (!canvas.isConnected) stayPlain(holder)
       return false
     }
     if (!canvas.isConnected) {
@@ -403,6 +405,7 @@ function mount(holder: HTMLElement, teardown: AbortController): void {
   })
   sight.observe(holder)
   resize.observe(holder)
+  prepareOnApproach(holder, prepare, signal)
 
   signal.addEventListener(
     'abort',
@@ -429,7 +432,14 @@ export function syncBanners(): void {
     if (banners.has(holder)) continue
     const teardown = new AbortController()
     banners.set(holder, teardown)
-    teardown.signal.addEventListener('abort', () => banners.delete(holder), { once: true })
+    teardown.signal.addEventListener(
+      'abort',
+      () => {
+        banners.delete(holder)
+        stayPlain(holder)
+      },
+      { once: true },
+    )
     try {
       mount(holder, teardown)
     } catch (error) {

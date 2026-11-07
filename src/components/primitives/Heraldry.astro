@@ -315,6 +315,13 @@ const FOLDS = [
     visibility: hidden;
   }
 
+  @media screen {
+    :global(:root[data-lit-expected="cloth"]) .au-heraldry__drape:not([data-stays-plain]) > .au-heraldry__plain,
+    :global(:root[data-lit-expected="still"]) .au-heraldry__drape[data-drape="arms"]:not([data-stays-plain]) > .au-heraldry__plain {
+      visibility: hidden;
+    }
+  }
+
   .au-heraldry--banner .au-heraldry__drape,
   .au-heraldry--arms .au-heraldry__drape {
     filter: drop-shadow(0 0.35rem 0.5rem rgb(0 0 0 / 0.2));

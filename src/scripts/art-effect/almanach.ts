@@ -99,6 +99,7 @@ import {
   CRT_FRAGMENT,
   CRT_VERTEX,
 } from './almanach-shaders'
+import { prepareOnApproach } from './approach'
 import { MeshoptDecoder } from './vendor/meshopt-decoder.js'
 
 export type AlmanachPicture = {
@@ -1157,6 +1158,7 @@ export function mountAlmanach(host: HTMLElement, options: AlmanachOptions): Alma
   let joined: Stage | undefined
   let lighting: Texture | undefined
   let preparing: Promise<void> | undefined
+  let presented = false
   let bootMode: AlmanachBoot = 'quick'
   let battery: CadranBattery | undefined
   let zoomOn = false
@@ -2174,19 +2176,12 @@ export function mountAlmanach(host: HTMLElement, options: AlmanachOptions): Alma
       }
       await first?.catch(() => undefined)
       signal.throwIfAborted()
-      host.prepend(surface)
-      host.append(status)
-      if (toolbar) host.after(toolbar)
-      host.setAttribute(LIT, '')
-      host.scrollLeft = 0
-      frameScene()
-      announce()
-      prefetch()
-      const start = options.power ?? 'auto'
-      if (start === true || (start === 'auto' && count > 0)) setPower(true, options.boot ?? 'fast')
-      else draw()
-      wake()
     })()
+    preparing.catch((error: unknown) => {
+      if (!signal.aborted && !(error instanceof AlmanachUnavailable)) console.error(error)
+      rejectReady(error)
+      teardown.abort()
+    })
     return preparing
   }
 
@@ -2198,15 +2193,29 @@ export function mountAlmanach(host: HTMLElement, options: AlmanachOptions): Alma
   })
   ready.catch(() => undefined)
 
+  const present = (): void => {
+    if (presented || destroyed || !visible) return
+    presented = true
+    host.prepend(surface)
+    host.append(status)
+    if (toolbar) host.after(toolbar)
+    host.setAttribute(LIT, '')
+    host.scrollLeft = 0
+    frameScene()
+    announce()
+    prefetch()
+    const start = options.power ?? 'auto'
+    if (start === true || (start === 'auto' && count > 0)) setPower(true, options.boot ?? 'fast')
+    else draw()
+    wake()
+    resolveReady()
+  }
+
   const sight = new IntersectionObserver(
     ([entry]) => {
       visible = entry?.isIntersecting ?? false
       if (!visible) return
-      prepare().then(resolveReady, (error: unknown) => {
-        if (!signal.aborted && !(error instanceof AlmanachUnavailable)) console.error(error)
-        rejectReady(error)
-        teardown.abort()
-      })
+      prepare().then(present, () => undefined)
       wake()
     },
     { rootMargin: '200px 0px' },
@@ -2214,6 +2223,13 @@ export function mountAlmanach(host: HTMLElement, options: AlmanachOptions): Alma
   const resize = new ResizeObserver(() => frameScene())
   sight.observe(host)
   resize.observe(host)
+  prepareOnApproach(
+    host,
+    () => {
+      void prepare()
+    },
+    signal,
+  )
 
   signal.addEventListener(
     'abort',

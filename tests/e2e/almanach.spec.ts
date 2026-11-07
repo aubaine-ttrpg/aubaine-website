@@ -3,6 +3,7 @@ import { resolve } from 'node:path'
 import { expect, type Page, test } from '@playwright/test'
 
 import { strings } from '../../src/lib/i18n/strings'
+import { plainPicturesSeen, storedGpu, watchPlainPictures } from './support/plain-pictures'
 
 const root = resolve(import.meta.dirname, '../..')
 const SOFTWARE = /swiftshader|llvmpipe|softpipe|software|basic render/i
@@ -72,6 +73,25 @@ test.describe('an almanach in the lore', () => {
     )
     await expect(page.locator('.au-almanach__status')).toContainText(FR.showing(0, 1, ''))
     expect(errors).toEqual([])
+  })
+
+  test('on a browser that has drawn it, opens on the device and never on its picture', async ({
+    page,
+  }) => {
+    await watchPlainPictures(page)
+    const path = `/fr/espece/${await almanachSpecies()}`
+    await page.goto(path)
+    const bottom = await page
+      .locator(HOST)
+      .evaluate((node) => node.getBoundingClientRect().bottom + window.scrollY)
+    const width = page.viewportSize()?.width ?? 0
+    await page.setViewportSize({ width, height: Math.ceil(bottom) })
+    await expect(page.locator(HOST)).toHaveAttribute('data-almanach-lit', '', { timeout: 15_000 })
+    expect(await storedGpu(page)).not.toBeNull()
+    await page.goto(path)
+    expect(await page.evaluate(() => window.scrollY)).toBe(0)
+    await expect(page.locator(HOST)).toHaveAttribute('data-almanach-lit', '', { timeout: 15_000 })
+    expect(await plainPicturesSeen(page)).toEqual([])
   })
 
   test('speaks English on the English page', async ({ page }) => {

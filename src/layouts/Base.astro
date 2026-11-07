@@ -128,6 +128,19 @@ const website =
       } catch (error) {
         document.documentElement.setAttribute('data-drafts', 'shown')
       }
+      try {
+        var gpu = window.localStorage.getItem('aubaine.gpu')
+        if ((gpu === 'cloth' || gpu === 'still') && 'WebGL2RenderingContext' in window) {
+          document.documentElement.setAttribute('data-lit-expected', gpu)
+          document.addEventListener('DOMContentLoaded', function () {
+            if (!document.documentElement.hasAttribute('data-lit-bound')) {
+              document.documentElement.removeAttribute('data-lit-expected')
+            }
+          })
+        }
+      } catch (error) {
+        document.documentElement.removeAttribute('data-lit-expected')
+      }
     </script>
 
     {website && <script type="application/ld+json" set:html={JSON.stringify(website)} />}

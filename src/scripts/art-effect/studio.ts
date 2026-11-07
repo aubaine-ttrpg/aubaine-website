@@ -18,7 +18,7 @@ import {
   STAGE,
 } from '../../lib/art-effect/presets'
 import { automaticTier } from '../../lib/atlas/contract/quality'
-import { gpuReport, rendersInSoftware } from '../gpu'
+import { forgetGpu, gpuReport, rememberGpu, rendersInSoftware } from '../gpu'
 import {
   activate,
   bindTexture,
@@ -150,6 +150,7 @@ function createStudio(): Studio | undefined {
     return undefined
   }
   const tier = EFFECT_TIERS[automaticTier(report)]
+  rememberGpu(tier.cloth ? 'cloth' : 'still')
   const limit = textureLimit(gl)
   const life = new AbortController()
   const linked = new Map<ArtEffect, Promise<Programs>>()
@@ -473,6 +474,8 @@ function createStudio(): Studio | undefined {
 export function openStudio(): Studio | undefined {
   if (refused) return undefined
   current ??= createStudio()
-  if (!current) refused = true
-  return current
+  if (current) return current
+  refused = true
+  forgetGpu()
+  return undefined
 }

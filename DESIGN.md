@@ -855,6 +855,11 @@ button hides (`tests/e2e/hub-stage.spec.ts`); a swap still changes the picture a
 - **One WebGL context**: the live pieces share `src/scripts/art-effect/studio.ts`; the torchlight on lore
   pictures (`src/scripts/torchlight.ts`) still opens its own, and the almanachs of a page share one of
   theirs. Outside the Atlas and the almanach, three.js only bakes (`tools/media/textures.ts`; 0069).
+- **Drawn before it is seen**: a banner, a flag, a coat of arms, a painting under glass and an almanach
+  build two screens before they reach the screen. A browser that has drawn on its graphics card before
+  (`aubaine.gpu`) never shows their plain picture: the frame waits empty until the piece is drawn, then
+  the canvas takes over at once. A first visit, no graphics card, no JavaScript and print keep the plain
+  picture (0071).
 - **A picture no field names** waits in `data/media/unassigned/` (`docs/runbooks/add-an-image.md`).
 
 ## Accessibility
@@ -905,6 +910,7 @@ button hides (`tests/e2e/hub-stage.spec.ts`); a swap still changes the picture a
 - **Decision records**: `docs/adr/0053-hero-art-is-developed-on-the-gpu-over-its-plain-picture.md`,
   `docs/adr/0054-the-hero-of-a-tree-or-a-species-is-a-character-sheet-on-a-living-stage.md`,
   `docs/adr/0059-a-sub-species-may-fly-its-heraldry-as-cloth-and-a-painting-hangs-under-glass.md`,
-  `docs/adr/0065-the-livres-hub-opens-on-its-contents-and-lists-every-category.md` and
-  `docs/adr/0064-design-work-runs-through-the-aubaine-design-skill.md`.
+  `docs/adr/0065-the-livres-hub-opens-on-its-contents-and-lists-every-category.md`,
+  `docs/adr/0064-design-work-runs-through-the-aubaine-design-skill.md` and
+  `docs/adr/0071-a-lit-piece-is-drawn-before-it-is-seen.md`.
 - Other studios' screens are linked from the dossiers and never copied into this repository.

@@ -22,3 +22,23 @@ const SOFTWARE_RENDERER = /swiftshader|llvmpipe|softpipe|software|basic render/i
 export function rendersInSoftware(report: GpuReport): boolean {
   return SOFTWARE_RENDERER.test(report.renderer)
 }
+
+export const GPU_KEY = 'aubaine.gpu'
+
+export type GpuVerdict = 'cloth' | 'still'
+
+export function rememberGpu(verdict: GpuVerdict): void {
+  try {
+    window.localStorage.setItem(GPU_KEY, verdict)
+  } catch {
+    return
+  }
+}
+
+export function forgetGpu(): void {
+  try {
+    window.localStorage.removeItem(GPU_KEY)
+  } catch {
+    return
+  }
+}

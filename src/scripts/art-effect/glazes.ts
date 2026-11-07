@@ -1,5 +1,6 @@
 import { backingSize } from '../../lib/art-effect/cover'
 import { FRAME } from '../../lib/art-effect/presets'
+import { prepareOnApproach, stayPlain } from './approach'
 import { type Eye, followEye } from './eye'
 import { activate, bindTexture, draw, linkProgram, type Program, type Target } from './gl'
 import glazed from './glsl/glazed.frag?raw'
@@ -104,6 +105,7 @@ function mount(framed: HTMLElement, teardown: AbortController): void {
     )
     if (!drawn) {
       release()
+      if (!canvas.isConnected) stayPlain(framed)
       return false
     }
     if (!canvas.isConnected) {
@@ -159,6 +161,7 @@ function mount(framed: HTMLElement, teardown: AbortController): void {
   })
   sight.observe(framed)
   resize.observe(framed)
+  prepareOnApproach(framed, prepare, signal)
 
   signal.addEventListener(
     'abort',
@@ -183,7 +186,14 @@ export function syncGlazes(): void {
     if (glazes.has(framed)) continue
     const teardown = new AbortController()
     glazes.set(framed, teardown)
-    teardown.signal.addEventListener('abort', () => glazes.delete(framed), { once: true })
+    teardown.signal.addEventListener(
+      'abort',
+      () => {
+        glazes.delete(framed)
+        stayPlain(framed)
+      },
+      { once: true },
+    )
     try {
       mount(framed, teardown)
     } catch (error) {

@@ -11,6 +11,12 @@ import { pathFor } from '../../src/lib/i18n/routes'
 import { strings } from '../../src/lib/i18n/strings'
 import { type Oklch, oklchOf, rgbFromHex } from '../../src/lib/key-colour'
 import { corpus } from './support/corpus'
+import {
+  plainPicturesSeen,
+  rememberGpu,
+  storedGpu,
+  watchPlainPictures,
+} from './support/plain-pictures'
 
 const SOFTWARE = /swiftshader|llvmpipe|softpipe|software|basic render/i
 const BANNER = '[data-drape="banner"]'
@@ -124,10 +130,13 @@ async function bring(page: Page, selector: string): Promise<void> {
     })
 }
 
+function drawnCanvas(selector: string): string {
+  return selector === GLASS ? `${GLASS}[data-lit] canvas` : `${selector}[data-draped] canvas`
+}
+
 async function bringDrawn(page: Page, selector: string): Promise<void> {
   await bring(page, selector)
-  const drawn = selector === GLASS ? `${GLASS}[data-lit] canvas` : `${selector}[data-draped] canvas`
-  await expect(page.locator(drawn)).toHaveCount(1)
+  await expect(page.locator(drawnCanvas(selector))).toHaveCount(1)
 }
 
 async function perSecond(page: Page, kind: 'banner' | 'flag'): Promise<number> {
@@ -238,6 +247,58 @@ test('every piece of heraldry takes over its plain picture at once, named by its
       )
     }
   }
+})
+
+test('every piece of heraldry and the glass is drawn while still below the screen', async ({
+  page,
+}) => {
+  await page.goto(speciesPath(await heraldic('fr')))
+  for (const selector of [BANNER, FLAG, ARMS, GLASS]) {
+    const piece = page.locator(selector).first()
+    await piece.evaluate((node) => {
+      const top = node.getBoundingClientRect().top + window.scrollY
+      window.scrollTo(0, top - window.innerHeight * 1.5)
+    })
+    await expect(piece).toHaveAttribute(selector === GLASS ? 'data-lit' : 'data-draped', '')
+    expect(await piece.evaluate((node) => node.getBoundingClientRect().top)).toBeGreaterThan(
+      page.viewportSize()?.height ?? 0,
+    )
+  }
+})
+
+test('a browser that has drawn them never sees their plain pictures, even opened on them', async ({
+  page,
+}) => {
+  await watchPlainPictures(page)
+  const path = speciesPath(await heraldic('fr'))
+  const pieces = [BANNER, FLAG, ARMS, GLASS]
+  await page.goto(path)
+  const bottom = await page
+    .locator(pieces.join(', '))
+    .evaluateAll((nodes) =>
+      Math.max(...nodes.map((node) => node.getBoundingClientRect().bottom + window.scrollY)),
+    )
+  const width = page.viewportSize()?.width ?? 0
+  await page.setViewportSize({ width, height: Math.ceil(bottom) })
+  for (const selector of pieces) await expect(page.locator(drawnCanvas(selector))).toHaveCount(1)
+  expect(await storedGpu(page)).toBe('cloth')
+  await page.goto(path)
+  expect(await page.evaluate(() => window.scrollY)).toBe(0)
+  for (const selector of pieces) await expect(page.locator(drawnCanvas(selector))).toHaveCount(1)
+  expect(await plainPicturesSeen(page)).toEqual([])
+})
+
+test('print keeps every plain picture on a browser that has drawn them, before they draw', async ({
+  page,
+}) => {
+  await page.goto('/fr')
+  await rememberGpu(page, 'cloth')
+  await page.emulateMedia({ media: 'print' })
+  await page.goto(speciesPath(await heraldic('fr')))
+  await expect(page.locator(`${BANNER} .au-heraldry__plain`)).toBeVisible()
+  await expect(page.locator(`${FLAG} .au-heraldry__plain`)).toBeVisible()
+  await expect(page.locator(`${ARMS} .au-heraldry__plain`)).toBeVisible()
+  await expect(page.locator(`${GLASS} img`)).toHaveCSS('opacity', '1')
 })
 
 test('the stage, the banner, the flag, the arms and the glass share one context', async ({

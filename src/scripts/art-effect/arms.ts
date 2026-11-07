@@ -1,6 +1,7 @@
 import { backingSize } from '../../lib/art-effect/cover'
 import { ARMS, ARMS_UNIFORMS } from '../../lib/art-effect/presets'
 import { bindTilt } from '../tilt'
+import { prepareOnApproach, stayPlain } from './approach'
 import { type Eye, followEye } from './eye'
 import {
   activate,
@@ -133,6 +134,7 @@ function mount(holder: HTMLElement, teardown: AbortController): void {
     )
     if (!drawn) {
       release()
+      if (!canvas.isConnected) stayPlain(holder)
       return false
     }
     if (!canvas.isConnected) {
@@ -181,6 +183,7 @@ function mount(holder: HTMLElement, teardown: AbortController): void {
   })
   sight.observe(holder)
   resize.observe(holder)
+  prepareOnApproach(holder, prepare, signal)
   bindTilt(holder, holder, signal)
 
   signal.addEventListener(
@@ -206,7 +209,14 @@ export function syncArms(): void {
     if (shields.has(holder)) continue
     const teardown = new AbortController()
     shields.set(holder, teardown)
-    teardown.signal.addEventListener('abort', () => shields.delete(holder), { once: true })
+    teardown.signal.addEventListener(
+      'abort',
+      () => {
+        shields.delete(holder)
+        stayPlain(holder)
+      },
+      { once: true },
+    )
     try {
       mount(holder, teardown)
     } catch (error) {

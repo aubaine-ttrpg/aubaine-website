@@ -12,6 +12,7 @@ import { strings } from '../../lib/i18n/strings'
 import { categoryGain, onSoundPreferences, soundPreferences } from '../sound-preferences'
 import { isStill, STILLNESS_CHANGED } from '../stillness'
 import { type Almanach, type AlmanachPicture, AlmanachUnavailable, mountAlmanach } from './almanach'
+import { stayPlain } from './approach'
 
 const ALMANACH = '[data-almanach]'
 const PICTURE = 'img[data-almanach-picture]'
@@ -95,6 +96,7 @@ function mount(host: HTMLElement, pictures: readonly AlmanachPicture[]): void {
     if (error instanceof AlmanachUnavailable) unavailable = true
     release()
     almanachs.delete(host)
+    stayPlain(host)
   })
 }
 
@@ -105,10 +107,19 @@ export function syncAlmanachs(): void {
     mounted.almanach.destroy()
     almanachs.delete(host)
   }
-  if (unavailable) return
   for (const host of document.querySelectorAll<HTMLElement>(ALMANACH)) {
     if (almanachs.has(host)) continue
+    if (unavailable) {
+      stayPlain(host)
+      continue
+    }
     const pictures = picturesOf(host)
-    if (pictures.length > 0) mount(host, pictures)
+    if (pictures.length === 0) continue
+    try {
+      mount(host, pictures)
+    } catch (error) {
+      console.error(error)
+      stayPlain(host)
+    }
   }
 }

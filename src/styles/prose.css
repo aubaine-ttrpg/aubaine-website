@@ -927,15 +927,21 @@
     block-size: 100%;
   }
 
-  .au-prose .au-prose__frame[data-lit] .au-prose__moulding {
+  .au-prose .au-prose__frame[data-lit] .au-prose__moulding,
+  :root[data-lit-expected] .au-prose .au-prose__frame:not([data-stays-plain]) .au-prose__moulding {
     border-image: none;
   }
 
-  .au-prose .au-prose__frame[data-lit] img {
+  .au-prose .au-prose__frame[data-lit] img,
+  :root[data-lit-expected] .au-prose .au-prose__frame:not([data-stays-plain]) img {
     opacity: 0;
   }
 
-  .au-prose .au-prose__frame[data-lit] .au-prose__relief::after {
+  .au-prose .au-prose__frame[data-lit] .au-prose__relief::after,
+  :root[data-lit-expected]
+    .au-prose
+    .au-prose__frame:not([data-stays-plain])
+    .au-prose__relief::after {
     content: none;
   }
 }

@@ -38,6 +38,16 @@
   opacity: 0;
 }
 
+@media screen {
+  :root[data-lit-expected] .au-almanach__stage:not([data-stays-plain]) {
+    overflow: hidden;
+  }
+
+  :root[data-lit-expected] .au-almanach__stage:not([data-stays-plain]) > [data-almanach-picture] {
+    opacity: 0;
+  }
+}
+
 .au-almanach__controls {
   display: flex;
   justify-content: center;
