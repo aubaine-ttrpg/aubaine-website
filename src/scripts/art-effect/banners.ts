@@ -21,7 +21,7 @@ import {
 } from '../../lib/art-effect/presets'
 import { bindStillToggle, isStill, STILLNESS_CHANGED } from '../stillness'
 import { prepareOnApproach, stayPlain } from './approach'
-import { type Look, type Loom, openLoom } from './loom'
+import { type Look, type Loom, linkLoom, openLoom } from './loom'
 import { openStudio, type Studio } from './studio'
 import { environmentOf, fabricOf } from './textures'
 
@@ -44,14 +44,25 @@ const STRAND_SHARE = 0.66
 const TWIST_PERIOD = 9
 
 const banners = new Map<HTMLElement, AbortController>()
+const nextTask = new MessageChannel()
+const breathing: Array<() => void> = []
+nextTask.port1.onmessage = () => breathing.shift()?.()
 
 function breathe(signal: AbortSignal): Promise<void> {
   return new Promise((resolve, reject) => {
-    window.setTimeout(() => {
+    breathing.push(() => {
       if (signal.aborted) reject(signal.reason)
       else resolve()
-    }, 0)
+    })
+    nextTask.port2.postMessage(undefined)
   })
+}
+
+async function settleArrival(cloth: Cloth, signal: AbortSignal): Promise<void> {
+  while (!settled(cloth) && cloth.seconds < STILL_SECONDS) {
+    settle(cloth, SETTLE_SLICE)
+    await breathe(signal)
+  }
 }
 
 function required(holder: HTMLElement, name: string): string {
@@ -327,17 +338,15 @@ function mount(holder: HTMLElement, teardown: AbortController): void {
         teardown.abort()
         return
       }
+      const arriving = cloth.seconds === 0
       const [look, room, pile] = await Promise.all([
         bannerLook(holder, signal),
         environmentOf(from),
         fabricOf(from, 'velvet'),
+        arriving ? settleArrival(cloth, signal) : undefined,
+        linkLoom(from),
       ])
       signal.throwIfAborted()
-      const arriving = cloth.seconds === 0
-      while (arriving && !settled(cloth) && cloth.seconds < STILL_SECONDS) {
-        settle(cloth, SETTLE_SLICE)
-        await breathe(signal)
-      }
       loom = await openLoom(from, cloth, look, { room, pile })
       signal.throwIfAborted()
       studio = from

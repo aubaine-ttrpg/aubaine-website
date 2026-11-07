@@ -43,7 +43,7 @@ export type Loom = {
 
 const programs = new WeakMap<Studio, Promise<Program>>()
 
-function programFor(studio: Studio): Promise<Program> {
+export function linkLoom(studio: Studio): Promise<Program> {
   const known = programs.get(studio)
   if (known) return known
   const linking = linkProgram(
@@ -86,7 +86,7 @@ export async function openLoom(
   look: Look,
   materials: Materials,
 ): Promise<Loom> {
-  const program = await programFor(studio)
+  const program = await linkLoom(studio)
   const { gl } = studio
   const { spec } = cloth
   const mesh = {
