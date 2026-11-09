@@ -31,6 +31,7 @@
       "Bash(pnpm build:*)",
       "Bash(pnpm verify:*)",
       "Bash(pnpm media:sync:*)",
+      "Bash(pnpm lore:survey:*)",
       "Bash(npx astro check:*)",
       "Bash(npx vitest run:*)"
     ],
