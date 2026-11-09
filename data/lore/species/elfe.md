@@ -17,6 +17,9 @@ Les elfes partagent le don d'Élyséa avec les drows, les Fir Bolg et les halfel
 
 ## Civilisation et villes
 
+![Au bord d'un canal, sous de grands arbres, une serre de verre en dôme aux arceaux dorés, coiffée d'un cristal lumineux, se dresse parmi des maisons aux toits de verre bleu et aux fenêtres en ogive ; un pont enjambe l'eau, où fleurissent des nénuphars, et des lanternes pendent des branches.](../../media/art/canal-de-roscarra-16_9-og.png "almanach elfe mirrored")
+:caption[Le canal de Roscarra traversant Glenmor]
+
 Au pied de chaque arbre-monde s'érige une grande cité elfique, fondation vivante incarnant l'alliance entre nature et civilisation, où les tours de verre vert scintillent au soleil et les dorures dessinent des motifs de feuillages. Des jardins s'étagent sur les terrasses des tours, des vergers aux carrés d'herbes médicinales. Plus haut, le tronc même de l'arbre-monde abrite les demeures, que de fines passerelles de bois vivant relient aux tours, de plateforme en plateforme, jusque sous la canopée. Chaque demeure demande des années, le temps que l'arbre, en poussant, prenne la forme qu'on lui donne.
 
 Les artisans travaillent derrière le verre, sur des établis que le soleil éclaire d'une lumière teintée de vert. Au crépuscule, les runes druidiques tracées le long des passerelles s'allument l'une après l'autre, d'une lueur puisée dans la sève de l'arbre-monde.

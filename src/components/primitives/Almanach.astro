@@ -17,6 +17,7 @@ type Picture = {
   alt: string
   fit?: AlmanachFit
   focus?: readonly [number, number]
+  mirrored?: boolean
 }
 
 type Settings = { readonly [Field in keyof AlmanachStyle]?: AlmanachStyle[Field] }
@@ -53,7 +54,7 @@ const shown = pictures.map((picture) => {
     data-almanach-settings={resolved ? JSON.stringify(resolved) : undefined}
   >
     {
-      shown.map(({ image, alt, fit, focus }) => (
+      shown.map(({ image, alt, fit, focus, mirrored }) => (
         <Image
           src={image}
           alt={alt}
@@ -63,6 +64,7 @@ const shown = pictures.map((picture) => {
           data-almanach-picture
           data-fit={fit ?? ALMANACH_FIT}
           data-focus={focus ? focus.join(' ') : undefined}
+          data-mirrored={mirrored ? '' : undefined}
         />
       ))
     }

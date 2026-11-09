@@ -12,6 +12,7 @@ precision highp float;
 
 uniform sampler2D uImage;
 uniform vec4 uFit;
+uniform float uMirror;
 uniform vec3 uZoom;
 uniform sampler2D uOsd;
 uniform float uOsdAlpha;
@@ -75,8 +76,12 @@ float roundBox(vec2 p, vec2 size, float r) {
   return length(max(q, 0.0)) + min(max(q.x, q.y), 0.0) - r;
 }
 
+vec2 pictureCentred(vec2 uv) {
+  return (uv - 0.5) * vec2(1.0 - 2.0 * uMirror, 1.0);
+}
+
 vec2 imageUv(vec2 uv, float aspect) {
-  vec2 c = uv - 0.5;
+  vec2 c = pictureCentred(uv);
   float r = uFit.x / aspect;
   vec2 contain = r > 1.0 ? vec2(1.0, r) : vec2(1.0 / r, 1.0);
   vec2 cover = r > 1.0 ? vec2(1.0 / r, 1.0) : vec2(1.0, r);
@@ -85,7 +90,7 @@ vec2 imageUv(vec2 uv, float aspect) {
 }
 
 vec3 backdrop(vec2 uv, float aspect) {
-  vec2 c = uv - 0.5;
+  vec2 c = pictureCentred(uv);
   float r = uFit.x / aspect;
   vec2 cover = r > 1.0 ? vec2(1.0 / r, 1.0) : vec2(1.0, r);
   vec2 b = c * cover * 0.7 + 0.5;

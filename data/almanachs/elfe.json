@@ -1,0 +1,14 @@
+{
+  "metal": "noyer",
+  "trim": "argent",
+  "grip": "cuir-noir",
+  "gem": "#c27a2c",
+  "magic": "earth",
+  "light": "picture",
+  "gloss": 0,
+  "metalGloss": 0,
+  "trimGloss": 0.5,
+  "gripGloss": 0,
+  "crystalBoot": "fast",
+  "battery": false
+}

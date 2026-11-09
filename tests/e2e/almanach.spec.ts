@@ -1,8 +1,9 @@
-import { readdir, readFile } from 'node:fs/promises'
+import { readdir } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { expect, type Page, test } from '@playwright/test'
 
 import { strings } from '../../src/lib/i18n/strings'
+import { speciesLorePictures } from './support/lore-pictures'
 import { plainPicturesSeen, storedGpu, watchPlainPictures } from './support/plain-pictures'
 
 const root = resolve(import.meta.dirname, '../..')
@@ -13,14 +14,28 @@ const FR = strings('fr').almanachDevice
 const EN = strings('en').almanachDevice
 
 async function almanachSpecies(): Promise<string> {
-  const directory = resolve(root, 'data/lore/species')
-  for (const file of (await readdir(directory)).sort()) {
-    if (!file.endsWith('.md') || file.endsWith('.en.md')) continue
-    const text = await readFile(resolve(directory, file), 'utf8')
-    if (/!\[[^\]]*]\([^)\s]+\s+"almanach(?: [a-z0-9-]+)?"\)/.test(text))
-      return file.slice(0, -'.md'.length)
-  }
-  throw new Error('no species lore stands a picture in an almanach')
+  const found = (await speciesLorePictures()).find(({ look }) => look?.kind === 'almanach')
+  if (!found) throw new Error('no species lore stands a picture in an almanach')
+  return found.species
+}
+
+async function mirroredAlmanachSpecies(): Promise<string> {
+  const found = (await speciesLorePictures()).find(
+    ({ look }) => look?.kind === 'almanach' && look.mirrored,
+  )
+  if (!found) throw new Error('no species lore mirrors a picture in an almanach')
+  return found.species
+}
+
+async function refuseWebGl2(page: Page): Promise<void> {
+  await page.addInitScript(() => {
+    const original = HTMLCanvasElement.prototype.getContext
+    Object.defineProperty(HTMLCanvasElement.prototype, 'getContext', {
+      value(this: HTMLCanvasElement, kind: string, ...rest: unknown[]) {
+        return kind === 'webgl2' ? null : Reflect.apply(original, this, [kind, ...rest])
+      },
+    })
+  })
 }
 
 async function hardwareWebGl(page: Page): Promise<boolean> {
@@ -203,14 +218,7 @@ test('a page without an almanach fetches none of it', async ({ page }) => {
 
 test('without WebGL2 the lore keeps its picture and logs nothing', async ({ page }) => {
   const errors = collectErrors(page)
-  await page.addInitScript(() => {
-    const original = HTMLCanvasElement.prototype.getContext
-    Object.defineProperty(HTMLCanvasElement.prototype, 'getContext', {
-      value(this: HTMLCanvasElement, kind: string, ...rest: unknown[]) {
-        return kind === 'webgl2' ? null : Reflect.apply(original, this, [kind, ...rest])
-      },
-    })
-  })
+  await refuseWebGl2(page)
   await page.goto(`/fr/espece/${await almanachSpecies()}`)
   await page.locator(HOST).scrollIntoViewIfNeeded()
   await page.waitForLoadState('networkidle')
@@ -219,6 +227,17 @@ test('without WebGL2 the lore keeps its picture and logs nothing', async ({ page
   await expect(page.locator('.au-almanach__controls')).toHaveCount(0)
   await expect(page.locator(`${HOST} > img[data-almanach-picture]`)).toBeVisible()
   expect(errors).toEqual([])
+})
+
+test('a mirrored picture stays mirrored without WebGL2 and in print', async ({ page }) => {
+  await refuseWebGl2(page)
+  await page.goto(`/fr/espece/${await mirroredAlmanachSpecies()}`)
+  const picture = page.locator(`${HOST} > img[data-almanach-picture][data-mirrored]`)
+  await picture.scrollIntoViewIfNeeded()
+  await expect(picture).toBeVisible()
+  await expect(picture).toHaveCSS('scale', '-1 1')
+  await page.emulateMedia({ media: 'print' })
+  await expect(picture).toHaveCSS('scale', '-1 1')
 })
 
 test('the build carries no Dev Hub', async ({ page }) => {

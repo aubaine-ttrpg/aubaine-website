@@ -631,20 +631,19 @@ export const GLAZED_PICTURE = 'glazed'
 
 export const ALMANACH_PICTURE = 'almanach'
 
+export const MIRRORED_PICTURE = 'mirrored'
+
 export type PictureLook =
   | { kind: 'masked'; mask: PictureMask; relief: PictureRelief | undefined }
   | { kind: 'glazed'; frame: FrameKind }
-  | { kind: 'almanach'; style: string | undefined }
+  | { kind: 'almanach'; style: string | undefined; mirrored: boolean }
 
-function almanachLook(
-  title: string,
-  source: string,
-  style: string | undefined,
-  rest: readonly string[],
-): PictureLook {
+function almanachLook(title: string, source: string, words: readonly string[]): PictureLook {
+  const mirrored = words.at(-1) === MIRRORED_PICTURE
+  const [style, ...rest] = mirrored ? words.slice(0, -1) : words
   if (rest.length > 0 || (style !== undefined && !ALMANACH_STYLE_ID.test(style))) {
     throw new Error(
-      `${source} asks for "${title.trim()}", but an ${ALMANACH_PICTURE} picture takes at most one word after it, the name of an almanach style`,
+      `${source} asks for "${title.trim()}", but an ${ALMANACH_PICTURE} picture takes at most the name of an almanach style, then "${MIRRORED_PICTURE}"`,
     )
   }
   if (isPortraitSource(source)) {
@@ -652,7 +651,7 @@ function almanachLook(
       `${source} is a portrait, which the wide tube of an ${ALMANACH_PICTURE} would crop to a strip`,
     )
   }
-  return { kind: 'almanach', style }
+  return { kind: 'almanach', style, mirrored }
 }
 
 function glazedLook(
@@ -671,9 +670,10 @@ function glazedLook(
 }
 
 export function pictureLook(title: string, source: string): PictureLook {
-  const [first = '', second, ...rest] = title.trim().split(/\s+/)
+  const words = title.trim().split(/\s+/)
+  const [first = '', second, ...rest] = words
   if (first === GLAZED_PICTURE) return glazedLook(title, source, second, rest)
-  if (first === ALMANACH_PICTURE) return almanachLook(title, source, second, rest)
+  if (first === ALMANACH_PICTURE) return almanachLook(title, source, words.slice(1))
   if (!isPictureMask(first)) {
     throw new Error(
       `${source} asks for the look "${first}", which is none of ${[...PICTURE_MASKS, GLAZED_PICTURE, ALMANACH_PICTURE].join(', ')}`,
@@ -717,17 +717,25 @@ function glazePicture(
   )
 }
 
-function almanachPicture(picture: HastElement, style: string | undefined): HastElement {
+function almanachPicture(
+  picture: HastElement,
+  look: Extract<PictureLook, { kind: 'almanach' }>,
+): HastElement {
   const shown = {
     ...picture,
-    properties: { ...picture.properties, 'data-almanach-picture': '', 'data-fit': ALMANACH_FIT },
+    properties: {
+      ...picture.properties,
+      'data-almanach-picture': '',
+      'data-fit': ALMANACH_FIT,
+      ...(look.mirrored ? { 'data-mirrored': '' } : {}),
+    },
   }
   return element(
     'span',
     {
       className: 'au-almanach__stage',
       'data-almanach': '',
-      ...(style === undefined ? {} : { 'data-almanach-style': style }),
+      ...(look.style === undefined ? {} : { 'data-almanach-style': look.style }),
     },
     [shown],
   )
@@ -743,7 +751,7 @@ function maskPicture(picture: HastElement): HastElement {
     case 'glazed':
       return glazePicture({ ...picture, properties }, ratio, look.frame)
     case 'almanach':
-      return almanachPicture({ ...picture, properties }, look.style)
+      return almanachPicture({ ...picture, properties }, look)
     case 'masked':
       return maskedPicture({ ...picture, properties }, look, ratio)
   }

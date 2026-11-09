@@ -17,6 +17,9 @@ Drow, Fir Bolg and halflings also descend from the last Galwarians, and they sha
 
 ## Civilisation and cities
 
+![By a canal beneath great trees, a domed glasshouse with gilded ribs, crowned by a glowing crystal, stands among houses with blue glass roofs and pointed-arch windows; a bridge spans the water, where water lilies bloom, and lanterns hang from the branches.](../../media/art/canal-de-roscarra-16_9-og.png "almanach elfe mirrored")
+:caption[The Roscarra canal running through Glenmor]
+
 At the foot of every world-tree rises a great elven city, a living foundation embodying the alliance of nature and civilisation, where towers of green glass glitter in the sun and gilding traces patterns of foliage. Gardens climb the towers in terraces, from orchards to beds of healing herbs. Higher up, the homes lie within the trunk of the world-tree itself, linked to the towers by slender walkways of living wood that run from platform to platform, right up beneath the canopy. Each home takes years to make, because the tree must grow into the shape it is given.
 
 Craftspeople work behind the glass, at workbenches lit by green-tinted sunlight. At dusk, the druidic runes traced along the walkways light up one by one, their glow drawn from the sap of the world-tree.

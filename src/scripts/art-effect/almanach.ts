@@ -107,6 +107,7 @@ export type AlmanachPicture = {
   readonly alt: string
   readonly fit?: AlmanachFit
   readonly focus?: readonly [number, number]
+  readonly mirrored?: boolean
 }
 
 export type AlmanachTexture = {
@@ -1250,6 +1251,7 @@ export function mountAlmanach(host: HTMLElement, options: AlmanachOptions): Alma
   const crtUniforms = {
     uImage: { value: blank as Texture },
     uFit: { value: new Vector4(1, 0, 0.5, 0.5) },
+    uMirror: { value: 0 },
     uZoom: { value: new Vector3(0.5, 0.5, 1) },
     uOsd: { value: osdTexture as Texture },
     uOsdAlpha: { value: 0 },
@@ -1977,6 +1979,7 @@ export function mountAlmanach(host: HTMLElement, options: AlmanachOptions): Alma
       fitVector.y = (picture.fit ?? ALMANACH_FIT) === 'cover' ? 1 : 0
       fitVector.z = picture.focus?.[0] ?? 0.5
       fitVector.w = 1 - (picture.focus?.[1] ?? 0.5)
+      crtUniforms.uMirror.value = picture.mirrored ? 1 : 0
     }
     let track = 0
     let trackAt = 0.1

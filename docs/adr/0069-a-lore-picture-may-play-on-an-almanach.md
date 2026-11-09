@@ -5,6 +5,7 @@
 **Date:** 2026-11-06
 **Revised:** 2026-11-07, a page that names no style takes the default almanach, which the Humans use, and a picture fills the tube by default (addendum to Decision 3)
 **Revised:** 2026-11-08, the portrait an almanach refuses is any picture narrower than tall, not only a 3:4 one (0075, addendum to Decision 3)
+**Revised:** 2026-11-08, a picture may end its title on `mirrored`, and the elves take a saved style of their own (addendum to Decision 3)
 **Deciders:** Kori
 **Scope:** The almanach a reader sees on a page: the three.js object that shows a picture on its tube
 (`src/scripts/art-effect/almanach.ts` and its siblings), where its styles live, how a lore picture or
@@ -150,6 +151,29 @@ style.
 - A portrait is any picture whose ratio is narrower than tall, such as `3_4` or `11_12`
   (`isPortraitSource` in `src/lib/art-effect/almanach-look.ts`, 0075 Decision 3), and an almanach
   refuses each of them for the same reason.
+
+### Addendum (2026-11-08): a mirrored picture, and the elves' own style
+
+- The title may end on `mirrored` (`MIRRORED_PICTURE` in `src/lib/game/book-markup.ts`):
+  `"almanach <style> mirrored"`, or `"almanach mirrored"` in the default style. The picture then
+  shows mirrored, left to right, and the file stays the original, as a cover does with
+  `coverMirrored` in `src/lib/game/schema.ts`.
+- The markup marks the picture `data-mirrored`, as `src/components/primitives/Almanach.astro` does
+  for a picture given `mirrored`. On the tube, `uMirror` in `src/scripts/art-effect/almanach-shaders.ts`
+  flips the picture and its blurred backdrop after the zoom, so the zoom follows the reader's point
+  and a picture's `focus` keeps its place in the picture. The plain picture, without WebGL2, without
+  JavaScript and in print, is flipped by `scale: -1 1` in `src/styles/almanach.css`. The light strips
+  that follow the picture take its average colour (`averageLight` in
+  `src/scripts/art-effect/almanach.ts`), which mirroring does not change.
+- The elves take a saved style, `data/almanachs/elfe.json`, with the owner's settings of 2026-11-08:
+  a walnut case, silver trim, the black leather grip, an amber crystal with the earth magic. Their
+  picture of the Roscarra canal through Glenmor, in « Cités de verre et de bois vivant », is the
+  first to play on it, and the first mirrored one.
+- Rejected: flipping the file, since an `-og` file is the owner's untouched original; a mirror
+  setting in the style, since a style dresses the device for every picture it shows, and the mirror
+  belongs to one picture. Reopens if every picture of a people must show mirrored.
+- Caveat: `mirrored` is read as the mirror word, never as a style name, so a style saved under that
+  name cannot be named from a lore title.
 
 ---
 

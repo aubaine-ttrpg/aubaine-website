@@ -38,6 +38,7 @@ function picturesOf(host: HTMLElement): AlmanachPicture[] {
       alt: image.alt,
       fit: almanachFitOf(image.dataset['fit']),
       ...(focus ? { focus } : {}),
+      mirrored: image.dataset['mirrored'] !== undefined,
     }
   })
 }

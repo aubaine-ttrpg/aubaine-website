@@ -4,6 +4,7 @@ import { FRAME_KINDS, FRAMES, type FrameKind, GLAZED_FRAME } from '../../src/lib
 import {
   ALMANACH_PICTURE,
   GLAZED_PICTURE,
+  MIRRORED_PICTURE,
   PICTURE_MASKS,
   PICTURE_RELIEFS,
   rehypeProsePictureMasks,
@@ -151,6 +152,7 @@ describe('prose picture masks', () => {
     expect(image.properties['alt']).toBe('Une bibliothèque')
     expect(image.properties['data-almanach-picture']).toBe('')
     expect(image.properties['data-fit']).toBe('cover')
+    expect(image.properties['data-mirrored']).toBeUndefined()
     expect(image.properties['title']).toBeUndefined()
   })
 
@@ -166,6 +168,20 @@ describe('prose picture masks', () => {
     expect(image.properties['data-fit']).toBe('cover')
   })
 
+  it('mirrors an almanach picture whose title ends on the mirror word, with or without a style', () => {
+    const wide = '../../media/art/bibliotheque-des-oracles-16_9-og.png'
+    for (const [title, style] of [
+      [`${ALMANACH_PICTURE} humain ${MIRRORED_PICTURE}`, 'humain'],
+      [`${ALMANACH_PICTURE} ${MIRRORED_PICTURE}`, undefined],
+    ] as const) {
+      const stage = maskedPicture({ title, src: wide })
+      expect(stage.properties['data-almanach-style']).toBe(style)
+      const image = stage.children[0]
+      if (image?.type !== 'element') throw new Error('the almanach holds no picture')
+      expect(image.properties['data-mirrored']).toBe('')
+    }
+  })
+
   it('refuses an almanach with a second name, or with a malformed one', () => {
     const wide = '../../media/art/bibliotheque-des-oracles-16_9-og.png'
     expect(() => maskedPicture({ title: `${ALMANACH_PICTURE} humain elfe`, src: wide })).toThrow(
@@ -174,6 +190,19 @@ describe('prose picture masks', () => {
     expect(() => maskedPicture({ title: `${ALMANACH_PICTURE} Humain`, src: wide })).toThrow(
       /name of an almanach style/,
     )
+  })
+
+  it('refuses the mirror word before the style, or twice', () => {
+    const wide = '../../media/art/bibliotheque-des-oracles-16_9-og.png'
+    expect(() =>
+      maskedPicture({ title: `${ALMANACH_PICTURE} ${MIRRORED_PICTURE} humain`, src: wide }),
+    ).toThrow(/name of an almanach style/)
+    expect(() =>
+      maskedPicture({
+        title: `${ALMANACH_PICTURE} humain ${MIRRORED_PICTURE} ${MIRRORED_PICTURE}`,
+        src: wide,
+      }),
+    ).toThrow(/name of an almanach style/)
   })
 
   it('refuses an almanach around a portrait, which the tube cannot show whole', () => {

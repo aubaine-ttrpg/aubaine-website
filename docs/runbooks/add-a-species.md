@@ -222,10 +222,12 @@ frame and its shadow stay still and the glass is left out. A 3:2 painting spans 
 
 A wide picture takes `"almanach"` (`ALMANACH_PICTURE`): the picture fills the tube of the default
 almanach, with its power and zoom buttons at the end of the caption's line. Add the name of a style in `data/almanachs/`
-after the word to dress the almanach in that style instead. A portrait is refused, and
-`pnpm data:check` fails on a style that does not exist. Design and save a style in the Dev Hub's
-Almanach page under `pnpm dev`. Without WebGL2 on a graphics card, without JavaScript, and in print,
-the picture shows plain.
+after the word to dress the almanach in that style instead. End the title on `mirrored`
+(`MIRRORED_PICTURE`) to show the picture mirrored, left to right, on the tube and in its plain
+version; the file stays the original: `"almanach elfe mirrored"`, or `"almanach mirrored"` in the
+default style. A portrait is refused, and `pnpm data:check` fails on a style that does not exist.
+Design and save a style in the Dev Hub's Almanach page under `pnpm dev`. Without WebGL2 on a
+graphics card, without JavaScript, and in print, the picture shows plain.
 
 ```markdown
 ![Une immense bibliothèque gothique aux bannières bleues, ses rayonnages sur plusieurs étages autour d'une sphère armillaire suspendue au-dessus d'un livre ouvert.](../../media/art/bibliotheque-des-oracles-16_9-og.png "almanach")

@@ -26,6 +26,10 @@
   object-fit: contain;
 }
 
+.au-almanach__stage > [data-mirrored] {
+  scale: -1 1;
+}
+
 .au-prose .au-almanach__stage > [data-almanach-picture] {
   border: 0;
 }
