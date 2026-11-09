@@ -1485,6 +1485,15 @@ describe('authored prose markup', () => {
     }
   })
 
+  it('keeps definition lines, the shape name lists took, out of the lore, since names are data in the species file', async () => {
+    for (const page of await lorePages()) {
+      expect(
+        page.text.split('\n').filter((line) => line.startsWith(': ')),
+        page.where,
+      ).toEqual([])
+    }
+  })
+
   it('gives a lore page and its English page the same sections and pictures', async () => {
     const shape = (text: string) => ({
       sections: text.split('\n').filter((line) => line.startsWith('## ')).length,
