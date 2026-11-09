@@ -6,6 +6,7 @@
 **Revised:** 2026-10-20, the Sauvegarde, the pair of an Attaque and a DD written with its base extend the notation (addendum in Decision 3)
 **Revised:** 2026-10-24, on the d20 a Compétence's DD has the base 8, and the criticals gain their forms (addendum in Decision 3)
 **Revised:** 2026-10-24, the balance pass reads a measured report and gains the `measured` label (addendum in Decision 4)
+**Revised:** 2026-11-07, the lore run becomes one writer and five read-only reviewers, and `aubaine-lore` names its research sources (0072, addenda in Decisions 2 and 5)
 **Deciders:** Kori
 **Scope:** Which writing skill owns which reader facing surface, how a run of the content skill is
 staged across subagents and owner checkpoints, the one wording each mechanical relationship takes,
@@ -133,6 +134,13 @@ The ground before this change, verified in the working tree:
   existed when it started. `.claude/agents/` is new with this change, so the session that created it
   must restart before a run can call its agents.
 - A subagent's behaviour depends on the harness version it runs under.
+
+### Addendum (2026-11-07): the lore run
+
+- The lore half of this decision is replaced by
+  [0072](0072-the-lore-run-is-one-writer-and-five-read-only-reviewers-over-a-fact-map.md): modes
+  `write`, `revise` and `audit`, a writer and five read-only reviewers, and a C0 the owner may
+  waive. The lore editor no longer edits. The content and prose runs stay as written here.
 
 ---
 
@@ -266,6 +274,13 @@ The forms are in `formulary.md` § save, § resisted-effect, § attack-vs-ca, §
 
 - **Name the sources in this record**: declined by the owner on 2026-10-19. It would need an
   addendum to 0008 Decision 3.
+
+### Addendum (2026-11-07): one reference names its sources
+
+- `.claude/skills/aubaine-lore/references/research.md` names the outside sources the lore skill
+  learned from, by the owner's choice of 2026-11-07
+  ([0072](0072-the-lore-run-is-one-writer-and-five-read-only-reviewers-over-a-fact-map.md) Decision
+  5). Every other reference stays principle-only.
 
 ---
 

@@ -61,8 +61,8 @@ an obligation, no stat field restated in prose. They load with the file; this pa
   calling the character may not have: « méditation druidique » made every elf and drow a druid, and
   « les académies martiales elfiques » a fighter (owner, 2026-11-03). A flavour about a people's
   origin names the ancestor every species of the prerequisite shares: Savoir d'Élyséa is what Élyséa
-  gave the last Galwariens, not the first elves, since the Drow, the Fir Bolg and the Halfelin descend
-  from the Galwariens and not from the elves (owner, 2026-11-03).
+  gave the last Galwariens, not the first elves, since the other peoples of its prerequisite, such as
+  the Drow, descend from the Galwariens and not from the elves (owner, 2026-11-03).
 - A rule that changes every occurrence of a recurring thing speaks in the plural: « Vos
   {{repos-long|Repos longs}} ne durent que quatre heures » (owner, 2026-11-03).
 - A tag names what the effect does. A transformation is « Métamorphose », never « Protection »
@@ -74,14 +74,12 @@ an obligation, no stat field restated in prose. They load with the file; this pa
 - Tags are here for the combo. Every Compétence, a Compétence de base included, carries the Pratique
   and the École that describe it, so that a combo naming them reaches it. A slot stays empty only
   when no tag in `data/meta/tags.json` describes the skill, never because no combo cites it yet, and
-  a tag that does not describe the skill is never added to fill a slot (owner, 2026-10-25: « the
-  real rule is not "Add tags when combo" it's "Tags are here for the combo" so tags need to be here
-  so players can combo »; earlier the same day: « wtf even jump and se relever don't have tags »).
+  a tag that does not describe the skill is never added to fill a slot (owner, 2026-10-25, after
+  finding the jump and Se relever without tags).
 - A state carries a kind and, when it belongs to a family, a type: the family other Compétences
   reach in one sentence, the way a dispel type works in an MMO, opened up so that any rule text can
-  name it (owner, 2026-10-27: « the goal is to mimic the status repartition of world of warcraft
-  and see if we can make it better to give more flexibilty and combos possibilities for game
-  designer »). Name the family or the kind rather than listing states: « un état de
+  name it (owner, 2026-10-27: the families aim to give designers more room for combos than a dispel
+  type does). Name the family or the kind rather than listing states: « un état de
   {{type-etat-magie}} », « un état {{nefaste}} ». A family holds Bénéfique and Néfaste states alike,
   so a Compétence that strips a family is counterplay against buffs too. An untyped state is
   reached only by a Compétence that names it or its kind; typing one makes it easier to end, so it
@@ -89,21 +87,28 @@ an obligation, no stat field restated in prose. They load with the file; this pa
   with the first state that needs it.
 - Light takes no keyword and no levels: a Compétence says what the creature sees in plain words,
   « vous voyez dans le noir, en l'absence de lumière », never « Lumière faible » or « Lumière
-  vive » (owner, 2026-10-20: « we drop dnd's bullshit about lighting level »; the Ténèbres keyword
-  was removed the same day because the prose says it).
+  vive » (owner, 2026-10-20, who dropped light levels from the game; the Ténèbres keyword was removed
+  the same day because the prose says it).
 - A usage limit is the `limit` field and a grant is {{accordee}}: neither is written as a sentence
   (`formulary.md` § limit, § granted).
-- Every correction the owner makes at a checkpoint becomes a rule in the reference that owns it, in
-  the same change, dated and quoted, so no later run repeats it.
+- Every correction the owner makes at a checkpoint that comes from a missing or unclear instruction
+  (`SKILL.md` § When a run teaches the skill) becomes a rule in the reference that owns it, in the
+  same change, dated and in the reference's own words, so no later run repeats it.
 - When the owner dictates a sentence, write it as dictated, its typing slips fixed and nothing else.
-  The reason the owner gives beside it never goes into the text (owner, 2026-10-21: « i expecitly
-  told you that terrain difficile should be each déplacement cost double »).
-- An instruction to remove covers what it is about. « let's just remove everything else » after a
-  dictated sentence removes the text that sentence replaces, never a rule the owner did not name:
+  The reason the owner gives beside it never goes into the text (owner, 2026-10-21).
+- An instruction to remove covers what it is about. An instruction to remove everything else, after
+  a dictated sentence, removes the text that sentence replaces, never a rule the owner did not name:
   Legs de Charon lost its Feu resistance that way, and the owner asked for it back (2026-10-20).
   When removing would drop a mechanic the owner did not mention, ask.
-- A species file carries reader prose in `subspecies[].text` and `roleplay.text`. Write them in the
-  register of the settled species files, through the same flavour test.
+- A species file carries reader prose in `subspecies[].text`, `roleplay.text` and `naming`. Write
+  them in the register of the settled species files, through the same flavour test. Inside a lore
+  revision, the lore brief's fact map says which facts each field holds;
+  `.claude/skills/aubaine-lore/references/architecture.md` § What each part is for says what
+  « Jouer » and « Noms » owe a player, and § The subject test what another people may do there. On a
+  page of the owner's (`.claude/skills/aubaine-lore/references/lore.md` § Start from the owner's
+  text), add no sentence the owner's words do not ask for. Put no question to the player,
+  and borrow no name, joke, label or mechanic from another game; never name one, and never frame a
+  people against one.
 - Write French only. The translator writes the English overlay after pass 4.
 
 ## What this pass returns

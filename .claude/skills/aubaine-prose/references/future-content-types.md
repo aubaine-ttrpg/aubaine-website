@@ -1,7 +1,8 @@
 # Content types Aubaine does not have yet
 
-Aubaine is new, and several content types are planned without a schema yet. The lore types, from
-lore certainty to standalone lore, are in `.claude/skills/aubaine-lore/references/future-lore-types.md`.
+Aubaine is new, and several content types are planned without a schema yet. The lore types are in
+aubaine-lore: lore certainty in `.claude/skills/aubaine-lore/references/canon.md`, dialogue and
+in-world text in `lore.md`, and locations, factions and standalone lore in `architecture.md`.
 
 Nothing here is authoritative. There is no schema, no runbook, and no directory for any of it. When
 one of these becomes real, the schema is written first, a runbook follows, and the guidance below

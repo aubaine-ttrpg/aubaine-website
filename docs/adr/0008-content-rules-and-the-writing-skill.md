@@ -5,6 +5,7 @@
 **Date:** 2026-09-20
 **Revised:** 2026-09-23, the skill became `aubaine-prose` and widened past `data/` (0016)
 **Revised:** 2026-10-20, the `aubaine-content` name returns for the gameplay content skill, beside `aubaine-lore` and `aubaine-prose` (0050, addendum in Decision 1)
+**Revised:** 2026-11-07, one skill reference lists the outside sources it learned from (0072, addendum in Decision 3)
 **Deciders:** Kori
 **Scope:** Where editorial guidance for `data/` lives, how it is split between `.claude/rules/content/`
 and the `aubaine-content` skill, and the two positions that guidance takes which a future contributor
@@ -176,6 +177,14 @@ rewritten, and this guidance is what that rewrite will be measured against.
   licence would then require a credit visible to the reader, not merely a note in the repository.
 - **Add optional provenance fields to the schemas against future need**: rejected. `.claude/CLAUDE.md`
   forbids speculative abstractions, and the fields would be dead on all 292 data files.
+
+### Addendum (2026-11-07): the lore skill's research file
+
+- `.claude/skills/aubaine-lore/references/research.md` lists the outside material the lore skill
+  consulted, with what it took and refused, by the owner's choice of 2026-11-07
+  ([0072](0072-the-lore-run-is-one-writer-and-five-read-only-reviewers-over-a-fact-map.md) Decision
+  5). It is a working reference outside `data/`. Nothing under `data/` cites a source, and the rest of
+  this decision stands.
 
 ---
 

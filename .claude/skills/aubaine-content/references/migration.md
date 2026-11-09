@@ -12,8 +12,10 @@ repository already has, or goes to the owner.
 2. List every character the repository refuses or that hides a defect: U+2013, U+2014, curly
    quotes and apostrophes, no-break spaces, soft hyphens. A name with a hidden character is a
    question for the owner.
-3. Split the source into fiction (history, customs, names, appearance), which `aubaine-lore` takes,
-   and traits, which this skill takes.
+3. Split the source into fiction (history, customs, appearance), which `aubaine-lore` takes, and
+   traits, the naming custom and the name lists, which this skill takes: the custom becomes the
+   species file's `naming` paragraph and the lists its `names`, `familyNames` or
+   `subspecies[].names`, never the lore.
 4. Quote each trait whole, with its page, in the brief.
 
 ## Classify each construct
@@ -35,7 +37,7 @@ file or an owner decision.
 | Resistance to a damage type | The damage rule of chapter 11 | `formulary.md` § damage-resistance |
 | Seeing in the dark | What exactly does the creature see, in plain words, with no light levels (`writing.md` § House craft)? | `data/books/livre-du-joueur/08-l-exploration.md` § La visibilité |
 | Ignoring difficult terrain | The rule term and its settled wording | `formulary.md` § free-difficult-terrain |
-| Replacing an attack | An `activation` of « 1 Attaque » and the manoeuvre wording | CROSAN-001, MENDAN-001; `formulary.md` § attack-manoeuvre |
+| Replacing an attack | An `activation` of « 1 Attaque » and the manoeuvre wording | CROSAN-001, MENDAN-001; `formulary.md` § attack |
 | A spell cast through a trait | Aubaine has no spell list: a Compétence, redesigned, or nothing | owner |
 | A feature gated by level | Available on purchase at 10 PX per Rang, never a level prerequisite | `balance.md` § Owner rulings, the Rang (2026-10-24) |
 | Speed, size, age, height | The species fields | `docs/runbooks/add-a-species.md` |

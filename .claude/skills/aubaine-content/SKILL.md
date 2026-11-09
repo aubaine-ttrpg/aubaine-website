@@ -27,6 +27,10 @@ text, its structured fields, its flavour fields and its English overlay.
 - Book chapters, tooltip definitions (`RULE_TERMS`, the `data/meta` definitions, the Banque Commune
   `note`), `src/lib/i18n/strings.ts` and the policy pages go to `aubaine-prose`.
 - A run that also needs one of those hands it to that skill once its own C0 has fixed the facts.
+- A lore revision hands this skill the reader prose of a species file (`roleplay.text`, `naming`,
+  `subspecies[].text`) with the path of its lore brief. That brief's fact map says what the prose
+  holds, and the field is written in `write` mode limited to it, then goes through pass 3 when braces
+  appear and through pass 6; its translator writes the English.
 
 ## The run
 
@@ -48,7 +52,7 @@ files in scope, and returning ledger rows. A pass changes only what its lens nam
 | Measure | orchestrator | `references/balance.md` § Where the measures come from | nothing; writes `balance-tool.md` in the run folder |
 | 5 Balance | `aubaine-content-balance` | `references/balance.md` | nothing; findings only |
 | 6 Quality | `aubaine-content-quality` | `references/quality.md` | what its checklist names; the rest is a note |
-| Check B | orchestrator | | nothing; `pnpm data:check`, then `pnpm build` |
+| Check B | orchestrator | | nothing; `pnpm data:check`, then a private build: `pnpm astro sync --force` and `pnpm astro build --outDir <run>/dist` |
 | C1 | owner | | decides |
 
 Give each subagent the brief path, the mode, the files and fields in scope, and the ledger so far.
@@ -107,8 +111,11 @@ is restored from the snapshot and logged as `reverted`. An overlay key outside t
 
 Check A runs after pass 4, Check B after pass 6. Route each failure to the pass that owns it: an
 unresolved key to keywords, a schema error to the writer, typography, a refused phrase or an
-antithesis to quality, a dropped overlay to the translator. Run `rtk proxy pnpm format` on the files
-the run touched. Report a check as passed only when it ran and passed.
+antithesis to quality, a dropped overlay to the translator. Biome formats nothing under `data/`:
+`biome.json` turns its formatter off for `data/**/*.json`, whose bytes `pnpm data:check` holds, and
+it reads no Markdown. Format only touched files outside `data/`, with
+`rtk proxy pnpm exec biome format --write <files>`: `pnpm format` rewrites the whole repository.
+A run builds privately because `pnpm build` resyncs the shared `public/` media for every session. Report a check as passed only when it ran and passed.
 
 ## C1
 
