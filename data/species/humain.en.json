@@ -1,5 +1,6 @@
 {
   "name": "Human",
+  "naming": "Every human receives a first name at birth, chosen by their parents to honour a valiant ancestor, a legendary hero or a virtue, and keeps it for life. First names are clearly gendered and follow the tradition of their region of origin. The family name is inherited and recalls the history of the house: a trade, a place or a social rank.",
   "subspecies": {
     "nouvelle-aubaine": {
       "text": "***As an inhabitant of Nouvelle-Aubaine***, you grew up under the banner of the House of Colbert, whose kings and queens rule from the Bastion, your capital. Like the rest of your people, you have a taste for chivalry, engraved armour and fine fabrics, and for a polished diplomacy that serves as well in a lord's court as on the merchant roads. A stranger who comes among you is met with warm courtesy, and closely watched for as long as their intentions remain unknown.",

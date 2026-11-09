@@ -57,9 +57,3 @@ Other brotherhoods came into being: guilds of smiths and engineers, circles of h
 Humans carry within them a drive to discover and a morality shaped by uprooting. They see every native people as the keeper of precious knowledge, and try to understand it rather than dominate it. Frictions arise, notably with the elves, but most humans show sincere goodwill: they respect local customs and take care not to wear away the balances already in place.
 
 Their ingenuity turns as readily to the exploration of magical arcana as to the study of Galwarian traditions and draconic rites. They live by a moral code that prizes exchange, hospitality and shared progress, and they treat every encounter as a chance to enrich one another.
-
-## Human names
-
-Every human is given a first name at birth. Parents choose it to honour a valiant ancestor, a legendary hero or a virtue they hope to see flourish, and it never changes afterwards. First names are clearly gendered and vary with tradition, each following the fashion of its region of origin.
-
-Everyone also bears an inherited family name, handed down from generation to generation, that recalls the history of the house: a trade, a place or a social rank. Some adjust its pronunciation or spelling to fit into a new community, while others jealously keep its original form to ensure the continuity of their line.

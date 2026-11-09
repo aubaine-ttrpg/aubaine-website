@@ -55,9 +55,3 @@ Les Nnors sont naturellement enjoués : joueurs et farceurs, ils aiment ponctuer
 Les Nnors sont réputés pour leur endurance sans faille et leur loyauté indéfectible : on vante leur capacité à affronter les pires conditions avec un courage inébranlable, tout en maintenant un sens aigu de l'honneur et de la tradition. Leurs talents commerciaux surprennent souvent les citadins, tant par la qualité de leurs échanges que par leur honnêteté sans compromis.
 
 Leur profond respect pour la nature transparaît dans chacun de leurs gestes, même lorsqu'ils s'aventurent hors de leur montagne, et ils veillent scrupuleusement à ne jamais perturber l'équilibre des lieux qu'ils fréquentent. Toutefois, derrière cette apparente bonhomie couve une fierté farouche : toute offense à leur Yurta ou menace à leur tribu peut déclencher une colère aussi rapide et implacable qu'un orage d'altitude.
-
-## Noms nnors
-
-Un Nnor, alpin ou de Charon, reste sans nom jusqu'à l'élection de son Saman, qui donne alors un prénom à ceux qui n'en ont pas, au cours d'un rite où voix ancestrales et murmures draconiques se mêlent pour révéler l'essence de chacun (son lien au feu, au vent ou à la pierre). Ce prénom, immuable, reflète un trait de caractère, un signe d'honneur ou une affinité élémentaire et ne change jamais tout au long de la vie.
-
-Les Nnors alpins, distingués par leur sexe, portent des prénoms gravitant autour des forces de la montagne et du froid, tandis que les Nnors issus de la lignée draconique, asexués, reçoivent des noms plus directs, empreints de la puissance du feu primordial. À ce nom personnel s'ajoute un patronyme, le nom de la Yurta, hérité de la tribu et transmis de génération en génération, rappel constant de l'appartenance collective. Aucun sobriquet n'est donné sans qu'un fait marquant ne le légitime, car toute nomination s'inscrit dans l'histoire vivante et sacrée du peuple Nnor.

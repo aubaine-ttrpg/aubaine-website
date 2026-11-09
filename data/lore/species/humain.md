@@ -57,9 +57,3 @@ D'autres confréries virent le jour : guildes de forgerons et d'ingénieurs, cer
 Les humains portent en eux l'élan de la découverte et une morale façonnée par le déracinement. Ils voient en chaque peuple autochtone le gardien d'un savoir précieux, et cherchent à le comprendre plutôt qu'à le dominer. Des frictions surgissent, notamment avec les elfes, mais la plupart des humains font preuve d'une bienveillance sincère : ils respectent les coutumes locales et veillent à ne pas éroder les équilibres établis.
 
 Leur ingéniosité se déploie autant dans l'exploration des arcanes magiques que dans l'étude des traditions galwariennes et des rites draconiques. Ils fondent leurs actes sur un code moral qui valorise l'échange, l'hospitalité et le progrès partagé, et tiennent chaque rencontre pour une occasion de s'enrichir mutuellement.
-
-## Noms humains
-
-Chaque humain reçoit son prénom à la naissance. Ses parents le choisissent en hommage à un ancêtre valeureux, à un héros légendaire ou à une vertu qu'ils souhaitent voir s'épanouir, et ce prénom ne change plus de toute sa vie. Les prénoms sont clairement sexués et varient selon les traditions : chacun suit la tendance propre à sa région d'origine.
-
-Tous portent aussi un nom de famille hérité, transmis de génération en génération, qui renvoie à l'histoire de la maison : un métier, un lieu ou un rang social. Certains en ajustent la prononciation ou la graphie pour s'intégrer à une nouvelle communauté, tandis que d'autres en préservent jalousement la forme d'origine pour assurer la continuité de leur lignée.

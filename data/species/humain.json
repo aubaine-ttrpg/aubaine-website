@@ -24,6 +24,7 @@
     "AMIXXX-001",
     "VOLSUR-001"
   ],
+  "naming": "Chaque humain reçoit son prénom à la naissance. Ses parents le choisissent en hommage à un ancêtre valeureux, à un héros légendaire ou à une vertu, et ce prénom ne change jamais. Les prénoms sont clairement sexués et suivent la tradition de leur région d'origine. Héréditaire, le nom de famille renvoie à l'histoire de la maison : un métier, un lieu ou un rang social.",
   "subspecies": [
     {
       "id": "nouvelle-aubaine",

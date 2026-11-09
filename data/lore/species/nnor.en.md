@@ -55,9 +55,3 @@ The Nnor are cheerful by nature. Playful and fond of pranks, they like to break 
 The Nnor are known for unfailing endurance and steadfast loyalty. People praise the way they face the worst conditions with unshakeable courage while keeping a keen sense of honour and tradition. Their talent for trade often surprises city dwellers, as much for the quality of their dealings as for their uncompromising honesty.
 
 Their deep respect for nature shows in everything they do, even when they venture away from their mountain, and they take scrupulous care never to upset the balance of the places they frequent. Yet beneath this outward good humour smoulders a fierce pride: any slight against their Yurta or threat to their tribe can set off an anger as swift and relentless as a storm on the high peaks.
-
-## Nnor names
-
-A Nnor, whether Alpine or one of Charon's, has no name until their Saman is elected. The Saman then gives a first name to those who have none, during a rite in which ancestral voices and draconic murmurs mingle to reveal each one's essence (a bond with fire, wind or stone). The name reflects a trait of character, a mark of honour or an elemental affinity, and it never changes for as long as the Nnor lives.
-
-Alpine Nnor, who are male or female, bear first names drawn from the forces of the mountain and of the cold, while the Nnor of the draconic line, who have no sex, receive blunter names, charged with the might of the primordial fire. To this personal name is added a family name, the name of the Yurta, inherited from the tribe and handed down from generation to generation as a constant reminder of their shared belonging. No nickname is given unless some notable deed justifies it, for every naming takes its place in the living, sacred history of the Nnor people.
