@@ -579,7 +579,7 @@ From the back to the front:
 
 - Paper and cards rest within 4° of level; the slab, the emblem and the draft stamp go further.
 - **Straight**: reading text, form fields, the previous, next and pause squares, the sheet's booklet
-  buttons.
+  buttons, a painting under glass, which hangs level.
 - **Navigation** follows reading order; nothing is laid out on a fan or a diagonal.
 
 ## Components
@@ -671,6 +671,12 @@ From the back to the front:
   dialogue turn's optional portrait, a bust in front of its box, one size for every turn. A dialogue's boxes
   climb half as steeply as a speech's. The right-hand speaker has a box of her own, its far end a point
   aimed at the other speaker.
+- A painting under glass (a lore picture titled `"glazed"`, or `"glazed wood"`): a frame of
+  `FRAME_KINDS`, the scanned gilt one or the modelled wooden one, drawn still as a `border-image`
+  (`src/styles/prose.css`) and live by `src/scripts/art-effect/glazes.ts`, its light following the
+  pointer or the scroll. A lore picture narrower than it is tall floats at the start of the text it
+  heads, 46 % of the column, the text beside it and then under it; below 48rem it stands above the
+  text, 22rem at most (`rehypeProseSidePictures`).
 - The almanach (`src/components/primitives/Almanach.astro`, or a lore picture titled
   `"almanach"`, optionally followed by a style name): the scanned device shows the picture on its tube,
   filling it, in the default style (`ALMANACH_STYLE`) or a saved one from `data/almanachs/`, with its
@@ -850,7 +856,9 @@ button hides (`tests/e2e/hub-stage.spec.ts`); a swap still changes the picture a
   this rule.
 - **Real materials on heraldry and frames**: scanned or baked, lit on the GPU, never a gradient
   pretending to be metal; gold vibrant, never "dark-dusty" (2026-10-26). ADR 0059 records them and is
-  still Proposed. The card's emblem is the approved exception (ADR 0054, Decision 6).
+  still Proposed. The card's emblem is the approved exception (ADR 0054, Decision 6). A frame no scan
+  provides, such as the rustic wooden frame of « Les derniers Galwariens », is modelled and baked from a
+  CC0 wood scan (2026-11-08, ADR 0075).
 - **Torn, stone and rupture masks** (`data/media/masks/`) are for lore pictures only.
 - **One WebGL context**: the live pieces share `src/scripts/art-effect/studio.ts`; the torchlight on lore
   pictures (`src/scripts/torchlight.ts`) still opens its own, and the almanachs of a page share one of

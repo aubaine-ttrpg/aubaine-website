@@ -8,6 +8,7 @@
 **Revised:** 2026-10-23, Decision 2 is reversed for trees and species by 0053: they keep one 3:4
 `cover` for card, hero and social image, and lose `banner`; books keep both
 **Revised:** 2026-10-25, Decision 1 lets `data/media/art/` hold a 3:2 painting or flag (0059)
+**Revised:** 2026-11-08, Decision 1 lets `data/media/art/` hold an 11:12 painting a lore page floats beside its text (0075)
 **Deciders:** Kori
 **Scope:** How a file under `data/media/art/` and `data/media/items/` is named, and how a tree or a
 book points at the pictures it needs. Does not cover the icon sets, which are Iconify names recorded
@@ -172,6 +173,12 @@ is the point at which a rule by ratio family would be cheaper than a list.
   sub-species flies. The first two are `les-naufrages-de-la-venue-3_2-og.png` and
   `drapeau-du-landenheit-3_2-og.png`, both 1536 by 1024. The glazed look needs no mask file, so no
   `3_2` mask exists; see 0059 Decision 4 and its caveat.
+
+### Addendum (2026-11-08): an 11:12 painting
+
+- `data/media/art/` also accepts `11_12`: `les-derniers-galwariens-11_12-og.png`, the owner's
+  illumination of 1199 by 1312, 0.31 % from 11:12, which a lore page floats beside its text under
+  glass. No `11_12` mask exists; see 0075 Decision 3.
 
 ---
 

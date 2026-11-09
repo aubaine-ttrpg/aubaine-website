@@ -4,6 +4,7 @@
 **Status:** Accepted
 **Date:** 2026-11-06
 **Revised:** 2026-11-07, a page that names no style takes the default almanach, which the Humans use, and a picture fills the tube by default (addendum to Decision 3)
+**Revised:** 2026-11-08, the portrait an almanach refuses is any picture narrower than tall, not only a 3:4 one (0075, addendum to Decision 3)
 **Deciders:** Kori
 **Scope:** The almanach a reader sees on a page: the three.js object that shows a picture on its tube
 (`src/scripts/art-effect/almanach.ts` and its siblings), where its styles live, how a lore picture or
@@ -143,6 +144,12 @@ style.
 - A picture fills the tube unless it asks to be shown whole (`ALMANACH_FIT`, `cover`); the engine, the
   component, the lore markup, the page script and the plain picture without JavaScript share it. A
   portrait is still refused: the wide tube would crop it to a strip.
+
+### Addendum (2026-11-08): every portrait is refused
+
+- A portrait is any picture whose ratio is narrower than tall, such as `3_4` or `11_12`
+  (`isPortraitSource` in `src/lib/art-effect/almanach-look.ts`, 0075 Decision 3), and an almanach
+  refuses each of them for the same reason.
 
 ---
 

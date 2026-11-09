@@ -231,7 +231,8 @@ square over the flag. Decision 10 records where that ended.
 
 ### Decision
 
-- `glazed` (`GLAZED_PICTURE` in `src/lib/game/book-markup.ts`) is a picture's only title word. The
+- `glazed` (`GLAZED_PICTURE` in `src/lib/game/book-markup.ts`) is a picture's title word; alone it
+  hangs this gilt frame, and a second word may name another frame (0075 Decision 1). The
   picture is wrapped as `span.au-prose__frame > span.au-prose__moulding >
   span.au-prose__relief[data-relief="glass"] > img`, the frame carrying `--au-frame-slice` and
   `--au-frame-share` from `FRAME` in `src/lib/art-effect/presets.ts`.

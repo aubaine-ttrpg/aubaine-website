@@ -634,6 +634,20 @@ rule.
 **Lit pieces: realism from light and shadow, not gloss.** Aim between glare and flat, and measure the
 luminance at rest and at two far pointer positions (`measuring.md`).
 
+**A painting may hang in a rustic wooden frame, floated beside its text (2026-11-08).** For the elf
+section « Les derniers Galwariens » the owner asked for the treatment of « La Venue » in a more
+rustic wooden frame, the painting on the left and the text on the right. Asked, the owner chose the
+float, the text running beside the painting and then under it, over a column where the painting
+would stay in view; the Poly Haven `wood_table_worn` scan, warm and worn, over the grey weathered
+`rough_wood`; glass, as on « La Venue »; and the caption « Les derniers Galwariens », which the owner
+named while allowing an invented one. Poly Haven has no rustic frame, so the frame is modelled and
+baked from the scan like the banner's hanger (`"glazed wood"`, `FRAMES.wood` in
+`src/lib/art-effect/presets.ts`). The float holds for a portrait lore picture, framed or not;
+heraldry beside its text keeps the column the owner asked for on 2026-10-26 (0059, Decision 1). On
+seeing it live the same day, the owner asked for the painting slightly bigger, tried half the column,
+and settled between: the float went from 38 % to 42 % and 50 %, then to 46 % of the column, 353 px on
+a 1512 px screen, the text beside it keeping 36 to 49 characters a line (33 to 42 at half the column).
+
 > "please let's reduce ligthing and gloss it's unbearable", then "slgithly brighter and if you can slightly tilt it when hovering just like the card", "it seems blurry", "you can reput some realistic lighting but without being too blinding" and "more realistic add it still but still it should be not that glossy" (2026-10-26, the Victoria arms)
 
 ## Colour, marks and type
@@ -821,3 +835,4 @@ and praised the Saison slider.
 | 2026-11-04 | take the screens' shapes (with 2026-11-03); stand to the reference, a dialogue names its speaker, each dialogue piece its own backing, text turns with its tag, punctuation clears a dark plate (all 2026-11-03, restored); the quote and the dialogue are game pieces; the layered look is the direction; a title says who and where, on any corner, the box redrawn per corner; a quote shows big quotation marks; the people a title names are black nameplates; each quote takes the background that suits its mood; the lore quote and dialogue, approved; a dialogue can show its speakers' portraits, the bust picked; in a dialogue each side has its own box, the point picked (2026-11-05), both slopes halved (2026-11-06); a portrait anchors its box; a portrait's expression follows who the character is |
 | 2026-11-06 | an almanach may flash CADRAN in its own tube on a reader's switch-on; a page may give its almanach a style, the Humans' royal azure picked as a start |
 | 2026-11-07 | the Humans take the default almanach, set in the Dev Hub; a picture fills the tube; an almanach's buttons sit on its caption's line |
+| 2026-11-08 | a painting may hang in a rustic wooden frame, floated beside its text |
