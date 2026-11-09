@@ -6,7 +6,8 @@ Les elfes sont les héritiers des Galwariens, porteurs d'une grâce infinie et d
 
 ## Héritage sylvestre
 
-![](../../media/art/placeholder-16_9-og.png)
+![Dans une prairie sous un ciel bleu nuit, une femme aux oreilles pointues, en robe bleue et manteau rouge, passe près d'un être immense et décharné ; à droite se tient un homme à la peau bleue coiffé de bois de cerf, un petit homme aux oreilles pointues gravit un rocher au loin, et une femme à la peau grise sort d'une grotte au premier plan.](../../media/art/les-derniers-galwariens-11_12-og.png "glazed wood")
+:caption[« Les derniers Galwariens », enluminure]
 
 Les elfes descendent des anciens Galwariens, ces maîtres de la magie primordiale qui, jadis, façonnaient Eden aux côtés des dragons anciens. Lorsque le Premier Éclat ravagea leurs pouvoirs, un groupe d'exilés se retira dans les forêts profondes, appelant à l'aide la déesse Élyséa, gardienne de la vie sauvage.
 

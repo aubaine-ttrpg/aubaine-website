@@ -6,7 +6,8 @@ Elves are the heirs of the Galwarians, bearers of an endless grace and of an anc
 
 ## A sylvan heritage
 
-![](../../media/art/placeholder-16_9-og.png)
+![In a meadow under a midnight-blue sky, a pointed-eared woman in a blue gown and red cloak walks past a towering, gaunt figure; on the right stands a blue-skinned man crowned with antlers, a small pointed-eared man climbs a rock in the distance, and a grey-skinned woman emerges from a cave in the foreground.](../../media/art/les-derniers-galwariens-11_12-og.png "glazed wood")
+:caption["The Last Galwarians", illumination]
 
 Elves descend from the ancient Galwarians, those masters of primordial magic who once shaped Eden alongside the ancient dragons. When the First Radiance ravaged their powers, a band of exiles withdrew into the deep forests and called upon the goddess Élyséa, guardian of the wild.
 

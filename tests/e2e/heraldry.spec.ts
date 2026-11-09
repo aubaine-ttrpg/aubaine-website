@@ -1,8 +1,11 @@
-import { readdir, readFile } from 'node:fs/promises'
-import { resolve } from 'node:path'
 import { expect, type Page, test } from '@playwright/test'
 
-import { BANNER_CLOTH, EFFECT_TIERS } from '../../src/lib/art-effect/presets'
+import {
+  BANNER_CLOTH,
+  EFFECT_TIERS,
+  FRAME_KINDS,
+  type FrameKind,
+} from '../../src/lib/art-effect/presets'
 import type { ResolvedSpecies } from '../../src/lib/game/build'
 import { HERALDRY_PLACEMENT } from '../../src/lib/game/derive'
 import type { Heraldry } from '../../src/lib/game/schema'
@@ -11,6 +14,7 @@ import { pathFor } from '../../src/lib/i18n/routes'
 import { strings } from '../../src/lib/i18n/strings'
 import { type Oklch, oklchOf, rgbFromHex } from '../../src/lib/key-colour'
 import { corpus } from './support/corpus'
+import { frameFile, framesBySpecies } from './support/lore-pictures'
 import {
   plainPicturesSeen,
   rememberGpu,
@@ -26,7 +30,7 @@ const GLASS = '.au-prose__frame'
 const STAGE = '[data-stage]'
 const HERALDRY_CODE = /\/(?:banners|flags|glazes|arms)\.[^/]*\.js$/
 const TEXTURE =
-  /\/(?:combination-room|rough-linen-relief|velour-velvet-relief|[a-z0-9-]+-(?:colour|relief|finish))\.[^/]*\.(?:webp|avif)$/
+  /\/(?:combination-room|rough-linen-relief|velour-velvet-relief|[a-z0-9-]+-(?:colour|relief|finish|surface))\.[^/]*\.(?:webp|avif)$/
 const KINDS = Object.keys(HERALDRY_PLACEMENT) as Heraldry['kind'][]
 const BESIDE = KINDS.filter((kind) => HERALDRY_PLACEMENT[kind] === 'beside')
 const CLOTH_MOST_PER_SECOND = Math.max(
@@ -51,7 +55,7 @@ async function heraldic(locale: Locale): Promise<ResolvedSpecies> {
 }
 
 async function plain(): Promise<ResolvedSpecies> {
-  const glazed = await glazedLore()
+  const glazed = await framesBySpecies()
   const species = (await corpus('fr')).species.find(
     (entry) => entry.subspecies.every((sub) => !sub.heraldry) && !glazed.has(entry.id),
   )
@@ -59,16 +63,20 @@ async function plain(): Promise<ResolvedSpecies> {
   return species
 }
 
-async function glazedLore(): Promise<Set<string>> {
-  const directory = resolve(import.meta.dirname, '../../data/lore/species')
-  const glazed = new Set<string>()
-  for (const file of await readdir(directory)) {
-    if (!file.endsWith('.md') || file.endsWith('.en.md')) continue
-    if ((await readFile(resolve(directory, file), 'utf8')).includes('"glazed")')) {
-      glazed.add(file.replace(/\.md$/, ''))
-    }
+async function framedIn(kind: FrameKind, only = false): Promise<ResolvedSpecies> {
+  const frames = await framesBySpecies()
+  const species = (await corpus('fr')).species.find((entry) => {
+    const shown = frames.get(entry.id)
+    return shown !== undefined && (only ? !shown.has(kind) : shown.has(kind))
+  })
+  if (!species) {
+    throw new Error(
+      only
+        ? `no species hangs a glazed picture in another frame than ${kind}`
+        : `no species hangs a glazed picture in the ${kind} frame`,
+    )
   }
-  return glazed
+  return species
 }
 
 function speciesPath(species: ResolvedSpecies, locale: Locale = 'fr'): string {
@@ -503,30 +511,51 @@ test('a Swup visit leaves no drape or glass behind, and they come back with thei
   await expect(page.locator(`${FLAG}[data-draped] canvas`)).toHaveCount(1)
 })
 
-test('the gilt and the glass follow the pointer, then settle', async ({ page }) => {
-  await count(page)
-  await page.goto(speciesPath(await heraldic('fr')))
-  await bring(page, GLASS)
-  const glass = page.locator(`${GLASS}[data-lit]`)
-  await expect(glass.locator('canvas')).toHaveCount(1)
-  await expect(glass.locator('img')).toHaveAttribute('alt', /.+/)
-  const box = await glass.boundingBox()
-  if (!box) throw new Error('the glazed picture has no box')
-  const gilt = (): Promise<number[]> =>
-    glass.locator('canvas').evaluate((node: HTMLCanvasElement) => {
-      const corner = Math.round(node.width * 0.03)
-      const pixels = node.getContext('2d')?.getImageData(corner, corner, corner, corner).data
-      return pixels ? [...pixels] : []
+for (const kind of FRAME_KINDS) {
+  test(`the ${kind} frame and its glass follow the pointer, then settle`, async ({ page }) => {
+    await count(page)
+    await page.goto(speciesPath(await framedIn(kind)))
+    const framed = `${GLASS}[data-frame="${kind}"]`
+    await bring(page, framed)
+    const glass = page.locator(`${framed}[data-lit]`).first()
+    await expect(glass.locator('canvas')).toHaveCount(1)
+    await expect(glass.locator('img')).toHaveAttribute('alt', /.+/)
+    const box = await glass.boundingBox()
+    if (!box) throw new Error('the glazed picture has no box')
+    const moulding = (): Promise<number[]> =>
+      glass.locator('canvas').evaluate((node: HTMLCanvasElement) => {
+        const corner = Math.round(node.width * 0.03)
+        const pixels = node.getContext('2d')?.getImageData(corner, corner, corner, corner).data
+        return pixels ? [...pixels] : []
+      })
+    await page.mouse.move(box.x + box.width * 0.1, box.y + box.height * 0.1)
+    expect(await restsWithin(page, 'glass', 3000)).toBeLessThan(3000)
+    const before = (await copies(page)).glass
+    const lit = await moulding()
+    await page.mouse.move(box.x + box.width * 0.9, box.y + box.height * 0.9, { steps: 8 })
+    await expect.poll(async () => (await copies(page)).glass).toBeGreaterThan(before)
+    expect(await restsWithin(page, 'glass', 3000)).toBeLessThan(3000)
+    expect(await moulding()).not.toEqual(lit)
+  })
+
+  test(`the ${kind} frame fetches its maps only on a page that shows it`, async ({ page }) => {
+    const maps = [frameFile(kind, 'surface'), frameFile(kind, 'relief')]
+    const fetched: string[] = []
+    page.on('request', (request) => {
+      if (maps.some((map) => map.test(request.url()))) fetched.push(request.url())
     })
-  await page.mouse.move(box.x + box.width * 0.1, box.y + box.height * 0.1)
-  expect(await restsWithin(page, 'glass', 3000)).toBeLessThan(3000)
-  const before = (await copies(page)).glass
-  const lit = await gilt()
-  await page.mouse.move(box.x + box.width * 0.9, box.y + box.height * 0.9, { steps: 8 })
-  await expect.poll(async () => (await copies(page)).glass).toBeGreaterThan(before)
-  expect(await restsWithin(page, 'glass', 3000)).toBeLessThan(3000)
-  expect(await gilt()).not.toEqual(lit)
-})
+    await page.goto(speciesPath(await framedIn(kind, true)))
+    await bring(page, GLASS)
+    await expect(page.locator(`${GLASS}[data-lit]`).first()).toBeAttached()
+    await page.waitForLoadState('networkidle')
+    expect(fetched).toEqual([])
+    const framed = `${GLASS}[data-frame="${kind}"]`
+    await page.goto(speciesPath(await framedIn(kind)))
+    await bring(page, framed)
+    await expect(page.locator(`${framed}[data-lit]`).first()).toBeAttached()
+    expect(maps.every((map) => fetched.some((url) => map.test(url)))).toBe(true)
+  })
+}
 
 test('print keeps the plain banner, flag, arms and painting and drops the canvases', async ({
   page,
@@ -745,18 +774,23 @@ test.describe('with reduced motion', () => {
     expect(await canvas.evaluate((node: HTMLCanvasElement) => node.toDataURL())).toBe(before)
   })
 
-  test('the glass draws once and holds still under the pointer', async ({ page }) => {
-    await count(page)
-    await page.goto(speciesPath(await heraldic('fr')))
-    await bring(page, GLASS)
-    const glass = page.locator(`${GLASS}[data-lit]`)
-    await expect(glass.locator('canvas')).toHaveCount(1)
-    const box = await glass.boundingBox()
-    if (!box) throw new Error('the glazed picture has no box')
-    await page.waitForTimeout(300)
-    const drawn = (await copies(page)).glass
-    await page.mouse.move(box.x + box.width * 0.8, box.y + box.height * 0.6, { steps: 8 })
-    await page.waitForTimeout(500)
-    expect((await copies(page)).glass).toBe(drawn)
-  })
+  for (const kind of FRAME_KINDS) {
+    test(`the ${kind} frame and its glass draw once and hold still under the pointer`, async ({
+      page,
+    }) => {
+      await count(page)
+      await page.goto(speciesPath(await framedIn(kind)))
+      const framed = `${GLASS}[data-frame="${kind}"]`
+      await bring(page, framed)
+      const glass = page.locator(`${framed}[data-lit]`).first()
+      await expect(glass.locator('canvas')).toHaveCount(1)
+      const box = await glass.boundingBox()
+      if (!box) throw new Error('the glazed picture has no box')
+      await page.waitForTimeout(300)
+      const drawn = (await copies(page)).glass
+      await page.mouse.move(box.x + box.width * 0.8, box.y + box.height * 0.6, { steps: 8 })
+      await page.waitForTimeout(500)
+      expect((await copies(page)).glass).toBe(drawn)
+    })
+  }
 })

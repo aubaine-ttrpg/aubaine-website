@@ -5,6 +5,7 @@ import { SUBSPECIES_SECTIONS } from '../../src/lib/game/derive'
 import { pathFor } from '../../src/lib/i18n/routes'
 import { strings } from '../../src/lib/i18n/strings'
 import { corpus } from './support/corpus'
+import { frameFile, framesBySpecies } from './support/lore-pictures'
 
 const ROUTES = [
   '/fr',
@@ -206,9 +207,7 @@ test('a species with sub-species prints each one with the skill it imposes', asy
   )
 })
 
-test('heraldry and a glazed picture stand in their plain form without javascript', async ({
-  page,
-}) => {
+test('heraldry stands in its plain form without javascript', async ({ page }) => {
   const species = (await corpus('fr')).species.find((entry) =>
     entry.subspecies.some((sub) => sub.heraldry),
   )
@@ -223,16 +222,28 @@ test('heraldry and a glazed picture stand in their plain form without javascript
     await expect(figure.locator('figcaption')).toHaveText(sub.heraldry.name)
     await expect(figure.locator('[data-drape-toggle]')).toBeHidden()
   }
-  const glazed = page.locator('.au-prose__frame [data-relief="glass"] img')
-  if ((await glazed.count()) === 0) return
-  await expect(glazed.first()).toBeVisible()
-  const moulding = page.locator('.au-prose__moulding').first()
-  expect(await moulding.evaluate((node) => getComputedStyle(node).borderImageSource)).toMatch(
-    /fancy-picture-frame-01/,
-  )
-  expect(
-    await moulding.evaluate((node) => Number.parseFloat(getComputedStyle(node).borderTopWidth)),
-  ).toBeGreaterThan(0)
+})
+
+test('every glazed picture stands in the still of its own frame without javascript', async ({
+  page,
+}) => {
+  const frames = await framesBySpecies()
+  expect(frames.size, 'no species hangs a glazed picture').toBeGreaterThan(0)
+  for (const [species, kinds] of frames) {
+    await page.goto(pathFor('speciesEntry', 'fr', { species }))
+    for (const kind of kinds) {
+      const frame = page.locator(`.au-prose__frame[data-frame="${kind}"]`).first()
+      await expect(frame.locator('[data-relief="glass"] img')).toBeVisible()
+      await expect(frame.locator('canvas')).toHaveCount(0)
+      const moulding = frame.locator('.au-prose__moulding')
+      expect(await moulding.evaluate((node) => getComputedStyle(node).borderImageSource)).toMatch(
+        frameFile(kind, 'beauty'),
+      )
+      expect(
+        await moulding.evaluate((node) => Number.parseFloat(getComputedStyle(node).borderTopWidth)),
+      ).toBeGreaterThan(0)
+    }
+  }
 })
 
 test('a skill tree plate draws its nodes without javascript', async ({ page }) => {
