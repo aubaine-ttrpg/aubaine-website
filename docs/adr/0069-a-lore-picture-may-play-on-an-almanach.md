@@ -6,6 +6,7 @@
 **Revised:** 2026-11-07, a page that names no style takes the default almanach, which the Humans use, and a picture fills the tube by default (addendum to Decision 3)
 **Revised:** 2026-11-08, the portrait an almanach refuses is any picture narrower than tall, not only a 3:4 one (0075, addendum to Decision 3)
 **Revised:** 2026-11-08, a picture may end its title on `mirrored`, and the elves take a saved style of their own (addendum to Decision 3)
+**Revised:** 2026-11-09, a picture may name the point it keeps in view on the tube (addendum to Decision 3)
 **Deciders:** Kori
 **Scope:** The almanach a reader sees on a page: the three.js object that shows a picture on its tube
 (`src/scripts/art-effect/almanach.ts` and its siblings), where its styles live, how a lore picture or
@@ -174,6 +175,20 @@ style.
   belongs to one picture. Reopens if every picture of a people must show mirrored.
 - Caveat: `mirrored` is read as the mirror word, never as a style name, so a style saved under that
   name cannot be named from a lore title.
+
+### Addendum (2026-11-09): the point a picture keeps in view
+
+- After the style, a title may name the point the tube keeps in view, as two whole percentages
+  across then down, the Dev Hub's « Point gardé »: `"almanach elfe 50% 20%"`, before `mirrored`
+  when both are given. `pictureLook` in `src/lib/game/book-markup.ts` reads it as the picture's
+  `focus`, which the engine already applied for the component and the Dev Hub.
+- The tube takes its shape from the model's screen, 2.3 times as wide as tall until the model loads
+  (`SCREEN_ASPECT_FALLBACK` in `src/scripts/art-effect/almanach.ts`), and the plain stage is 2.2
+  (`src/styles/almanach.css`). Both are wider than a 16:9 picture, so a picture that fills them loses
+  its top and bottom, and only the second percentage moves it. The plain picture takes the same
+  point as its `object-position`.
+- The elves' Matronobriga of Brivomagos, in « La Matriarchie », is the first to use it: centred, the
+  tube cut the tip of its tower; `50% 0%` keeps it whole, with the sky above it.
 
 ---
 

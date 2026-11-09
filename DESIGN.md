@@ -678,10 +678,11 @@ From the back to the front:
   heads, 46 % of the column, the text beside it and then under it; below 48rem it stands above the
   text, 22rem at most (`rehypeProseSidePictures`).
 - The almanach (`src/components/primitives/Almanach.astro`, or a lore picture titled
-  `"almanach"`, optionally followed by a style name, then `mirrored`): the scanned device shows the
-  picture on its tube, filling it, mirrored when it asks, in the default style (`ALMANACH_STYLE`) or a
-  saved one from `data/almanachs/`, with its power and zoom buttons as round buttons at the end of its
-  caption's line, like a banner's pause button, or under it in the plate look without a caption
+  `"almanach"`, optionally followed by a style name, the point to keep in view such as `50% 20%`,
+  then `mirrored`): the scanned device shows the picture on its tube, filling it around that point,
+  mirrored when it asks, in the default style (`ALMANACH_STYLE`) or a saved one from
+  `data/almanachs/`, with its power and zoom buttons as round buttons at the end of its caption's
+  line, like a banner's pause button, or under it in the plate look without a caption
   (`src/styles/almanach.css`). Without WebGL2 on a graphics card, without JavaScript and in print, the
   picture shows plain. Styles are designed in the Dev Hub under `astro dev` (0070).
 

@@ -636,14 +636,30 @@ export const MIRRORED_PICTURE = 'mirrored'
 export type PictureLook =
   | { kind: 'masked'; mask: PictureMask; relief: PictureRelief | undefined }
   | { kind: 'glazed'; frame: FrameKind }
-  | { kind: 'almanach'; style: string | undefined; mirrored: boolean }
+  | {
+      kind: 'almanach'
+      style: string | undefined
+      focus: readonly [number, number] | undefined
+      mirrored: boolean
+    }
+
+const FOCUS_PERCENT = /^(\d{1,3})%$/
+
+function focusShare(word: string | undefined): number | undefined {
+  const percent = Number(FOCUS_PERCENT.exec(word ?? '')?.[1])
+  return Number.isInteger(percent) && percent <= 100 ? percent / 100 : undefined
+}
 
 function almanachLook(title: string, source: string, words: readonly string[]): PictureLook {
   const mirrored = words.at(-1) === MIRRORED_PICTURE
-  const [style, ...rest] = mirrored ? words.slice(0, -1) : words
+  const placed = mirrored ? words.slice(0, -1) : words
+  const x = focusShare(placed.at(-2))
+  const y = focusShare(placed.at(-1))
+  const focus = x === undefined || y === undefined ? undefined : ([x, y] as const)
+  const [style, ...rest] = focus ? placed.slice(0, -2) : placed
   if (rest.length > 0 || (style !== undefined && !ALMANACH_STYLE_ID.test(style))) {
     throw new Error(
-      `${source} asks for "${title.trim()}", but an ${ALMANACH_PICTURE} picture takes at most the name of an almanach style, then "${MIRRORED_PICTURE}"`,
+      `${source} asks for "${title.trim()}", but an ${ALMANACH_PICTURE} picture takes at most the name of an almanach style, then the point it keeps in view such as "50% 20%", then "${MIRRORED_PICTURE}"`,
     )
   }
   if (isPortraitSource(source)) {
@@ -651,7 +667,7 @@ function almanachLook(title: string, source: string, words: readonly string[]): 
       `${source} is a portrait, which the wide tube of an ${ALMANACH_PICTURE} would crop to a strip`,
     )
   }
-  return { kind: 'almanach', style, mirrored }
+  return { kind: 'almanach', style, focus, mirrored }
 }
 
 function glazedLook(
@@ -727,6 +743,12 @@ function almanachPicture(
       ...picture.properties,
       'data-almanach-picture': '',
       'data-fit': ALMANACH_FIT,
+      ...(look.focus === undefined
+        ? {}
+        : {
+            'data-focus': look.focus.join(' '),
+            style: `object-position:${look.focus.map((share) => `${Math.round(share * 100)}%`).join(' ')}`,
+          }),
       ...(look.mirrored ? { 'data-mirrored': '' } : {}),
     },
   }

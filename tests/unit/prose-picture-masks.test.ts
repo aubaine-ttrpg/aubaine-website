@@ -153,6 +153,8 @@ describe('prose picture masks', () => {
     expect(image.properties['data-almanach-picture']).toBe('')
     expect(image.properties['data-fit']).toBe('cover')
     expect(image.properties['data-mirrored']).toBeUndefined()
+    expect(image.properties['data-focus']).toBeUndefined()
+    expect(image.properties['style']).toBeUndefined()
     expect(image.properties['title']).toBeUndefined()
   })
 
@@ -190,6 +192,31 @@ describe('prose picture masks', () => {
     expect(() => maskedPicture({ title: `${ALMANACH_PICTURE} Humain`, src: wide })).toThrow(
       /name of an almanach style/,
     )
+  })
+
+  it('keeps in view the point a picture names, before the mirror word', () => {
+    const wide = '../../media/art/bibliotheque-des-oracles-16_9-og.png'
+    for (const [title, focus, position, mirrored] of [
+      [`${ALMANACH_PICTURE} humain 50% 20%`, '0.5 0.2', '50% 20%', undefined],
+      [`${ALMANACH_PICTURE} 0% 100% ${MIRRORED_PICTURE}`, '0 1', '0% 100%', ''],
+    ] as const) {
+      const image = maskedPicture({ title, src: wide }).children[0]
+      if (image?.type !== 'element') throw new Error('the almanach holds no picture')
+      expect(image.properties['data-focus']).toBe(focus)
+      expect(image.properties['style']).toBe(`object-position:${position}`)
+      expect(image.properties['data-mirrored']).toBe(mirrored)
+    }
+  })
+
+  it('refuses a point beyond the picture, or with one share only', () => {
+    const wide = '../../media/art/bibliotheque-des-oracles-16_9-og.png'
+    for (const title of [
+      `${ALMANACH_PICTURE} humain 101% 20%`,
+      `${ALMANACH_PICTURE} humain 20%`,
+      `${ALMANACH_PICTURE} humain ${MIRRORED_PICTURE} 50% 20%`,
+    ]) {
+      expect(() => maskedPicture({ title, src: wide })).toThrow(/name of an almanach style/)
+    }
   })
 
   it('refuses the mirror word before the style, or twice', () => {

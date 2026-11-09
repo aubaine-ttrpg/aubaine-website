@@ -30,7 +30,8 @@ The elves' economy rests above all on barter: craftspeople of high standing, the
 
 ## Elven society
 
-![](../../media/art/placeholder-16_9-og.png)
+![At sunset, a city of tall glass spires spreads through a red-rock canyon, seen from a gallery of golden stone under glass awnings; its terraces of palms and gardens step down in waterfalls to turquoise pools.](../../media/art/matronobriga-de-brivomagos-16_9-og.png "almanach elfe 50% 0%")
+:caption[The Matronobriga of the city of Brivomagos]
 
 In elven society, power and authority belong above all to women, embodied by a queen regent: it is a matriarchy in which lineages pass through the mother, who herself chooses the heiress of her name and her duties. The great cities at the foot of the world-trees are governed by councils of matrons, made up of the eldest women of each clan, whose wisdom guides political, cultural and spiritual decisions. The priestesses of the sylva, charged with keeping the balance between druidic magic and wildlife, hold a central place and serve as intermediaries between Élyséa and the people.
 

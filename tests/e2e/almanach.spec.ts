@@ -1,6 +1,6 @@
 import { readdir } from 'node:fs/promises'
-import { resolve } from 'node:path'
-import { expect, type Page, test } from '@playwright/test'
+import { basename, extname, resolve } from 'node:path'
+import { expect, type Locator, type Page, test } from '@playwright/test'
 
 import { strings } from '../../src/lib/i18n/strings'
 import { speciesLorePictures } from './support/lore-pictures'
@@ -13,10 +13,17 @@ const CANVAS = '.au-almanach__canvas'
 const FR = strings('fr').almanachDevice
 const EN = strings('en').almanachDevice
 
-async function almanachSpecies(): Promise<string> {
-  const found = (await speciesLorePictures()).find(({ look }) => look?.kind === 'almanach')
-  if (!found) throw new Error('no species lore stands a picture in an almanach')
-  return found.species
+type LoreAlmanach = { readonly species: string; readonly picture: string; readonly onPage: number }
+
+async function loreAlmanach(): Promise<LoreAlmanach> {
+  const almanachs = (await speciesLorePictures()).filter(({ look }) => look?.kind === 'almanach')
+  const [first] = almanachs
+  if (!first) throw new Error('no species lore stands a picture in an almanach')
+  return {
+    species: first.species,
+    picture: basename(first.source, extname(first.source)),
+    onPage: almanachs.filter(({ species }) => species === first.species).length,
+  }
 }
 
 async function mirroredAlmanachSpecies(): Promise<string> {
@@ -25,6 +32,23 @@ async function mirroredAlmanachSpecies(): Promise<string> {
   )
   if (!found) throw new Error('no species lore mirrors a picture in an almanach')
   return found.species
+}
+
+async function focusedAlmanach(): Promise<{ species: string; picture: string; point: string }> {
+  for (const { species, source, look } of await speciesLorePictures()) {
+    if (look?.kind !== 'almanach' || look.focus === undefined) continue
+    const point = look.focus.map((share) => `${Math.round(share * 100)}%`).join(' ')
+    return { species, picture: basename(source, extname(source)), point }
+  }
+  throw new Error('no species lore keeps a point of an almanach picture in view')
+}
+
+function almanachOf(page: Page, picture: string): Locator {
+  return page.locator(`${HOST}:has(> img[data-almanach-picture][src*="/${picture}."])`)
+}
+
+function figureOf(page: Page, host: Locator): Locator {
+  return page.locator('figure').filter({ has: host })
 }
 
 async function refuseWebGl2(page: Page): Promise<void> {
@@ -51,8 +75,7 @@ async function hardwareWebGl(page: Page): Promise<boolean> {
   return name !== 'none' && !SOFTWARE.test(name)
 }
 
-async function bringLit(page: Page): Promise<void> {
-  const host = page.locator(HOST)
+async function bringLit(host: Locator): Promise<void> {
   await host.scrollIntoViewIfNeeded()
   await expect(host).toHaveAttribute('data-almanach-lit', '', { timeout: 15_000 })
 }
@@ -75,18 +98,20 @@ test.describe('an almanach in the lore', () => {
     page,
   }) => {
     const errors = collectErrors(page)
-    await page.goto(`/fr/espece/${await almanachSpecies()}`)
-    await expect(page.locator(HOST)).toHaveCount(1)
-    await expect(page.locator(`${HOST} > ${CANVAS}`)).toHaveCount(0)
-    await bringLit(page)
-    await expect(page.locator(`${HOST} > ${CANVAS}`)).toHaveCount(1)
-    await expect(page.locator(`${HOST} > img[data-almanach-picture]`)).toHaveAttribute('alt', /.+/)
-    const controls = page.getByRole('group', { name: FR.label, exact: true })
+    const { species, picture, onPage } = await loreAlmanach()
+    await page.goto(`/fr/espece/${species}`)
+    await expect(page.locator(HOST)).toHaveCount(onPage)
+    await expect(page.locator(CANVAS)).toHaveCount(0)
+    const host = almanachOf(page, picture)
+    await bringLit(host)
+    await expect(host.locator(CANVAS)).toHaveCount(1)
+    await expect(host.locator('img[data-almanach-picture]')).toHaveAttribute('alt', /.+/)
+    const controls = figureOf(page, host).getByRole('group', { name: FR.label, exact: true })
     await expect(controls.getByRole('button', { name: FR.powerOff })).toHaveAttribute(
       'aria-pressed',
       'true',
     )
-    await expect(page.locator('.au-almanach__status')).toContainText(FR.showing(0, 1, ''))
+    await expect(host.locator('.au-almanach__status')).toContainText(FR.showing(0, 1, ''))
     expect(errors).toEqual([])
   })
 
@@ -94,32 +119,38 @@ test.describe('an almanach in the lore', () => {
     page,
   }) => {
     await watchPlainPictures(page)
-    const path = `/fr/espece/${await almanachSpecies()}`
+    const { species, picture } = await loreAlmanach()
+    const path = `/fr/espece/${species}`
     await page.goto(path)
-    const bottom = await page
-      .locator(HOST)
-      .evaluate((node) => node.getBoundingClientRect().bottom + window.scrollY)
+    const host = almanachOf(page, picture)
+    const bottom = await host.evaluate(
+      (node) => node.getBoundingClientRect().bottom + window.scrollY,
+    )
     const width = page.viewportSize()?.width ?? 0
     await page.setViewportSize({ width, height: Math.ceil(bottom) })
-    await expect(page.locator(HOST)).toHaveAttribute('data-almanach-lit', '', { timeout: 15_000 })
+    await expect(host).toHaveAttribute('data-almanach-lit', '', { timeout: 15_000 })
     expect(await storedGpu(page)).not.toBeNull()
     await page.goto(path)
     expect(await page.evaluate(() => window.scrollY)).toBe(0)
-    await expect(page.locator(HOST)).toHaveAttribute('data-almanach-lit', '', { timeout: 15_000 })
+    await expect(host).toHaveAttribute('data-almanach-lit', '', { timeout: 15_000 })
     expect(await plainPicturesSeen(page)).toEqual([])
   })
 
   test('speaks English on the English page', async ({ page }) => {
-    await page.goto(`/en/species/${await almanachSpecies()}`)
-    await bringLit(page)
-    const controls = page.getByRole('group', { name: EN.label, exact: true })
+    const { species, picture } = await loreAlmanach()
+    await page.goto(`/en/species/${species}`)
+    const host = almanachOf(page, picture)
+    await bringLit(host)
+    const controls = figureOf(page, host).getByRole('group', { name: EN.label, exact: true })
     await expect(controls.getByRole('button', { name: EN.powerOff })).toBeVisible()
   })
 
   test('sets its buttons at the end of its caption line, like a banner pause', async ({ page }) => {
-    await page.goto(`/fr/espece/${await almanachSpecies()}`)
-    await bringLit(page)
-    const figure = page.locator(`figure:has(${HOST})`)
+    const { species, picture } = await loreAlmanach()
+    await page.goto(`/fr/espece/${species}`)
+    const host = almanachOf(page, picture)
+    await bringLit(host)
+    const figure = figureOf(page, host)
     const line = await figure.evaluate((element) => {
       const caption = element.querySelector('figcaption')
       if (!caption) throw new Error('the almanach picture has no caption')
@@ -143,13 +174,15 @@ test.describe('an almanach in the lore', () => {
   })
 
   test('turns off and on from its power button, and says so', async ({ page }) => {
-    await page.goto(`/fr/espece/${await almanachSpecies()}`)
-    await bringLit(page)
-    const controls = page.getByRole('group', { name: FR.label, exact: true })
+    const { species, picture } = await loreAlmanach()
+    await page.goto(`/fr/espece/${species}`)
+    const host = almanachOf(page, picture)
+    await bringLit(host)
+    const controls = figureOf(page, host).getByRole('group', { name: FR.label, exact: true })
     await controls.getByRole('button', { name: FR.powerOff }).click()
     const power = controls.getByRole('button', { name: FR.powerOn })
     await expect(power).toHaveAttribute('aria-pressed', 'false')
-    await expect(page.locator('.au-almanach__status')).toHaveText(FR.dark)
+    await expect(host.locator('.au-almanach__status')).toHaveText(FR.dark)
     await power.click()
     await expect(controls.getByRole('button', { name: FR.powerOff })).toHaveAttribute(
       'aria-pressed',
@@ -158,16 +191,17 @@ test.describe('an almanach in the lore', () => {
   })
 
   test('leaves with its page on a Swup visit and comes back alone', async ({ page }) => {
-    const species = await almanachSpecies()
+    const { species, picture } = await loreAlmanach()
     await page.goto(`/fr/espece/${species}`)
-    await bringLit(page)
+    const host = almanachOf(page, picture)
+    await bringLit(host)
     await page.locator('#site-header [data-nav="home"]').click()
     await expect(page).toHaveURL('/fr')
     await expect(page.locator(CANVAS)).toHaveCount(0)
     await page.goBack()
     await expect(page).toHaveURL(`/fr/espece/${species}`)
-    await bringLit(page)
-    await expect(page.locator(CANVAS)).toHaveCount(1)
+    await bringLit(host)
+    await expect(host.locator(CANVAS)).toHaveCount(1)
   })
 
   test('shifts nothing on screen as it lights', async ({ page }) => {
@@ -181,10 +215,11 @@ test.describe('an almanach in the lore', () => {
         }
       }).observe({ type: 'layout-shift', buffered: false })
     })
-    await page.goto(`/fr/espece/${await almanachSpecies()}`)
+    const { species, picture } = await loreAlmanach()
+    await page.goto(`/fr/espece/${species}`)
     await page.waitForLoadState('networkidle')
     await page.evaluate(() => Reflect.set(window, '__shifts', []))
-    await bringLit(page)
+    await bringLit(almanachOf(page, picture))
     await page.waitForTimeout(500)
     const shifts = await page.evaluate(() => {
       const value: unknown = Reflect.get(window, '__shifts')
@@ -194,12 +229,14 @@ test.describe('an almanach in the lore', () => {
   })
 
   test('prints its picture, without the tube or the controls', async ({ page }) => {
-    await page.goto(`/fr/espece/${await almanachSpecies()}`)
-    await bringLit(page)
+    const { species, picture } = await loreAlmanach()
+    await page.goto(`/fr/espece/${species}`)
+    const host = almanachOf(page, picture)
+    await bringLit(host)
     await page.emulateMedia({ media: 'print' })
-    await expect(page.locator(`${HOST} > ${CANVAS}`)).toBeHidden()
-    await expect(page.locator('.au-almanach__controls')).toBeHidden()
-    await expect(page.locator(`${HOST} > img[data-almanach-picture]`)).toHaveCSS('opacity', '1')
+    await expect(host.locator(CANVAS)).toBeHidden()
+    await expect(figureOf(page, host).locator('.au-almanach__controls')).toBeHidden()
+    await expect(host.locator('img[data-almanach-picture]')).toHaveCSS('opacity', '1')
   })
 })
 
@@ -219,13 +256,15 @@ test('a page without an almanach fetches none of it', async ({ page }) => {
 test('without WebGL2 the lore keeps its picture and logs nothing', async ({ page }) => {
   const errors = collectErrors(page)
   await refuseWebGl2(page)
-  await page.goto(`/fr/espece/${await almanachSpecies()}`)
-  await page.locator(HOST).scrollIntoViewIfNeeded()
+  const { species, picture } = await loreAlmanach()
+  await page.goto(`/fr/espece/${species}`)
+  const host = almanachOf(page, picture)
+  await host.scrollIntoViewIfNeeded()
   await page.waitForLoadState('networkidle')
   await page.waitForTimeout(500)
   await expect(page.locator(CANVAS)).toHaveCount(0)
   await expect(page.locator('.au-almanach__controls')).toHaveCount(0)
-  await expect(page.locator(`${HOST} > img[data-almanach-picture]`)).toBeVisible()
+  await expect(host.locator('img[data-almanach-picture]')).toBeVisible()
   expect(errors).toEqual([])
 })
 
@@ -238,6 +277,16 @@ test('a mirrored picture stays mirrored without WebGL2 and in print', async ({ p
   await expect(picture).toHaveCSS('scale', '-1 1')
   await page.emulateMedia({ media: 'print' })
   await expect(picture).toHaveCSS('scale', '-1 1')
+})
+
+test('a picture keeps its point in view without WebGL2', async ({ page }) => {
+  await refuseWebGl2(page)
+  const { species, picture, point } = await focusedAlmanach()
+  await page.goto(`/fr/espece/${species}`)
+  const image = almanachOf(page, picture).locator('img[data-almanach-picture]')
+  await image.scrollIntoViewIfNeeded()
+  await expect(image).toBeVisible()
+  await expect(image).toHaveCSS('object-position', point)
 })
 
 test('the build carries no Dev Hub', async ({ page }) => {

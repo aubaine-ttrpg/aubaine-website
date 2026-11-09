@@ -30,7 +30,8 @@ L'économie des elfes repose avant tout sur le troc : artisans de haut rang, ils
 
 ## Société elfique
 
-![](../../media/art/placeholder-16_9-og.png)
+![Au coucher du soleil, une cité aux hautes flèches de verre s'étend dans un canyon de roche rouge, vue d'une galerie de pierre dorée sous des auvents de verre ; ses terrasses de palmiers et de jardins descendent en cascades vers des bassins turquoise.](../../media/art/matronobriga-de-brivomagos-16_9-og.png "almanach elfe 50% 0%")
+:caption[La Matronobriga de la cité de Brivomagos]
 
 Dans la société elfique, le pouvoir et l'autorité sont avant tout l'apanage des femmes, incarnés par une reine régente : c'est un matriarcat où les lignées se transmettent par la mère, qui choisit elle-même l'héritière de son nom et de ses responsabilités. Les grandes cités au pied des arbres-mondes sont gouvernées par des conseils de matrones, composés des aînées de chaque clan, dont la sagesse guide les décisions politiques, culturelles et spirituelles. Les prêtresses de la sylve, chargées de veiller à l'équilibre entre la magie druidique et la vie sauvage, occupent une place centrale et servent d'intermédiaires entre Élyséa et le peuple.
 
