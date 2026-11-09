@@ -45,6 +45,19 @@ describe('prose picture captions', () => {
     expect(textOf(caption ?? text(''))).toBe("Un émissaire marchand d'Araskha")
   })
 
+  it('keeps each guillemet on the line of the words it quotes', () => {
+    const [figure] = elements(
+      captioned(
+        element('p', [
+          image('enluminure-11_12-og.png'),
+          text('\n:caption[« Les derniers Galwariens », enluminure]'),
+        ]),
+      ),
+    )
+    const caption = elements(figure?.children ?? [])[1]
+    expect(textOf(caption ?? text(''))).toBe('«\u00a0Les derniers Galwariens\u00a0», enluminure')
+  })
+
   it('keeps inline formatting inside the caption', () => {
     const [figure] = elements(
       captioned(

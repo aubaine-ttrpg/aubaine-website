@@ -231,6 +231,14 @@ function bracketed(children: HastChild[], open: string): HastChild[] | undefined
   ]
 }
 
+function guillemetsHeld(children: HastChild[]): HastChild[] {
+  return children.map((child) =>
+    child.type === 'text'
+      ? text(child.value.replace(/« +/g, '«\u00a0').replace(/ +»/g, '\u00a0»'))
+      : child,
+  )
+}
+
 function captionedPicture(node: HastChild): HastChild {
   if (node.type !== 'element' || node.tagName !== 'p') return node
   const [picture, ...rest] = node.children
@@ -239,7 +247,7 @@ function captionedPicture(node: HastChild): HastChild {
   if (!caption) return node
   return element('figure', { className: 'au-prose__picture' }, [
     picture,
-    element('figcaption', {}, caption),
+    element('figcaption', {}, guillemetsHeld(caption)),
   ])
 }
 
