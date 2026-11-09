@@ -7,7 +7,13 @@ import {
   isPortraitSource,
   pictureRatio,
 } from '../art-effect/almanach-look.ts'
-import { FRAME } from '../art-effect/presets.ts'
+import {
+  FRAME_KINDS,
+  FRAMES,
+  type FrameKind,
+  GLAZED_FRAME,
+  isFrameKind,
+} from '../art-effect/presets.ts'
 import { DEFAULT_LOCALE, LOCALES, type Locale } from '../i18n/locales.ts'
 import { strings } from '../i18n/strings.ts'
 import { readCorpus } from './fs-sources.ts'
@@ -627,7 +633,7 @@ export const ALMANACH_PICTURE = 'almanach'
 
 export type PictureLook =
   | { kind: 'masked'; mask: PictureMask; relief: PictureRelief | undefined }
-  | { kind: 'glazed' }
+  | { kind: 'glazed'; frame: FrameKind }
   | { kind: 'almanach'; style: string | undefined }
 
 function almanachLook(
@@ -649,16 +655,24 @@ function almanachLook(
   return { kind: 'almanach', style }
 }
 
+function glazedLook(
+  title: string,
+  source: string,
+  frame: string | undefined,
+  rest: readonly string[],
+): PictureLook {
+  if (frame === undefined) return { kind: 'glazed', frame: GLAZED_FRAME }
+  if (rest.length > 0 || !isFrameKind(frame)) {
+    throw new Error(
+      `${source} asks for "${title.trim()}", but a ${GLAZED_PICTURE} picture takes at most one word after it, one of the frames ${FRAME_KINDS.join(', ')}`,
+    )
+  }
+  return { kind: 'glazed', frame }
+}
+
 export function pictureLook(title: string, source: string): PictureLook {
   const [first = '', second, ...rest] = title.trim().split(/\s+/)
-  if (first === GLAZED_PICTURE) {
-    if (second !== undefined) {
-      throw new Error(
-        `${source} asks for "${title.trim()}", but a ${GLAZED_PICTURE} picture takes no second word`,
-      )
-    }
-    return { kind: 'glazed' }
-  }
+  if (first === GLAZED_PICTURE) return glazedLook(title, source, second, rest)
   if (first === ALMANACH_PICTURE) return almanachLook(title, source, second, rest)
   if (!isPictureMask(first)) {
     throw new Error(
@@ -673,13 +687,19 @@ export function pictureLook(title: string, source: string): PictureLook {
   return { kind: 'masked', mask: first, relief: second }
 }
 
-const { slice } = FRAME
-const FRAME_STYLE = [
-  `--au-frame-slice:${slice.top} ${slice.right} ${slice.bottom} ${slice.left}`,
-  `--au-frame-share:${((100 * slice.left) / FRAME.width).toFixed(4)}`,
-].join(';')
+function frameStyle(frame: FrameKind): string {
+  const { slice, width } = FRAMES[frame]
+  return [
+    `--au-frame-slice:${slice.top} ${slice.right} ${slice.bottom} ${slice.left}`,
+    `--au-frame-share:${((100 * slice.left) / width).toFixed(4)}`,
+  ].join(';')
+}
 
-function glazePicture(picture: HastElement, ratio: string | undefined): HastElement {
+function glazePicture(
+  picture: HastElement,
+  ratio: string | undefined,
+  frame: FrameKind,
+): HastElement {
   const glass = element(
     'span',
     {
@@ -690,7 +710,11 @@ function glazePicture(picture: HastElement, ratio: string | undefined): HastElem
     [picture],
   )
   const moulding = element('span', { className: 'au-prose__moulding' }, [glass])
-  return element('span', { className: 'au-prose__frame', style: FRAME_STYLE }, [moulding])
+  return element(
+    'span',
+    { className: 'au-prose__frame', 'data-frame': frame, style: frameStyle(frame) },
+    [moulding],
+  )
 }
 
 function almanachPicture(picture: HastElement, style: string | undefined): HastElement {
@@ -717,7 +741,7 @@ function maskPicture(picture: HastElement): HastElement {
   const ratio = pictureRatio(source)
   switch (look.kind) {
     case 'glazed':
-      return glazePicture({ ...picture, properties }, ratio)
+      return glazePicture({ ...picture, properties }, ratio, look.frame)
     case 'almanach':
       return almanachPicture({ ...picture, properties }, look.style)
     case 'masked':

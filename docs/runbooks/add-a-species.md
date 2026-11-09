@@ -207,11 +207,13 @@ A second word after the shape adds an effect: `PICTURE_RELIEFS` in the same file
 `torch`, a warm light that follows the pointer across the picture's relief and stays inside it.
 Without WebGL, or without JavaScript, the picture shows as it would without the word.
 
-A painting takes `"glazed"` (`GLAZED_PICTURE`) as its only word: a scanned gilt frame around it,
-recessed behind its lip, under a pane of glass. The gilding and the faint reflection of a room in the
-glass follow the pointer, or the scroll on a touch screen. It takes no second word. Without WebGL2,
-and in print, the frame and its shadow stay still and the glass is left out. A 3:2 painting spans the
-column like a 16:9 picture.
+A painting takes `"glazed"` (`GLAZED_PICTURE`): a frame around it, the painting recessed behind its
+lip, under a pane of glass. The frame's light and the faint reflection of a room in the glass follow
+the pointer, or the scroll on a touch screen. Alone, the word hangs the scanned gilt frame. A second
+word names another frame from `FRAME_KINDS` in `src/lib/art-effect/presets.ts`, such as `wood`, a
+rustic frame of worn wood: `"glazed wood"`. It takes no third word. Without WebGL2, and in print, the
+frame and its shadow stay still and the glass is left out. A 3:2 painting spans the column like a
+16:9 picture; a portrait painting floats beside its text like any portrait picture.
 
 ```markdown
 ![Des naufragés tirent un coffre hors des vagues, au pied d'une falaise.](../../media/art/les-naufrages-de-la-venue-3_2-og.png "glazed")

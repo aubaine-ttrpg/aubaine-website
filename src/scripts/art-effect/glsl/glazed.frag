@@ -1,5 +1,5 @@
 uniform sampler2D uArt;
-uniform sampler2D uGilt;
+uniform sampler2D uSurface;
 uniform sampler2D uRelief;
 uniform vec2 uBacking;
 uniform float uMoulding;
@@ -30,21 +30,21 @@ vec3 eyeAt(float aspect) {
   return vec3(aspect * (0.5 + (uEye.x - 0.5) * SWAY), 0.5 + (uEye.y - 0.5) * SWAY, DISTANCE);
 }
 
-vec3 gilding(vec2 pixel, float aspect) {
+vec3 moulding(vec2 pixel, float aspect) {
   vec2 uv = vec2(
     sliced(pixel.x, uBacking.x, uMoulding, uSlice.x),
     sliced(pixel.y, uBacking.y, uMoulding, uSlice.y)
   );
-  vec4 gilt = texture(uGilt, uv);
+  vec4 finish = texture(uSurface, uv);
   vec3 normal = normalize(texture(uRelief, uv).xyz * 2.0 - 1.0);
   vec3 seen = normalize(eyeAt(aspect) - vec3(pixel / uBacking.y, 0.0));
   vec3 view = toRoom(seen);
-  float roughness = clamp(gilt.a, 0.05, 1.0);
-  float metal = uMetalness * gilt.a;
+  float roughness = clamp(finish.a, 0.05, 1.0);
+  float metal = uMetalness * finish.a;
   float facing = max(dot(normal, view), 1e-4);
   vec3 mirrored = reflect(-view, normal);
   vec3 lit = litByRoom(
-    gilt.rgb,
+    finish.rgb,
     metal,
     roughness,
     facing,
@@ -86,7 +86,7 @@ void main() {
   vec2 pixel = vec2(gl_FragCoord.x, uBacking.y - gl_FragCoord.y);
   float aspect = uBacking.x / uBacking.y;
   bool opening = all(greaterThan(pixel, vec2(uMoulding))) && all(lessThan(pixel, uBacking - uMoulding));
-  vec3 colour = opening ? painting(pixel, aspect) : gilding(pixel, aspect);
+  vec3 colour = opening ? painting(pixel, aspect) : moulding(pixel, aspect);
   float dither = interleavedGradient(pixel) + interleavedGradient(pixel.yx + 17.0) - 1.0;
   outColor = vec4(clamp(encodeSrgb(colour) + dither / 255.0, 0.0, 1.0), 1.0);
 }

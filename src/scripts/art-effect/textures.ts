@@ -1,9 +1,11 @@
 import roomUrl from '../../../data/media/textures/combination-room.webp?url'
-import giltUrl from '../../../data/media/textures/fancy-picture-frame-01-gilt.avif?url'
-import mouldingUrl from '../../../data/media/textures/fancy-picture-frame-01-relief.avif?url'
+import giltReliefUrl from '../../../data/media/textures/fancy-picture-frame-01-relief.avif?url'
+import giltSurfaceUrl from '../../../data/media/textures/fancy-picture-frame-01-surface.avif?url'
 import linenUrl from '../../../data/media/textures/rough-linen-relief.avif?url'
 import velvetUrl from '../../../data/media/textures/velour-velvet-relief.avif?url'
-import { ENVIRONMENT } from '../../lib/art-effect/presets'
+import woodReliefUrl from '../../../data/media/textures/wooden-frame-relief.avif?url'
+import woodSurfaceUrl from '../../../data/media/textures/wooden-frame-surface.avif?url'
+import { ENVIRONMENT, type FrameKind } from '../../lib/art-effect/presets'
 import { bindTexture, createDataTexture, type Program, type Target } from './gl'
 import type { Studio } from './studio'
 
@@ -16,15 +18,21 @@ export type Environment = {
 
 export type Fabric = 'linen' | 'velvet'
 
-export type Moulding = { gilt: Target; relief: WebGLTexture }
+export type Moulding = { surface: Target; relief: WebGLTexture }
+
+type KeyedLoads<Key, Value> = WeakMap<Studio, Map<Key, Promise<Value>>>
 
 const FABRICS: Record<Fabric, string> = { linen: linenUrl, velvet: velvetUrl }
+const MOULDINGS: Record<FrameKind, { surface: string; relief: string }> = {
+  gilt: { surface: giltSurfaceUrl, relief: giltReliefUrl },
+  wood: { surface: woodSurfaceUrl, relief: woodReliefUrl },
+}
 const RELIEF_SLOPE = 6
 const UNTOUCHED: ImageBitmapOptions = { premultiplyAlpha: 'none', colorSpaceConversion: 'none' }
 
 const environments = new WeakMap<Studio, Promise<Environment>>()
-const fabrics = new WeakMap<Studio, Map<Fabric, Promise<WebGLTexture>>>()
-const mouldings = new WeakMap<Studio, Promise<Moulding>>()
+const fabrics: KeyedLoads<Fabric, WebGLTexture> = new WeakMap()
+const mouldings: KeyedLoads<FrameKind, Moulding> = new WeakMap()
 
 export async function bitmapOf(url: string, signal: AbortSignal): Promise<ImageBitmap> {
   const response = await fetch(url, { signal })
@@ -93,24 +101,34 @@ export function environmentOf(studio: Studio): Promise<Environment> {
   return loading
 }
 
-export function fabricOf(studio: Studio, fabric: Fabric): Promise<WebGLTexture> {
-  const known = fabrics.get(studio) ?? new Map<Fabric, Promise<WebGLTexture>>()
-  fabrics.set(studio, known)
-  const loaded = known.get(fabric)
+function loadOnce<Key, Value>(
+  loads: KeyedLoads<Key, Value>,
+  studio: Studio,
+  key: Key,
+  load: () => Promise<Value>,
+): Promise<Value> {
+  const known = loads.get(studio) ?? new Map<Key, Promise<Value>>()
+  loads.set(studio, known)
+  const loaded = known.get(key)
   if (loaded) return loaded
-  const loading = loadFabric(studio, fabric)
-  known.set(fabric, loading)
+  const loading = load()
+  known.set(key, loading)
   return loading
 }
 
-async function loadMoulding(studio: Studio): Promise<Moulding> {
-  const [gilt, relief] = await Promise.all([
-    bitmapOf(giltUrl, studio.lifetime),
-    bitmapOf(mouldingUrl, studio.lifetime),
+export function fabricOf(studio: Studio, fabric: Fabric): Promise<WebGLTexture> {
+  return loadOnce(fabrics, studio, fabric, () => loadFabric(studio, fabric))
+}
+
+async function loadMoulding(studio: Studio, frame: FrameKind): Promise<Moulding> {
+  const maps = MOULDINGS[frame]
+  const [surface, relief] = await Promise.all([
+    bitmapOf(maps.surface, studio.lifetime),
+    bitmapOf(maps.relief, studio.lifetime),
   ])
   studio.lifetime.throwIfAborted()
   const moulding = {
-    gilt: studio.picture(gilt, { width: gilt.width, height: gilt.height }),
+    surface: studio.picture(surface, { width: surface.width, height: surface.height }),
     relief: createDataTexture(
       studio.gl,
       relief,
@@ -119,17 +137,13 @@ async function loadMoulding(studio: Studio): Promise<Moulding> {
       true,
     ),
   }
-  gilt.close()
+  surface.close()
   relief.close()
   return moulding
 }
 
-export function mouldingOf(studio: Studio): Promise<Moulding> {
-  const known = mouldings.get(studio)
-  if (known) return known
-  const loading = loadMoulding(studio)
-  mouldings.set(studio, loading)
-  return loading
+export function mouldingOf(studio: Studio, frame: FrameKind): Promise<Moulding> {
+  return loadOnce(mouldings, studio, frame, () => loadMoulding(studio, frame))
 }
 
 export function bindRoom(

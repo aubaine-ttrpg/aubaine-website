@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { FRAME } from '../../src/lib/art-effect/presets'
+import { FRAME_KINDS, FRAMES, type FrameKind, GLAZED_FRAME } from '../../src/lib/art-effect/presets'
 import {
   ALMANACH_PICTURE,
   GLAZED_PICTURE,
@@ -79,6 +79,14 @@ describe('prose picture masks', () => {
     expect(() => maskedPicture({ title: 'torn torch deep' })).toThrow(/"torch deep"/)
   })
 
+  function frameStyleOf(frame: FrameKind): string[] {
+    const { slice, width } = FRAMES[frame]
+    return [
+      `--au-frame-slice:${slice.top} ${slice.right} ${slice.bottom} ${slice.left}`,
+      `--au-frame-share:${((100 * slice.left) / width).toFixed(4)}`,
+    ]
+  }
+
   it('frames a glazed picture and puts it under glass, keeping its ratio and alt', () => {
     const frame = maskedPicture({
       title: GLAZED_PICTURE,
@@ -87,13 +95,10 @@ describe('prose picture masks', () => {
     })
     expect(frame.tagName).toBe('span')
     expect(frame.properties['className']).toBe('au-prose__frame')
-    const { slice } = FRAME
-    expect(frame.properties['style']).toContain(
-      `--au-frame-slice:${slice.top} ${slice.right} ${slice.bottom} ${slice.left}`,
-    )
-    expect(frame.properties['style']).toContain(
-      `--au-frame-share:${((100 * slice.left) / FRAME.width).toFixed(4)}`,
-    )
+    expect(frame.properties['data-frame']).toBe(GLAZED_FRAME)
+    for (const property of frameStyleOf(GLAZED_FRAME)) {
+      expect(frame.properties['style']).toContain(property)
+    }
     const moulding = frame.children[0]
     if (moulding?.type !== 'element') throw new Error('the frame holds no moulding')
     expect(moulding.properties['className']).toBe('au-prose__moulding')
@@ -109,8 +114,25 @@ describe('prose picture masks', () => {
     expect(image.properties['data-mask']).toBeUndefined()
   })
 
-  it('refuses a second word after glazed', () => {
-    expect(() => maskedPicture({ title: `${GLAZED_PICTURE} torch` })).toThrow(/no second word/)
+  it('hangs a glazed picture in the frame its second word names', () => {
+    for (const kind of FRAME_KINDS) {
+      const frame = maskedPicture({
+        title: `${GLAZED_PICTURE} ${kind}`,
+        src: '../../media/art/enluminure-11_12-og.png',
+      })
+      expect(frame.properties['data-frame']).toBe(kind)
+      for (const property of frameStyleOf(kind)) {
+        expect(frame.properties['style']).toContain(property)
+      }
+    }
+  })
+
+  it('refuses a glazed picture in a frame that does not exist, or with a third word', () => {
+    expect(() => maskedPicture({ title: `${GLAZED_PICTURE} torch` })).toThrow(/one of the frames/)
+    const [kind] = FRAME_KINDS
+    expect(() => maskedPicture({ title: `${GLAZED_PICTURE} ${kind} torch` })).toThrow(
+      /one of the frames/,
+    )
   })
 
   it('stands a picture in an almanach of the named style, keeping its alt', () => {

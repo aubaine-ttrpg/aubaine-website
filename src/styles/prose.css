@@ -919,6 +919,14 @@
   display: block;
 }
 
+.au-prose .au-prose__frame[data-frame="gilt"] {
+  --au-frame-still: url("../../data/media/textures/fancy-picture-frame-01.webp");
+}
+
+.au-prose .au-prose__frame[data-frame="wood"] {
+  --au-frame-still: url("../../data/media/textures/wooden-frame.webp");
+}
+
 @media screen {
   .au-prose .au-prose__frame > canvas {
     position: absolute;
@@ -949,8 +957,7 @@
 .au-prose .au-prose__moulding {
   display: block;
   border: calc(var(--au-frame-share) * 1cqi) solid transparent;
-  border-image: url("../../data/media/textures/fancy-picture-frame-01.webp") var(--au-frame-slice)
-    stretch;
+  border-image: var(--au-frame-still) var(--au-frame-slice) stretch;
   box-shadow:
     0 1.1rem 1.5rem -0.9rem rgb(0 0 0 / 0.5),
     0 0.2rem 0.35rem rgb(0 0 0 / 0.22);

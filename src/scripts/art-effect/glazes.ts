@@ -1,5 +1,5 @@
 import { backingSize } from '../../lib/art-effect/cover'
-import { FRAME } from '../../lib/art-effect/presets'
+import { FRAMES, GLAZE_ROOM_YAW, isFrameKind, ROOM_ROTATION } from '../../lib/art-effect/presets'
 import { prepareOnApproach, stayPlain } from './approach'
 import { type Eye, followEye } from './eye'
 import { activate, bindTexture, draw, linkProgram, type Program, type Target } from './gl'
@@ -12,7 +12,6 @@ const FRAMED = '.au-prose__frame'
 const MOULDING = '.au-prose__moulding'
 const LIT = 'data-lit'
 const REST = { x: 0.3, y: 0.3 }
-const ROOM_YAW = Math.PI + 0.15
 
 type Loaded = {
   studio: Studio
@@ -50,11 +49,14 @@ function mount(framed: HTMLElement, teardown: AbortController): void {
   const picture = framed.querySelector('img')
   const moulding = framed.querySelector<HTMLElement>(MOULDING)
   if (!picture || !moulding) throw new Error('a glazed picture has no image or no moulding')
+  const frame = framed.dataset['frame']
+  if (!isFrameKind(frame)) throw new Error(`a glazed picture names no known frame (${frame})`)
+  const spec = FRAMES[frame]
   const canvas = document.createElement('canvas')
   canvas.setAttribute('aria-hidden', 'true')
   const surface = canvas.getContext('2d', { alpha: false })
   if (!surface) throw new Error('a glazed picture could not draw its canvas')
-  const slice = { x: FRAME.slice.left / FRAME.width, y: FRAME.slice.top / FRAME.height }
+  const slice = { x: spec.slice.left / spec.width, y: spec.slice.top / spec.height }
 
   let loaded: Loaded | undefined
   let preparing: Promise<void> | undefined
@@ -90,15 +92,15 @@ function mount(framed: HTMLElement, teardown: AbortController): void {
       (gl) => {
         activate(gl, program)
         bindTexture(gl, program, 'uArt', 0, art.texture)
-        bindTexture(gl, program, 'uGilt', 1, from.moulding.gilt.texture)
+        bindTexture(gl, program, 'uSurface', 1, from.moulding.surface.texture)
         bindTexture(gl, program, 'uRelief', 2, from.moulding.relief)
-        bindRoom(gl, program, room, 3, ROOM_YAW + FRAME.room.yaw)
+        bindRoom(gl, program, room, 3, GLAZE_ROOM_YAW + ROOM_ROTATION.yaw)
         gl.uniform2f(program.uniform('uBacking'), backing.width, backing.height)
         gl.uniform1f(program.uniform('uMoulding'), border)
         gl.uniform2f(program.uniform('uSlice'), slice.x, slice.y)
         gl.uniform2f(program.uniform('uEye'), eye.x, eye.y)
-        gl.uniform1f(program.uniform('uMetalness'), FRAME.metalness)
-        gl.uniform1f(program.uniform('uExposure'), FRAME.exposure)
+        gl.uniform1f(program.uniform('uMetalness'), spec.metalness)
+        gl.uniform1f(program.uniform('uExposure'), spec.exposure)
         draw(gl, undefined, backing.width, backing.height)
       },
       surface,
@@ -130,18 +132,18 @@ function mount(framed: HTMLElement, teardown: AbortController): void {
         teardown.abort()
         return
       }
-      const [pixels, program, room, gilding] = await Promise.all([
+      const [pixels, program, room, frameMoulding] = await Promise.all([
         pixelsOf(picture),
         programFor(studio),
         environmentOf(studio),
-        mouldingOf(studio),
+        mouldingOf(studio, frame),
       ])
       signal.throwIfAborted()
       loaded = {
         studio,
         program,
         room,
-        moulding: gilding,
+        moulding: frameMoulding,
         art: studio.picture(pixels, { width: pixels.naturalWidth, height: pixels.naturalHeight }),
       }
       render(follower.eye)

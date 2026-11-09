@@ -194,6 +194,7 @@ export const BANNER_HANGER = {
   ring: { radius: 0.0055, tube: 0.0011 },
   band: 0.14,
   width: 800,
+  exposure: 1.2,
 } as const
 
 export const FLAG = {
@@ -252,23 +253,47 @@ export const ENVIRONMENT = {
 
 export type FrameMoulding = { top: number; right: number; bottom: number; left: number }
 
-export const FRAME = {
-  width: 1600,
-  height: 1231,
-  mapsWidth: 1200,
-  slice: { top: 105, right: 105, bottom: 105, left: 105 },
-  exposure: 1.2,
-  metalness: 0.7,
-  room: { yaw: 0, pitch: 0 },
-} as const satisfies {
+export const FRAME_KINDS = ['gilt', 'wood'] as const
+
+export type FrameKind = (typeof FRAME_KINDS)[number]
+
+export const GLAZED_FRAME = 'gilt' satisfies FrameKind
+
+export function isFrameKind(value: unknown): value is FrameKind {
+  return FRAME_KINDS.some((kind) => kind === value)
+}
+
+export type FrameSpec = {
   width: number
   height: number
   mapsWidth: number
   slice: FrameMoulding
-  exposure: number
   metalness: number
-  room: { yaw: number; pitch: number }
+  exposure: number
 }
+
+export const FRAMES = {
+  gilt: {
+    width: 1600,
+    height: 1231,
+    mapsWidth: 1200,
+    slice: { top: 105, right: 105, bottom: 105, left: 105 },
+    metalness: 0.7,
+    exposure: 1.2,
+  },
+  wood: {
+    width: 1463,
+    height: 1576,
+    mapsWidth: 1100,
+    slice: { top: 132, right: 132, bottom: 132, left: 132 },
+    metalness: 0,
+    exposure: 2,
+  },
+} as const satisfies Record<FrameKind, FrameSpec>
+
+export const ROOM_ROTATION = { yaw: 0, pitch: 0 } as const
+
+export const GLAZE_ROOM_YAW = Math.PI + 0.15
 
 export type ArmsFiles = { still: string; colour: string; relief: string; finish: string }
 

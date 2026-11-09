@@ -10,7 +10,10 @@ import {
   BANNER_HANGER,
   ENVIRONMENT,
   type EnvironmentLevel,
-  FRAME,
+  FRAMES,
+  type FrameKind,
+  GLAZE_ROOM_YAW,
+  ROOM_ROTATION,
 } from '../../src/lib/art-effect/presets.ts'
 import { type Retouch, TEXTURE_WORKS, type TextureCut } from '../../src/lib/rights/attribution.ts'
 import { BAKE_ORIGIN, type BakeSize, bakeInBrowser } from './browser-bake.ts'
@@ -28,6 +31,98 @@ const FRAME_BACKBOARD = 0.0006
 const RETOUCH_FEATHER = 0.4
 
 type Radiance = { width: number; height: number; rgb: Float32Array }
+
+type FrameCut = Extract<TextureCut, { kind: 'frame' }>
+
+type Wave = readonly [amplitude: number, period: number, phase: number]
+
+type WoodMember = {
+  side: 'left' | 'right' | 'bottom' | 'top'
+  offset: readonly [number, number]
+  turn: 1 | -1
+  face: readonly Wave[]
+  arris: readonly Wave[]
+  chamfer: readonly Wave[]
+}
+
+const WOOD_MEMBERS: readonly WoodMember[] = [
+  {
+    side: 'left',
+    offset: [0.13, 0.42],
+    turn: 1,
+    face: [
+      [0.0005, 0.21, 0.4],
+      [0.00025, 0.067, 1.9],
+    ],
+    arris: [
+      [0.002, 0.17, 2.3],
+      [0.0006, 0.05, 0.7],
+    ],
+    chamfer: [[0.001, 0.19, 1.1]],
+  },
+  {
+    side: 'right',
+    offset: [0.61, 0.08],
+    turn: -1,
+    face: [
+      [0.0005, 0.23, 2.8],
+      [0.00025, 0.071, 0.3],
+    ],
+    arris: [
+      [0.002, 0.16, 0.9],
+      [0.0006, 0.047, 2.6],
+    ],
+    chamfer: [[0.001, 0.2, 2.9]],
+  },
+  {
+    side: 'bottom',
+    offset: [0.37, 0.71],
+    turn: 1,
+    face: [
+      [0.0005, 0.19, 1.6],
+      [0.00025, 0.063, 2.2],
+    ],
+    arris: [
+      [0.002, 0.18, 0.2],
+      [0.0006, 0.052, 1.4],
+    ],
+    chamfer: [[0.001, 0.17, 0.5]],
+  },
+  {
+    side: 'top',
+    offset: [0.84, 0.27],
+    turn: -1,
+    face: [
+      [0.0005, 0.22, 0.9],
+      [0.00025, 0.069, 2.7],
+    ],
+    arris: [
+      [0.002, 0.15, 1.7],
+      [0.0006, 0.049, 0.1],
+    ],
+    chamfer: [[0.001, 0.18, 2.1]],
+  },
+]
+
+const WOOD_MODEL = {
+  moulding: 0.045,
+  tile: 0.55,
+  dense: 0.00025,
+  coarse: 0.0015,
+  jointReach: 0.003,
+  roughness: 0.7,
+  profile: {
+    face: 0.016,
+    sight: 0.008,
+    lip: 0.003,
+    chamfer: 0.015,
+    arris: 0.008,
+    dish: 0.0006,
+    wear: 0.0008,
+    joint: { depth: 0.0006, width: 0.0006 },
+  },
+  members: WOOD_MEMBERS,
+} as const
 
 function original(cut: TextureCut): string {
   const path = resolve(originals, cut.original)
@@ -259,7 +354,34 @@ async function relief(cut: Extract<TextureCut, { kind: 'relief' }>): Promise<voi
     .toFile(resolve(outDir, cut.file))
 }
 
-function stage(size: BakeSize, room: string, scale: number, exposure: number): string {
+type RoomTurn = { mirrored: boolean; yaw: number }
+
+const ROOM_AS_BAKED: RoomTurn = { mirrored: false, yaw: 0 }
+
+function mirroredRoom(turn: RoomTurn): string {
+  if (!turn.mirrored) return ''
+  return `const { width: roomWidth, height: roomHeight, data: roomData } = room.image
+for (let row = 0; row < roomHeight; row++) {
+  for (let column = 0; column < roomWidth / 2; column++) {
+    const near = (row * roomWidth + column) * 4
+    const far = (row * roomWidth + roomWidth - 1 - column) * 4
+    for (let channel = 0; channel < 4; channel++) {
+      const kept = roomData[near + channel]
+      roomData[near + channel] = roomData[far + channel]
+      roomData[far + channel] = kept
+    }
+  }
+}
+`
+}
+
+function stage(
+  size: BakeSize,
+  room: string,
+  scale: number,
+  exposure: number,
+  turn: RoomTurn = ROOM_AS_BAKED,
+): string {
   return `<!doctype html>
 <html><body style="margin:0;background:transparent">
 <script type="importmap">{"imports":{"three":"${BAKE_ORIGIN}/three/build/three.module.js","three/addons/":"${BAKE_ORIGIN}/three/examples/jsm/"}}</script>
@@ -281,10 +403,10 @@ for (let at = 0; at < room.image.data.length; at += 4) {
   room.image.data[at + 1] *= ${scale}
   room.image.data[at + 2] *= ${scale}
 }
-room.mapping = THREE.EquirectangularReflectionMapping
+${mirroredRoom(turn)}room.mapping = THREE.EquirectangularReflectionMapping
 room.needsUpdate = true
 scene.environment = new THREE.PMREMGenerator(renderer).fromEquirectangular(room).texture
-scene.environmentRotation.set(${FRAME.room.pitch}, ${FRAME.room.yaw}, 0)
+scene.environmentRotation.set(${ROOM_ROTATION.pitch}, ${ROOM_ROTATION.yaw + turn.yaw}, 0)
 const passes = {}
 const take = (name, camera) => {
   renderer.render(scene, camera)
@@ -296,11 +418,11 @@ const take = (name, camera) => {
 const FINISH = `window.baked = passes
 </script></body></html>`
 
-function frameScene(size: BakeSize, model: string, room: string, scale: number): string {
-  return `${stage(size, room, scale, FRAME.exposure)}
-const gltf = await new GLTFLoader().loadAsync('${BAKE_ORIGIN}/originals/${model}')
+function giltModel(cut: FrameCut): string {
+  return `const gltf = await new GLTFLoader().loadAsync('${BAKE_ORIGIN}/originals/${cut.original}')
+const model = gltf.scene
 const meshes = []
-gltf.scene.traverse((node) => {
+model.traverse((node) => {
   if (!node.isMesh) return
   if (node.name.endsWith('_canvas')) {
     node.visible = false
@@ -318,11 +440,124 @@ gltf.scene.traverse((node) => {
     front.push(...corners)
   }
   geometry.setIndex(front)
-  node.material.metalness = ${FRAME.metalness}
+  node.material.metalness = ${FRAMES.gilt.metalness}
   meshes.push(node)
 })
-scene.add(gltf.scene)
-const bounds = new THREE.Box3().setFromObject(gltf.scene)
+`
+}
+
+function woodModel(cut: FrameCut): string {
+  const { width, height, slice } = FRAMES.wood
+  const { moulding, tile, dense, coarse, jointReach, profile, members } = WOOD_MODEL
+  const outer = { width: (moulding * width) / slice.left, height: (moulding * height) / slice.top }
+  const maps = `${BAKE_ORIGIN}/originals/${cut.original}/${cut.original}_`
+  return `const M = ${moulding}
+const W = ${outer.width}
+const H = ${outer.height}
+const P = ${JSON.stringify(profile)}
+const MEMBERS = ${JSON.stringify(members)}
+const loader = new THREE.TextureLoader()
+const woodMap = async (name, colour) => {
+  const texture = await loader.loadAsync('${maps}' + name + '_2k.jpg')
+  texture.wrapS = THREE.RepeatWrapping
+  texture.wrapT = THREE.RepeatWrapping
+  texture.anisotropy = 8
+  if (colour) texture.colorSpace = THREE.SRGBColorSpace
+  return texture
+}
+const [map, normalMap, roughnessMap] = await Promise.all([
+  woodMap('diff', true),
+  woodMap('nor_gl', false),
+  woodMap('rough', false),
+])
+const wood = new THREE.MeshStandardMaterial({ map, normalMap, roughnessMap, metalness: 0, roughness: ${WOOD_MODEL.roughness} })
+const wave = (t, waves) =>
+  waves.reduce((sum, [amplitude, period, phase]) => sum + amplitude * Math.sin((t / period) * Math.PI * 2 + phase), 0)
+const softMin = (a, b, k) => {
+  const h = Math.max(k - Math.abs(a - b), 0) / k
+  return Math.min(a, b) - h * h * k * 0.25
+}
+const joints = [M, W - M]
+const upright = (member) => member.side === 'left' || member.side === 'right'
+const heightAt = (x, y, member) => {
+  const along = upright(member) ? y : x
+  const fromEdge = Math.min(x, y, W - x, H - y)
+  const fromSight = Math.max(M - x, x - (W - M), M - y, y - (H - M), 0)
+  const face = P.face + wave(along, member.face) + P.dish * (1 - ((fromSight - M / 2) / (M / 2)) ** 2)
+  const radius = P.arris + wave(along, member.arris)
+  const rounded = fromEdge >= radius ? face : face - radius + Math.sqrt(radius * radius - (radius - fromEdge) ** 2)
+  const start = P.chamfer + wave(along, member.chamfer)
+  const bevel = fromSight <= P.lip ? P.sight : P.sight + ((face - P.sight) * (fromSight - P.lip)) / (start - P.lip)
+  const surface = softMin(rounded, bevel, P.wear)
+  if (y >= M && y <= H - M) return surface
+  const gap = Math.min(...joints.map((joint) => Math.abs(x - joint)))
+  return surface - P.joint.depth * Math.exp(-((gap / P.joint.width) ** 2))
+}
+const span = (from, to, step) => {
+  const count = Math.max(1, Math.ceil((to - from) / step))
+  return Array.from({ length: count + 1 }, (_, at) => from + ((to - from) * at) / count)
+}
+const samples = (from, to, near) =>
+  [...new Set([
+    ...span(from, to, ${coarse}),
+    ...near.filter(([a, b]) => b > a).flatMap(([a, b]) => span(Math.max(a, from), Math.min(b, to), ${dense})),
+  ].map((value) => Math.round(value * 1e7) / 1e7))].sort((a, b) => a - b)
+const across = { left: [0, M], right: [W - M, W], bottom: [0, M], top: [H - M, H] }
+const model = new THREE.Group()
+const meshes = []
+for (const member of MEMBERS) {
+  const [low, high] = across[member.side]
+  const xs = upright(member)
+    ? span(low, high, ${dense})
+    : samples(M, W - M, [[M, M + ${jointReach}], [W - M - ${jointReach}, W - M]])
+  const ys = upright(member)
+    ? samples(0, H, [[0, M + ${jointReach}], [H - M - ${jointReach}, H]])
+    : span(low, high, ${dense})
+  const positions = new Float32Array(xs.length * ys.length * 3)
+  const uvs = new Float32Array(xs.length * ys.length * 2)
+  let at = 0
+  for (const y of ys) {
+    for (const x of xs) {
+      positions.set([x, y, heightAt(x, y, member)], at * 3)
+      const [u, v] = upright(member) ? [y, -x] : [x, y]
+      uvs.set([(member.turn * u) / ${tile} + member.offset[0], (member.turn * v) / ${tile} + member.offset[1]], at * 2)
+      at += 1
+    }
+  }
+  const index = []
+  for (let row = 0; row < ys.length - 1; row++) {
+    for (let column = 0; column < xs.length - 1; column++) {
+      const a = row * xs.length + column
+      const c = a + xs.length
+      index.push(a, a + 1, c + 1, a, c + 1, c)
+    }
+  }
+  const geometry = new THREE.BufferGeometry()
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
+  geometry.setAttribute('uv', new THREE.BufferAttribute(uvs, 2))
+  geometry.setIndex(index)
+  geometry.computeVertexNormals()
+  const mesh = new THREE.Mesh(geometry, wood)
+  model.add(mesh)
+  meshes.push(mesh)
+}
+`
+}
+
+const FRAME_ROOMS: Record<FrameKind, RoomTurn> = {
+  gilt: ROOM_AS_BAKED,
+  wood: { mirrored: true, yaw: -GLAZE_ROOM_YAW },
+}
+
+const FRAME_MODELS: Record<FrameKind, (cut: FrameCut) => string> = {
+  gilt: giltModel,
+  wood: woodModel,
+}
+
+function frameScene(size: BakeSize, cut: FrameCut, room: string, scale: number): string {
+  return `${stage(size, room, scale, FRAMES[cut.frame].exposure, FRAME_ROOMS[cut.frame])}
+${FRAME_MODELS[cut.frame](cut)}scene.add(model)
+const bounds = new THREE.Box3().setFromObject(model)
 const camera = new THREE.OrthographicCamera(bounds.min.x, bounds.max.x, bounds.max.y, bounds.min.y, 0.001, 10)
 camera.position.set(0, 0, bounds.max.z + 1)
 camera.lookAt(0, 0, bounds.max.z)
@@ -335,7 +570,11 @@ meshes.forEach((mesh, index) => {
 take('albedo', camera)
 renderer.outputColorSpace = THREE.LinearSRGBColorSpace
 meshes.forEach((mesh, index) => {
-  mesh.material = new THREE.MeshBasicMaterial({ map: scanned[index].roughnessMap, side: THREE.DoubleSide })
+  mesh.material = new THREE.MeshBasicMaterial({
+    map: scanned[index].roughnessMap,
+    color: new THREE.Color().setScalar(scanned[index].roughness),
+    side: THREE.DoubleSide,
+  })
 })
 take('roughness', camera)
 meshes.forEach((mesh, index) => {
@@ -352,7 +591,7 @@ ${FINISH}`
 function hangerScene(size: BakeSize, wood: string, room: string, scale: number): string {
   const { aspect, rest } = BANNER_CLOTH
   const { pole, finial, cord, ring, band } = BANNER_HANGER
-  return `${stage(size, room, scale, FRAME.exposure)}
+  return `${stage(size, room, scale, BANNER_HANGER.exposure)}
 const textures = new THREE.TextureLoader()
 const woodMap = (name, colour) => {
   const texture = textures.load('${BAKE_ORIGIN}/originals/${wood}/dark_wood_' + name + '_1k.jpg')
@@ -493,45 +732,42 @@ async function roomScale(): Promise<{ file: string; scale: number }> {
   return { file: room.original, scale: (await roomOf(room)).scale }
 }
 
-async function framePasses(cuts: readonly Extract<TextureCut, { kind: 'frame' }>[]): Promise<void> {
+async function framePasses(cuts: readonly FrameCut[]): Promise<void> {
   const [first] = cuts
   if (!first) return
   original(first)
+  const spec = FRAMES[first.frame]
   const room = await roomScale()
   const size = {
-    width: FRAME.width * FRAME_SUPERSAMPLE,
-    height: Math.round(FRAME.height * FRAME_SUPERSAMPLE),
+    width: spec.width * FRAME_SUPERSAMPLE,
+    height: Math.round(spec.height * FRAME_SUPERSAMPLE),
   }
-  const shot = await bakeInBrowser(
-    frameScene(size, first.original, room.file, room.scale),
-    size,
-    originalAt,
-  )
+  const shot = await bakeInBrowser(frameScene(size, first, room.file, room.scale), size, originalAt)
   const pixels = async (name: string): Promise<Buffer> => {
     const png = shot[name]
-    if (!png) throw new Error(`the frame bake made no ${name} pass`)
+    if (!png) throw new Error(`the ${first.frame} frame bake made no ${name} pass`)
     const { data } = await sharp(png)
-      .resize({ width: FRAME.width, height: FRAME.height, fit: 'fill', kernel: 'lanczos3' })
+      .resize({ width: spec.width, height: spec.height, fit: 'fill', kernel: 'lanczos3' })
       .ensureAlpha()
       .raw()
       .toBuffer({ resolveWithObject: true })
-    return retouched(data, FRAME.width, FRAME.height, first.retouch)
+    return retouched(data, spec.width, spec.height, first.retouch)
   }
   const beauty = await pixels('beauty')
-  const opening = measureOpening(beauty, FRAME.width, FRAME.height)
+  const opening = measureOpening(beauty, spec.width, spec.height)
   if (
     Object.entries(opening).some(
-      ([side, value]) => Math.abs(value - FRAME.slice[side as keyof typeof opening]) > 1,
+      ([side, value]) => Math.abs(value - spec.slice[side as keyof typeof opening]) > 1,
     )
   ) {
     throw new Error(
-      `the frame's moulding measures ${JSON.stringify(opening)}, not ${JSON.stringify(FRAME.slice)}`,
+      `the ${first.frame} frame's moulding measures ${JSON.stringify(opening)}, not ${JSON.stringify(spec.slice)}`,
     )
   }
-  const raw = { raw: { width: FRAME.width, height: FRAME.height, channels: 4 as const } }
+  const raw = { raw: { width: spec.width, height: spec.height, channels: 4 as const } }
   const mapOf = (pixels: Buffer) =>
     sharp(pixels, raw)
-      .resize({ width: FRAME.mapsWidth, kernel: 'lanczos3' })
+      .resize({ width: spec.mapsWidth, kernel: 'lanczos3' })
       .avif({ quality: FRAME_MAPS_QUALITY, effort: 6, chromaSubsampling: '4:4:4' })
   for (const cut of cuts) {
     if (cut.pass === 'beauty') {
@@ -540,7 +776,7 @@ async function framePasses(cuts: readonly Extract<TextureCut, { kind: 'frame' }>
         .toFile(resolve(outDir, cut.file))
       continue
     }
-    if (cut.pass === 'gilt') {
+    if (cut.pass === 'surface') {
       const albedo = await pixels('albedo')
       const roughness = await pixels('roughness')
       for (let at = 0; at < albedo.length; at += 4) {
@@ -608,9 +844,10 @@ async function main(): Promise<void> {
     if (cut.kind === 'relief') await relief(cut)
     if (cut.kind === 'hanger') await hanger(cut)
   }
-  await framePasses(
-    cuts.filter((cut): cut is Extract<TextureCut, { kind: 'frame' }> => cut.kind === 'frame'),
-  )
+  const frameCuts = cuts.filter((cut): cut is FrameCut => cut.kind === 'frame')
+  for (const frame of new Set(frameCuts.map((cut) => cut.frame))) {
+    await framePasses(frameCuts.filter((cut) => cut.frame === frame))
+  }
   console.log(`textures: wrote ${cuts.length} files into data/media/textures/`)
 }
 

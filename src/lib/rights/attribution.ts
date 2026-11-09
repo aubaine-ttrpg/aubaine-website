@@ -1,4 +1,4 @@
-import { armsFiles } from '../art-effect/presets.ts'
+import { armsFiles, type FrameKind } from '../art-effect/presets.ts'
 
 export type Licence = { id: string; url: string }
 
@@ -283,12 +283,21 @@ export type Retouch = {
   from: { x: number; y: number }
 }
 
-export type FramePass = 'beauty' | 'gilt' | 'relief'
+const FRAME_PASSES = ['beauty', 'surface', 'relief'] as const
+
+export type FramePass = (typeof FRAME_PASSES)[number]
 
 export type TextureCut =
   | { file: string; kind: 'environment'; original: string }
   | { file: string; kind: 'relief'; original: string; size: number }
-  | { file: string; kind: 'frame'; original: string; pass: FramePass; retouch: readonly Retouch[] }
+  | {
+      file: string
+      kind: 'frame'
+      frame: FrameKind
+      original: string
+      pass: FramePass
+      retouch: readonly Retouch[]
+    }
   | { file: string; kind: 'hanger'; original: string }
 
 export type TextureWork = {
@@ -305,20 +314,41 @@ const FRAME_RETOUCH: readonly Retouch[] = [
   { x: 1566, y: 1196, width: 34, height: 35, from: { x: -38, y: 0 } },
 ]
 
+function frameCuts(
+  frame: FrameKind,
+  original: string,
+  stem: string,
+  retouch: readonly Retouch[],
+): Extract<TextureCut, { kind: 'frame' }>[] {
+  return FRAME_PASSES.map((pass) => ({
+    file: pass === 'beauty' ? `${stem}.webp` : `${stem}-${pass}.avif`,
+    kind: 'frame',
+    frame,
+    original,
+    pass,
+    retouch,
+  }))
+}
+
 export const TEXTURE_WORKS = [
   {
     title: 'Fancy Picture Frame 01',
     author: 'Rob Tuytel, Rico Cilliers',
     source: `${POLY_HAVEN}/fancy_picture_frame_01`,
     licence: CC0,
-    cuts: (['beauty', 'gilt', 'relief'] as const).map((pass) => ({
-      file:
-        pass === 'beauty' ? 'fancy-picture-frame-01.webp' : `fancy-picture-frame-01-${pass}.avif`,
-      kind: 'frame' as const,
-      original: 'fancy_picture_frame_01/fancy_picture_frame_01_4k.gltf',
-      pass,
-      retouch: FRAME_RETOUCH,
-    })),
+    cuts: frameCuts(
+      'gilt',
+      'fancy_picture_frame_01/fancy_picture_frame_01_4k.gltf',
+      'fancy-picture-frame-01',
+      FRAME_RETOUCH,
+    ),
+  },
+  {
+    title: 'Wood Table Worn',
+    author: 'Dimitrios Savva, Rico Cilliers',
+    source: `${POLY_HAVEN}/wood_table_worn`,
+    licence: CC0,
+    cuts: frameCuts('wood', 'wood_table_worn', 'wooden-frame', []),
   },
   {
     title: 'Rough Linen',
