@@ -125,8 +125,61 @@
         "subspecies"
       ]
     },
+    "naming": {
+      "description": "Comment le peuple donne ses noms, en un court paragraphe lu en tête de « Noms », dans la partie « En jeu » de sa page, avant ses listes. Même balisage qu'une Compétence. Absent : « Noms » ne montre que les listes, ou n'apparaît pas.",
+      "type": "string",
+      "minLength": 1
+    },
+    "names": {
+      "description": "Les noms que porte une Espèce sans sous-espèce, chaque liste dans son ordre, lus sous « Noms » dans la partie « En jeu » de sa page. Ils ne se traduisent pas. Absent : elle n'en déclare pas encore. Une Espèce à sous-espèces les nomme une à une.",
+      "type": "object",
+      "properties": {
+        "masculine": {
+          "description": "Prénoms masculins, dans leur ordre.",
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "feminine": {
+          "description": "Prénoms féminins, dans leur ordre.",
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "given": {
+          "description": "Prénoms d'un peuple qui ne les range pas par genre, dans leur ordre. Absent : ses prénoms sont masculins et féminins.",
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "family": {
+          "description": "Noms de famille, dans leur ordre.",
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "givenNamesLabel": {
+      "description": "L'intitulé de ses prénoms qui ne suivent pas le genre, ceux de names.given comme ceux de ses sous-espèces, quand le peuple les nomme autrement : « Noms mixtes » pour les Elfes. Absent : « Prénoms ». Ne s'écrit qu'avec de tels prénoms.",
+      "type": "string",
+      "minLength": 1
+    },
     "familyNames": {
-      "description": "Les noms de famille que portent toutes ses sous-espèces, dans leur ordre, rendus avec ceux de chacune. Une sous-espèce qui déclare names.family remplace cette liste. Absent : chaque sous-espèce déclare les siens, ou n'en a pas. Ne s'écrit qu'avec subspecies.",
+      "description": "Les noms de famille que portent toutes ses sous-espèces, dans leur ordre, lus une fois en tête de « Noms », avant les listes de chaque sous-espèce. Absent : chaque sous-espèce déclare les siens, ou n'en a pas. Ne s'écrit qu'avec subspecies, et jamais avec le names.family d'une sous-espèce.",
       "minItems": 1,
       "type": "array",
       "items": {
@@ -135,7 +188,7 @@
       }
     },
     "familyNamesLabel": {
-      "description": "L'intitulé de ses noms de famille, ceux de familyNames comme ceux de ses sous-espèces, quand le peuple ne parle pas de noms de famille : « Yurtas » pour les Nnors, qui portent le nom de leur Yurta. Absent : « Noms de famille ». Ne s'écrit qu'avec des noms de famille.",
+      "description": "L'intitulé de ses noms de famille, ceux de names.family ou de familyNames comme ceux de ses sous-espèces, quand le peuple ne parle pas de noms de famille : « Yurtas » pour les Nnors, qui portent le nom de leur Yurta. Absent : « Noms de famille ». Ne s'écrit qu'avec des noms de famille.",
       "type": "string",
       "minLength": 1
     },
@@ -263,7 +316,7 @@
             "description": "La pièce héraldique de la sous-espèce : une bannière qu'on saisit, un drapeau qui flotte, ou des armoiries dont l'or prend la lumière. Absente : la présentation n'en porte pas."
           },
           "names": {
-            "description": "Les noms que porte la sous-espèce, chaque liste dans son ordre. Ils ne se traduisent pas. Absent : elle n'en déclare pas encore.",
+            "description": "Les noms que porte la sous-espèce, chaque liste dans son ordre, lus sous son nom dans « Noms », dans la partie « En jeu » de la page de son Espèce. Ils ne se traduisent pas. Absent : elle n'en déclare pas encore.",
             "type": "object",
             "properties": {
               "masculine": {
@@ -285,7 +338,7 @@
                 }
               },
               "given": {
-                "description": "Prénoms d'une sous-espèce qui ne les range pas par genre, dans leur ordre. Absent : ses prénoms sont masculins et féminins.",
+                "description": "Prénoms d'un peuple qui ne les range pas par genre, dans leur ordre. Absent : ses prénoms sont masculins et féminins.",
                 "minItems": 1,
                 "type": "array",
                 "items": {

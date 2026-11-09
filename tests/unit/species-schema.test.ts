@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { species } from '../../src/lib/game/schema'
+import { overlays, species } from '../../src/lib/game/schema'
 
 const subspecies = (names?: { family?: string[]; given?: string[] }) => ({
   id: 'alpin',
@@ -33,13 +33,20 @@ describe('the heading of a species family names', () => {
     expect(parsed.error?.issues.map((issue) => issue.path.join('.'))).toEqual(['familyNamesLabel'])
   })
 
-  it('is refused on a species without sub-species', () => {
+  it('is refused on a species that declares no family names', () => {
     expect(species.safeParse(entry({ familyNamesLabel: 'Yurtas' })).success).toBe(false)
   })
 
   it('stays optional', () => {
     expect(
       species.safeParse(entry({ subspecies: [subspecies({ family: ['Aktharos'] })] })).success,
+    ).toBe(true)
+  })
+
+  it('is accepted on a species without sub-species that names its own family names', () => {
+    expect(
+      species.safeParse(entry({ familyNamesLabel: 'Yurtas', names: { family: ['Aktharos'] } }))
+        .success,
     ).toBe(true)
   })
 
@@ -60,6 +67,85 @@ describe('the family names a species gives its sub-species', () => {
     const parsed = species.safeParse(entry({ familyNames: ['Aktharos'] }))
     expect(parsed.success).toBe(false)
     expect(parsed.error?.issues.map((issue) => issue.path.join('.'))).toEqual(['familyNames'])
+  })
+
+  it('are refused beside a sub-species that declares its own', () => {
+    const parsed = species.safeParse(
+      entry({ familyNames: ['Aktharos'], subspecies: [subspecies({ family: ['Brennhal'] })] }),
+    )
+    expect(parsed.success).toBe(false)
+    expect(parsed.error?.issues.map((issue) => issue.path.join('.'))).toEqual(['familyNames'])
+  })
+})
+
+describe('the naming custom of a species', () => {
+  const naming = 'Le Saman donne son prénom à chaque Nnor.'
+
+  it('is accepted beside the lists of a species without sub-species', () => {
+    expect(species.safeParse(entry({ naming, names: { given: ['Azhoran'] } })).success).toBe(true)
+  })
+
+  it('is accepted beside the lists of its sub-species', () => {
+    expect(
+      species.safeParse(entry({ naming, subspecies: [subspecies({ given: ['Azhoran'] })] }))
+        .success,
+    ).toBe(true)
+  })
+
+  it('is accepted before any list is written', () => {
+    expect(species.safeParse(entry({ naming })).success).toBe(true)
+  })
+
+  it('refuses an empty paragraph', () => {
+    expect(species.safeParse(entry({ naming: '' })).success).toBe(false)
+  })
+
+  it('is translated by the English overlay', () => {
+    expect(overlays.species.safeParse({ naming: 'The Saman names every Nnor.' }).success).toBe(true)
+  })
+})
+
+describe('the names of a species', () => {
+  it('are accepted on a species without sub-species', () => {
+    expect(
+      species.safeParse(entry({ names: { given: ['Azhoran'], family: ['Aktharos'] } })).success,
+    ).toBe(true)
+  })
+
+  it('are refused beside sub-species, which carry their own', () => {
+    const parsed = species.safeParse(
+      entry({ names: { given: ['Azhoran'] }, subspecies: [subspecies({ family: ['Aktharos'] })] }),
+    )
+    expect(parsed.success).toBe(false)
+    expect(parsed.error?.issues.map((issue) => issue.path.join('.'))).toEqual(['names'])
+  })
+
+  it('need at least one list', () => {
+    expect(species.safeParse(entry({ names: {} })).success).toBe(false)
+  })
+})
+
+describe('the heading of a species given names', () => {
+  it('is accepted with the species own given names', () => {
+    expect(
+      species.safeParse(entry({ givenNamesLabel: 'Noms mixtes', names: { given: ['Azhoran'] } }))
+        .success,
+    ).toBe(true)
+  })
+
+  it('is accepted when a sub-species declares given names', () => {
+    const parsed = species.safeParse(
+      entry({ givenNamesLabel: 'Noms mixtes', subspecies: [subspecies({ given: ['Azhoran'] })] }),
+    )
+    expect(parsed.success).toBe(true)
+  })
+
+  it('is refused when no list of given names exists', () => {
+    const parsed = species.safeParse(
+      entry({ givenNamesLabel: 'Noms mixtes', names: { family: ['Aktharos'] } }),
+    )
+    expect(parsed.success).toBe(false)
+    expect(parsed.error?.issues.map((issue) => issue.path.join('.'))).toEqual(['givenNamesLabel'])
   })
 })
 

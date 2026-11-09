@@ -3,6 +3,7 @@
 **Project:** Aubaine, the wiki
 **Status:** Accepted
 **Date:** 2026-10-20
+**Revised:** 2026-11-07, the `given` list gains a species home and a heading of its own (addendum in Decision 3)
 **Deciders:** Kori
 **Scope:** Three extensions of the content contract that the Nnor migration needed: `grants` on a
 skill, an italic mark in rule text, and a `given` name list on a sub-species. Amends 0010 Decision 2
@@ -112,3 +113,9 @@ express, each checked against the files before this change:
 ### Caveats
 
 - Bold and italic cannot nest, and neither can hold a reference. No entry needs either today.
+
+### Addendum (2026-11-07): a species may list names, and `given` may take its people's heading
+
+- A species without sub-species takes the same lists as `names`, and `givenNamesLabel` heads every
+  `given` list of a species and its sub-species, « Prénoms » when absent. See
+  `0073-a-peoples-name-lists-are-data-and-a-species-without-sub-species-reads-them-under-noms.md`.

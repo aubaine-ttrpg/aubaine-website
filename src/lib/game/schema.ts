@@ -538,6 +538,34 @@ const stat = z.object({ label: z.string().min(1), value: z.string().min(1) }).st
 
 const nameList = z.array(z.string().min(1)).min(1)
 
+const peopleNames = z
+  .object({
+    masculine: nameList.optional().describe('Prénoms masculins, dans leur ordre.'),
+    feminine: nameList.optional().describe('Prénoms féminins, dans leur ordre.'),
+    given: nameList
+      .optional()
+      .describe(
+        "Prénoms d'un peuple qui ne les range pas par genre, dans leur ordre. Absent : ses prénoms sont masculins et féminins.",
+      ),
+    family: nameList.optional().describe('Noms de famille, dans leur ordre.'),
+  })
+  .strict()
+  .refine((names) => Object.values(names).some((list) => list !== undefined), {
+    message: "des noms sans aucune liste s'écrivent en omettant la clé names.",
+  })
+
+type PeopleNames = z.infer<typeof peopleNames>
+
+const declaresNames = (
+  people: {
+    names?: PeopleNames | undefined
+    subspecies?: { names?: PeopleNames | undefined }[] | undefined
+  },
+  list: keyof PeopleNames,
+): boolean =>
+  people.names?.[list] !== undefined ||
+  (people.subspecies ?? []).some((sub) => sub.names?.[list] !== undefined)
+
 export const SUBSPECIES_LABELS = ['regional-origins', 'subspecies'] as const
 
 const heraldryName = z
@@ -626,24 +654,10 @@ const subspecies = z
       .min(1)
       .describe("Présentation de la sous-espèce, même balisage qu'une Compétence."),
     heraldry: heraldry.optional(),
-    names: z
-      .object({
-        masculine: nameList.optional().describe('Prénoms masculins, dans leur ordre.'),
-        feminine: nameList.optional().describe('Prénoms féminins, dans leur ordre.'),
-        given: nameList
-          .optional()
-          .describe(
-            "Prénoms d'une sous-espèce qui ne les range pas par genre, dans leur ordre. Absent : ses prénoms sont masculins et féminins.",
-          ),
-        family: nameList.optional().describe('Noms de famille, dans leur ordre.'),
-      })
-      .strict()
-      .refine((names) => Object.values(names).some((list) => list !== undefined), {
-        message: "une sous-espèce sans nom s'écrit en omettant la clé names.",
-      })
+    names: peopleNames
       .optional()
       .describe(
-        "Les noms que porte la sous-espèce, chaque liste dans son ordre. Ils ne se traduisent pas. Absent : elle n'en déclare pas encore.",
+        "Les noms que porte la sous-espèce, chaque liste dans son ordre, lus sous son nom dans « Noms », dans la partie « En jeu » de la page de son Espèce. Ils ne se traduisent pas. Absent : elle n'en déclare pas encore.",
       ),
     imposed: skillId
       .optional()
@@ -752,17 +766,36 @@ export const species = z
       .describe(
         "Le nom que l'Espèce donne à ses sous-espèces, celui que le lecteur lit en intertitre, dans le sommaire, dans la table Jouer et sur le filtre : 'regional-origins' pour « Origines régionales », 'subspecies' pour « Sous-espèces ». Absent : 'regional-origins'. Ne s'écrit qu'avec subspecies.",
       ),
+    naming: z
+      .string()
+      .min(1)
+      .optional()
+      .describe(
+        "Comment le peuple donne ses noms, en un court paragraphe lu en tête de « Noms », dans la partie « En jeu » de sa page, avant ses listes. Même balisage qu'une Compétence. Absent : « Noms » ne montre que les listes, ou n'apparaît pas.",
+      ),
+    names: peopleNames
+      .optional()
+      .describe(
+        "Les noms que porte une Espèce sans sous-espèce, chaque liste dans son ordre, lus sous « Noms » dans la partie « En jeu » de sa page. Ils ne se traduisent pas. Absent : elle n'en déclare pas encore. Une Espèce à sous-espèces les nomme une à une.",
+      ),
+    givenNamesLabel: z
+      .string()
+      .min(1)
+      .optional()
+      .describe(
+        "L'intitulé de ses prénoms qui ne suivent pas le genre, ceux de names.given comme ceux de ses sous-espèces, quand le peuple les nomme autrement : « Noms mixtes » pour les Elfes. Absent : « Prénoms ». Ne s'écrit qu'avec de tels prénoms.",
+      ),
     familyNames: nameList
       .optional()
       .describe(
-        "Les noms de famille que portent toutes ses sous-espèces, dans leur ordre, rendus avec ceux de chacune. Une sous-espèce qui déclare names.family remplace cette liste. Absent : chaque sous-espèce déclare les siens, ou n'en a pas. Ne s'écrit qu'avec subspecies.",
+        "Les noms de famille que portent toutes ses sous-espèces, dans leur ordre, lus une fois en tête de « Noms », avant les listes de chaque sous-espèce. Absent : chaque sous-espèce déclare les siens, ou n'en a pas. Ne s'écrit qu'avec subspecies, et jamais avec le names.family d'une sous-espèce.",
       ),
     familyNamesLabel: z
       .string()
       .min(1)
       .optional()
       .describe(
-        "L'intitulé de ses noms de famille, ceux de familyNames comme ceux de ses sous-espèces, quand le peuple ne parle pas de noms de famille : « Yurtas » pour les Nnors, qui portent le nom de leur Yurta. Absent : « Noms de famille ». Ne s'écrit qu'avec des noms de famille.",
+        "L'intitulé de ses noms de famille, ceux de names.family ou de familyNames comme ceux de ses sous-espèces, quand le peuple ne parle pas de noms de famille : « Yurtas » pour les Nnors, qui portent le nom de leur Yurta. Absent : « Noms de famille ». Ne s'écrit qu'avec des noms de famille.",
       ),
     subspecies: z
       .array(subspecies)
@@ -798,14 +831,34 @@ export const species = z
   })
   .refine(
     (value) =>
+      value.familyNames === undefined ||
+      !(value.subspecies ?? []).some((sub) => sub.names?.family !== undefined),
+    {
+      message:
+        "des noms de famille communs à toutes les sous-espèces excluent ceux d'une sous-espèce : omettez familyNames, ou le names.family de la sous-espèce.",
+      path: ['familyNames'],
+    },
+  )
+  .refine((value) => value.names === undefined || value.subspecies === undefined, {
+    message:
+      'une Espèce à sous-espèces les nomme une à une, ou leur donne ses noms de famille par familyNames : omettez names.',
+    path: ['names'],
+  })
+  .refine(
+    (value) =>
       value.familyNamesLabel === undefined ||
       value.familyNames !== undefined ||
-      (value.subspecies ?? []).some((sub) => sub.names?.family !== undefined),
+      declaresNames(value, 'family'),
     {
       message: "une Espèce sans nom de famille n'a pas à les intituler : omettez familyNamesLabel.",
       path: ['familyNamesLabel'],
     },
   )
+  .refine((value) => value.givenNamesLabel === undefined || declaresNames(value, 'given'), {
+    message:
+      "une Espèce sans liste names.given, ni à elle ni à ses sous-espèces, n'a pas à l'intituler : omettez givenNamesLabel.",
+    path: ['givenNamesLabel'],
+  })
 
 export const skillList = z
   .object({
@@ -2059,7 +2112,9 @@ export const overlays = {
     name: z.string().optional(),
     subtitle: z.string().optional(),
     movement: z.string().optional(),
-    familyNamesLabel: z.string().optional(),
+    naming: z.string().min(1).optional(),
+    givenNamesLabel: z.string().min(1).optional(),
+    familyNamesLabel: z.string().min(1).optional(),
     subspecies: z
       .record(
         z.string(),
@@ -2191,7 +2246,7 @@ export const almanachStyle = z
     magic: z
       .union([z.literal('none'), z.enum(ALMANACH_MAGICS)])
       .describe(
-        "L'élément qui vit dans le cristal : « none », une clé de data/meta/domains.json, ou « nature ».",
+        "L'élément qui vit dans le cristal : « none » ou une clé de data/meta/domains.json.",
       ),
     light: z
       .union([z.literal('picture'), almanachColour])

@@ -9,6 +9,7 @@ every Species and Tree page
 **Date:** 2026-10-23
 **Revised:** 2026-10-25, Decision 2's studio is created with alpha and lends its context to the banner, the flag and the glazes of 0059
 **Revised:** 2026-11-07, Decision 2's studio remembers that the browser draws on its graphics card, so the lit pieces of 0071 hide their plain picture until drawn
+**Revised:** 2026-11-08, Decision 4's shared family list reads once in « Noms », and no sub-species replaces it (0074, addendum in Decision 4)
 **Deciders:** Kori
 **Scope:** The pictures of a tree and of a species: their hero, their card, their social image and
 an optional effect the browser applies to them; the `sizes` every `Hero.astro` image asks for; how a
@@ -232,3 +233,11 @@ both shapes also means generating two pictures for every tree and species. Versi
 
 - **Keep the list on one sub-species only**: the other would lose names the owner wrote for it.
   Rejected.
+
+### Addendum (2026-11-08): the shared list reads once, and no sub-species replaces it
+
+- `familyNames` now reads once, at the top of « Noms » in « En jeu », instead of in each sub-species
+  presentation (0074 Decision 1).
+- The schema refuses `familyNames` beside a sub-species' own `names.family`, so the list read once is
+  every sub-species' list, and the integrity check against a sub-species list that repeats
+  `familyNames` is gone with the state it guarded (0074 Decision 2).

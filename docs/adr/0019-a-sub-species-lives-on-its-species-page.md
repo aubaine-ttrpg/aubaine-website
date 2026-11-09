@@ -10,6 +10,7 @@
 **Revised:** 2026-09-27, a rule term keeps one label per locale and links only where a text writes it (0029, addendum in Decision 4)
 **Revised:** 2026-10-20, `recharge` becomes `limit`, and Compétence becomes a rule term (0052, addendum in Decision 4)
 **Revised:** 2026-10-27, the `Jouer un <nom>` section moves above the sub-species and the lore's sections (0060, addendum in Decision 2)
+**Revised:** 2026-11-08, a sub-species' names read under its name in « Noms », no longer in its presentation (0074, addendum in Decision 1)
 **Deciders:** Kori
 **Scope:** The `subspecies`, `roleplay` and `languages` fields on `species` in
 `src/lib/game/schema.ts`, the `languages` vocabulary in `data/meta/`, the sections of the species
@@ -114,6 +115,11 @@ the addendum above now holds only for the per-Espèce surfaces of peoples. Chapt
 - Rejected: a new word such as « Formes » for the undead page only. The decider preferred the word
   the Espèce genuinely calls for; it reopens if another Espèce needs a word neither label fits.
 
+
+### Addendum (2026-11-08): a sub-species' names read in « Noms »
+
+A sub-species presentation no longer lists its names. They read under the sub-species' name in
+« Noms », in « En jeu », after the people's own lists (0074 Decision 1).
 ---
 
 ## Decision 2: Roleplay facts are a table below the lore, never a plate

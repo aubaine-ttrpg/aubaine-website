@@ -6,42 +6,97 @@ import {
   formatNumber,
   SPECIES_PLATE_TERMS,
 } from '../../src/lib/game/derive'
+import type { Locale } from '../../src/lib/i18n/locales'
 import { pathFor } from '../../src/lib/i18n/routes'
 import { strings } from '../../src/lib/i18n/strings'
 import { corpus } from './support/corpus'
 
-const familyLists = (species: ResolvedSpecies): number =>
-  species.subspecies.filter((sub) => (sub.names?.family ?? species.familyNames) !== undefined)
-    .length
+const NAME_LISTS = ['masculine', 'feminine', 'given', 'family'] as const
+type NameLists = Partial<Record<(typeof NAME_LISTS)[number], string[] | undefined>>
 
-test('a species that names its family names heads them with that name, in both languages', async ({
+const nameReading = (species: ResolvedSpecies, locale: Locale): string[][] => {
+  const t = strings(locale)
+  const labels = {
+    masculine: t.namesMasculine,
+    feminine: t.namesFeminine,
+    given: species.givenNamesLabel ?? t.namesGiven,
+    family: species.familyNamesLabel ?? t.namesFamily,
+  }
+  const rows = (names: NameLists) =>
+    NAME_LISTS.flatMap((list) => {
+      const value = names[list]
+      return value
+        ? [
+            ['dt', labels[list]],
+            ['dd', value.join(', ')],
+          ]
+        : []
+    })
+  return [
+    ...rows(species.names ?? { family: species.familyNames }),
+    ...species.subspecies.flatMap((sub) => {
+      const own = rows(sub.names ?? {})
+      return own.length > 0 ? [['h3', sub.name], ...own] : []
+    }),
+  ]
+}
+
+test('every species with names reads them under « Noms »: its custom, its shared lists, then each sub-species, in both languages', async ({
   page,
 }) => {
   for (const locale of ['fr', 'en'] as const) {
-    const species = (await corpus(locale)).species.find((entry) => entry.familyNamesLabel)
-    const heading = species?.familyNamesLabel
-    expect(heading, 'no species names its family names').toBeDefined()
-    if (!species || !heading) return
-    expect(familyLists(species)).toBeGreaterThan(0)
-    await page.goto(pathFor('speciesEntry', locale, { species: species.id }))
-    await expect(page.locator('.au-subspecies dt', { hasText: heading })).toHaveCount(
-      familyLists(species),
+    const t = strings(locale)
+    const named = (await corpus(locale)).species.filter(
+      (entry) => entry.naming !== undefined || nameReading(entry, locale).length > 0,
     )
-    await expect(
-      page.locator('.au-subspecies dt', { hasText: strings(locale).namesFamily }),
-    ).toHaveCount(0)
+    expect(named.length, 'no species reads names').toBeGreaterThan(0)
+    for (const species of named) {
+      await page.goto(pathFor('speciesEntry', locale, { species: species.id }))
+      const section = page.locator('section').filter({ has: page.locator('h2#noms') })
+      await expect(section.locator('h2')).toHaveText(t.speciesNames)
+      const reading = await section
+        .locator(':scope > .au-rule-text, :scope > h3, :scope > dl > dt, :scope > dl > dd')
+        .evaluateAll((nodes) =>
+          nodes.map((node) =>
+            node.classList.contains('au-rule-text')
+              ? ['custom']
+              : [node.tagName.toLowerCase(), (node.textContent ?? '').trim()],
+          ),
+        )
+      expect(reading, `${locale} ${species.id}`).toEqual([
+        ...(species.naming === undefined ? [] : [['custom']]),
+        ...nameReading(species, locale),
+      ])
+      await expect(page.locator('.au-aside a[href="#noms"] .au-trail__text')).toHaveText(
+        t.speciesNames,
+      )
+      const headings = await page
+        .locator('main h2[id]')
+        .evaluateAll((nodes) => nodes.map((node) => node.id))
+      expect(headings.indexOf('noms'), headings.join(', ')).toBeGreaterThan(-1)
+      expect(headings.indexOf('noms'), headings.join(', ')).toBeLessThan(headings.indexOf('skills'))
+      for (const [tag, value] of nameReading(species, locale)) {
+        if (tag !== 'dd' || value === undefined) continue
+        await expect(page.getByText(value, { exact: true })).toHaveCount(1)
+      }
+    }
   }
 })
 
-test('a species that names no heading keeps « Noms de famille »', async ({ page }) => {
-  const species = (await corpus('fr')).species.find(
-    (entry) => !entry.familyNamesLabel && familyLists(entry) > 0,
-  )
-  expect(species, 'no species lists family names under the default heading').toBeDefined()
-  await page.goto(pathFor('speciesEntry', 'fr', { species: species?.id ?? '' }))
-  await expect(
-    page.locator('.au-subspecies dt', { hasText: strings('fr').namesFamily }).first(),
-  ).toBeVisible()
+test('a sub-species presents itself without its names, in both languages', async ({ page }) => {
+  for (const locale of ['fr', 'en'] as const) {
+    const species = (await corpus(locale)).species.find((entry) =>
+      entry.subspecies.some((sub) => sub.names !== undefined),
+    )
+    expect(species, 'no sub-species declares names').toBeDefined()
+    if (!species) return
+    await page.goto(pathFor('speciesEntry', locale, { species: species.id }))
+    const labels = await page.locator('.au-subspecies dt').allTextContents()
+    expect(
+      labels.every((text) => text.trim() === strings(locale).imposedSkill),
+      labels.join(', '),
+    ).toBe(true)
+  }
 })
 
 test('a species plate shows its value under the icon of the rule term it names', async ({

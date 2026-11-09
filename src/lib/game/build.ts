@@ -372,6 +372,7 @@ export function buildCorpus(sources: CorpusSources, locale: Locale): Corpus {
         : {
             subspecies: entry.data.subspecies.map((sub) => ({ ...sub, text: inherited(sub.text) })),
           }),
+      ...(entry.data.naming === undefined ? {} : { naming: inherited(entry.data.naming) }),
       ...(entry.data.roleplay?.text === undefined
         ? {}
         : { roleplay: { ...entry.data.roleplay, text: inherited(entry.data.roleplay.text) } }),

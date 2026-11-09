@@ -311,6 +311,7 @@ const fr = {
   namesFeminine: 'Prénoms féminins',
   namesGiven: 'Prénoms',
   namesFamily: 'Noms de famille',
+  speciesNames: 'Noms',
   limit: (times: number, per: SkillLimit['per']) => `${times} fois par ${FR_LIMIT_UNIT[per]}`,
   movement: 'Vitesse',
   prerequisite: 'Prérequis',
@@ -859,6 +860,7 @@ const en: UiStrings = {
   namesFeminine: 'Feminine first names',
   namesGiven: 'First names',
   namesFamily: 'Family names',
+  speciesNames: 'Names',
   limit: (times: number, per: SkillLimit['per']) =>
     `${EN_TIMES[times] ?? `${times} times`} per ${EN_LIMIT_UNIT[per]}`,
   movement: 'Speed',

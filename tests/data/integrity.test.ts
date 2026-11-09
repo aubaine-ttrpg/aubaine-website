@@ -228,6 +228,7 @@ function allRuleText(corpus: Corpus = fr): { where: string; text: string }[] {
     for (const bonus of set.bonuses) out.push({ where: `sets/${set.id}`, text: bonus.text })
   }
   for (const entry of corpus.species) {
+    if (entry.naming) out.push({ where: `species/${entry.id} naming`, text: entry.naming })
     for (const sub of entry.subspecies) {
       out.push({ where: `species/${entry.id} sub-species ${sub.id}`, text: sub.text })
     }
@@ -534,13 +535,18 @@ describe('cross references', () => {
     }
   })
 
-  it('lists every sub-species name once within its list', () => {
+  it('lists every name once within its list, on a species and on each sub-species', () => {
     for (const entry of sources.speciesEntries) {
-      for (const sub of entry.data.subspecies ?? []) {
-        for (const [list, names = []] of Object.entries(sub.names ?? {})) {
-          expect(new Set(names).size, `${entry.data.id} ${sub.id} repeats a ${list} name`).toBe(
-            names.length,
-          )
+      const peoples = [
+        { where: entry.data.id, names: entry.data.names },
+        ...(entry.data.subspecies ?? []).map((sub) => ({
+          where: `${entry.data.id} ${sub.id}`,
+          names: sub.names,
+        })),
+      ]
+      for (const { where, names: lists } of peoples) {
+        for (const [list, names = []] of Object.entries(lists ?? {})) {
+          expect(new Set(names).size, `${where} repeats a ${list} name`).toBe(names.length)
         }
       }
     }
@@ -929,11 +935,6 @@ describe('media', () => {
             `${entry.id}: ${sub.id} repeats the ${kind} names of ${other}`,
           ).toBeUndefined()
           seen.set(key, sub.id)
-        }
-        if (entry.familyNames && sub.names?.family) {
-          expect(sub.names.family, `${entry.id}: ${sub.id} repeats familyNames`).not.toEqual(
-            entry.familyNames,
-          )
         }
       }
     }
@@ -1351,6 +1352,17 @@ async function proseIn(dir: string, label: string): Promise<Prose[]> {
   return out
 }
 
+function translationPairs(pages: Prose[]): { english: Prose; french: string }[] {
+  const french = new Map(
+    pages.filter((page) => page.locale === 'fr').map((page) => [page.path, page.text]),
+  )
+  return pages.flatMap((page) => {
+    if (page.locale !== 'en') return []
+    const original = french.get(page.path.replace(/\.en\.md$/, '.md'))
+    return original === undefined ? [] : [{ english: page, french: original }]
+  })
+}
+
 async function lorePages(): Promise<Prose[]> {
   return [
     ...(await proseIn('data/lore/species', 'lore/species')),
@@ -1468,15 +1480,29 @@ describe('authored prose markup', () => {
         .split('\n')
         .filter((line) => line.startsWith('> :source['))
         .map((line) => /\](\{[^{}]+\})?$/.exec(line)?.[1] ?? '')
-    const pages = await authoredProse()
-    const french = new Map(
-      pages.filter((page) => page.locale === 'fr').map((page) => [page.path, page.text]),
-    )
-    for (const page of pages) {
-      if (page.locale !== 'en') continue
-      const original = french.get(page.path.replace(/\.en\.md$/, '.md'))
-      if (original === undefined) continue
-      expect(stagings(page.text), page.where).toEqual(stagings(original))
+    for (const { english, french } of translationPairs(await authoredProse())) {
+      expect(stagings(english.text), english.where).toEqual(stagings(french))
+    }
+  })
+
+  it('gives a lore page and its English page the same sections and pictures', async () => {
+    const shape = (text: string) => ({
+      sections: text.split('\n').filter((line) => line.startsWith('## ')).length,
+      pictures: [...text.matchAll(/!\[[^\]]*\]\(([^)\s]+)/g)].map((match) => match[1]),
+    })
+    for (const { english, french } of translationPairs(await lorePages())) {
+      expect(shape(english.text), english.where).toEqual(shape(french))
+    }
+  })
+
+  it('keeps the dashes, the curly quotes and the special spaces out of authored prose', async () => {
+    for (const { where, text } of await authoredProse()) {
+      for (const glyph of [...BANNED_DASHES, ...FOREIGN_TYPOGRAPHY]) {
+        expect(
+          text.includes(glyph),
+          `${where} carries U+${codePointOf(glyph)}, where prose keeps the comma, the straight apostrophe and the ordinary space`,
+        ).toBe(false)
+      }
     }
   })
 
@@ -2065,6 +2091,16 @@ describe('skill tags', () => {
   })
 })
 
+type SpeciesFields = { roleplay?: object | undefined }
+
+function fieldsWithoutFrench(overlay: SpeciesFields, french: SpeciesFields | undefined): string[] {
+  const absent = (translated: object, carried: object | undefined) =>
+    Object.keys(translated).filter((key) => !Object.hasOwn(carried ?? {}, key))
+  const fields = absent(overlay, french).filter((key) => key !== 'subspecies')
+  if (overlay.roleplay === undefined || french?.roleplay === undefined) return fields
+  return [...fields, ...absent(overlay.roleplay, french.roleplay).map((key) => `roleplay.${key}`)]
+}
+
 describe('translation coverage', () => {
   it('builds every locale without an unresolved reference', async () => {
     for (const locale of LOCALES) {
@@ -2142,13 +2178,17 @@ describe('translation coverage', () => {
     }
   })
 
-  it('translates only sub-species that exist', () => {
+  it('translates only what its French entry carries', () => {
     const byId = new Map(sources.speciesEntries.map((entry) => [entry.data.id, entry.data]))
     for (const overlay of sources.translations) {
       if (!overlay.id.startsWith('species/')) continue
       const parsed = overlays.species.safeParse(overlay.data)
       if (!parsed.success) continue
       const target = byId.get(overlay.id.slice('species/'.length).replace(/\.[a-z]{2}$/, ''))
+      expect(
+        fieldsWithoutFrench(parsed.data, target),
+        `overlay ${overlay.id} translates fields its French entry does not carry`,
+      ).toEqual([])
       const ids = new Set((target?.subspecies ?? []).map((sub) => sub.id))
       for (const [id, item] of Object.entries(parsed.data.subspecies ?? {})) {
         expect(ids.has(id), `overlay ${overlay.id} translates the unknown sub-species ${id}`).toBe(
@@ -2168,6 +2208,14 @@ describe('translation coverage', () => {
         }
       }
     }
+  })
+
+  it('refuses an overlay roleplay field its French entry does not carry', () => {
+    const overlay = { roleplay: { text: 'Le jeu.' } }
+    expect(fieldsWithoutFrench(overlay, { roleplay: { height: 'Grande.' } })).toEqual([
+      'roleplay.text',
+    ])
+    expect(fieldsWithoutFrench(overlay, {})).toEqual(['roleplay'])
   })
 })
 

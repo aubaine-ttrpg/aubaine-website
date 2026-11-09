@@ -32,7 +32,7 @@ An overlay may only carry the fields listed below, for its kind. Every one of th
 | skill | `title`, `prerequisite`, `activation`, `range`, `duration`, `description`, `upgrades` |
 | skill tree | `name`, `core.label`, `core.sublabel` |
 | skill list | `name`, `subtitle`, `note` |
-| species | `name`, `subtitle`, `movement`, `subspecies`, `roleplay` |
+| species | `name`, `subtitle`, `movement`, `naming`, `givenNamesLabel`, `familyNamesLabel`, `subspecies`, `roleplay` |
 | equipment item | `name`, `kind`, `prerequisite`, `headlines`, `stats`, `properties`, `craft.materials`, `craft.required`, `craft.sequence`, `text`, `description` |
 | equipment set | `name`, `description`, `bonuses` |
 | catalogue | `name`, `subtitle`, `families`, `sections` |

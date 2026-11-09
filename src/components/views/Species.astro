@@ -40,11 +40,28 @@ const SUBSPECIES_WORDS: Record<SubspeciesLabel, { plural: string; singular: stri
 const words = SUBSPECIES_WORDS[species.subspeciesLabel]
 const SUBSPECIES_ID = SUBSPECIES_SECTIONS[species.subspeciesLabel]
 const PLAYING_ID = 'jouer'
+const NAMES_ID = 'noms'
 
-const subspeciesNamed = species.subspecies.map((sub) => ({
-  ...sub,
-  familyNames: sub.names?.family ?? species.familyNames,
-}))
+type NameList = keyof NonNullable<ResolvedSpecies['names']>
+const NAME_ORDER: NameList[] = ['masculine', 'feminine', 'given', 'family']
+const nameLabel: Record<NameList, string> = {
+  masculine: t.namesMasculine,
+  feminine: t.namesFeminine,
+  given: species.givenNamesLabel ?? t.namesGiven,
+  family: species.familyNamesLabel ?? t.namesFamily,
+}
+const nameRows = (names: Partial<Record<NameList, string[] | undefined>>) =>
+  NAME_ORDER.flatMap((list) => {
+    const value = names[list]
+    return value === undefined ? [] : [{ label: nameLabel[list], value: value.join(', ') }]
+  })
+
+const sharedNameRows = nameRows(species.names ?? { family: species.familyNames })
+const subspeciesNameGroups = species.subspecies
+  .map((sub) => ({ name: sub.name, rows: nameRows(sub.names ?? {}) }))
+  .filter((group) => group.rows.length > 0)
+const hasNames =
+  species.naming !== undefined || sharedNameRows.length > 0 || subspeciesNameGroups.length > 0
 
 const languages = named(corpus.languages, species.languages ?? [])
 const roleplay = species.roleplay
@@ -60,7 +77,7 @@ const hasPlaying = roleplay?.text !== undefined || playing.length > 0 || hasSubs
 const lore = await loreFor('species', species.id, locale)
 const LoreOpening = lore?.opening?.Content
 const LoreSections = lore?.sections?.Content
-const hasPlayReading = LoreOpening !== undefined || hasPlaying
+const hasPlayReading = LoreOpening !== undefined || hasPlaying || hasNames
 const keys = readingKeys(await keyOf(species.cover, species.keyColour))
 
 function numbered<T extends object>(sections: T[]) {
@@ -84,6 +101,7 @@ const playTrail = numbered([
         },
       ]
     : []),
+  ...(hasNames ? [{ text: t.speciesNames, href: `#${NAMES_ID}` }] : []),
   { text: t.speciesOffer, href: '#skills' },
 ])
 const loreTrail = numbered(
@@ -152,7 +170,7 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
             {hasSubspecies && (
               <section>
                 <h2 id={SUBSPECIES_ID}>{words.plural}</h2>
-                {subspeciesNamed.map((sub) => (
+                {species.subspecies.map((sub) => (
                   <article id={subspeciesAnchor(sub.id)} class="au-subspecies">
                     <h3>{sub.name}</h3>
                     {sub.heraldry && HERALDRY_PLACEMENT[sub.heraldry.kind] === 'beside' ? (
@@ -178,47 +196,47 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
                         <RuleText source={sub.text} corpus={corpus} locale={locale} />
                       </>
                     )}
-                    {(sub.imposedSkill || sub.names || sub.familyNames) && (
+                    {sub.imposedSkill && (
                       <dl>
-                        {sub.imposedSkill && (
-                          <>
-                            <dt>{t.imposedSkill}</dt>
-                            <dd>
-                              <a href={`#e-${sub.imposedSkill.id}`}>{sub.imposedSkill.title}</a>
-                            </dd>
-                          </>
-                        )}
-                        {sub.names && (
-                          <>
-                            {sub.names.masculine && (
-                              <>
-                                <dt>{t.namesMasculine}</dt>
-                                <dd>{sub.names.masculine.join(', ')}</dd>
-                              </>
-                            )}
-                            {sub.names.feminine && (
-                              <>
-                                <dt>{t.namesFeminine}</dt>
-                                <dd>{sub.names.feminine.join(', ')}</dd>
-                              </>
-                            )}
-                            {sub.names.given && (
-                              <>
-                                <dt>{t.namesGiven}</dt>
-                                <dd>{sub.names.given.join(', ')}</dd>
-                              </>
-                            )}
-                          </>
-                        )}
-                        {sub.familyNames && (
-                          <>
-                            <dt>{species.familyNamesLabel ?? t.namesFamily}</dt>
-                            <dd>{sub.familyNames.join(', ')}</dd>
-                          </>
-                        )}
+                        <dt>{t.imposedSkill}</dt>
+                        <dd>
+                          <a href={`#e-${sub.imposedSkill.id}`}>{sub.imposedSkill.title}</a>
+                        </dd>
                       </dl>
                     )}
                   </article>
+                ))}
+              </section>
+            )}
+
+            {hasNames && (
+              <section>
+                <h2 id={NAMES_ID}>{t.speciesNames}</h2>
+                {species.naming && (
+                  <RuleText source={species.naming} corpus={corpus} locale={locale} />
+                )}
+                {sharedNameRows.length > 0 && (
+                  <dl>
+                    {sharedNameRows.map((row) => (
+                      <>
+                        <dt>{row.label}</dt>
+                        <dd>{row.value}</dd>
+                      </>
+                    ))}
+                  </dl>
+                )}
+                {subspeciesNameGroups.map((group) => (
+                  <>
+                    <h3>{group.name}</h3>
+                    <dl>
+                      {group.rows.map((row) => (
+                        <>
+                          <dt>{row.label}</dt>
+                          <dd>{row.value}</dd>
+                        </>
+                      ))}
+                    </dl>
+                  </>
                 ))}
               </section>
             )}

@@ -32,8 +32,9 @@ sub-species they lead into (`data/species/humain.json`, `data/species/mort-vivan
 - Under the hero the page shows, in this order:
   - the lore's opening, everything before its first `##`, which is a paragraph and an epigraph on
     every species that has one;
-  - `Jouer un <nom>`, then `Origines régionales` or `Sous-espèces`, then the pool under
-    `Compétences d'Espèce`, together the part « En jeu » / "In play";
+  - `Jouer un <nom>`, then `Origines régionales` or `Sous-espèces`, then « Noms » for a species
+    with a naming paragraph or name lists (0073, 0074), then the pool under `Compétences d'Espèce`,
+    together the part « En jeu » / "In play";
   - the lore's sections, the part « Histoire » / "Lore".
 - The opening and the « En jeu » sections share one reading block, whose sticky outline lists both
   parts, each under its label (`speciesPlayPart` and `speciesLorePart` in
@@ -79,8 +80,8 @@ sub-species they lead into (`data/species/humain.json`, `data/species/mort-vivan
 - Below 76rem the outlines are not sticky, so a phone reads the whole outline before the opening, as
   it did before, and the « Histoire » outline again above the lore. At 375 px the Humain page grew
   from 20,531 px to 20,914 px and the Nnor page from 14,567 px to 14,909 px.
-- The names of each people (« Noms humains », « Noms elfes », « Noms nnors ») are a lore section, so
-  they come after the pool although a player reads them at creation.
+- A people's naming custom and its name lists read in « Noms », in « En jeu » (0073, 0074). Until
+  2026-11-08 the customs were lore sections printed after the pool.
 
 ---
 

@@ -161,7 +161,7 @@ test('a species carries its lore, its regional origins and its whole pool in the
 })
 
 test('every species page reads its play part, then its skills, then its lore', async ({ page }) => {
-  const play = new Set(['jouer', ...Object.values(SUBSPECIES_SECTIONS)])
+  const play = new Set(['jouer', ...Object.values(SUBSPECIES_SECTIONS), 'noms'])
   for (const species of (await corpus('fr')).species) {
     await page.goto(pathFor('speciesEntry', 'fr', { species: species.id }))
     const headings = await page
@@ -178,6 +178,16 @@ test('every species page reads its play part, then its skills, then its lore', a
       headings.slice(skills + 1).some((id) => play.has(id)),
       read,
     ).toBe(false)
+  }
+})
+
+test('every species page gives each id to one element, so every outline link lands', async ({
+  page,
+}) => {
+  for (const species of (await corpus('fr')).species) {
+    await page.goto(pathFor('speciesEntry', 'fr', { species: species.id }))
+    const ids = await page.locator('main [id]').evaluateAll((nodes) => nodes.map((node) => node.id))
+    expect(new Set(ids).size, `${species.id} gives two elements the same id`).toBe(ids.length)
   }
 })
 
