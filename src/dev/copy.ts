@@ -152,7 +152,6 @@ export const WORKBENCH = {
   classicGems: 'Pierres',
   elementalGems: 'Éléments',
   noMagic: 'Aucune',
-  nature: 'Nature',
   picture: "Suit l'image",
   anyColour: 'Toute couleur',
   gloss: {

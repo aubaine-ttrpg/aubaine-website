@@ -45,7 +45,7 @@ const arts: WorkbenchArt[] = await Promise.all(
 )
 
 const magics: WorkbenchMagic[] = ALMANACH_MAGICS.map((magic) => {
-  const name = magic === 'nature' ? WORKBENCH.nature : data.domains.get(magic)?.labelFr
+  const name = data.domains.get(magic)?.labelFr
   if (!name) throw new Error(`the magic ${magic} is not a key of data/meta/domains.json`)
   return { magic, name }
 })

@@ -157,7 +157,7 @@
           ]
         }
       ],
-      "description": "L'élément qui vit dans le cristal : « none », une clé de data/meta/domains.json, ou « nature »."
+      "description": "L'élément qui vit dans le cristal : « none » ou une clé de data/meta/domains.json."
     },
     "light": {
       "anyOf": [

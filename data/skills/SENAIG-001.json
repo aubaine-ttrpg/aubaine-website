@@ -5,7 +5,7 @@
   "tier": 5,
   "art": "sens-aiguises-1_1-og.png",
   "domains": [
-    "psychic"
+    "nature"
   ],
   "prerequisite": "Être Elfe",
   "activation": "Passif",

@@ -5,7 +5,9 @@
   "type": "passive",
   "tier": 5,
   "art": "savoir-d-elysea-1_1-og.png",
-  "domains": [],
+  "domains": [
+    "nature"
+  ],
   "prerequisite": "Être Elfe, Drow, Fir Bolg ou Halfelin",
   "activation": "Passif",
   "tags": {

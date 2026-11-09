@@ -79,6 +79,12 @@
       "labelEn": "Ether"
     },
     {
+      "key": "nature",
+      "color": "#3f9a3a",
+      "labelFr": "Nature",
+      "labelEn": "Nature"
+    },
+    {
       "key": "neutral",
       "color": "#2a2a2e",
       "labelFr": "Neutre",

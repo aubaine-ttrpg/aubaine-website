@@ -75,7 +75,7 @@ describe('almanach styles', () => {
     expect([...ALMANACH_CRYSTAL_BOOTS].sort()).toEqual(['fast', 'instant'])
   })
 
-  it('names every magic after a domain of the game, except nature', async () => {
+  it('names every magic after a domain of the game', async () => {
     const raw: unknown = JSON.parse(await readFile(resolve(root, 'data/meta/domains.json'), 'utf8'))
     const entries =
       typeof raw === 'object' && raw !== null && 'entries' in raw && Array.isArray(raw.entries)
@@ -87,7 +87,6 @@ describe('almanach styles', () => {
       ),
     )
     for (const magic of ALMANACH_MAGICS) {
-      if (magic === 'nature') continue
       expect(keys.has(magic), `${magic} is not a key of data/meta/domains.json`).toBe(true)
     }
   })
