@@ -12,6 +12,8 @@ import {
   GENERATED_DIRECTORIES,
   OWNED_DIRECTORIES,
   OWNED_FILES,
+  OWNED_MODEL_DIRECTORIES,
+  STAMPED_EXTENSIONS,
   STRIPPED_DIRECTORIES,
 } from '../../src/lib/rights/ownership.ts'
 import { readPngText, stampPng, stripPng } from '../../src/lib/rights/png.ts'
@@ -20,8 +22,6 @@ import { stampSvg, stripSvg } from '../../src/lib/rights/svg.ts'
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
 const mediaDir = resolve(root, 'data/media')
 const captionsPath = resolve(root, 'data/media-captions.json')
-
-const RASTER = ['.png', '.jpg']
 
 type Rewrite = { relative: string; path: string; next: Uint8Array }
 type Remux = { relative: string; path: string; args: string[] }
@@ -108,6 +108,7 @@ async function build(captions: Map<string, MediaCaption>, only: string | undefin
 
   const declared = new Set<string>([
     ...OWNED_DIRECTORIES,
+    ...OWNED_MODEL_DIRECTORIES,
     ...STRIPPED_DIRECTORIES,
     ...FOREIGN_DIRECTORIES,
     ...GENERATED_DIRECTORIES,
@@ -127,6 +128,9 @@ async function build(captions: Map<string, MediaCaption>, only: string | undefin
     if (!wanted(relative)) continue
     const path = join(mediaDir, relative)
     const extension = extname(relative)
+    if (!STAMPED_EXTENSIONS.includes(extension)) {
+      throw new Error(`${relative}: no writer for ${extension}`)
+    }
     const caption = captions.get(relative)
     const claim = pictureClaim(caption)
 
@@ -146,8 +150,6 @@ async function build(captions: Map<string, MediaCaption>, only: string | undefin
       }
       continue
     }
-
-    if (!RASTER.includes(extension)) throw new Error(`${relative}: no writer for ${extension}`)
 
     const bytes = new Uint8Array(await readFile(path))
     if (caption === undefined && embeddedCaption(relative, bytes) !== undefined) {

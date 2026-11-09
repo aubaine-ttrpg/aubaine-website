@@ -1,6 +1,6 @@
 import type { Dirent } from 'node:fs'
 import { readdir, readFile } from 'node:fs/promises'
-import { dirname, resolve } from 'node:path'
+import { dirname, extname, resolve } from 'node:path'
 import { parseFrontmatter } from '@astrojs/markdown-remark'
 import sharp from 'sharp'
 import { describe, expect, it } from 'vitest'
@@ -60,6 +60,8 @@ import {
   GENERATED_DIRECTORIES,
   OWNED_DIRECTORIES,
   OWNED_FILES,
+  OWNED_MODEL_DIRECTORIES,
+  STAMPED_EXTENSIONS,
   STRIPPED_DIRECTORIES,
 } from '../../src/lib/rights/ownership'
 import { pdfIsStamped } from '../../src/lib/rights/pdf'
@@ -2185,6 +2187,7 @@ describe('asset ownership', () => {
   it('declares every directory and loose file under data/media', async () => {
     const declared = new Set<string>([
       ...OWNED_DIRECTORIES,
+      ...OWNED_MODEL_DIRECTORIES,
       ...STRIPPED_DIRECTORIES,
       ...FOREIGN_DIRECTORIES,
       ...GENERATED_DIRECTORIES,
@@ -2197,6 +2200,15 @@ describe('asset ownership', () => {
       expect(known, `data/media/${entry.name} is not declared in src/lib/rights/ownership.ts`).toBe(
         true,
       )
+    }
+  })
+
+  it('holds in an owned directory only the formats pnpm media:stamp writes', async () => {
+    for (const relative of await owned()) {
+      expect(
+        STAMPED_EXTENSIONS.includes(extname(relative)),
+        `${relative} is owned, but pnpm media:stamp writes no ${extname(relative)}`,
+      ).toBe(true)
     }
   })
 
@@ -2233,7 +2245,12 @@ describe('asset ownership', () => {
   })
 
   it('carries no foreign provenance on anything the studio ships', async () => {
-    const roots = [...OWNED_DIRECTORIES, ...STRIPPED_DIRECTORIES, ...GENERATED_DIRECTORIES]
+    const roots = [
+      ...OWNED_DIRECTORIES,
+      ...OWNED_MODEL_DIRECTORIES,
+      ...STRIPPED_DIRECTORIES,
+      ...GENERATED_DIRECTORIES,
+    ]
     const paths = [...OWNED_FILES.map((file) => resolve(mediaDir, file))]
     for (const directory of roots) {
       for (const file of await readdir(resolve(mediaDir, directory)).catch(() => [])) {

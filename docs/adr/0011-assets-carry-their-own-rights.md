@@ -5,6 +5,8 @@
 **Date:** 2026-09-22
 **Revised:** 2026-10-16, Decision 1 gains an addendum: `data/media/sounds/` is foreign
 and never opened, like the fonts and the icons
+**Revised:** 2026-11-09, Decision 1 gains an addendum: an owned model and its maps are left as they
+are, and an owned directory holds only the formats the stamp writes
 **Deciders:** Kori
 **Scope:** How a first party file under `data/media/` declares its author and its licence in its own
 bytes, what is removed from it, and how the same claim reaches the derivatives the build emits and
@@ -100,6 +102,23 @@ descriptions existed nowhere else in the repository.
 - `data/media/sounds/` holds third party CC0 recordings (0045 Decision 4). It is listed in
   `FOREIGN_DIRECTORIES` in `src/lib/rights/ownership.ts`, so `pnpm media:stamp` never opens it and
   writes no Aubaine claim into it. Its credits are in `docs/third-party-assets.md`.
+
+### Addendum (2026-11-09): an owned model is left as it is
+
+- `data/media/almanach/` holds the almanach's model (`.glb`) and its four baked maps (`.avif`), which
+  are owned (0069 Decision 1). The stamp has no writer for either format, so since 2026-11-07, when
+  the folder joined `OWNED_DIRECTORIES`, `pnpm media:stamp` stopped on its first map and stamped
+  nothing.
+- The folder now sits in its own table, `OWNED_MODEL_DIRECTORIES`: declared, never stamped, and still
+  checked for foreign provenance by `tests/data/integrity.test.ts`.
+- `STAMPED_EXTENSIONS` in `src/lib/rights/ownership.ts` names the formats the stamp writes (`.png`,
+  `.jpg`, `.svg`, `.mp4`). The tool refuses any other, and `pnpm data:check` fails on an owned
+  directory that holds one, so the next such folder fails at the check and never at the stamp.
+- Rejected: writing the claim into the model and the maps. glTF has an `asset.copyright` field, but
+  AVIF metadata needs a writer for its item boxes, and these files are drawn by the GPU, never saved
+  by a reader as pictures. Reopens if the almanach model is offered for download.
+- Caveat: the model and its maps carry no Aubaine claim in their bytes; ownership rests on 0069 and
+  the declared table.
 
 ---
 

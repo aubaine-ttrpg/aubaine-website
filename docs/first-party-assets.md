@@ -54,13 +54,15 @@ not plain ASCII goes into an uncompressed `iTXt`, which is UTF-8 by definition.
 | `art/`, `items/`, `masks/`, `skills/`, `unassigned/` | stripped, then stamped | `pnpm media:stamp` |
 | `video/` | stripped, then stamped through ffmpeg | `pnpm media:stamp` |
 | the files `OWNED_FILES` names, such as `aubaine-logo.svg` | stamped | `pnpm media:stamp` |
+| `almanach/`, the almanach's model and its baked maps | owned, left as they are: the stamp writes no `.glb` or `.avif` | nothing |
 | `flags/` | stripped, nothing written | `pnpm media:stamp` |
 | `fonts/`, `icons/`, `sounds/`, `textures/` | untouched | nothing: they are not ours |
 | `dist/_astro/*.webp`, `*.jpeg`, `*.png` | stamped as they are emitted | `src/lib/rights/image-service.ts` |
 | `pdf/` | stamped as each booklet is rendered | `tools/pdf/render.ts` |
 
-`src/lib/rights/ownership.ts` holds those five tables, and `pnpm data:check` fails when a directory
-appears under `data/media/` that none of them names. That is what keeps the claim honest as the tree
+`src/lib/rights/ownership.ts` holds those tables, and `pnpm data:check` fails when a directory
+appears under `data/media/` that none of them names, or when an owned directory holds a format the
+stamp cannot write (`STAMPED_EXTENSIONS`). That is what keeps the claim honest as the tree
 grows: a new folder is a decision, not an oversight.
 
 The two flags are stripped and never stamped. A French tricolour and a Union Jack are not original
