@@ -1,7 +1,12 @@
 import { readdir, readFile } from 'node:fs/promises'
 import { join, resolve } from 'node:path'
 
-import { ALMANACH_FIT, ALMANACH_STYLE_ID, isPortraitSource } from '../art-effect/almanach-look.ts'
+import {
+  ALMANACH_FIT,
+  ALMANACH_STYLE_ID,
+  isPortraitSource,
+  pictureRatio,
+} from '../art-effect/almanach-look.ts'
 import { FRAME } from '../art-effect/presets.ts'
 import { DEFAULT_LOCALE, LOCALES, type Locale } from '../i18n/locales.ts'
 import { strings } from '../i18n/strings.ts'
@@ -545,6 +550,8 @@ export function rehypeProseTables() {
 }
 
 const SECTION_HEADINGS = new Set(['h1', 'h2', 'h3', 'h4', 'h5', 'h6'])
+const SIDE_WIDTHS = [352, 704, 1056]
+const SIDE_SIZES = '(width < 48rem) 22rem, 22.25rem'
 
 function isBlank(node: HastChild): boolean {
   return node.type === 'text' && node.value.trim() === ''
@@ -569,6 +576,17 @@ function isSectionHeading(node: HastChild): boolean {
   return node.type === 'element' && SECTION_HEADINGS.has(node.tagName)
 }
 
+function sizedSidePicture(holder: HastElement): HastElement {
+  return {
+    ...holder,
+    children: holder.children.map((child) =>
+      child.type === 'element' && child.tagName === 'img'
+        ? { ...child, properties: { ...child.properties, widths: SIDE_WIDTHS, sizes: SIDE_SIZES } }
+        : child,
+    ),
+  }
+}
+
 export function rehypeProseSidePictures() {
   return (tree: HastRoot): void => {
     const next: HastChild[] = []
@@ -576,7 +594,7 @@ export function rehypeProseSidePictures() {
     for (const child of tree.children) {
       if (isSectionHeading(child)) section = undefined
       if (isPortraitPicture(child)) {
-        section = element('div', { className: 'au-prose__side' }, [child])
+        section = element('div', { className: 'au-prose__side' }, [sizedSidePicture(child)])
         next.push(section)
         continue
       }
@@ -655,8 +673,6 @@ export function pictureLook(title: string, source: string): PictureLook {
   return { kind: 'masked', mask: first, relief: second }
 }
 
-const PICTURE_RATIO = /-(\d{1,2}_\d{1,2})-[a-z0-9_]+\.(?:png|jpg)$/
-
 const { slice } = FRAME
 const FRAME_STYLE = [
   `--au-frame-slice:${slice.top} ${slice.right} ${slice.bottom} ${slice.left}`,
@@ -698,7 +714,7 @@ function maskPicture(picture: HastElement): HastElement {
   if (title === undefined) return picture
   const source = String(properties['src'])
   const look = pictureLook(String(title), source)
-  const ratio = PICTURE_RATIO.exec(source)?.[1]
+  const ratio = pictureRatio(source)
   switch (look.kind) {
     case 'glazed':
       return glazePicture({ ...picture, properties }, ratio)

@@ -101,10 +101,15 @@ export function almanachFitOf(value: unknown): AlmanachFit {
 
 export const ALMANACH_STYLE_ID = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
 
-const PORTRAIT_PICTURE = /-3_4-[a-z0-9_]+\.(?:png|jpg)$/
+const PICTURE_RATIO = /-((\d{1,2})_(\d{1,2}))-[a-z0-9_]+\.(?:png|jpg)$/
+
+export function pictureRatio(source: string): string | undefined {
+  return PICTURE_RATIO.exec(source)?.[1]
+}
 
 export function isPortraitSource(source: string): boolean {
-  return PORTRAIT_PICTURE.test(source)
+  const [, , wide, tall] = PICTURE_RATIO.exec(source) ?? []
+  return wide !== undefined && tall !== undefined && Number(wide) < Number(tall)
 }
 
 export function isAlmanachColour(value: unknown): value is AlmanachColour {

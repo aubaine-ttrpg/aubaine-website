@@ -65,6 +65,36 @@ describe('prose side pictures', () => {
     expect(textOf(after ?? text(''))).toBe('Under the heading.')
   })
 
+  it('gathers any picture narrower than it is tall, captioned or not', () => {
+    const captioned = element(
+      'figure',
+      [
+        element('img', [], { src: '../../media/art/enluminure-11_12-og.png', alt: '' }),
+        element('figcaption', [text('Une enluminure')]),
+      ],
+      { className: 'au-prose__picture' },
+    )
+    const [side] = elements(laidOut(captioned, paragraph('Beside the picture.')))
+    expect(side?.properties['className']).toBe('au-prose__side')
+    const [figure, beside] = elements(side?.children ?? [])
+    expect(figure?.tagName).toBe('figure')
+    expect(textOf(beside ?? text(''))).toBe('Beside the picture.')
+  })
+
+  it('sizes a side picture for the room its float gives it', () => {
+    const [side] = elements(laidOut(picture('nnor-marchand-3_4-og.png'), paragraph('Suite.')))
+    const [holder] = elements(side?.children ?? [])
+    const [image] = elements(holder?.children ?? [])
+    expect(image?.tagName).toBe('img')
+    expect(image?.properties['widths']).toEqual(expect.arrayContaining([expect.any(Number)]))
+    expect(String(image?.properties['sizes'])).not.toMatch(/100vw/)
+  })
+
+  it('leaves a square picture across the column', () => {
+    const children = laidOut(picture('dague-1_1-og.png'), paragraph('Below the picture.'))
+    expect(elements(children).some((child) => child.properties['className'])).toBe(false)
+  })
+
   it('leaves a 16:9 picture across the column', () => {
     const children = laidOut(picture('placeholder-16_9-og.png'), paragraph('Below the banner.'))
     expect(elements(children).map((child) => child.tagName)).toEqual(['p', 'p'])

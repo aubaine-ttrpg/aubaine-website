@@ -156,5 +156,8 @@ describe('prose picture masks', () => {
 
   it('refuses an almanach around a portrait, which the tube cannot show whole', () => {
     expect(() => maskedPicture({ title: `${ALMANACH_PICTURE} humain` })).toThrow(/portrait/)
+    expect(() =>
+      maskedPicture({ title: ALMANACH_PICTURE, src: '../../media/art/enluminure-11_12-og.png' }),
+    ).toThrow(/portrait/)
   })
 })

@@ -192,10 +192,11 @@ A picture is an ordinary markdown image whose path is relative to the lore file,
 `../../media/art/<file>`, and `pnpm data:check` fails on a path that points anywhere else or at a
 file that does not exist. Name the file per [add-an-image.md](add-an-image.md).
 
-The ratio in the name sets the layout. A 16:9 picture spans the column. A 3:4 picture on a line of
-its own sits at the start of the text that follows it: that text wraps around it, then runs under
-it once it is longer than the picture, up to the next heading. On a narrow screen the picture sits
-above the text. Put it straight under the heading it illustrates.
+The ratio in the name sets the layout. A 16:9 or a 1:1 picture spans the column. A picture
+narrower than it is tall, such as a 3:4 or an 11:12, on a line of its own or with its caption, sits
+at the start of the text that follows it: that text wraps around it, then runs under it once it is
+longer than the picture, up to the next heading. On a narrow screen the picture sits above the
+text. Put it straight under the heading it illustrates.
 
 A picture of either ratio can be cut to a shape: write the shape's key as the image title, in
 quotes after the path. `PICTURE_MASKS` in `src/lib/game/book-markup.ts` lists the keys, such as
