@@ -5,11 +5,14 @@ import type { Locale } from '../../lib/i18n/locales'
 import type { PolicyKind } from '../../lib/i18n/routes'
 import { strings } from '../../lib/i18n/strings'
 import { creditSections } from '../../lib/rights/credits'
+import { titleFrameStyle } from '../../lib/title-frames'
 import Attribution from '../primitives/Attribution.astro'
+import PageTitle from '../primitives/PageTitle.astro'
 import SectionTrail from '../primitives/SectionTrail.astro'
 import '../../styles/almanach.css'
 import '../../styles/prose.css'
 import '../../styles/reading.css'
+import '../../styles/titles.css'
 
 type Props = { locale: Locale; kind: PolicyKind }
 
@@ -20,6 +23,7 @@ const page = (await policyPages(locale)).find((entry) => entry.kind === kind)
 if (!page) throw new Error(`Unknown policy kind: ${kind}`)
 
 const { Content, headings } = await renderProse(page.entry)
+const frameStyle = await titleFrameStyle()
 
 const outline = [
   ...headings.filter((heading) => heading.depth === 2).map(({ slug, text }) => ({ slug, text })),
@@ -34,9 +38,8 @@ const outline = [
 ---
 
 <div class="au-reading">
-  <header class="au-reading__head au-policy__head">
-    <h1>{page.title}</h1>
-    <p>{page.description}</p>
+  <header class="au-reading__head au-policy__head au-titles" style={frameStyle}>
+    <PageTitle text={page.title} line={page.description} />
   </header>
 
   {
@@ -48,7 +51,7 @@ const outline = [
     )
   }
 
-  <article class="au-reading__body">
+  <article class="au-reading__body au-titles" style={frameStyle}>
     <div class="au-prose">
       <Content />
     </div>
@@ -57,22 +60,8 @@ const outline = [
 </div>
 
 <style>
-  .au-policy__head h1 {
-    margin: 0;
-    font-family: var(--font-display);
-    font-size: clamp(1.875rem, 1.44rem + 2.1vw, 3.25rem);
-    font-weight: 700;
-    line-height: 1.05;
-    color: var(--ink);
-    text-wrap: balance;
-    overflow-wrap: break-word;
-  }
-
-  .au-policy__head p {
-    margin: 0.75rem 0 0;
-    font-size: clamp(1.125rem, 1.07rem + 0.28vw, 1.3125rem);
-    line-height: 1.55;
-    color: var(--ink2);
-    text-wrap: pretty;
+  .au-reading__head.au-policy__head {
+    padding-block-end: 0;
+    border-block-end: 0;
   }
 </style>

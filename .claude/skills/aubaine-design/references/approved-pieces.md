@@ -1,8 +1,9 @@
 # The approved pieces
 
-The owner has approved five pieces of the site: the character sheet that opens a tree or a species
+The owner has approved six pieces of the site: the character sheet that opens a tree or a species
 page, the select screen of the Arbres and Espèces indexes, the plate menu that opens the Codex hub, the
-contents spread that opens the Livres hub, and the quote and dialogue of a lore page. They set the direction: inspire from them, never copy them (`rulings.md`, The approved
+contents spread that opens the Livres hub, the quote and dialogue of a lore page, and the titles of the
+reading pages. They set the direction: inspire from them, never copy them (`rulings.md`, The approved
 pieces). This file is their rebuild spec, value by value, followed by the contract every hub door
 shares and what only Aubaine has. `DESIGN.md` documents the look for a reader; this file is for
 rebuilding a piece or matching it.
@@ -17,7 +18,7 @@ rebuilding a piece or matching it.
 - [The arrival](#the-arrival) and [fallbacks](#fallbacks)
 - [The hub plate menu](#the-hub-plate-menu), [the Livres contents](#the-livres-contents) and
   [the door contract](#the-door-contract)
-- [The lore quote and dialogue](#the-lore-quote-and-dialogue)
+- [The lore quote and dialogue](#the-lore-quote-and-dialogue) and [the titles](#the-titles)
 - [What only Aubaine has](#what-only-aubaine-has)
 - [Pictures](#pictures), [objects of Aubaine's world](#objects-of-aubaines-world) and [CADRAN](#cadran)
 - [Guard tests](#guard-tests) and [records that disagree with the code](#records-that-disagree-with-the-code)
@@ -44,6 +45,7 @@ rebuilding a piece or matching it.
 | Select screen | 2026-10-28 | `select-screen-arbres.jpg` | `SelectScreen.astro` | `/fr/arbres`, `/fr/especes`, `/en/trees`, `/en/species` |
 | Hub plate menu | 2026-10-31, the owner's pick of B+ | `hub-codex.jpg` | `PlateMenu.astro` with `PlateDoor.astro`, recorded in `docs/adr/0065-the-livres-hub-opens-on-its-contents-and-lists-every-category.md` | `/fr/almanach`, `/en/almanach` |
 | Livres contents | 2026-10-31, the owner's pick of C+ | `hub-livres.jpg` | `SommaireSpread.astro` with `SommaireEntry.astro`, recorded in the same record | `/fr/livres`, `/en/books` |
+| Titles | 2026-11-10, the owner's defaults after a live panel | `titles-book-chapter.jpg`, `titles-species-humain.jpg` | `PageTitle.astro`, `SectionTitle.astro`, `TitleFrame.astro`, `src/styles/titles.css` and `rehypeProseHeadings` in `src/lib/game/book-markup.ts`, recorded in `docs/adr/0076-reading-titles-are-framed-plates-in-the-quote-s-family.md` | every book chapter, species, tree and policy page, such as `/fr/livres/livre-du-joueur/creer-un-personnage`, `/fr/espece/humain`, `/en/licences` |
 | Lore quote and dialogue | 2026-11-04, the owner's pick of « La scène » | `lore-quote-humain.jpg`, `lore-quote-mort-vivant.jpg`, `lore-dialogue-scothan.jpg` | `rehypeProseQuotes` in `src/lib/game/book-markup.ts` and `src/styles/prose.css`, recorded in `docs/adr/0068-a-lore-quote-is-a-staged-game-dialogue-box.md` | every species page whose lore holds a quote, such as `/fr/espece/humain`, `/fr/espece/scothan`, `/en/species/humain`, `/en/species/scothan` |
 
 The plate menu first opened Livres too; the contents spread took Livres the same day. The owner left the
@@ -75,6 +77,8 @@ accepted piece). Open one with the Read tool to see it.
 | `lore-quote-humain.jpg` | The Humain's quote on 2026-11-04: its title at the top left with Jacques « Le Scellaire » Arsenault and Arthur Colbert on black nameplates, the big quotation mark at the free top corner, the words in the night box, the azure slab of the Tranche crossing behind it. |
 | `lore-quote-mort-vivant.jpg` | The Mort-vivant's quote: its title at the bottom right, the box's foot lifted under it, the mark at the top left, the box's silhouette echoed in green halftone (Écho). |
 | `lore-dialogue-scothan.jpg` | The Scothan dialogue with its portraits, aligned to its foot: one box per turn, each echoed in gold halftone, Tiar's on the left under a bone tag with her bust in front of the box's left edge (stern, then irritated), Sombrecœur's on the right in her own pointed boxes under a gold tag, her bust mirrored to face Tiar (haughty, then defiant), and the title at the bottom left with its gold echo, naming the court and the Contingence. |
+| `titles-book-chapter.jpg` | A book chapter on 2026-11-10: the chapter title led by its hexagon frame with the Livres de règles pictogram and its halftone echo, the title on a night plate with its echo backing, « 04 » outlined behind it, the chapter's line under it; then a section, a bone plate on the house-gold strip, its round frame showing the painted question mark. |
+| `titles-species-humain.jpg` | The Humain page in the azure key: « Origines régionales », a section on its strip, and « Nouvelle-Aubaine », a subsection night plate on a strip of key dots, both holding the painted question mark, the Colbert banner below. |
 | `sticker-suspense-punch.jpg` | The Nnor's stickers on a direct load of the French sheet, approved on 2026-11-03: thirteen seeked moments cropped to the row. « . » alone at 0.79 s, « .. » punched in at 0.92 s, « ... » at 1.08 s, the word at its peak from 1.34 to 1.64 s while it trembles, the spring back by 1.8 s, the rest. Values in `DescriptorStickers.astro`. |
 
 The film strips were taken with `pnpm design:transit --film`, the sheet's on 2026-11-02 and the Codex's on
@@ -1063,6 +1067,96 @@ background, and 17.4 px from its own words and tag; on a desktop 72 px between t
 The live page reads the same distances as the picked prototype did. With both boxes' slopes halved on
 2026-11-06, the same sweep read the same: 48 states, 0 problems, 7.2 px and 17.4 px.
 
+## The titles
+
+The page title, the section and the subsection of every reading page: a book chapter, a species, a tree
+and a policy. `rehypeProseHeadings` in `src/lib/game/book-markup.ts` writes the Markdown ones;
+`PageTitle.astro`, `SectionTitle.astro` and `TitleFrame.astro` the ones a view builds; `src/styles/titles.css`
+draws them under `@media screen and (forced-colors: none)`, inside a `.au-titles` wrapper. They come from
+the lore quote's title and box and from Persona 5's field HUD (`persona-5.md`), with Hextech's ring above
+a banner for the frame (`hextech.md`).
+
+### The markup
+
+- Every root-level `h2` and `h3` of a prose page is wrapped in `div.au-head[data-level]`, the level as
+  `2` or `3`, with `--fit-letters` from `fitLetters` (`src/lib/plates.ts`, padding 1.6) for its longest
+  word, and one `span.au-frame` before the heading, `data-face="unset"`, `aria-hidden`, holding
+  `span.au-frame__face` with « ? ». Headings inside a quote or a callout are left alone. The heading, its
+  text and its id are untouched, so the side list and the anchors hold.
+- `SectionTitle.astro` writes the same markup for a heading a view builds, its frame `data-face="icon"`
+  with a pictogram in its own ink (`kindInk`, `categoryInk`) when the title names a kind, as
+  « Compétences d'Espèce » takes the Compétences mark and « Arbre de compétences » the Arbres mark.
+- `PageTitle.astro`: `div.au-title[data-look]`, `chapter` on a book chapter (its frame holding the
+  book's category pictogram, `GhostName.astro` with the chapter's number) and `page` elsewhere (its frame
+  unset), then `div.au-title__plate > h1`, then `p.au-title__line` with the page's one-line description.
+  A book's `h1` keeps `data-book-title`.
+- The wrapper `.au-titles` is the reading column (`.au-reading__body`, the policy header, the heads over a
+  species' skills and a tree's board), a size container that carries `--key` and `--key-paper` and
+  `--unset-picture` from `titleFrameStyle()` in `src/lib/title-frames.ts`: the square placeholder
+  `placeholder-1_1-og.png` at 192 px, JPEG quality 82.
+
+### The frame
+
+- 2.9 em tall, round (`circle(50%)`, ratio 1) or, on a chapter title, the pointy-top hexagon
+  (`polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%)`, ratio 0.864). Back to front: a 2 px night
+  ring, a 4 px bone ring, a 3 px ring in the key colour and the night face, all clipped to the shape, with a
+  hard 3 / 4 px drop shadow of night .72.
+- The face holds the pictogram at 1.5 em in its ink, or the painted question mark covering the face inside
+  the key ring, the typed « ? » under it when the picture cannot load.
+- Sizes, set as the frame's font size: chapter `clamp(32px, 7cqi, 46px)` with 5 and 4 px rings, no shadow
+  and a halftone echo of its shape 10 / 12 px off, turned 4°; page `clamp(22px, 4cqi, 28px)`; section
+  `clamp(17px, 2.8cqi, 20px)`; subsection 15 px with 3 and 2 px rings and a 2 / 3 px shadow.
+
+### A section
+
+- The `div.au-head` turned -1.5° (-1° under 40rem), 2.5 em above and 1.05 em below (none above when it opens
+  its wrapper, 0.6 em when it opens the prose), 2 px clear of each side.
+- Its strip, behind: the key colour under 1.3 px night dots on a 7 px grid, from 1.6 em to 4 px short of the
+  column's end, `polygon(20px 0, 100% 8px, calc(100% - 16px) 100%, 0 calc(100% - 6px))`, turned 2.6°.
+- Its plate, the `h2`: bone, ink `#14100a`, Cinzel 700, `min(var(--prose-h2), (100cqi - room) / --fit-letters)`,
+  line height 1.18, tracked 0.03 em, a 2 px night outline and a hard 4 / 5 px shadow, overlapping its frame by
+  0.5 em; at least `min(40cqi, 22rem, 100% - 3.5rem)` wide and at most 3.5 rem short of the column.
+
+### A subsection
+
+- The `div.au-head` turned -1° (-0.5° under 40rem), 2 em above and 0.85 em below.
+- Its strip: dots of the key colour alone, 1.5 px on a 6 px grid, from 14 % to 2 % of its height,
+  `polygon(14px 0, 100% 5px, calc(100% - 12px) 100%, 0 calc(100% - 4px))`, turned 1.8°.
+- Its plate, the `h3`: night, bone Cinzel 700, an inner 2 px night and 3.5 px bone ring, a 1.5 px night
+  outline and a hard 3 / 4 px shadow; at least `min(28cqi, 15rem, 100% - 2.6rem)` wide.
+
+### The page title
+
+- `page`: a full-width panel of the key colour under the same dots,
+  `polygon(30px 0, 100% 14px, calc(100% - 26px) 100%, 0 calc(100% - 12px))` turned 1.2°; the frame at its top
+  left, 0.95 em above its edge; the `h1` a night plate in bone Cinzel 700, a 4 px bone ring, a 1.5 px night
+  outline and a hard 6 / 7 px shadow, turned -1.2°.
+- `chapter`: the frame first, the plate beside it 0.9 rem away, turned -1.5° over an echo of itself in the
+  key halftone 11 / 13 px off, turned 1.6°; the chapter's number outlined behind the plate as the sheet's
+  ghost name, `clamp(96px, 24cqi, 190px)`, its drift paused. Under 40rem the frame stands above the plate.
+- The `h1` at `clamp(14px, min(5.2cqi, (100cqi - room) / --fit-letters), 42px)`, at least
+  `min(55cqi, 30rem, 100% - 10px)` wide; the line under it in EB Garamond italic, `--ink2`, aligned to the
+  plate.
+
+### Fallbacks of the titles
+
+- Print and forced colours keep the plain titles: no frame, no strip, no tilt; inside prose the wrapper is
+  `display: contents` and the `h2` keeps its 1 px rule (`src/styles/prose.css`); a title outside prose and
+  the page title fall back to plain Cinzel 700 in the page's ink.
+- Prose without a `.au-titles` wrapper, such as the equipment help, shows its titles as before, the frames
+  hidden.
+
+### Measured at the ship of the titles
+
+On 2026-11-10, over a book chapter, a policy, the credits, three species and two trees in both
+languages, at 1512, 1366, 1024, 820, 390 and 320 px, with and without the text spacing of WCAG 1.4.12:
+108 states, 912 titles, no sideways scroll, no text past its plate, no plate past its column, every piece at
+least 24 px inside the screen, a jump from the side list leaving every title at least 10 px under the
+header, every quote at least 14.1 px clear of the title after it, the lowest contrast 4.8 to 1 (a
+pictogram on night). The pages without titles matched their earlier captures (28 of 28 shots, the hubs and
+the select screens among them), and the first screen of six sheet pages, at two sizes, matched to the
+pixel.
+
 ## What only Aubaine has
 
 ### The logo and its crest
@@ -1111,7 +1205,9 @@ The other shapes of the two pieces are rectangles for cards, plates, stickers an
 quadrilateral; grade plates skewed -10°; and 44 px, 38 px and 28 px squares for the help and step
 buttons, the pause button and the profile's info button. Circles appear only as halftone and pattern
 dots, as the stage's motes, as the ring of the info glyph (`mdi:information-outline`) and in the drafts
-switch, a pill with a round knob. No circle marks focus or selection.
+switch, a pill with a round knob. No circle marks focus or selection. The titles, approved later
+(2026-11-10), add the one round frame: a section, a subsection and a page title other than a book's
+chapter hold their picture in a ring ([The titles](#the-titles)).
 
 ### Kind marks and category marks
 
@@ -1258,6 +1354,7 @@ direction).
 | `tests/e2e/hub-stage.spec.ts` | one title and no picture of its own; each entry linked once in the roster and once from the spotlight; the lead in the note with its chapter; the title and its help button kept apart; the pause; Swup visits; the light theme; print; reduced motion never fetching the stage code |
 | `tests/e2e/hubs.spec.ts` | On both hubs in both languages: one door per section, each linked once; each door's page named as the door and offering a way on; each door's light equal to its page's opening picture; the header menu listing the doors in their order; the lead in the help note. In both languages: every book category's page answering with its two language alternates; one with entries carrying its canonical; an empty one showing its title, its line and the link back, carrying `noindex`, no canonical, left out of the sitemap, and printed in dark ink on white paper without its stage. On both hubs in English: the first door lit at rest and never marked current; pointing lights a door, moves the stage and leaves it lit; "a door the pointer only crosses never takes the light or the stage" (a second after a door is pointed and left before its 80 ms run out, the first door still holds `data-lit` and the stage the first door's light); "keyboard focus that leaves the doors for a button leaves no door pointed" (Shift+Tab from the first door to the help button clears `data-pointed`, and the first door keeps `data-lit`); "keyboard focus on a button of the menu clears the pointed door and its intent" (a door the pointer points loses `data-pointed` when keyboard focus lands on the help button, and its 80 ms never runs out into `data-lit`); "the keyboard lights the door it focuses at once" (with the page's clock paused, the focused door takes `data-lit` without a timer, and no other door holds it); a client visit binds the doors, and coming back binds them again in the same document. On both hubs in French: doors read in the order they are drawn. At the seven sizes and 320 × 568 in both languages: nothing cut on a Codex door, each door lit in turn from 960 px and the first door lit at rest below (plates on screen and inside the menu, the lit name clear of its band, the pictogram on screen, a missing piece counted as a problem); nothing cut on the Livres contents with each entry lit in turn (the sheet on screen; the title plates on screen and uncut by the section; every numeral, name, mark and line present, and inside the sheet and inside its link on all four sides; no name running into its mark; no entry over another; no focus ring across the line above); and the pause square clear of the sheet. In English: the help button clear of the header when the keyboard reaches it, on Livres, on an empty category, on the Codex, on both indexes and on a category with entries, at four sizes; forced colours hiding the Livres numerals; print outlining them under a white halo round each name, keeping an entry whole, on white paper under the dark theme; on both hubs, the light theme and print |
 | `tests/e2e/page-transit.spec.ts`, `tests/unit/page-door.test.ts` | The Codex panel: every door to a select screen slides its band past the right edge on the title's timing over the spotlight, and Back slides it home while the spotlight fades on the same curve; a door taken without pointing, by Enter or by a tap carries its own whole band with every other scene dark; a door to an index not yet redone, a visit no door started, 1024 × 768 and below 960 px keep the fade; a spotlight picture that decodes late starts its arrival with the motion; the door taken keeps the light while its page loads and is lit again on Back. A sticker held in suspense plays again on the sheet it is carried to, and ends whole |
+| `tests/e2e/titles.spec.ts`, `tests/unit/prose-headings.test.ts` | On every book chapter, species, tree and policy page in both languages: each title carries one frame, hidden from screen readers, holding a pictogram or the painted question mark; no sideways scroll; the side list's words equal its titles'. A title naming a kind shows that kind's mark; a chapter title carries its book's pictogram and its side-list number; every title plate on screen at 390 and 320 px; no quote running into the title after it; a jump from the side list leaving every title at least 8 px under the header; print and forced colours with no frame and no tilt. The markup: the wrapper, the unset frame, the level, the fit, the heading and its id untouched, quotes and callouts left alone |
 | `tests/e2e/lore-quote.spec.ts`, `tests/unit/prose-quotes.test.ts` | On every species page whose lore holds a quote, in both languages, at 1512 × 860, 390 × 844 and 320 × 568: no sideways scroll; the quote, its title and its name tags on screen; every line inside its box's polygon, as the browser reports it, clear of the contour; the title, the name tags and the quotation mark over no line, and the mark and the tags clear of the title. Each title at the corner its source line names. Print and forced colours showing the plain quote with its marks back. Every portrait on screen, over no line, tag, title or other turn, every bust of a dialogue one size, and none in print or forced colours. The markup: speech or dialogue, speakers by name, the marks and boxes, every corner and background read, an unknown word refused with the file's name, the title before or after the quote by its corner |
 | `tests/e2e/print.spec.ts` | Under the dark theme, with background graphics on: the select screens and the Codex on white paper with every word readable; a sheet on its white ground with every word readable and its profile's rings kept; the group marks without their tape and the filter count readable; title plates straight and readable; every sheet fitting below the header of its first A4 page |
 | `tests/e2e/drafts.spec.ts`, `tests/e2e/scroll-cue.spec.ts`, `tests/e2e/art-effect-fallback.spec.ts`, `tests/e2e/no-javascript.spec.ts`, `tests/e2e/images.spec.ts` | the drafts switch; the cue; the plain picture without WebGL2 or on a software renderer; the markup without JavaScript, the hub doors opening their pages and taking the light from the pointer and the keyboard, and "keyboard focus keeps the light while the pointer hovers another door" (one door lit, the focused one); picture widths |

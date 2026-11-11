@@ -55,7 +55,9 @@ test('every species with names reads them under « Noms »: its custom, its shar
       const section = page.locator('section').filter({ has: page.locator('h2#noms') })
       await expect(section.locator('h2')).toHaveText(t.speciesNames)
       const reading = await section
-        .locator(':scope > .au-rule-text, :scope > h3, :scope > dl > dt, :scope > dl > dd')
+        .locator(
+          ':scope > .au-rule-text, :scope > .au-head > h3, :scope > dl > dt, :scope > dl > dd',
+        )
         .evaluateAll((nodes) =>
           nodes.map((node) =>
             node.classList.contains('au-rule-text')

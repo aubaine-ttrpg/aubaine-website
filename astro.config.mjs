@@ -8,6 +8,7 @@ import { devHub } from './src/dev/integration.ts'
 import {
   rehypeCodexTerms,
   rehypeDropComments,
+  rehypeProseHeadings,
   rehypeProsePictureCaptions,
   rehypeProsePictureMasks,
   rehypeProseQuotes,
@@ -46,6 +47,7 @@ export default defineConfig({
         rehypeProseTables,
         rehypeProseSidePictures,
         rehypeProsePictureMasks,
+        rehypeProseHeadings,
       ],
     }),
   },

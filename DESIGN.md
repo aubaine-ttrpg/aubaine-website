@@ -45,7 +45,7 @@ stage, one Roman numeral per entry, and the lit numeral cut in paper over a slab
 
 ### The approved pieces
 
-Five pieces carry the direction; the others follow them.
+Six pieces carry the direction; the others follow them.
 
 | Piece | Code | Routes | Approved |
 | --- | --- | --- | --- |
@@ -54,12 +54,13 @@ Five pieces carry the direction; the others follow them.
 | The plate menu, which opens the Codex hub | `src/components/primitives/PlateMenu.astro`, with `PlateDoor.astro`, `DoorGlyph.astro`, `src/styles/doors.css` and `src/scripts/door-light.ts` | `/fr/almanach`, `/en/almanach` | 2026-10-31 |
 | The contents spread, which opens the Livres hub | `src/components/primitives/SommaireSpread.astro`, with `SommaireEntry.astro`, `src/styles/doors.css` and `src/scripts/door-light.ts` | `/fr/livres`, `/en/books` | 2026-10-31 |
 | The quote and the dialogue of a lore page | `rehypeProseQuotes` in `src/lib/game/book-markup.ts` and `src/styles/prose.css` | every species page whose lore holds a quote, such as `/fr/espece/humain` and `/fr/espece/scothan` | 2026-11-04 |
+| The titles of the reading pages | `src/components/primitives/PageTitle.astro`, with `SectionTitle.astro`, `TitleFrame.astro`, `src/styles/titles.css` and `rehypeProseHeadings` in `src/lib/game/book-markup.ts` | every book chapter, species, tree and policy page, such as `/fr/livres/livre-du-joueur/creer-un-personnage` and `/en/licences` | 2026-11-10 |
 
 - The sheet and the select screen are approved as they stand at commit `a9b3954` (2026-10-29), and the
   pages that use them still render identically. `tests/e2e/character-hero.spec.ts`,
   `tests/e2e/select-screen.spec.ts` and `tests/e2e/hubs.spec.ts` guard the first four,
-  `tests/e2e/lore-quote.spec.ts` the quote.
-- Screenshots of the five are in `.claude/skills/aubaine-design/assets/approved/`.
+  `tests/e2e/lore-quote.spec.ts` the quote, `tests/e2e/titles.spec.ts` the titles.
+- Screenshots of the six are in `.claude/skills/aubaine-design/assets/approved/`.
 
 ### Three games, three layers
 
@@ -193,8 +194,11 @@ Each principle names its source.
     ([Kotaku, 2024](https://kotaku.com/-metaphor-refantazio-persona-5-menu-ui-hashino-1851667088)).
     Persona 5's Confidant screen sets its descriptions level, in a plain face on black panels.
 12. **Intensity follows the place.** Choice screens and hubs carry the show; reading pages stay calm.
-    The quote and the dialogue of a lore page are the one exception the owner made: game pieces inside
+    The quote and the dialogue of a lore page are the exception the owner made: game pieces inside
     the reading, drawn from Persona 5's dialogue box (`docs/adr/0068-a-lore-quote-is-a-staged-game-dialogue-box.md`).
+    The titles of the reading pages joined them on 2026-11-10, drawn from the quote's title and box
+    (`docs/adr/0076-reading-titles-are-framed-plates-in-the-quote-s-family.md`); the text between them
+    stays calm.
     *Source:* on Persona 5 Royal's interface at school and in the subway, "In these places, everything
     is tuned out to look muted and drab.", while in its dungeons "everything features high-contrast,
     kinetic energy"
@@ -338,6 +342,10 @@ Humain's authored azure `#44a8e7`, the Règles kind blue, the seals of trees in 
 | Livres numeral | Cinzel 700 | 96 px; 128 px from 640 px; from 1100 px fitted to the row, `clamp(84px, (row - 40px) / 0.78, 240px)` | line-height 0.74 | at rest bone tinted with 24 % of the entry's colour; lit bone stroked 1.5 px in `#14100a` | `SommaireEntry.astro`, `SommaireSpread.astro` |
 | Livres entry name | Cinzel 700 | fitted from the longest word at 0.8 em a letter, one size per hub: at most 28 px, 40 px from 640 px; no floor, so the longest word always fits before its hexagon (14.2 px on a 320 px screen, 22.7 px on 390 px) | capitals, line-height 1 | `#14100a`, haloed 2 px in the paper | `SommaireEntry.astro`, `SommaireSpread.astro` |
 | Livres entry line | EB Garamond italic | `clamp(16px, 1.25vw, 19px)` | line-height 1.25 | `#3a3448`, `#14100a` when lit | `SommaireEntry.astro` |
+| Page title, a reading page's `h1` | Cinzel 700 on a night plate | `clamp(14px, min(5.2cqi, (100cqi - room) / letters), 42px)`, fitted to the longest word; the plate at least `min(55cqi, 30rem)` wide | line-height 1.08, 0.02 em | `#efe4cc` | `PageTitle.astro`, `src/styles/titles.css` |
+| Section title, `h2` | Cinzel 700 on a bone plate | `min(var(--prose-h2), (100cqi - room) / letters)`; the plate at least `min(40cqi, 22rem)` wide | line-height 1.18, 0.03 em | `#14100a` | `SectionTitle.astro`, `rehypeProseHeadings`, `src/styles/titles.css` |
+| Subsection title, `h3` | Cinzel 700 on a night plate | `min(clamp(1.0625rem, 1.02rem + 0.22vw, 1.1875rem), (100cqi - room) / letters)`; the plate at least `min(28cqi, 15rem)` wide | line-height 1.2, 0.03 em | `#efe4cc` | `SectionTitle.astro`, `rehypeProseHeadings`, `src/styles/titles.css` |
+| A page title's line | EB Garamond italic | `clamp(1.0625rem, 1rem + 0.3vw, 1.25rem)` | line-height 1.4 | `--ink2` | `PageTitle.astro` |
 | Reading | Spectral (`--font-body`) | the prose scale of `src/styles/tokens.css` | | | `src/styles/base.css` |
 
 The families are declared in `src/styles/fonts.css`.
@@ -555,10 +563,10 @@ From the back to the front:
 - **The hexagon is pointy-top**, like the logo, never a diamond: the eyebrow's solid mark, the group
   marks, the seal's crest (the logo's double hexagon), the profile's rings and markers, the
   Caractéristique badges (the rounded `mdi:hexagon`), the frame of a trait's glyph, the divider's mark.
-- **No circle and no rounded corner** in the approved pieces, apart from the rounded `mdi:hexagon` and
-  the drafts switch. Riot's circle, "Built to draw focus towards primary items that require a
-  reaction", stays unused; if a ring ever appears, it marks the one thing waiting for the reader during a
-  real wait.
+- **No circle and no rounded corner** in the approved pieces, apart from the rounded `mdi:hexagon`, the
+  drafts switch and the titles' frames. Since 2026-11-10 a section, a subsection and a page title other
+  than a book's chapter hold their picture in a ring, the owner's pick for title frames only; a book's
+  chapter title keeps the pointy-top hexagon, and every marker, bullet and badge stays a hexagon.
 
 **Angles.** Each kind of paper cycles through its own resting angles:
 
@@ -664,6 +672,14 @@ From the back to the front:
 
 **Reading**
 
+- The titles: `rehypeProseHeadings` in `src/lib/game/book-markup.ts` wraps a prose page's `h2` and `h3` with
+  a frame; `PageTitle.astro` and `SectionTitle.astro` build the rest; `src/styles/titles.css` draws them
+  inside a `.au-titles` reading column. A page title is a night plate with the quote box's bone ring (on a
+  book chapter led by a hexagonal frame holding the category's pictogram, elsewhere laid on a full-width
+  key panel), a section a bone plate on a key strip, a subsection a small night plate on a strip of key
+  dots, each level quieter and each plate at least a share of its column wide. Each frame holds the title's
+  pictogram or, until one is set, the painted question mark of the square placeholder; frames are round,
+  a chapter's hexagonal. Print and forced colours keep the plain titles.
 - `rehypeProseQuotes` in `src/lib/game/book-markup.ts`: a blockquote becomes a speech or a dialogue, its
   source line the title, staged at a corner from `TITLE_CORNERS` on a background from `QUOTE_BACKINGS`.
 - `src/styles/prose.css`: the night dialogue box with its bone contour, the bone title with its black

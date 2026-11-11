@@ -5,6 +5,7 @@ import { skillSources, treeNodeAttributes } from '../../lib/game/browse-entries'
 import { treeSheet } from '../../lib/game/character-sheet'
 import type { Corpus, ResolvedTree } from '../../lib/game/corpus'
 import { formatNumber, showsXp, xpOf } from '../../lib/game/derive'
+import { KIND_MARKS, kindInk } from '../../lib/game/kind-marks'
 import { loreFor } from '../../lib/game/prose'
 import { treeSealKey } from '../../lib/game/seals'
 import type { Locale } from '../../lib/i18n/locales'
@@ -12,6 +13,7 @@ import { pathFor, TREE_ANCHOR, treeNodeHref } from '../../lib/i18n/routes'
 import { strings } from '../../lib/i18n/strings'
 import { readingKeys } from '../../lib/key-colour'
 import { bookletHref } from '../../lib/media'
+import { titleFrameStyle } from '../../lib/title-frames'
 import CharacterHero from '../primitives/CharacterHero.astro'
 import DetailPane from '../primitives/DetailPane.astro'
 import EmptyState from '../primitives/EmptyState.astro'
@@ -19,12 +21,13 @@ import FilterBar from '../primitives/FilterBar.astro'
 import Plate from '../primitives/Plate.astro'
 import PlateLegend from '../primitives/PlateLegend.astro'
 import Provenance from '../primitives/Provenance.astro'
-import SectionHead from '../primitives/SectionHead.astro'
+import SectionTitle from '../primitives/SectionTitle.astro'
 import SectionTrail from '../primitives/SectionTrail.astro'
 import SkillEntry from '../primitives/SkillEntry.astro'
 import '../../styles/almanach.css'
 import '../../styles/prose.css'
 import '../../styles/reading.css'
+import '../../styles/titles.css'
 
 type Props = { locale: Locale; corpus: Corpus; tree: ResolvedTree; selected?: string | undefined }
 
@@ -44,6 +47,7 @@ const lore = await loreFor('skill-trees', tree.id, locale)
 const LoreOpening = lore?.opening?.Content
 const LoreSections = lore?.sections?.Content
 const keys = readingKeys(await keyOf(tree.cover, tree.keyColour, treeSealKey(tree, corpus)))
+const titleStyle = `${keys}; ${await titleFrameStyle()}`
 const trail = lore
   ? [
       ...(lore.sections?.headings ?? [])
@@ -86,8 +90,8 @@ const trail = lore
             <SectionTrail sections={trail} />
           </nav>
         )}
-        <div class="au-reading__body">
-          <div class="au-prose" style={keys}>
+        <div class="au-reading__body au-titles" style={titleStyle}>
+          <div class="au-prose">
             {LoreOpening && <LoreOpening />}
             {LoreSections && <LoreSections />}
           </div>
@@ -97,11 +101,12 @@ const trail = lore
   }
 
   <section class="au-tree" aria-labelledby={TREE_ANCHOR}>
-    <div class="au-tree__head">
-      <SectionHead
-        title={t.plate}
-        count={`${formatNumber(tree.placements.length, locale)} ${t.nodes}`}
+    <div class="au-tree__head au-titles" style={titleStyle}>
+      <SectionTitle
+        level={2}
         id={TREE_ANCHOR}
+        text={t.plate}
+        pictogram={{ icon: KIND_MARKS.trees.icon, ink: kindInk('trees') }}
       />
     </div>
 

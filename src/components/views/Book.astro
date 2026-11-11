@@ -3,6 +3,7 @@ import { getEntry } from 'astro:content'
 
 import { hasBooklet } from '../../lib/booklet/manifest'
 import type { Corpus } from '../../lib/game/corpus'
+import { CATEGORY_MARKS, categoryInk } from '../../lib/game/kind-marks'
 import { bookOpening, type Opening } from '../../lib/game/library'
 import { bookChapterHeads } from '../../lib/game/pages'
 import { renderProse } from '../../lib/game/prose'
@@ -10,11 +11,14 @@ import { DEFAULT_LOCALE, type Locale } from '../../lib/i18n/locales'
 import { pathFor } from '../../lib/i18n/routes'
 import { strings } from '../../lib/i18n/strings'
 import { bookletHref, PLACEHOLDER_BANNER } from '../../lib/media'
+import { titleFrameStyle } from '../../lib/title-frames'
 import Hero from '../primitives/Hero.astro'
+import PageTitle from '../primitives/PageTitle.astro'
 import SectionTrail from '../primitives/SectionTrail.astro'
 import '../../styles/almanach.css'
 import '../../styles/prose.css'
 import '../../styles/reading.css'
+import '../../styles/titles.css'
 
 type Props = { locale: Locale; corpus: Corpus; bookId: string; chapter: string }
 
@@ -44,6 +48,9 @@ const pages = book.chapters.map((entry, position) => ({
 }))
 
 const pageTitle = pages[index]?.title ?? book.title
+const chapterLine = heads.get(`${book.id}/${current.file}`)?.description
+const chapterNumber = pages[index]?.num ?? String(index + 1)
+const frameStyle = await titleFrameStyle()
 const outline = headings
   .filter((heading) => heading.depth === 2)
   .map((heading) => ({ text: heading.text, href: `#${heading.slug}` }))
@@ -130,13 +137,16 @@ const versioned = hasBooklet(book.id)
       <SectionTrail sections={chapters} nestedLabel={t.onThisPage} />
     </nav>
 
-    <article id="book-body" class="au-reading__body">
-      <h1
-        data-book-title
-        style="margin:0 0 1.5rem; font-family:var(--font-display); font-size:clamp(28px,3.4vw,42px); font-weight:700; line-height:1.06; color:var(--ink); text-wrap:balance"
-      >
-        {pageTitle}
-      </h1>
+    <article id="book-body" class="au-reading__body au-titles" style={frameStyle}>
+      <PageTitle
+        text={pageTitle}
+        line={chapterLine}
+        chapter={{
+          number: chapterNumber,
+          pictogram: { icon: CATEGORY_MARKS[book.category].icon, ink: categoryInk(book.category) },
+        }}
+        headingData={{ 'data-book-title': '' }}
+      />
       <div class="au-prose">
         <Content />
       </div>
@@ -218,11 +228,6 @@ const versioned = hasBooklet(book.id)
 <style>
   .au-reading__body {
     animation: au-fade 0.35s ease both;
-  }
-
-  [data-book-title] {
-    padding-block-end: 1.25rem;
-    border-block-end: 1px solid var(--accent-line);
   }
 
   .au-book-foot {

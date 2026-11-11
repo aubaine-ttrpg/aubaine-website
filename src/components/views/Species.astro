@@ -4,26 +4,24 @@ import { skillBrowseEntries } from '../../lib/game/browse-entries'
 import { speciesSheet } from '../../lib/game/character-sheet'
 import type { Corpus, ResolvedSpecies } from '../../lib/game/corpus'
 import { label } from '../../lib/game/corpus'
-import {
-  formatNumber,
-  HERALDRY_PLACEMENT,
-  SUBSPECIES_SECTIONS,
-  subspeciesAnchor,
-} from '../../lib/game/derive'
+import { HERALDRY_PLACEMENT, SUBSPECIES_SECTIONS, subspeciesAnchor } from '../../lib/game/derive'
+import { KIND_MARKS, kindInk } from '../../lib/game/kind-marks'
 import { loreFor } from '../../lib/game/prose'
 import type { SubspeciesLabel } from '../../lib/game/schema'
 import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
 import { readingKeys } from '../../lib/key-colour'
+import { titleFrameStyle } from '../../lib/title-frames'
 import BrowseList from '../primitives/BrowseList.astro'
 import CharacterHero from '../primitives/CharacterHero.astro'
 import Heraldry from '../primitives/Heraldry.astro'
 import RuleText from '../primitives/RuleText.astro'
-import SectionHead from '../primitives/SectionHead.astro'
+import SectionTitle from '../primitives/SectionTitle.astro'
 import SectionTrail from '../primitives/SectionTrail.astro'
 import '../../styles/almanach.css'
 import '../../styles/prose.css'
 import '../../styles/reading.css'
+import '../../styles/titles.css'
 
 type Props = { locale: Locale; corpus: Corpus; species: ResolvedSpecies }
 
@@ -79,6 +77,7 @@ const LoreOpening = lore?.opening?.Content
 const LoreSections = lore?.sections?.Content
 const hasPlayReading = LoreOpening !== undefined || hasPlaying || hasNames
 const keys = readingKeys(await keyOf(species.cover, species.keyColour))
+const titleStyle = `${keys}; ${await titleFrameStyle()}`
 
 function numbered<T extends object>(sections: T[]) {
   return sections.map((section, position) => ({
@@ -133,13 +132,13 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
             ))}
           </nav>
         )}
-        <div class="au-reading__body">
-          <div class="au-prose" style={keys}>
+        <div class="au-reading__body au-titles" style={titleStyle}>
+          <div class="au-prose">
             {LoreOpening && <LoreOpening />}
 
             {hasPlaying && (
               <section>
-                <h2 id={PLAYING_ID}>{t.playingAs(species.name)}</h2>
+                <SectionTitle level={2} id={PLAYING_ID} text={t.playingAs(species.name)} />
                 {roleplay?.text && <RuleText source={roleplay.text} corpus={corpus} locale={locale} />}
                 {(playing.length > 0 || hasSubspecies) && (
                   <dl>
@@ -169,10 +168,10 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
 
             {hasSubspecies && (
               <section>
-                <h2 id={SUBSPECIES_ID}>{words.plural}</h2>
+                <SectionTitle level={2} id={SUBSPECIES_ID} text={words.plural} />
                 {species.subspecies.map((sub) => (
                   <article id={subspeciesAnchor(sub.id)} class="au-subspecies">
-                    <h3>{sub.name}</h3>
+                    <SectionTitle level={3} text={sub.name} />
                     {sub.heraldry && HERALDRY_PLACEMENT[sub.heraldry.kind] === 'beside' ? (
                       <div class="au-subspecies__flanked">
                         <Heraldry
@@ -211,7 +210,7 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
 
             {hasNames && (
               <section>
-                <h2 id={NAMES_ID}>{t.speciesNames}</h2>
+                <SectionTitle level={2} id={NAMES_ID} text={t.speciesNames} />
                 {species.naming && (
                   <RuleText source={species.naming} corpus={corpus} locale={locale} />
                 )}
@@ -227,7 +226,7 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
                 )}
                 {subspeciesNameGroups.map((group) => (
                   <>
-                    <h3>{group.name}</h3>
+                    <SectionTitle level={3} text={group.name} />
                     <dl>
                       {group.rows.map((row) => (
                         <>
@@ -247,11 +246,12 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
   }
 
   <section>
-    <div style="max-width:1560px; margin:0 auto; padding:40px 26px 0">
-      <SectionHead
-        title={t.speciesOffer}
-        count={`${formatNumber(species.pool.length, locale)} ${t.entries_}`}
+    <div class="au-species-offer au-titles" style={titleStyle}>
+      <SectionTitle
+        level={2}
         id="skills"
+        text={t.speciesOffer}
+        pictogram={{ icon: KIND_MARKS.skills.icon, ink: kindInk('skills') }}
       />
       {
         species.pool.length === 0 && (
@@ -284,8 +284,8 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
             <SectionTrail sections={loreTrail} />
           </nav>
         )}
-        <div class="au-reading__body">
-          <div class="au-prose" style={keys}>
+        <div class="au-reading__body au-titles" style={titleStyle}>
+          <div class="au-prose">
             <LoreSections />
           </div>
         </div>
@@ -301,6 +301,13 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
 
   .au-species-play {
     padding-block-end: 0;
+  }
+
+  .au-species-offer {
+    width: 100%;
+    max-width: 1560px;
+    margin: 0 auto;
+    padding: 40px 26px 0;
   }
 
   .au-trail-part + .au-trail-part {

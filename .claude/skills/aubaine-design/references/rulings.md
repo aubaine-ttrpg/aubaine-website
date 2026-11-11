@@ -22,6 +22,7 @@ the values of the approved pieces are in `approved-pieces.md`.
 - [Layout and composition](#layout-and-composition)
 - [Pictures and materials](#pictures-and-materials)
 - [Colour, marks and type](#colour-marks-and-type)
+- [Titles](#titles)
 - [Motion](#motion)
 - [Tools for players](#tools-for-players)
 - [Index by date](#index-by-date)
@@ -653,7 +654,7 @@ a 1512 px screen, the text beside it keeping 36 to 49 characters a line (33 to 4
 ## Colour, marks and type
 
 **The pointy-top hexagon is the mark.** Markers, bullets and badges are pointy-top hexagons like the
-logo, never diamonds; the Atlas's landmark labels took hexagons, and the Eden map's emblem is a Celtic
+logo, never diamonds (title frames may be round since 2026-11-10, [Titles](#titles)); the Atlas's landmark labels took hexagons, and the Eden map's emblem is a Celtic
 tree of life inside a hexagon. Draw a hexagon that needs a glow or an outline as an inline SVG polygon,
 since `clip-path` cuts shadows.
 
@@ -697,6 +698,53 @@ the Marchand a gold beige (`#e3c28c`), the last two chosen for the owner.
 **Shorter labels.**
 
 > "Characteristique Dominante should be reduced to characteristique" (2026-10-28)
+
+## Titles
+
+**Titles belong to the quote's family, one look per level, each quieter (2026-11-10).** The owner asked
+for page titles, sections and subsections drawn from the approved lore quote, in the key colour, each
+level quieter than the one above, for the web pages and later the printed material. A page title is a
+night plate with the quote box's bone ring; a section is a bone plate with a night outline and a hard
+shadow; a subsection is a small night plate with a thin bone ring. Every level runs full width on a
+strip of its own: the page title on a full-width key-colour panel, a section on a key-colour strip under
+halftone, a subsection on a strip of key halftone dots alone. The owner asked for the subsection's strip
+too, after seeing it without one.
+
+**Each title has a frame, and the frame holds a picture (2026-11-10).** A title's frame holds its
+pictogram where the title names something that has one, as « Compétences d'Espèce » takes the
+Compétences mark and a book's chapter its category's. A title with no pictogram yet shows the painted
+question mark of the square placeholder (`placeholder-1_1-og.png`), the owner's pick over a typed « ? »:
+a pictogram can exist there but is not set, so the frame says so (the rule of « ? » above). Section
+numbers and a skill's painting were tried in the frames; neither is the default, and a skill's painting
+waits for a rule saying which skill a title takes.
+
+**A title frame may be round (2026-11-10).** Sections, subsections and the titles of pages other than
+book chapters take a round frame; a book's chapter title takes the logo's pointy-top hexagon. Both were
+shown side by side live and the owner picked per level. The round frame is an exception to "the
+pointy-top hexagon is the mark" for title frames only; markers, bullets and badges stay hexagons.
+
+**A book's chapter title leads with its frame; other pages lay the title on its panel (2026-11-10).** On a
+book chapter the frame comes first, large, with the category pictogram in the hexagon and its halftone
+echo behind it, the title on a night plate with an echo backing, the chapter's number outlined behind
+the plate as the sheet's ghost name is, and the chapter's own one-line description under it. Every other
+page lays a night plate on the full-width key panel, the round frame breaking the panel's top edge at its
+start, the page's description under it. Both were built and switched live; the owner set these defaults
+for books and for everything else.
+
+**No title is a small plate on a long strip (2026-11-10).** Each level keeps a minimum plate width, a
+share of its column (the page title 55 %, a section 40 %, a subsection 28 %), so a short title such as
+« L'Âme » never sits lost on its strip and each level stays visibly smaller than the one above. The
+owner asked for it always on.
+
+**A header still never repeats the list below it (2026-11-10).** The section titles that replaced the old
+section heads over a species' skills and a tree's board dropped their « N entrées » and « N nœuds »:
+the filter bar under them already gives the count.
+
+Approved on 2026-11-10, built and tuned live on a gated page with a panel of switches, then shipped. The
+values are in `src/styles/titles.css`, `src/components/primitives/PageTitle.astro`,
+`src/components/primitives/SectionTitle.astro`, `src/components/primitives/TitleFrame.astro` and
+`rehypeProseHeadings` in `src/lib/game/book-markup.ts`. Captures: `../assets/approved/titles-book-chapter.jpg`,
+`titles-species-humain.jpg`.
 
 ## Motion
 
@@ -836,3 +884,4 @@ and praised the Saison slider.
 | 2026-11-06 | an almanach may flash CADRAN in its own tube on a reader's switch-on; a page may give its almanach a style, the Humans' royal azure picked as a start |
 | 2026-11-07 | the Humans take the default almanach, set in the Dev Hub; a picture fills the tube; an almanach's buttons sit on its caption's line |
 | 2026-11-08 | a painting may hang in a rustic wooden frame, floated beside its text |
+| 2026-11-10 | titles in the quote's family, one look per level, each full width; each title framed, its pictogram or the painted question mark; a title frame may be round, the chapter title a hexagon; a chapter leads with its frame, other pages lay their title on a panel; a minimum plate width per level; a header never repeats the list below it; the titles, approved |

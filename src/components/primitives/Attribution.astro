@@ -3,14 +3,13 @@ import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
 import { FONT_FAMILIES, ICON_SETS } from '../../lib/rights/attribution'
 import { creditSections } from '../../lib/rights/credits'
+import SectionTitle from './SectionTitle.astro'
 
 type Props = { locale: Locale }
 
 const { locale } = Astro.props
 const t = strings(locale)
 
-const headingStyle =
-  'margin:44px 0 0; scroll-margin-top:var(--sticky-top); font-family:var(--font-display); font-size:var(--prose-h2); font-weight:700; color:var(--ink)'
 const tableStyle =
   'width:100%; margin-top:16px; border-collapse:collapse; font-family:var(--font-ui); font-size:15px'
 const headStyle =
@@ -24,9 +23,7 @@ const sections = creditSections(t)
   {
     sections.map((section) => (
       <>
-        <h2 id={section.id} style={headingStyle}>
-          {section.heading}
-        </h2>
+        <SectionTitle level={2} id={section.id} text={section.heading} />
         {section.kind === 'icons' && (
           <table style={tableStyle}>
             <thead>

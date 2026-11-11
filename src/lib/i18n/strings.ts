@@ -269,7 +269,6 @@ const fr = {
   almanachLead:
     'Les index d’Aubaine, chacun avec ses filtres : Arbres, Espèces, Compétences, équipement, matériaux et règles.',
   allIndexes: 'Tous les index',
-  entries_: 'entrées',
   downloadBooklet: 'Télécharger le livret',
   pages: 'Pages',
   onThisPage: 'Sur cette page',
@@ -818,7 +817,6 @@ const en: UiStrings = {
   almanachLead:
     'Aubaine’s indexes, each with its own filters: Trees, Species, Skills, equipment, materials and rules.',
   allIndexes: 'All indexes',
-  entries_: 'entries',
   downloadBooklet: 'Download the Booklet',
   pages: 'Pages',
   onThisPage: 'On this page',

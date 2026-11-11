@@ -34,6 +34,18 @@
   letter-spacing: 0.03em;
 }
 
+.au-prose :where(.au-head) {
+  display: contents;
+}
+
+.au-prose :where(.au-head) > :where(.au-frame) {
+  display: none;
+}
+
+.au-prose > :where(.au-head:first-child) > :is(h2, h3) {
+  margin-block-start: 0;
+}
+
 .au-prose p {
   margin-block: 0.8em 0;
 }

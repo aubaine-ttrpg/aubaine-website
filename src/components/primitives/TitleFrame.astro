@@ -1,0 +1,25 @@
+---
+import { FRAME_CLASS, FRAME_FACE_CLASS, UNSET_PICTOGRAM } from '../../lib/game/book-markup'
+import type { TitlePictogram } from '../../lib/title-frames'
+import Icon from './Icon.astro'
+
+type Props = {
+  pictogram?: TitlePictogram | undefined
+  size: 'chapter' | 'page' | 'section' | 'subsection'
+}
+
+const { pictogram, size } = Astro.props
+---
+
+<span
+  class={FRAME_CLASS}
+  data-size={size}
+  data-face={pictogram ? 'icon' : 'unset'}
+  aria-hidden="true"
+  style={pictogram ? `--frame-ink:${pictogram.ink}` : undefined}
+>
+  {size === 'chapter' && <span class="au-frame__echo" />}
+  <span class={FRAME_FACE_CLASS}>
+    {pictogram ? <Icon name={pictogram.icon} class="au-frame__icon" /> : UNSET_PICTOGRAM}
+  </span>
+</span>

@@ -195,9 +195,11 @@ pieces. Primitives are under `src/components/primitives/`.
    and help squares, the 38 px pause square) and puts the pointy-top hexagon of its logo where Riot puts
    the diamond, as the owner asked on 2026-10-16: before the kind (`SheetHead.astro`), as the group mark
    (`SelectScreen.astro`), as the rank profile's rings and vertex marks (`RankProfile.astro`,
-   `src/lib/game/profile.ts`) and as the seal's crest (`CoverSeal.astro`). No approved piece marks anything
-   with a circle or a ring; the one round control is the drafts switch (`FilterBar.astro`). Riot's case
-   for a ring is the ready check: a reaction asked during a real wait.
+   `src/lib/game/profile.ts`) and as the seal's crest (`CoverSeal.astro`). Until the titles of 2026-11-10
+   no approved piece marked anything with a circle or a ring, the one round control being the drafts switch
+   (`FilterBar.astro`); the titles hold their picture in a ring, the owner's pick for title frames only
+   (`TitleFrame.astro`), a book's chapter title keeping the hexagon. Riot's case for a ring is the ready
+   check: a reaction asked during a real wait.
 4. **Light marks state and progress.** Riot draws its magic for "timers, activity indicators, and
    progress bars": the ready check's blue arc running round its ring, the selected mode's emblem filling
    with blue light, teal arcs on level rings, the Battle Pass line lit up to the level reached. In Aubaine
@@ -497,6 +499,7 @@ No footage of a page change was framed. The carry across pages is the owner's id
 | [Teamfight Tactics tab](https://interfaceingame.com/screenshots/league-of-legends-teamfight-tactics/), patch 9.14, 2019 | Inside the same client shell, TFT's own purple painting fills the stage; a hanging banner, gold-outlined buttons, missions counted in thin rings, and a pass track of rewards with level numbers on small plates over a line with lock marks | Take 9. A straight track: seen, not taken yet |
 | [Store, Featured](https://wiki.leagueoflegends.com/en-us/File:Riot_Store_2025.png), March 2025 | Tabs in serif capitals; one large lead offer with a kicker (NEW EPIC SKIN) and the name in large cream serif capitals; a grid of offer cards with prices beside the currency icon; red ribbons with a clock hang from the cards' top-left corners; PURCHASE RP in a gold outline | Take 7. Badges off the edge: seen, not taken yet |
 | [Battle Pass track](https://wiki.leagueoflegends.com/en-us/File:Battle_Pass_levels.png), March 2025 | The season's red art fills the stage; the pointed reward large in the middle inside a faint gold ring, its name in cream serif capitals under a gold kicker (CHAPTER IV, LEVEL 31); a straight track of levels on small plates, lit up to the level reached; gold arrowheads to scroll; the current level in a teal ring with 400 / 500 BXP; CLAIM disabled and PURCHASE PASS in a gold outline | Takes 4, 9. A straight track: seen, not taken yet |
+| [Profile, Challenges](https://wiki.leagueoflegends.com/en-us/File:Challenges_Tab.png), uploaded 18 May 2022; Riot's own copy in its [Challenges Walkthrough](https://www.leagueoflegends.com/en-us/news/game-updates/challenges-walkthrough/), 6 May 2022 | Tabs in spaced capitals over the page. A large ring on the left holds the overall progress (a crystal, 4,725 and SILVER) with a teal arc running round it. The section head is a breadcrumb, UNITY in grey then / MONSTER HUNTER in cream: the level shows by weight and value, not by size. Each challenge card carries its tier number in a cut triangle at its top-left corner and its own icon in a ring at the centre; the categories down the left each have an icon and a thin progress bar. Riot: "Categories are a middle ground between your overall progress and individual challenges" (viewed 2026-11-10) | Take 3: the ring holds the focal value. A heading that carries its number in a frame at its start: the titles prototype of 2026-11-10 |
 
 The screens linked to their pages on
 [Interface In Game](https://interfaceingame.com/games/league-of-legends/) were published there on

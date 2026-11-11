@@ -125,6 +125,7 @@ identifications (see [Type](#type)).
 | [Settings, scoreboard and postgame](#settings-scoreboard-and-postgame) | 2026-01-22 and 2026-09-29 | Text only |
 | [Hero portraits](#hero-portraits) | The wiki's grid as of 2026-10-27 | Grid viewed 2026-10-30; state variants text only |
 | [The City Never Sleeps lineup](#the-city-never-sleeps-lineup) | Announcement art, file of 2026-10-15 | Viewed 2026-10-30 |
+| [The News menu](#the-news-menu) | File of 2026-06-28, before City Never Sleeps | Viewed 2026-11-10 |
 
 ### Hero select
 
@@ -362,6 +363,20 @@ announcement art, not a game screen.
 - The update's key art was seen only small and cropped, as a tile on the wiki's main page (captured on
   2026-10-28): the title in extruded block letters filled with views of the city, under a face with
   glowing green eyes.
+
+### The News menu
+
+[Patch_notes.png](https://cdn.deadlock.wiki/Patch_notes.png), on the [Updates](https://deadlock.wiki/Updates)
+page, whose text says the notes are read "in-game in the "News" menu accessible in the main Hideout area
+with the `N` key". Viewed 2026-11-10.
+
+- The screen's title, « Recent Updates », in a large hand-lettered bone display face, with one italic line
+  under it, "All the news that's fit to print.".
+- Each entry is a dark row: its picture on the left, then its heading in bold mint capitals, a date line in
+  small dim capitals, and one grey line. Three levels read by face, case, colour and size, with no rule
+  between them.
+- For Aubaine: a title with its one line under it, the way a chapter title carries its own line in the
+  titles prototype of 2026-11-10. The hand lettering and the mint stay in the game.
 
 ## Type
 

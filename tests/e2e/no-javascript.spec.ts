@@ -147,7 +147,7 @@ test('a species carries its lore, its regional origins and its whole pool in the
   await expect(page.locator('[id^="origine-"]')).toHaveCount(origins.length)
   await expect(page.locator('#origines-regionales')).toHaveText('Origines régionales')
   await expect(page.locator('#sous-especes')).toHaveCount(0)
-  const playing = page.locator('#jouer').locator('xpath=..')
+  const playing = page.locator('#jouer').locator('xpath=ancestor::section[1]')
   await expect(playing.locator('dd')).toContainText([human.roleplay?.adulthood ?? ''])
   await expect(playing).toContainText(human.roleplay?.height ?? '')
   for (const language of human.languages ?? []) {

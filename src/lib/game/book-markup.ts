@@ -16,6 +16,7 @@ import {
 } from '../art-effect/presets.ts'
 import { DEFAULT_LOCALE, LOCALES, type Locale } from '../i18n/locales.ts'
 import { strings } from '../i18n/strings.ts'
+import { fitLetters } from '../plates.ts'
 import { readCorpus } from './fs-sources.ts'
 import { parseRuns, type Run, type TermIndex } from './richtext.ts'
 
@@ -529,6 +530,45 @@ export function rehypeProseQuotes() {
     }
 
     wrap(tree)
+  }
+}
+
+export const HEAD_CLASS = 'au-head'
+export const FRAME_CLASS = 'au-frame'
+export const FRAME_FACE_CLASS = 'au-frame__face'
+export const UNSET_PICTOGRAM = '?'
+
+const HEAD_LEVELS: Record<string, string> = { h2: '2', h3: '3' }
+const HEAD_PADDING = 1.6
+
+export function headFit(title: string): string {
+  return `--fit-letters:${fitLetters([title], HEAD_PADDING)}`
+}
+
+function textOf(node: HastChild): string {
+  return node.type === 'text' ? node.value : node.children.map(textOf).join('')
+}
+
+function unsetFrame(): HastElement {
+  return element('span', { className: FRAME_CLASS, 'data-face': 'unset', 'aria-hidden': 'true' }, [
+    element('span', { className: FRAME_FACE_CLASS }, [text(UNSET_PICTOGRAM)]),
+  ])
+}
+
+function headed(heading: HastElement, level: string): HastElement {
+  return element(
+    'div',
+    { className: HEAD_CLASS, 'data-level': level, style: headFit(textOf(heading)) },
+    [unsetFrame(), heading],
+  )
+}
+
+export function rehypeProseHeadings() {
+  return (tree: HastRoot): void => {
+    tree.children = tree.children.map((child) => {
+      const level = child.type === 'element' ? HEAD_LEVELS[child.tagName] : undefined
+      return child.type === 'element' && level !== undefined ? headed(child, level) : child
+    })
   }
 }
 
