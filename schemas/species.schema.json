@@ -311,9 +311,41 @@
                   "arms"
                 ],
                 "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "const": "seal",
+                    "description": "Un sceau de cire d'or où l'emblème est pressé, rendu à droite de la présentation, dont la cire prend la lumière quand le lecteur bouge le pointeur ou fait défiler la page."
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Nom de la pièce, rendu en légende sous elle et lu comme le nom de la figure : « Bannière de la maison Colbert ». L'overlay anglais le traduit."
+                  },
+                  "emblem": {
+                    "type": "string",
+                    "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*\\.svg$",
+                    "description": "Emblème pressé dans la cire, dans data/media/emblems/, ramené au cadre commun par pnpm media:emblems et cuit en relief par pnpm media:seal."
+                  },
+                  "wax": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-f]{6}$",
+                    "description": "Couleur de la cire, en hexadécimal à six chiffres minuscules : l'ombrage en tire des creux ambrés et des reflets pâles."
+                  }
+                },
+                "required": [
+                  "kind",
+                  "name",
+                  "emblem",
+                  "wax"
+                ],
+                "additionalProperties": false
               }
             ],
-            "description": "La pièce héraldique de la sous-espèce : une bannière qu'on saisit, un drapeau qui flotte, ou des armoiries dont l'or prend la lumière. Absente : la présentation n'en porte pas."
+            "description": "La pièce héraldique de la sous-espèce : une bannière qu'on saisit, un drapeau qui flotte, des armoiries dont l'or prend la lumière, ou un sceau de cire d'or. Absente : la présentation n'en porte pas."
           },
           "art": {
             "description": "Illustration au rapport 1:1, dans data/media/art/ : la peinture que portent les cadres ronds de ses intertitres, sur sa présentation et sur ses noms. Absente : ils portent le point d'interrogation peint.",

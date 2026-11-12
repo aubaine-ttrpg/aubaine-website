@@ -36,6 +36,7 @@
     "media:sounds": "node tools/media/sounds.ts",
     "media:textures": "node tools/media/textures.ts",
     "media:arms": "node tools/media/arms.ts",
+    "media:seal": "node tools/media/seal.ts",
     "media:emblems": "node tools/media/emblems.ts",
     "pdf": "node tools/pdf/render.ts",
     "pdf:check": "node tools/pdf/render.ts --check",

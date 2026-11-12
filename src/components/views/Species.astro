@@ -44,6 +44,7 @@ const words = SUBSPECIES_WORDS[species.subspeciesLabel]
 const SUBSPECIES_ID = SUBSPECIES_SECTIONS[species.subspeciesLabel]
 const PLAYING_ID = 'jouer'
 const NAMES_ID = 'noms'
+const BESIDE_SIZES = '(width < 30rem) 9rem, clamp(7.5rem, calc(0.26 * (100vw - 3.25rem)), 12rem)'
 
 type NameList = keyof NonNullable<ResolvedSpecies['names']>
 const NAME_ORDER: NameList[] = ['masculine', 'feminine', 'given', 'family']
@@ -194,12 +195,19 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
                 {species.subspecies.map((sub) => (
                   <article id={subspeciesAnchor(sub.id)} class="au-subspecies">
                     <SectionTitle level={3} text={sub.name} face={subspeciesPainting(sub)} />
-                    {sub.heraldry && HERALDRY_PLACEMENT[sub.heraldry.kind] === 'beside' ? (
-                      <div class="au-subspecies__flanked">
+                    {sub.heraldry && HERALDRY_PLACEMENT[sub.heraldry.kind] !== 'across' ? (
+                      <div
+                        class:list={[
+                          'au-subspecies__flanked',
+                          HERALDRY_PLACEMENT[sub.heraldry.kind] === 'beside-end' &&
+                            'au-subspecies__flanked--end',
+                        ]}
+                      >
                         <Heraldry
                           locale={locale}
                           heraldry={sub.heraldry}
                           id={`blason-${species.id}-${sub.id}`}
+                          stillSizes={BESIDE_SIZES}
                         />
                         <div class="au-subspecies__beside">
                           <RuleText source={sub.text} corpus={corpus} locale={locale} />
@@ -367,6 +375,15 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
       column-gap: clamp(1.25rem, 4%, 2.25rem);
       align-items: start;
       justify-items: stretch;
+    }
+
+    .au-subspecies__flanked--end {
+      grid-template-columns: minmax(0, 1fr) clamp(7.5rem, 26%, 12rem);
+    }
+
+    .au-subspecies__flanked--end > :global(.au-heraldry) {
+      grid-column: 2;
+      grid-row: 1;
     }
 
     .au-subspecies__flanked > :global(.au-heraldry) {

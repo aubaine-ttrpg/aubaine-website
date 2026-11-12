@@ -11,16 +11,17 @@ import {
   bannerOutline,
   FLAG,
 } from '../../lib/art-effect/presets'
+import { waxShades } from '../../lib/art-effect/seal-look'
 import type { Heraldry } from '../../lib/game/schema'
 import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
-import { armsOf, artImage, emblemUrl } from '../../lib/media'
+import { armsOf, artImage, emblemUrl, sealOf } from '../../lib/media'
 import Icon from './Icon.astro'
 import PictureNote from './PictureNote.astro'
 
-type Props = { locale: Locale; heraldry: Heraldry; id: string }
+type Props = { locale: Locale; heraldry: Heraldry; id: string; stillSizes?: string }
 
-const { locale, heraldry, id } = Astro.props
+const { locale, heraldry, id, stillSizes } = Astro.props
 const t = strings(locale)
 
 const BOX = 1000
@@ -30,7 +31,12 @@ const percent = (value: number): string => `${(value * 100).toFixed(4)}%`
 const unknownKind = (piece: never): never => {
   throw new Error(`Heraldry.astro cannot draw ${JSON.stringify(piece)}`)
 }
-if (heraldry.kind !== 'banner' && heraldry.kind !== 'flag' && heraldry.kind !== 'arms') {
+if (
+  heraldry.kind !== 'banner' &&
+  heraldry.kind !== 'flag' &&
+  heraldry.kind !== 'arms' &&
+  heraldry.kind !== 'seal'
+) {
   unknownKind(heraldry)
 }
 
@@ -90,6 +96,10 @@ const arms =
   heraldry.kind === 'arms'
     ? { ...armsOf(heraldry.arms), aspect: ARMS_SIZE.width / ARMS_SIZE.height }
     : undefined
+const seal = heraldry.kind === 'seal' ? sealOf(heraldry.emblem) : undefined
+const sealStill = seal?.stills.at(-1)
+const wax = heraldry.kind === 'seal' ? waxShades(heraldry.wax) : undefined
+if (seal && !stillSizes) throw new Error(`the seal ${heraldry.name} needs the sizes of its column`)
 const blazon = heraldry.kind === 'arms' ? heraldry.blazon : undefined
 const stillToggle = banner
   ? { pause: t.bannerPause, play: t.bannerPlay }
@@ -251,6 +261,33 @@ const FOLDS = [
       </div>
     )
   }
+  {
+    seal && sealStill && (
+      <div
+        class="au-heraldry__drape"
+        data-drape="seal"
+        data-colour={seal.colour}
+        data-relief={seal.relief}
+        data-finish={seal.finish}
+        data-wax-deep={wax?.deep.join(' ')}
+        data-wax-pale={wax?.pale.join(' ')}
+        style="--drape-aspect:1"
+        aria-hidden="true"
+      >
+        <img
+          class="au-heraldry__plain"
+          src={sealStill.file}
+          srcset={seal.stills.map((still) => `${still.file} ${still.width}w`).join(', ')}
+          sizes={stillSizes}
+          width={sealStill.width}
+          height={sealStill.width}
+          alt=""
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    )
+  }
   <figcaption>{heraldry.name}</figcaption>
   {
     stillToggle && (
@@ -317,21 +354,25 @@ const FOLDS = [
 
   @media screen {
     :global(:root[data-lit-expected="cloth"]) .au-heraldry__drape:not([data-stays-plain]) > .au-heraldry__plain,
-    :global(:root[data-lit-expected="still"]) .au-heraldry__drape[data-drape="arms"]:not([data-stays-plain]) > .au-heraldry__plain {
+    :global(:root[data-lit-expected="still"]) .au-heraldry__drape[data-drape="arms"]:not([data-stays-plain]) > .au-heraldry__plain,
+    :global(:root[data-lit-expected="still"]) .au-heraldry__drape[data-drape="seal"]:not([data-stays-plain]) > .au-heraldry__plain {
       visibility: hidden;
     }
   }
 
   .au-heraldry--banner .au-heraldry__drape,
-  .au-heraldry--arms .au-heraldry__drape {
+  .au-heraldry--arms .au-heraldry__drape,
+  .au-heraldry--seal .au-heraldry__drape {
     filter: drop-shadow(0 0.35rem 0.5rem rgb(0 0 0 / 0.2));
   }
 
-  .au-heraldry--arms .au-heraldry__plain {
+  .au-heraldry--arms .au-heraldry__plain,
+  .au-heraldry--seal .au-heraldry__plain {
     border: 0;
   }
 
-  .au-heraldry--arms .au-heraldry__drape > :global(canvas) {
+  .au-heraldry--arms .au-heraldry__drape > :global(canvas),
+  .au-heraldry--seal .au-heraldry__drape > :global(canvas) {
     inset: calc(-1 * var(--lean-margin));
     width: calc(100% + 2 * var(--lean-margin));
     height: calc(100% + 2 * var(--lean-margin));
@@ -381,7 +422,8 @@ const FOLDS = [
     }
 
     .au-heraldry--banner .au-heraldry__drape,
-    .au-heraldry--arms .au-heraldry__drape {
+    .au-heraldry--arms .au-heraldry__drape,
+    .au-heraldry--seal .au-heraldry__drape {
       filter: none;
     }
   }

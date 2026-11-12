@@ -16,7 +16,7 @@ export const OWNED_FILES = [
   'qr-aubaine.png',
 ] as const
 
-export const OWNED_MODEL_DIRECTORIES = ['almanach'] as const
+export const OWNED_MODEL_DIRECTORIES = ['almanach', 'seals'] as const
 
 export const STAMPED_EXTENSIONS: readonly string[] = ['.png', '.jpg', '.svg', '.mp4']
 

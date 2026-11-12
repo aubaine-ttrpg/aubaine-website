@@ -423,6 +423,12 @@
       "id": "al-wahaa",
       "name": "Al-Wahaa",
       "text": "***En tant qu'Al-Waahi***, vous appartenez à un peuple qui traverse le désert d'oasis en oasis, en se guidant sur les étoiles et sur le souffle changeant du sirocco. Les Al-Waahi tiennent pour un devoir sacré d'offrir le couvert et l'eau fraîche à tout voyageur. La confiance se gagne autour des échoppes d'épices, de soies légères et de potions médicinales, et bien des marchés s'y concluent par le troc, car le véritable trésor, à leurs yeux, est l'échange et le savoir partagé. Vous portez des tuniques amples et des voiles protecteurs, ornés de bijoux de cuivre et de perles de verre poli.",
+      "heraldry": {
+        "kind": "seal",
+        "name": "Sceau des Banū al-Baṭal",
+        "emblem": "al-wahaa.svg",
+        "wax": "#ef9600"
+      },
       "art": "sceau-d-al-wahaa-1_1-og.png",
       "names": {
         "masculine": [

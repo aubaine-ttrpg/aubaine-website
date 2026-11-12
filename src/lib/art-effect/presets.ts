@@ -307,7 +307,7 @@ export function armsFiles(composition: string): ArmsFiles {
   }
 }
 
-type Rgb = readonly [number, number, number]
+export type Rgb = readonly [number, number, number]
 
 export const RELIEF_LEAN = { degrees: 7, perspective: 600 } as const
 

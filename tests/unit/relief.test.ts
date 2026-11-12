@@ -1,5 +1,4 @@
 import { describe, expect, it } from 'vitest'
-
 import {
   type ArmsRelief,
   armsSurface,
@@ -15,9 +14,13 @@ import {
   occlusionOf,
   type Plane,
   roundedShoulder,
+  type SealRelief,
+  sealOutline,
+  sealSurface,
   shadowOf,
   wireHeight,
 } from '../../src/lib/art-effect/relief'
+import { SEAL } from '../../src/lib/art-effect/seal-look'
 
 const RELIEF: ArmsRelief = {
   dome: 2,
@@ -289,5 +292,113 @@ describe('the shadow of the relief under the key light', () => {
 
   it('stays between dark and lit everywhere', () => {
     expect(shadow.every((value) => value >= 0 && value <= 1)).toBe(true)
+  })
+})
+
+const SEAL_RELIEF: SealRelief = {
+  span: 100,
+  centre: { x: 50, y: 45 },
+  outline: { radius: 40, waves: [[5, 0.03, 1]] },
+  drip: { angle: Math.PI / 2, from: 0.85, to: 1.15, neck: 5, tip: 4, blend: 3 },
+  body: { height: 3, reach: 3, dome: 0, ripples: [] },
+  stamp: { radius: 25, press: 1, wall: 1 },
+  ring: { height: 1, width: 6, waves: [], drift: [], ripples: [] },
+  emblem: { span: 40, swell: { height: 0.8, reach: 0.5 }, clearance: 1 },
+  roughness: { body: 0.5, ring: 0.7, field: 0.3, emblem: 0.3 },
+  curvature: { reach: 0.2, gain: 0.25 },
+  occlusion: { contact: { reach: 0.35, strength: 5 }, broad: { reach: 1.5, strength: 2 } },
+  shadow: { reach: 4, softness: 0.3 },
+}
+
+const SEAL_SIDE = 200
+
+function sealAt(relief: SealRelief, emblem: (x: number, y: number) => boolean) {
+  const puddle = sealOutline({ width: SEAL_SIDE, height: SEAL_SIDE }, relief)
+  const perUnit = SEAL_SIDE / relief.span
+  const pressed = plane(SEAL_SIDE, SEAL_SIDE, (x, y) =>
+    emblem((x + 0.5) / perUnit - relief.centre.x, (y + 0.5) / perUnit - relief.centre.y),
+  )
+  const surface = sealSurface(puddle, pressed, relief)
+  const at = (x: number, y: number): number =>
+    Math.round((relief.centre.y + y) * perUnit) * SEAL_SIDE +
+    Math.round((relief.centre.x + x) * perUnit)
+  return { puddle, surface, at }
+}
+
+describe('the wax seal', () => {
+  const empty = sealAt(SEAL_RELIEF, () => false)
+
+  it('draws the same seal twice, value for value', () => {
+    const again = sealAt(SEAL_RELIEF, () => false)
+    expect(again.surface.height).toEqual(empty.surface.height)
+    expect(again.surface.roughness).toEqual(empty.surface.roughness)
+  })
+
+  it('hangs its one drip lowest on the outline, below the rim of the puddle', () => {
+    const rows = new Map<number, number[]>()
+    for (let at = 0; at < empty.puddle.values.length; at++) {
+      if ((empty.puddle.values[at] ?? 0) < 0.5) continue
+      const y = Math.floor(at / SEAL_SIDE)
+      rows.set(y, [...(rows.get(y) ?? []), at % SEAL_SIDE])
+    }
+    const bottom = Math.max(...rows.keys())
+    const tip = rows.get(bottom) ?? []
+    const perUnit = SEAL_SIDE / SEAL_RELIEF.span
+    const across = tip.reduce((sum, x) => sum + x + 0.5, 0) / tip.length / perUnit
+    expect(across).toBeCloseTo(SEAL_RELIEF.centre.x, 0)
+    expect((bottom + 0.5) / perUnit - SEAL_RELIEF.centre.y).toBeGreaterThan(
+      SEAL_RELIEF.outline.radius * 1.1,
+    )
+  })
+
+  it('raises the squeezed ring above the body, and the body above the pressed field', () => {
+    const { stamp, ring } = SEAL_RELIEF
+    const crest = stamp.radius - stamp.wall / 2 + ring.width / 2
+    const height = (x: number): number => empty.surface.height[empty.at(x, 0)] ?? 0
+    const field = height(stamp.radius / 2)
+    const body = height(stamp.radius + ring.width + 2)
+    expect(height(crest)).toBeGreaterThan(body)
+    expect(body).toBeGreaterThan(field)
+  })
+
+  it('keeps the pressed field flat and smoother than the body, and the ring rougher', () => {
+    const field = [0, 5, 10, 15].map((x) => empty.surface.height[empty.at(x, -x / 2)] ?? 0)
+    for (const height of field) expect(height).toBeCloseTo(field[0] ?? 0, 3)
+    const { stamp, ring } = SEAL_RELIEF
+    const roughness = (x: number): number => empty.surface.roughness[empty.at(x, 0)] ?? 0
+    expect(roughness(0)).toBeLessThan(roughness(stamp.radius + ring.width + 2))
+    expect(roughness(stamp.radius - stamp.wall / 2 + ring.width / 2)).toBeGreaterThan(
+      roughness(stamp.radius + ring.width + 2),
+    )
+  })
+
+  it('swells each shape of the emblem on its own and leaves its holes at the level of the field', () => {
+    const annulus = (x: number, y: number): boolean => {
+      const r = Math.hypot(x, y)
+      return r > 4 && r < 9
+    }
+    const pressed = sealAt(SEAL_RELIEF, annulus)
+    const height = (x: number): number => pressed.surface.height[pressed.at(x, 0)] ?? 0
+    expect(height(0)).toBeCloseTo(empty.surface.height[empty.at(0, 0)] ?? 0, 3)
+    expect(height(6.5)).toBeGreaterThan(height(0) + 0.4)
+    const sunk = sealAt(
+      { ...SEAL_RELIEF, emblem: { ...SEAL_RELIEF.emblem, swell: { height: -0.8, reach: 0.5 } } },
+      annulus,
+    )
+    expect(sunk.surface.height[sunk.at(6.5, 0)] ?? 0).toBeLessThan(height(0) - 0.4)
+  })
+
+  it('keeps the outline of the shipped seal inside its map', () => {
+    const puddle = sealOutline({ width: SEAL_SIDE, height: SEAL_SIDE }, SEAL.relief)
+    for (let i = 0; i < SEAL_SIDE; i++) {
+      for (const at of [
+        i,
+        (SEAL_SIDE - 1) * SEAL_SIDE + i,
+        i * SEAL_SIDE,
+        i * SEAL_SIDE + SEAL_SIDE - 1,
+      ]) {
+        expect(puddle.values[at]).toBe(0)
+      }
+    }
   })
 })

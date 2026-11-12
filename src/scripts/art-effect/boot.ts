@@ -7,6 +7,7 @@ const BANNER = '[data-drape="banner"]'
 const FLAG = '[data-drape="flag"]'
 const GLAZE = '.au-prose__frame'
 const ARMS = '[data-drape="arms"]'
+const SEAL = '[data-drape="seal"]'
 const ALMANACH = '[data-almanach]'
 const REDUCED_MOTION = '(prefers-reduced-motion: reduce)'
 const AFTER_THE_PAGE_SETS_ITS_STAGE = { priority: 1 }
@@ -18,6 +19,7 @@ type Banners = typeof import('./banners')
 type Flags = typeof import('./flags')
 type Glazes = typeof import('./glazes')
 type Arms = typeof import('./arms')
+type Seals = typeof import('./seal')
 type Almanachs = typeof import('./almanachs')
 
 let plates: Promise<Plates> | undefined
@@ -26,6 +28,7 @@ let banners: Promise<Banners> | undefined
 let flags: Promise<Flags> | undefined
 let glazes: Promise<Glazes> | undefined
 let arms: Promise<Arms> | undefined
+let seals: Promise<Seals> | undefined
 let almanachs: Promise<Almanachs> | undefined
 
 function report(error: unknown): void {
@@ -71,6 +74,10 @@ function syncEffects(): void {
   if (arms !== undefined || document.querySelector(ARMS) !== null) {
     arms ??= import('./arms')
     arms.then(({ syncArms }) => syncArms()).catch(leavePlain(ARMS))
+  }
+  if (seals !== undefined || document.querySelector(SEAL) !== null) {
+    seals ??= import('./seal')
+    seals.then(({ syncSeals }) => syncSeals()).catch(leavePlain(SEAL))
   }
   if (almanachs !== undefined || document.querySelector(ALMANACH) !== null) {
     almanachs ??= import('./almanachs')

@@ -58,12 +58,13 @@ export const SPECIES_SECTION_ICONS = {
   names: 'game-icons:character',
 } as const satisfies Record<string, string | PrintedBook>
 
-export type HeraldryPlacement = 'beside' | 'across'
+export type HeraldryPlacement = 'beside-start' | 'beside-end' | 'across'
 
 export const HERALDRY_PLACEMENT: Record<Heraldry['kind'], HeraldryPlacement> = {
-  banner: 'beside',
+  banner: 'beside-start',
   flag: 'across',
-  arms: 'beside',
+  arms: 'beside-start',
+  seal: 'beside-end',
 }
 
 export function subspeciesAnchor(id: string): string {

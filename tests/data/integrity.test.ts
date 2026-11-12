@@ -6,6 +6,7 @@ import sharp from 'sharp'
 import { describe, expect, it } from 'vitest'
 import { almanachStyleOf } from '../../src/lib/art-effect/almanach-look'
 import { armsFiles } from '../../src/lib/art-effect/presets'
+import { sealFiles } from '../../src/lib/art-effect/seal-look'
 import { latestRelease, notes, releases } from '../../src/lib/booklet/manifest'
 import { archiveFile } from '../../src/lib/booklet/release'
 import { frameEmblem } from '../../src/lib/emblem-frame'
@@ -852,10 +853,11 @@ describe('media', () => {
     }
     for (const entry of fr.species) {
       for (const sub of entry.subspecies) {
-        if (sub.heraldry?.kind !== 'banner') continue
-        expect(files, `${entry.id} ${sub.id} banner ${sub.heraldry.emblem}`).toContain(
-          sub.heraldry.emblem,
-        )
+        if (sub.heraldry?.kind !== 'banner' && sub.heraldry?.kind !== 'seal') continue
+        expect(
+          files,
+          `${entry.id} ${sub.id} ${sub.heraldry.kind} ${sub.heraldry.emblem}`,
+        ).toContain(sub.heraldry.emblem)
         worn.add(sub.heraldry.emblem)
       }
     }
@@ -884,6 +886,26 @@ describe('media', () => {
       }
     }
     expect([...composed].filter((file) => !worn.has(file))).toEqual([])
+  })
+
+  it('holds in data/media/seals/ exactly the bake of every seal pressed', async () => {
+    const onDisk = (await readdir(resolve(root, 'data/media/seals')).catch(() => []))
+      .filter((file) => !file.startsWith('.'))
+      .sort()
+    const baked = new Set<string>()
+    for (const entry of fr.species) {
+      for (const sub of entry.subspecies) {
+        if (sub.heraldry?.kind !== 'seal') continue
+        const { colour, relief, finish, stills } = sealFiles(sub.heraldry.emblem)
+        for (const file of [colour, relief, finish, ...stills.map((still) => still.file)]) {
+          baked.add(file)
+        }
+      }
+    }
+    expect(
+      onDisk,
+      'data/media/seals/ and the seals pressed disagree. Run: pnpm media:seal',
+    ).toEqual([...baked].sort())
   })
 
   it('credits every charge a composition draws, with the licence the charge carries', async () => {

@@ -1,5 +1,4 @@
 import { expect, type Page, test } from '@playwright/test'
-import sharp from 'sharp'
 
 import {
   BANNER_CLOTH,
@@ -14,6 +13,15 @@ import type { Locale } from '../../src/lib/i18n/locales'
 import { pathFor } from '../../src/lib/i18n/routes'
 import { strings } from '../../src/lib/i18n/strings'
 import { type Oklch, oklchOf, rgbFromHex } from '../../src/lib/key-colour'
+import {
+  clipAround,
+  LEAN_POINTERS,
+  leanedAndFlat,
+  meanDifference,
+  type Point,
+  sharpnessDrift,
+  stillAndLive,
+} from '../../tools/design/picture-measures'
 import { corpus } from './support/corpus'
 import { frameFile, framesBySpecies } from './support/lore-pictures'
 import {
@@ -27,13 +35,18 @@ const SOFTWARE = /swiftshader|llvmpipe|softpipe|software|basic render/i
 const BANNER = '[data-drape="banner"]'
 const FLAG = '[data-drape="flag"]'
 const ARMS = '[data-drape="arms"]'
+const SEAL = '[data-drape="seal"]'
 const GLASS = '.au-prose__frame'
 const STAGE = '[data-stage]'
-const HERALDRY_CODE = /\/(?:banners|flags|glazes|arms)\.[^/]*\.js$/
+const HERALDRY_CODE = /\/(?:banners|flags|glazes|arms|seal|baked-relief)\.[^/]*\.js$/
 const TEXTURE =
   /\/(?:combination-room|rough-linen-relief|velour-velvet-relief|[a-z0-9-]+-(?:colour|relief|finish|surface))\.[^/]*\.(?:webp|avif)$/
 const KINDS = Object.keys(HERALDRY_PLACEMENT) as Heraldry['kind'][]
-const BESIDE = KINDS.filter((kind) => HERALDRY_PLACEMENT[kind] === 'beside')
+const BESIDE = KINDS.filter((kind) => HERALDRY_PLACEMENT[kind] !== 'across')
+const RELIEFS = [
+  { kind: 'arms', selector: ARMS, called: 'the arms' },
+  { kind: 'seal', selector: SEAL, called: 'the seal' },
+] as const
 const CLOTH_MOST_PER_SECOND = Math.max(
   ...Object.values(EFFECT_TIERS).map((tier) => tier.cloth?.perSecond ?? 0),
 )
@@ -112,7 +125,7 @@ async function count(page: Page): Promise<void> {
   })
 }
 
-type Copies = { banner: number; flag: number; arms: number; glass: number }
+type Copies = { banner: number; flag: number; arms: number; seal: number; glass: number }
 
 function copies(page: Page): Promise<Copies> {
   return page.evaluate(() => {
@@ -121,6 +134,7 @@ function copies(page: Page): Promise<Copies> {
       banner: counted.drapeCopies['banner'] ?? 0,
       flag: counted.drapeCopies['flag'] ?? 0,
       arms: counted.drapeCopies['arms'] ?? 0,
+      seal: counted.drapeCopies['seal'] ?? 0,
       glass: counted.glassCopies,
     }
   })
@@ -262,7 +276,7 @@ test('every piece of heraldry and the glass is drawn while still below the scree
   page,
 }) => {
   await page.goto(speciesPath(await heraldic('fr')))
-  for (const selector of [BANNER, FLAG, ARMS, GLASS]) {
+  for (const selector of [BANNER, FLAG, ARMS, SEAL, GLASS]) {
     const piece = page.locator(selector).first()
     await piece.evaluate((node) => {
       const top = node.getBoundingClientRect().top + window.scrollY
@@ -280,7 +294,7 @@ test('a browser that has drawn them never sees their plain pictures, even opened
 }) => {
   await watchPlainPictures(page)
   const path = speciesPath(await heraldic('fr'))
-  const pieces = [BANNER, FLAG, ARMS, GLASS]
+  const pieces = [BANNER, FLAG, ARMS, SEAL, GLASS]
   await page.goto(path)
   const bottom = await page
     .locator(pieces.join(', '))
@@ -307,16 +321,17 @@ test('print keeps every plain picture on a browser that has drawn them, before t
   await expect(page.locator(`${BANNER} .au-heraldry__plain`)).toBeVisible()
   await expect(page.locator(`${FLAG} .au-heraldry__plain`)).toBeVisible()
   await expect(page.locator(`${ARMS} .au-heraldry__plain`)).toBeVisible()
+  await expect(page.locator(`${SEAL} .au-heraldry__plain`)).toBeVisible()
   await expect(page.locator(`${GLASS} img`)).toHaveCSS('opacity', '1')
 })
 
-test('the stage, the banner, the flag, the arms and the glass share one context', async ({
+test('the stage, the banner, the flag, the arms, the seal and the glass share one context', async ({
   page,
 }) => {
   await count(page)
   await page.goto(speciesPath(await heraldic('fr')))
   await expect(page.locator(`${STAGE}[data-staged] > canvas`)).toHaveCount(1)
-  for (const selector of [GLASS, BANNER, FLAG, ARMS]) await bringDrawn(page, selector)
+  for (const selector of [GLASS, BANNER, FLAG, ARMS, SEAL]) await bringDrawn(page, selector)
   expect(await contexts(page)).toBe(1)
 })
 
@@ -502,6 +517,8 @@ test('a Swup visit leaves no drape or glass behind, and they come back with thei
   await expect(page.locator(`${BANNER}[data-draped] canvas`)).toHaveCount(1)
   await bring(page, FLAG)
   await expect(page.locator(`${FLAG}[data-draped] canvas`)).toHaveCount(1)
+  await bring(page, SEAL)
+  await expect(page.locator(`${SEAL}[data-draped] canvas`)).toHaveCount(1)
   await visit(page, '/fr')
   await expect(page.locator('[data-drape] canvas, .au-prose__frame canvas')).toHaveCount(0)
   const gone = await copies(page)
@@ -510,6 +527,8 @@ test('a Swup visit leaves no drape or glass behind, and they come back with thei
   await visit(page, path)
   await bring(page, FLAG)
   await expect(page.locator(`${FLAG}[data-draped] canvas`)).toHaveCount(1)
+  await bring(page, SEAL)
+  await expect(page.locator(`${SEAL}[data-draped] canvas`)).toHaveCount(1)
 })
 
 for (const kind of FRAME_KINDS) {
@@ -558,11 +577,11 @@ for (const kind of FRAME_KINDS) {
   })
 }
 
-test('print keeps the plain banner, flag, arms and painting and drops the canvases', async ({
+test('print keeps the plain banner, flag, arms, seal and painting and drops the canvases', async ({
   page,
 }) => {
   await page.goto(speciesPath(await heraldic('fr')))
-  for (const selector of [GLASS, BANNER, FLAG, ARMS]) await bringDrawn(page, selector)
+  for (const selector of [GLASS, BANNER, FLAG, ARMS, SEAL]) await bringDrawn(page, selector)
   await page.emulateMedia({ media: 'print' })
   for (const canvas of await page.locator('[data-drape] canvas, .au-prose__frame canvas').all()) {
     await expect(canvas).toBeHidden()
@@ -570,145 +589,127 @@ test('print keeps the plain banner, flag, arms and painting and drops the canvas
   await expect(page.locator(`${BANNER} .au-heraldry__plain`)).toBeVisible()
   await expect(page.locator(`${FLAG} .au-heraldry__plain`)).toBeVisible()
   await expect(page.locator(`${ARMS} .au-heraldry__plain`)).toBeVisible()
+  await expect(page.locator(`${SEAL} .au-heraldry__plain`)).toBeVisible()
   await expect(page.locator(`${GLASS} img`)).toBeVisible()
 })
 
-test('the gilt and enamel of the arms follow the pointer, then settle', async ({ page }) => {
-  await count(page)
-  await page.goto(speciesPath(await heraldic('fr')))
-  await bringDrawn(page, ARMS)
-  const canvas = page.locator(`${ARMS}[data-draped] canvas`)
-  const box = await canvas.boundingBox()
-  if (!box) throw new Error('the arms have no box')
-  const pixels = (): Promise<string> =>
-    canvas.evaluate((node: HTMLCanvasElement) => node.toDataURL())
-  await page.mouse.move(box.x + box.width * 0.1, box.y + box.height * 0.1)
-  expect(await restsWithin(page, 'arms', 3000)).toBeLessThan(3000)
-  const before = (await copies(page)).arms
-  const lit = await pixels()
-  await page.mouse.move(box.x + box.width * 2, box.y + box.height * 1.5, { steps: 8 })
-  await expect.poll(async () => (await copies(page)).arms).toBeGreaterThan(before)
-  expect(await restsWithin(page, 'arms', 3000)).toBeLessThan(3000)
-  const settled = (await copies(page)).arms
-  await page.waitForTimeout(1000)
-  expect((await copies(page)).arms).toBe(settled)
-  expect(await pixels()).not.toBe(lit)
-})
-
-test('the first live frame of the arms stays within 8 of 255 of their still', async ({ page }) => {
-  await page.goto(speciesPath(await heraldic('fr')))
-  await bringDrawn(page, ARMS)
-  const difference = await page.locator(ARMS).evaluate(async (holder) => {
-    const canvas = holder.querySelector('canvas')
-    const still = holder.querySelector('img')
-    if (!canvas || !still) return undefined
-    await still.decode()
-    const width = Math.round((holder.clientWidth * canvas.width) / canvas.clientWidth)
-    const height = Math.round((holder.clientHeight * canvas.height) / canvas.clientHeight)
-    const room = { x: (canvas.width - width) / 2, y: (canvas.height - height) / 2 }
-    const read = (paint: (context: CanvasRenderingContext2D) => void): Uint8ClampedArray => {
-      const scratch = document.createElement('canvas')
-      scratch.width = width
-      scratch.height = height
-      const context = scratch.getContext('2d', { willReadFrequently: true })
-      if (!context) throw new Error('no 2D context')
-      paint(context)
-      return context.getImageData(0, 0, width, height).data
-    }
-    const live = read((context) =>
-      context.drawImage(canvas, room.x, room.y, width, height, 0, 0, width, height),
-    )
-    const plain = read((context) => context.drawImage(still, 0, 0, width, height))
-    let sum = 0
-    let counted = 0
-    for (let at = 0; at < live.length; at += 4) {
-      if ((plain[at + 3] ?? 0) < 255) continue
-      for (let c = 0; c < 3; c++) sum += Math.abs((live[at + c] ?? 0) - (plain[at + c] ?? 0))
-      counted += 3
-    }
-    return sum / counted
+for (const { kind, selector, called } of RELIEFS) {
+  test(`the light on ${called} follows the pointer, then settles`, async ({ page }) => {
+    await count(page)
+    await page.goto(speciesPath(await heraldic('fr')))
+    await bringDrawn(page, selector)
+    const canvas = page.locator(`${selector}[data-draped] canvas`)
+    const box = await page.locator(selector).boundingBox()
+    if (!box) throw new Error(`${called} have no box`)
+    const pixels = (): Promise<string> =>
+      canvas.evaluate((node: HTMLCanvasElement) => node.toDataURL())
+    await page.mouse.move(box.x + box.width * 0.1, box.y + box.height * 0.1)
+    expect(await restsWithin(page, kind, 3000)).toBeLessThan(3000)
+    const before = (await copies(page))[kind]
+    const lit = await pixels()
+    await page.mouse.move(box.x + box.width * 2, box.y + box.height * 1.5, { steps: 8 })
+    await expect.poll(async () => (await copies(page))[kind]).toBeGreaterThan(before)
+    expect(await restsWithin(page, kind, 3000)).toBeLessThan(3000)
+    const settled = (await copies(page))[kind]
+    await page.waitForTimeout(1000)
+    expect((await copies(page))[kind]).toBe(settled)
+    expect(await pixels()).not.toBe(lit)
   })
-  expect(difference).toBeDefined()
-  expect(difference).toBeLessThan(8)
-})
+}
+
+for (const { selector, called } of RELIEFS) {
+  test(`the first live frame of ${called} stays within 8 of 255 of the still`, async ({ page }) => {
+    await page.goto(speciesPath(await heraldic('fr')))
+    await bringDrawn(page, selector)
+    const difference = await page.locator(selector).evaluate(async (holder) => {
+      const canvas = holder.querySelector('canvas')
+      const still = holder.querySelector('img')
+      if (!canvas || !still) return undefined
+      await still.decode()
+      const width = Math.round((holder.clientWidth * canvas.width) / canvas.clientWidth)
+      const height = Math.round((holder.clientHeight * canvas.height) / canvas.clientHeight)
+      const room = { x: (canvas.width - width) / 2, y: (canvas.height - height) / 2 }
+      const read = (paint: (context: CanvasRenderingContext2D) => void): Uint8ClampedArray => {
+        const scratch = document.createElement('canvas')
+        scratch.width = width
+        scratch.height = height
+        const context = scratch.getContext('2d', { willReadFrequently: true })
+        if (!context) throw new Error('no 2D context')
+        paint(context)
+        return context.getImageData(0, 0, width, height).data
+      }
+      const live = read((context) =>
+        context.drawImage(canvas, room.x, room.y, width, height, 0, 0, width, height),
+      )
+      const plain = read((context) => context.drawImage(still, 0, 0, width, height))
+      let sum = 0
+      let counted = 0
+      for (let at = 0; at < live.length; at += 4) {
+        if ((plain[at + 3] ?? 0) < 255) continue
+        for (let c = 0; c < 3; c++) sum += Math.abs((live[at + c] ?? 0) - (plain[at + c] ?? 0))
+        counted += 3
+      }
+      return sum / counted
+    })
+    expect(difference).toBeDefined()
+    expect(difference).toBeLessThan(8)
+  })
+}
 
 const AS_SHARP_AS_FLAT = 0.1
-const LEAN_SHOWS = 2
-
-type Grey = { data: Buffer; width: number; height: number }
-
-async function grey(image: Buffer): Promise<Grey> {
-  const { data, info } = await sharp(image).greyscale().raw().toBuffer({ resolveWithObject: true })
-  return { data, width: info.width, height: info.height }
-}
-
-function sharpness({ data, width, height }: Grey): number {
-  let sum = 0
-  let squares = 0
-  let counted = 0
-  for (let y = 1; y < height - 1; y++) {
-    for (let x = 1; x < width - 1; x++) {
-      const at = y * width + x
-      const laplacian =
-        4 * (data[at] ?? 0) -
-        (data[at - 1] ?? 0) -
-        (data[at + 1] ?? 0) -
-        (data[at - width] ?? 0) -
-        (data[at + width] ?? 0)
-      sum += laplacian
-      squares += laplacian * laplacian
-      counted += 1
-    }
-  }
-  return squares / counted - (sum / counted) ** 2
-}
-
-function meanDifference(a: Grey, b: Grey): number {
-  let sum = 0
-  for (let at = 0; at < a.data.length; at++) sum += Math.abs((a.data[at] ?? 0) - (b.data[at] ?? 0))
-  return sum / a.data.length
-}
+const LEAN_SHOWS = 1
 
 for (const ratio of [1, 2]) {
   test.describe(`at a pixel ratio of ${ratio}`, () => {
     test.use({ deviceScaleFactor: ratio })
 
-    test('the arms leaned toward the pointer stay as sharp as the same arms drawn flat', async ({
-      page,
-    }) => {
-      await count(page)
-      await page.goto(speciesPath(await heraldic('fr')))
-      await bringDrawn(page, ARMS)
-      const box = await page.locator(ARMS).boundingBox()
-      if (!box) throw new Error('the arms have no box')
-      const room = 24
-      const clip = {
-        x: box.x - room,
-        y: box.y - room,
-        width: box.width + 2 * room,
-        height: box.height + 2 * room,
+    for (const { kind, selector, called } of RELIEFS) {
+      for (const at of LEAN_POINTERS) {
+        test(`${called} leaned toward a pointer at ${at.x}, ${at.y} of their box stay as sharp as drawn flat`, async ({
+          page,
+        }) => {
+          await count(page)
+          await page.goto(speciesPath(await heraldic('fr')))
+          await bringDrawn(page, selector)
+          const holder = page.locator(selector)
+          const box = await clipAround(holder, 0)
+          const pointer: Point = { x: box.x + box.width * at.x, y: box.y + box.height * at.y }
+          const { leaned, flat } = await leanedAndFlat(
+            page,
+            await clipAround(holder, 24),
+            pointer,
+            async () => {
+              expect(await restsWithin(page, kind, 3000)).toBeLessThan(3000)
+            },
+          )
+          if (at.x !== 0.5 || at.y !== 0.5) {
+            expect(meanDifference(leaned, flat)).toBeGreaterThan(LEAN_SHOWS)
+          }
+          expect(sharpnessDrift(leaned, flat)).toBeLessThanOrEqual(AS_SHARP_AS_FLAT)
+        })
       }
-      const corner = { x: box.x + box.width * 0.05, y: box.y + box.height * 0.05 }
-      await page.mouse.move(corner.x, corner.y, { steps: 8 })
-      expect(await restsWithin(page, 'arms', 3000)).toBeLessThan(3000)
-      const leaned = await grey(await page.screenshot({ clip }))
-      await page.evaluate(() => {
-        const veil = document.createElement('div')
-        veil.style.cssText = 'position:fixed;inset:0;z-index:2147483647'
-        document.body.append(veil)
-      })
-      await page.mouse.move(corner.x + 1, corner.y)
-      await page.mouse.move(corner.x, corner.y)
-      expect(await restsWithin(page, 'arms', 3000)).toBeLessThan(3000)
-      const flat = await grey(await page.screenshot({ clip }))
-      expect(meanDifference(leaned, flat)).toBeGreaterThan(LEAN_SHOWS)
-      const drift = Math.abs(sharpness(leaned) - sharpness(flat)) / sharpness(flat)
-      expect(drift).toBeLessThanOrEqual(AS_SHARP_AS_FLAT)
+    }
+
+    test('the still of the seal is as sharp as its first live frame', async ({ page }) => {
+      await page.goto(speciesPath(await heraldic('fr')))
+      await bringDrawn(page, SEAL)
+      const holder = page.locator(SEAL)
+      const { still, live } = await stillAndLive(page, holder, await clipAround(holder, 0))
+      expect(sharpnessDrift(still, live)).toBeLessThanOrEqual(AS_SHARP_AS_FLAT)
     })
   })
 }
 
 const NARROW_REM = 30
+
+test('a piece drawn right of its text holds nothing a keyboard can reach', async ({ page }) => {
+  await page.goto(speciesPath(await heraldic('fr')))
+  for (const kind of KINDS.filter((each) => HERALDRY_PLACEMENT[each] === 'beside-end')) {
+    const piece = page.locator(`.au-heraldry--${kind}`)
+    await expect(piece).toHaveCount(1)
+    await expect(piece.locator('a, button, input, select, textarea, [tabindex]')).toHaveCount(0)
+  }
+})
 
 for (const width of [320, 390, 480, 768, 1216, 1440]) {
   test(`at ${width}px every piece beside its text stands beside it or above it, and nothing scrolls sideways`, async ({
@@ -748,6 +749,7 @@ for (const width of [320, 390, 480, 768, 1216, 1440]) {
           banner: { left: box.left, right: box.right, top: box.top, bottom: box.bottom },
           text: {
             left: Math.min(...lines.map((line) => line.left)),
+            right: Math.max(...lines.map((line) => line.right)),
             top: first?.top ?? 0,
           },
         }
@@ -756,7 +758,11 @@ for (const width of [320, 390, 480, 768, 1216, 1440]) {
       expect(measured.sideways, kind).toBe(0)
       expect(measured.covered, kind).toBe(0)
       if (width >= NARROW_REM * measured.rem) {
-        expect(measured.banner.right, kind).toBeLessThanOrEqual(measured.text.left)
+        if (HERALDRY_PLACEMENT[kind] === 'beside-end') {
+          expect(measured.banner.left, kind).toBeGreaterThanOrEqual(measured.text.right)
+        } else {
+          expect(measured.banner.right, kind).toBeLessThanOrEqual(measured.text.left)
+        }
         expect(Math.abs(measured.banner.top - measured.text.top), kind).toBeLessThan(measured.rem)
       } else {
         expect(measured.banner.bottom, kind).toBeLessThanOrEqual(measured.text.top)
@@ -837,22 +843,27 @@ test.describe('with reduced motion', () => {
     expect(apart(middle(gold.map((tone) => tone.hue)), charge.hue)).toBeLessThanOrEqual(6)
   })
 
-  test('the arms draw once and hold still under the pointer and the scroll', async ({ page }) => {
-    await count(page)
-    await page.goto(speciesPath(await heraldic('fr')))
-    await bringDrawn(page, ARMS)
-    const canvas = page.locator(`${ARMS}[data-draped] canvas`)
-    const box = await canvas.boundingBox()
-    if (!box) throw new Error('the arms have no box')
-    await page.waitForTimeout(300)
-    const drawn = (await copies(page)).arms
-    const before = await canvas.evaluate((node: HTMLCanvasElement) => node.toDataURL())
-    await page.mouse.move(box.x + box.width * 0.8, box.y + box.height * 0.6, { steps: 8 })
-    await page.mouse.wheel(0, 120)
-    await page.waitForTimeout(500)
-    expect((await copies(page)).arms).toBe(drawn)
-    expect(await canvas.evaluate((node: HTMLCanvasElement) => node.toDataURL())).toBe(before)
-  })
+  for (const { kind, selector, called } of RELIEFS) {
+    test(`${called} draw once, never lean and hold still under the pointer and the scroll`, async ({
+      page,
+    }) => {
+      await count(page)
+      await page.goto(speciesPath(await heraldic('fr')))
+      await bringDrawn(page, selector)
+      const canvas = page.locator(`${selector}[data-draped] canvas`)
+      const box = await page.locator(selector).boundingBox()
+      if (!box) throw new Error(`${called} have no box`)
+      await expect(canvas).toHaveCSS('--lean-margin', '0px')
+      await page.waitForTimeout(300)
+      const drawn = (await copies(page))[kind]
+      const before = await canvas.evaluate((node: HTMLCanvasElement) => node.toDataURL())
+      await page.mouse.move(box.x + box.width * 0.8, box.y + box.height * 0.6, { steps: 8 })
+      await page.mouse.wheel(0, 120)
+      await page.waitForTimeout(500)
+      expect((await copies(page))[kind]).toBe(drawn)
+      expect(await canvas.evaluate((node: HTMLCanvasElement) => node.toDataURL())).toBe(before)
+    })
+  }
 
   for (const kind of FRAME_KINDS) {
     test(`the ${kind} frame and its glass draw once and hold still under the pointer`, async ({

@@ -315,6 +315,11 @@ export function bezelHeight(distance: number, bezel: Bezel): number {
   return bezel.valley + (bezel.crest - bezel.valley) * crown
 }
 
+export function bell(distance: number, width: number): number {
+  const s = (2 * distance) / width - 1
+  return Math.abs(s) >= 1 ? 0 : (1 - s * s) * (1 - s * s)
+}
+
 export function wireHeight(distance: number, fillet: { width: number; height: number }): number {
   return fillet.height * halfRound(distance + fillet.width / 2, fillet.width)
 }
@@ -563,4 +568,169 @@ export function shadowOf(
     }
   }
   return lit
+}
+
+export type Wave = readonly [order: number, amplitude: number, phase: number]
+
+export type Ripple = readonly [
+  wavelength: number,
+  amplitude: number,
+  heading: number,
+  phase: number,
+]
+
+export type Drip = {
+  angle: number
+  from: number
+  to: number
+  neck: number
+  tip: number
+  blend: number
+}
+
+export type SealRelief = {
+  span: number
+  centre: { x: number; y: number }
+  outline: { radius: number; waves: readonly Wave[] }
+  drip: Drip
+  body: Swell & { dome: number; ripples: readonly Ripple[] }
+  stamp: { radius: number; press: number; wall: number }
+  ring: {
+    height: number
+    width: number
+    waves: readonly Wave[]
+    drift: readonly Wave[]
+    ripples: readonly Wave[]
+  }
+  emblem: { span: number; swell: Swell; clearance: number }
+  roughness: { body: number; ring: number; field: number; emblem: number }
+  curvature: { reach: number; gain: number }
+  occlusion: { contact: Occluder; broad: Occluder }
+  shadow: { reach: number; softness: number }
+}
+
+export type SealSurface = {
+  height: Float32Array
+  roughness: Float32Array
+}
+
+function waved(angle: number, waves: readonly Wave[]): number {
+  let sum = 0
+  for (const [order, amplitude, phase] of waves) sum += amplitude * Math.cos(order * angle + phase)
+  return sum
+}
+
+function rippled(x: number, y: number, ripples: readonly Ripple[]): number {
+  let sum = 0
+  for (const [wavelength, amplitude, heading, phase] of ripples) {
+    const along = x * Math.cos(heading) + y * Math.sin(heading)
+    sum += amplitude * Math.cos((2 * Math.PI * along) / wavelength + phase)
+  }
+  return sum
+}
+
+function smoothMinimum(a: number, b: number, blend: number): number {
+  const h = Math.max(blend - Math.abs(a - b), 0) / blend
+  return Math.min(a, b) - (h * h * blend) / 4
+}
+
+function taperedCapsule(x: number, y: number, neck: number, tip: number, length: number): number {
+  const across = Math.abs(x)
+  const b = (neck - tip) / length
+  const a = Math.sqrt(1 - b * b)
+  const k = -b * across + a * y
+  if (k < 0) return Math.hypot(across, y) - neck
+  if (k > a * length) return Math.hypot(across, y - length) - tip
+  return a * across + b * y - neck
+}
+
+export function sealOutlineDistance(x: number, y: number, relief: SealRelief): number {
+  const { centre, outline, drip } = relief
+  const dx = x - centre.x
+  const dy = y - centre.y
+  const angle = Math.atan2(dy, dx)
+  const puddle = Math.hypot(dx, dy) - outline.radius * (1 + waved(angle, outline.waves))
+  const along = { x: Math.cos(drip.angle), y: Math.sin(drip.angle) }
+  const start = drip.from * outline.radius
+  const length = (drip.to - drip.from) * outline.radius
+  const axial = dx * along.x + dy * along.y - start
+  const lateral = -dx * along.y + dy * along.x
+  const tongue = taperedCapsule(lateral, axial, drip.neck, drip.tip, length)
+  return smoothMinimum(puddle, tongue, drip.blend)
+}
+
+export function sealOutline(size: { width: number; height: number }, relief: SealRelief): Plane {
+  const unitsPerPixel = relief.span / size.width
+  const values = new Float32Array(size.width * size.height)
+  for (let y = 0; y < size.height; y++) {
+    for (let x = 0; x < size.width; x++) {
+      const distance = sealOutlineDistance(
+        (x + 0.5) * unitsPerPixel,
+        (y + 0.5) * unitsPerPixel,
+        relief,
+      )
+      values[y * size.width + x] = distance < 0 ? 1 : 0
+    }
+  }
+  return { ...size, values }
+}
+
+export function sealSurface(puddle: Plane, emblem: Plane, relief: SealRelief): SealSurface {
+  const { width, height } = puddle
+  const count = width * height
+  const pixelsPerUnit = width / relief.span
+  const inPuddle = (at: number): boolean => (puddle.values[at] ?? 0) >= 0.5
+  const inEmblem = (at: number): boolean => (emblem.values[at] ?? 0) >= 0.5
+  const body = inflate(
+    Uint8Array.from(puddle.values, (value) => (value >= 0.5 ? 1 : 0)),
+    width,
+    height,
+  )
+  const swell = inflate(
+    Uint8Array.from(emblem.values, (value) => (value >= 0.5 ? 1 : 0)),
+    width,
+    height,
+  )
+  const { stamp, ring, emblem: pressed, roughness } = relief
+
+  const surface = new Float32Array(count)
+  const rough = new Float32Array(count)
+  for (let at = 0; at < count; at++) {
+    if (!inPuddle(at)) continue
+    const x = ((at % width) + 0.5) / pixelsPerUnit - relief.centre.x
+    const y = (Math.floor(at / width) + 0.5) / pixelsPerUnit - relief.centre.y
+    const angle = Math.atan2(y, x)
+    const outward = Math.hypot(x, y) - stamp.radius
+    const pressedIn = 1 - smoothstep(-stamp.wall, 0, outward)
+    const crest = outward + stamp.wall / 2 - waved(angle, ring.drift)
+    const ringed =
+      crest > 0 && crest < ring.width
+        ? ring.height *
+          (1 + waved(angle, ring.waves)) *
+          (1 + waved(angle, ring.ripples)) *
+          bell(crest, ring.width)
+        : 0
+    const raised = inEmblem(at)
+      ? Math.sign(pressed.swell.height) *
+        basRelief((swell[at] ?? 0) / pixelsPerUnit, {
+          height: Math.abs(pressed.swell.height),
+          reach: pressed.swell.reach,
+        })
+      : 0
+    const across = Math.min(Math.max(Math.hypot(x, y), stamp.radius) / relief.outline.radius, 1)
+    const settledWax =
+      relief.body.dome * (1 - across * across) +
+      rippled(x, y, relief.body.ripples) * (1 - pressedIn)
+    surface[at] =
+      basRelief((body[at] ?? 0) / pixelsPerUnit, relief.body) +
+      settledWax -
+      stamp.press * pressedIn +
+      ringed +
+      raised * pressedIn
+    const onRing = ringed > 0 ? Math.min(ringed / ring.height, 1) : 0
+    const settled = roughness.field + (roughness.body - roughness.field) * (1 - pressedIn)
+    const lifted = settled + (roughness.ring - settled) * onRing
+    rough[at] = inEmblem(at) ? roughness.emblem : lifted
+  }
+  return { height: surface, roughness: rough }
 }

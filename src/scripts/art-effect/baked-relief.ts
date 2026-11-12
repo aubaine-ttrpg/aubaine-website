@@ -23,6 +23,7 @@ export type BakedRelief = {
   called: string
   shader: string
   uniforms: Readonly<Record<string, readonly number[]>>
+  heldUniforms?: (holder: HTMLElement) => Readonly<Record<string, readonly number[]>>
   rest: Eye
   roomYaw: number
   lean: LeanOptics
@@ -39,8 +40,9 @@ type Loaded = { studio: Studio; program: Program; room: Environment; maps: Maps 
 
 type Shading = { name: string; floats: Float32Array }
 
-function shadingOf(piece: BakedRelief): Shading[] {
-  return Object.entries(piece.uniforms).map(([name, values]) => ({
+function shadingOf(piece: BakedRelief, holder: HTMLElement): Shading[] {
+  const uniforms = { ...piece.uniforms, ...piece.heldUniforms?.(holder) }
+  return Object.entries(uniforms).map(([name, values]) => ({
     name,
     floats: Float32Array.from(values),
   }))
@@ -80,7 +82,6 @@ async function mapsOf(studio: Studio, holder: HTMLElement, called: string): Prom
 export function bakedReliefs(piece: BakedRelief): () => void {
   const mounted = new Map<HTMLElement, AbortController>()
   const programs = new WeakMap<Studio, Promise<Program>>()
-  const shading = shadingOf(piece)
 
   const programFor = (studio: Studio): Promise<Program> => {
     const known = programs.get(studio)
@@ -100,6 +101,7 @@ export function bakedReliefs(piece: BakedRelief): () => void {
     canvas.setAttribute('aria-hidden', 'true')
     const surface = canvas.getContext('2d')
     if (!surface) throw new Error(`${piece.called} could not draw its canvas`)
+    const shading = shadingOf(piece, holder)
 
     let loaded: Loaded | undefined
     let preparing: Promise<void> | undefined

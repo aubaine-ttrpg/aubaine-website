@@ -630,9 +630,28 @@ const heraldry = z
         arms: armsFile,
       })
       .strict(),
+    z
+      .object({
+        kind: z
+          .literal('seal')
+          .describe(
+            "Un sceau de cire d'or où l'emblème est pressé, rendu à droite de la présentation, dont la cire prend la lumière quand le lecteur bouge le pointeur ou fait défiler la page.",
+          ),
+        name: heraldryName,
+        emblem: emblemFile.describe(
+          'Emblème pressé dans la cire, dans data/media/emblems/, ramené au cadre commun par pnpm media:emblems et cuit en relief par pnpm media:seal.',
+        ),
+        wax: z
+          .string()
+          .regex(HEX_COLOUR)
+          .describe(
+            "Couleur de la cire, en hexadécimal à six chiffres minuscules : l'ombrage en tire des creux ambrés et des reflets pâles.",
+          ),
+      })
+      .strict(),
   ])
   .describe(
-    "La pièce héraldique de la sous-espèce : une bannière qu'on saisit, un drapeau qui flotte, ou des armoiries dont l'or prend la lumière. Absente : la présentation n'en porte pas.",
+    "La pièce héraldique de la sous-espèce : une bannière qu'on saisit, un drapeau qui flotte, des armoiries dont l'or prend la lumière, ou un sceau de cire d'or. Absente : la présentation n'en porte pas.",
   )
 
 const subspecies = z

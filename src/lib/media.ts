@@ -1,4 +1,5 @@
 import { type ArmsFiles, armsFiles } from './art-effect/presets.ts'
+import { type SealFiles, sealFiles } from './art-effect/seal-look.ts'
 import { BOOK_COVERS, type PrintedBook, printOnCoverMatrix } from './book-cover.ts'
 import { latestRelease } from './booklet/manifest.ts'
 import { type BookletKind, releaseTag } from './booklet/release.ts'
@@ -97,6 +98,29 @@ export function armsOf(composition: string): ArmsFiles {
     colour: url(files.colour),
     relief: url(files.relief),
     finish: url(files.finish),
+  }
+}
+
+const SEAL_BAKES = import.meta.glob<string>('/data/media/seals/*.{webp,avif}', {
+  query: '?url&no-inline',
+  import: 'default',
+  eager: true,
+})
+
+export function sealOf(emblem: string): SealFiles {
+  const url = (file: string): string => {
+    const found = SEAL_BAKES[`/data/media/seals/${file}`]
+    if (found === undefined) {
+      throw new Error(`no ${file} in data/media/seals/: run pnpm media:seal`)
+    }
+    return found
+  }
+  const files = sealFiles(emblem)
+  return {
+    colour: url(files.colour),
+    relief: url(files.relief),
+    finish: url(files.finish),
+    stills: files.stills.map((still) => ({ width: still.width, file: url(still.file) })),
   }
 }
 

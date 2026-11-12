@@ -22,7 +22,10 @@
       }
     },
     "al-wahaa": {
-      "text": "***As an Al-Waahi***, you belong to a people who cross the desert from oasis to oasis, steering by the stars and by the shifting breath of the sirocco. The Al-Waahi hold it a sacred duty to offer food and fresh water to any traveller. Trust is earned around stalls of spices, light silks and medicinal potions, and many deals there are settled by barter, for in their eyes the true treasure is exchange and shared knowledge. You wear loose tunics and protective veils, adorned with copper jewellery and polished glass beads."
+      "text": "***As an Al-Waahi***, you belong to a people who cross the desert from oasis to oasis, steering by the stars and by the shifting breath of the sirocco. The Al-Waahi hold it a sacred duty to offer food and fresh water to any traveller. Trust is earned around stalls of spices, light silks and medicinal potions, and many deals there are settled by barter, for in their eyes the true treasure is exchange and shared knowledge. You wear loose tunics and protective veils, adorned with copper jewellery and polished glass beads.",
+      "heraldry": {
+        "name": "Seal of the Banū al-Baṭal"
+      }
     }
   },
   "roleplay": {
