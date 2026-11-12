@@ -15,11 +15,9 @@ import {
 import {
   SEAL,
   SEAL_MAP_SIZE,
-  SEAL_UNIFORMS,
   type SealFiles,
   sealFiles,
   waxShades,
-  waxUniforms,
 } from '../../src/lib/art-effect/seal-look.ts'
 import { linearToSrgb } from '../../src/lib/atlas/kernel/colour.ts'
 import { readCorpus } from '../../src/lib/game/fs-sources.ts'
@@ -30,14 +28,13 @@ import {
   finishMapOf,
   planeOf,
   reduced,
-  reliefFragment,
   reliefMapOf,
   writeReliefMaps,
   writeStill,
 } from './relief-bake.ts'
+import { SEALS_DIR, sealStillScene } from './relief-scenes.ts'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
-const sealsDir = resolve(root, 'data/media/seals')
 const emblemsDir = resolve(root, 'data/media/emblems')
 
 const VIEW_BOX = /viewBox="([^"]+)"/
@@ -131,29 +128,13 @@ async function bakeSeal(file: string, files: SealFiles, wax: string): Promise<vo
       finish: finishMapOf(roughness, occlusion, shadow),
     },
     out,
-    sealsDir,
+    SEALS_DIR,
     files,
   )
 
-  const fragment = await reliefFragment('relief.glsl', 'seal.frag')
   for (const still of files.stills) {
-    const shot = await bakeStill(
-      {
-        size: { width: still.width, height: still.width },
-        maps: [
-          { uniform: 'uColour', file: files.colour, colour: true },
-          { uniform: 'uRelief', file: files.relief, colour: false },
-          { uniform: 'uFinish', file: files.finish, colour: false },
-        ],
-        fragment,
-        roomYaw: SEAL.roomYaw,
-        lean: SEAL.lean,
-        eye: SEAL.rest,
-        uniforms: { ...SEAL_UNIFORMS, ...waxUniforms(shades) },
-      },
-      sealsDir,
-    )
-    await writeStill(shot, resolve(sealsDir, still.file))
+    const shot = await bakeStill(await sealStillScene(file, wax, still.width), SEALS_DIR)
+    await writeStill(shot, resolve(SEALS_DIR, still.file))
   }
 }
 
@@ -171,7 +152,7 @@ async function main(): Promise<void> {
       waxes.set(emblem, wax)
     }
   }
-  await mkdir(sealsDir, { recursive: true })
+  await mkdir(SEALS_DIR, { recursive: true })
   for (const [emblem, wax] of waxes) await bakeSeal(emblem, sealFiles(emblem), wax)
   console.log(`seal: baked ${waxes.size} seal(s) into data/media/seals/`)
 }

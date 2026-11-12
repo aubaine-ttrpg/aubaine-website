@@ -1,15 +1,8 @@
 import { readFile } from 'node:fs/promises'
-import { dirname, resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { resolve } from 'node:path'
 
 import sharp from 'sharp'
-import {
-  ARMS,
-  ARMS_MAP_SIZE,
-  ARMS_SIZE,
-  ARMS_UNIFORMS,
-  armsFiles,
-} from '../../src/lib/art-effect/presets.ts'
+import { ARMS, ARMS_MAP_SIZE, armsFiles } from '../../src/lib/art-effect/presets.ts'
 import {
   armsSurface,
   curvatureOf,
@@ -26,14 +19,11 @@ import {
   finishMapOf,
   planeOf,
   reduced,
-  reliefFragment,
   reliefMapOf,
   writeReliefMaps,
   writeStill,
 } from './relief-bake.ts'
-
-const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
-const armsDir = resolve(root, 'data/media/arms')
+import { ARMS_DIR, armsStillScene } from './relief-scenes.ts'
 
 const LAYERS = {
   shield: '.field{fill:#fff} .division,.charges,.outline{display:none}',
@@ -77,7 +67,7 @@ function pooledTincture(channel: number, pooled: number): number {
 }
 
 async function bakeComposition(file: string): Promise<void> {
-  const svg = await readFile(resolve(armsDir, file), 'utf8')
+  const svg = await readFile(resolve(ARMS_DIR, file), 'utf8')
   const files = armsFiles(file)
   const by = ARMS.supersample
   const out = ARMS_MAP_SIZE
@@ -138,27 +128,12 @@ async function bakeComposition(file: string): Promise<void> {
       finish: finishMapOf(metal, occlusion, shadow),
     },
     out,
-    armsDir,
+    ARMS_DIR,
     files,
   )
 
-  const still = await bakeStill(
-    {
-      size: ARMS_SIZE,
-      maps: [
-        { uniform: 'uColour', file: files.colour, colour: true },
-        { uniform: 'uRelief', file: files.relief, colour: false },
-        { uniform: 'uFinish', file: files.finish, colour: false },
-      ],
-      fragment: await reliefFragment('relief.glsl', 'arms.frag'),
-      roomYaw: ARMS.roomYaw,
-      lean: ARMS.lean,
-      eye: ARMS.rest,
-      uniforms: ARMS_UNIFORMS,
-    },
-    armsDir,
-  )
-  await writeStill(still, resolve(armsDir, files.still))
+  const still = await bakeStill(await armsStillScene(file), ARMS_DIR)
+  await writeStill(still, resolve(ARMS_DIR, files.still))
 }
 
 async function main(): Promise<void> {

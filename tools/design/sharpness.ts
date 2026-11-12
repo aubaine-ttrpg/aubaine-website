@@ -1,5 +1,6 @@
-import { type Browser, chromium, firefox, type Page, webkit } from 'playwright-core'
+import type { Browser, Page } from 'playwright-core'
 
+import { ENGINES, type Engine, isEngine } from './engines.ts'
 import {
   clipAround,
   LEAN_POINTERS,
@@ -7,14 +8,6 @@ import {
   sharpnessDrift,
   stillAndLive,
 } from './picture-measures.ts'
-
-const ENGINES = {
-  firefox: (headless: boolean) => firefox.launch({ headless }),
-  chromium: (headless: boolean) => chromium.launch({ channel: 'chromium', headless }),
-  webkit: (headless: boolean) => webkit.launch({ headless }),
-} as const satisfies Record<string, (headless: boolean) => Promise<Browser>>
-
-type Engine = keyof typeof ENGINES
 
 const SETTLE_MS = 1200
 const ROOM_PX = 24
@@ -38,10 +31,6 @@ function option(name: string, fallback?: string): string {
   if (value !== undefined) return value
   if (fallback !== undefined) return fallback
   throw new UsageError(`design:sharpness needs --${name}=...`)
-}
-
-function isEngine(name: string): name is Engine {
-  return name in ENGINES
 }
 
 function enginesOf(list: string): Engine[] {
