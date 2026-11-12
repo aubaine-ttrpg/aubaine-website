@@ -3,7 +3,8 @@ import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import sharp from 'sharp'
-import { type LeanOptics, leanWarp } from '../../src/lib/art-effect/lean.ts'
+import type { Size } from '../../src/lib/art-effect/cover.ts'
+import { type Lean, type LeanOptics, leanWarp } from '../../src/lib/art-effect/lean.ts'
 import { ENVIRONMENT } from '../../src/lib/art-effect/presets.ts'
 import type { Plane } from '../../src/lib/art-effect/relief.ts'
 import { fragmentSource, vertexSource } from '../../src/lib/art-effect/shader-source.ts'
@@ -15,6 +16,8 @@ const roomFile = resolve(root, 'data/media/textures/combination-room.webp')
 
 export type BakedMap = { uniform: string; file: string; colour: boolean }
 
+export type LeanedFrame = { box: Size; margin: number; lean: Lean }
+
 export type StillScene = {
   size: BakeSize
   maps: readonly BakedMap[]
@@ -23,6 +26,7 @@ export type StillScene = {
   lean: LeanOptics
   eye: { x: number; y: number }
   uniforms: Readonly<Record<string, readonly number[]>>
+  leaned?: LeanedFrame
 }
 
 export function planeOf(rgb: Buffer, size: BakeSize): Plane {
@@ -134,11 +138,31 @@ export async function reliefFragment(...bodies: readonly string[]): Promise<stri
   )
 }
 
-function stillPage({ size, maps, fragment, roomYaw, lean, eye, uniforms }: StillScene): string {
+function stillPage({
+  size,
+  maps,
+  fragment,
+  roomYaw,
+  lean,
+  eye,
+  uniforms,
+  leaned,
+}: StillScene): string {
   const vertex = vertexSource(
     'layout(location = 0) in vec2 aCorner;\nvoid main() { gl_Position = vec4(aCorner, 0.0, 1.0); }',
   )
-  const flat = [...leanWarp({ box: size, margin: 0, backing: size, lean: { x: 0, y: 0 } }, lean)]
+  const frame: LeanedFrame = leaned ?? { box: size, margin: 0, lean: { x: 0, y: 0 } }
+  const spread = {
+    width: frame.box.width + 2 * frame.margin,
+    height: frame.box.height + 2 * frame.margin,
+  }
+  const warp = [
+    ...leanWarp({ box: frame.box, margin: frame.margin, backing: size, lean: frame.lean }, lean),
+  ]
+  const piece = [
+    (frame.box.width * size.width) / spread.width,
+    (frame.box.height * size.height) / spread.height,
+  ]
   return `<!doctype html>
 <html><body style="margin:0;background:transparent">
 <canvas id="still" width="${size.width}" height="${size.height}"></canvas>
@@ -202,8 +226,8 @@ for (const [index, level] of ${JSON.stringify(ENVIRONMENT.levels)}.entries()) {
 const set = (name, ...values) => gl['uniform' + values.length + 'f'](gl.getUniformLocation(program, name), ...values)
 set('uRoomRange', ${ENVIRONMENT.range})
 set('uRoomYaw', ${roomYaw})
-gl.uniformMatrix3fv(gl.getUniformLocation(program, 'uWarp'), false, ${JSON.stringify(flat)})
-set('uPiece', ${size.width}, ${size.height})
+gl.uniformMatrix3fv(gl.getUniformLocation(program, 'uWarp'), false, ${JSON.stringify(warp)})
+set('uPiece', ${piece.join(', ')})
 set('uEye', ${eye.x}, ${eye.y})
 ${Object.entries(uniforms)
   .map(([name, values]) => `set('${name}', ${values.join(', ')})`)

@@ -1,4 +1,4 @@
-const LEAD = '200% 0px'
+export const BUILD_LEAD = '200% 0px'
 const STAYS_PLAIN = 'data-stays-plain'
 
 export function prepareOnApproach(piece: Element, prepare: () => void, signal: AbortSignal): void {
@@ -6,7 +6,7 @@ export function prepareOnApproach(piece: Element, prepare: () => void, signal: A
     ([entry]) => {
       if (entry?.isIntersecting) prepare()
     },
-    { rootMargin: LEAD },
+    { rootMargin: BUILD_LEAD },
   )
   near.observe(piece)
   signal.addEventListener('abort', () => near.disconnect(), { once: true })
