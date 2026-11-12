@@ -118,23 +118,26 @@ make, and because the author and source of each file are what make its licence c
 
 ## Textures
 
-The framed paintings, the Colbert banner and the Landenheit flag use works from Poly Haven under CC0
-1.0: a scanned picture frame, two fabric scans, two wood scans and a room HDRI. `pnpm media:textures`
-(`tools/media/textures.ts`) makes every file under `data/media/textures/` from its original,
-downloaded into `tmp/textures/`. It decodes the HDRI into four packed levels of the room, cuts each
-fabric's displacement map into a square tile, renders the gilt frame's glTF front on with three.js in
-Chromium (the lit frame, its surface and its relief), models and renders the wooden frame from the
-Wood Table Worn scan the same way, and models and renders the banner's hanger (a pole in the Dark
-Wood scan, gilt finials, a twisted cord), all lit by the same room. None of these
-textures ships three.js to a reader; the scripts import the files as hashed assets under `/_astro/`,
-`src/styles/prose.css` draws the lit frame as a `border-image`, and `Heraldry.astro` places the
-hanger.
+The framed paintings, the Colbert banner, the Landenheit flag and the wax seals use works from Poly
+Haven under CC0 1.0: a scanned picture frame, two fabric scans, two wood scans, a plaster scan and a
+room HDRI. `pnpm media:textures` (`tools/media/textures.ts`) makes every file under
+`data/media/textures/` from its original, downloaded into `tmp/textures/`. It decodes the HDRI into
+four packed levels of the room, cuts each fabric's displacement map into a square tile, renders the
+gilt frame's glTF front on with three.js in Chromium (the lit frame, its surface and its relief),
+models and renders the wooden frame from the Wood Table Worn scan the same way, and models and
+renders the banner's hanger (a pole in the Dark Wood scan, gilt finials, a twisted cord), all lit by
+the same room. None of these textures ships three.js to a reader; the scripts import the files as
+hashed assets under `/_astro/`, `src/styles/prose.css` draws the lit frame as a `border-image`, and
+`Heraldry.astro` places the hanger.
 
 `TEXTURE_WORKS` in [`src/lib/rights/attribution.ts`](../src/lib/rights/attribution.ts) names every
 work, its authors as its source page gives them, that page, and its licence. Each work also lists its
 cuts: the file it produces, the upstream file it is made from, and what the cut does to it, such as
 the frame's retouch over a chip of bare gesso in one corner. One row credits Rough Linen to colormass
-and Rico Cilliers under CC0 1.0. Read the module for the rest.
+and Rico Cilliers under CC0 1.0. Read the module for the rest. A seal's surface cut makes no file of
+its own: it names the scan's height and roughness maps and the width the source states for it in
+millimetres, and `pnpm media:seal` bakes it into each seal's relief and finish maps at the seal's
+size.
 
 The credits page renders the same rows. `pnpm data:check` fails when a file under
 `data/media/textures/` is credited by no cut, or when a credited file is missing.
@@ -145,9 +148,10 @@ The credits page renders the same rows. `pnpm data:check` fails when a file unde
    `https://api.polyhaven.com/files/<asset>` lists every file of an asset and its address.
 2. Copy the title and the authors exactly as the asset page prints them, and confirm the licence
    there.
-3. Add the work and its cut to `TEXTURE_WORKS`, then run `pnpm media:textures`. A frame's size,
-   slice and exposure are its row of `FRAMES` in `src/lib/art-effect/presets.ts`, and the tool
-   refuses a bake whose moulding does not measure that slice.
+3. Add the work and its cut to `TEXTURE_WORKS`, then run `pnpm media:textures`, or `pnpm media:seal`
+   for a seal's surface. A frame's size, slice and exposure are its row of `FRAMES` in
+   `src/lib/art-effect/presets.ts`, and the tool refuses a bake whose moulding does not measure that
+   slice.
 4. Read the result on `pnpm dev` in both themes before it ships.
 
 ## Heraldry

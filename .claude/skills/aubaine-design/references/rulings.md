@@ -667,6 +667,16 @@ while it is drawn right of the text from 30rem: an exception to *Reading order i
 the live drawing at every width, the owner answered that it sits as the banner and the arms sit,
 mirrored; it keeps their fluid column (0077).
 
+**The seal's wax carries a real surface, and the shared room stays (2026-11-12).** No CC0 wax scan
+exists and ambientCG states no size for its plastics, paints or painted plasters, so the candidates
+were Poly Haven scans whose size their source gives. From live previews beside the current seal the
+owner chose White Plaster 02 (1,000 mm) baked at the seal's own size (a 25 mm stamp face) over
+Leather Red 03, Ceiling Interior and no scan; on it, pits and bubbles, flow marks, and mica that
+catches the room as well as the key light, all three. The owner kept the Combination Room for the
+seal over three warm rooms (Warm Reception Dinner, Fireplace, Warm Restaurant Night), which flattened
+its swing to 5.8 to 7.9, and kept it for the Victoria arms, whose violet a warm room turned magenta
+(0077 Decision 8).
+
 ## Colour, marks and type
 
 **The pointy-top hexagon is the mark.** Markers, bullets and badges are pointy-top hexagons like the
@@ -941,4 +951,4 @@ and praised the Saison slider.
 | 2026-11-08 | a painting may hang in a rustic wooden frame, floated beside its text |
 | 2026-11-10 | titles in the quote's family, one look per level, each full width; each title framed, its pictogram or the painted question mark; a title frame may be round, the chapter title a hexagon; a chapter leads with its frame, other pages lay their title on a panel; a minimum plate width per level; a header never repeats the list below it; the titles, approved |
 | 2026-11-11 | a species or tree title's pictogram in the entry's key colour; the species sections' pictograms, the die printed on the book's cover |
-| 2026-11-12 | a sub-species' own painting in the frames of the titles that name it, the four Humain origins first; the Humain, Elfe and Nnor lore sections' pictograms, led by `:icon` in their headings; a sub-species may press its emblem into a gold wax seal on the right, raised, in the painting's amber, with a faint mica sparkle |
+| 2026-11-12 | a sub-species' own painting in the frames of the titles that name it, the four Humain origins first; the Humain, Elfe and Nnor lore sections' pictograms, led by `:icon` in their headings; a sub-species may press its emblem into a gold wax seal on the right, raised, in the painting's amber, with a faint mica sparkle; the seal's wax takes the White Plaster 02 surface with pits, flow marks and mica catching the room, under the shared room |

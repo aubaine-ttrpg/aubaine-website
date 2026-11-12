@@ -6,10 +6,10 @@
 **Deciders:** Kori
 **Scope:** The `seal` kind of heraldry and where it stands, where its emblem and its bake live and who
 owns them, how it is sculpted, baked and shaded, the stills it hands off from, and the mount, bake,
-shader library and measuring tools it now shares with the arms, and what both cost to draw. Extends
-0059 Decisions 1, 7 and 9 without changing the arms' look, keeps the lean in the shader that 0059
-Decision 7 records, and keeps 0071: a seal is drawn before it is seen like every lit piece. Leaves
-the banner and the flag as they are.
+shader library and measuring tools it now shares with the arms, what both cost to draw, and the
+scanned surface its wax takes. Extends 0059 Decisions 1, 7 and 9 without changing the arms' look,
+keeps the lean in the shader that 0059 Decision 7 records, and keeps 0071: a seal is drawn before it
+is seen like every lit piece. Leaves the banner and the flag as they are.
 
 ---
 
@@ -409,6 +409,119 @@ read from `pnpm-lock.yaml`: `astro@7.3.3`, `sharp@0.35.4`, `playwright-core@1.63
 
 ---
 
+## Decision 8: The seal's free wax takes a plaster scan at its own size, with pits, flow marks and mica that catches the room
+
+### Decision
+
+- A seal is a 25 mm stamp face (`SEAL.surface.fieldMillimetres` in
+  `src/lib/art-effect/seal-look.ts`), so a unit of the sculpt is 0.417 mm and a fine pixel of the
+  bake 0.018 mm. The value is chosen, not measured from a seal.
+- `pnpm media:seal` lays the surface of White Plaster 02 (Poly Haven, Rob Tuytel, CC0, 1,000 mm
+  across as its source states) on the wax: it crops the middle 46 mm of the scan's height and
+  roughness maps, and `skinnedSurface` (`src/lib/art-effect/relief.ts`) adds both by millimetres,
+  each normalised to its own spread, the height at 0.15 units and the roughness at 0.05, in full on
+  the free wax and at 15 % under the stamp (`SEAL.surface.skin`).
+- On the free wax only, `pittedSurface` sinks 34 pits and bubbles, 0.35 to 1 unit wide and 0.22
+  deep, at places a fixed hash of seed 11 gives, and `flowedSurface` raises ridges 1.7 units apart
+  along the outline, 0.07 high, fading over 5 units, phased by three fixed waves
+  (`SEAL.surface.pits` and `SEAL.surface.flow`). `sealSurface` reports how far the stamp pressed
+  each pixel (`stamped`) so all three know the free wax from the field.
+- The scan lives only in the relief and finish maps: no runtime texture and no map sample are added.
+- `glsl/seal.frag`: each mica flake adds the luminance of the room's sharp level in its own mirror
+  direction, at 0.12, to the key light's glint.
+- `TEXTURE_WORKS` (`src/lib/rights/attribution.ts`) credits the scan with a `seal-surface` cut that
+  names its two maps and its width in millimetres and makes no file of its own; `TEXTURE_FILES` lists
+  only the cuts that write one, and `pnpm media:seal` finds its scan through that cut.
+- The seal keeps the shared Combination Room, and the arms keep their room and their look.
+
+### Rationale
+
+- The owner's choices, from previews drawn live on the Humain page beside the current seal,
+  recorded in `.claude/skills/aubaine-design/references/rulings.md` on 2026-11-12: White Plaster 02
+  over Leather Red 03, Ceiling Interior and no scan; pits and bubbles, flow marks, and mica catching
+  the room, all three; the Combination Room over three warm rooms; the arms unchanged.
+- The source of the scan. No CC0 wax scan exists (the brief). ambientCG's API (`full_json` with
+  `include=dimensionsData,methodData`, 2026-11-12) gives every Plastic, Paint and PaintedPlaster
+  material a size of 0, and makes them `PBRProcedural` or `PBRApproximated`, PaintedPlaster006, 017
+  and 018 excepted as `PBRPhotogrammetry`; none can be scaled to a seal. Poly Haven's API gives each
+  texture's size in millimetres, `[1000, 1000]` for White Plaster 02.
+- The scans were compared at one added slope, a root mean square of about 2 degrees over the seal,
+  so that each showed as much: 0.15 units of height for the plaster, 0.026 for the leather, 0.25 for
+  the ceiling. With the pits and the flow marks the added slope is 3.65 degrees.
+- What each added byte buys, from `data/media/seals/`:
+
+  | File | Before | After | Buys |
+  | --- | --- | --- | --- |
+  | `al-wahaa-relief.avif` | 34,145 | 40,853 | the plaster's height, the pits and the flow marks |
+  | `al-wahaa-finish.avif` | 25,322 | 32,152 | the plaster's roughness, and the occlusion and shadow of the new relief |
+  | `al-wahaa-colour.avif` | 4,137 | 4,137 | nothing changed |
+  | the nine stills, 120 to 576 px | 4,548 to 34,120 | 4,750 to 39,936 | the same surface in the still, 202 to 5,816 more each |
+  | `seal` chunk | 4,529 (2,043 gzip) | 4,923 (2,214 gzip) | the mica's room lookup |
+
+  A visit at 1440 by 900 fetches the three maps, one still and the chunk: 14,500 more bytes at a
+  ratio of 1 and 16,852 at 2, before compression on the wire. Texture memory is unchanged, as the
+  maps keep their sizes.
+- The relief map's angular error against the same normals written lossless, over the seal: a mean of
+  1.22 degrees and a p99 of 8.7, against 0.96 and 8.6 before, at the same AVIF quality.
+- `pnpm design:frames --mode=light`: 138.1, 136.2 and 148.4 at rest, far left and far right, a swing
+  of 12.2 against 12.0; the arms read 72.1, 71.0 and 79.0, unchanged. On SwiftShader the arms render
+  bit identical at the five poses of the `shader` mode.
+- At ratios 1 and 2, crops of the live seal at three times their size show neither sparkle at rest
+  nor the 8-bit blocks of Decision 3; the field keeps 15 % of the scan, the gentle slopes it has.
+- Cost, `pnpm design:frames --mode=sweep` run back to back on the build of Decision 7 and on this
+  one, five runs each: the frame median (8.32 to 8.33 ms) and p95 (10.1 to 10.2 ms), the long frames
+  (one Firefox run on each side, 67 and 66 ms) and the main thread per redraw are the same. The
+  seal's GPU time per draw in Chromium rises from 0.08 (0.08 to 0.09) to 0.11 (0.10 to 0.11) ms at a
+  ratio of 1 and from 0.27 (0.26 to 0.29) to 0.32 (0.28 to 0.33) ms at 2: the mica's room lookup,
+  which a flake anywhere in a group of pixels makes the whole group run. Appearance, rest and
+  reduced motion read as in Decision 7 in all three engines.
+- Sharpness, `pnpm design:sharpness` against the build of Decision 7 and this one (Chromium at a
+  ratio of 1 headless, as `measuring.md` asks):
+
+  | Browser, ratio | Still against first live frame, before and after | Leaned against flat, lowest of nine, before and after |
+  | --- | --- | --- |
+  | Firefox, 1 | 0.951, 0.946 | 0.974, 0.972 |
+  | Firefox, 2 | 0.970, 0.968 | 0.953, 0.950 |
+  | Chromium, 1 | 0.954, 0.949 | 0.974, 0.972 |
+  | Chromium, 2 | 0.973, 0.970 | 0.973, 0.962 |
+  | WebKit, 1 | 0.947, 0.941 | 0.974, 0.973 |
+  | WebKit, 2 | 0.970, 0.964 | 0.957, 0.954 |
+
+  The arms, unchanged, repeat their still rows exactly and their leaned rows within 0.018, so the
+  leaned rows above move inside the tool's own spread. The still rows sit 0.002 to 0.006 lower: the
+  plaster gives the WebP still at quality 88 more fine detail to smooth, which removes 6.3 % of the
+  192 px still's Laplacian variance and 4.8 % of the 384 px one's.
+- `pnpm media:seal` writes the three maps byte for byte as the preview bake that showed the owner
+  each variant, run with the chosen three; its stills are drawn by the same shader in the same room,
+  and `tests/e2e/heraldry.spec.ts` (79 tests), `policies.spec.ts`, `print.spec.ts`,
+  `no-javascript.spec.ts` and `art-effect-fallback.spec.ts` pass on this build, 181 tests.
+
+### Alternatives considered
+
+- **Leather Red 03** (300 mm): a fine pebbled grain that reads as leather or orange peel, and 10,936
+  and 10,463 more bytes in the relief and finish maps. Not chosen.
+- **Ceiling Interior** (2,000 mm, dried paint): at the seal's size only a faint swell. Not chosen.
+- **ambientCG's PaintedPlaster006, 017 or 018**: scans, but of no stated size, so any scale would be
+  a guess. Rejected. Reopens if ambientCG states their size.
+- **A warm room for the seal alone**, packed by `pnpm media:textures` and fetched only on a page with
+  a seal: Warm Reception Dinner (2,788 K, 51,396 bytes), Fireplace (2,738 K, 76,504) and Warm
+  Restaurant Night (2,902 K, 71,676), against 7,328 K for the Combination Room, measured as the
+  solid-angle weighted colour temperature of each 1K HDRI. The seal's sheen takes the room's
+  brightness and not its colour, so they only darkened it (a mean of 123 to 134 against 138) and
+  flattened its swing to 5.8 to 7.9. Rejected by the owner. Reopens on the owner's request.
+- **The arms in a warm room**: the violet turned magenta and the sable brown, a swing of 5.6 to 7.2.
+  Rejected by the owner.
+
+### Caveats
+
+- The surface is plaster, not wax, and the seal's 25 mm is a chosen size.
+- Sparkle was judged at rest and live, not measured in motion by a number.
+- The seal's still reads 0.002 to 0.006 below the Decision 6 table against its first live frame,
+  inside the 10 % the tool allows. Stills at WebP quality 92 would win back about 0.007 for 1,684
+  more bytes at 192 px and 5,278 at 384 px; not taken unasked.
+
+---
+
 ## Summary
 
 | Item | Role | Where |
@@ -418,6 +531,8 @@ read from `pnpm-lock.yaml`: `astro@7.3.3`, `sharp@0.35.4`, `playwright-core@1.63
 | `al-wahaa.svg` | the owner's emblem, framed and stamped | `data/media/emblems/` |
 | the maps and stills | baked by `pnpm media:seal` | `data/media/seals/` |
 | `SEAL`, `waxShades` | the sculpt's and the wax's values | `src/lib/art-effect/seal-look.ts` |
+| `skinnedSurface`, `pittedSurface`, `flowedSurface` | the scan, the pits and the flow marks on the free wax | `src/lib/art-effect/relief.ts` |
+| `seal-surface` cut | the credited scan a seal is baked with | `src/lib/rights/attribution.ts` |
 | `seal.frag` | the wax shader | `src/scripts/art-effect/glsl/` |
 | `pnpm design:sharpness` | leaned against flat and still against live, three engines | `tools/design/sharpness.ts` |
 | `pnpm design:frames` | frame cost, appearance, rest, bytes, shader and pixel identity, three engines | `tools/design/frames.ts` |
@@ -432,4 +547,6 @@ read from `pnpm-lock.yaml`: `astro@7.3.3`, `sharp@0.35.4`, `playwright-core@1.63
   gives.
 - Whether to rebake the arms' still from the current shader (Decision 7, Caveats): a change readers
   without JavaScript, in print and during the hand-off would see; the owner's call.
+- Whether the seal's stills should move to WebP quality 92 to match the Decision 6 table again
+  (Decision 8, Caveats); the owner's call.
 - Anything on Windows, on integrated graphics or on a phone.

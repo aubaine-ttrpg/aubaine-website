@@ -879,7 +879,9 @@ button hides (`tests/e2e/hub-stage.spec.ts`); a swap still changes the picture a
   provides, such as the rustic wooden frame of « Les derniers Galwariens », is modelled and baked from a
   CC0 wood scan (2026-11-08, ADR 0075). A seal of gold sealing wax, such as the Al-Wahaa seal, is
   sculpted from the owner's emblem in the bake and shaded as satin wax with mica, never as polished
-  metal: amber hollows, pale warm highlights, a faint sparkle (2026-11-12, ADR 0077).
+  metal: amber hollows, pale warm highlights, a faint sparkle (2026-11-12, ADR 0077). Its free wax
+  carries the surface of a CC0 plaster scan at the seal's own size, with pits, bubbles and flow
+  marks, and its mica catches the room as well as the key light (2026-11-12, ADR 0077 Decision 8).
 - **Torn, stone and rupture masks** (`data/media/masks/`) are for lore pictures only.
 - **One WebGL context**: the live pieces share `src/scripts/art-effect/studio.ts`; the torchlight on lore
   pictures (`src/scripts/torchlight.ts`) still opens its own, and the almanachs of a page share one of
