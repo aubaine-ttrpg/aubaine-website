@@ -64,6 +64,7 @@
       "id": "alpin",
       "name": "Nnor alpin",
       "text": "***En tant que Nnor alpin***, vous venez d'une Yurta qui élit elle-même son Saman, sans Dragonnor au-dessus de lui, et où chacun prend sa part des tâches. Votre fourrure est blanche, grise ou brun clair, avec parfois des reflets dorés ou roux comme le premier soleil sur les cimes, et vos yeux vont du vert mousse au bleu glacier. Les vôtres sont commerçants et artisans : ils descendent des pentes enneigées jusqu'aux foires aux épices et aux étoffes pour y troquer peaux, métaux et objets d'art. Les citadins s'étonnent de leur honnêteté en affaires, et du soin qu'ils prennent à ne rien abîmer des sentiers que suivent leurs caravanes.",
+      "art": "crane-de-bouc-givre-1_1-og.png",
       "names": {
         "masculine": [
           "Ariante",
@@ -139,6 +140,7 @@
       "id": "charon",
       "name": "Nnor de Charon",
       "text": "***En tant que Nnor de Charon***, vous appartenez à la lignée restée fidèle au Dragon Primordial du Feu. Dans votre Yurta, les ouvriers obéissent au Saman, et le Saman au Dragonnor qui l'a fondée, un ancien Saman que le Rituel du Feu a transformé dans l'Antre de Charon, sur le mont Edros. Votre toison d'un noir d'encre est striée de fines veines rougeoyantes, vos yeux ont l'éclat pourpre d'une braise et vos cornes la couleur du charbon. Vous êtes né d'un œuf pondu par le Dragonnor de votre Yurta, et vous n'en pondez aucun. Le silence des galeries souterraines vous est familier, et c'est à l'ombre des volcans siffleurs que votre Yurta célèbre sa dévotion à Charon.",
+      "art": "crane-de-bouc-embrase-1_1-og.png",
       "names": {
         "given": [
           "Azhoran",

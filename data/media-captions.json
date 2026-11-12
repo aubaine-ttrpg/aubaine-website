@@ -146,6 +146,24 @@
         "humain",
         "Al-Wahaa"
       ]
+    },
+    {
+      "file": "art/crane-de-bouc-givre-1_1-og.png",
+      "title": "Crâne de bouc givré",
+      "description": "Crâne de bouc aux cornes enroulées, ourlées de neige et de glaçons, frappé d'un flocon bleu, devant des cimes dans un tourbillon de glace.",
+      "keywords": [
+        "nnor",
+        "Nnor alpin"
+      ]
+    },
+    {
+      "file": "art/crane-de-bouc-embrase-1_1-og.png",
+      "title": "Crâne de bouc embrasé",
+      "description": "Crâne de bouc aux cornes enroulées, marqué de signes rouges, au cœur d'un tourbillon de flammes.",
+      "keywords": [
+        "nnor",
+        "Nnor de Charon"
+      ]
     }
   ]
 }
