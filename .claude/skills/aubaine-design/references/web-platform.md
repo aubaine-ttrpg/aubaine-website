@@ -437,6 +437,13 @@ was fetched on 2026-10-31. A component named without its folder lives in `src/co
   draws.
   [webglcontextlost](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/webglcontextlost_event),
   [WEBGL_lose_context](https://registry.khronos.org/webgl/extensions/WEBGL_lose_context/).
+- Never lean or turn a lit canvas with a CSS 3D transform: the compositor resamples a canvas that holds
+  one canvas pixel per device pixel, and a canvas drawn at twice that loses about as much. On 2026-11-12
+  the arms leaned 3.5 degrees read 0.36 to 0.68 of their flat sharpness, and 0.50 to 0.70 at twice the
+  pixels, Firefox at a ratio of 1 aside. Draw the lean in the shader through the inverse of the CSS
+  homography (`leanWarp` in `src/lib/art-effect/lean.ts`), on a canvas with room for the leaned
+  outline. Even a resting `perspective()` kept Chromium resampling the arms (1360 against 1939 at a
+  pixel ratio of 2).
 - The stage draws only while on screen and not paused, at the frame rate of its tier.
 - The CSS stage is complete on its own: without JavaScript, without WebGL2, on the low tier and under
   reduced motion it is the whole stage.

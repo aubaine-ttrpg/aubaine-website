@@ -159,6 +159,11 @@ directory under another path, or lacks a shot.
   piece reads soft, look at its sculpt and the value range of its metal before its gloss.
 - Check lit pieces in Playwright's WebKit too: it multiplies image channels by alpha, so never pack data
   in a map's alpha.
+- Measure a leaned piece against the same pointer drawn flat: lay a transparent fixed veil over the page
+  and nudge the pointer, so the piece loses its hover while the light stays where it was
+  (`tests/e2e/heraldry.spec.ts`). Read a pixel ratio of 1 in headless Chromium: a headed window emulating
+  1 on a ratio 2 screen resamples the page, and under emulation `devicePixelContentBoxSize` disagrees
+  with `devicePixelRatio`.
 - To time a full-screen shader on an Apple GPU, turn blending on, or tile-based hidden-surface removal
   shades only the last draw. For script cost, read the CPU profiler's per-script self time: Chrome's
   `Performance.getMetrics` ScriptDuration misses async continuations.
