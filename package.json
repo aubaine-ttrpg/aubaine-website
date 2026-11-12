@@ -29,6 +29,7 @@
     "lore:owner-text": "node tools/lore/owner-text.ts",
     "design:audit": "node tools/design/audit.ts",
     "design:pixels": "node tools/design/pixels.ts",
+    "design:sharpness": "node tools/design/sharpness.ts",
     "design:transit": "node tools/design/transit.ts",
     "media:sync": "node tools/media/sync.ts",
     "media:stamp": "node tools/media/stamp.ts",

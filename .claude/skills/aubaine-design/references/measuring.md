@@ -164,6 +164,11 @@ directory under another path, or lacks a shot.
   (`tests/e2e/heraldry.spec.ts`). Read a pixel ratio of 1 in headless Chromium: a headed window emulating
   1 on a ratio 2 screen resamples the page, and under emulation `devicePixelContentBoxSize` disagrees
   with `devicePixelRatio`.
+- `pnpm design:sharpness --path=PATH --pieces=SELECTOR` runs that measure over a 3 by 3 pointer grid,
+  and the still against the first live frame, in headed Firefox, Chromium and WebKit at ratios 1 and 2
+  (`tools/design/sharpness.ts`, sharing `tools/design/picture-measures.ts` with the heraldry spec). It
+  exits 1 when a pose drifts more than 10 % from its reference; add `--headless --engines=chromium
+  --ratios=1` for the Chromium row at a ratio of 1.
 - To time a full-screen shader on an Apple GPU, turn blending on, or tile-based hidden-surface removal
   shades only the last draw. For script cost, read the CPU profiler's per-script self time: Chrome's
   `Performance.getMetrics` ScriptDuration misses async continuations.
