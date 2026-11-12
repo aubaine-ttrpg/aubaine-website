@@ -37,6 +37,8 @@ Keeping the original beside a retouched version is the point of the state part. 
 | --- | --- | --- |
 | `data/media/art/` | covers, banners, hero and social images, 3:1 panoramas, 3:2 and 11:12 paintings a lore page draws, 1:1 portraits a dialogue turn opens on, 1:1 paintings a sub-species' titles carry, and 3:2 flags a sub-species flies | `.png`, `.jpg` |
 | `data/media/items/` | item pictures | `.png`, `.jpg` |
+| `data/media/emblems/` | the emblems a species, a tree, a banner or a seal names: white paths on transparent, framed square by `pnpm media:emblems` | `.svg` |
+| `data/media/seals/` | the maps and stills `pnpm media:seal` bakes for each seal, never by hand | `.avif`, `.webp` |
 | `data/media/skills/` | skill pictures, 1:1, named after the skill's title | `.png`, `.jpg` |
 | `data/media/masks/` | the shapes a prose picture can be cut to | `.svg` or `.png`, named `<key>-<ratio>` after a key of `PICTURE_MASKS` in `src/lib/game/book-markup.ts`, one file per ratio so the edge keeps its size |
 | `data/media/icons/mdi/` | Iconify `mdi:` icons | `.svg`, named after the part following the colon |
@@ -54,7 +56,7 @@ Covers and banners share `data/media/art/`. The ratio in the name says which one
 
 ## Stamp it before you commit it
 
-A picture in this repository says who owns it, in its own bytes. `pnpm media:stamp` writes that claim into every file under `data/media/art/`, `data/media/items/`, `data/media/masks/`, `data/media/skills/` and `data/media/unassigned/`, into the logos, the QR and the hero loop, and removes whatever provenance the generator left behind. Run it after you drop a file in, before you commit.
+A picture in this repository says who owns it, in its own bytes. `pnpm media:stamp` writes that claim into every file under `data/media/art/`, `data/media/emblems/`, `data/media/items/`, `data/media/masks/`, `data/media/skills/` and `data/media/unassigned/`, into the logos, the QR and the hero loop, and removes whatever provenance the generator left behind. Run it after you drop a file in, before you commit.
 
 ```
 pnpm media:stamp

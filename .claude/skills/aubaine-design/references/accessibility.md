@@ -112,7 +112,9 @@ what the site already does. Every link was fetched on 2026-10-31; two are marked
   [Apple HIG, accessibility](https://developer.apple.com/design/human-interface-guidelines/accessibility).
 - **Reading order is drawn order.** Source, reading and focus order equal the visual order at every
   width; rotation, grid areas and absolute layers present, never reorder. Recheck it when a kept layout
-  reflows doors into columns. [1.3.2](https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence.html),
+  reflows doors into columns. One exception, the owner's (2026-11-12, `rulings.md`): heraldry drawn
+  right of its text comes first in the source, so that it stacks above the text below 30rem as the
+  pieces on the left do; it holds only while the piece offers nothing a keyboard can reach. [1.3.2](https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence.html),
   [2.4.3](https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html),
   [C27](https://www.w3.org/WAI/WCAG22/Techniques/css/C27).
 - **Structure.** One `main`, one `h1`, doors in a list, all content in landmarks, a skip link; the `h1` is

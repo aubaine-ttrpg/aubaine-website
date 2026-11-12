@@ -651,6 +651,22 @@ a 1512 px screen, the text beside it keeping 36 to 49 characters a line (33 to 4
 
 > "please let's reduce ligthing and gloss it's unbearable", then "slgithly brighter and if you can slightly tilt it when hovering just like the card", "it seems blurry", "you can reput some realistic lighting but without being too blinding" and "more realistic add it still but still it should be not that glossy" (2026-10-26, the Victoria arms)
 
+**A sub-species may press its emblem into a gold wax seal, beside its text on the right (2026-11-12).**
+For Al-Wahaa the owner asked for a lit seal of gold sealing wax, baked from the owner's own emblem as
+the Victoria arms are baked, beside its paragraph on the right where the Colbert banner and the
+Victoria arms stand on the left: the same fluid column, mirrored, stacked above the text below 30rem
+as theirs are. The left column stays the place of the banner and the arms; the seal takes the right
+one. From previews rendered on the live page the owner chose the emblem raised, as an impression comes
+out of its stamp, over sunk; the painting's amber over house gold, the wax charged with `#ef9600` so
+that the lit wax renders at the painting's hue (60 to 63° in OKLCH against the painting's 62.5°); a
+faint mica sparkle over satin alone; and, for the caption, the name alone, « Sceau des Banū al-Baṭal »
+and "Seal of the Banū al-Baṭal". Stacked above its paragraph, the seal comes first in the page's order
+while it is drawn right of the text from 30rem: an exception to *Reading order is drawn order*
+(`accessibility.md`) that holds only while the piece offers nothing a keyboard can reach, which
+`tests/e2e/heraldry.spec.ts` checks. Asked whether to step the seal's column so that its still matches
+the live drawing at every width, the owner answered that it sits as the banner and the arms sit,
+mirrored; it keeps their fluid column (0077).
+
 ## Colour, marks and type
 
 **The pointy-top hexagon is the mark.** Markers, bullets and badges are pointy-top hexagons like the
@@ -925,4 +941,4 @@ and praised the Saison slider.
 | 2026-11-08 | a painting may hang in a rustic wooden frame, floated beside its text |
 | 2026-11-10 | titles in the quote's family, one look per level, each full width; each title framed, its pictogram or the painted question mark; a title frame may be round, the chapter title a hexagon; a chapter leads with its frame, other pages lay their title on a panel; a minimum plate width per level; a header never repeats the list below it; the titles, approved |
 | 2026-11-11 | a species or tree title's pictogram in the entry's key colour; the species sections' pictograms, the die printed on the book's cover |
-| 2026-11-12 | a sub-species' own painting in the frames of the titles that name it, the four Humain origins first; the Humain, Elfe and Nnor lore sections' pictograms, led by `:icon` in their headings |
+| 2026-11-12 | a sub-species' own painting in the frames of the titles that name it, the four Humain origins first; the Humain, Elfe and Nnor lore sections' pictograms, led by `:icon` in their headings; a sub-species may press its emblem into a gold wax seal on the right, raised, in the painting's amber, with a faint mica sparkle |

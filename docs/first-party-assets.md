@@ -51,10 +51,11 @@ not plain ASCII goes into an uncompressed `iTXt`, which is UTF-8 by definition.
 
 | Path | What happens | Written by |
 | --- | --- | --- |
-| `art/`, `items/`, `masks/`, `skills/`, `unassigned/` | stripped, then stamped | `pnpm media:stamp` |
+| `art/`, `emblems/`, `items/`, `masks/`, `skills/`, `unassigned/` | stripped, then stamped | `pnpm media:stamp` |
 | `video/` | stripped, then stamped through ffmpeg | `pnpm media:stamp` |
 | the files `OWNED_FILES` names, such as `aubaine-logo.svg` | stamped | `pnpm media:stamp` |
 | `almanach/`, the almanach's model and its baked maps | owned, left as they are: the stamp writes no `.glb` or `.avif` | nothing |
+| `seals/`, the maps and stills baked from an owned emblem | owned, left as they are: the stamp writes no `.avif` or `.webp` | nothing |
 | `flags/` | stripped, nothing written | `pnpm media:stamp` |
 | `fonts/`, `icons/`, `sounds/`, `textures/` | untouched | nothing: they are not ours |
 | `dist/_astro/*.webp`, `*.jpeg`, `*.png` | stamped as they are emitted | `src/lib/rights/image-service.ts` |

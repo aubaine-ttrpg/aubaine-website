@@ -115,3 +115,11 @@ not a ruling; it lives in the page.
   (`tmp/lore-runs/2026-11-07-elfe-revise/request.md:1820`).
 - **2026-11-08.** By the end of her prayer Tiar has lost enough faith in Élyséa to warn her: her last
   words give a goddess a last warning (`tmp/lore-runs/2026-11-07-elfe-revise/request.md:1767`).
+
+## Humans
+
+### Canon
+
+- **2026-11-12.** The Banū al-Baṭal are the former ruling tribe of the Al-Wahaa. Their seal is the
+  heraldry of the Al-Wahaa, and its caption carries their name alone (`data/species/humain.json`);
+  their former rule is on no page yet.

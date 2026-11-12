@@ -169,6 +169,10 @@ directory under another path, or lacks a shot.
   (`tools/design/sharpness.ts`, sharing `tools/design/picture-measures.ts` with the heraldry spec). It
   exits 1 when a pose drifts more than 10 % from its reference; add `--headless --engines=chromium
   --ratios=1` for the Chromium row at a ratio of 1.
+- A still matches its live drawing only when the box lands on the still's own pixels: the browser's
+  resample, even of 3 %, halves the variance of the Laplacian (the Al-Wahaa seal, 0.50 at 186 px from a
+  192 px still against 0.97 at 192). Bake the still at the box's device sizes and let `sizes` follow
+  the column (0077).
 - To time a full-screen shader on an Apple GPU, turn blending on, or tile-based hidden-surface removal
   shades only the last draw. For script cost, read the CPU profiler's per-script self time: Chrome's
   `Performance.getMetrics` ScriptDuration misses async continuations.

@@ -76,7 +76,8 @@ device pixel. Decision 7 records where that ended: the lean is drawn in the arms
   `src/lib/game/build.ts` merges it into the piece instead of replacing the piece, and fails the build
   when an overlay names a key its piece does not carry.
 - `HERALDRY_PLACEMENT` in `src/lib/game/derive.ts` records, for every kind, whether the piece stands
-  `beside` its text (banner, arms) or `across` the column (flag). `Species.astro` reads it, and
+  beside its text on the left (`beside-start`: banner, arms), on the right (`beside-end`: the seal of
+  0077, since 2026-11-12) or `across` the column (flag). `Species.astro` reads it, and
   `Heraldry.astro` throws on a kind it cannot draw, so a new kind has to be placed and drawn.
 - `src/components/primitives/Heraldry.astro` renders a `figure` named by its `figcaption`, with the
   class `au-prose__picture`, so its caption is the same Garamond italic and gold rule as every lore

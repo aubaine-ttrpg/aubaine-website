@@ -115,8 +115,8 @@ A Landenheit Humain chooses two out of ESPHUM-001, AMIXXX-001 and VOLSUR-001 plu
 
 A sub-species may carry one piece of heraldry, rendered under its heading. Its `name` is the caption
 under it and the name of the figure for a screen reader, and the English overlay translates it as
-`subspecies.<id>.heraldry.name`. Where it stands, beside the text or across the column, is
-`HERALDRY_PLACEMENT` in `src/lib/game/derive.ts`.
+`subspecies.<id>.heraldry.name`. Where it stands, beside the text on its left or its right, or across
+the column, is `HERALDRY_PLACEMENT` in `src/lib/game/derive.ts`.
 
 ```json
 "heraldry": {
@@ -149,12 +149,20 @@ under it and the name of the figure for a screen reader, and the English overlay
   the English overlay translates it as `subspecies.<id>.heraldry.blazon`. The light follows the
   pointer, or the scroll without one, and the shield leans toward a hovering mouse like the hero's
   card.
+- `seal` stands in the same column mirrored, right of the presentation; below 30rem it stands above
+  the text like the others. It is a puddle of sealing wax with one drip, the ring the stamp squeezed
+  out and the emblem raised in the pressed field. Its `emblem` is a white SVG in
+  `data/media/emblems/`, framed by `pnpm media:emblems`; `wax` is the colour of the wax, from which
+  the shading draws amber hollows and pale highlights. `pnpm media:seal` bakes every seal into the
+  maps and stills of `data/media/seals/`. It lights and leans like the arms. A seal offers nothing a
+  keyboard can reach: it comes first in the page's order while it is drawn right of the text.
 
-All three draw on the shared GPU context of the hero (`src/scripts/art-effect/banners.ts`, `flags.ts`
-and `arms.ts`), with the textures credited in `docs/third-party-assets.md`. Under reduced motion each
-draws one still frame. Without JavaScript or WebGL2, on a software renderer and in print, the plain
-banner, drawn from the same outline (`bannerOutline` in `src/lib/art-effect/presets.ts`), the flat
-flag or the baked still of the arms stays; the banner and the flag also keep it on the low tier.
+All four draw on the shared GPU context of the hero (`src/scripts/art-effect/banners.ts`, `flags.ts`,
+`arms.ts` and `seal.ts`), with the textures credited in `docs/third-party-assets.md`. Under reduced
+motion each draws one still frame. Without JavaScript or WebGL2, on a software renderer and in print,
+the plain banner, drawn from the same outline (`bannerOutline` in `src/lib/art-effect/presets.ts`),
+the flat flag or the baked still of the arms or the seal stays; the banner and the flag also keep it
+on the low tier.
 
 ## The lore file
 
