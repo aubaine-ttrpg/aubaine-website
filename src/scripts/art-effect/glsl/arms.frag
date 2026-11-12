@@ -1,23 +1,12 @@
 uniform sampler2D uColour;
 uniform sampler2D uRelief;
 uniform sampler2D uFinish;
-uniform mat3 uWarp;
-uniform vec2 uShield;
-uniform vec2 uEye;
-uniform float uSway;
-uniform float uDistance;
-uniform float uExposure;
 uniform vec3 uGoldDeep;
 uniform vec3 uGoldPale;
-uniform vec3 uKey;
 
 out vec4 outColor;
 
-const float DETAIL_BIAS = -0.75;
-const float FILTER_VARIANCE = 0.25;
-const float FILTER_LIMIT = 0.18;
 const float SPECULAR_OCCLUSION = 0.6;
-const float KEY_LIGHT = 1.3;
 const float KEY_DIFFUSE = 0.6;
 const float AMBIENT = 0.7;
 
@@ -39,32 +28,6 @@ const float COAT_ROUGHNESS = 0.55;
 const float GLINT_ROUGHNESS = 0.3;
 const float SHEEN_KNEE = 0.7;
 const float GLINT_KNEE = 0.5;
-
-vec3 eyeAt(float aspect) {
-  return vec3(aspect * (0.5 + (uEye.x - 0.5) * uSway), 0.5 + (uEye.y - 0.5) * uSway, uDistance);
-}
-
-vec3 keepHue(vec3 colour) {
-  float peak = max(colour.r, max(colour.g, colour.b));
-  const float start = 0.62;
-  if (peak < start) return colour;
-  const float headroom = 1.0 - start;
-  return colour * ((1.0 - headroom * headroom / (peak + headroom - start)) / peak);
-}
-
-float antialiased(float roughness, vec3 across, vec3 down) {
-  float variance = FILTER_VARIANCE * (dot(across, across) + dot(down, down));
-  float a = roughness * roughness;
-  return sqrt(sqrt(a * a + min(2.0 * variance, FILTER_LIMIT)));
-}
-
-float keySpecular(vec3 normal, vec3 view, float roughness) {
-  vec3 light = normalize(uKey);
-  float nl = max(dot(normal, light), 0.0);
-  float nv = max(dot(normal, view), 1e-4);
-  float nh = max(dot(normal, normalize(light + view)), 0.0);
-  return ggx(nh, roughness) * smithVisibility(nv, nl, roughness) * nl * KEY_LIGHT;
-}
 
 float coatFresnel(vec3 normal, vec3 view) {
   vec3 halfway = normalize(normalize(uKey) + view);
@@ -122,20 +85,16 @@ vec3 enamel(
 }
 
 void main() {
-  vec3 warped = uWarp * vec3(gl_FragCoord.xy, 1.0);
-  vec2 uv = warped.xy / warped.z;
-  vec2 inside = step(vec2(0.0), uv) * step(uv, vec2(1.0));
+  vec2 uv = pieceUv();
   vec4 colour = texture(uColour, uv, DETAIL_BIAS);
   vec3 relief = texture(uRelief, uv, DETAIL_BIAS).rgb;
   vec3 finish = texture(uFinish, uv, DETAIL_BIAS).rgb;
-  vec2 slope = relief.xy * 2.0 - 1.0;
-  vec3 normal = normalize(vec3(slope, sqrt(max(1.0 - dot(slope, slope), 0.0))));
+  vec3 normal = reliefNormal(relief);
   float convexity = relief.z * 2.0 - 1.0;
   vec3 across = dFdx(normal);
   vec3 down = dFdy(normal);
 
-  float aspect = uShield.x / uShield.y;
-  vec3 view = toRoom(normalize(eyeAt(aspect) - vec3(uv.x * aspect, uv.y, 0.0)));
+  vec3 view = viewFrom(uv);
   float facing = max(dot(normal, view), 1e-4);
 
   float giltRoughness = mix(GILT_ROUGHNESS, BURNISHED_ROUGHNESS, max(convexity, 0.0));
@@ -151,9 +110,5 @@ void main() {
     finish
   );
 
-  vec3 shaded = mix(glass, gold, finish.r);
-  vec2 pixel = uv * uShield;
-  float dither = (interleavedGradient(pixel) + interleavedGradient(pixel.yx + 17.0) - 1.0) / 255.0;
-  float cover = colour.a * inside.x * inside.y;
-  outColor = vec4(clamp(encodeSrgb(shaded) + dither, 0.0, 1.0) * cover, cover);
+  outColor = presented(mix(glass, gold, finish.r), uv, colour.a);
 }

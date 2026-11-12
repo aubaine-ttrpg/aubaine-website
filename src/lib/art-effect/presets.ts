@@ -309,19 +309,33 @@ export function armsFiles(composition: string): ArmsFiles {
 
 type Rgb = readonly [number, number, number]
 
+export const RELIEF_LEAN = { degrees: 7, perspective: 600 } as const
+
+export const RELIEF_ROOM = {
+  rest: { x: 0.3, y: 0.3 },
+  distance: 1.5,
+  roomYaw: Math.PI + 0.15,
+  key: [-0.45, 0.6, 0.66],
+} as const satisfies {
+  rest: { x: number; y: number }
+  distance: number
+  roomYaw: number
+  key: KeyLight
+}
+
 export const ARMS = {
   crop: { x: 23, y: 23, width: 154, height: 179 },
   width: 576,
   mapWidth: 768,
   supersample: 3,
-  rest: { x: 0.3, y: 0.3 },
+  rest: RELIEF_ROOM.rest,
   sway: 0.75,
-  distance: 1.5,
+  distance: RELIEF_ROOM.distance,
   exposure: 1.06,
-  roomYaw: Math.PI + 0.15,
+  roomYaw: RELIEF_ROOM.roomYaw,
   gold: { deep: [1.0, 0.55, 0.08], pale: [1.0, 0.74, 0.27] },
   enamelDepth: { open: 0.9, walls: 1.5 },
-  key: [-0.45, 0.6, 0.66],
+  key: RELIEF_ROOM.key,
   relief: {
     dome: 5,
     bezel: { roll: 0.55, band: 1.6, drop: 0.5, bead: 1.15, height: 1.35, valley: 0.6, crest: 1.0 },
@@ -333,7 +347,7 @@ export const ARMS = {
     occlusion: { contact: { reach: 0.35, strength: 5 }, broad: { reach: 1.5, strength: 2 } },
     shadow: { reach: 4, softness: 0.3 },
   },
-  lean: { degrees: 7, perspective: 600 },
+  lean: RELIEF_LEAN,
 } as const satisfies {
   crop: { x: number; y: number; width: number; height: number }
   width: number

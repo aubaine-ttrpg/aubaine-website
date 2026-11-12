@@ -467,7 +467,7 @@ export function occlusionOf(
   surface: Float32Array,
   width: number,
   height: number,
-  relief: ArmsRelief,
+  relief: Pick<ArmsRelief, 'occlusion'>,
   pixelsPerUnit: number,
 ): Float32Array {
   const { contact, broad } = relief.occlusion
@@ -483,7 +483,7 @@ export function curvatureOf(
   surface: Float32Array,
   width: number,
   height: number,
-  relief: ArmsRelief,
+  relief: Pick<ArmsRelief, 'curvature'>,
   pixelsPerUnit: number,
 ): Float32Array {
   const radius = Math.max(1, Math.round(relief.curvature.reach * pixelsPerUnit))
@@ -531,7 +531,7 @@ export function shadowOf(
   width: number,
   height: number,
   light: KeyLight,
-  relief: ArmsRelief,
+  relief: Pick<ArmsRelief, 'shadow'>,
   pixelsPerUnit: number,
 ): Float32Array {
   const [across, up, toward] = light
