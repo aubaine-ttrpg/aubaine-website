@@ -17,7 +17,7 @@ const { text, line, chapter, headingData } = Astro.props
 ---
 
 <div class="au-title" data-look={chapter ? 'chapter' : 'page'} style={headFit(text)}>
-  <TitleFrame pictogram={chapter?.pictogram} size={chapter ? 'chapter' : 'page'} />
+  <TitleFrame face={chapter?.pictogram} size={chapter ? 'chapter' : 'page'} />
   {chapter && <GhostName text={chapter.number} class="au-title__ghost" />}
   <div class="au-title__plate">
     <h1 {...headingData}>{text}</h1>

@@ -35,7 +35,7 @@ Keeping the original beside a retouched version is the point of the state part. 
 
 | Folder | Holds | Format |
 | --- | --- | --- |
-| `data/media/art/` | covers, banners, hero and social images, 3:1 panoramas, 3:2 and 11:12 paintings a lore page draws, 1:1 portraits a dialogue turn opens on, and 3:2 flags a sub-species flies | `.png`, `.jpg` |
+| `data/media/art/` | covers, banners, hero and social images, 3:1 panoramas, 3:2 and 11:12 paintings a lore page draws, 1:1 portraits a dialogue turn opens on, 1:1 paintings a sub-species' titles carry, and 3:2 flags a sub-species flies | `.png`, `.jpg` |
 | `data/media/items/` | item pictures | `.png`, `.jpg` |
 | `data/media/skills/` | skill pictures, 1:1, named after the skill's title | `.png`, `.jpg` |
 | `data/media/masks/` | the shapes a prose picture can be cut to | `.svg` or `.png`, named `<key>-<ratio>` after a key of `PICTURE_MASKS` in `src/lib/game/book-markup.ts`, one file per ratio so the edge keeps its size |
@@ -96,6 +96,7 @@ If you edit a picture's metadata by hand, `pnpm media:stamp` refuses to run rath
 | --- | --- | --- |
 | `data/skill-trees/<id>.json` | `cover` | Couverture au rapport 3:4, the tree's one picture. Example: `"cover": "barbare-3_4-og.png"` |
 | `data/species/<id>.json` | `cover` | Couverture au rapport 3:4, the species' one picture. Example: `"cover": "nnor-3_4-og.png"` |
+| `data/species/<id>.json` | `subspecies[].art` | Illustration au rapport 1:1, the painting in the frames of the sub-species' titles. Example: `"art": "etendard-du-landenheit-1_1-og.png"` |
 | `data/books/<id>/book.json` | `cover`, `banner` | The same two fields, the same two ratios |
 | `data/equipment/catalogue.json` | `cover`, `banner`, `backCover` | The same fields again. `cover` and `backCover` are the two faces of the equipment booklet, `banner` is the plate behind the hero at `/fr/equipement` |
 | `data/equipment/items/<slug>.json` | `art` | Illustration au rapport 1:1. Example: `"art": "dague-1_1-og.png"` |
@@ -162,6 +163,7 @@ Then point both halves of the hero at the new files in `src/components/views/Hom
 
 - `cover` on a tree: the card at `/fr/arbres`, the hero on `/fr/arbre/<id>`, the front of its booklet, and the social preview for that page and its nodes.
 - `cover` on a species: the card at `/fr/especes`, the hero on `/fr/espece/<id>` and its social preview.
+- `art` on a sub-species: the round frame of its title in « Origines régionales » or « Sous-espèces », and of its group in « Noms », on `/fr/espece/<id>`.
 - `cover` on a book: its card on its category's page, such as `/fr/livres/regles`. `banner`: the hero on each chapter.
 - `cover` and `backCover` on the catalogue: the two faces of the equipment booklet. `banner`: the plate behind the hero at `/fr/equipement`.
 - `art` on an item: the picture on its card and in its detail panel at `/fr/equipement`.

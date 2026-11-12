@@ -679,7 +679,8 @@ From the back to the front:
   book chapter led by a hexagonal frame holding the category's pictogram, elsewhere laid on a full-width
   key panel), a section a bone plate on a key strip, a subsection a small night plate on a strip of key
   dots, each level quieter and each plate at least a share of its column wide. Each frame holds the title's
-  pictogram or, until one is set, the painted question mark of the square placeholder; frames are round,
+  pictogram, a sub-species' own painting, or, until one is set, the painted question mark of the square
+  placeholder; frames are round,
   a chapter's hexagonal. Print and forced colours keep the plain titles.
 - `rehypeProseQuotes` in `src/lib/game/book-markup.ts`: a blockquote becomes a speech or a dialogue, its
   source line the title, staged at a corner from `TITLE_CORNERS` on a background from `QUOTE_BACKINGS`.

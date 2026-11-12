@@ -1089,7 +1089,10 @@ a banner for the frame (`hextech.md`).
   « Sous-espèces », and « Noms » take `SPECIES_SECTION_ICONS` (`src/lib/game/derive.ts`), the first
   a book with a die printed on its cover by `inlinePrintedBook` (`src/lib/media.ts`,
   `src/lib/book-cover.ts`). On a species or tree page every one is inked `KEY_INK`, the entry's
-  `--key-paper`; their subsections stay unset.
+  `--key-paper`. Their subsections stay unset, except a sub-species that names its `art`: the frames of
+  its presentation and of its names are `data-face="painting"`, the square painting set as
+  `--frame-painting` by `titlePaintingStyle()` (`src/lib/title-frames.ts`) and drawn where the unset
+  picture would be.
 - `PageTitle.astro`: `div.au-title[data-look]`, `chapter` on a book chapter (its frame holding the
   book's category pictogram, `GhostName.astro` with the chapter's number) and `page` elsewhere (its frame
   unset), then `div.au-title__plate > h1`, then `p.au-title__line` with the page's one-line description.

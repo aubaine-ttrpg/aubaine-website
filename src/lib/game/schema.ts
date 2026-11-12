@@ -654,6 +654,11 @@ const subspecies = z
       .min(1)
       .describe("Présentation de la sous-espèce, même balisage qu'une Compétence."),
     heraldry: heraldry.optional(),
+    art: mediaFile
+      .optional()
+      .describe(
+        "Illustration au rapport 1:1, dans data/media/art/ : la peinture que portent les cadres ronds de ses intertitres, sur sa présentation et sur ses noms. Absente : ils portent le point d'interrogation peint.",
+      ),
     names: peopleNames
       .optional()
       .describe(

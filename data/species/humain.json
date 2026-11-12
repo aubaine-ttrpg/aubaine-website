@@ -37,6 +37,7 @@
         "field": "#1f4e9e",
         "charge": "#efbe04"
       },
+      "art": "epee-ailee-de-la-nouvelle-aubaine-1_1-og.png",
       "names": {
         "masculine": [
           "Amaury",
@@ -193,6 +194,7 @@
         "name": "Drapeau impérial du Landenheit",
         "picture": "drapeau-du-landenheit-3_2-og.png"
       },
+      "art": "etendard-du-landenheit-1_1-og.png",
       "names": {
         "masculine": [
           "Alaric",
@@ -311,6 +313,7 @@
         "blazon": "Écartelé de pourpre et de sable, à la partition horizontale ondée : au premier, un lion rampant d'or ; au deuxième, une étoile à six rais ondoyants d'or ; au troisième, un livre fermé d'or ; au quatrième, un corbeau d'or.",
         "arms": "victoria.svg"
       },
+      "art": "ecu-de-la-victoria-1_1-og.png",
       "names": {
         "masculine": [
           "Arthur",
@@ -420,6 +423,7 @@
       "id": "al-wahaa",
       "name": "Al-Wahaa",
       "text": "***En tant qu'Al-Waahi***, vous appartenez à un peuple qui traverse le désert d'oasis en oasis, en se guidant sur les étoiles et sur le souffle changeant du sirocco. Les Al-Waahi tiennent pour un devoir sacré d'offrir le couvert et l'eau fraîche à tout voyageur. La confiance se gagne autour des échoppes d'épices, de soies légères et de potions médicinales, et bien des marchés s'y concluent par le troc, car le véritable trésor, à leurs yeux, est l'échange et le savoir partagé. Vous portez des tuniques amples et des voiles protecteurs, ornés de bijoux de cuivre et de perles de verre poli.",
+      "art": "sceau-d-al-wahaa-1_1-og.png",
       "names": {
         "masculine": [
           "Aban",

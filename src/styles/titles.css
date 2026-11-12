@@ -124,11 +124,11 @@
     clip-path: var(--frame-clip);
   }
 
-  .au-titles .au-frame[data-face="unset"] .au-frame__face::after {
+  .au-titles .au-frame:is([data-face="unset"], [data-face="painting"]) .au-frame__face::after {
     content: "";
     position: absolute;
     inset: var(--frame-key);
-    background: var(--unset-picture) center / cover no-repeat;
+    background: var(--frame-painting, var(--unset-picture)) center / cover no-repeat;
     clip-path: var(--frame-clip);
   }
 

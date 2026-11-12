@@ -829,6 +829,17 @@ describe('media', () => {
     }
   })
 
+  it('points every sub-species art at a 1:1 picture that exists', async () => {
+    const files = new Set(await readdir(resolve(root, 'data/media/art')))
+    for (const entry of fr.species) {
+      for (const sub of entry.subspecies) {
+        if (sub.art === undefined) continue
+        expect(files.has(sub.art), `${entry.id} ${sub.id} art ${sub.art}`).toBe(true)
+        expect(sub.art, `${entry.id} ${sub.id} art`).toMatch(/-1_1-/)
+      }
+    }
+  })
+
   it('points every emblem at a file, and keeps no emblem nobody wears', async () => {
     const files = (await readdir(resolve(root, 'data/media/emblems'))).filter((file) =>
       file.endsWith('.svg'),

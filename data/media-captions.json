@@ -110,6 +110,42 @@
         "humain",
         "Landenheit"
       ]
+    },
+    {
+      "file": "art/etendard-du-landenheit-1_1-og.png",
+      "title": "Étendard du Landenheit dans la bourrasque",
+      "description": "Étendard rouge claquant dans une bourrasque, traversé d'une bande crème bordée d'or et frappé d'une rose des vents dans un engrenage doré.",
+      "keywords": [
+        "humain",
+        "Landenheit"
+      ]
+    },
+    {
+      "file": "art/ecu-de-la-victoria-1_1-og.png",
+      "title": "Écu de la Victoria",
+      "description": "Écu bordé d'or, écartelé de pourpre et de noir sous une partition ondée, chargé d'un lion rampant, d'une étoile aux rais ondoyants, d'un livre fermé et d'un corbeau d'or, dans un tourbillon violet.",
+      "keywords": [
+        "humain",
+        "Victoria"
+      ]
+    },
+    {
+      "file": "art/epee-ailee-de-la-nouvelle-aubaine-1_1-og.png",
+      "title": "Épée ailée de la Nouvelle-Aubaine",
+      "description": "Épée d'or à la garde ouvragée, flanquée de deux ailes déployées, dans un tourbillon bleu.",
+      "keywords": [
+        "humain",
+        "Nouvelle-Aubaine"
+      ]
+    },
+    {
+      "file": "art/sceau-d-al-wahaa-1_1-og.png",
+      "title": "Sceau d'Al-Wahaa",
+      "description": "Sceau de cire dorée frappé d'un palmier, d'une cité à coupole et d'un croissant étoilé sous un arc festonné, dans une tempête de sable.",
+      "keywords": [
+        "humain",
+        "Al-Wahaa"
+      ]
     }
   ]
 }

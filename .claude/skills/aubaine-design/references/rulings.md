@@ -760,6 +760,13 @@ not floating beside it, and is in the key colour like the book. « Origines rég
 origin, a sub-species, a group of names) keep the painted question mark until the owner picks them a
 pictogram.
 
+**A sub-species may paint its own titles (2026-11-12).** The owner gave each of the four Humain origins
+a square painting, for every title that names it: its presentation under « Origines régionales » and its
+group under « Noms ». The Landenheit takes its standard in a gale, the Victoria a shield of its arms,
+Nouvelle-Aubaine a winged golden sword, and Al-Wahaa a golden wax seal in a sandstorm. The painting fills
+the round frame as the painted question mark does, in its own colours, never inked. It is the
+sub-species' `art` in its species file; a sub-species without one keeps the question mark.
+
 ## Motion
 
 **Motion rides the load.** An animation may play over a real wait; it never adds one, and hand-offs are
@@ -900,3 +907,4 @@ and praised the Saison slider.
 | 2026-11-08 | a painting may hang in a rustic wooden frame, floated beside its text |
 | 2026-11-10 | titles in the quote's family, one look per level, each full width; each title framed, its pictogram or the painted question mark; a title frame may be round, the chapter title a hexagon; a chapter leads with its frame, other pages lay their title on a panel; a minimum plate width per level; a header never repeats the list below it; the titles, approved |
 | 2026-11-11 | a species or tree title's pictogram in the entry's key colour; the species sections' pictograms, the die printed on the book's cover |
+| 2026-11-12 | a sub-species' own painting in the frames of the titles that name it, the four Humain origins first |

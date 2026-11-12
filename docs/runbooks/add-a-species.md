@@ -44,6 +44,7 @@ The filename is the id and the id becomes the URL. Lowercase letters, digits and
 | `subspecies[].name` | required inside a sub-species | Nom rendu en intertitre. L'overlay anglais le traduit quand c'est un nom commun, comme Fantôme, et le laisse tel quel quand c'est un nom propre, comme Landenheit. | any non empty string |
 | `subspecies[].text` | required inside a sub-species | Présentation de la sous-espèce, même balisage qu'une Compétence. | any non empty string |
 | `subspecies[].heraldry` | optional | La pièce héraldique de la sous-espèce : une bannière qu'on saisit, un drapeau qui flotte, ou des armoiries dont l'or prend la lumière. Absente : la présentation n'en porte pas. | `{ "kind": "banner", "name", "emblem", "field", "charge" }`, `{ "kind": "flag", "name", "picture" }` or `{ "kind": "arms", "name", "blazon", "arms" }`, see below |
+| `subspecies[].art` | optional | Illustration au rapport 1:1, dans data/media/art/ : la peinture que portent les cadres ronds de ses intertitres, sur sa présentation et sur ses noms. Absente : ils portent le point d'interrogation peint. | a picture name ending in `-1_1-<état>.png` or `.jpg`, see [add-an-image.md](add-an-image.md) |
 | `subspecies[].names` | optional | Les noms que porte la sous-espèce, chaque liste dans son ordre, lus sous son nom dans « Noms », dans la partie « En jeu » de la page de son Espèce. Ils ne se traduisent pas. Absent : elle n'en déclare pas encore. | `masculine`, `feminine`, `given` and `family`, each optional and a non empty list of names in their order, at least one present. `given` holds the first names of a people that does not sort them by gender |
 | `subspecies[].imposed` | optional | Compétence que la sous-espèce impose, définie dans `data/skills/` : l'une des deux Compétences d'Espèce que le personnage garde à la création, sans la choisir. Il choisit la seconde parmi celles de son Espèce et de sa sous-espèce. Elle porte la sous-espèce en Prérequis, n'appartient qu'à cette sous-espèce et ne figure dans aucun `offered`. Absente : le personnage choisit ses deux Compétences. | one skill id |
 | `subspecies[].offered` | required inside a sub-species | Compétences que la sous-espèce ajoute à celles de son Espèce, définies dans `data/skills/`. Elles portent la sous-espèce en Prérequis. `[]` : elle n'en ajoute encore aucune. | skill ids, or `[]` |
@@ -175,84 +176,6 @@ Un premier bloc, illustré. Une référence marche ici comme dans une Compétenc
 
 Un bloc sans image. Les tableaux, les listes et les listes de définitions marchent aussi, puisque
 c'est du markdown ordinaire.
-```
-
-A quote is an ordinary markdown blockquote, drawn as a dialogue box. When someone says it, close the blockquote with a last line `> :source[...]`: the page prints that line as the quote's title, outside the box. Write every person the line names in bold: each prints on a black nameplate.
-
-Two words in braces after the closing bracket stage the quote: the corner its title takes, then the background behind the box. `TITLE_CORNERS` and `QUOTE_BACKINGS` in `src/lib/game/book-markup.ts` list them, such as `bottom-right` and `echo`; without braces the title takes the top left and the box the slab, `tranche`. Any other word stops the build. The English line stages its quote with the same words, and `pnpm data:check` fails when the two differ.
-
-```markdown
-> « Arthur, vois ces stèles : tant d'hommes et d'elfes ont versé leur sang ici. »
->
-> :source[**Jacques « Le Scellaire » Arsenault** s'adressant à **Arthur Colbert**.]{top-left tranche}
-```
-
-A blockquote whose paragraphs open on a bold speaker and a colon, `**Tiar :** « … »`, with two turns or more, is a dialogue: one box per turn, the speaker's name on a tag across its edge.
-
-A turn may open on its speaker's portrait, a 1:1 picture in `data/media/art/` written before the name: `> ![](../../media/art/tiar-vyrefiel-severe-1_1-og.png) **Tiar :** « … »`. It stands beside the box, mirrored for the second speaker so the two face each other. A turn without one keeps the plain box. Pick each expression for the character as much as for the line.
-
-A picture is an ordinary markdown image whose path is relative to the lore file, so it always reads
-`../../media/art/<file>`, and `pnpm data:check` fails on a path that points anywhere else or at a
-file that does not exist. Name the file per [add-an-image.md](add-an-image.md).
-
-The ratio in the name sets the layout. A 16:9 or a 1:1 picture spans the column. A picture
-narrower than it is tall, such as a 3:4 or an 11:12, on a line of its own or with its caption, sits
-at the start of the text that follows it: that text wraps around it, then runs under it once it is
-longer than the picture, up to the next heading. On a narrow screen the picture sits above the
-text. Put it straight under the heading it illustrates.
-
-A picture of either ratio can be cut to a shape: write the shape's key as the image title, in
-quotes after the path. `PICTURE_MASKS` in `src/lib/game/book-markup.ts` lists the keys, such as
-`torn`, and `pnpm data:check` fails on any other. The shape shows on screen only; print keeps the
-rectangle.
-
-A second word after the shape adds an effect: `PICTURE_RELIEFS` in the same file lists them, such as
-`torch`, a warm light that follows the pointer across the picture's relief and stays inside it.
-Without WebGL, or without JavaScript, the picture shows as it would without the word.
-
-A painting takes `"glazed"` (`GLAZED_PICTURE`): a frame around it, the painting recessed behind its
-lip, under a pane of glass. The frame's light and the faint reflection of a room in the glass follow
-the pointer, or the scroll on a touch screen. Alone, the word hangs the scanned gilt frame. A second
-word names another frame from `FRAME_KINDS` in `src/lib/art-effect/presets.ts`, such as `wood`, a
-rustic frame of worn wood: `"glazed wood"`. It takes no third word. Without WebGL2, and in print, the
-frame and its shadow stay still and the glass is left out. A 3:2 painting spans the column like a
-16:9 picture; a portrait painting floats beside its text like any portrait picture.
-
-```markdown
-![Des naufragés tirent un coffre hors des vagues, au pied d'une falaise.](../../media/art/les-naufrages-de-la-venue-3_2-og.png "glazed")
-:caption[« Les Naufragés de la Venue », toile peinte en 238 apr. V.]
-```
-
-A wide picture takes `"almanach"` (`ALMANACH_PICTURE`): the picture fills the tube of the default
-almanach, with its power and zoom buttons at the end of the caption's line. Add the name of a style in `data/almanachs/`
-after the word to dress the almanach in that style instead. The tube is wider than a 16:9 picture
-and crops its top and bottom; to keep another point in view than the centre, follow with that point
-as two percentages, across then down, the Dev Hub's « Point gardé »: `"almanach elfe 50% 20%"`
-keeps the upper part. End the title on `mirrored` (`MIRRORED_PICTURE`) to show the picture
-mirrored, left to right, on the tube and in its plain version; the file stays the original:
-`"almanach elfe mirrored"`, or `"almanach mirrored"` in the default style. A portrait is refused, and `pnpm data:check` fails on a style that does not exist.
-Design and save a style in the Dev Hub's Almanach page under `pnpm dev`. Without WebGL2 on a
-graphics card, without JavaScript, and in print, the picture shows plain.
-
-```markdown
-![Une immense bibliothèque gothique aux bannières bleues, ses rayonnages sur plusieurs étages autour d'une sphère armillaire suspendue au-dessus d'un livre ouvert.](../../media/art/bibliotheque-des-oracles-16_9-og.png "almanach")
-:caption[La bibliothèque de l'Académie des Oracles]
-```
-
-Inside a caption, set a title in guillemets, never in italics: the caption is already italic, and an
-emphasis would break it into two lines.
-
-A caption goes on the line directly under the picture, with no blank line between them, as
-`:caption[...]`. The page prints it under the picture. `pnpm data:check` fails on a caption line
-that does not follow a picture.
-
-```markdown
-## Au carrefour du sauvage et de la cité
-
-![](../../media/art/nnor-marchand-3_4-og.png "torn")
-:caption[Un émissaire marchand d'Araskha qui a posé son échoppe à Aïn-Dahab]
-
-Les Nnors, fidèles à leurs montagnes, éprouvent une curiosité grandissante pour les cités voisines.
 ```
 
 ## The English overlay

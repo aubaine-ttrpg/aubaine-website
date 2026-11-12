@@ -1,20 +1,20 @@
 ---
 import { HEAD_CLASS, headFit } from '../../lib/game/book-markup'
-import type { TitlePictogram } from '../../lib/title-frames'
+import type { TitleFace } from '../../lib/title-frames'
 import TitleFrame from './TitleFrame.astro'
 
 type Props = {
   level: 2 | 3
   text: string
   id?: string | undefined
-  pictogram?: TitlePictogram | undefined
+  face?: TitleFace | undefined
 }
 
-const { level, text, id, pictogram } = Astro.props
+const { level, text, id, face } = Astro.props
 const Heading = level === 2 ? 'h2' : 'h3'
 ---
 
 <div class={HEAD_CLASS} data-level={String(level)} style={headFit(text)}>
-  <TitleFrame pictogram={pictogram} size={level === 2 ? 'section' : 'subsection'} />
+  <TitleFrame face={face} size={level === 2 ? 'section' : 'subsection'} />
   <Heading id={id}>{text}</Heading>
 </div>

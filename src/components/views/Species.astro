@@ -16,7 +16,7 @@ import type { SubspeciesLabel } from '../../lib/game/schema'
 import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
 import { KEY_INK, readingKeys } from '../../lib/key-colour'
-import { titleFrameStyle } from '../../lib/title-frames'
+import { type TitlePainting, titleFrameStyle } from '../../lib/title-frames'
 import BrowseList from '../primitives/BrowseList.astro'
 import CharacterHero from '../primitives/CharacterHero.astro'
 import Heraldry from '../primitives/Heraldry.astro'
@@ -59,9 +59,16 @@ const nameRows = (names: Partial<Record<NameList, string[] | undefined>>) =>
     return value === undefined ? [] : [{ label: nameLabel[list], value: value.join(', ') }]
   })
 
+const subspeciesPainting = ({ art }: { art?: string | undefined }): TitlePainting | undefined =>
+  art === undefined ? undefined : { painting: art }
+
 const sharedNameRows = nameRows(species.names ?? { family: species.familyNames })
 const subspeciesNameGroups = species.subspecies
-  .map((sub) => ({ name: sub.name, rows: nameRows(sub.names ?? {}) }))
+  .map((sub) => ({
+    name: sub.name,
+    painting: subspeciesPainting(sub),
+    rows: nameRows(sub.names ?? {}),
+  }))
   .filter((group) => group.rows.length > 0)
 const hasNames =
   species.naming !== undefined || sharedNameRows.length > 0 || subspeciesNameGroups.length > 0
@@ -147,7 +154,7 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
                   level={2}
                   id={PLAYING_ID}
                   text={t.playingAs(species.name)}
-                  pictogram={{ icon: SPECIES_SECTION_ICONS.playing, ink: KEY_INK }}
+                  face={{ icon: SPECIES_SECTION_ICONS.playing, ink: KEY_INK }}
                 />
                 {roleplay?.text && <RuleText source={roleplay.text} corpus={corpus} locale={locale} />}
                 {(playing.length > 0 || hasSubspecies) && (
@@ -182,11 +189,11 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
                   level={2}
                   id={SUBSPECIES_ID}
                   text={words.plural}
-                  pictogram={{ icon: SPECIES_SECTION_ICONS.subspecies, ink: KEY_INK }}
+                  face={{ icon: SPECIES_SECTION_ICONS.subspecies, ink: KEY_INK }}
                 />
                 {species.subspecies.map((sub) => (
                   <article id={subspeciesAnchor(sub.id)} class="au-subspecies">
-                    <SectionTitle level={3} text={sub.name} />
+                    <SectionTitle level={3} text={sub.name} face={subspeciesPainting(sub)} />
                     {sub.heraldry && HERALDRY_PLACEMENT[sub.heraldry.kind] === 'beside' ? (
                       <div class="au-subspecies__flanked">
                         <Heraldry
@@ -229,7 +236,7 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
                   level={2}
                   id={NAMES_ID}
                   text={t.speciesNames}
-                  pictogram={{ icon: SPECIES_SECTION_ICONS.names, ink: KEY_INK }}
+                  face={{ icon: SPECIES_SECTION_ICONS.names, ink: KEY_INK }}
                 />
                 {species.naming && (
                   <RuleText source={species.naming} corpus={corpus} locale={locale} />
@@ -246,7 +253,7 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
                 )}
                 {subspeciesNameGroups.map((group) => (
                   <>
-                    <SectionTitle level={3} text={group.name} />
+                    <SectionTitle level={3} text={group.name} face={group.painting} />
                     <dl>
                       {group.rows.map((row) => (
                         <>
@@ -271,7 +278,7 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
         level={2}
         id="skills"
         text={t.speciesOffer}
-        pictogram={{ icon: KIND_MARKS.skills.icon, ink: KEY_INK }}
+        face={{ icon: KIND_MARKS.skills.icon, ink: KEY_INK }}
       />
       {
         species.pool.length === 0 && (

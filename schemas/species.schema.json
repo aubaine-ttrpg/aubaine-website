@@ -315,6 +315,11 @@
             ],
             "description": "La pièce héraldique de la sous-espèce : une bannière qu'on saisit, un drapeau qui flotte, ou des armoiries dont l'or prend la lumière. Absente : la présentation n'en porte pas."
           },
+          "art": {
+            "description": "Illustration au rapport 1:1, dans data/media/art/ : la peinture que portent les cadres ronds de ses intertitres, sur sa présentation et sur ses noms. Absente : ils portent le point d'interrogation peint.",
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*-\\d{1,2}_\\d{1,2}-(?:og|cleaned|upscaled_[24])\\.(?:png|jpg)$"
+          },
           "names": {
             "description": "Les noms que porte la sous-espèce, chaque liste dans son ordre, lus sous son nom dans « Noms », dans la partie « En jeu » de la page de son Espèce. Ils ne se traduisent pas. Absent : elle n'en déclare pas encore.",
             "type": "object",

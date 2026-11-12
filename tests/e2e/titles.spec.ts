@@ -93,7 +93,7 @@ test.describe('reading pages', () => {
   test.use({ viewport: { width: 1512, height: 860 } })
 
   for (const locale of LOCALES) {
-    test(`every title in ${locale} carries one frame, a pictogram or the unset picture, and the side list keeps its words`, async ({
+    test(`every title in ${locale} carries one frame, a pictogram, a painting or the unset picture, and the side list keeps its words`, async ({
       page,
     }) => {
       test.setTimeout(240_000)
@@ -106,7 +106,7 @@ test.describe('reading pages', () => {
           expect(title.hidden, where).toBe(true)
           if (title.face === 'icon') expect(title.icon, where).toBe(true)
           else {
-            expect(title.face, where).toBe('unset')
+            expect(['unset', 'painting'], where).toContain(title.face)
             expect(title.picture, where).toContain('url(')
           }
         }
@@ -159,6 +159,44 @@ test('a species or tree page inks every section pictogram in its own key colour'
         expect(pictogram.pictograms, where).toBe(1)
         const [red, green, blue] = rgbFromHex(pictogram.key)
         expect(pictogram.ink, where).toBe(`rgb(${red}, ${green}, ${blue})`)
+      }
+    }
+  }
+})
+
+test('a sub-species with its own art paints it in every frame of its titles, the others keep the unset picture', async ({
+  page,
+}) => {
+  test.setTimeout(120_000)
+  for (const locale of LOCALES) {
+    const data = await corpus(locale)
+    for (const species of data.species.filter((entry) => entry.subspecies.length > 0)) {
+      const path = pathFor('speciesEntry', locale, { species: species.id })
+      await page.goto(path)
+      const frames = await page
+        .locator('.au-species-play .au-head[data-level="3"]')
+        .evaluateAll((heads) =>
+          heads.map((head) => {
+            const frame = head.querySelector(':scope > .au-frame')
+            const face = frame?.querySelector('.au-frame__face')
+            return {
+              title: (head.querySelector('h3')?.textContent ?? '').trim(),
+              face: frame?.getAttribute('data-face') ?? '',
+              picture: face ? getComputedStyle(face, '::after').backgroundImage : '',
+            }
+          }),
+        )
+      for (const sub of species.subspecies) {
+        const where = `${path} « ${sub.name} »`
+        const own = frames.filter((frame) => frame.title === sub.name)
+        expect(own.length, where).toBeGreaterThan(0)
+        for (const frame of own) {
+          expect(frame.face, where).toBe(sub.art === undefined ? 'unset' : 'painting')
+          expect(frame.picture, where).toContain('url(')
+          if (sub.art !== undefined) {
+            expect(frame.picture, where).toContain(`/${sub.art.replace(/\.(png|jpg)$/, '')}.`)
+          }
+        }
       }
     }
   }

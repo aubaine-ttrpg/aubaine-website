@@ -1,25 +1,34 @@
 ---
 import { FRAME_CLASS, FRAME_FACE_CLASS, UNSET_PICTOGRAM } from '../../lib/game/book-markup'
-import type { TitlePictogram } from '../../lib/title-frames'
+import { type TitleFace, titlePaintingStyle } from '../../lib/title-frames'
 import Icon from './Icon.astro'
 
 type Props = {
-  pictogram?: TitlePictogram | undefined
+  face?: TitleFace | undefined
   size: 'chapter' | 'page' | 'section' | 'subsection'
 }
 
-const { pictogram, size } = Astro.props
+const { face, size } = Astro.props
+const pictogram = face && 'icon' in face ? face : undefined
+const painting = face && 'painting' in face ? face : undefined
+const faceKind = pictogram ? 'icon' : painting ? 'painting' : 'unset'
+const faceStyle = pictogram
+  ? `--frame-ink:${pictogram.ink}`
+  : painting
+    ? await titlePaintingStyle(painting)
+    : undefined
 ---
 
 <span
   class={FRAME_CLASS}
   data-size={size}
-  data-face={pictogram ? 'icon' : 'unset'}
+  data-face={faceKind}
   aria-hidden="true"
-  style={pictogram ? `--frame-ink:${pictogram.ink}` : undefined}
+  style={faceStyle}
 >
   {size === 'chapter' && <span class="au-frame__echo" />}
   <span class={FRAME_FACE_CLASS}>
-    {pictogram ? <Icon name={pictogram.icon} class="au-frame__icon" /> : UNSET_PICTOGRAM}
+    {pictogram && <Icon name={pictogram.icon} class="au-frame__icon" />}
+    {faceKind === 'unset' && UNSET_PICTOGRAM}
   </span>
 </span>

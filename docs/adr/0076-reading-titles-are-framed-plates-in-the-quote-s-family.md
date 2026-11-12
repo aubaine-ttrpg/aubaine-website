@@ -4,6 +4,7 @@
 **Status:** Accepted
 **Date:** 2026-11-10
 **Revised:** 2026-11-11, the species page's section pictograms, and a species or tree title's pictogram in the entry's key colour (addendum in Decision 3)
+**Revised:** 2026-11-12, a sub-species' own painting in the frames of the titles that name it (addendum in Decision 3)
 **Deciders:** Kori
 **Scope:** How the titles of a reading page look and are built: a book chapter's title, a policy's title,
 and the section and subsection titles of book chapters, policies, species and trees, whether Markdown writes
@@ -167,6 +168,23 @@ live with a panel of switches; the owner set the defaults this record ships. The
 - Caveat: a section frame's pictogram is 1.5 em of a 17 to 20 px frame (`src/styles/titles.css`), so 25.5
   to 30 px. The die's box is 0.72 × 248.75 / 512 of that, about 9 to 10.5 px wide. At that size it
   reads as a die, but its numbers do not.
+
+### Addendum (2026-11-12): a sub-species may paint the frames of its titles
+
+- The decider gave the four Humain origins, Nouvelle-Aubaine, the Landenheit, the Victoria and
+  Al-Wahaa, their own picture for the titles that name them. A sub-species may now carry `art`, a 1:1 painting in
+  `data/media/art/` (`src/lib/game/schema.ts`). The frame of its
+  presentation's title and of its group's title under « Noms » shows that painting where the painted
+  question mark would be, in the painting's own colours, never inked. A sub-species without `art` keeps
+  the question mark. This is the field that the alternative « A skill's painting in the frames »
+  lacked, scoped to a sub-species, whose titles say which picture they take.
+- A frame now takes one face of three, `TitleFace` in `src/lib/title-frames.ts`: a pictogram, a
+  painting, or none, which shows the question mark. `TitleFrame.astro` writes `data-face="painting"` and
+  `--frame-painting`, cut by `titlePaintingStyle()` to the same 192 px JPEG as the unset picture. The
+  four come to 13,873 to 14,909 bytes each in the build; the 1.8 to 2.1 MB masters are not shipped.
+- `tests/data/integrity.test.ts` checks that every sub-species' `art` names a 1:1 picture on disk.
+  `tests/e2e/titles.spec.ts` checks, over every species in both languages, that each sub-species' titles
+  show its painting when it has one and the question mark when it has none.
 
 ---
 
