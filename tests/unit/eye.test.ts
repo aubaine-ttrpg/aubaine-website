@@ -1,6 +1,16 @@
 import { describe, expect, it } from 'vitest'
 
-import { glideToward, isSettled, scrolledEye, stepSeconds } from '../../src/scripts/art-effect/eye'
+import {
+  glideToward,
+  isLeanSettled,
+  isSettled,
+  type LeanTween,
+  leanAt,
+  leanBack,
+  leanTo,
+  scrolledEye,
+  stepSeconds,
+} from '../../src/scripts/art-effect/eye'
 
 describe('the eye that lights a gilt piece', () => {
   it('climbs from the lower left to the upper right as the page scrolls', () => {
@@ -42,5 +52,41 @@ describe('the eye that lights a gilt piece', () => {
       frames += 1
     }
     expect(frames).toBeLessThan(120)
+  })
+})
+
+describe('the lean of a shield toward a hovering mouse', () => {
+  const upright: LeanTween = { from: { x: 0, y: 0 }, to: { x: 0, y: 0 }, start: 0, seconds: 0 }
+  const pointed = { x: 0.5, y: -0.4 }
+
+  it('stands upright before any pointer comes near', () => {
+    expect(leanAt(upright, 5000)).toEqual({ x: 0, y: 0 })
+    expect(isLeanSettled(upright, 5000)).toBe(true)
+  })
+
+  it('reaches the lean of the pointer in 0.14 s, most of the way in the first half', () => {
+    const leaning = leanTo(upright, pointed, 1000)
+    expect(leanAt(leaning, 1000)).toEqual({ x: 0, y: 0 })
+    expect(leanAt(leaning, 1070).x).toBeGreaterThan(pointed.x * 0.75)
+    expect(leanAt(leaning, 1140)).toEqual(pointed)
+    expect(isLeanSettled(leaning, 1139)).toBe(false)
+    expect(isLeanSettled(leaning, 1140)).toBe(true)
+  })
+
+  it('comes back upright over 0.6 s once the pointer leaves', () => {
+    const leaned = leanTo(upright, pointed, 0)
+    const resting = leanBack(leaned, 1000)
+    expect(leanAt(resting, 1000)).toEqual(pointed)
+    expect(Math.abs(leanAt(resting, 1100).x)).toBeGreaterThan(0)
+    expect(leanAt(resting, 1600)).toEqual({ x: 0, y: 0 })
+    expect(isLeanSettled(resting, 1599)).toBe(false)
+    expect(isLeanSettled(resting, 1600)).toBe(true)
+  })
+
+  it('turns from where it stands when the pointer moves on, as a CSS transition restarts', () => {
+    const leaning = leanTo(upright, pointed, 0)
+    const halfway = leanAt(leaning, 50)
+    const turning = leanTo(leaning, { x: -0.5, y: 0.4 }, 50)
+    expect(leanAt(turning, 50)).toEqual(halfway)
   })
 })

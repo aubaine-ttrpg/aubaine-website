@@ -1,7 +1,8 @@
 uniform sampler2D uColour;
 uniform sampler2D uRelief;
 uniform sampler2D uFinish;
-uniform vec2 uBacking;
+uniform mat3 uWarp;
+uniform vec2 uShield;
 uniform vec2 uEye;
 uniform float uSway;
 uniform float uDistance;
@@ -12,7 +13,7 @@ uniform vec3 uKey;
 
 out vec4 outColor;
 
-const float DETAIL_BIAS = -0.5;
+const float DETAIL_BIAS = -0.75;
 const float FILTER_VARIANCE = 0.25;
 const float FILTER_LIMIT = 0.18;
 const float SPECULAR_OCCLUSION = 0.6;
@@ -121,8 +122,9 @@ vec3 enamel(
 }
 
 void main() {
-  vec2 pixel = vec2(gl_FragCoord.x, uBacking.y - gl_FragCoord.y);
-  vec2 uv = pixel / uBacking;
+  vec3 warped = uWarp * vec3(gl_FragCoord.xy, 1.0);
+  vec2 uv = warped.xy / warped.z;
+  vec2 inside = step(vec2(0.0), uv) * step(uv, vec2(1.0));
   vec4 colour = texture(uColour, uv, DETAIL_BIAS);
   vec3 relief = texture(uRelief, uv, DETAIL_BIAS).rgb;
   vec3 finish = texture(uFinish, uv, DETAIL_BIAS).rgb;
@@ -132,8 +134,8 @@ void main() {
   vec3 across = dFdx(normal);
   vec3 down = dFdy(normal);
 
-  float aspect = uBacking.x / uBacking.y;
-  vec3 view = toRoom(normalize(eyeAt(aspect) - vec3(pixel / uBacking.y, 0.0)));
+  float aspect = uShield.x / uShield.y;
+  vec3 view = toRoom(normalize(eyeAt(aspect) - vec3(uv.x * aspect, uv.y, 0.0)));
   float facing = max(dot(normal, view), 1e-4);
 
   float giltRoughness = mix(GILT_ROUGHNESS, BURNISHED_ROUGHNESS, max(convexity, 0.0));
@@ -150,6 +152,8 @@ void main() {
   );
 
   vec3 shaded = mix(glass, gold, finish.r);
+  vec2 pixel = uv * uShield;
   float dither = (interleavedGradient(pixel) + interleavedGradient(pixel.yx + 17.0) - 1.0) / 255.0;
-  outColor = vec4(clamp(encodeSrgb(shaded) + dither, 0.0, 1.0) * colour.a, colour.a);
+  float cover = colour.a * inside.x * inside.y;
+  outColor = vec4(clamp(encodeSrgb(shaded) + dither, 0.0, 1.0) * cover, cover);
 }

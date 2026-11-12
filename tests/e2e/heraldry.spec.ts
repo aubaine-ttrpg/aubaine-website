@@ -1,4 +1,5 @@
 import { expect, type Page, test } from '@playwright/test'
+import sharp from 'sharp'
 
 import {
   BANNER_CLOTH,
@@ -602,19 +603,22 @@ test('the first live frame of the arms stays within 8 of 255 of their still', as
     const still = holder.querySelector('img')
     if (!canvas || !still) return undefined
     await still.decode()
-    const width = canvas.width
-    const height = canvas.height
-    const read = (source: CanvasImageSource): Uint8ClampedArray => {
+    const width = Math.round((holder.clientWidth * canvas.width) / canvas.clientWidth)
+    const height = Math.round((holder.clientHeight * canvas.height) / canvas.clientHeight)
+    const room = { x: (canvas.width - width) / 2, y: (canvas.height - height) / 2 }
+    const read = (paint: (context: CanvasRenderingContext2D) => void): Uint8ClampedArray => {
       const scratch = document.createElement('canvas')
       scratch.width = width
       scratch.height = height
       const context = scratch.getContext('2d', { willReadFrequently: true })
       if (!context) throw new Error('no 2D context')
-      context.drawImage(source, 0, 0, width, height)
+      paint(context)
       return context.getImageData(0, 0, width, height).data
     }
-    const live = read(canvas)
-    const plain = read(still)
+    const live = read((context) =>
+      context.drawImage(canvas, room.x, room.y, width, height, 0, 0, width, height),
+    )
+    const plain = read((context) => context.drawImage(still, 0, 0, width, height))
     let sum = 0
     let counted = 0
     for (let at = 0; at < live.length; at += 4) {
@@ -627,6 +631,82 @@ test('the first live frame of the arms stays within 8 of 255 of their still', as
   expect(difference).toBeDefined()
   expect(difference).toBeLessThan(8)
 })
+
+const AS_SHARP_AS_FLAT = 0.1
+const LEAN_SHOWS = 2
+
+type Grey = { data: Buffer; width: number; height: number }
+
+async function grey(image: Buffer): Promise<Grey> {
+  const { data, info } = await sharp(image).greyscale().raw().toBuffer({ resolveWithObject: true })
+  return { data, width: info.width, height: info.height }
+}
+
+function sharpness({ data, width, height }: Grey): number {
+  let sum = 0
+  let squares = 0
+  let counted = 0
+  for (let y = 1; y < height - 1; y++) {
+    for (let x = 1; x < width - 1; x++) {
+      const at = y * width + x
+      const laplacian =
+        4 * (data[at] ?? 0) -
+        (data[at - 1] ?? 0) -
+        (data[at + 1] ?? 0) -
+        (data[at - width] ?? 0) -
+        (data[at + width] ?? 0)
+      sum += laplacian
+      squares += laplacian * laplacian
+      counted += 1
+    }
+  }
+  return squares / counted - (sum / counted) ** 2
+}
+
+function meanDifference(a: Grey, b: Grey): number {
+  let sum = 0
+  for (let at = 0; at < a.data.length; at++) sum += Math.abs((a.data[at] ?? 0) - (b.data[at] ?? 0))
+  return sum / a.data.length
+}
+
+for (const ratio of [1, 2]) {
+  test.describe(`at a pixel ratio of ${ratio}`, () => {
+    test.use({ deviceScaleFactor: ratio })
+
+    test('the arms leaned toward the pointer stay as sharp as the same arms drawn flat', async ({
+      page,
+    }) => {
+      await count(page)
+      await page.goto(speciesPath(await heraldic('fr')))
+      await bringDrawn(page, ARMS)
+      const box = await page.locator(ARMS).boundingBox()
+      if (!box) throw new Error('the arms have no box')
+      const room = 24
+      const clip = {
+        x: box.x - room,
+        y: box.y - room,
+        width: box.width + 2 * room,
+        height: box.height + 2 * room,
+      }
+      const corner = { x: box.x + box.width * 0.05, y: box.y + box.height * 0.05 }
+      await page.mouse.move(corner.x, corner.y, { steps: 8 })
+      expect(await restsWithin(page, 'arms', 3000)).toBeLessThan(3000)
+      const leaned = await grey(await page.screenshot({ clip }))
+      await page.evaluate(() => {
+        const veil = document.createElement('div')
+        veil.style.cssText = 'position:fixed;inset:0;z-index:2147483647'
+        document.body.append(veil)
+      })
+      await page.mouse.move(corner.x + 1, corner.y)
+      await page.mouse.move(corner.x, corner.y)
+      expect(await restsWithin(page, 'arms', 3000)).toBeLessThan(3000)
+      const flat = await grey(await page.screenshot({ clip }))
+      expect(meanDifference(leaned, flat)).toBeGreaterThan(LEAN_SHOWS)
+      const drift = Math.abs(sharpness(leaned) - sharpness(flat)) / sharpness(flat)
+      expect(drift).toBeLessThanOrEqual(AS_SHARP_AS_FLAT)
+    })
+  })
+}
 
 const NARROW_REM = 30
 

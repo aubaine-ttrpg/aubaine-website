@@ -333,6 +333,7 @@ export const ARMS = {
     occlusion: { contact: { reach: 0.35, strength: 5 }, broad: { reach: 1.5, strength: 2 } },
     shadow: { reach: 4, softness: 0.3 },
   },
+  lean: { degrees: 7, perspective: 600 },
 } as const satisfies {
   crop: { x: number; y: number; width: number; height: number }
   width: number
@@ -347,6 +348,7 @@ export const ARMS = {
   enamelDepth: { open: number; walls: number }
   key: KeyLight
   relief: ArmsRelief
+  lean: { degrees: number; perspective: number }
 }
 
 function armsSizeAt(width: number): { width: number; height: number } {

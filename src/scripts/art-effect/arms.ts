@@ -1,6 +1,7 @@
 import { backingSize } from '../../lib/art-effect/cover'
+import { type Lean, leanMargin, leanWarp } from '../../lib/art-effect/lean'
 import { ARMS, ARMS_UNIFORMS } from '../../lib/art-effect/presets'
-import { bindTilt } from '../tilt'
+import { FULLEST_LEAN } from '../tilt'
 import { prepareOnApproach, stayPlain } from './approach'
 import { type Eye, followEye } from './eye'
 import {
@@ -104,13 +105,14 @@ function mount(holder: HTMLElement, teardown: AbortController): void {
     teardown.abort()
   }
 
-  const render = (eye: Eye): boolean => {
+  const render = (eye: Eye, lean: Lean): boolean => {
     const from = loaded
     if (!from) return false
     const box = { width: holder.clientWidth, height: holder.clientHeight }
     if (box.width === 0 || box.height === 0) return true
+    const margin = follower.leans ? leanMargin(box, FULLEST_LEAN, ARMS.lean) : 0
     const backing = backingSize(
-      box,
+      { width: box.width + 2 * margin, height: box.height + 2 * margin },
       window.devicePixelRatio,
       1,
       from.studio.tier.pixelBudget,
@@ -125,7 +127,16 @@ function mount(holder: HTMLElement, teardown: AbortController): void {
         bindTexture(gl, program, 'uRelief', 1, maps.relief)
         bindTexture(gl, program, 'uFinish', 2, maps.finish)
         bindRoom(gl, program, room, 3, ARMS.roomYaw)
-        gl.uniform2f(program.uniform('uBacking'), backing.width, backing.height)
+        gl.uniformMatrix3fv(
+          program.uniform('uWarp'),
+          false,
+          leanWarp({ box, margin, backing, lean }, ARMS.lean),
+        )
+        gl.uniform2f(
+          program.uniform('uShield'),
+          (box.width * backing.width) / (box.width + 2 * margin),
+          (box.height * backing.height) / (box.height + 2 * margin),
+        )
         gl.uniform2f(program.uniform('uEye'), eye.x, eye.y)
         setShading(gl, program)
         draw(gl, undefined, backing.width, backing.height)
@@ -137,6 +148,7 @@ function mount(holder: HTMLElement, teardown: AbortController): void {
       if (!canvas.isConnected) stayPlain(holder)
       return false
     }
+    canvas.style.setProperty('--lean-margin', `${margin}px`)
     if (!canvas.isConnected) {
       holder.append(canvas)
       holder.setAttribute(DRAPED, '')
@@ -149,6 +161,7 @@ function mount(holder: HTMLElement, teardown: AbortController): void {
     signal,
     live: () => visible && loaded !== undefined,
     render,
+    hover: holder,
   })
 
   const prepare = (): void => {
@@ -166,7 +179,7 @@ function mount(holder: HTMLElement, teardown: AbortController): void {
       ])
       signal.throwIfAborted()
       loaded = { studio, program, room, maps }
-      render(follower.eye)
+      render(follower.eye, follower.lean)
     })().finally(() => {
       preparing = undefined
     })
@@ -179,12 +192,11 @@ function mount(holder: HTMLElement, teardown: AbortController): void {
     follower.glide()
   })
   const resize = new ResizeObserver(() => {
-    render(follower.eye)
+    render(follower.eye, follower.lean)
   })
   sight.observe(holder)
   resize.observe(holder)
   prepareOnApproach(holder, prepare, signal)
-  bindTilt(holder, holder, signal)
 
   signal.addEventListener(
     'abort',

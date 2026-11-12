@@ -55,6 +55,11 @@ metal; the shading of Decision 2 stayed and only the charge changed. The owner t
 slightly stronger wind, and for the flag's pause to be the same small round button instead of the
 square over the flag. Decision 10 records where that ended.
 
+On 2026-11-12 the owner found the arms crisp until hovered and soft while they leaned, as if a blurry
+model had replaced the picture. Measured, the shader and the moving light were sharp and the lean was
+not: the CSS 3D transform on the drape made the browser resample a canvas drawn at one canvas pixel per
+device pixel. Decision 7 records where that ended: the lean is drawn in the arms' shader.
+
 ---
 
 ## Decision 1: A sub-species may carry one piece of heraldry, a banner or arms beside its text, or a flag across the column
@@ -397,11 +402,25 @@ square over the flag. Decision 10 records where that ended.
   - The enamel is its pooled tincture lit by the room and the key light, darkened by the baked
     occlusion and shadow, under a clear coat of 4 % facing and 8 % grazing that carries a satin sheen
     (roughness 0.55) and one small key glint (0.3), both compressed.
-  - The exposure is 1.06, and the maps are sampled with a level of detail bias of -0.5.
+  - The exposure is 1.06, and the maps are sampled with a level of detail bias of -0.75 (-0.5 until
+    2026-11-12).
 - The eye follows a fine pointer or, without one, the scroll, and settles, through
-  `src/scripts/art-effect/eye.ts`, shared with the glazed frame. A hovering mouse leans the shield by up
-  to 6.3 degrees, through `src/scripts/tilt.ts`, shared with the hero's card. The eye sways 0.75 of the
-  way to the pointer, over a dome of 5 units. Reduced motion draws once and neither follows nor leans.
+  `src/scripts/art-effect/eye.ts`, shared with the glazed frame. The eye sways 0.75 of the way to the
+  pointer, over a dome of 5 units. Reduced motion draws once and neither follows nor leans.
+- A hovering mouse leans the shield toward it, by the hero card's `leanToward` (`src/scripts/tilt.ts`):
+  at most 0.9 times 7 degrees on each axis, seen through a perspective of 600 px (`ARMS.lean`). Since
+  2026-11-12 the lean is drawn in the shader, not by a CSS transform on the drape:
+  - `leanWarp` (`src/lib/art-effect/lean.ts`) inverts the CSS homography `perspective(600px)
+    rotateY() rotateX()` on the shield's plane into one 3 by 3 matrix, from each canvas pixel to the
+    maps, so the 768 pixel maps are sampled directly at every angle. Only the geometry leans: the
+    shading still reads the eye and the map, so a leaned shield carries the light of the flat one, and
+    its dither keeps to the shield's own pixels (`uShield`), as before.
+  - The canvas reaches past the box by `leanMargin`, 4 px around a 192 by 223 box, only where the
+    shield can lean (a fine pointer, motion allowed), and takes no pointer, so the hover area stays the
+    box. The drop shadow follows the leaned outline through the canvas's alpha.
+  - The lean eases in script, in the eye's frame loop (`leanTo` and `leanBack` in `eye.ts`): 0.14 s
+    toward the pointer and 0.6 s back upright, both on the site's `--ease` curve through Motion's
+    `cubicBezier`, each change starting from where the shield stands, as the CSS transition did.
 - The plain form is a still of 576 by 670 (`ARMS_SIZE`), WebP at quality 88, rendered at the rest eye by
   the same shader source (`fragmentSource` in `src/lib/art-effect/shader-source.ts`, shared with
   `gl.ts`) in Chromium on SwiftShader (`tools/media/browser-bake.ts`, shared with
@@ -426,7 +445,49 @@ square over the flag. Decision 10 records where that ended.
 - 768 pixels puts the map's first level exactly at the 384 pixel canvas of a 192 pixel shield at a pixel
   ratio of 2. Rendered off the page with the same shader, the bias changes nothing at that ratio, and
   raises the mean square of the Laplacian from 3,041 to 4,370 at a ratio of 1.5 and from 1,387 to
-  1,723 at 3, so it stays.
+  1,723 at 3, so it stays. It went to -0.75 on 2026-11-12, for the lean, below.
+- The lean in the shader, measured on 2026-11-12 against `astro dev` on the M5, 1512 by 860, in
+  Firefox, Chromium (`channel: 'chromium'`) and WebKit, headed, by one script: the pointer 5 % inside
+  the box's top-left corner (3.5 degrees on each axis), against the same pointer with the shield flat
+  (a transparent veil over the page takes the hover away and leaves the eye where it was). Sharpness is
+  the variance of the Laplacian of the greyscale shield; the table gives leaned over flat.
+
+  | Browser, pixel ratio | CSS lean | CSS lean, canvas at twice the pixels | Lean in the shader |
+  | --- | --- | --- | --- |
+  | Firefox, 2 | 0.63 (857 / 1,362) | 0.59 | 0.96 (1,293 / 1,350) |
+  | Firefox, 1 | 0.36 | 0.99 | 0.92 |
+  | Chromium, 2 | 0.49 | 0.55 | 0.94 |
+  | Chromium, 1 | 0.50 | 0.50 | 0.92, headless |
+  | WebKit, 2 | 0.68 | 0.70 | 0.94 |
+  | WebKit, 1 | 0.58 | 0.59 | 0.92 |
+
+  Chromium at a ratio of 1 is read headless: a headed window emulating 1 on a ratio 2 screen resamples
+  the page (0.89 there, and 1,887 at rest against 3,409 headless, where Firefox reads 3,426 and WebKit
+  3,414). `tests/e2e/heraldry.spec.ts` holds the leaned shield within 10 % of the flat one at ratios 1
+  and 2; it failed on the CSS lean (0.67 and 0.69 apart) and passes on this one.
+- The bias, in Firefox at a ratio of 2: at -0.5 the leaned shield read 0.865 of flat (1,168 against
+  1,350), since at a whole ratio the texels sit on the pixels at rest and a lean samples the coarser
+  level between them; already 0.965 at 0.44 degrees. At -1 it read 1.08, detail the flat shield never
+  shows. At -0.75 it reads 0.96 at 3.5 degrees, 0.97 at 1.7 and 1.03 at 0.44. The flat shield is
+  unchanged at ratios 1, 2 and 3, and reads 11 % sharper at 1.5 (1,636 to 1,821, headless Chromium),
+  where its texels never sat on the pixels; the leaned shield there reads 1.01 of flat at -0.5 and 0.99
+  at -0.75.
+- The lean keeps its angle: drawn over the page's background, the leaned outline in Firefox lies within
+  0.05 px of the CSS lean's on average, its corners on the same pixels, and within 0.53 px in Chromium.
+  WebKit's CSS lean drew the foot 3 px higher than the other two engines; its new outline ends within
+  0.5 px of theirs.
+- At rest the drape no longer holds a perspective matrix, which had Chromium resampling the canvas even
+  flat: 1,939 at a ratio of 2 against 1,360, as WebKit's 1,936. Firefox reads within 1 % of before.
+- Bytes, from the build's `_astro`: `arms` 10,208 (4,175 with `gzip -9`) against 8,548 (3,384), the
+  shared `eye` 1,996 against 1,176, and Motion's `cubicBezier` in a 307 byte chunk the shell's script
+  already loads. A frame shades 400 by 462 pixels at a ratio of 2 where it shaded 384 by 446; twice the
+  pixels would have been 768 by 892. Built, in Chromium at a ratio of 2 over fifteen pointer sweeps on
+  the M5's 120 Hz screen, the CSS lean, the CSS lean at twice the pixels and the lean in the shader all
+  gave frame intervals of 8.3 ms at the median and 9.8 to 10.0 ms at p95, with no long animation frame,
+  two runs each.
+- The still is unchanged. `pnpm media:arms` writes the maps byte for byte; drawn without loss, the still
+  from this shader differs from HEAD's in 166 of 1,543,680 values, mostly by 1, at the shield's
+  translucent rim, so the shipped WebP stays as it was baked.
 - Measured with Playwright's Chromium (`channel: 'chromium'`, ANGLE on Metal, Apple M5, macOS 26.3.1),
   1440 by 900, on the built Humain page, the 2026-10-26 build and this one served from one origin, at
   rest and with the pointer at the far left and the far right of the window, by one script reading the
@@ -477,7 +538,10 @@ square over the flag. Decision 10 records where that ended.
   surface, the curvature, the occlusion, the normals and the cast shadow.
 - One shader source for the still and the page: the heraldry spec holds the first live frame within 8
   of the still, and checks the one context, the light following the pointer and settling, reduced
-  motion, print, Swup and the hand-off.
+  motion, print, Swup, the hand-off and the leaned shield's sharpness. `tests/unit/lean.test.ts` holds
+  the flat warp to the old pixels, every leaned corner back to its corner of the map, the side the
+  pointer is on sinking as the CSS turn does, and the margin around every corner; `tests/unit/eye.test.ts`
+  holds the lean's timings.
 - Moving `litByRoom`, `environmentBrdf` and `neutral` into `lighting.glsl` on 2026-10-26 left the glazed
   frame unchanged: rendered on identical inputs at three eyes, old and new are bit identical on
   SwiftShader, and differ in one value of 1,228,800 by 1 on the M5. This build does not touch
@@ -508,6 +572,25 @@ square over the flag. Decision 10 records where that ended.
 - **Supersampling the shading**: an offscreen target and a downsampling pass, where widening the
   roughness by the normal's variance already averages what would sparkle. Rejected. Reopens if edges
   sparkle on a display not measured here.
+- **The CSS 3D transform on the drape** (2026-10-26 to 2026-11-12): the lean resampled the canvas, 0.36
+  to 0.68 of the flat shield's sharpness. Rejected. Reopens if browsers composite a transformed canvas
+  from its backing at every angle.
+- **A canvas at twice the pixels under the CSS transform**: 0.50 to 0.70, but 0.99 in Firefox at a ratio
+  of 1, for four times the pixels; the transform resamples what the canvas holds. Rejected, with the
+  transform.
+- **No lean**: as sharp as flat by definition, and it drops what the owner asked for on 2026-10-26, the
+  lean of the hero's card. The owner's call; not taken.
+- **Turning the normals with the lean**: a leaned shield would catch the light differently, which changes
+  the look the owner approved. Not built. Reopens if the owner wants the light to play on the lean.
+- **Four taps at half the footprint**: 0.93, but by softening the flat shield 6 % (1,349 to 1,273) while
+  the leaned one gained 1 %. Rejected.
+- **A bias of -1**: the leaned shield 8 to 10 % sharper than flat, detail the flat shield never shows and
+  that can shimmer as it moves. Rejected.
+- **Sizing the canvas from `devicePixelContentBoxSize`**: the shield's box is 223.33 px tall, and
+  Chromium snaps a canvas onto whole rows. Under Playwright's emulated ratios the box disagreed with
+  `devicePixelRatio` (CSS pixels in headless Chromium at 2, screen pixels in headed browsers at 1), so a
+  test could not see what a reader sees. Not kept. Reopens with a display at a ratio of 1 to measure.
+- three.js stays rejected for the lean: a leaned plane is one homography, with no silhouette in depth.
 
 ### Caveats
 
@@ -521,7 +604,14 @@ square over the flag. Decision 10 records where that ended.
   about 6.2 MB.
 - Timings come from Chromium on the M5 only. Firefox and WebKit were checked for drawing, not timed, and
   nothing was checked on Windows or a phone. The arms draw on every tier, as the glass does, since they
-  redraw only while the eye moves.
+  redraw only while the eye moves or the shield leans.
+- The canvas now redraws while the shield leans, where the compositor turned it before. The eye moves
+  with the same pointer, so the frames were drawn anyway, and they stop 0.6 s after the pointer leaves.
+- A first visit opened on the arms shows the still for 0.4 to 0.67 s (three runs in each engine, on the
+  built site while a test suite ran beside it), then
+  the canvas. Their colours stay within 5.0 to 7.4 of 255, but the browsers shrink the 576 px still to
+  the box, and the canvas reads sharper: by 66 % in Chromium and 106 % in WebKit at a ratio of 2, 7 %
+  softer in Firefox. Every other path never shows the still (0071).
 
 ---
 
@@ -724,3 +814,6 @@ square over the flag. Decision 10 records where that ended.
 
 - A WebKit and Firefox timing of the copy out of the shared context, before this record is accepted.
 - One name for the three pauses that set one choice (WCAG 3.2.4), or keep a name per piece.
+- Whether to bake the arms' still at the widths the ratios draw (192, 384 and 576 px) and serve it by
+  `srcset`, so a first visit's hand-off keeps its sharpness. It fits a 192 px box only; the box runs
+  from 120 to 192 px.

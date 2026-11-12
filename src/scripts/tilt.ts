@@ -1,6 +1,6 @@
 const TILTING = 'data-tilting'
 const REACH = 0.7
-const FULLEST_LEAN = 0.9
+export const FULLEST_LEAN = 0.9
 const FINE_POINTER = '(hover: hover) and (pointer: fine)'
 const REDUCED_MOTION = '(prefers-reduced-motion: reduce)'
 

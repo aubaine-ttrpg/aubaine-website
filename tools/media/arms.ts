@@ -3,6 +3,7 @@ import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import sharp from 'sharp'
+import { leanWarp } from '../../src/lib/art-effect/lean.ts'
 import {
   ARMS,
   ARMS_MAP_SIZE,
@@ -119,6 +120,9 @@ function stillPage(size: BakeSize, files: ReturnType<typeof armsFiles>, fragment
   const vertex = vertexSource(
     'layout(location = 0) in vec2 aCorner;\nvoid main() { gl_Position = vec4(aCorner, 0.0, 1.0); }',
   )
+  const flat = [
+    ...leanWarp({ box: size, margin: 0, backing: size, lean: { x: 0, y: 0 } }, ARMS.lean),
+  ]
   return `<!doctype html>
 <html><body style="margin:0;background:transparent">
 <canvas id="still" width="${size.width}" height="${size.height}"></canvas>
@@ -180,7 +184,8 @@ for (const [index, level] of ${JSON.stringify(ENVIRONMENT.levels)}.entries()) {
 const set = (name, ...values) => gl['uniform' + values.length + 'f'](gl.getUniformLocation(program, name), ...values)
 set('uRoomRange', ${ENVIRONMENT.range})
 set('uRoomYaw', ${ARMS.roomYaw})
-set('uBacking', ${size.width}, ${size.height})
+gl.uniformMatrix3fv(gl.getUniformLocation(program, 'uWarp'), false, ${JSON.stringify(flat)})
+set('uShield', ${size.width}, ${size.height})
 set('uEye', ${ARMS.rest.x}, ${ARMS.rest.y})
 ${Object.entries(ARMS_UNIFORMS)
   .map(([name, values]) => `set('${name}', ${values.join(', ')})`)
