@@ -11,5 +11,6 @@ paths:
 - Wherever the interface marks a kind of content with a colour or a pictogram (a menu, a source button, a keyword, a filter), take both from `KIND_MARKS`. Never draw another pictogram or colour for the same kind.
 - Ink a mark on night with `kindInk(kind)`, which lifts the colour until it reads.
 - A kind mark marks the kind. An entry keeps its own colour, as a tree keeps its domains and a state its ink.
+- A title frame on a species or tree page inks its pictogram in the entry's key colour with `KEY_INK` (`src/lib/key-colour.ts`), the kind's pictogram included. `docs/adr/0076-reading-titles-are-framed-plates-in-the-quote-s-family.md` records it.
 - Colour never carries the meaning alone: the kind's name stays beside its mark.
 - A new kind of content gets its mark in the same change. The colour and the pictogram are the owner's pick from rendered previews, and changing one is a product decision.

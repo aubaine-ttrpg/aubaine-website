@@ -746,6 +746,20 @@ values are in `src/styles/titles.css`, `src/components/primitives/PageTitle.astr
 `rehypeProseHeadings` in `src/lib/game/book-markup.ts`. Captures: `../assets/approved/titles-book-chapter.jpg`,
 `titles-species-humain.jpg`.
 
+**On a species or tree page, a title's pictogram takes the entry's key colour (2026-11-11).** The owner
+inked every pictogram on a species page in the species' key colour, including the Compétences mark over its
+skills, and extended this to the Arbres mark over a tree's board. A kind's mark still sorts content in its
+kind's colour everywhere else, and a book chapter keeps its category's ink. The ink is `KEY_INK`
+(`src/lib/key-colour.ts`): the key, lifted until it reads on night.
+
+**A species page's sections have their own pictograms (2026-11-11).** « Jouer un … » takes a book with a
+twenty-sided die printed on its cover. The die sits on the cover, slanted with it as if printed there,
+not floating beside it, and is in the key colour like the book. « Origines régionales » and
+« Sous-espèces » take the world, and « Noms » takes a character silhouette (`SPECIES_SECTION_ICONS` in
+`src/lib/game/derive.ts`, the print in `src/lib/book-cover.ts`). The subsection titles under them (an
+origin, a sub-species, a group of names) keep the painted question mark until the owner picks them a
+pictogram.
+
 ## Motion
 
 **Motion rides the load.** An animation may play over a real wait; it never adds one, and hand-offs are
@@ -885,3 +899,4 @@ and praised the Saison slider.
 | 2026-11-07 | the Humans take the default almanach, set in the Dev Hub; a picture fills the tube; an almanach's buttons sit on its caption's line |
 | 2026-11-08 | a painting may hang in a rustic wooden frame, floated beside its text |
 | 2026-11-10 | titles in the quote's family, one look per level, each full width; each title framed, its pictogram or the painted question mark; a title frame may be round, the chapter title a hexagon; a chapter leads with its frame, other pages lay their title on a panel; a minimum plate width per level; a header never repeats the list below it; the titles, approved |
+| 2026-11-11 | a species or tree title's pictogram in the entry's key colour; the species sections' pictograms, the die printed on the book's cover |

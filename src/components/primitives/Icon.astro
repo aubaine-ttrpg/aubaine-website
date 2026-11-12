@@ -1,10 +1,12 @@
 ---
-import { inlineIcon } from '../../lib/media'
+import type { PrintedBook } from '../../lib/book-cover'
+import { inlineIcon, inlinePrintedBook } from '../../lib/media'
 
-type Props = { name: string | undefined; class: string }
+type Props = { name: string | PrintedBook | undefined; class: string }
 
 const { name, class: className } = Astro.props
-const svg = inlineIcon(name, className)
+const svg =
+  typeof name === 'object' ? inlinePrintedBook(name, className) : inlineIcon(name, className)
 ---
 
 {svg && <Fragment set:html={svg} />}

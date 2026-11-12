@@ -1,8 +1,9 @@
 import { getImage } from 'astro:assets'
 
+import type { PrintedBook } from './book-cover'
 import { itemImage, PLACEHOLDER_SQUARE } from './media'
 
-export type TitlePictogram = { icon: string; ink: string }
+export type TitlePictogram = { icon: string | PrintedBook; ink: string }
 
 const UNSET_PICTURE_SIZE = 192
 

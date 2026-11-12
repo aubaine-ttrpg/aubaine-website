@@ -94,6 +94,8 @@ export function readableOnNight(colour: string): string {
   throw new Error(`${colour} cannot be lifted to read on night`)
 }
 
+export const KEY_INK = 'var(--key-paper)'
+
 export function readingKeys(key: string): string {
   return `--key:${key}; --key-paper:${readableOnNight(key)}`
 }

@@ -1,3 +1,4 @@
+import type { PrintedBook } from '../book-cover.ts'
 import type { Locale } from '../i18n/locales.ts'
 import type {
   EquipmentItem,
@@ -50,6 +51,12 @@ export const SUBSPECIES_SECTIONS: Record<SubspeciesLabel, string> = {
   'regional-origins': 'origines-regionales',
   subspecies: 'sous-especes',
 }
+
+export const SPECIES_SECTION_ICONS = {
+  playing: { book: 'game-icons:black-book', print: 'game-icons:dice-twenty-faces-twenty' },
+  subspecies: 'game-icons:world',
+  names: 'game-icons:character',
+} as const satisfies Record<string, string | PrintedBook>
 
 export type HeraldryPlacement = 'beside' | 'across'
 

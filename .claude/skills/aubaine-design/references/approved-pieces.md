@@ -1084,8 +1084,12 @@ a banner for the frame (`hextech.md`).
   `span.au-frame__face` with « ? ». Headings inside a quote or a callout are left alone. The heading, its
   text and its id are untouched, so the side list and the anchors hold.
 - `SectionTitle.astro` writes the same markup for a heading a view builds, its frame `data-face="icon"`
-  with a pictogram in its own ink (`kindInk`, `categoryInk`) when the title names a kind, as
-  « Compétences d'Espèce » takes the Compétences mark and « Arbre de compétences » the Arbres mark.
+  when the title has a pictogram: « Compétences d'Espèce » takes the Compétences mark and « Arbre de
+  compétences » the Arbres mark, and a species page's « Jouer un … », « Origines régionales » or
+  « Sous-espèces », and « Noms » take `SPECIES_SECTION_ICONS` (`src/lib/game/derive.ts`), the first
+  a book with a die printed on its cover by `inlinePrintedBook` (`src/lib/media.ts`,
+  `src/lib/book-cover.ts`). On a species or tree page every one is inked `KEY_INK`, the entry's
+  `--key-paper`; their subsections stay unset.
 - `PageTitle.astro`: `div.au-title[data-look]`, `chapter` on a book chapter (its frame holding the
   book's category pictogram, `GhostName.astro` with the chapter's number) and `page` elsewhere (its frame
   unset), then `div.au-title__plate > h1`, then `p.au-title__line` with the page's one-line description.

@@ -4,13 +4,18 @@ import { skillBrowseEntries } from '../../lib/game/browse-entries'
 import { speciesSheet } from '../../lib/game/character-sheet'
 import type { Corpus, ResolvedSpecies } from '../../lib/game/corpus'
 import { label } from '../../lib/game/corpus'
-import { HERALDRY_PLACEMENT, SUBSPECIES_SECTIONS, subspeciesAnchor } from '../../lib/game/derive'
-import { KIND_MARKS, kindInk } from '../../lib/game/kind-marks'
+import {
+  HERALDRY_PLACEMENT,
+  SPECIES_SECTION_ICONS,
+  SUBSPECIES_SECTIONS,
+  subspeciesAnchor,
+} from '../../lib/game/derive'
+import { KIND_MARKS } from '../../lib/game/kind-marks'
 import { loreFor } from '../../lib/game/prose'
 import type { SubspeciesLabel } from '../../lib/game/schema'
 import type { Locale } from '../../lib/i18n/locales'
 import { strings } from '../../lib/i18n/strings'
-import { readingKeys } from '../../lib/key-colour'
+import { KEY_INK, readingKeys } from '../../lib/key-colour'
 import { titleFrameStyle } from '../../lib/title-frames'
 import BrowseList from '../primitives/BrowseList.astro'
 import CharacterHero from '../primitives/CharacterHero.astro'
@@ -138,7 +143,12 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
 
             {hasPlaying && (
               <section>
-                <SectionTitle level={2} id={PLAYING_ID} text={t.playingAs(species.name)} />
+                <SectionTitle
+                  level={2}
+                  id={PLAYING_ID}
+                  text={t.playingAs(species.name)}
+                  pictogram={{ icon: SPECIES_SECTION_ICONS.playing, ink: KEY_INK }}
+                />
                 {roleplay?.text && <RuleText source={roleplay.text} corpus={corpus} locale={locale} />}
                 {(playing.length > 0 || hasSubspecies) && (
                   <dl>
@@ -168,7 +178,12 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
 
             {hasSubspecies && (
               <section>
-                <SectionTitle level={2} id={SUBSPECIES_ID} text={words.plural} />
+                <SectionTitle
+                  level={2}
+                  id={SUBSPECIES_ID}
+                  text={words.plural}
+                  pictogram={{ icon: SPECIES_SECTION_ICONS.subspecies, ink: KEY_INK }}
+                />
                 {species.subspecies.map((sub) => (
                   <article id={subspeciesAnchor(sub.id)} class="au-subspecies">
                     <SectionTitle level={3} text={sub.name} />
@@ -210,7 +225,12 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
 
             {hasNames && (
               <section>
-                <SectionTitle level={2} id={NAMES_ID} text={t.speciesNames} />
+                <SectionTitle
+                  level={2}
+                  id={NAMES_ID}
+                  text={t.speciesNames}
+                  pictogram={{ icon: SPECIES_SECTION_ICONS.names, ink: KEY_INK }}
+                />
                 {species.naming && (
                   <RuleText source={species.naming} corpus={corpus} locale={locale} />
                 )}
@@ -251,7 +271,7 @@ const entries = skillBrowseEntries(species.pool, corpus, locale, species)
         level={2}
         id="skills"
         text={t.speciesOffer}
-        pictogram={{ icon: KIND_MARKS.skills.icon, ink: kindInk('skills') }}
+        pictogram={{ icon: KIND_MARKS.skills.icon, ink: KEY_INK }}
       />
       {
         species.pool.length === 0 && (

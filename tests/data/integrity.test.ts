@@ -20,6 +20,7 @@ import {
   characteristicKey,
   SPECIES_ORIGIN_ICON,
   SPECIES_PLATE_TERMS,
+  SPECIES_SECTION_ICONS,
   SPECIES_SKILL_CHOICES,
   showsXp,
   skillTags,
@@ -750,14 +751,20 @@ describe('media', () => {
     }
   })
 
-  it('gives every species plate the icon of a rule term, and keeps the origin icon on disk', async () => {
+  it('gives every species plate the icon of a rule term, and keeps the origin and section icons on disk', async () => {
     for (const reference of Object.values(SPECIES_PLATE_TERMS)) {
       expect(fr.terms.keys.get(reference)?.icon, `species plate {{${reference}}}`).toBeTruthy()
     }
-    const [set, name] = SPECIES_ORIGIN_ICON.split(':')
-    await expect(
-      readFile(resolve(root, `data/media/icons/${set}/${name}.svg`)),
-    ).resolves.toBeDefined()
+    const sectionIcons = Object.values(SPECIES_SECTION_ICONS).flatMap((icon) =>
+      typeof icon === 'string' ? [icon] : [icon.book, icon.print],
+    )
+    for (const icon of [SPECIES_ORIGIN_ICON, ...sectionIcons]) {
+      const [set, name] = icon.split(':')
+      await expect(
+        readFile(resolve(root, `data/media/icons/${set}/${name}.svg`)),
+        icon,
+      ).resolves.toBeDefined()
+    }
   })
 
   it('draws every kind mark from a pictogram on disk', async () => {

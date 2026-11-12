@@ -299,7 +299,8 @@ Each kind of content has one colour and one pictogram in `KIND_MARKS` (`src/lib/
 Compétences takes `game-icons:spell-book` in `#8a5cc4`; each book category has one in `CATEGORY_MARKS`,
 in the same file, as Ressources takes `game-icons:folded-paper` in
 `#c0457e`. The sets live there; `kindInk` and `categoryInk` lift a colour until it reads on night. A kind's name always sits beside its mark, and a mark marks the kind while an entry keeps its
-own colour (`.claude/rules/frontend/kind-marks.md`).
+own colour (`.claude/rules/frontend/kind-marks.md`). On a species or tree page, the title frames ink
+every pictogram in the entry's key colour, the kind's mark included.
 
 ### Dark in both themes, and print
 

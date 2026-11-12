@@ -3,6 +3,7 @@
 **Project:** Aubaine, the wiki
 **Status:** Accepted
 **Date:** 2026-11-10
+**Revised:** 2026-11-11, the species page's section pictograms, and a species or tree title's pictogram in the entry's key colour (addendum in Decision 3)
 **Deciders:** Kori
 **Scope:** How the titles of a reading page look and are built: a book chapter's title, a policy's title,
 and the section and subsection titles of book chapters, policies, species and trees, whether Markdown writes
@@ -142,6 +143,30 @@ live with a panel of switches; the owner set the defaults this record ships. The
 
 - Every title of a page without its own pictogram shows the same picture until titles take their own; the
   repetition is the honest « not set yet », and it costs one 10 KB image per page.
+
+### Addendum (2026-11-11): species and tree titles take their pictograms in the entry's key colour
+
+- The decider set the pictograms of a species page's section titles: « Jouer un … » takes a book with a
+  twenty-sided die printed on its cover, « Origines régionales » or « Sous-espèces » takes
+  `game-icons:world`, and « Noms » takes `game-icons:character` (`SPECIES_SECTION_ICONS` in
+  `src/lib/game/derive.ts`). The subsection titles under them (an origin, a sub-species, a group of
+  names) keep the painted question mark, as the decider asked.
+- On a species or a tree page every title pictogram takes the entry's key colour: `KEY_INK` in
+  `src/lib/key-colour.ts`, which reads `--key-paper`, the key that `readableOnNight` lifts until it reads
+  on night. The Compétences mark over a species' skills and the Arbres mark over a tree's board keep
+  their pictogram from `KIND_MARKS` and take the key instead of the kind's ink. The decider asked for
+  it on the species page and chose to extend it to trees. A book chapter keeps its category's ink.
+- The book is `game-icons:black-book`, whose cover is a hollow parallelogram in its path. At build time
+  `inlinePrintedBook` in `src/lib/media.ts` draws `game-icons:dice-twenty-faces-twenty` on that cover.
+  `printOnCoverMatrix` in `src/lib/book-cover.ts` maps the die so its edges follow the cover's slant.
+  The die is centred, spans 72 % of the cover's width, and runs as long down the cover as across it. Both
+  vendored files stay as Game-icons.net drew them, and the frame still holds one `svg`.
+- `tests/unit/book-cover.test.ts` checks that the die stays on the cover, with a tenth of the cover
+  clear on every side. `tests/e2e/titles.spec.ts` checks the ink of every section pictogram on every
+  species and tree page in both languages.
+- Caveat: a section frame's pictogram is 1.5 em of a 17 to 20 px frame (`src/styles/titles.css`), so 25.5
+  to 30 px. The die's box is 0.72 × 248.75 / 512 of that, about 9 to 10.5 px wide. At that size it
+  reads as a die, but its numbers do not.
 
 ---
 

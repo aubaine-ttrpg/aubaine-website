@@ -1,4 +1,5 @@
 import { type ArmsFiles, armsFiles } from './art-effect/presets.ts'
+import { BOOK_COVERS, type PrintedBook, printOnCoverMatrix } from './book-cover.ts'
 import { latestRelease } from './booklet/manifest.ts'
 import { type BookletKind, releaseTag } from './booklet/release.ts'
 import type { PdfRelease } from './game/schema.ts'
@@ -110,12 +111,33 @@ export function iconMask(name: string | null | undefined): string {
   return `url('/icons/${file}.svg') center/contain no-repeat`
 }
 
-export function inlineIcon(name: string | null | undefined, className: string): string | undefined {
-  if (!name) return undefined
-  const source = ICON_SOURCE[`/data/media/icons/${name.replace(':', '/')}.svg`]
-  if (source === undefined) return undefined
+const SQUARE_ICON = /^<svg[^>]*viewBox="0 0 (\d+) \1"[^>]*>([\s\S]*)<\/svg>\s*$/
+
+function iconSource(name: string): string | undefined {
+  return ICON_SOURCE[`/data/media/icons/${name.replace(':', '/')}.svg`]
+}
+
+function inlined(source: string, className: string): string {
   return source
     .replace(/\s(?:width|height)="[^"]*"/g, '')
     .replace(/fill="#[0-9a-fA-F]{3,6}"/g, 'fill="currentColor"')
     .replace('<svg', `<svg class="${className}" aria-hidden="true" focusable="false"`)
+}
+
+export function inlineIcon(name: string | null | undefined, className: string): string | undefined {
+  if (!name) return undefined
+  const source = iconSource(name)
+  return source === undefined ? undefined : inlined(source, className)
+}
+
+export function inlinePrintedBook({ book, print }: PrintedBook, className: string): string {
+  const cover = iconSource(book)
+  if (cover === undefined) throw new Error(`no icon ${book} in data/media/icons/`)
+  const printSource = iconSource(print)
+  if (printSource === undefined) throw new Error(`no icon ${print} in data/media/icons/`)
+  const square = SQUARE_ICON.exec(printSource)
+  if (!square) throw new Error(`${print} is not drawn on a square view box`)
+  const matrix = printOnCoverMatrix(BOOK_COVERS[book], Number(square[1])).join(' ')
+  const printed = `<g transform="matrix(${matrix})">${square[2]}</g></svg>`
+  return inlined(cover.replace('</svg>', printed), className)
 }

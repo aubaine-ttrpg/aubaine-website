@@ -2,8 +2,10 @@ import { readdir, readFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { expect, type Page, test } from '@playwright/test'
 
+import { SUBSPECIES_SECTIONS } from '../../src/lib/game/derive'
 import { LOCALES, type Locale } from '../../src/lib/i18n/locales'
-import { type PolicyKind, pathFor } from '../../src/lib/i18n/routes'
+import { type PolicyKind, pathFor, TREE_ANCHOR } from '../../src/lib/i18n/routes'
+import { rgbFromHex } from '../../src/lib/key-colour'
 import { corpus } from './support/corpus'
 
 const POLICIES: readonly PolicyKind[] = ['licences', 'aiPolicy', 'credits', 'privacy']
@@ -12,6 +14,7 @@ const NARROW = [
   { width: 320, height: 568 },
 ] as const
 const TITLES = '.au-titles :is(.au-head > h2, .au-head > h3, .au-title h1)'
+const SPECIES_SECTION_IDS = ['jouer', ...Object.values(SUBSPECIES_SECTIONS), 'noms', 'skills']
 
 async function readingPages(locale: Locale): Promise<string[]> {
   const data = await corpus(locale)
@@ -55,6 +58,28 @@ function framesOfEachTitle(page: Page) {
         icon: frames[0]?.querySelector('svg') !== null,
       }
     }),
+  )
+}
+
+function sectionPictograms(page: Page, ids: readonly string[]) {
+  return page.evaluate(
+    (wanted) =>
+      wanted.flatMap((id) => {
+        const frame = document.querySelector(`.au-head:has(> #${id}) > .au-frame`)
+        if (!frame) return []
+        const pictograms = frame.querySelectorAll('svg')
+        const first = pictograms[0]
+        return [
+          {
+            id,
+            face: frame.getAttribute('data-face'),
+            pictograms: pictograms.length,
+            ink: first ? getComputedStyle(first).color : '',
+            key: getComputedStyle(frame).getPropertyValue('--key-paper').trim(),
+          },
+        ]
+      }),
+    ids,
   )
 }
 
@@ -103,20 +128,38 @@ test.describe('reading pages', () => {
   }
 })
 
-test('a title that names a kind of content shows that kind’s mark', async ({ page }) => {
+test('a species or tree page inks every section pictogram in its own key colour', async ({
+  page,
+}) => {
+  test.setTimeout(240_000)
   for (const locale of LOCALES) {
     const data = await corpus(locale)
-    const species = data.species[0]
-    const tree = data.trees[0]
-    if (!species || !tree) throw new Error('the corpus has no species or no tree')
-    for (const [path, id] of [
-      [pathFor('speciesEntry', locale, { species: species.id }), 'skills'],
-      [pathFor('tree', locale, { tree: tree.id }), 'arbre'],
-    ] as const) {
+    const pages = [
+      ...data.species.map((species) => ({
+        path: pathFor('speciesEntry', locale, { species: species.id }),
+        ids: SPECIES_SECTION_IDS,
+        always: 'skills',
+      })),
+      ...data.trees.map((tree) => ({
+        path: pathFor('tree', locale, { tree: tree.id }),
+        ids: [TREE_ANCHOR],
+        always: TREE_ANCHOR,
+      })),
+    ]
+    for (const { path, ids, always } of pages) {
       await page.goto(path)
-      const frame = page.locator(`.au-head:has(> #${id}) > .au-frame`)
-      await expect(frame).toHaveAttribute('data-face', 'icon')
-      await expect(frame.locator('svg')).toHaveCount(1)
+      const pictograms = await sectionPictograms(page, ids)
+      expect(
+        pictograms.map((pictogram) => pictogram.id),
+        path,
+      ).toContain(always)
+      for (const pictogram of pictograms) {
+        const where = `${path} #${pictogram.id}`
+        expect(pictogram.face, where).toBe('icon')
+        expect(pictogram.pictograms, where).toBe(1)
+        const [red, green, blue] = rgbFromHex(pictogram.key)
+        expect(pictogram.ink, where).toBe(`rgb(${red}, ${green}, ${blue})`)
+      }
     }
   }
 })

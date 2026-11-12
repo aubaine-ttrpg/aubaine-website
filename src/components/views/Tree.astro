@@ -5,13 +5,13 @@ import { skillSources, treeNodeAttributes } from '../../lib/game/browse-entries'
 import { treeSheet } from '../../lib/game/character-sheet'
 import type { Corpus, ResolvedTree } from '../../lib/game/corpus'
 import { formatNumber, showsXp, xpOf } from '../../lib/game/derive'
-import { KIND_MARKS, kindInk } from '../../lib/game/kind-marks'
+import { KIND_MARKS } from '../../lib/game/kind-marks'
 import { loreFor } from '../../lib/game/prose'
 import { treeSealKey } from '../../lib/game/seals'
 import type { Locale } from '../../lib/i18n/locales'
 import { pathFor, TREE_ANCHOR, treeNodeHref } from '../../lib/i18n/routes'
 import { strings } from '../../lib/i18n/strings'
-import { readingKeys } from '../../lib/key-colour'
+import { KEY_INK, readingKeys } from '../../lib/key-colour'
 import { bookletHref } from '../../lib/media'
 import { titleFrameStyle } from '../../lib/title-frames'
 import CharacterHero from '../primitives/CharacterHero.astro'
@@ -106,7 +106,7 @@ const trail = lore
         level={2}
         id={TREE_ANCHOR}
         text={t.plate}
-        pictogram={{ icon: KIND_MARKS.trees.icon, ink: kindInk('trees') }}
+        pictogram={{ icon: KIND_MARKS.trees.icon, ink: KEY_INK }}
       />
     </div>
 
