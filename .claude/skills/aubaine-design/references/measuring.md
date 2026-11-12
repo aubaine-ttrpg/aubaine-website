@@ -176,6 +176,24 @@ directory under another path, or lacks a shot.
 - To time a full-screen shader on an Apple GPU, turn blending on, or tile-based hidden-surface removal
   shades only the last draw. For script cost, read the CPU profiler's per-script self time: Chrome's
   `Performance.getMetrics` ScriptDuration misses async continuations.
+- `pnpm design:frames --mode=MODE` measures what a lit piece costs, on a production build, in headed
+  Firefox, Chromium and WebKit at ratios 1 and 2, five runs a case (`--engines`, `--ratios`,
+  `--runs`, `--pieces=arms,seal` by `data-drape` kind, `--out=FILE` for the runs as JSON):
+  `appear` (build lead to first frame, the worst frame around the build, decode and upload),
+  `sweep` (a fixed 10 s pointer path: frame intervals, long frames, redraws, main thread split into
+  shading and copy, GPU time, redraws whose inputs repeat), `idle` (draws once settled, off screen,
+  under reduced motion), `bytes`, `light` (the luminance and swing above, in Chromium at ratio 2),
+  `shader` (each piece's shader on SwiftShader at three eyes and two fullest leans; `--out=DIR`, then
+  `--against=DIR` counts the values that moved) and `twin` (`--base` against `--against`, two builds
+  on a paused clock, counting premultiplied pixels that differ and whether both pages were fed the
+  same uniforms). It isolates the page for fine timers: under 0.01 ms in Chromium, 0.02 ms in
+  Firefox, still 1 ms in WebKit, so read WebKit's means over many redraws, not its medians. Only
+  Chromium offers a GPU timer and long animation frames. Prove `twin` on one build against itself
+  first: it reads 0 in Chromium and WebKit, but Playwright's clock leaves Firefox's frames on real
+  time, so Firefox cannot be compared that way. The 2026-11-12 results are in 0077 Decision 7.
+- A branch in a shader is not exact on ANGLE Metal even when SwiftShader says it is: an early return
+  over uncovered pixels moved the derivatives taken before it and changed edge pixels by up to 48
+  (0077 Decision 7). Prove a shader edit with `twin` in Chromium and WebKit, not with `shader` alone.
 
 ## Live side by side for the owner
 
@@ -190,8 +208,9 @@ button that counts differing pixels.
   scripted step, and after every mirrored pointer event has been handled.
 - Shader edits that wrap work in a branch stayed bit-exact in Chromium and WebKit (ANGLE Metal), while
   Firefox on macOS (Apple OpenGL) rounded the branched maths one or two units in the last place
-  differently: no 8-bit value changed in the tests, yet the output is not provably exact. JavaScript
-  arithmetic stays exact everywhere.
+  differently: no 8-bit value changed in the tests, yet the output is not provably exact. A branch
+  that returns early before derivatives are used was not exact even on ANGLE Metal (0077 Decision
+  7). JavaScript arithmetic stays exact everywhere.
 
 ## Booklets in print
 

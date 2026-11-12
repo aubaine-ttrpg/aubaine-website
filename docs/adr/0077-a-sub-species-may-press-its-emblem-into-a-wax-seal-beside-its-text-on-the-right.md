@@ -6,10 +6,10 @@
 **Deciders:** Kori
 **Scope:** The `seal` kind of heraldry and where it stands, where its emblem and its bake live and who
 owns them, how it is sculpted, baked and shaded, the stills it hands off from, and the mount, bake,
-shader library and measuring tool it now shares with the arms. Extends 0059 Decisions 1, 7 and 9
-without changing the arms' look, keeps the lean in the shader that 0059 Decision 7 records, and keeps
-0071: a seal is drawn before it is seen like every lit piece. Leaves the banner and the flag as they
-are.
+shader library and measuring tools it now shares with the arms, and what both cost to draw. Extends
+0059 Decisions 1, 7 and 9 without changing the arms' look, keeps the lean in the shader that 0059
+Decision 7 records, and keeps 0071: a seal is drawn before it is seen like every lit piece. Leaves
+the banner and the flag as they are.
 
 ---
 
@@ -279,8 +279,8 @@ read from `pnpm-lock.yaml`: `astro@7.3.3`, `sharp@0.35.4`, `playwright-core@1.63
 
 ### Rationale
 
-- Nothing of the arms changed: `pnpm media:arms` rewrites the three maps and the still byte for byte
-  after the bake moved, the arms render bit identical on SwiftShader at three eyes after the shader
+- Nothing of the arms changed: `pnpm media:arms` rewrites the three maps byte for byte after the
+  bake moved (the still it writes differs from the committed one: Decision 7, Caveats), the arms render bit identical on SwiftShader at three eyes after the shader
   library moved (0 of 1,543,680 values differ), and the arms' tests of `tests/e2e/heraldry.spec.ts`
   pass, now over a 3 by 3 pointer grid at ratios 1 and 2 instead of one corner.
 - The seal leans as sharp as it stands. `pnpm design:sharpness`, against `astro preview` of this build
@@ -311,6 +311,104 @@ read from `pnpm-lock.yaml`: `astro@7.3.3`, `sharp@0.35.4`, `playwright-core@1.63
 
 ---
 
+## Decision 7: The seal and the arms are measured for cost in three engines, and keep their runtime
+
+### Decision
+
+- `pnpm design:frames` (`tools/design/frames.ts`) measures the lit pieces of a page on a production
+  build, in headed Playwright Firefox, Chromium (`channel: 'chromium'`) and WebKit, at ratios 1 and
+  2, five runs a case. Its modes: `appear` (from the build lead to the first drawn frame), `sweep` (a
+  fixed 10 s pointer path with every piece in view), `idle`, `bytes`, `shader` (each piece's shader
+  on SwiftShader at three eyes and two fullest leans, captured and compared), `light` (the luminance
+  and swing of `measuring.md`) and `twin` (two builds on a paused clock, pixel by pixel). It reads the
+  page through an init script and ships nothing; the page only exports its build lead
+  (`BUILD_LEAD`, `src/scripts/art-effect/approach.ts`) so the tool watches the same one.
+- `tools/media/relief-scenes.ts` builds the still scene of the arms and of a seal for both bakes and
+  for the `shader` mode, and `stillPage` (`tools/media/relief-bake.ts`) takes an optional leaned
+  frame, upright by default.
+- No change to the runtime was kept: the five candidates below were measured and dropped.
+
+### Rationale
+
+- Measured on 2026-11-12 on an Apple M5 at 1440 by 900, against `astro preview` of a production
+  build, `playwright-core@1.63.0` (Firefox 155, Chromium 153, WebKit 26.6 as their user agents
+  report). Firefox and Chromium ran at the display's 120 Hz and WebKit at 60 Hz. Medians of five
+  runs, the lowest and highest in brackets; the main thread under cross-origin isolation, which
+  gives timers finer than 0.01 ms in Chromium, of 0.02 ms in Firefox and of 1 ms in WebKit, whose
+  means over 600 redraws stay unbiased.
+
+  | Engine, ratio | Frame median, p95, worst (ms) | Long frames | Main thread per redraw, arms and seal (ms, mean) | GPU per draw, arms and seal (ms) |
+  | --- | --- | --- | --- | --- |
+  | Firefox, 1 | 8.34, 9.10, 25.7 (9.3 to 33.3) | 0 | 0.06, 0.09 | not offered |
+  | Firefox, 2 | 8.32, 9.14, 24.2 (9.3 to 32.5) | 0 | 0.06, 0.08 | not offered |
+  | Chromium, 1 | 8.33, 9.30, 9.34 | 0 | 0.06, 0.08 | 0.12, 0.09 |
+  | Chromium, 2 | 8.32, 10.1, 10.3 | 0 | 0.08, 0.10 | 0.35, 0.28 |
+  | WebKit, 1 | 17.0, 18.0, 20.0 (18 to 31) | 0 | 0.37, 0.38 | not offered |
+  | WebKit, 2 | 17.0, 18.0, 22.0 (19 to 33) | 0 | 0.33, 0.34 | not offered |
+
+  Each piece redraws on every frame while the pointer moves: 1,115 to 1,120 redraws in 10 s at
+  120 Hz, 600 at 60 Hz. Of each redraw's main thread, the copy into its 2D canvas takes 0.02 to 0.04
+  ms in Firefox and Chromium and 0.15 to 0.16 ms in WebKit. Long frames are long animation frames in
+  Chromium and frames over 50 ms elsewhere, as Firefox and WebKit report none.
+- First appearance, from the build lead to the first drawn frame, arms and seal: Firefox 32 and 25
+  ms, Chromium 20 to 22 and 14 to 17 ms, WebKit 40 to 41 and 28 to 32 ms, with no long frame but one
+  WebKit run. In Firefox and Chromium the worst frame around a build has a median of 10.3 ms; in WebKit it
+  is 38 to 40 ms (28 to 60), one dropped frame at 60 Hz, as each piece's fetch, decode and uploads of
+  8 to 13 ms (against 1 to 2.3 ms elsewhere) fall within one frame.
+- At rest: no draw once the light settles (the glide's tail lasts 210 to 232 ms on the arms and 783
+  to 799 ms on the seal after the sweep's last move), none off screen, and one draw under reduced
+  motion, in every engine.
+- Bytes, from the build: the maps 10,054, 63,547 and 40,308 (arms) and 4,137, 34,145 and 25,322
+  (seal); the arms' still 46,412; the seal's still the browser picks 8,312 (192 px) at a ratio of 1
+  and 20,042 (384 px) at 2, from 820 px wide up, and 5,836 and 14,424 on a phone. The chunks `arms`
+  4,074, `baked-relief` 6,794, `seal` 4,529 and `studio` 34,708 (1,470, 3,186, 2,043 and 12,297 with
+  Node's zlib at level 9). Texture memory with full mip chains: 3,656,200 bytes per arms map and
+  3,145,720 per seal map, 11.0 MB and 9.4 MB a piece, and 174,080 for the room's four levels.
+- `pnpm design:frames --mode=light` reads the arms at 72.1, 71.0 and 79.0 and the seal at 138.2,
+  136.3 and 148.4 (rest, far left, far right), swings of 8.1 and 12.1 against the 8.1 and 12.0 of
+  Decision 4, so the tool reproduces the script that measured them.
+- With the tool and the shared scene in place, the site builds to the same 1,715 files as before
+  once file hashes are masked; the only other differences came from unrelated content edits in the
+  working tree.
+
+### Alternatives considered
+
+- **Skipping a redraw whose inputs repeat**: provably identical, since the program, the maps and the
+  uniforms would be the same. Not one redraw of the sweeps repeated the float32 bits of the previous
+  eye, warp, piece size and backing. Rejected. Reopens if a change makes redraws repeat.
+- **An `OffscreenCanvas` studio handing each piece `transferToImageBitmap`**: no copy, but the one
+  context must be resized for each piece. A bench at the pieces' backing sizes spent 2.26 to 3.29 ms
+  of main thread a frame for two pieces against 0.12 to 0.23 ms with `drawImage`, in every engine.
+  Rejected, as 0053 rejected it for support. Reopens with one context able to present to several
+  canvases.
+- **One map uploaded per frame**: the same textures, a task split in three. WebKit's worst frame
+  around a build went from 40 (33 to 60) to 34 (29 to 39) ms at a ratio of 1 and from 38 (28 to 43)
+  to 30 (27 to 37) at 2, inside the spread of five runs, while the first frame came up to 12 ms
+  later. Rejected. Reopens if WebKit becomes a reader's main browser here.
+- **Shading only covered pixels**: returning early where the coverage is 0 (about 45 % of the seal's
+  canvas), and skipping the arms' gilt where the metal is exactly 0. Identical on SwiftShader (0 of
+  6,832,320 values at the five poses), but on ANGLE Metal, in Chromium and WebKit, 218 to 914 edge
+  pixels over 12 frames changed by up to 48 in premultiplied value, as the derivatives taken before
+  the branch were moved after it. The seal's GPU time went from 0.28 (0.26 to 0.32) to 0.24 (0.23 to
+  0.27) ms at a ratio of 2, inside the spread, and the arms' did not move. Rejected. Reopens if a
+  shader becomes GPU bound.
+- **Smaller textures**: every mip level the detail bias reaches is sampled at a ratio of 2, so no
+  pixel-identical path removes any. Kept as they are.
+
+### Caveats
+
+- The `twin` mode holds Chromium and WebKit to their pixels, but Playwright's clock leaves Firefox's
+  frames on real time, so two Firefox pages are fed different eyes and cannot be compared that way.
+- No GPU timer reaches Firefox or WebKit here: Firefox lists only `EXT_disjoint_timer_query`, which
+  read 0, and WebKit offers none.
+- The arms' still, baked on 2026-10-29, predates this record's shader changes: `pnpm media:arms`
+  rewrites the three maps byte for byte but a still that differs from the committed one in 129,574
+  of 385,920 pixels, by up to 54 of 255. The first live frame stays within 8 of 255 of the committed
+  still (`tests/e2e/heraldry.spec.ts`, all 79 tests passed on this build).
+- Measured on one Mac; not on Windows, on integrated graphics or on a phone.
+
+---
+
 ## Summary
 
 | Item | Role | Where |
@@ -322,6 +420,7 @@ read from `pnpm-lock.yaml`: `astro@7.3.3`, `sharp@0.35.4`, `playwright-core@1.63
 | `SEAL`, `waxShades` | the sculpt's and the wax's values | `src/lib/art-effect/seal-look.ts` |
 | `seal.frag` | the wax shader | `src/scripts/art-effect/glsl/` |
 | `pnpm design:sharpness` | leaned against flat and still against live, three engines | `tools/design/sharpness.ts` |
+| `pnpm design:frames` | frame cost, appearance, rest, bytes, shader and pixel identity, three engines | `tools/design/frames.ts` |
 
 ## Open questions
 
@@ -331,4 +430,6 @@ read from `pnpm-lock.yaml`: `astro@7.3.3`, `sharp@0.35.4`, `playwright-core@1.63
   question with a measured method.
 - A note on what the seal shows, like the arms' blazon: the owner's call, and canon only the owner
   gives.
-- Frame timings in Firefox and WebKit, and anything on Windows or a phone.
+- Whether to rebake the arms' still from the current shader (Decision 7, Caveats): a change readers
+  without JavaScript, in print and during the hand-off would see; the owner's call.
+- Anything on Windows, on integrated graphics or on a phone.
