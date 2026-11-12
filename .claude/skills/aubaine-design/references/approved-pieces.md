@@ -1081,8 +1081,10 @@ a banner for the frame (`hextech.md`).
 - Every root-level `h2` and `h3` of a prose page is wrapped in `div.au-head[data-level]`, the level as
   `2` or `3`, with `--fit-letters` from `fitLetters` (`src/lib/plates.ts`, padding 1.6) for its longest
   word, and one `span.au-frame` before the heading, `data-face="unset"`, `aria-hidden`, holding
-  `span.au-frame__face` with « ? ». Headings inside a quote or a callout are left alone. The heading, its
-  text and its id are untouched, so the side list and the anchors hold.
+  `span.au-frame__face` with « ? ». A heading that leads with `:icon[set:name]` gives that icon to its
+  frame instead: `data-face="icon"`, the icon as `svg.au-frame__icon` inked `KEY_INK`. Headings inside
+  a quote or a callout are left alone. The heading's words and its id are untouched, so the side list and
+  the anchors hold.
 - `SectionTitle.astro` writes the same markup for a heading a view builds, its frame `data-face="icon"`
   when the title has a pictogram: « Compétences d'Espèce » takes the Compétences mark and « Arbre de
   compétences » the Arbres mark, and a species page's « Jouer un … », « Origines régionales » or

@@ -16,6 +16,7 @@ import {
 } from '../art-effect/presets.ts'
 import { DEFAULT_LOCALE, LOCALES, type Locale } from '../i18n/locales.ts'
 import { strings } from '../i18n/strings.ts'
+import { KEY_INK } from '../key-colour.ts'
 import { fitLetters } from '../plates.ts'
 import { readCorpus } from './fs-sources.ts'
 import { parseRuns, type Run, type TermIndex } from './richtext.ts'
@@ -39,6 +40,7 @@ type AuthoredChild =
   | (Omit<HastElement, 'children'> & { children: AuthoredChild[] })
 
 const OPAQUE = new Set(['pre', 'a', 'script', 'style', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'])
+const GLYPH_OPAQUE = new Set(['pre', 'a', 'script', 'style'])
 
 function element(
   tagName: string,
@@ -118,11 +120,16 @@ type Marker = {
 }
 
 const ICON_DIRECTIVE = /:icon\[([a-z-]+:[a-z0-9-]+)\]\s?/g
+const GLYPH_CLASS = 'au-slot-glyph'
+
+export function withoutIcons(markdown: string): string {
+  return markdown.replace(ICON_DIRECTIVE, '')
+}
 
 function iconElement(source: string): HastElement {
   const viewBox = /viewBox="([^"]+)"/.exec(source)?.[1] ?? '0 0 512 512'
   const path = /<path[^>]*\sd="([^"]+)"/.exec(source)?.[1] ?? ''
-  return element('svg', { className: 'au-slot-glyph', viewBox, 'aria-hidden': 'true' }, [
+  return element('svg', { className: GLYPH_CLASS, viewBox, 'aria-hidden': 'true' }, [
     element('path', { d: path, fill: 'currentColor' }, []),
   ])
 }
@@ -131,7 +138,7 @@ function markIcons(node: HastParent, icons: Map<string, string>): void {
   const next: HastChild[] = []
   for (const child of node.children) {
     if (child.type !== 'text') {
-      if (!OPAQUE.has(child.tagName)) markIcons(child, icons)
+      if (!GLYPH_OPAQUE.has(child.tagName)) markIcons(child, icons)
       next.push(child)
       continue
     }
@@ -536,6 +543,7 @@ export function rehypeProseQuotes() {
 export const HEAD_CLASS = 'au-head'
 export const FRAME_CLASS = 'au-frame'
 export const FRAME_FACE_CLASS = 'au-frame__face'
+export const FRAME_ICON_CLASS = 'au-frame__icon'
 export const UNSET_PICTOGRAM = '?'
 
 const HEAD_LEVELS: Record<string, string> = { h2: '2', h3: '3' }
@@ -555,11 +563,38 @@ function unsetFrame(): HastElement {
   ])
 }
 
+function iconFrame(glyph: HastElement): HastElement {
+  const pictogram = { ...glyph, properties: { ...glyph.properties, className: FRAME_ICON_CLASS } }
+  return element(
+    'span',
+    {
+      className: FRAME_CLASS,
+      'data-face': 'icon',
+      'aria-hidden': 'true',
+      style: `--frame-ink:${KEY_INK}`,
+    },
+    [element('span', { className: FRAME_FACE_CLASS }, [pictogram])],
+  )
+}
+
+function leadingGlyph(heading: HastElement): HastElement | undefined {
+  const first = heading.children.find((child) => !isBlank(child))
+  const isGlyph =
+    first?.type === 'element' &&
+    first.tagName === 'svg' &&
+    first.properties['className'] === GLYPH_CLASS
+  return isGlyph ? first : undefined
+}
+
 function headed(heading: HastElement, level: string): HastElement {
+  const glyph = leadingGlyph(heading)
+  const title = glyph
+    ? { ...heading, children: heading.children.filter((child) => child !== glyph) }
+    : heading
   return element(
     'div',
-    { className: HEAD_CLASS, 'data-level': level, style: headFit(textOf(heading)) },
-    [unsetFrame(), heading],
+    { className: HEAD_CLASS, 'data-level': level, style: headFit(textOf(title)) },
+    [glyph ? iconFrame(glyph) : unsetFrame(), title],
   )
 }
 

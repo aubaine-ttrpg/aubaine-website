@@ -3,7 +3,7 @@ import { resolve } from 'node:path'
 import { expect, type Page, test } from '@playwright/test'
 
 import { SUBSPECIES_SECTIONS } from '../../src/lib/game/derive'
-import { LOCALES, type Locale } from '../../src/lib/i18n/locales'
+import { DEFAULT_LOCALE, LOCALES, type Locale } from '../../src/lib/i18n/locales'
 import { type PolicyKind, pathFor, TREE_ANCHOR } from '../../src/lib/i18n/routes'
 import { rgbFromHex } from '../../src/lib/key-colour'
 import { corpus } from './support/corpus'
@@ -61,12 +61,14 @@ function framesOfEachTitle(page: Page) {
   )
 }
 
-function sectionPictograms(page: Page, ids: readonly string[]) {
+function titlePictograms(page: Page, ids: readonly string[]) {
   return page.evaluate(
     (wanted) =>
-      wanted.flatMap((id) => {
-        const frame = document.querySelector(`.au-head:has(> #${id}) > .au-frame`)
-        if (!frame) return []
+      [...document.querySelectorAll('.au-titles .au-head')].flatMap((head) => {
+        const frame = head.querySelector(':scope > .au-frame')
+        const id = head.querySelector(':scope > :is(h2, h3)')?.id ?? ''
+        const isPictogram = frame?.getAttribute('data-face') === 'icon'
+        if (!frame || (!wanted.includes(id) && !isPictogram)) return []
         const pictograms = frame.querySelectorAll('svg')
         const first = pictograms[0]
         return [
@@ -128,7 +130,7 @@ test.describe('reading pages', () => {
   }
 })
 
-test('a species or tree page inks every section pictogram in its own key colour', async ({
+test('a species or tree page inks every title pictogram in its own key colour', async ({
   page,
 }) => {
   test.setTimeout(240_000)
@@ -148,7 +150,7 @@ test('a species or tree page inks every section pictogram in its own key colour'
     ]
     for (const { path, ids, always } of pages) {
       await page.goto(path)
-      const pictograms = await sectionPictograms(page, ids)
+      const pictograms = await titlePictograms(page, ids)
       expect(
         pictograms.map((pictogram) => pictogram.id),
         path,
@@ -162,6 +164,50 @@ test('a species or tree page inks every section pictogram in its own key colour'
       }
     }
   }
+})
+
+test('a lore title that leads with an icon shows it in its frame and keeps only its words', async ({
+  page,
+}) => {
+  const lorePages = [
+    {
+      folder: 'species',
+      path: (locale: Locale, species: string) => pathFor('speciesEntry', locale, { species }),
+    },
+    {
+      folder: 'skill-trees',
+      path: (locale: Locale, tree: string) => pathFor('tree', locale, { tree }),
+    },
+  ]
+  let checked = 0
+  for (const { folder, path } of lorePages) {
+    const directory = resolve(import.meta.dirname, '../../data/lore', folder)
+    for (const file of await readdir(directory)) {
+      const markdown = await readFile(resolve(directory, file), 'utf8')
+      const titles = [...markdown.matchAll(/^## :icon\[[^\]]+\] (.+)$/gm)].map((match) =>
+        (match[1] ?? '').replaceAll("'", '’'),
+      )
+      if (titles.length === 0) continue
+      const locale = LOCALES.find((entry) => file.endsWith(`.${entry}.md`)) ?? DEFAULT_LOCALE
+      const pagePath = path(locale, file.replace(/(\.[a-z]{2})?\.md$/, ''))
+      await page.goto(pagePath)
+      for (const title of titles) {
+        const heads = await page.evaluate(
+          (wanted) =>
+            [...document.querySelectorAll('.au-titles .au-head[data-level="2"]')]
+              .filter((head) => head.querySelector(':scope > h2')?.textContent?.trim() === wanted)
+              .map((head) => ({
+                face: head.querySelector(':scope > .au-frame')?.getAttribute('data-face'),
+                inTitle: head.querySelectorAll(':scope > h2 svg').length,
+              })),
+          title,
+        )
+        expect(heads, `${pagePath} « ${title} »`).toEqual([{ face: 'icon', inTitle: 0 }])
+        checked += 1
+      }
+    }
+  }
+  expect(checked).toBeGreaterThan(0)
 })
 
 test('a sub-species with its own art paints it in every frame of its titles, the others keep the unset picture', async ({

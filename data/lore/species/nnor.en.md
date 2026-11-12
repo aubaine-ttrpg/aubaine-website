@@ -4,13 +4,13 @@ Born of the draconic forge, the Nnor are goat-like humanoids shaped by Charon, t
 >
 > :source[**Charon**, addressing **Saman**, his emissary, after he had passed the Ritual of Fire.]{top-right tranche}
 
-## Fur and hardiness
+## :icon[game-icons:mineral-heart] Fur and hardiness
 
 Across the sheer ridges and frozen crevasses of Eden, the Nnor cut a commanding figure: a broad chest borne on powerful shoulders, and long, muscular legs that end in hooves as sharp as crampons. Their coat is thick and woolly, and its colour depends on the lineage. Some wear fur as black as ink, while others range from spotless white to pearl grey or earthy brown, shades that serve as natural camouflage.
 
 They use their massive horns, which follow the line of the brow, to defend themselves, to hold on to rock walls and to assert social dominance. Every muscle stands out beneath the heavy fleece, the sign of uncommon endurance and of millennia spent adapting to violent winds and extreme temperatures. Shaped by the harshness of the mountain climate, their build pairs raw strength with a surprising suppleness, which makes them born climbers and formidable opponents.
 
-## The Yurta above all
+## :icon[game-icons:hut] The Yurta above all
 
 For the Nnor, the tribe, which they also call the Yurta, is a sacred bond that ties every member to their people and to Charon. The Samans regularly summon all the workers to ceremonies where the ancestral sagas are sung; there they renew the oaths of loyalty and rekindle the primordial flame. Their title is the name of Saman, Charon's emissary, and they bear it in his honour. Tribal councils, with the Saman presiding, give each member their tasks (hunting, craftwork, gathering medicinal plants or raising stone altars), with a constant eye to the cohesion and survival of the tribe.
 
@@ -20,7 +20,7 @@ An ancient schism gave rise to two main subspecies among the Nnor: Charon's Nnor
 
 Araskha, the largest Yurta known, lies on Mount Edros and is home to thousands of Nnor. Sheltered beneath a vault of basalt, it is laid out around a great eternal hearth, from which countless galleries branch off to house forges, workshops and sacrificial altars. To break the unity of the tribe is to break the chain that binds the Nnor to the very source of their existence.
 
-## The cycle of fire
+## :icon[game-icons:drakkar-dragon] The cycle of fire
 
 ![](../../media/art/nnor-fresque-3_1-og.png "rupture torch")
 :caption[A mural of the cycle of fire: a Nnor, a Saman, then a Dragonnor]
@@ -39,7 +39,7 @@ The Saman reaches Charon's Lair, where Charon allows them to undergo the ritual.
 
 For the Alpine Nnor, this cycle is far shorter. At the winter solstice, they return to their Yurta to elect their Saman or keep the one they have, at a great celebration held around a fire so mighty that Charon himself is said to have breathed it. At that time of year, many travellers below the mountains complain of avalanches, mud and other run-off: the fire seems to melt the snow.
 
-## Where the wild meets the city
+## :icon[game-icons:receive-money] Where the wild meets the city
 
 ![](../../media/art/nnor-marchand-16_9-og.png "torn")
 :caption[A merchant emissary from Araskha who has set up shop in Aïn-Dahab]
@@ -48,7 +48,7 @@ Faithful as they are to their mountains, the Nnor feel a growing curiosity about
 
 Ever careful not to upset the natural balance, they make sure their caravans harm neither the trails nor the surrounding wildlife. Their fascination with civilisation shows in their art as well, in frescoes inspired by city mosaics and in sculptures that blend goat-like frames with human motifs: proof that, for the Nnor, progress and respect for the wild can go hand in hand.
 
-## Fiery-hearted mountain folk
+## :icon[game-icons:goat] Fiery-hearted mountain folk
 
 The Nnor are cheerful by nature. Playful and fond of pranks, they like to break up their labour with jokes the whole group shares, and will go as far as staging proper skits together. Their mood has an edge of fierce pride, though: mock them or threaten their tribe, and their anger can break as suddenly as a mountain storm. For all their loyalty to the Yurta, they remain curious and open.
 

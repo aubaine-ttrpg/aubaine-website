@@ -5,6 +5,7 @@
 **Date:** 2026-11-10
 **Revised:** 2026-11-11, the species page's section pictograms, and a species or tree title's pictogram in the entry's key colour (addendum in Decision 3)
 **Revised:** 2026-11-12, a sub-species' own painting in the frames of the titles that name it (addendum in Decision 3)
+**Revised:** 2026-11-12, a prose title names its pictogram with `:icon` (addendum in Decision 2)
 **Deciders:** Kori
 **Scope:** How the titles of a reading page look and are built: a book chapter's title, a policy's title,
 and the section and subsection titles of book chapters, policies, species and trees, whether Markdown writes
@@ -102,6 +103,22 @@ live with a panel of switches; the owner set the defaults this record ships. The
 
 - The content store ignores plugin code: after this change a running `astro dev` must restart with
   `pnpm dev --force`, and a build follows `pnpm astro sync --force`.
+
+### Addendum (2026-11-12): a prose title names its pictogram with `:icon`
+
+- The decider set pictograms for the sections of the Humain, Elfe and Nnor lore pages, so titles written in
+  Markdown now take their own pictograms, the case the alternative « New Markdown syntax per title »
+  waited for. No new syntax was needed: a heading leads with the `:icon[set:name]` that prose already
+  writes (0018), as `## :icon[game-icons:ship-wreck] La Venue`.
+- `markIcons` in `src/lib/game/book-markup.ts` now draws an icon inside a heading; headings stay closed
+  to term links. `rehypeProseHeadings` then moves an icon that leads the heading into its frame,
+  `data-face="icon"`, inked `KEY_INK`, and the heading keeps only its words. Astro collects the anchor
+  and the outline entry after this plugin, so both read the words alone: `la-venue` stays `la-venue`.
+- `tests/unit/prose-headings.test.ts` checks the move, and that an icon after words stays in the title.
+  `tests/data/integrity.test.ts` checks that every `:icon` in authored prose names a vendored file, and
+  that a lore page and its English page carry the same heading icons in the same order.
+  `tests/e2e/titles.spec.ts` checks that every such title shows its icon in its frame, with none left
+  in the heading, and in the page's key colour.
 
 ---
 

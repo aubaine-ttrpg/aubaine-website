@@ -178,6 +178,91 @@ Un bloc sans image. Les tableaux, les listes et les listes de définitions march
 c'est du markdown ordinaire.
 ```
 
+A heading may lead with an icon, written `:icon[set:name]` as in the equipment guide:
+`## :icon[game-icons:ship-wreck] La Venue`. The icon leaves the heading for the round frame before the
+title, in the page's key colour, and the heading keeps only its words, so its anchor and its outline
+entry read as written. A heading without one shows the painted question mark. The icon's SVG lives in
+`data/media/icons/<set>/<name>.svg`, vendored as [add-an-image.md](add-an-image.md) says, and
+`pnpm data:check` fails when it is missing.
+
+A quote is an ordinary markdown blockquote, drawn as a dialogue box. When someone says it, close the blockquote with a last line `> :source[...]`: the page prints that line as the quote's title, outside the box. Write every person the line names in bold: each prints on a black nameplate.
+
+Two words in braces after the closing bracket stage the quote: the corner its title takes, then the background behind the box. `TITLE_CORNERS` and `QUOTE_BACKINGS` in `src/lib/game/book-markup.ts` list them, such as `bottom-right` and `echo`; without braces the title takes the top left and the box the slab, `tranche`. Any other word stops the build. The English line stages its quote with the same words, and `pnpm data:check` fails when the two differ.
+
+```markdown
+> « Arthur, vois ces stèles : tant d'hommes et d'elfes ont versé leur sang ici. »
+>
+> :source[**Jacques « Le Scellaire » Arsenault** s'adressant à **Arthur Colbert**.]{top-left tranche}
+```
+
+A blockquote whose paragraphs open on a bold speaker and a colon, `**Tiar :** « … »`, with two turns or more, is a dialogue: one box per turn, the speaker's name on a tag across its edge.
+
+A turn may open on its speaker's portrait, a 1:1 picture in `data/media/art/` written before the name: `> ![](../../media/art/tiar-vyrefiel-severe-1_1-og.png) **Tiar :** « … »`. It stands beside the box, mirrored for the second speaker so the two face each other. A turn without one keeps the plain box. Pick each expression for the character as much as for the line.
+
+A picture is an ordinary markdown image whose path is relative to the lore file, so it always reads
+`../../media/art/<file>`, and `pnpm data:check` fails on a path that points anywhere else or at a
+file that does not exist. Name the file per [add-an-image.md](add-an-image.md).
+
+The ratio in the name sets the layout. A 16:9 or a 1:1 picture spans the column. A picture
+narrower than it is tall, such as a 3:4 or an 11:12, on a line of its own or with its caption, sits
+at the start of the text that follows it: that text wraps around it, then runs under it once it is
+longer than the picture, up to the next heading. On a narrow screen the picture sits above the
+text. Put it straight under the heading it illustrates.
+
+A picture of either ratio can be cut to a shape: write the shape's key as the image title, in
+quotes after the path. `PICTURE_MASKS` in `src/lib/game/book-markup.ts` lists the keys, such as
+`torn`, and `pnpm data:check` fails on any other. The shape shows on screen only; print keeps the
+rectangle.
+
+A second word after the shape adds an effect: `PICTURE_RELIEFS` in the same file lists them, such as
+`torch`, a warm light that follows the pointer across the picture's relief and stays inside it.
+Without WebGL, or without JavaScript, the picture shows as it would without the word.
+
+A painting takes `"glazed"` (`GLAZED_PICTURE`): a frame around it, the painting recessed behind its
+lip, under a pane of glass. The frame's light and the faint reflection of a room in the glass follow
+the pointer, or the scroll on a touch screen. Alone, the word hangs the scanned gilt frame. A second
+word names another frame from `FRAME_KINDS` in `src/lib/art-effect/presets.ts`, such as `wood`, a
+rustic frame of worn wood: `"glazed wood"`. It takes no third word. Without WebGL2, and in print, the
+frame and its shadow stay still and the glass is left out. A 3:2 painting spans the column like a
+16:9 picture; a portrait painting floats beside its text like any portrait picture.
+
+```markdown
+![Des naufragés tirent un coffre hors des vagues, au pied d'une falaise.](../../media/art/les-naufrages-de-la-venue-3_2-og.png "glazed")
+:caption[« Les Naufragés de la Venue », toile peinte en 238 apr. V.]
+```
+
+A wide picture takes `"almanach"` (`ALMANACH_PICTURE`): the picture fills the tube of the default
+almanach, with its power and zoom buttons at the end of the caption's line. Add the name of a style in `data/almanachs/`
+after the word to dress the almanach in that style instead. The tube is wider than a 16:9 picture
+and crops its top and bottom; to keep another point in view than the centre, follow with that point
+as two percentages, across then down, the Dev Hub's « Point gardé »: `"almanach elfe 50% 20%"`
+keeps the upper part. End the title on `mirrored` (`MIRRORED_PICTURE`) to show the picture
+mirrored, left to right, on the tube and in its plain version; the file stays the original:
+`"almanach elfe mirrored"`, or `"almanach mirrored"` in the default style. A portrait is refused, and `pnpm data:check` fails on a style that does not exist.
+Design and save a style in the Dev Hub's Almanach page under `pnpm dev`. Without WebGL2 on a
+graphics card, without JavaScript, and in print, the picture shows plain.
+
+```markdown
+![Une immense bibliothèque gothique aux bannières bleues, ses rayonnages sur plusieurs étages autour d'une sphère armillaire suspendue au-dessus d'un livre ouvert.](../../media/art/bibliotheque-des-oracles-16_9-og.png "almanach")
+:caption[La bibliothèque de l'Académie des Oracles]
+```
+
+Inside a caption, set a title in guillemets, never in italics: the caption is already italic, and an
+emphasis would break it into two lines.
+
+A caption goes on the line directly under the picture, with no blank line between them, as
+`:caption[...]`. The page prints it under the picture. `pnpm data:check` fails on a caption line
+that does not follow a picture.
+
+```markdown
+## Au carrefour du sauvage et de la cité
+
+![](../../media/art/nnor-marchand-3_4-og.png "torn")
+:caption[Un émissaire marchand d'Araskha qui a posé son échoppe à Aïn-Dahab]
+
+Les Nnors, fidèles à leurs montagnes, éprouvent une curiosité grandissante pour les cités voisines.
+```
+
 ## The English overlay
 
 `data/species/<id>.en.json` carries only the strings that change: `name`, `subtitle`, `movement`, `naming`, `givenNamesLabel`, `familyNamesLabel`, `subspecies` and `roleplay`. `types`, `size` and `languages` are never translated: they name keys, and the reader sees the `labelEn` from `data/meta/`. A sub-species is translated by its `id`: its `text` always, and its `name` when that name is a common noun, as the Mort-vivant's Fantôme becomes Ghost. A proper noun such as Landenheit stays as it is, and `names` never has an overlay. A name that is the same in both locales needs no overlay. See [add-a-translation.md](add-a-translation.md).
@@ -197,7 +282,7 @@ c'est du markdown ordinaire.
 }
 ```
 
-The lore is translated by a whole sibling file, `data/lore/species/<id>.en.md`, the way a book chapter is. Without one, the English page renders the French prose. The English page is written for its reader, never sentence for sentence, but it keeps the French page's frame: the same number of `##` sections, the same pictures in the same order and the same quote staging. `pnpm data:check` fails when they differ, and when a lore page carries a definition line (`: `), the shape a name list once took there: a people's names are data in its species file.
+The lore is translated by a whole sibling file, `data/lore/species/<id>.en.md`, the way a book chapter is. Without one, the English page renders the French prose. The English page is written for its reader, never sentence for sentence, but it keeps the French page's frame: the same number of `##` sections with the same heading icons, the same pictures in the same order and the same quote staging. `pnpm data:check` fails when they differ, and when a lore page carries a definition line (`: `), the shape a name list once took there: a people's names are data in its species file.
 
 ## What appears on the site
 

@@ -767,6 +767,24 @@ Nouvelle-Aubaine a winged golden sword, and Al-Wahaa a golden wax seal in a sand
 the round frame as the painted question mark does, in its own colours, never inked. It is the
 sub-species' `art` in its species file; a sub-species without one keeps the question mark.
 
+**The Humain lore sections have their own pictograms (2026-11-12).** The owner gave each section of the
+Humain history a pictogram, in the key colour like the other titles of the page: a shipwreck for the
+Coming, a battleship for the Eisenriese, a mounted knight for Nouvelle-Aubaine and the Weitzguard, a magic
+swirl for the Oracles, a citadel for the city guilds and a bookmark for the nomad scholars. Each is the
+`:icon[game-icons:…]` that leads its heading in both editions of `data/lore/species/humain.md`; a lore
+heading without one keeps the question mark.
+
+**The Elfe lore sections have their own pictograms (2026-11-12).** In the same way, the owner gave the
+Elfe history an elf's ear for the last Galwarians, a burning forest for the half-century of war, a
+crenellated crown for the Matriarchie, a dagger and rose for the bouts in the glades, a tree door for
+the cities of glass and living wood, and a chain of gems for « Le port et la parure », picked over an
+elf's face, a gem necklace and a leaf skeleton shown at frame size.
+
+**The Nnor lore sections have their own pictograms (2026-11-12).** The owner gave the Nnor history a
+mineral heart for its fur and hardiness, a hut for the Yurta, a dragon-prowed ship for the cycle of fire,
+a hand receiving money for the crossroads of the wild and the city, and a goat for the fiery-hearted
+mountain folk.
+
 ## Motion
 
 **Motion rides the load.** An animation may play over a real wait; it never adds one, and hand-offs are
@@ -907,4 +925,4 @@ and praised the Saison slider.
 | 2026-11-08 | a painting may hang in a rustic wooden frame, floated beside its text |
 | 2026-11-10 | titles in the quote's family, one look per level, each full width; each title framed, its pictogram or the painted question mark; a title frame may be round, the chapter title a hexagon; a chapter leads with its frame, other pages lay their title on a panel; a minimum plate width per level; a header never repeats the list below it; the titles, approved |
 | 2026-11-11 | a species or tree title's pictogram in the entry's key colour; the species sections' pictograms, the die printed on the book's cover |
-| 2026-11-12 | a sub-species' own painting in the frames of the titles that name it, the four Humain origins first |
+| 2026-11-12 | a sub-species' own painting in the frames of the titles that name it, the four Humain origins first; the Humain, Elfe and Nnor lore sections' pictograms, led by `:icon` in their headings |

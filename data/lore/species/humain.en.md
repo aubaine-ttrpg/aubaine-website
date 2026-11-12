@@ -4,7 +4,7 @@ Humans are artisans of hope and action, a people of boundless creativity and an 
 >
 > :source[**Jacques "Le Scellaire" Arsenault**, addressing **Arthur Colbert** at the dawn of the great battle of Brécelann.]{top-left tranche}
 
-## The Coming
+## :icon[game-icons:ship-wreck] The Coming
 
 ![Castaways haul a chest out of the waves at the foot of a cliff, under a stormy sky.](../../media/art/les-naufrages-de-la-venue-3_2-og.png "glazed")
 :caption["The Castaways of the Coming", painted in 238 AC.]
@@ -15,7 +15,7 @@ Other peoples had lived on that land for centuries. Some of the newcomers sought
 
 Years are counted "Before the Coming" and "After the Coming" (BC and AC), yet year 0 is the last day of the battle of Brécelann, the day of the peace treaty between elves and humans. Humans and elves spread this reckoning across Eden, as they spread the Common, in memory of those who died at Brécelann. Some speak instead of the Common Era, or of the Second Radiance, after the curse that struck every living creature on Eden shortly before the humans arrived, at a date close to year 0. The reference day is the same whichever name is used.
 
-## The Eisenriese
+## :icon[game-icons:battleship] The Eisenriese
 
 Of the ships that carried humans to Eden at the Coming, the Eisenriese, known as "the Giant of Iron", is one of the few still intact. It belongs to Ulriech Strasswalker. It is said that although Ulriech was as unconscious as everyone else, his engineering was so refined that the Eisenriese changed course by itself and came ashore on what is now Landenheit so precisely that it took no damage at all.
 
@@ -25,7 +25,7 @@ Fortunately for a people who had forgotten everything about their land, the Eise
 
 Many are scientific compendiums. With them, humans rebuilt most of their old technology, none of which drew its power from magic or from Catalysts.
 
-## Nouvelle-Aubaine and the Weitzguard
+## :icon[game-icons:mounted-knight] Nouvelle-Aubaine and the Weitzguard
 
 When the great battle of Brécelann dawned, Arthur Colbert was not yet a king, for there was no Nouvelle-Aubaine. The Bastion was then little more than a fortified camp holding out against the elves. Once the war was over, the camp became the town it is today, and Arthur took up his seat there. He then went from tribe to tribe and from kingdom to kingdom to unite what would become Nouvelle-Aubaine, and reigned as its first king.
 
@@ -35,7 +35,7 @@ The Weitzguard's armed hand, the **Parangons**, takes recruits from every people
 
 Parangons combine the duties of a city militia, the rigour of a special police force and the courage of hunters of supernatural creatures. They roam the wilds and the fortified cities to come to the aid of the people, hunting down monsters and conspiracies with steel and the magical arts. Every great city keeps its garrison of Parangons, while the most seasoned wander from land to land.
 
-## The Oracles
+## :icon[game-icons:magic-swirl] The Oracles
 
 ![A vast gothic library hung with blue banners, its shelves rising over several floors around an armillary sphere floating above an open book.](../../media/art/bibliotheque-des-oracles-16_9-og.png "almanach")
 :caption[The library of the Oracles' Academy]
@@ -46,13 +46,13 @@ The first Oracles were elected by the council of the three regents, the rulers o
 
 Most Oracles were found at the Oracles' Academy, and so was Augure, who now holds the rank of Oracle of Lightning. She is barely fifteen and already outmatches every known lightning mage. It is said that she can travel from the Bastion to Eisenriese, the capital of Landenheit, in a single second.
 
-## The city guilds
+## :icon[game-icons:qaitbay-citadel] The city guilds
 
 In the human cities, the authorities adopted the guild model to give every field a structure: trade, craft, learning or magic. After the humans arrived, many guilds of scholars formed, some to understand their new home better, others to try to recover what they could about the lands they had come from. The guild of the **Sagemeisters** was founded by humans, yet most of its scholars come from other peoples. It coordinates scientific expeditions and records the customs of Eden.
 
 Other brotherhoods came into being: guilds of smiths and engineers, circles of healers devoted to remedies and herb-lore, companies of diplomats, and leagues of cartographers who map roads and lines of communication. Each was born in a human town and brings together people of one trade, who pass on their knowledge there and stand by one another through Eden's hardships.
 
-## Nomad scholars
+## :icon[game-icons:bookmark] Nomad scholars
 
 Humans carry within them a drive to discover and a morality shaped by uprooting. They see every native people as the keeper of precious knowledge, and try to understand it rather than dominate it. Frictions arise, notably with the elves, but most humans show sincere goodwill: they respect local customs and take care not to wear away the balances already in place.
 

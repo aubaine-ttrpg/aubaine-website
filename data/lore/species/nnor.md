@@ -4,13 +4,13 @@ Créatures nées de la forge draconique, les Nnors sont des humanoïdes caprins 
 >
 > :source[**Charon** s'adressant à **Saman**, son émissaire, après qu'il eut passé le Rituel du Feu.]{top-right tranche}
 
-## De la fourrure et de la robustesse
+## :icon[game-icons:mineral-heart] De la fourrure et de la robustesse
 
 Dans les crêtes escarpées et les crevasses glacées d'Eden, les Nnors arborent une stature dominatrice : un buste large soutenu par des épaules puissantes, des membres inférieurs longs et musclés, terminés par des sabots affûtés comme des crampons. Leur pelage, épais et laineux, varie selon la lignée : certains portent une fourrure noire d'encre, tandis que d'autres exhibent des teintes allant du blanc immaculé au gris perle ou au brun terreux, favorisant un camouflage naturel.
 
 Leurs cornes massives, soulignant la ligne du front, servent à se défendre, à s'accrocher aux parois rocheuses et à affirmer la dominance sociale. Chaque muscle se dessine sous l'épaisse toison, signe d'une endurance hors du commun et d'une adaptation millénaire aux vents violents et aux températures extrêmes. Sculptée par la rudesse du climat montagnard, leur silhouette allie la force brute à une souplesse étonnante, faisant d'eux des grimpeurs nés et des adversaires redoutables.
 
-## La Yurta avant tout
+## :icon[game-icons:hut] La Yurta avant tout
 
 Pour les Nnors, la tribu, aussi appelée par eux Yurta, est un lien sacré unissant chaque membre à son peuple et à Charon. Les Samans convoquent régulièrement l'ensemble des ouvriers lors de cérémonies où l'on chante les sagas ancestrales, renouvellent les serments de loyauté et ravivent la flamme primordiale. Leur titre porte le nom de Saman, l'émissaire de Charon, en son honneur. Les conseils tribaux, présidés par le Saman, attribuent à chacun ses tâches (chasse, artisanat, cueillette médicinale ou édification d'autels de pierre) dans un souci permanent de cohésion et de survie.
 
@@ -20,7 +20,7 @@ Un antique schisme a vu naître deux sous-espèces principales chez les Nnors : 
 
 La plus grande Yurta connue, Araskha, regroupe des milliers de Nnors sur le mont Edros ; nichée sous une voûte de basalte, elle s'organise autour d'un grand foyer éternel dont partent d'innombrables galeries, abritant forges, ateliers et autels sacrificiels. Rompre l'unité de la tribu, c'est rompre la chaîne qui lie les Nnors à la source même de leur existence.
 
-## Le cycle du feu
+## :icon[game-icons:drakkar-dragon] Le cycle du feu
 
 ![](../../media/art/nnor-fresque-3_1-og.png "rupture torch")
 :caption[Fresque du cycle du feu : un Nnor, un Saman, puis un Dragonnor]
@@ -39,7 +39,7 @@ Le Saman gagne l'Antre de Charon, où Charon lui permet de passer le rituel. S'i
 
 Pour les Nnors alpins, ce cycle est beaucoup plus court : au solstice d'hiver, les Nnors retournent à leur Yurta pour y élire leur Saman ou reconduire celui en place, lors d'une grande célébration autour d'un feu si puissant qu'on dit que Charon lui-même l'aurait soufflé. Durant cette période, de nombreux voyageurs en aval des montagnes se plaignent d'avalanches, de boues et d'autres ruissellements : le puissant feu semble faire fondre la neige.
 
-## Au carrefour du sauvage et de la cité
+## :icon[game-icons:receive-money] Au carrefour du sauvage et de la cité
 
 ![](../../media/art/nnor-marchand-16_9-og.png "torn")
 :caption[Un émissaire marchand d'Araskha qui a posé son échoppe à Aïn-Dahab]
@@ -48,7 +48,7 @@ Les Nnors, fidèles à leurs montagnes, éprouvent une curiosité grandissante p
 
 Toujours soucieux de ne pas perturber l'équilibre naturel, ils veillent à ce que leurs caravanes n'abîment ni les sentiers ni la faune environnante. Cette fascination pour la civilisation se manifeste aussi dans leur art : on trouve des fresques inspirées des mosaïques urbaines et des sculptures mêlant ossature caprine et motifs humains, preuve que, pour les Nnors, progrès et respect du monde sauvage peuvent marcher main dans la main.
 
-## Montagnards au cœur ardent
+## :icon[game-icons:goat] Montagnards au cœur ardent
 
 Les Nnors sont naturellement enjoués : joueurs et farceurs, ils aiment ponctuer leur labeur de plaisanteries collectives, jusqu'à organiser de véritables saynètes collectives. Leur humeur se teinte toutefois d'une fierté farouche : qu'on les raille ou qu'on menace leur tribu, et leur colère peut éclater avec la même soudaineté qu'un orage de montagne. Fidèles à leur Yurta, ils restent néanmoins curieux et ouverts.
 

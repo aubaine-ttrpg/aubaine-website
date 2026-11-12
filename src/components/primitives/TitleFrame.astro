@@ -1,5 +1,10 @@
 ---
-import { FRAME_CLASS, FRAME_FACE_CLASS, UNSET_PICTOGRAM } from '../../lib/game/book-markup'
+import {
+  FRAME_CLASS,
+  FRAME_FACE_CLASS,
+  FRAME_ICON_CLASS,
+  UNSET_PICTOGRAM,
+} from '../../lib/game/book-markup'
 import { type TitleFace, titlePaintingStyle } from '../../lib/title-frames'
 import Icon from './Icon.astro'
 
@@ -28,7 +33,7 @@ const faceStyle = pictogram
 >
   {size === 'chapter' && <span class="au-frame__echo" />}
   <span class={FRAME_FACE_CLASS}>
-    {pictogram && <Icon name={pictogram.icon} class="au-frame__icon" />}
+    {pictogram && <Icon name={pictogram.icon} class={FRAME_ICON_CLASS} />}
     {faceKind === 'unset' && UNSET_PICTOGRAM}
   </span>
 </span>

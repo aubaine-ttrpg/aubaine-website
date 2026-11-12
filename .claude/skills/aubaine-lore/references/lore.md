@@ -111,6 +111,10 @@ suggest goes in only where the owner's words ask for it.
   only where each half has a subject and a heading of its own: on 2026-10-24 the owner had a
   seven-paragraph cycle cut in two fused back, because the first heading no longer named what its half
   told.
+- A heading may lead with `:icon[set:name]`, the pictogram the owner picked for its title's frame, as
+  `## :icon[game-icons:ship-wreck] La Venue`. A move or a retitle keeps it, the English heading carries
+  the same one, and a new section gets one only when the owner names it (`docs/runbooks/add-a-species.md`
+  § The lore file).
 - Each section stands alone. A reader opens any section from the outline, so its first paragraph
   never leans on a word whose sense only an earlier section gives: name the lineage, the place or
   the person again rather than writing « la lignée », « l'antre » or « son géniteur ». The owner refused, on 2026-10-24, a section that could be read only

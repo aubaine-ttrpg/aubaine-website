@@ -4,7 +4,7 @@ Elves are the heirs of the Galwarians, bearers of an endless grace and of an anc
 >
 > :source[**Queen Tiar Vyrefiel**, addressing the goddess **Élyséa** in the sanctuary of the world-tree Tiardrassil, at the dawn of the battle of Brécelann.]{bottom-right echo}
 
-## The last Galwarians
+## :icon[game-icons:elf-ear] The last Galwarians
 
 ![In a meadow under a midnight-blue sky, a pointed-eared woman in a blue gown and red cloak walks past a towering, gaunt figure; on the right stands a blue-skinned man crowned with antlers, a small pointed-eared man climbs a rock in the distance, and a grey-skinned woman emerges from a cave in the foreground.](../../media/art/les-derniers-galwariens-11_12-og.png "glazed wood")
 :caption["The Last Galwarians", illumination]
@@ -19,7 +19,7 @@ As the first of the Galwarians' descendants that humans encountered, the elves a
 
 Elves belong to an ancient line, forged in the deep roots of Eden and in the eternal murmur of the primeval woods. They are the guardians of a forgotten balance, heirs to pacts made long ago between magic, nature and the stars.
 
-## Half a century of war
+## :icon[game-icons:burning-forest] Half a century of war
 
 For centuries the elves remained a discreet people, withdrawn into the heart of their cities at the foot of the world-trees and trading only with the halflings of the plains, famed for their simple wares and their knack for barter. This exclusive relationship, built on mutual trust and respect for custom, let the elves preserve their culture and their harmony with nature while exchanging fine cloth and essences for food and crafted goods.
 
@@ -29,7 +29,7 @@ This war, the war of Brécelann, ended in a final battle of the same name, which
 
 From that long war grew a stubborn mistrust: wounded in their sacred sanctuary, the elves learned to shield themselves behind a veil of arrogance and to judge strangers with caution, a caution often seen as haughty by those who did not have the preservation of the natural world at heart.
 
-## The Matriarchy
+## :icon[game-icons:crenel-crown] The Matriarchy
 
 ![At sunset, a city of tall glass spires spreads through a red-rock canyon, seen from a gallery of golden stone under glass awnings; its terraces of palms and gardens step down in waterfalls to turquoise pools.](../../media/art/matronobriga-de-brivomagos-16_9-og.png "almanach elfe 50% 0%")
 :caption[The Matronobriga of the city of Brivomagos]
@@ -42,11 +42,11 @@ In smaller autonomous villages and groups, every collective decision is reached 
 
 The forest priestesses, charged with keeping the balance between magic and the wild, hold a central place and serve as intermediaries between Élyséa and the people. Young elves, whatever their gender, learn from childhood to respect maternal authority and to honour their elders, but it is the women who hold the keys to the archives, the healing lore and the sacred rites. This order guarantees a stability measured in millennia: power, embodied by the protecting mother, sees to it that every generation carries forward the harmony with nature and the ancestral memory.
 
-## Bouts in the glades
+## :icon[game-icons:dagger-rose] Bouts in the glades
 
 The elven art of combat stands out for its nobility and grace: warriors and wardens train from childhood with the fine-bladed sword and the longbow during ritual bouts in the glades, learning a fluid strategy that mimics the movement of branches in the wind. The martial academies, open to nobles and adventurers alike, pair physical discipline with meditation, so that every gesture and every shot is in harmony with the spirit of the world.
 
-## Cities of glass and living wood
+## :icon[game-icons:tree-door] Cities of glass and living wood
 
 ![By a canal beneath great trees, a domed glasshouse with gilded ribs, crowned by a glowing crystal, stands among houses with blue glass roofs and pointed-arch windows; a bridge spans the water, where water lilies bloom, and lanterns hang from the branches.](../../media/art/canal-de-roscarra-16_9-og.png "almanach elfe mirrored")
 :caption[The Roscarra canal running through Glenmor]
@@ -57,7 +57,7 @@ Away from the great cities, other elves live in villages nestled in the hollows 
 
 The elves' economy rests above all on barter: craftspeople of high standing, they trade fine cloth, wooden jewellery and enchanted gems for what they need and no more (rare foodstuffs, and the metals they refuse to mine themselves), shunning any overconsumption or ruthless exploitation. Guided by the teaching of Élyséa, they take from the forest only what is vital, gathering with restraint and using ancestral techniques to restore and cultivate without ever harming the land.
 
-## Bearing and adornment
+## :icon[game-icons:gem-chain] Bearing and adornment
 
 A slender silhouette and a proud bearing set elves apart. Most stand between 1.50 m and 1.80 m and weigh between 45 kg and 65 kg; men and women share very similar builds. Their features have an almost sculptural finesse: high cheekbones, a delicate jaw and a smooth brow. The ears end in a fine point, recalling the shape of a leaf, and their skin, smooth and beardless, gives their faces an unchanging look.
 

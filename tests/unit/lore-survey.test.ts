@@ -54,6 +54,11 @@ describe('pageParts', () => {
   it('leaves the play texts out when the species has none', () => {
     expect(pageParts(page).map((part) => part.label)).toEqual(['opening', 'Le val', 'Le gué'])
   })
+
+  it('labels a section by its words, without the icon that leads its title', () => {
+    const iconed = page.replace('## Le gué', '## :icon[game-icons:bookmark] Le gué')
+    expect(pageParts(iconed).map((part) => part.label)).toEqual(['opening', 'Le val', 'Le gué'])
+  })
 })
 
 describe('proseOf', () => {

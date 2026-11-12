@@ -1,3 +1,4 @@
+import { withoutIcons } from '../../src/lib/game/book-markup.ts'
 import { splitLore } from '../../src/lib/game/lore-parts.ts'
 
 export type LoreKind = 'species' | 'tree'
@@ -158,7 +159,7 @@ export function pageParts(markdown: string, play: PagePart[] = []): PagePart[] {
   for (const chunk of (sections ?? '').split(SECTION_HEADING)) {
     const [heading = '', ...body] = chunk.split('\n')
     if (heading.trim() === '') continue
-    parts.push({ label: heading.trim(), text: body.join('\n') })
+    parts.push({ label: withoutIcons(heading).trim(), text: body.join('\n') })
   }
   return parts
 }

@@ -3,11 +3,13 @@ import { describe, expect, it } from 'vitest'
 import {
   FRAME_CLASS,
   FRAME_FACE_CLASS,
+  FRAME_ICON_CLASS,
   HEAD_CLASS,
   headFit,
   rehypeProseHeadings,
   UNSET_PICTOGRAM,
 } from '../../src/lib/game/book-markup'
+import { KEY_INK } from '../../src/lib/key-colour'
 
 type Root = Parameters<ReturnType<typeof rehypeProseHeadings>>[0]
 type Child = Root['children'][number]
@@ -63,6 +65,36 @@ describe('rehypeProseHeadings', () => {
     expect(wrapper.properties['data-level']).toBe('3')
     expect(textOf(asElement(wrapper.children[0]))).toBe(UNSET_PICTOGRAM)
     expect(wrapper.children[1]).toBe(subsection)
+  })
+
+  it('moves an icon that leads a title into its frame, inked in the key colour', () => {
+    const glyph = element('svg', [element('path', [])])
+    glyph.properties = { className: 'au-slot-glyph', viewBox: '0 0 512 512', 'aria-hidden': 'true' }
+    const title = element('h2', [glyph, text('La Venue')], 'la-venue')
+    const wrapper = asElement(headed(title)[0])
+    const [frame, heading] = wrapper.children.map(asElement)
+    expect(frame?.properties).toEqual({
+      className: FRAME_CLASS,
+      'data-face': 'icon',
+      'aria-hidden': 'true',
+      style: `--frame-ink:${KEY_INK}`,
+    })
+    const pictogram = asElement(asElement(frame?.children[0]).children[0])
+    expect(pictogram.tagName).toBe('svg')
+    expect(pictogram.properties['className']).toBe(FRAME_ICON_CLASS)
+    expect(pictogram.properties['viewBox']).toBe('0 0 512 512')
+    expect(heading?.children).toEqual([text('La Venue')])
+    expect(heading?.properties).toEqual({ id: 'la-venue' })
+    expect(wrapper.properties['style']).toBe(headFit('La Venue'))
+  })
+
+  it('keeps an icon inside the title when words come before it', () => {
+    const glyph = element('svg', [])
+    glyph.properties = { className: 'au-slot-glyph' }
+    const title = element('h2', [text('Le '), glyph, text('signe')])
+    const [frame, heading] = asElement(headed(title)[0]).children.map(asElement)
+    expect(frame?.properties['data-face']).toBe('unset')
+    expect(heading).toBe(title)
   })
 
   it('leaves the title, its text and its id untouched, so anchors and the side list hold', () => {

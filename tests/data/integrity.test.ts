@@ -1,5 +1,5 @@
 import type { Dirent } from 'node:fs'
-import { readdir, readFile } from 'node:fs/promises'
+import { access, readdir, readFile } from 'node:fs/promises'
 import { dirname, extname, resolve } from 'node:path'
 import { parseFrontmatter } from '@astrojs/markdown-remark'
 import sharp from 'sharp'
@@ -1399,6 +1399,15 @@ async function authoredProse(): Promise<Prose[]> {
 }
 
 describe('authored prose markup', () => {
+  it('points every icon at a vendored file', async () => {
+    for (const { where, text } of await authoredProse()) {
+      for (const match of text.matchAll(/:icon\[([a-z-]+):([a-z0-9-]+)\]/g)) {
+        const file = resolve(root, 'data/media/icons', match[1] ?? '', `${match[2]}.svg`)
+        await expect(access(file), `${where} ${match[0]}`).resolves.toBeUndefined()
+      }
+    }
+  })
+
   it('writes a picture caption only on the line under a picture', async () => {
     for (const { where, text } of await authoredProse()) {
       const lines = text.split('\n')
@@ -1512,9 +1521,12 @@ describe('authored prose markup', () => {
     }
   })
 
-  it('gives a lore page and its English page the same sections and pictures', async () => {
+  it('gives a lore page and its English page the same sections, pictograms and pictures', async () => {
     const shape = (text: string) => ({
-      sections: text.split('\n').filter((line) => line.startsWith('## ')).length,
+      sections: text
+        .split('\n')
+        .filter((line) => line.startsWith('## '))
+        .map((line) => /^## :icon\[([^\]]+)\]/.exec(line)?.[1] ?? 'unset'),
       pictures: [...text.matchAll(/!\[[^\]]*\]\(([^)\s]+)/g)].map((match) => match[1]),
     })
     for (const { english, french } of translationPairs(await lorePages())) {

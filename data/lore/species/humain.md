@@ -4,7 +4,7 @@ Les humains sont des artisans de l'espoir et de l'action, peuple d'une créativi
 >
 > :source[**Jacques « Le Scellaire » Arsenault** s'adressant à **Arthur Colbert** à l'aube de la grande bataille de Brécelann.]{top-left tranche}
 
-## La Venue
+## :icon[game-icons:ship-wreck] La Venue
 
 ![Des naufragés tirent un coffre hors des vagues, au pied d'une falaise, sous un ciel d'orage.](../../media/art/les-naufrages-de-la-venue-3_2-og.png "glazed")
 :caption[« Les Naufragés de la Venue », toile peinte en 238 apr. V.]
@@ -15,7 +15,7 @@ Arrivés sur une terre que d'autres peuples habitaient depuis des siècles, cert
 
 On compte les années « avant la Venue » et « après la Venue » (av. V. et apr. V.), mais l'an 0 de ce calendrier est le dernier jour de la bataille de Brécelann, celui du traité de paix entre elfes et humains. Humains et elfes répandirent cette convention à travers Eden, comme le Commun, en mémoire des victimes de Brécelann. Certains parlent plutôt d'« ère commune » (av. è. c. et apr. è. c.) ou de « Second Éclat » (av. s. é. et apr. s. é.), du nom de la malédiction qui frappa toutes les créatures vivantes d'Eden peu avant l'arrivée des humains, à une date proche de l'an 0. Le jour de référence reste pourtant le même.
 
-## L'Eisenriese
+## :icon[game-icons:battleship] L'Eisenriese
 
 Parmi les navires qui amenèrent les humains sur Eden lors de la Venue, l'Eisenriese, dit « Le Géant de Fer », est l'un des rares encore intacts. C'est le navire d'Ulriech Strasswalker. On dit que, bien qu'Ulriech fût inconscient comme tous les autres, son ingénierie était si aboutie que l'Eisenriese changea de cap de lui-même et accosta sur le rivage de ce qui est aujourd'hui le Landenheit, si parfaitement qu'il n'en subit aucun dommage.
 
@@ -25,7 +25,7 @@ Pour une humanité qui avait tout oublié de sa terre, ce fut une chance : l'Eis
 
 Beaucoup sont des recueils scientifiques. Les humains s'en servirent pour recréer l'essentiel de leur ancienne technologie, qui ne tirait son énergie ni de la magie ni des Catalyseurs.
 
-## La Nouvelle-Aubaine et la Weitzguard
+## :icon[game-icons:mounted-knight] La Nouvelle-Aubaine et la Weitzguard
 
 À l'aube de la grande bataille de Brécelann, Arthur Colbert n'était pas encore roi : la Nouvelle-Aubaine n'existait pas. Le Bastion n'était alors guère qu'un camp fortifié pour résister aux elfes. Quand la guerre prit fin, le camp devint la ville que l'on connaît, et Arthur y établit son siège. De là, il alla de tribu en tribu et de royaume en royaume pour unifier ce qui allait devenir la Nouvelle-Aubaine, dont il fut le premier roi.
 
@@ -35,7 +35,7 @@ Les **Parangons**, main armée de la Weitzguard, ouvrent leurs rangs à tous les
 
 Les Parangons mêlent les missions d'une milice citadine, la rigueur d'une police d'exception et la bravoure de chasseurs de créatures surnaturelles. Ils arpentent terres sauvages et cités fortifiées pour venir en aide aux populations, traquant monstres et conspirations par l'acier et l'art magique. Chaque grande cité dispose de sa garnison de Parangons, tandis que les plus aguerris vagabondent d'un pays à l'autre.
 
-## Les Oracles
+## :icon[game-icons:magic-swirl] Les Oracles
 
 ![Une immense bibliothèque gothique aux bannières bleues, ses rayonnages sur plusieurs étages autour d'une sphère armillaire suspendue au-dessus d'un livre ouvert.](../../media/art/bibliotheque-des-oracles-16_9-og.png "almanach")
 :caption[La bibliothèque de l'Académie des Oracles]
@@ -46,13 +46,13 @@ Les premiers Oracles furent élus par le conseil des trois régents, les souvera
 
 La plupart des Oracles ont été découverts à l'Académie des Oracles, comme Augure, qui tient aujourd'hui le rang d'Oracle de la Foudre. À quinze ans à peine, elle surpasse tous les mages de la foudre connus. On dit qu'elle peut aller du Bastion à Eisenriese, la capitale du Landenheit, en une seconde.
 
-## Les guildes des cités
+## :icon[game-icons:qaitbay-citadel] Les guildes des cités
 
 Dans les cités humaines, les autorités instituèrent le modèle des guildes pour structurer chaque domaine : le commerce, l'artisanat, le savoir ou la magie. Après la Venue, de nombreuses guildes d'érudits se constituèrent, les unes pour mieux comprendre leur nouveau foyer, les autres pour essayer de retrouver des informations sur leurs anciennes terres. La guilde des **Sagemeisters**, bien que fondée par des humains, rassemble surtout des érudits d'autres peuples. Elle coordonne les expéditions scientifiques et consigne les coutumes d'Eden.
 
 D'autres confréries virent le jour : guildes de forgerons et d'ingénieurs, cercles de guérisseurs penchés sur les remèdes et l'herboristerie, compagnies de diplomates, ligues de cartographes qui dessinent les routes et les réseaux de communication. Chacune est née dans une ville humaine et réunit les gens d'un même métier, qui s'y transmettent leur savoir et s'y soutiennent face aux épreuves d'Eden.
 
-## Érudits nomades
+## :icon[game-icons:bookmark] Érudits nomades
 
 Les humains portent en eux l'élan de la découverte et une morale façonnée par le déracinement. Ils voient en chaque peuple autochtone le gardien d'un savoir précieux, et cherchent à le comprendre plutôt qu'à le dominer. Des frictions surgissent, notamment avec les elfes, mais la plupart des humains font preuve d'une bienveillance sincère : ils respectent les coutumes locales et veillent à ne pas éroder les équilibres établis.
 
