@@ -612,6 +612,7 @@ export type SealRelief = {
 export type SealSurface = {
   height: Float32Array
   roughness: Float32Array
+  stamped: Float32Array
 }
 
 function waved(angle: number, waves: readonly Wave[]): number {
@@ -695,6 +696,7 @@ export function sealSurface(puddle: Plane, emblem: Plane, relief: SealRelief): S
 
   const surface = new Float32Array(count)
   const rough = new Float32Array(count)
+  const stamped = new Float32Array(count)
   for (let at = 0; at < count; at++) {
     if (!inPuddle(at)) continue
     const x = ((at % width) + 0.5) / pixelsPerUnit - relief.centre.x
@@ -731,6 +733,161 @@ export function sealSurface(puddle: Plane, emblem: Plane, relief: SealRelief): S
     const settled = roughness.field + (roughness.body - roughness.field) * (1 - pressedIn)
     const lifted = settled + (roughness.ring - settled) * onRing
     rough[at] = inEmblem(at) ? roughness.emblem : lifted
+    stamped[at] = pressedIn
   }
-  return { height: surface, roughness: rough }
+  return { height: surface, roughness: rough, stamped }
+}
+
+export type SurfaceScan = {
+  width: number
+  height: number
+  heights: Float32Array
+  roughness: Float32Array
+  millimetres: number
+}
+
+export type WaxSkin = { depth: number; roughness: number; underStamp: number }
+
+export type Pits = { count: number; radius: readonly [number, number]; depth: number; seed: number }
+
+export type Flow = { amplitude: number; wavelength: number; reach: number; waves: readonly Wave[] }
+
+const LOWEST_ROUGHNESS = 0.05
+
+function spreadOf(values: Float32Array): { mean: number; deviation: number } {
+  let sum = 0
+  for (const value of values) sum += value
+  const mean = sum / values.length
+  let squares = 0
+  for (const value of values) squares += (value - mean) ** 2
+  return { mean, deviation: Math.sqrt(squares / values.length) || 1 }
+}
+
+function wrappedSample(
+  values: Float32Array,
+  width: number,
+  height: number,
+  x: number,
+  y: number,
+): number {
+  const left = Math.floor(x)
+  const top = Math.floor(y)
+  const across = x - left
+  const down = y - top
+  const at = (column: number, row: number): number =>
+    values[(((row % height) + height) % height) * width + (((column % width) + width) % width)] ?? 0
+  const upper = at(left, top) + (at(left + 1, top) - at(left, top)) * across
+  const lower = at(left, top + 1) + (at(left + 1, top + 1) - at(left, top + 1)) * across
+  return upper + (lower - upper) * down
+}
+
+function freeWax(surface: SealSurface, at: number): number {
+  return 1 - (surface.stamped[at] ?? 0)
+}
+
+export function skinnedSurface(
+  surface: SealSurface,
+  puddle: Plane,
+  scan: SurfaceScan,
+  skin: WaxSkin,
+  millimetresPerPixel: number,
+): SealSurface {
+  const { width, height } = puddle
+  const scanPixelsPerPixel = (millimetresPerPixel * scan.width) / scan.millimetres
+  const heights = spreadOf(scan.heights)
+  const grains = spreadOf(scan.roughness)
+  const raised = Float32Array.from(surface.height)
+  const roughened = Float32Array.from(surface.roughness)
+  for (let at = 0; at < width * height; at++) {
+    if ((puddle.values[at] ?? 0) < 0.5) continue
+    const x = scan.width / 2 + ((at % width) + 0.5 - width / 2) * scanPixelsPerPixel - 0.5
+    const y =
+      scan.height / 2 + (Math.floor(at / width) + 0.5 - height / 2) * scanPixelsPerPixel - 0.5
+    const kept = skin.underStamp + (1 - skin.underStamp) * freeWax(surface, at)
+    const lifted =
+      (wrappedSample(scan.heights, scan.width, scan.height, x, y) - heights.mean) /
+      heights.deviation
+    const grain =
+      (wrappedSample(scan.roughness, scan.width, scan.height, x, y) - grains.mean) /
+      grains.deviation
+    raised[at] = (raised[at] ?? 0) + lifted * skin.depth * kept
+    roughened[at] = Math.min(
+      Math.max((roughened[at] ?? 0) + grain * skin.roughness * kept, LOWEST_ROUGHNESS),
+      1,
+    )
+  }
+  return { height: raised, roughness: roughened, stamped: surface.stamped }
+}
+
+function hashed(index: number, salt: number): number {
+  let h = (Math.imul(index + 1, 0x9e3779b1) ^ Math.imul(salt + 1, 0x85ebca6b)) >>> 0
+  h = Math.imul(h ^ (h >>> 16), 0x7feb352d) >>> 0
+  h = Math.imul(h ^ (h >>> 15), 0x846ca68b) >>> 0
+  return ((h ^ (h >>> 16)) >>> 0) / 2 ** 32
+}
+
+export function pittedSurface(
+  surface: SealSurface,
+  puddle: Plane,
+  relief: SealRelief,
+  pits: Pits,
+): SealSurface {
+  const { width, height } = puddle
+  const pixelsPerUnit = width / relief.span
+  const dented = Float32Array.from(surface.height)
+  const inner = relief.stamp.radius + relief.ring.width
+  for (let pit = 0; pit < pits.count; pit++) {
+    const angle = 2 * Math.PI * hashed(pit, pits.seed)
+    const reach = inner + (relief.outline.radius - inner) * Math.sqrt(hashed(pit, pits.seed + 1))
+    const radius = pits.radius[0] + (pits.radius[1] - pits.radius[0]) * hashed(pit, pits.seed + 2)
+    const centre = {
+      x: relief.centre.x + reach * Math.cos(angle),
+      y: relief.centre.y + reach * Math.sin(angle),
+    }
+    if (sealOutlineDistance(centre.x, centre.y, relief) > -2 * radius) continue
+    const from = {
+      x: Math.floor((centre.x - radius) * pixelsPerUnit),
+      y: Math.floor((centre.y - radius) * pixelsPerUnit),
+    }
+    const to = {
+      x: Math.ceil((centre.x + radius) * pixelsPerUnit),
+      y: Math.ceil((centre.y + radius) * pixelsPerUnit),
+    }
+    for (let y = Math.max(from.y, 0); y < Math.min(to.y, height); y++) {
+      for (let x = Math.max(from.x, 0); x < Math.min(to.x, width); x++) {
+        const at = y * width + x
+        const distance = Math.hypot(
+          (x + 0.5) / pixelsPerUnit - centre.x,
+          (y + 0.5) / pixelsPerUnit - centre.y,
+        )
+        if (distance >= radius) continue
+        const fall = 1 - (distance / radius) ** 2
+        dented[at] = (dented[at] ?? 0) - pits.depth * fall * fall * freeWax(surface, at)
+      }
+    }
+  }
+  return { ...surface, height: dented }
+}
+
+export function flowedSurface(
+  surface: SealSurface,
+  puddle: Plane,
+  relief: SealRelief,
+  flow: Flow,
+): SealSurface {
+  const { width, height } = puddle
+  const unitsPerPixel = relief.span / width
+  const flowed = Float32Array.from(surface.height)
+  for (let at = 0; at < width * height; at++) {
+    if ((puddle.values[at] ?? 0) < 0.5) continue
+    const x = ((at % width) + 0.5) * unitsPerPixel
+    const y = (Math.floor(at / width) + 0.5) * unitsPerPixel
+    const inside = -sealOutlineDistance(x, y, relief)
+    const angle = Math.atan2(y - relief.centre.y, x - relief.centre.x)
+    const ridge = Math.cos((2 * Math.PI * inside) / flow.wavelength + waved(angle, flow.waves))
+    flowed[at] =
+      (flowed[at] ?? 0) +
+      flow.amplitude * ridge * Math.exp(-inside / flow.reach) * freeWax(surface, at)
+  }
+  return { ...surface, height: flowed }
 }

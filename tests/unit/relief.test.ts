@@ -8,16 +8,20 @@ import {
   depthInside,
   distanceToSeeds,
   engravingDepth,
+  flowedSurface,
   halfRound,
   inflate,
   normalsOf,
   occlusionOf,
   type Plane,
+  pittedSurface,
   roundedShoulder,
   type SealRelief,
+  type SurfaceScan,
   sealOutline,
   sealSurface,
   shadowOf,
+  skinnedSurface,
   wireHeight,
 } from '../../src/lib/art-effect/relief'
 import { SEAL } from '../../src/lib/art-effect/seal-look'
@@ -400,5 +404,81 @@ describe('the wax seal', () => {
         expect(puddle.values[at]).toBe(0)
       }
     }
+  })
+})
+
+function striped(period: number, periods: number, millimetres: number): SurfaceScan {
+  const width = period * periods
+  const heights = new Float32Array(width * width)
+  for (let at = 0; at < heights.length; at++)
+    heights[at] = Math.cos((2 * Math.PI * (at % width)) / period)
+  return { width, height: width, heights, roughness: Float32Array.from(heights), millimetres }
+}
+
+function changed(before: Float32Array, after: Float32Array, at: number): number {
+  return (after[at] ?? 0) - (before[at] ?? 0)
+}
+
+describe('the surface of the wax', () => {
+  const { puddle, surface, at } = sealAt(SEAL_RELIEF, () => false)
+  const skin = { depth: 0.2, roughness: 0.05, underStamp: 0 }
+
+  it('lays a scan at its own scale, whatever the scale of the map', () => {
+    const scan = striped(16, 8, 64)
+    const millimetresPerPeriod = (16 * scan.millimetres) / scan.width
+    for (const perPixel of [0.25, 0.5]) {
+      const skinned = skinnedSurface(surface, puddle, scan, { ...skin, underStamp: 1 }, perPixel)
+      const period = millimetresPerPeriod / perPixel
+      const delta = (x: number): number => changed(surface.height, skinned.height, at(x, 0))
+      const from = 2
+      const step = period / (SEAL_SIDE / SEAL_RELIEF.span)
+      expect(delta(from + step)).toBeCloseTo(delta(from), 4)
+      expect(delta(from + step / 2)).toBeCloseTo(-delta(from), 4)
+    }
+  })
+
+  it('touches nothing outside the puddle and spares the pressed field when it keeps none of the scan', () => {
+    const skinned = skinnedSurface(surface, puddle, striped(16, 8, 64), skin, 0.25)
+    for (let index = 0; index < puddle.values.length; index++) {
+      if ((puddle.values[index] ?? 0) >= 0.5) continue
+      expect(skinned.height[index]).toBe(surface.height[index])
+    }
+    for (const x of [0, 5, 10]) {
+      expect(skinned.height[at(x, 0)]).toBe(surface.height[at(x, 0)])
+      expect(skinned.roughness[at(x, 0)]).toBe(surface.roughness[at(x, 0)])
+    }
+  })
+
+  it('keeps the share of the scan it is told to under the stamp', () => {
+    const scan = striped(16, 8, 64)
+    const kept = skinnedSurface(surface, puddle, scan, { ...skin, underStamp: 0.25 }, 0.25)
+    const full = skinnedSurface(surface, puddle, scan, { ...skin, underStamp: 1 }, 0.25)
+    const field = at(3, 0)
+    expect(changed(surface.height, kept.height, field)).toBeCloseTo(
+      0.25 * changed(surface.height, full.height, field),
+      6,
+    )
+  })
+
+  it('dents only the free wax with its pits, the same way twice', () => {
+    const pits = { count: 40, radius: [0.8, 1.6] as const, depth: 0.3, seed: 3 }
+    const pitted = pittedSurface(surface, puddle, SEAL_RELIEF, pits)
+    expect(pittedSurface(surface, puddle, SEAL_RELIEF, pits).height).toEqual(pitted.height)
+    let dented = 0
+    for (let index = 0; index < puddle.values.length; index++) {
+      const delta = changed(surface.height, pitted.height, index)
+      expect(delta).toBeLessThanOrEqual(0)
+      if (delta < 0) dented += 1
+    }
+    expect(dented).toBeGreaterThan(0)
+    for (const x of [0, 5, 10, 15]) expect(pitted.height[at(x, 0)]).toBe(surface.height[at(x, 0)])
+  })
+
+  it('ripples only the free wax with its flow marks', () => {
+    const flow = { amplitude: 0.1, wavelength: 2, reach: 4, waves: [[3, 0.5, 0]] as const }
+    const flowed = flowedSurface(surface, puddle, SEAL_RELIEF, flow)
+    for (const x of [0, 5, 10, 15]) expect(flowed.height[at(x, 0)]).toBe(surface.height[at(x, 0)])
+    const rim = SEAL_RELIEF.outline.radius - 1
+    expect(changed(surface.height, flowed.height, at(0, -rim))).not.toBe(0)
   })
 })

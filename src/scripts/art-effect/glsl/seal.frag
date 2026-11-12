@@ -23,6 +23,7 @@ const float FLAKES_ACROSS = 110.0;
 const float FLAKE_SHARE = 0.22;
 const float FLAKE_TILT = 0.45;
 const float FLAKE_ROUGHNESS = 0.14;
+const float FLAKE_ROOM = 0.12;
 
 float wrapped(vec3 normal, vec3 light) {
   return max((dot(normal, light) + WRAP) / (1.0 + WRAP), 0.0);
@@ -35,7 +36,8 @@ float micaSparkle(vec2 uv, vec3 normal, vec3 view, float lit) {
   vec3 flake = hash3(ivec2(floor(cells)), 7u);
   if (flake.z > FLAKE_SHARE || resolved <= 0.0) return 0.0;
   vec3 tilted = normalize(normal + FLAKE_TILT * vec3(flake.xy * 2.0 - 1.0, 0.0));
-  return keySpecular(tilted, view, FLAKE_ROUGHNESS) * lit * resolved;
+  float roomGlint = FLAKE_ROOM * luminance(room(uRoomSharp, reflect(-view, tilted)));
+  return (keySpecular(tilted, view, FLAKE_ROUGHNESS) + roomGlint) * lit * resolved;
 }
 
 vec3 wax(

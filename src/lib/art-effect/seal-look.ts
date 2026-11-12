@@ -1,7 +1,7 @@
 import { srgbToLinear } from '../atlas/kernel/colour.ts'
 import { oklchOf, rgbFromHex, rgbOf } from '../key-colour.ts'
 import { RELIEF_LEAN, RELIEF_ROOM, type Rgb } from './presets.ts'
-import type { KeyLight, SealRelief } from './relief.ts'
+import type { Flow, KeyLight, Pits, SealRelief, WaxSkin } from './relief.ts'
 
 export const SEAL_STILL_WIDTHS = [120, 144, 192, 240, 288, 360, 384, 432, 576] as const
 
@@ -34,6 +34,21 @@ export const SEAL = {
   key: RELIEF_ROOM.key,
   exposure: 1.0,
   mica: 0.6,
+  surface: {
+    fieldMillimetres: 25,
+    skin: { depth: 0.15, roughness: 0.05, underStamp: 0.15 },
+    pits: { count: 34, radius: [0.35, 1], depth: 0.22, seed: 11 },
+    flow: {
+      amplitude: 0.07,
+      wavelength: 1.7,
+      reach: 5,
+      waves: [
+        [3, 0.8, 0.4],
+        [7, 0.5, 2.2],
+        [13, 0.3, 4.1],
+      ],
+    },
+  },
   relief: {
     span: 100,
     centre: { x: 50, y: 45 },
@@ -95,11 +110,15 @@ export const SEAL = {
   key: KeyLight
   exposure: number
   mica: number
+  surface: { fieldMillimetres: number; skin: WaxSkin; pits: Pits; flow: Flow }
   relief: SealRelief
   lean: { degrees: number; perspective: number }
 }
 
 export const SEAL_MAP_SIZE = { width: SEAL.mapWidth, height: SEAL.mapWidth }
+
+export const SEAL_MILLIMETRES_PER_UNIT =
+  SEAL.surface.fieldMillimetres / (2 * SEAL.relief.stamp.radius)
 
 export type WaxShades = { albedo: Rgb; deep: Rgb; pale: Rgb }
 

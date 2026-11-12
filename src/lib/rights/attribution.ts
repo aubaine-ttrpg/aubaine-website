@@ -299,6 +299,7 @@ export type TextureCut =
       retouch: readonly Retouch[]
     }
   | { file: string; kind: 'hanger'; original: string }
+  | { kind: 'seal-surface'; height: string; roughness: string; millimetres: number }
 
 export type TextureWork = {
   title: string
@@ -388,6 +389,20 @@ export const TEXTURE_WORKS = [
     ],
   },
   {
+    title: 'White Plaster 02',
+    author: 'Rob Tuytel',
+    source: `${POLY_HAVEN}/white_plaster_02`,
+    licence: CC0,
+    cuts: [
+      {
+        kind: 'seal-surface',
+        height: 'white_plaster_02/white_plaster_02_disp_8k.png',
+        roughness: 'white_plaster_02/white_plaster_02_rough_4k.png',
+        millimetres: 1000,
+      },
+    ],
+  },
+  {
     title: 'Dark Wood',
     author: 'Dimitrios Savva, Dario Barresi, Rico Cilliers',
     source: `${POLY_HAVEN}/dark_wood`,
@@ -397,7 +412,7 @@ export const TEXTURE_WORKS = [
 ] as const satisfies readonly TextureWork[]
 
 export const TEXTURE_FILES: readonly string[] = TEXTURE_WORKS.flatMap((work) =>
-  work.cuts.map((cut) => cut.file),
+  work.cuts.flatMap((cut) => ('file' in cut ? [cut.file] : [])),
 )
 
 export type AlmanachMaterialWork = {

@@ -1,3 +1,4 @@
+import { existsSync } from 'node:fs'
 import { mkdir, readFile } from 'node:fs/promises'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -5,22 +6,28 @@ import { fileURLToPath } from 'node:url'
 import sharp from 'sharp'
 import {
   curvatureOf,
+  flowedSurface,
   normalsOf,
   occlusionOf,
   type Plane,
+  pittedSurface,
+  type SurfaceScan,
   sealOutline,
   sealSurface,
   shadowOf,
+  skinnedSurface,
 } from '../../src/lib/art-effect/relief.ts'
 import {
   SEAL,
   SEAL_MAP_SIZE,
+  SEAL_MILLIMETRES_PER_UNIT,
   type SealFiles,
   sealFiles,
   waxShades,
 } from '../../src/lib/art-effect/seal-look.ts'
 import { linearToSrgb } from '../../src/lib/atlas/kernel/colour.ts'
 import { readCorpus } from '../../src/lib/game/fs-sources.ts'
+import { TEXTURE_WORKS, type TextureCut } from '../../src/lib/rights/attribution.ts'
 import type { BakeSize } from './browser-bake.ts'
 import {
   bakeStill,
@@ -36,6 +43,11 @@ import { SEALS_DIR, sealStillScene } from './relief-scenes.ts'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
 const emblemsDir = resolve(root, 'data/media/emblems')
+const originals = resolve(root, 'tmp/textures')
+
+const SCAN_CROP_MILLIMETRES = 46
+
+type SurfaceCut = Extract<TextureCut, { kind: 'seal-surface' }>
 
 const VIEW_BOX = /viewBox="([^"]+)"/
 
@@ -86,6 +98,58 @@ function holdsWithinField(emblem: Plane, file: string): void {
   }
 }
 
+function surfaceCut(): SurfaceCut {
+  const cut = TEXTURE_WORKS.flatMap((work): readonly TextureCut[] => work.cuts).find(
+    (each): each is SurfaceCut => each.kind === 'seal-surface',
+  )
+  if (!cut)
+    throw new Error('the seals are baked with a surface scan, which no texture work provides')
+  return cut
+}
+
+function originalOf(file: string): string {
+  const path = resolve(originals, file)
+  if (!existsSync(path)) {
+    throw new Error(`${file} is missing from tmp/textures; download it from its source first`)
+  }
+  return path
+}
+
+async function widthOf(file: string): Promise<number> {
+  const { width } = await sharp(originalOf(file), { limitInputPixels: false }).metadata()
+  if (!width) throw new Error(`${file} has no size`)
+  return width
+}
+
+async function scanPlane(file: string, side: number, heightWidth: number): Promise<Float32Array> {
+  const width = await widthOf(file)
+  const span = Math.round((side * width) / heightWidth)
+  const from = Math.floor((width - span) / 2)
+  const { data } = await sharp(originalOf(file), { limitInputPixels: false })
+    .extract({ left: from, top: from, width: span, height: span })
+    .extractChannel(0)
+    .resize(side, side, { kernel: 'lanczos3' })
+    .raw({ depth: 'ushort' })
+    .toBuffer({ resolveWithObject: true })
+  return Float32Array.from(new Uint16Array(data.buffer, data.byteOffset, data.length / 2))
+}
+
+async function surfaceScan(cut: SurfaceCut): Promise<SurfaceScan> {
+  const heightWidth = await widthOf(cut.height)
+  const perMillimetre = heightWidth / cut.millimetres
+  const side = Math.ceil(SCAN_CROP_MILLIMETRES * perMillimetre)
+  if (side / perMillimetre < SEAL.relief.span * SEAL_MILLIMETRES_PER_UNIT) {
+    throw new Error('the surface scan is cropped narrower than the seal')
+  }
+  return {
+    width: side,
+    height: side,
+    heights: await scanPlane(cut.height, side, heightWidth),
+    roughness: await scanPlane(cut.roughness, side, heightWidth),
+    millimetres: side / perMillimetre,
+  }
+}
+
 async function bakeSeal(file: string, files: SealFiles, wax: string): Promise<void> {
   const by = SEAL.supersample
   const out = SEAL_MAP_SIZE
@@ -95,7 +159,12 @@ async function bakeSeal(file: string, files: SealFiles, wax: string): Promise<vo
   const puddle = sealOutline(fine, SEAL.relief)
   const emblem = await emblemPlane(file, fine)
   holdsWithinField(emblem, file)
-  const surface = sealSurface(puddle, emblem, SEAL.relief)
+  const sculpted = sealSurface(puddle, emblem, SEAL.relief)
+  const scan = await surfaceScan(surfaceCut())
+  const millimetresPerPixel = SEAL_MILLIMETRES_PER_UNIT / pixelsPerUnit
+  const skinned = skinnedSurface(sculpted, puddle, scan, SEAL.surface.skin, millimetresPerPixel)
+  const pitted = pittedSurface(skinned, puddle, SEAL.relief, SEAL.surface.pits)
+  const surface = flowedSurface(pitted, puddle, SEAL.relief, SEAL.surface.flow)
   const toMap = (values: Float32Array): Float32Array => reduced(values, fine, 1, by)
   const normals = reduced(
     normalsOf(surface.height, fine.width, fine.height, pixelsPerUnit),

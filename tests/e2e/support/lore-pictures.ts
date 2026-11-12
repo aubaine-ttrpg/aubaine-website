@@ -37,7 +37,8 @@ export async function framesBySpecies(): Promise<Map<string, Set<FrameKind>>> {
 
 export function frameFile(frame: FrameKind, pass: FramePass): RegExp {
   const cut = TEXTURE_WORKS.flatMap((work): readonly TextureCut[] => work.cuts).find(
-    (each) => each.kind === 'frame' && each.frame === frame && each.pass === pass,
+    (each): each is Extract<TextureCut, { kind: 'frame' }> =>
+      each.kind === 'frame' && each.frame === frame && each.pass === pass,
   )
   if (!cut) throw new Error(`no texture work bakes the ${pass} pass of the ${frame} frame`)
   const dot = cut.file.lastIndexOf('.')

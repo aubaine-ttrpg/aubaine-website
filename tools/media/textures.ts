@@ -33,6 +33,7 @@ const RETOUCH_FEATHER = 0.4
 type Radiance = { width: number; height: number; rgb: Float32Array }
 
 type FrameCut = Extract<TextureCut, { kind: 'frame' }>
+type EnvironmentCut = Extract<TextureCut, { kind: 'environment' }>
 
 type Wave = readonly [amplitude: number, period: number, phase: number]
 
@@ -124,7 +125,7 @@ const WOOD_MODEL = {
   members: WOOD_MEMBERS,
 } as const
 
-function original(cut: TextureCut): string {
+function original(cut: { original: string }): string {
   const path = resolve(originals, cut.original)
   if (!existsSync(path)) {
     throw new Error(
@@ -292,14 +293,14 @@ function packRgbm(
   return { pixels, width, height }
 }
 
-async function roomOf(cut: TextureCut): Promise<{ base: Radiance; scale: number }> {
+async function roomOf(cut: EnvironmentCut): Promise<{ base: Radiance; scale: number }> {
   const source = readRadiance(new Uint8Array(await readFile(original(cut))))
   const [sharpest] = ENVIRONMENT.levels
   const base = shrink(source, sharpest.width * 2, sharpest.height * 2)
   return { base, scale: ENVIRONMENT.meanRadiance / meanRadiance(base) }
 }
 
-async function environment(cut: TextureCut): Promise<void> {
+async function environment(cut: EnvironmentCut): Promise<void> {
   const { base, scale } = await roomOf(cut)
   const levels = ENVIRONMENT.levels.map((level) =>
     level.gloss === undefined
@@ -726,7 +727,7 @@ function originalAt(path: string): string {
 
 async function roomScale(): Promise<{ file: string; scale: number }> {
   const room = TEXTURE_WORKS.flatMap((work): readonly TextureCut[] => work.cuts).find(
-    (cut) => cut.kind === 'environment',
+    (cut): cut is EnvironmentCut => cut.kind === 'environment',
   )
   if (!room) throw new Error('the bakes are lit by the environment, which no texture work provides')
   return { file: room.original, scale: (await roomOf(room)).scale }
